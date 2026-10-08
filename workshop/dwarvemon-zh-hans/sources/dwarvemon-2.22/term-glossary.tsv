@@ -1,4 +1,17 @@
 # Authored Dwarvemon terminology; supplemental original terms and official-name spelling aliases.
+# Preserve case and semantic scope: iron is metal/tissue; Iron is the vitamin item.
+Iron	防御增强剂
+iron	铁
+iron bar	铁锭
+iron bars	铁锭
+Iron Chunks	铁块
+drop Iron Chunk	掉落铁块
+make Iron Chunks (Hematite)	制作铁块（赤铁矿）
+make Iron Chunks (Limonite)	制作铁块（褐铁矿）
+make Iron Chunks (Magnetite)	制作铁块（磁铁矿）
+Iron Defence	铁壁
+use Iron Defence	使用铁壁
+uses Iron Defence	使用铁壁
 Pokemon	宝可梦
 Pokémon	宝可梦
 Pokeball	精灵球

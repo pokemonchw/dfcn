@@ -1916,7 +1916,7 @@ Iron Barktongue spores	铁壁舌草孢子	wi
 Iron Barktongues	铁壁舌草	wi
 Iron Boulder	铁磐岩	wi
 Iron Bundle	铁包袱	wi
-Iron Chunks	防御增强剂残块	wi
+Iron Chunks	铁块	wi
 Iron Crown	铁头壳	wi
 Iron Hands	铁臂膀	wi
 Iron Jugulis	铁脖颈	wi
@@ -6533,7 +6533,7 @@ drop Coal	掉落煤炭	wi
 drop Crunchy Salt	掉落坚坚矿	wi
 drop Electirizer	掉落电力增幅器	wi
 drop Hearty Grain	掉落旺旺谷	wi
-drop Iron Chunk	掉落防御增强剂残块	wi
+drop Iron Chunk	掉落铁块	wi
 drop King's Leaf	掉落王者之叶	wi
 drop Lunar Wing	掉落新月之羽	wi
 drop Magmarizer	掉落熔岩增幅器	wi
@@ -7344,9 +7344,9 @@ inner shell	内壳	wi
 insert Pokeball into Ball Capsule	把精灵球放入球壳	wi
 inside	内部	wi
 insides	内侧	wi
-iron	防御增强剂	wi
-iron bar	防御增强剂锭	wi
-iron bars	防御增强剂锭	wi
+iron	铁	w
+iron bar	铁锭	wi
+iron bars	铁锭	wi
 is badly poisoned	陷入了剧毒状态	wi
 is confused	陷入了混乱	wi
 is filled with terrible might	充满恐怖的力量	wi
@@ -7803,9 +7803,9 @@ make Insect Plate	制作玉虫石板	wi
 make Instant-Noodle Curry	制作泡面咖喱饭	wi
 make Iron	制作防御增强剂	wi
 make Iron Ball	制作黑色铁球	wi
-make Iron Chunks (Hematite)	制作防御增强剂残块（赤铁矿）	wi
-make Iron Chunks (Limonite)	制作防御增强剂残块（褐铁矿）	wi
-make Iron Chunks (Magnetite)	制作防御增强剂残块（磁铁矿）	wi
+make Iron Chunks (Hematite)	制作铁块（赤铁矿）	wi
+make Iron Chunks (Limonite)	制作铁块（褐铁矿）	wi
+make Iron Chunks (Magnetite)	制作铁块（磁铁矿）	wi
 make Iron Plate	制作钢铁石板	wi
 make Jet Balls	制作飞梭球	wi
 make Jubilife Muffin	制作祝庆玛芬	wi
@@ -9784,7 +9784,7 @@ use Insect Plate	使用玉虫石板	wi
 use Iron	使用防御增强剂	wi
 use Iron Ball	使用黑色铁球	wi
 use Iron Barktongue	使用铁壁舌草	wi
-use Iron Defence	使用防御增强剂防御	wi
+use Iron Defence	使用铁壁	wi
 use Iron Defense	使用铁壁	wi
 use Iron Head on	使用铁头攻击	wi
 use Iron Plate	使用钢铁石板	wi
@@ -10436,7 +10436,7 @@ uses Ice Fang on	使用冰冻牙攻击	wi
 uses Ice Punch on	使用冰冻拳攻击	wi
 uses Ice Spinner on	使用冰旋攻击	wi
 uses Icicle Crash on	使用冰柱坠击攻击	wi
-uses Iron Defence	使用防御增强剂防御	wi
+uses Iron Defence	使用铁壁	wi
 uses Iron Defense	使用铁壁	wi
 uses Iron Head on	使用铁头攻击	wi
 uses Iron Tail on	使用铁尾攻击	wi
@@ -12596,7 +12596,7 @@ Announcement combat ability []: drop Coal	掉落煤炭	l
 Announcement combat ability []: drop Crunchy Salt	掉落坚坚矿	l
 Announcement combat ability []: drop Electirizer	掉落电力增幅器	l
 Announcement combat ability []: drop Hearty Grain	掉落旺旺谷	l
-Announcement combat ability []: drop Iron Chunk	掉落防御增强剂残块	l
+Announcement combat ability []: drop Iron Chunk	掉落铁块	l
 Announcement combat ability []: drop King's Leaf	掉落王者之叶	l
 Announcement combat ability []: drop Lunar Wing	掉落新月之羽	l
 Announcement combat ability []: drop Magmarizer	掉落熔岩增幅器	l
