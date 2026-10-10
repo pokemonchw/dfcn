@@ -1,10 +1,12 @@
+// Every native UI layer shares the frame producer and tile painters. Only
+// the help component's own draw/bounds bindings are ELF-specific.
+static NativeEntryHook g_native_help_frame_hook;
+using NativeHelpDrawFn = void (*)(void *);
 #ifndef _WIN32
 // help_interfacest::render is shared by tutorials, information cards and
 // minimized guides. Redirect its output BEFORE any native stores execute.
 static NativeEntryHook g_native_help_draw_hook;
-static NativeEntryHook g_native_help_frame_hook;
 static NativeCallHook g_native_help_bounds_hook;
-using NativeHelpDrawFn = void (*)(void *);
 using NativeHelpBoundsFn = void (*)(void *, int32_t *, int32_t *, int32_t *, int32_t *);
 static NativeHelpBoundsFn g_native_help_bounds = nullptr;
 
@@ -76,6 +78,7 @@ static void native_help_draw(void *help) {
     layer.foreground.graphics()->top_in_use = gps->top_in_use;
     layer.ready = true;
 }
+#endif
 
 static void native_help_begin_frame(void *renderer) {
     NativeInputCallbackScope callback;
@@ -94,7 +97,12 @@ static void native_help_begin_frame(void *renderer) {
     layer.renderer = nullptr;
     void **methods = nullptr;
     if (renderer) std::memcpy(&methods, renderer, sizeof(methods));
+#ifdef _WIN32
+    static const auto tile = reinterpret_cast<void *>(
+        native_reference_address(native_history_profile_base(), 0x8ddc20));
+#else
     static const auto tile = dlsym(RTLD_DEFAULT, "_ZN16renderer_2d_base11update_tileEii");
+#endif
     if (!methods || !tile || methods[0] != tile) return;
     SDL_Renderer *sdl = nullptr;
     std::memcpy(&sdl, static_cast<unsigned char *>(renderer) + 0x108, sizeof(sdl));
@@ -104,6 +112,21 @@ static void native_help_begin_frame(void *renderer) {
 }
 
 static bool install_native_help_layer_hook() {
+#ifdef _WIN32
+    if (g_native_help_frame_hook.installed) return true;
+    constexpr const char *label = "Native UI frame producer";
+    const auto base = native_history_profile_base();
+    auto *frame = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x8e4e60));
+    // renderer::swap_arrays precedes render_things on both PE editions.
+    // This complete mov has no relative operand to relocate in the relay.
+    std::vector<unsigned char> prefix{0x48,0x8b,0x91,0x80,0x00,0x00,0x00};
+    if (!frame || !native_reference_bytes(0x8e4e60, prefix) ||
+            !g_native_help_frame_hook.prepare(frame, prefix,
+                reinterpret_cast<const void *>(&native_help_begin_frame), {}, label) ||
+            !g_native_help_frame_hook.install(label)) return false;
+    log_line("INFO", "Enabled the native UI private-layer frame producer");
+    return true;
+#else
     if (g_native_help_draw_hook.installed && g_native_help_frame_hook.installed &&
             g_native_help_bounds_hook.installed) return true;
     constexpr const char *label = "Native help component draw entry";
@@ -133,6 +156,7 @@ static bool install_native_help_layer_hook() {
             !g_native_help_draw_hook.install(label)) return false;
     log_line("INFO", "Redirected native tutorial/help drawing to its private output layer");
     return true;
+#endif
 }
 
 struct NativeUiLayerSdlState {
@@ -291,25 +315,27 @@ static void native_help_present_layers(SDL_Renderer *renderer,
 }
 
 static void uninstall_native_help_layer_hook() {
+#ifndef _WIN32
     g_native_help_draw_hook.uninstall("Native help draw entry restore");
-    g_native_help_frame_hook.uninstall("Native help frame producer restore");
     g_native_help_bounds_hook.uninstall("Native help layout call restore");
-    if (!g_native_help_draw_hook.active() && !g_native_help_frame_hook.active() &&
-            !g_native_help_bounds_hook.active()) {
+#endif
+    g_native_help_frame_hook.uninstall("Native UI frame producer restore");
+    if (!g_native_help_frame_hook.active()
+#ifndef _WIN32
+            && !g_native_help_draw_hook.active() && !g_native_help_bounds_hook.active()
+#endif
+            ) {
+#ifndef _WIN32
         g_native_help_bounds = nullptr;
+#endif
         g_native_help_target.release();
         g_native_help_layer = {};
     }
 }
 static bool native_help_layer_hook_active() {
-    return g_native_help_draw_hook.active() || g_native_help_frame_hook.active() ||
-        g_native_help_bounds_hook.active();
-}
-#else
-static bool install_native_help_layer_hook() { return true; }
-static void uninstall_native_help_layer_hook() {}
-static bool native_help_layer_hook_active() { return false; }
-static void native_help_paint_grid(SDL_Renderer *, const std::vector<Match> &) {}
-static void native_ui_paint_grid(NativeUiLayerStorage &, SDL_Renderer *, const std::vector<Match> &) {}
-static void native_help_present_layers(SDL_Renderer *, void (*)(SDL_Renderer *)) {}
+    return g_native_help_frame_hook.active()
+#ifndef _WIN32
+        || g_native_help_draw_hook.active() || g_native_help_bounds_hook.active()
 #endif
+        ;
+}

@@ -1,7 +1,6 @@
-#ifndef _WIN32
-// DF 53.16 ELF: stocks_interfacest::render at d79fb0, called by the fortress
-// renderer at 1686cd3 with (stocks, tick, screen_left, screen_right). Its
-// inline frame fill and every child store must run after rebinding gps.
+// stocks_interfacest::render receives (stocks, tick, screen_left, screen_right)
+// on both native ABIs. Its inline frame fill and every child store must run
+// after rebinding gps; captions retain their actual component writers.
 static NativeEntryHook g_native_stocks_draw_hook;
 static NativeUiLayerTarget g_native_stocks_target;
 static uintptr_t g_native_stocks_owner = 0;
@@ -26,7 +25,14 @@ static void native_stocks_draw(void *stocks, uint32_t tick, int32_t screen_left,
         int64_t(screen_left) + 4, 0, gps->dimx)) : 0;
     const int right = gps ? static_cast<int>(std::clamp<int64_t>(
         int64_t(screen_right) - 28, -1, gps->dimx - 1)) : -1;
+#ifdef _WIN32
+    int grid_y = gps ? gps->dimy : 0;
+    // init.display.grid_y is a native 32-bit field at +0x18 in both PE editions.
+    if (settings) std::memcpy(&grid_y,
+        reinterpret_cast<const unsigned char *>(settings) + 0x18, sizeof(grid_y));
+#else
     const int grid_y = settings ? settings->display.grid_y : gps ? gps->dimy : 0;
+#endif
     const int bottom = gps ? std::min(gps->dimy - 1, grid_y - 4) : -1;
     isolate = isolate && left <= right && bottom >= 4;
     if (isolate) {
@@ -76,6 +82,30 @@ static bool install_native_stocks_layer_hook() {
     if (g_native_stocks_draw_hook.installed) return true;
     constexpr const char *label = "Native Stocks component draw entry";
     const auto base = native_history_profile_base();
+#ifdef _WIN32
+    auto *draw = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x3a1690));
+    const auto owner = native_reference_address(base, 0x18a2710);
+    std::vector<unsigned char> prefix{
+        0x40,0x55,0x53,0x56,0x57,0x41,0x54,0x41,0x55,0x41,0x56,0x41,0x57};
+    // Complete call signatures also admit these bindings to the normal PE
+    // address seed, including the corresponding Classic instruction bytes.
+    std::vector<NativeCaptionSignature> captions{
+        {0x3a1ac6, {0xe8,0x95,0x7e,0x73,0x00}},
+        {0x3a2c30, {0xe8,0x2b,0x6d,0x73,0x00}},
+        {0x3a267a, {0xe8,0xe1,0x72,0x73,0x00}},
+        {0x3a20c2, {0xe8,0x99,0x78,0x73,0x00}},
+    };
+    if (!native_reference_bytes(0x3a1690, prefix)) return false;
+    std::array<uintptr_t, 4> callers{};
+    for (size_t i = 0; i < captions.size(); ++i) {
+        auto &caption = captions[i];
+        const auto address = native_reference_address(base, caption.address);
+        if (!address || !native_reference_bytes(caption.address, caption.bytes) ||
+                std::memcmp(reinterpret_cast<const void *>(address),
+                    caption.bytes.data(), caption.bytes.size()) != 0) return false;
+        callers[i] = address + caption.bytes.size();
+    }
+#else
     auto *draw = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x979fb0));
     const auto owner = native_reference_address(base, 0x22f7408);
     std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x55,0x48,0x89,0xe5};
@@ -85,15 +115,19 @@ static bool install_native_stocks_layer_hook() {
         {0x97c879, 0x25170, nullptr},
         {0x97a6cb, 0x25170, nullptr},
     };
-    if (!owner || !draw || !native_reference_bytes(0xd79fb0, prefix) ||
-            !native_reference_calls(captions, 0x400000) ||
-            !g_native_stocks_draw_hook.prepare(draw, prefix,
-                reinterpret_cast<const void *>(&native_stocks_draw), {}, label)) return false;
+    if (!native_reference_bytes(0xd79fb0, prefix) ||
+            !native_reference_calls(captions, 0x400000)) return false;
+    const std::array<uintptr_t, 4> callers{
+        base + captions[0].va + 5, base + captions[1].va + 5,
+        base + captions[2].va + 5, base + captions[3].va + 5};
+#endif
+    if (!owner || !draw || !g_native_stocks_draw_hook.prepare(draw, prefix,
+            reinterpret_cast<const void *>(&native_stocks_draw), {}, label)) return false;
     g_native_stocks_owner = owner;
-    g_native_stocks_category_caller = base + captions[0].va + 5;
-    g_native_stocks_item_caller = base + captions[1].va + 5;
-    g_native_stocks_group_caller = base + captions[2].va + 5;
-    g_native_stocks_filter_caller = base + captions[3].va + 5;
+    g_native_stocks_category_caller = callers[0];
+    g_native_stocks_item_caller = callers[1];
+    g_native_stocks_group_caller = callers[2];
+    g_native_stocks_filter_caller = callers[3];
     if (!g_native_stocks_draw_hook.install(label)) return false;
     log_line("INFO", "Redirected the entire Stocks window to its private output layer");
     return true;
@@ -117,9 +151,3 @@ static void uninstall_native_stocks_layer_hook() {
     }
 }
 static bool native_stocks_layer_hook_active() { return g_native_stocks_draw_hook.active(); }
-#else
-static bool install_native_stocks_layer_hook() { return true; }
-static void uninstall_native_stocks_layer_hook() {}
-static bool native_stocks_layer_hook_active() { return false; }
-static void native_stocks_present_layer(SDL_Renderer *, void (*)(SDL_Renderer *)) {}
-#endif
