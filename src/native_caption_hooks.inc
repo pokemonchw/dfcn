@@ -583,6 +583,40 @@ static NativeAdventureCraftingRole native_adventure_crafting_role(
     return NativeAdventureCraftingRole::None;
 }
 
+static NativeAdventureInventoryRole native_adventure_inventory_role(
+        uintptr_t caller, uintptr_t source) {
+#ifdef _WIN32
+    const uintptr_t base = native_history_profile_base();
+    if (!base || caller != native_reference_address(base, 0x883790) || source < 0x40)
+        return NativeAdventureInventoryRole::None;
+    // Both decompiled PE renderers keep the list at rbp-0xb8 and the
+    // current option index at rbp-0x88; this exact name is rbp-0x78.
+    // Snapshot only the role, never a borrowed option or stack address.
+    uintptr_t list = 0, index = 0, option = 0, table = 0, provider = 0;
+    int32_t mode = -1;
+    NativeBorrowedVector<void *> options;
+    if (!native_history_copy(source - 0x40, list) || !list || list > UINTPTR_MAX - 0x30 ||
+            !native_history_copy(source - 0x10, index) ||
+            !native_history_copy(list + 4, mode) || mode < 0 || mode > 10 ||
+            !native_history_copy(list + 0x18, options) || !options.valid() ||
+            index >= options.size()) return NativeAdventureInventoryRole::None;
+    if (!native_history_copy(reinterpret_cast<uintptr_t>(options.begin) +
+                index * sizeof(void *), option) || !option ||
+            !native_history_copy(option, table) || !table || table > UINTPTR_MAX - 0x18 ||
+            !native_history_copy(table + (mode == 8 || mode == 9 ? 0x10 : 8), provider))
+        return NativeAdventureInventoryRole::None;
+    if (provider == native_reference_address(base, 0x894180))
+        return NativeAdventureInventoryRole::Item;
+    if (provider == native_reference_address(base, 0x8392a0))
+        return NativeAdventureInventoryRole::Deposit;
+    if (mode == 5 || mode == 7 || mode == 8 || mode == 9)
+        return NativeAdventureInventoryRole::Action;
+#else
+    (void)caller;
+    (void)source;
+#endif
+    return NativeAdventureInventoryRole::None;
+}
 
 static bool native_textbox_widget_editable(const void *widget) {
     const auto address = reinterpret_cast<uintptr_t>(widget);
@@ -1606,6 +1640,8 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
         uintptr_t native_caller = 0,
         std::optional<std::array<long, 4>> capture_clip = std::nullopt) {
     if (native_private_ui_write_active(graphics)) { draw(); return; }
+    const auto inventory_role = native_adventure_inventory_role(
+        native_caller, reinterpret_cast<uintptr_t>(source));
     const std::array<long, 4> draw_clip = capture_clip.value_or(graphics
         ? std::array<long, 4>{graphics->clipx[0], graphics->clipx[1],
                               graphics->clipy[0], graphics->clipy[1]}
@@ -1707,7 +1743,8 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
             (width > 0 || graphics->screenx < graphics->clipx[0] ||
              int64_t(graphics->screenx) + static_cast<int64_t>(text.size()) >
                  int64_t(graphics->clipx[1]) + 1 ||
-             native_adventure_crafting_role(native_caller) != NativeAdventureCraftingRole::None)) {
+             native_adventure_crafting_role(native_caller) != NativeAdventureCraftingRole::None ||
+             inventory_role != NativeAdventureInventoryRole::None)) {
             complete.assign(text);
             x = graphics->screenx;
             y = graphics->screeny;
@@ -1745,7 +1782,8 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
             graphics->screeny != y || graphics->screenx <= x ||
             (graphics->screenx > dimx && info_title_kind == NativeInfoTitleKind::None &&
                 !mission_title && !fortress_labor_caption &&
-                travel_building_field == NativeTravelBuildingField::None) ||
+                travel_building_field == NativeTravelBuildingField::None &&
+                inventory_role == NativeAdventureInventoryRole::None) ||
             (width > 0 && graphics->screenx - x > width) ||
             epoch != g_embark_item_capture_epoch.load(std::memory_order_acquire)) return;
         // addchar advances the cursor even outside clipx/clipy. Its verified
@@ -1783,7 +1821,8 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
                 civilization_field != NativeCivilizationField::None || mission_title ||
                 location_picker_field != NativeLocationPickerField::None || fortress_labor_caption ||
                 travel_building_field != NativeTravelBuildingField::None ||
-                native_adventure_crafting_role(native_caller) != NativeAdventureCraftingRole::None)
+                native_adventure_crafting_role(native_caller) != NativeAdventureCraftingRole::None ||
+                inventory_role != NativeAdventureInventoryRole::None)
             remember_native_drawn_text_row(first, y, visible,
                 reinterpret_cast<uintptr_t>(source), graphics, top_layer,
                 first == x ? std::string_view(complete) : std::string_view{},

@@ -62,7 +62,9 @@ std::optional<std::string> Overlay::translate_inventory_location(
     source = trim_view(source);
     const std::string folded = lower(std::string(source));
     constexpr std::pair<std::string_view, std::string_view> anatomy_wrappers[] = {
+        {"wrapped around ", "Inventory location: Wrapped around"},
         {"strapped to ", "Inventory location: Strapped to"},
+        {"stuck in ", "Inventory location: Stuck in"},
         {"sewn into ", "Inventory location: Sewn into"},
     };
     for (const auto &[wrapper, key] : anatomy_wrappers) {
@@ -71,6 +73,25 @@ std::optional<std::string> Overlay::translate_inventory_location(
         const auto prefix = exact_literal_translation(key);
         if (!part || !prefix) return std::nullopt;
         return *prefix + *part;
+    }
+    constexpr std::string_view nocked_in = "nocked in ";
+    if (folded.starts_with(nocked_in)) {
+        const auto item = translate_inventory_item_name(source.substr(nocked_in.size()), y, x);
+        auto target = exact_literal_translation("Inventory location: Nocked in {s}");
+        if (!item || !target) return std::nullopt;
+        const size_t at = target->find("{s}");
+        if (at == std::string::npos) return std::nullopt;
+        target->replace(at, 3, *item);
+        return target;
+    }
+    // These are independent inventory-mode branches in the native location
+    // formatter, not item names or generic switch labels.
+    for (const std::string_view literal : {
+            "In Mouth", "Hidden", "Hauled", "Multigrasp", "body part", "On head", "Nocked"}) {
+        if (folded != lower(std::string(literal))) continue;
+        if (auto target = exact_literal_translation(
+                "Inventory location: " + std::string(literal))) return target;
+        return exact_literal_translation(literal);
     }
     constexpr std::string_view inside = "in ";
     if (folded.starts_with(inside)) {
@@ -304,6 +325,7 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
         const std::vector<std::string> &rows) const {
     std::vector<Match> matches;
     constexpr std::string_view action_heading = "What will you do with ";
+    constexpr std::string_view destination_heading = "Where do you put ";
     constexpr std::string_view item_headings[] = {
         "What do you want to place?", "What do you want to remove?",
         "What do you want to throw?", "What do you want to eat or drink?",
@@ -331,6 +353,13 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
         size_t at = rows[y].find(heading);
         item_choices = false;
         if (at == std::string::npos) {
+            at = rows[y].find(destination_heading);
+            if (at != std::string::npos) {
+                heading = destination_heading;
+                item_choices = true;
+            }
+        }
+        if (at == std::string::npos) {
             for (const auto candidate : item_headings) {
                 at = rows[y].find(candidate);
                 if (at == std::string::npos) continue;
@@ -357,6 +386,58 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
     }
     if (!frame) return matches;
     const auto captures = captured_clipped_captions();
+    const std::array drawn_batches{captured_native_drawn_text_rows(),
+        captured_native_drawn_text_rows(true)};
+    std::vector<std::vector<int>> record_keys(static_cast<size_t>(gps_->dimy));
+    std::vector<std::unordered_map<int, NativeAdventureInventoryRole>> record_roles(
+        static_cast<size_t>(gps_->dimy));
+#ifdef _WIN32
+    // Every mode writes its complete caption through this same native call.
+    // The renderer fixes the key origin two columns before that draw, even
+    // for custom multi-character bindings or its unbound `?` fallback.
+    // Source roles come from the actual caller, never key spelling/colour.
+    const auto base = native_history_profile_base();
+    const uintptr_t name_writer = base ? native_reference_address(base, 0x883790) : 0;
+    const uintptr_t key_writer = base ? native_reference_address(base, 0xc3954f) : 0;
+    if (name_writer || key_writer) for (const auto &batch : drawn_batches) for (const auto &draw : batch) {
+        const bool key_draw = key_writer && draw.native_caller == key_writer;
+        if ((!key_draw && (!name_writer || draw.native_caller != name_writer)) || draw.source.empty() ||
+            draw.x < frame->left + (key_draw ? 1 : 3) || draw.x >= frame->right ||
+            draw.y <= title_y || draw.y >= frame->bottom ||
+            draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
+            draw.draw_grid != (draw.top_layer ? gps_->screen_top : gps_->screen) ||
+            (!key_draw && draw.source.size() > static_cast<size_t>(frame->right - draw.x))) continue;
+        const size_t visible = key_draw ? std::min<size_t>(draw.source.size(), 2) : draw.source.size();
+        if (visible > static_cast<size_t>(frame->right - draw.x) ||
+            rows[draw.y].compare(draw.x, visible, draw.source, 0, visible) != 0) continue;
+        bool top = false;
+        const auto *cell = cell_at(draw.x, draw.y, &top);
+        if (!cell || top != draw.top_layer) continue;
+        auto &keys = record_keys[static_cast<size_t>(draw.y)];
+        const int key = key_draw ? draw.x : draw.x - 2;
+        if (std::find(keys.begin(), keys.end(), key) == keys.end()) keys.push_back(key);
+        if (!key_draw)
+            record_roles[static_cast<size_t>(draw.y)].insert_or_assign(
+                key, draw.adventure_inventory_role);
+    }
+#else
+    // The shared complete selector rectangle owns the first non-rail ink in
+    // this row on ELF. That is the independently drawn key field, whatever
+    // its display string; its following caption still begins two cells later.
+    for (int y = title_y + 1; y + 1 < frame->bottom; ++y) {
+        for (int x = frame->left + 1; x + 2 < frame->right; ++x) {
+            auto box = native_picture_caption_rect(*gps_, x, y, false, nullptr, true);
+            if (!box) box = native_button_text_rect(*gps_, x, x + 1, y, true);
+            if (!box || box->y + 1 != y || box->x <= frame->left ||
+                box->x + box->w > frame->right) continue;
+            int key = box->x;
+            while (key < box->x + box->w && (rows[y][key] == ' ' ||
+                    is_cp437_box_separator(rows[y], static_cast<size_t>(key)))) ++key;
+            if (key + 2 < box->x + box->w) record_keys[static_cast<size_t>(y)].push_back(key);
+            break;
+        }
+    }
+#endif
     auto paired_row = [&](int left, int end, int y) {
         constexpr uint32_t top_half = 1u << 3, bottom_half = 1u << 4;
         auto half_at = [&](int x, int cy) {
@@ -409,6 +490,29 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
             }
             fields.push_back(std::move(capture));
         }
+        // Cached native frames retain their complete draw even when the
+        // per-frame clipping registry has advanced. Bind only byte-identical
+        // fields on this record's current name/location row and layer.
+        for (const auto &batch : drawn_batches) for (const auto &draw : batch) {
+            if ((draw.y != y && draw.y != other) || draw.x < minimum_x ||
+                draw.x >= end || draw.source.empty() || draw.complete_source.empty() ||
+                draw.source.size() > static_cast<size_t>(end - draw.x) ||
+                rows[y].compare(draw.x, draw.source.size(), draw.source) != 0) continue;
+            bool top = false;
+            const auto *cell = cell_at(draw.x, y, &top);
+            if (!cell || top != draw.top_layer) continue;
+            NativeClippedCaption capture{draw.x, y, draw.source, draw.complete_source};
+            if (capture.x < left) {
+                const size_t prefix = static_cast<size_t>(left - capture.x);
+                if (capture.visible.size() <= prefix || capture.complete.size() <= prefix ||
+                    capture.complete.compare(0, prefix, capture.visible, 0, prefix) != 0)
+                    continue;
+                capture.visible.erase(0, prefix);
+                capture.complete.erase(0, prefix);
+                capture.x = left;
+            }
+            fields.push_back(std::move(capture));
+        }
         // A complete sentence capture also knows punctuation or suffixes
         // clipped after the item. Prefer it to an overlapping item-only
         // capture so recovering the shorter field cannot lose that tail.
@@ -443,10 +547,9 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
             : translate_adventure_item_action(complete, y, left);
         const bool translated = target.has_value();
         if (!target) {
-            if (!item_choices) return;
-            // The proven item field still owns an unknown designation. Keep
-            // it whole, as inventory rows do, instead of partially replacing
-            // its creature/material words at their separate English positions.
+            // A proven complete caption owns an unresolved designation or
+            // action as one field, instead of partially replacing its words
+            // at their separate English positions.
             target = native_text_to_utf8(complete);
         }
         Match match{left, y, end - left,
@@ -459,6 +562,175 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
         match.layout_left = true;
         matches.push_back(std::move(match));
     };
+    if (item_choices) {
+        // The native eleven-mode inventory selector paints three-row records
+        // with a five-column picture, a separate key at indent + 7, the item
+        // name at indent + 9 and its optional location at indent + 7 below.
+        // The complete title and picture/rectangle establish those roles;
+        // foreground colours merely reflect the current native selection.
+        // Keep each original draw span for suppression, and give both captions
+        // the same text origin after the untouched key.
+        const auto settings = native_ui_settings();
+        const bool classic = settings && settings->classic;
+        if (heading == destination_heading) {
+            const auto &row = rows[title_y];
+            int right = frame->right;
+            for (size_t done = row.find("Done", title_x + heading.size());
+                 done != std::string::npos && static_cast<int>(done) < right;
+                 done = row.find("Done", done + 4)) {
+                if (const auto button = native_button_text_span(*gps_,
+                        static_cast<int>(done), static_cast<int>(done) + 4, title_y))
+                    right = std::max(title_x, button->first - 1);
+            }
+            int end = right;
+            while (end > title_x && row[end - 1] == ' ') --end;
+            if (end > title_x) {
+                const std::string complete = recover(title_x, end, title_y, title_x);
+                if (auto target = translate_adventure_item_action(complete, title_y, title_x)) {
+                    Match title{title_x, title_y, end - title_x, kAdventureItemActionRule,
+                        std::move(*target), row.substr(title_x, end - title_x)};
+                    title.layout_x = title_x;
+                    title.layout_length = right - title_x;
+                    title.layout_clip_right = right;
+                    title.layout_left = true;
+                    matches.push_back(std::move(title));
+                }
+            }
+        }
+        for (int y = title_y + 1; y + 1 < frame->bottom; ++y) {
+            for (const int key : record_keys[static_cast<size_t>(y)]) {
+                const int name_x = key + 2;
+                auto box = native_picture_caption_rect(
+                    *gps_, key, y, false, nullptr, true);
+                const bool picture_record = box.has_value();
+                // Native contaminant choices deliberately return icon 0.
+                // Their same three-row selector rectangle still owns the
+                // key, complete deposit name and optional inventory location.
+                if (!box) box = native_button_text_rect(
+                    *gps_, key, name_x + 1, y, true);
+                if (!box || box->y + 1 != y || box->x <= frame->left ||
+                    key < box->x + 2 || box->x + box->w > frame->right ||
+                    name_x >= box->x + box->w) continue;
+                const int right = box->x + box->w;
+                const auto role_at = record_roles[static_cast<size_t>(y)].find(key);
+                const auto role = role_at == record_roles[static_cast<size_t>(y)].end()
+                    ? NativeAdventureInventoryRole::None : role_at->second;
+                const size_t record_begin = matches.size();
+                int name_pair = -1;
+                const auto append_record_field = [&](int source_x, int row_y, bool item) {
+                    int left = source_x, end = right;
+                    const std::string_view field(rows[row_y].data() + source_x,
+                        right - source_x);
+                    const auto rail_or_space = [&](int x) {
+                        return rows[row_y][x] == ' ' || (classic &&
+                            is_cp437_box_separator(field, static_cast<size_t>(x - source_x)));
+                    };
+                    while (end > left && rail_or_space(end - 1)) --end;
+                    while (left < end) {
+                        if (rail_or_space(left)) { ++left; continue; }
+                        // C4 AE/CD AE can resemble a UTF-8 pair at the
+                        // classic lower rail. The native paired ownership
+                        // marks prove where its containing-item text opens.
+                        const unsigned char edge = rows[row_y][left];
+                        const auto tail = std::string_view(rows[row_y]).substr(
+                            left + 1, end - left - 1);
+                        if (classic && !item && (edge == 0xc4 || edge == 0xcd) &&
+                            tail.starts_with("\xAE") && tail.ends_with("\xAF") &&
+                            !split_item_designation(tail).prefix.empty()) {
+                            ++left;
+                            continue;
+                        }
+                        break;
+                    }
+                    if (left == end) return;
+                    if (item && row_y == y)
+                        name_pair = paired_row(left, end, row_y);
+                    const std::string complete = recover(left, end, row_y,
+                        item ? key : source_x);
+                    std::optional<std::string> target;
+                    bool action_caption = false;
+                    if (item) {
+                        // The original option's actual vtable provider owns
+                        // the source role before its complete caption is drawn.
+                        // Pictures and wording never turn a named item into
+                        // an ingestion or placement action on the PE path.
+                        const bool action_role = role == NativeAdventureInventoryRole::Action;
+                        const bool deposit_role = role == NativeAdventureInventoryRole::Deposit;
+                        const bool untyped = role == NativeAdventureInventoryRole::None;
+                        if (action_role || (untyped &&
+                                (heading == destination_heading || !picture_record)))
+                            target = translate_adventure_item_action(complete, row_y, left);
+                        action_caption = action_role || target.has_value();
+                        std::vector<size_t> origins;
+                        const bool deposit_allowed = deposit_role || (untyped && !picture_record);
+                        if (!target && deposit_allowed) target = RULESETS.translate_with_origins(
+                            native_text_to_utf8(complete), "::health::contaminant::inventory", origins);
+                        // View-contaminant captions can wrap a complete
+                        // containing-item designation instead of anatomy.
+                        // Both typed fields must resolve before composition.
+                        if (!target && deposit_allowed && complete.ends_with(')')) {
+                            for (size_t at = complete.find(" ("); at != std::string::npos;
+                                 at = complete.find(" (", at + 2)) {
+                                const auto deposit = RULESETS.translate_with_origins(
+                                    native_text_to_utf8(std::string_view(complete).substr(0, at)),
+                                    "::health::contaminant::inventory", origins);
+                                const auto location = translate_inventory_location(
+                                    std::string_view(complete).substr(at + 2,
+                                        complete.size() - at - 3), row_y, left);
+                                if (!deposit || !location) continue;
+                                target = *deposit + "（" + *location + "）";
+                                break;
+                            }
+                        }
+                        if (!target && !action_role && !deposit_role)
+                            target = translate_inventory_item_name(complete, row_y, left);
+                        // The native ingestion vector also contains pictured
+                        // blood-sucking and drink-from-container options.
+                        // A complete item designation keeps priority in this
+                        // mixed mode; only an unresolved field reaches its
+                        // finite, typed ingestion-action constructors.
+                        if (!target && untyped && picture_record &&
+                            heading == "What do you want to eat or drink?") {
+                            target = translate_adventure_item_action(complete, row_y, left);
+                            action_caption = target.has_value();
+                        }
+                    } else target = translate_inventory_location(complete, row_y, left);
+                    const bool translated = target.has_value();
+                    if (!target) target = native_text_to_utf8(complete);
+                    Match caption{left, row_y, end - left,
+                        item ? (action_caption ? kAdventureItemActionRule : kCharacterInventoryItemRule)
+                            : kCharacterInventoryLocationRule,
+                        std::move(*target), rows[row_y].substr(left, end - left)};
+                    caption.native_hover_untranslated = !translated;
+                    caption.layout_x = name_x;
+                    caption.layout_length = right - name_x;
+                    caption.layout_clip_right = right;
+                    caption.layout_left = true;
+                    caption.native_picture_caption_box = *box;
+                    matches.push_back(std::move(caption));
+                };
+                append_record_field(name_x, y, true);
+                // Half-font copies belong to the same item field. They must
+                // reach the existing half-text normalizer with identical
+                // rules, rather than becoming a containing-item location.
+                if (name_pair == y + 1)
+                    append_record_field(name_x, y + 1, true);
+                else append_record_field(key, y + 1, false);
+                const bool two_lines = classic && std::any_of(
+                    matches.begin() + record_begin, matches.end(), [](const Match &caption) {
+                        return caption.rule == kCharacterInventoryLocationRule;
+                    });
+                if (two_lines) for (size_t index = record_begin; index < matches.size(); ++index) {
+                    Match &caption = matches[index];
+                    caption.layout_y = caption.y - 1;
+                    caption.layout_pixel_y = (box->h - 2) * gps_->tile_pixel_y / 2;
+                    caption.layout_fixed_baseline = true;
+                }
+                break;
+            }
+        }
+        return matches;
+    }
     for (int y = title_y; y < frame->bottom; ++y) {
         const auto &row = rows[y];
         if (row.compare(title_x, heading.size(), heading) == 0) {
@@ -479,12 +751,21 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
             if (end > title_x) append(title_x, end, right, y, title_x);
             continue;
         }
-        // Bind to the native shortcut's color and position. A material word
-        // or article can never be discarded as if it were the shortcut.
-        for (int key = frame->left + 1; key + 2 < frame->right; ++key) {
+        // The title and complete rectangle establish the native key field.
+        // Unframed legacy actions additionally need their coloured shortcut.
+        std::vector<int> action_keys = record_keys[static_cast<size_t>(y)];
+        const bool typed_record = !action_keys.empty();
+        // Retain the existing unframed action path only where the shared
+        // inventory renderer supplied no typed caption origin for this row.
+        if (action_keys.empty()) for (int key = frame->left + 1;
+                key + 2 < frame->right; ++key) {
             const unsigned char ch = row[key];
             if (!((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) ||
                 row[key + 1] != ' ' || (key > frame->left + 1 && row[key - 1] != ' ')) continue;
+            action_keys.push_back(key);
+        }
+        for (const int key : action_keys) {
+            const unsigned char ch = row[key];
             int left = key + 2;
             while (left < frame->right && row[left] == ' ') ++left;
             if (left >= frame->right) continue;
@@ -492,15 +773,21 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
             const auto *key_cell = cell_at(key, y, &key_top);
             const auto *text_cell = cell_at(left, y, &text_top);
             if (!key_cell || !text_cell || key_cell[0] != ch ||
-                text_cell[0] != static_cast<unsigned char>(row[left]) ||
-                (key_cell[1] == text_cell[1] && key_cell[2] == text_cell[2] &&
-                 key_cell[3] == text_cell[3])) continue;
+                text_cell[0] != static_cast<unsigned char>(row[left])) continue;
+            const bool distinct_key_colour = key_cell[1] != text_cell[1] ||
+                key_cell[2] != text_cell[2] || key_cell[3] != text_cell[3];
             // Picture-backed actions have a separate caption rectangle.
             // Its classic right cap is a real grid byte, so reading to the
             // outer modal edge would append a border to the item name and
             // reject the complete action grammar.
             int right = frame->right;
+            auto record_box = native_picture_caption_rect(
+                *gps_, key, y, false, nullptr, true);
+            if (!record_box) record_box = native_button_text_rect(
+                *gps_, key, left + 1, y, true);
             auto caption = native_button_text_span(*gps_, key, left + 1, y);
+            if (record_box && record_box->y + 1 == y)
+                caption = {{record_box->x, record_box->x + record_box->w}};
             if (!caption) {
                 if (const auto picture = native_picture_caption_rect(*gps_, key, y);
                         picture && picture->x <= key &&
@@ -510,6 +797,8 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
             const bool bounded_caption = caption &&
                 caption->first > frame->left && caption->first <= key &&
                 caption->second > left && caption->second <= frame->right;
+            if (!typed_record && !distinct_key_colour) continue;
+            if (!bounded_caption && !distinct_key_colour) continue;
             // A selection name belongs to its native button, not to every
             // single-letter token below a prompt or to the enclosing panel.
             if (item_choices && !bounded_caption) continue;
@@ -517,7 +806,52 @@ std::vector<Match> Overlay::capture_adventure_item_modal(
                 right = caption->second;
             int end = right;
             while (end > left && row[end - 1] == ' ') --end;
-            if (end > left) append(left, end, right, y, item_choices ? key : left);
+            const size_t record_begin = matches.size();
+            if (end > left) append(left, end, right, y, left);
+            if (typed_record && record_box && record_box->y + 1 == y) {
+                for (size_t index = record_begin; index < matches.size(); ++index) {
+                    Match &action = matches[index];
+                    action.layout_x = key + 2;
+                    action.layout_length = right - action.layout_x;
+                    action.native_picture_caption_box = *record_box;
+                }
+                if (y + 1 < frame->bottom && paired_row(left, end, y) != y + 1) {
+                    int location_left = key, location_end = right;
+                    const auto &location_row = rows[y + 1];
+                    const bool classic = native_ui_classic().value_or(false);
+                    const std::string_view location_field(location_row.data() + key, right - key);
+                    const auto rail_or_space = [&](int x) {
+                        return location_row[x] == ' ' || (classic && is_cp437_box_separator(
+                            location_field, static_cast<size_t>(x - key)));
+                    };
+                    while (location_end > location_left && rail_or_space(location_end - 1))
+                        --location_end;
+                    while (location_left < location_end && rail_or_space(location_left))
+                        ++location_left;
+                    if (location_end > location_left) {
+                        const auto complete = recover(location_left, location_end, y + 1, key);
+                        auto target = translate_inventory_location(complete, y + 1, location_left);
+                        const bool translated = target.has_value();
+                        if (!target) target = native_text_to_utf8(complete);
+                        Match location{location_left, y + 1, location_end - location_left,
+                            kCharacterInventoryLocationRule, std::move(*target),
+                            location_row.substr(location_left, location_end - location_left)};
+                        location.native_hover_untranslated = !translated;
+                        location.layout_x = key + 2;
+                        location.layout_length = right - location.layout_x;
+                        location.layout_clip_right = right;
+                        location.layout_left = true;
+                        location.native_picture_caption_box = *record_box;
+                        matches.push_back(std::move(location));
+                        if (classic) for (size_t index = record_begin; index < matches.size(); ++index) {
+                            Match &field = matches[index];
+                            field.layout_y = field.y - 1;
+                            field.layout_pixel_y = (record_box->h - 2) * gps_->tile_pixel_y / 2;
+                            field.layout_fixed_baseline = true;
+                        }
+                    }
+                }
+            }
             break;
         }
     }
@@ -664,6 +998,24 @@ std::vector<Match> Overlay::capture_inventory_rows(
     const auto settings = native_ui_settings();
     const bool classic = settings && settings->classic;
     const auto captures = captured_clipped_captions();
+    std::vector<NativeDrawnTextRow> inventory_sources;
+    if (shortcuts) {
+        const std::array batches{captured_native_drawn_text_rows(),
+            captured_native_drawn_text_rows(true)};
+        for (const auto &batch : batches) for (const auto &draw : batch) {
+            if (draw.adventure_inventory_role == NativeAdventureInventoryRole::None ||
+                draw.x <= frame->left || draw.x >= frame->right ||
+                draw.y <= tabs_y || draw.y >= frame->bottom || draw.source.empty() ||
+                draw.source.size() > static_cast<size_t>(frame->right - draw.x) ||
+                draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
+                draw.draw_grid != (draw.top_layer ? gps_->screen_top : gps_->screen) ||
+                context_rows[draw.y].compare(draw.x, draw.source.size(), draw.source) != 0)
+                continue;
+            bool top = false;
+            const auto *cell = cell_at(draw.x, draw.y, &top);
+            if (cell && top == draw.top_layer) inventory_sources.push_back(draw);
+        }
+    }
     auto collapse_spaces = [](std::string_view text) {
         std::string result;
         bool space = false;
@@ -716,6 +1068,52 @@ std::vector<Match> Overlay::capture_inventory_rows(
         }
         return captured ? *captured : joined;
     };
+    // Mode 0 uses the same typed selector providers. View-contaminant
+    // records have no picture/action strip; reserve their full native draw
+    // before the panel-wide deposit reader or word matching can split it.
+    for (const auto &draw : inventory_sources) {
+        if (draw.adventure_inventory_role != NativeAdventureInventoryRole::Deposit) continue;
+        const int end = draw.x + static_cast<int>(draw.source.size());
+        const auto box = native_button_text_rect(*gps_, draw.x, end, draw.y, true);
+        if (!box || box->y + 1 != draw.y || box->x <= frame->left ||
+            box->x + box->w > frame->right) continue;
+        const std::string complete = draw.complete_source.empty()
+            ? recover_caption(draw.x, end, draw.y, box->x) : draw.complete_source;
+        std::vector<size_t> origins;
+        auto target = RULESETS.translate_with_origins(native_text_to_utf8(complete),
+            "::health::contaminant::inventory", origins);
+        if (!target && complete.ends_with(')')) {
+            for (size_t at = complete.find(" ("); at != std::string::npos;
+                 at = complete.find(" (", at + 2)) {
+                const auto deposit = RULESETS.translate_with_origins(
+                    native_text_to_utf8(std::string_view(complete).substr(0, at)),
+                    "::health::contaminant::inventory", origins);
+                const auto location = translate_inventory_location(
+                    std::string_view(complete).substr(at + 2, complete.size() - at - 3),
+                    draw.y, draw.x);
+                if (!deposit || !location) continue;
+                target = *deposit + "（" + *location + "）";
+                break;
+            }
+        }
+        const bool translated = target.has_value();
+        if (!target) target = native_text_to_utf8(complete);
+        Match caption{draw.x, draw.y, end - draw.x, kCharacterInventoryItemRule,
+            std::move(*target), draw.source};
+        caption.native_hover_untranslated = !translated;
+        caption.layout_x = draw.x;
+        caption.layout_length = box->x + box->w - draw.x;
+        caption.layout_clip_right = box->x + box->w;
+        caption.layout_left = true;
+        caption.native_picture_caption_box = *box;
+        const int paired = paired_text_row(draw.x, end, draw.y);
+        if (paired >= 0) {
+            Match copy = caption;
+            copy.y = paired;
+            matches.push_back(std::move(copy));
+        }
+        matches.push_back(std::move(caption));
+    }
     auto action_at = [&](int x, int y) {
         // Unit sheets place assignment markers before Inspect. Their C/S/
         // tool/symbol cells are controls, never part of the item designation.
@@ -826,17 +1224,31 @@ std::vector<Match> Overlay::capture_inventory_rows(
                 if (crosses_frame) continue;
                 const int paired = paired_text_row(left, end, row_y);
                 bool item_line = row_y <= y || (paired >= 0 && paired <= y);
+                const NativeDrawnTextRow *typed_item_source = nullptr;
                 if (shortcuts) {
                     // The key is an independent native field, not an article
                     // or the first word of a generated creature/material.
                     // Its native position expresses the item's nesting depth.
                     // Leave it outside both translation and glyph suppression.
+                    item_line = false;
+                    for (const auto &draw : inventory_sources) {
+                        if (draw.adventure_inventory_role != NativeAdventureInventoryRole::Item ||
+                            draw.x < field_left || draw.x >= end ||
+                            draw.source.size() > static_cast<size_t>(end - draw.x) ||
+                            row.compare(draw.x, draw.source.size(), draw.source) != 0 ||
+                            (draw.y != row_y && paired_text_row(draw.x,
+                                draw.x + static_cast<int>(draw.source.size()), draw.y) != row_y))
+                            continue;
+                        typed_item_source = &draw;
+                        left = draw.x;
+                        item_line = true;
+                        break;
+                    }
                     const unsigned char key = row[left];
                     const bool key_shape = ((key >= 'a' && key <= 'z') ||
                         (key >= 'A' && key <= 'Z')) &&
                         left + 2 < end && row[left + 1] == ' ';
-                    item_line = false;
-                    if (key_shape) {
+                    if (!typed_item_source && key_shape) {
                         int name = left + 2;
                         while (name < end && row[name] == ' ') ++name;
                         if (name >= end) continue;
@@ -861,25 +1273,29 @@ std::vector<Match> Overlay::capture_inventory_rows(
                 // A raw-layer scan can see an older background widget. Only
                 // the current composed record establishes source ownership.
                 if (context_rows[row_y].substr(left, end - left) != visible) continue;
-                const std::string complete = recover_caption(
-                    left, end, row_y, picture_right);
+                const std::string complete = typed_item_source &&
+                        !typed_item_source->complete_source.empty()
+                    ? typed_item_source->complete_source
+                    : recover_caption(left, end, row_y, picture_right);
                 const ItemDesignationText designation = split_item_designation(complete);
                 std::string item(designation.item);
                 // Indefinite articles on a containing-item label are grammar,
                 // not a separate item name or a keyboard binding in this box.
                 if (item.starts_with("a ")) item.erase(0, 2);
                 else if (item.starts_with("an ")) item.erase(0, 3);
-                auto target = item_line
-                    ? translate_inventory_item_name(item, row_y, left)
-                    : translate_inventory_location(item, row_y, left);
+                auto target = typed_item_source
+                    ? translate_inventory_item_name(complete, row_y, left)
+                    : item_line ? translate_inventory_item_name(item, row_y, left)
+                        : translate_inventory_location(item, row_y, left);
                 // Named weapons use the same complete generated-name parser
                 // as the ordinary matching path. Keep that fallback inside
                 // the proven Uniform item field, never on a body-part label.
                 if (!target && uniform && item_line)
                     target = translate_procedural_fragment(item);
                 const bool translated = target.has_value();
-                if (translated) *target = designation.prefix + *target + designation.suffix;
-                else {
+                if (translated && !typed_item_source)
+                    *target = designation.prefix + *target + designation.suffix;
+                else if (!translated) {
                     std::vector<uint32_t> codepoints;
                     target = decode_utf8(complete, codepoints)
                         ? complete : cp437_to_utf8(complete);

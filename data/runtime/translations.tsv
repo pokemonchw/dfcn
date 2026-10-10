@@ -41431,6 +41431,7 @@ A small aquatic bird, prized for its beauty.	一种小型水禽，因其美丽�
 A small, green, intelligent mountain parrot.	一种小型,绿油油的,高智商山鹦。	lP
 A very large cephalopod with a coiled shell.	一种体型很大的头足类动物，背负螺旋形外壳。	lP
 Adventure item action: Dismount to {s} ({p})	下坐骑到{s}（{p}）	h
+Adventure item action: Where do you put {s}?	你想把{s}放在哪里？	h
 Adventure movement qualifier: releasing hold	，松开抓握	h
 Adventure performance value: Martial Prowess	武勇	l
 Adventurer log group status: Former prisoner	前囚犯	h
@@ -60704,6 +60705,7 @@ I thought you called yourself {p}.	我以为你自称{p1}。	hPt
 I'm sorry, but I'm unable to help.	抱歉，我帮不上忙。	hP
 Initial window width (if windowed)	初始窗口宽度 (如果窗口化)	w
 Invader death aversion (one death)	入侵者死亡规避度（1 人死亡）
+Inventory location: Wrapped around	缠绕在	l
 It concerns the dark fortress {p}.	内容涉及黑暗要塞{p1}。	ht
 It has a very stark look about it.	它的外表显得十分严峻。	h
 It is covered with divine writing.	它身上写满神圣的文字。	h
@@ -62908,6 +62910,7 @@ I visited {e} in {f} to view {b}.	我于{f1}到访{e1}，瞻仰了{b1}。	hPt
 I'm curious.  Tell me everything!	我很好奇. 告诉我一切!	w
 I'm traveling to {e} to view {b}.	我正在前往{e1}瞻仰{b1}。	hPt
 Insurrection in {p} in the wilds.	在荒野中，{p1}起义。	htEi
+Inventory location: Nocked in {s}	搭在{s}上	l
 It is crazed for blood and flesh.	它对血肉的渴望近乎疯狂。	h
 It is not as simple as you think.	事情没有你想的那么简单。	hP
 It leaves water wherever it goes.	它所到之处都会留下水迹。	h
@@ -69790,6 +69793,7 @@ I'm going to visit the temple.	我正要去神殿。	hP
 Insurrection in {p} during {e}	在{e1}期间，{p1}起义	htEi
 Insurrection in {p} within {p}	在{p2}，{p1}起义	htEi
 Invaders can dig natural walls	入侵者可以开挖天然墙壁
+Inventory location: Multigrasp	多肢握持	l
 Iron Gold Silver Copper Nickel	铁金银铜镍	w
 It appears to be very healthy.	它看上去非常健康。	h
 It has {s} and it is ravening.	它长有{s1}，它贪婪地吞噬一切。	ht
@@ -74494,6 +74498,7 @@ I'm going out to the tavern.	我正要去酒馆。	hP
 I'm on an important mission.	我正在执行一项重要任务。	hP
 I'm traveling to {e} in {e}.	我正在前往{e2}的{e1}。	hPt
 Invasion difficulty (second)	入侵难度（第二轮）
+Inventory location: Stuck in	插在	l
 Iron Gold Silver Copper Zinc	铁金银铜锌	w
 It ended at {p} in the wilds	在荒野中，在{p1}结束	ht
 It groans from time to time.	它不时发出呻吟。	h
@@ -76699,6 +76704,7 @@ Insurrection in {p} in {d}.	{d1}年的{p1}起义。	htEi
 Insurrection in {p} in {p}.	在{p2}，{p1}起义。	htEi
 Invasion difficulty (first)	入侵难度（第一轮）
 Invasion difficulty (third)	入侵难度（第三轮）
+Inventory location: On head	戴在头上	l
 Invite listener to join {e}	邀请对方加入{e1}	hPt
 It appears to be emaciated.	它看上去瘦骨嶙峋。	h
 It appears to be expecting.	它看上去怀有身孕。	h
@@ -78997,7 +79003,10 @@ Inquire about any troubles	询问有什么烦恼	hP
 Insurrection in {p} at {p}	在{p2}，{p1}起义	htEi
 Insurrection in {p} in {d}	{d1}年的{p1}起义	htEi
 Insurrection in {p} in {p}	在{p2}，{p1}起义	htEi
+Inventory location: Hauled	搬运中	l
+Inventory location: Hidden	隐藏	l
 Inventory location: In {s}	在{s}	l
+Inventory location: Nocked	已搭箭	l
 It ended at {p} during {e}	在{e1}期间，在{p1}结束	ht
 It ended at {p} within {p}	在{p2}，在{p1}结束	ht
 It has a gaunt appearance.	它形容枯槁。	h

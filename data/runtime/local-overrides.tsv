@@ -923,6 +923,14 @@ Burden:	负重：	wl
 # Complete inventory locations wrap the shared body names in scoped prefixes.
 Inventory location: Strapped to	系在	l
 Inventory location: Sewn into	缝合于	l
+Inventory location: Wrapped around	缠绕在	l
+Inventory location: Stuck in	插在	l
+Inventory location: Hidden	隐藏	l
+Inventory location: Hauled	搬运中	l
+Inventory location: Multigrasp	多肢握持	l
+Inventory location: On head	戴在头上	l
+Inventory location: Nocked	已搭箭	l
+Inventory location: Nocked in {s}	搭在{s}上	l
 # Piercing locations wrap the shared body names in a scoped position format.
 Inventory location: In {s}	在{s}	l
 
@@ -9348,6 +9356,7 @@ Requires:	需要：	wl
 # Articles belong to the native item description except in Name the.
 # Every capture must survive exactly once, including counts and quality marks.
 Adventure item action: What will you do with {s}?	你想如何处理{s}？	h
+Adventure item action: Where do you put {s}?	你想把{s}放在哪里？	h
 Adventure item action: View {s}	查看{s}	h
 Adventure item action: Drop {s}	丢下{s}	h
 Adventure item action: Throw {s}	投掷{s}	h

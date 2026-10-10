@@ -1,0 +1,274 @@
+Native Adventure inventory source reconstruction
+
+Source images come from data/runtime/native-pe-images.json:
+Steam PE:6a70a6d9:02711000, classic PE:6a70b91c:0270a000.
+All coordinates below are RVAs in the Steam image. The paired classic
+coordinates and every literal/control edge are preserved in the TSV/ASM files.
+This is offline source extraction and reconstructed production logic. Nothing
+in this directory executes the game or evaluates translation output.
+
+Renderer: 8819f0..883f14, embedded selector table 883f14..883f40.
+The unwind extent includes the selector data; that data is decoded separately,
+not treated as x64 instructions. Titles dispatch on option-list context +4:
+  0: Your inventory
+  1: What do you want to drop?
+  2: What do you want to wear?
+  3: What do you want to remove?
+  4: What do you want to place?
+  5: What do you want to eat or drink?
+  6: With what do you want to interact?
+  7: Where do you put <complete item designation, article mode 1>?
+  8: What will you do with <complete item designation, article mode 1>?
+  9: What will you do with <complete item designation, article mode 1>?
+ 10: What do you want to throw?
+ Other selector values bypass title construction. Done is constructed inline.
+ Inventory mode also generates Burden: <weight>/<capacity> followed by the
+ native weight glyph; values below one use <1. Title modes 7, 8 and 9 draw
+ prefix, item designation and question mark separately.
+
+Each visible choice is a native three-cell-high record (8833d2..8833ee divides
+the available height by three), with a nesting depth from option +8:
+  background and optional item graphic: entire three-cell-high record;
+  key:     x = content_left + depth + 7, y = record_top + 1, call c394b0;
+  caption: x = content_left + depth + 9, y = record_top + 1;
+  location:x = content_left + depth + 7, y = record_top + 2.
+The key and caption use native color 01010007; location uses 01010003.
+Thus equal color does not merge the key with the caption. The location has its
+own origin, independent of the two-cell key-to-caption spacing.
+
+for each visible option:
+  graphic = option.virtual[+c8](current_tick)
+  draw three rows of native picture/background skin
+  draw independent keyboard key
+  caption = option.virtual[context in {8,9} ? +10 : +8](string)
+  remaining = content_right - depth - content_left
+  limit = remaining - (context == 0 ? 34 : 13)
+  if caption.length >= limit - 1:
+    if limit >= 0: resize caption to limit
+    if limit > 3: overwrite caption[limit-3..limit-1] with "..."
+  draw caption
+  inventory_record = option.virtual[+d8]()
+  if inventory_record != null:
+    location = item_location(player_unit, inventory_record)
+    location_limit = remaining - 32
+    if location.length >= location_limit - 1:
+      if location_limit >= 0: resize location to location_limit
+      if location_limit > 3: overwrite final three characters with "..."
+    draw independent location line
+  flags = option.virtual[+f8]()
+  for bit in {1,2,4,8,16,32,64}:
+    if flags & bit: draw corresponding right-hand action graphic
+  advance record top by 3
+No branch inserts a literal Open or On state in these item-selection rows.
+
+The shortened native string cannot prove its full item or location grammar.
+The native item caption virtual 894180 delegates to complete-item-designation
+c65450 with article mode -1 and appends its entire result. This designation
+function spans two adjacent unwind ranges c65450..c6571d..c65f0a. Both ranges
+are preserved. Artifact identity and copy suffix, material/quantity, quality,
+wear, improvements and named-item branches belong to the existing complete
+item-title owner graph in item-description-sources.tsv and
+item-info-title-sources.tsv; they are not inferred from screenshot words.
+
+Location producer: 1393900..13946f4, table 13946f4..1394724.
+The record is item* at +0, signed int16 role +8, signed int16 body part +a,
+Pet seed +c, and wound/nocked-in item ID +10. Roles outside 0..11 produce an
+empty location. Body-part names are the complete dynamic RAW name, not words
+chosen from English spelling. Native first-letter capitalization is 52d650.
+Known body parts select singular/plural NAME vectors according to their native
+number. Absent names or invalid body parts produce body part/body parts.
+
+switch role:
+ 0 Hauled:
+   if native mouth/body eligibility: "In Mouth"
+   else if designated hidden/carrying-item relationship: "Hidden"
+   else: "Hauled"
+ 1 Weapon:
+   if item's virtual +380 and player's grasp-state predicate require it:
+     "Multigrasp"
+   else: capitalized body-part helper 13345d0(unit,bp,0,mode=2)
+ 2 Worn:
+   capitalized complete singular/plural body-part name
+ 3 Piercing:
+   "In " + capitalized complete singular/plural body-part name
+ 4 Flask:
+   find another inventory record of role Worn(2) or WrappedAround(5) with
+   the same body-part ID;
+   if its item exists: capitalized complete item designation
+   else: capitalized complete singular/plural body-part name
+ 5 WrappedAround:
+   "Wrapped around " + capitalized body-part helper (mode=2)
+ 6 StuckIn:
+   "Stuck in " + capitalized complete singular/plural body-part name
+ 7 InMouth:
+   capitalized complete singular/plural body-part name
+ 8 Pet:
+   deterministic seed-based choice among "On head", "Left shoulder",
+   "Right shoulder"; head choice requires an eligible HEAD body part,
+   otherwise repeat the choice loop
+ 9 SewnInto:
+   "Sewn into " + capitalized body-part helper (mode=2)
+10 Strapped:
+   "Strapped to " + capitalized complete singular/plural body-part name
+11 Nocked:
+   "Nocked"
+   if record +10 resolves an item:
+     append " in " + capitalized complete item designation
+
+The shared body-part helper is preserved in full as 13345d0..1334819.
+Its index/count/name-mode branches can produce numbered body-part names,
+singular or plural names, and body part/body parts fallback. Inventory callers
+use count=0, name-mode=2, so native body-part multiplicity owns plural choice.
+
+Coin title owner: ca0d00..ca0d55; actual item_coinst title virtual is +5e8.
+If item.coin_batch(+e8) != -1, call 5be970(batch,string), then tail-call
+ca5bb0(item,string,noun_mode). Batch fields align with df.coinbatch.xml:
+  +0 year, +c entity/civilization ID, +10 ruler/historical-figure ID.
+
+coin_identity(batch):
+  if batch.entity == -1: return
+  entity = lookup civilization by ID
+  append format_native_name(entity.name at +20) + " "
+  if entity RAW contains the native dated-currency flag:
+    if batch.year != -1: append decimal(batch.year) + " "
+  else if batch.ruler != -1:
+    figure = lookup historical figure by ID
+    if figure exists: append format_native_name(figure.name at +38) + " "
+
+coin_material_noun(item):
+  read item type, subtype, material type/index, quantity and maker race from
+  bound native getters, then call a82c10 with actual item type 74 (COIN).
+  noun mode 1 fixes quantity=1; mode 2 fixes quantity=-1; ordinary mode obtains
+  the actual stack quantity. These leaves and all material/name/noun branches
+  are the existing complete item-description/title source graph.
+
+Consequently, a name-like coin prefix is native civilization/ruler data.
+The source graph offers no Open/On UI state for a coin row. A visible generic
+translation such as 开启 cannot establish a native state; full row ownership
+must preserve the minted identity as part of the complete item designation.
+
+Native inline shortening blocks and inserted-call register contract:
+  name inventory: 8836aa..8836c0, alternate append call 8836cc;
+  name selection: 883711..883727, alternate append call 883733;
+  location:       883846..88385c, alternate append call 883868.
+  Nonvolatile RBX, RDI, RSI, R12, R13, R14 and R15 remain live. The following
+  comparisons and dot writers reload all necessary volatile registers; no
+  pre-block RCX/RDX/R8/R9/R10/R11 value or flags survive as an input. At every
+  continuation the next comparison replaces flags. Native string object
+  addresses are RBP-78 for name and RBP-30 for location. Branch destinations
+  are retained in native-branches.tsv, including jumps into resize paths.
+
+Native option source frame and formatter ownership (both PE editions):
+  renderer pushes eight nonvolatile registers; rbp = pushed_rsp - 8;
+  rsp = rbp - 0x100 after sub rsp,0x108. Name source NativeString is rbp-0x78.
+  list = *(source_object - 0x40), saved at rsp+0x48.
+  index = *(uint64_t*)(source_object - 0x10), saved at rsp+0x78.
+  Require index < ((list.options_end at +0x20)-(list.options_begin at +0x18))/8.
+  option = list.options_begin[index]; mode = *(int32_t*)(list+4).
+  provider = option.vtable[(mode==8 || mode==9) ? 0x10 : 0x08].
+  Name draw return RVA: Steam 883790; Classic 881010.
+  This recovers the actual RTTI virtual formatter without source-word guessing.
+  The object address must be the passed NativeString, not its .data() pointer.
+  Saved index Steam 883446 / Classic 880cc6; virtual name calls Steam
+  88363c(+8),883641(+10), Classic 880ebc(+8),880ec1(+10).
+  Full inventory item designation provider: 894180 / 891a00.
+  Pure view contaminant provider: 8392a0 / 836b20.
+  Eat unit contaminant provider: 839850 / 8370d0.
+  Eat item contaminant provider: 839ca0 / 837520.
+  Other actual owner/provider pairs are retained in native-option-owners.tsv;
+  the complete action production graph remains adventure-action-menu/.
+
+Shortcut display production:
+  key = visible_index + 0x52 -> c394b0 (Classic c364f0).
+  Preserve old text colors; set native green 01010002; resolve binding by
+  interface_key enum through 8ecb30 (Classic 8ea360); draw returned string;
+  restore all saved native color fields.
+  Actual key draw call/return: Steam c3954a/c3954f, Classic c3658a/c3658f.
+  Binding tree at 2390658 (Classic 238a548) uses interface enum as key.
+  Bound nonempty vector: read first binding and copy its string at +0x20.
+  This native branch has no alphabetic, case, length or single-character gate.
+  Numeric, symbol, modifier combinations and named keys therefore follow
+  configured binding display text. Default custom bindings use a-z and A-Z.
+  Missing key node or empty binding: diagnostic Missing binding displayed:
+  plus the enum label, followed by output NativeString size1 and byte '?'.
+  Steam fallback store 8ecdf0, Classic 8ea620. The original caption anchor is
+  key_x+2 regardless of key text width; later caption overwrites the right
+  part of a long displayed binding. Full key source is its draw source.
+
+Picture-absent option row:
+  icon = option.virtual(+0xc8). If zero, skip adad70 picture draw.
+  Native standard rectangle is still drawn over every column and all three
+  rows: Steam 88351c(left),883529(right),883536(interior). The source row
+  changes top/middle/bottom tiles; the key and complete caption retain their
+  ordinary fixed anchors, and an inventory record still supplies line2 if
+  virtual(+0xd8) returns nonzero. No icon does not mean no text/button.
+  view/eat unit/eat item contaminant and environment_ingest_material getters
+  are constant zero (66e90 / Classic66e20). Their +d8 getter is also zero.
+  Mode5 blood icon getter89ad30/8985b0, item-from-container ingestion icon
+  7e1630/7deeb0 are nonzero-capable. Mode7 pack89b8b0/899130, building
+  89aed0/898750, item7e1630/7deeb0 are nonzero-capable. All +d8 remain zero.
+
+Contaminant captions and inventory grammar boundary:
+  view_contaminant = deposit(unit.contaminant) + ' (' + native bodypart + ')'.
+  eat_unit_contaminant = (state==1 ? 'Drink ' : 'Eat ') + deposit +
+                        ' (' + native bodypart + ')'.
+  eat_item_contaminant = (state==1 ? 'Drink ' : 'Eat ') + deposit +
+                        ' (' + complete item designation + ')'.
+  Deposit source657f90/6559b0 and its entire finite quantity/material graph
+  are retained in existing adventure-action-menu sources; native chooses
+  dusting/coating/spatter/smear/covering/specks with of and bare alternatives.
+  Existing health::contaminant::inventory only owns deposit(bodypart), plain
+  deposit and finite deposit headings. Eat/Drink wrappers and item-parenthesis
+  productions come from the action source graph and require their typed role.
+  These providers write the same passed output NativeString as ordinary item
+  designation. Output .data() alone does not identify the provider; the frame
+  contract above preserves the virtual provider before the string is read.
+
+Actual mode5 ingestion option loaders:
+  inventory-options-builder 860040 / 85d8c0 uses ingestion vector at +0xc0,
+  whose begin/end/capacity are +c0/c8/d0. All finite loader branches and four
+  role/operation switch tables are retained in paired annotated assembly.
+  Native constructed owners are eat_drink_itemst (860b93),
+  environment_unit_suck_bloodst (86015d, source nearby unit conditions),
+  environment_ingest_from_containerst (860f31, container item contents),
+  environment_ingest_materialst (8611a0,8615d0,86179b,8618a7,861932;
+  nearby map tiles, water and matter; typed material/state fields),
+  eat_unit_contaminantst (861999, unit contaminant vector+6d0),
+  eat_item_contaminantst (861b42, inventory item contaminant vector+98).
+  Contained-item recursion861ec0/85f740 constructs eat_drink_itemst for
+  nested items as well. The operation switch (9 entries) is retained separately
+  from code at8625dc/85fe5c; embedded table bytes are not text-producing code.
+  All owner caption functions are already in adventure-action-menu, including
+  Suck unit possessive/material, Eat/Drink complete item from complete item(direction),
+  Eat/Drink environmental material(direction), stagnant/salt qualifiers,
+  unknown material fallbacks and native dynamic material-state/name branches.
+
+Actual mode7 target option loaders:
+  put_item action895f20/8937a0 sets modal mode7, selected item and copies
+  option.target_vector(+0x20) to the selection vector. Getter4211a0/41ed60
+  returns option+0x20. Target constructor899370/896bf0:
+    player inventory -> place_in_it_container (899584), recursively enumerate
+      nested containers899c10/897490 and skip selected item/containment cycles;
+    eligible nearby/following pack animals -> place_on_pack_animal (899635,
+      8996eb construction branches; 899898 insertion);
+    completed eligible reachable buildings -> place_in_bld_container (89990f);
+    reachable ground containers -> place_in_it_container (899b72).
+  Native containment, capacity, reachability, unit RAW pack-animal flags,
+  building subtype/build-stage and ground-item predicates are preserved as
+  actual conditional edges in native-branches.tsv, not inferred from text.
+  target caption owners are full action productions, including Put on unit,
+  Put in item, Put in/on or Set on building, followed by native direction.
+  The whole graph is already retained in adventure-action-menu; this inventory
+  source adds actual constructor/loader and virtual getter evidence only.
+
+Exact item-from-container field production (8387d0 / Classic836050):
+  first = full_item_designation(option+0x28, r8b0, r9d-1),
+          call Steam83883f / Classic8360bf;
+  container = full_item_designation(option+0x20, r8b0, r9d-1),
+              call Steam838855 / Classic8360d5;
+  verb = option.item_at_28.virtual(+0x2b0) ? 'Drink ' : 'Eat ';
+  output = verb + first + ' from ' + container;
+  if origin coordinate at option+0x16 != -30000, append ' ('+direction+')'.
+  This provider has no material-state or building-name virtual call. The
+  actual environment material-state/stagnant/salt caption provider is
+  Steam8389f0 / Classic836270, independently owned ingest_materialst.

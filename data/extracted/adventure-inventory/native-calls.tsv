@@ -1,0 +1,1611 @@
+edition	image_identity	owner	function_rva	instruction_rva	callee_rva_or_operand	instruction
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881ae8	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881afd	0x881b66	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881b11	0x881b6d	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881b19	0x881b6d	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881b2a	0x881b66	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881b3e	0x881b6d	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881b46	0x881b6d	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881b53	0x881b66	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881b6d	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881bc4	0x881bd4	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881bce	0x881bd4	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881bdb	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881c49	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881c85	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881d10	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881d1a	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881d97	0x881da2	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881da5	0x1385b10	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881dec	0x881e0f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881df3	0x7e0610	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881e01	0x881e0f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881e08	0x881e0f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881eab	0x13b3030	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881ee5	0x133e7a0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881f22	0xc65f10	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881f67	0x881f87	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881fb5	0x881f00	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881ffa	0x881f00	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882026	0x88203b	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8820ce	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8820d3	0x8820e1	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8820dc	0x52c130	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8820e7	0xb9b80	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882102	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882115	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882154	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882159	0x882164	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88215f	0x52c130	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882191	0x88225c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8821e3	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882206	0x153aa78	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88223a	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88223f	0x882258	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88224c	0x153aa78	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882271	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88228d	0x8822a8	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8822b6	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8822f5	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882347	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8823cb	0x8828f3	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8823dc	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882425	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88242f	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882434	0x88235f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882445	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88248e	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882498	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88249d	0x88235f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8824ae	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882505	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88250f	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882514	0x88235f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882525	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88256f	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882579	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88257e	0x88235f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88258f	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8825d6	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8825e0	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8825e5	0x88235f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8825f6	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882640	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88264a	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88264f	0x88235f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882660	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8826a8	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8826eb	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8826f0	0x88235f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882701	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88273d	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88277c	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8827aa	0xc65450	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8827bd	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8827ea	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8827f4	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8827fe	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882803	0x88235b	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882814	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88285a	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882864	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882892	0xc65450	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8828a5	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8828d2	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8828dc	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8828e6	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8828eb	0x88235b	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8828fa	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882920	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88294e	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882974	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882994	0x882999	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8829a0	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8829c6	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8829e7	0x8829ec	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8829f3	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882a19	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882ab7	0x882abc	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882ac3	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882ae9	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882b17	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882b3d	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882b5d	0x882b62	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882b69	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882b8f	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882bb0	0x882bb5	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882bbc	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882be2	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882c87	0x882c8c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882c93	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882cb9	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882ce7	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882d0d	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882d2d	0x882d32	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882d39	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882d5f	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882d80	0x882d85	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882d8c	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882db2	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882e57	0x882e5c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882e63	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882e89	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882eb7	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882edd	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882efd	0x882f02	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882f09	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882f2f	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882f50	0x882f55	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882f5c	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882f82	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883027	0x88302c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883033	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883059	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883087	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8830ad	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8830cd	0x8830d2	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8830d9	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8830ff	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883120	0x883125	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88312c	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883152	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883207	0x88320c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883213	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883239	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883267	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88328d	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8832ad	0x8832b2	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8832b9	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8832df	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883300	0x883305	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88330c	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883332	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8833a6	0x8833b3	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8833ad	0x8833b3	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8834e9	0x88353c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8834f5	0x88353c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883501	0x88353c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88350d	0x88353c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88351a	0x88353c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883527	0x88353c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883534	0x88353c	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883543	0xadaad0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883569	0xbb190	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8835cf	0xadad70	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883601	0xc394b0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88363f	0x883644	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8836c0	0x8836d1	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8836cc	0xe12b0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8836f3	0x883756	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883727	0x883738	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883733	0xe12b0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88378b	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8837d3	0x1393900	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88385c	0x88386d	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883868	0xe12b0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8838c0	0xad9960	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8838ca	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8838cf	0x8838db	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883939	0xadb100	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8839b1	0x8839bb	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8839f9	0xadb100	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883a71	0x883a77	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883ab9	0xadb100	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883b31	0x883b37	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883b79	0xadb100	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883bf1	0x883bf7	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883c39	0xadb100	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883cb1	0x883cb7	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883cf9	0xadb100	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883d71	0x883d77	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883db9	0xadb100	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883e29	0x883e2f	jmp
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883e40	0x6f850	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883ec1	0xbb3b0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883ee7	0x140f4d0	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883ef3	0x1539660	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883f0c	0x65890	call
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881f4c	QWORD PTR [rax+0x6c8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882241	QWORD PTR [rip+0xd638e1]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8822ee	QWORD PTR [rip+0xd63834]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882340	QWORD PTR [rip+0xd637e2]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8826e4	QWORD PTR [rip+0xd6343e]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882775	QWORD PTR [rip+0xd633ad]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883485	QWORD PTR [rax+0xc8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88363c	QWORD PTR [rax+0x8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x883641	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88379b	QWORD PTR [rax+0xd8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8838eb	QWORD PTR [rax+0xf8]	call-indirect
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13939a0	0x72850	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13939b3	0x6f580	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13939b8	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13939df	0xd09a30	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393a05	0x6f580	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393a0a	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393a95	0x1393a9e	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393ab2	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393aba	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393abf	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393add	0x135edf0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393af0	0x6f560	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393af5	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393b0f	0x13345d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393b17	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393b1c	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393ba3	0x1393bac	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393bc0	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393bc8	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393bcd	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393bee	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c0f	0xb9b80	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c17	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c1c	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c31	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c39	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c3e	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c53	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393cd5	0x1393cde	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393cf3	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393cf8	0x1393f0d	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393d1b	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393d63	0x1393f0d	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393db5	0x707d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393dd8	0x153aa78	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393e10	0x1539680	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393e19	0x1393f0d	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393e22	0x153aa78	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393e32	0x1393f0d	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393e66	0x153ae1a	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393e6f	0x1393f0d	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393ea3	0x707d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f04	0x1539680	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f11	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f2b	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f30	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f45	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f60	0x13345d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f65	0x1393f0d	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f77	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393ff9	0x1394002	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394017	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139401c	0x1393f0d	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139403f	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394070	0x1393d68	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13940a6	0x1393e93	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394193	0x1393bac	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13941b7	0xc65450	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13941bf	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13941c4	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13942c6	0x13942ca	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13942e5	0x1394250	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13942fa	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13942ff	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394314	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394319	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139432e	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394333	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394348	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13943d1	0xb9d10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13943d6	0x1394606	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13943e9	0xb9d10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13943ee	0x1394606	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394411	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394459	0x1394606	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13944ab	0x707d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13944ce	0x153aa78	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394506	0x1539680	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139450f	0x1394606	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394518	0x153aa78	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394528	0x1394606	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139455c	0x153ae1a	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394565	0x1394606	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394599	0x707d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13945fd	0x1539680	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139460a	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394616	0xb9d10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139461b	0x13946c6	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394630	0x6fa10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139464b	0x13345d0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394650	0x1394606	jmp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139465c	0x6f560	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139466b	0x726e0	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394682	0x6f560	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139468b	0x6f690	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13946a1	0xc65450	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13946aa	0x52d650	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13946b6	0xb9d10	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13946c0	0x6f850	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13946ca	0x6f850	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13946d6	0x1539660	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13946ed	0x65890	call
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393ad0	QWORD PTR [rax+0x380]	call-indirect
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13945f6	QWORD PTR [rip+0x25152c]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-item-caption	0x894180	0x8941c9	0xc65450	call
+steam	PE:6a70a6d9:02711000	inventory-item-caption	0x894180	0x8941e7	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-item-caption	0x894180	0x894228	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-item-caption	0x894180	0x894235	0x1539660	call
+steam	PE:6a70a6d9:02711000	inventory-item-caption	0x894180	0x894221	QWORD PTR [rip+0xd51901]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc654a9	0xc65492	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc654e2	0xa94030	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65513	0xc656d3	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc655ea	0xc65603	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc656ae	0xc65540	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc656ca	0xc65540	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc656e9	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6570a	0x6fa10	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc657a7	0xc65790	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc657ae	0xb9b80	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc657c6	0xb9b80	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65801	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6581a	0xc6585a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6583a	0xc6585a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65861	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65895	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc658c1	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6591a	0xc6599a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6593a	0xc6599a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6595a	0xc6599a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6597a	0xc6599a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc659a1	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc659c2	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc659f5	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65a21	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65a4e	0xc65bea	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65a76	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65aa3	0xc65c08	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65ad1	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65afe	0xc65c26	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65b26	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65b53	0xc65c44	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65b81	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65bae	0xc65c63	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65bff	0xc65c7a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65c1d	0xc65c7a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65c3b	0xc65c7a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65c5a	0xc65c7a	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65c81	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65cb4	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65cf1	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65d2f	0xc65daa	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65d4d	0xc65daa	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65d6b	0xc65daa	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65d8a	0xc65daa	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65db1	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65de5	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65e11	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65e41	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65e59	0xc65e99	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65e79	0xc65e99	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65ea3	0x6fa10	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65eb7	0xb9b80	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65ee7	0xc65ed0	jmp
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65eee	0xb9b80	call
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6549d	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc654b1	QWORD PTR [rax+0x40]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc654fa	QWORD PTR [rax]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6551f	QWORD PTR [rax]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6554f	QWORD PTR [rax+0x28]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65609	QWORD PTR [rax+0x28]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65727	QWORD PTR [rax+0x508]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65738	QWORD PTR [rdx+0x518]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65749	QWORD PTR [rdx+0x5d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65769	QWORD PTR [rax+0x5f0]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc6579b	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc657d2	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc658cd	QWORD PTR [rax+0x5d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc659ce	QWORD PTR [rax+0x5e0]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65a34	QWORD PTR [rax+0x5e8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65a45	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65a89	QWORD PTR [rax+0x5e8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65a9a	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65ae4	QWORD PTR [rax+0x5e8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65af5	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65b39	QWORD PTR [rax+0x5e8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65b4a	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65b94	QWORD PTR [rax+0x5e8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65ba5	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65bc1	QWORD PTR [rax+0x5e8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65bd6	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65c8d	QWORD PTR [rax+0x5e0]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65cc0	QWORD PTR [rax+0x5d8]	call-indirect
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc65edb	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-title	0xca0d00	0xca0d32	0x5be970	call
+steam	PE:6a70a6d9:02711000	coin-title	0xca0d00	0xca0d50	0xca5bb0	jmp
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5be9cc	0xba0a0	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5be9d4	0x5be9d9	jmp
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5be9f9	0xa94030	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bea56	0x5bea5f	jmp
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bea63	0x707d0	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bea84	0x153aa78	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5beaac	0x6fa10	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5beae8	0x1539680	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5beb36	0x52c2b0	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5beb91	0x5beba0	jmp
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5beba4	0x707d0	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bebc1	0x153aa78	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bebe6	0x6fa10	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bec25	0x1539680	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bec60	0x1539680	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bed36	0xa94030	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bed8b	0x5bed9a	jmp
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bed9e	0x707d0	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bedbb	0x153aa78	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bedde	0x6fa10	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bee1d	0x1539680	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bee68	0x1539680	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bee74	0x1539660	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bee94	0x65890	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bee9a	0x65890	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5beea0	0x65890	call
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bec1e	QWORD PTR [rip+0x1026f04]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bec56	QWORD PTR [rip+0x1026ecc]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5beca4	QWORD PTR [rip+0x1026e7e]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bee16	QWORD PTR [rip+0x1026d0c]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	coin-identity	0x5be970	0x5bee61	QWORD PTR [rip+0x1026cc1]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5bef	0xca5bd8	jmp
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5bfd	0xca5c01	jmp
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c5f	0xca5cf2	jmp
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5cb9	0xca5cf2	jmp
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5d45	0xa82c10	call
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5be3	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5bf7	QWORD PTR [rax+0x40]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c13	QWORD PTR [rax+0x590]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c31	QWORD PTR [rdx+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c3d	QWORD PTR [rdx+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c4a	QWORD PTR [rdx+0x8]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c57	QWORD PTR [rdx]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c6b	rdx	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c8b	QWORD PTR [rax+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5c97	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5ca4	QWORD PTR [rax+0x8]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5cb1	QWORD PTR [rax]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5cbb	QWORD PTR [rax+0x478]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5cca	QWORD PTR [rdx+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5cd6	QWORD PTR [rdx+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5ce3	QWORD PTR [rdx+0x8]	call-indirect
+steam	PE:6a70a6d9:02711000	coin-material-noun	0xca5bb0	0xca5cf0	QWORD PTR [rdx]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x133466f	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x1334674	0x1334804	jmp
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x133469e	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13346a3	0x1334804	jmp
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13346ca	0x52eb70	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13346d4	0xb9b80	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x133472d	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x1334732	0x1334804	jmp
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x1334760	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x1334765	0x1334804	jmp
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x133478c	0x52eb70	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x1334796	0xb9b80	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13347ab	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13347db	0x1334804	jmp
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13347ed	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13347ff	0xb9b80	call
+steam	PE:6a70a6d9:02711000	shortcut-draw	0xc394b0	0xc39535	0x8ecb30	call
+steam	PE:6a70a6d9:02711000	shortcut-draw	0xc394b0	0xc3954a	0xad9960	call
+steam	PE:6a70a6d9:02711000	shortcut-draw	0xc394b0	0xc39584	0x6f850	call
+steam	PE:6a70a6d9:02711000	shortcut-draw	0xc394b0	0xc39591	0x1539660	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecb89	0x8ecb91	jmp
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecbbe	0x6f5d0	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecbc3	0x8ecdf5	jmp
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecc03	0x8ecc13	jmp
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecc51	0x1539690	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecc97	0xbae50	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8eccfe	0x8ecd0c	jmp
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecd10	0x707d0	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecd61	0x153aa78	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecd84	0x70920	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecdd5	0x1539680	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ece00	0x1539660	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ece26	0x65890	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ece2c	0x71e70	call
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecd93	QWORD PTR [rip+0xcf86bf]        # 0x1415e5458	call-indirect
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecdce	QWORD PTR [rip+0xcf8d54]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8392fe	0x657f90	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839388	0x839391	jmp
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8393a6	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8393ab	0x8395c3	jmp
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8393ce	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839416	0x8395c3	jmp
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839468	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x83948b	0x153aa78	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8394c3	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8394cc	0x8395c3	jmp
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8394d5	0x153aa78	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8394e5	0x8395c3	jmp
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839519	0x153ae1a	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839522	0x8395c3	jmp
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839556	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8395ba	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8395d3	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8395ed	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839602	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839641	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x83964d	0x1539660	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x83966b	0x65890	call
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8395b3	QWORD PTR [rip+0xdac56f]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x83963a	QWORD PTR [rip+0xdac4e8]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8398ac	0x8398ba	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8398b3	0x8398ba	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8398e2	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839908	0x657f90	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839922	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8399ac	0x8399b5	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8399ca	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8399cf	0x839be7	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8399f2	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839a3a	0x839be7	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839a8c	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839aaf	0x153aa78	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839ae7	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839af0	0x839be7	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839af9	0x153aa78	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839b09	0x839be7	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839b3d	0x153ae1a	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839b46	0x839be7	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839b7a	0x707d0	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839bde	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839bf7	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839c11	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839c26	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839c65	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839c71	0x1539660	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839c8f	0x65890	call
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839bd7	QWORD PTR [rip+0xdabf4b]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839c5e	QWORD PTR [rip+0xdabec4]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839cf9	0x839d07	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839d00	0x839d07	jmp
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839d2f	0x6f8d0	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839d5c	0x657f90	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839d7a	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839d94	0xc65450	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839da9	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839dc7	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839ddc	0x6fa10	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839e1d	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839e2a	0x1539660	call
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839e16	QWORD PTR [rip+0xdabd0c]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8993e7	0x8993c2	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8993f8	0xc8baa0	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8993fd	0x899423	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899465	0x13610f0	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8994c6	0x8994cb	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899508	0x8994e4	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899524	0xc8a580	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899551	0x1539690	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8995c5	0x8995d6	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8995d1	0xbad30	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8995fd	0x899c10	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8996d5	0x8996b0	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8996e6	0xc8baa0	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8996f2	0x899718	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899748	0x144ca60	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x89978e	0x899780	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8997bf	0x8997b1	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8997ee	0x8997e0	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x89981e	0x899810	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x89986a	0x1539690	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8998ee	0x899647	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8998fa	0xbad30	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899903	0x899647	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x89995c	0x144ca60	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8999bc	0x1539690	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899a4e	0x899920	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899a5d	0xbad30	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899a66	0x899920	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899ac6	0x144ca60	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899b19	0x899af0	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899b20	0xc8a580	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899b41	0x1539690	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899bda	0x899a80	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899be9	0xbad30	call
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899bf2	0x899a80	jmp
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8993cd	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8993db	QWORD PTR [rax+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8994ef	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8994fd	QWORD PTR [rax+0x60]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899535	QWORD PTR [rdx+0x2c0]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8996bb	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x8996c9	QWORD PTR [rax+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899972	QWORD PTR [rax+0x120]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899980	QWORD PTR [rdx+0x118]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899994	QWORD PTR [rax+0xd0]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899afb	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899b09	QWORD PTR [rax+0x60]	call-indirect
+steam	PE:6a70a6d9:02711000	put-target-options-builder	0x899370	0x899b2e	QWORD PTR [rdx+0x2c0]	call-indirect
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899cd6	0x899cb2	jmp
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899cee	0xc8a580	call
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899d01	0x1539690	call
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899d5a	0x899d69	jmp
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899d64	0xbad30	call
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899d87	0x899c10	call
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899c79	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899c90	QWORD PTR [rax+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899cbd	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899ccb	QWORD PTR [rax+0x60]	call-indirect
+steam	PE:6a70a6d9:02711000	put-nested-container-options-builder	0x899c10	0x899ce1	QWORD PTR [rax+0x2c0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8600b5	0x860090	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8600c6	0xc8baa0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8600cf	0x8600f2	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860124	0x86014f	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8601a0	0xe36d0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860288	0x14add70	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8602ae	0x8602b2	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8602bf	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860368	0x860164	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860379	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860386	0x860164	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86044c	0x13610f0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8604b4	0x8604b9	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860503	0x13610f0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86058e	0x1360e50	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860618	0x1394e20	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86067c	0x86057c	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8606a2	0x13610f0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860714	0x860719	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86074b	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860793	0x13610f0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860818	0x860651	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860822	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8608a1	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8608ad	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8608b2	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8608bc	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860939	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860942	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860947	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860951	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8609d6	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8609e0	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8609fd	0x86096e	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860a07	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860a5e	0x8609a8	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860a8f	0x899370	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860aae	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860b37	0xe16b0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860b5e	0x860b6a	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860b64	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860b6e	0x66b70	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860b73	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860b7d	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860b9a	0x86096e	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860beb	0x897820	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860c0a	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860c93	0xe16b0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860cba	0x860cc6	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860cc0	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860cca	0x66b70	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860ccf	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860cd9	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860d5e	0x860d73	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860db2	0x861ec0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860e68	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860ec7	0x860edd	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860ed5	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86100c	0x861159	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861096	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86113d	0x86114b	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861146	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861274	0x86127a	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8612a3	0x247d80	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8612b5	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861346	0x861359	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861354	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861370	0x247d80	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86138c	0x2c3a90	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8613ed	0x67f80	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861405	0x14aa830	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86143c	0x86144d	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86145e	0x68010	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861483	0x5a8470	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86149f	0x5a8550	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8614bb	0x5a8320	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86156e	0x534da0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861592	0x247d80	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8615a4	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861640	0x86166a	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86164d	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861656	0x86166a	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86165b	0x86166a	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86176b	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86181a	0x861832	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861827	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86185c	0x7dd2c0	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861877	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861919	0x861940	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861927	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861930	0x86193d	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8619a5	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861a0a	0x861a22	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861a1a	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861b55	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861bc7	0x861bd8	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861bd3	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861c9b	0x861c70	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861cd0	0x861ca5	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861d0b	0x861ce0	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861d4b	0x861d20	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861d8b	0x861d60	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861dcb	0x861da0	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861e0b	0x861de0	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861e11	0x861c40	jmp
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86009b	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8600a9	QWORD PTR [rax+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8605a2	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8605b3	QWORD PTR [rdx+0x5a0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8605c3	QWORD PTR [rdx+0x198]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8605d2	QWORD PTR [rdx+0x8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x8605df	QWORD PTR [rdx]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860f4e	QWORD PTR [rax+0x120]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x860ffc	QWORD PTR [rax]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86106b	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861082	QWORD PTR [rax+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x86170d	QWORD PTR [rax]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861aa1	QWORD PTR [rax+0x448]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861ac7	QWORD PTR [rax+0x2a8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861aed	QWORD PTR [rax]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861c4f	QWORD PTR [rax+0x90]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861c7b	QWORD PTR [rax+0x90]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861c91	QWORD PTR [rax+0xf0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861cb0	QWORD PTR [rax+0x90]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861cc6	QWORD PTR [rax+0xf0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861ceb	QWORD PTR [rax+0x90]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861d01	QWORD PTR [rax+0xf0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861d2b	QWORD PTR [rax+0x90]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861d41	QWORD PTR [rax+0xf0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861d6b	QWORD PTR [rax+0x90]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861d81	QWORD PTR [rax+0xf0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861dab	QWORD PTR [rax+0x90]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861dc1	QWORD PTR [rax+0xf0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861deb	QWORD PTR [rax+0x90]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x860040	0x861e01	QWORD PTR [rax+0xf0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x861f78	0x1360e50	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862003	0x1394e20	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862055	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x86209d	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8620a6	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8620ab	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8620b5	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8620f9	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862103	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x86214b	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862155	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8621a6	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8621b0	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862204	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x86221f	0x899370	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862241	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862299	0xe16b0	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8622c4	0x8622cf	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8622ca	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x86230f	0x1539680	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862314	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x86231e	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862372	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8623be	0x897820	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x86241a	0x8623f0	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862426	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862436	0x8623f0	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x86244a	0x8624df	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862454	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8624a8	0xe16b0	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8624d3	0x8624df	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8624d9	0xbad30	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8624e3	0x66b70	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8624eb	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8624f2	0x1539690	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x862546	0x86254b	jmp
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x86257e	0x861ec0	call
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x861f37	QWORD PTR [rax+0x10]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x861f4e	QWORD PTR [rax+0x18]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x861f8c	QWORD PTR [rax+0x1d8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x861f9d	QWORD PTR [rdx+0x5a0]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x861fae	QWORD PTR [rdx+0x198]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x861fbd	QWORD PTR [rdx+0x8]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x861fca	QWORD PTR [rdx]	call-indirect
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x861ec0	0x8625d4	QWORD PTR [rip+0xd8354e]        # 0x1415e5b28	call-indirect
+steam	PE:6a70a6d9:02711000	put-item-modal-action	0x895f20	0x895fae	0xe16b0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f368	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f37d	0x87f3e6	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f391	0x87f3ed	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f399	0x87f3ed	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f3aa	0x87f3e6	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f3be	0x87f3ed	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f3c6	0x87f3ed	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f3d3	0x87f3e6	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f3ed	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f444	0x87f454	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f44e	0x87f454	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f45b	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f4c9	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f505	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f590	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f59a	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f617	0x87f622	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f625	0x1380a80	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f66c	0x87f68f	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f673	0x7dde90	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f681	0x87f68f	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f688	0x87f68f	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f72b	0x13adfa0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f765	0x1339710	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f7a2	0xc62f50	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f7e7	0x87f807	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f835	0x87f780	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f87a	0x87f780	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f8a6	0x87f8bb	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f94e	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f953	0x87f961	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f95c	0x529cf0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f967	0xb9b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f982	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f995	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f9d4	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f9d9	0x87f9e4	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f9df	0x529cf0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fa11	0x87fadc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fa63	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fa86	0x15359e8	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87faba	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fabf	0x87fad8	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87facc	0x15359e8	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87faf1	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fb0d	0x87fb28	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fb36	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fb75	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fbc7	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fc4b	0x880173	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fc5c	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fca5	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fcaf	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fcb4	0x87fbdf	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fcc5	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd0e	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd18	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd1d	0x87fbdf	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd2e	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd85	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd8f	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd94	0x87fbdf	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fda5	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fdef	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fdf9	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fdfe	0x87fbdf	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe0f	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe56	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe60	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe65	0x87fbdf	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe76	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fec0	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87feca	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fecf	0x87fbdf	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fee0	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ff28	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ff6b	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ff70	0x87fbdf	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ff81	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ffbd	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fffc	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88002a	0xc62490	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88003d	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88006a	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880074	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88007e	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880083	0x87fbdb	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880094	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8800da	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8800e4	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880112	0xc62490	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880125	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880152	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88015c	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880166	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88016b	0x87fbdb	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88017a	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8801a0	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8801ce	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8801f4	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880214	0x880219	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880220	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880246	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880267	0x88026c	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880273	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880299	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880337	0x88033c	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880343	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880369	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880397	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8803bd	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8803dd	0x8803e2	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8803e9	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88040f	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880430	0x880435	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88043c	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880462	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880507	0x88050c	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880513	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880539	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880567	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88058d	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8805ad	0x8805b2	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8805b9	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8805df	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880600	0x880605	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88060c	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880632	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8806d7	0x8806dc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8806e3	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880709	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880737	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88075d	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88077d	0x880782	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880789	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8807af	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8807d0	0x8807d5	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8807dc	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880802	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8808a7	0x8808ac	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8808b3	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8808d9	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880907	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88092d	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88094d	0x880952	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880959	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88097f	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8809a0	0x8809a5	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8809ac	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8809d2	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880a87	0x880a8c	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880a93	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880ab9	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880ae7	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880b0d	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880b2d	0x880b32	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880b39	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880b5f	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880b80	0x880b85	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880b8c	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880bb2	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880c26	0x880c33	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880c2d	0x880c33	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880d69	0x880dbc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880d75	0x880dbc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880d81	0x880dbc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880d8d	0x880dbc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880d9a	0x880dbc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880da7	0x880dbc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880db4	0x880dbc	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880dc3	0xad7b10	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880de9	0xbb120	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880e4f	0xad7db0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880e81	0xc364f0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880ebf	0x880ec4	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880f40	0x880f51	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880f4c	0xe1240	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880f73	0x880fd6	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880fa7	0x880fb8	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880fb3	0xe1240	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88100b	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881053	0x138e870	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8810dc	0x8810ed	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8810e8	0xe1240	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881140	0xad69a0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88114a	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88114f	0x88115b	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8811b9	0xad8140	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881231	0x88123b	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881279	0xad8140	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8812f1	0x8812f7	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881339	0xad8140	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8813b1	0x8813b7	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8813f9	0xad8140	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881471	0x881477	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8814b9	0xad8140	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881531	0x881537	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881579	0xad8140	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8815f1	0x8815f7	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881639	0xad8140	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8816a9	0x8816af	jmp
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8816c0	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881741	0xbb340	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881767	0x140a440	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x881773	0x15345d0	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88178c	0x65820	call
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f7cc	QWORD PTR [rax+0x6c8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fac1	QWORD PTR [rip+0xd60fd9]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fb6e	QWORD PTR [rip+0xd60f2c]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fbc0	QWORD PTR [rip+0xd60eda]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ff64	QWORD PTR [rip+0xd60b36]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fff5	QWORD PTR [rip+0xd60aa5]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880d05	QWORD PTR [rax+0xc8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880ebc	QWORD PTR [rax+0x8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x880ec1	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88101b	QWORD PTR [rax+0xd8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x88116b	QWORD PTR [rax+0xf8]	call-indirect
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e910	0x727e0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e923	0x6f510	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e928	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e94f	0xd06a70	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e975	0x6f510	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e97a	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea05	0x138ea0e	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea22	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea2a	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea2f	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea4d	0x1359d60	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea60	0x6f4f0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea65	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea7f	0x132f540	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea87	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea8c	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb13	0x138eb1c	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb30	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb38	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb3d	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb5e	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb7f	0xb9b10	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb87	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb8c	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eba1	0x6f860	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eba9	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ebae	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ebc3	0x6f860	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ec45	0x138ec4e	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ec63	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ec68	0x138ee7d	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ec8b	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ecd3	0x138ee7d	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ed25	0x70760	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ed48	0x15359e8	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ed80	0x15345f0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ed89	0x138ee7d	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ed92	0x15359e8	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eda2	0x138ee7d	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138edd6	0x1535d8a	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eddf	0x138ee7d	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ee13	0x70760	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ee74	0x15345f0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ee81	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ee9b	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eea0	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eeb5	0x6f860	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eed0	0x132f540	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eed5	0x138ee7d	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eee7	0x6f860	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ef69	0x138ef72	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ef87	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ef8c	0x138ee7d	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138efaf	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138efe0	0x138ecd8	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f016	0x138ee03	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f103	0x138eb1c	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f127	0xc62490	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f12f	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f134	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f236	0x138f23a	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f255	0x138f1c0	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f26a	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f26f	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f284	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f289	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f29e	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f2a3	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f2b8	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f341	0xb9ca0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f346	0x138f576	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f359	0xb9ca0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f35e	0x138f576	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f381	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f3c9	0x138f576	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f41b	0x70760	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f43e	0x15359e8	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f476	0x15345f0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f47f	0x138f576	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f488	0x15359e8	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f498	0x138f576	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f4cc	0x1535d8a	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f4d5	0x138f576	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f509	0x70760	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f56d	0x15345f0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f57a	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f586	0xb9ca0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f58b	0x138f636	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5a0	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5bb	0x132f540	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5c0	0x138f576	jmp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5cc	0x6f4f0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5db	0x72670	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5f2	0x6f4f0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5fb	0x6f620	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f611	0xc62490	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f61a	0x52b070	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f626	0xb9ca0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f630	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f63a	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f646	0x15345d0	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f65d	0x65820	call
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea40	QWORD PTR [rax+0x380]	call-indirect
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f566	QWORD PTR [rip+0x251534]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-item-caption	0x891a00	0x891a49	0xc62490	call
+classic	PE:6a70b91c:0270a000	inventory-item-caption	0x891a00	0x891a67	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-item-caption	0x891a00	0x891aa8	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-item-caption	0x891a00	0x891ab5	0x15345d0	call
+classic	PE:6a70b91c:0270a000	inventory-item-caption	0x891a00	0x891aa1	QWORD PTR [rip+0xd4eff9]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc624e9	0xc624d2	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62522	0xa910b0	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62553	0xc62713	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6262a	0xc62643	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc626ee	0xc62580	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6270a	0xc62580	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62729	0x6f860	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6274a	0x6f9a0	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc627e7	0xc627d0	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc627ee	0xb9b10	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62806	0xb9b10	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62841	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6285a	0xc6289a	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6287a	0xc6289a	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc628a1	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc628d5	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62901	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6295a	0xc629da	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6297a	0xc629da	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6299a	0xc629da	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc629ba	0xc629da	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc629e1	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62a02	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62a35	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62a61	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62a8e	0xc62c2a	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62ab6	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62ae3	0xc62c48	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62b11	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62b3e	0xc62c66	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62b66	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62b93	0xc62c84	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62bc1	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62bee	0xc62ca3	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62c3f	0xc62cba	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62c5d	0xc62cba	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62c7b	0xc62cba	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62c9a	0xc62cba	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62cc1	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62cf4	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62d31	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62d6f	0xc62dea	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62d8d	0xc62dea	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62dab	0xc62dea	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62dca	0xc62dea	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62df1	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62e25	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62e51	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62e81	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62e99	0xc62ed9	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62eb9	0xc62ed9	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62ee3	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62ef7	0xb9b10	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62f27	0xc62f10	jmp
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62f2e	0xb9b10	call
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc624dd	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc624f1	QWORD PTR [rax+0x40]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6253a	QWORD PTR [rax]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6255f	QWORD PTR [rax]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6258f	QWORD PTR [rax+0x28]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62649	QWORD PTR [rax+0x28]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62767	QWORD PTR [rax+0x508]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62778	QWORD PTR [rdx+0x518]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62789	QWORD PTR [rdx+0x5d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc627a9	QWORD PTR [rax+0x5f0]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc627db	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62812	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc6290d	QWORD PTR [rax+0x5d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62a0e	QWORD PTR [rax+0x5e0]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62a74	QWORD PTR [rax+0x5e8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62a85	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62ac9	QWORD PTR [rax+0x5e8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62ada	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62b24	QWORD PTR [rax+0x5e8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62b35	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62b79	QWORD PTR [rax+0x5e8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62b8a	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62bd4	QWORD PTR [rax+0x5e8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62be5	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62c01	QWORD PTR [rax+0x5e8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62c16	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62ccd	QWORD PTR [rax+0x5e0]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62d00	QWORD PTR [rax+0x5d8]	call-indirect
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62f1b	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-title	0xc9dd40	0xc9dd72	0x5bc390	call
+classic	PE:6a70b91c:0270a000	coin-title	0xc9dd40	0xc9dd90	0xca2bf0	jmp
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc3ec	0xba030	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc3f4	0x5bc3f9	jmp
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc419	0xa910b0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc476	0x5bc47f	jmp
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc483	0x70760	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc4a4	0x15359e8	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc4cc	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc508	0x15345f0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc556	0x529db0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc5b1	0x5bc5c0	jmp
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc5c4	0x70760	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc5e1	0x15359e8	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc606	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc645	0x15345f0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc680	0x15345f0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc756	0xa910b0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc7ab	0x5bc7ba	jmp
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc7be	0x70760	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc7db	0x15359e8	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc7fe	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc83d	0x15345f0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc888	0x15345f0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc894	0x15345d0	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc8b4	0x65820	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc8ba	0x65820	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc8c0	0x65820	call
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc63e	QWORD PTR [rip+0x102445c]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc676	QWORD PTR [rip+0x1024424]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc6c4	QWORD PTR [rip+0x10243d6]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc836	QWORD PTR [rip+0x1024264]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	coin-identity	0x5bc390	0x5bc881	QWORD PTR [rip+0x1024219]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c2f	0xca2c18	jmp
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c3d	0xca2c41	jmp
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c9f	0xca2d32	jmp
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2cf9	0xca2d32	jmp
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2d85	0xa7fc90	call
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c23	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c37	QWORD PTR [rax+0x40]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c53	QWORD PTR [rax+0x590]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c71	QWORD PTR [rdx+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c7d	QWORD PTR [rdx+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c8a	QWORD PTR [rdx+0x8]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2c97	QWORD PTR [rdx]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2cab	rdx	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2ccb	QWORD PTR [rax+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2cd7	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2ce4	QWORD PTR [rax+0x8]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2cf1	QWORD PTR [rax]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2cfb	QWORD PTR [rax+0x478]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2d0a	QWORD PTR [rdx+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2d16	QWORD PTR [rdx+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2d23	QWORD PTR [rdx+0x8]	call-indirect
+classic	PE:6a70b91c:0270a000	coin-material-noun	0xca2bf0	0xca2d30	QWORD PTR [rdx]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f5df	0x6f860	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f5e4	0x132f774	jmp
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f60e	0x6f860	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f613	0x132f774	jmp
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f63a	0x52c590	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f644	0xb9b10	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f69d	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f6a2	0x132f774	jmp
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f6d0	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f6d5	0x132f774	jmp
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f6fc	0x52c590	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f706	0xb9b10	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f71b	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f74b	0x132f774	jmp
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f75d	0x6f860	call
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f76f	0xb9b10	call
+classic	PE:6a70b91c:0270a000	shortcut-draw	0xc364f0	0xc36575	0x8ea360	call
+classic	PE:6a70b91c:0270a000	shortcut-draw	0xc364f0	0xc3658a	0xad69a0	call
+classic	PE:6a70b91c:0270a000	shortcut-draw	0xc364f0	0xc365c4	0x6f7e0	call
+classic	PE:6a70b91c:0270a000	shortcut-draw	0xc364f0	0xc365d1	0x15345d0	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea3b9	0x8ea3c1	jmp
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea3ee	0x6f560	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea3f3	0x8ea625	jmp
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea433	0x8ea443	jmp
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea481	0x1534600	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea4c7	0xbade0	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea52e	0x8ea53c	jmp
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea540	0x70760	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea591	0x15359e8	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea5b4	0x708b0	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea605	0x15345f0	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea630	0x15345d0	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea656	0x65820	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea65c	0x71e00	call
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea5c3	QWORD PTR [rip+0xcf5e3f]        # 0x1415e0408	call-indirect
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea5fe	QWORD PTR [rip+0xcf649c]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836b7e	0x6559b0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836c08	0x836c11	jmp
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836c26	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836c2b	0x836e43	jmp
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836c4e	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836c96	0x836e43	jmp
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836ce8	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836d0b	0x15359e8	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836d43	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836d4c	0x836e43	jmp
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836d55	0x15359e8	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836d65	0x836e43	jmp
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836d99	0x1535d8a	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836da2	0x836e43	jmp
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836dd6	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836e3a	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836e53	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836e6d	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836e82	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836ec1	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836ecd	0x15345d0	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836eeb	0x65820	call
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836e33	QWORD PTR [rip+0xda9c67]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836eba	QWORD PTR [rip+0xda9be0]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83712c	0x83713a	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837133	0x83713a	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837162	0x6f860	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837188	0x6559b0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8371a2	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83722c	0x837235	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83724a	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83724f	0x837467	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837272	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8372ba	0x837467	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83730c	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83732f	0x15359e8	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837367	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837370	0x837467	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837379	0x15359e8	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837389	0x837467	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8373bd	0x1535d8a	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8373c6	0x837467	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8373fa	0x70760	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83745e	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837477	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837491	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8374a6	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8374e5	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8374f1	0x15345d0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83750f	0x65820	call
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837457	QWORD PTR [rip+0xda9643]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8374de	QWORD PTR [rip+0xda95bc]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x837579	0x837587	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x837580	0x837587	jmp
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x8375af	0x6f860	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x8375dc	0x6559b0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x8375fa	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x837614	0xc62490	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x837629	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x837647	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x83765c	0x6f9a0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x83769d	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x8376aa	0x15345d0	call
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x837696	QWORD PTR [rip+0xda9404]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896c67	0x896c42	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896c78	0xc88ae0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896c7d	0x896ca3	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896ce5	0x135c060	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896d46	0x896d4b	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896d88	0x896d64	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896da4	0xc875c0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896dd1	0x1534600	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896e45	0x896e56	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896e51	0xbacc0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896e7d	0x897490	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896f55	0x896f30	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896f66	0xc88ae0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896f72	0x896f98	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896fc8	0x14479d0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89700e	0x897000	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89703f	0x897031	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89706e	0x897060	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89709e	0x897090	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8970ea	0x1534600	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89716e	0x896ec7	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89717a	0xbacc0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x897183	0x896ec7	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8971dc	0x14479d0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89723c	0x1534600	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8972ce	0x8971a0	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8972dd	0xbacc0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8972e6	0x8971a0	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x897346	0x14479d0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x897399	0x897370	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8973a0	0xc875c0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8973c1	0x1534600	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89745a	0x897300	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x897469	0xbacc0	call
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x897472	0x897300	jmp
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896c4d	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896c5b	QWORD PTR [rax+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896d6f	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896d7d	QWORD PTR [rax+0x60]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896db5	QWORD PTR [rdx+0x2c0]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896f3b	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x896f49	QWORD PTR [rax+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8971f2	QWORD PTR [rax+0x120]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x897200	QWORD PTR [rdx+0x118]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x897214	QWORD PTR [rax+0xd0]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x89737b	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x897389	QWORD PTR [rax+0x60]	call-indirect
+classic	PE:6a70b91c:0270a000	put-target-options-builder	0x896bf0	0x8973ae	QWORD PTR [rdx+0x2c0]	call-indirect
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x897556	0x897532	jmp
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x89756e	0xc875c0	call
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x897581	0x1534600	call
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x8975da	0x8975e9	jmp
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x8975e4	0xbacc0	call
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x897607	0x897490	call
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x8974f9	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x897510	QWORD PTR [rax+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x89753d	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x89754b	QWORD PTR [rax+0x60]	call-indirect
+classic	PE:6a70b91c:0270a000	put-nested-container-options-builder	0x897490	0x897561	QWORD PTR [rax+0x2c0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85d935	0x85d910	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85d946	0xc88ae0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85d94f	0x85d972	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85d9a4	0x85d9cf	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85da20	0xe3660	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85db08	0x14a8ce0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85db2e	0x85db32	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85db3f	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85dbe8	0x85d9e4	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85dbf9	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85dc06	0x85d9e4	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85dccc	0x135c060	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85dd34	0x85dd39	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85dd83	0x135c060	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85de0e	0x135bdc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85de98	0x138fd90	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85defc	0x85ddfc	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85df22	0x135c060	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85df94	0x85df99	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85dfcb	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e013	0x135c060	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e098	0x85ded1	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e0a2	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e121	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e12d	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e132	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e13c	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e1b9	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e1c2	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e1c7	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e1d1	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e256	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e260	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e27d	0x85e1ee	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e287	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e2de	0x85e228	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e30f	0x896bf0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e32e	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e3b7	0xe1640	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e3de	0x85e3ea	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e3e4	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e3ee	0x66b00	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e3f3	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e3fd	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e41a	0x85e1ee	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e46b	0x8950a0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e48a	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e513	0xe1640	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e53a	0x85e546	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e540	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e54a	0x66b00	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e54f	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e559	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e5de	0x85e5f3	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e632	0x85f740	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e6e8	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e747	0x85e75d	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e755	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e88c	0x85e9d9	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e916	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e9bd	0x85e9cb	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e9c6	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85eaf4	0x85eafa	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85eb23	0x247d10	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85eb35	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ebc6	0x85ebd9	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ebd4	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ebf0	0x247d10	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ec0c	0x2c1650	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ec6d	0x67f10	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ec85	0x14a57a0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ecbc	0x85eccd	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ecde	0x67fa0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ed03	0x5a5e90	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ed1f	0x5a5f70	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ed3b	0x5a5d40	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85edee	0x5327c0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ee12	0x247d10	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ee24	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85eec0	0x85eeea	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85eecd	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85eed6	0x85eeea	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85eedb	0x85eeea	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85efeb	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f09a	0x85f0b2	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f0a7	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f0dc	0x7dab40	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f0f7	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f199	0x85f1c0	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f1a7	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f1b0	0x85f1bd	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f225	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f28a	0x85f2a2	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f29a	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f3d5	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f447	0x85f458	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f453	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f51b	0x85f4f0	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f550	0x85f525	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f58b	0x85f560	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f5cb	0x85f5a0	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f60b	0x85f5e0	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f64b	0x85f620	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f68b	0x85f660	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f691	0x85f4c0	jmp
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85d91b	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85d929	QWORD PTR [rax+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85de22	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85de33	QWORD PTR [rdx+0x5a0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85de43	QWORD PTR [rdx+0x198]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85de52	QWORD PTR [rdx+0x8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85de5f	QWORD PTR [rdx]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e7ce	QWORD PTR [rax+0x120]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e87c	QWORD PTR [rax]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e8eb	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85e902	QWORD PTR [rax+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85ef8d	QWORD PTR [rax]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f321	QWORD PTR [rax+0x448]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f347	QWORD PTR [rax+0x2a8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f36d	QWORD PTR [rax]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f4cf	QWORD PTR [rax+0x90]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f4fb	QWORD PTR [rax+0x90]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f511	QWORD PTR [rax+0xf0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f530	QWORD PTR [rax+0x90]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f546	QWORD PTR [rax+0xf0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f56b	QWORD PTR [rax+0x90]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f581	QWORD PTR [rax+0xf0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f5ab	QWORD PTR [rax+0x90]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f5c1	QWORD PTR [rax+0xf0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f5eb	QWORD PTR [rax+0x90]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f601	QWORD PTR [rax+0xf0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f62b	QWORD PTR [rax+0x90]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f641	QWORD PTR [rax+0xf0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f66b	QWORD PTR [rax+0x90]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85d8c0	0x85f681	QWORD PTR [rax+0xf0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f7f8	0x135bdc0	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f883	0x138fd90	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f8d5	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f91d	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f926	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f92b	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f935	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f979	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f983	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f9cb	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f9d5	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fa26	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fa30	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fa84	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fa9f	0x896bf0	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fac1	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fb19	0xe1640	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fb44	0x85fb4f	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fb4a	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fb8f	0x15345f0	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fb94	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fb9e	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fbf2	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fc3e	0x8950a0	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fc9a	0x85fc70	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fca6	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fcb6	0x85fc70	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fcca	0x85fd5f	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fcd4	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fd28	0xe1640	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fd53	0x85fd5f	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fd59	0xbacc0	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fd63	0x66b00	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fd6b	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fd72	0x1534600	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fdc6	0x85fdcb	jmp
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fdfe	0x85f740	call
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f7b7	QWORD PTR [rax+0x10]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f7ce	QWORD PTR [rax+0x18]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f80c	QWORD PTR [rax+0x1d8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f81d	QWORD PTR [rdx+0x5a0]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f82e	QWORD PTR [rdx+0x198]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f83d	QWORD PTR [rdx+0x8]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85f84a	QWORD PTR [rdx]	call-indirect
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85f740	0x85fe54	QWORD PTR [rip+0xd80c46]        # 0x1415e0aa0	call-indirect
+classic	PE:6a70b91c:0270a000	put-item-modal-action	0x8937a0	0x89382e	0xe1640	call

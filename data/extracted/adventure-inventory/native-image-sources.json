@@ -1,0 +1,406 @@
+{
+  "images": {
+    "reference": "D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe",
+    "classic": "C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe",
+    "bootstrap": "C:/Users/WIN11/Downloads/df_53_16_win/dfhooks.dll",
+    "deploy_classic": true
+  },
+  "purpose": "Offline native Adventure inventory source extraction. Contains complete text-producing code ranges, selectors, literals and dynamic field edges; no game/process execution or translation checks.",
+  "functions": [
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-selection-renderer",
+      "function_rva": "0x8819f0",
+      "code_end_rva": "0x883f14",
+      "source": "steam-inventory-selection-renderer.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "item-location-label",
+      "function_rva": "0x1393900",
+      "code_end_rva": "0x13946f4",
+      "source": "steam-item-location-label.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-item-caption",
+      "function_rva": "0x894180",
+      "code_end_rva": "0x894240",
+      "source": "steam-inventory-item-caption.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "complete-item-designation",
+      "function_rva": "0xc65450",
+      "code_end_rva": "0xc65f0a",
+      "source": "steam-complete-item-designation.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "coin-title",
+      "function_rva": "0xca0d00",
+      "code_end_rva": "0xca0d55",
+      "source": "steam-coin-title.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "coin-identity",
+      "function_rva": "0x5be970",
+      "code_end_rva": "0x5beea6",
+      "source": "steam-coin-identity.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "coin-material-noun",
+      "function_rva": "0xca5bb0",
+      "code_end_rva": "0xca5d62",
+      "source": "steam-coin-material-noun.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-body-part-name",
+      "function_rva": "0x13345d0",
+      "code_end_rva": "0x1334819",
+      "source": "steam-inventory-body-part-name.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-selection-renderer",
+      "function_rva": "0x87f270",
+      "code_end_rva": "0x881794",
+      "source": "classic-inventory-selection-renderer.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "item-location-label",
+      "function_rva": "0x138e870",
+      "code_end_rva": "0x138f664",
+      "source": "classic-item-location-label.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-item-caption",
+      "function_rva": "0x891a00",
+      "code_end_rva": "0x891ac0",
+      "source": "classic-inventory-item-caption.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "complete-item-designation",
+      "function_rva": "0xc62490",
+      "code_end_rva": "0xc62f4a",
+      "source": "classic-complete-item-designation.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "coin-title",
+      "function_rva": "0xc9dd40",
+      "code_end_rva": "0xc9dd95",
+      "source": "classic-coin-title.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "coin-identity",
+      "function_rva": "0x5bc390",
+      "code_end_rva": "0x5bc8c6",
+      "source": "classic-coin-identity.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "coin-material-noun",
+      "function_rva": "0xca2bf0",
+      "code_end_rva": "0xca2da2",
+      "source": "classic-coin-material-noun.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-body-part-name",
+      "function_rva": "0x132f540",
+      "code_end_rva": "0x132f789",
+      "source": "classic-inventory-body-part-name.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-record-getter",
+      "function_rva": "0x7e1430",
+      "source": "steam-inventory-record-getter.asm",
+      "code_end_rva": "0x7e1435"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-icon-getter",
+      "function_rva": "0x7e1310",
+      "source": "steam-inventory-icon-getter.asm",
+      "code_end_rva": "0x7e1320"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-option-flags-getter",
+      "function_rva": "0x7e1450",
+      "source": "steam-inventory-option-flags-getter.asm",
+      "code_end_rva": "0x7e1454"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-record-getter",
+      "function_rva": "0x7decb0",
+      "source": "classic-inventory-record-getter.asm",
+      "code_end_rva": "0x7decb5"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-icon-getter",
+      "function_rva": "0x7deb90",
+      "source": "classic-inventory-icon-getter.asm",
+      "code_end_rva": "0x7deba0"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-option-flags-getter",
+      "function_rva": "0x7decd0",
+      "source": "classic-inventory-option-flags-getter.asm",
+      "code_end_rva": "0x7decd4"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "shortcut-draw",
+      "function_rva": "0xc394b0",
+      "code_end_rva": "0xc395b5",
+      "source": "steam-shortcut-draw.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "shortcut-binding-display-name",
+      "function_rva": "0x8ecb30",
+      "code_end_rva": "0x8ece32",
+      "source": "steam-shortcut-binding-display-name.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-view-contaminant-caption",
+      "function_rva": "0x8392a0",
+      "code_end_rva": "0x839671",
+      "source": "steam-inventory-view-contaminant-caption.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-eat-unit-contaminant-caption",
+      "function_rva": "0x839850",
+      "code_end_rva": "0x839c95",
+      "source": "steam-inventory-eat-unit-contaminant-caption.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-eat-item-contaminant-caption",
+      "function_rva": "0x839ca0",
+      "code_end_rva": "0x839e3a",
+      "source": "steam-inventory-eat-item-contaminant-caption.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "put-target-options-builder",
+      "function_rva": "0x899370",
+      "code_end_rva": "0x899c0f",
+      "source": "steam-put-target-options-builder.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "put-nested-container-options-builder",
+      "function_rva": "0x899c10",
+      "code_end_rva": "0x899dcf",
+      "source": "steam-put-nested-container-options-builder.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-options-builder",
+      "function_rva": "0x860040",
+      "code_end_rva": "0x861e2c",
+      "source": "steam-inventory-options-builder.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "inventory-contained-options-builder",
+      "function_rva": "0x861ec0",
+      "code_end_rva": "0x8625dc",
+      "source": "steam-inventory-contained-options-builder.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "put-item-modal-action",
+      "function_rva": "0x895f20",
+      "code_end_rva": "0x895fc5",
+      "source": "steam-put-item-modal-action.asm"
+    },
+    {
+      "edition": "steam",
+      "image_identity": "PE:6a70a6d9:02711000",
+      "owner": "put-item-target-vector-getter",
+      "function_rva": "0x4211a0",
+      "code_end_rva": "0x4211a5",
+      "source": "steam-put-item-target-vector-getter.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "shortcut-draw",
+      "function_rva": "0xc364f0",
+      "code_end_rva": "0xc365f5",
+      "source": "classic-shortcut-draw.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "shortcut-binding-display-name",
+      "function_rva": "0x8ea360",
+      "code_end_rva": "0x8ea662",
+      "source": "classic-shortcut-binding-display-name.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-view-contaminant-caption",
+      "function_rva": "0x836b20",
+      "code_end_rva": "0x836ef1",
+      "source": "classic-inventory-view-contaminant-caption.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-eat-unit-contaminant-caption",
+      "function_rva": "0x8370d0",
+      "code_end_rva": "0x837515",
+      "source": "classic-inventory-eat-unit-contaminant-caption.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-eat-item-contaminant-caption",
+      "function_rva": "0x837520",
+      "code_end_rva": "0x8376ba",
+      "source": "classic-inventory-eat-item-contaminant-caption.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "put-target-options-builder",
+      "function_rva": "0x896bf0",
+      "code_end_rva": "0x89748f",
+      "source": "classic-put-target-options-builder.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "put-nested-container-options-builder",
+      "function_rva": "0x897490",
+      "code_end_rva": "0x89764f",
+      "source": "classic-put-nested-container-options-builder.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-options-builder",
+      "function_rva": "0x85d8c0",
+      "code_end_rva": "0x85f6ac",
+      "source": "classic-inventory-options-builder.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "inventory-contained-options-builder",
+      "function_rva": "0x85f740",
+      "code_end_rva": "0x85fe5c",
+      "source": "classic-inventory-contained-options-builder.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "put-item-modal-action",
+      "function_rva": "0x8937a0",
+      "code_end_rva": "0x893845",
+      "source": "classic-put-item-modal-action.asm"
+    },
+    {
+      "edition": "classic",
+      "image_identity": "PE:6a70b91c:0270a000",
+      "owner": "put-item-target-vector-getter",
+      "function_rva": "0x41ed60",
+      "code_end_rva": "0x41ed65",
+      "source": "classic-put-item-target-vector-getter.asm"
+    }
+  ],
+  "external_sources": [
+    {
+      "path": "data/extracted/adventure-action-menu/native-owners.tsv",
+      "graph": "All adventure_optionst RTTI name/full-name owners, including modes 8 and 9 actions and container-placement options."
+    },
+    {
+      "path": "data/extracted/item-description-sources.tsv",
+      "graph": "Complete item-title/description owner graph; coin-material-noun a82c10 (classic a7fc90) kind 74; identity a94030, histfig lookup/bodypart field suppliers."
+    },
+    {
+      "path": "data/extracted/item-info-title-sources.tsv",
+      "graph": "All item title RTTI owners and finite title branches."
+    },
+    {
+      "path": "data/upstream/df-structures/df.unit.xml",
+      "graph": "unit_inventory_item role12, body_part_id, pet_seed, nocked_in_itemid field contracts."
+    },
+    {
+      "path": "data/upstream/df-structures/df.coinbatch.xml",
+      "graph": "coin_batch.year, entity and ruler typed fields."
+    },
+    {
+      "path": "data/extracted/adventure-action-menu/steam-captions.asm and classic-captions.asm",
+      "graph": "Mode5 unit blood, complete item-from-item-container ingestion, environmental ingestion and mode7 unit/building/item placement complete caption functions and callees; all already present in the all-adventure_optionst source graph."
+    }
+  ],
+  "source_frame": {
+    "native_string_frame_offset": "-0x78",
+    "saved_list_from_string": "-0x40",
+    "saved_index_from_string": "-0x10",
+    "list_mode_offset": "0x4",
+    "list_vector_begin_offset": "0x18",
+    "list_vector_end_offset": "0x20",
+    "name_slot": "0x8; modes8/9 use0x10",
+    "name_draw_return_rva": {
+      "steam": "0x883790",
+      "classic": "0x881010"
+    },
+    "key_draw_return_rva": {
+      "steam": "0xc3954f",
+      "classic": "0xc3658f"
+    }
+  }
+}

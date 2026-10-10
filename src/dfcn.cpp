@@ -2058,6 +2058,15 @@ private:
     const NativeWorldSiteEntityFact *previous_;
 };
 
+enum class NativeAdventureInventoryRole {
+    None,
+    Item,
+    Action,
+    Deposit,
+};
+static NativeAdventureInventoryRole native_adventure_inventory_role(
+    uintptr_t caller, uintptr_t source);
+
 struct NativeDrawnTextRow {
     int x = 0, y = 0;
     std::string source;
@@ -2118,6 +2127,9 @@ struct NativeDrawnTextRow {
     // The actual addst return address identifies document-specific row writers.
     uintptr_t native_caller = 0;
     NativeAdventureCraftingRole adventure_crafting_role = NativeAdventureCraftingRole::None;
+    // Freeze the actual option formatter while its renderer frame is live.
+    // Pictured ingestion actions and ordinary items share the same addst.
+    NativeAdventureInventoryRole adventure_inventory_role = NativeAdventureInventoryRole::None;
 };
 static std::mutex g_native_drawn_text_mutex;
 static std::vector<NativeDrawnTextRow> g_native_drawn_text_rows;
@@ -2773,7 +2785,9 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
             row.site_name = std::make_shared<NativeHistoryName>(*g_native_site_name_fact);
         row.native_caller = native_caller;
         row.adventure_crafting_role = native_adventure_crafting_role(native_caller, address);
-        if (row.adventure_crafting_role != NativeAdventureCraftingRole::None)
+        row.adventure_inventory_role = native_adventure_inventory_role(native_caller, address);
+        if (row.adventure_crafting_role != NativeAdventureCraftingRole::None ||
+                row.adventure_inventory_role != NativeAdventureInventoryRole::None)
             row.caption_source = true;
         row.fortress_labor_caption = std::move(fortress_labor_caption);
         if (row.fortress_labor_caption) row.caption_source = true;
@@ -16853,17 +16867,18 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     // composed context used by the final draw, then project source spans.
     if (!announcement_panel_only && config_.compositional_rules) {
         auto action_rows = screen_rows;
-        if (screen_override) {
-            for (int y = 0; y < gps_->dimy; ++y) {
-                for (int x = 0; x < gps_->dimx; ++x) {
-                    bool top = false;
-                    const auto *cell = cell_at(x, y, &top);
-                    action_rows[y][x] = cell && cell[0] ? static_cast<char>(cell[0]) : ' ';
-                }
+        // Earlier complete UI-message claims can already have consumed the
+        // selection heading. Establish the native modal from the current
+        // composed grid on every pass, including the final overlay draw.
+        for (int y = 0; y < gps_->dimy; ++y) {
+            for (int x = 0; x < gps_->dimx; ++x) {
+                bool top = false;
+                const auto *cell = cell_at(x, y, &top);
+                action_rows[y][x] = cell && cell[0] ? static_cast<char>(cell[0]) : ' ';
             }
-            retain_native_text_cells(action_rows, map_text_cells);
-            mask_native_knowledge(action_rows);
         }
+        retain_native_text_cells(action_rows, map_text_cells);
+        mask_native_knowledge(action_rows);
         for (Match &match : capture_adventure_item_modal(action_rows)) {
             std::fill_n(screen_rows[match.y].begin() + match.x, match.length, ' ');
             if (only_y < 0 || only_y == match.y) result.push_back(std::move(match));

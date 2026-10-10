@@ -1,0 +1,175 @@
+edition	image_identity	owner	function_rva	instruction_rva	encoding	literal_rva	operand_role	source
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881c30	inline-immediate-fragment		finite-short-string-fragment	Done
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881cdd	rip-relative	0x16b44d0	finite-text-operand-or-substring	Your inventory
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881cea	rip-relative	0x16b44d8	finite-text-operand-or-substring	entory
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x881cf3	rip-relative	0x16b44dc	finite-text-operand-or-substring	ry
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88208e	inline-immediate-fragment		finite-short-string-fragment	Burden: 
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8820c3	rip-relative	0x16a5d9c	finite-text-operand-or-substring	<1
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88210a	rip-relative	0x15eb514	separator	/
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882149	rip-relative	0x16a5d9c	finite-text-operand-or-substring	<1
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8823f2	rip-relative	0x16b4500	finite-text-operand-or-substring	What do you want to drop?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8823fc	rip-relative	0x16b4510	finite-text-operand-or-substring	 to drop?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882409	rip-relative	0x16b4518	finite-text-operand-or-substring	?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88245b	rip-relative	0x16b44e0	finite-text-operand-or-substring	What do you want to wear?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882465	rip-relative	0x16b44f0	finite-text-operand-or-substring	 to wear?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882472	rip-relative	0x16b44f8	finite-text-operand-or-substring	?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8824c7	rip-relative	0x16b4468	finite-text-operand-or-substring	What do you want to remove?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8824d1	rip-relative	0x16b4478	finite-text-operand-or-substring	 to remove?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8824de	rip-relative	0x16b4480	finite-text-operand-or-substring	ve?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8824e9	rip-relative	0x16b4482	finite-text-operand-or-substring	?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88253b	rip-relative	0x16b4448	finite-text-operand-or-substring	What do you want to place?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882545	rip-relative	0x16b4458	finite-text-operand-or-substring	 to place?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882552	rip-relative	0x16b4460	finite-text-operand-or-substring	e?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882598	rip-relative	0x178b330	numeric-string-layout-vector	!
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8825a5	rip-relative	0x16b44a8	finite-text-operand-or-substring	What do you want to eat or drink?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8825af	rip-relative	0x16b44b8	finite-text-operand-or-substring	 to eat or drink?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x8825ba	rip-relative	0x16b44c8	finite-text-operand-or-substring	?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88260c	rip-relative	0x16b4488	finite-text-operand-or-substring	What do you want to throw?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882616	rip-relative	0x16b4498	finite-text-operand-or-substring	 to throw?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882623	rip-relative	0x16b44a0	finite-text-operand-or-substring	w?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882669	rip-relative	0x178b340	numeric-string-layout-vector	""""
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882676	rip-relative	0x16b45c8	finite-text-operand-or-substring	With what do you want to interact?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882680	rip-relative	0x16b45d8	finite-text-operand-or-substring	 want to interact?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88268b	rip-relative	0x16b45e8	finite-text-operand-or-substring	t?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882717	rip-relative	0x16b45b0	finite-text-operand-or-substring	Where do you put 
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882721	rip-relative	0x16b45c0	separator	 
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88282a	rip-relative	0x16b4608	finite-text-operand-or-substring	What will you do with 
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x882834	rip-relative	0x16b4618	finite-text-operand-or-substring	 with 
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x8819f0	0x88283d	rip-relative	0x16b461c	finite-text-operand-or-substring	h 
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13939a9	rip-relative	0x1784068	finite-text-operand-or-substring	In Mouth
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13939f2	rip-relative	0x17840a4	finite-text-operand-or-substring	Hidden
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13939fb	rip-relative	0x178409c	finite-text-operand-or-substring	Hauled
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393ae6	rip-relative	0x1783f88	finite-text-operand-or-substring	Multigrasp
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393be4	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c27	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393c49	rip-relative	0x15fe078	finite-text-operand-or-substring	In 
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393d10	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393e5c	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393eb4	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393ec0	rip-relative	0x1681058	finite-text-operand-or-substring	t
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f3b	rip-relative	0x1783f78	finite-text-operand-or-substring	Wrapped around 
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1393f6d	rip-relative	0x1783fa8	finite-text-operand-or-substring	Strapped to 
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394034	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13942f0	rip-relative	0x1784ef8	finite-text-operand-or-substring	On head
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139430a	rip-relative	0x1783fd0	finite-text-operand-or-substring	Left shoulder
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394324	rip-relative	0x1783fe0	finite-text-operand-or-substring	Right shoulder
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x139433e	rip-relative	0x1783f98	finite-text-operand-or-substring	Stuck in 
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394406	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394552	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13945ad	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x13945b9	rip-relative	0x1681058	finite-text-operand-or-substring	t
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394626	rip-relative	0x1783fc0	finite-text-operand-or-substring	Sewn into 
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394652	rip-relative	0x1783fb8	finite-text-operand-or-substring	Nocked
+steam	PE:6a70a6d9:02711000	item-location-label	0x1393900	0x1394678	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+steam	PE:6a70a6d9:02711000	complete-item-designation	0xc65450	0xc656f4	rip-relative	0x16ee318	finite-text-operand-or-substring	 (copy)
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13347a1	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	inventory-body-part-name	0x13345d0	0x13347e3	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecd27	rip-relative	0x16bf558	finite-text-operand-or-substring	Missing binding displayed: 
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecd32	rip-relative	0x16bf568	finite-text-operand-or-substring	displayed: 
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecd40	rip-relative	0x16bf570	finite-text-operand-or-substring	d: 
+steam	PE:6a70a6d9:02711000	shortcut-binding-display-name	0x8ecb30	0x8ecd4c	rip-relative	0x16bf572	separator	 
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8393c3	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x83950f	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x83956a	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x839576	rip-relative	0x1681058	finite-text-operand-or-substring	t
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8395c9	rip-relative	0x1615540	separator	 (
+steam	PE:6a70a6d9:02711000	inventory-view-contaminant-caption	0x8392a0	0x8395f8	rip-relative	0x1615580	separator	)
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8398cd	rip-relative	0x16b0d2c	finite-text-operand-or-substring	Drink 
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8398d4	rip-relative	0x16b0d48	finite-text-operand-or-substring	Eat 
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x8399e7	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839b33	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839b8e	rip-relative	0x1681050	finite-text-operand-or-substring	body part
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839b9a	rip-relative	0x1681058	finite-text-operand-or-substring	t
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839bed	rip-relative	0x1615540	separator	 (
+steam	PE:6a70a6d9:02711000	inventory-eat-unit-contaminant-caption	0x839850	0x839c1c	rip-relative	0x1615580	separator	)
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839d1a	rip-relative	0x16b0d2c	finite-text-operand-or-substring	Drink 
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839d21	rip-relative	0x16b0d48	finite-text-operand-or-substring	Eat 
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839d9f	rip-relative	0x1615540	separator	 (
+steam	PE:6a70a6d9:02711000	inventory-eat-item-contaminant-caption	0x839ca0	0x839dd2	rip-relative	0x1615580	separator	)
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f4b0	inline-immediate-fragment		finite-short-string-fragment	Done
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f55d	rip-relative	0x16af5e0	finite-text-operand-or-substring	Your inventory
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f56a	rip-relative	0x16af5e8	finite-text-operand-or-substring	entory
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f573	rip-relative	0x16af5ec	finite-text-operand-or-substring	ry
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f90e	inline-immediate-fragment		finite-short-string-fragment	Burden: 
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f943	rip-relative	0x16a08a4	finite-text-operand-or-substring	<1
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f98a	rip-relative	0x15e64cc	separator	/
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87f9c9	rip-relative	0x16a08a4	finite-text-operand-or-substring	<1
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fc72	rip-relative	0x16af610	finite-text-operand-or-substring	What do you want to drop?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fc7c	rip-relative	0x16af620	finite-text-operand-or-substring	 to drop?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fc89	rip-relative	0x16af628	finite-text-operand-or-substring	?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fcdb	rip-relative	0x16af5f0	finite-text-operand-or-substring	What do you want to wear?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fce5	rip-relative	0x16af600	finite-text-operand-or-substring	 to wear?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fcf2	rip-relative	0x16af608	finite-text-operand-or-substring	?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd47	rip-relative	0x16af730	finite-text-operand-or-substring	What do you want to remove?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd51	rip-relative	0x16af740	finite-text-operand-or-substring	 to remove?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd5e	rip-relative	0x16af748	finite-text-operand-or-substring	ve?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fd69	rip-relative	0x16af74a	finite-text-operand-or-substring	?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fdbb	rip-relative	0x16af710	finite-text-operand-or-substring	What do you want to place?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fdc5	rip-relative	0x16af720	finite-text-operand-or-substring	 to place?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fdd2	rip-relative	0x16af728	finite-text-operand-or-substring	e?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe18	rip-relative	0x1785c30	numeric-string-layout-vector	!
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe25	rip-relative	0x16af770	finite-text-operand-or-substring	What do you want to eat or drink?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe2f	rip-relative	0x16af780	finite-text-operand-or-substring	 to eat or drink?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe3a	rip-relative	0x16af790	finite-text-operand-or-substring	?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe8c	rip-relative	0x16af750	finite-text-operand-or-substring	What do you want to throw?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fe96	rip-relative	0x16af760	finite-text-operand-or-substring	 to throw?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fea3	rip-relative	0x16af768	finite-text-operand-or-substring	w?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fee9	rip-relative	0x1785c40	numeric-string-layout-vector	""""
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87fef6	rip-relative	0x16af6b8	finite-text-operand-or-substring	With what do you want to interact?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ff00	rip-relative	0x16af6c8	finite-text-operand-or-substring	 want to interact?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ff0b	rip-relative	0x16af6d8	finite-text-operand-or-substring	t?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ff97	rip-relative	0x16af6a0	finite-text-operand-or-substring	Where do you put 
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x87ffa1	rip-relative	0x16af6b0	separator	 
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8800aa	rip-relative	0x16af6f8	finite-text-operand-or-substring	What will you do with 
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8800b4	rip-relative	0x16af708	finite-text-operand-or-substring	 with 
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x87f270	0x8800bd	rip-relative	0x16af70c	finite-text-operand-or-substring	h 
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e919	rip-relative	0x177f530	finite-text-operand-or-substring	In Mouth
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e962	rip-relative	0x177f528	finite-text-operand-or-substring	Hidden
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138e96b	rip-relative	0x177f54c	finite-text-operand-or-substring	Hauled
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ea56	rip-relative	0x177f540	finite-text-operand-or-substring	Multigrasp
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb54	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eb97	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ebb9	rip-relative	0x15f90c0	finite-text-operand-or-substring	In 
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ec80	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138edcc	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ee24	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138ee30	rip-relative	0x167bdf8	finite-text-operand-or-substring	t
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eeab	rip-relative	0x177f568	finite-text-operand-or-substring	Wrapped around 
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138eedd	rip-relative	0x177f558	finite-text-operand-or-substring	Strapped to 
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138efa4	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f260	rip-relative	0x177ea60	finite-text-operand-or-substring	On head
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f27a	rip-relative	0x177ea68	finite-text-operand-or-substring	Left shoulder
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f294	rip-relative	0x177ea48	finite-text-operand-or-substring	Right shoulder
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f2ae	rip-relative	0x177ea38	finite-text-operand-or-substring	Stuck in 
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f376	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f4c2	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f51d	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f529	rip-relative	0x167bdf8	finite-text-operand-or-substring	t
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f596	rip-relative	0x177ea28	finite-text-operand-or-substring	Sewn into 
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5c2	rip-relative	0x177ea58	finite-text-operand-or-substring	Nocked
+classic	PE:6a70b91c:0270a000	item-location-label	0x138e870	0x138f5e8	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	complete-item-designation	0xc62490	0xc62734	rip-relative	0x16e8e38	finite-text-operand-or-substring	 (copy)
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f711	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	inventory-body-part-name	0x132f540	0x132f753	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea557	rip-relative	0x16ba448	finite-text-operand-or-substring	Missing binding displayed: 
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea562	rip-relative	0x16ba458	finite-text-operand-or-substring	displayed: 
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea570	rip-relative	0x16ba460	finite-text-operand-or-substring	d: 
+classic	PE:6a70b91c:0270a000	shortcut-binding-display-name	0x8ea360	0x8ea57c	rip-relative	0x16ba462	separator	 
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836c43	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836d8f	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836dea	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836df6	rip-relative	0x167bdf8	finite-text-operand-or-substring	t
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836e49	rip-relative	0x1610298	separator	 (
+classic	PE:6a70b91c:0270a000	inventory-view-contaminant-caption	0x836b20	0x836e78	rip-relative	0x16102d8	separator	)
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83714d	rip-relative	0x16abedc	finite-text-operand-or-substring	Drink 
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837154	rip-relative	0x16abef8	finite-text-operand-or-substring	Eat 
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x837267	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x8373b3	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83740e	rip-relative	0x167bdf0	finite-text-operand-or-substring	body part
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83741a	rip-relative	0x167bdf8	finite-text-operand-or-substring	t
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83746d	rip-relative	0x1610298	separator	 (
+classic	PE:6a70b91c:0270a000	inventory-eat-unit-contaminant-caption	0x8370d0	0x83749c	rip-relative	0x16102d8	separator	)
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x83759a	rip-relative	0x16abedc	finite-text-operand-or-substring	Drink 
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x8375a1	rip-relative	0x16abef8	finite-text-operand-or-substring	Eat 
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x83761f	rip-relative	0x1610298	separator	 (
+classic	PE:6a70b91c:0270a000	inventory-eat-item-contaminant-caption	0x837520	0x837652	rip-relative	0x16102d8	separator	)

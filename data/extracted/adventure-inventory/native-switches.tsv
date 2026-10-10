@@ -1,0 +1,137 @@
+edition	image_identity	owner	table_rva	selector	target_rva	text_production
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	0	0x881cc9	Your inventory
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	1	0x8823d0	What do you want to drop?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	2	0x882439	What do you want to wear?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	3	0x8824a2	What do you want to remove?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	4	0x882519	What do you want to place?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	5	0x882583	What do you want to eat or drink?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	6	0x882654	With what do you want to interact?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	7	0x8826f5	Where do you put {item}?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	8	0x882808	What will you do with {item}?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	9	0x882808	What will you do with {item}?
+steam	PE:6a70a6d9:02711000	inventory-selection-renderer	0x883f14	10	0x8825ea	What do you want to throw?
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	0	0x139397b	Hauled: In Mouth | Hidden | Hauled
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	1	0x1393ac4	Weapon: Multigrasp | capitalized get-body-part
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	2	0x1393b21	Worn: capitalized body-part-name
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	3	0x1393c43	Piercing: In + capitalized body-part-name
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	4	0x13940ab	Flask: capitalized container-item-name | capitalized body-part-name
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	5	0x1393f35	WrappedAround: Wrapped around + capitalized get-body-part
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	6	0x1394338	StuckIn: Stuck in + capitalized body-part-name
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	7	0x1393a0f	InMouth: capitalized body-part-name
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	8	0x13941c9	Pet: On head | Left shoulder | Right shoulder
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	9	0x1394620	SewnInto: Sewn into + capitalized get-body-part
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	10	0x1393f67	Strapped: Strapped to + capitalized body-part-name
+steam	PE:6a70a6d9:02711000	item-location-label	0x13946f4	11	0x1394652	Nocked: Nocked | Nocked in + capitalized item-name
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	0	0x87f549	Your inventory
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	1	0x87fc50	What do you want to drop?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	2	0x87fcb9	What do you want to wear?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	3	0x87fd22	What do you want to remove?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	4	0x87fd99	What do you want to place?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	5	0x87fe03	What do you want to eat or drink?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	6	0x87fed4	With what do you want to interact?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	7	0x87ff75	Where do you put {item}?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	8	0x880088	What will you do with {item}?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	9	0x880088	What will you do with {item}?
+classic	PE:6a70b91c:0270a000	inventory-selection-renderer	0x881794	10	0x87fe6a	What do you want to throw?
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	0	0x138e8eb	Hauled: In Mouth | Hidden | Hauled
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	1	0x138ea34	Weapon: Multigrasp | capitalized get-body-part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	2	0x138ea91	Worn: capitalized body-part-name
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	3	0x138ebb3	Piercing: In + capitalized body-part-name
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	4	0x138f01b	Flask: capitalized container-item-name | capitalized body-part-name
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	5	0x138eea5	WrappedAround: Wrapped around + capitalized get-body-part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	6	0x138f2a8	StuckIn: Stuck in + capitalized body-part-name
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	7	0x138e97f	InMouth: capitalized body-part-name
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	8	0x138f139	Pet: On head | Left shoulder | Right shoulder
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	9	0x138f590	SewnInto: Sewn into + capitalized get-body-part
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	10	0x138eed7	Strapped: Strapped to + capitalized body-part-name
+classic	PE:6a70b91c:0270a000	item-location-label	0x138f664	11	0x138f5c2	Nocked: Nocked | Nocked in + capitalized item-name
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	0	0x860432	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	1	0x860432	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	2	0x860432	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	3	0x860432	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	4	0x860432	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	5	0x860435	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	6	0x860435	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	7	0x860432	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e2c	8	0x860432	inventory-role-minus-2
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	0	0x8604f6	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	1	0x8604f6	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	2	0x8604f6	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	3	0x8604f6	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	4	0x8604f6	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	5	0x8604f9	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	6	0x8604f9	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	7	0x8604f6	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e50	8	0x8604f6	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	0	0x86081d	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	1	0x8608b7	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	2	0x86094c	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	3	0x8609db	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	4	0x860a02	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	5	0x860a63	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	6	0x860b78	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	7	0x860b9f	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e74	8	0x860cd4	inventory-option-type
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	0	0x860786	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	1	0x860786	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	2	0x860786	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	3	0x860786	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	4	0x860786	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	5	0x860789	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	6	0x860789	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	7	0x860786	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-options-builder	0x861e98	8	0x860786	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	0	0x85dcb2	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	1	0x85dcb2	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	2	0x85dcb2	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	3	0x85dcb2	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	4	0x85dcb2	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	5	0x85dcb5	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	6	0x85dcb5	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	7	0x85dcb2	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6ac	8	0x85dcb2	inventory-role-minus-2
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	0	0x85dd76	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	1	0x85dd76	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	2	0x85dd76	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	3	0x85dd76	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	4	0x85dd76	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	5	0x85dd79	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	6	0x85dd79	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	7	0x85dd76	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6d0	8	0x85dd76	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	0	0x85e09d	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	1	0x85e137	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	2	0x85e1cc	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	3	0x85e25b	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	4	0x85e282	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	5	0x85e2e3	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	6	0x85e3f8	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	7	0x85e41f	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f6f4	8	0x85e554	inventory-option-type
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	0	0x85e006	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	1	0x85e006	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	2	0x85e006	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	3	0x85e006	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	4	0x85e006	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	5	0x85e009	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	6	0x85e009	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	7	0x85e006	inventory-role-minus-2-relation
+classic	PE:6a70b91c:0270a000	inventory-options-builder	0x85f718	8	0x85e006	inventory-role-minus-2-relation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	0	0x862050	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	1	0x8620b0	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	2	0x8620fe	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	3	0x862150	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	4	0x8621ab	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	5	0x862209	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	6	0x862319	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	7	0x862377	inventory-operation
+steam	PE:6a70a6d9:02711000	inventory-contained-options-builder	0x8625dc	8	0x8624ed	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	0	0x85f8d0	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	1	0x85f930	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	2	0x85f97e	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	3	0x85f9d0	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	4	0x85fa2b	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	5	0x85fa89	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	6	0x85fb99	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	7	0x85fbf7	inventory-operation
+classic	PE:6a70b91c:0270a000	inventory-contained-options-builder	0x85fe5c	8	0x85fd6d	inventory-operation
