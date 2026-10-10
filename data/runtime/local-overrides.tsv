@@ -2935,6 +2935,9 @@ Continue action	继续行动	wl
 Continue waiting	继续等待	wl
 Stop action	停止行动	wl
 Finish action	完成行动	wl
+In conflict! Finish anyway	处于冲突！仍然完成	wl
+In conflict!	处于冲突！	wl
+Finish anyway	仍然完成	wl
 Finishing up...	正在完成行动……	wl
 Track playing: {s}	正在播放：{s}	wt
 

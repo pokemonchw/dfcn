@@ -1,0 +1,29 @@
+edition	image_identity	path	role	start_rva	end_rva	owner_rva	owner_end_rva
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	action-control-gate	0xaf989e	0xaf98ad	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	action-controls	0xafb3d8	0xafba1d	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	waiting-dialog	0xb035c5	0xb0386a	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	input-mode-selection	0x7f75fe	0x7f7643	0x7f7020	0x8019fd
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	waiting-input	0x7f763d	0x7f7794	0x7f7020	0x8019fd
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	action-input-dispatch	0x7f9b6e	0x7f9b94	0x7f7020	0x8019fd
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	action-input	0x7f6d60	0x7f7016	0x7f6d60	0x7f7016
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	resume-action	0x7f6c30	0x7f6d60	0x7f6c30	0x7f6c54
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	has-continuable-action	0x7eeb70	0x7eed14	0x7eeb70	0x7eed14
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	in-conflict	0x643e00	0x643f67	0x643e00	0x643f67
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	current-key-draw	0xc394b0	0xc395b5	0xc394b0	0xc395b5
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	current-key-caption	0x8ecb30	0x8ece32	0x8ecb30	0x8ece32
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	render-mode-selection	0x7f3d60	0x7f3dc4	0x7f3cb0	0x7f6c21
+steam	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	legacy-render-dispatch	0x7f6ab9	0x7f6aee	0x7f3cb0	0x7f6c21
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	action-control-gate	0xaf68de	0xaf68ed	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	action-controls	0xaf8418	0xaf8a5d	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	waiting-dialog	0xb00605	0xb008aa	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	input-mode-selection	0x7f4e7e	0x7f4ec3	0x7f48a0	0x7ff27d
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	waiting-input	0x7f4ebd	0x7f5014	0x7f48a0	0x7ff27d
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	action-input-dispatch	0x7f73ee	0x7f7414	0x7f48a0	0x7ff27d
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	action-input	0x7f45e0	0x7f4896	0x7f45e0	0x7f4896
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	resume-action	0x7f44b0	0x7f45e0	0x7f44b0	0x7f44d4
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	has-continuable-action	0x7ec3f0	0x7ec594	0x7ec3f0	0x7ec594
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	in-conflict	0x641820	0x641987	0x641820	0x641987
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	current-key-draw	0xc364f0	0xc365f5	0xc364f0	0xc365f5
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	current-key-caption	0x8ea360	0x8ea662	0x8ea360	0x8ea662
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	render-mode-selection	0x7f15e0	0x7f1644	0x7f1530	0x7f44a1
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	legacy-render-dispatch	0x7f4339	0x7f436e	0x7f1530	0x7f44a1

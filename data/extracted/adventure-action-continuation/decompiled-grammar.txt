@@ -1,0 +1,167 @@
+Adventure action continuation: native source reconstruction
+
+Images are the two files configured by data/runtime/native-pe-images.json:
+  Steam   PE:6a70a6d9:02711000
+  Classic PE:6a70b91c:0270a000
+All addresses below are RVAs. The classic executable has the same modern
+Adventure HUD producer and input branches as the Steam executable; classic
+graphics selection does not substitute a different caption producer.
+
+Native ownership
+  viewscreen_dungeonmodest RTTI vtable:
+    Steam 16b9f48; Classic 16b4e38.
+  Virtual slot 1 (input):
+    Steam 7f7020..8019fd; Classic 7f48a0..7ff27d.
+  Virtual slot 2 (logic):
+    Steam 7eed80..7f3ca2; Classic 7ec600..7f1522.
+  Virtual slot 3 (render wrapper):
+    Steam 7f3cb0..7f6c21; Classic 7f1530..7f44a1.
+  Render wrapper mode word 2640b70 (classic 263aa60), values 0x19 or
+  0x1a, selects legacy renderer 80d5e0 (classic 80ae60); the other modes
+  select modern renderer af1190..b03c40 (classic aee1d0..b00c80).
+  The render-mode-selection and legacy-render-dispatch assembly files
+  preserve those real selection branches. The seven continuation captions
+  and three waiting-dialog source lines have no other RIP-relative owner
+  in either configured image; the legacy renderer has no equivalent
+  finite-text branch. native-string-xrefs.tsv retains all of their image
+  references, including repeated draws of Continue action and Stop action.
+
+Continuation-control gate and state
+  At af98a5 (classic af68e5), the renderer calls has_continuable_action
+  7eeb70..7eed14 (classic 7ec3f0..7ec594), saving AL to local [rbp-6c].
+  At afb3e8 (classic af8428), a false local gate skips the complete caption
+  block and selects the icon-only HUD path beginning afba1d (classic
+  af8a5d). True selects the captions below.
+  player = *(23e5110), classic *(23df000).
+  state = signed int8(player + 143c).
+
+  if has_continuable_action:
+      if state == 0:
+          row_1 = key(0x52) + "Continue action"
+          row_2 = key(0x53) + "Stop action"
+          row_3 = key(0x54) + "Finish action"
+      else if state == 1 and in_conflict(player):
+          row_1 = key(0x52) + "Continue action"
+          row_2 = key(0x53) + "Stop action"
+          row_3 = key(0x54) + "In conflict! " + "Finish anyway"
+      else if state == 2 or state == 1:
+          row_1 = "Finishing up..."
+          row_2 = key(0x53) + "Stop action"
+          # No third caption is drawn in this branch.
+      else:
+          # No continuation caption is drawn for other state values.
+
+  The state selector is afb40d..afb42b (classic af844d..af846b).
+  The conflict predicate call is afb4a6 (classic af84e6).
+  Normal producer begins afb81c (classic af885c).
+  Conflict producer begins afb4b3 (classic af84f3).
+  Finishing producer begins afb6fd (classic af873d).
+  Shared post-caption path begins afb436 (classic af8476).
+
+  Caption / literal RVA / native constructor operand instruction RVA:
+    Continue action   Steam 16d1be0: afb52d, afb896
+                      Classic 16ccba8: af856d, af88d6
+    Stop action       Steam 16d1b70: afb5da, afb7e1, afb943
+                      Classic 16ccb38: af861a, af8821, af8983
+    In conflict!      Steam 16d1b90: afb679
+                      Classic 16ccb58: af86b9
+                      # Actual immutable literal ends with one ASCII space.
+    Finish anyway     Steam 16d1ba0: afb6c2
+                      Classic 16ccb68: af8702
+    Finishing up...   Steam 16d1af0: afb746
+                      Classic 16ccab8: af8786
+    Finish action     Steam 16d1b80: afb9e2
+                      Classic 16ccb48: af8a22
+
+  These are six distinct source literals, including the normal, conflict
+  and finishing variants. In conflict! and Finish anyway are consecutive,
+  independent calls to draw_text on the same row. The first source keeps its
+  trailing space, so the concatenated visible caption is exactly:
+      "In conflict! Finish anyway"
+  Each native string constructor uses 068150 (classic 0680e0), then
+  draw_text ad9960 (classic ad69a0); no dynamic noun/name helper produces
+  these six captions. These controls do not contain squad aliases.
+
+Native continuation predicates (complete bodies retained)
+  has_continuable_action 7eeb70 / classic 7ec3f0:
+    If player state word +c6 is 0xd6 or 0xd7, or the unit referenced by
+    player+3dc exists and its +c6 is 0xd0, compare +a8/+aa/+ac to
+    +c0/+c2/+c4. Any differing coordinate returns true. Equal coordinates
+    call 073a60 (classic 0739f0) and return false.
+    Otherwise iterate native activity vector 24e3820..24e3828 (classic
+    24dd710..24dd718), each activity's +8..+10 events. Require event
+    virtual kind == 0xe, (event+14 & 0x1)==0, virtual slot +20 false,
+    and an entry in event+e0..+e8 whose +8 matches player+130. Such an
+    entry returns true; exhausted/empty vectors return false.
+  in_conflict 643e00..643f67 / classic 641820..641987:
+    Iterate the same activity vector. Require activity word +4 == 2,
+    event virtual kind == 8, (event+14 & 0x1)==0. For each event+48..+50
+    entry, query entry+8 using player+c30 and entry+20 using player+130.
+    Either optional integer result other than -1 returns true. Empty
+    collections, unmatched kinds, inactive events and all absent results
+    reach the false return. This predicate produces no text.
+
+Native input path
+  Input saves the same has_continuable_action predicate at 7f761a (classic
+  7f4e9a). True routes from 7f9b6e..7f9b94 (classic 7f73ee..7f7414)
+  into action_input 7f6d60..7f7016 (classic 7f45e0..7f4896).
+  That entire helper is retained, including pointer-tree key membership
+  branches, click rectangles, subordinate-unit lookup and every return:
+    key(0x52) or first click rectangle:
+      set player+be0=1; invoke resume_action; return handled=true.
+    key(0x53) or second click rectangle:
+      invoke a40d90 then 073a60 on player (classic a3e5c0 / 0739f0).
+      Look up player+3dc in unit vector 23e50b0..23e50b8 (classic
+      23defa0..23defa8). If found, invoke those same two calls on it.
+      Return handled=true; missing unit also returns handled=true.
+    key(0x54) or third click rectangle:
+      set player+be0=1; invoke resume_action.
+      If old state==1 and in_conflict(player), set state=2;
+      otherwise set state=1. Return handled=true.
+    no matching key/click: return handled=false.
+  resume_action 7f6c30..7f6d60 (classic 7f44b0..7f45e0) has chained
+  unwind records; the retained span includes both returns and all branches.
+  It calls 7e4e90 (classic 7e2710). If denied, return false. If allowed,
+  conditionally clear event +2c fields, clear the native key set, snapshot
+  player coordinates and time globals, and set action UI state 2649534=1
+  (classic 2643424=1), with its adjacent counter/byte cleared.
+  All above feed helpers and predicates have no caption-producing literal.
+
+Independent waiting dialog, sharing the same native key-caption renderer
+  action UI state 2649534 (classic 2643424) == 6 selects the waiting
+  dialog at b035c5..b0386a (classic b00605..b008aa). Other values skip it.
+  It creates a modal frame, then draws the following three independent
+  prose rows, followed by one independent button:
+    y=18: "You haven't been able to act for a while."
+    y=19: "You can continue waiting, or save/quit from"
+    y=20: "the settings menu."
+    y=24: key(0x52) + "Continue waiting"
+  The second and third rows form exactly the semantic sentence:
+    "You can continue waiting, or save/quit from the settings menu."
+  The three native rows are separate draw calls, not one native string.
+  Their literal and operand addresses are in native-literals.tsv.
+  The input state==6 branch is 7f763d..7f7794 (classic 7f4ebd..7f5014).
+  key(0x52) or the waiting button rectangle clears the input and restores
+  action UI state to 1; settings input uses its existing separate path.
+  Continue waiting is related through its input-key renderer and action UI
+  state, but it is independent from player+143c's three action variants.
+
+Current-key text supplier (complete bodies retained)
+  Each key() draw calls c394b0..c395b5 (classic c364f0..c365f5), which
+  asks 8ecb30..8ece32 (classic 8ea360..8ea662) for the current binding.
+  It selects the first actual entry's std::string at entry+20 from the
+  key-binding tree 2390658 (classic 238a548). This string is configurable
+  by the player; it is not a new finite action caption or a fixed R/S/T
+  assumption. For absent/empty bindings the native visible source is "?",
+  written inline at 8ecdf0 (classic 8ea620).
+  "Missing binding displayed: " and its RIP-relative tail references are
+  diagnostic stream text in that helper, not additional game UI captions.
+
+Translation envelope
+  The continuation family has the six immutable captions above, its
+  actual same-row concatenation "In conflict! Finish anyway", and the
+  independent waiting button plus three native prose rows. A translation
+  can own the complete conflict caption while respecting both native
+  component draws. No additional finite action caption is hidden in its
+  direct helper paths. Binding strings and their "?" fallback retain the
+  native key role. Files are native source extraction material only.

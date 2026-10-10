@@ -1,0 +1,39 @@
+edition	role	instruction_rva	literal_rva	source
+steam	action-controls	0xafb52d	0x16d1be0	Continue action
+steam	action-controls	0xafb5da	0x16d1b70	Stop action
+steam	action-controls	0xafb679	0x16d1b90	In conflict! 
+steam	action-controls	0xafb6c2	0x16d1ba0	Finish anyway
+steam	action-controls	0xafb746	0x16d1af0	Finishing up...
+steam	action-controls	0xafb7e1	0x16d1b70	Stop action
+steam	action-controls	0xafb896	0x16d1be0	Continue action
+steam	action-controls	0xafb943	0x16d1b70	Stop action
+steam	action-controls	0xafb9e2	0x16d1b80	Finish action
+steam	waiting-dialog	0xb036cd	0x16d1b10	You haven't been able to act for a while.
+steam	waiting-dialog	0xb03727	0x16d1b40	You can continue waiting, or save/quit from
+steam	waiting-dialog	0xb03781	0x16d1ac0	the settings menu.
+steam	waiting-dialog	0xb03834	0x16d1ad8	Continue waiting
+steam	waiting-input	0x7f7750	inline-immediate	R
+steam	current-key-caption	0x8ecd27	0x16bf558	Missing binding displayed: 
+steam	current-key-caption	0x8ecd32	0x16bf568	displayed: 
+steam	current-key-caption	0x8ecd40	0x16bf570	d: 
+steam	current-key-caption	0x8ecd4c	0x16bf572	 
+steam	current-key-caption	0x8ecdf0	inline-immediate	?
+classic	action-controls	0xaf856d	0x16ccba8	Continue action
+classic	action-controls	0xaf861a	0x16ccb38	Stop action
+classic	action-controls	0xaf86b9	0x16ccb58	In conflict! 
+classic	action-controls	0xaf8702	0x16ccb68	Finish anyway
+classic	action-controls	0xaf8786	0x16ccab8	Finishing up...
+classic	action-controls	0xaf8821	0x16ccb38	Stop action
+classic	action-controls	0xaf88d6	0x16ccba8	Continue action
+classic	action-controls	0xaf8983	0x16ccb38	Stop action
+classic	action-controls	0xaf8a22	0x16ccb48	Finish action
+classic	waiting-dialog	0xb0070d	0x16ccad8	You haven't been able to act for a while.
+classic	waiting-dialog	0xb00767	0x16ccb08	You can continue waiting, or save/quit from
+classic	waiting-dialog	0xb007c1	0x16cca88	the settings menu.
+classic	waiting-dialog	0xb00874	0x16ccaa0	Continue waiting
+classic	waiting-input	0x7f4fd0	inline-immediate	R
+classic	current-key-caption	0x8ea557	0x16ba448	Missing binding displayed: 
+classic	current-key-caption	0x8ea562	0x16ba458	displayed: 
+classic	current-key-caption	0x8ea570	0x16ba460	d: 
+classic	current-key-caption	0x8ea57c	0x16ba462	 
+classic	current-key-caption	0x8ea620	inline-immediate	?

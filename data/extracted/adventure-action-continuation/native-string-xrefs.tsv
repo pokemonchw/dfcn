@@ -1,0 +1,27 @@
+edition	image_identity	source	literal_rva	instruction_rva	owner_rva	owner_end_rva
+steam	PE:6a70a6d9:02711000	Continue action	0x16d1be0	0xafb52d	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	Continue action	0x16d1be0	0xafb896	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	Stop action	0x16d1b70	0xafb5da	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	Stop action	0x16d1b70	0xafb7e1	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	Stop action	0x16d1b70	0xafb943	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	In conflict! 	0x16d1b90	0xafb679	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	Finish anyway	0x16d1ba0	0xafb6c2	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	Finishing up...	0x16d1af0	0xafb746	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	Finish action	0x16d1b80	0xafb9e2	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	Continue waiting	0x16d1ad8	0xb03834	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	You haven't been able to act for a while.	0x16d1b10	0xb036cd	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	You can continue waiting, or save/quit from	0x16d1b40	0xb03727	0xaf1190	0xb03c40
+steam	PE:6a70a6d9:02711000	the settings menu.	0x16d1ac0	0xb03781	0xaf1190	0xb03c40
+classic	PE:6a70b91c:0270a000	Continue action	0x16ccba8	0xaf856d	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	Continue action	0x16ccba8	0xaf88d6	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	Stop action	0x16ccb38	0xaf861a	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	Stop action	0x16ccb38	0xaf8821	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	Stop action	0x16ccb38	0xaf8983	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	In conflict! 	0x16ccb58	0xaf86b9	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	Finish anyway	0x16ccb68	0xaf8702	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	Finishing up...	0x16ccab8	0xaf8786	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	Finish action	0x16ccb48	0xaf8a22	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	Continue waiting	0x16ccaa0	0xb00874	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	You haven't been able to act for a while.	0x16ccad8	0xb0070d	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	You can continue waiting, or save/quit from	0x16ccb08	0xb00767	0xaee1d0	0xb00c80
+classic	PE:6a70b91c:0270a000	the settings menu.	0x16cca88	0xb007c1	0xaee1d0	0xb00c80

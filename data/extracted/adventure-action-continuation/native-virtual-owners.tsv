@@ -1,0 +1,7 @@
+edition	image_identity	type	vtable_rva	slot	target_rva	end_rva
+steam	PE:6a70a6d9:02711000	.?AVviewscreen_dungeonmodest@@	0x16b9f48	1	0x7f7020	0x8019fd
+steam	PE:6a70a6d9:02711000	.?AVviewscreen_dungeonmodest@@	0x16b9f48	2	0x7eed80	0x7f3ca2
+steam	PE:6a70a6d9:02711000	.?AVviewscreen_dungeonmodest@@	0x16b9f48	3	0x7f3cb0	0x7f6c21
+classic	PE:6a70b91c:0270a000	.?AVviewscreen_dungeonmodest@@	0x16b4e38	1	0x7f48a0	0x7ff27d
+classic	PE:6a70b91c:0270a000	.?AVviewscreen_dungeonmodest@@	0x16b4e38	2	0x7ec600	0x7f1522
+classic	PE:6a70b91c:0270a000	.?AVviewscreen_dungeonmodest@@	0x16b4e38	3	0x7f1530	0x7f44a1
