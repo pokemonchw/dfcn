@@ -1,0 +1,15 @@
+{
+  "images": {
+    "reference": "D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe",
+    "classic": "C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe",
+    "bootstrap": "C:/Users/WIN11/Downloads/df_53_16_win/dfhooks.dll",
+    "deploy_classic": true
+  },
+  "purpose": "Offline decompiled naming source material, no game execution or translation evaluation",
+  "reused_sources": [
+    "data/extracted/item-description-sources.tsv",
+    "data/extracted/item-info-title-sources.tsv",
+    "data/extracted/item-raw-title-sources.tsv",
+    "data/extracted/adventure-action-menu/native-owners.tsv"
+  ]
+}

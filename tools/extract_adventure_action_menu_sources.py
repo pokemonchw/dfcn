@@ -63,7 +63,7 @@ def rtti_owners(image):
                 continue
 
 
-def dump(image, start, label, edition, literal_rows, call_rows):
+def dump(image, start, label, edition, literal_rows, call_rows, branch_rows=None):
     end = image.functions.get(start, start + 256)
     instructions = list(image.instructions(start, end))
     if start not in image.functions:
@@ -74,7 +74,7 @@ def dump(image, start, label, edition, literal_rows, call_rows):
                 instructions = instructions[:index + 1]
                 break
     lines = [f"# {edition} {image.identity}; {label}; RVA {start - image.base:#x}..{end - image.base:#x}"]
-    for address, instruction in instructions:
+    for index, (address, instruction) in enumerate(instructions):
         note = ""
         reference = re.search(r"# (?:0x)?([0-9a-f]+)", instruction)
         if reference:
@@ -104,6 +104,13 @@ def dump(image, start, label, edition, literal_rows, call_rows):
         if call:
             target = int(call[1], 16)
             call_rows.append((edition, image.identity, label, hex(start - image.base), hex(address - image.base), hex(target - image.base), instruction.split()[0]))
+        branch = re.match(r"(j(?!mp\b)\w+)\s+0x([0-9a-f]+)$", instruction)
+        if branch and branch_rows is not None:
+            target = int(branch[2], 16)
+            fallthrough = instructions[index + 1][0] if index + 1 < len(instructions) else end
+            branch_rows.append((edition, image.identity, label, hex(start - image.base),
+                                hex(address - image.base), branch[1], hex(target - image.base),
+                                hex(fallthrough - image.base)))
         lines.append(f"{address - image.base:#010x}: {instruction}{note}")
     return "\n".join(lines) + "\n"
 
@@ -141,7 +148,7 @@ def chooser_renderer(image):
 def main():
     DEST.mkdir(parents=True, exist_ok=True)
     config = json.loads((ROOT / "data/runtime/native-pe-images.json").read_text(encoding="utf-8"))
-    owner_rows, literal_rows, call_rows = [], [], []
+    owner_rows, literal_rows, call_rows, branch_rows = [], [], [], []
     for edition, key in (("steam", "reference"), ("classic", "classic")):
         image = CaptionImage(Path(config[key]), OBJDUMP)
         owners = sorted(set(rtti_owners(image)))
@@ -188,12 +195,13 @@ def main():
                     roots[calls[0]] = ["unit-contaminant-field"]
         asm = []
         for start, labels in sorted(roots.items()):
-            asm.append(dump(image, start, ";".join(labels), edition, literal_rows, call_rows))
+            asm.append(dump(image, start, ";".join(labels), edition, literal_rows, call_rows, branch_rows))
         (DEST / f"{edition}-captions.asm").write_text("\n".join(asm), encoding="utf-8")
         print(f"{edition}: {image.identity}; {len(owners)} RTTI owners; {len(roots)} caption/helper/renderer bodies")
     write_tsv("native-owners.tsv", ("edition", "image_identity", "type", "vtable_rva", "caption_rva", "detail_caption_rva", "hierarchy_rva"), owner_rows)
     write_tsv("native-literals.tsv", ("edition", "image_identity", "owners", "function_rva", "instruction_rva", "encoding", "literal_rva", "operand_role", "source"), literal_rows)
     write_tsv("native-calls.tsv", ("edition", "image_identity", "owners", "function_rva", "instruction_rva", "callee_rva", "instruction"), call_rows)
+    write_tsv("native-branches.tsv", ("edition", "image_identity", "owners", "function_rva", "instruction_rva", "branch", "target_rva", "fallthrough_rva"), branch_rows)
 
 
 if __name__ == "__main__":

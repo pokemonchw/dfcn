@@ -1,0 +1,125 @@
+source	line	owner	field	value
+data/vanilla/examples and notes/item_instrument_example.txt	7	ITEM_TOOL:EXAMPLE DRUM BODY	ITEM_TOOL	EXAMPLE DRUM BODY
+data/vanilla/examples and notes/item_instrument_example.txt	11	ITEM_TOOL:EXAMPLE DRUM BODY	NAME	thokit drum:thokit drums
+data/vanilla/examples and notes/item_instrument_example.txt	17	ITEM_TOOL:EXAMPLE DRUM BODY	DESCRIPTION	The hourglass thokit drum makes up the bulk of the instrument.
+data/vanilla/examples and notes/item_instrument_example.txt	19	ITEM_TOOL:EXAMPLE DRUM HEAD	ITEM_TOOL	EXAMPLE DRUM HEAD
+data/vanilla/examples and notes/item_instrument_example.txt	23	ITEM_TOOL:EXAMPLE DRUM HEAD	NAME	thokit head:thokit heads
+data/vanilla/examples and notes/item_instrument_example.txt	29	ITEM_TOOL:EXAMPLE DRUM HEAD	DESCRIPTION	The thokit head is stretched over the instrument and used to produce sound.
+data/vanilla/examples and notes/item_instrument_example.txt	31	ITEM_INSTRUMENT:EXAMPLE DRUM	ITEM_INSTRUMENT	EXAMPLE DRUM
+data/vanilla/examples and notes/item_instrument_example.txt	32	ITEM_INSTRUMENT:EXAMPLE DRUM	NAME	thokit:thokit
+data/vanilla/examples and notes/item_instrument_example.txt	67	ITEM_INSTRUMENT:EXAMPLE DRUM	DESCRIPTION	The thokit is a mid-size hand-held percussion instrument.  It consists of an hourglass bone drum with a leather head.  The musician strikes the head.  The instrument has a one-and-a-half octave range going from a mid-high to a very high pitch.  Tuning is accomplished by adjusting the tension of the head.  At all pitches, the instrument has a full choppy focused timbre.  It has two registers.  The low register has a strong vibrating strident timbre.  The high register begins at mid-high pitch and has a vibrating raucous timbre.
+data/vanilla/examples and notes/item_instrument_example.txt	73	ITEM_INSTRUMENT:EXAMPLE WIND	ITEM_INSTRUMENT	EXAMPLE WIND
+data/vanilla/examples and notes/item_instrument_example.txt	74	ITEM_INSTRUMENT:EXAMPLE WIND	NAME	ecosh:ecosh
+data/vanilla/examples and notes/item_instrument_example.txt	86	ITEM_INSTRUMENT:EXAMPLE WIND	DESCRIPTION	The ecosh is a mid-size hand-held wind instrument consisting of three adjacent cylindrical wooden pipes.  The musician blows across the end of each pipe.  The instrument has a three-and-a-half octave range going from a mid-low to a very high pitch.  The instrument has a sparse wobbling quavering timbre.
+data/vanilla/vanilla_items/objects/item_tool.txt	5	ITEM_TOOL:ITEM_TOOL_CAULDRON	ITEM_TOOL	ITEM_TOOL_CAULDRON
+data/vanilla/vanilla_items/objects/item_tool.txt	6	ITEM_TOOL:ITEM_TOOL_CAULDRON	NAME	cauldron:cauldrons
+data/vanilla/vanilla_items/objects/item_tool.txt	15	ITEM_TOOL:ITEM_TOOL_LADLE	ITEM_TOOL	ITEM_TOOL_LADLE
+data/vanilla/vanilla_items/objects/item_tool.txt	16	ITEM_TOOL:ITEM_TOOL_LADLE	NAME	ladle:ladles
+data/vanilla/vanilla_items/objects/item_tool.txt	24	ITEM_TOOL:ITEM_TOOL_BOWL	ITEM_TOOL	ITEM_TOOL_BOWL
+data/vanilla/vanilla_items/objects/item_tool.txt	25	ITEM_TOOL:ITEM_TOOL_BOWL	NAME	bowl:bowls
+data/vanilla/vanilla_items/objects/item_tool.txt	34	ITEM_TOOL:ITEM_TOOL_MORTAR	ITEM_TOOL	ITEM_TOOL_MORTAR
+data/vanilla/vanilla_items/objects/item_tool.txt	35	ITEM_TOOL:ITEM_TOOL_MORTAR	NAME	mortar:mortars
+data/vanilla/vanilla_items/objects/item_tool.txt	44	ITEM_TOOL:ITEM_TOOL_PESTLE	ITEM_TOOL	ITEM_TOOL_PESTLE
+data/vanilla/vanilla_items/objects/item_tool.txt	45	ITEM_TOOL:ITEM_TOOL_PESTLE	NAME	pestle:pestles
+data/vanilla/vanilla_items/objects/item_tool.txt	53	ITEM_TOOL:ITEM_TOOL_KNIFE_CARVING	ITEM_TOOL	ITEM_TOOL_KNIFE_CARVING
+data/vanilla/vanilla_items/objects/item_tool.txt	54	ITEM_TOOL:ITEM_TOOL_KNIFE_CARVING	NAME	carving knife:carving knives
+data/vanilla/vanilla_items/objects/item_tool.txt	71	ITEM_TOOL:ITEM_TOOL_KNIFE_BONING	ITEM_TOOL	ITEM_TOOL_KNIFE_BONING
+data/vanilla/vanilla_items/objects/item_tool.txt	72	ITEM_TOOL:ITEM_TOOL_KNIFE_BONING	NAME	boning knife:boning knives
+data/vanilla/vanilla_items/objects/item_tool.txt	89	ITEM_TOOL:ITEM_TOOL_KNIFE_SLICING	ITEM_TOOL	ITEM_TOOL_KNIFE_SLICING
+data/vanilla/vanilla_items/objects/item_tool.txt	90	ITEM_TOOL:ITEM_TOOL_KNIFE_SLICING	NAME	slicing knife:slicing knives
+data/vanilla/vanilla_items/objects/item_tool.txt	107	ITEM_TOOL:ITEM_TOOL_KNIFE_MEAT_CLEAVER	ITEM_TOOL	ITEM_TOOL_KNIFE_MEAT_CLEAVER
+data/vanilla/vanilla_items/objects/item_tool.txt	108	ITEM_TOOL:ITEM_TOOL_KNIFE_MEAT_CLEAVER	NAME	meat cleaver:meat cleavers
+data/vanilla/vanilla_items/objects/item_tool.txt	125	ITEM_TOOL:ITEM_TOOL_FORK_CARVING	ITEM_TOOL	ITEM_TOOL_FORK_CARVING
+data/vanilla/vanilla_items/objects/item_tool.txt	126	ITEM_TOOL:ITEM_TOOL_FORK_CARVING	NAME	carving fork:carving forks
+data/vanilla/vanilla_items/objects/item_tool.txt	141	ITEM_TOOL:ITEM_TOOL_NEST_BOX	ITEM_TOOL	ITEM_TOOL_NEST_BOX
+data/vanilla/vanilla_items/objects/item_tool.txt	142	ITEM_TOOL:ITEM_TOOL_NEST_BOX	NAME	nest box:nest boxes
+data/vanilla/vanilla_items/objects/item_tool.txt	151	ITEM_TOOL:ITEM_TOOL_JUG	ITEM_TOOL	ITEM_TOOL_JUG
+data/vanilla/vanilla_items/objects/item_tool.txt	152	ITEM_TOOL:ITEM_TOOL_JUG	NAME	jug:jugs
+data/vanilla/vanilla_items/objects/item_tool.txt	161	ITEM_TOOL:ITEM_TOOL_LARGE_POT	ITEM_TOOL	ITEM_TOOL_LARGE_POT
+data/vanilla/vanilla_items/objects/item_tool.txt	162	ITEM_TOOL:ITEM_TOOL_LARGE_POT	NAME	pot:pots
+data/vanilla/vanilla_items/objects/item_tool.txt	163	ITEM_TOOL:ITEM_TOOL_LARGE_POT	ADJECTIVE	large
+data/vanilla/vanilla_items/objects/item_tool.txt	172	ITEM_TOOL:ITEM_TOOL_HIVE	ITEM_TOOL	ITEM_TOOL_HIVE
+data/vanilla/vanilla_items/objects/item_tool.txt	173	ITEM_TOOL:ITEM_TOOL_HIVE	NAME	hive:hives
+data/vanilla/vanilla_items/objects/item_tool.txt	182	ITEM_TOOL:ITEM_TOOL_HONEYCOMB	ITEM_TOOL	ITEM_TOOL_HONEYCOMB
+data/vanilla/vanilla_items/objects/item_tool.txt	183	ITEM_TOOL:ITEM_TOOL_HONEYCOMB	NAME	honeycomb:honeycombs
+data/vanilla/vanilla_items/objects/item_tool.txt	190	ITEM_TOOL:ITEM_TOOL_POUCH	ITEM_TOOL	ITEM_TOOL_POUCH
+data/vanilla/vanilla_items/objects/item_tool.txt	191	ITEM_TOOL:ITEM_TOOL_POUCH	NAME	pouch:pouches
+data/vanilla/vanilla_items/objects/item_tool.txt	200	ITEM_TOOL:ITEM_TOOL_MINECART	ITEM_TOOL	ITEM_TOOL_MINECART
+data/vanilla/vanilla_items/objects/item_tool.txt	201	ITEM_TOOL:ITEM_TOOL_MINECART	NAME	minecart:minecarts
+data/vanilla/vanilla_items/objects/item_tool.txt	213	ITEM_TOOL:ITEM_TOOL_WHEELBARROW	ITEM_TOOL	ITEM_TOOL_WHEELBARROW
+data/vanilla/vanilla_items/objects/item_tool.txt	214	ITEM_TOOL:ITEM_TOOL_WHEELBARROW	NAME	wheelbarrow:wheelbarrows
+data/vanilla/vanilla_items/objects/item_tool.txt	225	ITEM_TOOL:ITEM_TOOL_STEPLADDER	ITEM_TOOL	ITEM_TOOL_STEPLADDER
+data/vanilla/vanilla_items/objects/item_tool.txt	226	ITEM_TOOL:ITEM_TOOL_STEPLADDER	NAME	stepladder:stepladders
+data/vanilla/vanilla_items/objects/item_tool.txt	236	ITEM_TOOL:ITEM_TOOL_SCROLL_ROLLERS	ITEM_TOOL	ITEM_TOOL_SCROLL_ROLLERS
+data/vanilla/vanilla_items/objects/item_tool.txt	237	ITEM_TOOL:ITEM_TOOL_SCROLL_ROLLERS	NAME	scroll rollers:scroll rollers
+data/vanilla/vanilla_items/objects/item_tool.txt	247	ITEM_TOOL:ITEM_TOOL_BOOK_BINDING	ITEM_TOOL	ITEM_TOOL_BOOK_BINDING
+data/vanilla/vanilla_items/objects/item_tool.txt	248	ITEM_TOOL:ITEM_TOOL_BOOK_BINDING	NAME	book binding:book bindings
+data/vanilla/vanilla_items/objects/item_tool.txt	258	ITEM_TOOL:ITEM_TOOL_SCROLL	ITEM_TOOL	ITEM_TOOL_SCROLL
+data/vanilla/vanilla_items/objects/item_tool.txt	259	ITEM_TOOL:ITEM_TOOL_SCROLL	NAME	scroll:scrolls
+data/vanilla/vanilla_items/objects/item_tool.txt	268	ITEM_TOOL:ITEM_TOOL_QUIRE	ITEM_TOOL	ITEM_TOOL_QUIRE
+data/vanilla/vanilla_items/objects/item_tool.txt	269	ITEM_TOOL:ITEM_TOOL_QUIRE	NAME	quire:quires
+data/vanilla/vanilla_items/objects/item_tool.txt	280	ITEM_TOOL:ITEM_TOOL_BOOKCASE	ITEM_TOOL	ITEM_TOOL_BOOKCASE
+data/vanilla/vanilla_items/objects/item_tool.txt	281	ITEM_TOOL:ITEM_TOOL_BOOKCASE	NAME	bookcase:bookcases
+data/vanilla/vanilla_items/objects/item_tool.txt	292	ITEM_TOOL:ITEM_TOOL_HELVE	ITEM_TOOL	ITEM_TOOL_HELVE
+data/vanilla/vanilla_items/objects/item_tool.txt	293	ITEM_TOOL:ITEM_TOOL_HELVE	NAME	helve:helves
+data/vanilla/vanilla_items/objects/item_tool.txt	303	ITEM_TOOL:ITEM_TOOL_STONE_AXE	ITEM_TOOL	ITEM_TOOL_STONE_AXE
+data/vanilla/vanilla_items/objects/item_tool.txt	304	ITEM_TOOL:ITEM_TOOL_STONE_AXE	NAME	axe:axes
+data/vanilla/vanilla_items/objects/item_tool.txt	321	ITEM_TOOL:ITEM_TOOL_PEDESTAL	ITEM_TOOL	ITEM_TOOL_PEDESTAL
+data/vanilla/vanilla_items/objects/item_tool.txt	322	ITEM_TOOL:ITEM_TOOL_PEDESTAL	NAME	pedestal:pedestals
+data/vanilla/vanilla_items/objects/item_tool.txt	331	ITEM_TOOL:ITEM_TOOL_DISPLAY_CASE	ITEM_TOOL	ITEM_TOOL_DISPLAY_CASE
+data/vanilla/vanilla_items/objects/item_tool.txt	332	ITEM_TOOL:ITEM_TOOL_DISPLAY_CASE	NAME	display case:display cases
+data/vanilla/vanilla_items/objects/item_tool.txt	342	ITEM_TOOL:ITEM_TOOL_ALTAR	ITEM_TOOL	ITEM_TOOL_ALTAR
+data/vanilla/vanilla_items/objects/item_tool.txt	343	ITEM_TOOL:ITEM_TOOL_ALTAR	NAME	altar:altars
+data/vanilla/vanilla_items/objects/item_tool.txt	352	ITEM_TOOL:ITEM_TOOL_DIE	ITEM_TOOL	ITEM_TOOL_DIE
+data/vanilla/vanilla_items/objects/item_tool.txt	353	ITEM_TOOL:ITEM_TOOL_DIE	NAME	die:dice
+data/vanilla/vanilla_items/objects/item_weapon.txt	5	ITEM_WEAPON:ITEM_WEAPON_WHIP	ITEM_WEAPON	ITEM_WEAPON_WHIP
+data/vanilla/vanilla_items/objects/item_weapon.txt	6	ITEM_WEAPON:ITEM_WEAPON_WHIP	NAME	whip:whips
+data/vanilla/vanilla_items/objects/item_weapon.txt	16	ITEM_WEAPON:ITEM_WEAPON_AXE_BATTLE	ITEM_WEAPON	ITEM_WEAPON_AXE_BATTLE
+data/vanilla/vanilla_items/objects/item_weapon.txt	17	ITEM_WEAPON:ITEM_WEAPON_AXE_BATTLE	NAME	battle axe:battle axes
+data/vanilla/vanilla_items/objects/item_weapon.txt	34	ITEM_WEAPON:ITEM_WEAPON_HAMMER_WAR	ITEM_WEAPON	ITEM_WEAPON_HAMMER_WAR
+data/vanilla/vanilla_items/objects/item_weapon.txt	35	ITEM_WEAPON:ITEM_WEAPON_HAMMER_WAR	NAME	war hammer:war hammers
+data/vanilla/vanilla_items/objects/item_weapon.txt	44	ITEM_WEAPON:ITEM_WEAPON_SWORD_SHORT	ITEM_WEAPON	ITEM_WEAPON_SWORD_SHORT
+data/vanilla/vanilla_items/objects/item_weapon.txt	45	ITEM_WEAPON:ITEM_WEAPON_SWORD_SHORT	NAME	short sword:short swords
+data/vanilla/vanilla_items/objects/item_weapon.txt	61	ITEM_WEAPON:ITEM_WEAPON_SPEAR	ITEM_WEAPON	ITEM_WEAPON_SPEAR
+data/vanilla/vanilla_items/objects/item_weapon.txt	62	ITEM_WEAPON:ITEM_WEAPON_SPEAR	NAME	spear:spears
+data/vanilla/vanilla_items/objects/item_weapon.txt	73	ITEM_WEAPON:ITEM_WEAPON_MACE	ITEM_WEAPON	ITEM_WEAPON_MACE
+data/vanilla/vanilla_items/objects/item_weapon.txt	74	ITEM_WEAPON:ITEM_WEAPON_MACE	NAME	mace:maces
+data/vanilla/vanilla_items/objects/item_weapon.txt	83	ITEM_WEAPON:ITEM_WEAPON_CROSSBOW	ITEM_WEAPON	ITEM_WEAPON_CROSSBOW
+data/vanilla/vanilla_items/objects/item_weapon.txt	84	ITEM_WEAPON:ITEM_WEAPON_CROSSBOW	NAME	crossbow:crossbows
+data/vanilla/vanilla_items/objects/item_weapon.txt	101	ITEM_WEAPON:ITEM_WEAPON_PICK	ITEM_WEAPON	ITEM_WEAPON_PICK
+data/vanilla/vanilla_items/objects/item_weapon.txt	102	ITEM_WEAPON:ITEM_WEAPON_PICK	NAME	pick:picks
+data/vanilla/vanilla_items/objects/item_weapon.txt	111	ITEM_WEAPON:ITEM_WEAPON_BOW	ITEM_WEAPON	ITEM_WEAPON_BOW
+data/vanilla/vanilla_items/objects/item_weapon.txt	112	ITEM_WEAPON:ITEM_WEAPON_BOW	NAME	bow:bows
+data/vanilla/vanilla_items/objects/item_weapon.txt	130	ITEM_WEAPON:ITEM_WEAPON_BLOWGUN	ITEM_WEAPON	ITEM_WEAPON_BLOWGUN
+data/vanilla/vanilla_items/objects/item_weapon.txt	131	ITEM_WEAPON:ITEM_WEAPON_BLOWGUN	NAME	blowgun:blowguns
+data/vanilla/vanilla_items/objects/item_weapon.txt	149	ITEM_WEAPON:ITEM_WEAPON_PIKE	ITEM_WEAPON	ITEM_WEAPON_PIKE
+data/vanilla/vanilla_items/objects/item_weapon.txt	150	ITEM_WEAPON:ITEM_WEAPON_PIKE	NAME	pike:pikes
+data/vanilla/vanilla_items/objects/item_weapon.txt	161	ITEM_WEAPON:ITEM_WEAPON_HALBERD	ITEM_WEAPON	ITEM_WEAPON_HALBERD
+data/vanilla/vanilla_items/objects/item_weapon.txt	162	ITEM_WEAPON:ITEM_WEAPON_HALBERD	NAME	halberd:halberds
+data/vanilla/vanilla_items/objects/item_weapon.txt	175	ITEM_WEAPON:ITEM_WEAPON_SWORD_2H	ITEM_WEAPON	ITEM_WEAPON_SWORD_2H
+data/vanilla/vanilla_items/objects/item_weapon.txt	176	ITEM_WEAPON:ITEM_WEAPON_SWORD_2H	NAME	two-handed sword:two-handed swords
+data/vanilla/vanilla_items/objects/item_weapon.txt	191	ITEM_WEAPON:ITEM_WEAPON_SWORD_LONG	ITEM_WEAPON	ITEM_WEAPON_SWORD_LONG
+data/vanilla/vanilla_items/objects/item_weapon.txt	192	ITEM_WEAPON:ITEM_WEAPON_SWORD_LONG	NAME	long sword:long swords
+data/vanilla/vanilla_items/objects/item_weapon.txt	207	ITEM_WEAPON:ITEM_WEAPON_MAUL	ITEM_WEAPON	ITEM_WEAPON_MAUL
+data/vanilla/vanilla_items/objects/item_weapon.txt	208	ITEM_WEAPON:ITEM_WEAPON_MAUL	NAME	maul:mauls
+data/vanilla/vanilla_items/objects/item_weapon.txt	217	ITEM_WEAPON:ITEM_WEAPON_AXE_GREAT	ITEM_WEAPON	ITEM_WEAPON_AXE_GREAT
+data/vanilla/vanilla_items/objects/item_weapon.txt	218	ITEM_WEAPON:ITEM_WEAPON_AXE_GREAT	NAME	great axe:great axes
+data/vanilla/vanilla_items/objects/item_weapon.txt	231	ITEM_WEAPON:ITEM_WEAPON_DAGGER_LARGE	ITEM_WEAPON	ITEM_WEAPON_DAGGER_LARGE
+data/vanilla/vanilla_items/objects/item_weapon.txt	232	ITEM_WEAPON:ITEM_WEAPON_DAGGER_LARGE	NAME	dagger:daggers
+data/vanilla/vanilla_items/objects/item_weapon.txt	233	ITEM_WEAPON:ITEM_WEAPON_DAGGER_LARGE	ADJECTIVE	large
+data/vanilla/vanilla_items/objects/item_weapon.txt	246	ITEM_WEAPON:ITEM_WEAPON_SCOURGE	ITEM_WEAPON	ITEM_WEAPON_SCOURGE
+data/vanilla/vanilla_items/objects/item_weapon.txt	247	ITEM_WEAPON:ITEM_WEAPON_SCOURGE	NAME	scourge:scourges
+data/vanilla/vanilla_items/objects/item_weapon.txt	257	ITEM_WEAPON:ITEM_WEAPON_FLAIL	ITEM_WEAPON	ITEM_WEAPON_FLAIL
+data/vanilla/vanilla_items/objects/item_weapon.txt	258	ITEM_WEAPON:ITEM_WEAPON_FLAIL	NAME	flail:flails
+data/vanilla/vanilla_items/objects/item_weapon.txt	267	ITEM_WEAPON:ITEM_WEAPON_MORNINGSTAR	ITEM_WEAPON	ITEM_WEAPON_MORNINGSTAR
+data/vanilla/vanilla_items/objects/item_weapon.txt	268	ITEM_WEAPON:ITEM_WEAPON_MORNINGSTAR	NAME	morningstar:morningstars
+data/vanilla/vanilla_items/objects/item_weapon.txt	279	ITEM_WEAPON:ITEM_WEAPON_SCIMITAR	ITEM_WEAPON	ITEM_WEAPON_SCIMITAR
+data/vanilla/vanilla_items/objects/item_weapon.txt	280	ITEM_WEAPON:ITEM_WEAPON_SCIMITAR	NAME	scimitar:scimitars
+data/vanilla/vanilla_items/objects/item_weapon.txt	295	ITEM_WEAPON:ITEM_WEAPON_AXE_TRAINING	ITEM_WEAPON	ITEM_WEAPON_AXE_TRAINING
+data/vanilla/vanilla_items/objects/item_weapon.txt	296	ITEM_WEAPON:ITEM_WEAPON_AXE_TRAINING	NAME	training axe:training axes
+data/vanilla/vanilla_items/objects/item_weapon.txt	310	ITEM_WEAPON:ITEM_WEAPON_SWORD_SHORT_TRAINING	ITEM_WEAPON	ITEM_WEAPON_SWORD_SHORT_TRAINING
+data/vanilla/vanilla_items/objects/item_weapon.txt	311	ITEM_WEAPON:ITEM_WEAPON_SWORD_SHORT_TRAINING	NAME	training sword:training swords
+data/vanilla/vanilla_items/objects/item_weapon.txt	327	ITEM_WEAPON:ITEM_WEAPON_SPEAR_TRAINING	ITEM_WEAPON	ITEM_WEAPON_SPEAR_TRAINING
+data/vanilla/vanilla_items/objects/item_weapon.txt	328	ITEM_WEAPON:ITEM_WEAPON_SPEAR_TRAINING	NAME	training spear:training spears
+data/vanilla/vanilla_items/objects/item_weapon.txt	340	ITEM_WEAPON:ITEM_WEAPON_PICK_GREAT	ITEM_WEAPON	ITEM_WEAPON_PICK_GREAT
+data/vanilla/vanilla_items/objects/item_weapon.txt	341	ITEM_WEAPON:ITEM_WEAPON_PICK_GREAT	NAME	great pick:great picks

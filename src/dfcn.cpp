@@ -27865,8 +27865,23 @@ static std::optional<std::string> translate_ammunition_item_name(
 std::optional<std::string> Overlay::translate_embark_instrument_item(
         std::string_view complete_source, bool require_material,
         bool generated_namespace) const {
+    complete_source = trim_view(complete_source);
+    if (const auto suffix = item_number_suffix(complete_source); !suffix.empty()) {
+        const auto item = translate_embark_instrument_item(
+            complete_source.substr(0, complete_source.size() - suffix.size()),
+            require_material, generated_namespace);
+        return item ? std::optional<std::string>(*item + std::string(suffix)) : std::nullopt;
+    }
+    const auto designation = split_item_designation(complete_source);
+    if (!designation.prefix.empty() || !designation.suffix.empty()) {
+        const auto item = translate_embark_instrument_item(
+            designation.item, require_material, generated_namespace);
+        return item ? std::optional<std::string>(designation.prefix + *item +
+            designation.suffix) : std::nullopt;
+    }
     refresh_native_instrument_names();
-    std::string source = lower(trim(std::string(complete_source)));
+    std::string material_fields = trim(std::string(complete_source));
+    std::string source = lower(material_fields);
     if (embark_drink_names_.contains(source)) return std::nullopt;
     std::string shape;
     if (source.ends_with(" drum") || source.ends_with(" drums")) {
@@ -27876,6 +27891,7 @@ std::optional<std::string> Overlay::translate_embark_instrument_item(
             if (source.starts_with(prefix)) {
                 shape = target;
                 source.erase(0, prefix.size());
+                material_fields.erase(0, prefix.size());
                 break;
             }
         }
@@ -27904,43 +27920,111 @@ std::optional<std::string> Overlay::translate_embark_instrument_item(
     // Equipment requires a material; the art picker lists the bare type.
     // Parse native names across ALL vanilla languages: its object catalog
     // includes elven, human and goblin instruments as well as dwarven ones.
-    for (size_t name_begin = require_material ? 1 : 0;
-         name_begin < words.size(); ++name_begin) {
-        // Reject non-native equipment nouns before consulting the expensive
-        // material compositor. The object picker has no material prefix.
-        // A known English piece suffix wins before the arbitrary-name
-        // fallback: otherwise an invented name would swallow "drum" too.
-        for (size_t name_end = name_begin + 1; name_end <= words.size(); ++name_end) {
-            const std::string_view piece_source = name_end < words.size()
-                ? std::string_view(source).substr(words[name_end].begin)
-                : std::string_view{};
-            std::optional<std::string> piece = std::string{};
-            if (name_end < words.size())
-                piece = translate_piece(piece_source);
-            if (!piece) continue;
-            const auto name = translate_instrument_native_name(std::string_view(source).substr(
-                words[name_begin].begin, words[name_end - 1].end - words[name_begin].begin),
-                generated_namespace);
-            if (!name) continue;
-            std::optional<std::string> material = std::string{};
-            if (name_begin > 0) {
-                const std::string material_source = trim(source.substr(0, words[name_begin].begin));
-                material = piece_source == "string" || piece_source == "strings"
-                    ? translate_instrument_string_material(material_source)
-                    : translate_embark_item_material_qualifier(material_source, true);
-                // Conditions permit any concrete material, including a
-                // creature's frozen blood. Validate the entire material
-                // noun before applying the shared item qualifier policy.
-                if (!material && piece_source != "string" && piece_source != "strings")
-                    if (const auto noun = translate_material_name(material_source))
-                        material = finish_item_material_qualifier(material_source, *noun);
+    const auto named_item = [&](bool allow_generated_unknown) -> std::optional<std::string> {
+        for (size_t name_begin = require_material ? 1 : 0;
+             name_begin < words.size(); ++name_begin) {
+            // Reject non-native equipment nouns before consulting the expensive
+            // material compositor. The object picker has no material prefix.
+            // A known English piece suffix wins before the arbitrary-name
+            // fallback: otherwise an invented name would swallow "drum" too.
+            for (size_t name_end = name_begin + 1; name_end <= words.size(); ++name_end) {
+                const std::string_view piece_source = name_end < words.size()
+                    ? std::string_view(source).substr(words[name_end].begin)
+                    : std::string_view{};
+                std::optional<std::string> piece = std::string{};
+                if (name_end < words.size())
+                    piece = translate_piece(piece_source);
+                if (!piece) continue;
+                const auto name = translate_instrument_native_name(std::string_view(source).substr(
+                    words[name_begin].begin, words[name_end - 1].end - words[name_begin].begin),
+                    allow_generated_unknown);
+                if (!name) continue;
+                std::optional<std::string> material = std::string{};
+                if (name_begin > 0) {
+                    const std::string material_source = trim(material_fields.substr(
+                        0, words[name_begin].begin));
+                    material = piece_source == "string" || piece_source == "strings"
+                        ? translate_instrument_string_material(material_source)
+                        : translate_embark_item_material_qualifier(material_source, true);
+                    // Conditions permit any concrete material, including a
+                    // creature's frozen blood. Validate the entire material
+                    // noun before applying the shared item qualifier policy.
+                    if (!material && piece_source != "string" && piece_source != "strings")
+                        if (const auto noun = translate_material_name(material_source))
+                            material = finish_item_material_qualifier(material_source, *noun);
+                }
+                if (material) return *material + shape + *name + *piece;
             }
-            if (material) return *material + shape + *name + *piece;
+            // A bare picker type must not be reparsed as material + native name.
+            if (!require_material) break;
         }
-        // A bare picker type must not be reparsed as material + native name.
-        if (!require_material) break;
+        return std::nullopt;
+    };
+    // Native catalog identities and known language roots establish a name
+    // before any bare-part grammar. A proven instrument field may also carry
+    // newly invented words; try that broader name mode only after complete
+    // finite part nouns, so "mallet" cannot become an invented proper name.
+    if (const auto item = named_item(false)) return item;
+
+    // ITEM_TOOL type 86 reads the actual RAW singular/plural NAME without a
+    // generated-name prerequisite. Reuse every finite INSTRUMENT_PIECE field
+    // in adventure-item-tool/native-piece-fields.tsv; native-name-productions
+    // and native-decompiled.txt retain the writer's prefixed NAME route and
+    // the shared ordinary title route. A RAW bare part uses the same complete
+    // material grammar as a part whose generated instrument name is present.
+    // In ordinary item fields, the specific existing item families own
+    // overlapping bow/bag/bar/block/ring/bowl/chest nouns before the part
+    // fallback. Resolve only their isolated noun rules after proving the
+    // complete material, so no ::items -> instrument callback can recurse.
+    for (size_t piece_begin = 0; piece_begin < words.size(); ++piece_begin) {
+        const auto piece_source = std::string_view(source).substr(words[piece_begin].begin);
+        const auto piece = translate_piece(piece_source);
+        if (!piece) continue;
+        if (piece_begin == 0) {
+            if (!require_material && generated_namespace) return shape + *piece;
+            continue;
+        }
+        const auto material_source = trim_view(std::string_view(material_fields).substr(
+            0, words[piece_begin].begin));
+        auto material = piece_source == "string" || piece_source == "strings"
+            ? translate_instrument_string_material(material_source)
+            : translate_embark_item_material_qualifier(std::string(material_source), true);
+        if (!material && piece_source != "string" && piece_source != "strings")
+            if (const auto noun = translate_material_name(material_source))
+                material = finish_item_material_qualifier(material_source, *noun);
+        if (!material) continue;
+        if (!generated_namespace) {
+            auto ordinary = RULESETS.translate_equipment_type(std::string(piece_source), false);
+            if (!ordinary)
+                ordinary = RULESETS.translate_furniture_type(std::string(piece_source));
+            if (!ordinary) {
+                std::string_view scope, noun = piece_source;
+                if (piece_source == "bag" || piece_source == "bags")
+                    scope = "::items::bag::main";
+                else if (piece_source == "bowl" || piece_source == "bowls")
+                    scope = "::items::tool::main";
+                else if (piece_source == "ring" || piece_source == "rings")
+                    scope = "::items::ring::main";
+                else if (piece_source == "bar" || piece_source == "bars") {
+                    scope = "::items::bar";
+                    noun = "bars";
+                } else if (piece_source == "block" || piece_source == "blocks") {
+                    scope = "::items::blocks::main";
+                    noun = "blocks";
+                }
+                if (!scope.empty()) {
+                    std::vector<size_t> origins;
+                    ordinary = RULESETS.translate_with_origins(std::string(noun),
+                        std::string(scope), origins);
+                }
+            }
+            if (ordinary && !ordinary->empty() && ordinary->find("[C:") == std::string::npos &&
+                    ordinary->find_first_of("\r\n") == std::string::npos)
+                return *material + *ordinary;
+        }
+        return *material + shape + *piece;
     }
-    return std::nullopt;
+    return generated_namespace ? named_item(true) : std::nullopt;
 }
 
 static std::optional<ArenaEquipmentNamePart> split_drinkware_item_name(

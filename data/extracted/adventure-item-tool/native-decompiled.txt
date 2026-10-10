@@ -1,0 +1,264 @@
+Native Adventure item/tool/instrument naming source reconstruction
+
+The configured Windows images are Steam PE:6a70a6d9:02711000 and classic
+PE:6a70b91c:0270a000. Coordinates in prose are Steam RVAs unless paired
+explicitly. native-functions.tsv records exact complete method extents in
+both images; chained PE unwind continuations are included. Selector tables
+after the code are data, preserved in native-selectors.tsv.
+
+These are offline source materials, not game observations. No native method
+is invoked. The Steam full instrument writer source is reused from
+../item-description-sources.tsv instead of copied wholesale. The classic
+writer is preserved in full as classic-instrument-raw-writer.asm. All writer
+conditional edges, literals, call operands, NAME field sequences and bounded
+selector entries in both images are in this directory's native-*.tsv files.
+The compact steam-percussion-tool-writer.asm preserves the actual complete
+percussion name production region around the screenshot noun.
+
+Actual naming route, including the screenshot menu:
+
+  adventure_environment_take_from_pack_animalst.name(out)
+    Steam 8932c0; classic 890b40
+    if option.item at +28 is null: no caption construction
+    out = "Get "
+    append complete_item_designation(item, mode=0, article=-1)
+      Steam call 89333e -> c65450; classic 890bbe -> c62490
+    derive item location from item flags, item/unit container references,
+      specific references, or item's direct position
+    if option +8 == 0 and pack animal +20 exists:
+      append " from " and native unit name/status
+    append native cardinal/intercardinal direction from resolved location
+
+  complete_item_designation
+    Steam c65450..c65f0a; classic c62490..c62f4a
+    preserves native artifact/name branches, named-copy rules, quality,
+    wear and improvement wrappers, article mode and stack quantity
+    invokes actual item vtable +5e8 title
+    full historical graph remains in item-info-title-sources.tsv and
+      item-description-sources.tsv; it is not inferred from screenshot words
+
+  Actual RTTI title dispatch:
+    item_toolst       type 86  Steam ca39f0; classic ca0a30
+    item_weaponst     type 24  Steam ca5bb0; classic ca2bf0
+    item_instrumentst type 13  Steam ca5bb0; classic ca2bf0
+    all three article-prefix virtuals use c653e0 / classic c62420
+
+The article-prefix method is a separate prefix operation. It appends "the "
+for article mode 1. For mode 0, eligible ordinary count-one items receive
+"a "; artifacts and other counts do not. Other modes do nothing. It does
+not produce the item's noun and does not call complete_item_designation.
+
+Ordinary tool title:
+
+  if native game-mode global is nonzero:
+    generic_title(item, out, naming_mode)
+  else if item.virtual[90] is false:
+    generic_title(item, out, naming_mode)
+  else:
+    produce the food-storage title using actual stored contents
+    native category identities independently select:
+      Prepared Food, Seed, Plant, Cheese, Fish, Meat, Spice, Mill,
+      Fat, Rendered Fat, Paste, Pressed Material
+    another contained-item branch produces complete item designation
+    append the tool subtype's singular NAME
+    when item material exists, append " (" + material + optional
+      ", " + RAW adjective + ")"
+      material can include actual named-person possessive and material prefix
+      absent material lookup produces "unknown material"
+    optional native stored quantity annotation is " <#" + number + ">"
+
+The two full tool methods preserve every category comparison, contained
+reference loop, alternate contents branch, material branch, optional
+adjective, and quantity branch. Storage grammar belongs to those branches;
+the ordinary mallet naming route delegates directly to the generic title.
+
+Generic title:
+
+  collect actual native type, subtype, material type/index, item flags,
+    maker race and optional artifact reference
+  naming_mode 1 forces count 1
+  naming_mode 2 passes count -1
+  otherwise read item.virtual[478] quantity
+  call shared_item_noun with the complete typed tuple
+    Steam ca5d45 -> a82c10; classic ca2d85 -> a7fc90
+
+Shared item noun has all 93 native item-type selector entries, 0..92.
+Every selector, jump target and branch is preserved in the paired shared
+method ASM and native-selectors.tsv. Equipment, creature/body component,
+prepared-food, material and other item branches are existing shared
+production families, not alternative literal lists guessed from the image.
+
+TOOL type 86 (Steam selector entry a84432):
+
+  find subtype by its numeric id in the actual itemdef_tool vector
+  if found and its RAW ADJECTIVE at +d8 is nonempty:
+    append RAW ADJECTIVE + " "
+  if the item has a material or material-override mode:
+    if the subtype has tool use 10 and its material has native flag 41
+       and its live item exists and is not glazed:
+      append "unglazed "
+    append complete native material qualifier + " "
+  if the live item has a valid gem-shape index and the referenced descriptor
+      shape has at least one name:
+    append its complete first RAW shape name + " "
+  if subtype exists:
+    append subtype NAME at +68 when count == 1,
+      else NAME_PLURAL at +88
+  else:
+    append "tool" and append "s" when count != 1
+  if count > 1: append " [" + count + "]"
+
+There is no test of whether this subtype NAME begins with an invented
+instrument name. The subtype is a typed RAW pointer, and its actual string
+is consumed directly. A finite recognized bare tool noun can therefore use
+the shared material/item composition; requiring an invented-name match is
+an extra condition introduced by the translation implementation.
+
+Reachability for the native procedural music-tool definitions:
+
+  The complete paired instrument writers emit no ADJECTIVE, TOOL_USE or
+    SHAPE_CATEGORY field. Their material helpers emit only material
+    eligibility tokens: Steam eb8ff0 selects THREAD_PLANT_MAT, SILK_MAT or
+    LEATHER_MAT; eb9410 selects METAL_MAT, STONE_MAT, WOOD_MAT, CERAMIC_MAT,
+    GLASS_MAT, BONE_MAT or SHELL_MAT. They do not supply those missing fields.
+  Consequently these generated subtypes have an empty RAW adjective and
+    do not satisfy the shared TOOL LIQUID_CONTAINER tool-use condition.
+    Steam a84485..a84496 searches subtype.tool_use(+c0) for enum 10; when
+    absent, a84499 jumps to a844ea and skips the entire unglazed qualifier.
+    Ceramic eligibility by itself does not enable that qualifier.
+
+  item_toolst.getGemShape is a real field getter, not a constant -1:
+    vslot +748 -> Steam 28a350 / classic 287f10
+      mov eax, DWORD PTR [rcx+100]; ret
+    vslot +738 setter -> Steam 28a340 / classic 287f00
+      mov DWORD PTR [rcx+100], edx; ret
+    The constructor writes shape and face_up to -1 at Steam 28a0b0 /
+      classic 287c70. Setting the subtype (Steam c9b830 / classic c98870)
+      resolves the itemdef pointer without assigning a shape.
+    vslots +730 isGemShapeable and +740 isStoneShapeable both use the
+      return-false method Steam 67050 / classic 66fe0.
+  The ordinary native shape-assignment method Steam 94bd00 first calls
+    +730 at 94be17, then +740 at 94be8f when the first predicate is false.
+    With both predicates false it returns without reaching setter 94bf09.
+    Generated music-tool creation therefore retains the default shape -1
+    along this path and contributes no descriptor-shape prefix.
+
+  Other genuine TOOL shape writes exist but belong to different production
+    families. Steam ff6250's divination-tool path requires tool-use enum 24
+    at ff7469..ff7498 and a usable subtype.shape_category(+170) entry at
+    ff7720..ff775a before setter ff7d27. Native generated music definitions
+    supply neither requirement. Steam a8fea0's butcher-product branch reads
+    extra_butcher_objectst.shape_id(+28) and invokes setter a917e6 only when
+    that authored body-component shape is not -1; this is not an instrument
+    crafting product field. These branches show why a field getter must not
+    be replaced in the source reconstruction with an unconditional -1.
+
+For a TOOL that does have a live nonnegative shape, the generic noun method
+still uses the complete first descriptor_shape.names entry before the RAW
+tool NAME. Its grammar is material + descriptor RAW NAME + subtype NAME;
+the musical-description shape labels such as bowl-shaped and hourglass are
+a different field. Existing descriptor_shape_standard.txt RAW names and
+Overlay::load_symbol_shape_forms / translate_symbol_shape provide the
+typed descriptor-shape vocabulary. Their presence does not make this
+prefix reachable for the native music definitions described above.
+
+INSTRUMENT type 13 (Steam a8435c):
+
+  append material qualifier when present
+  find instrument subtype by actual numeric id
+  if found: copy singular/plural subtype NAME at +68/+88
+  else: use "musical instrument", pluralize for count != 1
+  append stack quantity for count > 1
+
+Actual authored RAW source text is retained under raw-sources/ with NAME,
+ADJECTIVE and DESCRIPTION field coordinates in raw-name-fields.tsv. The
+installed vanilla item_tool and item_weapon definitions do not contain
+mallet. The existing Wanderer reaction source mentions Mallet only inside
+reaction NAME labels. That text alone does not identify a WEAPON or TOOL
+subtype and is not used as item-type evidence.
+
+Native procedural instrument writer:
+
+  Steam ebe8a0..ecc30c; classic eb9810..ec727c
+  four requested instrument-family count fields select independent keyboard,
+    string, wind and percussion generation loops
+  each loop chooses/reuses an invented instrument name, writes generated
+    ITEM_TOOL component definitions and ITEM_INSTRUMENT definitions, writes
+    stored descriptions, and writes crafting/assembly reaction definitions
+  the complete finite component name fields and plural modes are in
+    native-piece-fields.tsv
+  native-name-productions.tsv preserves each NAME construction's dynamic
+    stack-field operands, literal suffixes, and conditional field ordering
+  arbitrary authored RAW values and invented instrument names remain data;
+    a finite noun inventory is not an enumeration of every complete name
+
+INSTRUMENT_PIECE fields use two different plural contracts:
+
+  STANDARD: separate singular and plural piece names
+  ALWAYS_PLURAL: the plural name is also used in the nominal singular slot
+
+Keyboard family finite fields include keyboard/keyboards, console/consoles,
+body/bodies, case/cases, chest/chests, strings/strings, bells/bells,
+pipes/pipes, pump/pumps and bellows/bellows.
+
+String family finite fields include neck/necks, body/bodies, frame/frames,
+yoke/yokes, sound-chest/sound-chests, string/strings, strings/strings,
+bow/bows, plectrum/plectra, hammers/hammers and neck bowl/neck bowls.
+The hammers component is ALWAYS_PLURAL; it is a different production from
+the percussion hammer/hammers selector.
+
+Wind family finite fields include bellows/bellows, blowpipe/blowpipes,
+bag/bags, melody pipe/melody pipes, drone pipe/drone pipes,
+drone pipes/drone pipes, wind chest/wind chests and pipe/pipes.
+
+Percussion striking-tool selector (Steam ec8099 onward):
+
+  native random branch 0 -> mallets/mallet  ec8105/ec8131
+  native random branch 1 -> hammers/hammer ec80d0/ec80fc
+  native random branch 2 -> sticks/stick   ec80b0/ec80c7
+  corresponding classic literal operands:
+    mallets/mallet ec3075/ec30a1
+    hammers/hammer ec3040/ec306c
+    sticks/stick   ec3020/ec3037
+  number of strikers controls the nominal singular string; multi-striker
+    forms use the plural label in both name slots
+  native-piece-fields.tsv anchors each finite noun selector at its first
+    literal operand. That anchor is a branch/source coordinate, not a claim
+    that the operand at that address is the singular form.
+
+Percussion body selector:
+
+  membrane branch -> drum/drums
+  other branch -> seven native table entries, Steam ec83a6 table ecc2f0:
+    bar/bars, chime/chimes, block/blocks, bowl/bowls,
+    triangle/triangles, bell/bells, ring/rings
+  native count selects the nominal singular field or an ALWAYS_PLURAL field
+  other component fields include stand/stands and head/heads,
+    with heads/heads in the ALWAYS_PLURAL branch
+  drum-shape data separately selects bowl-shaped, tube, barrel, goblet,
+    hourglass; these strings are stored description/shape operands rather
+    than interchangeable aliases for the piece noun
+
+Critical NAME construction distinction:
+
+  The generated percussion _MALLET tool NAME is NOT a bare mallet string.
+  Steam ec9186..ec9228 and classic ec40f6..ec419c write:
+    [NAME:{invented instrument name} {nominal striker name}:
+          {invented instrument name} {plural striker name}]
+    invented name is stack string rbp+3a0
+    nominal striker name is rbp+4a0
+    plural striker name is rbp+500
+  The common TOOL title reader does not require that invented prefix.
+  The screenshot's bare "rhyolite mallet" is direct display evidence of
+    the bare form; this extraction does not invent a claim that the native
+    writer above always creates raw NAME=mallet without a prefix.
+
+Translation scope follows the exact production roles. Native finite
+striking-tool nouns and recognized complete material prefixes can be
+composed on the ordinary item path. Generic overlapping component nouns
+such as bag, bow, bar, block, bowl and ring need their typed/generated
+instrument context. They must not be globally reinterpreted as instruments.
+The full current instrument-translations.tsv already contains the finite
+piece keys from these sources, including bar/block/bowl/ring forms later
+in the file. The original translation failure is an unreachable composition
+branch, not absence of the mallet noun entry.

@@ -89,10 +89,24 @@ steam_function_rva	role	production	dynamic_fields	branch
 0x842ab0	path	Path to here[ (no climbing/jumping)][ ({depth} level[s] down)]	depth=positive decimal	down; s iff depth>1
 0x842ab0	path	Go below hatch[ (no climbing/jumping)][ ({depth} level[s] up)]	depth=positive decimal	up; s iff depth>1
 0x842ab0	path	Go below hatch[ (no climbing/jumping)][ ({depth} level[s] down)]	depth=positive decimal	down; s iff depth>1
-0x8932c0	get	Get {item} from {unit}[ ({direction})]	item=whole item; unit=whole unit; direction=DIR	location optional
-0x8935f0	get	Get {item}[ ({direction})]	item=whole item; direction=DIR	shared environment/ground item
-0x893870	get	Get {item} from {building}[ ({direction})]	item=whole item; building=virtual+188 name; direction=DIR	location optional
-0x893bb0	get	Get {item} from {container}[ ({direction})]	item/container=whole item; direction=DIR	shared item container/building item contents
+0x8932c0	get	Get {item} from {unit} ({direction})	item=option+28 whole item mode-1; unit=option+20 whole 1330c30 result; direction=DIR	item nonnull; option+8=0 and unit nonnull; known item origin differs from player
+0x8932c0	get	Get {item} from {unit}	item=option+28 whole item mode-1; unit=option+20 whole 1330c30 result	item nonnull; option+8=0 and unit nonnull; unknown item origin or origin equals player
+0x8932c0	get	Get {item} ({direction})	item=option+28 whole item mode-1; direction=DIR	item nonnull; option+8!=0 or unit null; known item origin differs from player; complete source clause omitted
+0x8932c0	get	Get {item}	item=option+28 whole item mode-1	item nonnull; option+8!=0 or unit null; unknown item origin or origin equals player; complete source clause omitted
+0x8932c0	get-empty			option+28 item null; no Get/source/location text is appended
+0x8935f0	get	Get {item} ({direction})	item=option+20 whole item mode-1; direction=DIR	shared environment/ground item; item nonnull; known item origin differs from player; no source clause
+0x8935f0	get	Get {item}	item=option+20 whole item mode-1	shared environment/ground item; item nonnull; unknown item origin or origin equals player; no source clause
+0x8935f0	get-empty			option+20 item null; no Get/location text is appended
+0x893870	get	Get {item} from {building} ({direction})	item=option+20 whole item mode-1; building=option+28 virtual+188 result; direction=DIR	item nonnull; option+8=0 and building nonnull; known item origin differs from player; no building fallback
+0x893870	get	Get {item} from {building}	item=option+20 whole item mode-1; building=option+28 virtual+188 result	item nonnull; option+8=0 and building nonnull; unknown item origin or origin equals player; no building fallback
+0x893870	get	Get {item} ({direction})	item=option+20 whole item mode-1; direction=DIR	item nonnull; option+8!=0 or building null; known item origin differs from player; complete source clause omitted
+0x893870	get	Get {item}	item=option+20 whole item mode-1	item nonnull; option+8!=0 or building null; unknown item origin or origin equals player; complete source clause omitted
+0x893870	get-empty			option+20 item null; no Get/source/location text is appended
+0x893bb0	get	Get {item} from {container} ({direction})	item=option+20 whole item mode-1; container=option+28 whole item mode-1; direction=DIR	shared container/building item contents; item nonnull; option+8=0 and container nonnull; known item origin differs from player
+0x893bb0	get	Get {item} from {container}	item=option+20 whole item mode-1; container=option+28 whole item mode-1	shared container/building item contents; item nonnull; option+8=0 and container nonnull; unknown item origin or origin equals player
+0x893bb0	get	Get {item} ({direction})	item=option+20 whole item mode-1; direction=DIR	item nonnull; option+8!=0 or container null; known item origin differs from player; complete source clause omitted
+0x893bb0	get	Get {item}	item=option+20 whole item mode-1	item nonnull; option+8!=0 or container null; unknown item origin or origin equals player; complete source clause omitted
+0x893bb0	get-empty			option+20 item null; no Get/source/location text is appended
 0x893ef0	vegetation	Pick {item}[ ({direction})]	item=whole growth/item; direction=DIR	type!=0x5b
 0x893ef0	vegetation	Pull {item}[ ({direction})]	item=whole growth/item; direction=DIR	type0x5b
 0x894180	inventory	{item}	item=whole item designation	shared item caption mode1

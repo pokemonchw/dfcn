@@ -1,0 +1,93 @@
+edition	instruction_rva	field_role	singular	plural	count_mode	literal_source
+steam	0xebfe54	INSTRUMENT_PIECE name fields	keyboard	keyboards	separate count-mode token	:keyboard:keyboards
+steam	0xebfedb	INSTRUMENT_PIECE name fields	console	consoles	separate count-mode token	:console:consoles
+steam	0xebfefa	INSTRUMENT_PIECE name fields	body	bodies	separate count-mode token	:body:bodies
+steam	0xebff12	INSTRUMENT_PIECE name fields	case	cases	separate count-mode token	:case:cases
+steam	0xebff44	INSTRUMENT_PIECE name fields	chest	chests	separate count-mode token	:chest:chests
+steam	0xebffc1	INSTRUMENT_PIECE name fields	strings	strings	separate count-mode token	:strings:strings
+steam	0xebffcd	INSTRUMENT_PIECE name fields	bells	bells	separate count-mode token	:bells:bells
+steam	0xebffd6	INSTRUMENT_PIECE name fields	pipes	pipes	separate count-mode token	:pipes:pipes
+steam	0xec005d	INSTRUMENT_PIECE name fields	pump	pumps	separate count-mode token	:pump:pumps
+steam	0xec0066	INSTRUMENT_PIECE name fields	bellows	bellows	separate count-mode token	:bellows:bellows
+steam	0xec3687	INSTRUMENT_PIECE name fields	neck	necks	separate count-mode token	:neck:necks
+steam	0xec36f7	INSTRUMENT_PIECE name fields	body	bodies	separate count-mode token	:body:bodies
+steam	0xec3781	INSTRUMENT_PIECE name fields	frame	frames	separate count-mode token	:frame:frames
+steam	0xec37f1	INSTRUMENT_PIECE name fields	body	bodies	separate count-mode token	:body:bodies
+steam	0xec387d	INSTRUMENT_PIECE name fields	body	bodies	separate count-mode token	:body:bodies
+steam	0xec3907	INSTRUMENT_PIECE name fields	yoke	yokes	separate count-mode token	:yoke:yokes
+steam	0xec3977	INSTRUMENT_PIECE name fields	sound-chest	sound-chests	separate count-mode token	:sound-chest:sound-chests
+steam	0xec39f2	INSTRUMENT_PIECE name fields	strings	strings	ALWAYS_PLURAL	:strings:strings:ALWAYS_PLURAL]
+steam	0xec39fb	INSTRUMENT_PIECE name fields	string	strings	STANDARD	:string:strings:STANDARD]
+steam	0xec3a6a	INSTRUMENT_PIECE name fields	bow	bows	STANDARD	:bow:bows:STANDARD]
+steam	0xec3a78	INSTRUMENT_PIECE name fields	plectrum	plectra	STANDARD	:plectrum:plectra:STANDARD]
+steam	0xec3a88	INSTRUMENT_PIECE name fields	hammers	hammers	ALWAYS_PLURAL	:hammers:hammers:ALWAYS_PLURAL]
+steam	0xec3ae9	INSTRUMENT_PIECE name fields	neck bowl	neck bowls	separate count-mode token	:neck bowl:neck bowls
+steam	0xec6a49	INSTRUMENT_PIECE name fields	bellows	bellows	separate count-mode token	:bellows:bellows
+steam	0xec6a52	INSTRUMENT_PIECE name fields	blowpipe	blowpipes	separate count-mode token	:blowpipe:blowpipes
+steam	0xec6abb	INSTRUMENT_PIECE name fields	bag	bags	separate count-mode token	:bag:bags
+steam	0xec6b2b	INSTRUMENT_PIECE name fields	melody pipe	melody pipes	separate count-mode token	:melody pipe:melody pipes
+steam	0xec6ba6	INSTRUMENT_PIECE name fields	drone pipes	drone pipes	ALWAYS_PLURAL	:drone pipes:drone pipes:ALWAYS_PLURAL]
+steam	0xec6baf	INSTRUMENT_PIECE name fields	drone pipe	drone pipes	STANDARD	:drone pipe:drone pipes:STANDARD]
+steam	0xec6c21	INSTRUMENT_PIECE name fields	blowpipe	blowpipes	separate count-mode token	:blowpipe:blowpipes
+steam	0xec6c91	INSTRUMENT_PIECE name fields	wind chest	wind chests	separate count-mode token	:wind chest:wind chests
+steam	0xec6d01	INSTRUMENT_PIECE name fields	pipe	pipes	separate count-mode token	:pipe:pipes
+steam	0xec974b	INSTRUMENT_PIECE name fields	stand	stands	separate count-mode token	:stand:stands
+steam	0xec97d0	INSTRUMENT_PIECE name fields	heads	heads	separate count-mode token	:heads:heads
+steam	0xec97e5	INSTRUMENT_PIECE name fields	head	heads	separate count-mode token	:head:heads
+steam	0xec80b0	STRIKING_TOOL finite noun selector	stick	sticks	STANDARD or ALWAYS_PLURAL selected by native count	stick:sticks
+steam	0xec80d0	STRIKING_TOOL finite noun selector	hammer	hammers	STANDARD or ALWAYS_PLURAL selected by native count	hammer:hammers
+steam	0xec8105	STRIKING_TOOL finite noun selector	mallet	mallets	STANDARD or ALWAYS_PLURAL selected by native count	mallet:mallets
+steam	0xec829a	BODY finite noun selector	drum	drums	STANDARD or ALWAYS_PLURAL selected by native count	drum:drums
+steam	0xec83a8	BODY finite noun selector	bar	bars	STANDARD or ALWAYS_PLURAL selected by native count	bar:bars
+steam	0xec83e5	BODY finite noun selector	chime	chimes	STANDARD or ALWAYS_PLURAL selected by native count	chime:chimes
+steam	0xec8422	BODY finite noun selector	block	blocks	STANDARD or ALWAYS_PLURAL selected by native count	block:blocks
+steam	0xec845f	BODY finite noun selector	bowl	bowls	STANDARD or ALWAYS_PLURAL selected by native count	bowl:bowls
+steam	0xec849c	BODY finite noun selector	triangle	triangles	STANDARD or ALWAYS_PLURAL selected by native count	triangle:triangles
+steam	0xec84d3	BODY finite noun selector	bell	bells	STANDARD or ALWAYS_PLURAL selected by native count	bell:bells
+steam	0xec850a	BODY finite noun selector	ring	rings	STANDARD or ALWAYS_PLURAL selected by native count	ring:rings
+classic	0xebadc4	INSTRUMENT_PIECE name fields	keyboard	keyboards	separate count-mode token	:keyboard:keyboards
+classic	0xebae4b	INSTRUMENT_PIECE name fields	console	consoles	separate count-mode token	:console:consoles
+classic	0xebae6a	INSTRUMENT_PIECE name fields	body	bodies	separate count-mode token	:body:bodies
+classic	0xebae82	INSTRUMENT_PIECE name fields	case	cases	separate count-mode token	:case:cases
+classic	0xebaeb4	INSTRUMENT_PIECE name fields	chest	chests	separate count-mode token	:chest:chests
+classic	0xebaf31	INSTRUMENT_PIECE name fields	strings	strings	separate count-mode token	:strings:strings
+classic	0xebaf3d	INSTRUMENT_PIECE name fields	bells	bells	separate count-mode token	:bells:bells
+classic	0xebaf46	INSTRUMENT_PIECE name fields	pipes	pipes	separate count-mode token	:pipes:pipes
+classic	0xebafcd	INSTRUMENT_PIECE name fields	pump	pumps	separate count-mode token	:pump:pumps
+classic	0xebafd6	INSTRUMENT_PIECE name fields	bellows	bellows	separate count-mode token	:bellows:bellows
+classic	0xebe5f7	INSTRUMENT_PIECE name fields	neck	necks	separate count-mode token	:neck:necks
+classic	0xebe667	INSTRUMENT_PIECE name fields	body	bodies	separate count-mode token	:body:bodies
+classic	0xebe6f1	INSTRUMENT_PIECE name fields	frame	frames	separate count-mode token	:frame:frames
+classic	0xebe761	INSTRUMENT_PIECE name fields	body	bodies	separate count-mode token	:body:bodies
+classic	0xebe7ed	INSTRUMENT_PIECE name fields	body	bodies	separate count-mode token	:body:bodies
+classic	0xebe877	INSTRUMENT_PIECE name fields	yoke	yokes	separate count-mode token	:yoke:yokes
+classic	0xebe8e7	INSTRUMENT_PIECE name fields	sound-chest	sound-chests	separate count-mode token	:sound-chest:sound-chests
+classic	0xebe962	INSTRUMENT_PIECE name fields	strings	strings	ALWAYS_PLURAL	:strings:strings:ALWAYS_PLURAL]
+classic	0xebe96b	INSTRUMENT_PIECE name fields	string	strings	STANDARD	:string:strings:STANDARD]
+classic	0xebe9da	INSTRUMENT_PIECE name fields	bow	bows	STANDARD	:bow:bows:STANDARD]
+classic	0xebe9e8	INSTRUMENT_PIECE name fields	plectrum	plectra	STANDARD	:plectrum:plectra:STANDARD]
+classic	0xebe9f8	INSTRUMENT_PIECE name fields	hammers	hammers	ALWAYS_PLURAL	:hammers:hammers:ALWAYS_PLURAL]
+classic	0xebea59	INSTRUMENT_PIECE name fields	neck bowl	neck bowls	separate count-mode token	:neck bowl:neck bowls
+classic	0xec19b9	INSTRUMENT_PIECE name fields	bellows	bellows	separate count-mode token	:bellows:bellows
+classic	0xec19c2	INSTRUMENT_PIECE name fields	blowpipe	blowpipes	separate count-mode token	:blowpipe:blowpipes
+classic	0xec1a2b	INSTRUMENT_PIECE name fields	bag	bags	separate count-mode token	:bag:bags
+classic	0xec1a9b	INSTRUMENT_PIECE name fields	melody pipe	melody pipes	separate count-mode token	:melody pipe:melody pipes
+classic	0xec1b16	INSTRUMENT_PIECE name fields	drone pipes	drone pipes	ALWAYS_PLURAL	:drone pipes:drone pipes:ALWAYS_PLURAL]
+classic	0xec1b1f	INSTRUMENT_PIECE name fields	drone pipe	drone pipes	STANDARD	:drone pipe:drone pipes:STANDARD]
+classic	0xec1b91	INSTRUMENT_PIECE name fields	blowpipe	blowpipes	separate count-mode token	:blowpipe:blowpipes
+classic	0xec1c01	INSTRUMENT_PIECE name fields	wind chest	wind chests	separate count-mode token	:wind chest:wind chests
+classic	0xec1c71	INSTRUMENT_PIECE name fields	pipe	pipes	separate count-mode token	:pipe:pipes
+classic	0xec46bb	INSTRUMENT_PIECE name fields	stand	stands	separate count-mode token	:stand:stands
+classic	0xec4740	INSTRUMENT_PIECE name fields	heads	heads	separate count-mode token	:heads:heads
+classic	0xec4755	INSTRUMENT_PIECE name fields	head	heads	separate count-mode token	:head:heads
+classic	0xec3020	STRIKING_TOOL finite noun selector	stick	sticks	STANDARD or ALWAYS_PLURAL selected by native count	stick:sticks
+classic	0xec3040	STRIKING_TOOL finite noun selector	hammer	hammers	STANDARD or ALWAYS_PLURAL selected by native count	hammer:hammers
+classic	0xec3075	STRIKING_TOOL finite noun selector	mallet	mallets	STANDARD or ALWAYS_PLURAL selected by native count	mallet:mallets
+classic	0xec320a	BODY finite noun selector	drum	drums	STANDARD or ALWAYS_PLURAL selected by native count	drum:drums
+classic	0xec3318	BODY finite noun selector	bar	bars	STANDARD or ALWAYS_PLURAL selected by native count	bar:bars
+classic	0xec3355	BODY finite noun selector	chime	chimes	STANDARD or ALWAYS_PLURAL selected by native count	chime:chimes
+classic	0xec3392	BODY finite noun selector	block	blocks	STANDARD or ALWAYS_PLURAL selected by native count	block:blocks
+classic	0xec33cf	BODY finite noun selector	bowl	bowls	STANDARD or ALWAYS_PLURAL selected by native count	bowl:bowls
+classic	0xec340c	BODY finite noun selector	triangle	triangles	STANDARD or ALWAYS_PLURAL selected by native count	triangle:triangles
+classic	0xec3443	BODY finite noun selector	bell	bells	STANDARD or ALWAYS_PLURAL selected by native count	bell:bells
+classic	0xec347a	BODY finite noun selector	ring	rings	STANDARD or ALWAYS_PLURAL selected by native count	ring:rings

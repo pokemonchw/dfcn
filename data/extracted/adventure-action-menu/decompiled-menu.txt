@@ -1,6 +1,6 @@
 Native Adventure action chooser source grammar, DF 53.16
 
-Sources: native-owners.tsv, native-literals.tsv, native-calls.tsv,
+Sources: native-owners.tsv, native-literals.tsv, native-calls.tsv, native-branches.tsv,
 steam-captions.asm, classic-captions.asm, and text-productions.tsv. The 77 primary vtables per
 edition were rediscovered through MSVC RTTI class-hierarchy arrays containing
 adventure_optionst. None of these files is a runtime observation or a test.
@@ -34,12 +34,16 @@ ITEM := complete item designation, Steam helper 0xc65450. Includes quality,
         Captions request their actual item-name mode (often r9=-1 or r9=1).
         Mode -1 is used by Name the, object movement, Climb/Climb down, ingest
         container, and the quantity popup. Inventory detail uses mode 1.
-UNIT := complete unit designation, Steam helper 0x132e430, using each caller's
-        options. It can contain a generated personal name and RAW caste names.
+UNIT := complete unit designation, using each caller's actual helper/options.
+        Pack-animal Get/Put, Suck, Mount, Claim/Lead/Stop leading use Steam
+        0x1330c30; other unit captions also use 0x132e430. It can contain a
+        generated personal name and RAW caste names. Get's 0x1330c30 call
+        has r8=0; the supplier result is appended whole without a name fallback.
 TALK_TARGET := simpler unit designation from helper 0x1331500, or a historical
                figure's identity/name via helper 0xa946e0. Not a terrain field.
-BUILDING := complete building virtual name, slot +0x188 in these constructors;
-            failed lookup falls back to finite "building".
+BUILDING := complete building virtual name, slot +0x188 in these constructors.
+            Movement captions with failed ID lookup fall back to "building";
+            Get's optional source pointer instead omits its whole source clause.
 TILE := complete native terrain description, Steam helper 0xe7d330. Its tile,
         material, vegetation and fluid grammar is an existing semantic source;
         the final display fragment, or only a word inside it, is not the field.
@@ -152,10 +156,46 @@ ORDINARY CAPTION SLOT +0x8
          obj+0x23 selects hatch; obj+0x22==0 adds restriction; differing
          obj+0x14 versus obj+0x20 z adds positive absolute depth, s if depth>1,
          up if obj+0x14>obj+0x20, otherwise down. No zero-level clause.
-0x8932c0 Get ITEM from UNIT [LOC]
+0x8932c0 Get ITEM [from UNIT] [LOC]
+         ITEM is option+0x28; null produces an empty caption immediately.
+         The complete " from " + UNIT group is appended only when option+8
+         is zero and option+0x20 is nonnull (gates 0x89343a..0x89344a).
+         UNIT is 0x1330c30(option+0x20, output, r8=0), called at 0x89348b.
 0x8935f0 Get ITEM [LOC] (shared environment/ground-item constructor)
-0x893870 Get ITEM from BUILDING [LOC]
-0x893bb0 Get ITEM from ITEM [LOC] (shared container/building-contents constructor)
+         ITEM is option+0x20; null produces an empty caption immediately.
+         There is no source-container clause or finite source fallback.
+0x893870 Get ITEM [from BUILDING] [LOC]
+         ITEM is option+0x20; null produces an empty caption immediately.
+         The complete " from " + BUILDING group is appended only when
+         option+8 is zero and option+0x28 is nonnull (0x8939ea..0x8939fa).
+         BUILDING is option+0x28 virtual+0x188 at 0x893a3b. This constructor
+         has no "building" fallback: null source omits the complete group.
+0x893bb0 Get ITEM [from ITEM] [LOC] (shared container/building-contents constructor)
+         Taken ITEM is option+0x20; null produces an empty caption immediately.
+         The complete " from " + container ITEM group is appended only when
+         option+8 is zero and option+0x28 is nonnull (0x893d2a..0x893d3a).
+         Container ITEM is 0xc65450 mode-1 at 0x893d81. Null source omits
+         the group; there is no fabricated item/container fallback.
+         Each of these four Get constructors calls 0xc65450 with r8=0,
+         r9=-1 for the taken item. Existing item-designation supplier grammar
+         owns qualities, counts, material, subtype and generated names.
+         For the three source-bearing constructors, source omission and LOC
+         omission are independent, so all four combinations are native outputs.
+         Known source pointers are not the same as a nonempty returned name:
+         native code appends the supplier's exact length, retaining " from "
+         even if that supplier returns empty text. It invents no replacement.
+         LOC position comes from the taken item's location, not a guessed
+         source label. Each body initializes x=-30000. Item flag0x10 keeps
+         that sentinel. With flag0x8, general_ref kinds0xb/0x12 resolve the
+         contained item/unit position using 0xc8baa0/0x1367430; absent or
+         unresolved references fall through to specific_ref kind7 coordinates.
+         Without flag0x8, item+8/+a/+c supply x/y/z directly. No eligible
+         reference leaves the sentinel and omits LOC. Resolved x/y/z equal
+         to player+a8/+aa/+ac also omit LOC; any differing coordinate with
+         known x appends " (" + direction helper0x74f220 + ")".
+         Steam/classic entry mapping: 8932c0/890b40, 8935f0/890e70,
+         893870/8910f0, 893bb0/891430. These are complete producer bodies,
+         including the empty-item, source-gate and position-resolution branches.
 0x893ef0 Pick ITEM [LOC] | Pull ITEM [LOC]
          Native item type0x5b selects Pull; other types Pick.
 0x894180 ITEM (shared inventory/view/drop/throw/wear/remove/put/eat/interact +8)
@@ -227,6 +267,9 @@ PE unwind intervals define non-leaf ranges. Methods absent from unwind data
 end at first return or external unconditional tail jump, so adjacent Read/
 Roll/Roll all and Shout/Assume-identity bodies are not assigned to one owner.
 Literal TSV records ASCII data operands and printable immediate fragments.
+native-branches.tsv records every direct conditional jump in these retained
+bodies with both its taken target and actual next-instruction fallthrough;
+native-calls.tsv separately retains unconditional jumps and direct calls.
 operand_role distinguishes separators, finite text/substrings, inline short
 string fragments and numeric std::string layout vectors. Printable bytes such
 as "$" in a length/capacity vector are numeric metadata; they are not labels.
