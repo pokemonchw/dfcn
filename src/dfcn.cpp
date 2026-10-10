@@ -3796,6 +3796,9 @@ private:
     std::optional<std::string> translate_rated_skill_phrase(std::string_view source) const;
     std::optional<std::vector<RatedSkillSpan>> translate_rated_skill_list(
         std::string_view source) const;
+    void append_limited_skill_matches(std::vector<std::string> &rows,
+        std::vector<Match> &matches, int only_y,
+        const std::vector<NativeClippedCaption> &clipped) const;
     // RAWs define complete shape phrases, not a second Chinese glossary.
     // Keep adjective/noun boundaries so the picker can reuse current literal
     // translations without sending geometry through the creature grammar.
@@ -9194,6 +9197,75 @@ std::optional<std::string> Overlay::translate_rated_skill_phrase(std::string_vie
         target += skill.target;
     }
     return target;
+}
+
+void Overlay::append_limited_skill_matches(std::vector<std::string> &rows,
+        std::vector<Match> &matches, int only_y,
+        const std::vector<NativeClippedCaption> &clipped) const {
+    auto captions = clipped;
+    // Present advances the clipping epoch even when the next frame reuses
+    // the native grid. Its retained draw still owns the visible abbreviation
+    // and the complete rating/title; a new native draw replaces that batch.
+    for (bool top_layer : {false, true}) {
+        const auto *grid = top_layer ? gps_->screen_top : gps_->screen;
+        for (const auto &draw : captured_native_drawn_text_rows(top_layer)) {
+            if (draw.draw_grid != grid || draw.draw_dimx != gps_->dimx ||
+                    draw.draw_dimy != gps_->dimy || draw.complete_source.empty() ||
+                    draw.editable_text || draw.squad_alias_target || draw.unit_identity_target ||
+                    !is_ranked_skill_source(draw.complete_source) ||
+                    draw.x < 0 || draw.x >= gps_->dimx ||
+                    draw.y < 0 || draw.y >= gps_->dimy ||
+                    (only_y >= 0 && (draw.y < only_y - 1 || draw.y > only_y + 1))) continue;
+            bool current_top = false;
+            cell_at(draw.x, draw.y, &current_top);
+            if (current_top != top_layer) continue;
+            if (std::none_of(captions.begin(), captions.end(), [&](const auto &caption) {
+                    return caption.x == draw.x && caption.y == draw.y &&
+                        caption.visible == draw.source && caption.complete == draw.complete_source;
+                }))
+                captions.push_back({draw.x, draw.y, draw.source, draw.complete_source});
+        }
+    }
+    for (const auto &caption : captions) {
+        const int x = caption.x, y = caption.y;
+        if (x < 0 || x >= gps_->dimx || y < 0 || y >= gps_->dimy ||
+                (only_y >= 0 && (y < only_y - 1 || y > only_y + 1)) ||
+                caption.visible.empty() ||
+                caption.visible.size() > static_cast<size_t>(gps_->dimx - x) ||
+                !is_ranked_skill_source(caption.complete)) continue;
+        const auto skills = translate_rated_skill_list(caption.complete);
+        if (!skills || skills->size() != 1) continue;
+        const int length = static_cast<int>(caption.visible.size());
+        bool top = false;
+        cell_at(x, y, &top);
+        const auto claim = [&](int row) {
+            if (row < 0 || row >= gps_->dimy || (only_y >= 0 && row != only_y) ||
+                    rows[row].compare(x, length, caption.visible) != 0) return;
+            for (int offset = 0; offset < length; ++offset) {
+                bool row_top = false;
+                cell_at(x + offset, row, &row_top);
+                const auto ch = visible_char_at(x + offset, row);
+                if (row_top != top || (ch ? ch : ' ') !=
+                        static_cast<unsigned char>(caption.visible[offset]) ||
+                        (ch && ch < ' ') || is_cp437_box_separator(rows[row], x + offset)) return;
+            }
+            // Meaning comes from the full native field. Suppression and
+            // layout own only the actual abbreviated span of this column.
+            matches.push_back({x, row, length, kRatedSkillRule,
+                skills->front().target, caption.visible});
+            std::fill_n(rows[row].begin() + x, length, ' ');
+        };
+        claim(y);
+        const auto *flags = top ? gps_->screentexpos_top_flag : gps_->screentexpos_flag;
+        if (!flags) continue;
+        const uint32_t half = flags[static_cast<size_t>(x) * gps_->dimy + y] &
+            ((1u << 3) | (1u << 4));
+        const int mate = half == (1u << 3) ? y + 1 : half == (1u << 4) ? y - 1 : -1;
+        if (mate >= 0 && mate < gps_->dimy &&
+                (flags[static_cast<size_t>(x) * gps_->dimy + mate] &
+                    ((1u << 3) | (1u << 4))) ==
+                (half == (1u << 3) ? (1u << 4) : (1u << 3))) claim(mate);
+    }
 }
 
 #include "unit_identity.inc"
@@ -17206,14 +17278,16 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         if (mate_half == (half == (1u << 3) ? (1u << 4) : (1u << 3))) claim(mate);
     }
     // Appointment candidates draw each complete rated skill through addst
-    // with a 20-column limit (53.16 ELF: 0x16e4737). Native vowel removal can
+    // with a 20-column limit (53.16 PE: 0x426a0d; ELF: 0x16e4737). Native vowel removal can
     // shorten BOTH the rating and title, e.g. Adequat Jdg of Intnt. The shared
     // caption hook retains the real pre-abbreviation string; consume it
     // before generic words translate just Competent/Adequate/Novice. Other
     // narrowed skill widgets use this same grammar, not abbreviation aliases.
+    append_limited_skill_matches(screen_rows, result, only_y, clipped_template_captions);
     for (const auto &caption : clipped_template_captions) {
         const int x = caption.x, y = caption.y;
-        if ((only_y >= 0 && y != only_y) || y < 0 || y >= gps_->dimy ||
+        if (!is_video_setting_source(caption.complete) ||
+            (only_y >= 0 && y != only_y) || y < 0 || y >= gps_->dimy ||
             x < 0 || x >= gps_->dimx || caption.visible.empty() ||
             caption.visible.size() > static_cast<size_t>(gps_->dimx - x) ||
             screen_rows[y].compare(x, caption.visible.size(), caption.visible) != 0)
@@ -17232,19 +17306,10 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         // A setting clipped by its native widget still has one complete
         // dictionary identity. Resolve that captured source, but claim only
         // the cells actually drawn before the adjacent numeric controls.
-        if (is_video_setting_source(caption.complete)) {
-            if (const auto translated = exact_literal_translation(caption.complete)) {
-                result.push_back({x, y, length, -13, *translated, caption.visible});
-                std::fill_n(screen_rows[y].begin() + x, length, ' ');
-                continue;
-            }
+        if (const auto translated = exact_literal_translation(caption.complete)) {
+            result.push_back({x, y, length, -13, *translated, caption.visible});
+            std::fill_n(screen_rows[y].begin() + x, length, ' ');
         }
-        const auto skills = translate_rated_skill_list(caption.complete);
-        if (!skills || skills->size() != 1) continue;
-        // Only the visible native span owns ink, color and layout. The full
-        // source supplies meaning, never extra cells from the next column.
-        result.push_back({x, y, length, kRatedSkillRule, skills->front().target, caption.visible});
-        std::fill_n(screen_rows[y].begin() + x, length, ' ');
     }
     const auto character_overview_rows = capture_character_overview_rows();
     const auto character_group_rows = capture_character_group_rows();

@@ -115,6 +115,8 @@ std::vector<Match> Overlay::find_native_info_matches() const {
 #include "ui_messages.inc"
 #include "native_unit_identity_rows.inc"
 
+    append_limited_skill_matches(screen_rows, result, only_y, clipped_template_captions);
+
     // Recovery uses this component's complete native caption, never a
     // same-position caption captured by the world or another private layer.
     for (const auto &caption : clipped_template_captions) {
