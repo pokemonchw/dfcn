@@ -668,6 +668,7 @@ static bool native_dfhack_layer_has_content(SDL_Renderer *renderer,
 static void native_dfhack_present_layer(SDL_Renderer *renderer,
         void (*translate)(SDL_Renderer *)) {
     if (!renderer || !native_pe_supported()) return;
+    if (!g_native_dfhack_graphics_ownership_ready.load(std::memory_order_acquire)) return;
     const bool disabled = native_dfhack_switch_disabled();
     static bool hidden = false;
     if (disabled != hidden) {

@@ -82,6 +82,7 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_stocks_layer_render.inc"
 #include "native_dfhack_render_layers.inc"
 #include "native_dfhack_capture_hooks.inc"
+#include "native_dfhack_graphics_ownership.inc"
 #include "native_dfhack_item_print_ticket.h"
 #include "native_dfhack_console_hooks.inc"
 #include "native_dfhack_lua_output_hooks.inc"
@@ -101,6 +102,7 @@ static bool install_sdl_hooks() {
     [[maybe_unused]] NativePatchMappingScope mapping_scope;
     const std::pair<const char *, bool (*)()> stages[] = {
         {"SDL binding discovery", native_prepare_render_bindings},
+        {"Native graphics buffer ownership", install_native_dfhack_graphics_ownership},
         {"Stone economic-use bounds guard", install_native_stone_use_guard},
         {"Native left-click delivery", install_native_mouse_click_hook},
         {"Unicode input and search", install_native_input_hooks},
@@ -180,6 +182,7 @@ static void uninstall_sdl_hooks() {
     uninstall_native_dfhack_render_layers();
     uninstall_native_dfhack_capture_hook();
     release_native_dfhack_layer_target();
+    uninstall_native_dfhack_graphics_ownership();
     g_legends_mouse_hook_active = false;
     for (auto it = g_render_hooks.rbegin(); it != g_render_hooks.rend(); ++it)
         it->uninstall("SDL render/mouse binding");
@@ -228,6 +231,7 @@ static bool native_hooks_detached() {
                        [](const auto &hook) { return hook.active(); }) &&
         !native_dfhack_capture_hook_active() &&
         !native_dfhack_render_layers_active() &&
+        !native_dfhack_graphics_ownership_active() &&
         !native_help_layer_hook_active() &&
         !native_info_layer_hook_active() &&
         !native_stocks_layer_hook_active() &&

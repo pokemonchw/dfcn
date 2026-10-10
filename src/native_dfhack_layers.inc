@@ -359,6 +359,11 @@ static void *g_native_dfhack_layer_page_screen = nullptr;
 static void *g_native_dfhack_layer_page_vtable = nullptr;
 static thread_local unsigned g_native_dfhack_layer_frame_depth = 0;
 static thread_local graphicst *g_native_dfhack_present_graphics = nullptr;
+#ifdef _WIN32
+// Native buffer ownership must be serialized before the real graphicst can
+// borrow private output pointers across a DFHack update or render callback.
+static std::atomic_bool g_native_dfhack_graphics_ownership_ready{false};
+#endif
 
 static void native_dfhack_layer_record_artwork_tile(const graphicst *gps,
         const void *pen, int x, int y) noexcept {
@@ -525,6 +530,9 @@ public:
         try {
             translation_.emplace();
             lock_ = std::unique_lock<std::recursive_mutex>(g_native_dfhack_layer_mutex);
+#ifdef _WIN32
+            if (!g_native_dfhack_graphics_ownership_ready.load(std::memory_order_acquire)) return;
+#endif
             slot_ = native_dfhack_graphics_slot();
             if (!slot_) return;
             native_ = native_graphics();
