@@ -3190,6 +3190,8 @@ A caravan from {e} has arrived. Your status as a minor land has attracted a bit 
 A caravan from {e} has arrived. Your status as a minor land has attracted a bit more trade than usual. However, overall trade sentiments are terrible.	来自{e1}的商队已抵达。你作为小领地的地位吸引来了比平时略多的贸易。不过，总体贸易意愿极差。	hPt
 A {s} caravan from {e} has arrived. Trade relations remain strengthened by recent negotiations. However, overall trade sentiments are tenuous at best.	来自{e1}的{s1}商队已抵达。近期谈判对贸易关系的促进作用仍在持续。不过，总体贸易意愿至多只能算勉强。	hPt
 Announcement combat artwork-artifact-destruction-title [historical-artifact,$memorial-actor,$name,$date]: the destruction of {s} by {s} and {s} in {s}	{s4}，{s2}与{s3}毁灭了{s1}	l
+Announcement combat historical-event-title [$memorial-actor,$travel-site]: the general suspicion of {s} in {s} after a murder and appearing not to age	因发生一起谋杀且看起来不会衰老，{s1}在{s2}受到普遍怀疑	l
+Announcement combat historical-event-title [$memorial-actor,$travel-site]: the general suspicion of {s} in {s} after appearing not to age and a murder	因看起来不会衰老且发生一起谋杀，{s1}在{s2}受到普遍怀疑	l
 Cages can be used to contain an animal, and metal cages can be used by the justice system. Glass cages can be filled with water and used as aquariums.	笼子可关押动物，金属笼也可用于司法系统。玻璃笼可以装水作为水族箱。	hj
 Create a new work order. Work orders are like workshop jobs but they are assigned to shops automatically and can be activated with various conditions.	创建新的工单。工单类似工坊任务，但会自动分配到工坊，也可设置各种启动条件。	hj
 DFHack help: "--active" Scrub units that have been dead for more than a month from the "active" vector. This is the default if no option is specified.	"--active" 从"active"向量中清除已经死亡超过一个月的单位。如果未指定选项，则这是默认值。	l
@@ -4272,6 +4274,7 @@ A caravan from {e} has arrived. Trade relations remain strengthened by recent ne
 A caravan from {e} has arrived. Your status as a major land has attracted much more trade than usual. Overall trade sentiments are great.	来自{e1}的商队已抵达。你作为大领地的地位吸引来了比平时多得多的贸易。总体贸易意愿很高。	hPt
 A caravan from {e} has arrived. Your status as a minor land has attracted a bit more trade than usual. Overall trade sentiments are good.	来自{e1}的商队已抵达。你作为小领地的地位吸引来了比平时略多的贸易。总体贸易意愿良好。	hPt
 Announcement combat agreement-core [agreement-party-list,agreement-party-list]: {s} made an agreement with {s} to entertain the citizenry	{s1}与{s2}达成协议，以便为居民表演	l
+Announcement combat historical-event-title [$memorial-actor,$travel-site]: the general suspicion of {s} in {s} after appearing not to age	因看起来不会衰老，{s1}在{s2}受到普遍怀疑	l
 Announcement combat rumor-event [rumor-time,rumor-person,$travel-site,rumor-person]: I heard that {s}, {s} was kidnapped from {s} by {s}.	听说{s1}，{s4}从{s3}绑走了{s2}。	l
 Announcement combat sentence [$person]: Not that it matters, as the seat of {s} is here, and the blood-drinker allows no chattel to rise.	不过这也没什么要紧，{s1}的统治中心就在这里，那吸血者可不会让奴隶有出头之日。	l
 DFHack GUI Sitemap: Click on a name or hit Enter to zoom to the selected target. Shift-click or Shift-Enter to zoom and follow unit/item.	点击名称或按下 Enter，定位至选中的目标。按住 Shift 点击，或按下 Shift-Enter，定位并跟随生物或物品。	l
@@ -5668,6 +5671,7 @@ A small flightless bird, it is the largest of the natural penguins. It is known 
 A {s} caravan from {e} has arrived. The presence of your ruler has attracted great riches. Overall trade sentiments are good.	来自{e1}的{s1}商队已抵达。你的统治者在此坐镇，吸引来了巨额财富。总体贸易意愿良好。	hPt
 Announcement combat agreement-title-core [agreement-party-list,agreement-party-list]: the promise by {s} to {s} of a position	{s1}答应给{s2}安排职位的承诺	l
 Announcement combat artwork-artifact-destruction-subject [historical-artifact,$memorial-actor]: the destruction of {s} by {s}	{s2}毁灭了{s1}	l
+Announcement combat historical-event-title [$memorial-actor,$travel-site]: the general suspicion of {s} in {s} after a murder	因发生一起谋杀，{s1}在{s2}受到普遍怀疑	l
 Announcement combat justice-interrogation-sentence [$unit]: Appealed to shared worship of {s} in order to elicit information.	以共同信奉{s1}为由规劝受审者，试图获取情报。	l
 Announcement combat justice-interrogation-sentence []: Attempted to make intimidating remarks in order to elicit information.	试图以言语恐吓受审者，以获取情报。	l
 Announcement combat rumor-event [$name,$travel-site]: A bandit gang calling itself {s} has been harassing people over in {s}.	有伙土匪自称{s1}，一直在{s2}那边骚扰百姓。	l
@@ -25572,6 +25576,7 @@ Traveling alone in the wilds?! You know better than that.	独自在荒野旅行�
 Use minecart tracks in conjunction with the hauling menu.	矿车轨道须配合搬运菜单使用。	hj
 We have many drinks to choose from. [You receive a list.]	我们这儿酒水种类很多，你尽管挑。[你收到了一份清单。]	hP
 Workshop mood sketch: pictures of glass and burning wood.	画着玻璃和燃烧的木头。	l
+Written on the item is {s} entitled {b}, authored by {n}.	物品上写有{n1}撰写的{s1}《{b1}》。	ht
 You are a newly-minted {s} of the great {n} in {n}, a {s}	你是一名新晋的{s}，隶属于伟大的{n}，居住在{n}（{s}）	atl
 You bring the poem to life with this flawless recitation.	你用完美无瑕的朗诵赋予了这首诗生命。	hP
 You can also access information from the Citizens button.	[C:7:0:0]也可以通过“[C:5:0:1]居民[C:7:0:0]”按钮查看这些信息。	hq
@@ -29626,6 +29631,7 @@ Visitor overview purpose: seeking work as a performer	寻找表演者的工作	h
 With singular purpose it seeks to destroy the living.	它一心要毁灭生者。	h
 Workshop recipe: state extract-bearing small creature	含可提取物	l
 Writing materials include paper and parchment sheets.	书写材料包括纸张和兽皮纸。	hP
+Written on the item is untitled {s}, authored by {n}.	物品上写有{n1}撰写的无题{s1}。	ht
 You already know the will of {p}. Let some days pass.	你已经知晓{p1}的意志。等上几天。	hPt
 You are a administrator in Plainsglaze, a human town,	你是人类城镇“平原釉”的一名管理者，	l
 You are delivering a virtuoso performance on the {s}.	你用{s1}演奏，技艺堪称大师。	hPt
@@ -37842,6 +37848,7 @@ the connection between disease and fouled water	疾病与污水的联系	h
 the construction and use of the surveying staff	测量标尺的制造与使用	h
 the creation of the position of {s} during {e}.	在{e1}期间，设立{s1}一职。	htEi
 the creation of the position of {s} within {p}.	在{p1}，设立{s1}一职。	htEi
+the creation of {b} in {p} by {a} in the wilds.	在荒野中，{a1}在{p1}创作《{b1}》。	htEi
 the crushing of {a} by falling rocks during {e}	在{e1}期间，{a1}被落石砸死	htEi
 the crushing of {a} by falling rocks within {p}	在{p1}，{a1}被落石砸死	htEi
 the crushing of {a} under a collapsing ceiling.	{a1}被坍塌的顶板压死。	htEi
@@ -39345,6 +39352,7 @@ the construction and use of the camera obscura	暗箱的制造与使用	h
 the construction and use of the traction bench	牵引台的制造与使用	h
 the creation of the position of {s} during {e}	在{e1}期间，设立{s1}一职	htEi
 the creation of the position of {s} within {p}	在{p1}，设立{s1}一职	htEi
+the creation of {b} in {p} by {a} in the wilds	在荒野中，{a1}在{p1}创作《{b1}》	htEi
 the crushing of {a} under a collapsing ceiling	{a1}被坍塌的顶板压死	htEi
 the crushing of {a} under a drawbridge at {p}.	在{p1}，{a1}被吊桥压死。	htEi
 the crushing of {a} under a drawbridge in {d}.	{d1}年的{a1}被吊桥压死。	htEi
@@ -40848,6 +40856,8 @@ the construction and use of mural instruments	壁式天文观测仪器的制造�
 the construction and use of surgical scissors	手术剪的制造与使用	h
 the construction and use of the balance wheel	摆轮的制造与使用	h
 the construction and use of the blast furnace	高炉的建造与使用	h
+the creation of {b} in {p} by {a} during {e}.	在{e1}期间，{a1}在{p1}创作《{b1}》。	htEi
+the creation of {b} in {p} by {a} within {p}.	在{p2}，{a1}在{p1}创作《{b1}》。	htEi
 the crushing of the insurrection against {p}.	镇压反抗{p1}的起义。	htEi
 the crushing of {a} under a drawbridge at {p}	在{p1}，{a1}被吊桥压死	htEi
 the crushing of {a} under a drawbridge in {d}	{d1}年的{a1}被吊桥压死	htEi
@@ -42484,6 +42494,8 @@ the construction and use of surgical needles	手术针的制造与使用	h
 the construction and use of the crystal lens	水晶透镜的制造与使用	h
 the construction and use of the tumbler lock	制栓锁的制造与使用	h
 the creation of asylums for the mentally ill	为精神疾病患者设立收容院	h
+the creation of {b} in {p} by {a} during {e}	在{e1}期间，{a1}在{p1}创作《{b1}》	htEi
+the creation of {b} in {p} by {a} within {p}	在{p2}，{a1}在{p1}创作《{b1}》	htEi
 the crushing of the insurrection against {p}	镇压反抗{p1}的起义	htEi
 the crushing of {a} by falling rocks at {p}.	在{p1}，{a1}被落石砸死。	htEi
 the crushing of {a} by falling rocks in {d}.	{d1}年的{a1}被落石砸死。	htEi
@@ -47612,6 +47624,9 @@ the construction and use of the astrolabe	星盘的制造与使用	h
 the construction and use of the hourglass	沙漏的制造与使用	h
 the conviction of {a} for {s} during {e}.	在{e1}期间，{a1}被判犯有{s1}。	htEi
 the conviction of {a} for {s} within {p}.	在{p1}，{a1}被判犯有{s1}。	htEi
+the creation of {b} in {p} by {a} at {p}.	在{p2}，{a1}在{p1}创作《{b1}》。	htEi
+the creation of {b} in {p} by {a} in {d}.	{d1}年的{a1}在{p1}创作《{b1}》。	htEi
+the creation of {b} in {p} by {a} in {p}.	在{p2}，{a1}在{p1}创作《{b1}》。	htEi
 the death in the dark of {a} in the wilds	在荒野中，{a1}在黑暗中的死亡	htEi
 the detection of the forces of {p} at {p}	在{p2}，发现{p1}的部队	htEi
 the detection of the forces of {p} in {d}	{d1}年的发现{p1}的部队	htEi
@@ -48922,6 +48937,7 @@ Workshop recipe: format state -producing	可产出{s}	l
 Workshop recipe: state possibly buriable	可能可安葬	l
 Workshop recipe: state writing container	用于存放文字内容	l
 World site action: Already have alliance	已结成联盟	hi
+Written on the item is {s} entitled {b}.	物品上写有{s1}《{b1}》。	ht
 Yes! It'll be great to perform with you.	好啊！能与你一起表演一定很棒。	hP
 You are a newly-minted {s} in {n}, a {s}	你是一名新晋的{s}，居住在{n}（{s}）	atl
 You are too injured to hold the terrain.	你的伤势太重，无法抓住地形。	hP
@@ -49442,6 +49458,11 @@ the construction and use of the crucible	坩埚的制造与使用	h
 the construction and use of the windlass	绞盘的制造与使用	h
 the conviction of {a} for {s} during {e}	在{e1}期间，{a1}被判犯有{s1}	htEi
 the conviction of {a} for {s} within {p}	在{p1}，{a1}被判犯有{s1}	htEi
+the creation of {b} by {a} in the wilds.	在荒野中，{a1}创作《{b1}》。	htEi
+the creation of {b} in {p} by {a} at {p}	在{p2}，{a1}在{p1}创作《{b1}》	htEi
+the creation of {b} in {p} by {a} in {d}	{d1}年的{a1}在{p1}创作《{b1}》	htEi
+the creation of {b} in {p} by {a} in {p}	在{p2}，{a1}在{p1}创作《{b1}》	htEi
+the creation of {b} in {p} in the wilds.	在荒野中，在{p1}创作《{b1}》。	htEi
 the death in the dark of {a} during {e}.	在{e1}期间，{a1}在黑暗中的死亡。	htEi
 the death in the dark of {a} within {p}.	在{p1}，{a1}在黑暗中的死亡。	htEi
 the death of {a} in a cage in the wilds.	在荒野中，{a1}在笼中的死亡。	htEi
@@ -51224,6 +51245,8 @@ the construction and use of the bellows	风箱的制造与使用	h
 the construction and use of the dioptra	照准仪的制造与使用	h
 the construction and use of the padlock	挂锁的制造与使用	h
 the construction and use of the scalpel	手术刀的制造与使用	h
+the creation of {b} by {a} in the wilds	在荒野中，{a1}创作《{b1}》	htEi
+the creation of {b} in {p} in the wilds	在荒野中，在{p1}创作《{b1}》	htEi
 the crushing of {a} under a drawbridge.	{a1}被吊桥压死。	htEi
 the death in the dark of {a} during {e}	在{e1}期间，{a1}在黑暗中的死亡	htEi
 the death in the dark of {a} within {p}	在{p1}，{a1}在黑暗中的死亡	htEi
@@ -53227,6 +53250,10 @@ the construction and use of the orrery	太阳系运行仪的制造与使用	h
 the construction and use of the piston	活塞的制造与使用	h
 the construction and use of the pulley	滑轮的制造与使用	h
 the construction and use of the retort	曲颈甑的制造与使用	h
+the creation of {b} by {a} during {e}.	在{e1}期间，{a1}创作《{b1}》。	htEi
+the creation of {b} by {a} within {p}.	在{p1}，{a1}创作《{b1}》。	htEi
+the creation of {b} in {p} during {e}.	在{e1}期间，在{p1}创作《{b1}》。	htEi
+the creation of {b} in {p} within {p}.	在{p2}，在{p1}创作《{b1}》。	htEi
 the crushing of {a} under a drawbridge	{a1}被吊桥压死	htEi
 the dark brooding of {a} in the wilds.	在荒野中，{a1}的阴森沉思。	htEi
 the death of {a} in a cage during {e}.	在{e1}期间，{a1}在笼中的死亡。	htEi
@@ -55172,6 +55199,10 @@ the construction of {p} in the wilds.	在荒野中，建造{p1}。	htEi
 the conviction of {a} for {s} at {p}.	在{p1}，{a1}被判犯有{s1}。	htEi
 the conviction of {a} for {s} in {d}.	{d1}年的{a1}被判犯有{s1}。	htEi
 the conviction of {a} for {s} in {p}.	在{p1}，{a1}被判犯有{s1}。	htEi
+the creation of {b} by {a} during {e}	在{e1}期间，{a1}创作《{b1}》	htEi
+the creation of {b} by {a} within {p}	在{p1}，{a1}创作《{b1}》	htEi
+the creation of {b} in {p} during {e}	在{e1}期间，在{p1}创作《{b1}》	htEi
+the creation of {b} in {p} within {p}	在{p2}，在{p1}创作《{b1}》	htEi
 the crushing of {a} by falling rocks.	{a1}被落石砸死。	htEi
 the dark brooding of {a} in the wilds	在荒野中，{a1}的阴森沉思	htEi
 the dates of lunar and solar eclipses	月食与日食的日期	h
@@ -56631,6 +56662,7 @@ Workshop recipe: state non-absorbent	不吸水	l
 Would like to sleep or wait a while?	你想睡觉，还是等待一段时间？	hP
 Wrestling Competition of during {e}.	在{e1}期间，摔跤比赛。	htEi
 Wrestling Competition of within {p}.	在{p1}，摔跤比赛。	htEi
+Written on the item is untitled {s}.	物品上写有无题{s1}。	ht
 You are a wanderer of the wilderness	你是一名荒野漫游者	al
 You are telling the tale quite well.	你把故事讲得相当精彩。	hP
 You aren't wielding a ranged weapon.	你没有持用远程武器。	hP
@@ -61578,6 +61610,13 @@ the construction of {p} during {e}	在{e1}期间，建造{p1}	htEi
 the construction of {p} within {p}	在{p2}，建造{p1}	htEi
 the conviction of {a} in the wilds	在荒野中，{a1}被定罪	htEi
 the corruption of {a} in the wilds	在荒野中，对{a1}的拉拢	htEi
+the creation of {b} by {a} at {p}.	在{p1}，{a1}创作《{b1}》。	htEi
+the creation of {b} by {a} in {d}.	{d1}年的{a1}创作《{b1}》。	htEi
+the creation of {b} by {a} in {p}.	在{p1}，{a1}创作《{b1}》。	htEi
+the creation of {b} in {p} at {p}.	在{p2}，在{p1}创作《{b1}》。	htEi
+the creation of {b} in {p} by {a}.	{a1}在{p1}创作《{b1}》。	htEi
+the creation of {b} in {p} in {d}.	{d1}年的在{p1}创作《{b1}》。	htEi
+the creation of {b} in {p} in {p}.	在{p2}，在{p1}创作《{b1}》。	htEi
 the crucifixion of {a} during {e}.	在{e1}期间，{a1}被钉死在十字架上。	htEi
 the crucifixion of {a} within {p}.	在{p1}，{a1}被钉死在十字架上。	htEi
 the death of {a} in a cage at {p}.	在{p1}，{a1}在笼中的死亡。	htEi
@@ -63744,6 +63783,14 @@ the conviction of {a} during {e}.	在{e1}期间，{a1}被定罪。	htEi
 the conviction of {a} within {p}.	在{p1}，{a1}被定罪。	htEi
 the corruption of {a} during {e}.	在{e1}期间，对{a1}的拉拢。	htEi
 the corruption of {a} within {p}.	在{p1}，对{a1}的拉拢。	htEi
+the creation of {b} by {a} at {p}	在{p1}，{a1}创作《{b1}》	htEi
+the creation of {b} by {a} in {d}	{d1}年的{a1}创作《{b1}》	htEi
+the creation of {b} by {a} in {p}	在{p1}，{a1}创作《{b1}》	htEi
+the creation of {b} in the wilds.	在荒野中，《{b1}》的创作。	htEi
+the creation of {b} in {p} at {p}	在{p2}，在{p1}创作《{b1}》	htEi
+the creation of {b} in {p} by {a}	{a1}在{p1}创作《{b1}》	htEi
+the creation of {b} in {p} in {d}	{d1}年的在{p1}创作《{b1}》	htEi
+the creation of {b} in {p} in {p}	在{p2}，在{p1}创作《{b1}》	htEi
 the creation of {p} in the wilds.	在荒野中，创造{p1}。	htEi
 the crucifixion of {a} during {e}	在{e1}期间，{a1}被钉死在十字架上	htEi
 the crucifixion of {a} within {p}	在{p1}，{a1}被钉死在十字架上	htEi
@@ -65905,6 +65952,7 @@ the conviction of {a} during {e}	在{e1}期间，{a1}被定罪	htEi
 the conviction of {a} within {p}	在{p1}，{a1}被定罪	htEi
 the corruption of {a} during {e}	在{e1}期间，对{a1}的拉拢	htEi
 the corruption of {a} within {p}	在{p1}，对{a1}的拉拢	htEi
+the creation of {b} in the wilds	在荒野中，《{b1}》的创作	htEi
 the creation of {p} in the wilds	在荒野中，创造{p1}	htEi
 the dark brooding of {a} at {p}.	在{p1}，{a1}的阴森沉思。	htEi
 the dark brooding of {a} in {d}.	{d1}年的{a1}的阴森沉思。	htEi
@@ -68180,6 +68228,8 @@ the confiscation of {p} in {p}.	在{p2}，没收{p1}。	htEi
 the construction of {p} at {p}.	在{p2}，建造{p1}。	htEi
 the construction of {p} in {d}.	{d1}年的建造{p1}。	htEi
 the construction of {p} in {p}.	在{p2}，建造{p1}。	htEi
+the creation of {b} during {e}.	在{e1}期间，《{b1}》的创作。	htEi
+the creation of {b} within {p}.	在{p1}，《{b1}》的创作。	htEi
 the creation of {p} during {e}.	在{e1}期间，创造{p1}。	htEi
 the creation of {p} within {p}.	在{p2}，创造{p1}。	htEi
 the crimes of {a} in the wilds.	在荒野中，{a1}的罪行。	htEi
@@ -70642,6 +70692,8 @@ the construction of {p} at {p}	在{p2}，建造{p1}	htEi
 the construction of {p} in {d}	{d1}年的建造{p1}	htEi
 the construction of {p} in {p}	在{p2}，建造{p1}	htEi
 the conviction of {a} for {s}.	{a1}被判犯有{s1}。	htEi
+the creation of {b} during {e}	在{e1}期间，《{b1}》的创作	htEi
+the creation of {b} within {p}	在{p1}，《{b1}》的创作	htEi
 the creation of {p} during {e}	在{e1}期间，创造{p1}	htEi
 the creation of {p} within {p}	在{p2}，创造{p1}	htEi
 the crimes of {a} in the wilds	在荒野中，{a1}的罪行	htEi
@@ -73855,6 +73907,7 @@ Book title subject: Triangle	三角形	hi
 Book title subject: Trickery	诡计	hi
 Book title subject: Twilight	曙暮光	hi
 Book title subject: Universe	宇宙	hi
+Book title subject: Untitled	无题	hi
 Book title subject: Uprising	起义	hi
 Book title subject: Windlass	绞盘	hi
 Book title subject: Wounding	负伤	hi
@@ -77589,6 +77642,10 @@ the collapse of {a} at {p}.	在{p1}，{a1}的倒下。	htEi
 the collapse of {a} in {d}.	{d1}年的{a1}的倒下。	htEi
 the collapse of {a} in {p}.	在{p1}，{a1}的倒下。	htEi
 the creation of star charts	星图的绘制	h
+the creation of {b} at {p}.	在{p1}，《{b1}》的创作。	htEi
+the creation of {b} by {a}.	{a1}创作《{b1}》。	htEi
+the creation of {b} in {d}.	{d1}年的《{b1}》的创作。	htEi
+the creation of {b} in {p}.	在{p1}创作《{b1}》。	htEi
 the creation of {p} at {p}.	在{p2}，创造{p1}。	htEi
 the creation of {p} in {d}.	{d1}年的创造{p1}。	htEi
 the creation of {p} in {p}.	在{p2}，创造{p1}。	htEi
@@ -79812,6 +79869,10 @@ the climbing of {p} in {p}	在{p2}，攀登{p1}	htEi
 the collapse of {a} at {p}	在{p1}，{a1}的倒下	htEi
 the collapse of {a} in {d}	{d1}年的{a1}的倒下	htEi
 the collapse of {a} in {p}	在{p1}，{a1}的倒下	htEi
+the creation of {b} at {p}	在{p1}，《{b1}》的创作	htEi
+the creation of {b} by {a}	{a1}创作《{b1}》	htEi
+the creation of {b} in {d}	{d1}年的《{b1}》的创作	htEi
+the creation of {b} in {p}	在{p1}创作《{b1}》	htEi
 the creation of {p} at {p}	在{p2}，创造{p1}	htEi
 the creation of {p} in {d}	{d1}年的创造{p1}	htEi
 the creation of {p} in {p}	在{p2}，创造{p1}	htEi
@@ -93374,6 +93435,7 @@ the claim of {a} {p}	{a1}涉及{p1}的宣称	htEi
 the claiming of {p}.	对{p1}所有权的宣称。	htEi
 the climbing of {p}.	攀登{p1}。	htEi
 the collapse of {a}.	{a1}的倒下。	htEi
+the creation of {b}.	《{b1}》的创作。	htEi
 the creation of {p}.	创造{p1}。	htEi
 the departure of {a}	{a1}的离去	htEi
 the devouring of {a}	{a1}被吞噬	htEi
@@ -93748,8 +93810,8 @@ Accept Counteroffer	接受还价	hP
 Accept the position	接受职位	hP
 Add new work detail	添加劳动分组	wi
 Adventure vermin: A	小生物	l
-Age of Civilization	文明时代	h
-Age of Three Powers	三权时代	h
+Age of Civilization	文明时代	hi
+Age of Three Powers	三权时代	hi
 Age of {a} and {a}.	{a1}与{a2}的时代。	htEi
 Age of {s} and {s}.	{s1}与{s2}的时代。	htEi
 Agreement abandoned	协议已放弃	w
@@ -96798,6 +96860,7 @@ the carrying of {s}	携带{s1}	ht
 the claiming of {p}	对{p1}所有权的宣称	htEi
 the climbing of {p}	攀登{p1}	htEi
 the collapse of {a}	{a1}的倒下	htEi
+the creation of {b}	《{b1}》的创作	htEi
 the creation of {p}	创造{p1}	htEi
 the drowning of {a}	{a1}的溺亡	htEi
 the election of {a}	{a1}的当选	htEi
@@ -97137,7 +97200,7 @@ Adamantine strands	精金缕	wi
 Add a party member	添加队友
 Additional options	附加选项	wi
 Affects no skills.	不影响任何技能。	w
-Age of Fairy Tales	童话时代	h
+Age of Fairy Tales	童话时代	hi
 Age of {a} and {a}	{a1}与{a2}的时代	htEi
 Age of {a} at {p}.	在{p1}，{a1}时代。	htEi
 Age of {a} in {d}.	{d1}年的{a1}时代。	htEi
@@ -101049,7 +101112,7 @@ Abduction of {a}.	对{a1}的绑架。	htEi
 Accept appearance	接受外貌
 Accept background	接受背景
 Accepting tribute	对方接受贡品	w
-Age of Two Powers	双权时代	h
+Age of Two Powers	双权时代	hi
 Age of {a} at {p}	在{p1}，{a1}时代	htEi
 Age of {a} in {d}	{d1}年的{a1}时代	htEi
 Age of {a} in {p}	在{p1}，{a1}时代	htEi
@@ -105432,8 +105495,8 @@ Activity ongoing	活动正在进行	w
 Adopted somebody	已认主	wi
 Adventure awaits	冒险正在召唤
 Adventurer's log	冒险者日志	hq
-Age of Emptiness	空虚时代	h
-Age of One Power	一权时代	h
+Age of Emptiness	空虚时代	hi
+Age of One Power	一权时代	hi
 Agree completely	完全同意	hP
 Air Race at {p}.	在{p1}，飞行竞赛。	htEi
 Air Race in {d}.	{d1}年的飞行竞赛。	htEi
@@ -114812,7 +114875,7 @@ Adept of chaos	混沌行家	w
 Administrators	管理员	wi
 Adventure mode	冒险模式
 Adventure mode	冒险模式	hq
-Age of Legends	传说时代	h
+Age of Legends	传说时代	hi
 Age of Two {s}	双{s1}时代	htEi
 Age of the {a}	{a1}时代	htEi
 Age of the {s}	{s1}时代	htEi
@@ -119692,7 +119755,7 @@ A few hundred	几百	w
 Absolute zero	绝对零度
 Add new route	添加新路线	w
 Administrator	管理员	wi
-Age of Heroes	英雄时代	h
+Age of Heroes	英雄时代	hi
 Amount of {s}	物品：{s}	wtlx
 An Ocean Wave	海浪	wl
 Animal action	动物行动	w
@@ -124326,7 +124389,7 @@ Activity end	活动结束	w
 Add new task	增加新的任务	w
 Adding magma	正在添加岩浆	wo
 Adding water	正在添加水	wo
-Age of Death	死亡时代	h
+Age of Death	死亡时代	hi
 Air Race of.	飞行竞赛。	hEi
 Animal birth	动物出生	w
 Animal traps	动物陷阱	w
@@ -124585,7 +124648,7 @@ To the east:	东方：	hP
 To the west:	西方：	hP
 Trader Loss:	商人亏损：	hP
 Tree chopped	树木被砍倒	w
-Twilight Age	暮光时代	h
+Twilight Age	暮光时代	hi
 Two thousand	两千	w
 Unmet need: 	未满足的需求：
 Unnamed dump	未命名物品倾倒区	wi
@@ -128576,7 +128639,7 @@ Active save	当前存档	wi
 Add uniform	添加制式服装	w
 Adding snow	正在添加雪	wo
 Against {b}	反对{b}	hbti
-Age of Myth	神话时代	h
+Age of Myth	神话时代	hi
 Age of {a}.	{a1}时代。	htEi
 Age of {s}.	{s1}时代。	htEi
 Aggravation	恼火	w
@@ -128856,7 +128919,7 @@ Uncanny {b}	离奇的{b}	hbti
 Unchain pet	解开宠物的锁链	wi
 Unconscious	无意识	w
 Unhappiness	不快乐	w
-Unknown Age	未知时代	h
+Unknown Age	未知时代	hi
 Unknown {b}	未知的{b}	hbti
 Unusual {b}	非凡的{b}	hbti
 Vacant Shop	空置商店	wi
@@ -132570,7 +132633,7 @@ Geographer	地理学家	wi
 Give water	送水	wi
 Glassmaker	玻璃匠	wi
 Go upward.	向上。	hj
-Golden Age	辉煌时代	h
+Golden Age	辉煌时代	hi
 Good focus	不错的专注力	w
 Greetings.	你好。	hP
 Gregarious	合群	w

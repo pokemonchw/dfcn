@@ -1,6 +1,12 @@
 # Complete history_event agreement paragraph and subject constructions.
 # Sources: tools/announcement-event-literal-inventory.tsv; branch inspection includes all chained PE function portions.
 # scope	source	target	semantic fields	native provenance
+# Complete hf_confronted suspicion subjects keep the figure, site and reason in separate fields.
+# The shared event parser removes the seasonal/year date before entering this production.
+historical-event-title	the general suspicion of {s} in {s} after appearing not to age	因看起来不会衰老，{s1}在{s2}受到普遍怀疑	$memorial-actor,$travel-site	0x140b76ba0; native suspicion summary; figure + site + fixed reason, before shared date tail
+historical-event-title	the general suspicion of {s} in {s} after a murder	因发生一起谋杀，{s1}在{s2}受到普遍怀疑	$memorial-actor,$travel-site	0x140b76ba0; native suspicion summary; figure + site + fixed reason, before shared date tail
+historical-event-title	the general suspicion of {s} in {s} after a murder and appearing not to age	因发生一起谋杀且看起来不会衰老，{s1}在{s2}受到普遍怀疑	$memorial-actor,$travel-site	0x140b76ba0; native suspicion summary; figure + site + fixed reason, before shared date tail
+historical-event-title	the general suspicion of {s} in {s} after appearing not to age and a murder	因看起来不会衰老且发生一起谋杀，{s1}在{s2}受到普遍怀疑	$memorial-actor,$travel-site	0x140b76ba0; native suspicion summary; figure + site + fixed reason, before shared date tail
 # Artwork event 87: artifact identity, independent HF/civilization destroyers,
 # optional site, then an unconditional date. The undated forms are the subject
 # left by the shared event-date parser, not additional native output branches.

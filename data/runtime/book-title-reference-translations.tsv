@@ -1063,6 +1063,22 @@ Book title subject: Grave	坟墓	hi
 {b}'s {b}	{b1}的{b2}	hbti
 # Native language name assembly: raw ID 0xee5689, lower+initial cap 0xee5693/0xee569c, Language append 0xee56c2.
 {b} Language	{b}语	hbti
+# ANY_AGE keeps the reviewed era meanings when the book generator title-cases of/the.
+# Bare leaves need ASCII case-fold lookup after the shared era parser removes The.
+# These h-scoped aliases override the case-sensitive age leaves from legends-events.tsv.
+Unknown Age	未知时代	hi
+Age of Civilization	文明时代	hi
+Age of Death	死亡时代	hi
+Age of Emptiness	空虚时代	hi
+Age of Fairy Tales	童话时代	hi
+Twilight Age	暮光时代	hi
+Golden Age	辉煌时代	hi
+Age of Heroes	英雄时代	hi
+Age of One Power	一权时代	hi
+Age of Two Powers	双权时代	hi
+Age of Three Powers	三权时代	hi
+Age of Legends	传说时代	hi
+Age of Myth	神话时代	hi
 # ANY_AGE empty-vector fallback at reference RVA 0xee3c4c (literal the Age).
 {b} In The Age	这个时代的{b}	hbti
 

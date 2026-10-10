@@ -289,9 +289,9 @@ std::optional<NativeTextCard> Overlay::capture_world_artifact_description_card(
             size_t count = 1;
             while (count < card->rows.size() && card->rows[count].x == text_x &&
                     card->rows[count].y == card->rows[count - 1].y + 1) ++count;
-            // The verified Windows world-map draw displays the first eight
-            // cached lines. Recover hidden tails only when that whole native
-            // viewport agrees, never from a lone matching opening sentence.
+            // Both native world-map draws display the first eight cached
+            // lines (ELF 0x143ad13..0x143ad67). Recover hidden tails only when
+            // that whole viewport agrees, never from a lone matching opening.
             if (count != std::min<size_t>(8, lines->size()) ||
                     count >= card->rows.size() ||
                     card->rows[count].y <= card->rows[count - 1].y + 1) continue;
