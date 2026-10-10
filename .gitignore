@@ -25,6 +25,7 @@ __pycache__/
 /DFCN-Windows-x64-minimal.zip
 /DFCN-Linux-x64-minimal.zip
 /DFCN-Windows-Linux-workshop.zip
+/DFCN-Windows-workshop.zip
 /workshop/content/*.zip
 /workshop/content/DFCN/
 /workshop/content/DFCN-Linux/

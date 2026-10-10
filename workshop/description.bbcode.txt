@@ -2,14 +2,12 @@
 
 DFCN 是 Byayoi 同人社区的《Dwarf Fortress（矮人要塞）》汉化作品，结合社区译文与本地修订，翻译游戏界面、人物信息、物品描述和传说故事。
 
-[b]适配 Dwarf Fortress 53.16，支持 Steam 版与官网免费版。[/b]
-Windows 当前版本：[b]53.16-20261009[/b]。
-Linux 当前运行包：[b]53.16-20261008-linux[/b]；未包含此次 Windows 的新增快捷键和后续修复。
+[b]适配 Dwarf Fortress 53.16，Windows x64，支持 Steam 版与官网免费版。[/b]
+当前版本：[b]53.16-20261010[/b]（2026-10-10）。
 更新内容见改动说明与订阅目录中的 CHANGELOG.txt。
 
 [url=https://github.com/pokemonchw/dfcn]GitHub 项目主页[/url]
-[url=https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261009]Windows 与独立汉化数据下载[/url]
-[url=https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261008-linux]Linux 下载[/url]
+[url=https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261010]Windows 与独立汉化数据下载[/url]
 [url=https://byayoi.org/]Byayoi 同人社区[/url]
 
 [h1]Windows 工坊安装[/h1]
@@ -28,22 +26,10 @@ Linux 当前运行包：[b]53.16-20261008-linux[/b]；未包含此次 Windows �
 后续工坊更新由 Steam 下载到订阅目录；目录不变时，入口配置继续使用。
 旧版整包安装升级时，移除游戏根目录中旧的 [b]dfhooks_dfcn.dll[/b]（若存在）。旧 dfcn 文件夹中的个人配置可自行保留。
 
-[h1]Linux 工坊安装[/h1]
-
-打开：[code]你的 Steam 库目录/steamapps/workshop/content/975370/3811193379/DFCN-Linux/[/code]
-目录含 [b]install.sh[/b] 时，在该目录执行：[code]/bin/bash install.sh[/code]
-游戏位于其他 Steam 库或使用官网版时，指定游戏目录：[code]/bin/bash install.sh '/包含 dwarfort 的游戏目录'[/code]
-安装脚本会安装完整 Linux 运行文件，并保留已有的汉化配置。请保留同一订阅目录中的 [b]DFCN/[/b] 和 [b]DFCN-Linux/[/b]。
-没有 install.sh 的旧版完整包，仍将其中的 [b]libdfhooks.so[/b] 和 [b]完整 dfcn 文件夹[/b]复制到游戏根目录。
-汉化设置位于游戏目录的 [b]dfcn/data/runtime/config.ini[/b]。
-工坊下载新版后再次执行 install.sh。Linux 不使用 Windows 的 INI。
-
-Linux 依赖系统的 SDL2、FreeType、Fontconfig、libstdc++、glibc 和可用中文字体。运行包不包含系统库或游戏程序。
-
 [h1]GitHub 安装与汉化扩展[/h1]
 
 GitHub Windows 运行包 [b]DFCN-Windows-x64-minimal.zip[/b] 整包解压到游戏根目录，包括 dfhooks.dll、dfhooks_dfcn.ini 和整个 dfcn 文件夹。
-GitHub Linux 运行包 [b]DFCN-Linux-x64-minimal.zip[/b] 整包解压到包含 dwarfort 的目录。两种整包安装的设置均位于游戏目录的 dfcn/data/runtime/config.ini。
+整包安装的设置位于游戏目录的 dfcn/data/runtime/config.ini。
 
 本体自动识别已下载的独立汉化数据扩展；数据包无需在创建世界的模组列表中启用，原始玩法模组按其作者说明使用。本体运行包不内置独立数据包。
 
@@ -61,13 +47,13 @@ Dwarvemon 与 Beta 各有独立完整数据；Entity Type 与 Entity All 翻译�
 [b]Shift+F10[/b]：开启或关闭汉化，保留当前核心与数据。
 [b]Shift+F5[/b]：关闭汉化，再次开启时重新读取核心与数据。
 [b]Ctrl+Shift+F10[/b]：刷新配置、词表和规则数据。
-[b]Windows Shift+F6[/b]：临时停用或恢复全部扩展数据，并立即重新载入汉化；状态在本次运行中保留。
+[b]Shift+F6[/b]：临时停用或恢复全部扩展数据，并立即重新载入汉化；状态在本次运行中保留。
 
 Windows 同时安装 DFHack 53.16-r2 时，[b]Shift+F11[/b] 可独立暂停或恢复 DFHack 工具，保留插件配置和状态。关闭时已打开的 DFHack 界面会关闭；已执行的游戏或存档修改不会回滚。DFHack 帮助、控制面板、常用弹窗及本地命令输出支持汉化，可执行命令、快捷键和导出内容保留原文。
 
 [h1]卸载与许可[/h1]
 
-取消订阅不会删除手动安装到游戏目录的文件。Windows 工坊安装需移除自己添加的 dfhooks.dll 与 dfhooks_dfcn.ini；整包安装还需移除汉化 dfcn 目录。Linux 需移除自己安装的 libdfhooks.so 和 dfcn 汉化目录。保留游戏本体、RAW、存档与个人资料。
+取消订阅不会删除手动安装到游戏目录的文件。工坊安装需移除自己添加的 dfhooks.dll 与 dfhooks_dfcn.ini；整包安装还需移除汉化 dfcn 目录。保留游戏本体、RAW、存档与个人资料。
 
 普通汉化无需 DFHack，不改写磁盘上的游戏本体、RAW 或存档。
 感谢矮人要塞中文维基翻译组，以及 DFHack / dfhooks、df-structures、DFI18n、dfint、dfzh、ECDICT 等上游贡献者。

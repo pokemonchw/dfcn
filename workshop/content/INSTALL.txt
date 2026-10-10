@@ -3,10 +3,9 @@ Byayoi 同人社区：https://byayoi.org/
 GitHub：https://github.com/pokemonchw/dfcn
 Releases：https://github.com/pokemonchw/dfcn/releases
 
-当前工坊版本：53.16-20261009（2026-10-09）。完整更新日志见本目录 CHANGELOG.txt。
-适用：Dwarf Fortress 53.16，Windows x64 与 Linux x64；支持 Steam 版与官网免费版。
-Windows 文件位于 DFCN/，提供 Shift+F6 临时停用或恢复扩展数据，并修复 Shift+F5 卸载后无法再次载入汉化的问题。
-Linux 文件位于 DFCN-Linux/，版本为 GitHub v53.16-20261008-linux，尚未包含 Shift+F6 及本版 Windows 的后续修复。
+当前工坊版本：53.16-20261010（2026-10-10）。完整更新日志见本目录 CHANGELOG.txt。
+适用：Dwarf Fortress 53.16，Windows x64；支持 Steam 版与官网免费版。
+运行文件位于 DFCN/。Shift+F6 可临时停用或恢复扩展数据；Shift+F5 再次开启时重新读取核心与数据。
 仅订阅不会自动启用汉化；无需在创建世界时启用本工坊项目。
 
 一、Windows 工坊安装
@@ -50,43 +49,14 @@ Windows 运行包默认 font_scale=1.1、min_font_pixels=12、font_bold=true；f
 移除游戏根目录中旧版汉化的 dfhooks_dfcn.dll（若存在），避免加载两份汉化。
 旧版复制到游戏目录中的 dfcn 文件夹已不再使用，可在保留个人配置或资料后移除。
 
-二、Linux 工坊安装
+二、GitHub Release 安装
 
-订阅内容目录：
-你的 Steam 库目录/steamapps/workshop/content/975370/3811193379/DFCN-Linux/
-
-游戏根目录是包含 dwarfort 的目录，Steam 默认相对位置为：
-你的 Steam 库目录/steamapps/common/Dwarf Fortress/
-
-1. 打开上面的 DFCN-Linux 文件夹。
-2. 目录含 install.sh 时，在该目录执行：/bin/bash install.sh
-   脚本默认安装到同一 Steam 库的 Dwarf Fortress 游戏目录。
-   游戏位于其他位置时执行：/bin/bash install.sh '/包含 dwarfort 的游戏目录'
-3. 汉化设置位于游戏目录的 dfcn/data/runtime/config.ini；已有配置由安装脚本保留。
-
-新版工坊包将两个平台完全相同的资源只保存一份。保留同一订阅目录中的 DFCN/ 与 DFCN-Linux/；安装脚本组合共享资源和 Linux 自身文件，生成完整 Linux 运行目录。
-目录没有 install.sh 的旧版完整包，仍将 libdfhooks.so 和完整 dfcn 文件夹复制到游戏根目录。
-Linux 不使用 Windows 的 dfhooks.dll、dfhooks_dfcn.ini 或 DLL 路径配置。
-后续 Steam 下载新版后再次执行 install.sh；脚本不会启动、终止或重启游戏。
-
-Linux 包同时包含 Steam 版与官网免费版地址绑定，依赖系统的 SDL2、FreeType、Fontconfig、libstdc++ 和 glibc；这些系统库不包含在运行包中。
-Fontconfig 使用系统可用字体；系统没有中文字体时，需安装系统中文字体。
-运行包不包含游戏程序，无需 DFHack，也无需编译。
-
-三、GitHub Release 安装
-
-Windows：
-https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261009
+https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261010
 下载 DFCN-Windows-x64-minimal.zip，将全部内容按原目录结构解压到包含 Dwarf Fortress.exe 的游戏根目录。
 包括 dfhooks.dll、dfhooks_dfcn.ini 和整个 dfcn 文件夹；汉化设置位于游戏目录的 dfcn/data/runtime/config.ini。
 此包的入口配置指向游戏目录中的 dfcn/dfhooks_dfcn.dll，不使用工坊相对路径。
 
-Linux：
-https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261008-linux
-下载 DFCN-Linux-x64-minimal.zip，将全部内容按原目录结构解压到包含 dwarfort 的游戏根目录。
-独立 Linux ZIP 始终提供完整 libdfhooks.so 和 dfcn 文件夹，不需要工坊共享资源或 install.sh。更新时按原目录结构复制整包，并保留个人配置；系统依赖同上。
-
-四、独立汉化数据扩展
+三、独立汉化数据扩展
 
 核心在启动或显式重新读取数据时，识别已下载的工坊汉化数据扩展及游戏 mods、data/installed_mods 中的本地数据包。
 汉化数据包无需在创建世界的模组列表中启用；原始玩法模组按其作者说明使用。
@@ -104,36 +74,34 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3815791235
 Entity All、Entity Type 的生物和物品译文需配合 Dwarvemon 汉化数据。
 四个包分别订阅或安装，宝可梦专用词条保存在各自的独立数据包中。
 工坊订阅后自动识别，无需复制其中的数据到本体目录。
-GitHub v53.16-20261009 同时提供这四个包的独立 ZIP，整个 mod 文件夹解压至游戏 mods 目录即可。
+GitHub v53.16-20261010 同时提供这四个包的独立 ZIP，整个 mod 文件夹解压至游戏 mods 目录即可。
 其余 18 个汉化数据包保持私密。
 模组名称和内容使用通用译文匹配，没有完整译文的名称及简介保留原文；用户自定义小队名称始终原样显示。
 其他汉化扩展的安装与支持范围以各自说明为准。
 
-五、汉化开关与数据刷新
+四、汉化开关与数据刷新
 
 Shift+F10：开启或关闭汉化，保留当前核心和数据。
 Shift+F5：关闭汉化；再次开启时重新读取核心和数据。
 Ctrl+Shift+F10：显式刷新配置、词表和规则数据。
 核心不自动检查文件变化；数据在启动、Shift+F5 重新开启或显式刷新时读取。
 
-Windows 本版提供 Shift+F6：首次按下停用全部扩展 TSV 词表和 TOML 规则，立即重新载入本体汉化并开启显示；再次按下恢复扩展并重新载入汉化。
+Shift+F6：首次按下停用全部扩展 TSV 词表和 TOML 规则，立即重新载入本体汉化并开启显示；再次按下恢复扩展并重新载入汉化。
 扩展默认启用，左右 Shift 均可，长按不重复切换。扩展开关只影响本次运行，跨 Shift+F5 重载保留，不写入配置文件。
-Linux 源码已实现 Shift+F6，当前发布的 Linux 包尚未包含此快捷键。
 
 Windows 同时安装 DFHack 53.16-r2 时，可按 Shift+F11 独立暂停或恢复 DFHack 工具。
 插件配置和状态会保留；关闭时已经打开的 DFHack 界面会关闭，此前对游戏或存档执行的修改不会回滚。
 汉化覆盖 DFHack 帮助、控制面板、常用弹窗及本地命令输出，可执行命令、快捷键和导出内容保留原文。
 
-六、卸载
+五、卸载
 
 取消订阅不会自动删除手动复制到游戏目录中的文件。
 Windows 工坊安装：删除自己添加到游戏根目录的 dfhooks.dll 和 dfhooks_dfcn.ini，再取消订阅。
 Windows GitHub 整包安装：移除自己安装的入口文件及 dfcn 汉化目录。
-Linux 安装：移除自己安装的 libdfhooks.so 和 dfcn 汉化目录，再取消订阅。
 旧版整包安装遗留的汉化文件也需自行移除。无需删除游戏本体或存档。
 
 本项目不会破坏或改写磁盘上的游戏本体文件，不修改游戏 RAW 或存档。
-没有 DFHack 或其他外部 Mod 依赖；Linux 仍需要上面列出的系统运行库和字体。
+没有 DFHack 或其他外部 Mod 依赖。
 
 原创内容采用 CC BY-NC-SA 4.0；第三方代码与数据保留各自许可及署名。
-详见 GitHub README、LICENSE、THIRD_PARTY_NOTICES.md，以及 DFCN/dfcn/THIRD_PARTY_NOTICES.md 和 DFCN-Linux/dfcn/THIRD_PARTY_NOTICES.md。
+详见 GitHub README、LICENSE、THIRD_PARTY_NOTICES.md，以及 DFCN/dfcn/THIRD_PARTY_NOTICES.md。
