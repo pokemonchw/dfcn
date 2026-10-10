@@ -10,6 +10,7 @@ using NativeCaptionWidgetRenderFn = void (*)(void *, uint32_t);
 using NativeCaptionWidgetArrangeFn = void (*)(void *);
 static void capture_native_roster_shorten(NativeString *,int);
 static void capture_native_map_track_shorten(NativeString *,int);
+static void capture_native_adventure_look_track_shorten(NativeString *,int);
 
 struct NativeCaptionWidgetBinding {
     void **render_slot = nullptr;
@@ -67,6 +68,12 @@ struct NativeAdventureCraftingSite {
     uintptr_t return_address = 0;
     NativeAdventureCraftingRole role = NativeAdventureCraftingRole::None;
 };
+struct NativeAdventureLookCaptionSite {
+    uintptr_t return_address = 0;
+    ptrdiff_t index_slot = 0;
+    NativeMapHoverKind expected_kind = NativeMapHoverKind::Unknown;
+    NativeMapHoverFragment fragment = NativeMapHoverFragment::Complete;
+};
 struct NativeInfoTitleBinding {
     std::vector<NativeInfoTitleSite> sites;
     // Offsets from the exact title NativeString to live caller-frame slots.
@@ -121,11 +128,13 @@ struct NativeCaptionProfile {
     // removes vowels in place, then appends direction/ownership components.
     uintptr_t map_track_shorten_call = 0, map_track_shorten_target = 0;
     NativeCaptionTruncateFn map_track_shorten = nullptr;
+    uintptr_t adventure_look_track_shorten_call = 0, adventure_look_track_shorten_target = 0;
     NativeCaptionBuildFn map_caption_build = nullptr;
     size_t map_caption_text_offset = 0;
     uintptr_t map_hover_list = 0;
     std::vector<unsigned char> map_caption_build_prefix;
     std::vector<uintptr_t> map_hover_returns;
+    std::vector<NativeAdventureLookCaptionSite> adventure_look_caption_sites;
     NativeInfoTitleBinding info_titles;
     std::vector<NativeCivilizationCaptionSite> civilization_fields;
     std::vector<NativeLocationPickerSite> location_picker_fields;
@@ -377,6 +386,7 @@ static std::vector<NativeTravelBuildingSite> g_native_travel_building_sites;
 static std::vector<NativeAdventureCraftingSite> g_native_adventure_crafting_sites;
 static std::vector<uintptr_t> g_native_mission_title_returns;
 static std::vector<uintptr_t> g_native_map_hover_returns;
+static std::vector<NativeAdventureLookCaptionSite> g_native_adventure_look_caption_sites;
 static size_t g_native_map_hover_text_offset = 0;
 static uintptr_t g_native_map_hover_list = 0;
 
@@ -665,9 +675,12 @@ static void capture_native_textbox_widget_render(void *widget, uint32_t tick) {
 }
 
 #include "native_fortress_labor_capture.inc"
+#include "native_adventure_look_caption.inc"
 
 static NativeMapHoverContext native_map_hover_context(uintptr_t caller,
         const NativeString *source) {
+    if (auto indexed = native_adventure_look_caption_context(caller, source))
+        return *indexed;
     NativeMapHoverContext context;
     const bool known_caller = std::find(g_native_map_hover_returns.begin(),
         g_native_map_hover_returns.end(), caller) != g_native_map_hover_returns.end();
@@ -897,6 +910,7 @@ struct NativeMapTrackCaptionHooks {
     NativeEntryHook build_entry;
     NativeCaptionBuildFn build = nullptr;
     NativeCaptionTruncateFn shorten = nullptr;
+    NativeCaptionTruncateFn look_shorten = nullptr;
     size_t text_offset = 0;
 };
 static NativeMapTrackCaptionHooks g_native_map_track_caption_hooks;
@@ -923,9 +937,18 @@ static void capture_native_map_caption_build(void *record) {
         g_native_map_track_caption_hooks.build(record);
 }
 
-static void capture_native_map_track_shorten(NativeString *source, int width) {
+static void capture_native_map_track_shorten_with(NativeString *source, int width,
+        NativeCaptionTruncateFn shorten) {
     std::string complete;
     try {
+        // LOOK uses a reusable stack string rather than a persistent record.
+        // Invalidate even when this new caption needs no shortening, so an
+        // old species at the same stack address cannot supply its expansion.
+        {
+            std::lock_guard<std::mutex> lock(g_native_map_track_caption_mutex);
+            std::erase_if(g_native_map_track_captions,
+                [&](const NativeMapTrackCaption &caption) { return caption.owner == source; });
+        }
         std::string_view text;
         if (width == 50 && native_string_view(source, &text, 4096) &&
             text.size() > 50 && text.starts_with("Track/Spoor: ") &&
@@ -934,8 +957,7 @@ static void capture_native_map_track_shorten(NativeString *source, int width) {
     } catch (...) {}
     // Capture the native result itself: neither ellipsis assumptions nor an
     // inverse vowel-removal guess can establish the original species/item.
-    if (g_native_map_track_caption_hooks.shorten)
-        g_native_map_track_caption_hooks.shorten(source, width);
+    if (shorten) shorten(source, width);
     try {
         std::string_view shortened;
         if (complete.empty() || !native_string_view(source, &shortened, 4096) ||
@@ -951,6 +973,18 @@ static void capture_native_map_track_shorten(NativeString *source, int width) {
         g_native_map_track_captions.push_back(
             {source, std::string(shortened), std::move(complete)});
     } catch (...) {}
+}
+
+static void capture_native_map_track_shorten(NativeString *source, int width) {
+    capture_native_map_track_shorten_with(source, width,
+        g_native_map_track_caption_hooks.shorten);
+}
+
+static void capture_native_adventure_look_track_shorten(NativeString *source, int width) {
+    // 0x52dee0 first checks length and then tail-calls 0x52d910. Keep that
+    // actual wrapper as the native operation, including its short-text path.
+    capture_native_map_track_shorten_with(source, width,
+        g_native_map_track_caption_hooks.look_shorten);
 }
 
 static std::optional<std::string> native_complete_map_track_caption(
@@ -1536,6 +1570,15 @@ static bool native_caption_draw_outside_clip_y(const graphicst *graphics,
     // native addst variant handles line breaks.
     return native_string_view(source, &text, 4096) &&
         text.find_first_of("\r\n") == std::string_view::npos;
+}
+
+static NativeMapHoverContext native_map_hover_context_for_draw(
+        const graphicst *graphics, const NativeString *source, uintptr_t caller) {
+    if (native_private_ui_write_active(graphics) ||
+            native_caption_draw_outside_clip_y(graphics, source)) return {};
+    // A known caller or exact current ui_look_list owner proves the source,
+    // independently of which native addst variant draws its actual glyphs.
+    return native_map_hover_context(caller, source);
 }
 
 static void discard_native_clipped_draw_source(const NativeString *source) {
@@ -2331,8 +2374,7 @@ static void capture_native_clipped_draw(graphicst *graphics, const NativeString 
     const auto location_picker_field = native_location_picker_field(caller);
     const auto travel_building_field = native_travel_building_field(caller);
     const bool mission_title = native_mission_title_caller(caller);
-    const auto map_hover = native_caption_draw_outside_clip_y(graphics, source)
-        ? NativeMapHoverContext{} : native_map_hover_context(caller, source);
+    const auto map_hover = native_map_hover_context_for_draw(graphics, source, caller);
     std::shared_ptr<const NativeEmbarkReclaimHistoryParagraph> reclaim_history;
     std::unique_lock<std::mutex> history_lock(g_native_embark_reclaim_history_mutex,
         std::defer_lock);
@@ -2381,38 +2423,53 @@ static void capture_native_clipped_flag_draw(graphicst *graphics, const NativeSt
     // Collect before the ordinary caption path rejects off-screen/clip rows.
     // widget::render can invoke custom renderers first. Only the verified
     // multiline row-loop call belongs to this complete source's wrap output.
-    if (g_native_multiline_capture && reinterpret_cast<uintptr_t>(
-            __builtin_return_address(0)) == g_native_multiline_widget_binding.row_return_address)
+    const uintptr_t caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
+    if (g_native_multiline_capture && caller == g_native_multiline_widget_binding.row_return_address)
         capture_native_multiline_row(graphics, source);
+    const auto map_hover = native_map_hover_context_for_draw(graphics, source, caller);
     capture_native_limited_caption_draw(graphics, source, just, width, [&] {
         if (g_native_clipped_caption_hooks.flag_draw)
             g_native_clipped_caption_hooks.flag_draw(graphics, source, just, width, flags);
-    });
+    }, false, NativeInfoTitleKind::None, false, {}, false,
+        NativeCivilizationField::None, false, map_hover,
+        NativeLocationPickerField::None, NativeTravelBuildingField::None, caller);
 }
 
 static void capture_native_top_caption_draw(graphicst *graphics, const NativeString *source,
         NativeJustification just, int width) {
+    const uintptr_t caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
+    const auto map_hover = native_map_hover_context_for_draw(graphics, source, caller);
     capture_native_limited_caption_draw(graphics, source, just, width, [&] {
         if (g_native_clipped_caption_hooks.top_draw)
             g_native_clipped_caption_hooks.top_draw(graphics, source, just, width);
-    }, true);
+    }, true, NativeInfoTitleKind::None, false, {}, false,
+        NativeCivilizationField::None, false, map_hover,
+        NativeLocationPickerField::None, NativeTravelBuildingField::None, caller);
 }
 
 // The pinned PE entry specializes top_addst to an unbounded string draw:
 // only graphics/source are live incoming arguments. ELF retains just/width.
 static void capture_native_top_simple_caption_draw(graphicst *graphics, const NativeString *source) {
+    const uintptr_t caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
+    const auto map_hover = native_map_hover_context_for_draw(graphics, source, caller);
     capture_native_limited_caption_draw(graphics, source, NativeJustification{}, 0, [&] {
         if (g_native_clipped_caption_hooks.top_simple_draw)
             g_native_clipped_caption_hooks.top_simple_draw(graphics, source);
-    }, true);
+    }, true, NativeInfoTitleKind::None, false, {}, false,
+        NativeCivilizationField::None, false, map_hover,
+        NativeLocationPickerField::None, NativeTravelBuildingField::None, caller);
 }
 
 static void capture_native_top_flag_caption_draw(graphicst *graphics, const NativeString *source,
         NativeJustification just, int width, uint32_t flags) {
+    const uintptr_t caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
+    const auto map_hover = native_map_hover_context_for_draw(graphics, source, caller);
     capture_native_limited_caption_draw(graphics, source, just, width, [&] {
         if (g_native_clipped_caption_hooks.top_flag_draw)
             g_native_clipped_caption_hooks.top_flag_draw(graphics, source, just, width, flags);
-    }, true);
+    }, true, NativeInfoTitleKind::None, false, {}, false,
+        NativeCivilizationField::None, false, map_hover,
+        NativeLocationPickerField::None, NativeTravelBuildingField::None, caller);
 }
 
 template<NativeFieldKind Kind>
@@ -2440,6 +2497,7 @@ static void capture_native_caption_draw(graphicst *graphics, const NativeString 
 
 static void reset_native_caption_capture() {
     g_native_map_hover_returns.clear();
+    g_native_adventure_look_caption_sites.clear();
     g_native_map_hover_text_offset = 0;
     g_native_map_hover_list = 0;
     {
@@ -2537,6 +2595,10 @@ static bool install_native_caption_hooks() {
     if (profile.map_track_shorten_call)
         calls.push_back({profile.map_track_shorten_call, profile.map_track_shorten_target,
             reinterpret_cast<const void *>(&capture_native_map_track_shorten)});
+    if (profile.adventure_look_track_shorten_call)
+        calls.push_back({profile.adventure_look_track_shorten_call,
+            profile.adventure_look_track_shorten_target,
+            reinterpret_cast<const void *>(&capture_native_adventure_look_track_shorten)});
     for (const auto site : profile.roster_shorten_calls)
         calls.push_back({site, profile.roster_shorten_target,
             reinterpret_cast<const void *>(&capture_native_roster_shorten)});
@@ -2605,6 +2667,9 @@ static bool install_native_caption_hooks() {
     g_native_map_track_caption_hooks.shorten = profile.map_track_shorten ? profile.map_track_shorten : profile.map_track_shorten_target
         ? reinterpret_cast<NativeCaptionTruncateFn>(profile.base + profile.map_track_shorten_target)
         : nullptr;
+    g_native_map_track_caption_hooks.look_shorten = profile.adventure_look_track_shorten_target
+        ? reinterpret_cast<NativeCaptionTruncateFn>(profile.base + profile.adventure_look_track_shorten_target)
+        : nullptr;
     g_native_map_track_caption_hooks.text_offset = profile.map_caption_text_offset;
     g_native_info_title_binding = std::move(profile.info_titles);
     g_native_civilization_caption_sites = std::move(profile.civilization_fields);
@@ -2613,6 +2678,7 @@ static bool install_native_caption_hooks() {
     g_native_adventure_crafting_sites = std::move(profile.adventure_crafting_fields);
     g_native_mission_title_returns = std::move(profile.mission_title_returns);
     g_native_map_hover_returns = std::move(profile.map_hover_returns);
+    g_native_adventure_look_caption_sites = std::move(profile.adventure_look_caption_sites);
     g_native_map_hover_text_offset = profile.map_caption_text_offset;
     g_native_map_hover_list = profile.map_hover_list;
     g_native_announcement_page_binding = std::move(profile.announcement_page);
@@ -2819,6 +2885,7 @@ static bool uninstall_native_caption_hooks() {
             "Native map caption source lifecycle restore")) return false;
     g_native_map_track_caption_hooks.build = nullptr;
     g_native_map_track_caption_hooks.shorten = nullptr;
+    g_native_map_track_caption_hooks.look_shorten = nullptr;
     g_native_map_track_caption_hooks.text_offset = 0;
     auto &hooks = g_native_clipped_caption_hooks;
     for (auto &binding : hooks.default_resizes) {

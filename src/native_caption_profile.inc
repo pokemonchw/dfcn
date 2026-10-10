@@ -191,6 +191,10 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
     // Rebuilding the record invalidates captures before any new text is set.
     profile.map_track_shorten_call = 0x407ef8;
     profile.map_track_shorten_target = 0x52d910;
+    // The LOOK stack string has a separate pre-draw shortening call. Its
+    // actual target retains the native <=50-byte fast path before 0x52d910.
+    profile.adventure_look_track_shorten_call = 0x7f4e21;
+    profile.adventure_look_track_shorten_target = 0x52dee0;
     // unit-name render (0x14237a0) rebuilds its captions on every draw.
     // 0x1330c30 supplies name/profession together; the narrow two-line path
     // instead uses 0x1330500 for the name and 0x1330880 for the profession.
@@ -213,6 +217,7 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
     profile.map_hover_returns = {
         native_pe_address(profile.base, 0x3f9558), native_pe_address(profile.base, 0x3f977a),
         native_pe_address(profile.base, 0xb02ff9), native_pe_address(profile.base, 0xb03231)};
+#include "native_adventure_look_caption_profile.inc"
     // Three complete stores to the incoming shadow space; no relative
     // address or branch is displaced by the shared entry-hook trampoline.
     profile.map_caption_build_prefix = {
@@ -722,6 +727,8 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
         !bind_rva(profile.resize_target) || !bind_rva(profile.draw_target) ||
         !bind_rva(profile.map_track_shorten_call) ||
         !bind_rva(profile.map_track_shorten_target) ||
+        !bind_rva(profile.adventure_look_track_shorten_call) ||
+        !bind_rva(profile.adventure_look_track_shorten_target) ||
         !bind_rva(profile.roster_shorten_target) ||
         !bind_rva(profile.announcement_page.rows_target) ||
         !bind_rva(profile.announcement_popup_call) ||

@@ -11547,3 +11547,5 @@ DFHack GUI Item type selector: boulder	大圆石	l
 DFHack GUI Item type selector: instrument	乐器	l
 Wiltwonders	枯萎奇观	w
 Wiltwonders	枯萎奇观	h
+# Adventure look-list renderer: inline text after the native page keys.
+to view other pages	查看其他页	wl

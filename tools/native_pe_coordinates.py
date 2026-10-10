@@ -394,6 +394,8 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         for variable, value in constants.items():
             if variable in {'profile.resize_target', 'profile.draw_target',
                     'profile.map_track_shorten_call', 'profile.map_track_shorten_target',
+                    'profile.adventure_look_track_shorten_call',
+                    'profile.adventure_look_track_shorten_target',
                     'profile.roster_shorten_target', 'profile.announcement_popup_call',
                     'profile.announcement_popup_target'}:
                 add(value, 5 if variable.endswith('_call') else 1)

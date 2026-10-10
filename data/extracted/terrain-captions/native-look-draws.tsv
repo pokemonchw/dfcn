@@ -1,0 +1,59 @@
+edition	call_rva	return_rva	part	source	instruction
+reference	0x7f3f46	0x7f3f4b	paging-hint	 to view other pages	call   0x140ad9960
+reference	0x7f4181	0x7f4186	separator	terrain	call   0x140ad9960
+reference	0x7f419e	0x7f41a3	caption	terrain/item/unit/building/vermin/flow/indented-item shared draw	call   0x140ad9960
+reference	0x7f4217	0x7f421c	separator	item	call   0x140ad9960
+reference	0x7f42af	0x7f42b4	separator	indented-item	call   0x140ad9960
+reference	0x7f4329	0x7f432e	separator	unit	call   0x140ad9960
+reference	0x7f43d5	0x7f43da	separator	building	call   0x140ad9960
+reference	0x7f445f	0x7f4464	separator	vermin	call   0x140ad9960
+reference	0x7f4613	0x7f4618	separator	flow	call   0x140ad9960
+reference	0x7f48cd	0x7f48d2	separator	fire	call   0x140ad9960
+reference	0x7f48fb	0x7f4900	caption	A Fire	call   0x140ad9960
+reference	0x7f495c	0x7f4961	separator	campfire	call   0x140ad9960
+reference	0x7f498a	0x7f498f	caption	A Campfire	call   0x140ad9960
+reference	0x7f49eb	0x7f49f0	separator	track/spoor	call   0x140ad9960
+reference	0x7f4ed2	0x7f4ed7	caption	track/spoor complete assembly	call   0x140ad9960
+reference	0x7f4f2f	0x7f4f34	separator	water	call   0x140ad9960
+reference	0x7f4f77	0x7f4f7c	prefix	Stagnant salt water [	call   0x140ad9960
+reference	0x7f4fa5	0x7f4faa	prefix	Stagnant water [	call   0x140ad9960
+reference	0x7f4fcc	0x7f4fd1	prefix	Salt water [	call   0x140ad9960
+reference	0x7f4fef	0x7f4ff4	prefix	Water [	call   0x140ad9960
+reference	0x7f502e	0x7f5033	depth	water: lookinfo +0x8	call   0x140ad9960
+reference	0x7f5052	0x7f5057	suffix	water: /7]	call   0x140ad9960
+reference	0x7f50bd	0x7f50c2	separator	magma/lava	call   0x140ad9960
+reference	0x7f5114	0x7f5119	prefix	Lava [	call   0x140ad9960
+reference	0x7f5137	0x7f513c	prefix	Magma [	call   0x140ad9960
+reference	0x7f5176	0x7f517b	depth	magma/lava: lookinfo +0x8	call   0x140ad9960
+reference	0x7f519a	0x7f519f	suffix	magma/lava: /7]	call   0x140ad9960
+reference	0x7f522c	0x7f5231	separator	surface-deposit	call   0x140ad9960
+reference	0x7f539e	0x7f53a3	caption	surface-deposit complete assembly	call   0x140ad9960
+classic	0x7f17c6	0x7f17cb	paging-hint	 to view other pages	call   0x140ad69a0
+classic	0x7f1a01	0x7f1a06	separator	terrain	call   0x140ad69a0
+classic	0x7f1a1e	0x7f1a23	caption	terrain/item/unit/building/vermin/flow/indented-item shared draw	call   0x140ad69a0
+classic	0x7f1a97	0x7f1a9c	separator	item	call   0x140ad69a0
+classic	0x7f1b2f	0x7f1b34	separator	indented-item	call   0x140ad69a0
+classic	0x7f1ba9	0x7f1bae	separator	unit	call   0x140ad69a0
+classic	0x7f1c55	0x7f1c5a	separator	building	call   0x140ad69a0
+classic	0x7f1cdf	0x7f1ce4	separator	vermin	call   0x140ad69a0
+classic	0x7f1e93	0x7f1e98	separator	flow	call   0x140ad69a0
+classic	0x7f214d	0x7f2152	separator	fire	call   0x140ad69a0
+classic	0x7f217b	0x7f2180	caption	A Fire	call   0x140ad69a0
+classic	0x7f21dc	0x7f21e1	separator	campfire	call   0x140ad69a0
+classic	0x7f220a	0x7f220f	caption	A Campfire	call   0x140ad69a0
+classic	0x7f226b	0x7f2270	separator	track/spoor	call   0x140ad69a0
+classic	0x7f2752	0x7f2757	caption	track/spoor complete assembly	call   0x140ad69a0
+classic	0x7f27af	0x7f27b4	separator	water	call   0x140ad69a0
+classic	0x7f27f7	0x7f27fc	prefix	Stagnant salt water [	call   0x140ad69a0
+classic	0x7f2825	0x7f282a	prefix	Stagnant water [	call   0x140ad69a0
+classic	0x7f284c	0x7f2851	prefix	Salt water [	call   0x140ad69a0
+classic	0x7f286f	0x7f2874	prefix	Water [	call   0x140ad69a0
+classic	0x7f28ae	0x7f28b3	depth	water: lookinfo +0x8	call   0x140ad69a0
+classic	0x7f28d2	0x7f28d7	suffix	water: /7]	call   0x140ad69a0
+classic	0x7f293d	0x7f2942	separator	magma/lava	call   0x140ad69a0
+classic	0x7f2994	0x7f2999	prefix	Lava [	call   0x140ad69a0
+classic	0x7f29b7	0x7f29bc	prefix	Magma [	call   0x140ad69a0
+classic	0x7f29f6	0x7f29fb	depth	magma/lava: lookinfo +0x8	call   0x140ad69a0
+classic	0x7f2a1a	0x7f2a1f	suffix	magma/lava: /7]	call   0x140ad69a0
+classic	0x7f2aac	0x7f2ab1	separator	surface-deposit	call   0x140ad69a0
+classic	0x7f2c1e	0x7f2c23	caption	surface-deposit complete assembly	call   0x140ad69a0

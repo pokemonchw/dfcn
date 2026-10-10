@@ -1,0 +1,505 @@
+Native terrain and selected-look caption productions
+===================================================
+
+Scope and source meaning
+------------------------
+These notes describe offline disassembly of BOTH Windows PE images configured
+in data/runtime/native-pe-images.json. Addresses below are RVAs, not live VAs.
+native-owners.tsv records each image identity and actual code/table boundary.
+The corresponding reference-*.asm and classic-*.asm retain the instruction
+streams. native-branches.tsv retains every jcc/jmp, including empty/default
+edges; native-switches.tsv contains actual dword destinations and byte remaps,
+not merely addresses of indirect JMP instructions.
+
+This is a finite inventory of the caption producers and their source fields.
+It is not an enumeration of every possible world-specific output sentence.
+RAW material/plant/body-part text and procedural names remain dynamic inputs.
+Existing RAW/name translation catalogs supply those domains; their strings
+must not be replaced by a guessed finite list. Calls into generic item, unit,
+building and generated-name formatters are recorded, not recursively claimed
+to have been decompiled in this terrain extraction.
+
+The original tile-hover-sources.tsv catalog retained reference-image LEA
+operands. This extraction additionally retains printable operands of any
+RIP-relative instruction, including SIMD loads, plus printable MOVABS bytes.
+Suffixes such as "ages" loaded into another portion of a local string are
+source operands, not separate displayed productions.
+
+Fortress cached terrain source and both actual draw branches
+-----------------------------------------------------------
+The user explicitly identifies the supplied screenshot as FORTRESS mode.
+Its gold frame is not evidence for an Adventure consumer. The exact frame
+instance and the precise runtime masking cause have not been observed.
+The native Fortress ownership below is established by PE code and RTTI.
+
+Reference RTTI: viewscreen_dwarfmodest vtable slots2/3 at0x16be510/16be518
+point to input0x8b3170 and render wrapper0x8bcc70. Their actual MSVC locator
+is0x17a1fb0; type descriptor0x18c9568 names.?AVviewscreen_dwarfmodest@@.
+Classic slots0x16b9400/16b9408 point to0x8b09f0/0x8ba4f0; locator0x179c8c0,
+type descriptor0x18c3538 carries the same class name. These exact slot/locator
+records are saved in native-terrain-consumer-ownership.tsv. A missing direct
+slot reference is recorded as such, without guessing a class name.
+
+Reference render wrapper0x8bcc70 calls main renderer0x3d6950 at0x8bccc6;
+Classic wrapper0x8ba4f0 calls0x3d4510 at0x8ba546. Reference Fortress input
+refresh call0x8b597f ->0x4085f0; Classic0x8b31ff ->0x4061b0. Input caches
+the selected x/y/z at0x18acef8/fa/fc (Classic0x18a6ec8/ca/cc), changes the
+cache timestamp, passes the selected coordinate words into the look producer,
+or clears the list through0x8bf060 (Classic0x8bc8e0). The renderer at0x3f9303
+uses the SAME cached x word and skips an invalid coordinate(-30000).
+
+The producer clears the old pointer vector before processing the requested
+tile. Its existing complete body, conditional branches and decoded flow table
+are retained in lookinfo-producer.asm. Valid-tile/visibility/memory/sense
+branches determine which records are made. Ordinary terrain record allocation
+is0x4097c2, sets type1 at0x4097f7, stores coordinates at+0x1c/+0x1e/+0x20,
+and calls the cached constructor0x406860 at0x409807. It appends that exact
+record pointer at0x40981c or takes the vector growth call0x40982d ->0x420e40.
+Classic production sites are reference RVA-0x2440. Each record is0x50 bytes;
+its std::string display_str is at+0x28, length+0x38, capacity+0x40, followed
+by foreground/background/bold fields+0x48/+0x4a/+0x4c.
+
+The cached constructor clears display_str, dispatches its16-type table, and
+type1 entry0x406973 calls terrain0xe7d330 at0x406995 with coordinates from
+the same record and growth=true. Classic entry0x404533 calls0xe782a0 at
+0x404555. All694 terrain selector routes, defaults/aliases, material and
+plant/growth source branches below therefore supply this Fortress field.
+"peat Cavern Floor" is one material-noun production, not a unique UI branch.
+
+Fortress main renderer has exactly two cached-list caption loops:
+* Reference first frame starts0x3f9356, top=7, bottom=list.size+8,
+  right=[rbp+0xb4]-37, left=right-60. Its row is x=left+2,y=8+index.
+  Iterator temporaries are rbp+0x268/+0x270;0x3f9543 dereferences the record,
+  0x3f9546 adds0x28; addst0x3f9553 (return0x3f9558) consumes that field.
+  Classic frame starts0x3f6f16, addst0x3f7113, return0x3f7118.
+* Reference second frame starts0x3f9594, top=3, bottom=list.size+5,
+  same left/right expression, row x=left+2,y=5+index. Its iterators are
+  rbp+0x278/+0x280;0x3f9765 dereferences the record,0x3f9768 adds0x28;
+  addst0x3f9775 (return0x3f977a) consumes that field. Classic frame starts
+  0x3f7154, addst0x3f7335, return0x3f733a.
+Both loops use record color fields directly. Neither copies the terrain
+caption into a separate button/widget string. They draw all cached record
+types rather than manufacturing a second terrain-only source.
+
+Renderer gate0x3f933c compares byte0x18a75b8 with r15b: equal enters the
+second frame; otherwise byte0x18a75bc bit2 must be set for the first frame.
+The exact flag names are not inferred from geometry. Empty list, invalid
+cached coordinate, disabled gate or exhausted iterator emits no row. The
+first loop draws the complete rectangular border through texture global
+0x264bd14..0x264bd34; the second uses additional joined-corner textures
+0x264bd3c/0x264bd44. A one-record first frame is three cells high. This
+explains native geometry without assigning the screenshot to one branch.
+
+All RIP references to cached list/vector fields
+-----------------------------------------------
+extract_fortress_look_consumers.py reads the whole .text section, considers
+every displacement alignment and immediate suffix, then retains only actual
+RIP instructions decoded from owning procedures or the four no-pdata leaves.
+Every reference to vector.begin/end/capacity(+0/+8/+16) is saved with actual
+PC, target field and full owner interval in native-look-vector-references.tsv
+and native-look-vector-owners.tsv. Both configured editions have120 actual
+references in11 owners each:113 references in7 unwind owners plus7 references
+in4 leaves. Raw navigation coincidences are decoded before rejection; the
+reference0xc60226 coincidence straddles two unrelated leaf instructions.
+
+Reference owner / Classic owner / operation / number of references:
+0x3d6950 /0x3d4510   Fortress renderer, both loops above                 7
+0x4085f0 /0x4061b0   coordinate producer/append                         57
+0x420e40 /0x41ea00   pointer-vector reallocate/insert                    11
+0x7f3cb0 /0x7f1530   Adventure selected-look renderer                   22
+0x8bf060 /0x8bc8e0   destroy record string+28,free record,clear vector    5
+0xaf1190 /0xaee1d0   Adventure main render helper, two list loops        7
+0x15e2420/0x15dcf50  global vector storage destructor                    4
+0x420dd0 /0x41e990   no-pdata leaf:size                                 2
+0x420df0 /0x41e9b0   no-pdata leaf:end iterator                         1
+0x420e00 /0x41e9c0   no-pdata leaf:begin iterator                       1
+0x420e10 /0x41e9d0   no-pdata leaf:pointer push or tailcall reallocate  3
+The leaves return the vector's size or pointer iterators, or insert pointers;
+they do not copy display_str. A consumer can call these leaves without its own
+global RIP reference, so this direct global inventory alone does NOT establish
+consumer closure. The leaf-call edges are separately extracted below. The
+af1190 helper is directly called by the actual
+viewscreen_dungeonmodest renderer at0x7f3dba/0x7f3e0c/0x7f3e73, so it is
+not assigned to this Fortress screenshot.
+
+Dedicated vector-leaf caller edges
+-----------------------------------
+native-look-leaf-callers.tsv records every confirmed direct E8 caller to the
+four dedicated list leaves in BOTH complete .text sections, with exact call,
+return, target, role, owning procedure and owner end. Each byte hit is checked
+against the actual decoded CALL from the owner's instruction stream; no-pdata
+callers are also decoded if encountered. Source navigation uses overlapping
+E8 positions: an E8 immediate/displacement in the preceding instruction must
+not swallow the real call. This matters to Classic calls0x3f7275/0x3f7288.
+
+Per edition there are17 actual calls in3 existing vector-reference owners:
+Fortress main renderer:3 size +2 begin +2 end =7 calls;
+coordinate producer:3 pointer push calls;
+Adventure render helper:3 size +2 begin +2 end =7 calls.
+Reference Fortress calls:0x3f9317/0x3f936a/0x3f95a8 ->size0x420dd0;
+0x3f9487/0x3f96b5 ->begin0x420e00;0x3f949a/0x3f96c8 ->end0x420df0.
+Classic Fortress calls:0x3f6ed7/0x3f6f2a/0x3f7168 ->size0x41e990;
+0x3f7047/0x3f7275 ->begin0x41e9c0;0x3f705a/0x3f7288 ->end0x41e9b0.
+Reference producer calls0x408771/0x408923/0x4089ae ->push0x420e10;
+Classic0x406331/0x4064e3/0x40656e ->push0x41e9d0.
+Reference Adventure calls0xb02d0a/0xb02e55/0xb03046 ->size,
+0xb02f37/0xb03124 ->begin,0xb02f4a/0xb03137 ->end. Classic equivalents
+are reference RVA-0x2fc0. Complete caller contexts are retained in both
+look-leaf-callers.asm files in addition to already retained full owner bodies.
+
+No leaf caller owner without a direct vector reference exists in these two
+images. Accordingly, tracing dedicated leaf calls adds no new list-to-widget
+copying owner. This conclusion is based on BOTH actual global-reference and
+leaf-call edges, not on global references alone. Arbitrary indirect aliases,
+indirect function-pointer consumers or mod code are not claimed absent.
+The corrected overlap scan also reran the terrain/constructor/producer
+inventory: its original17+22+2 confirmed calls per edition remain unchanged.
+The same complete-image navigation/decode also covers direct E9 tail jumps
+to terrain and all four dedicated list leaves, including no-pdata owners.
+Both images have zero actual E9 edges to these five targets. The resulting
+native-terrain-look-tail-edges.tsv has its source-schema header and no rows;
+the absence is from actual binary source traversal, not an assumed lack of
+tail wrappers. No unresolved no-pdata candidate remains in that traversal.
+
+Direct terrain caller classification and draw-helper ownership
+---------------------------------------------------------------
+All17 direct terrain calls per edition remain in native-consumers.tsv;
+the PE RTTI slot records distinguish Adventure action captions from Fortress
+titles rather than classifying by their wording. Eight reference owners have
+these actual adventure classes (Classic equivalent in parentheses):
+0x83a0e0(0x837960) adventure_environment_pickup_ignite_vegst
+0x841440(0x83ecc0) adventure_movement_movest
+0x841900(0x83f180) adventure_movement_climbst
+0x841bf0(0x83f470) adventure_movement_hold_tilest
+0x842050(0x83f8d0) adventure_movement_dismountst
+0x8421b0(0x83fa30) adventure_movement_release_hold_tilest
+0x8a5540(0x8a2dc0) adventure_movement_shoot_tilest
+0x8a64d0(0x8a3d50) adventure_movement_throw_item_at_tilest
+Other confirmed calls are the cached constructor above, dungeon selected-look
+renderer, two engraving/title-sheet calls in0x14ef90(Classic0x14ef20),
+report/announcement assembly in0x8a6e70/0xa398a0/0x15059c0, and direction/
+route descriptor helper0x13ea8f0. The announcement consumers append terrain
+to a sentence and call0xe3c20 (e.g.0x8a799e/0xa3a0fa/0x15093cd); those
+contexts do not supply a new cached Fortress hover record. The sheet calls
+use terrain growth=false and have separate existing typed title bindings.
+
+Actual addst0xad9960..0xad9a33 copies the input std::string, optionally
+shortens by width, and emits characters through bb190 at0xad9a00. It does
+not call addst_flag0xad9870 or top_addst0xad9a40. Flag draw independently
+emits through ad8b80 at0xad9920; top draw emits through1bb000 at0xad9ac1.
+Classic equivalents: addst0xad69a0..ad6a73 ->bb120 at0xad6a40;
+flag0xad68b0..ad699b ->ad5bc0 at0xad6960; top0xad6a80..ad6b3c ->1baf90
+at0xad6b01. Full six helper bodies are retained. There is no nested addst
+context overwrite in this path.
+
+Runtime integration implication
+--------------------------------
+The cached terrain production, both Fortress record+28 sources and complete
+existing tiles grammar are established. A runtime pass that lets broader
+message/title/item masks claim this source before typed Terrain can suppress
+an already recognized full terrain sentence; later card restoration can also
+replace earlier output. The implemented repair gives proven current native
+Terrain sources priority in main and reduced/private/background readers and
+preserves an existing complete terrain phrase when card source restoration
+runs. This is a concrete reader-order weakness addressed by the code change,
+not a claim that the supplied image proves one precise mask execution.
+
+Additional Adventure terrain consumer
+--------------------------------------
+Reference adventure renderer: 0x7f3cb0..0x7f6aee code; tables through0x7f6c21.
+Classic adventure renderer:   0x7f1530..0x7f436e code; tables through0x7f44a1.
+The selected-look dispatch reads lookinfost.type at0x7f40e5 and uses table
+0x7f6af0 (Classic0x7f4370). Type1 enters0x7f40fe, writes a LOCAL std::string
+at rbp-0x30 via terrain call0x7f412a ->0xe7d330 with growth flag TRUE, and
+draws that complete field at addst0x7f419e, return0x7f41a3.
+Classic: call0x7f19aa ->0xe782a0; addst0x7f1a1e; return0x7f1a23.
+The preceding addst0x7f4181 draws the separate " - " separator.
+
+This draw is distinct from the lookinfo cached display_str constructor at
+0x406860 and from engraving/title-sheet consumers. A capture limited to
+lookinfo.display_str or the sheet title misses this real terrain draw even
+when the complete tiles grammar already knows "{material} Cavern Floor".
+This additional real consumer had an independent capture omission. It is
+retained for complete source coverage and is not the supplied Fortress image.
+
+Selected-look renderer: all13 types
+------------------------------------
+Type Entry      Complete caption / source operation
+0    0x7f41a8   Item id lookup ->item caption formatter0xc65450.
+1    0x7f40fe   Terrain compositor0xe7d330, growth=true.
+2    0x7f42ba   Unit id lookup ->unit caption formatter0x132e430.
+3    0x7f4366   Building id lookup ->virtual caption method[vtbl+0x188].
+4    0x7f43f9   Item-backed vermin uses item formatter; otherwise race/caste
+                formatter0xaa3bd0 with the quantity branches below.
+5    0x7f45c1   Flow type0..13, full subtable described below.
+6    0x7f490a   "A Campfire", final draw0x7f498a, return0x7f498f.
+7    0x7f51b3   Item-based or matter/extent surface-deposit assembly below;
+                final draw0x7f539e, return0x7f53a3.
+8    0x7f4240   BuildingItem id ->item formatter, separate " -  " separator.
+9    0x7f487b   "A Fire", final draw0x7f48fb, return0x7f4900.
+10   0x7f4edd   Water flags +amount, three separate final text pieces below.
+11   0x7f506b   Magma flags +amount, three separate final text pieces below.
+12   0x7f4999   Track/Spoor assembly +shortening +direction/party suffix.
+All Classic entries and draws in this renderer are reference RVA-0x2780.
+Types0/1/2/3/4/5/8 use common final draw0x7f419e, return0x7f41a3.
+Type outside0..12 jumps0x7f53ad without a caption draw. Missing item/unit/
+building lookups also skip this row. Flow out-of-range reaches the shared
+draw without assigning a flow caption. These edges do not emit "Unknown".
+
+Vermin quantity: colony flag ->"a colony of "+plural species; count<=1
+->singular/caste form; count2..9 ->plural species; count10..49 ->"many "+
+plural species; count>=50 ->"a swarm of "+plural species. Item-backed
+vermin bypass all those RAW branches through the regular item formatter.
+
+Flow subtable0x7f6b24 (Classic0x7f43a4)
+0 Miasma; 1 subtype1 Steam, other subtype Mist; 2 Mist;
+3 material state noun; 4 bit15 subterranean Magma Mist, otherwise Lava Mist;
+5 Smoke; 6 Dragonfire; 7 Fire; 8 A Web; 9 material state2 noun;
+10 material gas-state noun+" Vapor"; 11 An Ocean Wave; 12 Sea Foam;
+13 guide-backed item formatter0xa82c10 when guide kind1; null/unsupported/
+   empty formatted source falls back to "Item Cloud".
+The HUD suffix is capital-V " Vapor". Cached constructor uses " vapor".
+Material inputs are flow.subtype, flow.sstype and selected matter state.
+
+Surface deposits
+For i_type!=-1: item kind/subtype/material formatter0xa82c10, followed by
+native text normalization0x52d650. No quantity-prefix branch is entered.
+For i_type==-1: choose prefix from matter_state and extent, then append
+material noun0x14d1920 using mat/matg/matstate. Native layout stores these at
+lookinfost+0xc/+0x10/+0x14; extent is lookinfost+0x18.
+Extent              1                   2                  3
+matter_state0       A thin layer of     A small pile of    A pile of
+matter_state1       A spattering of     A smear of         A pool of
+other matter_state  A dusting of        A small pile of    A pile of
+Extent outside1..3 selects no quantity prefix; the material still appends.
+The item path and all seven prefix strings are separate real native edges.
+
+Water and magma split draws
+Water flags&3 chooses "Stagnant salt water [", "Stagnant water [",
+"Salt water [" or "Water [". Prefix calls0x7f4f77/0x7f4fa5/0x7f4fcc/
+0x7f4fef, amount call0x7f502e, suffix"/7]" call0x7f5052.
+Magma flag&1 chooses "Magma [", otherwise "Lava [". Prefix calls0x7f5137/
+0x7f5114, amount call0x7f5176, suffix"/7]" call0x7f519a.
+Both amounts come from selected lookinfost+0x8. These are split native
+fields, not a complete single std::string passed to one addst caller.
+
+Spoor complete-source and shortening boundary
+"Track/Spoor: "+body is composed at rbp-0x10. spoor.type0 adds broken
+vegetation; type1 uses creature/caste name, optional material adjective and
+body-part RAW name, then print/imprint; type2 uses item caption, optional
+material adjective, right/left and print/imprint; type3 unintelligible;
+unsupported type adds no body. The0x40 flag chooses print rather than imprint
+and enables the substance source lookup0x14d2cc0. Missing substance type
+falls back to native type6; optional body-part index/name is range guarded.
+No side flag omits right/left; right takes priority when both side flags set.
+
+At0x7f4e21, call0x52dee0 applies a50-character bound BEFORE directions and
+"/yours or companion's". Its wrapper checks string.length>limit and only
+then tail-jumps0x52d910. The shortening implementation removes leading
+A/An/The, then eligible vowels backwards, then resizes if still too long.
+Classic wrapper/call/implementation:0x52b900/0x7f26a1/0x52b330.
+Only direction-present flag0x2 enters the direction branch; otherwise omit
+its suffix. Direction flags are masked&0x1c:0/4/8/12/16/20/24/28 produce
+/N,/S,/E,/NE,/W,/NW,/SE,/SW, respectively. Remap encodings not possible
+after AND are retained with reachable_mask=0. Party flag optionally appends
+"/yours or companion's". Final complete draw0x7f4ed2, return0x7f4ed7.
+Translation capture must preserve the pre-shortening source, just as for
+the separate cached constructor call0x407ef8 ->0x52d910.
+
+Shared terrain compositor and694-selector main table
+----------------------------------------------------
+Reference0xe7d330..0xe834fd code; tables through0xe8482c.
+Classic0xe782a0..0xe7e46d code; tables through0xe7f79c.
+It resets the destination, looks up tile type/coordinates and engraving
+quality, dispatches walls BEFORE common terrain, and composes one string.
+All reference terrain instruction/table RVAs below shift-0x5090 in Classic.
+
+First wall gate consists of direct arithmetic comparisons plus compressed
+tables0xe83500/remap0xe83508 and0xe83578/remap0xe83580. It routes147 enum
+values to common wall-family entry0xe82df3. Native-tile-types.tsv records
+those effective entries; XML shape/material/special are semantic labels
+from data/upstream/df-structures/df.d_basics.xml, not substituted binary data.
+
+Non-wall prefix order: optional Muddy, optional Snow-covered, optional Mossy.
+Mud/snow come from block events via0x542e80; moss from0x068010 signed flag.
+Then selector=tiletype-1 is bounded0..693 and uses actual compressed table
+0xe83678/remap0xe838bc. All694 selectors, aliases and default mappings are
+retained. They reach145 different entries, including178 main-table entries
+mapped to Unknown before applying the earlier wall gate. Tile0/695/696 and
+other values outside the table take Unknown unless intercepted by wall gate.
+Unknown is an actual literal at0xe82de7, not an absent dictionary fallback.
+
+The main table factors into these complete source families:
+* Tree/parts entry0xe7d6ce: plant lookup; optional generated plant name+", ";
+  optional Dead; plant-parts helper or generic Tree fallback; growth list.
+* Grass entries0xe7dd5e..0xe7e79f: Sparse/Dense from positive block event
+  amount; optional Dry/Dead; plant plural/name if event+RAW found, otherwise
+  generic Grass or dead/dry Grass. No event/RAW supplies the generic fallback.
+* Flat tracks0xe7e7d2..0xe7f48c: all15 direction strings(N,S,E,W,NS,NE,NW,
+  SE,SW,EW,NSE,NSW,NEW,SEW,NSEW); each branches into natural material noun,
+  constructed adjective or Ice, then " Track (... )" with native spacing.
+  Shoddy prefixes occur before the construction helper where selected.
+* Detailed/smooth floor0xe7f48d: engraved quality-marked Detailed+space or
+  Smooth, material noun; bit15 optionally appends " Floor".
+* Boulder0xe7f6a6: material noun+" Boulder". Driftwood0xe7f736 is literal.
+  Pebbles0xe7f74a: material noun+" Pebbles".
+* Floor0xe7f7d8: material noun; bit15 optionally appends " Cavern Floor".
+  Wet floor0xe7f883 prepends Wet and has the same conditional suffix.
+* Sapling0xe7f93f: optional generated name+", ", Dead, then Young plant
+  part/name or plant part/name+Sapling; generic Sapling if plant absent.
+* Shrub0xe7fa93: optional generated name+", ", Dead, plant part/name and
+  growth list; generic Shrub if plant absent.
+* Furrowed0xe7ffb8: "Furrowed "+material noun.
+* Literal cases0xe80040..0xe80190: Ashes, Waterfall, River Source, Chasm,
+  Eerie Glowing Pit, Ice, Glowing Floor, Glowing Barrier, Semi-molten Rock,
+  Lava Flow/Magma Flow(bit15), Murky Pool, [Unusable]Murky Pool Slope,
+  River, Brook. Underworld Gate and ice/decorated variants are also direct
+  stair/floor edges retained in native-literals.tsv and native-tile-types.tsv.
+* Stairs0xe801a2..0xe80685: Upward/Downward/Up/Down; grass adjective with
+  Sparse/Dense when RAW exists, generic Grassy otherwise; natural material,
+  construction/Shoddy, Ice and Underworld Gate branches. Plain direction
+  Stairway fallback is a real native edge.
+* Upward slope/track0xe80686..0xe81d98: actual slope-usability lookup inserts
+  Unusable when false; grassy/dry/dead adjective, material, construction,
+  Glacial and plain Upward Slope cases; all15 upward track connections, each
+  natural/construction/Ice branch. Structural aliases remain distinct rows.
+* Downward slope entry0xe81d99: first decrements z, checks usability and the
+  tile BELOW, then direct/compressed sub-switches choose Grassy/Dry/Dead
+  plant adjective, material, Glacial, construction and15 connections of
+  Downward Track with natural/construction/Ice sources. Unsupported below-
+  tile routes emit plain Downward Slope. All selectors/defaults retained.
+* Open Space entry0xe82dcd. Default entry0xe82de1 emits Unknown.
+
+Wall-family order and qualities
+At0xe82df3: optional Warm, Damp, Muddy, Snow-covered, Mossy; then optional
+Detailed/Sculpted with quality marks or Smooth/Straight/Exposed/Rough-hewn;
+then construction descriptor, Ice or material noun; then one of Wall,
+Cluster, Fortification, Pillar. Shape and material selection sub-switches
+retain aliases and their fallback edges. Warm/Damp are specific to this
+earlier wall route; plants leave through0xe834d4 and do not acquire them.
+Quality0 uses no marks;1'-',2'+',3'*',4byte0xf0(≡),5byte0x0f(☼).
+Other quality values reach the unmarked form. Marks are inline byte writes,
+not string literals. Floor chooses Detailed, wall chooses Detailed/Sculpted
+from its branch; the mark surrounds that word before its trailing space.
+
+Material, construction and plant dynamic input boundaries
+---------------------------------------------------------
+0x14d0c70 material-decode resolves coordinates/tile/block geology,
+construction/material overrides and state into type/index/state output
+fields. Its225-selector compressed table and7-selector direct table,
+including default destinations, are in native-switches.tsv; it emits no
+caption literals itself.0x14add70 resolves type/index to material pointers;
+missing/invalid inputs return null to the text formatter.
+
+0x14d1920 material-noun resets its output, optionally emits material owner's
+generated name+"'s ", optional material.prefix(+0x520)+space, and state text.
+State-name lives material+0xb8+state*0x20; adjective form uses+0x178 instead.
+Natural terrain requests the noun; construction reads the adjective state0.
+Null material ->"unknown material" and false return. Special no-index flags
+choose plant, yarn, cloth, silk, bone, leather, shell, soap, ivory/tooth, horn,
+pearl, or wood/wooden. These are genuine finite fallback alternatives; RAW
+state names such as peat are dynamic strings, not PE string literals.
+
+The material+" Cavern Floor" production follows0xe7f7d8: decode call0xe7f818, noun call
+0xe7f843, optional bit15 suffix at0xe7f877. Wet follows0xe7f883 with noun
+call0xe7f8fd and suffix0xe7f92b. There is no peat-specific native branch.
+
+0xa46f20 construction descriptor looks up the construction at coordinates.
+No construction ->append nothing. Item type4 prefixes "rough ". Reinforced
+flag inserts optionally different reinforcing-material adjective+"-", then
+"Reinforced ". Base and reinforcing materials independently allow generated
+owner+"'s ", RAW prefix and state adjective, or unknown material. Item
+type2/4 appends " block", type5 " log", others no suffix. The completed
+temporary descriptor passes text normalization0x52d3c0 and appends once.
+Shoddy is emitted by caller tile branches, not by this helper.
+
+0x14d1330 is a GRASS EVENT LOOKUP, not a material-adjective formatter.
+It returns block_square_event_grassst(event kind4) only for positive amount
+at x/y within the block. Terrain reads event+0x8 to lookup plant RAW via
+0x14d850; grass plural NAME at RAW+0x50 or grassy stair/slope adjective at
+RAW+0x90 supplies text. Sparse<=33, Dense>=67, middle density omits prefix.
+The legacy title-sources helper row is corrected to these plant domains.
+
+0x13ffd20 plant-parts reads material plant index and tile type. Its220-
+selector remap distinguishes roots,trunk,thick branches,branches,smooth
+branches,twigs,cap. RAW-specific names+0x670/0x690/0x6b0/0x6d0/0x6f0/0x710
+override the default plural NAME(+0x50)+part suffix when nonempty. Smooth
+prefix precedes the branches override as well. Non-tree plant kinds use
+NAME+0x70 and capitalization; special tree tiles use plural NAME directly.
+Invalid index, absent/empty plant or unsupported material kind adds no text;
+unmapped tree tile type takes the helper's empty/cleanup edge. Parent tree/
+sapling/shrub branches have their own explicit generic fallback strings.
+
+Generated plant name prefixes precede the growth flag gate. Growth=false
+does not remove that name. Growth=true may append repeated ", "+growth plural
+RAW name(+0x40), subject to selected plant/tile/part, growth time range,
+location and world growth-state gates. Absent/inactive/filtered growth adds
+no entry. Repetition is dynamic; no finite number of full list sentences is
+claimed. Adventure HUD and cached lookinfo terrain pass true; engraving
+sheet title calls pass false. Full gate bodies remain in terrain.asm.
+
+Cached lookinfo constructor and producer
+-----------------------------------------
+0x406860..0x4084de clears display_str(+0x28), selects16-way table0x4084e0.
+Classic0x404420..0x40609e with table0x4060a0.
+Types0..12 use the same semantic fields as above, but independent native
+assembly: terrain call0x406995 growth=true; item/unit/building typed helpers;
+vermin quantity;14 flow selectors; Campfire/Fire; surface-deposit extent;
+water/magma complete bracket strings; spoor complete-source shortening.
+Notable constructor-specific edges: building-item adds leading space;
+spoor uninformed/default state can emit just Track/Spoor; vapor lowercase;
+solid extent1 constructor omits quantity prefix while HUD emits thin layer.
+Missing typed objects can leave the cleared caption empty and still set
+color. Unknown top-level type jumps cleanup leaving empty caption.
+
+Additional type13 Sound uses9-way table0x408520: movement/combat/vocalization/
+grinding vary Quiet/Loud or Light/Heavy by size<10; Storytelling, Poem
+recitation, Musical voice, Dancing, Preaching. Append " (heard"+[" recently"
+if timer>=75]+")"; out-of-range
+sound type still appends the heard suffix to the otherwise empty field.
+Type14 MemoryMap table0x408544: Creature,Object,Structure,Wall,Upward stair,
+Downward stair,Updown stair,Upward ramp,Downward ramp,Floor,Open air, each
+" (remembered)"; out-of-range leaves empty. Type15 ExtraSense emits
+"Blood of the living (sensed)" and uses the supplied sense color fields.
+
+0x4085f0..0x40a1db producer constructs lookinfost records from coordinates,
+visibility/memory/sense flags, map objects, liquid depth, flows, campfires,
+fire, surface-deposits and spoor. It calls the constructor before appending
+records to the look list; all direct calls/conditional branches and its14-
+way flow selector0x40a1dc are retained. Classic start0x4061b0/end0x407d9b.
+This record source does not eliminate the independent HUD reformatter.
+
+Other text in the same renderer
+--------------------------------
+Paging hint0x7f3f21 SIMD-loads complete " to view other pages", with tail
+"ages" at0x7f3f2b; final addst0x7f3f46. MOVABS at0x7f5d36 writes Hotkey:.
+The complete renderer body also retains compass prose and detailed spoor
+sentences after0x7f53ad. Their source operands/calls/conditional branches
+are included, as are compass16-way direction table0x7f6ba0 and detailed-
+spoor mask/remap0x7f6be0/0x7f6c04. They are adjacent renderer text domains,
+not terrain compositor productions; existing compass/spoor grammars handle
+their dynamic region/name/body-part/material fields.
+
+Extraction coverage counts (source inventory, not runtime tests)
+----------------------------------------------------------------
+Primary producer corpus per edition:12 code bodies;34 actual indirect switch tables;4492 route rows
+(4461 numeric selector encodings +31 out-of-range guards), including63
+mask-unreachable encodings explicitly marked0. Terrain alone has20 tables.
+Main terrain table:694 selectors,145 destinations;697 structural enum rows
+with native effective entry, including147 early-wall routes and tile0/695/
+696 explicit main-table defaults. Across both editions:24 bodies,8984 switch
+rows,1394 enum routes,1212 RIP literal references,2 printable inline MOVABS
+references,2870 direct CALL rows,3812 branch rows,82 confirmed consumer call
+contexts(17terrain+22constructor+2producer per edition),58 selected-look/
+paging draw call rows. Repeated operands are counted as references, not as
+different output sentences. No game was launched or controlled, and no
+in-game final appearance was observed by this source extraction.
+
+The Fortress consumer supplement separately adds240 actual vector-field RIP
+references,22 complete owner intervals(including8 leaves),4 Fortress virtual
+input/render-wrapper bodies and6 independent draw-helper bodies. Its34 RTTI
+ownership rows retain22 actual slots and12 explicit no-direct-slot entries.
+It also retains34 actual dedicated-vector-leaf CALL rows and their complete
+instruction contexts; all belong to the three known list-owner families.
+Vector-owner interval ASM includes the complete unwind span; embedded table
+bytes at its end are not counted as newly decompiled instruction branches.

@@ -740,9 +740,11 @@ std::optional<std::string> Overlay::translate_map_track_noun(std::string_view so
 // the label; only the suffix fields carry directions. Resolve complete item
 // and anatomy names before composing the reviewed display templates.
 std::optional<std::string> Overlay::translate_map_track(std::string_view source) const {
-    constexpr std::string_view prefix = "Track/Spoor: ";
+    constexpr std::string_view prefix = "Track/Spoor:";
     if (!source.starts_with(prefix)) return std::nullopt;
     source.remove_prefix(prefix.size());
+    if (!source.empty() && source.front() != ' ') return std::nullopt;
+    source = trim_view(source);
     const auto term = [&](std::string_view key) -> std::optional<std::string> {
         const auto found = map_track_translations_.find(std::string(key));
         if (found == map_track_translations_.end() || found->second.empty()) return std::nullopt;
@@ -760,7 +762,11 @@ std::optional<std::string> Overlay::translate_map_track(std::string_view source)
     };
     const size_t first_slash = source.find('/');
     const auto description = trim_view(source.substr(0, first_slash));
-    auto translated = term(description);
+    // The native subtype default writes no description, then still appends
+    // its direction and ownership fields. Translate that actual empty branch
+    // through the same header without inventing a spoor noun.
+    auto translated = description.empty()
+        ? std::optional<std::string>(std::string{}) : term(description);
     if (!translated && config_.compositional_rules) {
         for (std::string_view suffix : {" imprint", " print"}) {
             if (!description.ends_with(suffix)) continue;
@@ -941,9 +947,13 @@ std::optional<std::string> Overlay::translate_map_hover_phrase(std::string_view 
         case 3: // MaterialDust: native matter-state powder noun.
         case 9: // MaterialGas: native gaseous material noun.
             return config_.compositional_rules ? translate_material_name(source) : std::nullopt;
-        case 10: { // MaterialVapor: native liquid noun followed by vapor.
+        case 10: { // MaterialVapor: native state noun followed by vapor.
+            // The lookinfo constructor uses " vapor"; Adventure's direct
+            // look-list renderer uses " Vapor" for the same typed field.
+            // Both retain the complete material state name before the suffix.
             constexpr std::string_view suffix = " vapor";
-            if (!source.ends_with(suffix)) return std::nullopt;
+            if (!source.ends_with(suffix) && !source.ends_with(" Vapor"))
+                return std::nullopt;
             const auto material = scoped(source.substr(0, source.size() - suffix.size()), "::materials");
             if (!material) return std::nullopt;
             return RULESETS.compose_bound_rule("::map_hover", "{::materials} vapor",
@@ -961,6 +971,10 @@ std::optional<std::string> Overlay::translate_map_hover_phrase(std::string_view 
     case NativeMapHoverKind::Spatter:
         if (context.data[0] != -1) return item();
         if (auto target = scoped(source, "::health::contaminant")) return target;
+        // Adventure omits the quantity prefix outside the native 1/2/3
+        // deposit branches, but still formats the entire material noun.
+        if (config_.compositional_rules)
+            if (auto target = translate_material_name(source)) return target;
         return exact_literal_translation(source);
     case NativeMapHoverKind::Water:
     case NativeMapHoverKind::Magma: {
@@ -972,6 +986,24 @@ std::optional<std::string> Overlay::translate_map_hover_phrase(std::string_view 
             if (flags & 2u) liquid = flags & 1u ? "Stagnant salt water" : "Salt water";
             else liquid = flags & 1u ? "Stagnant water" : "Water";
         } else liquid = flags & 1u ? "Magma" : "Lava";
+        // The direct Adventure look list submits the liquid name, amount
+        // and closing measurement separately. Their verified native callers
+        // retain the same record, so a clipped row can still translate each
+        // complete field without treating a prefix as a whole liquid caption.
+        switch (context.fragment) {
+        case NativeMapHoverFragment::LiquidPrefix:
+            if (source != std::string(liquid) + " [") return std::nullopt;
+            if (auto target = exact_literal_translation(liquid)) return *target + " [";
+            return std::nullopt;
+        case NativeMapHoverFragment::LiquidAmount:
+            return source == std::to_string(amount)
+                ? std::optional<std::string>(std::string(source)) : std::nullopt;
+        case NativeMapHoverFragment::LiquidSuffix:
+            return source == "/7]"
+                ? std::optional<std::string>(std::string(source)) : std::nullopt;
+        case NativeMapHoverFragment::Complete:
+            break;
+        }
         const std::string measurement = " [" + std::to_string(amount) + "/7]";
         if (source != std::string(liquid) + measurement) return std::nullopt;
         if (auto target = exact_literal_translation(liquid)) return *target + measurement;
@@ -1000,6 +1032,20 @@ void Overlay::append_map_hover_phrases(const NativeTextCard &card,
     std::unordered_set<int> paragraph_rows =
         append_adventure_travel_status_paragraphs(card, rows, matches, only_y);
     const int right = card.interior.x + card.interior.w;
+    // Card discovery reads the live grid again. Keep a complete typed row
+    // already claimed before the general readers instead of adding a second
+    // translation after restoring its original bytes. Row composition below
+    // can still give that existing match the card's common layout.
+    for (const auto &row : card.rows)
+        if (row.map_hover.kind != NativeMapHoverKind::None &&
+            std::any_of(matches.begin(), matches.end(), [&](const Match &match) {
+                return match.rule == kMapHoverPhraseRule && match.x == row.x &&
+                    match.y == row.y && match.length == static_cast<int>(row.source.size()) &&
+                    match.source == row.source;
+            })) {
+            paragraph_rows.insert(row.y);
+            std::fill_n(rows[row.y].begin() + row.x, row.source.size(), ' ');
+        }
     // Card capture restores the active layer after the earlier document pass.
     // Keep paragraphs that pass already owns, including empty reflow tails,
     // instead of laying them out again or restoring their original English.
@@ -1132,11 +1178,12 @@ void Overlay::append_map_hover_phrases(const NativeTextCard &card,
 // that ownership even when HUD/frame discovery cannot reconstruct the card,
 // rather than letting generic literals consume only its material/type words.
 void Overlay::append_native_map_hover_phrases(std::vector<std::string> &rows,
-        std::vector<Match> &matches, int only_y) const {
+        std::vector<Match> &matches, int only_y, NativeMapHoverKind only_kind) const {
     const auto settings = native_ui_settings();
     const auto append = [&](const auto &draws) {
         for (const auto &draw : draws) {
-            if (draw.map_hover.kind < NativeMapHoverKind::Item ||
+            if ((only_kind != NativeMapHoverKind::None && draw.map_hover.kind != only_kind) ||
+                    draw.map_hover.kind < NativeMapHoverKind::Item ||
                     draw.source.empty() || draw.x < 0 || draw.y < 0 ||
                     draw.y >= gps_->dimy || (only_y >= 0 && draw.y != only_y)) continue;
             const auto source = trim_view(draw.source);
@@ -1195,8 +1242,8 @@ void Overlay::append_native_map_hover_phrases(std::vector<std::string> &rows,
             }
         }
     };
-    append(captured_native_drawn_text_rows());
-    append(captured_native_drawn_text_rows(true));
+    append(captured_native_map_hover_caption_rows());
+    append(captured_native_map_hover_caption_rows(true));
 }
 
 void Overlay::layout_map_hover(SDL_Renderer *renderer) {

@@ -1,4 +1,6 @@
-# Complete native terrain-caption literal sources for the map hover; these are translation provenance, not runtime addresses.
+# Reference-image terrain-caption LEA literal sources for the map hover; these are translation provenance, not runtime addresses.
+# Complete dual-image producer bodies, RIP/inline operands, decoded selector/remap/default routes and actual draw consumers: data/extracted/terrain-captions/.
+# Grass-event lookup owner 0x1414d1330..0x1414d143b has no text literals: it returns event type4 with positive tile amount. Terrain resolves event+0x8 to plant RAW and reads plural +0x50 or adjective +0x90; this is not a material-adjective formatter.
 # image	owner	formatter	end	reference	literal_address	text	resolver
 PE:6a70a6d9:02711000	terrain	0x140e7d330	0x140e8482c	0x140e7d5ed	0x14173132c	Muddy 	::tiles
 PE:6a70a6d9:02711000	terrain	0x140e7d330	0x140e8482c	0x140e7d667	0x141731370	Snow-covered 	::tiles

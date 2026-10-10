@@ -907,9 +907,16 @@ enum class NativeMapHoverKind : int32_t {
     BuildingItem = 8, Fire = 9, Water = 10, Magma = 11, Spoor = 12,
     Sound = 13, MemoryMap = 14, ExtraSense = 15
 };
+// The legacy Adventure look list draws liquids through three addst calls.
+// Their native enum/payload still owns the complete field; the exact caller
+// identifies each physical piece before those current draws are joined.
+enum class NativeMapHoverFragment {
+    Complete, LiquidPrefix, LiquidAmount, LiquidSuffix
+};
 struct NativeMapHoverContext {
     NativeMapHoverKind kind = NativeMapHoverKind::None;
     std::array<int32_t, 6> data{};
+    NativeMapHoverFragment fragment = NativeMapHoverFragment::Complete;
 };
 
 struct NativeTextCardRow {
@@ -2838,6 +2845,65 @@ static std::vector<NativeDrawnTextRow> captured_native_drawn_text_rows(bool top_
     return top_layer ? g_native_drawn_top_text_rows : g_native_drawn_text_rows;
 }
 
+struct NativeMapHoverLiquidCaption {
+    NativeDrawnTextRow row;
+    std::array<size_t, 2> parts;
+};
+
+static std::optional<NativeMapHoverLiquidCaption> native_map_hover_liquid_caption(
+        const NativeDrawnTextRow &draw, const std::vector<NativeDrawnTextRow> &draws) {
+    if (draw.map_hover.fragment != NativeMapHoverFragment::LiquidPrefix ||
+            (draw.map_hover.kind != NativeMapHoverKind::Water &&
+             draw.map_hover.kind != NativeMapHoverKind::Magma) ||
+            draw.source.empty() || draw.x < 0 || draw.draw_dimx <= draw.x ||
+            draw.source.size() > static_cast<size_t>(draw.draw_dimx - draw.x))
+        return std::nullopt;
+    NativeMapHoverLiquidCaption caption{draw, {}};
+    size_t part_index = 0;
+    for (const auto fragment : {NativeMapHoverFragment::LiquidAmount,
+            NativeMapHoverFragment::LiquidSuffix}) {
+        const int next_x = caption.row.x + static_cast<int>(caption.row.source.size());
+        const auto next = std::find_if(draws.begin(), draws.end(), [&](const auto &part) {
+            return part.map_hover.fragment == fragment && !part.source.empty() &&
+                part.map_hover.kind == draw.map_hover.kind &&
+                part.map_hover.data == draw.map_hover.data &&
+                part.x == next_x && part.y == draw.y &&
+                part.draw_grid == draw.draw_grid && part.top_layer == draw.top_layer &&
+                part.draw_dimx == draw.draw_dimx && part.draw_dimy == draw.draw_dimy &&
+                part.draw_epoch == draw.draw_epoch && part.sequence > caption.row.sequence;
+        });
+        if (next == draws.end() || next_x > draw.draw_dimx ||
+                next->source.size() > static_cast<size_t>(draw.draw_dimx - next_x))
+            return std::nullopt;
+        caption.parts[part_index++] = static_cast<size_t>(next - draws.begin());
+        caption.row.source += next->source;
+        caption.row.sequence = next->sequence;
+    }
+    caption.row.complete_source.clear();
+    caption.row.map_hover.fragment = NativeMapHoverFragment::Complete;
+    return caption;
+}
+
+static std::vector<NativeDrawnTextRow> captured_native_map_hover_caption_rows(
+        bool top_layer = false) {
+    auto draws = captured_native_drawn_text_rows(top_layer);
+    std::vector<bool> consumed(draws.size(), false);
+    std::vector<NativeDrawnTextRow> captions;
+    captions.reserve(draws.size());
+    for (size_t index = 0; index < draws.size(); ++index) {
+        if (consumed[index]) continue;
+        auto liquid = native_map_hover_liquid_caption(draws[index], draws);
+        if (liquid && std::none_of(liquid->parts.begin(), liquid->parts.end(),
+                [&](size_t part) { return consumed[part]; })) {
+            for (const auto part : liquid->parts) consumed[part] = true;
+            captions.push_back(std::move(liquid->row));
+        } else {
+            captions.push_back(draws[index]);
+        }
+    }
+    return captions;
+}
+
 static std::optional<SDL_Rect> native_captured_text_clip(const graphicst &gps, const Match &match) {
     if (gps.dimx <= 0 || gps.dimx > 1000 || gps.dimy <= 0 || gps.dimy > 1000 ||
             match.x < 0 || match.x >= gps.dimx || match.y < 0 || match.y >= gps.dimy ||
@@ -2906,18 +2972,19 @@ static std::optional<NativeDrawnTextRow> native_map_hover_draw_for_row(
     const bool top_layer = origin.top_layer;
     std::lock_guard<std::mutex> lock(g_native_drawn_text_mutex);
     const auto &draws = top_layer ? g_native_drawn_top_text_rows : g_native_drawn_text_rows;
-    for (auto it = draws.rbegin(); it != draws.rend(); ++it) {
-        const auto &draw = *it;
+    const auto current_draw = [&](const NativeDrawnTextRow &draw)
+            -> std::optional<NativeDrawnTextRow> {
         if (draw.map_hover.kind == NativeMapHoverKind::None ||
                 draw.x > row.x || draw.x < 0 || draw.y != row.y || draw.top_layer != top_layer ||
                 draw.draw_grid != origin.grid || draw.draw_dimx != gps.dimx ||
-                draw.draw_dimy != gps.dimy) continue;
+                draw.draw_dimy != gps.dimy) return std::nullopt;
         const size_t offset = static_cast<size_t>(row.x - draw.x);
         if (offset > draw.source.size() || std::any_of(draw.source.begin(),
-                draw.source.begin() + offset, [](unsigned char ch) { return ch != ' '; })) continue;
+                draw.source.begin() + offset, [](unsigned char ch) { return ch != ' '; }))
+            return std::nullopt;
         const auto visible = trim_view(std::string_view(draw.source).substr(
             offset, static_cast<size_t>(clip_right - row.x)));
-        if (visible != row.source) continue;
+        if (visible != row.source) return std::nullopt;
         bool current = true;
         for (size_t byte = 0; byte < row.source.size(); ++byte) {
             const size_t at = (static_cast<size_t>(row.x) + byte) * gps.dimy + row.y;
@@ -2938,6 +3005,24 @@ static std::optional<NativeDrawnTextRow> native_map_hover_draw_for_row(
             if (offset <= captured.complete_source.size())
                 captured.complete_source.erase(0, offset);
             return captured;
+        }
+        return std::nullopt;
+    };
+    for (auto it = draws.rbegin(); it != draws.rend(); ++it) {
+        const auto &draw = *it;
+        if (auto captured = current_draw(draw)) return captured;
+        if (draw.map_hover.fragment != NativeMapHoverFragment::LiquidPrefix ||
+                (draw.map_hover.kind != NativeMapHoverKind::Water &&
+                 draw.map_hover.kind != NativeMapHoverKind::Magma) ||
+                draw.x != row.x || draw.y != row.y || draw.draw_grid != origin.grid ||
+                draw.top_layer != top_layer || draw.draw_dimx != gps.dimx ||
+                draw.draw_dimy != gps.dimy) continue;
+        // The wrapper prints the noun/left bracket, amount and right bracket
+        // independently. Only adjoining current draws with this same frozen
+        // native record payload can form the complete liquid caption. Never
+        // rebuild text from a guessed spelling or a previous map selection.
+        if (auto liquid = native_map_hover_liquid_caption(draw, draws)) {
+            if (auto captured = current_draw(liquid->row)) return captured;
         }
     }
     return std::nullopt;
@@ -4386,7 +4471,8 @@ private:
     void append_map_hover_phrases(const NativeTextCard &card,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
     void append_native_map_hover_phrases(std::vector<std::string> &rows,
-        std::vector<Match> &matches, int only_y) const;
+        std::vector<Match> &matches, int only_y,
+        NativeMapHoverKind only_kind = NativeMapHoverKind::None) const;
     void compose_native_text_rows(const NativeTextCard &card,
         std::vector<Match> &matches, int only_y, int row_rule,
         bool preserve_word_spaces = false, bool center_vertical = false) const;
@@ -16612,6 +16698,12 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         // readers see it. Literal Unicode drawing still uses its exact bytes.
         std::fill_n(row.begin() + region.x, region.w, ' ');
     }
+    // The native terrain enum owns its entire compositor output before
+    // messages, information titles or item readers can consume a fragment.
+    // This uses the actual draw's source/grid/layer, independently of HUD
+    // labels and of the later hover-frame/workshop/world-page discovery.
+    append_native_map_hover_phrases(screen_rows, result, only_y,
+        NativeMapHoverKind::Terrain);
     // Structured task fields own their native rows before hover/name readers
     // can compose the title and its separate navigation bearing as one line.
     auto append_setup_paragraph = [&](std::vector<Match> rows,

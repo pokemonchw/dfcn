@@ -1,0 +1,1213 @@
+edition	role	owner_rva	instruction_rva	literal_rva	source
+reference	terrain	0xe7d330	0xe7d5ed	0x173132c	Muddy 
+reference	terrain	0xe7d330	0xe7d667	0x1731370	Snow-covered 
+reference	terrain	0xe7d330	0xe7d693	0x1731380	Mossy 
+reference	terrain	0xe7d330	0xe7d74e	0x15e90d8	, 
+reference	terrain	0xe7d330	0xe7d795	0x17313e0	Dead 
+reference	terrain	0xe7d330	0xe7dd07	0x15e90d8	, 
+reference	terrain	0xe7d330	0xe7dd52	0x1615704	Tree
+reference	terrain	0xe7d330	0xe7de0c	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe7de1a	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe7e1ce	0x15e90d8	, 
+reference	terrain	0xe7d330	0xe7e20e	0x17313b0	Grass
+reference	terrain	0xe7d330	0xe7e290	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe7e29e	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe7e2ad	0x17313b8	Dry 
+reference	terrain	0xe7d330	0xe7e66d	0x15e90d8	, 
+reference	terrain	0xe7d330	0xe7e6c8	0x17313c0	Dry Grass
+reference	terrain	0xe7d330	0xe7e74e	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe7e75c	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe7e76b	0x17313e0	Dead 
+reference	terrain	0xe7d330	0xe7e78b	0x1731428	Dead Grass
+reference	terrain	0xe7d330	0xe7e79f	0x1731434	Level
+reference	terrain	0xe7d330	0xe7e7a6	0x1731388	Sculpted
+reference	terrain	0xe7d330	0xe7e7be	0x1731440	 Ice Floor
+reference	terrain	0xe7d330	0xe7e7d2	0x17313f0	Shoddy 
+reference	terrain	0xe7d330	0xe7e7fe	0x173144c	 Floor
+reference	terrain	0xe7d330	0xe7e88e	0x17313f8	 Track (N)
+reference	terrain	0xe7d330	0xe7e8bf	0x17313f8	 Track (N)
+reference	terrain	0xe7d330	0xe7e8d3	0x1731408	Ice Track (N)
+reference	terrain	0xe7d330	0xe7e963	0x1731418	 Track (S)
+reference	terrain	0xe7d330	0xe7e994	0x1731418	 Track (S)
+reference	terrain	0xe7d330	0xe7e9a8	0x1731498	Ice Track (S)
+reference	terrain	0xe7d330	0xe7ea38	0x17314a8	 Track (E)
+reference	terrain	0xe7d330	0xe7ea69	0x17314a8	 Track (E)
+reference	terrain	0xe7d330	0xe7ea7d	0x17314b8	Ice Track (E)
+reference	terrain	0xe7d330	0xe7eb0d	0x17314c8	 Track (W)
+reference	terrain	0xe7d330	0xe7eb3e	0x17314c8	 Track (W)
+reference	terrain	0xe7d330	0xe7eb52	0x1731458	Ice Track (W)
+reference	terrain	0xe7d330	0xe7ebe2	0x1731468	 Track (NS)
+reference	terrain	0xe7d330	0xe7ec13	0x1731468	 Track (NS)
+reference	terrain	0xe7d330	0xe7ec27	0x1731478	Ice Track (NS)
+reference	terrain	0xe7d330	0xe7ecb7	0x1731488	 Track (NE)
+reference	terrain	0xe7d330	0xe7ece8	0x1731488	 Track (NE)
+reference	terrain	0xe7d330	0xe7ecfc	0x1731518	Ice Track (NE)
+reference	terrain	0xe7d330	0xe7ed8c	0x1731528	 Track (NW)
+reference	terrain	0xe7d330	0xe7edbd	0x1731528	 Track (NW)
+reference	terrain	0xe7d330	0xe7edd1	0x1731538	Ice Track (NW)
+reference	terrain	0xe7d330	0xe7ee61	0x1731548	 Track (SE)
+reference	terrain	0xe7d330	0xe7ee92	0x1731548	 Track (SE)
+reference	terrain	0xe7d330	0xe7eea6	0x17314d8	Ice Track (SE)
+reference	terrain	0xe7d330	0xe7ef36	0x17314e8	 Track (SW)
+reference	terrain	0xe7d330	0xe7ef67	0x17314e8	 Track (SW)
+reference	terrain	0xe7d330	0xe7ef7b	0x17314f8	Ice Track (SW)
+reference	terrain	0xe7d330	0xe7f00b	0x1731508	 Track (EW)
+reference	terrain	0xe7d330	0xe7f03c	0x1731508	 Track (EW)
+reference	terrain	0xe7d330	0xe7f050	0x1731598	Ice Track (EW)
+reference	terrain	0xe7d330	0xe7f0e0	0x17315a8	 Track (NSE)
+reference	terrain	0xe7d330	0xe7f111	0x17315a8	 Track (NSE)
+reference	terrain	0xe7d330	0xe7f125	0x17315b8	Ice Track (NSE)
+reference	terrain	0xe7d330	0xe7f1b5	0x17315c8	 Track (NSW)
+reference	terrain	0xe7d330	0xe7f1e6	0x17315c8	 Track (NSW)
+reference	terrain	0xe7d330	0xe7f1fa	0x1731558	Ice Track (NSW)
+reference	terrain	0xe7d330	0xe7f28a	0x1731568	 Track (NEW)
+reference	terrain	0xe7d330	0xe7f2bb	0x1731568	 Track (NEW)
+reference	terrain	0xe7d330	0xe7f2cf	0x1731578	Ice Track (NEW)
+reference	terrain	0xe7d330	0xe7f35f	0x1731588	 Track (SEW)
+reference	terrain	0xe7d330	0xe7f390	0x1731588	 Track (SEW)
+reference	terrain	0xe7d330	0xe7f3a4	0x1731a88	Ice Track (SEW)
+reference	terrain	0xe7d330	0xe7f434	0x1731a98	 Track (NSEW)
+reference	terrain	0xe7d330	0xe7f465	0x1731a98	 Track (NSEW)
+reference	terrain	0xe7d330	0xe7f479	0x1731aa8	Ice Track (NSEW)
+reference	terrain	0xe7d330	0xe7f4c9	0x1731398	Detailed
+reference	terrain	0xe7d330	0xe7f4ff	0x15e873c	 
+reference	terrain	0xe7d330	0xe7f512	0x1731398	Detailed
+reference	terrain	0xe7d330	0xe7f52b	0x15e873c	 
+reference	terrain	0xe7d330	0xe7f541	0x1731398	Detailed
+reference	terrain	0xe7d330	0xe7f55a	0x15e873c	 
+reference	terrain	0xe7d330	0xe7f570	0x1731398	Detailed
+reference	terrain	0xe7d330	0xe7f589	0x15e873c	 
+reference	terrain	0xe7d330	0xe7f59c	0x1731398	Detailed
+reference	terrain	0xe7d330	0xe7f5b5	0x15e873c	 
+reference	terrain	0xe7d330	0xe7f5c8	0x1731398	Detailed
+reference	terrain	0xe7d330	0xe7f5e1	0x15e873c	 
+reference	terrain	0xe7d330	0xe7f5ea	0x1731358	Smooth 
+reference	terrain	0xe7d330	0xe7f692	0x173144c	 Floor
+reference	terrain	0xe7d330	0xe7f722	0x1731ac0	 Boulder
+reference	terrain	0xe7d330	0xe7f736	0x1731a50	Driftwood
+reference	terrain	0xe7d330	0xe7f7cc	0x1731a60	 Pebbles
+reference	terrain	0xe7d330	0xe7f877	0x1731a70	 Cavern Floor
+reference	terrain	0xe7d330	0xe7f883	0x1731a80	Wet 
+reference	terrain	0xe7d330	0xe7f92b	0x1731a70	 Cavern Floor
+reference	terrain	0xe7d330	0xe7f9ba	0x15e90d8	, 
+reference	terrain	0xe7d330	0xe7f9d4	0x17313e0	Dead 
+reference	terrain	0xe7d330	0xe7fa0c	0x1731b08	Young 
+reference	terrain	0xe7d330	0xe7fa61	0x1731b10	 Sapling
+reference	terrain	0xe7d330	0xe7fa7f	0x1731b20	Sapling
+reference	terrain	0xe7d330	0xe7fb15	0x15e90d8	, 
+reference	terrain	0xe7d330	0xe7fb2f	0x17313e0	Dead 
+reference	terrain	0xe7d330	0xe7ff49	0x15e90d8	, 
+reference	terrain	0xe7d330	0xe7ffa4	0x1731b28	Shrub
+reference	terrain	0xe7d330	0xe7ffb8	0x1731ad0	Furrowed 
+reference	terrain	0xe7d330	0xe80046	0x1731adc	Ashes
+reference	terrain	0xe7d330	0xe80052	0x1731ae8	Waterfall
+reference	terrain	0xe7d330	0xe80066	0x1731af8	River Source
+reference	terrain	0xe7d330	0xe8007a	0x1731b74	Chasm
+reference	terrain	0xe7d330	0xe8008e	0x1731b80	Eerie Glowing Pit
+reference	terrain	0xe7d330	0xe800a2	0x1721050	Ice
+reference	terrain	0xe7d330	0xe800b6	0x1731b98	Glowing Floor
+reference	terrain	0xe7d330	0xe800ca	0x1731ba8	Glowing Barrier
+reference	terrain	0xe7d330	0xe800de	0x1731b30	Semi-molten Rock
+reference	terrain	0xe7d330	0xe8010e	0x1731b48	Lava Flow
+reference	terrain	0xe7d330	0xe8011f	0x1731b58	Magma Flow
+reference	terrain	0xe7d330	0xe80130	0x1731b68	Murky Pool
+reference	terrain	0xe7d330	0xe8015b	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8016a	0x1731c28	Murky Pool Slope
+reference	terrain	0xe7d330	0xe80184	0x1731c3c	River
+reference	terrain	0xe7d330	0xe80196	0x1731c44	Brook
+reference	terrain	0xe7d330	0xe80214	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe80222	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe80240	0x1731bb8	 Upward Stairway
+reference	terrain	0xe7d330	0xe80254	0x1731bd0	Grassy Upward Stairway
+reference	terrain	0xe7d330	0xe802da	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe802e8	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe80306	0x1731be8	 Up/Down Stairway
+reference	terrain	0xe7d330	0xe8031a	0x1731c00	Grassy Up/Down Stairway
+reference	terrain	0xe7d330	0xe803a0	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe803ae	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe803cc	0x1731ca8	 Downward Stairway
+reference	terrain	0xe7d330	0xe803e0	0x1731cc0	Grassy Downward Stairway
+reference	terrain	0xe7d330	0xe803f4	0x17313f0	Shoddy 
+reference	terrain	0xe7d330	0xe80420	0x1731be8	 Up/Down Stairway
+reference	terrain	0xe7d330	0xe804ad	0x17313f0	Shoddy 
+reference	terrain	0xe7d330	0xe804d9	0x1731ca8	 Downward Stairway
+reference	terrain	0xe7d330	0xe80569	0x1731ca8	 Downward Stairway
+reference	terrain	0xe7d330	0xe8057d	0x17313f0	Shoddy 
+reference	terrain	0xe7d330	0xe805a9	0x1731bb8	 Upward Stairway
+reference	terrain	0xe7d330	0xe805bd	0x1731ce0	Underworld Gate
+reference	terrain	0xe7d330	0xe8064a	0x1731cf0	Ice Up/Down Stairway
+reference	terrain	0xe7d330	0xe8065e	0x1731c50	Ice Downward Stairway
+reference	terrain	0xe7d330	0xe80672	0x1731c68	Ice Upward Stairway
+reference	terrain	0xe7d330	0xe8069d	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8071e	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe8072c	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe8074a	0x1731c80	 Upward Slope
+reference	terrain	0xe7d330	0xe8075e	0x1731c90	Grassy Upward Slope
+reference	terrain	0xe7d330	0xe80789	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8080a	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe80819	0x17313b8	Dry 
+reference	terrain	0xe7d330	0xe8082a	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe80839	0x17313b8	Dry 
+reference	terrain	0xe7d330	0xe80845	0x1731d68	Dry Grass Upward Slope
+reference	terrain	0xe7d330	0xe80870	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe808f1	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe80900	0x17313e0	Dead 
+reference	terrain	0xe7d330	0xe80911	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe80920	0x17313e0	Dead 
+reference	terrain	0xe7d330	0xe8092c	0x1731d80	Dead Grass Upward Slope
+reference	terrain	0xe7d330	0xe80957	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe809e2	0x1731d98	 Upward Track (N)
+reference	terrain	0xe7d330	0xe80a0d	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80a39	0x1731d98	 Upward Track (N)
+reference	terrain	0xe7d330	0xe80a64	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80a73	0x1731db0	Ice Upward Track (N)
+reference	terrain	0xe7d330	0xe80a9e	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80b29	0x1731d08	 Upward Track (S)
+reference	terrain	0xe7d330	0xe80b54	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80b80	0x1731d08	 Upward Track (S)
+reference	terrain	0xe7d330	0xe80bab	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80bba	0x1731d20	Ice Upward Track (S)
+reference	terrain	0xe7d330	0xe80be5	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80c70	0x1731d38	 Upward Track (E)
+reference	terrain	0xe7d330	0xe80c9b	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80cc7	0x1731d38	 Upward Track (E)
+reference	terrain	0xe7d330	0xe80cf2	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80d01	0x1731d50	Ice Upward Track (E)
+reference	terrain	0xe7d330	0xe80d2c	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80db7	0x1731e28	 Upward Track (W)
+reference	terrain	0xe7d330	0xe80de2	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80e0e	0x1731e28	 Upward Track (W)
+reference	terrain	0xe7d330	0xe80e39	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80e48	0x1731e40	Ice Upward Track (W)
+reference	terrain	0xe7d330	0xe80e73	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80efe	0x1731e58	 Upward Track (NS)
+reference	terrain	0xe7d330	0xe80f29	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80f55	0x1731e58	 Upward Track (NS)
+reference	terrain	0xe7d330	0xe80f80	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe80f8f	0x1731e70	Ice Upward Track (NS)
+reference	terrain	0xe7d330	0xe80fba	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81045	0x1731dc8	 Upward Track (NE)
+reference	terrain	0xe7d330	0xe81070	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8109c	0x1731dc8	 Upward Track (NE)
+reference	terrain	0xe7d330	0xe810c7	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe810d6	0x1731de0	Ice Upward Track (NE)
+reference	terrain	0xe7d330	0xe81101	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8118c	0x1731df8	 Upward Track (NW)
+reference	terrain	0xe7d330	0xe811b7	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe811e3	0x1731df8	 Upward Track (NW)
+reference	terrain	0xe7d330	0xe8120e	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8121d	0x1731e10	Ice Upward Track (NW)
+reference	terrain	0xe7d330	0xe81248	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe812d3	0x1731ee8	 Upward Track (SE)
+reference	terrain	0xe7d330	0xe812fe	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8132a	0x1731ee8	 Upward Track (SE)
+reference	terrain	0xe7d330	0xe81355	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81364	0x1731f00	Ice Upward Track (SE)
+reference	terrain	0xe7d330	0xe8138f	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8141a	0x1731f18	 Upward Track (SW)
+reference	terrain	0xe7d330	0xe81445	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81471	0x1731f18	 Upward Track (SW)
+reference	terrain	0xe7d330	0xe8149c	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe814ab	0x1731f30	Ice Upward Track (SW)
+reference	terrain	0xe7d330	0xe814d6	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81561	0x1731e88	 Upward Track (EW)
+reference	terrain	0xe7d330	0xe8158c	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe815b8	0x1731e88	 Upward Track (EW)
+reference	terrain	0xe7d330	0xe815e3	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe815f2	0x1731ea0	Ice Upward Track (EW)
+reference	terrain	0xe7d330	0xe8161d	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe816a8	0x1731eb8	 Upward Track (NSE)
+reference	terrain	0xe7d330	0xe816d3	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe816ff	0x1731eb8	 Upward Track (NSE)
+reference	terrain	0xe7d330	0xe8172a	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81739	0x1731ed0	Ice Upward Track (NSE)
+reference	terrain	0xe7d330	0xe81764	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe817ef	0x1731638	 Upward Track (NSW)
+reference	terrain	0xe7d330	0xe8181a	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81846	0x1731638	 Upward Track (NSW)
+reference	terrain	0xe7d330	0xe81871	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81880	0x1731650	Ice Upward Track (NSW)
+reference	terrain	0xe7d330	0xe818ab	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81936	0x1731668	 Upward Track (NEW)
+reference	terrain	0xe7d330	0xe81961	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe8198d	0x1731668	 Upward Track (NEW)
+reference	terrain	0xe7d330	0xe819b8	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe819c7	0x1731680	Ice Upward Track (NEW)
+reference	terrain	0xe7d330	0xe819f2	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81a7d	0x17315d8	 Upward Track (SEW)
+reference	terrain	0xe7d330	0xe81aa8	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81ad4	0x17315d8	 Upward Track (SEW)
+reference	terrain	0xe7d330	0xe81aff	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81b0e	0x17315f0	Ice Upward Track (SEW)
+reference	terrain	0xe7d330	0xe81b39	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81bc4	0x1731608	 Upward Track (NSEW)
+reference	terrain	0xe7d330	0xe81bef	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81c1b	0x1731608	 Upward Track (NSEW)
+reference	terrain	0xe7d330	0xe81c46	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81c55	0x1731620	Ice Upward Track (NSEW)
+reference	terrain	0xe7d330	0xe81c80	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81d1f	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81d4b	0x1731c80	 Upward Slope
+reference	terrain	0xe7d330	0xe81d76	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81d85	0x1731700	Glacial Upward Slope
+reference	terrain	0xe7d330	0xe81db4	0x1731c18	Unusable 
+reference	terrain	0xe7d330	0xe81e7f	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe81e8d	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe81eab	0x1731718	 Downward Slope
+reference	terrain	0xe7d330	0xe81ebf	0x1731728	Grassy Downward Slope
+reference	terrain	0xe7d330	0xe81f45	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe81f54	0x17313b8	Dry 
+reference	terrain	0xe7d330	0xe81f65	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe81f74	0x17313b8	Dry 
+reference	terrain	0xe7d330	0xe81f80	0x1731740	Dry Grass Downward Slope
+reference	terrain	0xe7d330	0xe82006	0x17313e8	Dense 
+reference	terrain	0xe7d330	0xe82015	0x17313e0	Dead 
+reference	terrain	0xe7d330	0xe82026	0x17313a8	Sparse 
+reference	terrain	0xe7d330	0xe82035	0x17313e0	Dead 
+reference	terrain	0xe7d330	0xe82041	0x1731698	Dead Grass Downward Slope
+reference	terrain	0xe7d330	0xe820ce	0x1731a30	Glacial Downward Slope
+reference	terrain	0xe7d330	0xe820ff	0x1731718	 Downward Slope
+reference	terrain	0xe7d330	0xe821ba	0x17316b8	 Downward Track (N)
+reference	terrain	0xe7d330	0xe821eb	0x17316b8	 Downward Track (N)
+reference	terrain	0xe7d330	0xe821ff	0x17316d0	Ice Downward Track (N)
+reference	terrain	0xe7d330	0xe8228f	0x17316e8	 Downward Track (S)
+reference	terrain	0xe7d330	0xe822c0	0x17316e8	 Downward Track (S)
+reference	terrain	0xe7d330	0xe822d4	0x17317c0	Ice Downward Track (S)
+reference	terrain	0xe7d330	0xe82364	0x17317d8	 Downward Track (E)
+reference	terrain	0xe7d330	0xe82395	0x17317d8	 Downward Track (E)
+reference	terrain	0xe7d330	0xe823a9	0x17317f0	Ice Downward Track (E)
+reference	terrain	0xe7d330	0xe82439	0x1731808	 Downward Track (W)
+reference	terrain	0xe7d330	0xe8246a	0x1731808	 Downward Track (W)
+reference	terrain	0xe7d330	0xe8247e	0x1731760	Ice Downward Track (W)
+reference	terrain	0xe7d330	0xe8250e	0x1731778	 Downward Track (NS)
+reference	terrain	0xe7d330	0xe8253f	0x1731778	 Downward Track (NS)
+reference	terrain	0xe7d330	0xe82553	0x1731790	Ice Downward Track (NS)
+reference	terrain	0xe7d330	0xe825e3	0x17317a8	 Downward Track (NE)
+reference	terrain	0xe7d330	0xe82614	0x17317a8	 Downward Track (NE)
+reference	terrain	0xe7d330	0xe82628	0x1731880	Ice Downward Track (NE)
+reference	terrain	0xe7d330	0xe826b8	0x1731898	 Downward Track (NW)
+reference	terrain	0xe7d330	0xe826e9	0x1731898	 Downward Track (NW)
+reference	terrain	0xe7d330	0xe826fd	0x17318b0	Ice Downward Track (NW)
+reference	terrain	0xe7d330	0xe8278d	0x17318c8	 Downward Track (SE)
+reference	terrain	0xe7d330	0xe827be	0x17318c8	 Downward Track (SE)
+reference	terrain	0xe7d330	0xe827d2	0x1731820	Ice Downward Track (SE)
+reference	terrain	0xe7d330	0xe82862	0x1731838	 Downward Track (SW)
+reference	terrain	0xe7d330	0xe82893	0x1731838	 Downward Track (SW)
+reference	terrain	0xe7d330	0xe828a7	0x1731850	Ice Downward Track (SW)
+reference	terrain	0xe7d330	0xe82937	0x1731868	 Downward Track (EW)
+reference	terrain	0xe7d330	0xe82968	0x1731868	 Downward Track (EW)
+reference	terrain	0xe7d330	0xe8297c	0x1731950	Ice Downward Track (EW)
+reference	terrain	0xe7d330	0xe82a0c	0x1731968	 Downward Track (NSE)
+reference	terrain	0xe7d330	0xe82a3d	0x1731968	 Downward Track (NSE)
+reference	terrain	0xe7d330	0xe82a51	0x1731980	Ice Downward Track (NSE)
+reference	terrain	0xe7d330	0xe82ae1	0x17319a0	 Downward Track (NSW)
+reference	terrain	0xe7d330	0xe82b12	0x17319a0	 Downward Track (NSW)
+reference	terrain	0xe7d330	0xe82b26	0x17318e0	Ice Downward Track (NSW)
+reference	terrain	0xe7d330	0xe82bb6	0x1731900	 Downward Track (NEW)
+reference	terrain	0xe7d330	0xe82be7	0x1731900	 Downward Track (NEW)
+reference	terrain	0xe7d330	0xe82bfb	0x1731918	Ice Downward Track (NEW)
+reference	terrain	0xe7d330	0xe82c8b	0x1731938	 Downward Track (SEW)
+reference	terrain	0xe7d330	0xe82cbc	0x1731938	 Downward Track (SEW)
+reference	terrain	0xe7d330	0xe82cd0	0x17319d8	Ice Downward Track (SEW)
+reference	terrain	0xe7d330	0xe82d60	0x17319f8	 Downward Track (NSEW)
+reference	terrain	0xe7d330	0xe82d91	0x17319f8	 Downward Track (NSEW)
+reference	terrain	0xe7d330	0xe82da5	0x1731a10	Ice Downward Track (NSEW)
+reference	terrain	0xe7d330	0xe82db9	0x17319b8	Downward Slope
+reference	terrain	0xe7d330	0xe82dcd	0x17319c8	Open Space
+reference	terrain	0xe7d330	0xe82de7	0x15ec1e0	Unknown
+reference	terrain	0xe7d330	0xe82e16	0x173131c	Warm 
+reference	terrain	0xe7d330	0xe82e42	0x1731324	Damp 
+reference	terrain	0xe7d330	0xe82eb6	0x173132c	Muddy 
+reference	terrain	0xe7d330	0xe82f2b	0x1731370	Snow-covered 
+reference	terrain	0xe7d330	0xe82f57	0x1731380	Mossy 
+reference	terrain	0xe7d330	0xe83077	0x1731398	Detailed
+reference	terrain	0xe7d330	0xe8307e	0x1731388	Sculpted
+reference	terrain	0xe7d330	0xe830d7	0x15e873c	 
+reference	terrain	0xe7d330	0xe83241	0x1731358	Smooth 
+reference	terrain	0xe7d330	0xe83248	0x1731348	Straight 
+reference	terrain	0xe7d330	0xe8328d	0x1731360	Exposed 
+reference	terrain	0xe7d330	0xe8329c	0x1731338	Rough-hewn 
+reference	terrain	0xe7d330	0xe8336f	0x1721050	Ice
+reference	terrain	0xe7d330	0xe833c1	0x15e873c	 
+reference	terrain	0xe7d330	0xe83489	0x162ca6c	Wall
+reference	terrain	0xe7d330	0xe83490	0x17313d8	Cluster
+reference	terrain	0xe7d330	0xe834a6	0x162ca6c	Wall
+reference	terrain	0xe7d330	0xe834b5	0x162cd08	Fortification
+reference	terrain	0xe7d330	0xe834c4	0x17313cc	Pillar
+reference	lookinfo	0x406860	0x4069d2	0x1639e58	Quiet movement
+reference	lookinfo	0x406860	0x4069d9	0x1639e48	Loud movement
+reference	lookinfo	0x406860	0x4069ee	0x1639e38	Light combat
+reference	lookinfo	0x406860	0x4069f5	0x1639e28	Heavy combat
+reference	lookinfo	0x406860	0x406a20	0x1639d58	Quiet vocalization
+reference	lookinfo	0x406860	0x406a27	0x1639d40	Loud vocalization
+reference	lookinfo	0x406860	0x406a49	0x1639d30	Quiet grinding
+reference	lookinfo	0x406860	0x406a50	0x1639d20	Loud grinding
+reference	lookinfo	0x406860	0x406a68	0x1639d90	Storytelling
+reference	lookinfo	0x406860	0x406a77	0x1639da0	Preaching
+reference	lookinfo	0x406860	0x406a86	0x1639d70	Poem recitation
+reference	lookinfo	0x406860	0x406a95	0x1639d80	Musical voice
+reference	lookinfo	0x406860	0x406aa1	0x163a1f0	Dancing
+reference	lookinfo	0x406860	0x406ab3	0x163a1f8	 (heard
+reference	lookinfo	0x406860	0x406ace	0x163a1c8	 recently
+reference	lookinfo	0x406860	0x406ae0	0x1615580	)
+reference	lookinfo	0x406860	0x406b15	0x163a1d8	Creature (remembered)
+reference	lookinfo	0x406860	0x406b27	0x163a238	Object (remembered)
+reference	lookinfo	0x406860	0x406b45	0x163a250	Structure (remembered)
+reference	lookinfo	0x406860	0x406b63	0x163a200	Wall (remembered)
+reference	lookinfo	0x406860	0x406b81	0x163a218	Upward stair (remembered)
+reference	lookinfo	0x406860	0x406b9f	0x163a128	Downward stair (remembered)
+reference	lookinfo	0x406860	0x406bbd	0x163a148	Updown stair (remembered)
+reference	lookinfo	0x406860	0x406bdb	0x163a0e8	Upward ramp (remembered)
+reference	lookinfo	0x406860	0x406bf9	0x163a108	Downward ramp (remembered)
+reference	lookinfo	0x406860	0x406c17	0x163a198	Floor (remembered)
+reference	lookinfo	0x406860	0x406c2f	0x163a1b0	Open air (remembered)
+reference	lookinfo	0x406860	0x406c53	0x163a168	Blood of the living (sensed)
+reference	lookinfo	0x406860	0x406e3c	0x163a188	a colony of 
+reference	lookinfo	0x406860	0x406f90	0x163a094	many 
+reference	lookinfo	0x406860	0x407041	0x163a0a0	a swarm of 
+reference	lookinfo	0x406860	0x40713f	0x163a084	Miasma
+reference	lookinfo	0x406860	0x407167	0x163a0cc	Mist
+reference	lookinfo	0x406860	0x40716e	0x163a08c	Steam
+reference	lookinfo	0x406860	0x407195	0x163a0cc	Mist
+reference	lookinfo	0x406860	0x4072f4	0x163a0d8	Item Cloud
+reference	lookinfo	0x406860	0x407312	0x163a0b0	An Ocean Wave
+reference	lookinfo	0x406860	0x407330	0x163a0c0	Sea Foam
+reference	lookinfo	0x406860	0x407354	0x163a038	Lava Mist
+reference	lookinfo	0x406860	0x40735b	0x163a028	Magma Mist
+reference	lookinfo	0x406860	0x4073ac	0x163a018	 vapor
+reference	lookinfo	0x406860	0x4073cc	0x163a020	Smoke
+reference	lookinfo	0x406860	0x4073ed	0x15f73b0	Dragonfire
+reference	lookinfo	0x406860	0x40740b	0x15f739c	Fire
+reference	lookinfo	0x406860	0x407423	0x163a06c	A Web
+reference	lookinfo	0x406860	0x407444	0x163a078	A Campfire
+reference	lookinfo	0x406860	0x40756f	0x163a3e0	A pile of 
+reference	lookinfo	0x406860	0x407578	0x163a3c8	A small pile of 
+reference	lookinfo	0x406860	0x407587	0x163a400	A dusting of 
+reference	lookinfo	0x406860	0x4075a5	0x163a3f0	A pool of 
+reference	lookinfo	0x406860	0x4075b4	0x163a060	A smear of 
+reference	lookinfo	0x406860	0x4075bd	0x163a048	A spattering of 
+reference	lookinfo	0x406860	0x4076a6	0x15e873c	 
+reference	lookinfo	0x406860	0x407716	0x163a438	A Fire
+reference	lookinfo	0x406860	0x40773d	0x163a440	Stagnant salt water [
+reference	lookinfo	0x406860	0x407751	0x163a410	Stagnant water [
+reference	lookinfo	0x406860	0x407765	0x163a428	Salt water [
+reference	lookinfo	0x406860	0x407774	0x163a378	Water [
+reference	lookinfo	0x406860	0x4077d3	0x163a380	/7]
+reference	lookinfo	0x406860	0x40783c	0x163a370	Lava [
+reference	lookinfo	0x406860	0x407843	0x163a368	Magma [
+reference	lookinfo	0x406860	0x4078a3	0x163a380	/7]
+reference	lookinfo	0x406860	0x4078d9	0x163a3a8	Track/Spoor
+reference	lookinfo	0x406860	0x407900	0x163a3b8	Track/Spoor: 
+reference	lookinfo	0x406860	0x40793e	0x163a330	unintelligible
+reference	lookinfo	0x406860	0x407c74	0x15edb24	's 
+reference	lookinfo	0x406860	0x407ce4	0x15e873c	 
+reference	lookinfo	0x406860	0x407d49	0x1789108	unknown material
+reference	lookinfo	0x406860	0x407ddb	0x163a34c	right 
+reference	lookinfo	0x406860	0x407dee	0x163a324	left 
+reference	lookinfo	0x406860	0x407e7c	0x163a39c	 print
+reference	lookinfo	0x406860	0x407e8b	0x163a340	 imprint
+reference	lookinfo	0x406860	0x4080b6	0x15edb24	's 
+reference	lookinfo	0x406860	0x40822a	0x15edb24	's 
+reference	lookinfo	0x406860	0x4082c7	0x15edb24	's 
+reference	lookinfo	0x406860	0x408335	0x15e873c	 
+reference	lookinfo	0x406860	0x4083ac	0x163a39c	 print
+reference	lookinfo	0x406860	0x4083bb	0x163a340	 imprint
+reference	lookinfo	0x406860	0x408417	0x163a388	broken vegetation
+reference	lookinfo	0x406860	0x40842b	0x163a35c	/N
+reference	lookinfo	0x406860	0x408437	0x163a360	/S
+reference	lookinfo	0x406860	0x408443	0x163a354	/E
+reference	lookinfo	0x406860	0x40844f	0x163a358	/W
+reference	lookinfo	0x406860	0x408458	0x163a270	/NE
+reference	lookinfo	0x406860	0x408461	0x163a274	/NW
+reference	lookinfo	0x406860	0x40846a	0x163a268	/SE
+reference	lookinfo	0x406860	0x408473	0x163a26c	/SW
+reference	lookinfo	0x406860	0x408496	0x163a2c8	/yours or companion's
+reference	adventure-look-renderer	0x7f3cb0	0x7f3f21	0x16aeaa8	 to view other pages
+reference	adventure-look-renderer	0x7f3cb0	0x7f3f2b	0x16aeab8	ages
+reference	adventure-look-renderer	0x7f3cb0	0x7f4162	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f41f8	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4290	0x16aea9c	 -  
+reference	adventure-look-renderer	0x7f3cb0	0x7f430a	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f43b6	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4440	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4488	0x163a188	a colony of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4525	0x163a094	many 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4573	0x163a0a0	a swarm of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f45f4	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4648	0x163a084	Miasma
+reference	adventure-look-renderer	0x7f3cb0	0x7f465d	0x163a08c	Steam
+reference	adventure-look-renderer	0x7f3cb0	0x7f466a	0x163a0cc	Mist
+reference	adventure-look-renderer	0x7f3cb0	0x7f4683	0x163a0cc	Mist
+reference	adventure-look-renderer	0x7f3cb0	0x7f46c5	0x163a0b0	An Ocean Wave
+reference	adventure-look-renderer	0x7f3cb0	0x7f46da	0x163a0c0	Sea Foam
+reference	adventure-look-renderer	0x7f3cb0	0x7f4716	0x163a038	Lava Mist
+reference	adventure-look-renderer	0x7f3cb0	0x7f471d	0x163a028	Magma Mist
+reference	adventure-look-renderer	0x7f3cb0	0x7f475e	0x16aead4	 Vapor
+reference	adventure-look-renderer	0x7f3cb0	0x7f477f	0x163a020	Smoke
+reference	adventure-look-renderer	0x7f3cb0	0x7f4794	0x15f73b0	Dragonfire
+reference	adventure-look-renderer	0x7f3cb0	0x7f47a9	0x15f739c	Fire
+reference	adventure-look-renderer	0x7f3cb0	0x7f47be	0x163a06c	A Web
+reference	adventure-look-renderer	0x7f3cb0	0x7f4866	0x163a0d8	Item Cloud
+reference	adventure-look-renderer	0x7f3cb0	0x7f48ae	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f48dc	0x163a438	A Fire
+reference	adventure-look-renderer	0x7f3cb0	0x7f493d	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f496b	0x163a078	A Campfire
+reference	adventure-look-renderer	0x7f3cb0	0x7f49cc	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4a1a	0x163a3b8	Track/Spoor: 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4a5d	0x163a330	unintelligible
+reference	adventure-look-renderer	0x7f3cb0	0x7f4b1e	0x15e873c	 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4b3e	0x163a34c	right 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4b4d	0x163a324	left 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4bd3	0x163a39c	 print
+reference	adventure-look-renderer	0x7f3cb0	0x7f4bdc	0x163a340	 imprint
+reference	adventure-look-renderer	0x7f3cb0	0x7f4cd7	0x15edb24	's 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4d78	0x15edb24	's 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4d82	0x15e873c	 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4dd8	0x163a39c	 print
+reference	adventure-look-renderer	0x7f3cb0	0x7f4de1	0x163a340	 imprint
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e04	0x163a388	broken vegetation
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e54	0x163a35c	/N
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e5d	0x163a360	/S
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e66	0x163a354	/E
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e6f	0x163a358	/W
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e78	0x163a270	/NE
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e81	0x163a274	/NW
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e8a	0x163a268	/SE
+reference	adventure-look-renderer	0x7f3cb0	0x7f4e93	0x163a26c	/SW
+reference	adventure-look-renderer	0x7f3cb0	0x7f4eb4	0x163a2c8	/yours or companion's
+reference	adventure-look-renderer	0x7f3cb0	0x7f4f10	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f4f58	0x163a440	Stagnant salt water [
+reference	adventure-look-renderer	0x7f3cb0	0x7f4f8a	0x163a410	Stagnant water [
+reference	adventure-look-renderer	0x7f3cb0	0x7f4fb1	0x163a428	Salt water [
+reference	adventure-look-renderer	0x7f3cb0	0x7f4fd4	0x163a378	Water [
+reference	adventure-look-renderer	0x7f3cb0	0x7f5033	0x163a380	/7]
+reference	adventure-look-renderer	0x7f3cb0	0x7f509e	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f50f9	0x163a370	Lava [
+reference	adventure-look-renderer	0x7f3cb0	0x7f511c	0x163a368	Magma [
+reference	adventure-look-renderer	0x7f3cb0	0x7f517b	0x163a380	/7]
+reference	adventure-look-renderer	0x7f3cb0	0x7f520d	0x1605a98	 - 
+reference	adventure-look-renderer	0x7f3cb0	0x7f52d4	0x163a400	A dusting of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f52ec	0x163a3f0	A pool of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f52f5	0x163a060	A smear of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f52fe	0x163a048	A spattering of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f5316	0x163a3e0	A pile of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f531f	0x163a3c8	A small pile of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f5328	0x16aeac0	A thin layer of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f5490	0x15ed9bc	The 
+reference	adventure-look-renderer	0x7f3cb0	0x7f54cb	0x15e873c	 
+reference	adventure-look-renderer	0x7f3cb0	0x7f556c	0x15eb518	 of 
+reference	adventure-look-renderer	0x7f3cb0	0x7f55c2	0x15fd6a8	 are 
+reference	adventure-look-renderer	0x7f3cb0	0x7f55cb	0x15f71e4	 is 
+reference	adventure-look-renderer	0x7f3cb0	0x7f56cd	0x1646cc4	here
+reference	adventure-look-renderer	0x7f3cb0	0x7f56ed	0x164bfbc	far
+reference	adventure-look-renderer	0x7f3cb0	0x7f56fb	0x16aea18	a day's travel
+reference	adventure-look-renderer	0x7f3cb0	0x7f5709	0x16aea00	nearly a day's travel
+reference	adventure-look-renderer	0x7f3cb0	0x7f5717	0x16ae750	a half day's travel
+reference	adventure-look-renderer	0x7f3cb0	0x7f5724	0x16ae740	a short walk
+reference	adventure-look-renderer	0x7f3cb0	0x7f5734	0x16737e0	 to the 
+reference	adventure-look-renderer	0x7f3cb0	0x7f5762	0x163b8fc	north
+reference	adventure-look-renderer	0x7f3cb0	0x7f576e	0x16ae778	north-northeast
+reference	adventure-look-renderer	0x7f3cb0	0x7f5777	0x1646bf8	northeast
+reference	adventure-look-renderer	0x7f3cb0	0x7f5780	0x16ae768	east-northeast
+reference	adventure-look-renderer	0x7f3cb0	0x7f5789	0x163b8f4	east
+reference	adventure-look-renderer	0x7f3cb0	0x7f5792	0x16ae710	east-southeast
+reference	adventure-look-renderer	0x7f3cb0	0x7f579b	0x1646b88	southeast
+reference	adventure-look-renderer	0x7f3cb0	0x7f57a4	0x16ae700	south-southeast
+reference	adventure-look-renderer	0x7f3cb0	0x7f57ad	0x163b8ec	south
+reference	adventure-look-renderer	0x7f3cb0	0x7f57b6	0x16ae730	south-southwest
+reference	adventure-look-renderer	0x7f3cb0	0x7f57bf	0x1646b78	southwest
+reference	adventure-look-renderer	0x7f3cb0	0x7f57c8	0x16ae720	west-southwest
+reference	adventure-look-renderer	0x7f3cb0	0x7f57d1	0x163b834	west
+reference	adventure-look-renderer	0x7f3cb0	0x7f57da	0x16ae8a8	west-northwest
+reference	adventure-look-renderer	0x7f3cb0	0x7f57e3	0x1646be8	northwest
+reference	adventure-look-renderer	0x7f3cb0	0x7f57ec	0x16ae898	north-northwest
+reference	adventure-look-renderer	0x7f3cb0	0x7f57fc	0x15e85b4	.
+reference	adventure-look-renderer	0x7f3cb0	0x7f5f2f	0x16ae928	This is an unintelligible mess.
+reference	adventure-look-renderer	0x7f3cb0	0x7f5f39	0x16ae938	elligible mess.
+reference	adventure-look-renderer	0x7f3cb0	0x7f5f46	0x16ae940	e mess.
+reference	adventure-look-renderer	0x7f3cb0	0x7f5f4f	0x16ae944	ss.
+reference	adventure-look-renderer	0x7f3cb0	0x7f5f5a	0x16ae946	.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6057	0x16aebfc	thick 
+reference	adventure-look-renderer	0x7f3cb0	0x7f606a	0x16aebf4	light 
+reference	adventure-look-renderer	0x7f3cb0	0x7f607f	0x16aec0c	faint 
+reference	adventure-look-renderer	0x7f3cb0	0x7f60d4	0x15e873c	 
+reference	adventure-look-renderer	0x7f3cb0	0x7f60f5	0x16aec04	deep 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6108	0x16ae980	shallow 
+reference	adventure-look-renderer	0x7f3cb0	0x7f611d	0x16ae978	vague 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6134	0x163a34c	right 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6141	0x163a324	left 
+reference	adventure-look-renderer	0x7f3cb0	0x7f61d6	0x163a39c	 print
+reference	adventure-look-renderer	0x7f3cb0	0x7f61e7	0x16ae9a0	 imprint in the 
+reference	adventure-look-renderer	0x7f3cb0	0x7f62e2	0x16ae990	 is here.
+reference	adventure-look-renderer	0x7f3cb0	0x7f62eb	0x15e85b4	.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6420	0x15ed67c	A 
+reference	adventure-look-renderer	0x7f3cb0	0x7f64df	0x15edb24	's 
+reference	adventure-look-renderer	0x7f3cb0	0x7f64f9	0x16aebfc	thick 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6507	0x16aebf4	light 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6516	0x16aec0c	faint 
+reference	adventure-look-renderer	0x7f3cb0	0x7f65db	0x15edb24	's 
+reference	adventure-look-renderer	0x7f3cb0	0x7f65f1	0x16aec04	deep 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6603	0x16ae980	shallow 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6616	0x16ae978	vague 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6623	0x15e873c	 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6669	0x163a39c	 print
+reference	adventure-look-renderer	0x7f3cb0	0x7f667a	0x16ae9a0	 imprint in the 
+reference	adventure-look-renderer	0x7f3cb0	0x7f6775	0x16ae990	 is here.
+reference	adventure-look-renderer	0x7f3cb0	0x7f677e	0x15e85b4	.
+reference	adventure-look-renderer	0x7f3cb0	0x7f67e7	0x16aec38	The vegetation is heavily damaged here.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6814	0x16aec18	The vegetation is bent here.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6843	0x16aec80	The vegetation has been slightly perturbed here.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6866	0x16aec60	The vegetation is broken here.
+reference	adventure-look-renderer	0x7f3cb0	0x7f68df	0x16ae910	The signs lead north.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6909	0x16ae960	The signs lead south.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6933	0x16ae948	The signs lead east.
+reference	adventure-look-renderer	0x7f3cb0	0x7f695d	0x16aea48	The signs lead west.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6987	0x16aea28	The signs lead northeast.
+reference	adventure-look-renderer	0x7f3cb0	0x7f69ae	0x16aea80	The signs lead northwest.
+reference	adventure-look-renderer	0x7f3cb0	0x7f69d5	0x16aea60	The signs lead southeast.
+reference	adventure-look-renderer	0x7f3cb0	0x7f69fc	0x16ae9e0	The signs lead southwest.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6a69	0x178b340	""""
+reference	adventure-look-renderer	0x7f3cb0	0x7f6a76	0x16ae9b8	They belong to you or a companion.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6a80	0x16ae9c8	ou or a companion.
+reference	adventure-look-renderer	0x7f3cb0	0x7f6a8b	0x16ae9d8	n.
+reference	material-noun	0x14d1920	0x14d1987	0x1614d54	plant
+reference	material-noun	0x14d1920	0x14d19a9	0x16158b4	yarn
+reference	material-noun	0x14d1920	0x14d19d1	0x16158a4	cloth
+reference	material-noun	0x14d1920	0x14d19f1	0x16158ac	silk
+reference	material-noun	0x14d1920	0x14d1a11	0x16158c4	bone
+reference	material-noun	0x14d1920	0x14d1a31	0x16156d0	leather
+reference	material-noun	0x14d1920	0x14d1a51	0x16158bc	shell
+reference	material-noun	0x14d1920	0x14d1a73	0x16158d4	soap
+reference	material-noun	0x14d1920	0x14d1a95	0x1789150	ivory/tooth
+reference	material-noun	0x14d1920	0x14d1ab7	0x16158e4	horn
+reference	material-noun	0x14d1920	0x14d1ad9	0x16158dc	pearl
+reference	material-noun	0x14d1920	0x14d1b08	0x16156d8	wood
+reference	material-noun	0x14d1920	0x14d1b0f	0x16a12ec	wooden
+reference	material-noun	0x14d1920	0x14d1c65	0x15edb24	's 
+reference	material-noun	0x14d1920	0x14d1cf9	0x15e873c	 
+reference	material-noun	0x14d1920	0x14d1d4a	0x1789108	unknown material
+reference	construction-material	0xa46f20	0xa46fbb	0x16cc1b0	rough 
+reference	construction-material	0xa46f20	0xa46fd5	0x1789108	unknown material
+reference	construction-material	0xa46f20	0xa47151	0x15edb24	's 
+reference	construction-material	0xa46f20	0xa471f1	0x15e873c	 
+reference	construction-material	0xa46f20	0xa47248	0x164b74c	-
+reference	construction-material	0xa46f20	0xa472a2	0x16cc1b8	Reinforced 
+reference	construction-material	0xa46f20	0xa47402	0x15edb24	's 
+reference	construction-material	0xa46f20	0xa4749f	0x15e873c	 
+reference	construction-material	0xa46f20	0xa47514	0x16cc1c4	 log
+reference	construction-material	0xa46f20	0xa47523	0x16cc1cc	 block
+reference	plant-parts	0x13ffd20	0x13ffe9f	0x1717564	 roots
+reference	plant-parts	0x13ffd20	0x13ffeff	0x171752c	 trunk
+reference	plant-parts	0x13ffd20	0x13fff4b	0x16aebfc	thick 
+reference	plant-parts	0x13ffd20	0x13fff74	0x1717570	 branches
+reference	plant-parts	0x13ffd20	0x13fffb6	0x1785778	smooth 
+reference	plant-parts	0x13ffd20	0x13fffe9	0x1717570	 branches
+reference	plant-parts	0x13ffd20	0x1400049	0x1717570	 branches
+reference	plant-parts	0x13ffd20	0x14000a9	0x1717554	 twigs
+reference	plant-parts	0x13ffd20	0x140010f	0x171755c	 cap
+classic	terrain	0xe782a0	0xe7855d	0x172c1c8	Muddy 
+classic	terrain	0xe782a0	0xe785d7	0x172c1d0	Snow-covered 
+classic	terrain	0xe782a0	0xe78603	0x172c1e0	Mossy 
+classic	terrain	0xe782a0	0xe786be	0x15e40c4	, 
+classic	terrain	0xe782a0	0xe78705	0x172c284	Dead 
+classic	terrain	0xe782a0	0xe78c77	0x15e40c4	, 
+classic	terrain	0xe782a0	0xe78cc2	0x1610434	Tree
+classic	terrain	0xe782a0	0xe78d7c	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe78d8a	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7913e	0x15e40c4	, 
+classic	terrain	0xe782a0	0xe7917e	0x172c2a0	Grass
+classic	terrain	0xe782a0	0xe79200	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7920e	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7921d	0x172c254	Dry 
+classic	terrain	0xe782a0	0xe795dd	0x15e40c4	, 
+classic	terrain	0xe782a0	0xe79638	0x172c260	Dry Grass
+classic	terrain	0xe782a0	0xe796be	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe796cc	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe796db	0x172c284	Dead 
+classic	terrain	0xe782a0	0xe796fb	0x172c270	Dead Grass
+classic	terrain	0xe782a0	0xe7970f	0x172c27c	Level
+classic	terrain	0xe782a0	0xe79716	0x172c218	Sculpted
+classic	terrain	0xe782a0	0xe7972e	0x172c2e8	 Ice Floor
+classic	terrain	0xe782a0	0xe79742	0x172c300	Shoddy 
+classic	terrain	0xe782a0	0xe7976e	0x172c2f4	 Floor
+classic	terrain	0xe782a0	0xe797fe	0x172c308	 Track (N)
+classic	terrain	0xe782a0	0xe7982f	0x172c308	 Track (N)
+classic	terrain	0xe782a0	0xe79843	0x172c2a8	Ice Track (N)
+classic	terrain	0xe782a0	0xe798d3	0x172c2b8	 Track (S)
+classic	terrain	0xe782a0	0xe79904	0x172c2b8	 Track (S)
+classic	terrain	0xe782a0	0xe79918	0x172c2c8	Ice Track (S)
+classic	terrain	0xe782a0	0xe799a8	0x172c2d8	 Track (E)
+classic	terrain	0xe782a0	0xe799d9	0x172c2d8	 Track (E)
+classic	terrain	0xe782a0	0xe799ed	0x172c358	Ice Track (E)
+classic	terrain	0xe782a0	0xe79a7d	0x172c368	 Track (W)
+classic	terrain	0xe782a0	0xe79aae	0x172c368	 Track (W)
+classic	terrain	0xe782a0	0xe79ac2	0x172c378	Ice Track (W)
+classic	terrain	0xe782a0	0xe79b52	0x172c388	 Track (NS)
+classic	terrain	0xe782a0	0xe79b83	0x172c388	 Track (NS)
+classic	terrain	0xe782a0	0xe79b97	0x172c318	Ice Track (NS)
+classic	terrain	0xe782a0	0xe79c27	0x172c328	 Track (NE)
+classic	terrain	0xe782a0	0xe79c58	0x172c328	 Track (NE)
+classic	terrain	0xe782a0	0xe79c6c	0x172c338	Ice Track (NE)
+classic	terrain	0xe782a0	0xe79cfc	0x172c348	 Track (NW)
+classic	terrain	0xe782a0	0xe79d2d	0x172c348	 Track (NW)
+classic	terrain	0xe782a0	0xe79d41	0x172c3d8	Ice Track (NW)
+classic	terrain	0xe782a0	0xe79dd1	0x172c3e8	 Track (SE)
+classic	terrain	0xe782a0	0xe79e02	0x172c3e8	 Track (SE)
+classic	terrain	0xe782a0	0xe79e16	0x172c3f8	Ice Track (SE)
+classic	terrain	0xe782a0	0xe79ea6	0x172c408	 Track (SW)
+classic	terrain	0xe782a0	0xe79ed7	0x172c408	 Track (SW)
+classic	terrain	0xe782a0	0xe79eeb	0x172c398	Ice Track (SW)
+classic	terrain	0xe782a0	0xe79f7b	0x172c3a8	 Track (EW)
+classic	terrain	0xe782a0	0xe79fac	0x172c3a8	 Track (EW)
+classic	terrain	0xe782a0	0xe79fc0	0x172c3b8	Ice Track (EW)
+classic	terrain	0xe782a0	0xe7a050	0x172c3c8	 Track (NSE)
+classic	terrain	0xe782a0	0xe7a081	0x172c3c8	 Track (NSE)
+classic	terrain	0xe782a0	0xe7a095	0x172c458	Ice Track (NSE)
+classic	terrain	0xe782a0	0xe7a125	0x172c468	 Track (NSW)
+classic	terrain	0xe782a0	0xe7a156	0x172c468	 Track (NSW)
+classic	terrain	0xe782a0	0xe7a16a	0x172c478	Ice Track (NSW)
+classic	terrain	0xe782a0	0xe7a1fa	0x172c488	 Track (NEW)
+classic	terrain	0xe782a0	0xe7a22b	0x172c488	 Track (NEW)
+classic	terrain	0xe782a0	0xe7a23f	0x172c418	Ice Track (NEW)
+classic	terrain	0xe782a0	0xe7a2cf	0x172c428	 Track (SEW)
+classic	terrain	0xe782a0	0xe7a300	0x172c428	 Track (SEW)
+classic	terrain	0xe782a0	0xe7a314	0x172c438	Ice Track (SEW)
+classic	terrain	0xe782a0	0xe7a3a4	0x172c448	 Track (NSEW)
+classic	terrain	0xe782a0	0xe7a3d5	0x172c448	 Track (NSEW)
+classic	terrain	0xe782a0	0xe7a3e9	0x172c4c8	Ice Track (NSEW)
+classic	terrain	0xe782a0	0xe7a439	0x172c228	Detailed
+classic	terrain	0xe782a0	0xe7a46f	0x15e3720	 
+classic	terrain	0xe782a0	0xe7a482	0x172c228	Detailed
+classic	terrain	0xe782a0	0xe7a49b	0x15e3720	 
+classic	terrain	0xe782a0	0xe7a4b1	0x172c228	Detailed
+classic	terrain	0xe782a0	0xe7a4ca	0x15e3720	 
+classic	terrain	0xe782a0	0xe7a4e0	0x172c228	Detailed
+classic	terrain	0xe782a0	0xe7a4f9	0x15e3720	 
+classic	terrain	0xe782a0	0xe7a50c	0x172c228	Detailed
+classic	terrain	0xe782a0	0xe7a525	0x15e3720	 
+classic	terrain	0xe782a0	0xe7a538	0x172c228	Detailed
+classic	terrain	0xe782a0	0xe7a551	0x15e3720	 
+classic	terrain	0xe782a0	0xe7a55a	0x172c1f0	Smooth 
+classic	terrain	0xe782a0	0xe7a602	0x172c2f4	 Floor
+classic	terrain	0xe782a0	0xe7a692	0x172c4e0	 Boulder
+classic	terrain	0xe782a0	0xe7a6a6	0x172c4f0	Driftwood
+classic	terrain	0xe782a0	0xe7a73c	0x172c500	 Pebbles
+classic	terrain	0xe782a0	0xe7a7e7	0x172c498	 Cavern Floor
+classic	terrain	0xe782a0	0xe7a7f3	0x172c4a8	Wet 
+classic	terrain	0xe782a0	0xe7a89b	0x172c498	 Cavern Floor
+classic	terrain	0xe782a0	0xe7a92a	0x15e40c4	, 
+classic	terrain	0xe782a0	0xe7a944	0x172c284	Dead 
+classic	terrain	0xe782a0	0xe7a97c	0x172c4b0	Young 
+classic	terrain	0xe782a0	0xe7a9d1	0x172c4b8	 Sapling
+classic	terrain	0xe782a0	0xe7a9ef	0x172bcb8	Sapling
+classic	terrain	0xe782a0	0xe7aa85	0x15e40c4	, 
+classic	terrain	0xe782a0	0xe7aa9f	0x172c284	Dead 
+classic	terrain	0xe782a0	0xe7aeb9	0x15e40c4	, 
+classic	terrain	0xe782a0	0xe7af14	0x172bcc0	Shrub
+classic	terrain	0xe782a0	0xe7af28	0x172bcc8	Furrowed 
+classic	terrain	0xe782a0	0xe7afb6	0x172bcd4	Ashes
+classic	terrain	0xe782a0	0xe7afc2	0x172bc78	Waterfall
+classic	terrain	0xe782a0	0xe7afd6	0x172bc88	River Source
+classic	terrain	0xe782a0	0xe7afea	0x172bc98	Chasm
+classic	terrain	0xe782a0	0xe7affe	0x172bca0	Eerie Glowing Pit
+classic	terrain	0xe782a0	0xe7b012	0x171bb04	Ice
+classic	terrain	0xe782a0	0xe7b026	0x172bd28	Glowing Floor
+classic	terrain	0xe782a0	0xe7b03a	0x172bd38	Glowing Barrier
+classic	terrain	0xe782a0	0xe7b04e	0x172bd48	Semi-molten Rock
+classic	terrain	0xe782a0	0xe7b07e	0x172bd60	Lava Flow
+classic	terrain	0xe782a0	0xe7b08f	0x172bce0	Magma Flow
+classic	terrain	0xe782a0	0xe7b0a0	0x172bcf0	Murky Pool
+classic	terrain	0xe782a0	0xe7b0cb	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7b0da	0x172bd10	Murky Pool Slope
+classic	terrain	0xe782a0	0xe7b0f4	0x172bdd4	River
+classic	terrain	0xe782a0	0xe7b106	0x172bddc	Brook
+classic	terrain	0xe782a0	0xe7b184	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7b192	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7b1b0	0x172bde8	 Upward Stairway
+classic	terrain	0xe782a0	0xe7b1c4	0x172be00	Grassy Upward Stairway
+classic	terrain	0xe782a0	0xe7b24a	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7b258	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7b276	0x172bd70	 Up/Down Stairway
+classic	terrain	0xe782a0	0xe7b28a	0x172bd88	Grassy Up/Down Stairway
+classic	terrain	0xe782a0	0xe7b310	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7b31e	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7b33c	0x172bda0	 Downward Stairway
+classic	terrain	0xe782a0	0xe7b350	0x172bdb8	Grassy Downward Stairway
+classic	terrain	0xe782a0	0xe7b364	0x172c300	Shoddy 
+classic	terrain	0xe782a0	0xe7b390	0x172bd70	 Up/Down Stairway
+classic	terrain	0xe782a0	0xe7b41d	0x172c300	Shoddy 
+classic	terrain	0xe782a0	0xe7b449	0x172bda0	 Downward Stairway
+classic	terrain	0xe782a0	0xe7b4d9	0x172bda0	 Downward Stairway
+classic	terrain	0xe782a0	0xe7b4ed	0x172c300	Shoddy 
+classic	terrain	0xe782a0	0xe7b519	0x172bde8	 Upward Stairway
+classic	terrain	0xe782a0	0xe7b52d	0x172be70	Underworld Gate
+classic	terrain	0xe782a0	0xe7b5ba	0x172be80	Ice Up/Down Stairway
+classic	terrain	0xe782a0	0xe7b5ce	0x172be98	Ice Downward Stairway
+classic	terrain	0xe782a0	0xe7b5e2	0x172beb0	Ice Upward Stairway
+classic	terrain	0xe782a0	0xe7b60d	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7b68e	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7b69c	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7b6ba	0x172be18	 Upward Slope
+classic	terrain	0xe782a0	0xe7b6ce	0x172be28	Grassy Upward Slope
+classic	terrain	0xe782a0	0xe7b6f9	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7b77a	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7b789	0x172c254	Dry 
+classic	terrain	0xe782a0	0xe7b79a	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7b7a9	0x172c254	Dry 
+classic	terrain	0xe782a0	0xe7b7b5	0x172be40	Dry Grass Upward Slope
+classic	terrain	0xe782a0	0xe7b7e0	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7b861	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7b870	0x172c284	Dead 
+classic	terrain	0xe782a0	0xe7b881	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7b890	0x172c284	Dead 
+classic	terrain	0xe782a0	0xe7b89c	0x172be58	Dead Grass Upward Slope
+classic	terrain	0xe782a0	0xe7b8c7	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7b952	0x172bf28	 Upward Track (N)
+classic	terrain	0xe782a0	0xe7b97d	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7b9a9	0x172bf28	 Upward Track (N)
+classic	terrain	0xe782a0	0xe7b9d4	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7b9e3	0x172bf40	Ice Upward Track (N)
+classic	terrain	0xe782a0	0xe7ba0e	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7ba99	0x172bf58	 Upward Track (S)
+classic	terrain	0xe782a0	0xe7bac4	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7baf0	0x172bf58	 Upward Track (S)
+classic	terrain	0xe782a0	0xe7bb1b	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bb2a	0x172bf70	Ice Upward Track (S)
+classic	terrain	0xe782a0	0xe7bb55	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bbe0	0x172bec8	 Upward Track (E)
+classic	terrain	0xe782a0	0xe7bc0b	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bc37	0x172bec8	 Upward Track (E)
+classic	terrain	0xe782a0	0xe7bc62	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bc71	0x172bee0	Ice Upward Track (E)
+classic	terrain	0xe782a0	0xe7bc9c	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bd27	0x172bef8	 Upward Track (W)
+classic	terrain	0xe782a0	0xe7bd52	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bd7e	0x172bef8	 Upward Track (W)
+classic	terrain	0xe782a0	0xe7bda9	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bdb8	0x172bf10	Ice Upward Track (W)
+classic	terrain	0xe782a0	0xe7bde3	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7be6e	0x172bfe8	 Upward Track (NS)
+classic	terrain	0xe782a0	0xe7be99	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bec5	0x172bfe8	 Upward Track (NS)
+classic	terrain	0xe782a0	0xe7bef0	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7beff	0x172c000	Ice Upward Track (NS)
+classic	terrain	0xe782a0	0xe7bf2a	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7bfb5	0x172c018	 Upward Track (NE)
+classic	terrain	0xe782a0	0xe7bfe0	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c00c	0x172c018	 Upward Track (NE)
+classic	terrain	0xe782a0	0xe7c037	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c046	0x172c030	Ice Upward Track (NE)
+classic	terrain	0xe782a0	0xe7c071	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c0fc	0x172bf88	 Upward Track (NW)
+classic	terrain	0xe782a0	0xe7c127	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c153	0x172bf88	 Upward Track (NW)
+classic	terrain	0xe782a0	0xe7c17e	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c18d	0x172bfa0	Ice Upward Track (NW)
+classic	terrain	0xe782a0	0xe7c1b8	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c243	0x172bfb8	 Upward Track (SE)
+classic	terrain	0xe782a0	0xe7c26e	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c29a	0x172bfb8	 Upward Track (SE)
+classic	terrain	0xe782a0	0xe7c2c5	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c2d4	0x172bfd0	Ice Upward Track (SE)
+classic	terrain	0xe782a0	0xe7c2ff	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c38a	0x172c0a8	 Upward Track (SW)
+classic	terrain	0xe782a0	0xe7c3b5	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c3e1	0x172c0a8	 Upward Track (SW)
+classic	terrain	0xe782a0	0xe7c40c	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c41b	0x172c0c0	Ice Upward Track (SW)
+classic	terrain	0xe782a0	0xe7c446	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c4d1	0x172c0d8	 Upward Track (EW)
+classic	terrain	0xe782a0	0xe7c4fc	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c528	0x172c0d8	 Upward Track (EW)
+classic	terrain	0xe782a0	0xe7c553	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c562	0x172c0f0	Ice Upward Track (EW)
+classic	terrain	0xe782a0	0xe7c58d	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c618	0x172c048	 Upward Track (NSE)
+classic	terrain	0xe782a0	0xe7c643	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c66f	0x172c048	 Upward Track (NSE)
+classic	terrain	0xe782a0	0xe7c69a	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c6a9	0x172c060	Ice Upward Track (NSE)
+classic	terrain	0xe782a0	0xe7c6d4	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c75f	0x172c078	 Upward Track (NSW)
+classic	terrain	0xe782a0	0xe7c78a	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c7b6	0x172c078	 Upward Track (NSW)
+classic	terrain	0xe782a0	0xe7c7e1	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c7f0	0x172c090	Ice Upward Track (NSW)
+classic	terrain	0xe782a0	0xe7c81b	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c8a6	0x172c160	 Upward Track (NEW)
+classic	terrain	0xe782a0	0xe7c8d1	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c8fd	0x172c160	 Upward Track (NEW)
+classic	terrain	0xe782a0	0xe7c928	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c937	0x172c178	Ice Upward Track (NEW)
+classic	terrain	0xe782a0	0xe7c962	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7c9ed	0x172c190	 Upward Track (SEW)
+classic	terrain	0xe782a0	0xe7ca18	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7ca44	0x172c190	 Upward Track (SEW)
+classic	terrain	0xe782a0	0xe7ca6f	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7ca7e	0x172c1a8	Ice Upward Track (SEW)
+classic	terrain	0xe782a0	0xe7caa9	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7cb34	0x172c108	 Upward Track (NSEW)
+classic	terrain	0xe782a0	0xe7cb5f	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7cb8b	0x172c108	 Upward Track (NSEW)
+classic	terrain	0xe782a0	0xe7cbb6	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7cbc5	0x172c120	Ice Upward Track (NSEW)
+classic	terrain	0xe782a0	0xe7cbf0	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7cc8f	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7ccbb	0x172be18	 Upward Slope
+classic	terrain	0xe782a0	0xe7cce6	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7ccf5	0x172c138	Glacial Upward Slope
+classic	terrain	0xe782a0	0xe7cd24	0x172bd00	Unusable 
+classic	terrain	0xe782a0	0xe7cdef	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7cdfd	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7ce1b	0x172c150	 Downward Slope
+classic	terrain	0xe782a0	0xe7ce2f	0x172c570	Grassy Downward Slope
+classic	terrain	0xe782a0	0xe7ceb5	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7cec4	0x172c254	Dry 
+classic	terrain	0xe782a0	0xe7ced5	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7cee4	0x172c254	Dry 
+classic	terrain	0xe782a0	0xe7cef0	0x172c588	Dry Grass Downward Slope
+classic	terrain	0xe782a0	0xe7cf76	0x172c28c	Dense 
+classic	terrain	0xe782a0	0xe7cf85	0x172c284	Dead 
+classic	terrain	0xe782a0	0xe7cf96	0x172c298	Sparse 
+classic	terrain	0xe782a0	0xe7cfa5	0x172c284	Dead 
+classic	terrain	0xe782a0	0xe7cfb1	0x172c5a8	Dead Grass Downward Slope
+classic	terrain	0xe782a0	0xe7d03e	0x172c860	Glacial Downward Slope
+classic	terrain	0xe782a0	0xe7d06f	0x172c150	 Downward Slope
+classic	terrain	0xe782a0	0xe7d12a	0x172c5c8	 Downward Track (N)
+classic	terrain	0xe782a0	0xe7d15b	0x172c5c8	 Downward Track (N)
+classic	terrain	0xe782a0	0xe7d16f	0x172c510	Ice Downward Track (N)
+classic	terrain	0xe782a0	0xe7d1ff	0x172c528	 Downward Track (S)
+classic	terrain	0xe782a0	0xe7d230	0x172c528	 Downward Track (S)
+classic	terrain	0xe782a0	0xe7d244	0x172c540	Ice Downward Track (S)
+classic	terrain	0xe782a0	0xe7d2d4	0x172c558	 Downward Track (E)
+classic	terrain	0xe782a0	0xe7d305	0x172c558	 Downward Track (E)
+classic	terrain	0xe782a0	0xe7d319	0x172c640	Ice Downward Track (E)
+classic	terrain	0xe782a0	0xe7d3a9	0x172c658	 Downward Track (W)
+classic	terrain	0xe782a0	0xe7d3da	0x172c658	 Downward Track (W)
+classic	terrain	0xe782a0	0xe7d3ee	0x172c670	Ice Downward Track (W)
+classic	terrain	0xe782a0	0xe7d47e	0x172c688	 Downward Track (NS)
+classic	terrain	0xe782a0	0xe7d4af	0x172c688	 Downward Track (NS)
+classic	terrain	0xe782a0	0xe7d4c3	0x172c5e0	Ice Downward Track (NS)
+classic	terrain	0xe782a0	0xe7d553	0x172c5f8	 Downward Track (NE)
+classic	terrain	0xe782a0	0xe7d584	0x172c5f8	 Downward Track (NE)
+classic	terrain	0xe782a0	0xe7d598	0x172c610	Ice Downward Track (NE)
+classic	terrain	0xe782a0	0xe7d628	0x172c628	 Downward Track (NW)
+classic	terrain	0xe782a0	0xe7d659	0x172c628	 Downward Track (NW)
+classic	terrain	0xe782a0	0xe7d66d	0x172c700	Ice Downward Track (NW)
+classic	terrain	0xe782a0	0xe7d6fd	0x172c718	 Downward Track (SE)
+classic	terrain	0xe782a0	0xe7d72e	0x172c718	 Downward Track (SE)
+classic	terrain	0xe782a0	0xe7d742	0x172c730	Ice Downward Track (SE)
+classic	terrain	0xe782a0	0xe7d7d2	0x172c748	 Downward Track (SW)
+classic	terrain	0xe782a0	0xe7d803	0x172c748	 Downward Track (SW)
+classic	terrain	0xe782a0	0xe7d817	0x172c6a0	Ice Downward Track (SW)
+classic	terrain	0xe782a0	0xe7d8a7	0x172c6b8	 Downward Track (EW)
+classic	terrain	0xe782a0	0xe7d8d8	0x172c6b8	 Downward Track (EW)
+classic	terrain	0xe782a0	0xe7d8ec	0x172c6d0	Ice Downward Track (EW)
+classic	terrain	0xe782a0	0xe7d97c	0x172c6e8	 Downward Track (NSE)
+classic	terrain	0xe782a0	0xe7d9ad	0x172c6e8	 Downward Track (NSE)
+classic	terrain	0xe782a0	0xe7d9c1	0x172c7d0	Ice Downward Track (NSE)
+classic	terrain	0xe782a0	0xe7da51	0x172c7f0	 Downward Track (NSW)
+classic	terrain	0xe782a0	0xe7da82	0x172c7f0	 Downward Track (NSW)
+classic	terrain	0xe782a0	0xe7da96	0x172c808	Ice Downward Track (NSW)
+classic	terrain	0xe782a0	0xe7db26	0x172c828	 Downward Track (NEW)
+classic	terrain	0xe782a0	0xe7db57	0x172c828	 Downward Track (NEW)
+classic	terrain	0xe782a0	0xe7db6b	0x172c760	Ice Downward Track (NEW)
+classic	terrain	0xe782a0	0xe7dbfb	0x172c780	 Downward Track (SEW)
+classic	terrain	0xe782a0	0xe7dc2c	0x172c780	 Downward Track (SEW)
+classic	terrain	0xe782a0	0xe7dc40	0x172c798	Ice Downward Track (SEW)
+classic	terrain	0xe782a0	0xe7dcd0	0x172c7b8	 Downward Track (NSEW)
+classic	terrain	0xe782a0	0xe7dd01	0x172c7b8	 Downward Track (NSEW)
+classic	terrain	0xe782a0	0xe7dd15	0x172c840	Ice Downward Track (NSEW)
+classic	terrain	0xe782a0	0xe7dd29	0x172c878	Downward Slope
+classic	terrain	0xe782a0	0xe7dd3d	0x172c888	Open Space
+classic	terrain	0xe782a0	0xe7dd57	0x15e7160	Unknown
+classic	terrain	0xe782a0	0xe7dd86	0x172c1e8	Warm 
+classic	terrain	0xe782a0	0xe7ddb2	0x172c1c0	Damp 
+classic	terrain	0xe782a0	0xe7de26	0x172c1c8	Muddy 
+classic	terrain	0xe782a0	0xe7de9b	0x172c1d0	Snow-covered 
+classic	terrain	0xe782a0	0xe7dec7	0x172c1e0	Mossy 
+classic	terrain	0xe782a0	0xe7dfe7	0x172c228	Detailed
+classic	terrain	0xe782a0	0xe7dfee	0x172c218	Sculpted
+classic	terrain	0xe782a0	0xe7e047	0x15e3720	 
+classic	terrain	0xe782a0	0xe7e1b1	0x172c1f0	Smooth 
+classic	terrain	0xe782a0	0xe7e1b8	0x172c248	Straight 
+classic	terrain	0xe782a0	0xe7e1fd	0x172c1f8	Exposed 
+classic	terrain	0xe782a0	0xe7e20c	0x172c238	Rough-hewn 
+classic	terrain	0xe782a0	0xe7e2df	0x171bb04	Ice
+classic	terrain	0xe782a0	0xe7e331	0x15e3720	 
+classic	terrain	0xe782a0	0xe7e3f9	0x1628170	Wall
+classic	terrain	0xe782a0	0xe7e400	0x172c210	Cluster
+classic	terrain	0xe782a0	0xe7e416	0x1628170	Wall
+classic	terrain	0xe782a0	0xe7e425	0x1628100	Fortification
+classic	terrain	0xe782a0	0xe7e434	0x172c204	Pillar
+classic	lookinfo	0x404420	0x404592	0x1634ea0	Quiet movement
+classic	lookinfo	0x404420	0x404599	0x1634fa8	Loud movement
+classic	lookinfo	0x404420	0x4045ae	0x1634e78	Light combat
+classic	lookinfo	0x404420	0x4045b5	0x1634eb0	Heavy combat
+classic	lookinfo	0x404420	0x4045e0	0x1634ee0	Quiet vocalization
+classic	lookinfo	0x404420	0x4045e7	0x1634e88	Loud vocalization
+classic	lookinfo	0x404420	0x404609	0x1634ec0	Quiet grinding
+classic	lookinfo	0x404420	0x404610	0x1634ef8	Loud grinding
+classic	lookinfo	0x404420	0x404628	0x1634ed0	Storytelling
+classic	lookinfo	0x404420	0x404637	0x1634e10	Preaching
+classic	lookinfo	0x404420	0x404646	0x1634e20	Poem recitation
+classic	lookinfo	0x404420	0x404655	0x1634df8	Musical voice
+classic	lookinfo	0x404420	0x404661	0x1634e08	Dancing
+classic	lookinfo	0x404420	0x404673	0x1634e60	 (heard
+classic	lookinfo	0x404420	0x40468e	0x1634e68	 recently
+classic	lookinfo	0x404420	0x4046a0	0x16102d8	)
+classic	lookinfo	0x404420	0x4046d5	0x1634e30	Creature (remembered)
+classic	lookinfo	0x404420	0x4046e7	0x1634e48	Object (remembered)
+classic	lookinfo	0x404420	0x404705	0x1634d50	Structure (remembered)
+classic	lookinfo	0x404420	0x404723	0x1634d68	Wall (remembered)
+classic	lookinfo	0x404420	0x404741	0x1634d10	Upward stair (remembered)
+classic	lookinfo	0x404420	0x40475f	0x1634d30	Downward stair (remembered)
+classic	lookinfo	0x404420	0x40477d	0x1634db8	Updown stair (remembered)
+classic	lookinfo	0x404420	0x40479b	0x1634dd8	Upward ramp (remembered)
+classic	lookinfo	0x404420	0x4047b9	0x1634d80	Downward ramp (remembered)
+classic	lookinfo	0x404420	0x4047d7	0x1634da0	Floor (remembered)
+classic	lookinfo	0x404420	0x4047ef	0x1635160	Open air (remembered)
+classic	lookinfo	0x404420	0x404813	0x1635178	Blood of the living (sensed)
+classic	lookinfo	0x404420	0x4049fc	0x1635148	a colony of 
+classic	lookinfo	0x404420	0x404b50	0x1635158	many 
+classic	lookinfo	0x404420	0x404c01	0x16351a8	a swarm of 
+classic	lookinfo	0x404420	0x404cff	0x16351b4	Miasma
+classic	lookinfo	0x404420	0x404d27	0x16351a0	Mist
+classic	lookinfo	0x404420	0x404d2e	0x1635198	Steam
+classic	lookinfo	0x404420	0x404d55	0x16351a0	Mist
+classic	lookinfo	0x404420	0x404eb4	0x1635100	Item Cloud
+classic	lookinfo	0x404420	0x404ed2	0x1635110	An Ocean Wave
+classic	lookinfo	0x404420	0x404ef0	0x16350e0	Sea Foam
+classic	lookinfo	0x404420	0x404f14	0x1635130	Lava Mist
+classic	lookinfo	0x404420	0x404f1b	0x16350f0	Magma Mist
+classic	lookinfo	0x404420	0x404f6c	0x163513c	 vapor
+classic	lookinfo	0x404420	0x404f8c	0x1635120	Smoke
+classic	lookinfo	0x404420	0x404fad	0x15f2358	Dragonfire
+classic	lookinfo	0x404420	0x404fcb	0x15f2344	Fire
+classic	lookinfo	0x404420	0x404fe3	0x1635128	A Web
+classic	lookinfo	0x404420	0x405004	0x1635078	A Campfire
+classic	lookinfo	0x404420	0x40512f	0x16350a0	A pile of 
+classic	lookinfo	0x404420	0x405138	0x16350c8	A small pile of 
+classic	lookinfo	0x404420	0x405147	0x16350b8	A dusting of 
+classic	lookinfo	0x404420	0x405165	0x1635068	A pool of 
+classic	lookinfo	0x404420	0x405174	0x1635058	A smear of 
+classic	lookinfo	0x404420	0x40517d	0x1635088	A spattering of 
+classic	lookinfo	0x404420	0x405266	0x15e3720	 
+classic	lookinfo	0x404420	0x4052d6	0x16350ac	A Fire
+classic	lookinfo	0x404420	0x4052fd	0x1635008	Stagnant salt water [
+classic	lookinfo	0x404420	0x405311	0x1635020	Stagnant water [
+classic	lookinfo	0x404420	0x405325	0x1634ff0	Salt water [
+classic	lookinfo	0x404420	0x405334	0x1635000	Water [
+classic	lookinfo	0x404420	0x405393	0x163504c	/7]
+classic	lookinfo	0x404420	0x4053fc	0x1635034	Lava [
+classic	lookinfo	0x404420	0x405403	0x1635050	Magma [
+classic	lookinfo	0x404420	0x405463	0x163504c	/7]
+classic	lookinfo	0x404420	0x405499	0x1635040	Track/Spoor
+classic	lookinfo	0x404420	0x4054c0	0x16355c8	Track/Spoor: 
+classic	lookinfo	0x404420	0x4054fe	0x16355f0	unintelligible
+classic	lookinfo	0x404420	0x405834	0x15e8b58	's 
+classic	lookinfo	0x404420	0x4058a4	0x15e3720	 
+classic	lookinfo	0x404420	0x405909	0x1782ab0	unknown material
+classic	lookinfo	0x404420	0x40599b	0x1635604	right 
+classic	lookinfo	0x404420	0x4059ae	0x163560c	left 
+classic	lookinfo	0x404420	0x405a3c	0x16355b0	 print
+classic	lookinfo	0x404420	0x405a4b	0x16355b8	 imprint
+classic	lookinfo	0x404420	0x405c76	0x15e8b58	's 
+classic	lookinfo	0x404420	0x405dea	0x15e8b58	's 
+classic	lookinfo	0x404420	0x405e87	0x15e8b58	's 
+classic	lookinfo	0x404420	0x405ef5	0x15e3720	 
+classic	lookinfo	0x404420	0x405f6c	0x16355b0	 print
+classic	lookinfo	0x404420	0x405f7b	0x16355b8	 imprint
+classic	lookinfo	0x404420	0x405fd7	0x16355d8	broken vegetation
+classic	lookinfo	0x404420	0x405feb	0x1635600	/N
+classic	lookinfo	0x404420	0x405ff7	0x1635580	/S
+classic	lookinfo	0x404420	0x406003	0x1635584	/E
+classic	lookinfo	0x404420	0x40600f	0x1635578	/W
+classic	lookinfo	0x404420	0x406018	0x163557c	/NE
+classic	lookinfo	0x404420	0x406021	0x16355a8	/NW
+classic	lookinfo	0x404420	0x40602a	0x16355ac	/SE
+classic	lookinfo	0x404420	0x406033	0x1635588	/SW
+classic	lookinfo	0x404420	0x406056	0x1635590	/yours or companion's
+classic	adventure-look-renderer	0x7f1530	0x7f17a1	0x16a8b10	 to view other pages
+classic	adventure-look-renderer	0x7f1530	0x7f17ab	0x16a8b20	ages
+classic	adventure-look-renderer	0x7f1530	0x7f19e2	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f1a78	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f1b10	0x16a8b04	 -  
+classic	adventure-look-renderer	0x7f1530	0x7f1b8a	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f1c36	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f1cc0	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f1d08	0x1635148	a colony of 
+classic	adventure-look-renderer	0x7f1530	0x7f1da5	0x1635158	many 
+classic	adventure-look-renderer	0x7f1530	0x7f1df3	0x16351a8	a swarm of 
+classic	adventure-look-renderer	0x7f1530	0x7f1e74	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f1ec8	0x16351b4	Miasma
+classic	adventure-look-renderer	0x7f1530	0x7f1edd	0x1635198	Steam
+classic	adventure-look-renderer	0x7f1530	0x7f1eea	0x16351a0	Mist
+classic	adventure-look-renderer	0x7f1530	0x7f1f03	0x16351a0	Mist
+classic	adventure-look-renderer	0x7f1530	0x7f1f45	0x1635110	An Ocean Wave
+classic	adventure-look-renderer	0x7f1530	0x7f1f5a	0x16350e0	Sea Foam
+classic	adventure-look-renderer	0x7f1530	0x7f1f96	0x1635130	Lava Mist
+classic	adventure-look-renderer	0x7f1530	0x7f1f9d	0x16350f0	Magma Mist
+classic	adventure-look-renderer	0x7f1530	0x7f1fde	0x16a8b3c	 Vapor
+classic	adventure-look-renderer	0x7f1530	0x7f1fff	0x1635120	Smoke
+classic	adventure-look-renderer	0x7f1530	0x7f2014	0x15f2358	Dragonfire
+classic	adventure-look-renderer	0x7f1530	0x7f2029	0x15f2344	Fire
+classic	adventure-look-renderer	0x7f1530	0x7f203e	0x1635128	A Web
+classic	adventure-look-renderer	0x7f1530	0x7f20e6	0x1635100	Item Cloud
+classic	adventure-look-renderer	0x7f1530	0x7f212e	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f215c	0x16350ac	A Fire
+classic	adventure-look-renderer	0x7f1530	0x7f21bd	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f21eb	0x1635078	A Campfire
+classic	adventure-look-renderer	0x7f1530	0x7f224c	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f229a	0x16355c8	Track/Spoor: 
+classic	adventure-look-renderer	0x7f1530	0x7f22dd	0x16355f0	unintelligible
+classic	adventure-look-renderer	0x7f1530	0x7f239e	0x15e3720	 
+classic	adventure-look-renderer	0x7f1530	0x7f23be	0x1635604	right 
+classic	adventure-look-renderer	0x7f1530	0x7f23cd	0x163560c	left 
+classic	adventure-look-renderer	0x7f1530	0x7f2453	0x16355b0	 print
+classic	adventure-look-renderer	0x7f1530	0x7f245c	0x16355b8	 imprint
+classic	adventure-look-renderer	0x7f1530	0x7f2557	0x15e8b58	's 
+classic	adventure-look-renderer	0x7f1530	0x7f25f8	0x15e8b58	's 
+classic	adventure-look-renderer	0x7f1530	0x7f2602	0x15e3720	 
+classic	adventure-look-renderer	0x7f1530	0x7f2658	0x16355b0	 print
+classic	adventure-look-renderer	0x7f1530	0x7f2661	0x16355b8	 imprint
+classic	adventure-look-renderer	0x7f1530	0x7f2684	0x16355d8	broken vegetation
+classic	adventure-look-renderer	0x7f1530	0x7f26d4	0x1635600	/N
+classic	adventure-look-renderer	0x7f1530	0x7f26dd	0x1635580	/S
+classic	adventure-look-renderer	0x7f1530	0x7f26e6	0x1635584	/E
+classic	adventure-look-renderer	0x7f1530	0x7f26ef	0x1635578	/W
+classic	adventure-look-renderer	0x7f1530	0x7f26f8	0x163557c	/NE
+classic	adventure-look-renderer	0x7f1530	0x7f2701	0x16355a8	/NW
+classic	adventure-look-renderer	0x7f1530	0x7f270a	0x16355ac	/SE
+classic	adventure-look-renderer	0x7f1530	0x7f2713	0x1635588	/SW
+classic	adventure-look-renderer	0x7f1530	0x7f2734	0x1635590	/yours or companion's
+classic	adventure-look-renderer	0x7f1530	0x7f2790	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f27d8	0x1635008	Stagnant salt water [
+classic	adventure-look-renderer	0x7f1530	0x7f280a	0x1635020	Stagnant water [
+classic	adventure-look-renderer	0x7f1530	0x7f2831	0x1634ff0	Salt water [
+classic	adventure-look-renderer	0x7f1530	0x7f2854	0x1635000	Water [
+classic	adventure-look-renderer	0x7f1530	0x7f28b3	0x163504c	/7]
+classic	adventure-look-renderer	0x7f1530	0x7f291e	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f2979	0x1635034	Lava [
+classic	adventure-look-renderer	0x7f1530	0x7f299c	0x1635050	Magma [
+classic	adventure-look-renderer	0x7f1530	0x7f29fb	0x163504c	/7]
+classic	adventure-look-renderer	0x7f1530	0x7f2a8d	0x1600a60	 - 
+classic	adventure-look-renderer	0x7f1530	0x7f2b54	0x16350b8	A dusting of 
+classic	adventure-look-renderer	0x7f1530	0x7f2b6c	0x1635068	A pool of 
+classic	adventure-look-renderer	0x7f1530	0x7f2b75	0x1635058	A smear of 
+classic	adventure-look-renderer	0x7f1530	0x7f2b7e	0x1635088	A spattering of 
+classic	adventure-look-renderer	0x7f1530	0x7f2b96	0x16350a0	A pile of 
+classic	adventure-look-renderer	0x7f1530	0x7f2b9f	0x16350c8	A small pile of 
+classic	adventure-look-renderer	0x7f1530	0x7f2ba8	0x16a8b28	A thin layer of 
+classic	adventure-look-renderer	0x7f1530	0x7f2d10	0x15e89c4	The 
+classic	adventure-look-renderer	0x7f1530	0x7f2d4b	0x15e3720	 
+classic	adventure-look-renderer	0x7f1530	0x7f2dec	0x15e64d0	 of 
+classic	adventure-look-renderer	0x7f1530	0x7f2e42	0x15f8788	 are 
+classic	adventure-look-renderer	0x7f1530	0x7f2e4b	0x15f2120	 is 
+classic	adventure-look-renderer	0x7f1530	0x7f2f4d	0x1641950	here
+classic	adventure-look-renderer	0x7f1530	0x7f2f6d	0x1646aec	far
+classic	adventure-look-renderer	0x7f1530	0x7f2f7b	0x16a9b08	a day's travel
+classic	adventure-look-renderer	0x7f1530	0x7f2f89	0x16a9af0	nearly a day's travel
+classic	adventure-look-renderer	0x7f1530	0x7f2f97	0x16a9a70	a half day's travel
+classic	adventure-look-renderer	0x7f1530	0x7f2fa4	0x16a9a60	a short walk
+classic	adventure-look-renderer	0x7f1530	0x7f2fb4	0x166def8	 to the 
+classic	adventure-look-renderer	0x7f1530	0x7f2fe2	0x1636a3c	north
+classic	adventure-look-renderer	0x7f1530	0x7f2fee	0x16a9a98	north-northeast
+classic	adventure-look-renderer	0x7f1530	0x7f2ff7	0x1641c68	northeast
+classic	adventure-look-renderer	0x7f1530	0x7f3000	0x16a9a88	east-northeast
+classic	adventure-look-renderer	0x7f1530	0x7f3009	0x1636a2c	east
+classic	adventure-look-renderer	0x7f1530	0x7f3012	0x16a9ba0	east-southeast
+classic	adventure-look-renderer	0x7f1530	0x7f301b	0x1641bf8	southeast
+classic	adventure-look-renderer	0x7f1530	0x7f3024	0x16a9b90	south-southeast
+classic	adventure-look-renderer	0x7f1530	0x7f302d	0x1636a44	south
+classic	adventure-look-renderer	0x7f1530	0x7f3036	0x16a9bc0	south-southwest
+classic	adventure-look-renderer	0x7f1530	0x7f303f	0x1641c78	southwest
+classic	adventure-look-renderer	0x7f1530	0x7f3048	0x16a9bb0	west-southwest
+classic	adventure-look-renderer	0x7f1530	0x7f3051	0x1636a34	west
+classic	adventure-look-renderer	0x7f1530	0x7f305a	0x16a9b28	west-northwest
+classic	adventure-look-renderer	0x7f1530	0x7f3063	0x1641c58	northwest
+classic	adventure-look-renderer	0x7f1530	0x7f306c	0x16a9b18	north-northwest
+classic	adventure-look-renderer	0x7f1530	0x7f307c	0x15e3574	.
+classic	adventure-look-renderer	0x7f1530	0x7f37af	0x16a9cc0	This is an unintelligible mess.
+classic	adventure-look-renderer	0x7f1530	0x7f37b9	0x16a9cd0	elligible mess.
+classic	adventure-look-renderer	0x7f1530	0x7f37c6	0x16a9cd8	e mess.
+classic	adventure-look-renderer	0x7f1530	0x7f37cf	0x16a9cdc	ss.
+classic	adventure-look-renderer	0x7f1530	0x7f37da	0x16a9cde	.
+classic	adventure-look-renderer	0x7f1530	0x7f38d7	0x16a9c14	thick 
+classic	adventure-look-renderer	0x7f1530	0x7f38ea	0x16a9c0c	light 
+classic	adventure-look-renderer	0x7f1530	0x7f38ff	0x16a9c24	faint 
+classic	adventure-look-renderer	0x7f1530	0x7f3954	0x15e3720	 
+classic	adventure-look-renderer	0x7f1530	0x7f3975	0x16a9c1c	deep 
+classic	adventure-look-renderer	0x7f1530	0x7f3988	0x16a9bd8	shallow 
+classic	adventure-look-renderer	0x7f1530	0x7f399d	0x16a9bd0	vague 
+classic	adventure-look-renderer	0x7f1530	0x7f39b4	0x1635604	right 
+classic	adventure-look-renderer	0x7f1530	0x7f39c1	0x163560c	left 
+classic	adventure-look-renderer	0x7f1530	0x7f3a56	0x16355b0	 print
+classic	adventure-look-renderer	0x7f1530	0x7f3a67	0x16a9bf8	 imprint in the 
+classic	adventure-look-renderer	0x7f1530	0x7f3b62	0x16a9be8	 is here.
+classic	adventure-look-renderer	0x7f1530	0x7f3b6b	0x15e3574	.
+classic	adventure-look-renderer	0x7f1530	0x7f3ca0	0x15e85e4	A 
+classic	adventure-look-renderer	0x7f1530	0x7f3d5f	0x15e8b58	's 
+classic	adventure-look-renderer	0x7f1530	0x7f3d79	0x16a9c14	thick 
+classic	adventure-look-renderer	0x7f1530	0x7f3d87	0x16a9c0c	light 
+classic	adventure-look-renderer	0x7f1530	0x7f3d96	0x16a9c24	faint 
+classic	adventure-look-renderer	0x7f1530	0x7f3e5b	0x15e8b58	's 
+classic	adventure-look-renderer	0x7f1530	0x7f3e71	0x16a9c1c	deep 
+classic	adventure-look-renderer	0x7f1530	0x7f3e83	0x16a9bd8	shallow 
+classic	adventure-look-renderer	0x7f1530	0x7f3e96	0x16a9bd0	vague 
+classic	adventure-look-renderer	0x7f1530	0x7f3ea3	0x15e3720	 
+classic	adventure-look-renderer	0x7f1530	0x7f3ee9	0x16355b0	 print
+classic	adventure-look-renderer	0x7f1530	0x7f3efa	0x16a9bf8	 imprint in the 
+classic	adventure-look-renderer	0x7f1530	0x7f3ff5	0x16a9be8	 is here.
+classic	adventure-look-renderer	0x7f1530	0x7f3ffe	0x15e3574	.
+classic	adventure-look-renderer	0x7f1530	0x7f4067	0x16a8a88	The vegetation is heavily damaged here.
+classic	adventure-look-renderer	0x7f1530	0x7f4094	0x16a8a68	The vegetation is bent here.
+classic	adventure-look-renderer	0x7f1530	0x7f40c3	0x16a8ad0	The vegetation has been slightly perturbed here.
+classic	adventure-look-renderer	0x7f1530	0x7f40e6	0x16a8ab0	The vegetation is broken here.
+classic	adventure-look-renderer	0x7f1530	0x7f415f	0x16a9ca8	The signs lead north.
+classic	adventure-look-renderer	0x7f1530	0x7f4189	0x16a9cf8	The signs lead south.
+classic	adventure-look-renderer	0x7f1530	0x7f41b3	0x16a9ce0	The signs lead east.
+classic	adventure-look-renderer	0x7f1530	0x7f41dd	0x16a9c50	The signs lead west.
+classic	adventure-look-renderer	0x7f1530	0x7f4207	0x16a9c30	The signs lead northeast.
+classic	adventure-look-renderer	0x7f1530	0x7f422e	0x16a9c88	The signs lead northwest.
+classic	adventure-look-renderer	0x7f1530	0x7f4255	0x16a9c68	The signs lead southeast.
+classic	adventure-look-renderer	0x7f1530	0x7f427c	0x16a9ad0	The signs lead southwest.
+classic	adventure-look-renderer	0x7f1530	0x7f42e9	0x1785c40	""""
+classic	adventure-look-renderer	0x7f1530	0x7f42f6	0x16a9aa8	They belong to you or a companion.
+classic	adventure-look-renderer	0x7f1530	0x7f4300	0x16a9ab8	ou or a companion.
+classic	adventure-look-renderer	0x7f1530	0x7f430b	0x16a9ac8	n.
+classic	material-noun	0x14cc890	0x14cc8f7	0x160fd14	plant
+classic	material-noun	0x14cc890	0x14cc919	0x16106b8	yarn
+classic	material-noun	0x14cc890	0x14cc941	0x16106a8	cloth
+classic	material-noun	0x14cc890	0x14cc961	0x16106b0	silk
+classic	material-noun	0x14cc890	0x14cc981	0x16106c8	bone
+classic	material-noun	0x14cc890	0x14cc9a1	0x1610690	leather
+classic	material-noun	0x14cc890	0x14cc9c1	0x16106c0	shell
+classic	material-noun	0x14cc890	0x14cc9e3	0x16106d8	soap
+classic	material-noun	0x14cc890	0x14cca05	0x1782aa0	ivory/tooth
+classic	material-noun	0x14cc890	0x14cca27	0x16106e8	horn
+classic	material-noun	0x14cc890	0x14cca49	0x16106e0	pearl
+classic	material-noun	0x14cc890	0x14cca78	0x1610698	wood
+classic	material-noun	0x14cc890	0x14cca7f	0x169c26c	wooden
+classic	material-noun	0x14cc890	0x14ccbd5	0x15e8b58	's 
+classic	material-noun	0x14cc890	0x14ccc69	0x15e3720	 
+classic	material-noun	0x14cc890	0x14cccba	0x1782ab0	unknown material
+classic	construction-material	0xa44750	0xa447eb	0x16c70a4	rough 
+classic	construction-material	0xa44750	0xa44805	0x1782ab0	unknown material
+classic	construction-material	0xa44750	0xa44981	0x15e8b58	's 
+classic	construction-material	0xa44750	0xa44a21	0x15e3720	 
+classic	construction-material	0xa44750	0xa44a78	0x164667c	-
+classic	construction-material	0xa44750	0xa44ad2	0x16c7078	Reinforced 
+classic	construction-material	0xa44750	0xa44c32	0x15e8b58	's 
+classic	construction-material	0xa44750	0xa44ccf	0x15e3720	 
+classic	construction-material	0xa44750	0xa44d44	0x16c7084	 log
+classic	construction-material	0xa44750	0xa44d53	0x16c708c	 block
+classic	plant-parts	0x13fac90	0x13fae0f	0x171244c	 roots
+classic	plant-parts	0x13fac90	0x13fae6f	0x171247c	 trunk
+classic	plant-parts	0x13fac90	0x13faebb	0x16a9c14	thick 
+classic	plant-parts	0x13fac90	0x13faee4	0x1712458	 branches
+classic	plant-parts	0x13fac90	0x13faf26	0x1780078	smooth 
+classic	plant-parts	0x13fac90	0x13faf59	0x1712458	 branches
+classic	plant-parts	0x13fac90	0x13fafb9	0x1712458	 branches
+classic	plant-parts	0x13fac90	0x13fb019	0x17124a4	 twigs
+classic	plant-parts	0x13fac90	0x13fb07f	0x17124ac	 cap

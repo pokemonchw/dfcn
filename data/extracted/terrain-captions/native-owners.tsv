@@ -1,0 +1,25 @@
+edition	image_identity	role	start_rva	code_end_rva	unwind_end_rva	image_path
+reference	PE:6a70a6d9:02711000	terrain	0xe7d330	0xe834fd	0xe8482c	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	lookinfo	0x406860	0x4084de	0x4085e9	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	lookinfo-producer	0x4085f0	0x40a1db	0x40a214	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	adventure-look-renderer	0x7f3cb0	0x7f6aee	0x7f6c21	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	material-noun	0x14d1920	0x14d1d79	0x14d1d79	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	grass-event-lookup	0x14d1330	0x14d143b	0x14d143b	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	construction-material	0xa46f20	0xa47607	0xa47607	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	plant-parts	0x13ffd20	0x1400239	0x1400338	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	material-decode	0x14d0c70	0x14d112f	0x14d123c	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	material-lookup	0x14add70	0x14ade9f	0x14ade9f	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	spoor-shorten	0x52d910	0x52ded4	0x52ded4	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	spoor-shorten-wrapper	0x52dee0	0x52deee	leaf; no pdata	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	terrain	0xe782a0	0xe7e46d	0xe7f79c	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	lookinfo	0x404420	0x40609e	0x4061a9	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	lookinfo-producer	0x4061b0	0x407d9b	0x407dd4	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	adventure-look-renderer	0x7f1530	0x7f436e	0x7f44a1	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	material-noun	0x14cc890	0x14ccce9	0x14ccce9	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	grass-event-lookup	0x14cc2a0	0x14cc3ab	0x14cc3ab	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	construction-material	0xa44750	0xa44e37	0xa44e37	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	plant-parts	0x13fac90	0x13fb1a9	0x13fb2a8	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	material-decode	0x14cbbe0	0x14cc09f	0x14cc1ac	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	material-lookup	0x14a8ce0	0x14a8e0f	0x14a8e0f	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	spoor-shorten	0x52b330	0x52b8f4	0x52b8f4	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	spoor-shorten-wrapper	0x52b900	0x52b90e	leaf; no pdata	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe

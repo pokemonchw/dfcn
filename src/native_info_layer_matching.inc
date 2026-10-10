@@ -31,6 +31,8 @@ std::vector<Match> Overlay::find_native_info_matches() const {
     }
     append_fortress_squad_alias_rows(screen_rows, result, only_y, nullptr);
     const auto clipped_template_captions = captured_clipped_captions();
+    append_native_map_hover_phrases(screen_rows, result, only_y,
+        NativeMapHoverKind::Terrain);
     append_toolbar_tooltip_matches(screen_rows, result, only_y, false);
     append_native_info_panel_titles(screen_rows, result, only_y);
     if (!captured_native_unit_chooser_records().empty())
@@ -278,6 +280,9 @@ std::vector<Match> Overlay::find_native_info_background_matches(int only_y,
             if (ch) rows[y][x] = static_cast<char>(ch);
         }
     NativePanelReadScope panels(gps_);
+    // The map remains behind management components. A real terrain draw
+    // keeps its own field grammar in this reduced background reader too.
+    append_native_map_hover_phrases(rows, result, only_y, NativeMapHoverKind::Terrain);
     append_toolbar_tooltip_matches(rows, result, only_y, screen_override != nullptr);
     append_fortress_site_name(rows, result, only_y, screen_override != nullptr);
     append_fortress_elevation_rows(rows, result, only_y, screen_override != nullptr);
