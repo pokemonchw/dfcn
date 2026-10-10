@@ -1206,6 +1206,15 @@ World mission departure: (Set out Spring {d})	（{d}年春季出发）	ht
 World mission departure: (Set out Summer {d})	（{d}年夏季出发）	ht
 World mission departure: (Set out Autumn {d})	（{d}年秋季出发）	ht
 World mission departure: (Set out Winter {d})	（{d}年冬季出发）	ht
+# Spoils/tribute titles own the complete party and arrival date; keep report
+# names unchanged when their retained title has no live authored-name binding.
+Spoils Report:	战利品报告：	h
+Tribute Report:	贡品报告：	h
+World report participants: and others	等	h
+World report date: Spring {d}	（{d}年春季）	ht
+World report date: Summer {d}	（{d}年夏季）	ht
+World report date: Autumn {d}	（{d}年秋季）	ht
+World report date: Winter {d}	（{d}年冬季）	ht
 # Fortress squad creation button: translate the complete caption.
 Create new squad	创建新小队	w
 # Squad footer buttons: use UI meanings before the proper-name fallback.

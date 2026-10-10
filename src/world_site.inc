@@ -1414,14 +1414,17 @@ void Overlay::append_world_mission_titles(std::vector<std::string> &rows,
     }
 }
 
-// Report rows carry the same mission title, followed by the departure date.
-// The list has no Remove control. Recover the native caption before parsing
-// either field: the scrollbar can cover part of a name, season or year.
+// Reports contain mission/departure titles or a spoils/tribute party and date.
+// Recover the native caption before parsing either field: the scrollbar can
+// cover part of a name, season or year, and the detail heading uses ellipses.
 void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const {
-    constexpr std::string_view prefix = "Mission Report:";
+    constexpr std::array<std::string_view, 3> prefixes = {
+        "Mission Report:", "Spoils Report:", "Tribute Report:"};
     if (!gps_ || std::none_of(rows.begin(), rows.end(), [&](const auto &row) {
-            return row.find(prefix) != std::string::npos;
+            return std::any_of(prefixes.begin(), prefixes.end(), [&](const auto prefix) {
+                return row.find(prefix) != std::string::npos;
+            });
         })) return;
     std::vector<std::string> context(gps_->dimy, std::string(gps_->dimx, ' '));
     for (int y = 0; y < gps_->dimy; ++y)
@@ -1434,12 +1437,18 @@ void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
     const auto captures = captured_clipped_captions();
     const std::array<std::vector<NativeDrawnTextRow>, 2> draws = {
         captured_native_drawn_text_rows(), captured_native_drawn_text_rows(true)};
-    const auto heading = translate_legends_text(prefix, false, false);
     for (int y = 0; y < gps_->dimy; ++y) {
         if (only_y >= 0 && only_y != y) continue;
-        const size_t at = context[y].find(prefix);
-        if (at == std::string::npos ||
-            !has_word_boundaries(context[y], at, at + prefix.size())) continue;
+        size_t at = std::string::npos;
+        std::string_view prefix;
+        for (const auto candidate : prefixes) {
+            const size_t found = context[y].find(candidate);
+            if (found < at && has_word_boundaries(context[y], found, found + candidate.size())) {
+                at = found;
+                prefix = candidate;
+            }
+        }
+        if (at == std::string::npos) continue;
         const int x = static_cast<int>(at);
         const auto panel = native_panel_interior(borders, *gps_,
             x, x + static_cast<int>(prefix.size()), y);
@@ -1488,19 +1497,56 @@ void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
                 else if (complete == source) complete = draw.source;
                 break;
             }
-        const std::string normalized = normalize_utterance(complete);
+        const auto heading = translate_legends_text(prefix, false, false);
         std::optional<std::string> target;
-        const size_t departure = normalized.rfind(" (Set out ");
-        if (heading && normalized.starts_with(prefix) && departure != std::string::npos &&
-                departure >= prefix.size() && normalized.ends_with(')')) {
-            const auto action = trim_view(std::string_view(normalized).substr(
-                prefix.size(), departure - prefix.size()));
-            // The native default goal emits no action before the date.
-            const auto mission = action.empty() ? std::optional<std::string>("")
-                : translate_world_mission_title(action);
-            const auto date = translate_legends_text("World mission departure: " +
-                normalized.substr(departure + 1), false, false);
-            if (mission && date) target = *heading + *mission + *date;
+        if (prefix == prefixes.front()) {
+            const std::string normalized = normalize_utterance(complete);
+            const size_t departure = normalized.rfind(" (Set out ");
+            if (heading && normalized.starts_with(prefix) && departure != std::string::npos &&
+                    departure >= prefix.size() && normalized.ends_with(')')) {
+                const auto action = trim_view(std::string_view(normalized).substr(
+                    prefix.size(), departure - prefix.size()));
+                // The native default goal emits no action before the date.
+                const auto mission = action.empty() ? std::optional<std::string>("")
+                    : translate_world_mission_title(action);
+                const auto date = translate_legends_text("World mission departure: " +
+                    normalized.substr(departure + 1), false, false);
+                if (mission && date) target = *heading + *mission + *date;
+            }
+        } else if (heading && std::string_view(complete).starts_with(prefix)) {
+            // PE 10f9b4/a0973e append the current season and year after the
+            // party, separated by the final comma. Spoils without a squad
+            // starts directly with that date. Parse from the right so name
+            // punctuation and authored spacing remain part of the name.
+            const auto body = trim_view(std::string_view(complete).substr(prefix.size()));
+            const size_t comma = body.rfind(", ");
+            auto party = comma == std::string_view::npos ? std::string_view{}
+                : body.substr(0, comma);
+            const auto raw_date = comma == std::string_view::npos ? body
+                : body.substr(comma + 2);
+            bool dated = false;
+            for (const std::string_view season : {"Spring ", "Summer ", "Autumn ", "Winter "}) {
+                if (!raw_date.starts_with(season)) continue;
+                const auto year = raw_date.substr(season.size());
+                dated = !year.empty() && std::all_of(year.begin(), year.end(), [](char ch) {
+                    return ch >= '0' && ch <= '9';
+                });
+                break;
+            }
+            if (dated) {
+                const auto date = translate_legends_text("World report date: " +
+                    std::string(raw_date), false, false);
+                constexpr std::string_view others = " and others";
+                const bool multiple = prefix == prefixes[1] && party.ends_with(others);
+                if (multiple) party.remove_suffix(others.size());
+                const auto suffix = multiple
+                    ? exact_literal_translation("World report participants: and others")
+                    : std::optional<std::string>("");
+                // A retained report title carries no live squad alias owner.
+                // Keep its name bytes instead of guessing authorship from
+                // spelling or allowing the prose/name fallback to rewrite it.
+                if (date && suffix) target = *heading + native_text_to_utf8(party) + *suffix + *date;
+            }
         }
         Match report{x, y, static_cast<int>(source.size()), kWorldSiteRowRule,
             target ? *target : native_text_to_utf8(complete), source};

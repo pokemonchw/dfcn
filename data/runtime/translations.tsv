@@ -54595,6 +54595,7 @@ Workshop recipe: state sewn-imageless	未绣图案	l
 Workshop recipe: state stand-and-work	用于站立作业	l
 World civilization office: {s} of {p}	{p}的{s}	hti
 World civilization trade status: None	无	l
+World report participants: and others	等	h
 World site action: Already have peace	已处于和平状态	hi
 Wrestling Competition of in the wilds	在荒野中，摔跤比赛	hEi
 X is committing a depraved act upon Y	X正在对Y做出堕落之举	wl
@@ -72455,6 +72456,10 @@ Workshop recipe: state sticky	黏稠	l
 Workshop recipe: state unused	未使用	l
 Workshop recipe: unit threads	卷	l
 Workshop recipe: yarn threads	纱线	l
+World report date: Autumn {d}	（{d}年秋季）	ht
+World report date: Spring {d}	（{d}年春季）	ht
+World report date: Summer {d}	（{d}年夏季）	ht
+World report date: Winter {d}	（{d}年冬季）	ht
 Wrestling Competition at {p}.	在{p1}，摔跤比赛。	htEi
 Wrestling Competition in {d}.	{d1}年的摔跤比赛。	htEi
 Wrestling Competition in {p}.	在{p1}，摔跤比赛。	htEi
@@ -110387,6 +110392,7 @@ Trap components	陷阱组件	wi
 Treasure hunter	淘金者	w
 Treatise on {b}	{b}论述	hbti
 Trees: Woodland	树木: 林地	w
+Tribute Report:	贡品报告：	h
 Underground ...	地下区域……
 Underworld Gate	冥界之门	wi
 Unnamed bedroom	未命名卧室	wi
@@ -115142,6 +115148,7 @@ Sleep and rest	睡眠与休息	hq
 Sort by value.	按价值排序。	hj
 Special Thanks	特别感谢	w
 Splendid Study	华美书房	w
+Spoils Report:	战利品报告：	h
 Stagnant water	死水	wl
 Start stairway	指定楼梯起点	hqO
 Start stairway	开始楼梯	w

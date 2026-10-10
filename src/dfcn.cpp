@@ -4423,6 +4423,9 @@ private:
         std::vector<Match> &matches, int only_y) const;
     void append_world_mission_reports(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
+    void append_world_spoils_items(std::vector<std::string> &rows,
+        std::vector<Match> &matches, std::vector<Match> &untranslated,
+        int only_y, const unsigned char *screen_override) const;
     void append_world_mission_members(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
     std::optional<NativeTextCard> capture_native_world_civilization_details() const;
@@ -15801,6 +15804,7 @@ static NativeKeybindingScope capture_native_keybinding_scope(const graphicst &gp
 #include "embark_map_text.inc"
 #include "gameplay_map_text.inc"
 #include "world_site.inc"
+#include "world_spoils_items.inc"
 #include "world_artifacts.inc"
 #include "toolbar_tooltips.inc"
 
@@ -16723,6 +16727,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
 #include "adventure_divine_popup.inc"
 #include "adventure_announcements.inc"
 #include "world_mission_body.inc"
+    append_world_spoils_items(screen_rows, result, untranslated_help_rows,
+        only_y, screen_override);
     append_native_message_paragraphs(screen_rows, result, untranslated_help_rows,
         only_y, screen_override, true);
     retain_native_text_cells(screen_rows, map_text_cells);
