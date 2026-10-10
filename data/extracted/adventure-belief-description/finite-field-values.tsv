@@ -1,0 +1,315 @@
+edition	field	case	instruction_rva	literal_rva	base_text	displayed_text
+reference	sphere	0	0x7566b5	0x16a1b08	agriculture	agriculture
+reference	sphere	1	0x7566ca	0x16a1250	animals	animals
+reference	sphere	2	0x7566df	0x16a1258	art	art
+reference	sphere	3	0x7566f4	0x16a1260	balance	balance
+reference	sphere	4	0x756709	0x16a1268	beauty	beauty
+reference	sphere	5	0x75671e	0x16a1270	birth	birth
+reference	sphere	6	0x756733	0x16a1278	blight	blight
+reference	sphere	7	0x756748	0x16a1280	boundaries	boundaries
+reference	sphere	8	0x75675d	0x16a1290	caverns	caverns
+reference	sphere	9	0x756772	0x16a1298	chaos	chaos
+reference	sphere	10	0x756787	0x16a12a0	charity	charity
+reference	sphere	11	0x75679c	0x16a12a8	children	children
+reference	sphere	12	0x7567b1	0x16a12b4	coasts	coasts
+reference	sphere	13	0x7567c6	0x16a12c0	consolation	consolation
+reference	sphere	14	0x7567db	0x16a12d0	courage	courage
+reference	sphere	15	0x7567f0	0x16a12d8	crafts	crafts
+reference	sphere	16	0x756805	0x16a12e0	creation	creation
+reference	sphere	17	0x75681a	0x15edfc0	dance	dance
+reference	sphere	18	0x75682f	0x16a1530	darkness	darkness
+reference	sphere	19	0x756844	0x16706fc	dawn	the dawn
+reference	sphere	20	0x756859	0x1670704	day	day
+reference	sphere	21	0x75686e	0x15eddb4	death	death
+reference	sphere	22	0x756883	0x16a1540	deformity	deformity
+reference	sphere	23	0x756898	0x16a1550	depravity	depravity
+reference	sphere	24	0x7568ad	0x16a1560	discipline	discipline
+reference	sphere	25	0x7568c2	0x16a1570	disease	disease
+reference	sphere	26	0x7568d7	0x16a1578	dreams	dreams
+reference	sphere	27	0x7568ec	0x16a1580	dusk	dusk
+reference	sphere	28	0x756901	0x1674c00	duty	duty
+reference	sphere	29	0x756916	0x16a1588	earth	earth
+reference	sphere	30	0x75692b	0x16415fc	family	family
+reference	sphere	31	0x756940	0x16a1590	fame	fame
+reference	sphere	32	0x756955	0x16a1598	fate	fate
+reference	sphere	33	0x75696a	0x16a15a0	fertility	fertility
+reference	sphere	34	0x75697f	0x16a15b0	festivals	festivals
+reference	sphere	35	0x756994	0x16a15bc	fire	fire
+reference	sphere	36	0x7569a9	0x16a11f0	fish	fish
+reference	sphere	37	0x7569be	0x16a15c8	fishing	fishing
+reference	sphere	38	0x7569d3	0x16a15d0	food	food
+reference	sphere	39	0x7569e8	0x16a15d8	forgiveness	forgiveness
+reference	sphere	40	0x7569fd	0x16a1470	fortresses	fortresses
+reference	sphere	41	0x756a12	0x16a1480	freedom	freedom
+reference	sphere	42	0x756a27	0x16a11f8	gambling	gambling
+reference	sphere	43	0x756a3c	0x16a1488	games	games
+reference	sphere	44	0x756a51	0x16a1490	generosity	generosity
+reference	sphere	45	0x756a66	0x1670a58	happiness	happiness
+reference	sphere	46	0x756a7b	0x16a1208	healing	healing
+reference	sphere	47	0x756a90	0x16a14a0	hospitality	hospitality
+reference	sphere	48	0x756aa5	0x16a1210	hunting	hunting
+reference	sphere	49	0x756aba	0x16a14b0	inspiration	inspiration
+reference	sphere	50	0x756acf	0x16a14c0	jealousy	jealousy
+reference	sphere	51	0x756ae4	0x16a14cc	jewels	jewels
+reference	sphere	52	0x756af9	0x16a14d8	justice	justice
+reference	sphere	53	0x756b0e	0x15ede6c	labor	labor
+reference	sphere	54	0x756b23	0x16a14e0	lakes	lakes
+reference	sphere	55	0x756b38	0x16a14e8	laws	laws
+reference	sphere	56	0x756b4d	0x16a14f0	lies	lies
+reference	sphere	57	0x756b62	0x167607c	light	light
+reference	sphere	58	0x756b77	0x16a14f8	lightning	lightning
+reference	sphere	59	0x756b8c	0x16a1508	longevity	longevity
+reference	sphere	60	0x756ba1	0x16025ec	love	love
+reference	sphere	61	0x756bb6	0x16415b0	loyalty	loyalty
+reference	sphere	62	0x756bcb	0x16a1514	luck	luck
+reference	sphere	63	0x756be0	0x1670fac	lust	lust
+reference	sphere	64	0x756bf5	0x16a1520	marriage	marriage
+reference	sphere	65	0x756c0a	0x16a13bc	mercy	mercy
+reference	sphere	66	0x756c1f	0x16a13c4	metals	metals
+reference	sphere	67	0x756c34	0x16a13d0	minerals	minerals
+reference	sphere	68	0x756c49	0x1670f84	misery	misery
+reference	sphere	69	0x756c5e	0x16a13dc	mist	mist
+reference	sphere	70	0x756c73	0x16a13e4	moon	the moon
+reference	sphere	71	0x756c88	0x164c4a8	mountains	mountains
+reference	sphere	72	0x756c9d	0x16a13ec	muck	muck
+reference	sphere	73	0x756cb2	0x15ede54	murder	murder
+reference	sphere	74	0x756cc7	0x15eb50c	music	music
+reference	sphere	75	0x756cdc	0x16416ec	nature	nature
+reference	sphere	76	0x756cf1	0x1670434	night	the night
+reference	sphere	77	0x756d06	0x16a13f8	nightmares	nightmares
+reference	sphere	78	0x756d1b	0x16a1404	oaths	oaths
+reference	sphere	79	0x756d30	0x16a140c	oceans	oceans
+reference	sphere	80	0x756d45	0x15eddcc	order	order
+reference	sphere	81	0x756d5a	0x16a1418	painting	painting
+reference	sphere	82	0x756d6f	0x15ee0cc	peace	peace
+reference	sphere	83	0x756d84	0x16a1428	persuasion	persuasion
+reference	sphere	84	0x756d99	0x16a1434	plants	plants
+reference	sphere	85	0x756dae	0x161b6dc	poetry	poetry
+reference	sphere	86	0x756dc3	0x16a1440	pregnancy	pregnancy
+reference	sphere	87	0x756dd8	0x164bfac	rain	the rain
+reference	sphere	88	0x756ded	0x16a1450	rainbows	rainbows
+reference	sphere	89	0x756e02	0x16a1460	rebirth	rebirth
+reference	sphere	90	0x756e17	0x16a1468	revelry	revelry
+reference	sphere	91	0x756e2c	0x16a1320	revenge	revenge
+reference	sphere	92	0x756e41	0x16a1328	rivers	rivers
+reference	sphere	93	0x756e56	0x16a1330	rulership	rulership
+reference	sphere	94	0x756e6b	0x16a133c	rumors	rumors
+reference	sphere	95	0x756e80	0x1641708	sacrifice	sacrifice
+reference	sphere	96	0x756e95	0x16a1344	salt	salt
+reference	sphere	97	0x756eaa	0x16a1350	scholarship	scholarship
+reference	sphere	98	0x756ebf	0x16a1360	seasons	the seasons
+reference	sphere	99	0x756ed4	0x16a1368	silence	silence
+reference	sphere	100	0x756ee9	0x164c52c	sky	the sky
+reference	sphere	101	0x756efe	0x15e9510	song	song
+reference	sphere	102	0x756f13	0x16a1370	speech	speech
+reference	sphere	103	0x756f28	0x16a1378	stars	the stars
+reference	sphere	104	0x756f3d	0x16a1380	storms	storms
+reference	sphere	105	0x756f52	0x1661fd8	strength	strength
+reference	sphere	106	0x756f67	0x16a1388	suicide	suicide
+reference	sphere	107	0x756f7c	0x16a1390	sun	the sun
+reference	sphere	108	0x756f91	0x15edefc	theft	theft
+reference	sphere	109	0x756fa6	0x16a1398	thralldom	thralldom
+reference	sphere	110	0x756fbb	0x16a13a8	thunder	thunder
+reference	sphere	111	0x756fd0	0x1643a58	torture	torture
+reference	sphere	112	0x756fe5	0x164fbc4	trade	trade
+reference	sphere	113	0x756ffa	0x16a13b0	travelers	travelers
+reference	sphere	114	0x75700f	0x16a1aa0	treachery	treachery
+reference	sphere	115	0x757024	0x16a1aac	trees	trees
+reference	sphere	116	0x757039	0x16a1ab8	trickery	trickery
+reference	sphere	117	0x75704e	0x16415dc	truth	truth
+reference	sphere	118	0x757063	0x16a12f8	twilight	twilight
+reference	sphere	119	0x757078	0x16a1ac4	valor	valor
+reference	sphere	120	0x75708d	0x16a1ad0	victory	victory
+reference	sphere	121	0x7570a2	0x16a1ad8	volcanos	volcanos
+reference	sphere	122	0x7570b7	0x1649be4	war	war
+reference	sphere	123	0x7570cc	0x164b874	water	water
+reference	sphere	124	0x7570e1	0x16a1ae4	wealth	wealth
+reference	sphere	125	0x7570f6	0x1674ef0	weather	the weather
+reference	sphere	126	0x75710b	0x16a1aec	wind	the wind
+reference	sphere	127	0x757120	0x16a1af4	wisdom	wisdom
+reference	sphere	128	0x757135	0x15edca0	writing	writing
+reference	sphere	129	0x75714a	0x16a1afc	youth	youth
+reference	sphere	default	0x75715f	0x16a1310	no sphere	no sphere
+reference	structure	0	0xb9428b	0x1663a38	a mead hall	a mead hall
+reference	structure	1	0xb9429d	0x1663a44	a keep	a keep
+reference	structure	2	0xb942af	0x1628b28	a temple	a temple
+reference	structure	3	0xb942e5	0x1672dc0	a dark tower	a dark tower
+reference	structure	4	0xb94300	0x1663a08	a market	a market
+reference	structure	5	0xb9430f	0x16639dc	a tomb	a tomb
+reference	structure	6/0	0xb94351	0x16639c0	a dungeon	a dungeon
+reference	structure	6/1	0xb94342	0x16639d0	the sewers	the sewers
+reference	structure	6/2	0xb94333	0x1663998	the catacombs	the catacombs
+reference	structure	6/default	0xb94318			
+reference	structure	7	0xb942f1	0x16639e8	an underworld spire	an underworld spire
+reference	structure	8	0xb942d3	0x1663a28	a tavern	a tavern
+reference	structure	9	0xb942c1	0x1663a18	a library	a library
+reference	structure	10	0xb94255	0x16637c8	a counting house	a counting house
+reference	structure	11	0xb94279	0x1628b50	a guildhall	a guildhall
+reference	structure	12	0xb94360	0x1663a00	a tower	a tower
+reference	structure	13	0xb94267	0x16637e0	a hospital	a hospital
+reference	structure	missing-site	0xb94397	0x16df6e8	an unknown building	an unknown building
+reference	structure	missing-building	0xb94397	0x16df6e8	an unknown building	an unknown building
+reference	structure	unknown-type	0xb94369	0x16df6e8	an unknown building	an unknown building
+reference	structure	named			{generated language name}	{generated language name}
+reference	entity	missing	0xb92a4c	0x16df940	an unknown civilization	an unknown civilization
+reference	figure	missing	0xb938dc	0x1663cd8	an unknown creature	an unknown creature
+reference	gender	0	0x63e7e3	0x1662440	goddess	goddess
+reference	gender	1	0x63e7f6	0x1661fa0	god	god
+reference	gender	default	0x63e805	0x1661fa4	deity	deity
+classic	sphere	0	0x7540d5	0x169c320	agriculture	agriculture
+classic	sphere	1	0x7540ea	0x169c1f0	animals	animals
+classic	sphere	2	0x7540ff	0x169c1f8	art	art
+classic	sphere	3	0x754114	0x169c200	balance	balance
+classic	sphere	4	0x754129	0x169c208	beauty	beauty
+classic	sphere	5	0x75413e	0x169c210	birth	birth
+classic	sphere	6	0x754153	0x169c218	blight	blight
+classic	sphere	7	0x754168	0x169c220	boundaries	boundaries
+classic	sphere	8	0x75417d	0x169c230	caverns	caverns
+classic	sphere	9	0x754192	0x169c238	chaos	chaos
+classic	sphere	10	0x7541a7	0x169c240	charity	charity
+classic	sphere	11	0x7541bc	0x169c248	children	children
+classic	sphere	12	0x7541d1	0x169c254	coasts	coasts
+classic	sphere	13	0x7541e6	0x169c260	consolation	consolation
+classic	sphere	14	0x7541fb	0x169c128	courage	courage
+classic	sphere	15	0x754210	0x169c130	crafts	crafts
+classic	sphere	16	0x754225	0x169c138	creation	creation
+classic	sphere	17	0x75423a	0x15e8f54	dance	dance
+classic	sphere	18	0x75424f	0x169c148	darkness	darkness
+classic	sphere	19	0x754264	0x166b540	dawn	the dawn
+classic	sphere	20	0x754279	0x166b52c	day	day
+classic	sphere	21	0x75428e	0x15e8d48	death	death
+classic	sphere	22	0x7542a3	0x169c158	deformity	deformity
+classic	sphere	23	0x7542b8	0x169c168	depravity	depravity
+classic	sphere	24	0x7542cd	0x169c178	discipline	discipline
+classic	sphere	25	0x7542e2	0x169c188	disease	disease
+classic	sphere	26	0x7542f7	0x169c190	dreams	dreams
+classic	sphere	27	0x75430c	0x169c198	dusk	dusk
+classic	sphere	28	0x754321	0x166fcd0	duty	duty
+classic	sphere	29	0x754336	0x169c1a0	earth	earth
+classic	sphere	30	0x75434b	0x163c2ac	family	family
+classic	sphere	31	0x754360	0x169c1a8	fame	fame
+classic	sphere	32	0x754375	0x169c1b0	fate	fate
+classic	sphere	33	0x75438a	0x169c1b8	fertility	fertility
+classic	sphere	34	0x75439f	0x169c1c8	festivals	festivals
+classic	sphere	35	0x7543b4	0x169c1d4	fire	fire
+classic	sphere	36	0x7543c9	0x169c0e8	fish	fish
+classic	sphere	37	0x7543de	0x169c4a8	fishing	fishing
+classic	sphere	38	0x7543f3	0x169c4b0	food	food
+classic	sphere	39	0x754408	0x169c4b8	forgiveness	forgiveness
+classic	sphere	40	0x75441d	0x169c4c8	fortresses	fortresses
+classic	sphere	41	0x754432	0x169c4d8	freedom	freedom
+classic	sphere	42	0x754447	0x169c0f0	gambling	gambling
+classic	sphere	43	0x75445c	0x169c4e0	games	games
+classic	sphere	44	0x754471	0x169c4e8	generosity	generosity
+classic	sphere	45	0x754486	0x166ba90	happiness	happiness
+classic	sphere	46	0x75449b	0x169c100	healing	healing
+classic	sphere	47	0x7544b0	0x169c4f8	hospitality	hospitality
+classic	sphere	48	0x7544c5	0x169c108	hunting	hunting
+classic	sphere	49	0x7544da	0x169c508	inspiration	inspiration
+classic	sphere	50	0x7544ef	0x169c518	jealousy	jealousy
+classic	sphere	51	0x754504	0x169c524	jewels	jewels
+classic	sphere	52	0x754519	0x169c530	justice	justice
+classic	sphere	53	0x75452e	0x15e8df8	labor	labor
+classic	sphere	54	0x754543	0x169c538	lakes	lakes
+classic	sphere	55	0x754558	0x169c540	laws	laws
+classic	sphere	56	0x75456d	0x169c548	lies	lies
+classic	sphere	57	0x754582	0x1670f60	light	light
+classic	sphere	58	0x754597	0x169c550	lightning	lightning
+classic	sphere	59	0x7545ac	0x169c3f0	longevity	longevity
+classic	sphere	60	0x7545c1	0x15fd624	love	love
+classic	sphere	61	0x7545d6	0x163c2b8	loyalty	loyalty
+classic	sphere	62	0x7545eb	0x169c3fc	luck	luck
+classic	sphere	63	0x754600	0x166b9e4	lust	lust
+classic	sphere	64	0x754615	0x169c408	marriage	marriage
+classic	sphere	65	0x75462a	0x169c414	mercy	mercy
+classic	sphere	66	0x75463f	0x169c41c	metals	metals
+classic	sphere	67	0x754654	0x169c428	minerals	minerals
+classic	sphere	68	0x754669	0x166b9ec	misery	misery
+classic	sphere	69	0x75467e	0x169c434	mist	mist
+classic	sphere	70	0x754693	0x169c43c	moon	the moon
+classic	sphere	71	0x7546a8	0x1647338	mountains	mountains
+classic	sphere	72	0x7546bd	0x169c444	muck	muck
+classic	sphere	73	0x7546d2	0x15e8e38	murder	murder
+classic	sphere	74	0x7546e7	0x15e64c4	music	music
+classic	sphere	75	0x7546fc	0x163c4d0	nature	nature
+classic	sphere	76	0x754711	0x166b538	night	the night
+classic	sphere	77	0x754726	0x169c450	nightmares	nightmares
+classic	sphere	78	0x75473b	0x169c45c	oaths	oaths
+classic	sphere	79	0x754750	0x169c464	oceans	oceans
+classic	sphere	80	0x754765	0x15e8db8	order	order
+classic	sphere	81	0x75477a	0x169c470	painting	painting
+classic	sphere	82	0x75478f	0x15e904c	peace	peace
+classic	sphere	83	0x7547a4	0x169c480	persuasion	persuasion
+classic	sphere	84	0x7547b9	0x169c48c	plants	plants
+classic	sphere	85	0x7547ce	0x161649c	poetry	poetry
+classic	sphere	86	0x7547e3	0x169c498	pregnancy	pregnancy
+classic	sphere	87	0x7547f8	0x1646adc	rain	the rain
+classic	sphere	88	0x75480d	0x169c358	rainbows	rainbows
+classic	sphere	89	0x754822	0x169c368	rebirth	rebirth
+classic	sphere	90	0x754837	0x169c370	revelry	revelry
+classic	sphere	91	0x75484c	0x169c378	revenge	revenge
+classic	sphere	92	0x754861	0x169c380	rivers	rivers
+classic	sphere	93	0x754876	0x169c388	rulership	rulership
+classic	sphere	94	0x75488b	0x169c394	rumors	rumors
+classic	sphere	95	0x7548a0	0x163c568	sacrifice	sacrifice
+classic	sphere	96	0x7548b5	0x169c39c	salt	salt
+classic	sphere	97	0x7548ca	0x169c3a8	scholarship	scholarship
+classic	sphere	98	0x7548df	0x169c3b8	seasons	the seasons
+classic	sphere	99	0x7548f4	0x169c3c0	silence	silence
+classic	sphere	100	0x754909	0x16473bc	sky	the sky
+classic	sphere	101	0x75491e	0x15e44f4	song	song
+classic	sphere	102	0x754933	0x169c3c8	speech	speech
+classic	sphere	103	0x754948	0x169c3d0	stars	the stars
+classic	sphere	104	0x75495d	0x169c3d8	storms	storms
+classic	sphere	105	0x754972	0x165cfc0	strength	strength
+classic	sphere	106	0x754987	0x169c3e0	suicide	suicide
+classic	sphere	107	0x75499c	0x169c3e8	sun	the sun
+classic	sphere	108	0x7549b1	0x15e8e84	theft	theft
+classic	sphere	109	0x7549c6	0x169c290	thralldom	thralldom
+classic	sphere	110	0x7549db	0x169c2a0	thunder	thunder
+classic	sphere	111	0x7549f0	0x163e450	torture	torture
+classic	sphere	112	0x754a05	0x164accc	trade	trade
+classic	sphere	113	0x754a1a	0x169c2a8	travelers	travelers
+classic	sphere	114	0x754a2f	0x169c2b8	treachery	treachery
+classic	sphere	115	0x754a44	0x169c2c4	trees	trees
+classic	sphere	116	0x754a59	0x169c2d0	trickery	trickery
+classic	sphere	117	0x754a6e	0x163c600	truth	truth
+classic	sphere	118	0x754a83	0x169c278	twilight	twilight
+classic	sphere	119	0x754a98	0x169c2dc	valor	valor
+classic	sphere	120	0x754aad	0x169c2e8	victory	victory
+classic	sphere	121	0x754ac2	0x169c2f0	volcanos	volcanos
+classic	sphere	122	0x754ad7	0x1644b7c	war	war
+classic	sphere	123	0x754aec	0x16467a4	water	water
+classic	sphere	124	0x754b01	0x169c2fc	wealth	wealth
+classic	sphere	125	0x754b16	0x166fd20	weather	the weather
+classic	sphere	126	0x754b2b	0x169c304	wind	the wind
+classic	sphere	127	0x754b40	0x169c30c	wisdom	wisdom
+classic	sphere	128	0x754b55	0x15e8cc0	writing	writing
+classic	sphere	129	0x754b6a	0x169c314	youth	youth
+classic	sphere	default	0x754b7f	0x169c1e0	no sphere	no sphere
+classic	structure	0	0xb912cb	0x165e888	a mead hall	a mead hall
+classic	structure	1	0xb912dd	0x165e860	a keep	a keep
+classic	structure	2	0xb912ef	0x1623c98	a temple	a temple
+classic	structure	3	0xb91325	0x166dc18	a dark tower	a dark tower
+classic	structure	4	0xb91340	0x165e830	a market	a market
+classic	structure	5	0xb9134f	0x165e83c	a tomb	a tomb
+classic	structure	6/0	0xb91391	0x165e820	a dungeon	a dungeon
+classic	structure	6/1	0xb91382	0x165e7e8	the sewers	the sewers
+classic	structure	6/2	0xb91373	0x165e7f8	the catacombs	the catacombs
+classic	structure	6/default	0xb91358			
+classic	structure	7	0xb91331	0x165e808	an underworld spire	an underworld spire
+classic	structure	8	0xb91313	0x165e848	a tavern	a tavern
+classic	structure	9	0xb91301	0x165e868	a library	a library
+classic	structure	10	0xb91295	0x165e8a8	a counting house	a counting house
+classic	structure	11	0xb912b9	0x1623cc0	a guildhall	a guildhall
+classic	structure	12	0xb913a0	0x165e858	a tower	a tower
+classic	structure	13	0xb912a7	0x165e878	a hospital	a hospital
+classic	structure	missing-site	0xb913d7	0x16da558	an unknown building	an unknown building
+classic	structure	missing-building	0xb913d7	0x16da558	an unknown building	an unknown building
+classic	structure	unknown-type	0xb913a9	0x16da558	an unknown building	an unknown building
+classic	structure	named			{generated language name}	{generated language name}
+classic	entity	missing	0xb8fa8c	0x16da720	an unknown civilization	an unknown civilization
+classic	figure	missing	0xb9091c	0x165ed98	an unknown creature	an unknown creature
+classic	gender	0	0x63c203	0x165d568	goddess	goddess
+classic	gender	1	0x63c216	0x165d570	god	god
+classic	gender	default	0x63c225	0x165d508	deity	deity

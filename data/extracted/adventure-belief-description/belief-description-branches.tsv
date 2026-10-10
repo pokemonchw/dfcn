@@ -1,0 +1,81 @@
+edition	branch	guard	producer_rva	text
+reference	religion/no-deity	type=1; entity missing or entity.deities empty or first figure missing	0x63e46d	{religion} is a religion
+reference	deity/female/caste-0/domains-0	type=0; figure.flags[0]&4; gender=female; caste adjective=0; spheres nonempty=0	0x63e73e	{deity} is the goddess.
+reference	deity/female/caste-0/domains-1	type=0; figure.flags[0]&4; gender=female; caste adjective=0; spheres nonempty=1	0x63e73e	{deity} is the goddess of {domain list}.
+reference	deity/female/caste-1/domains-0	type=0; figure.flags[0]&4; gender=female; caste adjective=1; spheres nonempty=0	0x63e73e	{deity} is the {caste adjective} goddess.
+reference	deity/female/caste-1/domains-1	type=0; figure.flags[0]&4; gender=female; caste adjective=1; spheres nonempty=1	0x63e73e	{deity} is the {caste adjective} goddess of {domain list}.
+reference	religion/female/caste-0/domains-0	type=1; figure.flags[0]&4; gender=female; caste adjective=0; spheres nonempty=0	0x63e73e	{religion} is a religion whose adherents worship {deity}, the goddess.
+reference	religion/female/caste-0/domains-1	type=1; figure.flags[0]&4; gender=female; caste adjective=0; spheres nonempty=1	0x63e73e	{religion} is a religion whose adherents worship {deity}, the goddess of {domain list}.
+reference	religion/female/caste-1/domains-0	type=1; figure.flags[0]&4; gender=female; caste adjective=1; spheres nonempty=0	0x63e73e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} goddess.
+reference	religion/female/caste-1/domains-1	type=1; figure.flags[0]&4; gender=female; caste adjective=1; spheres nonempty=1	0x63e73e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} goddess of {domain list}.
+reference	deity/male/caste-0/domains-0	type=0; figure.flags[0]&4; gender=male; caste adjective=0; spheres nonempty=0	0x63e73e	{deity} is the god.
+reference	deity/male/caste-0/domains-1	type=0; figure.flags[0]&4; gender=male; caste adjective=0; spheres nonempty=1	0x63e73e	{deity} is the god of {domain list}.
+reference	deity/male/caste-1/domains-0	type=0; figure.flags[0]&4; gender=male; caste adjective=1; spheres nonempty=0	0x63e73e	{deity} is the {caste adjective} god.
+reference	deity/male/caste-1/domains-1	type=0; figure.flags[0]&4; gender=male; caste adjective=1; spheres nonempty=1	0x63e73e	{deity} is the {caste adjective} god of {domain list}.
+reference	religion/male/caste-0/domains-0	type=1; figure.flags[0]&4; gender=male; caste adjective=0; spheres nonempty=0	0x63e73e	{religion} is a religion whose adherents worship {deity}, the god.
+reference	religion/male/caste-0/domains-1	type=1; figure.flags[0]&4; gender=male; caste adjective=0; spheres nonempty=1	0x63e73e	{religion} is a religion whose adherents worship {deity}, the god of {domain list}.
+reference	religion/male/caste-1/domains-0	type=1; figure.flags[0]&4; gender=male; caste adjective=1; spheres nonempty=0	0x63e73e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} god.
+reference	religion/male/caste-1/domains-1	type=1; figure.flags[0]&4; gender=male; caste adjective=1; spheres nonempty=1	0x63e73e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} god of {domain list}.
+reference	deity/other/caste-0/domains-0	type=0; figure.flags[0]&4; gender=other; caste adjective=0; spheres nonempty=0	0x63e73e	{deity} is the deity.
+reference	deity/other/caste-0/domains-1	type=0; figure.flags[0]&4; gender=other; caste adjective=0; spheres nonempty=1	0x63e73e	{deity} is the deity of {domain list}.
+reference	deity/other/caste-1/domains-0	type=0; figure.flags[0]&4; gender=other; caste adjective=1; spheres nonempty=0	0x63e73e	{deity} is the {caste adjective} deity.
+reference	deity/other/caste-1/domains-1	type=0; figure.flags[0]&4; gender=other; caste adjective=1; spheres nonempty=1	0x63e73e	{deity} is the {caste adjective} deity of {domain list}.
+reference	religion/other/caste-0/domains-0	type=1; figure.flags[0]&4; gender=other; caste adjective=0; spheres nonempty=0	0x63e73e	{religion} is a religion whose adherents worship {deity}, the deity.
+reference	religion/other/caste-0/domains-1	type=1; figure.flags[0]&4; gender=other; caste adjective=0; spheres nonempty=1	0x63e73e	{religion} is a religion whose adherents worship {deity}, the deity of {domain list}.
+reference	religion/other/caste-1/domains-0	type=1; figure.flags[0]&4; gender=other; caste adjective=1; spheres nonempty=0	0x63e73e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} deity.
+reference	religion/other/caste-1/domains-1	type=1; figure.flags[0]&4; gender=other; caste adjective=1; spheres nonempty=1	0x63e73e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} deity of {domain list}.
+reference	deity/force	figure.flags[0]&8 and !(figure.flags[0]&4); force place missing	0x63e653	{deity} is the force.
+reference	deity/force-place	figure.flags[0]&8 and !(figure.flags[0]&4); force place found	0x63e653	{deity} is the force which permeates {place}.
+reference	deity/ordinary-figure	figure has neither deity nor force flags; race is valid; native clears accumulated output before reading race/caste singular	0x63e919	{creature singular}.
+reference	deity/figure-name-only	figure has neither deity nor force flags; race == -1	0x63e919	{deity}.
+reference	religion/force	figure.flags[0]&8 and !(figure.flags[0]&4); force place missing	0x63e653	{religion} is a religion whose adherents worship {deity}, the force.
+reference	religion/force-place	figure.flags[0]&8 and !(figure.flags[0]&4); force place found	0x63e653	{religion} is a religion whose adherents worship {deity}, the force which permeates {place}.
+reference	religion/ordinary-figure	figure has neither deity nor force flags; race is valid; native clears accumulated output before reading race/caste singular	0x63e919	{creature singular}.
+reference	religion/figure-name-only	figure has neither deity nor force flags; race == -1	0x63e919	{religion} is a religion whose adherents worship {deity}.
+reference	religion/active-temple	matching site; matching religion temple; not obsolete; active temple selected	0x63ed15	They worship at {structure}.
+reference	religion/ruined-temple	no active temple; matching religion temple has inactive or ruined flag	0x63ef7b	Their temple {structure} is ruined.
+reference	religion/no-temple	religion missing, site missing, site vector empty, or no matching eligible temple	0x63eab5	
+reference	deity/no-temple	type=0 leaves religion pointer null; temple branch requires religion	0x63ead6	
+reference	domain-list/one	sphere count=1; native iteration starts at last element	0x63e890	{domain}
+reference	domain-list/two	sphere count=2; reverse native vector order	0x63e901	{domain[1]} and {domain[0]}
+reference	domain-list/many	sphere count>=3; reverse native vector order; comma while index>=2; and when index=1	0x63e8d1	{domain[n-1]}, ... {domain[1]} and {domain[0]}
+classic	religion/no-deity	type=1; entity missing or entity.deities empty or first figure missing	0x63be8d	{religion} is a religion
+classic	deity/female/caste-0/domains-0	type=0; figure.flags[0]&4; gender=female; caste adjective=0; spheres nonempty=0	0x63c15e	{deity} is the goddess.
+classic	deity/female/caste-0/domains-1	type=0; figure.flags[0]&4; gender=female; caste adjective=0; spheres nonempty=1	0x63c15e	{deity} is the goddess of {domain list}.
+classic	deity/female/caste-1/domains-0	type=0; figure.flags[0]&4; gender=female; caste adjective=1; spheres nonempty=0	0x63c15e	{deity} is the {caste adjective} goddess.
+classic	deity/female/caste-1/domains-1	type=0; figure.flags[0]&4; gender=female; caste adjective=1; spheres nonempty=1	0x63c15e	{deity} is the {caste adjective} goddess of {domain list}.
+classic	religion/female/caste-0/domains-0	type=1; figure.flags[0]&4; gender=female; caste adjective=0; spheres nonempty=0	0x63c15e	{religion} is a religion whose adherents worship {deity}, the goddess.
+classic	religion/female/caste-0/domains-1	type=1; figure.flags[0]&4; gender=female; caste adjective=0; spheres nonempty=1	0x63c15e	{religion} is a religion whose adherents worship {deity}, the goddess of {domain list}.
+classic	religion/female/caste-1/domains-0	type=1; figure.flags[0]&4; gender=female; caste adjective=1; spheres nonempty=0	0x63c15e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} goddess.
+classic	religion/female/caste-1/domains-1	type=1; figure.flags[0]&4; gender=female; caste adjective=1; spheres nonempty=1	0x63c15e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} goddess of {domain list}.
+classic	deity/male/caste-0/domains-0	type=0; figure.flags[0]&4; gender=male; caste adjective=0; spheres nonempty=0	0x63c15e	{deity} is the god.
+classic	deity/male/caste-0/domains-1	type=0; figure.flags[0]&4; gender=male; caste adjective=0; spheres nonempty=1	0x63c15e	{deity} is the god of {domain list}.
+classic	deity/male/caste-1/domains-0	type=0; figure.flags[0]&4; gender=male; caste adjective=1; spheres nonempty=0	0x63c15e	{deity} is the {caste adjective} god.
+classic	deity/male/caste-1/domains-1	type=0; figure.flags[0]&4; gender=male; caste adjective=1; spheres nonempty=1	0x63c15e	{deity} is the {caste adjective} god of {domain list}.
+classic	religion/male/caste-0/domains-0	type=1; figure.flags[0]&4; gender=male; caste adjective=0; spheres nonempty=0	0x63c15e	{religion} is a religion whose adherents worship {deity}, the god.
+classic	religion/male/caste-0/domains-1	type=1; figure.flags[0]&4; gender=male; caste adjective=0; spheres nonempty=1	0x63c15e	{religion} is a religion whose adherents worship {deity}, the god of {domain list}.
+classic	religion/male/caste-1/domains-0	type=1; figure.flags[0]&4; gender=male; caste adjective=1; spheres nonempty=0	0x63c15e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} god.
+classic	religion/male/caste-1/domains-1	type=1; figure.flags[0]&4; gender=male; caste adjective=1; spheres nonempty=1	0x63c15e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} god of {domain list}.
+classic	deity/other/caste-0/domains-0	type=0; figure.flags[0]&4; gender=other; caste adjective=0; spheres nonempty=0	0x63c15e	{deity} is the deity.
+classic	deity/other/caste-0/domains-1	type=0; figure.flags[0]&4; gender=other; caste adjective=0; spheres nonempty=1	0x63c15e	{deity} is the deity of {domain list}.
+classic	deity/other/caste-1/domains-0	type=0; figure.flags[0]&4; gender=other; caste adjective=1; spheres nonempty=0	0x63c15e	{deity} is the {caste adjective} deity.
+classic	deity/other/caste-1/domains-1	type=0; figure.flags[0]&4; gender=other; caste adjective=1; spheres nonempty=1	0x63c15e	{deity} is the {caste adjective} deity of {domain list}.
+classic	religion/other/caste-0/domains-0	type=1; figure.flags[0]&4; gender=other; caste adjective=0; spheres nonempty=0	0x63c15e	{religion} is a religion whose adherents worship {deity}, the deity.
+classic	religion/other/caste-0/domains-1	type=1; figure.flags[0]&4; gender=other; caste adjective=0; spheres nonempty=1	0x63c15e	{religion} is a religion whose adherents worship {deity}, the deity of {domain list}.
+classic	religion/other/caste-1/domains-0	type=1; figure.flags[0]&4; gender=other; caste adjective=1; spheres nonempty=0	0x63c15e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} deity.
+classic	religion/other/caste-1/domains-1	type=1; figure.flags[0]&4; gender=other; caste adjective=1; spheres nonempty=1	0x63c15e	{religion} is a religion whose adherents worship {deity}, the {caste adjective} deity of {domain list}.
+classic	deity/force	figure.flags[0]&8 and !(figure.flags[0]&4); force place missing	0x63c073	{deity} is the force.
+classic	deity/force-place	figure.flags[0]&8 and !(figure.flags[0]&4); force place found	0x63c073	{deity} is the force which permeates {place}.
+classic	deity/ordinary-figure	figure has neither deity nor force flags; race is valid; native clears accumulated output before reading race/caste singular	0x63c339	{creature singular}.
+classic	deity/figure-name-only	figure has neither deity nor force flags; race == -1	0x63c339	{deity}.
+classic	religion/force	figure.flags[0]&8 and !(figure.flags[0]&4); force place missing	0x63c073	{religion} is a religion whose adherents worship {deity}, the force.
+classic	religion/force-place	figure.flags[0]&8 and !(figure.flags[0]&4); force place found	0x63c073	{religion} is a religion whose adherents worship {deity}, the force which permeates {place}.
+classic	religion/ordinary-figure	figure has neither deity nor force flags; race is valid; native clears accumulated output before reading race/caste singular	0x63c339	{creature singular}.
+classic	religion/figure-name-only	figure has neither deity nor force flags; race == -1	0x63c339	{religion} is a religion whose adherents worship {deity}.
+classic	religion/active-temple	matching site; matching religion temple; not obsolete; active temple selected	0x63c735	They worship at {structure}.
+classic	religion/ruined-temple	no active temple; matching religion temple has inactive or ruined flag	0x63c99b	Their temple {structure} is ruined.
+classic	religion/no-temple	religion missing, site missing, site vector empty, or no matching eligible temple	0x63c4d5	
+classic	deity/no-temple	type=0 leaves religion pointer null; temple branch requires religion	0x63c4f6	
+classic	domain-list/one	sphere count=1; native iteration starts at last element	0x63c2b0	{domain}
+classic	domain-list/two	sphere count=2; reverse native vector order	0x63c321	{domain[1]} and {domain[0]}
+classic	domain-list/many	sphere count>=3; reverse native vector order; comma while index>=2; and when index=1	0x63c2f1	{domain[n-1]}, ... {domain[1]} and {domain[0]}

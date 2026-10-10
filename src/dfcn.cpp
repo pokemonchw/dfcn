@@ -59,6 +59,7 @@
 #include "native_history_data.h"
 #include "native_performance_choice.h"
 #include "native_adventure_crafting.h"
+#include "native_adventure_belief_source.h"
 #include "native_unit_identity.h"
 #include "native_adventure_charge.h"
 #include "native_trade_item_caption.h"
@@ -5072,6 +5073,8 @@ private:
     std::optional<std::string> translate_adventure_origin_source(
         std::string_view source) const;
     std::optional<std::string> translate_adventure_background_source(
+        std::string_view source) const;
+    std::optional<std::string> translate_adventure_belief_source(
         std::string_view source) const;
     std::optional<std::string> translate_deity_spheres(
         std::string_view source) const;
@@ -12416,7 +12419,7 @@ std::optional<std::string> Overlay::translate_adventure_background_source(
         return std::nullopt;
     };
     auto name = [&](const std::string &value, bool site,
-                    bool government = false) -> std::optional<std::string> {
+                    bool government = false, bool figure = false) -> std::optional<std::string> {
         if (site || government) {
             // Hometown/destination names are EnglishName fields, just like
             // the home cards. The controller is a real governing entity;
@@ -12429,6 +12432,15 @@ std::optional<std::string> Overlay::translate_adventure_background_source(
                         *translated) == retained_names.end())
                 retained_names.push_back(*translated);
             return translated;
+        }
+        // The belief producer formats a historical figure's language_name
+        // before its god/goddess/deity/force clause. Its given name and
+        // English surname use the shared person grammar, even when a name
+        // component also happens to be an ordinary UI dictionary entry.
+        if (figure) {
+            auto translated = translate_procedural_fragment(value, false, false, {},
+                ProceduralFragmentContext::personal_name);
+            if (complete(translated)) return translated;
         }
         if (auto translated = literal(value)) return translated;
         // Other {n} fields denote deities, religions or
@@ -12508,8 +12520,27 @@ std::optional<std::string> Overlay::translate_adventure_background_source(
                      rule.template_literals[i].ends_with(" led you to "));
                 const bool government_name = rule.template_kinds[i] == 'n' &&
                     rule.template_literals[i].ends_with(" controlled by ");
+                const bool figure_name = rule.template_kinds[i] == 'n' && i == 0 &&
+                    (rule.template_literals[i + 1].starts_with(", the ") ||
+                     rule.template_literals[i + 1].starts_with(" is the "));
+                const bool temple_name = rule.template_kinds[i] == 'n' &&
+                    (rule.source == "They worship at {n}" ||
+                     rule.source == "Their temple {n} is ruined");
                 switch (rule.template_kinds[i]) {
-                case 'n': resolved[i] = name(captures[i], site_name, government_name); break;
+                case 'n':
+                    // b94090/b910d0 emits a reviewed building-kind noun when
+                    // its structure lacks a name, including the missing
+                    // structure fallback. Reuse the existing historical
+                    // structure vocabulary before generated-title grammar.
+                    if (temple_name && (captures[i].starts_with("a ") ||
+                            captures[i].starts_with("an ") || captures[i].starts_with("the ")))
+                        resolved[i] = translate_legends_term(captures[i], false);
+                    if (rule.source.starts_with("{n} is a religion") &&
+                            captures[i] == "an unknown civilization")
+                        resolved[i] = translate_legends_term(captures[i], false);
+                    if (!complete(resolved[i]))
+                        resolved[i] = name(captures[i], site_name, government_name, figure_name);
+                    break;
                 case 's': resolved[i] = term(term, captures[i], 0); break;
                 case 'r':
                     resolved[i] = translate_deity_spheres(captures[i]);
@@ -12533,6 +12564,14 @@ std::optional<std::string> Overlay::translate_adventure_background_source(
                 case 'p':
                     if (captures[i].size() < value.size())
                         resolved[i] = self(self, captures[i], depth + 1);
+                    // A historical figure without race/deity/force metadata
+                    // contributes only its name after this exact religion
+                    // prefix. Keep that native field typed; do not send an
+                    // arbitrary untranslated clause through name fallback.
+                    if (!resolved[i] && rule.source ==
+                            "{n} is a religion whose adherents worship {p}" &&
+                            generated_title_shape(captures[i]))
+                        resolved[i] = name(captures[i], false, false, true);
                     break;
                 case 'd': resolved[i] = captures[i]; break;
                 default: break;
@@ -12579,6 +12618,8 @@ std::optional<std::string> Overlay::translate_adventure_background_source(
     return remember(result.empty() ? std::nullopt :
         std::optional<std::string>(std::move(result)));
 }
+
+#include "adventure_belief_translation.inc"
 
 // The native footer may justify the FPS label and values separately. Keep
 // the complete counter on the game's renderer, including any padded gap;
@@ -19580,10 +19621,12 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     // Recover the current native source and ALL its exact wrapped rows before
     // the generic word matcher can turn them into mixed English/Chinese.
     std::vector<std::string> background_rows = screen_rows;
-    if (screen_override) {
-        // Immediate glyph suppression sees one layer at a time. Use current
-        // logical composition, not the previous frame's graphical occlusion,
-        // to recognize both controls and the paragraph consistently.
+    const auto adventure_belief_cache = native_adventure_belief_cache();
+    if (screen_override || adventure_belief_cache) {
+        // Immediate glyph suppression sees one layer at a time. The retained
+        // faith cache also proves a live background page, whose earlier
+        // phrase matches can have erased its labels from screen_rows. Use
+        // current logical composition to identify its controls and source.
         for (int y = 0; y < gps_->dimy; ++y) {
             for (int x = 0; x < gps_->dimx; ++x) {
                 bool top = false;
@@ -19724,6 +19767,9 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         int last_category_y = -1;
         auto complete_name = [&](const std::string &source) -> std::optional<std::string> {
             auto target = exact_literal_translation(source);
+            if (!target && (source == "an unknown civilization" ||
+                    source == "an unknown creature"))
+                target = translate_legends_term(source, false);
             if (!target) target = translate_procedural_fragment(source);
             if (!target) {
                 // Only a typed deity/religion card may use the quoted-title
@@ -19747,7 +19793,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
                 // resolve the full English field before ordinary WORD glosses.
                 // Religion cards retain their separate naming grammar.
                 const bool home_card = world_site_type_shape(kind.text);
-                const bool belief_card = kind.text == "Deity" || kind.text == "Religion" ||
+                const bool belief_card = kind.text == "Deity" || kind.text == "Force" ||
+                    kind.text == "Object of worship" || kind.text == "Religion" ||
                     kind.text == "Religion with temple" ||
                     kind.text == "Religion with ruined temple";
                 if ((!home_card && !belief_card) || kind.start >= beliefs_x) continue;

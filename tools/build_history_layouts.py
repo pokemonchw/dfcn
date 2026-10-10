@@ -269,6 +269,7 @@ class Generator:
                  'viewscreen_choose_start_sitest',
                  'mod_headerst', 'savegame_headerst', 'viewscreen_titlest', 'viewscreen_new_arenast',
                  'viewscreen_dwarfmodest', 'viewscreen_dungeonmodest', 'viewscreen_worldst',
+                 'viewscreen_setupadventurest', 'setup_character_info',
                  'widget_textbox', 'stocks_interfacest', 'squad', 'unit',
                  'adventure_interfacest', 'adventure_interface_performst',
                  'performance_menu_choicest', 'view_sheets_interfacest',

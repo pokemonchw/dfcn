@@ -1798,27 +1798,35 @@ You are a {s} of {p}	你是一名{s}，信奉{p}	atl
 {p} of the great {n}	{p}，隶属于伟大的{n}	atl
 {n}, the god of {r}	{n}——掌管{r}的神祇	atl
 {n}, the goddess of {r}	{n}——掌管{r}的女神	atl
+{n}, the deity of {r}	{n}——掌管{r}的神祇	atl
 # Animal-form deities keep their species as a term, separate from names/spheres.
 # Adventure templates require the same capture order in source and target.
 {n}, the {s} god of {r}	{n}——{s}神祇，掌管{r}	atl
 {n}, the {s} goddess of {r}	{n}——{s}女神，掌管{r}	atl
+{n}, the {s} deity of {r}	{n}——{s}神祇，掌管{r}	atl
 {n}, the force of {r}	{n}——象征{r}的自然之灵	atl
 {n}, the force which permeates {r}	{n}——遍及{r}的自然之灵	atl
 {n} is the god of {r}	{n}是掌管{r}的神祇	atl
 {n} is the goddess of {r}	{n}是掌管{r}的女神	atl
+{n} is the deity of {r}	{n}是掌管{r}的神祇	atl
 {n} is the {s} god of {r}	{n}是{s}神祇，掌管{r}	atl
 {n} is the {s} goddess of {r}	{n}是{s}女神，掌管{r}	atl
+{n} is the {s} deity of {r}	{n}是{s}神祇，掌管{r}	atl
 {n} is the force of {r}	{n}是象征{r}的自然之灵	atl
 {n} is the force which permeates {r}	{n}是遍及{r}的自然之灵	atl
 {n}, the god	{n}——神祇	atl
 {n}, the goddess	{n}——女神	atl
+{n}, the deity	{n}——神祇	atl
 {n}, the {s} god	{n}——{s}神祇	atl
 {n}, the {s} goddess	{n}——{s}女神	atl
+{n}, the {s} deity	{n}——{s}神祇	atl
 {n}, the force	{n}——自然之灵	atl
 {n} is the god	{n}是神祇	atl
 {n} is the goddess	{n}是女神	atl
+{n} is the deity	{n}是神祇	atl
 {n} is the {s} god	{n}是{s}神祇	atl
 {n} is the {s} goddess	{n}是{s}女神	atl
+{n} is the {s} deity	{n}是{s}神祇	atl
 {n} is the force	{n}是自然之灵	atl
 {n} is a religion	{n}是一个宗教	atl
 {n} is a religion whose adherents worship {p}	{n}是一个宗教，其信徒崇拜{p}	atl

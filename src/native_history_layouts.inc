@@ -7132,6 +7132,186 @@ struct f_savegame_headerst {
     bool f_is_portable;
     std::filesystem::file_time_type f_timestamp;
 };
+struct f_unit_attribute {
+    int32_t f_value;
+    int32_t f_max_value;
+    int32_t f_improve_counter;
+    int32_t f_unused_counter;
+    int32_t f_soft_demotion;
+    int32_t f_rust_counter;
+    int32_t f_demotion_counter;
+};
+struct f_unit_genes {
+    DfArray f_appearance;
+    DfArray f_colors;
+};
+struct f_unit_appearance {
+    int32_t f_local_id;
+    int32_t f_caste_index;
+    int16_t f_favoredgrasp_bp;
+    std::array<native_history_layout::f_unit_attribute, 6> f_physical_attributes;
+    int32_t f_energy_storage;
+    Vector f_body_modifiers;
+    Vector f_bp_modifiers;
+    int32_t f_total_appearance_size_modifier;
+    Vector f_tissue_style;
+    Vector f_tissue_style_civ_id;
+    Vector f_tissue_style_id;
+    Vector f_tissue_style_type;
+    Vector f_tissue_length;
+    native_history_layout::f_unit_genes f_genes;
+    Vector f_color_modifiers;
+    int32_t f_age_death_year;
+    int32_t f_age_death_season_tick;
+};
+struct f_personality_debugst {
+    std::array<int32_t, 281> f_total_circ_stress;
+    std::array<int32_t, 281> f_total_circ_memory_stress;
+    int32_t f_total_eustress_gain;
+    int32_t f_total_distress_gain;
+    int32_t f_total_eustress_loss;
+    int32_t f_total_distress_loss;
+    uint32_t f_flags;
+};
+struct f_unit_personality {
+    Vector f_values;
+    Vector f_ethics;
+    Vector f_emotions;
+    Vector f_dreams;
+    int32_t f_next_dream_id;
+    Vector f_preferences;
+    std::array<int16_t, 50> f_traits;
+    int32_t f_civ_id;
+    int32_t f_cultural_identity;
+    Vector f_mannerism;
+    Vector f_habit;
+    int32_t f_stress;
+    int32_t f_time_without_distress;
+    int32_t f_time_without_eustress;
+    int32_t f_likes_outdoors;
+    int32_t f_combat_hardened;
+    int32_t f_outdoor_dislike_counter;
+    Vector f_needs;
+    uint32_t f_flags;
+    uintptr_t f_temporary_trait_changes;
+    int32_t f_slack_end_year;
+    int32_t f_slack_end_year_tick;
+    uintptr_t f_memories;
+    int32_t f_temptation_greed;
+    int32_t f_temptation_lust;
+    int32_t f_temptation_power;
+    int32_t f_temptation_anger;
+    int32_t f_longterm_stress;
+    int32_t f_current_focus;
+    int32_t f_undistracted_focus;
+    native_history_layout::f_personality_debugst f_debug;
+};
+struct f_setup_character_info {
+    native_history_layout::f_language_name f_name;
+    int16_t f_race;
+    int16_t f_caste;
+    std::array<int32_t, 149> f_skilllevel;
+    int32_t f_quick_entity_id;
+    int32_t f_entity_population_id;
+    int32_t f_breed_id;
+    int32_t f_cultural_identity_id;
+    int32_t f_nemesis_index;
+    int32_t f_start_mil_type;
+    int32_t f_start_civ_type;
+    int16_t f_skill_picks_left;
+    std::array<int32_t, 6> f_phys_att_range_val;
+    std::array<int32_t, 13> f_ment_att_range_val;
+    int16_t f_difficulty;
+    int32_t f_start_site_id;
+    int32_t f_background_start_squad_epp_id;
+    int16_t f_background_unit;
+    std::array<int32_t, 149> f_background_skill_bonus;
+    int32_t f_worship_hfid;
+    int32_t f_worship_enid;
+    int32_t f_worship_strength;
+    native_history_layout::f_unit_appearance f_pform;
+    int32_t f_birth_year;
+    int32_t f_birth_season_count;
+    int32_t f_age_death_year;
+    int32_t f_age_death_season_count;
+    native_history_layout::f_unit_personality f_pers;
+    bool f_is_from_wilderpop_or_feature;
+    uint32_t f_flag;
+    int32_t f_sub_mode;
+    std::array<bool, 13> f_visited_mode;
+    bool f_customizing_skills;
+    int32_t f_selected_att;
+    bool f_scrolling_att;
+    int32_t f_selected_skill;
+    bool f_scrolling_skill;
+    int32_t f_att_points;
+    Vector f_posskill;
+    int32_t f_ip;
+    Vector f_archetype;
+    int32_t f_selected_archetype;
+    int32_t f_scroll_archetype;
+    bool f_scrolling_archetype;
+    bool f_entering_name;
+    std::string f_old_name;
+    native_history_layout::f_curses_text_boxst f_background_text;
+    Vector f_goodsite;
+    int32_t f_active_column;
+    Vector f_background_option;
+    Vector f_background_option_squad_epp_id;
+    Vector f_background_option_unit;
+    Vector f_religious_practice_option;
+    Vector f_religious_practice_id;
+    Vector f_pos_caste;
+    native_history_layout::f_curses_text_boxst f_background_desc;
+    int32_t f_desc_st_index;
+    int32_t f_desc_bo_index;
+    int32_t f_desc_rp_index;
+    int32_t f_scroll_st;
+    bool f_scrolling_st;
+    int32_t f_scroll_bo;
+    bool f_scrolling_bo;
+    int32_t f_scroll_rp;
+    bool f_scrolling_rp;
+    native_history_layout::f_curses_text_boxst f_appearance_text;
+    bool f_appearance_offscreen_randomized;
+    bool f_appearance_was_fully_randomized;
+    int32_t f_portrait_texpos_selected;
+    int32_t f_portrait_texpos;
+    int32_t f_pers_scroll_y;
+    native_history_layout::f_curses_text_boxst f_personal_values_text;
+    native_history_layout::f_curses_text_boxst f_personality_text;
+    native_history_layout::f_curses_text_boxst f_civ_values_text;
+    bool f_doing_specific_personality;
+    int32_t f_scroll_position_specific_personality;
+    bool f_scrolling_specific_personality;
+    int32_t f_selected_specific_pers_item;
+    std::array<int16_t, 50> f_min_pers;
+    std::array<int16_t, 50> f_max_pers;
+    std::array<int32_t, 33> f_civ_value_level;
+    int32_t f_eqpet_points;
+    std::array<Vector, 107> f_s_item;
+    native_history_layout::f_embark_item_choice f_etl;
+    int32_t f_itype;
+    int32_t f_istype;
+    int32_t f_imat;
+    int32_t f_imatg;
+    std::array<bool, 107> f_item_expander_on;
+    int32_t f_scroll_position_item;
+    int16_t f_current_category;
+    int32_t f_scroll_position_category;
+    int32_t f_scroll_position_category_item;
+    bool f_scrolling_item;
+    bool f_scrolling_category;
+    bool f_scrolling_category_item;
+    std::string f_item_filter;
+    bool f_entering_item_filter;
+    int32_t f_selected_pet_l;
+    bool f_scrolling_pet_l;
+    int32_t f_selected_pet_r;
+    bool f_scrolling_pet_r;
+    int32_t f_pet_side;
+    Vector f_pet;
+};
 struct f_squad {
     int32_t f_id;
     native_history_layout::f_language_name f_name;
@@ -7227,15 +7407,6 @@ struct f_unit_f_body_f_components {
     Vector f_layer_dent_fraction;
     Vector f_layer_effect_fraction;
 };
-struct f_unit_attribute {
-    int32_t f_value;
-    int32_t f_max_value;
-    int32_t f_improve_counter;
-    int32_t f_unused_counter;
-    int32_t f_soft_demotion;
-    int32_t f_rust_counter;
-    int32_t f_demotion_counter;
-};
 struct f_unit_f_body_f_size_info {
     int32_t f_size_cur;
     int32_t f_size_base;
@@ -7257,10 +7428,6 @@ struct f_unit_f_body {
     int32_t f_blood_count;
     int32_t f_infection_level;
     Vector f_spatters;
-};
-struct f_unit_genes {
-    DfArray f_appearance;
-    DfArray f_colors;
 };
 struct f_unit_f_appearance {
     Vector f_body_modifiers;
@@ -8094,6 +8261,59 @@ struct f_viewscreen_new_regionst : f_viewscreen {
     std::string f_last_hover_mod_id;
     int32_t f_last_hover_mod_version;
     int32_t f_last_hover_width;
+};
+struct f_dungeon_mode_start_sheetst {
+    Vector f_csheet;
+    int32_t f_start_site_id;
+};
+struct f_viewscreen_setupadventurest : f_viewscreen {
+    int32_t f_mode;
+    Vector f_race_selection;
+    int32_t f_chosen_destiny;
+    bool f_chosen_allowed;
+    bool f_hero_allowed;
+    int32_t f_chosen_difficulty;
+    std::array<native_history_layout::f_curses_text_boxst, 3> f_destiny_desc;
+    native_history_layout::f_curses_text_boxst f_difficulty_desc;
+    bool f_want_tutorial;
+    int32_t f_chosen_race;
+    bool f_chosen_is_from_wilderpop_or_feature;
+    native_history_layout::f_curses_text_boxst f_race_desc;
+    int32_t f_race_desc_index;
+    native_history_layout::f_curses_text_boxst f_civ_desc;
+    int32_t f_civ_desc_id;
+    int32_t f_sheet_page;
+    Vector f_valid_race;
+    Vector f_highlight_entity_id;
+    int32_t f_selected_race;
+    int32_t f_scroll_position_race;
+    bool f_scrolling_race;
+    Vector f_valid_subrace;
+    int32_t f_selected_subrace;
+    int32_t f_scroll_position_subrace;
+    bool f_scrolling_subrace;
+    Vector f_nemesis_index;
+    int32_t f_selected_nem;
+    int32_t f_scroll_position_nem;
+    bool f_scrolling_nem;
+    Vector f_valid_civ_id;
+    int32_t f_selected_civ_id;
+    int32_t f_scroll_position_civ_id;
+    bool f_scrolling_civ_id;
+    Vector f_csheet;
+    int32_t f_active_sheet_index;
+    Vector f_item_tab_order;
+    native_history_layout::f_curses_text_boxst f_tooltip_phys_att_box;
+    int32_t f_tooltip_phys_att_box_index;
+    native_history_layout::f_curses_text_boxst f_tooltip_ment_att_box;
+    int32_t f_tooltip_ment_att_box_index;
+    native_history_layout::f_curses_text_boxst f_tooltip_skill_box;
+    int32_t f_tooltip_skill_box_index;
+    Vector f_final_start_site_id_cand;
+    int32_t f_selected_final_start_site_index;
+    int32_t f_scroll_final;
+    bool f_scrolling_final;
+    native_history_layout::f_dungeon_mode_start_sheetst f_dungeon_mode_start_sheet;
 };
 struct f_viewscreen_titlest : f_viewscreen {
     std::array<uint8_t, 768> f_str_histories;
@@ -21000,6 +21220,174 @@ static constexpr std::array<Field, 59> f_savegame_headerst_fields = {{
     {0x1b0, DFCN_NATIVE_FIELD(f_savegame_headerst, f_is_portable, 0x1b0), 1, "is_portable"},
     {0x1b8, DFCN_NATIVE_FIELD(f_savegame_headerst, f_timestamp, 0x1b8), 8, "timestamp"},
 }};
+static constexpr std::array<Field, 166> f_setup_character_info_fields = {{
+    {0x0, DFCN_NATIVE_FIELD(f_setup_character_info, f_name.f_first_name, 0x0), 32, "name.first_name"},
+    {0x20, DFCN_NATIVE_FIELD(f_setup_character_info, f_name.f_nickname, 0x20), 32, "name.nickname"},
+    {0x40, DFCN_NATIVE_FIELD(f_setup_character_info, f_name.f_words, 0x40), 28, "name.words"},
+    {0x5c, DFCN_NATIVE_FIELD(f_setup_character_info, f_name.f_parts_of_speech, 0x5c), 14, "name.parts_of_speech"},
+    {0x6c, DFCN_NATIVE_FIELD(f_setup_character_info, f_name.f_language, 0x6c), 4, "name.language"},
+    {0x70, DFCN_NATIVE_FIELD(f_setup_character_info, f_name.f_type, 0x70), 2, "name.type"},
+    {0x72, DFCN_NATIVE_FIELD(f_setup_character_info, f_name.f_has_name, 0x72), 1, "name.has_name"},
+    {0x78, DFCN_NATIVE_FIELD(f_setup_character_info, f_race, 0x78), 2, "race"},
+    {0x7a, DFCN_NATIVE_FIELD(f_setup_character_info, f_caste, 0x7a), 2, "caste"},
+    {0x7c, DFCN_NATIVE_FIELD(f_setup_character_info, f_skilllevel, 0x7c), 596, "skilllevel"},
+    {0x2d0, DFCN_NATIVE_FIELD(f_setup_character_info, f_quick_entity_id, 0x2d0), 4, "quick_entity_id"},
+    {0x2d4, DFCN_NATIVE_FIELD(f_setup_character_info, f_entity_population_id, 0x2d4), 4, "entity_population_id"},
+    {0x2d8, DFCN_NATIVE_FIELD(f_setup_character_info, f_breed_id, 0x2d8), 4, "breed_id"},
+    {0x2dc, DFCN_NATIVE_FIELD(f_setup_character_info, f_cultural_identity_id, 0x2dc), 4, "cultural_identity_id"},
+    {0x2e0, DFCN_NATIVE_FIELD(f_setup_character_info, f_nemesis_index, 0x2e0), 4, "nemesis_index"},
+    {0x2e4, DFCN_NATIVE_FIELD(f_setup_character_info, f_start_mil_type, 0x2e4), 4, "start_mil_type"},
+    {0x2e8, DFCN_NATIVE_FIELD(f_setup_character_info, f_start_civ_type, 0x2e8), 4, "start_civ_type"},
+    {0x2ec, DFCN_NATIVE_FIELD(f_setup_character_info, f_skill_picks_left, 0x2ec), 2, "skill_picks_left"},
+    {0x2f0, DFCN_NATIVE_FIELD(f_setup_character_info, f_phys_att_range_val, 0x2f0), 24, "phys_att_range_val"},
+    {0x308, DFCN_NATIVE_FIELD(f_setup_character_info, f_ment_att_range_val, 0x308), 52, "ment_att_range_val"},
+    {0x33c, DFCN_NATIVE_FIELD(f_setup_character_info, f_difficulty, 0x33c), 2, "difficulty"},
+    {0x340, DFCN_NATIVE_FIELD(f_setup_character_info, f_start_site_id, 0x340), 4, "start_site_id"},
+    {0x344, DFCN_NATIVE_FIELD(f_setup_character_info, f_background_start_squad_epp_id, 0x344), 4, "background_start_squad_epp_id"},
+    {0x348, DFCN_NATIVE_FIELD(f_setup_character_info, f_background_unit, 0x348), 2, "background_unit"},
+    {0x34c, DFCN_NATIVE_FIELD(f_setup_character_info, f_background_skill_bonus, 0x34c), 596, "background_skill_bonus"},
+    {0x5a0, DFCN_NATIVE_FIELD(f_setup_character_info, f_worship_hfid, 0x5a0), 4, "worship_hfid"},
+    {0x5a4, DFCN_NATIVE_FIELD(f_setup_character_info, f_worship_enid, 0x5a4), 4, "worship_enid"},
+    {0x5a8, DFCN_NATIVE_FIELD(f_setup_character_info, f_worship_strength, 0x5a8), 4, "worship_strength"},
+    {0x5b0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_local_id, 0x5b0), 4, "pform.local_id"},
+    {0x5b4, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_caste_index, 0x5b4), 4, "pform.caste_index"},
+    {0x5b8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_favoredgrasp_bp, 0x5b8), 2, "pform.favoredgrasp_bp"},
+    {0x5bc, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_physical_attributes, 0x5bc), 168, "pform.physical_attributes"},
+    {0x664, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_energy_storage, 0x664), 4, "pform.energy_storage"},
+    {0x668, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_body_modifiers, 0x668), 24, "pform.body_modifiers"},
+    {0x680, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_bp_modifiers, 0x680), 24, "pform.bp_modifiers"},
+    {0x698, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_total_appearance_size_modifier, 0x698), 4, "pform.total_appearance_size_modifier"},
+    {0x6a0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_tissue_style, 0x6a0), 24, "pform.tissue_style"},
+    {0x6b8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_tissue_style_civ_id, 0x6b8), 24, "pform.tissue_style_civ_id"},
+    {0x6d0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_tissue_style_id, 0x6d0), 24, "pform.tissue_style_id"},
+    {0x6e8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_tissue_style_type, 0x6e8), 24, "pform.tissue_style_type"},
+    {0x700, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_tissue_length, 0x700), 24, "pform.tissue_length"},
+    {0x718, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_genes.f_appearance, 0x718), 16, "pform.genes.appearance"},
+    {0x728, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_genes.f_colors, 0x728), 16, "pform.genes.colors"},
+    {0x738, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_color_modifiers, 0x738), 24, "pform.color_modifiers"},
+    {0x750, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_age_death_year, 0x750), 4, "pform.age_death_year"},
+    {0x754, DFCN_NATIVE_FIELD(f_setup_character_info, f_pform.f_age_death_season_tick, 0x754), 4, "pform.age_death_season_tick"},
+    {0x758, DFCN_NATIVE_FIELD(f_setup_character_info, f_birth_year, 0x758), 4, "birth_year"},
+    {0x75c, DFCN_NATIVE_FIELD(f_setup_character_info, f_birth_season_count, 0x75c), 4, "birth_season_count"},
+    {0x760, DFCN_NATIVE_FIELD(f_setup_character_info, f_age_death_year, 0x760), 4, "age_death_year"},
+    {0x764, DFCN_NATIVE_FIELD(f_setup_character_info, f_age_death_season_count, 0x764), 4, "age_death_season_count"},
+    {0x768, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_values, 0x768), 24, "pers.values"},
+    {0x780, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_ethics, 0x780), 24, "pers.ethics"},
+    {0x798, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_emotions, 0x798), 24, "pers.emotions"},
+    {0x7b0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_dreams, 0x7b0), 24, "pers.dreams"},
+    {0x7c8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_next_dream_id, 0x7c8), 4, "pers.next_dream_id"},
+    {0x7d0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_preferences, 0x7d0), 24, "pers.preferences"},
+    {0x7e8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_traits, 0x7e8), 100, "pers.traits"},
+    {0x84c, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_civ_id, 0x84c), 4, "pers.civ_id"},
+    {0x850, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_cultural_identity, 0x850), 4, "pers.cultural_identity"},
+    {0x858, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_mannerism, 0x858), 24, "pers.mannerism"},
+    {0x870, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_habit, 0x870), 24, "pers.habit"},
+    {0x888, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_stress, 0x888), 4, "pers.stress"},
+    {0x88c, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_time_without_distress, 0x88c), 4, "pers.time_without_distress"},
+    {0x890, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_time_without_eustress, 0x890), 4, "pers.time_without_eustress"},
+    {0x894, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_likes_outdoors, 0x894), 4, "pers.likes_outdoors"},
+    {0x898, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_combat_hardened, 0x898), 4, "pers.combat_hardened"},
+    {0x89c, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_outdoor_dislike_counter, 0x89c), 4, "pers.outdoor_dislike_counter"},
+    {0x8a0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_needs, 0x8a0), 24, "pers.needs"},
+    {0x8b8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_flags, 0x8b8), 4, "pers.flags"},
+    {0x8c0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_temporary_trait_changes, 0x8c0), 8, "pers.temporary_trait_changes"},
+    {0x8c8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_slack_end_year, 0x8c8), 4, "pers.slack_end_year"},
+    {0x8cc, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_slack_end_year_tick, 0x8cc), 4, "pers.slack_end_year_tick"},
+    {0x8d0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_memories, 0x8d0), 8, "pers.memories"},
+    {0x8d8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_temptation_greed, 0x8d8), 4, "pers.temptation_greed"},
+    {0x8dc, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_temptation_lust, 0x8dc), 4, "pers.temptation_lust"},
+    {0x8e0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_temptation_power, 0x8e0), 4, "pers.temptation_power"},
+    {0x8e4, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_temptation_anger, 0x8e4), 4, "pers.temptation_anger"},
+    {0x8e8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_longterm_stress, 0x8e8), 4, "pers.longterm_stress"},
+    {0x8ec, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_current_focus, 0x8ec), 4, "pers.current_focus"},
+    {0x8f0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_undistracted_focus, 0x8f0), 4, "pers.undistracted_focus"},
+    {0x8f4, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_debug.f_total_circ_stress, 0x8f4), 1124, "pers.debug.total_circ_stress"},
+    {0xd58, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_debug.f_total_circ_memory_stress, 0xd58), 1124, "pers.debug.total_circ_memory_stress"},
+    {0x11bc, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_debug.f_total_eustress_gain, 0x11bc), 4, "pers.debug.total_eustress_gain"},
+    {0x11c0, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_debug.f_total_distress_gain, 0x11c0), 4, "pers.debug.total_distress_gain"},
+    {0x11c4, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_debug.f_total_eustress_loss, 0x11c4), 4, "pers.debug.total_eustress_loss"},
+    {0x11c8, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_debug.f_total_distress_loss, 0x11c8), 4, "pers.debug.total_distress_loss"},
+    {0x11cc, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers.f_debug.f_flags, 0x11cc), 4, "pers.debug.flags"},
+    {0x11d0, DFCN_NATIVE_FIELD(f_setup_character_info, f_is_from_wilderpop_or_feature, 0x11d0), 1, "is_from_wilderpop_or_feature"},
+    {0x11d4, DFCN_NATIVE_FIELD(f_setup_character_info, f_flag, 0x11d4), 4, "flag"},
+    {0x11d8, DFCN_NATIVE_FIELD(f_setup_character_info, f_sub_mode, 0x11d8), 4, "sub_mode"},
+    {0x11dc, DFCN_NATIVE_FIELD(f_setup_character_info, f_visited_mode, 0x11dc), 13, "visited_mode"},
+    {0x11e9, DFCN_NATIVE_FIELD(f_setup_character_info, f_customizing_skills, 0x11e9), 1, "customizing_skills"},
+    {0x11ec, DFCN_NATIVE_FIELD(f_setup_character_info, f_selected_att, 0x11ec), 4, "selected_att"},
+    {0x11f0, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_att, 0x11f0), 1, "scrolling_att"},
+    {0x11f4, DFCN_NATIVE_FIELD(f_setup_character_info, f_selected_skill, 0x11f4), 4, "selected_skill"},
+    {0x11f8, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_skill, 0x11f8), 1, "scrolling_skill"},
+    {0x11fc, DFCN_NATIVE_FIELD(f_setup_character_info, f_att_points, 0x11fc), 4, "att_points"},
+    {0x1200, DFCN_NATIVE_FIELD(f_setup_character_info, f_posskill, 0x1200), 24, "posskill"},
+    {0x1218, DFCN_NATIVE_FIELD(f_setup_character_info, f_ip, 0x1218), 4, "ip"},
+    {0x1220, DFCN_NATIVE_FIELD(f_setup_character_info, f_archetype, 0x1220), 24, "archetype"},
+    {0x1238, DFCN_NATIVE_FIELD(f_setup_character_info, f_selected_archetype, 0x1238), 4, "selected_archetype"},
+    {0x123c, DFCN_NATIVE_FIELD(f_setup_character_info, f_scroll_archetype, 0x123c), 4, "scroll_archetype"},
+    {0x1240, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_archetype, 0x1240), 1, "scrolling_archetype"},
+    {0x1241, DFCN_NATIVE_FIELD(f_setup_character_info, f_entering_name, 0x1241), 1, "entering_name"},
+    {0x1248, DFCN_NATIVE_FIELD(f_setup_character_info, f_old_name, 0x1248), 32, "old_name"},
+    {0x1268, DFCN_NATIVE_FIELD(f_setup_character_info, f_background_text.f_text, 0x1268), 24, "background_text.text"},
+    {0x1280, DFCN_NATIVE_FIELD(f_setup_character_info, f_goodsite, 0x1280), 24, "goodsite"},
+    {0x1298, DFCN_NATIVE_FIELD(f_setup_character_info, f_active_column, 0x1298), 4, "active_column"},
+    {0x12a0, DFCN_NATIVE_FIELD(f_setup_character_info, f_background_option, 0x12a0), 24, "background_option"},
+    {0x12b8, DFCN_NATIVE_FIELD(f_setup_character_info, f_background_option_squad_epp_id, 0x12b8), 24, "background_option_squad_epp_id"},
+    {0x12d0, DFCN_NATIVE_FIELD(f_setup_character_info, f_background_option_unit, 0x12d0), 24, "background_option_unit"},
+    {0x12e8, DFCN_NATIVE_FIELD(f_setup_character_info, f_religious_practice_option, 0x12e8), 24, "religious_practice_option"},
+    {0x1300, DFCN_NATIVE_FIELD(f_setup_character_info, f_religious_practice_id, 0x1300), 24, "religious_practice_id"},
+    {0x1318, DFCN_NATIVE_FIELD(f_setup_character_info, f_pos_caste, 0x1318), 24, "pos_caste"},
+    {0x1330, DFCN_NATIVE_FIELD(f_setup_character_info, f_background_desc.f_text, 0x1330), 24, "background_desc.text"},
+    {0x1348, DFCN_NATIVE_FIELD(f_setup_character_info, f_desc_st_index, 0x1348), 4, "desc_st_index"},
+    {0x134c, DFCN_NATIVE_FIELD(f_setup_character_info, f_desc_bo_index, 0x134c), 4, "desc_bo_index"},
+    {0x1350, DFCN_NATIVE_FIELD(f_setup_character_info, f_desc_rp_index, 0x1350), 4, "desc_rp_index"},
+    {0x1354, DFCN_NATIVE_FIELD(f_setup_character_info, f_scroll_st, 0x1354), 4, "scroll_st"},
+    {0x1358, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_st, 0x1358), 1, "scrolling_st"},
+    {0x135c, DFCN_NATIVE_FIELD(f_setup_character_info, f_scroll_bo, 0x135c), 4, "scroll_bo"},
+    {0x1360, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_bo, 0x1360), 1, "scrolling_bo"},
+    {0x1364, DFCN_NATIVE_FIELD(f_setup_character_info, f_scroll_rp, 0x1364), 4, "scroll_rp"},
+    {0x1368, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_rp, 0x1368), 1, "scrolling_rp"},
+    {0x1370, DFCN_NATIVE_FIELD(f_setup_character_info, f_appearance_text.f_text, 0x1370), 24, "appearance_text.text"},
+    {0x1388, DFCN_NATIVE_FIELD(f_setup_character_info, f_appearance_offscreen_randomized, 0x1388), 1, "appearance_offscreen_randomized"},
+    {0x1389, DFCN_NATIVE_FIELD(f_setup_character_info, f_appearance_was_fully_randomized, 0x1389), 1, "appearance_was_fully_randomized"},
+    {0x138c, DFCN_NATIVE_FIELD(f_setup_character_info, f_portrait_texpos_selected, 0x138c), 4, "portrait_texpos_selected"},
+    {0x1390, DFCN_NATIVE_FIELD(f_setup_character_info, f_portrait_texpos, 0x1390), 4, "portrait_texpos"},
+    {0x1394, DFCN_NATIVE_FIELD(f_setup_character_info, f_pers_scroll_y, 0x1394), 4, "pers_scroll_y"},
+    {0x1398, DFCN_NATIVE_FIELD(f_setup_character_info, f_personal_values_text.f_text, 0x1398), 24, "personal_values_text.text"},
+    {0x13b0, DFCN_NATIVE_FIELD(f_setup_character_info, f_personality_text.f_text, 0x13b0), 24, "personality_text.text"},
+    {0x13c8, DFCN_NATIVE_FIELD(f_setup_character_info, f_civ_values_text.f_text, 0x13c8), 24, "civ_values_text.text"},
+    {0x13e0, DFCN_NATIVE_FIELD(f_setup_character_info, f_doing_specific_personality, 0x13e0), 1, "doing_specific_personality"},
+    {0x13e4, DFCN_NATIVE_FIELD(f_setup_character_info, f_scroll_position_specific_personality, 0x13e4), 4, "scroll_position_specific_personality"},
+    {0x13e8, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_specific_personality, 0x13e8), 1, "scrolling_specific_personality"},
+    {0x13ec, DFCN_NATIVE_FIELD(f_setup_character_info, f_selected_specific_pers_item, 0x13ec), 4, "selected_specific_pers_item"},
+    {0x13f0, DFCN_NATIVE_FIELD(f_setup_character_info, f_min_pers, 0x13f0), 100, "min_pers"},
+    {0x1454, DFCN_NATIVE_FIELD(f_setup_character_info, f_max_pers, 0x1454), 100, "max_pers"},
+    {0x14b8, DFCN_NATIVE_FIELD(f_setup_character_info, f_civ_value_level, 0x14b8), 132, "civ_value_level"},
+    {0x153c, DFCN_NATIVE_FIELD(f_setup_character_info, f_eqpet_points, 0x153c), 4, "eqpet_points"},
+    {0x1540, DFCN_NATIVE_FIELD(f_setup_character_info, f_s_item, 0x1540), 2568, "s_item"},
+    {0x1f48, DFCN_NATIVE_FIELD(f_setup_character_info, f_etl.f_list, 0x1f48), 2568, "etl.list"},
+    {0x2950, DFCN_NATIVE_FIELD(f_setup_character_info, f_etl.f_race, 0x2950), 24, "etl.race"},
+    {0x2968, DFCN_NATIVE_FIELD(f_setup_character_info, f_etl.f_caste, 0x2968), 24, "etl.caste"},
+    {0x2980, DFCN_NATIVE_FIELD(f_setup_character_info, f_etl.f_profession, 0x2980), 24, "etl.profession"},
+    {0x2998, DFCN_NATIVE_FIELD(f_setup_character_info, f_itype, 0x2998), 4, "itype"},
+    {0x299c, DFCN_NATIVE_FIELD(f_setup_character_info, f_istype, 0x299c), 4, "istype"},
+    {0x29a0, DFCN_NATIVE_FIELD(f_setup_character_info, f_imat, 0x29a0), 4, "imat"},
+    {0x29a4, DFCN_NATIVE_FIELD(f_setup_character_info, f_imatg, 0x29a4), 4, "imatg"},
+    {0x29a8, DFCN_NATIVE_FIELD(f_setup_character_info, f_item_expander_on, 0x29a8), 107, "item_expander_on"},
+    {0x2a14, DFCN_NATIVE_FIELD(f_setup_character_info, f_scroll_position_item, 0x2a14), 4, "scroll_position_item"},
+    {0x2a18, DFCN_NATIVE_FIELD(f_setup_character_info, f_current_category, 0x2a18), 2, "current_category"},
+    {0x2a1c, DFCN_NATIVE_FIELD(f_setup_character_info, f_scroll_position_category, 0x2a1c), 4, "scroll_position_category"},
+    {0x2a20, DFCN_NATIVE_FIELD(f_setup_character_info, f_scroll_position_category_item, 0x2a20), 4, "scroll_position_category_item"},
+    {0x2a24, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_item, 0x2a24), 1, "scrolling_item"},
+    {0x2a25, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_category, 0x2a25), 1, "scrolling_category"},
+    {0x2a26, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_category_item, 0x2a26), 1, "scrolling_category_item"},
+    {0x2a28, DFCN_NATIVE_FIELD(f_setup_character_info, f_item_filter, 0x2a28), 32, "item_filter"},
+    {0x2a48, DFCN_NATIVE_FIELD(f_setup_character_info, f_entering_item_filter, 0x2a48), 1, "entering_item_filter"},
+    {0x2a4c, DFCN_NATIVE_FIELD(f_setup_character_info, f_selected_pet_l, 0x2a4c), 4, "selected_pet_l"},
+    {0x2a50, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_pet_l, 0x2a50), 1, "scrolling_pet_l"},
+    {0x2a54, DFCN_NATIVE_FIELD(f_setup_character_info, f_selected_pet_r, 0x2a54), 4, "selected_pet_r"},
+    {0x2a58, DFCN_NATIVE_FIELD(f_setup_character_info, f_scrolling_pet_r, 0x2a58), 1, "scrolling_pet_r"},
+    {0x2a5c, DFCN_NATIVE_FIELD(f_setup_character_info, f_pet_side, 0x2a5c), 4, "pet_side"},
+    {0x2a60, DFCN_NATIVE_FIELD(f_setup_character_info, f_pet, 0x2a60), 24, "pet"},
+}};
 static constexpr std::array<Field, 9> f_squad_fields = {{
     {0x0, DFCN_NATIVE_FIELD(f_squad, f_id, 0x0), 4, "id"},
     {0x8, DFCN_NATIVE_FIELD(f_squad, f_name.f_first_name, 0x8), 32, "name.first_name"},
@@ -22212,6 +22600,88 @@ static constexpr std::array<Field, 110> f_viewscreen_new_regionst_fields = {{
     {0x4d0, DFCN_NATIVE_FIELD(f_viewscreen_new_regionst, f_last_hover_mod_id, 0x4d0), 32, "last_hover_mod_id"},
     {0x4f0, DFCN_NATIVE_FIELD(f_viewscreen_new_regionst, f_last_hover_mod_version, 0x4f0), 4, "last_hover_mod_version"},
     {0x4f4, DFCN_NATIVE_FIELD(f_viewscreen_new_regionst, f_last_hover_width, 0x4f4), 4, "last_hover_width"},
+}};
+static constexpr std::array<Field, 80> f_viewscreen_setupadventurest_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_child, 0x8), 8, "child"},
+    {0x10, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_parent, 0x10), 8, "parent"},
+    {0x18, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_breakdown_level, 0x18), 1, "breakdown_level"},
+    {0x19, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_option_key_pressed, 0x19), 1, "option_key_pressed"},
+    {0x28, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_parent, 0x28), 8, "widgets.parent"},
+    {0x30, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_rect.f_x1, 0x30), 4, "widgets.rect.x1"},
+    {0x34, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_rect.f_y1, 0x34), 4, "widgets.rect.y1"},
+    {0x38, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_rect.f_x2, 0x38), 4, "widgets.rect.x2"},
+    {0x3c, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_rect.f_y2, 0x3c), 4, "widgets.rect.y2"},
+    {0x40, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_custom_feed, 0x40), 24, "widgets.custom_feed"},
+    {0x58, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_custom_logic, 0x58), 24, "widgets.custom_logic"},
+    {0x70, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_custom_render, 0x70), 24, "widgets.custom_render"},
+    {0x88, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_custom_activated, 0x88), 24, "widgets.custom_activated"},
+    {0xa0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_name, 0xa0), 32, "widgets.name"},
+    {0xc0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_flag, 0xc0), 1, "widgets.flag"},
+    {0xc4, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_offset_bottom, 0xc4), 4, "widgets.offset_bottom"},
+    {0xc8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_offset_left, 0xc8), 4, "widgets.offset_left"},
+    {0xcc, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_offset_right, 0xcc), 4, "widgets.offset_right"},
+    {0xd0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_offset_top, 0xd0), 4, "widgets.offset_top"},
+    {0xd4, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_anchor_top, 0xd4), 4, "widgets.anchor_top"},
+    {0xd8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_anchor_bottom, 0xd8), 4, "widgets.anchor_bottom"},
+    {0xdc, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_anchor_left, 0xdc), 4, "widgets.anchor_left"},
+    {0xe0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_anchor_right, 0xe0), 4, "widgets.anchor_right"},
+    {0xe4, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_min_w, 0xe4), 4, "widgets.min_w"},
+    {0xe8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_min_h, 0xe8), 4, "widgets.min_h"},
+    {0xf0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_tooltip, 0xf0), 72, "widgets.tooltip"},
+    {0x138, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_tooltip_type, 0x138), 1, "widgets.tooltip_type"},
+    {0x139, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_displaying_tooltip, 0x139), 1, "widgets.displaying_tooltip"},
+    {0x140, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_search_string, 0x140), 32, "widgets.search_string"},
+    {0x160, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_activation_hotkeys, 0x160), 16, "widgets.activation_hotkeys"},
+    {0x170, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_children_by_name, 0x170), 16, "widgets.children_by_name"},
+    {0x180, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_widgets.f_children, 0x180), 24, "widgets.children"},
+    {0x198, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_mode, 0x198), 4, "mode"},
+    {0x1a0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_race_selection, 0x1a0), 24, "race_selection"},
+    {0x1b8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_chosen_destiny, 0x1b8), 4, "chosen_destiny"},
+    {0x1bc, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_chosen_allowed, 0x1bc), 1, "chosen_allowed"},
+    {0x1bd, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_hero_allowed, 0x1bd), 1, "hero_allowed"},
+    {0x1c0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_chosen_difficulty, 0x1c0), 4, "chosen_difficulty"},
+    {0x1c8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_destiny_desc, 0x1c8), 72, "destiny_desc"},
+    {0x210, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_difficulty_desc.f_text, 0x210), 24, "difficulty_desc.text"},
+    {0x228, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_want_tutorial, 0x228), 1, "want_tutorial"},
+    {0x22c, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_chosen_race, 0x22c), 4, "chosen_race"},
+    {0x230, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_chosen_is_from_wilderpop_or_feature, 0x230), 1, "chosen_is_from_wilderpop_or_feature"},
+    {0x238, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_race_desc.f_text, 0x238), 24, "race_desc.text"},
+    {0x250, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_race_desc_index, 0x250), 4, "race_desc_index"},
+    {0x258, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_civ_desc.f_text, 0x258), 24, "civ_desc.text"},
+    {0x270, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_civ_desc_id, 0x270), 4, "civ_desc_id"},
+    {0x274, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_sheet_page, 0x274), 4, "sheet_page"},
+    {0x278, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_valid_race, 0x278), 24, "valid_race"},
+    {0x290, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_highlight_entity_id, 0x290), 24, "highlight_entity_id"},
+    {0x2a8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_selected_race, 0x2a8), 4, "selected_race"},
+    {0x2ac, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scroll_position_race, 0x2ac), 4, "scroll_position_race"},
+    {0x2b0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scrolling_race, 0x2b0), 1, "scrolling_race"},
+    {0x2b8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_valid_subrace, 0x2b8), 24, "valid_subrace"},
+    {0x2d0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_selected_subrace, 0x2d0), 4, "selected_subrace"},
+    {0x2d4, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scroll_position_subrace, 0x2d4), 4, "scroll_position_subrace"},
+    {0x2d8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scrolling_subrace, 0x2d8), 1, "scrolling_subrace"},
+    {0x2e0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_nemesis_index, 0x2e0), 24, "nemesis_index"},
+    {0x2f8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_selected_nem, 0x2f8), 4, "selected_nem"},
+    {0x2fc, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scroll_position_nem, 0x2fc), 4, "scroll_position_nem"},
+    {0x300, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scrolling_nem, 0x300), 1, "scrolling_nem"},
+    {0x308, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_valid_civ_id, 0x308), 24, "valid_civ_id"},
+    {0x320, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_selected_civ_id, 0x320), 4, "selected_civ_id"},
+    {0x324, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scroll_position_civ_id, 0x324), 4, "scroll_position_civ_id"},
+    {0x328, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scrolling_civ_id, 0x328), 1, "scrolling_civ_id"},
+    {0x330, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_csheet, 0x330), 24, "csheet"},
+    {0x348, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_active_sheet_index, 0x348), 4, "active_sheet_index"},
+    {0x350, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_item_tab_order, 0x350), 24, "item_tab_order"},
+    {0x368, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_tooltip_phys_att_box.f_text, 0x368), 24, "tooltip_phys_att_box.text"},
+    {0x380, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_tooltip_phys_att_box_index, 0x380), 4, "tooltip_phys_att_box_index"},
+    {0x388, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_tooltip_ment_att_box.f_text, 0x388), 24, "tooltip_ment_att_box.text"},
+    {0x3a0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_tooltip_ment_att_box_index, 0x3a0), 4, "tooltip_ment_att_box_index"},
+    {0x3a8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_tooltip_skill_box.f_text, 0x3a8), 24, "tooltip_skill_box.text"},
+    {0x3c0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_tooltip_skill_box_index, 0x3c0), 4, "tooltip_skill_box_index"},
+    {0x3c8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_final_start_site_id_cand, 0x3c8), 24, "final_start_site_id_cand"},
+    {0x3e0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_selected_final_start_site_index, 0x3e0), 4, "selected_final_start_site_index"},
+    {0x3e4, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scroll_final, 0x3e4), 4, "scroll_final"},
+    {0x3e8, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_scrolling_final, 0x3e8), 1, "scrolling_final"},
+    {0x3f0, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_dungeon_mode_start_sheet.f_csheet, 0x3f0), 24, "dungeon_mode_start_sheet.csheet"},
+    {0x408, DFCN_NATIVE_FIELD(f_viewscreen_setupadventurest, f_dungeon_mode_start_sheet.f_start_site_id, 0x408), 4, "dungeon_mode_start_sheet.start_site_id"},
 }};
 static constexpr std::array<Field, 91> f_viewscreen_titlest_fields = {{
     {0x8, DFCN_NATIVE_FIELD(f_viewscreen_titlest, f_child, 0x8), 8, "child"},
@@ -23461,6 +23931,7 @@ static constexpr size_t f_viewscreen_dwarfmodest_slots[] = {DFCN_NATIVE_BINDING(
 static constexpr size_t f_viewscreen_legendsst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72)};
 static constexpr size_t f_viewscreen_new_arenast_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72)};
 static constexpr size_t f_viewscreen_new_regionst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72)};
+static constexpr size_t f_viewscreen_setupadventurest_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72)};
 static constexpr size_t f_viewscreen_titlest_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72)};
 static constexpr size_t f_viewscreen_worldst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72)};
 static constexpr size_t f_widget_container_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56)};
@@ -23869,6 +24340,7 @@ static constexpr Object objects[] = {
     {"plotinfost", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_plotinfost_fields.data(), std::size(f_plotinfost_fields), nullptr, 0},
     {"report", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_report_fields.data(), std::size(f_report_fields), nullptr, 0},
     {"savegame_headerst", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_savegame_headerst_fields.data(), std::size(f_savegame_headerst_fields), nullptr, 0},
+    {"setup_character_info", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_setup_character_info_fields.data(), std::size(f_setup_character_info_fields), nullptr, 0},
     {"squad", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_squad_fields.data(), std::size(f_squad_fields), nullptr, 0},
     {"stocks_interfacest", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_stocks_interfacest_fields.data(), std::size(f_stocks_interfacest_fields), nullptr, 0},
     {"unit", "", DFCN_NATIVE_BINDING(0x1781308, 0x202f330), f_unit_fields.data(), std::size(f_unit_fields), f_unit_slots, std::size(f_unit_slots)},
@@ -23880,6 +24352,7 @@ static constexpr Object objects[] = {
     {"viewscreen_legendsst", "viewscreen", DFCN_NATIVE_BINDING(0x1711820, 0x2084800), f_viewscreen_legendsst_fields.data(), std::size(f_viewscreen_legendsst_fields), f_viewscreen_legendsst_slots, std::size(f_viewscreen_legendsst_slots)},
     {"viewscreen_new_arenast", "viewscreen", DFCN_NATIVE_BINDING(0x1721428, 0x2085020), f_viewscreen_new_arenast_fields.data(), std::size(f_viewscreen_new_arenast_fields), f_viewscreen_new_arenast_slots, std::size(f_viewscreen_new_arenast_slots)},
     {"viewscreen_new_regionst", "viewscreen", DFCN_NATIVE_BINDING(0x1721480, 0x2085088), f_viewscreen_new_regionst_fields.data(), std::size(f_viewscreen_new_regionst_fields), f_viewscreen_new_regionst_slots, std::size(f_viewscreen_new_regionst_slots)},
+    {"viewscreen_setupadventurest", "viewscreen", DFCN_NATIVE_BINDING(0x165eab8, 0x207f200), f_viewscreen_setupadventurest_fields.data(), std::size(f_viewscreen_setupadventurest_fields), f_viewscreen_setupadventurest_slots, std::size(f_viewscreen_setupadventurest_slots)},
     {"viewscreen_titlest", "viewscreen", DFCN_NATIVE_BINDING(0x1618bd0, 0x2080a70), f_viewscreen_titlest_fields.data(), std::size(f_viewscreen_titlest_fields), f_viewscreen_titlest_slots, std::size(f_viewscreen_titlest_slots)},
     {"viewscreen_worldst", "viewscreen", DFCN_NATIVE_BINDING(0x1603050, 0x2080698), f_viewscreen_worldst_fields.data(), std::size(f_viewscreen_worldst_fields), f_viewscreen_worldst_slots, std::size(f_viewscreen_worldst_slots)},
     {"widget_container", "widget", DFCN_NATIVE_BINDING(0x15eb4a8, 0x204c990), f_widget_container_fields.data(), std::size(f_widget_container_fields), f_widget_container_slots, std::size(f_widget_container_slots)},

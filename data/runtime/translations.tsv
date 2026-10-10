@@ -78455,6 +78455,7 @@ wove a masterful sewn image	织出了一幅杰作级的刺绣图像	h
 {n} is associated with {r}.	{n}与{r}有关。	ht
 {n} is partially paralyzed!	{n1}部分麻痹了！	hPt
 {n} is taken by a fey mood!	{n1}陷入了古怪心境！	hPt
+{n} is the {s} deity of {r}	{n}是{s}神祇，掌管{r}	atl
 {n} of {p} constructed {p}.	{p1}的{n}建造了{p2}。	ht
 {n} seems willing to trade.	{n1}似乎愿意交易。	hPt
 {n} struck down {n} at {p}.	在{p}，{n1}击杀了{n2}。	ht
@@ -82516,6 +82517,7 @@ writing of a masterpiece.	书写杰作。	hEi
 {n}'s {t} was {s} at {p}.	在{p1}，{n1}的{t1}被{s1}。	ht
 {n}'s {t} was {s} by {a}.	{n1}的{t1}被{a1}{s1}。	ht
 {n}'s {t} was {s} in {p}.	在{p1}，{n1}的{t1}被{s1}。	ht
+{n}, the {s} deity of {r}	{n}——{s}神祇，掌管{r}	atl
 {p} was claimed from afar	有人在远方宣称拥有{p1}	ht
 {p} was desecrated at {p}	在{p2}，{p1}遭到了亵渎	ht
 {p} was desecrated in {p}	在{p2}，{p1}遭到了亵渎	ht
@@ -86625,6 +86627,7 @@ wounded {a} within {p}.	在{p1}击伤了{a1}。	ht
 {n} has discovered {q}.	{n1}发现了{q1}。	hPt
 {n} head-bumps herself.	{n1}用头蹭了蹭自己。	hPt
 {n} head-bumps himself.	{n1}用头蹭了蹭自己。	hPt
+{n} is the deity of {r}	{n}是掌管{r}的神祇	atl
 {n} is the force of {r}	{n}是象征{r}的自然之灵	atl
 {n} lies on the ground.	{n1}趴在了地上。	hPt
 {n} married {n} in {p}.	在{p}，{n1}与{n2}结婚了。	ht
@@ -91083,6 +91086,7 @@ woolly rhinoceros men	披毛犀人	wi
 {n} whistles harshly.	{n1}发出刺耳的哨声。	hPt
 {n} works secretly...	{n1}正在秘密工作……	hPt
 {n}'s presence in {p}	{n1}在{p1}出现	htEi
+{n}, the deity of {r}	{n}——掌管{r}的神祇	atl
 {n}, the force of {r}	{n}——象征{r}的自然之灵	atl
 {p} has become a {s}.	{p1}成为了{s1}。	hPt
 {p} received its name	{p1}获得了自己的名字	ht
@@ -93909,6 +93913,7 @@ yours or companion's	你或同伴留下的	h
 {n} is dancing well.	{n1}跳得很好。	hPt
 {n} is knocked over!	{n1}被撞倒了！	hPt
 {n} is singing well.	{n1}唱得很好。	hPt
+{n} is the {s} deity	{n}是{s}神祇	atl
 {n} rendition of {s}	由{n1}制作的{s1}摹作	hIit
 {n} returned to {p}.	{n}返回了{p}。	ht
 {n} struck down {n}.	{n1}击杀了{n2}。	ht
@@ -101226,6 +101231,7 @@ yellow spessartine	橙榴石	wi
 {n} was the victor	{n1}获得了胜利	ht
 {n} will be slain.	{n1}将被杀死。	hPt
 {n}'s {t} was {s}.	{n1}的{t1}被{s1}。	ht
+{n}, the {s} deity	{n}——{s}神祇	atl
 {p} ({s}, {d}-{d})	{p}（{s}，{d}—{d}年）	ht
 {p} was desecrated	{p1}遭到了亵渎	ht
 {p} was destroyed.	{p1}被摧毁了。	ht
@@ -110153,6 +110159,7 @@ yellow grossular	缃榴石	wi
 {n} has drowned.	{n1}溺水而死。	hPt
 {n} is fighting!	{n1}正在战斗！	hPt
 {n} is sparring.	{n1}正在进行比武训练。	hPt
+{n} is the deity	{n}是神祇	atl
 {n} is the force	{n}是自然之灵	atl
 {n} is visiting.	{n1}来访了。	hPt
 {n} looks dizzy!	{n1}看起来头晕目眩！	hPt
@@ -119891,6 +119898,7 @@ youngest child	最小的孩子	h
 {n} tusks you.	{n1}用獠牙轻碰你。	hPt
 {n} tusks {n}.	{n1}用獠牙轻碰{n2}。	hPt
 {n} was a {s}.	{n}是{s}。	ht
+{n}, the deity	{n}——神祇	atl
 {n}, the force	{n}——自然之灵	atl
 {p} is an {s}.	{p}是一个{s}。	ht
 {p} was a {s}.	{p}曾是一个{s}。	ht

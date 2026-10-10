@@ -1,0 +1,235 @@
+STATIC DECOMPILATION OF THE ADVENTURE CREATION FAITH TOOLTIP
+
+Source: the reference and classic PE paths configured in
+data/runtime/native-pe-images.json. No process was attached or executed.
+Addresses below are reference RVAs. The classic owner has an identical
+instruction layout at RVA 0x63b7b0, a delta of -0x25e0 from 0x63dd90.
+Helper addresses have their own edition mappings in native-owners.tsv.
+
+Logical producer: 0x63dd90..0x63f0c8
+Faith page caller: 0x62d278, owner 0x622790..0x635020
+Hometown caller: 0x62c659, same owner
+Faith tooltip writer CALL: 0x62d70c, return address 0x62d711
+Classic faith CALL: 0x62ac98; classic writer return address: 0x62b131
+
+The producer's +0x1330 vector is shared by the hometown and faith panels.
+Faith selection type is the selected int32 in +0x12e8; selected IDs are
+int32 values in +0x1300. Type 0 is a historical figure/object of worship,
+type 1 is a religion entity. This is not inferred from displayed spelling.
+The current background subtab is +0x1298, and faith is subtab 2.
+
+PRODUCER ENTRY AND CACHE
+
+produce(setup, hometown_index, unused_third, faith_index):
+    if setup.cached_hometown_index(+0x1348) == hometown_index
+       and setup.cached_other_index(+0x134c) == -1
+       and setup.cached_faith_index(+0x1350) == faith_index:
+        return                      // retained text is drawn on later frames
+    save those indices
+    clear(setup.description_lines(+0x1330))
+    description = ""
+
+    if setup.background_subtab(+0x1298) == 0 and setup.sites(+0x1280) nonempty:
+        produce the hometown branch below
+
+    if setup.background_subtab != 2 or setup.faith_types(+0x12e8) is empty:
+        wrap(description, setup.description_lines, width=27)
+        return
+
+    religion = null
+    if selected faith type == 1:
+        description += entity_name(selected_id, link_flags=0)
+        description += " is a religion"
+        religion = find_entity(selected_id)    // 0xba0a0
+        if religion == null or religion.deities(+0xfc8) empty:
+            goto TEMPLE_BRANCH                // native does not add a period
+        deity = find_historical_figure(religion.deities.front())
+        if deity == null: goto TEMPLE_BRANCH
+        description += " whose adherents worship "
+    else if selected faith type == 0:
+        deity = find_historical_figure(selected_id)
+        if deity == null: goto TEMPLE_BRANCH
+    else:
+        goto TEMPLE_BRANCH
+
+    description += language_name(deity.name(+0x38), english=true)
+
+    if deity.flags(+0xc8).size(+0xd0) > 0 and flags[0] & 4:
+        description += (religion != null ? ", the " : " is the ")
+        if deity.race(+2) != -1 and deity.race != setup.race(+0x78):
+            description += caste_adjective(deity.race, deity.caste(+4))
+            description += " "
+        switch deity.sex(+6):
+            0: description += "goddess"
+            1: description += "god"
+            otherwise: description += "deity"
+        if deity.religious_data(+0x130) != null
+           and religious_data.sphere_list pointer != null
+           and sphere_list nonempty:
+            description += " of "
+            for i = sphere_list.size-1 downto 0:
+                description += domain_field(sphere_list[i])
+                if i >= 2: description += ", "
+                else if i == 1: description += " and "
+        // This is reverse native-vector order and has no Oxford comma.
+
+    else if flags.size > 0 and flags[0] & 8:
+        description += (religion != null ? ", the force" : " is the force")
+        place = force_place(world, deity.id(+0xe0))   // 0x5c3760
+        if place != null:
+            description += " which permeates "
+            description += language_name(place, english=true)
+
+    else if deity.race != -1:
+        description += (religion != null ? ", a " : " is a ")
+        // Preserve this actual native behavior: the next instructions clear
+        // description itself, not a separate name buffer (0x63e96a..0x63e97c).
+        description = ""
+        if valid race/caste and caste.NAME[0] nonempty:
+            description = caste.NAME[0]
+        else if valid race:
+            description = race.NAME[0]
+        // 0x63ea46 appends a zero-length separate buffer. The resulting source
+        // is the raw singular followed by a period, with the preceding deity
+        // and religion text gone. This branch is catalogued explicitly.
+
+    description += "."
+
+TEMPLE_BRANCH
+
+    if religion != null and setup.sites nonempty:
+        site = first site with site.id(+0x88) == setup.site_id(+0x340)
+        if site != null:
+            active = null; ruined = null
+            for building in site.buildings(+0x2b0):
+                if building.flags(+0x28).size(+0x30) > 0:
+                    if flags[0] & 2: continue
+                    inactive = (flags[0] & 1) != 0 or (flags[0] & 8) != 0
+                else:
+                    inactive = false
+                if building.virtual_type() != 2: continue
+                if building.virtual_religion_id(+vtable0x38) != religion.id(+4):
+                    continue
+                if inactive: ruined = building
+                else: active = building
+            // Last qualifying active and inactive buildings win. Active wins
+            // over inactive regardless of their relative vector position.
+            if active != null:
+                wrap first description into +0x1330, width=27
+                append empty string row to +0x1330
+                description = "They worship at "
+                append structure_field(site.id, active.id, use_name=true,
+                                       link_flags=0) to description
+                description += "."
+            else if ruined != null:
+                wrap first description into +0x1330, width=27
+                append empty string row to +0x1330
+                description = "Their temple "
+                append structure_field(site.id, ruined.id, use_name=true,
+                                       link_flags=0) to description
+                description += " is ruined."
+    wrap(description, setup.description_lines, width=27)
+
+FIELD PRODUCERS
+
+domain_field(enum) at 0x756500 calls sphere_field(enum) at 0x756690.
+The second function has 130 enum destinations plus an out-of-range fallback.
+All literal operands and switch destinations are in finite-field-values.tsv.
+The wrapper prefixes "the " only for enum values:
+    19 dawn, 70 moon, 76 night, 87 rain, 98 seasons, 100 sky,
+    103 stars, 107 sun, 125 weather, 126 wind.
+All other cases have no article. The domain list may have any native length;
+the list joins above apply to every length without enumerating combinations.
+
+caste_adjective(race,caste) at 0xaa3770:
+    output = ""
+    read valid caste.NAME[2] at caste+0x60
+    if absent/empty, use valid creature_raw.NAME[2] at raw+0x60
+The ordinary-figure path instead uses NAME[0] at caste/raw+0x20.
+These operands originate in creature raws; they are not finite PE strings.
+
+force_place(world,figure_id) at 0x5c3760:
+    reverse iterate world.sites(+0x238)
+    find figure_id in site's force/deity map at site+0x250 (0xbabe0)
+    return the first reverse-order site's language-name object, else null
+
+entity_name(id) at 0xb92900:
+    missing entity -> "an unknown civilization"
+    existing entity -> language_name(entity+0x20, english=true)
+    optional [LPAGE:ENT:id] wrappers exist in helper but faith passes flags=0
+
+structure_field(site_id,building_id,use_name=true,link_flags=0) at 0xb94090:
+    missing site or building -> "an unknown building"
+    named building with virtual_name().has_name(+0x72):
+        -> language_name(virtual_name(), english=true)
+    else switch building.virtual_type():
+        0: "a mead hall"
+        1: "a keep"
+        2: "a temple"
+        3: "a dark tower"
+        4: "a market"
+        5: "a tomb"
+        6: subtype(+0x130) 0 -> "a dungeon"; 1 -> "the sewers";
+           2 -> "the catacombs"; other -> append no type text
+        7: "an underworld spire"
+        8: "a tavern"
+        9: "a library"
+        10: "a counting house"
+        11: "a guildhall"
+        12: "a tower"
+        13: "a hospital"
+        default: "an unknown building"
+    The faith temple selector requires type 2, so named temples and "a temple"
+    are the real temple-branch outputs. The entire helper switch is extracted.
+
+language_name at 0xa946e0 formats dynamic generated proper names from the
+actual language-name fields and name-word tables, with english=true here.
+The extracted asm includes all this helper's code and literal operands.
+The set of generated names is open; it is not a list of hard-coded labels.
+
+FAITH ROWS AND DISPLAY
+
+The faith action buttons use "Believe" and "Doubt". They are drawn when
+setup.selected_figure(+0x5a0) != -1, from RVAs 0x62cc68 and 0x62cd2a.
+Type -1 is labelled "None" and has no belief tooltip body. Type 1 labels
+"Religion", followed by " with temple" if a matching active temple is found,
+otherwise " with ruined temple" if a matching inactive temple is found.
+Type 0 labels "Deity" when flag bit 2 is set, "Force" for bit 3, otherwise
+"Object of worship"; a missing figure is also "Object of worship".
+Faith names are rendered through entity_field/figure_field before those
+secondary labels; these helpers and all label literals are extracted.
+
+When the hovered row requests a tooltip, it calls produce at 0x62d278.
+Retained +0x1330 source lines are redrawn through one loop, using yellow
+(color=6, bright=1). Each source string is passed to addst at 0x62d70c,
+so both deity and religion tooltip bodies have native caller 0x62d711.
+This loop advances the physical Y by one per cached string. The blank
+cached string separates the religion statement and temple paragraph.
+Nine-part borders are rendered in the same native path. No tooltip source
+is taken from faith-list captions or inferred from text spelling.
+
+SHARED HOMETOWN BRANCH (same owner, fully extracted)
+
+description = language_name(site) + " is a "
+if site.type(+0x80) == 1: append "dark"
+if controlling entity exists:
+    append caste_adjective(controller.race, caste=-1), separated by spaces
+append site_type_field(site) + ".  "
+population is the sum of the two int32 ID-vector lengths at +0x90 and
++0x108 and the populations of entries in the +0xd8 pointer vector.
+Its complete ranges/text are:
+    population <= 0: "Nobody lives there"
+    1..9: "Few live there"
+    10..24: "A few dozen or less live there"
+    25..79: "Some dozens live there"
+    80..119: "Roughly a hundred live there"
+    120..174: "Well over a hundred live there"
+    175..249: "A few hundred live there"
+    250..749: "Several hundred live there"
+    750..1499: "A thousand live there"
+    1500..2499: "A few thousand live there"
+    >=2500: "Thousands live there"
+if controller exists:
+    append " and it is controlled by " + entity_name(controller)
+append "."
+The site-type leaf at 0x10cbe50 and controller lookup at 0x9b4e70 are included.

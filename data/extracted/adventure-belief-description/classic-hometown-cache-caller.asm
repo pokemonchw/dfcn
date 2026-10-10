@@ -1,0 +1,84 @@
+# classic PE:6a70b91c:0270a000; hometown-cache-caller; RVA 0x629ff0..0x62a140
+0x00629ff0: jle    0x14062a02f
+0x00629ff2: lea    rdx,[rsi-0xc]
+0x00629ff6: lea    rcx,[rbp+0x1180]
+0x00629ffd: call   0x1400fb4d0
+0x0062a002: mov    BYTE PTR [rax],0x2e
+0x0062a005: lea    eax,[rdi-0xb]
+0x0062a008: movsxd rdx,eax
+0x0062a00b: lea    rcx,[rbp+0x1180]
+0x0062a012: call   0x1400fb4d0
+0x0062a017: mov    BYTE PTR [rax],0x2e
+0x0062a01a: lea    eax,[rdi-0xa]
+0x0062a01d: movsxd rdx,eax
+0x0062a020: lea    rcx,[rbp+0x1180]
+0x0062a027: call   0x1400fb4d0
+0x0062a02c: mov    BYTE PTR [rax],0x2e
+0x0062a02f: mov    edi,DWORD PTR [rsp+0x70]
+0x0062a033: xor    r9d,r9d
+0x0062a036: xor    r8d,r8d
+0x0062a039: lea    rdx,[rbp+0x1180]
+0x0062a040: lea    rcx,[rip+0x201a299]        # 0x1426442e0
+0x0062a047: call   0x140ad69a0
+0x0062a04c: mov    eax,DWORD PTR [rbp-0x60]
+0x0062a04f: cmp    eax,r15d
+0x0062a052: jl     0x14062a082
+0x0062a054: cmp    eax,r14d
+0x0062a057: jg     0x14062a082
+0x0062a059: lea    eax,[rdi-0x2]
+0x0062a05c: mov    ecx,DWORD PTR [rbp-0x58]
+0x0062a05f: cmp    ecx,eax
+0x0062a061: jl     0x14062a082
+0x0062a063: cmp    ecx,edi
+0x0062a065: jg     0x14062a082
+0x0062a067: mov    eax,0xffffffff
+0x0062a06c: mov    r9d,eax
+0x0062a06f: mov    r8d,eax
+0x0062a072: mov    edx,r13d
+0x0062a075: mov    rcx,QWORD PTR [rbp-0x78]
+0x0062a079: call   0x14063b7b0
+0x0062a07e: mov    BYTE PTR [rbp-0x3c],0x1
+0x0062a082: add    edi,0x3
+0x0062a085: mov    DWORD PTR [rsp+0x70],edi
+0x0062a089: lea    rcx,[rbp+0x1180]
+0x0062a090: call   0x140067dc0
+0x0062a095: nop
+0x0062a096: lea    rcx,[rbp+0x1340]
+0x0062a09d: call   0x140067dc0
+0x0062a0a2: nop
+0x0062a0a3: lea    rcx,[rbp+0x1300]
+0x0062a0aa: call   0x140067dc0
+0x0062a0af: inc    r13d
+0x0062a0b2: mov    DWORD PTR [rbp-0x7c],r13d
+0x0062a0b6: cmp    r13d,DWORD PTR [rbp-0x5c]
+0x0062a0ba: mov    ebx,edi
+0x0062a0bc: mov    rsi,QWORD PTR [rbp-0x70]
+0x0062a0c0: jl     0x140629c00
+0x0062a0c6: mov    edi,DWORD PTR [rbp-0x64]
+0x0062a0c9: cmp    esi,edi
+0x0062a0cb: jle    0x14062a13b
+0x0062a0cd: lea    ebx,[rdi*2+0x17]
+0x0062a0d4: add    ebx,edi
+0x0062a0d6: lea    rcx,[rbp+0x2b0]
+0x0062a0dd: call   0x1400bb2f0
+0x0062a0e2: lea    r9d,[rsi-0x1]
+0x0062a0e6: mov    DWORD PTR [rsp+0x30],ebx
+0x0062a0ea: mov    DWORD PTR [rsp+0x28],0x1a
+0x0062a0f2: mov    DWORD PTR [rsp+0x20],edi
+0x0062a0f6: xor    r8d,r8d
+0x0062a0f9: mov    r13,QWORD PTR [rbp-0x78]
+0x0062a0fd: mov    edx,DWORD PTR [r13+0x1354]
+0x0062a104: lea    rcx,[rbp+0x2b0]
+0x0062a10b: call   0x1400bb310
+0x0062a110: lea    r9d,[r14+0x1]
+0x0062a114: xor    eax,eax
+0x0062a116: mov    DWORD PTR [rsp+0x28],eax
+0x0062a11a: movzx  eax,BYTE PTR [r13+0x1358]
+0x0062a122: mov    BYTE PTR [rsp+0x20],al
+0x0062a126: mov    r8d,DWORD PTR [rbp-0x58]
+0x0062a12a: mov    edx,DWORD PTR [rbp-0x60]
+0x0062a12d: lea    rcx,[rbp+0x2b0]
+0x0062a134: call   0x14140a440
+0x0062a139: jmp    0x14062a13f
+0x0062a13b: mov    r13,QWORD PTR [rbp-0x78]
+0x0062a13f: rex.B
