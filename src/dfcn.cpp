@@ -14612,6 +14612,12 @@ std::optional<std::string> Overlay::translate_written_work_paragraph(
 // atomic instead of degenerating into isolated dictionary matches.
 #include "musical_form_descriptions.inc"
 
+static bool is_character_needs_summary_source(std::string_view source) {
+    return source.starts_with("Overall,") &&
+        (source.find("satisfied needs") != std::string_view::npos ||
+         source.find("unmet needs") != std::string_view::npos);
+}
+
 static bool is_character_need_entry_source(std::string_view source) {
     if (!(source.starts_with("He is ") ||
           source.starts_with("She is ") ||
@@ -14633,13 +14639,17 @@ static bool is_character_need_entry_source(std::string_view source) {
 
 std::optional<std::string> Overlay::translate_character_need_sentence(
         const std::string &source) const {
-    if (!is_character_need_entry_source(source)) return std::nullopt;
+    if (!is_character_needs_summary_source(source) &&
+        !is_character_need_entry_source(source)) return std::nullopt;
 
     // Native rich-text documents and wrapped screen rows use one complete
-    // grammar. data/runtime/rulesets/zh-Hans/psychology/needs.toml resolves ::text::deity through the shared name
-    // resolver; its outer tail owns punctuation. Do not reconstruct prayer
-    // wording by replacing Chinese substrings that can change in the table.
-    return translate_compositional(source);
+    // Needs grammar, including the Overall summary and its final stop. The
+    // generic caption fallback deliberately rejects sentence punctuation.
+    // The typed deity capture still uses the shared name resolver, and the
+    // outer tail owns punctuation instead of leaving it inside a name.
+    std::vector<size_t> origins;
+    return RULESETS.translate_with_origins(native_text_to_utf8(source),
+        "::psychology::needs", origins);
 }
 
 #include "history_viewport.inc"
@@ -14838,7 +14848,7 @@ const NativeKnowledgeLayout &Overlay::prepare_native_knowledge_layout(
                     const auto &part = paragraphs[p];
                     // Each need or thought stays a distinct item, even when
                     // DF packs several sentences into the same rich-text box.
-                    const bool needs = personality && (part.starts_with("Overall,") ||
+                    const bool needs = personality && (is_character_needs_summary_source(part) ||
                         is_character_need_entry_source(part));
                     size_t cursor = 0;
                     do {
@@ -21050,7 +21060,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
             split_text_fields(screen_rows[static_cast<size_t>(start_y)]);
         for (size_t begin = 0; begin < first_fields.size(); ++begin) {
             const LogicalTextField &first = first_fields[begin];
-            if (!(first.text == "He" || first.text == "She" || first.text == "It" ||
+            if (!(first.text.starts_with("Overall,") ||
+                  first.text == "He" || first.text == "She" || first.text == "It" ||
                   first.text.starts_with("He is ") ||
                   first.text.starts_with("She is ") ||
                   first.text.starts_with("It is "))) {
@@ -39270,11 +39281,6 @@ void Overlay::layout_structured_panels(SDL_Renderer *renderer) {
     // grid; several simultaneous need sentences are therefore also a valid
     // page signature. A fixed normal UI font size keeps the later prose pass
     // from regrouping them into dense paragraph lines.
-    auto is_character_needs_summary = [](std::string_view source) {
-        return source.starts_with("Overall,") &&
-            (source.find("satisfied needs") != std::string_view::npos ||
-             source.find("unmet needs") != std::string_view::npos);
-    };
     int personality_tabs_y = -1;
     for (int y = 0; y < gps_->dimy && personality_tabs_y < 0; ++y) {
         bool traits = false;
@@ -39302,7 +39308,7 @@ void Overlay::layout_structured_panels(SDL_Renderer *renderer) {
                 (personality_tabs_y >= 0 && match.y <= personality_tabs_y)) {
                 continue;
             }
-            const bool summary = is_character_needs_summary(match.source);
+            const bool summary = is_character_needs_summary_source(match.source);
             const bool entry = is_character_need_entry_source(match.source);
             if (!summary && !entry) continue;
             has_summary = has_summary || summary;
