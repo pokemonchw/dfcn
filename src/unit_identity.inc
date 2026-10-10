@@ -93,12 +93,18 @@ std::optional<std::string> Overlay::translate_unit_profession(
 
     // Preserve the name's case and accents when an office appends a territory.
     // The title may itself contain "of", e.g. captain of the guard.
+    // A territory can also contain "of". An unresolved shorter place such as
+    // The Cavern must not make Baron of The Cavern a complete office prefix
+    // and preempt the full territory The Cavern of Sundering.
     for (size_t at = folded.rfind(" of "); at != std::string::npos;
          at = at == 0 ? std::string::npos : folded.rfind(" of ", at - 1)) {
-        const auto role = translate_unit_profession(source.substr(0, at));
-        if (!role) continue;
-        const auto place = translate_legends_place(source.substr(at + 4));
-        if (place) return *place + "的" + *role;
+        const auto role_source = std::string_view(source).substr(0, at);
+        const auto role = translate_unit_profession(role_source);
+        if (!translation_complete_with_native_nicknames(role, role_source)) continue;
+        const auto place_source = std::string_view(source).substr(at + 4);
+        const auto place = translate_legends_place(place_source);
+        if (translation_complete_with_native_nicknames(place, place_source))
+            return *place + "的" + *role;
     }
     constexpr std::string_view resident = "resident ";
     if (folded.starts_with(resident)) {
