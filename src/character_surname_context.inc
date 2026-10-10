@@ -1,5 +1,5 @@
-// Member definitions of EnglishCharacterNames. Only the personal surname
-// channel consumes these forms; native entity names keep their own grammar.
+// Member definitions of EnglishCharacterNames. Surnames and entity names
+// share classified imagery and scoring while retaining their own grammar.
 struct SurnameClass {
     std::string parent;
     std::vector<std::string> ancestry, traits;
@@ -365,7 +365,7 @@ int surname_compound_naturalness(const SurnameContextWord &first,
     }
     return score;
 }
-Part surname_context_combine(const Part &left, const Part &right) const {
+Part surname_context_combine(const Part &left, const Part &right, bool entity = false) const {
     // Both source orders visit the same complete set of surface patterns.
     // AB/BA, A之B/B之A, AA之B/BB之A and AABB/BBAA compete together.
     // 2 denotes an independently authored two-character form for that root.
@@ -381,6 +381,9 @@ Part surname_context_combine(const Part &left, const Part &right) const {
     const auto *a_entry = surname_entry(left), *b_entry = surname_entry(right);
     const auto complete_meanings = [&]() {
         Part out = original(left.english + right.english);
+        // A place without a licensed construction keeps the caller's whole
+        // English-name phonetic fallback, never two dictionary meanings.
+        if (entity) return out;
         // Unavailable context forms do not grant access to compact/balanced
         // forms. Keep both complete meanings directly adjacent in source order.
         out.text = out.short_text = out.full_text =
@@ -395,8 +398,12 @@ Part surname_context_combine(const Part &left, const Part &right) const {
         out.score = -100000000;
         return out;
     };
-    if (!a_entry || !b_entry) return complete_meanings();
-    const bool actor = surname_actor_licensed(left) || surname_actor_licensed(right);
+    // A composed entity keeps its head's sense for phrase-level argument
+    // licensing, but cannot re-enter root forms and lose earlier constituents.
+    if (!a_entry || !b_entry || (entity && (left.roots > 1 || right.roots > 1)))
+        return complete_meanings();
+    const bool actor = !entity &&
+        (surname_actor_licensed(left) || surname_actor_licensed(right));
     const auto compose = [&](const Part &a, const Part &b, bool reversed) {
         const auto *ae = surname_entry(a), *be = surname_entry(b);
         for (const auto &a_class : surname_classes_.at(ae->semantic_class).ancestry)
@@ -408,6 +415,9 @@ Part surname_context_combine(const Part &left, const Part &right) const {
                         !has(a, rule.left_kinds) || !has(b, rule.right_kinds) ||
                         !surname_traits_match(rule.left_traits, ae->traits) ||
                         !surname_traits_match(rule.right_traits, be->traits)) continue;
+                    // Entity compounds keep their existing grammatical
+                    // scope. Personal actor morphology cannot supply a place.
+                    if (entity && (!rule.ending.empty() || rule.relation == "agent")) continue;
                     // Explicit identities keep A/B/者 in source order. Ordinary
                     // predicates and properties cannot enter the identity path.
                     if (actor != (rule.relation == "agent")) continue;
@@ -430,6 +440,11 @@ Part surname_context_combine(const Part &left, const Part &right) const {
                     const auto second = surname_words(b, a, rule.context_relation, rule.right_role);
                     for (const auto &pattern : patterns) {
                         if (!surname_contains(rule.forms, pattern.form)) continue;
+                        // Preserve entity compound shapes, but choose between
+                        // them using the same classified forms and bounded
+                        // naturalness score instead of a fixed 1+1 priority.
+                        if (entity && (!pattern.link.empty() ||
+                            pattern.first_width != pattern.second_width)) continue;
                         for (const auto &x : first) for (const auto &y : second) {
                             // Registered bound forms and property images can
                             // coordinate in a surname. Only a genuinely
@@ -442,6 +457,11 @@ Part surname_context_combine(const Part &left, const Part &right) const {
                                 (rule.relation == "subject_verb" && y.use == "nominal")) continue;
                             const unsigned x_width = glyph_count(x.text), y_width = glyph_count(y.text);
                             if (x_width != pattern.first_width || y_width != pattern.second_width) continue;
+                            if (entity && (x.text.find("者") != std::string_view::npos ||
+                                y.text.find("者") != std::string_view::npos ||
+                                x.text.find("之") != std::string_view::npos ||
+                                y.text.find("之") != std::string_view::npos ||
+                                x.text.ends_with("的") || y.text.ends_with("的"))) continue;
                             if (!(x.branch->forms & pattern.form_bit) ||
                                 !(y.branch->forms & pattern.form_bit)) continue;
                             if (!pattern.link.empty() && (!rule.ending.empty() ||
@@ -456,6 +476,7 @@ Part surname_context_combine(const Part &left, const Part &right) const {
                             int pronunciation = MandarinNameProsody::rank(surname_readings_,
                                 {x.text, y.text, pattern.link, rule.ending, relation, false, false},
                                 ae->full_meaning, be->full_meaning);
+                            if (entity && pronunciation < -3) continue;
                             // The shared prosody model has a small lexical prior
                             // for nominal 2+2 coinages. Surnames compare every
                             // registered width without that fixed length bonus.
@@ -489,7 +510,18 @@ Part surname_context_combine(const Part &left, const Part &right) const {
                             best.score = score;
                             best_preference = preference;
                             best_width = width;
-                            best.surname_sense.clear();
+                            if (entity) {
+                                // Preserve the chosen head for the next title
+                                // join while keeping every constituent in the
+                                // composed surface; it is no longer one root.
+                                best.source_sense = best.surname_source_full = best.surname_core =
+                                    best.surname_modifier = best.surname_head = best.surname_agent = best.text;
+                                best.surname_compact = glyph_count(best.text) == 1 ? best.text : "";
+                                best.surname_balanced = glyph_count(best.text) == 2 ? best.text : "";
+                                best.surname_source_action = best.action = has(best, Action) ? best.text : "";
+                                best.surname_er_identity.clear();
+                            }
+                            if (!entity) best.surname_sense.clear();
                         }
                     }
                 }

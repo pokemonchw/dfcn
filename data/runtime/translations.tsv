@@ -45329,7 +45329,7 @@ You can't write because you can't breathe.	你无法呼吸，不能书写。	hP
 You cannot rest until you leave this site.	你必须先离开此地点，才能休息。	hP
 You have attracted some positive interest.	你引起了一些善意的关注。	hP
 You have finished working on {i} and more.	你完成了对{i1}等物品的加工。	hPt
-You have finished working on {s} and more.	你完成了对{s1}等物品的加工。	hPt
+You have finished working on {s} and more.	你完成了{s1}等物品的加工。	hPt
 You have no idea what's lurking out there.	你并不知道外面潜伏着什么。	hq
 You have nothing left to draw or put away.	你已经没有可以取出或收起的物品了。	hP
 You have partially overcome the paralysis.	你的麻痹消退了一些。	hP
@@ -47152,7 +47152,7 @@ You can't write because you are swimming.	你正在游泳，无法书写。	hP
 You don't feel safe enough to fell trees.	你觉得这里不够安全，无法砍树。	hP
 You have disturbed the sleep of the dead!	你惊扰了死者的长眠！	hP
 You have finished working on {i} and {i}.	你完成了对{i1}和{i2}的加工。	hPt
-You have finished working on {s} and {s}.	你完成了对{s1}和{s2}的加工。	hPt
+You have finished working on {s} and {s}.	你完成了{s1}和{s2}的加工。	hPt
 You haven't been able to act for a while.	你已经有一段时间无法行动了。	hP
 You must appoint a {s} to create a squad.	必须先任命一名{s1}，才能创建小队。	hPt
 You must think you're really frightening.	你肯定觉得自己很吓人。	hP
@@ -63212,7 +63212,7 @@ You cannot jump while in the air.	身处空中时无法跳跃。	hP
 You have been blessed with a pet!	你受到祝福，获赐了一只宠物！	hP
 You have been found dead, frozen.	你被发现时，已经冻死了。	hP
 You have finished working on {i}.	你完成了对{i1}的加工。	hPt
-You have finished working on {s}.	你完成了对{s1}的加工。	hPt
+You have finished working on {s}.	你完成了{s1}的加工。	hPt
 You have forgotten your training!	你忘掉了所受的训练！	hP
 You must reflect on your actions.	你必须反思自己的行为。	hP
 You recite the words evocatively.	你朗诵的诗句引人遐想。	hP

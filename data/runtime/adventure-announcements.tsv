@@ -1001,3 +1001,13 @@ There is nothing to catch in the central swamps.	中部的沼泽中没有可捕�
 There is nothing to catch in the central ocean.	中部的海洋中没有可捕捉的东西。
 {n} has been cursed by {p}!	{n}受到了{p}的诅咒！
 Your miners have defaced a {p}!	你的矿工毁坏了一件{p}的作品！
+
+# Complete shared-action productions at 0x14027e300 / 0x1402804b0.
+# Native source ownership: data/extracted/adventure-announcement-sources.tsv.
+You butcher {s}.	你屠宰了{s1}。
+You make {s}.	你制作了{s1}。
+You make {s} and {s}.	你制作了{s1}和{s2}。
+You make {s} and more.	你制作了{s1}等物品。
+You have finished working on {s}.	你完成了{s1}的加工。
+You have finished working on {s} and {s}.	你完成了{s1}和{s2}的加工。
+You have finished working on {s} and more.	你完成了{s1}等物品的加工。

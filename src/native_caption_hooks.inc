@@ -1531,7 +1531,6 @@ static void capture_native_plain_clipped_resize(NativeString *source, size_t wid
         g_native_clipped_caption_hooks.resize(source, width, fill);
 }
 
-
 static void capture_native_clipped_dot_padding_resize(NativeString *source, size_t width, char fill) {
     // A verified caller can grow by one zero byte before overwriting that byte
     // and the final two source characters with dots. Ordinary resize entries
