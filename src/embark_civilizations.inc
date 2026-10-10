@@ -141,9 +141,37 @@ void Overlay::append_embark_civilization_rows(std::vector<std::string> &rows,
                     !draw.source.ends_with("...")) return draw.source;
         return std::nullopt;
     };
+    const auto reclaim_site_name = [&](const NativeEmbarkSelectionRecord &record,
+                                       int left) -> std::optional<NativeHistoryName> {
+        const auto field = [&](int y) -> std::optional<std::string> {
+            const auto [first, end] = text_span(y, left, record.box.x);
+            if (first == end) return std::nullopt;
+            bool top = false;
+            cell_at(first, y, &top);
+            return complete_source(first, y, context[y].substr(first, end - first),
+                record.box.x, record.box.x + record.box.w, top);
+        };
+        const auto title = field(record.reclaim_y);
+        const auto gloss = field(record.reclaim_y + 1);
+        if (!title || !gloss) return std::nullopt;
+        for (const std::string_view action : {"Reclaim", "Unretire"}) {
+            if (!title->starts_with(std::string(action) + " ")) continue;
+            const auto native = trim_view(std::string_view(*title).substr(action.size() + 1));
+            auto english = trim_view(*gloss);
+            if (english.size() >= 2 && english.front() == '"' && english.back() == '"')
+                english = trim_view(english.substr(1, english.size() - 2));
+            if (native.empty() || english.empty()) return std::nullopt;
+            // Both complete fields belong to this checkbox. Their pair selects
+            // one real site without borrowing a same-spelling site's type.
+            return resolve_site_reference_name(std::string(native) + ", \"" +
+                std::string(english) + "\"");
+        }
+        return std::nullopt;
+    };
     const auto append = [&](int y, int left, int source_right, int right, int rule,
                             bool reclaim_action = false, bool site_gloss = false,
-                            int covered_right = -1, bool memory_source_only = false) {
+                            int covered_right = -1, bool memory_source_only = false,
+                            const NativeHistoryName *site_name = nullptr) {
         // The native source can extend into our extra text padding. Keep its
         // entire suppression span even when the translated column is inset.
         const auto [first, end] = text_span(y, left, source_right);
@@ -170,21 +198,33 @@ void Overlay::append_embark_civilization_rows(std::vector<std::string> &rows,
         // its pre-resize value. A missing capture leaves this field in English
         // instead of sending a cut-off suffix to the phonetic name fallback.
         if (reclaim_action) {
-            for (std::string_view action : {"Reclaim", "Unretire"}) {
-                if (!source.starts_with(std::string(action) + " ")) continue;
-                const auto label = exact_literal_translation(
-                    "Embark site action: " + std::string(action));
-                const std::string native = trim(source.substr(action.size() + 1));
-                const auto name = translate_procedural_fragment(native, true);
-                if (label && name) target = *label + *name;
-                break;
+            if (original)
+                for (std::string_view action : {"Reclaim", "Unretire"}) {
+                    if (!source.starts_with(std::string(action) + " ")) continue;
+                    const auto label = exact_literal_translation(
+                        "Embark site action: " + std::string(action));
+                    const std::string native = trim(source.substr(action.size() + 1));
+                    const std::string name = site_name
+                        ? site_name_full_transliteration(*site_name)
+                        : transliterate_site_spelling(native);
+                    if (label && !name.empty()) target = *label + name;
+                    break;
+                }
+        } else if (site_gloss) {
+            // This producer explicitly displays the EnglishName field. Use
+            // the same whole-name grammar and fallback as history references,
+            // before general dictionary or procedural word matching.
+            if (original) {
+                target = translate_english_site_name(source, site_name);
+                if (target && site_name)
+                    *target += site_name_attribute_suffix(site_name->site_label,
+                        site_name->site_type);
             }
         } else if (!memory_source_only || original) {
             const bool civilization_name = rule == kEmbarkCivilizationNameRule && !site_gloss;
             if (civilization_name || rule == kEmbarkCivilizationDetailRule)
                 target = translate_civilization_reference(source);
             if (!target) target = exact_literal_translation(source);
-            if (!target && site_gloss) target = translate_legends_name(source, false);
             if (!target) target = translate_procedural_fragment(source, false, false, {},
                 civilization_name ? ProceduralFragmentContext::civilization_name
                                   : ProceduralFragmentContext::general_text);
@@ -228,10 +268,13 @@ void Overlay::append_embark_civilization_rows(std::vector<std::string> &rows,
         for (const NativeEmbarkSelectionRecord &record : records) {
             if (!same_panel(record)) continue;
             if (record.reclaim_y >= 0) {
+                const auto site_name = reclaim_site_name(record, left);
                 append(record.reclaim_y, left, record.box.x, right,
-                    kEmbarkCivilizationNameRule, true, false, record.box.x + record.box.w);
+                    kEmbarkCivilizationNameRule, true, false, record.box.x + record.box.w,
+                    true, site_name ? &*site_name : nullptr);
                 append(record.reclaim_y + 1, left, record.box.x, right,
-                    kEmbarkCivilizationNameRule, false, true, record.box.x + record.box.w);
+                    kEmbarkCivilizationNameRule, false, true, record.box.x + record.box.w,
+                    true, site_name ? &*site_name : nullptr);
                 append(record.reclaim_y + 2, left, record.box.x, right,
                     kEmbarkCivilizationTypeRule);
             } else {
