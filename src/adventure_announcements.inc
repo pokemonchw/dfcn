@@ -1,13 +1,17 @@
-// A live adventure/compact-log report owns its drawn rows before item, hover, name
-// or generic UI recognizer edits screen_rows. Its native parent and exact
+// Live adventure, compact-log and fortress alerts own their drawn rows before
+// item, hover, name or generic UI recognizers edit screen_rows. Native parents and exact
 // draw addresses establish identity; inferred panel artwork only improves
 // the layout bounds and must not decide whether the report is translated.
     {
         auto paragraphs = native_adventure_announcement_paragraphs();
         auto log_paragraphs = native_announcement_log_paragraphs();
+        auto alert_paragraphs = native_fortress_alert_paragraphs();
         paragraphs.insert(paragraphs.end(),
             std::make_move_iterator(log_paragraphs.begin()),
             std::make_move_iterator(log_paragraphs.end()));
+        paragraphs.insert(paragraphs.end(),
+            std::make_move_iterator(alert_paragraphs.begin()),
+            std::make_move_iterator(alert_paragraphs.end()));
         auto draws = paragraphs.empty() ? std::vector<NativeDrawnTextRow>{}
             : captured_native_drawn_text_rows();
         if (!paragraphs.empty()) {
@@ -60,9 +64,11 @@
                     // frame. Establish that frame from the draw origin, then
                     // match only its exposed prefix, retaining parent::text
                     // as the complete translation unit.
-                    const auto panel = report_panel(draw);
-                    const int clip_right = panel
-                        ? panel->x + panel->w - 2 : gps_->dimx;
+                    const auto panel = paragraph.fortress_alert
+                        ? std::optional<SDL_Rect>{} : report_panel(draw);
+                    const int clip_right = paragraph.width > 0
+                        ? std::min(gps_->dimx, draw.x + paragraph.width)
+                        : panel ? panel->x + panel->w - 2 : gps_->dimx;
                     if (clip_right <= draw.x) continue;
                     size_t exposed = std::min(row.source.size(),
                         static_cast<size_t>(clip_right - draw.x));
@@ -104,7 +110,10 @@
                 left = std::min(left, span.x);
                 right = std::max(right, span.x + span.length);
             }
-            if (const auto &panel = paragraph_panel) {
+            if (paragraph.width > 0) {
+                left = first.x;
+                right = std::min(gps_->dimx, left + paragraph.width);
+            } else if (const auto &panel = paragraph_panel) {
                 left = paragraph.centered ? panel->x + 1 : first.x;
                 right = panel->x + panel->w - 2;
             }
@@ -113,8 +122,44 @@
             const int foreground = cell ? (cell[1] << 16) | (cell[2] << 8) | cell[3] : 0xffffff;
             const auto source = native_announcement_display_source(paragraph.source);
             std::vector<int> colors;
-            const auto target = translate_complete_announcement(source,
-                std::vector<int>(source.size(), foreground), colors);
+            std::optional<std::string> target;
+            if (paragraph.fortress_alert && !paragraph.name_source.empty()) {
+                // The popup's parallel unit/category fields select the
+                // complete summary. Keep its identity on the native typed
+                // formatter, then fill the existing finite status rule.
+                std::optional<std::string> identity;
+                if (paragraph.unit)
+                    identity = translate_native_unit_identity_reference(
+                        paragraph.unit, 0, paragraph.name_source, true);
+                else if (paragraph.name_source == "Somebody")
+                    identity = exact_literal_translation("Somebody");
+                constexpr std::array<std::string_view, 3> summaries = {
+                    "{n} is fighting!", "{n} is sparring.", "{n} is hunting."};
+                if (identity && paragraph.category >= 0 && paragraph.category < 3)
+                    for (int index : ui_message_template_rules_) {
+                        const auto &rule = rules_[static_cast<size_t>(index)];
+                        if (rule.source != summaries[paragraph.category]) continue;
+                        const std::vector<std::optional<std::string>> resolved{identity};
+                        target = fill_template(rule, {paragraph.name_source}, nullptr,
+                            nullptr, &resolved);
+                        break;
+                    }
+                if (target)
+                    for (unsigned char ch : *target)
+                        if ((ch & 0xc0) != 0x80) colors.push_back(foreground);
+            } else {
+                target = translate_complete_announcement(source,
+                    std::vector<int>(source.size(), foreground), colors);
+                if (target && paragraph.repeats > 0) {
+                    const int32_t count = static_cast<int32_t>(
+                        static_cast<uint32_t>(paragraph.repeats) + uint32_t{1});
+                    const std::string suffix = " ×" +
+                        std::to_string(count);
+                    *target += suffix;
+                    for (unsigned char ch : suffix)
+                        if ((ch & 0xc0) != 0x80) colors.push_back(foreground);
+                }
+            }
             std::optional<NativeParagraphViewport> viewport;
             if (first_line || last_line + 1 != paragraph.rows.size())
                 viewport = NativeParagraphViewport{static_cast<int>(first_line),

@@ -32,9 +32,21 @@ struct NativeAnnouncementParagraph {
     std::string source;
     bool centered = false;
     std::vector<NativeAnnouncementDisplayRow> rows;
+    // Fortress alert rows retain report/unit ownership independently of the
+    // announcement history cache and the time their native box last wrapped.
+    bool fortress_alert = false;
+    int width = 0;
+    int repeats = 0;
+    uintptr_t unit = 0;
+    int16_t category = -1;
+    std::string name_source;
 };
 static std::vector<NativeAnnouncementParagraph> native_adventure_announcement_paragraphs();
 static std::vector<NativeAnnouncementParagraph> native_announcement_log_paragraphs();
+static std::vector<NativeAnnouncementParagraph> native_fortress_alert_paragraphs();
+static std::optional<std::string> native_fortress_alert_unit_name(uintptr_t unit);
+static std::optional<std::string> translate_native_unit_identity_reference(
+    uintptr_t unit, uintptr_t name, std::string_view expected, bool capitalized_reference = false);
 struct NativeAnnouncementPopup {
     std::string source;
     int width = 0, max_y = 0, grid_height = 0;

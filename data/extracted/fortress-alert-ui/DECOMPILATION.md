@@ -157,6 +157,42 @@ and both hover constructors pass world.status.reports (reference global
 registration must be established from that allocator, not inferred from
 the popup renderer.
 
+LIVE ROW OWNERSHIP:
+
+The fortress popup cache retains ownership independently of the paragraph
+hook. `uac_text` (+0xf0) pairs every row with `uac_zoom_line_ann` (+0xd8)
+when viewing_unit is non-null. Otherwise `alert_text` (+0x80) pairs with
+`zoom_line_ann` (+0x38), `zoom_line_unit` (+0x50), and the int16 categories
+(+0x68). The two bit vectors (+0xb8 / +0x18) mark each entry's first row;
+adjacent entries can share a report pointer without being one paragraph.
+One-line entries insert a blank before and after their text; two-line
+entries append a blank. These spacers are not semantic source text.
+
+`src/native_fortress_alert_sources.inc` reads these live owner fields.
+Report text comes from the parent report, with repeat_count kept separately;
+unit summaries use the actual unit/category, including the missing-unit
+hover fallback. The shared announcement renderer compares the live string
+addresses and drawn bytes, then translates the complete owner source before
+applying the visible scroll slice. Native wrap width bounds the translation
+so location/report controls keep their own columns. A closed visual frame
+can refine adventure/log layout but no longer gates fortress source identity.
+This also handles caches built before paragraph capture started and the
+tutorial's directly allocated report.
+
+Foreground frame ownership also accepts the current native popup/hover
+capture rectangles directly. Their callsites retain exact bounds before
+the native clear, so missing artwork edges no longer prevent the foreground
+read view from clearing the erased map's old font-half flags. Separate
+background page views do not inherit these foreground rectangles, and later
+overlay frames retain their own occlusion and font ownership.
+
+The configured PE submitter also copies the entire submitted string into
+one report: reference 0xe4680 allocates once, and 0xe4692..0xe46ad copies
+the original source length to report+8. Its repeat branch updates the
+existing record and returns. This function sets report flags 0x2/0x8/0x4,
+but does not split a wrapped paragraph into new continued (0x1) reports.
+The popup's per-report full source therefore precedes its row wrapping.
+
 INPUT BRANCHES:
 
 The saved input body applies the same unit/all/selected-alert priority and

@@ -534,12 +534,78 @@ static std::optional<std::string> finish_native_unit_identity_call(NativeUnitIde
 // Cached UI strings can outlive the frame and NativeString that first
 // formatted them. Resolve their explicit unit/name reference through the same
 // native selection and field renderer, without guessing from the cached text.
+static std::optional<std::string> native_fortress_alert_unit_name(uintptr_t unit) {
+    const auto &hooks = g_native_unit_identity_hooks;
+    if (!unit || !hooks.entries[5].installed || !hooks.entries[5].original ||
+            !hooks.capitalize || !hooks.destroy) return std::nullopt;
+    NativeInputCallbackScope callback;
+    NativeSearchString output(hooks.destroy);
+    NativeUnitIdentityCall call;
+    call.unit = unit;
+    call.publish = false;
+    call.reference_output = &output.value;
+    {
+        NativeUnitIdentityActiveScope scope(call);
+        const auto original = reinterpret_cast<NativeUnitIdentityNameOnlyFn>(
+            hooks.entries[5].original);
+        callback.call_native([&] { original(reinterpret_cast<void *>(unit), &output.value); });
+        callback.call_native([&] { hooks.capitalize(&output.value); });
+    }
+    std::string_view source;
+    if (!native_string_view(&output.value, &source, 65536) || source.empty())
+        return std::nullopt;
+    return std::string(source);
+}
+
 static std::optional<std::string> translate_native_unit_identity_reference(
-        uintptr_t unit, uintptr_t name, std::string_view expected) {
+        uintptr_t unit, uintptr_t name, std::string_view expected,
+        bool capitalized_reference) {
     const auto &hooks = g_native_unit_identity_hooks;
     if (!hooks.base || !hooks.name || expected.empty()) return std::nullopt;
     NativeInputCallbackScope callback;
     NativeSearchString output(hooks.destroy);
+    if (unit && capitalized_reference) {
+        // Fortress alert summaries explicitly call 1331500 followed by
+        // 52d650. Replay that same selected reference into a disposable
+        // string, rather than inferring its typed name from cached rows.
+        if (!hooks.entries[5].installed || !hooks.entries[5].original ||
+                !hooks.capitalize) return std::nullopt;
+        NativeUnitIdentityCall call;
+        call.unit = unit;
+        call.publish = false;
+        call.reference_output = &output.value;
+        {
+            NativeUnitIdentityActiveScope scope(call);
+            const auto original = reinterpret_cast<NativeUnitIdentityNameOnlyFn>(
+                hooks.entries[5].original);
+            callback.call_native([&] { original(reinterpret_cast<void *>(unit), &output.value); });
+#ifndef _WIN32
+            std::string_view before;
+            if (native_string_view(&output.value, &before, 65536))
+                call.reference_before_capitalization.assign(before);
+#endif
+            callback.call_native([&] { hooks.capitalize(&output.value); });
+        }
+        std::string_view source;
+        if (!native_string_view(&output.value, &source, 65536))
+            return std::nullopt;
+        // The alert wrapper can insert a space inside an overlong word.
+        // Its unit pointer already fixes identity; compare every non-space
+        // byte with the cached wrap without promoting that added separator
+        // to a field in the native name.
+        size_t original_at = 0, expected_at = 0;
+        while (true) {
+            while (original_at < source.size() && std::isspace(
+                    static_cast<unsigned char>(source[original_at]))) ++original_at;
+            while (expected_at < expected.size() && std::isspace(
+                    static_cast<unsigned char>(expected[expected_at]))) ++expected_at;
+            if (original_at == source.size() || expected_at == expected.size()) break;
+            if (source[original_at++] != expected[expected_at++]) return std::nullopt;
+        }
+        if (original_at != source.size() || expected_at != expected.size())
+            return std::nullopt;
+        return finish_native_unit_reference_call(call, &output.value);
+    }
     if (unit) {
         if (!hooks.entries[4].installed || !hooks.entries[4].original) return std::nullopt;
         NativeUnitIdentityCall call;

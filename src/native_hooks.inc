@@ -24,6 +24,7 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_workshop_names.inc"
 #include "native_world_artifact_cache.inc"
 #include "native_announcement_history.inc"
+#include "native_fortress_alert_sources.inc"
 #include "native_history_page_adapter.inc"
 #include "native_character_kinship.inc"
 #include "native_history_event.inc"

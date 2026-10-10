@@ -111,6 +111,7 @@ class NativeMapCardSources {
         };
         own_announcement(native_adventure_announcement_paragraphs());
         own_announcement(native_announcement_log_paragraphs());
+        own_announcement(native_fortress_alert_paragraphs());
         bool current = false, previous_current = false;
         std::vector<NativeKnowledgeDraw> previous;
         const auto rich = captured_native_knowledge_draws(&current, &previous, &previous_current);

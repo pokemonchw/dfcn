@@ -2486,8 +2486,9 @@ static constexpr std::array<std::string_view, 6> native_announcement_instruction
     "Select a report to view the full text. Right click to close."};
 
 // The alert flyout shares its border artwork with ordinary panels. Its
-// complete interaction instruction and closed current frame establish the
-// foreground owner; neither the skin alone nor translated report words do.
+// native callsite rectangle, or its complete interaction instruction and
+// closed current frame, establish the foreground owner independently of
+// translated report words.
 static std::vector<SDL_Rect> native_announcement_overlay_frames(const graphicst &gps) {
     auto *cache = NativePanelReadScope::active;
     if (cache && cache->gps == &gps && cache->announcement_frames)
@@ -2495,6 +2496,19 @@ static std::vector<SDL_Rect> native_announcement_overlay_frames(const graphicst 
     std::vector<SDL_Rect> frames;
     if (!gps.screen || gps.dimx <= 0 || gps.dimx > 1000 ||
             gps.dimy <= 0 || gps.dimy > 1000) return frames;
+    // The popup callsite and both hover row-count callsites already retained
+    // their exact current native rectangles before the clear. Those draw
+    // owners remain valid when a clipped/covered edge prevents a closed
+    // artwork frame from being found. Background page views omit them.
+    if (!NativeTooltipPageScope::active)
+        for (const auto &saved : native_announcement_backgrounds(gps)) {
+            if (!saved) continue;
+            const auto &bounds = saved->bounds;
+            if (bounds.x < 0 || bounds.y < 0 || bounds.w <= 0 || bounds.h <= 0 ||
+                    bounds.x > gps.dimx - bounds.w || bounds.y > gps.dimy - bounds.h)
+                continue;
+            frames.push_back(bounds);
+        }
     const NativePanelBorders borders(gps);
     std::string row(static_cast<size_t>(gps.dimx), ' ');
     for (int y = 1; y < gps.dimy - 1; ++y) {
