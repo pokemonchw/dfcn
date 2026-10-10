@@ -75,6 +75,12 @@ name = "appearance"
 [rulesets.rules]
 "{body_size}" = "{body_size}"
 "{feature}-{part}" = "{part}{feature}"
+# BROADNESS neutral dispatch (Steam 0x719df5 -> 0x71a09b; classic
+# 0x717815 -> 0x717abb) skips the modifier assignment but still appends
+# '-' and the complete RAW noun. It can extend an earlier selected epithet;
+# the inherited appearance remains before this separately appended part.
+"-{part}" = "{part}"
+"{appearance}-{part}" = "{appearance}-{part}"
 "high-cheekbones" = "颧骨高耸"
 "low-cheekbones" = "颧骨低平"
 "square-chin" = "方下巴"

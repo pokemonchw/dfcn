@@ -16158,6 +16158,7 @@ Announcement combat sentence [$item,merchant-address]: Fantastic {s}, {s}.	{s2}�
 Announcement combat sentence []: Please help me to escape from this place.	请帮我逃离这个地方。	l
 Announcement combat sentence []: You are surrounded by incessant cackling.	四周怪笑声不绝于耳。	l
 Announcement combat sentence [boast-victim]: I am the extinguisher of {s}!	终结{s1}生命的正是我！	l
+Announcement combat sentence [head]: {s}, but the attack is deflected by !	{s1}，但攻击被挡开了！	l
 Announcement combat sentence [unit,$item]: {s} scramble away from the {s}!	{s1}连滚带爬地躲开了{s2}！	l
 Announcement combat sentence [unit,$term]: {s} has transformed into a {s}!	{s1}变成了{s2}！	l
 Announcement combat sentence [unit-list]: {s} are stunned by divine power!	{s1}被神力震慑了！	l
@@ -19500,6 +19501,7 @@ Announcement combat sentence [dialogue-family]: He is also my {s}.	他也是我�
 Announcement combat sentence [dialogue-family]: It is also my {s}.	它也是我的{s1}。	l
 Announcement combat sentence [diplomacy-group]: {s} is unknown us.	{s1}不为我们所知。	l
 Announcement combat sentence [equipment]: {s} is ripped to shreds!	{s1}被撕成了碎片！	l
+Announcement combat sentence [head]: {s}, but it is deflected by !	{s1}，却被挡开了！	l
 Announcement combat sentence [merchant-hawk]: {s}! Limited supply!	{s1}！数量有限！	l
 Announcement combat sentence [unit,actor]: {s} jump away from {s}!	{s1}跳开了{s2}！	l
 Announcement combat sentence [unit,actor]: {s} roll away from {s}!	{s1}翻滚躲开了{s2}！	l
@@ -21515,6 +21517,7 @@ After being interrogated by {a}, {a} implicated {a} within {p}	在{p1}，经过{
 After enduring an interrogation, {a} was released in the wilds	在荒野中，忍受审讯后，{a1}被释放了	ht
 Announcement combat biography-office [$term,$name]: {s} of {s}	{s2}的{s1}	l
 Announcement combat body-result [layer-phrase]: {s} is crushed	{s1}被压碎了	l
+Announcement combat damage [damage]: {s} through a hole in the	{s1}，穿过孔洞	l
 Announcement combat damage-list [damage,damage-list]: {s}, {s}	{s1}，{s2}	l
 Announcement combat dialogue-family []: eighth eldest daughter	第八个女儿	l
 Announcement combat dialogue-family []: fourth eldest daughter	第四个女儿	l
@@ -22152,6 +22155,8 @@ After enduring an interrogation, {a} was released within {p}.	在{p1}，忍受�
 All available witness information is presented for each case.	每个案件都会列出所有已知的目击证词。	hq
 Announcement combat agreement-party-list []: an unknown party	身份不明的一方	l
 Announcement combat artifact-ancestor []: an unknown creature	一名未知生物	l
+Announcement combat attack [attack-verb,unit]: {s} {s} by the	{s1}{s2}	l
+Announcement combat attack [attack-verb,unit]: {s} {s} in the	{s1}{s2}	l
 Announcement combat body-result [layer-phrase]: {s} collapses	{s1}塌陷了	l
 Announcement combat dialogue-battle-target [$creature]: a {s}	一只{s1}	l
 Announcement combat dialogue-family []: fifth eldest daughter	第五个女儿	l
@@ -22772,7 +22777,9 @@ After enduring an interrogation, {a} was released during {e}	在{e1}期间，忍
 After enduring an interrogation, {a} was released within {p}	在{p1}，忍受审讯后，{a1}被释放了	ht
 Announcement combat agreement-crime []: attempted kidnapping	绑架未遂	l
 Announcement combat agreement-crime []: building destruction	毁坏建筑	l
+Announcement combat damage []: passing through a hole in the	穿过孔洞	l
 Announcement combat damage [damage-verb,layer-list]: {s} {s}	{s1}了{s2}	l
+Announcement combat damage-list [equipment]: through the {s}	穿过{s1}	l
 Announcement combat description-institution []: a great keep	雄伟的城堡主楼	l
 Announcement combat dialogue-battle-slain-list []: many foes	许多敌人	l
 Announcement combat dialogue-family []: maternal grandfather	外祖父	l
@@ -25199,6 +25206,7 @@ After enduring an interrogation, {a} was released in {p}.	在{p1}，忍受审讯
 Announcement combat agreement-goals []: initiate sabotage	展开破坏行动	l
 Announcement combat assault [actor,unit]: {s} attacks {s}	{s1}攻击{s2}	l
 Announcement combat damage [layer]: breaking away the {s}	使{s1}断落	l
+Announcement combat damage-list [fluid]: and spilling {s}	使{s1}洒出	l
 Announcement combat description-institution []: a library	图书馆	l
 Announcement combat dialogue-battle-person [$person]: {s}	{s1}	l
 Announcement combat dialogue-family []: eighth eldest son	第八个儿子	l
@@ -28155,6 +28163,7 @@ Announcement combat agreement-crime []: blood-drinking	吸血	l
 Announcement combat agreement-goals []: instill terror	制造恐慌	l
 Announcement combat agreement-goals []: prepare a coup	筹备政变	l
 Announcement combat attack [attack]: {s} from the side	从侧面{s1}	l
+Announcement combat damage-list [damage-list]: {s} and	{s1}	l
 Announcement combat description-institution []: a tomb	陵墓	l
 Announcement combat dialogue-family []: younger sister	妹妹	l
 Announcement combat dialogue-family []: youngest child	最小的孩子	l
@@ -31576,6 +31585,7 @@ After being interrogated, {a} implicated {a} in {p}	在{p1}，经过审讯后，
 And remember: Losing is fun, and now it's personal!	记住：[C:2:0:1]输了才好玩，而这次轮到你亲身体验！[C:7:0:0]	hq
 Announcement combat actor [$item]: the spinning {s}	旋转着的{s1}	l
 Announcement combat artifact-recipient [$name]: {s}	{s1}	l
+Announcement combat damage-list [damage-list]: {s},	{s1}	l
 Announcement combat defense-adverb []: effortlessly	毫不费力地	l
 Announcement combat dialogue-family []: grandfather	祖父或外祖父	l
 Announcement combat dialogue-family []: grandmother	祖母或外祖母	l
@@ -31601,6 +31611,7 @@ Announcement combat rumor-time []: a few months ago	几个月前	l
 Announcement combat rumor-time []: not one hour ago	不到一小时前	l
 Announcement combat rumor-time []: several days ago	数天前	l
 Announcement combat sentence [$item]: Splendid {s}.	出色的{s1}。	l
+Announcement combat sentence [fluid,$body]: {s}{s}!	{s1}{s2}！	l
 Announcement combat sentence [memory-sentence]: {s}	{s1}	l
 Announcement combat sentence [unit]: {s} feel sick!	{s1}觉得恶心！	l
 Announcement combat threat-building []: a guildhall	一座行会大厅	l
@@ -38446,6 +38457,7 @@ Announcement combat reference-value []: family	亲情	l
 Announcement combat reference-value []: nature	自然	l
 Announcement combat rumor-army [$name]: of {s}	（隶属{s1}）	l
 Announcement combat rumor-time []: a month ago	一个月前	l
+Announcement combat sentence [head]: {s} and !	{s1}！	l
 Announcement combat threat-building []: a keep	一座城堡主楼	l
 Announcement combat threat-building []: a tomb	一座陵墓	l
 Announcement combat threat-crime []: destroyed	毁坏了建筑（名称不明）	l
@@ -43080,6 +43092,7 @@ Announcement combat reference-kind []: town	城镇	l
 Announcement combat reference-value []: law	法律	l
 Announcement combat rumor-time []: just now	刚才	l
 Announcement combat rumor-time []: long ago	很久以前	l
+Announcement combat sentence [head]: {s}, !	{s1}！	l
 Announcement combat shot-result []: parried	招架住了	l
 Announcement combat visitor-statement []: .	……。	l
 Announcement combat work-ordinal []: eighth	8	l
@@ -48331,6 +48344,7 @@ Announcement combat attack-verb []: slap	拍打	l
 Announcement combat attack-verb []: stab	戳刺	l
 Announcement combat fraction []: half of	一半	l
 Announcement combat fraction []: most of	大部分	l
+Announcement combat layer [$body]: {s}'s	{s1}	l
 Announcement combat memory-person []: me	我	l
 Announcement combat memory-value []: law	法律	l
 Announcement combat object []: body part	身体部位	l

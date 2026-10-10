@@ -59,6 +59,19 @@ void Overlay::rebuild_announcement_combat_rules() {
     }
 }
 
+static bool announcement_combat_field_edges_fit(
+        std::string_view scope, std::string_view value) {
+    if (value.empty() || value.front() == ' ') return false;
+    if (value.back() != ' ') return true;
+    // Null item/tissue branches retain the trailing space of "in the ",
+    // "through a hole in the " or a damage-list separator. The complete
+    // native composite owns that space; its recursive entry trims it before
+    // matching the explicit empty-object productions. Dynamic name/item/body
+    // leaves still require their original nonempty field boundaries.
+    return scope == "head" || scope == "attack" || scope == "damage" ||
+        scope == "damage-list" || scope == "layer";
+}
+
 std::optional<std::string> Overlay::translate_announcement_combat(
         std::string_view raw_source, std::string_view initial_scope) const {
     TranslationWorkScope budget;
@@ -147,7 +160,7 @@ std::optional<std::string> Overlay::translate_announcement_combat(
                     end <= last; ++end) {
                 if (!template_literal_at(input, end, following, true)) continue;
                 const auto value = input.substr(at, end - at);
-                if (value.front() == ' ' || value.back() == ' ') continue;
+                if (!announcement_combat_field_edges_fit(fields[field], value)) continue;
                 // Prove the suffix before entering an open name/item field.
                 if (suffix_fits(rule, fields, input, field + 1, end + following.size()) &&
                         scope_fits(fields[field], value)) {
@@ -440,7 +453,7 @@ std::optional<std::string> Overlay::translate_announcement_combat(
                     translation_work_step();
                     if (end <= at || !template_literal_at(input, end, following, true)) continue;
                     const auto value = input.substr(at, end - at);
-                    if (value.front() == ' ' || value.back() == ' ') continue;
+                    if (!announcement_combat_field_edges_fit(scopes[field], value)) continue;
                     if (!legends_template_suffix_literals_fit(rule, input, field + 1,
                             end + following.size(), input.size(), true)) continue;
                     if (!suffix_fits(rule, scopes, input, field + 1,
@@ -573,7 +586,8 @@ dfcn::TranslationResult Overlay::translate_announcement_combat_result(
                         end <= final && bindings < 2; ++end) {
                     translation_work_step();
                     if (!template_literal_at(source, end, following, true) ||
-                            source[at] == ' ' || source[end - 1] == ' ' ||
+                            !announcement_combat_field_edges_fit(candidate.scopes[field],
+                                std::string_view(source).substr(at, end - at)) ||
                             !legends_template_suffix_literals_fit(rule, source, field + 1,
                                 end + following.size(), source.size(), true)) continue;
                     ranges[field] = {at, end};

@@ -1,0 +1,5 @@
+edition	image	path	producer	start	code_end	unwind_end
+reference	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	appearance	0x140717d30	0x14071a25c	0x14071a2b4
+reference	PE:6a70a6d9:02711000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	body-size	0x140716b70	0x140717cc0	0x140717d30
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	appearance	0x140715750	0x140717c7c	0x140717cd4
+classic	PE:6a70b91c:0270a000	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe	body-size	0x140714590	0x1407156e0	0x140715750

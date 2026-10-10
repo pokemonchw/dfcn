@@ -1,0 +1,255 @@
+原生单位区别性外貌：完整文本生成式
+
+这些是磁盘映像指令及跳转表的来源复原，不是游戏运行结果或测试资料。
+reference: PE:6a70a6d9:02711000
+  appearance 0x140717d30..0x14071a25c, body-size 0x140716b70..0x140717cc0
+classic: PE:6a70b91c:0270a000
+  appearance 0x140715750..0x140717c7c, body-size 0x140714590..0x1407156e0
+下文 VA 使用 reference。classic 外貌代码对应 VA = reference VA - 0x25e0，
+body-size 对应 VA = reference VA - 0x25e0。字符串地址不适用此差值。
+完整指令在本目录四份 asm；字面量、控制流和真实枚举表分别在
+native-literals.tsv、native-branches.tsv、native-switches.tsv。
+
+一、持有字段、默认值和选择顺序
+
+目标是 unit+0x13e8 的完整 GameString；unit+0x13f8 为长度。
+0x717d73..0x717d92 首先清空该字段。种族/亚种无效或空指针时直接到
+0x71a20c..0x71a220，写入 "average"。正常流程无任何候选写入时，
+0x71a153..0x71a171 同样写入 "average"。因此这两个路径均属真实默认值。
+身份引用格式器将完整 "average" 视为不显示区别性外貌的哨兵。
+
+0x7183f6 初始化已选权重 best = 1999。0x70f070 提供候选组，
+循环 0x71842c..0x71a147 读取候选类型、成员和权重。
+成员权重通常只在严格大于 best 时替换已选字段，等权不覆盖。
+体型、五官、嗓音、通用身体部位外貌共享这个字段和已选权重，
+不是在最终输出中无条件连接全部候选。
+
+候选组类型（组结构首 WORD）：
+  0: 组+0x38 非空时进入体型维度构造；否则没有该体型分支。
+  2: 通用 modifier + '-' + 完整 RAW 部位/组织名。
+  3: 嗓音，读取 DEEP_VOICE / RASPY_VOICE。
+  4: 固定五官，读取 HIGH_CHEEKBONES / BROAD_CHIN / JUTTING_CHIN / SQUARE_CHIN。
+  其他类型: 当前生产器不写文本，沿 0x71a140 或 0x719207 继续下一组。
+
+部位相关候选的缺失过滤是字段生成逻辑的一部分：
+  已准备的 missing-part 字节不为 0，或 unit body-component flags 的 bit 0x2，
+  或指定组织对应的 layer-status bit 0x1，均抑制该候选，保留先前选择。
+  固定五官没有有效部位号（-1）时跳过这道部位过滤，仍可产生固定文本。
+  通用特征有有效部位和组织元数据时才按正常部位/组织路径取名。
+相关位置：0x718ced..0x718d4a、0x719384..0x7193ef、0x71980d..0x71986a。
+
+二、体型类别和全部肌肉/脂肪状态
+
+0x7184c9..0x718517 读取 caste.body_appearance_modifiers 和单位对应值。
+枚举 0=HEIGHT、1=BROADNESS、2=LENGTH。缺少维度用 -30000 哨兵表示。
+H/B/L 为实际维度值；h/b/l 是各自减去 modifier+0x10 中心值后的偏差。
+以下判定都是有顺序的 if/else，不同时满足多个分支。
+
+所有 H/B/L 都存在（0x718577..0x71860a）：
+  P = H*B*L
+  P>=1500000 -> 类别 0
+  P>=1250000 -> 类别 1
+  P>=1100000 -> 类别 2
+  P<510000   -> 类别 27
+  P<760000   -> 类别 26
+  P<910000   -> 类别 25
+  其余       -> 类别 24
+
+H/L 存在但 B 缺少（0x718798..0x718824）：
+  P = H*L
+  P>=15000 -> 0; P>=12500 -> 1; P>=11000 -> 2;
+  P<5100 -> 27; P<7600 -> 26; P<9100 -> 25; 其余 -> 24。
+
+L/B 存在但 H 缺少（0x718626..0x71876f）：
+  l>=50 且 b>=50 -> 0
+  l<=-50 且 b<=-50 -> 27
+  l>=10 且 b>=10 -> 2
+  l>=10 且 b<=-10 -> 8
+  l<=-10 且 b>=10 -> 4
+  l<=-10 且 b<=-10 -> 25
+  其余先按 b：>=50/25/10 -> 5/6/7；<=-50/-25/-10 -> 9/10/11。
+  b 未决定时按 l：>=50/25/10 -> 15/16/17；<=-50/-25/-10 -> 21/22/23。
+  所有偏差都在中间范围 -> 24。
+
+H/B 存在但 L 缺少（0x7188b1..0x718a1b）：
+  h>=50 且 b>=50 -> 0
+  h<=-50 且 b<=-50 -> 27
+  h>=10 且 b>=10 -> 2
+  h>=10 且 b<=-10 -> 3
+  h<=-10 且 b>=10 -> 4
+  h<=-10 且 b<=-10 -> 25
+  其余先按 b：>=50/25/10 -> 5/6/7；<=-50/-25/-10 -> 9/10/11。
+  b 未决定时按 h：>=50/25/10 -> 12/13/14；<=-50/-25/-10 -> 18/19/20。
+  所有偏差都在中间范围 -> 24。
+
+只存在一个维度：
+  L（0x718840..0x71889f）: >=50/25/10 -> 15/16/17；<=-50/-25/-10 -> 21/22/23；否则 24。
+  B（0x718a20..0x718a81）: >=50/25/10 -> 5/6/7；<=-50/-25/-10 -> 9/10/11；否则 24。
+  H（0x718a93..0x718afa）: >=50/25/10 -> 12/13/14；<=-50/-25/-10 -> 18/19/20；否则 24。
+  所有维度缺少: 0x718a86..0x718a8d 继续下一组，不写体型文本。
+
+body-size(destination, category, M, F) 的 M/F 是进入外貌构造时已经计算的
+肌肉/脂肪偏差（0x717e4e..0x717ef4）；外貌构造将这两个值传给每一次 body-size。
+0x716bbd..0x716ca8 按以下先满足的条件生成状态号：
+  0: M>=75 且 F>=75
+  1: M>=75
+  2: F>=75
+  3: M>=50
+  4: F>=50
+  5: M>=25 且 F>=25
+  6: M<=-75 且 F<=-75
+  7: M<=-75
+  8: F<=-75
+  9: M<=-50
+  10: F<=-50
+  11: M<=-25 且 F<=-25
+  12: M>=25
+  13: F>=25
+  14: M<=-25
+  15: F<=-25
+  N: 其余；内部 r10w = 0xffff。
+
+类别 0 在全部 17 状态输出 "gigantic"；类别 1 全部输出 "very large"。
+类别 2..27 共用以下状态文本：
+  1,3,12 -> muscular; 2 -> obese; 4 -> fat;
+  7,9,14 -> frail; 8 -> skinny; 10 -> thin; 13 -> chubby; 15 -> slim。
+余下状态 0/5/6/11/N 的所有类别分支如下（与共用状态合并即完整 28*17 选择式）：
+  类别     状态 0       状态 5       状态 6       状态 11      状态 N
+  2        large        large        large        large        large
+  3        big          big          lanky        lanky        lanky
+  4        stout        stout        stout        stout        stout
+  5        broad        broad        broad        broad        broad
+  6        broad        broad        broad        broad        broad
+  7        broad        broad        broad        broad        broad
+  8        big          big          narrow       narrow       narrow
+  9        big          big          skinny       skinny       skinny
+  10       big          big          thin         thin         thin
+  11       big          big          slim         slim         slim
+  12       towering     towering     tall         tall         tall
+  13       big          big          tall         tall         tall
+  14       big          big          tall         tall         tall
+  15       big          big          long         long         long
+  16       big          big          long         long         long
+  17       big          big          long         long         long
+  18       squat        squat        short        short        short
+  19       squat        squat        short        short        short
+  20       squat        squat        short        short        short
+  21       squat        squat        short        short        short
+  22       squat        squat        short        short        short
+  23       squat        squat        short        short        short
+  24       big          big          scrawny      skinny       <不写入>
+  25       squat        squat        small        small        small
+  26       squat        squat        small        small        small
+  27       squat        squat        tiny         tiny         tiny
+category 超出 0..27 时走 0x717ca0，不写入。类别 24 状态 N 同样保持已有 destination。
+这里列出的是原生 body-size 函数的缩短区别词，不能用健康页的长体型谓语代替。
+
+三、固定五官与嗓音的全部选择式
+
+通用档位 D 使用 RAW modifier 的六个界限 +0x20/+0x24/+0x28/+0x2c/+0x30/+0x34：
+  value<=low0 -> -3; value<=low1 -> -2; value<=low2 -> -1;
+  value>=high2 -> 3; value>=high1 -> 2; value>=high0 -> 1; 其余 -> 0。
+缺少对应成员时固定五官/嗓音的档位保持初始 0。
+
+固定五官候选逐项执行，下项可用更高权重覆盖上项：
+  16 HIGH_CHEEKBONES（0x71900d..0x719055）:
+    权重>best 且 D 不在 [-1,1]；D>=2 -> high-cheekbones；否则 low-cheekbones。
+  19 SQUARE_CHIN（0x71905c..0x7190ae）:
+    SQUARE_CHIN 权重>best 且其 D 不在 [-1,1]。
+    实际二选一比较 16 HIGH_CHEEKBONES 的档位（[rsp+0x48]，0x71907e），
+    HIGH_CHEEKBONES D>=2 -> square-chin；否则 round-chin。
+    这是映像的实际字段选择，不以 SQUARE_CHIN 的正负推测原生结果。
+  17 BROAD_CHIN 和 18 JUTTING_CHIN（0x7190bb..0x719241）:
+    两项任一权重>best，且 B/J 任一档位不在 [-1,1]，才进入选择。
+    best 更新为此前 best 及这两项权重的最大值。精确有序选择式：
+      B==3: J==3 -> massive-chin; J==-3 -> recessed-chin; 其余 -> broad-chin。
+      B==-3: J==3 -> jutting-chin; J==-3 -> recessed-chin; 其余 -> narrow-chin。
+      B==2: J==2 -> prominent-chin; J==-2 -> recessed-chin; 其余 -> broad-chin。
+      B==-2: J==2 -> prominent-chin; J==-2 -> recessed-chin; 其余 -> narrow-chin。
+      B in [-1,1]: J==3 -> jutting-chin; J==2 -> prominent-chin;
+                    J<=-2 -> recessed-chin; 其余不写文本。
+
+嗓音（0x719243..0x719734）：R=23 RASPY_VOICE 档位，D=22 DEEP_VOICE 档位。
+组的最高成员权重>best，且至少一档非 0 时才尝试生产。
+以下矩阵包括所有档位组合；'-' 表示不写文本、不替换此前选择。
+  R\D   -3               -2               -1              0               1               2               3
+  -3    clear-voiced     clear-voiced     clear-voiced    clear-voiced    clear-voiced    clear-voiced    deep-voiced
+  -2    clear-voiced     clear-voiced     clear-voiced    clear-voiced    clear-voiced    clear-voiced    clear-voiced
+  -1    high-voiced      high-voiced      -               -               -               low-voiced      deep-voiced
+   0    high-voiced      high-voiced      -               -               -               low-voiced      deep-voiced
+   1    high-voiced      high-voiced      -               -               -               low-voiced      deep-voiced
+   2    squeaky-voiced   squeaky-voiced   scratchy-voiced scratchy-voiced scratchy-voiced raspy-voiced    raspy-voiced
+   3    grating-voiced   squeaky-voiced   grating-voiced  grating-voiced  grating-voiced  raspy-voiced    guttural-voiced
+
+四、完整动态名词与 modifier 组合
+
+0x719739..0x71980d 选择元数据：
+  有 BP modifier 成员: 首成员提供 part/layer 索引、APP_MOD_NOUN 和关联名词标志。
+  没有 BP 成员但有 TLCM 成员: 首 TLCM 提供相同用途的 part/layer 索引、TLCM_NOUN。
+  两者都没有: 0x718b70..0x718b7e 跳过。
+成员相关的显示部位已经缺失时，0x719818..0x71986a 直接抑制该组。
+
+完整名词 noun 的构造（0x719870..0x719c65）：
+  关联名词标志不是 -1 -> 原样采用完整 APP_MOD_NOUN/TLCM_NOUN。
+  无关联名词、layer!=-1 -> 完整 BODY 名 + "'s " + 完整 creature tissue.name。
+    BODY 名在该部位 count>1 时取复数名称，否则取单数名称。
+    BODY 名表空 -> "body part"；有效部位 count>1 时追加 's' -> "body parts"。
+    部位号无效 -> "body part"。
+  无关联名词、layer==-1 -> 调用 0x13345d0（mode=2），使用完整原生解剖名。
+这些字段可以含空格、连字符及所属结构；它们不是末尾一个英文单词。
+
+0x719ca0..0x71a108 按组内 BP modifier 顺序选择：
+  modifier+0x38 !=0 -> 略过（无本构造式）；权重<=best -> 略过。
+  通过 caste.bp_appearance.modifier_idx 找单位 value；没有单位映射时以 100 为默认值。
+  根据六档 RAW 界限算 D；真实跳转表有 enum 0..21 共 22 项。
+  通用跳转不含嗓音 22/23；6、16、17、18、19 直接到继续下一成员。
+
+enum / 名称           正档位                    负档位                          中性
+ 0 HEIGHT             tall                      short                           不写
+ 1 BROADNESS          broad                     narrow                          原生追加路径（下文）
+ 2 LENGTH             long                      short                           不写
+ 3 CLOSE_SET          close-set                 wide-set                        不写
+ 4 DEEP_SET           sunken                    -3 bulging; -2/-1 protruding     不写
+ 5 HIGH_POSITION      high                      low                             不写
+ 6 LARGE_IRIS         此通用生产器不写；无独立字面量
+ 7 WRINKLY            wrinkled                  smooth                          不写
+ 8 CURLY              3 coiled; 2 curly; 1 wavy  straight                        不写
+ 9 CONVEX             convex                    concave                         不写
+10 DENSE              dense                     sparse                          不写
+11 THICKNESS          thick                     thin                            不写
+12 UPTURNED           upturned                  hooked                          不写
+13 SPLAYED_OUT        splayed                   flattened                       不写
+14 HANGING_LOBES      3 great-lobed; 2/1 free-lobed  -3/-2 fuse-lobed; -1 small-lobed  不写
+15 GAPS               3 widely-spaced; 2 gapped; 1 不写   -3 tangled; -2 crowded; -1 不写  不写
+16 HIGH_CHEEKBONES    此通用生产器不写；见固定五官
+17 BROAD_CHIN         此通用生产器不写；见固定五官
+18 JUTTING_CHIN       此通用生产器不写；见固定五官
+19 SQUARE_CHIN        此通用生产器不写；见固定五官
+20 ROUND_VS_NARROW    round                     -3 slit; -2/-1 narrow           不写
+21 GREASY             3/2 greasy; 1 不写         -3 crinkly; -2 dry; -1 不写      不写
+
+正常选择的完整构造式：
+  appearance = modifier + "-" + noun
+  0x71a08f..0x71a096 assign modifier；0x71a09b..0x71a0d6 append '-' 和 noun；
+  0x71a0db 用该成员权重更新 best。所有名字和词项保持各自字段归属。
+
+BROADNESS D==0 的特殊原生路径（两版均有）：
+  reference 0x719df5 jns 0x71a09b；classic 0x717815 jns 0x717abb。
+  此路径跳过 assign modifier，却仍 append '-'、noun 并更新 best。
+  因而 source = previous_appearance + "-" + noun。
+  previous_appearance 可以为空，也可以是此前任何已选完整外貌结果，
+  包括已经含 '-noun' 的结果；多次更高权重的中性 BROADNESS 可继续套用。
+  不把这一真实路径改述为固定 "broad" 或 "average"。
+  局部运行语法表达为 '-{part}' 及 '{appearance}-{part}'；
+  递归左 appearance 每次严格缩短，part 仍必须完整识别。
+  后一式保留原生的前后顺序与连接符，不将先前外貌重新归属于新部位。
+
+五、现有局部词库入口
+
+data/runtime/rulesets/zh-Hans/map_hover/unit.toml 的 appearance、body_size、feature、part
+拥有这些区别词及动态 BODY/组织语法。所有正常字面量已在相应局部 namespace。
+体型与部位形容词（例如 long、short、thin）在这两个语义 scope 中有不同译文。
+default average 是身份引用格式器抑制的哨兵，来源资料记录它，不作全局替换。
+新增的 BROADNESS 中性派生式也仅属于 appearance 局部，不添加全局词条。
+源字节看起来为 'gfff' 的立即数 0x66666667 是整数除法乘数，
+没有写入 GameString，不能作为待翻译文本。

@@ -1,0 +1,280 @@
+Shared damage caption grammar, reconstructed from both configured DF 53.16 PEs
+===========================================================================
+
+Source: data/runtime/native-pe-images.json. Static disassembly only; images are
+not loaded or executed. reference-damage-status.asm and classic-damage-status.asm
+were extracted again from these images. Native preferred base: 0x140000000.
+Steam owner: 0x1400e56a0..0x1400e9f40, executable code ends at 0x1400e9e84.
+Classic owner: 0x1400e5630..0x1400e9ed0, executable code ends at 0x1400e9e14.
+For the shared constructor's instructions, Classic address = Steam - 0x70.
+The source byte addresses and helper addresses are recorded separately in each
+assembly listing; they must not be mapped using this constructor-only delta.
+
+Complete text fields, not screenshot words
+-----------------------------------------
+actor [rbp+0xc0], actor-owner [rbp+0x120], actor-pronoun [rbp+0x140];
+target [rbp+0xe0], target-owner [rbp+0x100], target-pronoun [rbp+0x160].
+No projectile and no attacker: it / its / it (0x1400e579a..0x1400e57d5).
+No projectile, attacker supplied: complete unit formatter 0x14132e430;
+actor-owner is Your for adventure player, otherwise complete actor + 's;
+actor-pronoun is You for adventure player, otherwise He/She/It from sex helper.
+Projectile supplied: The + motion + COMPLETE item caption 0x140c65450;
+actor-owner is its and actor-pronoun is It (0x1400e587d..0x1400e5951).
+motion: flying when virtual +0x2a8 returns true or virtual item kind is 0x27
+or 0x41; otherwise empty if projectile flags +0x48 & 0x480, else spinning.
+These are all three native projectile actor alternatives, with their spaces:
+  The flying {item}
+  The spinning {item}
+  The {item}
+Target always comes from the complete unit formatter (0x1400e596e).
+Target-owner is Your or complete target + 's; target-pronoun is You or He/She/It.
+The unit formatter's appearance-bearing description, identity, profession,
+species and RAW fields are complete dynamic fields. Splitting them into English
+words loses ownership; a body adjective such as long-eyelashes is part of UNIT.
+
+One head definition, reused by every main damage outcome
+-------------------------------------------------------
+The active attack record is selected by signed index context+0x4210 and stride
+0xa8. Record strings are +0x20 prefix, +0x40 attack verb and +0x60 instrument;
+flags are +0xa0, item target id +0x4, body target index +0x14.
+
+if flags & 0x20:
+    H = record.prefix;                 // COMPLETE caller-supplied prefix
+else:
+    relation = flags & 0x4 ? " by the " : " in the ";
+    if flags & 0x8:
+        object = complete item caption(item target id); // empty if not found
+    else:
+        object = complete body label(target, body target index, name index 0,
+                                     number mode 2);
+    direction = flags & 0x1 ? " from behind" :
+                flags & 0x2 ? " from the side" : "";
+    equipment = record.instrument.empty() ? "" : " with " + record.instrument;
+    H = actor + " " + record.attack_verb + " " + target + relation + object +
+        direction + equipment;
+
+The head block is copied by the native source in each outcome. Representative
+Steam block: 0x1400e5a31..0x1400e5b75; normal damage-list block:
+0x1400e720b..0x1400e7343. The source proves optional direction and equipment
+are independent and direction precedence is behind before side. No above/below
+head alternative exists in this constructor. Attack verbs and instruments
+are supplied complete by the record producer; they are not finite C strings
+in this constructor. Generic RAW ATTACK_VERB values must use their typed scope.
+
+Finite complete main-outcome sentence families
+----------------------------------------------
+  H + ", but it is deflected by " + DEFLECTION_OBJECT + "!"
+  H + ", but the attack is deflected by " + DEFLECTION_OBJECT + "!"
+  H + ", lightly tapping the target!"
+  H + ", but there is no force!"
+  H + ", but it passes right through!"
+  H + ", but the attack passes right through!"
+  H + ", but it glances away!"
+  H + ", but the attack glances away!"
+  H + " and the severed part sails off in an arc!"
+  H + " and " + RESULT_LAYER + BODY_RESULT + "!"
+  H + " and it is mostly cut away from the rest of the torso!"
+  H + ", " + DAMAGE_LIST + "!"
+  H + " and " + DAMAGE_LIST + "!"
+  H + "!"
+
+Deflection: flag 0x20 chooses it versus the attack. DEFLECTION_OBJECT is
+target-owner + " " + COMPLETE item caption from a separate deflection record
+selected by context+0x41ee (0x1400e5b94..0x1400e5c0e); if the item lookup fails,
+the native builder appends only "!" without an object. This field is distinct
+from the attack head's flag-0x8 item/body target choice.
+BODY_RESULT finite suffixes, preserving their native leading spaces:
+  " is smashed into the body, an unrecognizable mass"
+  " splits in gore"
+  " collapses"
+  " is ripped into loose shreds"
+  " is torn apart"
+  " is cloven asunder"
+  " explodes into gore"
+  " collapses into a lump of gore"
+  " is crushed"
+RESULT_LAYER is the complete body/tissue/material field preceded by the, or
+the native fallback the part / the injured part. Sources 0x1400e686d,
+0x1400e6ac8 and the result suffix branches 0x1400e68b8..0x1400e6ccb.
+
+Finite damage expressions and ordered combinations
+--------------------------------------------------
+LAYER is a complete body/tissue/material name, optionally BODY + "'s " + TISSUE.
+LAYER_PHRASE = "the " + LAYER | "it".
+VERB = tearing | tearing apart | shattering | chipping | fracturing | denting |
+       bruising.
+DAMAGE = VERB + " " + LAYER_PHRASE
+       | "tearing it apart"
+       | DAMAGE + " through a hole in the " + LAYER
+       | "passing through a hole in the " + LAYER
+       | "jamming the " + LAYER + " through the " + LAYER
+       | "jamming the " + LAYER + " out of the wound"
+       | "breaking away the " + LAYER
+       | "breaking away" + FRACTION + " the " + LAYER.
+FRACTION = " most of" | " half of" | " a piece of" | " the rest of".
+Damage-selector branches: 0x1400e7605..0x1400e76c4; repeated layer selectors
+0x1400e78d4..0x1400e79a5. Matching repeated damage verbs may be omitted, yielding
+VERB + " the " + LAYER + " and the " + LAYER, preserving all layer fields.
+DAMAGE_LIST is ordered DAMAGE joined with ", " or " and ", optionally followed
+by " through the " + COMPLETE_EQUIPMENT and repeated " and spilling " + FLUID.
+Equipment suffix source: 0x1400e82ff..0x1400e833f. Thus the screenshot's
+bruising the muscle and bruising the heart through the large cow leather shirt
+is one complete damage-list expression, with two separate tissue fields and
+one complete equipment field. It is not three unrelated string replacements.
+
+FLUID = OWNER + " " + [DECAY + " "] + MATERIAL.
+DECAY = rancid | decomposing | rotten | fetid | foul | reeking | filthy |
+        stinking. These alternatives occur at 0x1400e8418..0x1400e84a2.
+An injection material can also be owner-free, using its complete RAW name.
+
+Injury sentences: every native branch
+------------------------------------
+INJURY = ("a major artery" | "an artery") + [" in the " + BODY] +
+             " has been opened by the attack"
+       | ("many nerves" | "a motor nerve" | "a sensory nerve") +
+             [" in the " + BODY] + (" have" | " has") + " been severed"
+       | "a ligament" + [" in the " + BODY] + " has been " +
+             (torn | sprained | bruised)
+       | "a tendon" + [" in the " + BODY] + " has been " +
+             (torn | strained | bruised).
+Native injury flags: artery 0x40004000 (major bit14 precedes bit30), nerves
+0xc00 (both -> many, bit10 -> motor, bit11 -> sensory), ligament 0x380
+(bit9 torn before bit8 sprained before bit7 bruised), tendon 0x70
+(bit6 torn before bit5 strained before bit4 bruised). many nerves uses have,
+single nerves use has. Body suffix is omitted for the main injured body or
+when the same body suffix has already been emitted within the injury list.
+INJURY_LIST preserves order, joins with ", " / " and ", and appends "!".
+All four native switch tables are decoded in native-switches.tsv, including
+the three six-way record-kind 27..32 tables that accumulate these injury flags.
+
+Auxiliary sentence families
+---------------------------
+The 29-way switch subtracts 6 from kind, bounds at 28, and dispatches kinds
+6..34. native-dispatch.tsv and decompiled-productions.tsv retain each target.
+  kind6: UNIT + (" have" | " has") + " been knocked unconscious!"
+  kind7/8: UNIT + (" have" | " has") + " been stunned" + [" again"] + "!"
+  kind9/10: UNIT + (" are" | " is") + " having " + ["more "] +
+             "trouble breathing!"
+  kind11/12: UNIT + (" feel" | " looks") + [" even more"] + " sick!"
+  kind15: FLUID + " is injected into the " + OWNED_FLUID + "!"
+  kind16: FLUID + (" pours over the " | " flows over the " |
+             " splatters over the " | " crumbles over the ") + BODY + "!"
+          state outside 0..3: FLUID + BODY + "!"; no verb or separator.
+  kind17: FLUID + " is sucked out of the wound!"
+  kind20: UNIT + (" are" | " is") + " propelled away by the force of the blow!"
+  kind21: "The " + ITEM + " has lodged firmly in the wound!"
+  kind22: UNIT + (" latch on firmly" | " latches on firmly") +
+             " to " + OWNED_OBJECT + "!"
+  kind23: UNIT + (" latch on firmly!" | " latches on firmly!")
+  kind24: UNIT + (" have" | " has") + " become enraged!"
+  kind34: OWNER + " attack is interrupted!"
+  kind13/14/18/19/25/26/27/28/29/30/31/32/33: no auxiliary sentence.
+Adventure player selects have/are/feel/latch, other subjects has/is/looks/latches.
+UNIT is the complete target label or the native pronoun according to record
+ownership flags, not an unrestricted substring. OWNED_FLUID in injection is
+the complete target-owner + material field, not anatomy.
+
+Additional non-switch sentences in this same owner
+--------------------------------------------------
+  "The geldables have been torn away!"
+  "It is a gelding strike!"
+  "It is a gelding blow!"
+  EQUIPMENT + " is ripped to shreds!"
+  EQUIPMENT + " breaks!"
+All text-bearing branches, strings, inline operands, conditional jumps and
+calls remain in the two assembly listings and native-literals/native-branches
+source tables. These production families are a deduplication of native source
+construction, not an observation or simulation of game rendering.
+
+Explicit nullable-field control flow in the shared constructor
+-------------------------------------------------------------
+Only native conditional branches are included here. Arbitrarily empty or
+malformed authored RAW strings are not expanded into speculative productions.
+Classic shared-constructor instruction address = the Steam address below -0x70.
+
+1. Attack-head item target: flags+0xa0 &0x8 selects lookup of item id+0x4;
+   0x1400e5ae8 tests its result and branches to 0x1400e5b1c on null. The relation
+   literal " in the " or " by the " was already appended. Therefore a head may
+   end in " in the " / " by the ", or that empty target may precede the optional
+   direction/equipment clauses. The shared attack scope has two exact no-object
+   alternatives with source endings in the/by the, resolving the complete verb
+   and unit but adding no absent body/item.
+
+2. Separate deflection item: 0x1400e5bba branches directly to 0x1400e5c34 when
+   lookup of the record at context+0x41ee fails. Native complete sentences are
+   H + ", but it is deflected by !" and
+   H + ", but the attack is deflected by !".
+   The one space before ! belongs to the native suffix, not an empty capture.
+
+3. A hole's target after normal damage: the literal " through a hole in the "
+   is appended at 0x1400e7a9c. When its body differs from the two damaged bodies,
+   0x1400e81d1 computes a complete body label but 0x1400e81f3..0x1400e8244 skips
+   appending it if that body has at most one tissue. When a tissue should be
+   appended, 0x1400e8282..0x1400e8285 explicitly skips a null tissue definition.
+   Consequently the literal can be the complete final damage fragment, with no
+   target, or it can retain BODY + "'s " with its tissue absent.
+
+4. A hole's target before jamming: 0x1400e7c0f appends
+   "passing through a hole in the ". For a different body, 0x1400e7c8b computes
+   its body label but 0x1400e7cb4 branches to 0x1400e7d40 if tissue count<=1,
+   again without appending that label. For multiple tissues, a non-main body
+   gets BODY + "'s " at 0x1400e7cc8; 0x1400e7d2e..0x1400e7d31 can then skip
+   a null tissue definition. 0x1400e7d40 always appends " and " and continues
+   with the jamming expression. Thus these are not invented single-clause
+   sentences: the empty hole production composes with the complete native
+   following damage-list element, preserving that separate jamming action.
+
+5. Breaking-away tissue lookup: the list separator is appended at 0x1400e7ff8
+   or 0x1400e8001. 0x1400e807f..0x1400e8082 tests its tissue and on null jumps
+   to 0x1400e82d5. That target ENDS the damage-record loop before optional
+   equipment, fluid spill and ! suffixes; it does not process another record.
+   Therefore only one final empty damage element is reachable. Native main
+   sentences can be H + ", !" or H + " and !" when no earlier damage text was
+   produced, or H plus a complete earlier damage-list and a dangling comma/and.
+   There is no middle empty-list element followed by further damage and no
+   repeated all-empty record list from this conditional branch. The grammar
+   records only the two complete first-empty sentences and two trailing-list
+   alternatives. The independent equipment suffix at 0x1400e82d9..0x1400e833f
+   and fluid-spill loop at 0x1400e8351..0x1400e8527 still execute. Thus an empty
+   first kind4 element can instead yield DAMAGE_LIST = "through the " + ITEM
+   or "and spilling " + FLUID; both exact base alternatives compose with the
+   ordinary subsequent spill/equipment productions. For an earlier complete
+   list, its dangling separator stays part of the nonempty internal list span
+   before the suffix. These translated consequences add no absent injury.
+
+6. Fluid kind16 default state: 0x1400e9bc5..0x1400e9bda selects the four known
+   state literals for 0..3. All other state values branch to 0x1400e9c07, which
+   directly appends the complete body label and ! to the already-built fluid.
+   FLUID + BODY + "!" is therefore an actual adjacent-field production, with
+   no space and no flow predicate. Its rule resolves both fields in their
+   existing fluid/body namespaces and supplies no absent verb.
+
+Branches that do not produce an empty field
+------------------------------------------
+An empty instrument record is checked before adding " with ", so equipment is
+simply omitted. Failed equipment lookup at 0x1400e82fd branches to 0x1400e8351
+before " through the " is appended. A missing lodged-item record at
+0x1400e9278 skips the entire auxiliary sentence. An invalid/unnamed body index
+uses the body formatter's body part(s) fallback. Destructive body-result
+tissue selection uses the part / the injured part fallback. These existing
+productions already express the corresponding branches without epsilon rules.
+
+Fluid material helper was also disassembled completely in both images:
+  reference-material-caption.asm: 0x1414d1920..0x1414d1d79
+  classic-material-caption.asm:   0x1414cc890..0x1414ccce9
+For missing material lookup it appends the exact literal unknown material
+(Steam 0x1414d1d44..0x1414d1d54; Classic 0x1414cccb4..0x1414cccc4), rather than
+an empty string. Existing material and term translation namespaces cover this
+literal. Valid RAW state names, owner names and virtual item captions remain
+complete dynamic fields, not finite screenshot-specific substitutes.
+
+Whitespace ownership required by these native branches
+------------------------------------------------------
+normalize_utterance folds doubled spaces but retains one native space before a
+following comma, and, directional phrase or !. Recursive resolution trims a
+complete internal semantic span, but the former suffix-fit and match gates
+rejected such spans before resolution when their final byte was a space.
+Only nonempty COMPLETE internal scopes head/attack/damage/damage-list/layer
+need this trailing native-space admission for the conditional productions
+above. Dynamic $unit/$item/$body/$term leaves retain their byte-edge rules;
+no empty typed capture or unrestricted missing-field fallback is required.

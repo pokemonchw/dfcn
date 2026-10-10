@@ -78,6 +78,8 @@ attack-verb	push	推		active vanilla ATTACK_VERB / item_weapon.txt ATTACK; nativ
 attack-verb	pushes	推		active vanilla ATTACK_VERB / item_weapon.txt ATTACK; native 0x14064a9e6+0x14064af07+0x14064b97a; existing data/runtime/rulesets/zh-Hans/adv/attack.toml terminology
 attack	{s} {s} in the {s}	{s1}{s2}的{s3}	attack-verb,unit,object	0x1400e5a74+0x1400e5a91+0x1400e5aaf+0x1400e5b24
 attack	{s} {s} by the {s}	{s1}{s2}的{s3}	attack-verb,unit,object	0x1400e5aa8; attack flag 0x4 selects by-the branch
+attack	{s} {s} in the	{s1}{s2}	attack-verb,unit	Steam 0x1400e5ad4..0x1400e5b1c / classic 0x1400e5a64..0x1400e5aac; flag0x8 item lookup can fail after relation is appended; complete nonempty head span trims only terminal native space
+attack	{s} {s} by the	{s1}{s2}	attack-verb,unit	Steam 0x1400e5aa8+0x1400e5ae8 / classic 0x1400e5a38+0x1400e5a78; flag0x4 relation retained when flag0x8 target-item lookup fails; no invented target object
 attack	{s} from behind	从背后{s1}	attack	0x1400e5b33 repeated on each damage outcome
 attack	{s} from the side	从侧面{s1}	attack	0x1400e5b40 repeated on each damage outcome
 attack	{s} with {s}	用{s2}{s1}	attack,equipment	0x1400e5b5d+0x1400e5b75; independently optional full weapon phrase
@@ -104,6 +106,9 @@ damage	{s} {s}	{s1}了{s2}	damage-verb,layer-list	0x1400e7718..0x1400e77cf
 damage	tearing it apart	将它撕碎		0x1400e779b+0x1400e77bf
 damage	{s} through a hole in the {s}	{s1}，穿过{s2}上的孔洞	damage,layer	0x1400e7a9c..0x1400e7af7
 damage	passing through a hole in the {s}	穿过{s1}上的孔洞	layer	0x1400e7c0f..0x1400e7d40
+damage	{s} through a hole in the	{s1}，穿过孔洞	damage	Steam 0x1400e7a9c+0x1400e81f3..0x1400e8294 / classic 0x1400e7a2c+0x1400e8183..0x1400e8224; single-layer other body or null tissue can leave the already-appended hole target empty
+damage	passing through a hole in the	穿过孔洞		Steam 0x1400e7c0f+0x1400e7cb4+0x1400e7d2e / classic 0x1400e7b9f+0x1400e7c44+0x1400e7cbe; single-layer different body or null material skips target text before and-jamming continuation
+layer	{s}'s	{s1}	$body	Steam 0x1400e7cc8..0x1400e7d31+0x1400e8206..0x1400e8285 / classic 0x1400e7c58..0x1400e7cc1+0x1400e8196..0x1400e8215; complete body possessive can precede a skipped null tissue name; preserve the known body without inventing a tissue
 damage	jamming the {s} through the {s}	将{s1}挤压穿过{s2}	layer,layer	0x1400e7d50..0x1400e7fcd
 damage	jamming the {s} out of the wound	将{s1}从伤口挤出	layer	0x1400e7d50+0x1400e7fd2
 damage	breaking away the {s}	使{s1}断落	layer	0x1400e8088+0x1400e80ee
@@ -115,7 +120,13 @@ damage	breaking away {s} the {s}	使{s2}的{s1}断落	fraction,layer	0x1400e8088
 damage-list	{s}	{s1}	damage	0x1400e746c+0x1400e7475; ordered native damage-record loop
 damage-list	{s} and {s}	{s1}，并{s2}	damage,damage-list	0x1400e746c+0x1400e7d40+0x1400e7ff8
 damage-list	{s}, {s}	{s1}，{s2}	damage,damage-list	0x1400e7475+0x1400e8001
+# A failed kind4 tissue lookup ends the damage-record loop after its native
+# separator has already been appended. Only a last empty element is reachable;
+# the known earlier damage fields remain complete and no injury is invented.
+damage-list	{s},	{s1}	damage-list	Steam 0x1400e8001+0x1400e807f..0x1400e82d5 / classic 0x1400e7f91+0x1400e800f..0x1400e8265; empty last kind4 element after complete earlier damage
+damage-list	{s} and	{s1}	damage-list	Steam 0x1400e7ff8+0x1400e807f..0x1400e82d5 / classic 0x1400e7f88+0x1400e800f..0x1400e8265; empty last kind4 element retains no invented consequence
 damage-list	{s} through the {s}	{s1}，穿过{s2}	damage-list,equipment	0x1400e82ff+0x1400e833f
+damage-list	through the {s}	穿过{s1}	equipment	Steam 0x1400e8082->0x1400e82d5..0x1400e833f / classic 0x1400e8012->0x1400e8265..0x1400e82cf; first kind4 tissue is null but independent equipment suffix still appends its complete item
 decay	rancid	腐臭的		0x1400e8418..0x1400e84a2; bodily-fluid rot status
 decay	decomposing	正在腐烂的		0x1400e8418..0x1400e84a2; bodily-fluid rot status
 decay	rotten	腐烂的		0x1400e8418..0x1400e84a2; bodily-fluid rot status
@@ -128,8 +139,11 @@ fluid	{s} {s}	{s1}{s2}	owner,$term	0x1400e83a6+0x1400e83d3+0x1400e84f8
 fluid	{s} {s} {s}	{s1}{s2}{s3}	owner,decay,$term	0x1400e83d3+0x1400e84ad+0x1400e84f8
 fluid	{s}	{s1}	$term	0x1400e9a39+0x1400e9bdc+0x1400e9d49
 damage-list	{s} and spilling {s}	{s1}，使{s2}洒出	damage-list,fluid	0x1400e837a..0x1400e8527; may repeat for several fluids
+damage-list	and spilling {s}	使{s1}洒出	fluid	Steam 0x1400e8082->0x1400e82d5+0x1400e837a..0x1400e8527 / classic 0x1400e8012->0x1400e8265+0x1400e830a..0x1400e84b7; first kind4 tissue is null but independent fluid records still append complete spill material and owner
 sentence	{s}, but it is deflected by {s}!	{s1}，却被{s2}挡开了！	head,equipment	0x1400e5a43+0x1400e5df6
 sentence	{s}, but the attack is deflected by {s}!	{s1}，但攻击被{s2}挡开了！	head,equipment	0x1400e5b7a+0x1400e5df6
+sentence	{s}, but it is deflected by !	{s1}，却被挡开了！	head	Steam 0x1400e5a43+0x1400e5bba..0x1400e5c34 / classic 0x1400e59d3+0x1400e5b4a..0x1400e5bc4; failed separate deflection-item lookup appends only terminal ! after by-space
+sentence	{s}, but the attack is deflected by !	{s1}，但攻击被挡开了！	head	Steam 0x1400e5b7a+0x1400e5bba..0x1400e5c34 / classic 0x1400e5b0a+0x1400e5b4a..0x1400e5bc4; failed deflection-item lookup preserves the finite result without inventing equipment
 sentence	{s}, lightly tapping the target!	{s1}，只是轻轻碰到了目标！	head	0x1400e5fcb
 sentence	{s}, but there is no force!	{s1}，却没有造成任何冲击！	head	0x1400e5fd2
 sentence	{s}, but it passes right through!	{s1}，却直接穿了过去！	head	0x1400e6019
@@ -150,6 +164,8 @@ sentence	{s} and {s}!	{s1}，{s2}！	head,body-result	0x1400e689b..0x1400e6ccb
 sentence	{s} and it is mostly cut away from the rest of the torso!	{s1}，它与躯干其余部分的连接大多被切断了！	head	0x1400e6b6f
 sentence	{s}, {s}!	{s1}，{s2}！	head,damage-list	0x1400e7276..0x1400e8538
 sentence	{s} and {s}!	{s1}，并{s2}！	head,damage-list	0x1400e746c+0x1400e8538
+sentence	{s}, !	{s1}！	head	Steam 0x1400e8001+0x1400e8082+0x1400e852d / classic 0x1400e7f91+0x1400e8012+0x1400e84bd; first kind4 tissue lookup fails after comma separator; no damage text is emitted
+sentence	{s} and !	{s1}！	head	Steam 0x1400e7ff8+0x1400e8082+0x1400e852d / classic 0x1400e7f88+0x1400e8012+0x1400e84bd; first kind4 tissue lookup fails after and separator; no damage text is emitted
 sentence	{s}!	{s1}！	head	0x1400e6e84+0x1400e71d4; completed strike without additional tissue clause
 injury-subject	a major artery	一条主要动脉		0x1400e89ab..0x1400e8c75
 injury-subject	an artery	一条动脉		0x1400e89ab..0x1400e8c75
@@ -205,6 +221,7 @@ sentence	{s} pours over the {s}!	{s1}倾泻在{s2}上！	fluid,$body	0x1400e9bdc
 sentence	{s} flows over the {s}!	{s1}流淌在{s2}上！	fluid,$body	0x1400e9be5+0x1400e9cc3
 sentence	{s} splatters over the {s}!	{s1}飞溅在{s2}上！	fluid,$body	0x1400e9bee+0x1400e9cc3
 sentence	{s} crumbles over the {s}!	{s1}碎落在{s2}上！	fluid,$body	0x1400e9bf7+0x1400e9cc3
+sentence	{s}{s}!	{s1}{s2}！	fluid,$body	Steam 0x1400e9bda jne0x1400e9c07..0x1400e9c39 / classic 0x1400e9b6a jne0x1400e9b97..0x1400e9bc9; kind16 material state outside0..3 appends complete fluid and body with no flow verb or separator
 sentence	{s} is sucked out of the wound!	{s1}从伤口中被吸了出来！	fluid	0x1400e9d49+0x1400e9dd3
 sentence	{s}	{s1}	$message	existing complete ui-message catalog; no per-word fallback
 sentence	{s} release the grip of {s} from {s}.	{s1}解除了{s2}对{s3}的抓握。	unit,owned-object,owned-object	0x141361ed8..0x141361fb1+0x141362281

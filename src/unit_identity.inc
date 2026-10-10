@@ -80,6 +80,26 @@ std::optional<std::string> Overlay::translate_unit_profession(
             return std::string(status->second) + *role;
     }
 
+    // The shared adventure unit formatter prepends its distinguishing
+    // appearance field (717d30 -> unit+13e8) after training/ghost status and
+    // before the whole species/occupation/office descriptor. Old report
+    // records outlive the formatter's per-draw identity bindings, so resolve
+    // this native field here too. Its existing scope covers every body-size,
+    // voice, fixed facial form and RAW modifier/body-part production; neither
+    // an appearance word nor its adjacent role is a personal-name field.
+    for (size_t at = source.rfind(' '); at != std::string::npos;
+         at = at == 0 ? std::string::npos : source.rfind(' ', at - 1)) {
+        std::vector<size_t> appearance_origins;
+        const auto appearance = RULESETS.translate_with_origins(
+            native_text_to_utf8(std::string_view(folded).substr(0, at)),
+            "::map_hover::unit::appearance", appearance_origins);
+        if (!appearance || appearance->empty()) continue;
+        const auto remainder = std::string_view(source).substr(at + 1);
+        const auto role = translate_unit_profession(remainder, false);
+        if (translation_complete_with_native_nicknames(role, remainder))
+            return *appearance + "的" + *role;
+    }
+
     // Native identities append necromancer to the current occupation/office.
     // Keep both meanings, including a custom role resolved in its typed slot,
     // rather than transliterating the combined title as a generated name.
