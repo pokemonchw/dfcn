@@ -3183,10 +3183,11 @@ struct NativeKnowledgeDraw {
 static bool native_knowledge_draw_owns_base(
         const NativeKnowledgeDraw &draw, const graphicst &gps) {
     // The colored native writer writes screen, not the composited top layer.
-    // Overview proves its complete current base bytes after buffer rotation;
-    // other reading pages retain their existing draw-buffer identity gate.
+    // Thoughts and Overview share this writer. Their complete current base
+    // bytes prove ownership after buffer rotation too; the old buffer address
+    // must not redirect that proof to unrelated composited panel artwork.
     // A clipped call does not prove a whole row.
-    return ((draw.document && draw.document->overview_footer) ||
+    return ((draw.document && (draw.document->thoughts || draw.document->overview_footer)) ||
         draw.screen == reinterpret_cast<uintptr_t>(gps.screen)) &&
         draw.dimx == gps.dimx && draw.dimy == gps.dimy && draw.document &&
         draw.x >= draw.clip[0] && draw.x + draw.document->width - 1 <= draw.clip[1] &&
@@ -15413,10 +15414,10 @@ std::vector<Match> Overlay::resolve_native_knowledge_matches(
         if (draw.document != draws.front().document || draw.x != left ||
             draw.y != top + i || draw.line != first_native_line + i) return result;
     }
-    // A fresh capture belongs to the actual base writer. Overview also
-    // proves retained rows against the current base after buffer rotation.
+    // A fresh capture belongs to the actual base writer. Thoughts and Overview
+    // also prove retained rows against the current base after buffer rotation.
     // Top artwork does not change which source document was written.
-    const bool current_base_draw = (current_draw || document.overview_footer) && gps_->screen &&
+    const bool current_base_draw = (current_draw || document.thoughts || document.overview_footer) && gps_->screen &&
         std::all_of(draws.begin(), draws.end(), [&](const NativeKnowledgeDraw &draw) {
             return native_knowledge_draw_owns_base(draw, *gps_);
         });
