@@ -4963,10 +4963,12 @@ private:
     std::optional<std::string> translate_legends_color(std::string_view value) const;
     std::optional<std::string> translate_legends_anatomy(std::string_view value) const;
     std::vector<int> matching_legends_rules(std::string_view source) const;
+    bool item_description_sentence_start(std::string_view source) const;
     std::optional<std::string> translate_legends_item(std::string_view value) const;
     std::optional<std::string> translate_world_age(std::string_view value,
         unsigned depth = 0, const NativeHistoryEventData *context = nullptr) const;
-    std::optional<std::string> translate_legends_event(std::string_view value, unsigned depth = 0) const;
+    std::optional<std::string> translate_legends_event(std::string_view value,
+        unsigned depth = 0, bool named_fallback = true) const;
     std::optional<std::string> translate_legends_nested(
         const Rule &rule, std::string_view value, unsigned depth) const;
     std::optional<std::string> translate_legends_book(

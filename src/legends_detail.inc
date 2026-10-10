@@ -1066,7 +1066,7 @@ std::optional<std::string> Overlay::translate_legends_nested(
 }
 
 std::optional<std::string> Overlay::translate_legends_event(
-        std::string_view value, unsigned depth) const {
+        std::string_view value, unsigned depth, bool named_fallback) const {
     return legends_translation_work([&]() -> std::optional<std::string> {
     TranslationWorkFrame work_frame("historical event", value);
     value = trim_view(value);
@@ -1074,7 +1074,8 @@ std::optional<std::string> Overlay::translate_legends_event(
     // Do not let an unresolved native era fall through to an ordinary
     // person/name template: Dragon can be both a species and a name word.
     if (world_age_source_shape(value)) return translate_world_age(value, depth);
-    const std::string key = "E:" + std::to_string(depth) + ":" + std::string(value);
+    const std::string key = std::string(named_fallback ? "E:" : "E:typed:") +
+        std::to_string(depth) + ":" + std::string(value);
     if (const auto it = legends_nested_cache_.find(key); it != legends_nested_cache_.end())
         return it->second;
     const auto cycle_revision = active_translation_work->cycle_revision;
@@ -1143,7 +1144,8 @@ std::optional<std::string> Overlay::translate_legends_event(
                     translated_date = fill_template(rule, captures, &capture_translations_);
             }
             if (!item_description_translation_complete(translated_date)) continue;
-            const auto event = translate_legends_event(value.substr(0, at), depth + 1);
+            const auto event = translate_legends_event(value.substr(0, at), depth + 1,
+                named_fallback);
             if (event) result = *translated_date + *event;
             break;
         }
@@ -1166,7 +1168,7 @@ std::optional<std::string> Overlay::translate_legends_event(
     // rejects commas and must not consume this as a fragment of prose.
     if (!result && split_generated_name_identity(value))
         result = translate_procedural_fragment(std::string(value));
-    if (!result) result = translate_legends_name(value, false);
+    if (!result && named_fallback) result = translate_legends_name(value, false);
     if (!translation_work_exhausted() &&
             cycle_revision == active_translation_work->cycle_revision) {
         if (legends_nested_cache_.size() >= 8192) legends_nested_cache_.clear();

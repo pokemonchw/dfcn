@@ -339,9 +339,13 @@ std::optional<std::string> Overlay::translate_announcement_combat(
             // reviewed knowledge, a work title, historical event, place or
             // figure. These shared parsers validate the whole field; ordinary
             // lowercase prose never enters an unrestricted name fallback.
-            auto result = translate_legends_term(input);
+            // Native event references can contain entire biographies, dates
+            // and motives. Prove their event production before trying the
+            // same span as an item or BOOK_ART subject. This entry must not
+            // let an untyped name fallback claim a non-event reference.
+            auto result = translate_legends_event(input, 0, false);
+            if (!result) result = translate_legends_term(input);
             if (!result) result = translate_legends_artifact_identity(input);
-            if (!result) result = translate_legends_event(input, 0);
             if (!result) result = translate_legends_participant(input, std::nullopt, 0);
             return finish(std::move(result));
         }
@@ -370,6 +374,18 @@ std::optional<std::string> Overlay::translate_announcement_combat(
             translate_complete_announcement(input, source_colors, target_colors);
             const auto cached = announcement_result_metadata(input);
             return finish(cached ? cached->strict_target() : std::nullopt);
+        }
+        if (scope == "work-reference") {
+            // general_ref's event display field owns its whole native title,
+            // including the place/date. Resolve it before table alternatives
+            // such as the {item} {book} can split "the authoring of ..." or
+            // "the new obsession of ..." into speculative item/book fields.
+            // The $reference alias is sorted after those alternatives; doing
+            // this only inside that leaf is too late. No name fallback may
+            // establish an event here, and the complete title must translate.
+            const auto event = translate_legends_event(original, 0, false);
+            if (translation_complete_with_native_nicknames(event, original))
+                return finish(event);
         }
         if (scope == "work-reference-list") {
             // `and` and commas can belong to one known knowledge subject or

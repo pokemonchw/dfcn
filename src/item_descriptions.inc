@@ -563,6 +563,43 @@ std::optional<std::string> Overlay::translate_item_description_term(
     return target;
 }
 
+static bool item_work_content_sentence_start(std::string_view value) {
+    return value.starts_with("It asks the question, \"What if ") ||
+        value.starts_with("It concerns ") ||
+        value.starts_with("The writing conveys a moral lesson regarding ") ||
+        value.starts_with("The overall text emphasizes ") ||
+        value.starts_with("For lyrics, the composer has selected ") ||
+        value.starts_with("For musical accompaniment, the choreographer has selected ") ||
+        value.starts_with("It covers ") ||
+        (value.starts_with("The ") && value.find(" chapter covers ") != std::string_view::npos);
+}
+
+bool Overlay::item_description_sentence_start(std::string_view source) const {
+    source = trim_view(source);
+    // cc5d50's written-work clauses are independent of the item noun and
+    // book title. Their fixed openings prove the preceding sentence's end
+    // even when a new material or style cannot yet be translated.
+    if (item_work_content_sentence_start(source) ||
+        source.starts_with("The writing ") ||
+        source.starts_with("The written portion consists of ") ||
+        source.starts_with("Written on the item is ") ||
+        source.starts_with("The work has ") ||
+        source.starts_with("Overall, ") ||
+        source.starts_with("The artwork relates to ") ||
+        source.starts_with("It is an image of ")) return true;
+    for (int index : item_description_sentence_rules_) {
+        const auto &rule = rules_[static_cast<size_t>(index)];
+        const std::string_view opening = rule.template_kinds.empty()
+            ? std::string_view(rule.source) : std::string_view(rule.template_literals.front());
+        // Slab inscriptions deliberately join I am ... . By ... . into
+        // one production. Short generic prepositions are not new clauses.
+        if (opening.size() < 7 || opening == "This is " || opening == "These are " ||
+            opening == "In memory of " || opening == "Owner: ") continue;
+        if (template_literal_at(source, 0, opening, rule.case_insensitive)) return true;
+    }
+    return false;
+}
+
 std::optional<std::string> Overlay::translate_item_description_source(
         std::string_view raw_source, bool item_context) const {
     std::string source = normalize_art_utterance(raw_source);
@@ -613,6 +650,9 @@ std::optional<std::string> Overlay::translate_item_description_source(
                     item_opening = translation_complete_with_native_nicknames(
                         translate_item_description_term(noun), noun);
                     if (item_opening) break;
+                    if (source.find('`') == std::string::npos &&
+                        item_description_sentence_start(std::string_view(source).substr(at + 1)))
+                        break;
                 }
             }
         }
@@ -677,16 +717,10 @@ std::optional<std::string> Overlay::translate_item_description_source(
         // Reuse that complete typed grammar for every content branch; the
         // generic work-description alias also calls back here, so enter only
         // the native content-sentence family with an explicit literal anchor.
-        if (value.starts_with("It asks the question, \"What if ") ||
-            value.starts_with("It concerns ") ||
-            value.starts_with("The writing conveys a moral lesson regarding ") ||
-            value.starts_with("The overall text emphasizes ") ||
-            value.starts_with("For lyrics, the composer has selected ") ||
-            value.starts_with("For musical accompaniment, the choreographer has selected ") ||
-            value.starts_with("It covers ") ||
-            (value.starts_with("The ") && value.find(" chapter covers ") != std::string_view::npos)) {
+        if (item_work_content_sentence_start(value)) {
             const auto target = translate_announcement_combat(value, "work-sentence");
             if (translation_complete_with_native_nicknames(target, value)) return target;
+            return std::nullopt;
         }
         for (int index : item_description_sentence_rules_) {
             const Rule &rule = rules_[static_cast<size_t>(index)];
@@ -738,24 +772,28 @@ std::optional<std::string> Overlay::translate_item_description_source(
                 });
             if (target) return target;
         }
-        // Art figures use exactly the same elements/actions as the editor's
-        // preview and deletion list, including species, names and quantities.
-        if (auto target = translate_symbol_action(value);
-            translation_complete_with_native_nicknames(target, value)) return target;
-        if (auto target = translate_symbol_description_source(value);
-            translation_complete_with_native_nicknames(target, value)) return target;
         // Existing quality, powers, writing and historical sentences remain
-        // authoritative. Their capture meanings are those of Legends, not the
-        // item grammar's {a}=art elements and {q}=quoted prose meanings.
+        // authoritative before generic art-element/name parsing. The native
+        // writing predicates and work genres already have description terms;
+        // their conjunctions do not establish a compound artifact/book name.
+        // Capture meanings are those of Legends, not the item grammar's
+        // {a}=art elements and {q}=quoted prose meanings.
         for (int index : matching_legends_rules(value)) {
             const Rule &rule = rules_[static_cast<size_t>(index)];
+            // Native quality/writing clauses have a fixed opening. Generic
+            // event fragments such as {e} of {p}. belong to typed historical
+            // captures, not an arbitrary item sentence containing "of".
+            const std::string_view opening = rule.template_kinds.empty()
+                ? std::string_view(rule.source) : std::string_view(rule.template_literals.front());
+            if (opening.empty() ||
+                !template_literal_at(value, 0, opening, rule.case_insensitive)) continue;
             auto target = translate_complete_item_description_rule(rule, value,
                 [&](char kind, std::string_view part) -> std::optional<std::string> {
                     switch (kind) {
                     case 'a': return translate_legends_participant(part);
                     case 'n': return translate_legends_actor(part);
                     case 'p': return translate_legends_place(part);
-                    case 's': return translate_legends_term(part);
+                    case 's': return translate_legends_term(part, true);
                     case 'q': return translate_legends_color(part);
                     case 't': return translate_legends_anatomy(part);
                     case 'i': return translate_item_description_term(part);
@@ -774,14 +812,31 @@ std::optional<std::string> Overlay::translate_item_description_source(
         }
         if (auto target = exact_literal_translation(value);
             item_description_translation_complete(target)) return target;
+        // These literal openings identify native written-item clauses. An
+        // unresolved clause remains prose for the display owner's fallback,
+        // rather than becoming an invented art element or book subject.
+        if (value.starts_with("The writing ") ||
+            value.starts_with("The written portion consists of ") ||
+            value.starts_with("Written on the item is ") ||
+            value.starts_with("The work has ") ||
+            value.starts_with("Overall, ")) return std::nullopt;
+        // Art figures use exactly the same elements/actions as the editor's
+        // preview and deletion list, including species, names and quantities.
+        if (auto target = translate_symbol_action(value);
+            translation_complete_with_native_nicknames(target, value)) return target;
+        if (auto target = translate_symbol_description_source(value);
+            translation_complete_with_native_nicknames(target, value)) return target;
         if (auto target = translate_instrument_description(value, false, instrument_context);
             item_description_translation_complete(target)) return target;
         return std::nullopt;
     };
-    // A reviewed production may contain several sentences (slab inscriptions
-    // and image details do). Preserve the complete production before splitting.
-    auto target = sentence(source);
-    if (!target) {
+    // Propose the earliest boundary first. Trying the whole paragraph first
+    // lets This is {s}. capture every later writing/content clause as an item
+    // noun, then the generic art fallback reparses those clauses as titles.
+    // A multi-sentence inscription can still advance through its candidates
+    // until the complete typed production succeeds.
+    std::optional<std::string> target;
+    {
         std::string output;
         bool quoted = false, complete = true, translated_any = false;
         const bool native_nickname = source.find('`') != std::string::npos;
@@ -803,6 +858,11 @@ std::optional<std::string> Overlay::translate_item_description_source(
                 (at + 1 < source.size() && source[at + 1] != ' ')) continue;
             sentence_ends.push_back(at + 1);
         }
+        // Owner/location captions and some slab productions have no outer
+        // terminator. Offer their final span to the same complete resolver;
+        // a clipped ordinary sentence still fails its required punctuation.
+        const bool unterminated = sentence_ends.empty() || sentence_ends.back() != source.size();
+        if (unterminated) sentence_ends.push_back(source.size());
         size_t begin = 0;
         for (size_t boundary = 0; boundary < sentence_ends.size();) {
             size_t selected = boundary;
@@ -813,12 +873,15 @@ std::optional<std::string> Overlay::translate_item_description_source(
             // Keep the earliest successful production so a later sentence
             // cannot hide an unknown predecessor inside a generic fragment.
             for (size_t next = boundary; next < sentence_ends.size(); ++next) {
-                if (begin == 0 && sentence_ends[next] == source.size())
-                    continue; // The complete production already failed above.
                 const auto candidate = trim_view(std::string_view(source).substr(
                     begin, sentence_ends[next] - begin));
                 translated = sentence(candidate);
                 if (translated) { selected = next; break; }
+                // Failure does not authorize swallowing the next native
+                // clause. Keep punctuation inside quoted titles/nicknames
+                // available to their complete typed production instead.
+                if (!native_nickname && item_description_sentence_start(
+                        std::string_view(source).substr(sentence_ends[next]))) break;
             }
             const auto part = trim_view(std::string_view(source).substr(
                 begin, sentence_ends[selected] - begin));
@@ -964,19 +1027,7 @@ TranslationResult Overlay::translate_item_description_source_display(
             result = TranslationResult::translated(source, *target, "item-prose");
         else {
             const auto anchored = [&](std::string_view value) {
-                // This native item sentence lives in the shared history
-                // grammar. It still proves an item paragraph when another
-                // sentence needs the display parser's field fallback.
-                if (value.starts_with("The artwork relates to ")) return true;
-                for (int index : item_description_sentence_rules_) {
-                    const auto &rule = rules_[static_cast<size_t>(index)];
-                    const std::string_view opening = rule.template_kinds.empty()
-                        ? std::string_view(rule.source) : std::string_view(rule.template_literals.front());
-                    if (opening.size() < 7 || opening == "This is " || opening == "These are " ||
-                        opening == "In memory of " || opening == "Owner: ") continue;
-                    if (template_literal_at(value, 0, opening, rule.case_insensitive)) return true;
-                }
-                return false;
+                return item_description_sentence_start(value);
             };
             if (!item_context && !anchored(source)) return {};
             const auto sentence = [&](std::string_view value) -> TranslationResult {
@@ -1029,8 +1080,8 @@ TranslationResult Overlay::translate_item_description_source_display(
                 }
                 return preserved_item_field(value, "item-sentence");
             };
-            // The complete strict production above already had the chance to
-            // own a punctuated title or inscription. Establish proven sentence
+            // The strict parser above already considered complete typed
+            // titles and inscriptions. Establish proven sentence
             // boundaries before display fallback, whose preserved fields must
             // not let the first noun swallow all later independent sentences.
             std::vector<size_t> boundaries{0};
