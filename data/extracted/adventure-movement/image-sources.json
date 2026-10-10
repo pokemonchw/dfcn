@@ -1,0 +1,56 @@
+[
+  {
+    "edition": "reference",
+    "path": "D:\\program\\steam\\steamapps\\common\\Dwarf Fortress\\Dwarf Fortress.exe",
+    "identity": "PE:6a70a6d9:02711000",
+    "functions": [
+      {
+        "role": "movement-modal",
+        "start_rva": "0x874800",
+        "end_rva": "0x877261"
+      },
+      {
+        "role": "unit-title",
+        "start_rva": "0x132e430",
+        "end_rva": "0x132f971"
+      },
+      {
+        "role": "shortcut",
+        "start_rva": "0xc394b0",
+        "end_rva": "0xc395b5"
+      },
+      {
+        "role": "shortcut-name",
+        "start_rva": "0x8ecb30",
+        "end_rva": "0x8ece32"
+      }
+    ]
+  },
+  {
+    "edition": "classic",
+    "path": "C:\\Users\\WIN11\\Downloads\\df_53_16_win\\Dwarf Fortress.exe",
+    "identity": "PE:6a70b91c:0270a000",
+    "functions": [
+      {
+        "role": "movement-modal",
+        "start_rva": "0x872080",
+        "end_rva": "0x874ae1"
+      },
+      {
+        "role": "unit-title",
+        "start_rva": "0x13293a0",
+        "end_rva": "0x132a8e1"
+      },
+      {
+        "role": "shortcut",
+        "start_rva": "0xc364f0",
+        "end_rva": "0xc365f5"
+      },
+      {
+        "role": "shortcut-name",
+        "start_rva": "0x8ea360",
+        "end_rva": "0x8ea662"
+      }
+    ]
+  }
+]

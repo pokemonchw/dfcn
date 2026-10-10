@@ -1,0 +1,265 @@
+edition	role	instruction_rva	operand_rva	storage	source
+reference	movement-modal	0x874a18	0x16044c0	rip	Done
+reference	movement-modal	0x874a68	0x16b3060	rip	How will 
+reference	movement-modal	0x874a79	0x15ec550	rip	you
+reference	movement-modal	0x874ac4	0x16b3054	rip	 move?
+reference	movement-modal	0x874e3f	inline	immediate	Move
+reference	movement-modal	0x874f9b	0x16b3078	rip	Climb 
+reference	movement-modal	0x874fa4	0x16b307c	rip	b 
+reference	movement-modal	0x8750be	0x15e85b4	rip	.
+reference	movement-modal	0x875168	0x161708c	rip	0
+reference	movement-modal	0x875185	0x161708c	rip	0
+reference	movement-modal	0x87551f	0x16b3070	rip	Speed: 
+reference	movement-modal	0x875529	0x16b3074	rip	d: 
+reference	movement-modal	0x875534	0x16b3076	rip	 
+reference	movement-modal	0x875661	0x15e85b4	rip	.
+reference	movement-modal	0x8756f8	0x15eb514	rip	/
+reference	movement-modal	0x8757c7	0x15e85b4	rip	.
+reference	movement-modal	0x875966	0x15e85b4	rip	.
+reference	movement-modal	0x875a0d	0x161708c	rip	0
+reference	movement-modal	0x875a27	0x161708c	rip	0
+reference	movement-modal	0x875cd2	0x16b3020	rip	Visual Stealth Factors
+reference	movement-modal	0x875cdc	0x16b3030	rip	actors
+reference	movement-modal	0x875ce5	0x16b3034	rip	rs
+reference	movement-modal	0x875fa5	0x16b3018	rip	Light
+reference	movement-modal	0x875fae	0x16b301c	rip	t
+reference	movement-modal	0x87603d	0x16b3038	rip	Low Light
+reference	movement-modal	0x8760a4	0x16b3048	rip	Darkness
+reference	movement-modal	0x87610a	0x16151b8	rip	Clear
+reference	movement-modal	0x876113	0x16151bc	rip	r
+reference	movement-modal	0x87614e	0x16b3be8	rip	Fog/Rain/Snow
+reference	movement-modal	0x87615b	0x16b3bf0	rip	/Snow
+reference	movement-modal	0x876164	0x16b3bf4	rip	w
+reference	movement-modal	0x87630e	0x16b3bd8	rip	By Obstacle
+reference	movement-modal	0x87631b	0x16b3be0	rip	cle
+reference	movement-modal	0x876326	0x16b3be2	rip	e
+reference	movement-modal	0x876381	0x16b3c08	rip	Open Area
+reference	movement-modal	0x87638e	0x16b3c10	rip	a
+reference	movement-modal	0x876550	0x16b3bf8	rip	In Vegetation
+reference	movement-modal	0x87655d	0x16b3c00	rip	ation
+reference	movement-modal	0x876566	0x16b3c04	rip	n
+reference	movement-modal	0x876702	0x16b3b90	rip	Non-Prone In Vegetation
+reference	movement-modal	0x876731	0x16b3b70	rip	Too Large For Vegetation
+reference	movement-modal	0x876754	0x16b3bc0	rip	No Suitable Vegetation
+reference	movement-modal	0x8767e1	0x16b3c38	rip	Huge Non-Prone Profile
+reference	movement-modal	0x87680f	0x16b3c18	rip	Very Large Non-Prone Profile
+reference	movement-modal	0x876835	0x16b3a80	rip	Large Non-Prone Profile
+reference	movement-modal	0x876867	0x16b3ba8	rip	Gargantuan Profile
+reference	movement-modal	0x876895	0x16b3c60	rip	Gigantic Profile
+reference	movement-modal	0x8768c3	0x16b3c50	rip	Huge Profile
+reference	movement-modal	0x8768f1	0x16b3c88	rip	Very Large Profile
+reference	movement-modal	0x876917	0x16b3c78	rip	Large Profile
+reference	movement-modal	0x876970	0x16b3a68	rip	Vanishing Profile
+reference	movement-modal	0x87699b	0x16b3aa8	rip	Minuscule Profile
+reference	movement-modal	0x8769c6	0x16b3a98	rip	Tiny Profile
+reference	movement-modal	0x8769f4	0x16b3a20	rip	Very Small Profile
+reference	movement-modal	0x876a1a	0x16b3a10	rip	Small Profile
+reference	movement-modal	0x876a57	0x16b3a38	rip	Average Non-Prone Profile
+reference	movement-modal	0x876a7a	0x16b3a58	rip	Average Profile
+reference	movement-modal	0x876ae1	0x16b3b40	rip	Visual Stealth (w/o Skill)
+reference	movement-modal	0x876aeb	0x16b3b50	rip	w/o Skill)
+reference	movement-modal	0x876af8	0x16b3b58	rip	l)
+reference	movement-modal	0x876b5a	0x16b3b30	rip	Best Possible
+reference	movement-modal	0x876b67	0x16b3b38	rip	sible
+reference	movement-modal	0x876b70	0x16b3b3c	rip	e
+reference	movement-modal	0x876be9	0x1646b18	rip	Fantastic
+reference	movement-modal	0x876c1e	0x1646b6c	rip	Great
+reference	movement-modal	0x876c53	0x1646b04	rip	Good
+reference	movement-modal	0x876c88	0x1660da0	rip	Average
+reference	movement-modal	0x876cbd	0x16b3b64	rip	Poor
+reference	movement-modal	0x876cf2	0x16b3b5c	rip	Awful
+reference	movement-modal	0x876d24	0x16b3ad0	rip	Terrible
+reference	movement-modal	0x876d51	0x16b3ac0	rip	Worst Possible
+reference	movement-modal	0x876daa	0x178b440	rip	2
+reference	movement-modal	0x876db7	0x16b3af8	rip	Quick movement and other actions decrease stealth.
+reference	movement-modal	0x876dc1	0x16b3b08	rip	nd other actions decrease stealth.
+reference	movement-modal	0x876dcc	0x16b3b18	rip	 decrease stealth.
+reference	movement-modal	0x876dd7	0x16b3b28	rip	h.
+reference	movement-modal	0x876e8a	0x16b3ae0	rip	 Swimming Preference
+reference	movement-modal	0x876e94	0x16b3af0	rip	ence
+reference	movement-modal	0x876f90	0x16b3930	rip	When possible
+reference	movement-modal	0x876f9d	0x16b3938	rip	sible
+reference	movement-modal	0x876fa6	0x16b393c	rip	e
+reference	movement-modal	0x877087	0x16b3920	rip	When necessary
+reference	movement-modal	0x877094	0x16b3928	rip	essary
+reference	movement-modal	0x87709d	0x16b392c	rip	ry
+reference	unit-title	0x132e4af	0x15ec550	rip	you
+reference	unit-title	0x132e4b6	0x15e8ca0	rip	You
+reference	unit-title	0x132e9a0	0x15ec9fc	rip	 slave
+reference	unit-title	0x132e9da	0x15eca28	rip	slave
+reference	unit-title	0x132ea35	0x15eca28	rip	slave
+reference	unit-title	0x132ea3d	0x15eca2c	rip	e
+reference	unit-title	0x132eb1b	0x1782bd0	rip	 prisoner
+reference	unit-title	0x132eb4f	inline	immediate	prisoner
+reference	unit-title	0x132ebad	inline	immediate	prisoner
+reference	unit-title	0x132ed76	0x15e8e48	rip	the 
+reference	unit-title	0x132ed7d	0x15ed9bc	rip	The 
+reference	unit-title	0x132edc2	0x15e873c	rip	 
+reference	unit-title	0x132ef95	0x15e8e48	rip	the 
+reference	unit-title	0x132efa9	0x15ed620	rip	a 
+reference	unit-title	0x132efbe	0x16757e4	rip	force
+reference	unit-title	0x132efe3	0x15e8e48	rip	the 
+reference	unit-title	0x132eff7	0x15ed620	rip	a 
+reference	unit-title	0x132f00c	0x1661fa4	rip	deity
+reference	unit-title	0x132f254	0x15ec9fc	rip	 slave
+reference	unit-title	0x132f28e	0x15eca28	rip	slave
+reference	unit-title	0x132f2ee	0x15eca28	rip	slave
+reference	unit-title	0x132f2f6	0x15eca2c	rip	e
+reference	unit-title	0x132f3cb	0x1782bd0	rip	 prisoner
+reference	unit-title	0x132f3ff	inline	immediate	prisoner
+reference	unit-title	0x132f459	inline	immediate	prisoner
+reference	unit-title	0x132f513	0x15e8e48	rip	the 
+reference	unit-title	0x132f569	0x15ed620	rip	a 
+reference	unit-title	0x132f5d3	0x1782b3c	rip	stray 
+reference	unit-title	0x132f5da	0x1782b48	rip	fierce 
+reference	unit-title	0x132f61e	0x15ed620	rip	a 
+reference	unit-title	0x132f633	0x1782b58	rip	agitated 
+reference	unit-title	0x132f67b	0x15ed620	rip	a 
+reference	unit-title	0x132f690	0x16a5e5c	rip	ghost
+reference	unit-title	0x132f6bf	0x15ed620	rip	a 
+reference	unit-title	0x132f6d4	0x15fdbb8	rip	ghostly 
+reference	unit-title	0x132f706	0x15ed620	rip	a 
+reference	unit-title	0x132f754	0x1686348	rip	average
+reference	unit-title	0x132f783	0x15e873c	rip	 
+reference	unit-title	0x132f7d7	0x15e873c	rip	 
+reference	unit-title	0x132f81e	0x15e873c	rip	 
+reference	unit-title	0x132f843	0x15ed620	rip	a 
+reference	unit-title	0x132f89c	0x15ed620	rip	a 
+reference	unit-title	0x132f8b1	0x16cf03c	rip	corpse
+reference	unit-title	0x132f8c0	0x173e8e0	rip	 corpse
+reference	shortcut-name	0x8ecd27	0x16bf558	rip	Missing binding displayed: 
+reference	shortcut-name	0x8ecd32	0x16bf568	rip	displayed: 
+reference	shortcut-name	0x8ecd40	0x16bf570	rip	d: 
+reference	shortcut-name	0x8ecd4c	0x16bf572	rip	 
+classic	movement-modal	0x872298	0x15ff490	rip	Done
+classic	movement-modal	0x8722e8	0x16ae208	rip	How will 
+classic	movement-modal	0x8722f9	0x15e74b8	rip	you
+classic	movement-modal	0x872344	0x16ae200	rip	 move?
+classic	movement-modal	0x8726bf	inline	immediate	Move
+classic	movement-modal	0x87281b	0x16ae220	rip	Climb 
+classic	movement-modal	0x872824	0x16ae224	rip	b 
+classic	movement-modal	0x87293e	0x15e3574	rip	.
+classic	movement-modal	0x8729e8	0x1611fa4	rip	0
+classic	movement-modal	0x872a05	0x1611fa4	rip	0
+classic	movement-modal	0x872d9f	0x16ae218	rip	Speed: 
+classic	movement-modal	0x872da9	0x16ae21c	rip	d: 
+classic	movement-modal	0x872db4	0x16ae21e	rip	 
+classic	movement-modal	0x872ee1	0x15e3574	rip	.
+classic	movement-modal	0x872f78	0x15e64cc	rip	/
+classic	movement-modal	0x873047	0x15e3574	rip	.
+classic	movement-modal	0x8731e6	0x15e3574	rip	.
+classic	movement-modal	0x87328d	0x1611fa4	rip	0
+classic	movement-modal	0x8732a7	0x1611fa4	rip	0
+classic	movement-modal	0x873552	0x16ae088	rip	Visual Stealth Factors
+classic	movement-modal	0x87355c	0x16ae098	rip	actors
+classic	movement-modal	0x873565	0x16ae09c	rip	rs
+classic	movement-modal	0x873825	0x16ae07c	rip	Light
+classic	movement-modal	0x87382e	0x16ae080	rip	t
+classic	movement-modal	0x8738bd	0x16ae0a0	rip	Low Light
+classic	movement-modal	0x873924	0x16ae0b0	rip	Darkness
+classic	movement-modal	0x87398a	0x16103c8	rip	Clear
+classic	movement-modal	0x873993	0x16103cc	rip	r
+classic	movement-modal	0x8739ce	0x16ae050	rip	Fog/Rain/Snow
+classic	movement-modal	0x8739db	0x16ae058	rip	/Snow
+classic	movement-modal	0x8739e4	0x16ae05c	rip	w
+classic	movement-modal	0x873b8e	0x16ae040	rip	By Obstacle
+classic	movement-modal	0x873b9b	0x16ae048	rip	cle
+classic	movement-modal	0x873ba6	0x16ae04a	rip	e
+classic	movement-modal	0x873c01	0x16ae070	rip	Open Area
+classic	movement-modal	0x873c0e	0x16ae078	rip	a
+classic	movement-modal	0x873dd0	0x16ae060	rip	In Vegetation
+classic	movement-modal	0x873ddd	0x16ae068	rip	ation
+classic	movement-modal	0x873de6	0x16ae06c	rip	n
+classic	movement-modal	0x873f82	0x16ae130	rip	Non-Prone In Vegetation
+classic	movement-modal	0x873fb1	0x16ae110	rip	Too Large For Vegetation
+classic	movement-modal	0x873fd4	0x16ae160	rip	No Suitable Vegetation
+classic	movement-modal	0x874061	0x16aeb58	rip	Huge Non-Prone Profile
+classic	movement-modal	0x87408f	0x16aeb38	rip	Very Large Non-Prone Profile
+classic	movement-modal	0x8740b5	0x16aeaf8	rip	Large Non-Prone Profile
+classic	movement-modal	0x8740e7	0x16ae148	rip	Gargantuan Profile
+classic	movement-modal	0x874115	0x16ae0d0	rip	Gigantic Profile
+classic	movement-modal	0x874143	0x16ae0c0	rip	Huge Profile
+classic	movement-modal	0x874171	0x16ae0f8	rip	Very Large Profile
+classic	movement-modal	0x874197	0x16ae0e8	rip	Large Profile
+classic	movement-modal	0x8741f0	0x16aeae0	rip	Vanishing Profile
+classic	movement-modal	0x87421b	0x16aeb20	rip	Minuscule Profile
+classic	movement-modal	0x874246	0x16aeb10	rip	Tiny Profile
+classic	movement-modal	0x874274	0x16aebc0	rip	Very Small Profile
+classic	movement-modal	0x87429a	0x16aebb0	rip	Small Profile
+classic	movement-modal	0x8742d7	0x16aebd8	rip	Average Non-Prone Profile
+classic	movement-modal	0x8742fa	0x16aebf8	rip	Average Profile
+classic	movement-modal	0x874361	0x16aeb80	rip	Visual Stealth (w/o Skill)
+classic	movement-modal	0x87436b	0x16aeb90	rip	w/o Skill)
+classic	movement-modal	0x874378	0x16aeb98	rip	l)
+classic	movement-modal	0x8743da	0x16aeb70	rip	Best Possible
+classic	movement-modal	0x8743e7	0x16aeb78	rip	sible
+classic	movement-modal	0x8743f0	0x16aeb7c	rip	e
+classic	movement-modal	0x874469	0x1641b88	rip	Fantastic
+classic	movement-modal	0x87449e	0x1641bdc	rip	Great
+classic	movement-modal	0x8744d3	0x1641b74	rip	Good
+classic	movement-modal	0x874508	0x165bd58	rip	Average
+classic	movement-modal	0x87453d	0x16aeba4	rip	Poor
+classic	movement-modal	0x874572	0x16aeb9c	rip	Awful
+classic	movement-modal	0x8745a4	0x16ae9b8	rip	Terrible
+classic	movement-modal	0x8745d1	0x16ae9a8	rip	Worst Possible
+classic	movement-modal	0x87462a	0x1785d40	rip	2
+classic	movement-modal	0x874637	0x16ae9e0	rip	Quick movement and other actions decrease stealth.
+classic	movement-modal	0x874641	0x16ae9f0	rip	nd other actions decrease stealth.
+classic	movement-modal	0x87464c	0x16aea00	rip	 decrease stealth.
+classic	movement-modal	0x874657	0x16aea10	rip	h.
+classic	movement-modal	0x87470a	0x16ae9c8	rip	 Swimming Preference
+classic	movement-modal	0x874714	0x16ae9d8	rip	ence
+classic	movement-modal	0x874810	0x16ae960	rip	When possible
+classic	movement-modal	0x87481d	0x16ae968	rip	sible
+classic	movement-modal	0x874826	0x16ae96c	rip	e
+classic	movement-modal	0x874907	0x16ae950	rip	When necessary
+classic	movement-modal	0x874914	0x16ae958	rip	essary
+classic	movement-modal	0x87491d	0x16ae95c	rip	ry
+classic	unit-title	0x132941f	0x15e74b8	rip	you
+classic	unit-title	0x1329426	0x15e3c40	rip	You
+classic	unit-title	0x1329910	0x15e7988	rip	 slave
+classic	unit-title	0x132994a	0x15e79ac	rip	slave
+classic	unit-title	0x13299a5	0x15e79ac	rip	slave
+classic	unit-title	0x13299ad	0x15e79b0	rip	e
+classic	unit-title	0x1329a8b	0x177c950	rip	 prisoner
+classic	unit-title	0x1329abf	inline	immediate	prisoner
+classic	unit-title	0x1329b1d	inline	immediate	prisoner
+classic	unit-title	0x1329ce6	0x15e3e34	rip	the 
+classic	unit-title	0x1329ced	0x15e89c4	rip	The 
+classic	unit-title	0x1329d32	0x15e3720	rip	 
+classic	unit-title	0x1329f05	0x15e3e34	rip	the 
+classic	unit-title	0x1329f19	0x15e8618	rip	a 
+classic	unit-title	0x1329f2e	0x167095c	rip	force
+classic	unit-title	0x1329f53	0x15e3e34	rip	the 
+classic	unit-title	0x1329f67	0x15e8618	rip	a 
+classic	unit-title	0x1329f7c	0x165d508	rip	deity
+classic	unit-title	0x132a1c4	0x15e7988	rip	 slave
+classic	unit-title	0x132a1fe	0x15e79ac	rip	slave
+classic	unit-title	0x132a25e	0x15e79ac	rip	slave
+classic	unit-title	0x132a266	0x15e79b0	rip	e
+classic	unit-title	0x132a33b	0x177c950	rip	 prisoner
+classic	unit-title	0x132a36f	inline	immediate	prisoner
+classic	unit-title	0x132a3c9	inline	immediate	prisoner
+classic	unit-title	0x132a483	0x15e3e34	rip	the 
+classic	unit-title	0x132a4d9	0x15e8618	rip	a 
+classic	unit-title	0x132a543	0x177c96c	rip	stray 
+classic	unit-title	0x132a54a	0x177c948	rip	fierce 
+classic	unit-title	0x132a58e	0x15e8618	rip	a 
+classic	unit-title	0x132a5a3	0x177c960	rip	agitated 
+classic	unit-title	0x132a5eb	0x15e8618	rip	a 
+classic	unit-title	0x132a600	0x16a0d38	rip	ghost
+classic	unit-title	0x132a62f	0x15e8618	rip	a 
+classic	unit-title	0x132a644	0x15f8b70	rip	ghostly 
+classic	unit-title	0x132a676	0x15e8618	rip	a 
+classic	unit-title	0x132a6c4	0x16810f8	rip	average
+classic	unit-title	0x132a6f3	0x15e3720	rip	 
+classic	unit-title	0x132a747	0x15e3720	rip	 
+classic	unit-title	0x132a78e	0x15e3720	rip	 
+classic	unit-title	0x132a7b3	0x15e8618	rip	a 
+classic	unit-title	0x132a80c	0x15e8618	rip	a 
+classic	unit-title	0x132a821	0x16cac84	rip	corpse
+classic	unit-title	0x132a830	0x1739ff8	rip	 corpse
+classic	shortcut-name	0x8ea557	0x16ba448	rip	Missing binding displayed: 
+classic	shortcut-name	0x8ea562	0x16ba458	rip	displayed: 
+classic	shortcut-name	0x8ea570	0x16ba460	rip	d: 
+classic	shortcut-name	0x8ea57c	0x16ba462	rip	 

@@ -1,0 +1,331 @@
+Adventure movement modal: text-producing native control flow
+
+Source images and exact function boundaries are in image-sources.json.
+This is a disk-only decompilation of text production, not a rendering result.
+The complete instructions, branches, operands and calls remain in the adjacent
+ASM and TSV source artifacts. Native field names below are descriptive aliases;
+unknown structures keep their offsets rather than invented type names.
+
+Address convention
+  The modal body in the two configured images has the same instruction layout.
+  Every modal RVA below is reference RVA; classic RVA = reference RVA - 0x2780.
+  reference body 0x874800..0x877111, tables 0x877114..0x877260.
+  classic body   0x872080..0x874991, tables 0x874994..0x874AE0.
+  unit-title helper: reference 0x132E430..0x132F971,
+                     classic   0x13293A0..0x132A8E1 (difference 0x5090).
+  shortcut helper: reference 0xC394B0..0xC395B5,
+                   classic   0xC364F0..0xC365F5.
+  shortcut-name: reference 0x8ECB30..0x8ECE32,
+                 classic   0x8EA360..0x8EA662.
+
+Modal data
+  modal = incoming rcx (r13 until the lower factors section reuses registers).
+  unit = *(modal + 0x10).
+  gaitCategory = int32(modal + 0x18).
+  viewportScroll = int32(modal + 0x04).
+  unitRaw = *(unit + 0x5F8).
+  gait vector begin = *(unitRaw + 0xE8 + 0x18 * gaitCategory).
+  gait vector end   = *(unitRaw + 0xF0 + 0x18 * gaitCategory).
+  selected gait index = int32(unit + 0xDE8 + 4 * gaitCategory).
+  unit coordinates are int16(unit + 0xA8, +0xAA, +0xAC).
+  prone bit = uint32(unit + 0x110) & 0x8000.
+
+Top button and title
+  0x874A18 -> "Done"; draw 0x874A37.
+  0x874A68 -> title = "How will ".
+  0x874A79 -> subject = "you".
+  0x874A8D -> unit = *(modal + 0x10).
+  0x874A91 -> compare unit with adventure-player pointer:
+              reference global RVA 0x23E5110, classic global RVA 0x23DF000.
+  0x874A98 -> if equal, skip subject production at 0x874AAF.
+  0x874A9A..0x874AAF -> otherwise unit_title(unit, subject, 1, 0, 1).
+  0x874ABF -> append the complete dynamic subject to title.
+  0x874AC4..0x874ACF -> append " move?".
+  0x874AE2 -> draw the entire assembled title in one string draw call.
+
+  subject is not restricted to ASCII or to one noun. It may already contain a
+  Chinese species/identity string when the outer grammar reaches translation.
+  Preserve the dynamic middle's identity source and process both outer literals.
+
+Gait list, all rows (0x874B1F..0x875BFB)
+  row count is the selected category's vector length, not six.
+  visible rows are limited by modal dimensions and viewportScroll.
+  each visible row uses row_index - viewportScroll + 0x52 as its shortcut enum.
+  0x874D82..0x874D8C -> draw_shortcut(shortcut enum).
+  0x874DD7..0x874DE7 -> gait = vector[row_index], nameIndex = int32(gait + 0).
+  0x874DEA..0x874E09 -> require nameIndex >= 0 and nameIndex < names.size().
+  global name vector: reference begin/end RVAs 0x24ECAB8/0x24ECAC0;
+                      classic begin/end RVAs 0x24E69A8/0x24E69B0.
+  0x874E0B..0x874E2A -> copy the string from names[nameIndex].
+  0x874E35..0x874E46 -> invalid index: name = "Move".
+  0x874E4A..0x874ED8 -> constrain to available native row width.
+    if original length reaches width threshold, resize to available width;
+    when that width exceeds three, replace its last three bytes with "...".
+  0x874EEA -> draw gait name.
+
+  Thus native gait names are sourced from GAIT raw tokens/variation arguments,
+  not a native switch over Walk, Run or the screenshot's six visible labels.
+  raw-gait-sources.tsv retains every GAIT token per image/object/caste/variation.
+  raw-gait-applications.tsv retains every *_GAITS application and arguments.
+
+  0x874EF7..0x874F07 -> save selection; temporarily set selection = row_index.
+  0x874F1B..0x874F2F -> if int16(unit + 0x4CC) == -30000 (0x8AD0),
+                       go to normal speed production at 0x8754A6.
+  otherwise climbing production:
+    0x874F39..0x874F4F -> tint from uint32(unit + 0x110) & 0x40000.
+    0x874F59..0x874F66 -> raw = movement_speed(unit, 0, 1, &flags).
+                         reference helper RVA 0x1334C10,
+                         classic helper RVA 0x132FB80.
+    0x874F6B..0x874F76 -> value = 1000000 / (raw + 100).
+    0x874F9B..0x874FC1 -> draw "Climb ".
+    0x875025..0x875227 -> number text, including literal decimal ".", zero
+                         padding and temporary remainder cleanup branches.
+    0x875237 -> draw numeric string.
+    0x87525D..0x875382 -> compare climbing target coordinates
+                        unit+0x4CC/+0x4CE/+0x4D0 against unit position;
+                        build directional bits, then planar and up/down glyphs.
+  normal speed production:
+    0x8754A6..0x8754C1 -> tint from uint32(unit + 0x110) & 0x40000.
+    0x8754CB..0x8754D7 -> raw0 = movement_speed(unit, 0, 0, &flags).
+    0x8754DC..0x8754E7 -> value0 = 1000000 / (raw0 + 100).
+    0x8754E9..0x8754F5 -> raw1 = movement_speed(unit, 0, 1, &flags).
+    0x8754FA..0x875505 -> value1 = 1000000 / (raw1 + 100).
+    0x87551F..0x875550 -> draw "Speed: ".
+    0x8755AF..0x8755B1 -> equal values: one decimal number.
+    otherwise: value1 + "/" + value0 (separator load 0x8756F8).
+    integer digits, "." and zero padding are numeric text branches; the
+    separate direction/up/down glyphs are retained as glyphs.
+    0x87586B -> draw numeric string.
+  0x875455..0x875461 -> restore saved selected gait before advancing row.
+  Selection affects frame/tint; it does not add a new text literal.
+
+Exact numeric formatting and non-word glyph switches
+  All divisions here use signed integer truncation toward zero.
+  All numbers are produced from the helper result for the current temporary
+  selected gait; neither translation nor row joining should reinterpret them.
+  Common full numeric path for Climb and equal speed:
+    q = value / 1000; output = decimal(q) + ".".
+    remainderText = decimal(value - 1000*q).
+    if remainderText.length <= 2, append one "0" to output.
+    if remainderText.length == 1, append another "0" to output.
+    append remainderText to output.
+    Native code then trims the temporary remainder string while length >= 4
+    and its last two bytes are both "0". The temporary was already appended
+    by value, so this cleanup does not remove zeros from the displayed output.
+  Climb path:
+    quotient production 0x875025..0x87503E;
+    dot 0x8750BE..0x8750C9;
+    remainder production 0x8750F1..0x87511A;
+    first zero decision 0x87515F..0x875173;
+    second zero decision 0x87517C..0x875190;
+    remainder append 0x875199..0x8751AB;
+    temporary trim length gate 0x8751B4..0x8751B8;
+    temporary last-byte tests 0x8751DB/0x8751ED;
+    trim repeats at 0x875223..0x875227;
+    draw 0x875237.
+  Equal speed path (native branch at 0x8755AF when value0 == value1):
+    quotient production 0x8758D2..0x8758EB;
+    dot 0x875966..0x875971;
+    remainder production 0x875999..0x8759C2;
+    first zero decision 0x875A07..0x875A18;
+    second zero decision 0x875A21..0x875A32;
+    remainder append 0x875A3B..0x875A4D;
+    temporary trim length gate 0x875A56..0x875A5A;
+    temporary last-byte tests 0x875A7B/0x875A8D;
+    trim repeats at 0x875AC3..0x875AC7;
+    return to shared draw 0x87585D..0x87586B.
+  Unequal speed path:
+    output = ratioComponent(value1) + "/" + ratioComponent(value0).
+    ratioComponent(value):
+      q = value / 1000;
+      integerText = decimal(q); result = integerText;
+      if integerText.length == 1:
+        result += "." + decimal((value - 1000*q) / 100);
+      return result.
+    First quotient 0x8755CA..0x8755E3;
+    first length gate 0x87565A..0x87565F;
+    first fractional decimal at 0x875661..0x8756A7;
+    separator "/" at 0x8756F8..0x875703;
+    second quotient 0x875730..0x875749;
+    second length gate 0x8757C0..0x8757C5;
+    second fractional decimal at 0x8757C7..0x87580D;
+    shared draw 0x87585D..0x87586B.
+  Planar direction switches use (bits & 0xF) - 1 and allow ten table entries:
+    climb switch 0x875314, table RVA 0x877114, default target 0x875343;
+    speed switch 0x8758B7, table RVA 0x87713C, default target 0x875B0E.
+    Valid planar outputs are ^, v, >, < and tile glyph bytes BF, DA, D9, C0;
+    unsupported bit combinations follow the default with no planar glyph.
+    Independent bit 0x10 adds glyph byte 0x18; bit 0x20 adds byte 0x19.
+    Climb derives bits from coordinates; normal movement reads unit+0x4C4.
+    These are direction indicators, not English wording to translate.
+  native-switches.tsv preserves every entry, including compressed vegetation
+  switch indices, their destinations and each default target for both images.
+
+Visual stealth factors heading
+  0x875CD2..0x875D02 -> "Visual Stealth Factors".
+
+Lighting factor (0x875D11..0x8760DD)
+  Read the unit tile at coordinates +0xA8/+0xAA/+0xAC.
+  0x875D33 -> tile-object helper reference RVA 0x14A2970.
+  0x875D3E -> null: continue map tile processing.
+  0x875D45..0x875D5A -> object vfunc returns 9:
+                       lightScore = 15, weatherScore = 25, "Low Light".
+  0x875D5F..0x875E41 -> bounds/map block lookup;
+                       tile designation flag at block+0x6A0 & 0x800000:
+                       lightScore = 15, weatherScore = 25, "Low Light".
+  0x875E69..0x875F1A -> invalid coordinates, missing map block, or absence of
+                       block+0x2A0 & 0x4000:
+                       lightScore = 3, weatherScore = 25, "Darkness".
+  Else query weather helper 0x149DEF0 and light helper 0x149DE70.
+  Weather result is capped at 25 at 0x875F3B..0x875F41.
+  light >= 25 -> "Light" at 0x875FA5, draw 0x875FCA.
+  3 < light < 25 -> "Low Light" at 0x87603D, draw 0x87605C.
+  light <= 3 -> "Darkness" at 0x8760A4, draw 0x8760C6.
+
+Weather factor (0x8760DD..0x8761CA)
+  weather >= 25 -> "Clear" at 0x87610A, draw 0x87612F.
+  weather < 25 -> "Fog/Rain/Snow" at 0x87614E, draw 0x876180.
+  base stealth score = min(lightScore, weatherScore), at 0x8761C1..0x8761CA.
+
+Obstacle factor (0x8761D1..0x8763EB)
+  Query each in-bounds orthogonal neighbor using map helper 0x14A1530 with
+  final argument 1 (four calls at 0x876202, 0x876243, 0x87627F, 0x8762C2).
+  If any returns false -> score /= 2 (signed truncation toward zero),
+                           "By Obstacle" at 0x87630E, draw 0x876342.
+  Otherwise -> "Open Area" at 0x876381, draw 0x8763AA.
+
+Vegetation factor (0x8763EB..0x87677E)
+  body = int32(unit + 0x6B4).
+  prone = uint32(unit + 0x110) & 0x8000.
+  profile = prone ? body / 4 : body, at 0x8763FF..0x876409.
+  0x8764E4 -> read unit tile type as uint16 map block tile array.
+  capacity = 0 initially (native local initialized at 0x874987).
+  tile type 0x22 or 0x185 -> capacity = 400 at 0x8764FC.
+  Other tile types enter two indexed jump tables:
+    table 1 values 0x31..0xE8, index RVA 0x87716C, destinations 0x877164;
+    table 2 values 0x159..0x18D, index RVA 0x87722C, destinations 0x877224.
+    grass/detail production target 0x876632 for:
+      0x31..0x36, 0xE5..0xE8, 0x158..0x15B, 0x17F..0x182, 0x186..0x18D.
+    all other values use capacity 0 at default target 0x876504.
+  0x876632..0x876668 -> map grass/detail lookup with helpers
+                       0x14D1330 and 0x14D850; missing -> capacity 0.
+  0x8766A9 -> detail byte at tile's +0xC.
+    detail >= 67 -> capacity = 400.
+    33 < detail < 67 -> capacity = 200.
+    detail <= 33 -> capacity = 0.
+  profile < capacity -> score /= 2,
+                        "In Vegetation" at 0x876550, draw 0x876582.
+  otherwise:
+    !prone and profile/4 < capacity ->
+      "Non-Prone In Vegetation" at 0x876702, draw 0x876721.
+    else capacity != 0 ->
+      "Too Large For Vegetation" at 0x876731, draw 0x87674C.
+    else -> "No Suitable Vegetation" at 0x876754, draw 0x87676F.
+  These are separate native outcomes, not inferred from currently visible text.
+
+Profile factor (0x87677E..0x876A9F)
+  profile >= 500 -> score += profile / 100.
+    !prone and profile < 2000:
+      profile >= 1500 -> "Huge Non-Prone Profile" (0x8767E1/0x8767FC).
+      profile >= 1000 -> "Very Large Non-Prone Profile" (0x87680F/0x87682A).
+      else -> "Large Non-Prone Profile" (0x876835/0x876850).
+    otherwise:
+      profile >= 2500 -> "Gargantuan Profile" (0x876867/0x876882).
+      profile >= 2000 -> "Gigantic Profile" (0x876895/0x8768B0).
+      profile >= 1500 -> "Huge Profile" (0x8768C3/0x8768DE).
+      profile >= 1000 -> "Very Large Profile" (0x8768F1/0x87690C).
+      else -> "Large Profile" (0x876917/0x876932).
+  profile < 200 -> score = (profile * score) / 200.
+    profile == 0 -> "Vanishing Profile" (0x876970/0x87698B).
+    profile < 50 -> "Minuscule Profile" (0x87699B/0x8769B6).
+    profile < 100 -> "Tiny Profile" (0x8769C6/0x8769E1).
+    profile < 150 -> "Very Small Profile" (0x8769F4/0x876A0F).
+    else -> "Small Profile" (0x876A1A/0x876A35).
+  200 <= profile < 500:
+    !prone -> "Average Non-Prone Profile" (0x876A57/0x876A72).
+    prone -> "Average Profile" (0x876A7A/0x876A95).
+
+Visual stealth score (0x876AA4..0x876D7B)
+  heading "Visual Stealth (w/o Skill)" at 0x876AE1, draw 0x876B15.
+  score <= 0  -> "Best Possible" (0x876B5A/0x876B8C).
+  score <= 2  -> "Fantastic" (0x876BE9/0x876C04).
+  score <= 4  -> "Great" (0x876C1E/0x876C39).
+  score <= 6  -> "Good" (0x876C53/0x876C6E).
+  score <= 10 -> "Average" (0x876C88/0x876CA3).
+  score <= 15 -> "Poor" (0x876CBD/0x876CD8).
+  score <= 20 -> "Awful" (0x876CF2/0x876D0D).
+  score <= 25 -> "Terrible" (0x876D24/0x876D3F).
+  score > 25  -> "Worst Possible" (0x876D51/0x876D6C).
+  Signed comparisons are used throughout this chain.
+  explanation at 0x876DB7, draw 0x876DF4:
+    "Quick movement and other actions decrease stealth."
+
+Swimming preference (0x876E38..0x8770C4)
+  shortcut enum 0x19F at 0x876E5E..0x876E63.
+  heading " Swimming Preference" at 0x876E8A, draw 0x876EAF.
+  Both option texts are always drawn, not selected by a text-producing branch.
+  preference global: reference int16 RVA 0x2354B6C,
+                     classic int16 RVA 0x234EA5C.
+  value == 0 gives selected styling to first button (0x876EFC..0x876F39).
+  value == 1 gives selected styling to second button (0x876FFC..0x87703B).
+  first text "When possible" at 0x876F90, draw 0x876FC2.
+  second text "When necessary" at 0x877087, draw 0x8770BA.
+
+Shortcut production, all possible bindings
+  shortcut() saves current draw color, uses the active keybinding display color,
+  calls shortcut_name(active bindings, output, enum), draws it and restores color.
+  shortcut_name() searches enum in the current binding map
+    reference RVA 0x2390658 / classic RVA 0x238A548.
+  If a binding exists and its list is nonempty, copy its first string at +0x20.
+  Otherwise report "Missing binding displayed: " + enum-description and return
+  the single visible character "?" (reference 0x8ECDF0).
+  No alphabetic range restriction exists: remapped keys, multi-character names
+  and modifier combinations are dynamic strings. The screenshot's a-f and s
+  are examples of current bindings, not the full native text space.
+
+Dynamic unit-title helper text paths
+  Movement calls unit_title(unit, output, articleMode=1, capitalize=false,
+                            final argument=true).
+  unit-title functions have identical layouts, delta 0x5090.
+  0x132E490..0x132E4CC: adventure mode + active adventurer -> you/You.
+  0x132E4D6..0x132E4ED: unit+0xD80 object with nonempty string at +0x20
+                         returns that string directly.
+  0x132E4F2..0x132E4FE: global display mode 4/5 -> unit-name string +0x08.
+  Named identity paths (0x132E52D..0x132ECFC and 0x132ED01..0x132F4F8):
+    historical/identity object lookup from unit+0xC30/+0x1274;
+    adventure relation/recognition conditions decide named display vs descriptor;
+    race/caste/sex/type descriptor via helper reference 0x132E0C0;
+    identity/group strings and title strings from named objects;
+    status suffix " slave" or replacement "slave" from condition helper
+      0xB973C0 and named object's +0xB4/+0xB8 fields;
+    status suffix " prisoner" from condition helper 0xB98D90;
+    use named output directly if descriptor absent, otherwise concatenate
+      "the "/"The " + descriptor + " " + named output.
+  Symbolic entity paths (0x132EEEC..0x132F025):
+    entity object's flag byte at +0xC8 selects bit 0x4 -> "deity",
+    bit 0x8 -> "force"; articleMode selects "the " vs "a " vs none.
+  Species/descriptor fallback (0x132F4FE..0x132F8DF):
+    0x132F51A..0x132F53B, if species helper true, unit+0x3BC == -1 and
+      unit+0x110 & 0x4000000, select "stray " or "fierce " according to
+      civilization object flag at object+0x3A0, byte +7 & 0x10.
+    else unit+0x11C & 0x1000 -> "agitated ".
+    unit+0x118 & 0x1000 -> "ghost" or "ghostly " depending on an empty
+      descriptor/name decision.
+    if output is still empty, articleMode 1 -> "the ", 0 -> "a ", else none.
+    adventure mode -> body descriptor from unit+0x13E8, except "average"
+      (0x132F74B..0x132F762 explicitly suppresses that neutral descriptor).
+    unit+0x838 and nonempty unit+0x880 with empty unit+0x840 -> prepend
+      the +0x880 name and a space.
+    append the generated raw race/caste descriptor string.
+    unit+0x838 with nonempty unit+0x840 -> append that dynamic string.
+    unit+0xD80 nonnull -> append "corpse" or " corpse".
+    capitalization is optional and disabled for this modal's helper call.
+  Exact predicates, raw source operands and all named-helper calls are preserved
+  in both unit-title ASM files and the native TSV inventories.
+
+Native drawing/storage artifacts
+  Frame edges, selected row/button tint, scrollbar behavior, SSO/heap allocation,
+  string buffer cleanup and error-handler branches are included in full ASM and
+  native-branches.tsv. They do not produce additional UI wording.
+  Disassembly after each function's ret includes jump-table data; invalid decoded
+  opcodes in that area are table bytes, not omitted executable text branches.

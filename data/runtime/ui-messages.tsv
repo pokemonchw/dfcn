@@ -23,9 +23,10 @@ Sorting	正在排序
 {v} event sort {d}/{d} completed	{v}事件排序：已完成 {d1}/{d2}
 
 # Adventure movement modal: complete headings, controls and stealth factors.
-# Native source addresses are recorded in data/extracted/ui-message-sources.tsv. Ambiguous
+# Full native branches and RAW sources are in data/extracted/adventure-movement. Ambiguous
 # one-word ratings, light/weather and gait labels use local-overrides context.
 How will you move?	你想如何移动？
+How will {n} move?	{n}要如何移动？
 Visual Stealth (w/o Skill)	视觉隐蔽程度（不计技能）
 Visual Stealth Factors	视觉隐蔽因素
 Swimming Preference	游泳偏好

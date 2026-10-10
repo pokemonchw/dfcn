@@ -4,7 +4,7 @@
 // the fields, including immediate glyph suppression on either screen layer.
     {
         std::vector<std::string> context = screen_rows;
-        // Shortcut protection has already removed a-f from the work buffer.
+        // Shortcut protection has already removed keys from the work buffer.
         // Read the same native menu for glyph suppression and final drawing;
         // otherwise the raw pass hides a gait that the composed pass misses.
         for (int y = 0; y < gps_->dimy; ++y) {
@@ -55,7 +55,9 @@
                 }
             }
 
-            const auto append_field = [&](int y, int first, int end, int field_right) {
+            const auto append_field = [&](int y, int first, int end, int field_right,
+                                          bool gait = false,
+                                          std::string_view semantic_key = {}) {
                 if (first >= end || first < panel->x || end > field_right ||
                     field_right > right) return;
                 const std::string source = context[y].substr(first, end - first);
@@ -70,12 +72,54 @@
                         if (screen_override != (top ? gps_->screen_top : gps_->screen)) return;
                     }
                 }
-                const auto target = exact_literal_translation(
-                    "Adventure movement: " + normalize_utterance(source));
+                std::string complete = source;
+                if (gait) {
+                    for (const auto &caption : clipped_template_captions) {
+                        if (caption.x == first && caption.y == y &&
+                                caption.visible == source) {
+                            complete = caption.complete;
+                            break;
+                        }
+                    }
+                }
+                auto target = exact_literal_translation("Adventure movement: " +
+                    (semantic_key.empty() ? normalize_utterance(complete)
+                                          : std::string(semantic_key)));
+                if (!target && !gait && semantic_key.empty())
+                    target = exact_literal_translation(complete);
+                // A RAW gait is an authored label, even if it has the same
+                // spelling as a personal name. Retain an unknown complete
+                // field instead of sending its words through name inference.
+                if (!target && gait) target = native_text_to_utf8(complete);
                 if (!target || target->empty()) return;
                 append_setup_paragraph({Match{first, y, end - first,
                     kUiMessageRule, {}, source}}, *target, field_right, field_right);
             };
+
+            // 874a68..874ae2 (classic -2780) builds and draws ONE title:
+            // How will + you / the complete 132e430 unit reference + move?.
+            // The typed template reuses that formatter's identity binding.
+            const std::string title_source = context[title_y].substr(
+                title->start, ending->end - title->start);
+            bool title_intact = screen_rows[title_y].compare(
+                title->start, title_source.size(), title_source) == 0;
+            std::vector<int> title_colors;
+            for (int x = title->start; x < ending->end; ++x) {
+                bool top = false;
+                const auto *cell = cell_at(x, title_y, &top);
+                if (screen_override && screen_override !=
+                        (top ? gps_->screen_top : gps_->screen)) title_intact = false;
+                title_colors.push_back(cell ? (cell[1] << 16) | (cell[2] << 8) | cell[3]
+                                            : 0xffffff);
+            }
+            if (title_intact) {
+                std::vector<int> translated_colors;
+                if (const auto target = translate_help_paragraph(
+                        title_source, title_colors, translated_colors, true))
+                    append_setup_paragraph({Match{title->start, title_y,
+                        ending->end - title->start, kUiMessageRule, {}, title_source}},
+                        *target, ending->end, ending->end, translated_colors);
+            }
 
             // Creature definitions supply the gait labels. Read the complete
             // field between its shortcut and Speed, without assuming that a
@@ -83,9 +127,27 @@
             // nor its numeric speed is part of the translated source span.
             for (int y = title_y + 1; y < headings_y; ++y) {
                 const auto &row = context[y];
-                const auto is_shortcut = [&](int x, int edge) {
-                    return x + 2 < edge && row[x] >= 'a' && row[x] <= 'f' &&
-                        row[x + 1] == ' ';
+                // c394b0 obtains the configured binding's complete name
+                // and draws it in color 2. Bind that native field instead
+                // of assuming a-f, one character, or an ASCII spelling.
+                const auto shortcut_end = [&](int x, int edge) -> std::optional<int> {
+                    bool layer = false;
+                    const auto *first_cell = cell_at(x, y, &layer);
+                    if (!first_cell || static_cast<unsigned char>(row[x]) <= ' ' ||
+                            (!std::equal(first_cell + 1, first_cell + 4, gps_->uccolor[2]) &&
+                             !std::equal(first_cell + 1, first_cell + 4, gps_->uccolor[10])))
+                        return std::nullopt;
+                    int end = x;
+                    for (; end < edge; ++end) {
+                        bool top = false;
+                        const auto *cell = cell_at(end, y, &top);
+                        if (!cell || top != layer || !cell[0] ||
+                                !std::equal(cell + 1, cell + 4, first_cell + 1)) break;
+                    }
+                    while (end > x && row[end - 1] == ' ') --end;
+                    if (end <= x || end >= edge || row[end] != ' ')
+                        return std::nullopt;
+                    return end;
                 };
                 int gait_right = right;
                 int key_x = panel->x;
@@ -95,8 +157,9 @@
                 // rather than treating the panel's first non-space as a key.
                 // Unframed rows keep their original panel-wide bounds.
                 for (int x = key_x; x + 2 < right; ++x) {
-                    if (!is_shortcut(x, right)) continue;
-                    const auto button = native_button_text_rect(*gps_, x, x + 1, y);
+                    const auto key_end = shortcut_end(x, right);
+                    if (!key_end) continue;
+                    const auto button = native_button_text_rect(*gps_, x, *key_end, y);
                     if (!button || button->x < panel->x ||
                         button->x + button->w > right || button->y <= title_y ||
                         button->y + button->h > headings_y ||
@@ -106,15 +169,42 @@
                     gait_right = button->x + button->w;
                     break;
                 }
-                if (!is_shortcut(key_x, gait_right)) continue;
-                int first = key_x + 2;
+                const auto key_end = shortcut_end(key_x, gait_right);
+                if (!key_end) continue;
+                int first = *key_end;
                 while (first < gait_right && row[first] == ' ') ++first;
-                const auto speed = find_caption(y, first, gait_right, "Speed:");
+                auto speed = find_caption(y, first, gait_right, "Speed:");
+                bool climbing_speed = false;
+                int climbing_number = -1;
+                // When unit+4cc is not the native non-climbing sentinel,
+                // 874f9b emits Climb plus a numeric speed instead of Speed:.
+                // A gait itself can contain Climb, so require its separate
+                // numeric field rather than taking the first word match.
+                if (!speed) {
+                    for (int scan = first; scan < gait_right;) {
+                        const auto climb = find_caption(y, scan, gait_right, "Climb");
+                        if (!climb) break;
+                        scan = climb->end;
+                        int number = climb->end;
+                        while (number < gait_right && row[number] == ' ') ++number;
+                        if (climb->start > first && number > climb->end &&
+                                number < gait_right && row[number] >= '0' &&
+                                row[number] <= '9') {
+                            speed = climb;
+                            climbing_speed = true;
+                            climbing_number = number;
+                            break;
+                        }
+                    }
+                }
                 if (!speed || speed->end >= gait_right || speed->start <= first ||
                     row[speed->start - 1] != ' ') continue;
                 int end = speed->start;
                 while (end > first && row[end - 1] == ' ') --end;
-                append_field(y, first, end, speed->start);
+                append_field(y, first, end, speed->start, true);
+                if (climbing_speed)
+                    append_field(y, speed->start, speed->end, climbing_number,
+                        false, "Climb speed");
             }
 
             if (!factors) continue;

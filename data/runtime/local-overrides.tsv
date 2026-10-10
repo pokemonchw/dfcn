@@ -373,20 +373,48 @@ Adventure action: Pet animal	抚摸动物	l
 Adventure action: Spit	吐唾沫	l
 
 # Adventure movement modal: lookup-only meanings for complete gait/stealth
-# fields. Gaits follow STANDARD_BIPED_GAITS / STANDARD_CRAWLING_GAITS in
-# data/upstream/objects.zh-Hans.po; Walk also follows the existing UI entry. Do not
-# override name, colour or light senses.
+# fields. All vanilla GAIT names and native modal branches are extracted in
+# data/extracted/adventure-movement. Keep RAW labels out of personal-name
+# inference; do not override name, colour or light senses.
 Adventure movement: Sprint	冲刺	l
 Adventure movement: Run	奔跑	l
 Adventure movement: Jog	慢跑	l
 Adventure movement: Walk	行走	l
 Adventure movement: Stroll	散步	l
-Adventure movement: Creep	爬行	l
-Adventure movement: Scramble	突进	l
+Adventure movement: Creep	缓缓移动	l
+Adventure movement: Scramble	快速挪动	l
 Adventure movement: Faster Crawl	更快爬行	l
 Adventure movement: Fast Crawl	快速爬行	l
 Adventure movement: Crawl	爬行	l
 Adventure movement: Slow Crawl	慢爬	l
+Adventure movement: Gallop	疾驰	l
+Adventure movement: Canter	慢跑	l
+Adventure movement: Trot	小跑	l
+Adventure movement: Fastest Walk	最快行走	l
+Adventure movement: Faster Walk	更快行走	l
+Adventure movement: Fast Walk	快走	l
+Adventure movement: Slow Walk	慢走	l
+Adventure movement: Slowest Walk	最慢行走	l
+Adventure movement: Faster Climb	更快攀爬	l
+Adventure movement: Fast Climb	快速攀爬	l
+Adventure movement: Climb	攀爬	l
+Adventure movement: Slow Climb	缓慢攀爬	l
+Adventure movement: Maximum Swim Speed	全速游泳	l
+Adventure movement: Faster Swim	更快游泳	l
+Adventure movement: Fast Swim	快速游泳	l
+Adventure movement: Swim	游泳	l
+Adventure movement: Slow Swim	缓慢游泳	l
+Adventure movement: Creeping Swim	缓缓游泳	l
+Adventure movement: Maximum Flight Speed	全速飞行	l
+Adventure movement: Faster Flight	更快飞行	l
+Adventure movement: Fast Flight	快速飞行	l
+Adventure movement: Fly	飞行	l
+Adventure movement: Slow Flight	缓慢飞行	l
+Adventure movement: Hover	悬停	l
+Adventure movement: Stumble Bumble	跌跌撞撞	l
+Adventure movement: Wamble	摇摇晃晃	l
+Adventure movement: Move	移动	l
+Adventure movement: Climb speed	攀爬速度	l
 Adventure movement: Light	光线明亮	l
 Adventure movement: Low Light	光线昏暗	l
 Adventure movement: Darkness	黑暗	l
@@ -400,6 +428,7 @@ Adventure movement: Average	一般	l
 Adventure movement: Good	良好	l
 Adventure movement: Great	很好	l
 Adventure movement: Excellent	极好	l
+Adventure movement: Fantastic	极好	l
 Adventure movement: Best Possible	最佳	l
 
 # Appointment states are UI text, never phonetic personal names. NEW is

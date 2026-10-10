@@ -16755,6 +16755,11 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     };
     mask_native_knowledge(screen_rows);
     const auto clipped_template_captions = captured_clipped_captions();
+    // Movement RAW labels and the assembled unit title own their fields
+    // before clipped identities or generated-name readers see the grid.
+    if (!announcement_panel_only) {
+#include "adventure_movement.inc"
+    }
     // Written-content titles must own both rows before clipped unit-name
     // recovery or generic item/name matching can consume their words.
     if (!announcement_panel_only) {
@@ -18434,10 +18439,6 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
                 }
             }
         }
-    }
-
-    if (!announcement_panel_only) {
-#include "adventure_movement.inc"
     }
 
     for (int y = 0; y < gps_->dimy; ++y) {

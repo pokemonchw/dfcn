@@ -48304,6 +48304,7 @@ Adventure item action: Fill {s} with {s}	用{s2}装满{s1}	h
 Adventure item action: Move to {n} ({p})	移动到{n}（{p}）	h
 Adventure item action: Move to {s} ({p})	移动到{s}（{p}）	h
 Adventure item action: Quickly shoot {n}	快速射击{n}	h
+Adventure movement: Maximum Flight Speed	全速飞行	l
 Adventure performance genre: Short story	短篇小说	l
 Adventure performance value: Competition	竞争	l
 Adventure performance value: Cooperation	合作	l
@@ -51992,6 +51993,7 @@ Adventure item action: Gain possession	取得所有权	h
 Adventure item action: Jump to the {p}	跳向{p}	h
 Adventure item action: Mount {n} ({p})	骑上{n}（{p}）	h
 Adventure item action: Push {s} to {p}	将{s}推向{p}	h
+Adventure movement: Maximum Swim Speed	全速游泳	l
 Adventure performance genre: Biography	传记	l
 Adventure performance genre: Chronicle	编年史	l
 Adventure performance genre: Genealogy	谱系	l
@@ -60152,6 +60154,7 @@ Adventure item action: Move to {s}	移动到{s}	h
 Adventure item action: Nock in {s}	在{s}上搭箭	h
 Adventure item action: Pull it out	将其拔出	h
 Adventure movement qualifier: from	，从	h
+Adventure movement: Stumble Bumble	跌跌撞撞	l
 Adventure movement: Worst Possible	最差	l
 Adventure performance genre: Atlas	地图集	l
 Adventure performance genre: Essay	论文	l
@@ -62438,6 +62441,8 @@ Adventure item action: Remove {s}	移除{s}	h
 Adventure item action: Set on {s}	摆放到{s}上	h
 Adventure item action: Topple {s}	推倒{s}	h
 Adventure movement: Best Possible	最佳	l
+Adventure movement: Creeping Swim	缓缓游泳	l
+Adventure movement: Faster Flight	更快飞行	l
 Adventure performance genre: Play	戏剧	l
 Adventure performance genre: Poem	诗	l
 Adventure performance voice: Sing	歌唱	l
@@ -64560,7 +64565,10 @@ Adventure item action: engraving	雕刻	h
 Adventure item action: {s} ({p})	{s}（{p}）	h
 Adventure movement medium: Magma	岩浆	h
 Adventure movement medium: Water	水	h
+Adventure movement: Faster Climb	更快攀爬	l
 Adventure movement: Faster Crawl	更快爬行	l
+Adventure movement: Fastest Walk	最快行走	l
+Adventure movement: Slowest Walk	最慢行走	l
 Adventure performance value: Law	法律	l
 Adventurer, choose your destiny!	冒险者，选择你的命运！	l
 Age of {a} and {a} in the wilds.	在荒野中，{a1}与{a2}的时代。	htEi
@@ -66731,6 +66739,11 @@ Adventure item action: View {s}	查看{s}	h
 Adventure item action: Wear {s}	穿戴{s}	h
 Adventure item action: the Void	虚空	h
 Adventure movement medium: Lava	熔岩	h
+Adventure movement: Climb speed	攀爬速度	l
+Adventure movement: Fast Flight	快速飞行	l
+Adventure movement: Faster Swim	更快游泳	l
+Adventure movement: Faster Walk	更快行走	l
+Adventure movement: Slow Flight	缓慢飞行	l
 Adventurer log reputation: hero	英雄	h
 Affects wrestling and charging.	影响摔跤和冲锋。	w
 After enduring an interrogation	忍受审讯后	h
@@ -69102,7 +69115,9 @@ Adventure item action: Eat {s}	食用{s}	h
 Adventure item action: Get {s}	拿取{s}	h
 Adventure item action: Nock in	搭箭	h
 Adventure movement medium: Air	空气	h
+Adventure movement: Fast Climb	快速攀爬	l
 Adventure movement: Fast Crawl	快速爬行	l
+Adventure movement: Slow Climb	缓慢攀爬	l
 Adventure movement: Slow Crawl	慢爬	l
 Adventurer log date: {s} / {s}	{s2}{s1}发生了这件事。	wtl
 Affects the quality of poetry.	影响诗歌质量。	w
@@ -71533,7 +71548,12 @@ Adventure action target: item	物品	h
 Adventure action target: tree	树	h
 Adventure item action: Ignite	点火	h
 Adventure movement: Excellent	极好	l
+Adventure movement: Fantastic	极好	l
+Adventure movement: Fast Swim	快速游泳	l
+Adventure movement: Fast Walk	快走	l
 Adventure movement: Low Light	光线昏暗	l
+Adventure movement: Slow Swim	缓慢游泳	l
+Adventure movement: Slow Walk	慢走	l
 Age of {a} and {a} during {e}	在{e1}期间，{a1}与{a2}的时代	htEi
 Age of {a} and {a} within {p}	在{p1}，{a1}与{a2}的时代	htEi
 Age of {s} and {s} during {e}	在{e1}期间，{s1}与{s2}的时代	htEi
@@ -73803,7 +73823,7 @@ Acknowledge lack of sympathy	表示没有同情	hP
 Adventure action: Pet animal	抚摸动物	l
 Adventure item action: Climb	攀爬	h
 Adventure movement: Darkness	黑暗	l
-Adventure movement: Scramble	突进	l
+Adventure movement: Scramble	快速挪动	l
 Adventure movement: Terrible	极差	l
 Age of Two {s} in the wilds.	在荒野中，双{s1}时代。	htEi
 Age of the {a} in the wilds.	在荒野中，{a1}时代。	htEi
@@ -78392,8 +78412,11 @@ Acknowledge lack of relief	表示没有如释重负	hP
 Acknowledge lack of terror	表示没有恐惧	hP
 Acknowledge lack of wonder	表示没有惊叹	hP
 Adventure item action: {p}	{p}	h
+Adventure movement: Canter	慢跑	l
+Adventure movement: Gallop	疾驰	l
 Adventure movement: Sprint	冲刺	l
 Adventure movement: Stroll	散步	l
+Adventure movement: Wamble	摇摇晃晃	l
 Adventurer log tab: Actors	人物	h
 Affects response to jokes.	影响对笑话的反应。	w
 Age of Two {s} during {e}.	在{e1}期间，双{s1}时代。	htEi
@@ -80533,9 +80556,11 @@ Add or choose a location.	添加或选择一个地点。	wli
 Adventure action: Butcher	屠宰	l
 Adventure movement: Awful	很差	l
 Adventure movement: Clear	视野清晰	l
+Adventure movement: Climb	攀爬	l
 Adventure movement: Crawl	爬行	l
-Adventure movement: Creep	爬行	l
+Adventure movement: Creep	缓缓移动	l
 Adventure movement: Great	很好	l
+Adventure movement: Hover	悬停	l
 Adventure movement: Light	光线明亮	l
 Adventurer log tab: Plots	阴谋	h
 Age of Two {s} during {e}	在{e1}期间，双{s1}时代	htEi
@@ -82448,7 +82473,10 @@ Acknowledge lack of rage	表示没有狂怒	hP
 Acknowledge lack of zeal	表示没有热忱	hP
 Adventure movement: Fair	尚可	l
 Adventure movement: Good	良好	l
+Adventure movement: Move	移动	l
 Adventure movement: Poor	较差	l
+Adventure movement: Swim	游泳	l
+Adventure movement: Trot	小跑	l
 Adventure movement: Walk	行走	l
 Adventure: Describe Odor	冒险：描述气味	wl
 After being interrogated	经过审讯后	h
@@ -84530,6 +84558,7 @@ Add magma to the arena.	向竞技场中添加岩浆。	l
 Add water to the arena.	向竞技场中添加水。	hj
 Add water to the arena.	向竞技场中添加水。	l
 Adventure action: Dance	跳舞	l
+Adventure movement: Fly	飞行	l
 Adventure movement: Jog	慢跑	l
 Adventure movement: Run	奔跑	l
 Affected by attributes:	受以下属性影响：	w
@@ -97447,6 +97476,7 @@ His skin is brown.	他的皮肤是棕色的。	l
 Historical figures	历史人物
 Hold {s} ({s}/Air)	抓住{s1}（{s2}／空气）	hPt
 How will you move?	你想如何移动？	hP
+How will {n} move?	{n1}要如何移动？	hPt
 I am afraid of it.	我害怕这件事。	hP
 I don't work here.	我不在这里工作。	hP
 I just don't know.	我实在不知道。	hP
