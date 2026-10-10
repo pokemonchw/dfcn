@@ -886,7 +886,21 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
         const bool identity = !action_control && !artifacts && source.find(", \"") != std::string::npos;
         const bool compact_site_heading = !action_control && index == 0 && !artifacts && !identity &&
             source.find(", ") != std::string::npos;
-        const bool site_heading = !action_control && !artifacts &&
+        const auto site_draw = !action_control && !artifacts
+            ? world_site_owned_draw_for_row(*gps_, row,
+                card.interior.x + card.interior.w, false, true) : std::nullopt;
+        // Initial geography fields own complete generated titles. A peak's
+        // Tower can also match a site-kind noun, so resolve geography before
+        // that spelling can enter the facts block and discard its name head.
+        // Captured sites retain their identity; the world-map site formatter
+        // capitalizes its Of connector, unlike generated geographic names.
+        std::optional<std::string> geographic_target;
+        if (!action_control && !facts && !artifacts && !identity &&
+                !compact_site_heading && !site_draw && source.find(" Of ") == std::string::npos) {
+            if (index == 0) geographic_target = translate_world_landform_heading(source);
+            if (!geographic_target) geographic_target = translate_world_region_heading(source);
+        }
+        const bool site_heading = !geographic_target && !action_control && !artifacts &&
             (world_site_typed_heading(source) || (source.starts_with("The ") &&
                 (source.find(" Of ") != std::string::npos ||
                     (facts && source.find(" of ") != std::string::npos))));
@@ -905,9 +919,10 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
                 (source.starts_with("Site government:") || source.starts_with("Civilization:"))
             ? world_site_owned_draw_for_row(*gps_, row,
                 card.interior.x + card.interior.w, true) : std::nullopt;
-        std::optional<std::string> target = !action_control && !artifacts
-            ? translate_world_site_entity_fact(source, entity_draw
-                ? &*entity_draw->world_site_entity_fact : nullptr) : std::nullopt;
+        std::optional<std::string> target = std::move(geographic_target);
+        if (!target && !action_control && !artifacts)
+            target = translate_world_site_entity_fact(source, entity_draw
+                ? &*entity_draw->world_site_entity_fact : nullptr);
         if (!action_control && artifacts &&
                 source != "Artifacts (Rumored)" && source != "Artifacts") {
             // Rumored treasures include written works. Resolve the complete
@@ -918,34 +933,20 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
             if (!target) target = translate_legends_book(source);
             if (!target) target = translate_legends_item(source);
         }
-        if (!target && !action_control && !artifacts) {
-            const auto site_draw = world_site_owned_draw_for_row(*gps_, row,
-                card.interior.x + card.interior.w, false, true);
-            if (site_draw) {
-                std::string_view name_source = source;
-                if (site_heading || compact_site_heading) {
-                    const size_t type_begin = compact_site_heading ? source.rfind(", ") + 2
-                        : source.starts_with("The ") ? 4 : 0;
-                    const size_t type_end = compact_site_heading ? source.size()
-                        : lower(source).find(" of ", type_begin);
-                    if (type_end != std::string::npos && type_end > type_begin)
-                        name_source = compact_site_heading
-                            ? std::string_view(source).substr(0, type_begin - 2)
-                            : std::string_view(source).substr(type_end + 4);
-                }
-                target = translate_site_display(*site_draw->site_name, name_source);
+        if (!target && site_draw) {
+            std::string_view name_source = source;
+            if (site_heading || compact_site_heading) {
+                const size_t type_begin = compact_site_heading ? source.rfind(", ") + 2
+                    : source.starts_with("The ") ? 4 : 0;
+                const size_t type_end = compact_site_heading ? source.size()
+                    : lower(source).find(" of ", type_begin);
+                if (type_end != std::string::npos && type_end > type_begin)
+                    name_source = compact_site_heading
+                        ? std::string_view(source).substr(0, type_begin - 2)
+                        : std::string_view(source).substr(type_end + 4);
             }
+            target = translate_site_display(*site_draw->site_name, name_source);
         }
-        // The first heading names the selected landform; subsequent headings
-        // name its biome/region or site. Keep its LAND sense scoped to this
-        // field, before exact world-name translations can override it. This
-        // uses the live card order, never a saved name or screenshot position.
-        if (!target && index == 0 && !facts && !artifacts)
-            target = translate_world_landform_heading(source);
-        // Before facts/site identities, the remaining headings are natural
-        // regions (including a mountain region below its containing land).
-        if (!target && !action_control && !facts && !artifacts)
-            target = translate_world_region_heading(source);
         // Native headings use `The <type> Of <site name>` or `<name>, <type>`.
         // Resolve the
         // article and connector in the scoped TSV grammar BEFORE ordinary
@@ -1001,8 +1002,9 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
                     ? std::string_view(source).substr(0, type_begin - 2)
                     : std::string_view(source).substr(type_end + 4);
                 target = translate_site_reference(name);
-                if (!target) target = native_text_to_utf8(name);
             }
+            // Without a resolved site, keep the complete heading rather than
+            // silently deleting its type or a geographic naming word.
             if (!target) target = native_text_to_utf8(source);
         } else if (!target) {
             target = translate_help_paragraph(complete, foregrounds, target_colors, true);
