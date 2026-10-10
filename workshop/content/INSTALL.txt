@@ -3,7 +3,7 @@ Byayoi 同人社区：https://byayoi.org/
 GitHub：https://github.com/pokemonchw/dfcn
 Releases：https://github.com/pokemonchw/dfcn/releases
 
-当前工坊版本：53.16-20261010（2026-10-10）。完整更新日志见本目录 CHANGELOG.txt。
+当前工坊版本：53.16-20261010.2（2026-10-10）。完整更新日志见本目录 CHANGELOG.txt。
 适用：Dwarf Fortress 53.16，Windows x64；支持 Steam 版与官网免费版。
 运行文件位于 DFCN/。Shift+F6 可临时停用或恢复扩展数据；Shift+F5 再次开启时重新读取核心与数据。
 仅订阅不会自动启用汉化；无需在创建世界时启用本工坊项目。
@@ -51,7 +51,7 @@ Windows 运行包默认 font_scale=1.1、min_font_pixels=12、font_bold=true；f
 
 二、GitHub Release 安装
 
-https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261010
+https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261010.2
 下载 DFCN-Windows-x64-minimal.zip，将全部内容按原目录结构解压到包含 Dwarf Fortress.exe 的游戏根目录。
 包括 dfhooks.dll、dfhooks_dfcn.ini 和整个 dfcn 文件夹；汉化设置位于游戏目录的 dfcn/data/runtime/config.ini。
 此包的入口配置指向游戏目录中的 dfcn/dfhooks_dfcn.dll，不使用工坊相对路径。
@@ -74,7 +74,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3815791235
 Entity All、Entity Type 的生物和物品译文需配合 Dwarvemon 汉化数据。
 四个包分别订阅或安装，宝可梦专用词条保存在各自的独立数据包中。
 工坊订阅后自动识别，无需复制其中的数据到本体目录。
-GitHub v53.16-20261010 同时提供这四个包的独立 ZIP，整个 mod 文件夹解压至游戏 mods 目录即可。
+GitHub v53.16-20261010.2 同时提供这四个包的独立 ZIP，整个 mod 文件夹解压至游戏 mods 目录即可。
 其余 18 个汉化数据包保持私密。
 模组名称和内容使用通用译文匹配，没有完整译文的名称及简介保留原文；用户自定义小队名称始终原样显示。
 其他汉化扩展的安装与支持范围以各自说明为准。

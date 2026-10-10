@@ -69,6 +69,7 @@ try {
         'data/runtime/translations.tsv', 'data/runtime/name-editor.tsv',
         'data/runtime/instrument-translations.tsv', 'data/runtime/procedural-terms.tsv',
         'data/runtime/procedural-word-senses.tsv', 'data/runtime/adventure-target-translations.tsv',
+        'data/runtime/adventure-crafting-translations.tsv',
         'data/runtime/civilization-name-terms.tsv',
         'data/runtime/site-name-decisions.tsv',
         'data/runtime/site-name-imagery.tsv',

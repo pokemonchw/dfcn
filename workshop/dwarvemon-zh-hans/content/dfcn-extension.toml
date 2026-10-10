@@ -1,6 +1,6 @@
 schema = 1
 id = "dwarvemon-zh-hans"
-version = 7
+version = 8
 language = "zh-Hans"
 name = "矮人宝可梦汉化数据"
 translations = "dfcn/translations.tsv"

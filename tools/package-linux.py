@@ -14,6 +14,7 @@ RUNTIME_FILES = (
     "data/runtime/native-addresses/elf-seed.bin",
     "data/runtime/translations.tsv", "data/runtime/name-editor.tsv",
     "data/runtime/instrument-translations.tsv", "data/runtime/adventure-target-translations.tsv",
+    "data/runtime/adventure-crafting-translations.tsv",
     "data/runtime/procedural-terms.tsv", "data/runtime/procedural-word-senses.tsv",
     "data/runtime/dfhack-help-translations.tsv", "data/runtime/dfhack-help-overrides.tsv",
     "data/runtime/dfhack-help-command-overrides.tsv", "data/runtime/dfhack-output-core.tsv",

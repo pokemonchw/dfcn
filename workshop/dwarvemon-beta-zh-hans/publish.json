@@ -10,12 +10,12 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "Dwarvemon Beta 使用独立汉化数据包，包含其随附的 PMD、TCG、MissingNo 等可选模块译文。",
+  "changelog": "修正 Memory、Memories 的物品译名匹配范围，避免将人物页的‘记忆’标签覆盖为‘存储碟’。",
   "github_url": "https://github.com/pokemonchw/dfcn",
   "required_items": [
     3811193379,
     2902397057
   ],
-  "release_tag": "v53.16-20261009",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261009"
+  "release_tag": "v53.16-20261010.2",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261010.2"
 }
