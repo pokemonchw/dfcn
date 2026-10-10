@@ -1,8 +1,7 @@
 // Every native UI layer shares the frame producer and tile painters. Only
-// the help component's own draw/bounds bindings are ELF-specific.
+// the help component's own draw/bounds bindings are platform-specific.
 static NativeEntryHook g_native_help_frame_hook;
 using NativeHelpDrawFn = void (*)(void *);
-#ifndef _WIN32
 // help_interfacest::render is shared by tutorials, information cards and
 // minimized guides. Redirect its output BEFORE any native stores execute.
 static NativeEntryHook g_native_help_draw_hook;
@@ -10,7 +9,7 @@ static NativeCallHook g_native_help_bounds_hook;
 using NativeHelpBoundsFn = void (*)(void *, int32_t *, int32_t *, int32_t *, int32_t *);
 static NativeHelpBoundsFn g_native_help_bounds = nullptr;
 
-static void native_help_draw_bounds(void *help, int32_t *left, int32_t *right,
+static void capture_native_help_draw_bounds(void *help, int32_t *left, int32_t *right,
         int32_t *top, int32_t *bottom) {
     NativeInputCallbackScope callback;
     if (g_native_help_bounds)
@@ -78,7 +77,6 @@ static void native_help_draw(void *help) {
     layer.foreground.graphics()->top_in_use = gps->top_in_use;
     layer.ready = true;
 }
-#endif
 
 static void native_help_begin_frame(void *renderer) {
     NativeInputCallbackScope callback;
@@ -112,25 +110,29 @@ static void native_help_begin_frame(void *renderer) {
 }
 
 static bool install_native_help_layer_hook() {
-#ifdef _WIN32
-    if (g_native_help_frame_hook.installed) return true;
-    constexpr const char *label = "Native UI frame producer";
-    const auto base = native_history_profile_base();
-    auto *frame = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x8e4e60));
-    // renderer::swap_arrays precedes render_things on both PE editions.
-    // This complete mov has no relative operand to relocate in the relay.
-    std::vector<unsigned char> prefix{0x48,0x8b,0x91,0x80,0x00,0x00,0x00};
-    if (!frame || !native_reference_bytes(0x8e4e60, prefix) ||
-            !g_native_help_frame_hook.prepare(frame, prefix,
-                reinterpret_cast<const void *>(&native_help_begin_frame), {}, label) ||
-            !g_native_help_frame_hook.install(label)) return false;
-    log_line("INFO", "Enabled the native UI private-layer frame producer");
-    return true;
-#else
     if (g_native_help_draw_hook.installed && g_native_help_frame_hook.installed &&
             g_native_help_bounds_hook.installed) return true;
     constexpr const char *label = "Native help component draw entry";
     const auto base = native_history_profile_base();
+#ifdef _WIN32
+    auto *draw = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x1e8b20));
+    const auto bounds = native_reference_address(base, 0x1f74f0);
+    // One complete stack store; the relay needs no relative fixup.
+    std::vector<unsigned char> prefix{0x48,0x89,0x5c,0x24,0x10};
+    if (!draw || !bounds || !native_reference_bytes(0x1e8b20, prefix) ||
+            !g_native_help_draw_hook.prepare(draw, prefix,
+                reinterpret_cast<const void *>(&native_help_draw), {}, label)) return false;
+    auto *frame = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x8e4e60));
+    // renderer::swap_arrays precedes render_things on both PE editions.
+    // This complete mov has no relative operand to relocate in the relay.
+    std::vector<unsigned char> frame_prefix{0x48,0x8b,0x91,0x80,0x00,0x00,0x00};
+    if (!frame || !native_reference_bytes(0x8e4e60, frame_prefix) ||
+            !g_native_help_frame_hook.prepare(frame, frame_prefix,
+                reinterpret_cast<const void *>(&native_help_begin_frame), {}, label)) return false;
+    std::vector<NativeCall> calls{{0x1e8bb5, 0x1f74f0,
+        reinterpret_cast<const void *>(&capture_native_help_draw_bounds)}};
+    constexpr uintptr_t origin = 0;
+#else
     auto *draw = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x1021710));
     const auto bounds = native_reference_address(base, 0x100ae50);
     std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57,0x41,0x56};
@@ -147,16 +149,17 @@ static bool install_native_help_layer_hook() {
         reinterpret_cast<uintptr_t>(frame + 11) + relative}};
     if (!g_native_help_frame_hook.prepare(frame, frame_prefix,
             reinterpret_cast<const void *>(&native_help_begin_frame), fixups, label)) return false;
-    g_native_help_bounds = reinterpret_cast<NativeHelpBoundsFn>(bounds);
     std::vector<NativeCall> calls{{0x1021752, 0x100ae50,
-        reinterpret_cast<const void *>(&native_help_draw_bounds)}};
-    if (!native_reference_calls(calls, 0x400000) ||
+        reinterpret_cast<const void *>(&capture_native_help_draw_bounds)}};
+    constexpr uintptr_t origin = 0x400000;
+#endif
+    g_native_help_bounds = reinterpret_cast<NativeHelpBoundsFn>(bounds);
+    if (!native_reference_calls(calls, origin) ||
             !g_native_help_bounds_hook.install(base, calls, label) ||
             !g_native_help_frame_hook.install(label) ||
             !g_native_help_draw_hook.install(label)) return false;
     log_line("INFO", "Redirected native tutorial/help drawing to its private output layer");
     return true;
-#endif
 }
 
 struct NativeUiLayerSdlState {
@@ -315,27 +318,17 @@ static void native_help_present_layers(SDL_Renderer *renderer,
 }
 
 static void uninstall_native_help_layer_hook() {
-#ifndef _WIN32
     g_native_help_draw_hook.uninstall("Native help draw entry restore");
     g_native_help_bounds_hook.uninstall("Native help layout call restore");
-#endif
     g_native_help_frame_hook.uninstall("Native UI frame producer restore");
-    if (!g_native_help_frame_hook.active()
-#ifndef _WIN32
-            && !g_native_help_draw_hook.active() && !g_native_help_bounds_hook.active()
-#endif
-            ) {
-#ifndef _WIN32
+    if (!g_native_help_frame_hook.active() && !g_native_help_draw_hook.active() &&
+            !g_native_help_bounds_hook.active()) {
         g_native_help_bounds = nullptr;
-#endif
         g_native_help_target.release();
         g_native_help_layer = {};
     }
 }
 static bool native_help_layer_hook_active() {
-    return g_native_help_frame_hook.active()
-#ifndef _WIN32
-        || g_native_help_draw_hook.active() || g_native_help_bounds_hook.active()
-#endif
-        ;
+    return g_native_help_frame_hook.active() || g_native_help_draw_hook.active() ||
+        g_native_help_bounds_hook.active();
 }
