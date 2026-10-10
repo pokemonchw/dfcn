@@ -1,0 +1,13 @@
+edition	image_identity	role	branch	begin_rva	end_rva	original_bytes	argument_bytes	append_target_rva	zero_pad_one	semantics
+steam	PE:6a70a6d9:02711000	Caption	inline-shrink	0x27caa7	0x27cabd	48 89 5d 00 48 8d 45 f0 48 83 7d 08 0f 48 0f 47 45 f0 c6 04 18 00	48 8d 4d f0 48 89 da 45 31 c0		false	rcx=rbp-0x10; rdx=rbx; r8b=0; following cmp replaces flags and dots reload rax
+steam	PE:6a70a6d9:02711000	Description	inline-shrink	0x27cea1	0x27ceb6	48 89 55 20 48 8d 45 10 49 83 ff 0f 48 0f 47 45 10 c6 04 10 00	48 8d 4d 10 45 31 c0		false	rcx=rbp+0x10; rdx=width; r8b=0; following addst resets rcx/rdx/r9 and ignores r8
+steam	PE:6a70a6d9:02711000	Needs	inline-shrink	0x27d16d	0x27d183	48 89 55 e0 48 8d 45 d0 48 83 7d e8 0f 48 0f 47 45 d0 c6 04 10 00	48 8d 4d d0 45 31 c0		false	rcx=rbp-0x30; rdx=width; r8b=0; following addst resets rcx/rdx/r9 and ignores r8
+steam	PE:6a70a6d9:02711000	Caption	append-pad	0x27cb13	0x27cb18	e8 98 47 e6 ff	48 03 51 10	0xe12b0	true	append one zero before tail dots; convert append count to total width
+steam	PE:6a70a6d9:02711000	Description	append-pad	0x27cec2	0x27cec7	e8 e9 43 e6 ff	48 03 51 10	0xe12b0	false	growth path preserves source; no dots follow; convert append count to total width
+steam	PE:6a70a6d9:02711000	Needs	append-pad	0x27d18f	0x27d194	e8 1c 41 e6 ff	48 03 51 10	0xe12b0	false	growth path preserves source; no dots follow; convert append count to total width
+classic	PE:6a70b91c:0270a000	Caption	inline-shrink	0x27a667	0x27a67d	48 89 5d 00 48 8d 45 f0 48 83 7d 08 0f 48 0f 47 45 f0 c6 04 18 00	48 8d 4d f0 48 89 da 45 31 c0		false	rcx=rbp-0x10; rdx=rbx; r8b=0; following cmp replaces flags and dots reload rax
+classic	PE:6a70b91c:0270a000	Description	inline-shrink	0x27aa61	0x27aa76	48 89 55 20 48 8d 45 10 49 83 ff 0f 48 0f 47 45 10 c6 04 10 00	48 8d 4d 10 45 31 c0		false	rcx=rbp+0x10; rdx=width; r8b=0; following addst resets rcx/rdx/r9 and ignores r8
+classic	PE:6a70b91c:0270a000	Needs	inline-shrink	0x27ad2d	0x27ad43	48 89 55 e0 48 8d 45 d0 48 83 7d e8 0f 48 0f 47 45 d0 c6 04 10 00	48 8d 4d d0 45 31 c0		false	rcx=rbp-0x30; rdx=width; r8b=0; following addst resets rcx/rdx/r9 and ignores r8
+classic	PE:6a70b91c:0270a000	Caption	append-pad	0x27a6d3	0x27a6d8	e8 68 6b e6 ff	48 03 51 10	0xe1240	true	append one zero before tail dots; convert append count to total width
+classic	PE:6a70b91c:0270a000	Description	append-pad	0x27aa82	0x27aa87	e8 b9 67 e6 ff	48 03 51 10	0xe1240	false	growth path preserves source; no dots follow; convert append count to total width
+classic	PE:6a70b91c:0270a000	Needs	append-pad	0x27ad4f	0x27ad54	e8 ec 64 e6 ff	48 03 51 10	0xe1240	false	growth path preserves source; no dots follow; convert append count to total width

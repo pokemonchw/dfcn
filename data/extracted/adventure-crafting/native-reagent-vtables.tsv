@@ -1,0 +1,5 @@
+edition	image_identity	type	vtable_rva	description_slot	description_rva	hierarchy_rva
+steam	PE:6a70a6d9:02711000	reaction_reagent_itemst	0x17374d0	0x38	0xedc660	0x17afdf0
+steam	PE:6a70a6d9:02711000	reaction_reagentst	0x17373f0	0x38	0x72250	0x17afda8
+classic	PE:6a70b91c:0270a000	reaction_reagent_itemst	0x1731df8	0x38	0xed75d0	0x17aa588
+classic	PE:6a70b91c:0270a000	reaction_reagentst	0x1731d48	0x38	0x721e0	0x17aa558

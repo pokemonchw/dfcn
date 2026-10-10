@@ -45,6 +45,7 @@ struct NativeCaptionInlineResize {
     std::vector<unsigned char> original, arguments;
     bool zero_pad_one = false;
     std::vector<unsigned char> suffix{};
+    bool plain_shrink = false;
 };
 struct NativeInfoTitleSite {
     uintptr_t return_address = 0;
@@ -61,6 +62,10 @@ struct NativeLocationPickerSite {
 struct NativeTravelBuildingSite {
     uintptr_t return_address = 0;
     NativeTravelBuildingField field = NativeTravelBuildingField::None;
+};
+struct NativeAdventureCraftingSite {
+    uintptr_t return_address = 0;
+    NativeAdventureCraftingRole role = NativeAdventureCraftingRole::None;
 };
 struct NativeInfoTitleBinding {
     std::vector<NativeInfoTitleSite> sites;
@@ -125,6 +130,7 @@ struct NativeCaptionProfile {
     std::vector<NativeCivilizationCaptionSite> civilization_fields;
     std::vector<NativeLocationPickerSite> location_picker_fields;
     std::vector<NativeTravelBuildingSite> travel_building_fields;
+    std::vector<NativeAdventureCraftingSite> adventure_crafting_fields;
     std::vector<uintptr_t> mission_title_returns;
     NativeAnnouncementPageBinding announcement_page;
     uintptr_t announcement_popup_call = 0, announcement_popup_target = 0;
@@ -368,6 +374,7 @@ static NativeInfoTitleBinding g_native_info_title_binding;
 static std::vector<NativeCivilizationCaptionSite> g_native_civilization_caption_sites;
 static std::vector<NativeLocationPickerSite> g_native_location_picker_sites;
 static std::vector<NativeTravelBuildingSite> g_native_travel_building_sites;
+static std::vector<NativeAdventureCraftingSite> g_native_adventure_crafting_sites;
 static std::vector<uintptr_t> g_native_mission_title_returns;
 static std::vector<uintptr_t> g_native_map_hover_returns;
 static size_t g_native_map_hover_text_offset = 0;
@@ -547,6 +554,35 @@ static bool native_info_title_memory_readable(const void *pointer, size_t size) 
     return true;
 #endif
 }
+
+static NativeAdventureCraftingRole native_adventure_crafting_role(
+        uintptr_t caller, uintptr_t source) {
+    for (const auto &site : g_native_adventure_crafting_sites) {
+        if (site.return_address != caller) continue;
+        if (site.role != NativeAdventureCraftingRole::Caption || !source) return site.role;
+#ifdef _WIN32
+        // The verified renderer keeps state at rsp+0x50 and the caption at
+        // rbp-0x10 (rsp+0xf0). Freeze mode while that producer frame is live;
+        // its four modes share this draw, but only mode 0 owns RAW captions.
+        uintptr_t state = 0;
+        int32_t mode = -1;
+        if (source >= 0xa0 && native_info_title_memory_readable(
+                reinterpret_cast<const void *>(source - 0xa0), sizeof(state))) {
+            std::memcpy(&state, reinterpret_cast<const void *>(source - 0xa0), sizeof(state));
+            if (state && native_info_title_memory_readable(
+                    reinterpret_cast<const void *>(state + 4), sizeof(mode)))
+                std::memcpy(&mode, reinterpret_cast<const void *>(state + 4), sizeof(mode));
+        }
+        return mode == 0 ? NativeAdventureCraftingRole::Caption :
+            mode >= 1 && mode <= 3 ? NativeAdventureCraftingRole::Item :
+            NativeAdventureCraftingRole::None;
+#else
+        return site.role;
+#endif
+    }
+    return NativeAdventureCraftingRole::None;
+}
+
 
 static bool native_textbox_widget_editable(const void *widget) {
     const auto address = reinterpret_cast<uintptr_t>(widget);
@@ -1373,7 +1409,7 @@ static void capture_native_roster_shorten(NativeString *source, int width) {
 }
 
 static void remember_native_clipped_resize(NativeString *source, size_t width, char fill,
-        bool zero_pad_one = false) {
+        bool zero_pad_one = false, bool plain_shrink = false) {
     if (native_private_ui_write_active(native_graphics())) return;
     auto &state = native_clipped_pending();
     if (!state.busy) {
@@ -1391,7 +1427,7 @@ static void remember_native_clipped_resize(NativeString *source, size_t width, c
                 state.fields.erase(found);
             }
             std::string_view text;
-            if (width >= 4 && width <= 1024 && fill == 0 &&
+            if (width >= (plain_shrink ? 1u : 4u) && width <= 1024 && fill == 0 &&
                 native_string_view(source, &text, 4096) &&
                 (text.size() >= width || (zero_pad_one && text.size() + 1 == width)) &&
                 text.find_first_of("\r\n") == std::string::npos) {
@@ -1399,7 +1435,8 @@ static void remember_native_clipped_resize(NativeString *source, size_t width, c
                     previous.visible == text && !previous.complete.empty();
                 PendingNativeField pending;
                 if (!text.ends_with("...") || chained)
-                    capture_native_field_resize(pending, source, width, false, false, zero_pad_one);
+                    capture_native_field_resize(pending, source, width, false, false, zero_pad_one,
+                        plain_shrink);
                 // Preserve the first complete source only for an exact
                 // intermediate value belonging to the same owner and epoch.
                 if (!pending.complete.empty() && chained)
@@ -1417,6 +1454,15 @@ static void capture_native_clipped_resize(NativeString *source, size_t width, ch
     if (g_native_clipped_caption_hooks.resize)
         g_native_clipped_caption_hooks.resize(source, width, fill);
 }
+
+static void capture_native_plain_clipped_resize(NativeString *source, size_t width, char fill) {
+    // CATEGORY_DESCRIPTION and Needs have plain byte truncation: their
+    // producer never overwrites the last three characters with dots.
+    remember_native_clipped_resize(source, width, fill, false, true);
+    if (g_native_clipped_caption_hooks.resize)
+        g_native_clipped_caption_hooks.resize(source, width, fill);
+}
+
 
 static void capture_native_clipped_dot_padding_resize(NativeString *source, size_t width, char fill) {
     // A verified caller can grow by one zero byte before overwriting that byte
@@ -1660,7 +1706,8 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
             text.find('\0') == std::string_view::npos &&
             (width > 0 || graphics->screenx < graphics->clipx[0] ||
              int64_t(graphics->screenx) + static_cast<int64_t>(text.size()) >
-                 int64_t(graphics->clipx[1]) + 1)) {
+                 int64_t(graphics->clipx[1]) + 1 ||
+             native_adventure_crafting_role(native_caller) != NativeAdventureCraftingRole::None)) {
             complete.assign(text);
             x = graphics->screenx;
             y = graphics->screeny;
@@ -1735,7 +1782,8 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
         if (width > 0 || first != x || info_title_kind != NativeInfoTitleKind::None ||
                 civilization_field != NativeCivilizationField::None || mission_title ||
                 location_picker_field != NativeLocationPickerField::None || fortress_labor_caption ||
-                travel_building_field != NativeTravelBuildingField::None)
+                travel_building_field != NativeTravelBuildingField::None ||
+                native_adventure_crafting_role(native_caller) != NativeAdventureCraftingRole::None)
             remember_native_drawn_text_row(first, y, visible,
                 reinterpret_cast<uintptr_t>(source), graphics, top_layer,
                 first == x ? std::string_view(complete) : std::string_view{},
@@ -2443,7 +2491,8 @@ static bool install_native_caption_hooks() {
     }
     for (const auto &site : profile.inline_resizes)
         calls.push_back({site.address, 0,
-            site.zero_pad_one ? reinterpret_cast<const void *>(&capture_native_clipped_dot_padding_resize)
+            site.plain_shrink ? reinterpret_cast<const void *>(&capture_native_plain_clipped_resize)
+                : site.zero_pad_one ? reinterpret_cast<const void *>(&capture_native_clipped_dot_padding_resize)
                               : reinterpret_cast<const void *>(&capture_native_clipped_resize),
             site.arguments, site.original, site.suffix});
     if (profile.map_track_shorten_call)
@@ -2522,6 +2571,7 @@ static bool install_native_caption_hooks() {
     g_native_civilization_caption_sites = std::move(profile.civilization_fields);
     g_native_location_picker_sites = std::move(profile.location_picker_fields);
     g_native_travel_building_sites = std::move(profile.travel_building_fields);
+    g_native_adventure_crafting_sites = std::move(profile.adventure_crafting_fields);
     g_native_mission_title_returns = std::move(profile.mission_title_returns);
     g_native_map_hover_returns = std::move(profile.map_hover_returns);
     g_native_map_hover_text_offset = profile.map_caption_text_offset;
@@ -2753,6 +2803,7 @@ static bool uninstall_native_caption_hooks() {
     g_native_civilization_caption_sites.clear();
     g_native_location_picker_sites.clear();
     g_native_travel_building_sites.clear();
+    g_native_adventure_crafting_sites.clear();
     g_native_mission_title_returns.clear();
     g_native_caption_hooks.resize = nullptr;
     g_native_caption_hooks.draw = nullptr;

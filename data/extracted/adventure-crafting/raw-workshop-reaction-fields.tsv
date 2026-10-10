@@ -1,0 +1,36 @@
+image	path	line	reaction	category	token	value
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	16	ADV_PREPARE_POISONED_MEAT		REACTION	ADV_PREPARE_POISONED_MEAT
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	17	ADV_PREPARE_POISONED_MEAT		NAME	prepare poisoned meat
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	18	ADV_PREPARE_POISONED_MEAT		ADVENTURE_MODE_ENABLED	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	19	ADV_PREPARE_POISONED_MEAT		REAGENT	poisoned meat:1:NONE:NONE:NONE:NONE
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	19	ADV_PREPARE_POISONED_MEAT		UNROTTEN	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	20	ADV_PREPARE_POISONED_MEAT		HAS_MATERIAL_REACTION_PRODUCT	UNPOISONEDMEAT
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	21	ADV_PREPARE_POISONED_MEAT		REAGENT	tool:1:NONE:NONE:NONE:NONE
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	22	ADV_PREPARE_POISONED_MEAT		PRESERVE_REAGENT	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	22	ADV_PREPARE_POISONED_MEAT		HAS_EDGE	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	23	ADV_PREPARE_POISONED_MEAT		PRODUCT	100:1:MEAT:NONE:GET_MATERIAL_FROM_REAGENT:poisoned meat:UNPOISONEDMEAT
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	24	ADV_PREPARE_POISONED_MEAT		SKILL	COOK
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	16	ADV_PREPARE_POISONED_MEAT		REACTION	ADV_PREPARE_POISONED_MEAT
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	17	ADV_PREPARE_POISONED_MEAT		NAME	prepare poisoned meat
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	18	ADV_PREPARE_POISONED_MEAT		ADVENTURE_MODE_ENABLED	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	19	ADV_PREPARE_POISONED_MEAT		REAGENT	poisoned meat:1:NONE:NONE:NONE:NONE
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	19	ADV_PREPARE_POISONED_MEAT		UNROTTEN	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	20	ADV_PREPARE_POISONED_MEAT		HAS_MATERIAL_REACTION_PRODUCT	UNPOISONEDMEAT
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	21	ADV_PREPARE_POISONED_MEAT		REAGENT	tool:1:NONE:NONE:NONE:NONE
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	22	ADV_PREPARE_POISONED_MEAT		PRESERVE_REAGENT	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	22	ADV_PREPARE_POISONED_MEAT		HAS_EDGE	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	23	ADV_PREPARE_POISONED_MEAT		PRODUCT	100:1:MEAT:NONE:GET_MATERIAL_FROM_REAGENT:poisoned meat:UNPOISONEDMEAT
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	24	ADV_PREPARE_POISONED_MEAT		SKILL	COOK
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	7	ADV_POKEMON_HUMAN		REACTION	ADV_POKEMON_HUMAN
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	8	ADV_POKEMON_HUMAN		NAME	play as Pokemon human
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	9	ADV_POKEMON_HUMAN		ADVENTURE_MODE_ENABLED	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	10	ADV_POKEMON_HUMAN		PRODUCT	100:1:LIQUID_MISC:NONE:INORGANIC:POKEMON_HUMAN_ADV
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	10	ADV_POKEMON_HUMAN		PRODUCT_DIMENSION	150
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	12	MAKE_ITEM_THROWABLE_ADV		REACTION	MAKE_ITEM_THROWABLE_ADV
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	13	MAKE_ITEM_THROWABLE_ADV		NAME	make item into throwable ammo
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	14	MAKE_ITEM_THROWABLE_ADV		ADVENTURE_MODE_ENABLED	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	15	MAKE_ITEM_THROWABLE_ADV		REAGENT	throwable:1:NONE:NONE:NONE:NONE
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	15	MAKE_ITEM_THROWABLE_ADV		UNROTTEN	
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	16	MAKE_ITEM_THROWABLE_ADV		REACTION_CLASS	THROWABLE
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	17	MAKE_ITEM_THROWABLE_ADV		HAS_MATERIAL_REACTION_PRODUCT	THROWN
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	18	MAKE_ITEM_THROWABLE_ADV		PRODUCT	100:1:AMMO:THROWABLE_ITEM:GET_MATERIAL_FROM_REAGENT:throwable:THROWN

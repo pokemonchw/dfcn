@@ -1,0 +1,67 @@
+image	path	line	reaction	name	category	building	skill
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	5	MAKE WOODEN CHAIR	make wooden chair	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	20	MAKE WOODEN TABLE	make wooden table	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	33	MAKE WOODEN BED	make wooden bed	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	46	MAKE WOODEN CHEST	make wooden chest	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	59	MAKE WOODEN CABINET	make wooden cabinet	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	72	MAKE WOODEN DOOR	make wooden door	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	85	MAKE WOODEN BARREL	make wooden barrel	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	98	MAKE WOODEN BUCKET	make wooden bucket	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	111	MAKE WOODEN CASKET	make wooden casket	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	124	MAKE WOODEN HATCH COVER	make wooden hatch cover	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	137	MAKE WOODEN GRATE	make wooden grate	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	150	MAKE WOODEN BIN	make wooden bin	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	163	MAKE WOODEN STEPLADDER	make wooden stepladder	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	176	MAKE WOODEN BOOKCASE	make wooden bookcase	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	189	MAKE WOODEN SPLINT	make wooden splint	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	202	MAKE WOODEN CRUTCH	make wooden crutch	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	215	MAKE WOODEN SHIELD	make wooden shield	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	228	MAKE WOODEN BUCKLER	make wooden buckler	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	241	MAKE WOODEN TRAINING AXE	make wooden training axe	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	254	MAKE WOODEN TRAINING SHORT SWORD	make wooden training short sword	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	267	MAKE WOODEN TRAINING SPEAR	make wooden training spear	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	280	MAKE WOODEN PEDESTAL	make wooden pedestal	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	76	MAKE_SHARP_ROCK	make sharp rock			KNAPPING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	439	CARVE_BONE_FIGURINE	carve bone figurine	ADV_BONE_CARVING		BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	453	CARVE_BONE_RING	carve bone ring	ADV_BONE_CARVING		BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	465	CARVE_BONE_EARRING	carve bone earring	ADV_BONE_CARVING		BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	477	CARVE_BONE_SCEPTER	carve bone scepter	ADV_BONE_CARVING		BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	489	CARVE_BONE_AMULET	carve bone amulet	ADV_BONE_CARVING		BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	501	CARVE_BONE_BRACELET	carve bone bracelet	ADV_BONE_CARVING		BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	513	CARVE_BONE_CROWN	carve bone crown	ADV_BONE_CARVING		BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	525	CARVE_BONE_GEM	carve bone cabochon	ADV_BONE_CARVING		BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	537	CARVE_WOODEN_HELVE	carve wooden helve from branch			CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	548	ASSEMBLE STONE AXE	assemble stone axe			
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	5	MAKE WOODEN CHAIR	make wooden chair	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	20	MAKE WOODEN TABLE	make wooden table	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	33	MAKE WOODEN BED	make wooden bed	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	46	MAKE WOODEN CHEST	make wooden chest	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	59	MAKE WOODEN CABINET	make wooden cabinet	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	72	MAKE WOODEN DOOR	make wooden door	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	85	MAKE WOODEN BARREL	make wooden barrel	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	98	MAKE WOODEN BUCKET	make wooden bucket	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	111	MAKE WOODEN CASKET	make wooden casket	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	124	MAKE WOODEN HATCH COVER	make wooden hatch cover	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	137	MAKE WOODEN GRATE	make wooden grate	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	150	MAKE WOODEN BIN	make wooden bin	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	163	MAKE WOODEN STEPLADDER	make wooden stepladder	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	176	MAKE WOODEN BOOKCASE	make wooden bookcase	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	189	MAKE WOODEN SPLINT	make wooden splint	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	202	MAKE WOODEN CRUTCH	make wooden crutch	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	215	MAKE WOODEN SHIELD	make wooden shield	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	228	MAKE WOODEN BUCKLER	make wooden buckler	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	241	MAKE WOODEN TRAINING AXE	make wooden training axe	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	254	MAKE WOODEN TRAINING SHORT SWORD	make wooden training short sword	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	267	MAKE WOODEN TRAINING SPEAR	make wooden training spear	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	280	MAKE WOODEN PEDESTAL	make wooden pedestal	ADV_CARPENTRY	CARPENTER:NONE	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	76	MAKE_SHARP_ROCK	make sharp rock			KNAPPING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	439	CARVE_BONE_FIGURINE	carve bone figurine	ADV_BONE_CARVING		BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	453	CARVE_BONE_RING	carve bone ring	ADV_BONE_CARVING		BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	465	CARVE_BONE_EARRING	carve bone earring	ADV_BONE_CARVING		BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	477	CARVE_BONE_SCEPTER	carve bone scepter	ADV_BONE_CARVING		BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	489	CARVE_BONE_AMULET	carve bone amulet	ADV_BONE_CARVING		BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	501	CARVE_BONE_BRACELET	carve bone bracelet	ADV_BONE_CARVING		BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	513	CARVE_BONE_CROWN	carve bone crown	ADV_BONE_CARVING		BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	525	CARVE_BONE_GEM	carve bone cabochon	ADV_BONE_CARVING		BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	537	CARVE_WOODEN_HELVE	carve wooden helve from branch			CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	548	ASSEMBLE STONE AXE	assemble stone axe			

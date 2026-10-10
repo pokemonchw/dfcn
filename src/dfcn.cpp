@@ -58,6 +58,7 @@
 #include "translation_result.h"
 #include "native_history_data.h"
 #include "native_performance_choice.h"
+#include "native_adventure_crafting.h"
 #include "native_unit_identity.h"
 #include "native_adventure_charge.h"
 #include "native_trade_item_caption.h"
@@ -2116,6 +2117,7 @@ struct NativeDrawnTextRow {
     std::shared_ptr<NativeHistoryName> site_name{};
     // The actual addst return address identifies document-specific row writers.
     uintptr_t native_caller = 0;
+    NativeAdventureCraftingRole adventure_crafting_role = NativeAdventureCraftingRole::None;
 };
 static std::mutex g_native_drawn_text_mutex;
 static std::vector<NativeDrawnTextRow> g_native_drawn_text_rows;
@@ -2770,6 +2772,9 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         if (g_native_site_name_fact)
             row.site_name = std::make_shared<NativeHistoryName>(*g_native_site_name_fact);
         row.native_caller = native_caller;
+        row.adventure_crafting_role = native_adventure_crafting_role(native_caller, address);
+        if (row.adventure_crafting_role != NativeAdventureCraftingRole::None)
+            row.caption_source = true;
         row.fortress_labor_caption = std::move(fortress_labor_caption);
         if (row.fortress_labor_caption) row.caption_source = true;
         row.trade_item_caption = std::move(trade_item_caption);
@@ -4918,6 +4923,12 @@ private:
     std::optional<std::string> translate_adventure_action_choice(
         std::string_view source, const std::vector<int> &source_colors,
         std::vector<int> &target_colors, const NativePerformanceChoice *native_choice = nullptr) const;
+    std::optional<std::string> translate_adventure_crafting_text(
+        std::string_view source, NativeAdventureCraftingRole role) const;
+    std::vector<SDL_Rect> append_adventure_crafting_matches(
+        std::vector<std::string> &rows, std::vector<Match> &matches,
+        std::vector<Match> &untranslated_rows, int only_y,
+        const unsigned char *raw) const;
     void rebuild_announcement_combat_rules();
     std::optional<std::string> translate_announcement_combat(std::string_view source,
         std::string_view initial_scope = "sentence") const;
@@ -15621,6 +15632,7 @@ std::vector<Match> Overlay::resolve_native_knowledge_matches(
 #include "dfhack_frame_geometry.inc"
 #include "dfhack_hotkeys_geometry.inc"
 #include "native_panel_layout.inc"
+#include "adventure_crafting.inc"
 #include "native_help_layers.inc"
 #include "native_info_layers.inc"
 #include "native_stocks_layers.inc"
@@ -16721,6 +16733,10 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     if (gps_->display_background == -1 &&
         is_transient_startup_loading_grid(screen_rows)) return result;
     std::vector<Match> untranslated_help_rows;
+    // This renderer owns RAW directory/recipe fields and their descriptions
+    // before item, name and generic action readers see any of their bytes.
+    const auto crafting_panels = append_adventure_crafting_matches(
+        screen_rows, result, untranslated_help_rows, only_y, screen_override);
     // Custom personality labels can lose their last byte to the adjacent
     // rating slot. Claim the native fields before generic words or prose.
     append_adventure_personality_matches(screen_rows, result, only_y, screen_override);
@@ -17510,6 +17526,10 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
 #include "adventure_choice_description.inc"
         for (const auto &choice_panel : choice_panels) {
             const auto *panel = &choice_panel.bounds;
+            if (std::any_of(crafting_panels.begin(), crafting_panels.end(), [&](const SDL_Rect &crafting) {
+                    return crafting.x == panel->x && crafting.y == panel->y &&
+                        crafting.w == panel->w && crafting.h == panel->h;
+                })) continue;
             const int title_y = choice_panel.title_y;
             const bool conversation = choice_panel.kind == ChoiceKind::Conversation;
             const bool native_site = choice_panel.kind == ChoiceKind::NativeSite;

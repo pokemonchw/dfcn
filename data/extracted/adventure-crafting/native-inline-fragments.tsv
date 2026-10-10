@@ -1,0 +1,430 @@
+edition	role	owner_rva	instruction_rva	text_fragment
+steam	craft-render	0x27bd70	0x27be16	'
+steam	craft-render	0x27bd70	0x27c2fa	 
+steam	craft-render	0x27bd70	0x27c36d	 
+steam	craft-render	0x27bd70	0x27c3c9	P
+steam	craft-render	0x27bd70	0x27c491	VUUU
+steam	craft-render	0x27bd70	0x27c505	 
+steam	craft-render	0x27bd70	0x27c59b	 
+steam	craft-render	0x27bd70	0x27c606	 
+steam	craft-render	0x27bd70	0x27cb2c	.
+steam	craft-render	0x27bd70	0x27cb3f	.
+steam	craft-render	0x27bd70	0x27cb52	.
+steam	craft-render	0x27bd70	0x27cbd5	 
+steam	craft-render	0x27bd70	0x27cc7a	 
+steam	craft-render	0x27bd70	0x27cd1b	 
+steam	craft-input	0x27d2b0	0x27d363	*#
+steam	craft-input	0x27d2b0	0x27d3ba	VUUU
+steam	craft-input	0x27d2b0	0x27d646	*#
+steam	craft-input	0x27d2b0	0x27d821	R
+steam	craft-input	0x27d2b0	0x27d9b5	h
+steam	craft-input	0x27d2b0	0x27da03	`
+steam	craft-input	0x27d2b0	0x27dd7f	h
+steam	craft-input	0x27d2b0	0x27ddcd	`
+steam	craft-input	0x27d2b0	0x27e245	h
+steam	craft-input	0x27d2b0	0x27e293	`
+steam	butcher-and-reagent-selection	0x27e300	0x27e3d4	*#
+steam	butcher-and-reagent-selection	0x27e300	0x27e401	'
+steam	butcher-and-reagent-selection	0x27e300	0x27e446	VUUU
+steam	butcher-and-reagent-selection	0x27e300	0x27e6a7	*#
+steam	butcher-and-reagent-selection	0x27e300	0x27ebee	2
+steam	butcher-and-reagent-selection	0x27e300	0x27ee66	d
+steam	reagent-availability	0x27f230	0x27f277	VUUU
+steam	reagent-candidates	0x27f390	0x27f453	'
+steam	reagent-candidates	0x27f390	0x27f4a7	VUUU
+steam	category-tree-builder	0x27f590	0x27f631	 
+steam	category-tree-builder	0x27f590	0x27f8b5	 
+steam	category-tree-builder	0x27f590	0x27fd50	 
+steam	reagent-choice	0x2801a0	0x2801d9	0
+steam	reagent-choice	0x2801a0	0x2802d3	0
+steam	reaction-completion	0x2804b0	0x2808a5	2
+steam	reaction-completion	0x2804b0	0x2808b9	p
+steam	reaction-completion	0x2804b0	0x280b4d	 
+steam	reaction-completion	0x2804b0	0x280cbc	2
+steam	reaction-completion	0x2804b0	0x280cd0	p
+steam	reaction-completion	0x2804b0	0x280ecb	 
+steam	reaction-completion	0x2804b0	0x28101d	0
+steam	reaction-raw-parser	0xed1bd0	0xed269f	 
+steam	reaction-raw-parser	0xed1bd0	0xed30c1	:
+steam	reaction-raw-parser	0xed1bd0	0xed3a38	:
+steam	reaction-raw-parser	0xed1bd0	0xed3aab	:
+steam	reaction-raw-parser	0xed1bd0	0xed3b08	:
+steam	reaction-raw-parser	0xed1bd0	0xed3b77	:
+steam	reaction-raw-parser	0xed1bd0	0xed3ba3	:
+steam	reaction-raw-parser	0xed1bd0	0xed3c55	:
+steam	reaction-raw-parser	0xed1bd0	0xed3cc3	:
+steam	reaction-raw-parser	0xed1bd0	0xed3d35	:
+steam	reaction-raw-parser	0xed1bd0	0xed3e4e	:
+steam	reaction-raw-parser	0xed1bd0	0xed3eab	:
+steam	reaction-raw-parser	0xed1bd0	0xed3f08	:
+steam	reaction-raw-parser	0xed1bd0	0xed3f69	:
+steam	reaction-raw-parser	0xed1bd0	0xed3ffe	:
+steam	reaction-raw-parser	0xed1bd0	0xed403e	:
+steam	reaction-raw-parser	0xed1bd0	0xed4066	H
+steam	reaction-raw-parser	0xed1bd0	0xed4082	V
+steam	reaction-raw-parser	0xed1bd0	0xed40e5	:
+steam	reaction-raw-parser	0xed1bd0	0xed410d	H
+steam	reaction-raw-parser	0xed1bd0	0xed416a	H
+steam	reaction-raw-parser	0xed1bd0	0xed41cf	:
+steam	reaction-raw-parser	0xed1bd0	0xed422a	:
+steam	reaction-raw-parser	0xed1bd0	0xed429c	:
+steam	reaction-raw-parser	0xed1bd0	0xed42cb	:
+steam	reaction-raw-parser	0xed1bd0	0xed4307	:
+steam	reaction-raw-parser	0xed1bd0	0xed4362	:
+steam	reaction-raw-parser	0xed1bd0	0xed444b	:
+steam	reaction-raw-parser	0xed1bd0	0xed4493	:
+steam	reaction-raw-parser	0xed1bd0	0xed44b9	:
+steam	reaction-raw-parser	0xed1bd0	0xed44fd	:
+steam	reaction-raw-parser	0xed1bd0	0xed46bb	:
+steam	reaction-raw-parser	0xed1bd0	0xed471b	:
+steam	reaction-raw-parser	0xed1bd0	0xed4734	:
+steam	reaction-raw-parser	0xed1bd0	0xed475d	:
+steam	reaction-raw-parser	0xed1bd0	0xed479a	:
+steam	reaction-raw-parser	0xed1bd0	0xed47c4	:
+steam	reaction-raw-parser	0xed1bd0	0xed4820	:
+steam	reaction-raw-parser	0xed1bd0	0xed496c	:
+steam	reaction-raw-parser	0xed1bd0	0xed49ab	:
+steam	reaction-raw-parser	0xed1bd0	0xed49c4	:
+steam	reaction-raw-parser	0xed1bd0	0xed4a36	:
+steam	reaction-raw-parser	0xed1bd0	0xed4a53	:
+steam	reaction-raw-parser	0xed1bd0	0xed4a7d	:
+steam	reaction-raw-parser	0xed1bd0	0xed4ad6	:
+steam	reaction-raw-parser	0xed1bd0	0xed4be4	:
+steam	reaction-raw-parser	0xed1bd0	0xed4c01	:
+steam	reaction-raw-parser	0xed1bd0	0xed4c2b	:
+steam	reaction-raw-parser	0xed1bd0	0xed4c84	:
+steam	reaction-raw-parser	0xed1bd0	0xed4d81	:
+steam	reaction-raw-parser	0xed1bd0	0xed4dab	:
+steam	reaction-raw-parser	0xed1bd0	0xed4e04	:
+steam	reaction-raw-parser	0xed1bd0	0xed4f0f	:
+steam	reaction-raw-parser	0xed1bd0	0xed4f6c	:
+steam	reaction-raw-parser	0xed1bd0	0xed4fc9	:
+steam	reaction-raw-parser	0xed1bd0	0xed51a6	:
+steam	reaction-raw-parser	0xed1bd0	0xed51fe	:
+steam	reagent-item-filter-description	0xa2adb0	0xa2ae8f	 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bc7d	 
+steam	reagent-item-type-name	0xa82c10	0xa82e4a	 
+steam	reagent-item-type-name	0xa82c10	0xa82ece	 
+steam	reagent-item-type-name	0xa82c10	0xa830dc	 
+steam	reagent-item-type-name	0xa82c10	0xa83619	 
+steam	reagent-item-type-name	0xa82c10	0xa836d4	 
+steam	reagent-item-type-name	0xa82c10	0xa8378a	 
+steam	reagent-item-type-name	0xa82c10	0xa837fa	 
+steam	reagent-item-type-name	0xa82c10	0xa8386a	 
+steam	reagent-item-type-name	0xa82c10	0xa838da	 
+steam	reagent-item-type-name	0xa82c10	0xa8394a	 
+steam	reagent-item-type-name	0xa82c10	0xa839ba	 
+steam	reagent-item-type-name	0xa82c10	0xa83a2a	 
+steam	reagent-item-type-name	0xa82c10	0xa83a9a	 
+steam	reagent-item-type-name	0xa82c10	0xa83b0a	 
+steam	reagent-item-type-name	0xa82c10	0xa83b7e	/
+steam	reagent-item-type-name	0xa82c10	0xa83c54	 
+steam	reagent-item-type-name	0xa82c10	0xa83c8e	 
+steam	reagent-item-type-name	0xa82c10	0xa83cef	 
+steam	reagent-item-type-name	0xa82c10	0xa83d8b	 
+steam	reagent-item-type-name	0xa82c10	0xa83db2	 
+steam	reagent-item-type-name	0xa82c10	0xa83e27	 
+steam	reagent-item-type-name	0xa82c10	0xa83ea6	 
+steam	reagent-item-type-name	0xa82c10	0xa83f16	 
+steam	reagent-item-type-name	0xa82c10	0xa83f4a	 
+steam	reagent-item-type-name	0xa82c10	0xa83fab	 
+steam	reagent-item-type-name	0xa82c10	0xa8401b	 
+steam	reagent-item-type-name	0xa82c10	0xa84122	 
+steam	reagent-item-type-name	0xa82c10	0xa841b8	>
+steam	reagent-item-type-name	0xa82c10	0xa8424b	 
+steam	reagent-item-type-name	0xa82c10	0xa842ed	>
+steam	reagent-item-type-name	0xa82c10	0xa84310	1
+steam	reagent-item-type-name	0xa82c10	0xa843b0	 
+steam	reagent-item-type-name	0xa82c10	0xa84416	h
+steam	reagent-item-type-name	0xa82c10	0xa844a2	A
+steam	reagent-item-type-name	0xa82c10	0xa84530	 
+steam	reagent-item-type-name	0xa82c10	0xa845e3	 
+steam	reagent-item-type-name	0xa82c10	0xa845fa	h
+steam	reagent-item-type-name	0xa82c10	0xa846bd	 
+steam	reagent-item-type-name	0xa82c10	0xa8471a	h
+steam	reagent-item-type-name	0xa82c10	0xa8478e	 
+steam	reagent-item-type-name	0xa82c10	0xa847cc	/
+steam	reagent-item-type-name	0xa82c10	0xa8485b	 
+steam	reagent-item-type-name	0xa82c10	0xa848cb	 
+steam	reagent-item-type-name	0xa82c10	0xa84985	 
+steam	reagent-item-type-name	0xa82c10	0xa849f5	 
+steam	reagent-item-type-name	0xa82c10	0xa84a65	 
+steam	reagent-item-type-name	0xa82c10	0xa84ad5	 
+steam	reagent-item-type-name	0xa82c10	0xa84b6e	 
+steam	reagent-item-type-name	0xa82c10	0xa84c27	>
+steam	reagent-item-type-name	0xa82c10	0xa84cb5	 
+steam	reagent-item-type-name	0xa82c10	0xa84dbf	 
+steam	reagent-item-type-name	0xa82c10	0xa84f50	 
+steam	reagent-item-type-name	0xa82c10	0xa85930	 
+steam	reagent-item-type-name	0xa82c10	0xa859a8	 
+steam	reagent-item-type-name	0xa82c10	0xa85a20	 
+steam	reagent-item-type-name	0xa82c10	0xa85a98	 
+steam	reagent-item-type-name	0xa82c10	0xa85b87	 
+steam	reagent-item-type-name	0xa82c10	0xa85c1e	 
+steam	reagent-item-type-name	0xa82c10	0xa85c9a	 
+steam	reagent-item-type-name	0xa82c10	0xa85d12	 
+steam	reagent-item-type-name	0xa82c10	0xa85d82	 
+steam	reagent-item-type-name	0xa82c10	0xa85df2	 
+steam	reagent-item-type-name	0xa82c10	0xa85e62	 
+steam	reagent-item-type-name	0xa82c10	0xa85ece	h
+steam	reagent-item-type-name	0xa82c10	0xa85f7e	 
+steam	reagent-item-type-name	0xa82c10	0xa85fdb	 
+steam	reagent-item-type-name	0xa82c10	0xa8605b	 
+steam	reagent-item-type-name	0xa82c10	0xa860cb	 
+steam	reagent-item-type-name	0xa82c10	0xa8613b	 
+steam	reagent-item-type-name	0xa82c10	0xa862bc	s
+steam	reagent-item-type-name	0xa82c10	0xa86370	s
+steam	reagent-item-type-name	0xa82c10	0xa8642c	 
+steam	reagent-item-type-name	0xa82c10	0xa86496	 
+steam	reagent-item-type-name	0xa82c10	0xa86506	 
+steam	reagent-item-type-name	0xa82c10	0xa86576	 
+steam	reagent-item-type-name	0xa82c10	0xa865e6	 
+steam	reagent-item-type-name	0xa82c10	0xa86656	 
+steam	reagent-item-type-name	0xa82c10	0xa866c6	 
+steam	reagent-item-type-name	0xa82c10	0xa86736	 
+steam	reagent-item-type-name	0xa82c10	0xa867a6	 
+steam	reagent-item-type-name	0xa82c10	0xa86c58	 
+steam	reagent-item-type-name	0xa82c10	0xa86dd9	 
+steam	reagent-item-type-name	0xa82c10	0xa874a3	 
+steam	reagent-item-type-name	0xa82c10	0xa874e0	 
+steam	reagent-item-type-name	0xa82c10	0xa875f8	 
+steam	reagent-item-type-name	0xa82c10	0xa87691	 
+steam	reagent-item-type-name	0xa82c10	0xa876ce	 
+steam	reagent-item-type-name	0xa82c10	0xa87757	 
+steam	reagent-item-type-name	0xa82c10	0xa877b9	 
+steam	reagent-item-type-name	0xa82c10	0xa87843	 
+steam	reagent-item-type-name	0xa82c10	0xa87854	/
+steam	reagent-item-type-name	0xa82c10	0xa878ab	 
+steam	reagent-item-type-name	0xa82c10	0xa8794f	 
+steam	reagent-item-type-name	0xa82c10	0xa879d4	/
+steam	reagent-item-type-name	0xa82c10	0xa87b0d	 
+steam	reagent-item-type-name	0xa82c10	0xa87b2f	s
+steam	reagent-item-type-name	0xa82c10	0xa87b6c	 
+steam	reagent-item-type-name	0xa82c10	0xa87c0f	 
+steam	reagent-item-type-name	0xa82c10	0xa87ce9	 
+steam	reagent-item-type-name	0xa82c10	0xa87d8f	 
+steam	reagent-item-type-name	0xa82c10	0xa87e47	 
+steam	reagent-item-type-name	0xa82c10	0xa87e98	 
+steam	reagent-item-type-name	0xa82c10	0xa87eea	 
+steam	reagent-item-type-name	0xa82c10	0xa87f09	 
+steam	reagent-item-type-name	0xa82c10	0xa87f93	 
+steam	reagent-item-type-name	0xa82c10	0xa8803c	 
+steam	reagent-item-type-name	0xa82c10	0xa88061	s
+steam	reagent-item-type-name	0xa82c10	0xa8818c	d
+classic	craft-render	0x279930	0x2799d6	'
+classic	craft-render	0x279930	0x279eba	 
+classic	craft-render	0x279930	0x279f2d	 
+classic	craft-render	0x279930	0x279f89	P
+classic	craft-render	0x279930	0x27a051	VUUU
+classic	craft-render	0x279930	0x27a0c5	 
+classic	craft-render	0x279930	0x27a15b	 
+classic	craft-render	0x279930	0x27a1c6	 
+classic	craft-render	0x279930	0x27a6ec	.
+classic	craft-render	0x279930	0x27a6ff	.
+classic	craft-render	0x279930	0x27a712	.
+classic	craft-render	0x279930	0x27a795	 
+classic	craft-render	0x279930	0x27a83a	 
+classic	craft-render	0x279930	0x27a8db	 
+classic	craft-input	0x27ae70	0x27af23	*#
+classic	craft-input	0x27ae70	0x27af7a	VUUU
+classic	craft-input	0x27ae70	0x27b206	*#
+classic	craft-input	0x27ae70	0x27b3e1	R
+classic	craft-input	0x27ae70	0x27b575	h
+classic	craft-input	0x27ae70	0x27b5c3	`
+classic	craft-input	0x27ae70	0x27b93f	h
+classic	craft-input	0x27ae70	0x27b98d	`
+classic	craft-input	0x27ae70	0x27be05	h
+classic	craft-input	0x27ae70	0x27be53	`
+classic	butcher-and-reagent-selection	0x27bec0	0x27bf94	*#
+classic	butcher-and-reagent-selection	0x27bec0	0x27bfc1	'
+classic	butcher-and-reagent-selection	0x27bec0	0x27c006	VUUU
+classic	butcher-and-reagent-selection	0x27bec0	0x27c267	*#
+classic	butcher-and-reagent-selection	0x27bec0	0x27c7ae	2
+classic	butcher-and-reagent-selection	0x27bec0	0x27ca26	d
+classic	reagent-availability	0x27cdf0	0x27ce37	VUUU
+classic	reagent-candidates	0x27cf50	0x27d013	'
+classic	reagent-candidates	0x27cf50	0x27d067	VUUU
+classic	category-tree-builder	0x27d150	0x27d1f1	 
+classic	category-tree-builder	0x27d150	0x27d475	 
+classic	category-tree-builder	0x27d150	0x27d910	 
+classic	reagent-choice	0x27dd60	0x27dd99	0
+classic	reagent-choice	0x27dd60	0x27de93	0
+classic	reaction-completion	0x27e070	0x27e465	2
+classic	reaction-completion	0x27e070	0x27e479	p
+classic	reaction-completion	0x27e070	0x27e70d	 
+classic	reaction-completion	0x27e070	0x27e87c	2
+classic	reaction-completion	0x27e070	0x27e890	p
+classic	reaction-completion	0x27e070	0x27ea8b	 
+classic	reaction-completion	0x27e070	0x27ebdd	0
+classic	reaction-raw-parser	0xeccb40	0xecd60f	 
+classic	reaction-raw-parser	0xeccb40	0xece031	:
+classic	reaction-raw-parser	0xeccb40	0xece9a8	:
+classic	reaction-raw-parser	0xeccb40	0xecea1b	:
+classic	reaction-raw-parser	0xeccb40	0xecea78	:
+classic	reaction-raw-parser	0xeccb40	0xeceae7	:
+classic	reaction-raw-parser	0xeccb40	0xeceb13	:
+classic	reaction-raw-parser	0xeccb40	0xecebc5	:
+classic	reaction-raw-parser	0xeccb40	0xecec33	:
+classic	reaction-raw-parser	0xeccb40	0xececa5	:
+classic	reaction-raw-parser	0xeccb40	0xecedbe	:
+classic	reaction-raw-parser	0xeccb40	0xecee1b	:
+classic	reaction-raw-parser	0xeccb40	0xecee78	:
+classic	reaction-raw-parser	0xeccb40	0xeceed9	:
+classic	reaction-raw-parser	0xeccb40	0xecef6e	:
+classic	reaction-raw-parser	0xeccb40	0xecefae	:
+classic	reaction-raw-parser	0xeccb40	0xecefd6	H
+classic	reaction-raw-parser	0xeccb40	0xeceff2	V
+classic	reaction-raw-parser	0xeccb40	0xecf055	:
+classic	reaction-raw-parser	0xeccb40	0xecf07d	H
+classic	reaction-raw-parser	0xeccb40	0xecf0da	H
+classic	reaction-raw-parser	0xeccb40	0xecf13f	:
+classic	reaction-raw-parser	0xeccb40	0xecf19a	:
+classic	reaction-raw-parser	0xeccb40	0xecf20c	:
+classic	reaction-raw-parser	0xeccb40	0xecf23b	:
+classic	reaction-raw-parser	0xeccb40	0xecf277	:
+classic	reaction-raw-parser	0xeccb40	0xecf2d2	:
+classic	reaction-raw-parser	0xeccb40	0xecf3bb	:
+classic	reaction-raw-parser	0xeccb40	0xecf403	:
+classic	reaction-raw-parser	0xeccb40	0xecf429	:
+classic	reaction-raw-parser	0xeccb40	0xecf46d	:
+classic	reaction-raw-parser	0xeccb40	0xecf62b	:
+classic	reaction-raw-parser	0xeccb40	0xecf68b	:
+classic	reaction-raw-parser	0xeccb40	0xecf6a4	:
+classic	reaction-raw-parser	0xeccb40	0xecf6cd	:
+classic	reaction-raw-parser	0xeccb40	0xecf70a	:
+classic	reaction-raw-parser	0xeccb40	0xecf734	:
+classic	reaction-raw-parser	0xeccb40	0xecf790	:
+classic	reaction-raw-parser	0xeccb40	0xecf8dc	:
+classic	reaction-raw-parser	0xeccb40	0xecf91b	:
+classic	reaction-raw-parser	0xeccb40	0xecf934	:
+classic	reaction-raw-parser	0xeccb40	0xecf9a6	:
+classic	reaction-raw-parser	0xeccb40	0xecf9c3	:
+classic	reaction-raw-parser	0xeccb40	0xecf9ed	:
+classic	reaction-raw-parser	0xeccb40	0xecfa46	:
+classic	reaction-raw-parser	0xeccb40	0xecfb54	:
+classic	reaction-raw-parser	0xeccb40	0xecfb71	:
+classic	reaction-raw-parser	0xeccb40	0xecfb9b	:
+classic	reaction-raw-parser	0xeccb40	0xecfbf4	:
+classic	reaction-raw-parser	0xeccb40	0xecfcf1	:
+classic	reaction-raw-parser	0xeccb40	0xecfd1b	:
+classic	reaction-raw-parser	0xeccb40	0xecfd74	:
+classic	reaction-raw-parser	0xeccb40	0xecfe7f	:
+classic	reaction-raw-parser	0xeccb40	0xecfedc	:
+classic	reaction-raw-parser	0xeccb40	0xecff39	:
+classic	reaction-raw-parser	0xeccb40	0xed0116	:
+classic	reaction-raw-parser	0xeccb40	0xed016e	:
+classic	reagent-item-filter-description	0xa285e0	0xa286bf	 
+classic	reagent-item-filter-description	0xa285e0	0xa294ad	 
+classic	reagent-item-type-name	0xa7fc90	0xa7feca	 
+classic	reagent-item-type-name	0xa7fc90	0xa7ff4e	 
+classic	reagent-item-type-name	0xa7fc90	0xa8015c	 
+classic	reagent-item-type-name	0xa7fc90	0xa80699	 
+classic	reagent-item-type-name	0xa7fc90	0xa80754	 
+classic	reagent-item-type-name	0xa7fc90	0xa8080a	 
+classic	reagent-item-type-name	0xa7fc90	0xa8087a	 
+classic	reagent-item-type-name	0xa7fc90	0xa808ea	 
+classic	reagent-item-type-name	0xa7fc90	0xa8095a	 
+classic	reagent-item-type-name	0xa7fc90	0xa809ca	 
+classic	reagent-item-type-name	0xa7fc90	0xa80a3a	 
+classic	reagent-item-type-name	0xa7fc90	0xa80aaa	 
+classic	reagent-item-type-name	0xa7fc90	0xa80b1a	 
+classic	reagent-item-type-name	0xa7fc90	0xa80b8a	 
+classic	reagent-item-type-name	0xa7fc90	0xa80bfe	/
+classic	reagent-item-type-name	0xa7fc90	0xa80cd4	 
+classic	reagent-item-type-name	0xa7fc90	0xa80d0e	 
+classic	reagent-item-type-name	0xa7fc90	0xa80d6f	 
+classic	reagent-item-type-name	0xa7fc90	0xa80e0b	 
+classic	reagent-item-type-name	0xa7fc90	0xa80e32	 
+classic	reagent-item-type-name	0xa7fc90	0xa80ea7	 
+classic	reagent-item-type-name	0xa7fc90	0xa80f26	 
+classic	reagent-item-type-name	0xa7fc90	0xa80f96	 
+classic	reagent-item-type-name	0xa7fc90	0xa80fca	 
+classic	reagent-item-type-name	0xa7fc90	0xa8102b	 
+classic	reagent-item-type-name	0xa7fc90	0xa8109b	 
+classic	reagent-item-type-name	0xa7fc90	0xa811a2	 
+classic	reagent-item-type-name	0xa7fc90	0xa81238	>
+classic	reagent-item-type-name	0xa7fc90	0xa812cb	 
+classic	reagent-item-type-name	0xa7fc90	0xa8136d	>
+classic	reagent-item-type-name	0xa7fc90	0xa81390	1
+classic	reagent-item-type-name	0xa7fc90	0xa81430	 
+classic	reagent-item-type-name	0xa7fc90	0xa81496	h
+classic	reagent-item-type-name	0xa7fc90	0xa81522	A
+classic	reagent-item-type-name	0xa7fc90	0xa815b0	 
+classic	reagent-item-type-name	0xa7fc90	0xa81663	 
+classic	reagent-item-type-name	0xa7fc90	0xa8167a	h
+classic	reagent-item-type-name	0xa7fc90	0xa8173d	 
+classic	reagent-item-type-name	0xa7fc90	0xa8179a	h
+classic	reagent-item-type-name	0xa7fc90	0xa8180e	 
+classic	reagent-item-type-name	0xa7fc90	0xa8184c	/
+classic	reagent-item-type-name	0xa7fc90	0xa818db	 
+classic	reagent-item-type-name	0xa7fc90	0xa8194b	 
+classic	reagent-item-type-name	0xa7fc90	0xa81a05	 
+classic	reagent-item-type-name	0xa7fc90	0xa81a75	 
+classic	reagent-item-type-name	0xa7fc90	0xa81ae5	 
+classic	reagent-item-type-name	0xa7fc90	0xa81b55	 
+classic	reagent-item-type-name	0xa7fc90	0xa81bee	 
+classic	reagent-item-type-name	0xa7fc90	0xa81ca7	>
+classic	reagent-item-type-name	0xa7fc90	0xa81d35	 
+classic	reagent-item-type-name	0xa7fc90	0xa81e3f	 
+classic	reagent-item-type-name	0xa7fc90	0xa81fd0	 
+classic	reagent-item-type-name	0xa7fc90	0xa829b0	 
+classic	reagent-item-type-name	0xa7fc90	0xa82a28	 
+classic	reagent-item-type-name	0xa7fc90	0xa82aa0	 
+classic	reagent-item-type-name	0xa7fc90	0xa82b18	 
+classic	reagent-item-type-name	0xa7fc90	0xa82c07	 
+classic	reagent-item-type-name	0xa7fc90	0xa82c9e	 
+classic	reagent-item-type-name	0xa7fc90	0xa82d1a	 
+classic	reagent-item-type-name	0xa7fc90	0xa82d92	 
+classic	reagent-item-type-name	0xa7fc90	0xa82e02	 
+classic	reagent-item-type-name	0xa7fc90	0xa82e72	 
+classic	reagent-item-type-name	0xa7fc90	0xa82ee2	 
+classic	reagent-item-type-name	0xa7fc90	0xa82f4e	h
+classic	reagent-item-type-name	0xa7fc90	0xa82ffe	 
+classic	reagent-item-type-name	0xa7fc90	0xa8305b	 
+classic	reagent-item-type-name	0xa7fc90	0xa830db	 
+classic	reagent-item-type-name	0xa7fc90	0xa8314b	 
+classic	reagent-item-type-name	0xa7fc90	0xa831bb	 
+classic	reagent-item-type-name	0xa7fc90	0xa8333c	s
+classic	reagent-item-type-name	0xa7fc90	0xa833f0	s
+classic	reagent-item-type-name	0xa7fc90	0xa834ac	 
+classic	reagent-item-type-name	0xa7fc90	0xa83516	 
+classic	reagent-item-type-name	0xa7fc90	0xa83586	 
+classic	reagent-item-type-name	0xa7fc90	0xa835f6	 
+classic	reagent-item-type-name	0xa7fc90	0xa83666	 
+classic	reagent-item-type-name	0xa7fc90	0xa836d6	 
+classic	reagent-item-type-name	0xa7fc90	0xa83746	 
+classic	reagent-item-type-name	0xa7fc90	0xa837b6	 
+classic	reagent-item-type-name	0xa7fc90	0xa83826	 
+classic	reagent-item-type-name	0xa7fc90	0xa83cd8	 
+classic	reagent-item-type-name	0xa7fc90	0xa83e59	 
+classic	reagent-item-type-name	0xa7fc90	0xa84523	 
+classic	reagent-item-type-name	0xa7fc90	0xa84560	 
+classic	reagent-item-type-name	0xa7fc90	0xa84678	 
+classic	reagent-item-type-name	0xa7fc90	0xa84711	 
+classic	reagent-item-type-name	0xa7fc90	0xa8474e	 
+classic	reagent-item-type-name	0xa7fc90	0xa847d7	 
+classic	reagent-item-type-name	0xa7fc90	0xa84839	 
+classic	reagent-item-type-name	0xa7fc90	0xa848c3	 
+classic	reagent-item-type-name	0xa7fc90	0xa848d4	/
+classic	reagent-item-type-name	0xa7fc90	0xa8492b	 
+classic	reagent-item-type-name	0xa7fc90	0xa849cf	 
+classic	reagent-item-type-name	0xa7fc90	0xa84a54	/
+classic	reagent-item-type-name	0xa7fc90	0xa84b8d	 
+classic	reagent-item-type-name	0xa7fc90	0xa84baf	s
+classic	reagent-item-type-name	0xa7fc90	0xa84bec	 
+classic	reagent-item-type-name	0xa7fc90	0xa84c8f	 
+classic	reagent-item-type-name	0xa7fc90	0xa84d69	 
+classic	reagent-item-type-name	0xa7fc90	0xa84e0f	 
+classic	reagent-item-type-name	0xa7fc90	0xa84ec7	 
+classic	reagent-item-type-name	0xa7fc90	0xa84f18	 
+classic	reagent-item-type-name	0xa7fc90	0xa84f6a	 
+classic	reagent-item-type-name	0xa7fc90	0xa84f89	 
+classic	reagent-item-type-name	0xa7fc90	0xa85013	 
+classic	reagent-item-type-name	0xa7fc90	0xa850bc	 
+classic	reagent-item-type-name	0xa7fc90	0xa850e1	s
+classic	reagent-item-type-name	0xa7fc90	0xa85234	=
+classic	reagent-item-type-name	0xa7fc90	0xa85300	'
+classic	reagent-item-type-name	0xa7fc90	0xa85304	'
+classic	reagent-item-type-name	0xa7fc90	0xa85308	'
+classic	reagent-item-type-name	0xa7fc90	0xa8530c	'
+classic	reagent-item-type-name	0xa7fc90	0xa85310	'

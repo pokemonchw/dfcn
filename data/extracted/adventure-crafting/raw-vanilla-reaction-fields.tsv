@@ -1,0 +1,865 @@
+image	path	line	reaction	category	token	value
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	5	MAKE WOODEN CHAIR	ADV_CARPENTRY	REACTION	MAKE WOODEN CHAIR
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	6	MAKE WOODEN CHAIR	ADV_CARPENTRY	NAME	make wooden chair
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	7	MAKE WOODEN CHAIR	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	8	MAKE WOODEN CHAIR	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	9	MAKE WOODEN CHAIR	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	10	MAKE WOODEN CHAIR	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	11	MAKE WOODEN CHAIR	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	12	MAKE WOODEN CHAIR	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	12	MAKE WOODEN CHAIR	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	13	MAKE WOODEN CHAIR	ADV_CARPENTRY	PRODUCT	100:1:CHAIR:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	14	MAKE WOODEN CHAIR	ADV_CARPENTRY	PRODUCT_TOKEN	chair
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	15	MAKE WOODEN CHAIR	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	16	MAKE WOODEN CHAIR	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	17	MAKE WOODEN CHAIR	ADV_CARPENTRY	CATEGORY_NAME	Carpentry
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	18	MAKE WOODEN CHAIR	ADV_CARPENTRY	CATEGORY_DESCRIPTION	Make furniture at a carpenter's workshop using logs and a sharp tool.
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	20	MAKE WOODEN TABLE	ADV_CARPENTRY	REACTION	MAKE WOODEN TABLE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	21	MAKE WOODEN TABLE	ADV_CARPENTRY	NAME	make wooden table
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	22	MAKE WOODEN TABLE	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	23	MAKE WOODEN TABLE	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	24	MAKE WOODEN TABLE	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	25	MAKE WOODEN TABLE	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	26	MAKE WOODEN TABLE	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	27	MAKE WOODEN TABLE	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	27	MAKE WOODEN TABLE	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	28	MAKE WOODEN TABLE	ADV_CARPENTRY	PRODUCT	100:1:TABLE:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	29	MAKE WOODEN TABLE	ADV_CARPENTRY	PRODUCT_TOKEN	table
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	30	MAKE WOODEN TABLE	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	31	MAKE WOODEN TABLE	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	33	MAKE WOODEN BED	ADV_CARPENTRY	REACTION	MAKE WOODEN BED
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	34	MAKE WOODEN BED	ADV_CARPENTRY	NAME	make wooden bed
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	35	MAKE WOODEN BED	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	36	MAKE WOODEN BED	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	37	MAKE WOODEN BED	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	38	MAKE WOODEN BED	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	39	MAKE WOODEN BED	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	40	MAKE WOODEN BED	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	40	MAKE WOODEN BED	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	41	MAKE WOODEN BED	ADV_CARPENTRY	PRODUCT	100:1:BED:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	42	MAKE WOODEN BED	ADV_CARPENTRY	PRODUCT_TOKEN	bed
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	43	MAKE WOODEN BED	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	44	MAKE WOODEN BED	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	46	MAKE WOODEN CHEST	ADV_CARPENTRY	REACTION	MAKE WOODEN CHEST
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	47	MAKE WOODEN CHEST	ADV_CARPENTRY	NAME	make wooden chest
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	48	MAKE WOODEN CHEST	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	49	MAKE WOODEN CHEST	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	50	MAKE WOODEN CHEST	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	51	MAKE WOODEN CHEST	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	52	MAKE WOODEN CHEST	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	53	MAKE WOODEN CHEST	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	53	MAKE WOODEN CHEST	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	54	MAKE WOODEN CHEST	ADV_CARPENTRY	PRODUCT	100:1:BOX:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	55	MAKE WOODEN CHEST	ADV_CARPENTRY	PRODUCT_TOKEN	chest
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	56	MAKE WOODEN CHEST	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	57	MAKE WOODEN CHEST	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	59	MAKE WOODEN CABINET	ADV_CARPENTRY	REACTION	MAKE WOODEN CABINET
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	60	MAKE WOODEN CABINET	ADV_CARPENTRY	NAME	make wooden cabinet
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	61	MAKE WOODEN CABINET	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	62	MAKE WOODEN CABINET	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	63	MAKE WOODEN CABINET	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	64	MAKE WOODEN CABINET	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	65	MAKE WOODEN CABINET	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	66	MAKE WOODEN CABINET	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	66	MAKE WOODEN CABINET	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	67	MAKE WOODEN CABINET	ADV_CARPENTRY	PRODUCT	100:1:CABINET:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	68	MAKE WOODEN CABINET	ADV_CARPENTRY	PRODUCT_TOKEN	cabinet
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	69	MAKE WOODEN CABINET	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	70	MAKE WOODEN CABINET	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	72	MAKE WOODEN DOOR	ADV_CARPENTRY	REACTION	MAKE WOODEN DOOR
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	73	MAKE WOODEN DOOR	ADV_CARPENTRY	NAME	make wooden door
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	74	MAKE WOODEN DOOR	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	75	MAKE WOODEN DOOR	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	76	MAKE WOODEN DOOR	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	77	MAKE WOODEN DOOR	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	78	MAKE WOODEN DOOR	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	79	MAKE WOODEN DOOR	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	79	MAKE WOODEN DOOR	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	80	MAKE WOODEN DOOR	ADV_CARPENTRY	PRODUCT	100:1:DOOR:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	81	MAKE WOODEN DOOR	ADV_CARPENTRY	PRODUCT_TOKEN	door
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	82	MAKE WOODEN DOOR	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	83	MAKE WOODEN DOOR	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	85	MAKE WOODEN BARREL	ADV_CARPENTRY	REACTION	MAKE WOODEN BARREL
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	86	MAKE WOODEN BARREL	ADV_CARPENTRY	NAME	make wooden barrel
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	87	MAKE WOODEN BARREL	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	88	MAKE WOODEN BARREL	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	89	MAKE WOODEN BARREL	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	90	MAKE WOODEN BARREL	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	91	MAKE WOODEN BARREL	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	92	MAKE WOODEN BARREL	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	92	MAKE WOODEN BARREL	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	93	MAKE WOODEN BARREL	ADV_CARPENTRY	PRODUCT	100:1:BARREL:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	94	MAKE WOODEN BARREL	ADV_CARPENTRY	PRODUCT_TOKEN	barrel
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	95	MAKE WOODEN BARREL	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	96	MAKE WOODEN BARREL	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	98	MAKE WOODEN BUCKET	ADV_CARPENTRY	REACTION	MAKE WOODEN BUCKET
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	99	MAKE WOODEN BUCKET	ADV_CARPENTRY	NAME	make wooden bucket
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	100	MAKE WOODEN BUCKET	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	101	MAKE WOODEN BUCKET	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	102	MAKE WOODEN BUCKET	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	103	MAKE WOODEN BUCKET	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	104	MAKE WOODEN BUCKET	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	105	MAKE WOODEN BUCKET	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	105	MAKE WOODEN BUCKET	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	106	MAKE WOODEN BUCKET	ADV_CARPENTRY	PRODUCT	100:1:BUCKET:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	107	MAKE WOODEN BUCKET	ADV_CARPENTRY	PRODUCT_TOKEN	bucket
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	108	MAKE WOODEN BUCKET	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	109	MAKE WOODEN BUCKET	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	111	MAKE WOODEN CASKET	ADV_CARPENTRY	REACTION	MAKE WOODEN CASKET
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	112	MAKE WOODEN CASKET	ADV_CARPENTRY	NAME	make wooden casket
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	113	MAKE WOODEN CASKET	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	114	MAKE WOODEN CASKET	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	115	MAKE WOODEN CASKET	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	116	MAKE WOODEN CASKET	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	117	MAKE WOODEN CASKET	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	118	MAKE WOODEN CASKET	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	118	MAKE WOODEN CASKET	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	119	MAKE WOODEN CASKET	ADV_CARPENTRY	PRODUCT	100:1:COFFIN:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	120	MAKE WOODEN CASKET	ADV_CARPENTRY	PRODUCT_TOKEN	casket
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	121	MAKE WOODEN CASKET	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	122	MAKE WOODEN CASKET	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	124	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	REACTION	MAKE WOODEN HATCH COVER
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	125	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	NAME	make wooden hatch cover
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	126	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	127	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	128	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	129	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	130	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	131	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	131	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	132	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	PRODUCT	100:1:HATCH_COVER:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	133	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	PRODUCT_TOKEN	hatch cover
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	134	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	135	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	137	MAKE WOODEN GRATE	ADV_CARPENTRY	REACTION	MAKE WOODEN GRATE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	138	MAKE WOODEN GRATE	ADV_CARPENTRY	NAME	make wooden grate
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	139	MAKE WOODEN GRATE	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	140	MAKE WOODEN GRATE	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	141	MAKE WOODEN GRATE	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	142	MAKE WOODEN GRATE	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	143	MAKE WOODEN GRATE	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	144	MAKE WOODEN GRATE	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	144	MAKE WOODEN GRATE	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	145	MAKE WOODEN GRATE	ADV_CARPENTRY	PRODUCT	100:1:GRATE:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	146	MAKE WOODEN GRATE	ADV_CARPENTRY	PRODUCT_TOKEN	grate
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	147	MAKE WOODEN GRATE	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	148	MAKE WOODEN GRATE	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	150	MAKE WOODEN BIN	ADV_CARPENTRY	REACTION	MAKE WOODEN BIN
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	151	MAKE WOODEN BIN	ADV_CARPENTRY	NAME	make wooden bin
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	152	MAKE WOODEN BIN	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	153	MAKE WOODEN BIN	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	154	MAKE WOODEN BIN	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	155	MAKE WOODEN BIN	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	156	MAKE WOODEN BIN	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	157	MAKE WOODEN BIN	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	157	MAKE WOODEN BIN	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	158	MAKE WOODEN BIN	ADV_CARPENTRY	PRODUCT	100:1:BIN:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	159	MAKE WOODEN BIN	ADV_CARPENTRY	PRODUCT_TOKEN	bin
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	160	MAKE WOODEN BIN	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	161	MAKE WOODEN BIN	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	163	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	REACTION	MAKE WOODEN STEPLADDER
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	164	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	NAME	make wooden stepladder
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	165	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	166	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	167	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	168	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	169	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	170	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	170	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	171	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	PRODUCT	100:1:TOOL:ITEM_TOOL_STEPLADDER:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	172	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	PRODUCT_TOKEN	stepladder
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	173	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	174	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	176	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	REACTION	MAKE WOODEN BOOKCASE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	177	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	NAME	make wooden bookcase
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	178	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	179	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	180	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	181	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	182	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	183	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	183	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	184	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	PRODUCT	100:1:TOOL:ITEM_TOOL_BOOKCASE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	185	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	PRODUCT_TOKEN	bookcase
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	186	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	187	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	189	MAKE WOODEN SPLINT	ADV_CARPENTRY	REACTION	MAKE WOODEN SPLINT
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	190	MAKE WOODEN SPLINT	ADV_CARPENTRY	NAME	make wooden splint
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	191	MAKE WOODEN SPLINT	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	192	MAKE WOODEN SPLINT	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	193	MAKE WOODEN SPLINT	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	194	MAKE WOODEN SPLINT	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	195	MAKE WOODEN SPLINT	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	196	MAKE WOODEN SPLINT	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	196	MAKE WOODEN SPLINT	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	197	MAKE WOODEN SPLINT	ADV_CARPENTRY	PRODUCT	100:1:SPLINT:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	198	MAKE WOODEN SPLINT	ADV_CARPENTRY	PRODUCT_TOKEN	splint
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	199	MAKE WOODEN SPLINT	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	200	MAKE WOODEN SPLINT	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	202	MAKE WOODEN CRUTCH	ADV_CARPENTRY	REACTION	MAKE WOODEN CRUTCH
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	203	MAKE WOODEN CRUTCH	ADV_CARPENTRY	NAME	make wooden crutch
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	204	MAKE WOODEN CRUTCH	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	205	MAKE WOODEN CRUTCH	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	206	MAKE WOODEN CRUTCH	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	207	MAKE WOODEN CRUTCH	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	208	MAKE WOODEN CRUTCH	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	209	MAKE WOODEN CRUTCH	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	209	MAKE WOODEN CRUTCH	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	210	MAKE WOODEN CRUTCH	ADV_CARPENTRY	PRODUCT	100:1:CRUTCH:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	211	MAKE WOODEN CRUTCH	ADV_CARPENTRY	PRODUCT_TOKEN	crutch
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	212	MAKE WOODEN CRUTCH	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	213	MAKE WOODEN CRUTCH	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	215	MAKE WOODEN SHIELD	ADV_CARPENTRY	REACTION	MAKE WOODEN SHIELD
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	216	MAKE WOODEN SHIELD	ADV_CARPENTRY	NAME	make wooden shield
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	217	MAKE WOODEN SHIELD	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	218	MAKE WOODEN SHIELD	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	219	MAKE WOODEN SHIELD	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	220	MAKE WOODEN SHIELD	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	221	MAKE WOODEN SHIELD	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	222	MAKE WOODEN SHIELD	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	222	MAKE WOODEN SHIELD	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	223	MAKE WOODEN SHIELD	ADV_CARPENTRY	PRODUCT	100:1:SHIELD:ITEM_SHIELD_SHIELD:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	224	MAKE WOODEN SHIELD	ADV_CARPENTRY	PRODUCT_TOKEN	shield
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	225	MAKE WOODEN SHIELD	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	226	MAKE WOODEN SHIELD	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	228	MAKE WOODEN BUCKLER	ADV_CARPENTRY	REACTION	MAKE WOODEN BUCKLER
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	229	MAKE WOODEN BUCKLER	ADV_CARPENTRY	NAME	make wooden buckler
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	230	MAKE WOODEN BUCKLER	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	231	MAKE WOODEN BUCKLER	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	232	MAKE WOODEN BUCKLER	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	233	MAKE WOODEN BUCKLER	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	234	MAKE WOODEN BUCKLER	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	235	MAKE WOODEN BUCKLER	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	235	MAKE WOODEN BUCKLER	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	236	MAKE WOODEN BUCKLER	ADV_CARPENTRY	PRODUCT	100:1:SHIELD:ITEM_SHIELD_BUCKLER:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	237	MAKE WOODEN BUCKLER	ADV_CARPENTRY	PRODUCT_TOKEN	buckler
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	238	MAKE WOODEN BUCKLER	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	239	MAKE WOODEN BUCKLER	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	241	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	REACTION	MAKE WOODEN TRAINING AXE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	242	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	NAME	make wooden training axe
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	243	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	244	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	245	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	246	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	247	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	248	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	248	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	249	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	PRODUCT	100:1:WEAPON:ITEM_WEAPON_AXE_TRAINING:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	250	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	PRODUCT_TOKEN	axe
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	251	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	252	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	254	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	REACTION	MAKE WOODEN TRAINING SHORT SWORD
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	255	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	NAME	make wooden training short sword
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	256	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	257	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	258	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	259	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	260	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	261	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	261	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	262	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	PRODUCT	100:1:WEAPON:ITEM_WEAPON_SWORD_SHORT_TRAINING:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	263	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	PRODUCT_TOKEN	sword
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	264	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	265	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	267	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	REACTION	MAKE WOODEN TRAINING SPEAR
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	268	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	NAME	make wooden training spear
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	269	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	270	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	271	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	272	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	273	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	274	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	274	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	275	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	PRODUCT	100:1:WEAPON:ITEM_WEAPON_SPEAR_TRAINING:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	276	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	PRODUCT_TOKEN	spear
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	277	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	278	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	280	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	REACTION	MAKE WOODEN PEDESTAL
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	281	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	NAME	make wooden pedestal
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	282	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	283	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	284	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	285	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	286	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	287	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	287	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	288	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	PRODUCT	100:1:TOOL:ITEM_TOOL_PEDESTAL:GET_MATERIAL_FROM_REAGENT:log:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	289	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	PRODUCT_TOKEN	pedestal
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	290	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	291	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	76	MAKE_SHARP_ROCK		REACTION	MAKE_SHARP_ROCK
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	77	MAKE_SHARP_ROCK		NAME	make sharp rock
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	78	MAKE_SHARP_ROCK		ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	79	MAKE_SHARP_ROCK		REAGENT	tool stone:1:ROCK:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	79	MAKE_SHARP_ROCK		NO_EDGE_ALLOWED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	80	MAKE_SHARP_ROCK		REAGENT	hammerstone:1:ROCK:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	80	MAKE_SHARP_ROCK		PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	80	MAKE_SHARP_ROCK		NO_EDGE_ALLOWED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	81	MAKE_SHARP_ROCK		PRODUCT	100:1:ROCK:NONE:GET_MATERIAL_FROM_REAGENT:tool stone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	81	MAKE_SHARP_ROCK		FORCE_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	82	MAKE_SHARP_ROCK		SKILL	KNAPPING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	439	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	REACTION	CARVE_BONE_FIGURINE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	440	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	NAME	carve bone figurine
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	441	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	442	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	443	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	443	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	443	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	UNROTTEN	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	444	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	445	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	445	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	446	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	PRODUCT	100:1:FIGURINE:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	447	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	PRODUCT_TOKEN	figurine
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	448	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	SKILL	BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	449	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	450	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	CATEGORY_NAME	Carve bone
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	451	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	CATEGORY_DESCRIPTION	Make crafts from bone using a sharp weapon or tool.
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	453	CARVE_BONE_RING	ADV_BONE_CARVING	REACTION	CARVE_BONE_RING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	454	CARVE_BONE_RING	ADV_BONE_CARVING	NAME	carve bone ring
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	455	CARVE_BONE_RING	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	456	CARVE_BONE_RING	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	457	CARVE_BONE_RING	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	457	CARVE_BONE_RING	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	457	CARVE_BONE_RING	ADV_BONE_CARVING	UNROTTEN	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	458	CARVE_BONE_RING	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	459	CARVE_BONE_RING	ADV_BONE_CARVING	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	459	CARVE_BONE_RING	ADV_BONE_CARVING	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	460	CARVE_BONE_RING	ADV_BONE_CARVING	PRODUCT	100:1:RING:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	461	CARVE_BONE_RING	ADV_BONE_CARVING	PRODUCT_TOKEN	ring
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	462	CARVE_BONE_RING	ADV_BONE_CARVING	SKILL	BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	463	CARVE_BONE_RING	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	465	CARVE_BONE_EARRING	ADV_BONE_CARVING	REACTION	CARVE_BONE_EARRING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	466	CARVE_BONE_EARRING	ADV_BONE_CARVING	NAME	carve bone earring
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	467	CARVE_BONE_EARRING	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	468	CARVE_BONE_EARRING	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	469	CARVE_BONE_EARRING	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	469	CARVE_BONE_EARRING	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	469	CARVE_BONE_EARRING	ADV_BONE_CARVING	UNROTTEN	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	470	CARVE_BONE_EARRING	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	471	CARVE_BONE_EARRING	ADV_BONE_CARVING	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	471	CARVE_BONE_EARRING	ADV_BONE_CARVING	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	472	CARVE_BONE_EARRING	ADV_BONE_CARVING	PRODUCT	100:1:EARRING:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	473	CARVE_BONE_EARRING	ADV_BONE_CARVING	PRODUCT_TOKEN	earring
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	474	CARVE_BONE_EARRING	ADV_BONE_CARVING	SKILL	BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	475	CARVE_BONE_EARRING	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	477	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	REACTION	CARVE_BONE_SCEPTER
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	478	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	NAME	carve bone scepter
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	479	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	480	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	481	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	481	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	481	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	UNROTTEN	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	482	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	483	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	483	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	484	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	PRODUCT	100:1:SCEPTER:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	485	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	PRODUCT_TOKEN	scepter
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	486	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	SKILL	BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	487	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	489	CARVE_BONE_AMULET	ADV_BONE_CARVING	REACTION	CARVE_BONE_AMULET
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	490	CARVE_BONE_AMULET	ADV_BONE_CARVING	NAME	carve bone amulet
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	491	CARVE_BONE_AMULET	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	492	CARVE_BONE_AMULET	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	493	CARVE_BONE_AMULET	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	493	CARVE_BONE_AMULET	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	493	CARVE_BONE_AMULET	ADV_BONE_CARVING	UNROTTEN	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	494	CARVE_BONE_AMULET	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	495	CARVE_BONE_AMULET	ADV_BONE_CARVING	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	495	CARVE_BONE_AMULET	ADV_BONE_CARVING	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	496	CARVE_BONE_AMULET	ADV_BONE_CARVING	PRODUCT	100:1:AMULET:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	497	CARVE_BONE_AMULET	ADV_BONE_CARVING	PRODUCT_TOKEN	amulet
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	498	CARVE_BONE_AMULET	ADV_BONE_CARVING	SKILL	BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	499	CARVE_BONE_AMULET	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	501	CARVE_BONE_BRACELET	ADV_BONE_CARVING	REACTION	CARVE_BONE_BRACELET
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	502	CARVE_BONE_BRACELET	ADV_BONE_CARVING	NAME	carve bone bracelet
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	503	CARVE_BONE_BRACELET	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	504	CARVE_BONE_BRACELET	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	505	CARVE_BONE_BRACELET	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	505	CARVE_BONE_BRACELET	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	505	CARVE_BONE_BRACELET	ADV_BONE_CARVING	UNROTTEN	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	506	CARVE_BONE_BRACELET	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	507	CARVE_BONE_BRACELET	ADV_BONE_CARVING	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	507	CARVE_BONE_BRACELET	ADV_BONE_CARVING	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	508	CARVE_BONE_BRACELET	ADV_BONE_CARVING	PRODUCT	100:1:BRACELET:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	509	CARVE_BONE_BRACELET	ADV_BONE_CARVING	PRODUCT_TOKEN	bracelet
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	510	CARVE_BONE_BRACELET	ADV_BONE_CARVING	SKILL	BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	511	CARVE_BONE_BRACELET	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	513	CARVE_BONE_CROWN	ADV_BONE_CARVING	REACTION	CARVE_BONE_CROWN
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	514	CARVE_BONE_CROWN	ADV_BONE_CARVING	NAME	carve bone crown
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	515	CARVE_BONE_CROWN	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	516	CARVE_BONE_CROWN	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	517	CARVE_BONE_CROWN	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	517	CARVE_BONE_CROWN	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	517	CARVE_BONE_CROWN	ADV_BONE_CARVING	UNROTTEN	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	518	CARVE_BONE_CROWN	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	519	CARVE_BONE_CROWN	ADV_BONE_CARVING	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	519	CARVE_BONE_CROWN	ADV_BONE_CARVING	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	520	CARVE_BONE_CROWN	ADV_BONE_CARVING	PRODUCT	100:1:CROWN:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	521	CARVE_BONE_CROWN	ADV_BONE_CARVING	PRODUCT_TOKEN	crown
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	522	CARVE_BONE_CROWN	ADV_BONE_CARVING	SKILL	BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	523	CARVE_BONE_CROWN	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	525	CARVE_BONE_GEM	ADV_BONE_CARVING	REACTION	CARVE_BONE_GEM
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	526	CARVE_BONE_GEM	ADV_BONE_CARVING	NAME	carve bone cabochon
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	527	CARVE_BONE_GEM	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	528	CARVE_BONE_GEM	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	529	CARVE_BONE_GEM	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	529	CARVE_BONE_GEM	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	529	CARVE_BONE_GEM	ADV_BONE_CARVING	UNROTTEN	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	530	CARVE_BONE_GEM	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	531	CARVE_BONE_GEM	ADV_BONE_CARVING	PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	531	CARVE_BONE_GEM	ADV_BONE_CARVING	HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	532	CARVE_BONE_GEM	ADV_BONE_CARVING	PRODUCT	100:1:GEM:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	533	CARVE_BONE_GEM	ADV_BONE_CARVING	PRODUCT_TOKEN	gem
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	534	CARVE_BONE_GEM	ADV_BONE_CARVING	SKILL	BONECARVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	535	CARVE_BONE_GEM	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	537	CARVE_WOODEN_HELVE		REACTION	CARVE_WOODEN_HELVE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	538	CARVE_WOODEN_HELVE		NAME	carve wooden helve from branch
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	539	CARVE_WOODEN_HELVE		ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	540	CARVE_WOODEN_HELVE		REAGENT	branch:1:BRANCH:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	541	CARVE_WOODEN_HELVE		ANY_PLANT_MATERIAL	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	542	CARVE_WOODEN_HELVE		REAGENT	tool:1:NONE:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	543	CARVE_WOODEN_HELVE		PRESERVE_REAGENT	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	543	CARVE_WOODEN_HELVE		HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	544	CARVE_WOODEN_HELVE		PRODUCT	100:1:TOOL:ITEM_TOOL_HELVE:GET_MATERIAL_FROM_REAGENT:branch:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	545	CARVE_WOODEN_HELVE		PRODUCT_TOKEN	helve
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	546	CARVE_WOODEN_HELVE		SKILL	CARPENTRY
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	548	ASSEMBLE STONE AXE		REACTION	ASSEMBLE STONE AXE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	549	ASSEMBLE STONE AXE		NAME	assemble stone axe
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	550	ASSEMBLE STONE AXE		ADVENTURE_MODE_ENABLED	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	551	ASSEMBLE STONE AXE		REAGENT	helve:1:TOOL:ITEM_TOOL_HELVE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	552	ASSEMBLE STONE AXE		REAGENT	stone:1:ROCK:NONE:NONE:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	553	ASSEMBLE STONE AXE		HAS_EDGE	
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	554	ASSEMBLE STONE AXE		PRODUCT	100:1:TOOL:ITEM_TOOL_STONE_AXE:GET_MATERIAL_FROM_REAGENT:stone:NONE
+steam	D:\program\steam\steamapps\common\Dwarf Fortress\data\vanilla\vanilla_reactions\objects\reaction_other.txt	555	ASSEMBLE STONE AXE		PRODUCT_TOKEN	axe
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	5	MAKE WOODEN CHAIR	ADV_CARPENTRY	REACTION	MAKE WOODEN CHAIR
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	6	MAKE WOODEN CHAIR	ADV_CARPENTRY	NAME	make wooden chair
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	7	MAKE WOODEN CHAIR	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	8	MAKE WOODEN CHAIR	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	9	MAKE WOODEN CHAIR	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	10	MAKE WOODEN CHAIR	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	11	MAKE WOODEN CHAIR	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	12	MAKE WOODEN CHAIR	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	12	MAKE WOODEN CHAIR	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	13	MAKE WOODEN CHAIR	ADV_CARPENTRY	PRODUCT	100:1:CHAIR:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	14	MAKE WOODEN CHAIR	ADV_CARPENTRY	PRODUCT_TOKEN	chair
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	15	MAKE WOODEN CHAIR	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	16	MAKE WOODEN CHAIR	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	17	MAKE WOODEN CHAIR	ADV_CARPENTRY	CATEGORY_NAME	Carpentry
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	18	MAKE WOODEN CHAIR	ADV_CARPENTRY	CATEGORY_DESCRIPTION	Make furniture at a carpenter's workshop using logs and a sharp tool.
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	20	MAKE WOODEN TABLE	ADV_CARPENTRY	REACTION	MAKE WOODEN TABLE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	21	MAKE WOODEN TABLE	ADV_CARPENTRY	NAME	make wooden table
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	22	MAKE WOODEN TABLE	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	23	MAKE WOODEN TABLE	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	24	MAKE WOODEN TABLE	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	25	MAKE WOODEN TABLE	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	26	MAKE WOODEN TABLE	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	27	MAKE WOODEN TABLE	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	27	MAKE WOODEN TABLE	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	28	MAKE WOODEN TABLE	ADV_CARPENTRY	PRODUCT	100:1:TABLE:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	29	MAKE WOODEN TABLE	ADV_CARPENTRY	PRODUCT_TOKEN	table
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	30	MAKE WOODEN TABLE	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	31	MAKE WOODEN TABLE	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	33	MAKE WOODEN BED	ADV_CARPENTRY	REACTION	MAKE WOODEN BED
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	34	MAKE WOODEN BED	ADV_CARPENTRY	NAME	make wooden bed
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	35	MAKE WOODEN BED	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	36	MAKE WOODEN BED	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	37	MAKE WOODEN BED	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	38	MAKE WOODEN BED	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	39	MAKE WOODEN BED	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	40	MAKE WOODEN BED	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	40	MAKE WOODEN BED	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	41	MAKE WOODEN BED	ADV_CARPENTRY	PRODUCT	100:1:BED:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	42	MAKE WOODEN BED	ADV_CARPENTRY	PRODUCT_TOKEN	bed
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	43	MAKE WOODEN BED	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	44	MAKE WOODEN BED	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	46	MAKE WOODEN CHEST	ADV_CARPENTRY	REACTION	MAKE WOODEN CHEST
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	47	MAKE WOODEN CHEST	ADV_CARPENTRY	NAME	make wooden chest
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	48	MAKE WOODEN CHEST	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	49	MAKE WOODEN CHEST	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	50	MAKE WOODEN CHEST	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	51	MAKE WOODEN CHEST	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	52	MAKE WOODEN CHEST	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	53	MAKE WOODEN CHEST	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	53	MAKE WOODEN CHEST	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	54	MAKE WOODEN CHEST	ADV_CARPENTRY	PRODUCT	100:1:BOX:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	55	MAKE WOODEN CHEST	ADV_CARPENTRY	PRODUCT_TOKEN	chest
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	56	MAKE WOODEN CHEST	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	57	MAKE WOODEN CHEST	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	59	MAKE WOODEN CABINET	ADV_CARPENTRY	REACTION	MAKE WOODEN CABINET
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	60	MAKE WOODEN CABINET	ADV_CARPENTRY	NAME	make wooden cabinet
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	61	MAKE WOODEN CABINET	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	62	MAKE WOODEN CABINET	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	63	MAKE WOODEN CABINET	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	64	MAKE WOODEN CABINET	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	65	MAKE WOODEN CABINET	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	66	MAKE WOODEN CABINET	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	66	MAKE WOODEN CABINET	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	67	MAKE WOODEN CABINET	ADV_CARPENTRY	PRODUCT	100:1:CABINET:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	68	MAKE WOODEN CABINET	ADV_CARPENTRY	PRODUCT_TOKEN	cabinet
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	69	MAKE WOODEN CABINET	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	70	MAKE WOODEN CABINET	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	72	MAKE WOODEN DOOR	ADV_CARPENTRY	REACTION	MAKE WOODEN DOOR
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	73	MAKE WOODEN DOOR	ADV_CARPENTRY	NAME	make wooden door
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	74	MAKE WOODEN DOOR	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	75	MAKE WOODEN DOOR	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	76	MAKE WOODEN DOOR	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	77	MAKE WOODEN DOOR	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	78	MAKE WOODEN DOOR	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	79	MAKE WOODEN DOOR	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	79	MAKE WOODEN DOOR	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	80	MAKE WOODEN DOOR	ADV_CARPENTRY	PRODUCT	100:1:DOOR:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	81	MAKE WOODEN DOOR	ADV_CARPENTRY	PRODUCT_TOKEN	door
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	82	MAKE WOODEN DOOR	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	83	MAKE WOODEN DOOR	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	85	MAKE WOODEN BARREL	ADV_CARPENTRY	REACTION	MAKE WOODEN BARREL
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	86	MAKE WOODEN BARREL	ADV_CARPENTRY	NAME	make wooden barrel
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	87	MAKE WOODEN BARREL	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	88	MAKE WOODEN BARREL	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	89	MAKE WOODEN BARREL	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	90	MAKE WOODEN BARREL	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	91	MAKE WOODEN BARREL	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	92	MAKE WOODEN BARREL	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	92	MAKE WOODEN BARREL	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	93	MAKE WOODEN BARREL	ADV_CARPENTRY	PRODUCT	100:1:BARREL:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	94	MAKE WOODEN BARREL	ADV_CARPENTRY	PRODUCT_TOKEN	barrel
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	95	MAKE WOODEN BARREL	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	96	MAKE WOODEN BARREL	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	98	MAKE WOODEN BUCKET	ADV_CARPENTRY	REACTION	MAKE WOODEN BUCKET
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	99	MAKE WOODEN BUCKET	ADV_CARPENTRY	NAME	make wooden bucket
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	100	MAKE WOODEN BUCKET	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	101	MAKE WOODEN BUCKET	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	102	MAKE WOODEN BUCKET	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	103	MAKE WOODEN BUCKET	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	104	MAKE WOODEN BUCKET	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	105	MAKE WOODEN BUCKET	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	105	MAKE WOODEN BUCKET	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	106	MAKE WOODEN BUCKET	ADV_CARPENTRY	PRODUCT	100:1:BUCKET:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	107	MAKE WOODEN BUCKET	ADV_CARPENTRY	PRODUCT_TOKEN	bucket
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	108	MAKE WOODEN BUCKET	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	109	MAKE WOODEN BUCKET	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	111	MAKE WOODEN CASKET	ADV_CARPENTRY	REACTION	MAKE WOODEN CASKET
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	112	MAKE WOODEN CASKET	ADV_CARPENTRY	NAME	make wooden casket
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	113	MAKE WOODEN CASKET	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	114	MAKE WOODEN CASKET	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	115	MAKE WOODEN CASKET	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	116	MAKE WOODEN CASKET	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	117	MAKE WOODEN CASKET	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	118	MAKE WOODEN CASKET	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	118	MAKE WOODEN CASKET	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	119	MAKE WOODEN CASKET	ADV_CARPENTRY	PRODUCT	100:1:COFFIN:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	120	MAKE WOODEN CASKET	ADV_CARPENTRY	PRODUCT_TOKEN	casket
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	121	MAKE WOODEN CASKET	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	122	MAKE WOODEN CASKET	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	124	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	REACTION	MAKE WOODEN HATCH COVER
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	125	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	NAME	make wooden hatch cover
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	126	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	127	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	128	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	129	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	130	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	131	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	131	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	132	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	PRODUCT	100:1:HATCH_COVER:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	133	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	PRODUCT_TOKEN	hatch cover
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	134	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	135	MAKE WOODEN HATCH COVER	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	137	MAKE WOODEN GRATE	ADV_CARPENTRY	REACTION	MAKE WOODEN GRATE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	138	MAKE WOODEN GRATE	ADV_CARPENTRY	NAME	make wooden grate
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	139	MAKE WOODEN GRATE	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	140	MAKE WOODEN GRATE	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	141	MAKE WOODEN GRATE	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	142	MAKE WOODEN GRATE	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	143	MAKE WOODEN GRATE	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	144	MAKE WOODEN GRATE	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	144	MAKE WOODEN GRATE	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	145	MAKE WOODEN GRATE	ADV_CARPENTRY	PRODUCT	100:1:GRATE:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	146	MAKE WOODEN GRATE	ADV_CARPENTRY	PRODUCT_TOKEN	grate
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	147	MAKE WOODEN GRATE	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	148	MAKE WOODEN GRATE	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	150	MAKE WOODEN BIN	ADV_CARPENTRY	REACTION	MAKE WOODEN BIN
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	151	MAKE WOODEN BIN	ADV_CARPENTRY	NAME	make wooden bin
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	152	MAKE WOODEN BIN	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	153	MAKE WOODEN BIN	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	154	MAKE WOODEN BIN	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	155	MAKE WOODEN BIN	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	156	MAKE WOODEN BIN	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	157	MAKE WOODEN BIN	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	157	MAKE WOODEN BIN	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	158	MAKE WOODEN BIN	ADV_CARPENTRY	PRODUCT	100:1:BIN:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	159	MAKE WOODEN BIN	ADV_CARPENTRY	PRODUCT_TOKEN	bin
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	160	MAKE WOODEN BIN	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	161	MAKE WOODEN BIN	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	163	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	REACTION	MAKE WOODEN STEPLADDER
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	164	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	NAME	make wooden stepladder
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	165	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	166	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	167	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	168	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	169	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	170	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	170	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	171	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	PRODUCT	100:1:TOOL:ITEM_TOOL_STEPLADDER:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	172	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	PRODUCT_TOKEN	stepladder
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	173	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	174	MAKE WOODEN STEPLADDER	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	176	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	REACTION	MAKE WOODEN BOOKCASE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	177	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	NAME	make wooden bookcase
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	178	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	179	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	180	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	181	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	182	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	183	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	183	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	184	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	PRODUCT	100:1:TOOL:ITEM_TOOL_BOOKCASE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	185	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	PRODUCT_TOKEN	bookcase
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	186	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	187	MAKE WOODEN BOOKCASE	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	189	MAKE WOODEN SPLINT	ADV_CARPENTRY	REACTION	MAKE WOODEN SPLINT
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	190	MAKE WOODEN SPLINT	ADV_CARPENTRY	NAME	make wooden splint
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	191	MAKE WOODEN SPLINT	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	192	MAKE WOODEN SPLINT	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	193	MAKE WOODEN SPLINT	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	194	MAKE WOODEN SPLINT	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	195	MAKE WOODEN SPLINT	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	196	MAKE WOODEN SPLINT	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	196	MAKE WOODEN SPLINT	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	197	MAKE WOODEN SPLINT	ADV_CARPENTRY	PRODUCT	100:1:SPLINT:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	198	MAKE WOODEN SPLINT	ADV_CARPENTRY	PRODUCT_TOKEN	splint
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	199	MAKE WOODEN SPLINT	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	200	MAKE WOODEN SPLINT	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	202	MAKE WOODEN CRUTCH	ADV_CARPENTRY	REACTION	MAKE WOODEN CRUTCH
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	203	MAKE WOODEN CRUTCH	ADV_CARPENTRY	NAME	make wooden crutch
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	204	MAKE WOODEN CRUTCH	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	205	MAKE WOODEN CRUTCH	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	206	MAKE WOODEN CRUTCH	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	207	MAKE WOODEN CRUTCH	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	208	MAKE WOODEN CRUTCH	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	209	MAKE WOODEN CRUTCH	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	209	MAKE WOODEN CRUTCH	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	210	MAKE WOODEN CRUTCH	ADV_CARPENTRY	PRODUCT	100:1:CRUTCH:NONE:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	211	MAKE WOODEN CRUTCH	ADV_CARPENTRY	PRODUCT_TOKEN	crutch
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	212	MAKE WOODEN CRUTCH	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	213	MAKE WOODEN CRUTCH	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	215	MAKE WOODEN SHIELD	ADV_CARPENTRY	REACTION	MAKE WOODEN SHIELD
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	216	MAKE WOODEN SHIELD	ADV_CARPENTRY	NAME	make wooden shield
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	217	MAKE WOODEN SHIELD	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	218	MAKE WOODEN SHIELD	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	219	MAKE WOODEN SHIELD	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	220	MAKE WOODEN SHIELD	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	221	MAKE WOODEN SHIELD	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	222	MAKE WOODEN SHIELD	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	222	MAKE WOODEN SHIELD	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	223	MAKE WOODEN SHIELD	ADV_CARPENTRY	PRODUCT	100:1:SHIELD:ITEM_SHIELD_SHIELD:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	224	MAKE WOODEN SHIELD	ADV_CARPENTRY	PRODUCT_TOKEN	shield
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	225	MAKE WOODEN SHIELD	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	226	MAKE WOODEN SHIELD	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	228	MAKE WOODEN BUCKLER	ADV_CARPENTRY	REACTION	MAKE WOODEN BUCKLER
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	229	MAKE WOODEN BUCKLER	ADV_CARPENTRY	NAME	make wooden buckler
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	230	MAKE WOODEN BUCKLER	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	231	MAKE WOODEN BUCKLER	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	232	MAKE WOODEN BUCKLER	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	233	MAKE WOODEN BUCKLER	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	234	MAKE WOODEN BUCKLER	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	235	MAKE WOODEN BUCKLER	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	235	MAKE WOODEN BUCKLER	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	236	MAKE WOODEN BUCKLER	ADV_CARPENTRY	PRODUCT	100:1:SHIELD:ITEM_SHIELD_BUCKLER:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	237	MAKE WOODEN BUCKLER	ADV_CARPENTRY	PRODUCT_TOKEN	buckler
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	238	MAKE WOODEN BUCKLER	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	239	MAKE WOODEN BUCKLER	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	241	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	REACTION	MAKE WOODEN TRAINING AXE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	242	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	NAME	make wooden training axe
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	243	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	244	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	245	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	246	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	247	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	248	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	248	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	249	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	PRODUCT	100:1:WEAPON:ITEM_WEAPON_AXE_TRAINING:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	250	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	PRODUCT_TOKEN	axe
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	251	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	252	MAKE WOODEN TRAINING AXE	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	254	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	REACTION	MAKE WOODEN TRAINING SHORT SWORD
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	255	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	NAME	make wooden training short sword
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	256	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	257	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	258	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	259	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	260	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	261	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	261	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	262	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	PRODUCT	100:1:WEAPON:ITEM_WEAPON_SWORD_SHORT_TRAINING:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	263	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	PRODUCT_TOKEN	sword
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	264	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	265	MAKE WOODEN TRAINING SHORT SWORD	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	267	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	REACTION	MAKE WOODEN TRAINING SPEAR
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	268	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	NAME	make wooden training spear
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	269	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	270	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	271	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	272	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	273	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	274	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	274	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	275	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	PRODUCT	100:1:WEAPON:ITEM_WEAPON_SPEAR_TRAINING:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	276	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	PRODUCT_TOKEN	spear
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	277	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	278	MAKE WOODEN TRAINING SPEAR	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	280	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	REACTION	MAKE WOODEN PEDESTAL
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	281	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	NAME	make wooden pedestal
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	282	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	283	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	BUILDING	CARPENTER:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	284	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	REAGENT	log:1:WOOD:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	285	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	286	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	287	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	287	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	288	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	PRODUCT	100:1:TOOL:ITEM_TOOL_PEDESTAL:GET_MATERIAL_FROM_REAGENT:log:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	289	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	PRODUCT_TOKEN	pedestal
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	290	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_adv_carpenter.txt	291	MAKE WOODEN PEDESTAL	ADV_CARPENTRY	CATEGORY	ADV_CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	76	MAKE_SHARP_ROCK		REACTION	MAKE_SHARP_ROCK
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	77	MAKE_SHARP_ROCK		NAME	make sharp rock
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	78	MAKE_SHARP_ROCK		ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	79	MAKE_SHARP_ROCK		REAGENT	tool stone:1:ROCK:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	79	MAKE_SHARP_ROCK		NO_EDGE_ALLOWED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	80	MAKE_SHARP_ROCK		REAGENT	hammerstone:1:ROCK:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	80	MAKE_SHARP_ROCK		PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	80	MAKE_SHARP_ROCK		NO_EDGE_ALLOWED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	81	MAKE_SHARP_ROCK		PRODUCT	100:1:ROCK:NONE:GET_MATERIAL_FROM_REAGENT:tool stone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	81	MAKE_SHARP_ROCK		FORCE_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	82	MAKE_SHARP_ROCK		SKILL	KNAPPING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	439	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	REACTION	CARVE_BONE_FIGURINE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	440	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	NAME	carve bone figurine
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	441	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	442	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	443	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	443	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	443	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	UNROTTEN	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	444	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	445	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	445	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	446	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	PRODUCT	100:1:FIGURINE:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	447	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	PRODUCT_TOKEN	figurine
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	448	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	SKILL	BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	449	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	450	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	CATEGORY_NAME	Carve bone
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	451	CARVE_BONE_FIGURINE	ADV_BONE_CARVING	CATEGORY_DESCRIPTION	Make crafts from bone using a sharp weapon or tool.
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	453	CARVE_BONE_RING	ADV_BONE_CARVING	REACTION	CARVE_BONE_RING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	454	CARVE_BONE_RING	ADV_BONE_CARVING	NAME	carve bone ring
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	455	CARVE_BONE_RING	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	456	CARVE_BONE_RING	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	457	CARVE_BONE_RING	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	457	CARVE_BONE_RING	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	457	CARVE_BONE_RING	ADV_BONE_CARVING	UNROTTEN	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	458	CARVE_BONE_RING	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	459	CARVE_BONE_RING	ADV_BONE_CARVING	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	459	CARVE_BONE_RING	ADV_BONE_CARVING	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	460	CARVE_BONE_RING	ADV_BONE_CARVING	PRODUCT	100:1:RING:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	461	CARVE_BONE_RING	ADV_BONE_CARVING	PRODUCT_TOKEN	ring
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	462	CARVE_BONE_RING	ADV_BONE_CARVING	SKILL	BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	463	CARVE_BONE_RING	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	465	CARVE_BONE_EARRING	ADV_BONE_CARVING	REACTION	CARVE_BONE_EARRING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	466	CARVE_BONE_EARRING	ADV_BONE_CARVING	NAME	carve bone earring
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	467	CARVE_BONE_EARRING	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	468	CARVE_BONE_EARRING	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	469	CARVE_BONE_EARRING	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	469	CARVE_BONE_EARRING	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	469	CARVE_BONE_EARRING	ADV_BONE_CARVING	UNROTTEN	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	470	CARVE_BONE_EARRING	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	471	CARVE_BONE_EARRING	ADV_BONE_CARVING	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	471	CARVE_BONE_EARRING	ADV_BONE_CARVING	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	472	CARVE_BONE_EARRING	ADV_BONE_CARVING	PRODUCT	100:1:EARRING:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	473	CARVE_BONE_EARRING	ADV_BONE_CARVING	PRODUCT_TOKEN	earring
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	474	CARVE_BONE_EARRING	ADV_BONE_CARVING	SKILL	BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	475	CARVE_BONE_EARRING	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	477	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	REACTION	CARVE_BONE_SCEPTER
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	478	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	NAME	carve bone scepter
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	479	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	480	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	481	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	481	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	481	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	UNROTTEN	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	482	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	483	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	483	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	484	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	PRODUCT	100:1:SCEPTER:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	485	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	PRODUCT_TOKEN	scepter
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	486	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	SKILL	BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	487	CARVE_BONE_SCEPTER	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	489	CARVE_BONE_AMULET	ADV_BONE_CARVING	REACTION	CARVE_BONE_AMULET
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	490	CARVE_BONE_AMULET	ADV_BONE_CARVING	NAME	carve bone amulet
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	491	CARVE_BONE_AMULET	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	492	CARVE_BONE_AMULET	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	493	CARVE_BONE_AMULET	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	493	CARVE_BONE_AMULET	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	493	CARVE_BONE_AMULET	ADV_BONE_CARVING	UNROTTEN	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	494	CARVE_BONE_AMULET	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	495	CARVE_BONE_AMULET	ADV_BONE_CARVING	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	495	CARVE_BONE_AMULET	ADV_BONE_CARVING	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	496	CARVE_BONE_AMULET	ADV_BONE_CARVING	PRODUCT	100:1:AMULET:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	497	CARVE_BONE_AMULET	ADV_BONE_CARVING	PRODUCT_TOKEN	amulet
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	498	CARVE_BONE_AMULET	ADV_BONE_CARVING	SKILL	BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	499	CARVE_BONE_AMULET	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	501	CARVE_BONE_BRACELET	ADV_BONE_CARVING	REACTION	CARVE_BONE_BRACELET
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	502	CARVE_BONE_BRACELET	ADV_BONE_CARVING	NAME	carve bone bracelet
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	503	CARVE_BONE_BRACELET	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	504	CARVE_BONE_BRACELET	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	505	CARVE_BONE_BRACELET	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	505	CARVE_BONE_BRACELET	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	505	CARVE_BONE_BRACELET	ADV_BONE_CARVING	UNROTTEN	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	506	CARVE_BONE_BRACELET	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	507	CARVE_BONE_BRACELET	ADV_BONE_CARVING	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	507	CARVE_BONE_BRACELET	ADV_BONE_CARVING	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	508	CARVE_BONE_BRACELET	ADV_BONE_CARVING	PRODUCT	100:1:BRACELET:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	509	CARVE_BONE_BRACELET	ADV_BONE_CARVING	PRODUCT_TOKEN	bracelet
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	510	CARVE_BONE_BRACELET	ADV_BONE_CARVING	SKILL	BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	511	CARVE_BONE_BRACELET	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	513	CARVE_BONE_CROWN	ADV_BONE_CARVING	REACTION	CARVE_BONE_CROWN
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	514	CARVE_BONE_CROWN	ADV_BONE_CARVING	NAME	carve bone crown
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	515	CARVE_BONE_CROWN	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	516	CARVE_BONE_CROWN	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	517	CARVE_BONE_CROWN	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	517	CARVE_BONE_CROWN	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	517	CARVE_BONE_CROWN	ADV_BONE_CARVING	UNROTTEN	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	518	CARVE_BONE_CROWN	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	519	CARVE_BONE_CROWN	ADV_BONE_CARVING	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	519	CARVE_BONE_CROWN	ADV_BONE_CARVING	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	520	CARVE_BONE_CROWN	ADV_BONE_CARVING	PRODUCT	100:1:CROWN:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	521	CARVE_BONE_CROWN	ADV_BONE_CARVING	PRODUCT_TOKEN	crown
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	522	CARVE_BONE_CROWN	ADV_BONE_CARVING	SKILL	BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	523	CARVE_BONE_CROWN	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	525	CARVE_BONE_GEM	ADV_BONE_CARVING	REACTION	CARVE_BONE_GEM
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	526	CARVE_BONE_GEM	ADV_BONE_CARVING	NAME	carve bone cabochon
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	527	CARVE_BONE_GEM	ADV_BONE_CARVING	ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	528	CARVE_BONE_GEM	ADV_BONE_CARVING	REAGENT	bone:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	529	CARVE_BONE_GEM	ADV_BONE_CARVING	USE_BODY_COMPONENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	529	CARVE_BONE_GEM	ADV_BONE_CARVING	ANY_BONE_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	529	CARVE_BONE_GEM	ADV_BONE_CARVING	UNROTTEN	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	530	CARVE_BONE_GEM	ADV_BONE_CARVING	REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	531	CARVE_BONE_GEM	ADV_BONE_CARVING	PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	531	CARVE_BONE_GEM	ADV_BONE_CARVING	HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	532	CARVE_BONE_GEM	ADV_BONE_CARVING	PRODUCT	100:1:GEM:NONE:GET_MATERIAL_FROM_REAGENT:bone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	533	CARVE_BONE_GEM	ADV_BONE_CARVING	PRODUCT_TOKEN	gem
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	534	CARVE_BONE_GEM	ADV_BONE_CARVING	SKILL	BONECARVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	535	CARVE_BONE_GEM	ADV_BONE_CARVING	CATEGORY	ADV_BONE_CARVING
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	537	CARVE_WOODEN_HELVE		REACTION	CARVE_WOODEN_HELVE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	538	CARVE_WOODEN_HELVE		NAME	carve wooden helve from branch
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	539	CARVE_WOODEN_HELVE		ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	540	CARVE_WOODEN_HELVE		REAGENT	branch:1:BRANCH:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	541	CARVE_WOODEN_HELVE		ANY_PLANT_MATERIAL	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	542	CARVE_WOODEN_HELVE		REAGENT	tool:1:NONE:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	543	CARVE_WOODEN_HELVE		PRESERVE_REAGENT	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	543	CARVE_WOODEN_HELVE		HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	544	CARVE_WOODEN_HELVE		PRODUCT	100:1:TOOL:ITEM_TOOL_HELVE:GET_MATERIAL_FROM_REAGENT:branch:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	545	CARVE_WOODEN_HELVE		PRODUCT_TOKEN	helve
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	546	CARVE_WOODEN_HELVE		SKILL	CARPENTRY
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	548	ASSEMBLE STONE AXE		REACTION	ASSEMBLE STONE AXE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	549	ASSEMBLE STONE AXE		NAME	assemble stone axe
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	550	ASSEMBLE STONE AXE		ADVENTURE_MODE_ENABLED	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	551	ASSEMBLE STONE AXE		REAGENT	helve:1:TOOL:ITEM_TOOL_HELVE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	552	ASSEMBLE STONE AXE		REAGENT	stone:1:ROCK:NONE:NONE:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	553	ASSEMBLE STONE AXE		HAS_EDGE	
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	554	ASSEMBLE STONE AXE		PRODUCT	100:1:TOOL:ITEM_TOOL_STONE_AXE:GET_MATERIAL_FROM_REAGENT:stone:NONE
+classic	C:\Users\WIN11\Downloads\df_53_16_win\data\vanilla\vanilla_reactions\objects\reaction_other.txt	555	ASSEMBLE STONE AXE		PRODUCT_TOKEN	axe

@@ -1,0 +1,1191 @@
+edition	role	owner_rva	instruction_rva	literal_rva	text
+steam	craft-render	0x27bd70	0x27bfbc	0x15fe724	Cancel
+steam	craft-render	0x27bd70	0x27bfc5	0x15fe728	el
+steam	craft-render	0x27bd70	0x27c144	0x161bdb8	: select 
+steam	craft-render	0x27bd70	0x27c18b	0x1615540	 (
+steam	craft-render	0x27bd70	0x27c21a	0x15e90d8	, 
+steam	craft-render	0x27bd70	0x27c23f	0x161bdc4	 left
+steam	craft-render	0x27bd70	0x27c275	0x161bd38	, consumed
+steam	craft-render	0x27bd70	0x27c27c	0x161bd28	, not consumed
+steam	craft-render	0x27bd70	0x27c298	0x1615580	)
+steam	craft-render	0x27bd70	0x27c2b8	0x15e85b4	.
+steam	craft-render	0x27bd70	0x27c318	0x161bda0	Select a butchery tool.
+steam	craft-render	0x27bd70	0x27c322	0x161bdb0	y tool.
+steam	craft-render	0x27bd70	0x27c32b	0x161bdb4	ol.
+steam	craft-render	0x27bd70	0x27c336	0x161bdb6	.
+steam	craft-render	0x27bd70	0x27c388	0x161bd80	What do you want to butcher?
+steam	craft-render	0x27bd70	0x27c392	0x161bd90	 to butcher?
+steam	craft-render	0x27bd70	0x27c39f	0x161bd98	her?
+steam	craft-render	0x27bd70	0x27c3d7	0x178b560	H
+steam	craft-render	0x27bd70	0x27c3e4	0x161bf00	What do you want to do?  Items must be in a grasp or on the ground here.
+steam	craft-render	0x27bd70	0x27c3ee	0x161bf10	 to do?  Items must be in a grasp or on the ground here.
+steam	craft-render	0x27bd70	0x27c3f9	0x161bf20	ust be in a grasp or on the ground here.
+steam	craft-render	0x27bd70	0x27c404	0x161bf30	p or on the ground here.
+steam	craft-render	0x27bd70	0x27c40f	0x161bf40	nd here.
+steam	craft-render	0x27bd70	0x27c520	0x161be10	No available item.
+steam	craft-render	0x27bd70	0x27c52a	0x161be20	m.
+steam	craft-render	0x27bd70	0x27c5b9	0x161bd60	No butchery tool available.
+steam	craft-render	0x27bd70	0x27c5c3	0x161bd70	 available.
+steam	craft-render	0x27bd70	0x27c5d0	0x161bd78	le.
+steam	craft-render	0x27bd70	0x27c5db	0x161bd7a	.
+steam	craft-render	0x27bd70	0x27c621	0x161bd48	No carcass available.
+steam	craft-render	0x27bd70	0x27c62b	0x161bd58	able.
+steam	craft-render	0x27bd70	0x27c634	0x161bd5c	.
+steam	craft-render	0x27bd70	0x27c997	0x161be28	Butcher
+steam	craft-render	0x27bd70	0x27c9a1	0x161be2c	her
+steam	craft-render	0x27bd70	0x27c9ac	0x161be2e	r
+steam	craft-render	0x27bd70	0x27cbf3	0x161bdf0	You are not that hungry.
+steam	craft-render	0x27bd70	0x27cbfd	0x161be00	 hungry.
+steam	craft-render	0x27bd70	0x27cc98	0x161bd48	No carcass available.
+steam	craft-render	0x27bd70	0x27cca2	0x161bd58	able.
+steam	craft-render	0x27bd70	0x27ccab	0x161bd5c	.
+steam	craft-render	0x27bd70	0x27cd3c	0x161bd60	No butchery tool available.
+steam	craft-render	0x27bd70	0x27cd46	0x161bd70	 available.
+steam	craft-render	0x27bd70	0x27cd53	0x161bd78	le.
+steam	craft-render	0x27bd70	0x27cd5e	0x161bd7a	.
+steam	craft-render	0x27bd70	0x27cf07	0x161be30	Needs: 
+steam	craft-render	0x27bd70	0x27cf11	0x161be34	s: 
+steam	craft-render	0x27bd70	0x27cf1c	0x161be36	 
+steam	craft-render	0x27bd70	0x27cf44	0x161be38	nothing.
+steam	craft-render	0x27bd70	0x27cfbd	0x161bdcc	 [
+steam	craft-render	0x27bd70	0x27d05e	0x15eb514	/
+steam	craft-render	0x27bd70	0x27d084	0x161bdd0	not consumed
+steam	craft-render	0x27bd70	0x27d08b	0x161bde0	consumed
+steam	craft-render	0x27bd70	0x27d0a5	0x15fd690	]
+steam	craft-render	0x27bd70	0x27d0cd	0x15e90d8	, 
+steam	butcher-and-reagent-selection	0x27e300	0x27eb2d	0x161c1a0	You butcher 
+steam	butcher-and-reagent-selection	0x27e300	0x27eb8d	0x15e85b4	.
+steam	reaction-completion	0x2804b0	0x280709	0x161c1b0	You make 
+steam	reaction-completion	0x2804b0	0x280716	0x161c1b8	 
+steam	reaction-completion	0x2804b0	0x28077e	0x161c1c0	 and more
+steam	reaction-completion	0x2804b0	0x28079f	0x15e9110	 and 
+steam	reaction-completion	0x2804b0	0x280839	0x15e85b4	.
+steam	reaction-completion	0x2804b0	0x280b6b	0x161c1d0	You have finished working on 
+steam	reaction-completion	0x2804b0	0x280b75	0x161c1e0	d working on 
+steam	reaction-completion	0x2804b0	0x280b82	0x161c1e8	g on 
+steam	reaction-completion	0x2804b0	0x280b8b	0x161c1ec	 
+steam	reaction-completion	0x2804b0	0x280bf4	0x161c1c0	 and more
+steam	reaction-completion	0x2804b0	0x280c0e	0x15e9110	 and 
+steam	reaction-completion	0x2804b0	0x280c76	0x15e85b4	.
+steam	reaction-completion	0x2804b0	0x280ef3	0x161c138	You practice your 
+steam	reaction-completion	0x2804b0	0x280efd	0x161c148	r 
+steam	reaction-completion	0x2804b0	0x280f83	0x15e85b4	.
+steam	reaction-completion	0x2804b0	0x280f92	0x161c150	 but make nothing of note.
+steam	reaction-completion	0x2804b0	0x280fbf	0x161c170	You make nothing.
+steam	reaction-completion	0x2804b0	0x280fc9	0x161c180	.
+steam	reaction-raw-parser	0xed1bd0	0xed1ec0	0x165dff4	NAME
+steam	reaction-raw-parser	0xed1bd0	0xed227a	0x16cf658	BUILDING
+steam	reaction-raw-parser	0xed1bd0	0xed2734	0x16bf550	NG
+steam	reaction-raw-parser	0xed1bd0	0xed27a0	0x16bf550	NG
+steam	reaction-raw-parser	0xed1bd0	0xed27c3	0x16bf548	NO BINDING
+steam	reaction-raw-parser	0xed1bd0	0xed2855	0x16bf550	NG
+steam	reaction-raw-parser	0xed1bd0	0xed29e1	0x17371ac	FUEL
+steam	reaction-raw-parser	0xed1bd0	0xed2a2a	0x17371a0	AUTOMATIC
+steam	reaction-raw-parser	0xed1bd0	0xed2a66	0x17371d0	ADVENTURE_MODE_ENABLED
+steam	reaction-raw-parser	0xed1bd0	0xed2aa5	0x17371b8	FORTRESS_MODE_ENABLED
+steam	reaction-raw-parser	0xed1bd0	0xed2ae8	0x1737280	WORLDGEN_ENABLED
+steam	reaction-raw-parser	0xed1bd0	0xed2b2f	0x165e198	REACTION_CLASS
+steam	reaction-raw-parser	0xed1bd0	0xed2e1a	0x165e1a8	HAS_MATERIAL_REACTION_PRODUCT
+steam	reaction-raw-parser	0xed1bd0	0xed2e43	0x165e1c8	HAS_ITEM_REACTION_PRODUCT
+steam	reaction-raw-parser	0xed1bd0	0xed309b	0x1737270	CONTAINS
+steam	reaction-raw-parser	0xed1bd0	0xed3108	0x165e1e8	UNROTTEN
+steam	reaction-raw-parser	0xed1bd0	0xed3130	0x165e1f8	CONTAINS_LYE
+steam	reaction-raw-parser	0xed1bd0	0xed3148	0x165e208	POTASHABLE
+steam	reaction-raw-parser	0xed1bd0	0xed3160	0x165e218	NOT_WEB
+steam	reaction-raw-parser	0xed1bd0	0xed318f	0x165e0e0	WEB_ONLY
+steam	reaction-raw-parser	0xed1bd0	0xed31be	0x165e0ec	EMPTY
+steam	reaction-raw-parser	0xed1bd0	0xed31f0	0x165e0f8	NOT_CONTAIN_BARREL_ITEM
+steam	reaction-raw-parser	0xed1bd0	0xed3222	0x165e110	GLASS_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3254	0x165e120	BUILDMAT
+steam	reaction-raw-parser	0xed1bd0	0xed3283	0x165e130	FIRE_BUILD_SAFE
+steam	reaction-raw-parser	0xed1bd0	0xed32b5	0x165e140	MAGMA_BUILD_SAFE
+steam	reaction-raw-parser	0xed1bd0	0xed32e7	0x165e158	CAN_USE_ARTIFACT
+steam	reaction-raw-parser	0xed1bd0	0xed3319	0x165ded8	WORTHLESS_STONE_ONLY
+steam	reaction-raw-parser	0xed1bd0	0xed334b	0x165def0	ANY_PLANT_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed337d	0x165df08	ANY_SILK_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed33af	0x165df20	ANY_YARN_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed33e1	0x165df38	ANY_SOAP_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3413	0x165df50	ANY_LEATHER_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3445	0x165df68	ANY_BONE_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3477	0x165df80	ANY_STRAND_TISSUE
+steam	reaction-raw-parser	0xed1bd0	0xed34a9	0x165de10	ANY_SHELL_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed34db	0x165de28	ANY_WOOD_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3510	0x165de40	ANY_STONE_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3545	0x165de58	ANY_GEM_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed357a	0x165de70	ANY_TOOTH_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed35ac	0x165de88	ANY_HORN_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed35de	0x165dea0	ANY_PEARL_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3610	0x165e010	USE_BODY_COMPONENT
+steam	reaction-raw-parser	0xed1bd0	0xed3642	0x165deb8	CAN_USE_LOCATION_RESERVED
+steam	reaction-raw-parser	0xed1bd0	0xed3677	0x165e028	NO_EDGE_ALLOWED
+steam	reaction-raw-parser	0xed1bd0	0xed36a9	0x165e038	HAS_EDGE
+steam	reaction-raw-parser	0xed1bd0	0xed36de	0x165e048	ON_GROUND
+steam	reaction-raw-parser	0xed1bd0	0xed3713	0x165e098	NOT_ENGRAVED
+steam	reaction-raw-parser	0xed1bd0	0xed3745	0x17372b0	NOT_IMPROVED
+steam	reaction-raw-parser	0xed1bd0	0xed3777	0x1737298	HAS_WRITING_IMPROVEMENT
+steam	reaction-raw-parser	0xed1bd0	0xed37ac	0x1737238	DOES_NOT_ABSORB
+steam	reaction-raw-parser	0xed1bd0	0xed37de	0x1737220	FOOD_STORAGE_CONTAINER
+steam	reaction-raw-parser	0xed1bd0	0xed3813	0x1737258	HARD_ITEM_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3845	0x1737248	WOVEN_ITEM
+steam	reaction-raw-parser	0xed1bd0	0xed387a	0x1737320	NOT_PRESSED
+steam	reaction-raw-parser	0xed1bd0	0xed38ac	0x1737308	METAL_ITEM_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed38e1	0x1737348	IS_SAND_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3916	0x1737330	IS_DIVINE_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed394b	0x165e058	IS_CRAFTED_ARTIFACT
+steam	reaction-raw-parser	0xed1bd0	0xed3980	0x165e070	NOT_ARTIFACT
+steam	reaction-raw-parser	0xed1bd0	0xed39b5	0x165e080	GROWN_NOT_CRAFTED
+steam	reaction-raw-parser	0xed1bd0	0xed39ea	0x165de40	ANY_STONE_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3a02	0x165de58	ANY_GEM_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed3a1a	0x165df98	METAL_ORE
+steam	reaction-raw-parser	0xed1bd0	0xed3a8d	0x165dfa8	MIN_DIMENSION
+steam	reaction-raw-parser	0xed1bd0	0xed3aea	0x165dfb8	HAS_TOOL_USE
+steam	reaction-raw-parser	0xed1bd0	0xed3b4b	0x17372d0	SKILL_ROLL_RANGE
+steam	reaction-raw-parser	0xed1bd0	0xed3c37	0x17372c0	SKILL_IP
+steam	reaction-raw-parser	0xed1bd0	0xed3ca5	0x17372f8	ATTRIBUTE_IP
+steam	reaction-raw-parser	0xed1bd0	0xed3d13	0x1686428	CATEGORY
+steam	reaction-raw-parser	0xed1bd0	0xed3e30	0x17372e8	CATEGORY_NAME
+steam	reaction-raw-parser	0xed1bd0	0xed3e8d	0x17373b0	CATEGORY_DESCRIPTION
+steam	reaction-raw-parser	0xed1bd0	0xed3eea	0x17373a0	CATEGORY_PARENT
+steam	reaction-raw-parser	0xed1bd0	0xed3f47	0x17373d8	CATEGORY_KEY
+steam	reaction-raw-parser	0xed1bd0	0xed3fdc	0x167ee00	DESCRIPTION
+steam	reaction-raw-parser	0xed1bd0	0xed401c	0x17373c8	USE_TOOL
+steam	reaction-raw-parser	0xed1bd0	0xed40c3	0x1737370	USE_INSTRUMENT
+steam	reaction-raw-parser	0xed1bd0	0xed41b1	0x16a68a8	SKILL
+steam	reaction-raw-parser	0xed1bd0	0xed420c	0x1737360	MAX_MULTIPLIER
+steam	reaction-raw-parser	0xed1bd0	0xed427a	0x1737398	REAGENT
+steam	reaction-raw-parser	0xed1bd0	0xed4340	0x165df98	METAL_ORE
+steam	reaction-raw-parser	0xed1bd0	0xed44d5	0x165dfd8	CREATURE_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed44e9	0x165dfe8	PLANT_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed4541	0x1737380	ANY_RAW_MATERIAL
+steam	reaction-raw-parser	0xed1bd0	0xed4555	0x16182d0	NONE
+steam	reaction-raw-parser	0xed1bd0	0xed456c	0x1736f20	ANY_CRAFT
+steam	reaction-raw-parser	0xed1bd0	0xed4580	0x16182d0	NONE
+steam	reaction-raw-parser	0xed1bd0	0xed4642	0x1736f18	PRODUCT
+steam	reaction-raw-parser	0xed1bd0	0xed474d	0x1736f40	GET_ITEM_DATA_FROM_REAGENT
+steam	reaction-raw-parser	0xed1bd0	0xed47e4	0x165dfd8	CREATURE_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed47f8	0x165dfe8	PLANT_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed480c	0x169d5f0	GET_MATERIAL_FROM_REAGENT
+steam	reaction-raw-parser	0xed1bd0	0xed4874	0x169b9d8	CRAFTS
+steam	reaction-raw-parser	0xed1bd0	0xed4888	0x16182d0	NONE
+steam	reaction-raw-parser	0xed1bd0	0xed491b	0x1736f30	IMPROVEMENT
+steam	reaction-raw-parser	0xed1bd0	0xed4a9a	0x165dfd8	CREATURE_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed4aae	0x165dfe8	PLANT_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed4ac2	0x169d5f0	GET_MATERIAL_FROM_REAGENT
+steam	reaction-raw-parser	0xed1bd0	0xed4c48	0x165dfd8	CREATURE_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed4c5c	0x165dfe8	PLANT_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed4c70	0x169d5f0	GET_MATERIAL_FROM_REAGENT
+steam	reaction-raw-parser	0xed1bd0	0xed4dc8	0x165dfd8	CREATURE_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed4ddc	0x165dfe8	PLANT_MAT
+steam	reaction-raw-parser	0xed1bd0	0xed4df0	0x169d5f0	GET_MATERIAL_FROM_REAGENT
+steam	reaction-raw-parser	0xed1bd0	0xed4e8d	0x169c068	GLAZED
+steam	reaction-raw-parser	0xed1bd0	0xed4ef1	0x1736ed8	PRODUCT_TOKEN
+steam	reaction-raw-parser	0xed1bd0	0xed4f4e	0x1736ec0	PRODUCT_DIMENSION
+steam	reaction-raw-parser	0xed1bd0	0xed4fab	0x1736f00	PRODUCT_TO_CONTAINER
+steam	reaction-raw-parser	0xed1bd0	0xed5008	0x1736ee8	PRESERVE_REAGENT
+steam	reaction-raw-parser	0xed1bd0	0xed5037	0x1736fe0	DOES_NOT_DETERMINE_PRODUCT_AMOUNT
+steam	reaction-raw-parser	0xed1bd0	0xed5066	0x1736fd0	FORCE_EDGE
+steam	reaction-raw-parser	0xed1bd0	0xed509f	0x1737018	PRODUCT_PASTE
+steam	reaction-raw-parser	0xed1bd0	0xed50d8	0x1737008	PRODUCT_PRESSED
+steam	reaction-raw-parser	0xed1bd0	0xed5115	0x1736f80	TRANSFER_ARTIFACT_STATUS
+steam	reaction-raw-parser	0xed1bd0	0xed5159	0x167cd50	GENERATED
+steam	reaction-raw-parser	0xed1bd0	0xed5188	0x167cd40	SOURCE_HFID
+steam	reaction-raw-parser	0xed1bd0	0xed51e0	0x167cd30	SOURCE_ENID
+steam	reaction-raw-parser	0xed1bd0	0xed5238	0x1618434	:
+steam	reaction-raw-parser	0xed1bd0	0xed5254	0x1736f60	Unrecognized Reaction Token: 
+steam	reagent-item-filter-description	0xa2adb0	0xa2aed6	0x16cbbd0	unused 
+steam	reagent-item-filter-description	0xa2adb0	0xa2aef1	0x16cbbd8	improvable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2af0d	0x16cbbe8	butcherable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2af29	0x16cbbf8	millable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2af45	0x16cbc08	possibly buriable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2af61	0x16cbc20	unrotten 
+steam	reagent-item-filter-description	0xa2adb0	0xa2af7d	0x16cbc30	undisturbed 
+steam	reagent-item-filter-description	0xa2adb0	0xa2af9a	0x16cbc40	collected 
+steam	reagent-item-filter-description	0xa2adb0	0xa2afbe	0x16cbb40	sharpenable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2afdd	0x1663640	murdered 
+steam	reagent-item-filter-description	0xa2adb0	0xa2affc	0x16cbb50	empty 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b01b	0x16cbb58	processable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b03a	0x16cbb68	cookable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b059	0x16cbb74	solid 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b07b	0x16cbb80	extract-bearing plant 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b09a	0x16cbb98	extract-bearing fish 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b0b9	0x16cbbb0	extract-bearing small creature 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b0d5	0x16cbaa8	processable (to vial) 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b0f4	0x16cbac0	processable (to barrel) 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b113	0x16cbae0	tameable small creature 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b132	0x1652818	nearby 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b151	0x16cbb00	sand-bearing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b170	0x16cbb10	glass 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b18b	0x16cbb18	lye-bearing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b1aa	0x16cbb28	milk 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b1c9	0x16cbb30	milkable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b1e8	0x16cba40	finished good 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b207	0x16cba50	ammo 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b226	0x16cba58	furniture 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b280	0x15e873c	 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b295	0x16cba64	dye 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b2b1	0x16cba70	dyeable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b2d0	0x16cba80	totemable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b2ec	0x16cba90	glass-making 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b308	0x16cbaa0	dyed 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b327	0x16cb9b8	melt-designated 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b34d	0x16cb9d0	deep material 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b369	0x16cb9e0	sewn-imageless 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b385	0x16cb9f0	screw 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b3ac	0x16cb9f8	fire-safe 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b3cb	0x16cba08	magma-safe 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b3e7	0x16cba18	building material 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b406	0x16cba30	non-economic 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b425	0x16cb964	plant 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b444	0x16cb96c	silk 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b45f	0x16cb974	yarn 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b47e	0x16cb980	leather 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b49d	0x16cb98c	bone 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b4bc	0x16cb998	hair/wool 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b4db	0x16cb9a4	shell 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b4fa	0x16cb9ac	horn 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b519	0x16cb8f8	pearl 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b538	0x16cb900	plaster-containing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b55e	0x16cb914	soap 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b57d	0x16cb920	ivory/tooth 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b59c	0x16cb930	lye/milk-free 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b5bb	0x16cb940	blunt 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b5da	0x16cb948	unengraved 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b5f5	0x16cb958	unimproved 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b614	0x16cb898	written-on 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b630	0x16cb8a8	non-absorbent 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b64c	0x16cb8b8	food storage 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b668	0x16cb8c8	non-pressed 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b68e	0x16cb8d8	woven 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b6aa	0x16cb8e0	hard 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b6c9	0x16cb8e8	metal 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b6e8	0x16cb8f0	sand 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b707	0x16cbfc8	edged 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b726	0x16cbfd0	on-ground 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b745	0x16cbfe0	divine 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b764	0x16cbfe8	artifact 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b783	0x16cbff8	non-artifact 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b7a2	0x16cc008	wooden 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b7c1	0x16cc010	stone 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b7e0	0x16cc018	gem 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b7ff	0x16cbf50	grown 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b88c	0x15e873c	 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b8b3	0x1789108	unknown material
+steam	reagent-item-filter-description	0xa2adb0	0xa2b952	0x16cbf58	-bearing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2b960	0x16cbf60	 
+steam	reagent-item-filter-description	0xa2adb0	0xa2ba3f	0x16cbf68	CALCIUM_CARBONATE
+steam	reagent-item-filter-description	0xa2adb0	0xa2ba55	0x16cbf80	calcite/limestone/chalk/marble 
+steam	reagent-item-filter-description	0xa2adb0	0xa2ba7b	0x16cbfa0	CAN_GLAZE
+steam	reagent-item-filter-description	0xa2adb0	0xa2ba91	0x16cbfb0	glazable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bac3	0x16cbfbc	FAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bad9	0x16cbfc0	fat 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bb03	0x1629a04	FLUX
+steam	reagent-item-filter-description	0xa2adb0	0xa2bb19	0x16cbf00	flux 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bb4b	0x16cbf08	GYPSUM
+steam	reagent-item-filter-description	0xa2adb0	0xa2bb61	0x16cbf10	gypsum 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bb8b	0x16bef58	PAPER_PLANT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bba1	0x16cbf18	paper-making 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bbd3	0x16bef48	PAPER_SLURRY
+steam	reagent-item-filter-description	0xa2adb0	0xa2bbe9	0x16cbf28	paper-slurry 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bc13	0x16cbf38	TALLOW
+steam	reagent-item-filter-description	0xa2adb0	0xa2bc29	0x16cbf40	tallow 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bc52	0x1652948	WAX
+steam	reagent-item-filter-description	0xa2adb0	0xa2bc68	0x16cbf48	wax 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bcd9	0x16cbe80	BAG_ITEM
+steam	reagent-item-filter-description	0xa2adb0	0xa2bcef	0x16cbe90	bag-processable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bd15	0x163d1d0	DRINK_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bd2e	0x16cbea8	fermentable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bd60	0x1629a60	FIRED_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bd76	0x16cbeb8	clay 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bda0	0x16cbec0	GLAZE_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bdb6	0x16cbecc	glaze 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bde8	0x16cbed8	HONEYCOMB_PRESS_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bdfe	0x16cbef0	honey-bearing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2be28	0x16cbde8	PARCHMENT_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2be3e	0x16cbdf8	parchment-producing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2be70	0x16cbe10	PRESS_LIQUID_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2be86	0x16cbe28	oil-bearing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2beb0	0x16cbe38	PRESS_PAPER_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bec6	0x16cbe48	paper-slurryable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bef8	0x16cbe60	RENDER_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bf0e	0x16cbe70	renderable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bf38	0x16cbd78	SOAP_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bf4e	0x16cbd84	fatty 
+steam	reagent-item-filter-description	0xa2adb0	0xa2bf80	0x1651c18	TAN_MAT
+steam	reagent-item-filter-description	0xa2adb0	0xa2bf96	0x16cbd90	tannable 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c02f	0x16cbda0	-producing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c03d	0x16cbda8	ng 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c04a	0x16cbdaa	 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c130	0x16cbdb0	-containing 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c173	0x16cbdc0	color 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c1b6	0x15e873c	 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c1f6	0x16cbdc8	liquid cooking
+steam	reagent-item-filter-description	0xa2adb0	0xa2c208	0x16cbdd8	liquid scoop
+steam	reagent-item-filter-description	0xa2adb0	0xa2c21a	0x16cbce0	powder grinding receptacle
+steam	reagent-item-filter-description	0xa2adb0	0xa2c226	0x16cbd00	powder grinding
+steam	reagent-item-filter-description	0xa2adb0	0xa2c238	0x16cbd10	meat carving
+steam	reagent-item-filter-description	0xa2adb0	0xa2c24a	0x16cbd20	meat boning
+steam	reagent-item-filter-description	0xa2adb0	0xa2c25c	0x16cbd30	meat slicing
+steam	reagent-item-filter-description	0xa2adb0	0xa2c26e	0x16cbd40	meat cleaving
+steam	reagent-item-filter-description	0xa2adb0	0xa2c280	0x16cbd50	meat-carving holder
+steam	reagent-item-filter-description	0xa2adb0	0xa2c292	0x16cbd68	meal container
+steam	reagent-item-filter-description	0xa2adb0	0xa2c2a4	0x16cbc50	liquid container
+steam	reagent-item-filter-description	0xa2adb0	0xa2c2b6	0x16cbc68	food storage
+steam	reagent-item-filter-description	0xa2adb0	0xa2c2c8	0x16cbc78	hive
+steam	reagent-item-filter-description	0xa2adb0	0xa2c2da	0x16cbc80	nest box
+steam	reagent-item-filter-description	0xa2adb0	0xa2c2e9	0x16cbc90	small object container
+steam	reagent-item-filter-description	0xa2adb0	0xa2c2fb	0x16cbca8	track cart
+steam	reagent-item-filter-description	0xa2adb0	0xa2c30d	0x16cbcb8	heavy object hauler
+steam	reagent-item-filter-description	0xa2adb0	0xa2c31f	0x16cbcd0	stand-and-work
+steam	reagent-item-filter-description	0xa2adb0	0xa2c32e	0x16cc058	sheet roller
+steam	reagent-item-filter-description	0xa2adb0	0xa2c33a	0x16cc068	folded sheet protector
+steam	reagent-item-filter-description	0xa2adb0	0xa2c349	0x16cc080	writing container
+steam	reagent-item-filter-description	0xa2adb0	0xa2c358	0x16cc098	bookcase
+steam	reagent-item-filter-description	0xa2adb0	0xa2c367	0x16cc0a8	display object
+steam	reagent-item-filter-description	0xa2adb0	0xa2c376	0x16cc0b8	offering placement
+steam	reagent-item-filter-description	0xa2adb0	0xa2c385	0x16cc0d0	divination
+steam	reagent-item-filter-description	0xa2adb0	0xa2c38e	0x16cc0e0	games of chance
+steam	reagent-item-filter-description	0xa2adb0	0xa2c3be	0x15e873c	 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c3d3	0x1681050	body part
+steam	reagent-item-filter-description	0xa2adb0	0xa2c412	0x15e873c	 
+steam	reagent-item-filter-description	0xa2adb0	0xa2c4f4	0x16cc020	 that isn't a bin
+steam	reagent-item-type-name	0xa82c10	0xa82d27	0x1649d9c	large
+steam	reagent-item-type-name	0xa82c10	0xa82d30	0x1649da0	e
+steam	reagent-item-type-name	0xa82c10	0xa82d39	0x1686358	small
+steam	reagent-item-type-name	0xa82c10	0xa82d42	0x168635c	l
+steam	reagent-item-type-name	0xa82c10	0xa82d8c	0x16cbf50	grown 
+steam	reagent-item-type-name	0xa82c10	0xa82e66	0x167ccf0	logs
+steam	reagent-item-type-name	0xa82c10	0xa82ed8	0x16ce7e0	branch
+steam	reagent-item-type-name	0xa82c10	0xa82efd	0x16ce880	es
+steam	reagent-item-type-name	0xa82c10	0xa82f1d	0x1601038	rough gems
+steam	reagent-item-type-name	0xa82c10	0xa82f36	0x16ce870	raw green glass
+steam	reagent-item-type-name	0xa82c10	0xa82f4f	0x16ce860	raw clear glass
+steam	reagent-item-type-name	0xa82c10	0xa82f68	0x16ce848	raw crystal glass
+steam	reagent-item-type-name	0xa82c10	0xa82f8a	0x1601038	rough gems
+steam	reagent-item-type-name	0xa82c10	0xa82fa8	0x16cc1b0	rough 
+steam	reagent-item-type-name	0xa82c10	0xa83047	0x16862ac	small 
+steam	reagent-item-type-name	0xa82c10	0xa8305e	0x16862ac	small 
+steam	reagent-item-type-name	0xa82c10	0xa8313e	0x16ce7ac	rock
+steam	reagent-item-type-name	0xa82c10	0xa8315e	0x16ce7a0	small rock
+steam	reagent-item-type-name	0xa82c10	0xa831b7	0x16ce790	stone boulders
+steam	reagent-item-type-name	0xa82c10	0xa831dd	0x16ce780	boulders
+steam	reagent-item-type-name	0xa82c10	0xa832ba	0x16ce738	bars
+steam	reagent-item-type-name	0xa82c10	0xa832d3	0x16ce7c0	charcoal
+steam	reagent-item-type-name	0xa82c10	0xa832e9	0x16ce7b4	coke
+steam	reagent-item-type-name	0xa82c10	0xa832f2	0x16ce740	refined coal
+steam	reagent-item-type-name	0xa82c10	0xa8330b	0x163e59c	metal
+steam	reagent-item-type-name	0xa82c10	0xa8331a	0x16ce7cc	 bars
+steam	reagent-item-type-name	0xa82c10	0xa833ca	0x16ce7d8	 wafers
+steam	reagent-item-type-name	0xa82c10	0xa834b8	0x16011f0	cut gems
+steam	reagent-item-type-name	0xa82c10	0xa834d1	0x16ce720	cut green glass gems
+steam	reagent-item-type-name	0xa82c10	0xa834ea	0x16ce708	cut clear glass gems
+steam	reagent-item-type-name	0xa82c10	0xa83500	0x16ce768	cut crystal glass gems
+steam	reagent-item-type-name	0xa82c10	0xa8351b	0x16ce760	gems
+steam	reagent-item-type-name	0xa82c10	0xa83658	0x16ce758	blocks
+steam	reagent-item-type-name	0xa82c10	0xa8366f	0x16ce758	blocks
+steam	reagent-item-type-name	0xa82c10	0xa8371d	0x16ce6ec	door
+steam	reagent-item-type-name	0xa82c10	0xa83724	0x16ce750	portal
+steam	reagent-item-type-name	0xa82c10	0xa8379a	0x16ce6e0	floodgate
+steam	reagent-item-type-name	0xa82c10	0xa8380a	0x16ce6d0	hatch cover
+steam	reagent-item-type-name	0xa82c10	0xa8387a	0x16ce6c8	grate
+steam	reagent-item-type-name	0xa82c10	0xa838ea	0x162fdb4	table
+steam	reagent-item-type-name	0xa82c10	0xa8395a	0x163cea0	cabinet
+steam	reagent-item-type-name	0xa82c10	0xa839ca	0x163ce90	weapon rack
+steam	reagent-item-type-name	0xa82c10	0xa83a3a	0x163ce08	armor stand
+steam	reagent-item-type-name	0xa82c10	0xa83aaa	0x16ce704	bin
+steam	reagent-item-type-name	0xa82c10	0xa83b51	0x16ce700	box
+steam	reagent-item-type-name	0xa82c10	0xa83b6a	0x16ce6fc	e
+steam	reagent-item-type-name	0xa82c10	0xa83b93	0x16ce6f4	coffer
+steam	reagent-item-type-name	0xa82c10	0xa83ba2	0x163cea8	chest
+steam	reagent-item-type-name	0xa82c10	0xa83bc3	0x16ce6a0	boxe
+steam	reagent-item-type-name	0xa82c10	0xa83bd8	0x15e9298	s
+steam	reagent-item-type-name	0xa82c10	0xa83bec	0x16ce700	box
+steam	reagent-item-type-name	0xa82c10	0xa83c64	0x16ce69c	bag
+steam	reagent-item-type-name	0xa82c10	0xa83cff	0x16ce690	backpack
+steam	reagent-item-type-name	0xa82c10	0xa83dbc	0x16ce6c0	cast
+steam	reagent-item-type-name	0xa82c10	0xa83dc8	0x16ce680	limb/body 
+steam	reagent-item-type-name	0xa82c10	0xa83dd7	0x16ce6c0	cast
+steam	reagent-item-type-name	0xa82c10	0xa83e37	0x16ce680	limb/body 
+steam	reagent-item-type-name	0xa82c10	0xa83e46	0x16ce6c0	cast
+steam	reagent-item-type-name	0xa82c10	0xa83eb6	0x16ce6b8	splint
+steam	reagent-item-type-name	0xa82c10	0xa83f20	0x16ce6b0	crutch
+steam	reagent-item-type-name	0xa82c10	0xa83fbb	0x16ce6a8	quiver
+steam	reagent-item-type-name	0xa82c10	0xa8403a	0x16ce63c	casket
+steam	reagent-item-type-name	0xa82c10	0xa84085	0x16ce630	sarcophag
+steam	reagent-item-type-name	0xa82c10	0xa84094	0x1642184	us
+steam	reagent-item-type-name	0xa82c10	0xa8409b	0x16c0828	i
+steam	reagent-item-type-name	0xa82c10	0xa840b7	0x162fe0c	coffin
+steam	reagent-item-type-name	0xa82c10	0xa841d4	0x16ce61c	chain
+steam	reagent-item-type-name	0xa82c10	0xa841e8	0x16ce624	rope
+steam	reagent-item-type-name	0xa82c10	0xa84328	0x16ce664	vial
+steam	reagent-item-type-name	0xa82c10	0xa84339	0x16ce65c	flask
+steam	reagent-item-type-name	0xa82c10	0xa84350	0x16ce670	waterskin
+steam	reagent-item-type-name	0xa82c10	0xa843f9	0x16ce648	musical instrument
+steam	reagent-item-type-name	0xa82c10	0xa844db	0x16ce5e8	unglazed 
+steam	reagent-item-type-name	0xa82c10	0xa84643	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa8465d	0x16c1e44	tool
+steam	reagent-item-type-name	0xa82c10	0xa846fd	0x16c1d64	toy
+steam	reagent-item-type-name	0xa82c10	0xa847ad	0x16ce5e0	cup
+steam	reagent-item-type-name	0xa82c10	0xa847e1	0x16ce5dc	mug
+steam	reagent-item-type-name	0xa82c10	0xa847fb	0x16ce5d4	goblet
+steam	reagent-item-type-name	0xa82c10	0xa8486b	0x16ce614	window
+steam	reagent-item-type-name	0xa82c10	0xa8491a	0x16ce5fc	cage
+steam	reagent-item-type-name	0xa82c10	0xa84921	0x16ce608	terrarium
+steam	reagent-item-type-name	0xa82c10	0xa84995	0x16ce5f4	barrel
+steam	reagent-item-type-name	0xa82c10	0xa84a05	0x16cec8c	bucket
+steam	reagent-item-type-name	0xa82c10	0xa84a75	0x16cec80	animal trap
+steam	reagent-item-type-name	0xa82c10	0xa84af1	0x162fe04	chair
+steam	reagent-item-type-name	0xa82c10	0xa84b0b	0x16cec74	throne
+steam	reagent-item-type-name	0xa82c10	0xa84bc1	0x16cec70	web
+steam	reagent-item-type-name	0xa82c10	0xa84c0c	0x16cecb8	strands
+steam	reagent-item-type-name	0xa82c10	0xa84c3f	0x16158b4	yarn
+steam	reagent-item-type-name	0xa82c10	0xa84c50	0x161589c	thread
+steam	reagent-item-type-name	0xa82c10	0xa84cc5	0x16158a4	cloth
+steam	reagent-item-type-name	0xa82c10	0xa84dcf	0x16cecac	sheet
+steam	reagent-item-type-name	0xa82c10	0xa84df2	0x16ceca0	tanned hide
+steam	reagent-item-type-name	0xa82c10	0xa84e55	0x16cec94	totem
+steam	reagent-item-type-name	0xa82c10	0xa84ebe	0x16cec40	-bound 
+steam	reagent-item-type-name	0xa82c10	0xa84eda	0x16cec2c	codex
+steam	reagent-item-type-name	0xa82c10	0xa84ee1	0x16cec38	codices
+steam	reagent-item-type-name	0xa82c10	0xa84f60	0x16cec20	figurine
+steam	reagent-item-type-name	0xa82c10	0xa84f7e	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa84fa3	0x164fc00	drink
+steam	reagent-item-type-name	0xa82c10	0xa84fe6	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa851cb	0x16cec60	filthy 
+steam	reagent-item-type-name	0xa82c10	0xa851e4	0x16cec58	sticky 
+steam	reagent-item-type-name	0xa82c10	0xa85203	0x16cec48	vomitous 
+steam	reagent-item-type-name	0xa82c10	0xa8521f	0x16cebec	slimy 
+steam	reagent-item-type-name	0xa82c10	0xa85238	0x16b1070	stagnant 
+steam	reagent-item-type-name	0xa82c10	0xa85254	0x16cebe4	dirty 
+steam	reagent-item-type-name	0xa82c10	0xa85270	0x16cebdc	gooey 
+steam	reagent-item-type-name	0xa82c10	0xa85289	0x16cebd0	purulent 
+steam	reagent-item-type-name	0xa82c10	0xa852a2	0x16cec10	ichorous 
+steam	reagent-item-type-name	0xa82c10	0xa852bb	0x16cec08	bloody 
+steam	reagent-item-type-name	0xa82c10	0xa852fa	0x16a6358	liquid
+steam	reagent-item-type-name	0xa82c10	0xa8543c	0x16cebfc	 paste
+steam	reagent-item-type-name	0xa82c10	0xa85491	0x16cebf4	glob
+steam	reagent-item-type-name	0xa82c10	0xa85692	0x16ceb80	 laced with 
+steam	reagent-item-type-name	0xa82c10	0xa85706	0x15e90d8	, 
+steam	reagent-item-type-name	0xa82c10	0xa85716	0x15e9110	 and 
+steam	reagent-item-type-name	0xa82c10	0xa8577b	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa85818	0x16ceb70	 dye mix
+steam	reagent-item-type-name	0xa82c10	0xa8583c	0x16ceb64	powder
+steam	reagent-item-type-name	0xa82c10	0xa85896	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa858b8	0x16ceb5c	cheese
+steam	reagent-item-type-name	0xa82c10	0xa85940	0x16cebc0	catapult parts
+steam	reagent-item-type-name	0xa82c10	0xa859b8	0x16ceba8	bolt thrower parts
+steam	reagent-item-type-name	0xa82c10	0xa85a30	0x16ceb98	mechanisms
+steam	reagent-item-type-name	0xa82c10	0xa85adf	0x16ceb90	tube
+steam	reagent-item-type-name	0xa82c10	0xa85af9	0x16ceb10	pipe section
+steam	reagent-item-type-name	0xa82c10	0xa85b97	0x16ceb00	trap component
+steam	reagent-item-type-name	0xa82c10	0xa85bc8	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa85caa	0x16ceaf0	ballista parts
+steam	reagent-item-type-name	0xa82c10	0xa85d22	0x16ceae8	anvil
+steam	reagent-item-type-name	0xa82c10	0xa85d92	0x16ceb54	amulet
+steam	reagent-item-type-name	0xa82c10	0xa85e02	0x16ceb40	ballista arrow head
+steam	reagent-item-type-name	0xa82c10	0xa85ea9	0x16ceb30	siege ammo
+steam	reagent-item-type-name	0xa82c10	0xa85ff3	0x16ceb20	ammunition
+steam	reagent-item-type-name	0xa82c10	0xa8606b	0x16ceaa8	scepter
+steam	reagent-item-type-name	0xa82c10	0xa860db	0x16cea9c	crown
+steam	reagent-item-type-name	0xa82c10	0xa86145	0x16cea94	coin
+steam	reagent-item-type-name	0xa82c10	0xa86164	0x16cea88	perfect 
+steam	reagent-item-type-name	0xa82c10	0xa86173	0x164a2c8	large 
+steam	reagent-item-type-name	0xa82c10	0xa8625b	0x16cead8	green glass 
+steam	reagent-item-type-name	0xa82c10	0xa86271	0x16ceac8	clear glass 
+steam	reagent-item-type-name	0xa82c10	0xa86287	0x16ceab8	crystal glass 
+steam	reagent-item-type-name	0xa82c10	0xa862a3	0x16158fc	gem
+steam	reagent-item-type-name	0xa82c10	0xa8635b	0x16ceab0	 gem
+steam	reagent-item-type-name	0xa82c10	0xa86436	0x16cea50	ring
+steam	reagent-item-type-name	0xa82c10	0xa864a6	0x16cea48	earring
+steam	reagent-item-type-name	0xa82c10	0xa86516	0x16cea38	bracelet
+steam	reagent-item-type-name	0xa82c10	0xa86586	0x162fdb0	bed
+steam	reagent-item-type-name	0xa82c10	0xa865f6	0x16cea28	traction bench
+steam	reagent-item-type-name	0xa82c10	0xa86666	0x16cea7c	quern
+steam	reagent-item-type-name	0xa82c10	0xa866d6	0x16cea70	millstone
+steam	reagent-item-type-name	0xa82c10	0xa86746	0x16cea64	statue
+steam	reagent-item-type-name	0xa82c10	0xa86852	0x16cea58	memorial
+steam	reagent-item-type-name	0xa82c10	0xa86866	0x16ce9a0	food imports sign
+steam	reagent-item-type-name	0xa82c10	0xa8687a	0x16ce988	clothing imports sign
+steam	reagent-item-type-name	0xa82c10	0xa8688e	0x16ce970	general imports sign
+steam	reagent-item-type-name	0xa82c10	0xa868a2	0x16ce960	cloth shop sign
+steam	reagent-item-type-name	0xa82c10	0xa868b6	0x16cea10	leather shop sign
+steam	reagent-item-type-name	0xa82c10	0xa868ca	0x16ce9f0	woven clothing shop sign
+steam	reagent-item-type-name	0xa82c10	0xa868de	0x16ce9d0	leather clothing shop sign
+steam	reagent-item-type-name	0xa82c10	0xa868f2	0x16ce9b8	bone carver's shop sign
+steam	reagent-item-type-name	0xa82c10	0xa86906	0x16cf090	gem cutter's shop sign
+steam	reagent-item-type-name	0xa82c10	0xa8691a	0x16cf078	weaponsmith's shop sign
+steam	reagent-item-type-name	0xa82c10	0xa8692e	0x16cf060	bowyer's shop sign
+steam	reagent-item-type-name	0xa82c10	0xa86942	0x16cf048	blacksmith's shop sign
+steam	reagent-item-type-name	0xa82c10	0xa86956	0x16cf0f0	armorsmith's shop sign
+steam	reagent-item-type-name	0xa82c10	0xa8696a	0x16cf0d8	metal craft shop sign
+steam	reagent-item-type-name	0xa82c10	0xa8697e	0x16cf0c0	leather goods shop sign
+steam	reagent-item-type-name	0xa82c10	0xa86992	0x16cf0a8	carpenter's shop sign
+steam	reagent-item-type-name	0xa82c10	0xa869a6	0x16ceff8	stone furniture shop sign
+steam	reagent-item-type-name	0xa82c10	0xa869ba	0x16cefd8	metal furniture shop sign
+steam	reagent-item-type-name	0xa82c10	0xa869ce	0x16cefc8	tavern sign
+steam	reagent-item-type-name	0xa82c10	0xa869e2	0x16cefbc	slab
+steam	reagent-item-type-name	0xa82c10	0xa869f6	0x16cefbc	slab
+steam	reagent-item-type-name	0xa82c10	0xa86a14	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa86a29	0x16cf03c	corpse
+steam	reagent-item-type-name	0xa82c10	0xa86a47	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa86a6b	0x16158cc	tooth
+steam	reagent-item-type-name	0xa82c10	0xa86a7c	0x16cf034	teeth
+steam	reagent-item-type-name	0xa82c10	0xa86a91	0x16158c4	bone
+steam	reagent-item-type-name	0xa82c10	0xa86aa9	0x16158bc	shell
+steam	reagent-item-type-name	0xa82c10	0xa86ac1	0x16cf028	plant part
+steam	reagent-item-type-name	0xa82c10	0xa86ad9	0x16cf018	silk body part
+steam	reagent-item-type-name	0xa82c10	0xa86af1	0x16cef70	leather body part
+steam	reagent-item-type-name	0xa82c10	0xa86b09	0x16cef58	wooden body part
+steam	reagent-item-type-name	0xa82c10	0xa86b23	0x16cef48	soap body part
+steam	reagent-item-type-name	0xa82c10	0xa86b3d	0x16158e4	horn
+steam	reagent-item-type-name	0xa82c10	0xa86b57	0x16158dc	pearl
+steam	reagent-item-type-name	0xa82c10	0xa86b71	0x16cef38	yarn body part
+steam	reagent-item-type-name	0xa82c10	0xa86b89	0x16cefa8	strand body part
+steam	reagent-item-type-name	0xa82c10	0xa86b92	0x1681050	body part
+steam	reagent-item-type-name	0xa82c10	0xa86bbb	0x16cefa0	Rotten 
+steam	reagent-item-type-name	0xa82c10	0xa86d22	0x167f0c0	remains
+steam	reagent-item-type-name	0xa82c10	0xa86d81	0x16cef94	seeds
+steam	reagent-item-type-name	0xa82c10	0xa86df2	0x16cef88	withered 
+steam	reagent-item-type-name	0xa82c10	0xa86e66	0x16ceee0	leaves and fruit
+steam	reagent-item-type-name	0xa82c10	0xa86e77	0x16ceed0	leaf or fruit
+steam	reagent-item-type-name	0xa82c10	0xa86eaa	0x16cef88	withered 
+steam	reagent-item-type-name	0xa82c10	0xa86efd	0x1614d54	plant
+steam	reagent-item-type-name	0xa82c10	0xa86f16	0x15e9298	s
+steam	reagent-item-type-name	0xa82c10	0xa86f3c	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa86f54	0x16ceec8	raw 
+steam	reagent-item-type-name	0xa82c10	0xa870d5	0x15e90d8	, 
+steam	reagent-item-type-name	0xa82c10	0xa870eb	0x15e90d8	, 
+steam	reagent-item-type-name	0xa82c10	0xa87104	0x16a11f0	fish
+steam	reagent-item-type-name	0xa82c10	0xa8712a	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa87251	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa87266	0x16ceec4	egg
+steam	reagent-item-type-name	0xa82c10	0xa8728c	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa8738b	0x16a11f0	fish
+steam	reagent-item-type-name	0xa82c10	0xa873a8	0x16cef2c	live 
+steam	reagent-item-type-name	0xa82c10	0xa873e1	0x16cef18	small live animal
+steam	reagent-item-type-name	0xa82c10	0xa873fb	0x16cef0c	tame 
+steam	reagent-item-type-name	0xa82c10	0xa87404	0x16ceef8	small tame animal
+steam	reagent-item-type-name	0xa82c10	0xa8741b	0x16cee88	prepared meal
+steam	reagent-item-type-name	0xa82c10	0xa87435	0x16cec68	rotten 
+steam	reagent-item-type-name	0xa82c10	0xa8744a	0x16cee78	preserved 
+steam	reagent-item-type-name	0xa82c10	0xa8750c	0x16cee70	 chops
+steam	reagent-item-type-name	0xa82c10	0xa8751d	0x16cee68	 chop
+steam	reagent-item-type-name	0xa82c10	0xa87556	0x16ceebc	meat
+steam	reagent-item-type-name	0xa82c10	0xa87570	0x16ceebc	meat
+steam	reagent-item-type-name	0xa82c10	0xa87602	0x16c1ecc	weapon
+steam	reagent-item-type-name	0xa82c10	0xa8763b	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa87767	0x16ceea8	suits of 
+steam	reagent-item-type-name	0xa82c10	0xa87776	0x16c1ec4	armor
+steam	reagent-item-type-name	0xa82c10	0xa877dc	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa87886	0x16ceeb4	chain 
+steam	reagent-item-type-name	0xa82c10	0xa87995	0x163a34c	right 
+steam	reagent-item-type-name	0xa82c10	0xa879b5	0x163a324	left 
+steam	reagent-item-type-name	0xa82c10	0xa879fe	0x16ceeb4	chain 
+steam	reagent-item-type-name	0xa82c10	0xa87a5f	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa87a73	0x16cee98	handwear
+steam	reagent-item-type-name	0xa82c10	0xa87b17	0x16c1d74	shield
+steam	reagent-item-type-name	0xa82c10	0xa87b36	0x16cee10	/buckler
+steam	reagent-item-type-name	0xa82c10	0xa87b4a	0x16cee10	/buckler
+steam	reagent-item-type-name	0xa82c10	0xa87c87	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa87cb7	0x16cee00	footwear
+steam	reagent-item-type-name	0xa82c10	0xa87da8	0x16cedf0	headwear
+steam	reagent-item-type-name	0xa82c10	0xa87dec	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa87ea8	0x16cede8	legwear
+steam	reagent-item-type-name	0xa82c10	0xa87f2c	0x15e873c	 
+steam	reagent-item-type-name	0xa82c10	0xa88046	0x15fcfe0	item
+steam	reagent-item-type-name	0xa82c10	0xa88077	0x161bdcc	 [
+steam	reagent-item-type-name	0xa82c10	0xa88097	0x15fd690	]
+classic	craft-render	0x279930	0x279b7c	0x15f959c	Cancel
+classic	craft-render	0x279930	0x279b85	0x15f95a0	el
+classic	craft-render	0x279930	0x279d04	0x1616b98	: select 
+classic	craft-render	0x279930	0x279d4b	0x1610298	 (
+classic	craft-render	0x279930	0x279dda	0x15e40c4	, 
+classic	craft-render	0x279930	0x279dff	0x1616acc	 left
+classic	craft-render	0x279930	0x279e35	0x1616ae8	, consumed
+classic	craft-render	0x279930	0x279e3c	0x1616ad8	, not consumed
+classic	craft-render	0x279930	0x279e58	0x16102d8	)
+classic	craft-render	0x279930	0x279e78	0x15e3574	.
+classic	craft-render	0x279930	0x279ed8	0x1616b80	Select a butchery tool.
+classic	craft-render	0x279930	0x279ee2	0x1616b90	y tool.
+classic	craft-render	0x279930	0x279eeb	0x1616b94	ol.
+classic	craft-render	0x279930	0x279ef6	0x1616b96	.
+classic	craft-render	0x279930	0x279f48	0x1616b60	What do you want to butcher?
+classic	craft-render	0x279930	0x279f52	0x1616b70	 to butcher?
+classic	craft-render	0x279930	0x279f5f	0x1616b78	her?
+classic	craft-render	0x279930	0x279f97	0x1785e60	H
+classic	craft-render	0x279930	0x279fa4	0x1616b10	What do you want to do?  Items must be in a grasp or on the ground here.
+classic	craft-render	0x279930	0x279fae	0x1616b20	 to do?  Items must be in a grasp or on the ground here.
+classic	craft-render	0x279930	0x279fb9	0x1616b30	ust be in a grasp or on the ground here.
+classic	craft-render	0x279930	0x279fc4	0x1616b40	p or on the ground here.
+classic	craft-render	0x279930	0x279fcf	0x1616b50	nd here.
+classic	craft-render	0x279930	0x27a0e0	0x1616fb0	No available item.
+classic	craft-render	0x279930	0x27a0ea	0x1616fc0	m.
+classic	craft-render	0x279930	0x27a179	0x1616f90	No butchery tool available.
+classic	craft-render	0x279930	0x27a183	0x1616fa0	 available.
+classic	craft-render	0x279930	0x27a190	0x1616fa8	le.
+classic	craft-render	0x279930	0x27a19b	0x1616faa	.
+classic	craft-render	0x279930	0x27a1e1	0x1616af8	No carcass available.
+classic	craft-render	0x279930	0x27a1eb	0x1616b08	able.
+classic	craft-render	0x279930	0x27a1f4	0x1616b0c	.
+classic	craft-render	0x279930	0x27a557	0x1616fc8	Butcher
+classic	craft-render	0x279930	0x27a561	0x1616fcc	her
+classic	craft-render	0x279930	0x27a56c	0x1616fce	r
+classic	craft-render	0x279930	0x27a7b3	0x1617048	You are not that hungry.
+classic	craft-render	0x279930	0x27a7bd	0x1617058	 hungry.
+classic	craft-render	0x279930	0x27a858	0x1616af8	No carcass available.
+classic	craft-render	0x279930	0x27a862	0x1616b08	able.
+classic	craft-render	0x279930	0x27a86b	0x1616b0c	.
+classic	craft-render	0x279930	0x27a8fc	0x1616f90	No butchery tool available.
+classic	craft-render	0x279930	0x27a906	0x1616fa0	 available.
+classic	craft-render	0x279930	0x27a913	0x1616fa8	le.
+classic	craft-render	0x279930	0x27a91e	0x1616faa	.
+classic	craft-render	0x279930	0x27aac7	0x1616fd0	Needs: 
+classic	craft-render	0x279930	0x27aad1	0x1616fd4	s: 
+classic	craft-render	0x279930	0x27aadc	0x1616fd6	 
+classic	craft-render	0x279930	0x27ab04	0x1616f60	nothing.
+classic	craft-render	0x279930	0x27ab7d	0x1616f6c	 [
+classic	craft-render	0x279930	0x27ac1e	0x15e64cc	/
+classic	craft-render	0x279930	0x27ac44	0x1616f70	not consumed
+classic	craft-render	0x279930	0x27ac4b	0x1616f80	consumed
+classic	craft-render	0x279930	0x27ac65	0x15f8664	]
+classic	craft-render	0x279930	0x27ac8d	0x15e40c4	, 
+classic	butcher-and-reagent-selection	0x27bec0	0x27c6ed	0x1617068	You butcher 
+classic	butcher-and-reagent-selection	0x27bec0	0x27c74d	0x15e3574	.
+classic	reaction-completion	0x27e070	0x27e2c9	0x1617078	You make 
+classic	reaction-completion	0x27e070	0x27e2d6	0x1617080	 
+classic	reaction-completion	0x27e070	0x27e33e	0x1617088	 and more
+classic	reaction-completion	0x27e070	0x27e35f	0x15e40bc	 and 
+classic	reaction-completion	0x27e070	0x27e3f9	0x15e3574	.
+classic	reaction-completion	0x27e070	0x27e72b	0x1616fd8	You have finished working on 
+classic	reaction-completion	0x27e070	0x27e735	0x1616fe8	d working on 
+classic	reaction-completion	0x27e070	0x27e742	0x1616ff0	g on 
+classic	reaction-completion	0x27e070	0x27e74b	0x1616ff4	 
+classic	reaction-completion	0x27e070	0x27e7b4	0x1617088	 and more
+classic	reaction-completion	0x27e070	0x27e7ce	0x15e40bc	 and 
+classic	reaction-completion	0x27e070	0x27e836	0x15e3574	.
+classic	reaction-completion	0x27e070	0x27eab3	0x1616ff8	You practice your 
+classic	reaction-completion	0x27e070	0x27eabd	0x1617008	r 
+classic	reaction-completion	0x27e070	0x27eb43	0x15e3574	.
+classic	reaction-completion	0x27e070	0x27eb52	0x1617010	 but make nothing of note.
+classic	reaction-completion	0x27e070	0x27eb7f	0x1617030	You make nothing.
+classic	reaction-completion	0x27e070	0x27eb89	0x1617040	.
+classic	reaction-raw-parser	0xeccb40	0xecce30	0x1658f14	NAME
+classic	reaction-raw-parser	0xeccb40	0xecd1ea	0x16c8ad8	BUILDING
+classic	reaction-raw-parser	0xeccb40	0xecd6a4	0x16ba440	NG
+classic	reaction-raw-parser	0xeccb40	0xecd710	0x16ba440	NG
+classic	reaction-raw-parser	0xeccb40	0xecd733	0x16ba438	NO BINDING
+classic	reaction-raw-parser	0xeccb40	0xecd7c5	0x16ba440	NG
+classic	reaction-raw-parser	0xeccb40	0xecd951	0x1731814	FUEL
+classic	reaction-raw-parser	0xeccb40	0xecd99a	0x1731808	AUTOMATIC
+classic	reaction-raw-parser	0xeccb40	0xecd9d6	0x17318a0	ADVENTURE_MODE_ENABLED
+classic	reaction-raw-parser	0xeccb40	0xecda15	0x1731888	FORTRESS_MODE_ENABLED
+classic	reaction-raw-parser	0xeccb40	0xecda58	0x17318c8	WORLDGEN_ENABLED
+classic	reaction-raw-parser	0xeccb40	0xecda9f	0x1659040	REACTION_CLASS
+classic	reaction-raw-parser	0xeccb40	0xecdd8a	0x1659050	HAS_MATERIAL_REACTION_PRODUCT
+classic	reaction-raw-parser	0xeccb40	0xecddb3	0x1659070	HAS_ITEM_REACTION_PRODUCT
+classic	reaction-raw-parser	0xeccb40	0xece00b	0x17318b8	CONTAINS
+classic	reaction-raw-parser	0xeccb40	0xece078	0x1659090	UNROTTEN
+classic	reaction-raw-parser	0xeccb40	0xece0a0	0x1658f68	CONTAINS_LYE
+classic	reaction-raw-parser	0xeccb40	0xece0b8	0x1658f78	POTASHABLE
+classic	reaction-raw-parser	0xeccb40	0xece0d0	0x1658f88	NOT_WEB
+classic	reaction-raw-parser	0xeccb40	0xece0ff	0x1658f90	WEB_ONLY
+classic	reaction-raw-parser	0xeccb40	0xece12e	0x1658f9c	EMPTY
+classic	reaction-raw-parser	0xeccb40	0xece160	0x1658fa8	NOT_CONTAIN_BARREL_ITEM
+classic	reaction-raw-parser	0xeccb40	0xece192	0x1658fc0	GLASS_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece1c4	0x1658fd0	BUILDMAT
+classic	reaction-raw-parser	0xeccb40	0xece1f3	0x1659160	FIRE_BUILD_SAFE
+classic	reaction-raw-parser	0xeccb40	0xece225	0x1659170	MAGMA_BUILD_SAFE
+classic	reaction-raw-parser	0xeccb40	0xece257	0x1659188	CAN_USE_ARTIFACT
+classic	reaction-raw-parser	0xeccb40	0xece289	0x16591a0	WORTHLESS_STONE_ONLY
+classic	reaction-raw-parser	0xeccb40	0xece2bb	0x16591b8	ANY_PLANT_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece2ed	0x16591d0	ANY_SILK_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece31f	0x16591e8	ANY_YARN_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece351	0x1659200	ANY_SOAP_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece383	0x16590a0	ANY_LEATHER_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece3b5	0x16590b8	ANY_BONE_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece3e7	0x16590d0	ANY_STRAND_TISSUE
+classic	reaction-raw-parser	0xeccb40	0xece419	0x16590e8	ANY_SHELL_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece44b	0x1659100	ANY_WOOD_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece480	0x1659118	ANY_STONE_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece4b5	0x1659130	ANY_GEM_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece4ea	0x1659148	ANY_TOOTH_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece51c	0x1658db8	ANY_HORN_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece54e	0x1658dd0	ANY_PEARL_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece580	0x1658e08	USE_BODY_COMPONENT
+classic	reaction-raw-parser	0xeccb40	0xece5b2	0x1658de8	CAN_USE_LOCATION_RESERVED
+classic	reaction-raw-parser	0xeccb40	0xece5e7	0x1658e20	NO_EDGE_ALLOWED
+classic	reaction-raw-parser	0xeccb40	0xece619	0x1658e30	HAS_EDGE
+classic	reaction-raw-parser	0xeccb40	0xece64e	0x1658e40	ON_GROUND
+classic	reaction-raw-parser	0xeccb40	0xece683	0x1658d58	NOT_ENGRAVED
+classic	reaction-raw-parser	0xeccb40	0xece6b5	0x1731850	NOT_IMPROVED
+classic	reaction-raw-parser	0xeccb40	0xece6e7	0x1731838	HAS_WRITING_IMPROVEMENT
+classic	reaction-raw-parser	0xeccb40	0xece71c	0x1731878	DOES_NOT_ABSORB
+classic	reaction-raw-parser	0xeccb40	0xece74e	0x1731860	FOOD_STORAGE_CONTAINER
+classic	reaction-raw-parser	0xeccb40	0xece783	0x1731948	HARD_ITEM_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece7b5	0x1731938	WOVEN_ITEM
+classic	reaction-raw-parser	0xeccb40	0xece7ea	0x1731978	NOT_PRESSED
+classic	reaction-raw-parser	0xeccb40	0xece81c	0x1731960	METAL_ITEM_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece851	0x17318f8	IS_SAND_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece886	0x17318e0	IS_DIVINE_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece8bb	0x1658e50	IS_CRAFTED_ARTIFACT
+classic	reaction-raw-parser	0xeccb40	0xece8f0	0x1658d30	NOT_ARTIFACT
+classic	reaction-raw-parser	0xeccb40	0xece925	0x1658d40	GROWN_NOT_CRAFTED
+classic	reaction-raw-parser	0xeccb40	0xece95a	0x1659118	ANY_STONE_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece972	0x1659130	ANY_GEM_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xece98a	0x1658d68	METAL_ORE
+classic	reaction-raw-parser	0xeccb40	0xece9fd	0x1658d78	MIN_DIMENSION
+classic	reaction-raw-parser	0xeccb40	0xecea5a	0x1658d88	HAS_TOOL_USE
+classic	reaction-raw-parser	0xeccb40	0xeceabb	0x1731920	SKILL_ROLL_RANGE
+classic	reaction-raw-parser	0xeccb40	0xeceba7	0x1731910	SKILL_IP
+classic	reaction-raw-parser	0xeccb40	0xecec15	0x17319d8	ATTRIBUTE_IP
+classic	reaction-raw-parser	0xeccb40	0xecec83	0x16813e0	CATEGORY
+classic	reaction-raw-parser	0xeccb40	0xeceda0	0x17319c8	CATEGORY_NAME
+classic	reaction-raw-parser	0xeccb40	0xecedfd	0x17319f8	CATEGORY_DESCRIPTION
+classic	reaction-raw-parser	0xeccb40	0xecee5a	0x17319e8	CATEGORY_PARENT
+classic	reaction-raw-parser	0xeccb40	0xeceeb7	0x1731998	CATEGORY_KEY
+classic	reaction-raw-parser	0xeccb40	0xecef4c	0x1679e50	DESCRIPTION
+classic	reaction-raw-parser	0xeccb40	0xecef8c	0x1731988	USE_TOOL
+classic	reaction-raw-parser	0xeccb40	0xecf033	0x17319b8	USE_INSTRUMENT
+classic	reaction-raw-parser	0xeccb40	0xecf121	0x16a1900	SKILL
+classic	reaction-raw-parser	0xeccb40	0xecf17c	0x17319a8	MAX_MULTIPLIER
+classic	reaction-raw-parser	0xeccb40	0xecf1ea	0x1731a80	REAGENT
+classic	reaction-raw-parser	0xeccb40	0xecf2b0	0x1658d68	METAL_ORE
+classic	reaction-raw-parser	0xeccb40	0xecf445	0x1658da8	CREATURE_MAT
+classic	reaction-raw-parser	0xeccb40	0xecf459	0x1658f08	PLANT_MAT
+classic	reaction-raw-parser	0xeccb40	0xecf4b1	0x1731a68	ANY_RAW_MATERIAL
+classic	reaction-raw-parser	0xeccb40	0xecf4c5	0x16134fc	NONE
+classic	reaction-raw-parser	0xeccb40	0xecf4dc	0x1731a90	ANY_CRAFT
+classic	reaction-raw-parser	0xeccb40	0xecf4f0	0x16134fc	NONE
+classic	reaction-raw-parser	0xeccb40	0xecf5b2	0x1731a88	PRODUCT
+classic	reaction-raw-parser	0xeccb40	0xecf6bd	0x1731a20	GET_ITEM_DATA_FROM_REAGENT
+classic	reaction-raw-parser	0xeccb40	0xecf754	0x1658da8	CREATURE_MAT
+classic	reaction-raw-parser	0xeccb40	0xecf768	0x1658f08	PLANT_MAT
+classic	reaction-raw-parser	0xeccb40	0xecf77c	0x1698650	GET_MATERIAL_FROM_REAGENT
+classic	reaction-raw-parser	0xeccb40	0xecf7e4	0x1696968	CRAFTS
+classic	reaction-raw-parser	0xeccb40	0xecf7f8	0x16134fc	NONE
+classic	reaction-raw-parser	0xeccb40	0xecf88b	0x1731a10	IMPROVEMENT
+classic	reaction-raw-parser	0xeccb40	0xecfa0a	0x1658da8	CREATURE_MAT
+classic	reaction-raw-parser	0xeccb40	0xecfa1e	0x1658f08	PLANT_MAT
+classic	reaction-raw-parser	0xeccb40	0xecfa32	0x1698650	GET_MATERIAL_FROM_REAGENT
+classic	reaction-raw-parser	0xeccb40	0xecfbb8	0x1658da8	CREATURE_MAT
+classic	reaction-raw-parser	0xeccb40	0xecfbcc	0x1658f08	PLANT_MAT
+classic	reaction-raw-parser	0xeccb40	0xecfbe0	0x1698650	GET_MATERIAL_FROM_REAGENT
+classic	reaction-raw-parser	0xeccb40	0xecfd38	0x1658da8	CREATURE_MAT
+classic	reaction-raw-parser	0xeccb40	0xecfd4c	0x1658f08	PLANT_MAT
+classic	reaction-raw-parser	0xeccb40	0xecfd60	0x1698650	GET_MATERIAL_FROM_REAGENT
+classic	reaction-raw-parser	0xeccb40	0xecfdfd	0x1696ec4	GLAZED
+classic	reaction-raw-parser	0xeccb40	0xecfe61	0x1731a58	PRODUCT_TOKEN
+classic	reaction-raw-parser	0xeccb40	0xecfebe	0x1731a40	PRODUCT_DIMENSION
+classic	reaction-raw-parser	0xeccb40	0xecff1b	0x1731b18	PRODUCT_TO_CONTAINER
+classic	reaction-raw-parser	0xeccb40	0xecff78	0x1731b00	PRESERVE_REAGENT
+classic	reaction-raw-parser	0xeccb40	0xecffa7	0x1731b40	DOES_NOT_DETERMINE_PRODUCT_AMOUNT
+classic	reaction-raw-parser	0xeccb40	0xecffd6	0x1731b30	FORCE_EDGE
+classic	reaction-raw-parser	0xeccb40	0xed000f	0x1731ab0	PRODUCT_PASTE
+classic	reaction-raw-parser	0xeccb40	0xed0048	0x1731aa0	PRODUCT_PRESSED
+classic	reaction-raw-parser	0xeccb40	0xed0085	0x1731ae0	TRANSFER_ARTIFACT_STATUS
+classic	reaction-raw-parser	0xeccb40	0xed00c9	0x1677ae0	GENERATED
+classic	reaction-raw-parser	0xeccb40	0xed00f8	0x1677ad0	SOURCE_HFID
+classic	reaction-raw-parser	0xeccb40	0xed0150	0x1677ac0	SOURCE_ENID
+classic	reaction-raw-parser	0xeccb40	0xed01a8	0x1613404	:
+classic	reaction-raw-parser	0xeccb40	0xed01c4	0x1731ac0	Unrecognized Reaction Token: 
+classic	reagent-item-filter-description	0xa285e0	0xa28706	0x16c65b8	unused 
+classic	reagent-item-filter-description	0xa285e0	0xa28721	0x16c65c0	improvable 
+classic	reagent-item-filter-description	0xa285e0	0xa2873d	0x16c65d0	butcherable 
+classic	reagent-item-filter-description	0xa285e0	0xa28759	0x16c65e0	millable 
+classic	reagent-item-filter-description	0xa285e0	0xa28775	0x16c65f0	possibly buriable 
+classic	reagent-item-filter-description	0xa285e0	0xa28791	0x16c64d0	unrotten 
+classic	reagent-item-filter-description	0xa285e0	0xa287ad	0x16c64e0	undisturbed 
+classic	reagent-item-filter-description	0xa285e0	0xa287ca	0x16c64f0	collected 
+classic	reagent-item-filter-description	0xa285e0	0xa287ee	0x16c6500	sharpenable 
+classic	reagent-item-filter-description	0xa285e0	0xa2880d	0x165e970	murdered 
+classic	reagent-item-filter-description	0xa285e0	0xa2882c	0x16c6510	empty 
+classic	reagent-item-filter-description	0xa285e0	0xa2884b	0x16c6518	processable 
+classic	reagent-item-filter-description	0xa285e0	0xa2886a	0x16c6528	cookable 
+classic	reagent-item-filter-description	0xa285e0	0xa28889	0x16c6534	solid 
+classic	reagent-item-filter-description	0xa285e0	0xa288ab	0x16c6b20	extract-bearing plant 
+classic	reagent-item-filter-description	0xa285e0	0xa288ca	0x16c6b38	extract-bearing fish 
+classic	reagent-item-filter-description	0xa285e0	0xa288e9	0x16c6b50	extract-bearing small creature 
+classic	reagent-item-filter-description	0xa285e0	0xa28905	0x16c6b70	processable (to vial) 
+classic	reagent-item-filter-description	0xa285e0	0xa28924	0x16c6b88	processable (to barrel) 
+classic	reagent-item-filter-description	0xa285e0	0xa28943	0x16c6ba8	tameable small creature 
+classic	reagent-item-filter-description	0xa285e0	0xa28962	0x164d6e0	nearby 
+classic	reagent-item-filter-description	0xa285e0	0xa28981	0x16c6bc8	sand-bearing 
+classic	reagent-item-filter-description	0xa285e0	0xa289a0	0x16c6bd8	glass 
+classic	reagent-item-filter-description	0xa285e0	0xa289bb	0x16c6ab8	lye-bearing 
+classic	reagent-item-filter-description	0xa285e0	0xa289da	0x16c6ac8	milk 
+classic	reagent-item-filter-description	0xa285e0	0xa289f9	0x16c6ad0	milkable 
+classic	reagent-item-filter-description	0xa285e0	0xa28a18	0x16c6ae0	finished good 
+classic	reagent-item-filter-description	0xa285e0	0xa28a37	0x16c6af0	ammo 
+classic	reagent-item-filter-description	0xa285e0	0xa28a56	0x16c6af8	furniture 
+classic	reagent-item-filter-description	0xa285e0	0xa28ab0	0x15e3720	 
+classic	reagent-item-filter-description	0xa285e0	0xa28ac5	0x16c6b04	dye 
+classic	reagent-item-filter-description	0xa285e0	0xa28ae1	0x16c6b10	dyeable 
+classic	reagent-item-filter-description	0xa285e0	0xa28b00	0x16c6a40	totemable 
+classic	reagent-item-filter-description	0xa285e0	0xa28b1c	0x16c6a50	glass-making 
+classic	reagent-item-filter-description	0xa285e0	0xa28b38	0x16c6a60	dyed 
+classic	reagent-item-filter-description	0xa285e0	0xa28b57	0x16c6a68	melt-designated 
+classic	reagent-item-filter-description	0xa285e0	0xa28b7d	0x16c6a80	deep material 
+classic	reagent-item-filter-description	0xa285e0	0xa28b99	0x16c6a90	sewn-imageless 
+classic	reagent-item-filter-description	0xa285e0	0xa28bb5	0x16c6aa0	screw 
+classic	reagent-item-filter-description	0xa285e0	0xa28bdc	0x16c6aa8	fire-safe 
+classic	reagent-item-filter-description	0xa285e0	0xa28bfb	0x16c69d8	magma-safe 
+classic	reagent-item-filter-description	0xa285e0	0xa28c17	0x16c69e8	building material 
+classic	reagent-item-filter-description	0xa285e0	0xa28c36	0x16c6a00	non-economic 
+classic	reagent-item-filter-description	0xa285e0	0xa28c55	0x16c6a10	plant 
+classic	reagent-item-filter-description	0xa285e0	0xa28c74	0x16c6a18	silk 
+classic	reagent-item-filter-description	0xa285e0	0xa28c8f	0x16c6a20	yarn 
+classic	reagent-item-filter-description	0xa285e0	0xa28cae	0x16c6a28	leather 
+classic	reagent-item-filter-description	0xa285e0	0xa28ccd	0x16c6a34	bone 
+classic	reagent-item-filter-description	0xa285e0	0xa28cec	0x16c6970	hair/wool 
+classic	reagent-item-filter-description	0xa285e0	0xa28d0b	0x16c697c	shell 
+classic	reagent-item-filter-description	0xa285e0	0xa28d2a	0x16c6984	horn 
+classic	reagent-item-filter-description	0xa285e0	0xa28d49	0x16c698c	pearl 
+classic	reagent-item-filter-description	0xa285e0	0xa28d68	0x16c6998	plaster-containing 
+classic	reagent-item-filter-description	0xa285e0	0xa28d8e	0x16c69ac	soap 
+classic	reagent-item-filter-description	0xa285e0	0xa28dad	0x16c69b8	ivory/tooth 
+classic	reagent-item-filter-description	0xa285e0	0xa28dcc	0x16c69c8	lye/milk-free 
+classic	reagent-item-filter-description	0xa285e0	0xa28deb	0x16c6900	blunt 
+classic	reagent-item-filter-description	0xa285e0	0xa28e0a	0x16c6908	unengraved 
+classic	reagent-item-filter-description	0xa285e0	0xa28e25	0x16c6918	unimproved 
+classic	reagent-item-filter-description	0xa285e0	0xa28e44	0x16c6928	written-on 
+classic	reagent-item-filter-description	0xa285e0	0xa28e60	0x16c6938	non-absorbent 
+classic	reagent-item-filter-description	0xa285e0	0xa28e7c	0x16c6948	food storage 
+classic	reagent-item-filter-description	0xa285e0	0xa28e98	0x16c6958	non-pressed 
+classic	reagent-item-filter-description	0xa285e0	0xa28ebe	0x16c6968	woven 
+classic	reagent-item-filter-description	0xa285e0	0xa28eda	0x16c68a4	hard 
+classic	reagent-item-filter-description	0xa285e0	0xa28ef9	0x16c68ac	metal 
+classic	reagent-item-filter-description	0xa285e0	0xa28f18	0x16c68b4	sand 
+classic	reagent-item-filter-description	0xa285e0	0xa28f37	0x16c68bc	edged 
+classic	reagent-item-filter-description	0xa285e0	0xa28f56	0x16c68c8	on-ground 
+classic	reagent-item-filter-description	0xa285e0	0xa28f75	0x16c68d8	divine 
+classic	reagent-item-filter-description	0xa285e0	0xa28f94	0x16c68e0	artifact 
+classic	reagent-item-filter-description	0xa285e0	0xa28fb3	0x16c68f0	non-artifact 
+classic	reagent-item-filter-description	0xa285e0	0xa28fd2	0x16c6830	wooden 
+classic	reagent-item-filter-description	0xa285e0	0xa28ff1	0x16c6838	stone 
+classic	reagent-item-filter-description	0xa285e0	0xa29010	0x16c6840	gem 
+classic	reagent-item-filter-description	0xa285e0	0xa2902f	0x16c6848	grown 
+classic	reagent-item-filter-description	0xa285e0	0xa290bc	0x15e3720	 
+classic	reagent-item-filter-description	0xa285e0	0xa290e3	0x1782ab0	unknown material
+classic	reagent-item-filter-description	0xa285e0	0xa29182	0x16c6850	-bearing 
+classic	reagent-item-filter-description	0xa285e0	0xa29190	0x16c6858	 
+classic	reagent-item-filter-description	0xa285e0	0xa2926f	0x16c6860	CALCIUM_CARBONATE
+classic	reagent-item-filter-description	0xa285e0	0xa29285	0x16c6878	calcite/limestone/chalk/marble 
+classic	reagent-item-filter-description	0xa285e0	0xa292ab	0x16c6898	CAN_GLAZE
+classic	reagent-item-filter-description	0xa285e0	0xa292c1	0x16c6f78	glazable 
+classic	reagent-item-filter-description	0xa285e0	0xa292f3	0x16c6f84	FAT
+classic	reagent-item-filter-description	0xa285e0	0xa29309	0x16c6f88	fat 
+classic	reagent-item-filter-description	0xa285e0	0xa29333	0x16248ec	FLUX
+classic	reagent-item-filter-description	0xa285e0	0xa29349	0x16c6f90	flux 
+classic	reagent-item-filter-description	0xa285e0	0xa2937b	0x16c6f98	GYPSUM
+classic	reagent-item-filter-description	0xa285e0	0xa29391	0x16c6fa0	gypsum 
+classic	reagent-item-filter-description	0xa285e0	0xa293bb	0x16b9a68	PAPER_PLANT
+classic	reagent-item-filter-description	0xa285e0	0xa293d1	0x16c6fa8	paper-making 
+classic	reagent-item-filter-description	0xa285e0	0xa29403	0x16b9a58	PAPER_SLURRY
+classic	reagent-item-filter-description	0xa285e0	0xa29419	0x16c6fb8	paper-slurry 
+classic	reagent-item-filter-description	0xa285e0	0xa29443	0x16c6f10	TALLOW
+classic	reagent-item-filter-description	0xa285e0	0xa29459	0x16c6f18	tallow 
+classic	reagent-item-filter-description	0xa285e0	0xa29482	0x164d888	WAX
+classic	reagent-item-filter-description	0xa285e0	0xa29498	0x16c6f20	wax 
+classic	reagent-item-filter-description	0xa285e0	0xa29509	0x16c6f28	BAG_ITEM
+classic	reagent-item-filter-description	0xa285e0	0xa2951f	0x16c6f38	bag-processable 
+classic	reagent-item-filter-description	0xa285e0	0xa29545	0x1637c68	DRINK_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa2955e	0x16c6f50	fermentable 
+classic	reagent-item-filter-description	0xa285e0	0xa29590	0x16248e0	FIRED_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa295a6	0x16c6f60	clay 
+classic	reagent-item-filter-description	0xa285e0	0xa295d0	0x16c6f68	GLAZE_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa295e6	0x16c6e80	glaze 
+classic	reagent-item-filter-description	0xa285e0	0xa29618	0x16c6e88	HONEYCOMB_PRESS_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa2962e	0x16c6ea0	honey-bearing 
+classic	reagent-item-filter-description	0xa285e0	0xa29658	0x16c6eb0	PARCHMENT_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa2966e	0x16c6ec0	parchment-producing 
+classic	reagent-item-filter-description	0xa285e0	0xa296a0	0x16c6ed8	PRESS_LIQUID_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa296b6	0x16c6ef0	oil-bearing 
+classic	reagent-item-filter-description	0xa285e0	0xa296e0	0x16c6f00	PRESS_PAPER_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa296f6	0x16c6e00	paper-slurryable 
+classic	reagent-item-filter-description	0xa285e0	0xa29728	0x16c6e18	RENDER_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa2973e	0x16c6e28	renderable 
+classic	reagent-item-filter-description	0xa285e0	0xa29768	0x16c6e38	SOAP_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa2977e	0x16c6e44	fatty 
+classic	reagent-item-filter-description	0xa285e0	0xa297b0	0x164cb38	TAN_MAT
+classic	reagent-item-filter-description	0xa285e0	0xa297c6	0x16c6e50	tannable 
+classic	reagent-item-filter-description	0xa285e0	0xa2985f	0x16c6e60	-producing 
+classic	reagent-item-filter-description	0xa285e0	0xa2986d	0x16c6e68	ng 
+classic	reagent-item-filter-description	0xa285e0	0xa2987a	0x16c6e6a	 
+classic	reagent-item-filter-description	0xa285e0	0xa29960	0x16c6e70	-containing 
+classic	reagent-item-filter-description	0xa285e0	0xa299a3	0x16c6d78	color 
+classic	reagent-item-filter-description	0xa285e0	0xa299e6	0x15e3720	 
+classic	reagent-item-filter-description	0xa285e0	0xa29a26	0x16c6d80	liquid cooking
+classic	reagent-item-filter-description	0xa285e0	0xa29a38	0x16c6d90	liquid scoop
+classic	reagent-item-filter-description	0xa285e0	0xa29a4a	0x16c6da0	powder grinding receptacle
+classic	reagent-item-filter-description	0xa285e0	0xa29a56	0x16c6dc0	powder grinding
+classic	reagent-item-filter-description	0xa285e0	0xa29a68	0x16c6dd0	meat carving
+classic	reagent-item-filter-description	0xa285e0	0xa29a7a	0x16c6de0	meat boning
+classic	reagent-item-filter-description	0xa285e0	0xa29a8c	0x16c6df0	meat slicing
+classic	reagent-item-filter-description	0xa285e0	0xa29a9e	0x16c6ce8	meat cleaving
+classic	reagent-item-filter-description	0xa285e0	0xa29ab0	0x16c6cf8	meat-carving holder
+classic	reagent-item-filter-description	0xa285e0	0xa29ac2	0x16c6d10	meal container
+classic	reagent-item-filter-description	0xa285e0	0xa29ad4	0x16c6d20	liquid container
+classic	reagent-item-filter-description	0xa285e0	0xa29ae6	0x16c6d38	food storage
+classic	reagent-item-filter-description	0xa285e0	0xa29af8	0x16c6d48	hive
+classic	reagent-item-filter-description	0xa285e0	0xa29b0a	0x16c6d50	nest box
+classic	reagent-item-filter-description	0xa285e0	0xa29b19	0x16c6d60	small object container
+classic	reagent-item-filter-description	0xa285e0	0xa29b2b	0x16c6c50	track cart
+classic	reagent-item-filter-description	0xa285e0	0xa29b3d	0x16c6c60	heavy object hauler
+classic	reagent-item-filter-description	0xa285e0	0xa29b4f	0x16c6c78	stand-and-work
+classic	reagent-item-filter-description	0xa285e0	0xa29b5e	0x16c6c88	sheet roller
+classic	reagent-item-filter-description	0xa285e0	0xa29b6a	0x16c6c98	folded sheet protector
+classic	reagent-item-filter-description	0xa285e0	0xa29b79	0x16c6cb0	writing container
+classic	reagent-item-filter-description	0xa285e0	0xa29b88	0x16c6cc8	bookcase
+classic	reagent-item-filter-description	0xa285e0	0xa29b97	0x16c6cd8	display object
+classic	reagent-item-filter-description	0xa285e0	0xa29ba6	0x16c6be0	offering placement
+classic	reagent-item-filter-description	0xa285e0	0xa29bb5	0x16c6bf8	divination
+classic	reagent-item-filter-description	0xa285e0	0xa29bbe	0x16c6c08	games of chance
+classic	reagent-item-filter-description	0xa285e0	0xa29bee	0x15e3720	 
+classic	reagent-item-filter-description	0xa285e0	0xa29c03	0x167bdf0	body part
+classic	reagent-item-filter-description	0xa285e0	0xa29c42	0x15e3720	 
+classic	reagent-item-filter-description	0xa285e0	0xa29d24	0x16c6c18	 that isn't a bin
+classic	reagent-item-type-name	0xa7fc90	0xa7fda7	0x164517c	large
+classic	reagent-item-type-name	0xa7fc90	0xa7fdb0	0x1645180	e
+classic	reagent-item-type-name	0xa7fc90	0xa7fdb9	0x1681108	small
+classic	reagent-item-type-name	0xa7fc90	0xa7fdc2	0x168110c	l
+classic	reagent-item-type-name	0xa7fc90	0xa7fe0c	0x16c6848	grown 
+classic	reagent-item-type-name	0xa7fc90	0xa7fee6	0x1677d30	logs
+classic	reagent-item-type-name	0xa7fc90	0xa7ff58	0x16ca230	branch
+classic	reagent-item-type-name	0xa7fc90	0xa7ff7d	0x16ca2d0	es
+classic	reagent-item-type-name	0xa7fc90	0xa7ff9d	0x15fc0c8	rough gems
+classic	reagent-item-type-name	0xa7fc90	0xa7ffb6	0x16ca2c0	raw green glass
+classic	reagent-item-type-name	0xa7fc90	0xa7ffcf	0x16ca2b0	raw clear glass
+classic	reagent-item-type-name	0xa7fc90	0xa7ffe8	0x16ca298	raw crystal glass
+classic	reagent-item-type-name	0xa7fc90	0xa8000a	0x15fc0c8	rough gems
+classic	reagent-item-type-name	0xa7fc90	0xa80028	0x16c70a4	rough 
+classic	reagent-item-type-name	0xa7fc90	0xa800c7	0x1680d5c	small 
+classic	reagent-item-type-name	0xa7fc90	0xa800de	0x1680d5c	small 
+classic	reagent-item-type-name	0xa7fc90	0xa801be	0x16ca1fc	rock
+classic	reagent-item-type-name	0xa7fc90	0xa801de	0x16ca1f0	small rock
+classic	reagent-item-type-name	0xa7fc90	0xa80237	0x16ca1e0	stone boulders
+classic	reagent-item-type-name	0xa7fc90	0xa8025d	0x16ca1d0	boulders
+classic	reagent-item-type-name	0xa7fc90	0xa8033a	0x16ca188	bars
+classic	reagent-item-type-name	0xa7fc90	0xa80353	0x16ca210	charcoal
+classic	reagent-item-type-name	0xa7fc90	0xa80369	0x16ca204	coke
+classic	reagent-item-type-name	0xa7fc90	0xa80372	0x16ca190	refined coal
+classic	reagent-item-type-name	0xa7fc90	0xa8038b	0x16396f8	metal
+classic	reagent-item-type-name	0xa7fc90	0xa8039a	0x16ca21c	 bars
+classic	reagent-item-type-name	0xa7fc90	0xa8044a	0x16ca228	 wafers
+classic	reagent-item-type-name	0xa7fc90	0xa80538	0x15fc088	cut gems
+classic	reagent-item-type-name	0xa7fc90	0xa80551	0x16ca170	cut green glass gems
+classic	reagent-item-type-name	0xa7fc90	0xa8056a	0x16ca158	cut clear glass gems
+classic	reagent-item-type-name	0xa7fc90	0xa80580	0x16ca1b8	cut crystal glass gems
+classic	reagent-item-type-name	0xa7fc90	0xa8059b	0x16ca1b0	gems
+classic	reagent-item-type-name	0xa7fc90	0xa806d8	0x16ca1a8	blocks
+classic	reagent-item-type-name	0xa7fc90	0xa806ef	0x16ca1a8	blocks
+classic	reagent-item-type-name	0xa7fc90	0xa8079d	0x16ca13c	door
+classic	reagent-item-type-name	0xa7fc90	0xa807a4	0x16ca1a0	portal
+classic	reagent-item-type-name	0xa7fc90	0xa8081a	0x16ca130	floodgate
+classic	reagent-item-type-name	0xa7fc90	0xa8088a	0x16ca120	hatch cover
+classic	reagent-item-type-name	0xa7fc90	0xa808fa	0x16ca118	grate
+classic	reagent-item-type-name	0xa7fc90	0xa8096a	0x162aa9c	table
+classic	reagent-item-type-name	0xa7fc90	0xa809da	0x1637a60	cabinet
+classic	reagent-item-type-name	0xa7fc90	0xa80a4a	0x1637a50	weapon rack
+classic	reagent-item-type-name	0xa7fc90	0xa80aba	0x1637a40	armor stand
+classic	reagent-item-type-name	0xa7fc90	0xa80b2a	0x16ca154	bin
+classic	reagent-item-type-name	0xa7fc90	0xa80bd1	0x16ca150	box
+classic	reagent-item-type-name	0xa7fc90	0xa80bea	0x16ca14c	e
+classic	reagent-item-type-name	0xa7fc90	0xa80c13	0x16ca144	coffer
+classic	reagent-item-type-name	0xa7fc90	0xa80c22	0x1637a68	chest
+classic	reagent-item-type-name	0xa7fc90	0xa80c43	0x16caa88	boxe
+classic	reagent-item-type-name	0xa7fc90	0xa80c58	0x15e4220	s
+classic	reagent-item-type-name	0xa7fc90	0xa80c6c	0x16ca150	box
+classic	reagent-item-type-name	0xa7fc90	0xa80ce4	0x16caa84	bag
+classic	reagent-item-type-name	0xa7fc90	0xa80d7f	0x16caa78	backpack
+classic	reagent-item-type-name	0xa7fc90	0xa80e3c	0x16caaa8	cast
+classic	reagent-item-type-name	0xa7fc90	0xa80e48	0x16caa68	limb/body 
+classic	reagent-item-type-name	0xa7fc90	0xa80e57	0x16caaa8	cast
+classic	reagent-item-type-name	0xa7fc90	0xa80eb7	0x16caa68	limb/body 
+classic	reagent-item-type-name	0xa7fc90	0xa80ec6	0x16caaa8	cast
+classic	reagent-item-type-name	0xa7fc90	0xa80f36	0x16caaa0	splint
+classic	reagent-item-type-name	0xa7fc90	0xa80fa0	0x16caa98	crutch
+classic	reagent-item-type-name	0xa7fc90	0xa8103b	0x16caa90	quiver
+classic	reagent-item-type-name	0xa7fc90	0xa810ba	0x16caa24	casket
+classic	reagent-item-type-name	0xa7fc90	0xa81105	0x16caa18	sarcophag
+classic	reagent-item-type-name	0xa7fc90	0xa81114	0x163d170	us
+classic	reagent-item-type-name	0xa7fc90	0xa8111b	0x16bafec	i
+classic	reagent-item-type-name	0xa7fc90	0xa81137	0x162a9ec	coffin
+classic	reagent-item-type-name	0xa7fc90	0xa81254	0x16caa04	chain
+classic	reagent-item-type-name	0xa7fc90	0xa81268	0x16caa0c	rope
+classic	reagent-item-type-name	0xa7fc90	0xa813a8	0x16caa4c	vial
+classic	reagent-item-type-name	0xa7fc90	0xa813b9	0x16caa44	flask
+classic	reagent-item-type-name	0xa7fc90	0xa813d0	0x16caa58	waterskin
+classic	reagent-item-type-name	0xa7fc90	0xa81479	0x16caa30	musical instrument
+classic	reagent-item-type-name	0xa7fc90	0xa8155b	0x16ca9d0	unglazed 
+classic	reagent-item-type-name	0xa7fc90	0xa816c3	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa816dd	0x16bcee4	tool
+classic	reagent-item-type-name	0xa7fc90	0xa8177d	0x16bcefc	toy
+classic	reagent-item-type-name	0xa7fc90	0xa8182d	0x16ca9cc	cup
+classic	reagent-item-type-name	0xa7fc90	0xa81861	0x16ca9c8	mug
+classic	reagent-item-type-name	0xa7fc90	0xa8187b	0x16ca9c0	goblet
+classic	reagent-item-type-name	0xa7fc90	0xa818eb	0x16ca9fc	window
+classic	reagent-item-type-name	0xa7fc90	0xa8199a	0x16ca9e4	cage
+classic	reagent-item-type-name	0xa7fc90	0xa819a1	0x16ca9f0	terrarium
+classic	reagent-item-type-name	0xa7fc90	0xa81a15	0x16ca9dc	barrel
+classic	reagent-item-type-name	0xa7fc90	0xa81a85	0x16ca98c	bucket
+classic	reagent-item-type-name	0xa7fc90	0xa81af5	0x16ca980	animal trap
+classic	reagent-item-type-name	0xa7fc90	0xa81b71	0x162aaa4	chair
+classic	reagent-item-type-name	0xa7fc90	0xa81b8b	0x16ca974	throne
+classic	reagent-item-type-name	0xa7fc90	0xa81c41	0x16ca970	web
+classic	reagent-item-type-name	0xa7fc90	0xa81c8c	0x16ca9b8	strands
+classic	reagent-item-type-name	0xa7fc90	0xa81cbf	0x16106b8	yarn
+classic	reagent-item-type-name	0xa7fc90	0xa81cd0	0x16106a0	thread
+classic	reagent-item-type-name	0xa7fc90	0xa81d45	0x16106a8	cloth
+classic	reagent-item-type-name	0xa7fc90	0xa81e4f	0x16ca9ac	sheet
+classic	reagent-item-type-name	0xa7fc90	0xa81e72	0x16ca9a0	tanned hide
+classic	reagent-item-type-name	0xa7fc90	0xa81ed5	0x16ca994	totem
+classic	reagent-item-type-name	0xa7fc90	0xa81f3e	0x16ca940	-bound 
+classic	reagent-item-type-name	0xa7fc90	0xa81f5a	0x16ca92c	codex
+classic	reagent-item-type-name	0xa7fc90	0xa81f61	0x16ca938	codices
+classic	reagent-item-type-name	0xa7fc90	0xa81fe0	0x16ca920	figurine
+classic	reagent-item-type-name	0xa7fc90	0xa81ffe	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa82023	0x164aac0	drink
+classic	reagent-item-type-name	0xa7fc90	0xa82066	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa8224b	0x16ca960	filthy 
+classic	reagent-item-type-name	0xa7fc90	0xa82264	0x16ca958	sticky 
+classic	reagent-item-type-name	0xa7fc90	0xa82283	0x16ca948	vomitous 
+classic	reagent-item-type-name	0xa7fc90	0xa8229f	0x16ca8ec	slimy 
+classic	reagent-item-type-name	0xa7fc90	0xa822b8	0x16ab578	stagnant 
+classic	reagent-item-type-name	0xa7fc90	0xa822d4	0x16ca8e4	dirty 
+classic	reagent-item-type-name	0xa7fc90	0xa822f0	0x16ca8dc	gooey 
+classic	reagent-item-type-name	0xa7fc90	0xa82309	0x16ca8d0	purulent 
+classic	reagent-item-type-name	0xa7fc90	0xa82322	0x16ca910	ichorous 
+classic	reagent-item-type-name	0xa7fc90	0xa8233b	0x16ca908	bloody 
+classic	reagent-item-type-name	0xa7fc90	0xa8237a	0x16a1240	liquid
+classic	reagent-item-type-name	0xa7fc90	0xa824bc	0x16ca8fc	 paste
+classic	reagent-item-type-name	0xa7fc90	0xa82511	0x16ca8f4	glob
+classic	reagent-item-type-name	0xa7fc90	0xa82712	0x16ca880	 laced with 
+classic	reagent-item-type-name	0xa7fc90	0xa82786	0x15e40c4	, 
+classic	reagent-item-type-name	0xa7fc90	0xa82796	0x15e40bc	 and 
+classic	reagent-item-type-name	0xa7fc90	0xa827fb	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa82898	0x16ca870	 dye mix
+classic	reagent-item-type-name	0xa7fc90	0xa828bc	0x16ca864	powder
+classic	reagent-item-type-name	0xa7fc90	0xa82916	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa82938	0x16ca85c	cheese
+classic	reagent-item-type-name	0xa7fc90	0xa829c0	0x16ca8c0	catapult parts
+classic	reagent-item-type-name	0xa7fc90	0xa82a38	0x16ca8a8	bolt thrower parts
+classic	reagent-item-type-name	0xa7fc90	0xa82ab0	0x16ca898	mechanisms
+classic	reagent-item-type-name	0xa7fc90	0xa82b5f	0x16ca890	tube
+classic	reagent-item-type-name	0xa7fc90	0xa82b79	0x16ca810	pipe section
+classic	reagent-item-type-name	0xa7fc90	0xa82c17	0x16ca800	trap component
+classic	reagent-item-type-name	0xa7fc90	0xa82c48	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa82d2a	0x16ca7f0	ballista parts
+classic	reagent-item-type-name	0xa7fc90	0xa82da2	0x16ca7e4	anvil
+classic	reagent-item-type-name	0xa7fc90	0xa82e12	0x16ca854	amulet
+classic	reagent-item-type-name	0xa7fc90	0xa82e82	0x16ca840	ballista arrow head
+classic	reagent-item-type-name	0xa7fc90	0xa82f29	0x16ca830	siege ammo
+classic	reagent-item-type-name	0xa7fc90	0xa83073	0x16ca820	ammunition
+classic	reagent-item-type-name	0xa7fc90	0xa830eb	0x16cae98	scepter
+classic	reagent-item-type-name	0xa7fc90	0xa8315b	0x16cae8c	crown
+classic	reagent-item-type-name	0xa7fc90	0xa831c5	0x16cae84	coin
+classic	reagent-item-type-name	0xa7fc90	0xa831e4	0x16cae78	perfect 
+classic	reagent-item-type-name	0xa7fc90	0xa831f3	0x16455a8	large 
+classic	reagent-item-type-name	0xa7fc90	0xa832db	0x16caec8	green glass 
+classic	reagent-item-type-name	0xa7fc90	0xa832f1	0x16caeb8	clear glass 
+classic	reagent-item-type-name	0xa7fc90	0xa83307	0x16caea8	crystal glass 
+classic	reagent-item-type-name	0xa7fc90	0xa83323	0x16106fc	gem
+classic	reagent-item-type-name	0xa7fc90	0xa833db	0x16caea0	 gem
+classic	reagent-item-type-name	0xa7fc90	0xa834b6	0x16cae40	ring
+classic	reagent-item-type-name	0xa7fc90	0xa83526	0x16cae38	earring
+classic	reagent-item-type-name	0xa7fc90	0xa83596	0x16cae28	bracelet
+classic	reagent-item-type-name	0xa7fc90	0xa83606	0x162aab0	bed
+classic	reagent-item-type-name	0xa7fc90	0xa83676	0x16cae18	traction bench
+classic	reagent-item-type-name	0xa7fc90	0xa836e6	0x16cae6c	quern
+classic	reagent-item-type-name	0xa7fc90	0xa83756	0x16cae60	millstone
+classic	reagent-item-type-name	0xa7fc90	0xa837c6	0x16cae54	statue
+classic	reagent-item-type-name	0xa7fc90	0xa838d2	0x16cae48	memorial
+classic	reagent-item-type-name	0xa7fc90	0xa838e6	0x16cad90	food imports sign
+classic	reagent-item-type-name	0xa7fc90	0xa838fa	0x16cad78	clothing imports sign
+classic	reagent-item-type-name	0xa7fc90	0xa8390e	0x16cad60	general imports sign
+classic	reagent-item-type-name	0xa7fc90	0xa83922	0x16cad50	cloth shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa83936	0x16cae00	leather shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa8394a	0x16cade0	woven clothing shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa8395e	0x16cadc0	leather clothing shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa83972	0x16cada8	bone carver's shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa83986	0x16cacd8	gem cutter's shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa8399a	0x16cacc0	weaponsmith's shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa839ae	0x16caca8	bowyer's shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa839c2	0x16cac90	blacksmith's shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa839d6	0x16cad38	armorsmith's shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa839ea	0x16cad20	metal craft shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa839fe	0x16cad08	leather goods shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa83a12	0x16cacf0	carpenter's shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa83a26	0x16cac40	stone furniture shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa83a3a	0x16cac20	metal furniture shop sign
+classic	reagent-item-type-name	0xa7fc90	0xa83a4e	0x16cac10	tavern sign
+classic	reagent-item-type-name	0xa7fc90	0xa83a62	0x16cac04	slab
+classic	reagent-item-type-name	0xa7fc90	0xa83a76	0x16cac04	slab
+classic	reagent-item-type-name	0xa7fc90	0xa83a94	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa83aa9	0x16cac84	corpse
+classic	reagent-item-type-name	0xa7fc90	0xa83ac7	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa83aeb	0x16106d0	tooth
+classic	reagent-item-type-name	0xa7fc90	0xa83afc	0x16cac7c	teeth
+classic	reagent-item-type-name	0xa7fc90	0xa83b11	0x16106c8	bone
+classic	reagent-item-type-name	0xa7fc90	0xa83b29	0x16106c0	shell
+classic	reagent-item-type-name	0xa7fc90	0xa83b41	0x16cac70	plant part
+classic	reagent-item-type-name	0xa7fc90	0xa83b59	0x16cac60	silk body part
+classic	reagent-item-type-name	0xa7fc90	0xa83b71	0x16cabb8	leather body part
+classic	reagent-item-type-name	0xa7fc90	0xa83b89	0x16caba0	wooden body part
+classic	reagent-item-type-name	0xa7fc90	0xa83ba3	0x16cab90	soap body part
+classic	reagent-item-type-name	0xa7fc90	0xa83bbd	0x16106e8	horn
+classic	reagent-item-type-name	0xa7fc90	0xa83bd7	0x16106e0	pearl
+classic	reagent-item-type-name	0xa7fc90	0xa83bf1	0x16cab80	yarn body part
+classic	reagent-item-type-name	0xa7fc90	0xa83c09	0x16cabf0	strand body part
+classic	reagent-item-type-name	0xa7fc90	0xa83c12	0x167bdf0	body part
+classic	reagent-item-type-name	0xa7fc90	0xa83c3b	0x16cabe8	Rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa83da2	0x1679ef8	remains
+classic	reagent-item-type-name	0xa7fc90	0xa83e01	0x16cabdc	seeds
+classic	reagent-item-type-name	0xa7fc90	0xa83e72	0x16cabd0	withered 
+classic	reagent-item-type-name	0xa7fc90	0xa83ee6	0x16cab28	leaves and fruit
+classic	reagent-item-type-name	0xa7fc90	0xa83ef7	0x16cab18	leaf or fruit
+classic	reagent-item-type-name	0xa7fc90	0xa83f2a	0x16cabd0	withered 
+classic	reagent-item-type-name	0xa7fc90	0xa83f7d	0x160fd14	plant
+classic	reagent-item-type-name	0xa7fc90	0xa83f96	0x15e4220	s
+classic	reagent-item-type-name	0xa7fc90	0xa83fbc	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa83fd4	0x16cab10	raw 
+classic	reagent-item-type-name	0xa7fc90	0xa84155	0x15e40c4	, 
+classic	reagent-item-type-name	0xa7fc90	0xa8416b	0x15e40c4	, 
+classic	reagent-item-type-name	0xa7fc90	0xa84184	0x169c0e8	fish
+classic	reagent-item-type-name	0xa7fc90	0xa841aa	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa842d1	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa842e6	0x16cab0c	egg
+classic	reagent-item-type-name	0xa7fc90	0xa8430c	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa8440b	0x169c0e8	fish
+classic	reagent-item-type-name	0xa7fc90	0xa84428	0x16cab74	live 
+classic	reagent-item-type-name	0xa7fc90	0xa84461	0x16cab60	small live animal
+classic	reagent-item-type-name	0xa7fc90	0xa8447b	0x16cab54	tame 
+classic	reagent-item-type-name	0xa7fc90	0xa84484	0x16cab40	small tame animal
+classic	reagent-item-type-name	0xa7fc90	0xa8449b	0x16caad0	prepared meal
+classic	reagent-item-type-name	0xa7fc90	0xa844b5	0x16ca968	rotten 
+classic	reagent-item-type-name	0xa7fc90	0xa844ca	0x16caac0	preserved 
+classic	reagent-item-type-name	0xa7fc90	0xa8458c	0x16caab8	 chops
+classic	reagent-item-type-name	0xa7fc90	0xa8459d	0x16caab0	 chop
+classic	reagent-item-type-name	0xa7fc90	0xa845d6	0x16cab04	meat
+classic	reagent-item-type-name	0xa7fc90	0xa845f0	0x16cab04	meat
+classic	reagent-item-type-name	0xa7fc90	0xa84682	0x16bce90	weapon
+classic	reagent-item-type-name	0xa7fc90	0xa846bb	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa847e7	0x16caaf0	suits of 
+classic	reagent-item-type-name	0xa7fc90	0xa847f6	0x16bce88	armor
+classic	reagent-item-type-name	0xa7fc90	0xa8485c	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa84906	0x16caafc	chain 
+classic	reagent-item-type-name	0xa7fc90	0xa84a15	0x1635604	right 
+classic	reagent-item-type-name	0xa7fc90	0xa84a35	0x163560c	left 
+classic	reagent-item-type-name	0xa7fc90	0xa84a7e	0x16caafc	chain 
+classic	reagent-item-type-name	0xa7fc90	0xa84adf	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa84af3	0x16caae0	handwear
+classic	reagent-item-type-name	0xa7fc90	0xa84b97	0x16bce58	shield
+classic	reagent-item-type-name	0xa7fc90	0xa84bb6	0x16cb2a0	/buckler
+classic	reagent-item-type-name	0xa7fc90	0xa84bca	0x16cb2a0	/buckler
+classic	reagent-item-type-name	0xa7fc90	0xa84d07	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa84d37	0x16cb290	footwear
+classic	reagent-item-type-name	0xa7fc90	0xa84e28	0x16cb280	headwear
+classic	reagent-item-type-name	0xa7fc90	0xa84e6c	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa84f28	0x16cb278	legwear
+classic	reagent-item-type-name	0xa7fc90	0xa84fac	0x15e3720	 
+classic	reagent-item-type-name	0xa7fc90	0xa850c6	0x15f7fb0	item
+classic	reagent-item-type-name	0xa7fc90	0xa850f7	0x1616f6c	 [
+classic	reagent-item-type-name	0xa7fc90	0xa85117	0x15f8664	]

@@ -1,0 +1,7 @@
+edition	image_identity	role	begin_rva	end_rva	full_source_string	semantics
+steam	PE:6a70a6d9:02711000	Caption	0x27ca6b	0x27cb57	rbp-0x10	native byte truncation; no line wrapping
+steam	PE:6a70a6d9:02711000	Description	0x27ce76	0x27cec7	rbp+0x10	native byte truncation; no line wrapping
+steam	PE:6a70a6d9:02711000	Needs	0x27d13f	0x27d194	rbp-0x30	native byte truncation; no line wrapping
+classic	PE:6a70b91c:0270a000	Caption	0x27a62b	0x27a717	rbp-0x10	native byte truncation; no line wrapping
+classic	PE:6a70b91c:0270a000	Description	0x27aa36	0x27aa87	rbp+0x10	native byte truncation; no line wrapping
+classic	PE:6a70b91c:0270a000	Needs	0x27acff	0x27ad54	rbp-0x30	native byte truncation; no line wrapping

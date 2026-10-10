@@ -1,0 +1,39 @@
+edition	image_identity	role	start_rva	end_rva	path
+steam	PE:6a70a6d9:02711000	craft-render	0x27bd70	0x27d2ab	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	craft-input	0x27d2b0	0x27e2fa	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	butcher-and-reagent-selection	0x27e300	0x27f22b	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reagent-availability	0x27f230	0x27f389	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reagent-candidates	0x27f390	0x27f588	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	category-tree-builder	0x27f590	0x27ffa1	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reagent-item-matcher	0x280010	0x28019e	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reagent-choice	0x2801a0	0x280355	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reaction-start	0x280360	0x2804a8	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reaction-completion	0x2804b0	0x281091	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	craft-row-count	0x27ffb0	0x280010	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reaction-raw-parser	0xed1bd0	0xed533c	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	category-record-constructor	0xed06f0	0xed0749	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reagent-item-filter-description	0xa2adb0	0xa2c60c	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reagent-item-type-name	0xa82c10	0xa882fc	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reaction-class-token-space	0x724a30	0x724b09	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reagent-filter-constructor	0x1fb050	0x1fb173	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reaction_reagent_itemst-description	0xedc660	0xedc7fe	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+steam	PE:6a70a6d9:02711000	reaction_reagentst-description	0x72250	0x72253	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	craft-render	0x279930	0x27ae6b	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	craft-input	0x27ae70	0x27beba	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	butcher-and-reagent-selection	0x27bec0	0x27cdeb	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reagent-availability	0x27cdf0	0x27cf49	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reagent-candidates	0x27cf50	0x27d148	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	category-tree-builder	0x27d150	0x27db61	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reagent-item-matcher	0x27dbd0	0x27dd5e	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reagent-choice	0x27dd60	0x27df15	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reaction-start	0x27df20	0x27e068	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reaction-completion	0x27e070	0x27ec51	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	craft-row-count	0x27db70	0x27dbd0	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reaction-raw-parser	0xeccb40	0xed02ac	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	category-record-constructor	0xecb660	0xecb6b9	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reagent-item-filter-description	0xa285e0	0xa29e3c	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reagent-item-type-name	0xa7fc90	0xa8537c	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reaction-class-token-space	0x722450	0x722529	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reagent-filter-constructor	0x1fafe0	0x1fb103	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reaction_reagent_itemst-description	0xed75d0	0xed776e	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	reaction_reagentst-description	0x721e0	0x721e3	C:\Users\WIN11\Downloads\df_53_16_win\Dwarf Fortress.exe

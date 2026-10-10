@@ -140,6 +140,7 @@ def deploy_runtime_data(directory: Path) -> None:
 
     for name in ("translations.tsv", "name-editor.tsv", "instrument-translations.tsv",
                  "adventure-target-translations.tsv",
+                 "adventure-crafting-translations.tsv",
                  "dfhack-help-translations.tsv", "dfhack-help-overrides.tsv",
                  "dfhack-help-command-overrides.tsv",
                  "dfhack-output-core.tsv", "dfhack-output-translations.tsv",

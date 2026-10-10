@@ -42074,6 +42074,7 @@ While defeated, the latter escaped unscathed	后者虽被击败，却毫发无�
 Workers cannot be assigned to this building.	无法为此建筑分配工人。	hP
 Workshop mood sketch: pictures of skeletons.	画着骷髅。	l
 Workshop recipe: format body substance state	由{s}构成	l
+Workshop recipe: format state reaction class	属于{s}反应类别	l
 Workshop recipe: state extract-bearing plant	含可提取物	l
 Workshop recipe: state processable (to vial)	可加工并装入小瓶	l
 You can't compose because you can't breathe.	你无法呼吸，不能创作。	hP
@@ -45326,6 +45327,7 @@ You can't travel because you are swimming.	你正在游泳，无法旅行。	hP
 You can't write because you can't breathe.	你无法呼吸，不能书写。	hP
 You cannot rest until you leave this site.	你必须先离开此地点，才能休息。	hP
 You have attracted some positive interest.	你引起了一些善意的关注。	hP
+You have finished working on {i} and more.	你完成了对{i1}等物品的加工。	hPt
 You have finished working on {s} and more.	你完成了对{s1}等物品的加工。	hPt
 You have no idea what's lurking out there.	你并不知道外面潜伏着什么。	hq
 You have nothing left to draw or put away.	你已经没有可以取出或收起的物品了。	hP
@@ -47148,6 +47150,7 @@ You can't write because you are drowning.	你正在溺水，无法书写。	hP
 You can't write because you are swimming.	你正在游泳，无法书写。	hP
 You don't feel safe enough to fell trees.	你觉得这里不够安全，无法砍树。	hP
 You have disturbed the sleep of the dead!	你惊扰了死者的长眠！	hP
+You have finished working on {i} and {i}.	你完成了对{i1}和{i2}的加工。	hPt
 You have finished working on {s} and {s}.	你完成了对{s1}和{s2}的加工。	hPt
 You haven't been able to act for a while.	你已经有一段时间无法行动了。	hP
 You must appoint a {s} to create a squad.	必须先任命一名{s1}，才能创建小队。	hPt
@@ -63191,6 +63194,7 @@ Workshop recipe: state track cart	用于轨道运输	l
 Workshop recipe: state unengraved	未雕刻	l
 Workshop recipe: state unimproved	未改良	l
 Workshop recipe: state written-on	已书写	l
+Workshop recipe: unknown material	未知材质	l
 World mission: Declare war at {p}	在{p}宣战	ht
 World site action: Already at war	已处于战争状态	hi
 World site action: Not in contact	尚未建立联系	hi
@@ -63204,6 +63208,7 @@ You begin the seventeenth stanza.	你开始朗诵第17节诗。	hP
 You cannot jump while in the air.	身处空中时无法跳跃。	hP
 You have been blessed with a pet!	你受到祝福，获赐了一只宠物！	hP
 You have been found dead, frozen.	你被发现时，已经冻死了。	hP
+You have finished working on {i}.	你完成了对{i1}的加工。	hPt
 You have finished working on {s}.	你完成了对{s1}的加工。	hPt
 You have forgotten your training!	你忘掉了所受的训练！	hP
 You must reflect on your actions.	你必须反思自己的行为。	hP
@@ -87243,6 +87248,7 @@ You hear a loud click.	你听到了响亮的咔哒声。	hP
 You hear a loud grunt.	你听到了响亮的哼叫声。	hP
 You interact with item	你与物品互动	w
 You lie on the ground.	你趴在了地上。	hP
+You make {i} and more.	你制作了{i1}等物品。	hPt
 You make {s} and more.	你制作了{s1}等物品。	hPt
 You must be convinced.	我非得让你心服口服。	hP
 You need a broker with	需要一名交易员，	wl
@@ -89321,6 +89327,7 @@ You feel really full.	你感到很饱。	hP
 You hear a deep purr.	你听到了低沉的呼噜声。	hP
 You hear a loud bark.	你听到了响亮的吠叫声。	hP
 You lower the bucket.	你放下了水桶。	hP
+You make {i} and {i}.	你制作了{i1}和{i2}。	hPt
 You make {s} and {s}.	你制作了{s1}和{s2}。	hPt
 You raise the bucket.	你提起了水桶。	hP
 You roll into a ball.	你蜷缩成一团。	hP
@@ -105981,6 +105988,7 @@ You are on fire!	你着火了！	hP
 You are stunned.	你被击晕了。	hj
 You are thirsty.	你口渴了。	hj
 You blow softly.	你轻轻吹气。	hP
+You butcher {i}.	你屠宰了{i1}。	hPt
 You butcher {s}.	你屠宰了{s1}。	hPt
 You cannot mount	你无法骑乘	w
 You cannot read.	你无法阅读。	hP
@@ -120179,6 +120187,7 @@ You dismount.	你从坐骑上下来了。	hP
 You drop {s}.	你放下了{s1}。	hPt
 You flounder!	你挣扎着！	hP
 You lick {n}.	你舔了舔{n1}。	hPt
+You make {i}.	你制作了{i1}。	hPt
 You make {s}.	你制作了{s1}。	hPt
 You mock me?!	你在嘲弄我？！	hP
 You push {s}.	你推动了{s1}。	hPt

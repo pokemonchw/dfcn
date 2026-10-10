@@ -1,0 +1,21 @@
+origin	row	field	source	translation	note
+screenshot	b	category	Basic crafting	基础制作	English category visible in attached screenshot
+screenshot	b	description	The most basic tasks.	最基础的制作任务。	English description visible in attached screenshot
+screenshot	c	category	Bonecarving - ammo and weapons	骨雕——弹药和武器	English category visible in attached screenshot
+screenshot-reconstruction	c	description	Carve bones into ammo and weapons.	将骨头雕刻成弹药和武器。	Chinese nouns already replace parts of the original description
+screenshot	d	category	Bonecarving - armor	骨雕——盔甲	English category visible in attached screenshot
+screenshot-reconstruction	d	description	Carve bones into bone armor.	将骨头雕刻成骨制盔甲。	Chinese nouns already replace parts of the original description
+screenshot	e	category	Bonecarving - trinkets and misc	骨雕——饰品和杂物	English category visible in attached screenshot
+screenshot-reconstruction	e	description	Carve bones into trinkets.	将骨头雕刻成饰品。	Chinese noun already replaces part of the original description
+screenshot-reconstruction	f	category	Bookmaking	书籍制作	Category is mistransliterated in screenshot; English supplied by task context
+screenshot-reconstruction	f	description	Make quires, scrolls and books.	制作稿纸、卷轴和书籍。	Chinese nouns already replace parts of the original description
+screenshot	g	category	Breakdown metal items	拆解金属物品	English category visible in attached screenshot
+screenshot-reconstruction	g	description	Deconstruct armor and weapons into metal scraps.	将盔甲和武器拆解成金属碎块。	Chinese nouns already replace parts of the original description
+screenshot	h	category	Carpentry - Containers	木工——容器	English category visible in attached screenshot
+screenshot-reconstruction	h	description	Make containers using planks and a sharp tool.	使用木板和锋利的工具制作容器。	Chinese words already replace parts of the original description
+screenshot	i	category	Carpentry - Furniture	木工——家具	English category visible in attached screenshot
+screenshot-reconstruction	i	description	Make furniture using planks and a sharp tool.	使用木板和锋利的工具制作家具。	Chinese words already replace parts of the original description
+screenshot-reconstruction	j	category	Decorating	装饰	Category is mistransliterated in screenshot; English supplied by task context
+screenshot-reconstruction	j	description	Decorate items with bone, horn, teeth or gems.	用骨头、角、牙齿或宝石装饰物品。	Chinese nouns already replace parts of the original description
+screenshot-reconstruction	k	category	Leatherworking	皮革加工	Translated category visible in screenshot; English supplied by task context
+screenshot-reconstruction	k	description	Make leather clothing and shields.	制作皮革服装和盾牌。	Chinese words already replace parts of the original description

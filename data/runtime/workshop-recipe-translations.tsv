@@ -117,8 +117,12 @@ Workshop recipe: material gem	宝石	l
 Workshop recipe: state grown	生长而成	l
 
 # a2b854–a2c17d: material identity, reaction classes/products and CONTAINS.
-# Unknown RAW class/product identifiers use the typed -bearing/-producing
-# grammar; vanilla special aliases are listed here exactly as emitted.
+# Unknown RAW class identifiers are emitted verbatim before a space; unknown
+# product identifiers precede -producing. Their typed lookup scopes are
+# reaction class / reaction product, preserving the identifier's case.
+# CONTAINS uses the referenced reagent NAME, not its item/material filter.
+# Vanilla special aliases are listed here exactly as emitted.
+Workshop recipe: unknown material	未知材质	l
 Workshop recipe: material calcite/limestone/chalk/marble	方解石/石灰岩/白垩岩/大理石	l
 Workshop recipe: state glazable	可上釉	l
 Workshop recipe: material fat	脂肪	l
@@ -251,6 +255,7 @@ Workshop recipe: format body substance state	由{s}构成	l
 Workshop recipe: format state -bearing	含{s}	l
 Workshop recipe: format state -producing	可产出{s}	l
 Workshop recipe: format state -containing	装有{s}	l
+Workshop recipe: format state reaction class	属于{s}反应类别	l
 # Concrete component names follow data/runtime/rulesets/zh-Hans/items/corpsepiece.toml's noun structure.
 # Other material-bodied creatures keep their body-component meaning.
 Workshop recipe: body noun bone	骨头	l

@@ -656,6 +656,7 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
     profile.inline_resizes.push_back({0x3b8488, {0xe8,0xa3,0x8d,0xd2,0xff}, {}, true});
     profile.signatures.push_back({0x3b1832, {0xe8,0xf9,0xf9,0xd2,0xff}});
     profile.signatures.push_back({0x3b8488, {0xe8,0xa3,0x8d,0xd2,0xff}});
+#include "native_adventure_crafting_profile.inc"
     // Resolve the reference PE coordinates once. Shared hook installation
     // consumes only the selected executable's addresses and original bytes.
     for (auto &signature : profile.signatures) {

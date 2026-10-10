@@ -1,0 +1,5 @@
+image	path	line	reaction	name	category	building	skill
+workshop	D:\program\steam\steamapps\workshop\content\975370\2898307461\objects\reaction_pokereaction.txt	16	ADV_PREPARE_POISONED_MEAT	prepare poisoned meat			COOK
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\objects\reaction_pokereaction.txt	16	ADV_PREPARE_POISONED_MEAT	prepare poisoned meat			COOK
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	7	ADV_POKEMON_HUMAN	play as Pokemon human			
+workshop	D:\program\steam\steamapps\workshop\content\975370\2902397057\put these in mods folder\Dwarvemon_PMD\objects\reaction_pokepmdreaction.txt	12	MAKE_ITEM_THROWABLE_ADV	make item into throwable ammo			

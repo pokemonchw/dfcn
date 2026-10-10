@@ -641,7 +641,7 @@ static PendingNativeField &pending_native_embark() {
 }
 static void capture_native_field_resize(PendingNativeField &pending,
         const NativeString *source, size_t width, bool origin = false,
-        bool dots_at_three = false, bool zero_pad_one = false) {
+        bool dots_at_three = false, bool zero_pad_one = false, bool plain_shrink = false) {
     pending = {};
     try {
         std::string_view text;
@@ -658,7 +658,7 @@ static void capture_native_field_resize(PendingNativeField &pending,
         // Only the explicitly bound one-byte growth case reaches here. The
         // following three dots completely replace its trailing zero byte.
         if (padded) pending.visible.push_back('\0');
-        if (width > 3 || (dots_at_three && width == 3))
+        if (!plain_shrink && (width > 3 || (dots_at_three && width == 3)))
             pending.visible.replace(width - 3, 3, "...");
     } catch (...) { pending = {}; }
 }

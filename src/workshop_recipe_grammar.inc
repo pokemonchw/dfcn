@@ -29,6 +29,29 @@ std::optional<std::string> Overlay::translate_workshop_recipe_source(
         return exact_literal_translation("Workshop recipe: " + std::string(role) +
             lower(std::string(value)));
     };
+    const auto raw_restriction = [&](std::string_view role, std::string_view value)
+            -> std::optional<std::string> {
+        // The native fallback class/product tokens retain their exact RAW
+        // spelling. Their identity is independent of item/material nouns.
+        const std::string prefix = "Workshop recipe: " + std::string(role);
+        auto target = exact_literal_translation(prefix + std::string(value));
+        if (!complete(target) && !value.empty()) {
+            std::string spelling(value);
+            if (spelling.front() >= 'A' && spelling.front() <= 'Z') spelling.front() += 'a' - 'A';
+            else if (spelling.front() >= 'a' && spelling.front() <= 'z') spelling.front() -= 'a' - 'A';
+            target = exact_literal_translation(prefix + spelling);
+        }
+        if (role == "reagent " && !complete(target)) {
+            const std::string reagent_prefix = "Adventure crafting reagent: ";
+            target = exact_literal_translation(reagent_prefix + std::string(value));
+            if (!complete(target) && !value.empty() && value.front() >= 'A' && value.front() <= 'Z') {
+                std::string spelling(value);
+                spelling.front() += 'a' - 'A';
+                target = exact_literal_translation(reagent_prefix + spelling);
+            }
+        }
+        return complete(target) ? target : std::nullopt;
+    };
     const auto format = [&](std::string_view key,
                             const std::vector<std::pair<std::string, std::string>> &fields)
             -> std::optional<std::string> {
@@ -125,21 +148,39 @@ std::optional<std::string> Overlay::translate_workshop_recipe_source(
                     const std::string part(value.substr(noun_at, end - noun_at));
                     Modifier modifier{lower(part), scoped("state ", part),
                         scoped("material ", part), scoped("kind ", part)};
-                    if (auto category = scoped("material category ", part); complete(category)) {
-                        modifier.material = std::move(category);
-                        modifier.material_category = true;
+                    const auto reaction_class = raw_restriction("reaction class ", part);
+                    if (reaction_class) {
+                        modifier.state = format("state reaction class", {{"{s}", *reaction_class}});
+                        modifier.material.reset();
+                        modifier.kind.reset();
                     }
-                    // Runtime reaction materials and colors participate in
-                    // the same state list, even when they follow a material
-                    // category. They are not pre-rendered nested noun strings.
+                    if (!reaction_class)
+                        if (auto category = scoped("material category ", part); complete(category)) {
+                            modifier.material = std::move(category);
+                            modifier.material_category = true;
+                        }
+                    // Runtime reaction classes/products and CONTAINS are
+                    // distinct RAW fields. A class fallback has no suffix;
+                    // product tokens use -producing, and CONTAINS names the
+                    // referenced reagent rather than its material filter.
                     if (!complete(modifier.state) && !complete(modifier.material) &&
                         !complete(modifier.kind)) {
                         for (std::string_view suffix : {"-bearing", "-producing", "-containing"}) {
+                            if (complete(modifier.state)) break;
                             if (!modifier.source.ends_with(suffix) || part.size() <= suffix.size()) continue;
-                            const auto material = self(self,
-                                std::string_view(part).substr(0, part.size() - suffix.size()), depth + 1);
-                            if (material) modifier.state = format("state " + std::string(suffix),
-                                {{"{s}", *material}});
+                            const auto field = std::string_view(part).substr(0, part.size() - suffix.size());
+                            auto label = suffix == "-producing"
+                                ? raw_restriction("reaction product ", field)
+                                : suffix == "-containing"
+                                    ? raw_restriction("reagent ", field)
+                                    : self(self, field, depth + 1);
+                            // An established noun can spell a reagent NAME
+                            // (water, milk of lime). Typed authored names win;
+                            // unknown RAW class/product tokens never acquire
+                            // a coincidentally spelled material/item meaning.
+                            if (!label && suffix == "-containing") label = self(self, field, depth + 1);
+                            if (label) modifier.state = format("state " + std::string(suffix),
+                                {{"{s}", *label}});
                             break;
                         }
                         if (!modifier.state && modifier.source.starts_with("color "))
@@ -274,18 +315,24 @@ std::optional<std::string> Overlay::translate_workshop_recipe_source(
                              : std::nullopt;
             }
 
-            // Reaction classes/products and CONTAINS expand a complete
-            // material before these suffixes (e.g. milk of lime-containing).
-            // Resolve that material as one noun, retaining every component.
+            // The suffix itself proves each dynamic field's native role.
+            // -bearing carries a material, -producing an opaque RAW product
+            // token, and -containing the referenced reagent's authored NAME.
             for (std::string_view marker : {"-bearing ", "-producing ", "-containing "}) {
                 for (size_t at = folded.find(marker); at != std::string::npos;
                      at = folded.find(marker, at + 1)) {
                     if (!at || at + marker.size() >= value.size()) continue;
-                    const auto material = self(self, value.substr(0, at), depth + 1);
+                    const auto field = value.substr(0, at);
+                    auto label = marker == "-producing "
+                        ? raw_restriction("reaction product ", field)
+                        : marker == "-containing "
+                            ? raw_restriction("reagent ", field)
+                            : self(self, field, depth + 1);
+                    if (!label && marker == "-containing ") label = self(self, field, depth + 1);
                     const auto item = self(self, value.substr(at + marker.size()), depth + 1);
-                    if (material && item)
+                    if (label && item)
                         if (auto target = format(trim(std::string(marker)),
-                                {{"{s1}", *material}, {"{s2}", *item}})) return target;
+                                {{"{s1}", *label}, {"{s2}", *item}})) return target;
                 }
             }
             // Native color restrictions precede a complete color name and

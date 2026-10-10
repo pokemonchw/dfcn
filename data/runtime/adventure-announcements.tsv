@@ -386,13 +386,13 @@ You reorganize your possessions.	你重新整理了随身物品。
 {n} drops {s}.	{n}放下了{s}。
 {n} drinks {s}.	{n}喝下了{s}。
 {p} is sneaking an extra drink to {p}!	{p1}正在偷偷多给{p2}一杯酒！
-You butcher {s}.	你屠宰了{s}。
-You make {s}.	你制作了{s}。
-You make {s} and {s}.	你制作了{s1}和{s2}。
-You make {s} and more.	你制作了{s}等物品。
-You have finished working on {s}.	你完成了对{s}的加工。
-You have finished working on {s} and {s}.	你完成了对{s1}和{s2}的加工。
-You have finished working on {s} and more.	你完成了对{s}等物品的加工。
+You butcher {i}.	你屠宰了{i}。
+You make {i}.	你制作了{i}。
+You make {i} and {i}.	你制作了{i1}和{i2}。
+You make {i} and more.	你制作了{i}等物品。
+You have finished working on {i}.	你完成了对{i}的加工。
+You have finished working on {i} and {i}.	你完成了对{i1}和{i2}的加工。
+You have finished working on {i} and more.	你完成了对{i}等物品的加工。
 You practice your {s}.	你练习了{s}。
 You practice your {s} but make nothing of note.	你练习了{s}，但没有做出什么像样的东西。
 You make nothing.	你什么也没做出来。

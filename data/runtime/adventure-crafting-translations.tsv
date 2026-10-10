@@ -1,0 +1,316 @@
+# Lookup-only text for the adventure crafting panel.
+# Native vanilla raw provenance: data/extracted/adventure-crafting/raw-vanilla-*.tsv.
+# Subscribed workshop raw provenance: data/extracted/adventure-crafting/raw-workshop-*.tsv.
+# Screenshot text and reconstructed descriptions are distinguished in raw-screenshot-texts.tsv.
+# Categories and raw reaction names are resolved as complete fields; these keys do not enter the global trie.
+
+Adventure crafting category: Carpentry	木工	l
+Adventure crafting category: Carve bone	骨雕	l
+Adventure crafting description: Make furniture at a carpenter's workshop using logs and a sharp tool.	使用原木和锋利的工具，在木匠工坊制作家具。	l
+Adventure crafting description: Make crafts from bone using a sharp weapon or tool.	使用锋利的武器或工具，将骨头制成工艺品。	l
+
+# Complete reaction NAME fields from vanilla ADVENTURE_MODE_ENABLED blocks.
+Adventure crafting reaction: make wooden chair	制作木椅	l
+Adventure crafting reaction: make wooden table	制作木桌	l
+Adventure crafting reaction: make wooden bed	制作木床	l
+Adventure crafting reaction: make wooden chest	制作木箱	l
+Adventure crafting reaction: make wooden cabinet	制作木柜	l
+Adventure crafting reaction: make wooden door	制作木门	l
+Adventure crafting reaction: make wooden barrel	制作木桶	l
+Adventure crafting reaction: make wooden bucket	制作木水桶	l
+Adventure crafting reaction: make wooden casket	制作木棺	l
+Adventure crafting reaction: make wooden hatch cover	制作木制活板盖	l
+Adventure crafting reaction: make wooden grate	制作木制格栅	l
+Adventure crafting reaction: make wooden bin	制作木制储物箱	l
+Adventure crafting reaction: make wooden stepladder	制作木梯	l
+Adventure crafting reaction: make wooden bookcase	制作木书柜	l
+Adventure crafting reaction: make wooden splint	制作木夹板	l
+Adventure crafting reaction: make wooden crutch	制作木拐杖	l
+Adventure crafting reaction: make wooden shield	制作木盾	l
+Adventure crafting reaction: make wooden buckler	制作木制小盾	l
+Adventure crafting reaction: make wooden training axe	制作木制训练斧	l
+Adventure crafting reaction: make wooden training short sword	制作木制训练短剑	l
+Adventure crafting reaction: make wooden training spear	制作木制训练矛	l
+Adventure crafting reaction: make wooden pedestal	制作木制基座	l
+Adventure crafting reaction: make sharp rock	打制尖石	l
+Adventure crafting reaction: carve bone figurine	雕刻骨制小塑像	l
+Adventure crafting reaction: carve bone ring	雕刻骨戒指	l
+Adventure crafting reaction: carve bone earring	雕刻骨耳环	l
+Adventure crafting reaction: carve bone scepter	雕刻骨权杖	l
+Adventure crafting reaction: carve bone amulet	雕刻骨制护身符	l
+Adventure crafting reaction: carve bone bracelet	雕刻骨手镯	l
+Adventure crafting reaction: carve bone crown	雕刻骨制头冠	l
+Adventure crafting reaction: carve bone cabochon	雕刻骨制弧面宝石	l
+Adventure crafting reaction: carve wooden helve from branch	用树枝削制斧柄	l
+Adventure crafting reaction: assemble stone axe	组装石斧	l
+
+# Complete NAME fields from subscribed workshop ADVENTURE_MODE_ENABLED blocks.
+Adventure crafting reaction: prepare poisoned meat	制作毒肉	l
+Adventure crafting reaction: play as Pokemon human	以宝可梦人形态游玩	l
+Adventure crafting reaction: make item into throwable ammo	将物品制成投掷弹药	l
+
+# Categories and descriptions visible in the supplied screenshot.
+Adventure crafting category: Basic crafting	基础制作	l
+Adventure crafting category: Bonecarving - ammo and weapons	骨雕——弹药和武器	l
+Adventure crafting category: Bonecarving - armor	骨雕——盔甲	l
+Adventure crafting category: Bonecarving - trinkets and misc	骨雕——饰品和杂物	l
+Adventure crafting category: Bookmaking	书籍制作	l
+Adventure crafting category: Breakdown metal items	拆解金属物品	l
+Adventure crafting category: Carpentry - Containers	木工——容器	l
+Adventure crafting category: Carpentry - Furniture	木工——家具	l
+Adventure crafting category: Decorating	装饰	l
+Adventure crafting category: Leatherworking	皮革加工	l
+Adventure crafting description: The most basic tasks.	最基础的制作任务。	l
+Adventure crafting description: Carve bones into ammo and weapons.	将骨头雕刻成弹药和武器。	l
+Adventure crafting description: Carve bones into bone armor.	将骨头雕刻成骨制盔甲。	l
+Adventure crafting description: Carve bones into trinkets.	将骨头雕刻成饰品。	l
+Adventure crafting description: Make quires, scrolls and books.	制作稿纸、卷轴和书籍。	l
+Adventure crafting description: Deconstruct armor and weapons into metal scraps.	将盔甲和武器拆解成金属碎块。	l
+Adventure crafting description: Make containers using planks and a sharp tool.	使用木板和锋利的工具制作容器。	l
+Adventure crafting description: Make furniture using planks and a sharp tool.	使用木板和锋利的工具制作家具。	l
+Adventure crafting description: Decorate items with bone, horn, teeth or gems.	用骨头、角、牙齿或宝石装饰物品。	l
+Adventure crafting description: Make leather clothing and shields.	制作皮革服装和盾牌。	l
+
+# Complete native prompts/statuses and constructor formats.
+Adventure crafting category: Butcher	屠宰	l
+Adventure crafting message: Cancel	取消	l
+Adventure crafting message: What do you want to do? Items must be in a grasp or on the ground here.	你想做什么？物品必须拿在手中或放在此处的地面上。	l
+Adventure crafting message: What do you want to butcher?	你想屠宰什么？	l
+Adventure crafting message: Select a butchery tool.	选择屠宰工具。	l
+Adventure crafting message: No available item.	没有可用的物品。	l
+Adventure crafting message: No butchery tool available.	没有可用的屠宰工具。	l
+Adventure crafting message: No carcass available.	没有可用的尸体。	l
+Adventure crafting message: You are not that hungry.	你还没有那么饿。	l
+Adventure crafting format: consumed	{s}［消耗］	l
+Adventure crafting format: not consumed	{s}［不消耗］	l
+Adventure crafting format: count consumed	{s}［消耗数量：{d}］	l
+Adventure crafting format: count not consumed	{s}［所需数量：{d}，不消耗］	l
+Adventure crafting format: join	{s1}、{s2}	l
+Adventure crafting format: needs	需求：{s}	l
+Adventure crafting format: needs nothing	需求：无。	l
+Adventure crafting format: reagent prompt	{s1}：选择{s2}（{s3}）。	l
+Adventure crafting format: remaining	{s}，还需{d}	l
+Adventure crafting format: reaction prompt	{s}。	l
+Adventure crafting reagent: log	原木	l
+Adventure crafting reagent: tool	工具	l
+Adventure crafting reagent: tool stone	制作用石块	l
+Adventure crafting reagent: hammerstone	锤石	l
+Adventure crafting reagent: bone	骨头	l
+Adventure crafting reagent: branch	树枝	l
+Adventure crafting reagent: helve	斧柄	l
+Adventure crafting reagent: stone	石块	l
+Adventure crafting reagent: poisoned meat	毒肉	l
+Adventure crafting reagent: throwable	投掷物	l
+Adventure crafting format: carve	将{s1}雕刻成{s2}。	l
+Adventure crafting format: deconstruct	将{s1}拆解成{s2}。	l
+Adventure crafting format: make using	使用{s2}制作{s1}。	l
+Adventure crafting format: decorate	用{s2}装饰{s1}。	l
+Adventure crafting format: make	制作{s}。	l
+Adventure crafting format: noun alternatives	{s1}或{s2}	l
+
+# Author-published Wanderer R20a RAW fields; this is a versioned source catalog.
+# data/extracted/adventure-crafting/raw-mod-wanderer-r20a-*.tsv retains source URLs.
+# The current screenshot's changed labels/descriptions above retain their own provenance.
+Adventure crafting category: -> Basic crafting	→ 基础制作	l
+Adventure crafting category: Alchemy	炼金术	l
+Adventure crafting category: Breakdown	拆解	l
+Adventure crafting category: Smelting	冶炼	l
+Adventure crafting category: Smithing ammo and weapons	锻造——弹药和武器	l
+Adventure crafting category: Smithing armor	锻造——盔甲	l
+Adventure crafting category: Stonecrafting - ammo	石工——弹药	l
+Adventure crafting category: Stonecrafting - trinkets and misc	石工——饰品和杂物	l
+Adventure crafting category: Woodcrafting - ammo and weapons	木雕——弹药和武器	l
+Adventure crafting category: Woodcrafting - trinkets and misc	木雕——饰品和杂物	l
+Adventure crafting description: Brew magic balms and concoctions.	调制魔法药膏和药剂。	l
+Adventure crafting description: Deconstruct armor and weapons into metal chunks.	将盔甲和武器拆解成金属碎块。	l
+Adventure crafting description: Make containers at a carpenter's workshop using logs and a sharp tool.	使用原木和锋利的工具，在木匠工坊制作容器。	l
+Adventure crafting description: Make pig iron and steel chunks.	制作生铁块和钢块。	l
+Adventure crafting description: Make metal ammo and weapons from metal chunks.	使用金属碎块制作金属弹药和武器。	l
+Adventure crafting description: Make metal armor from metal chunks.	使用金属碎块制作金属盔甲。	l
+Adventure crafting description: Make stone ammo and trinkets.	制作石制弹药和饰品。	l
+Adventure crafting description: Make stone trinkets.	制作石制饰品。	l
+Adventure crafting description: Carve wood into ammo and weapons.	将木头雕刻成弹药和武器。	l
+Adventure crafting description: Make splints and crutches from wooden logs.	使用原木制作夹板和拐杖。	l
+Adventure crafting description: Make an alchemical ingredient from soulgems dropped by megabeasts.	使用巨兽掉落的灵魂石制作炼金材料。	l
+Adventure crafting description: Make a temporary pill which removes fatigue, lasts 1 hour in adventure mode and 1 day in fortress mode.	制作临时消除疲劳的药丸，在冒险模式中持续1小时，在要塞模式中持续1天。	l
+Adventure crafting description: Make a temporary painkiller pill, lasts 1 hour in adventure mode and 1 day in fortress mode.	制作临时止痛药丸，在冒险模式中持续1小时，在要塞模式中持续1天。	l
+Adventure crafting description: Make a permanent buff potion from a megabeast soulgem.	使用巨兽灵魂石制作提供永久增益的药剂。	l
+Adventure crafting description: (Megabeast hearts) Make a permanent buff potion from a megabeast soulgem.	（巨兽心脏）使用巨兽灵魂石制作提供永久增益的药剂。	l
+Adventure crafting description: 80% chance to get a metal chunk.	有80%的概率获得一块金属碎块。	l
+Adventure crafting description: 80% and 60% chance to get metal chunks.	分别有80%和60%的概率获得金属碎块。	l
+Adventure crafting description: Make a bone bow.	制作骨弓。	l
+Adventure crafting description: (Bone) Knap a bone dagger.	（骨头）打制骨匕首。	l
+Adventure crafting description: Make a bone spear.	制作骨矛。	l
+Adventure crafting description: Make high boots.	制作高筒靴。	l
+Adventure crafting description: Make a bone breastplate.	制作骨制胸甲。	l
+Adventure crafting description: Make bone greaves.	制作骨制护胫。	l
+Adventure crafting description: Make a bone helm.	制作骨制头盔。	l
+Adventure crafting description: Carve a bone crutch for crutchwalking.	雕刻用于拄拐行走的骨制拐杖。	l
+Adventure crafting description: Make an amulet.	制作护身符。	l
+Adventure crafting description: Make a bracelet.	制作手镯。	l
+Adventure crafting description: Make an earring.	制作耳环。	l
+Adventure crafting description: Make a figurine.	制作小塑像。	l
+Adventure crafting description: Make a ring.	制作戒指。	l
+Adventure crafting description: (Needle + 2 leather) Make high boots.	（针和2块皮革）制作高筒靴。	l
+Adventure crafting description: Carve 15 wooden arrows.	雕刻15支木箭。	l
+Adventure crafting description: Carve 15 wooden bolts.	雕刻15支木弩矢。	l
+Adventure crafting description: Make a bow.	制作弓。	l
+
+Adventure crafting reaction: carve wooden stick from branch	用树枝削制木棍	l
+Adventure crafting reaction: make arcane catalyst from lesser soulgem	使用低等灵魂石制作奥术催化剂	l
+Adventure crafting reaction: make arcane catalyst from soulgem	使用灵魂石制作奥术催化剂	l
+Adventure crafting reaction: craft energy pill (1 arcane catalyst)	制作精力药丸（1个奥术催化剂）	l
+Adventure crafting reaction: craft painkiller pill (1 arcane catalyst)	制作止痛药丸（1个奥术催化剂）	l
+Adventure crafting reaction: make balm of agility (2 arcane catalysts)	制作敏捷药膏（2个奥术催化剂）	l
+Adventure crafting reaction: make balm of endurance (2 arcane catalysts)	制作耐力药膏（2个奥术催化剂）	l
+Adventure crafting reaction: make balm of strength (2 arcane catalysts)	制作力量药膏（2个奥术催化剂）	l
+Adventure crafting reaction: make balm of recuperation (2 arcane catalysts)	制作恢复药膏（2个奥术催化剂）	l
+Adventure crafting reaction: make balm of toughness (2 arcane catalysts)	制作韧性药膏（2个奥术催化剂）	l
+Adventure crafting reaction: make potion of extravision (3 arcane catalysts)	制作超凡视力药剂（3个奥术催化剂）	l
+Adventure crafting reaction: make potion of indefatigability (5 arcane catalysts)	制作不倦药剂（5个奥术催化剂）	l
+Adventure crafting reaction: make quire	制作稿纸	l
+Adventure crafting reaction: make scroll	制作卷轴	l
+Adventure crafting reaction: bind book	装订书籍	l
+Adventure crafting reaction: breakdown weapon	拆解武器	l
+Adventure crafting reaction: breakdown breastplate	拆解胸甲	l
+Adventure crafting reaction: breakdown cap	拆解便帽	l
+Adventure crafting reaction: breakdown greaves	拆解护胫	l
+Adventure crafting reaction: breakdown helm (Mallet + helm)	拆解头盔（木槌和头盔）	l
+Adventure crafting reaction: breakdown leggings (Mallet + metal leggings)	拆解护腿（木槌和金属护腿）	l
+Adventure crafting reaction: breakdown mail shirt	拆解锁子甲	l
+Adventure crafting reaction: carve bone arrows	雕刻骨箭	l
+Adventure crafting reaction: carve bone bolts	雕刻骨弩矢	l
+Adventure crafting reaction: carve bone bow	雕刻骨弓	l
+Adventure crafting reaction: carve bone dagger (Bone)	雕刻骨匕首（骨头）	l
+Adventure crafting reaction: carve bone spear	雕刻骨矛	l
+Adventure crafting reaction: carve bone boots	雕刻骨制靴子	l
+Adventure crafting reaction: carve bone breastplate	雕刻骨制胸甲	l
+Adventure crafting reaction: carve bone greaves	雕刻骨制护胫	l
+Adventure crafting reaction: carve bone helm	雕刻骨制头盔	l
+Adventure crafting reaction: carve bone crutch	雕刻骨制拐杖	l
+Adventure crafting reaction: make sticks from log	用原木制作木棍	l
+Adventure crafting reaction: decorate item with bone (spikes)	用骨头装饰物品（尖刺）	l
+Adventure crafting reaction: decorate item with bone (rings)	用骨头装饰物品（垂环）	l
+Adventure crafting reaction: decorate item with bone (bands)	用骨头装饰物品（饰带）	l
+Adventure crafting reaction: decorate item with horn (spikes)	用角装饰物品（尖刺）	l
+Adventure crafting reaction: decorate item with horn (rings)	用角装饰物品（垂环）	l
+Adventure crafting reaction: decorate item with horn (bands)	用角装饰物品（饰带）	l
+Adventure crafting reaction: decorate item with large gem (spikes)	用大宝石装饰物品（尖刺）	l
+Adventure crafting reaction: decorate item with large gem (rings)	用大宝石装饰物品（垂环）	l
+Adventure crafting reaction: decorate item with large gem (bands)	用大宝石装饰物品（饰带）	l
+Adventure crafting reaction: decorate item with small gem (spikes)	用小宝石装饰物品（尖刺）	l
+Adventure crafting reaction: decorate item with small gem (rings)	用小宝石装饰物品（垂环）	l
+Adventure crafting reaction: decorate item with small gem (bands)	用小宝石装饰物品（饰带）	l
+Adventure crafting reaction: decorate item with teeth (spikes)	用牙齿装饰物品（尖刺）	l
+Adventure crafting reaction: decorate item with teeth (rings)	用牙齿装饰物品（垂环）	l
+Adventure crafting reaction: decorate item with teeth (bands)	用牙齿装饰物品（饰带）	l
+Adventure crafting reaction: tan raw skin	鞣制生皮	l
+Adventure crafting reaction: Sew leather/bone shield	缝制皮革骨架盾牌	l
+Adventure crafting reaction: Sew leather/wooden shield	缝制皮革木架盾牌	l
+Adventure crafting reaction: sew leather backpack	缝制皮革背包	l
+Adventure crafting reaction: sew leather cloak	缝制皮革披风	l
+Adventure crafting reaction: sew leather armor	缝制皮甲	l
+Adventure crafting reaction: sew leather cap	缝制皮帽	l
+Adventure crafting reaction: sew leather high boots	缝制皮革高筒靴	l
+Adventure crafting reaction: sew leather low boots	缝制皮革短靴	l
+Adventure crafting reaction: sew leather waterskin	缝制皮革水袋	l
+Adventure crafting reaction: make pig iron chunks	制作生铁块	l
+Adventure crafting reaction: make steel chunks	制作钢块	l
+Adventure crafting reaction: forge arrows	锻造箭矢	l
+Adventure crafting reaction: forge bolts	锻造弩矢	l
+Adventure crafting reaction: forge battle axe	锻造战斧	l
+Adventure crafting reaction: forge great axe	锻造巨斧	l
+Adventure crafting reaction: forge flail	锻造连枷	l
+Adventure crafting reaction: forge halberd	锻造戟	l
+Adventure crafting reaction: forge long sword	锻造长剑	l
+Adventure crafting reaction: forge mace	锻造钉头锤	l
+Adventure crafting reaction: forge pike	锻造长枪	l
+Adventure crafting reaction: forge short sword	锻造短剑	l
+Adventure crafting reaction: forge spear	锻造矛	l
+Adventure crafting reaction: forge two-handed sword	锻造双手剑	l
+Adventure crafting reaction: forge war hammer	锻造战锤	l
+Adventure crafting reaction: forge boots	锻造靴子	l
+Adventure crafting reaction: forge breastplate	锻造胸甲	l
+Adventure crafting reaction: forge chainmail	锻造锁子甲	l
+Adventure crafting reaction: forge helm	锻造头盔	l
+Adventure crafting reaction: forge greaves	锻造护胫	l
+Adventure crafting reaction: make stone arrows (bone shaft)	制作石箭（骨制箭杆）	l
+Adventure crafting reaction: make stone arrows (wooden shaft)	制作石箭（木制箭杆）	l
+Adventure crafting reaction: make stone bolts (bone shaft)	制作石弩矢（骨制箭杆）	l
+Adventure crafting reaction: make stone bolts (wooden shaft)	制作石弩矢（木制箭杆）	l
+Adventure crafting reaction: carve stone amulet	雕刻石制护身符	l
+Adventure crafting reaction: carve stone bracelet	雕刻石制手镯	l
+Adventure crafting reaction: carve stone earring	雕刻石制耳环	l
+Adventure crafting reaction: carve stone figurine	雕刻石制小塑像	l
+Adventure crafting reaction: carve stone ring	雕刻石制戒指	l
+Adventure crafting reaction: carve wooden arrows	雕刻木箭	l
+Adventure crafting reaction: carve wooden bolts	雕刻木弩矢	l
+Adventure crafting reaction: make wooden bow	制作木弓	l
+Adventure crafting reaction: carve wooden amulet	雕刻木制护身符	l
+Adventure crafting reaction: carve wooden bracelet	雕刻木制手镯	l
+Adventure crafting reaction: carve wooden earring	雕刻木制耳环	l
+Adventure crafting reaction: carve wooden figurine	雕刻木制小塑像	l
+Adventure crafting reaction: carve wooden ring	雕刻木制戒指	l
+
+# Reagent NAME values are displayed by the native selection prompt.
+# A is the author's material alias for PARCHMENT_MAT in quire/scroll recipes.
+Adventure crafting reagent: A	制纸材料	l
+Adventure crafting reagent: armor	盔甲	l
+Adventure crafting reagent: blade	刀刃	l
+Adventure crafting reagent: bone 1	骨料1	l
+Adventure crafting reagent: cap	便帽	l
+Adventure crafting reagent: chain	链条	l
+Adventure crafting reagent: chunk	金属碎块	l
+Adventure crafting reagent: chunks	金属碎块	l
+Adventure crafting reagent: cover	外层	l
+Adventure crafting reagent: frame	框架	l
+Adventure crafting reagent: gem	宝石	l
+Adventure crafting reagent: greaves	护胫	l
+Adventure crafting reagent: handle	柄	l
+Adventure crafting reagent: handle bottom	下半柄	l
+Adventure crafting reagent: handle top	上半柄	l
+Adventure crafting reagent: head	武器头	l
+Adventure crafting reagent: helm	头盔	l
+Adventure crafting reagent: horn	角	l
+Adventure crafting reagent: leather	皮革	l
+Adventure crafting reagent: leggings	护腿	l
+Adventure crafting reagent: lesser soulgem	低等灵魂石	l
+Adventure crafting reagent: padding	衬垫	l
+Adventure crafting reagent: plating	护甲片	l
+Adventure crafting reagent: quire	稿纸	l
+Adventure crafting reagent: raw skin	生皮	l
+Adventure crafting reagent: rock	石块	l
+Adventure crafting reagent: soulgem	灵魂石	l
+Adventure crafting reagent: spearhead	矛头	l
+Adventure crafting reagent: stick	木棍	l
+Adventure crafting reagent: target	装饰对象	l
+Adventure crafting reagent: tip	尖端	l
+Adventure crafting reagent: tooth	牙齿	l
+Adventure crafting reagent: weapon	武器	l
+Adventure crafting reagent: wire metal	制丝金属	l
+Adventure crafting noun: bone	骨头	l
+Adventure crafting noun: bones	骨头	l
+Adventure crafting noun: ammo	弹药	l
+Adventure crafting noun: weapons	武器	l
+Adventure crafting noun: armor	盔甲	l
+Adventure crafting noun: trinkets	饰品	l
+Adventure crafting noun: quires	稿纸	l
+Adventure crafting noun: scrolls	卷轴	l
+Adventure crafting noun: books	书籍	l
+Adventure crafting noun: containers	容器	l
+Adventure crafting noun: planks	木板	l
+Adventure crafting noun: a sharp tool	锋利的工具	l
+Adventure crafting noun: items	物品	l
+Adventure crafting noun: gems	宝石	l
+Adventure crafting noun: clothing	服装	l
+Adventure crafting noun: shields	盾牌	l
+
+# Material selectors retain their opaque RAW token in the lookup key.
+# PARCHMENT_MAT/TAN_MAT resolve to creature parchment/leather materials;
+# THROWN resolves to the PMD throwable material, UNPOISONEDMEAT to safe meat.
+Workshop recipe: reaction class METAL	金属	l
+Workshop recipe: reaction class THROWABLE	可投掷物	l
+Workshop recipe: reaction product PARCHMENT_MAT	羊皮纸	l
+Workshop recipe: reaction product TAN_MAT	鞣制皮革	l
+Workshop recipe: reaction product THROWN	投掷弹药	l
+Workshop recipe: reaction product UNPOISONEDMEAT	无毒肉	l
