@@ -159,6 +159,11 @@
                     "Animal actions state");
             }
         }
+    }
+    {
+        // The private DFHack layer contains this Label, not the native unit
+        // tabs beneath it. Its exact two-row caption/state contract identifies
+        // the widget independently of Overview's background grid.
         constexpr std::string_view current = "Mood:", longterm = "Long-term mood:";
         for (int y = 0; y + 1 < gps_->dimy; ++y) {
             for (size_t at = dfhack_context_rows[y].find("Mood: "); at != std::string::npos;
@@ -184,24 +189,39 @@
                     if (only_y >= 0 && only_y != row) return;
                     const std::string source = dfhack_context_rows[row].substr(x, end - x);
                     if (read_row(row).compare(x, source.size(), source) != 0) return;
-                    const auto label = exact_literal_translation(
-                        "DFHack GUI Unit overlay caption: " + std::string(caption));
-                    const auto state = exact_literal_translation(
-                        "DFHack GUI Unit mood state: " + std::string(mood));
-                    if (!label || !state) return;
-                    // Caption and value are one colored text run. Keeping
-                    // separate matches makes Overview restore the English
-                    // caption's column offset after the Chinese label.
+                    // Reuse the same control vocabulary as the token reader;
+                    // composing its layout must not change the state wording.
+                    const auto control = exact_literal_translation(
+                        "DFHack GUI Overlay control: " + std::string(caption) +
+                        " |" + std::string(mood) + "|I|0|-1|0");
+                    if (!control) return;
+                    const size_t separator = control->find('|');
+                    if (separator == std::string::npos) return;
+                    const std::string label = control->substr(0, separator);
+                    const std::string state = control->substr(separator + 1);
+                    // Caption and value share one colored run, so the state
+                    // follows the Chinese label instead of its English column.
                     Match match{x, row, end - x, kDfhackHotkeysHintRule,
-                        *label + *state, source};
+                        label + state, source};
                     match.layout_x = x;
                     match.layout_length = end - x;
                     match.layout_left = true;
                     match.layout_clip_right = end;
                     match.layout_font_pixels = unified_font_pixels();
                     match.layout_lock_font_pixels = true;
-                    // Leave layout_y native so the shared colon/value color
-                    // mapper retains the mood's original stress-level pen.
+                    // Store each token's native pen before half-font layout
+                    // normalization assigns an explicit shared baseline.
+                    const auto append_colors = [&](const std::string &target, int source_x) {
+                        bool layer = false;
+                        const auto *cell = cell_at(source_x, row, &layer);
+                        std::vector<uint32_t> cps;
+                        if (!cell || !decode_utf8(target, cps)) return;
+                        const int rgb = (cell[1] << 16) | (cell[2] << 8) | cell[3];
+                        match.layout_glyph_foreground_rgb.insert(
+                            match.layout_glyph_foreground_rgb.end(), cps.size(), rgb);
+                    };
+                    append_colors(label, x);
+                    append_colors(state, x + static_cast<int>(caption.size()) + 1);
                     dfhack_auxiliary_matches.push_back(std::move(match));
                 };
                 emit_mood_row(y, current, *current_mood, current_right);
