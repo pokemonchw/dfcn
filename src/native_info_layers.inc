@@ -14,6 +14,7 @@ enum class NativeInfoLaborPage : int32_t {
 static NativeInfoLaborPage g_native_info_labor_page = NativeInfoLaborPage::None;
 
 static bool native_info_background_view(const graphicst *graphics) noexcept {
+    if (native_stocks_background_view(graphics)) return true;
     return graphics && g_native_info_layer.ready && !g_native_info_foreground &&
         graphics != g_native_info_write_graphics &&
         graphics->screen == g_native_info_background_grid;
@@ -21,10 +22,12 @@ static bool native_info_background_view(const graphicst *graphics) noexcept {
 
 static bool native_info_background_cell_hidden(const graphicst *graphics,
         int x, int y) noexcept {
+    if (native_stocks_background_cell_hidden(graphics, x, y)) return true;
     return graphics && g_native_info_layer.ready &&
         (graphics == g_native_info_background_graphics ||
             graphics->screen == g_native_info_background_grid) &&
         graphics != g_native_info_write_graphics &&
+        graphics != g_native_stocks_write_graphics &&
         x >= g_native_info_panel.x && y >= g_native_info_panel.y &&
         x < g_native_info_panel.x + g_native_info_panel.w &&
         y < g_native_info_panel.y + g_native_info_panel.h;
@@ -32,6 +35,7 @@ static bool native_info_background_cell_hidden(const graphicst *graphics,
 
 static bool native_info_background_copy_hidden(SDL_Renderer *renderer,
         const SDL_Rect *destination) noexcept {
+    if (native_stocks_background_copy_hidden(renderer, destination)) return true;
     if (!destination || destination->w <= 0 || destination->h <= 0 ||
             !g_native_info_layer.ready || renderer != g_native_info_layer.renderer) return false;
     // Atlas/offscreen copies have a different coordinate space and owners.
@@ -118,8 +122,10 @@ static NativeInfoCapturedText g_native_info_text;
 // The existing caption readers see the component's actual writers both at
 // native draw time and during translation. Background readers never see them.
 struct NativeInfoCapturedTextScope {
-    NativeInfoCapturedTextScope() { g_native_info_text.swap_current(); }
-    ~NativeInfoCapturedTextScope() { g_native_info_text.swap_current(); }
+    NativeInfoCapturedText &text;
+    explicit NativeInfoCapturedTextScope(NativeInfoCapturedText &value = g_native_info_text)
+        : text(value) { text.swap_current(); }
+    ~NativeInfoCapturedTextScope() { text.swap_current(); }
     NativeInfoCapturedTextScope(const NativeInfoCapturedTextScope &) = delete;
     NativeInfoCapturedTextScope &operator=(const NativeInfoCapturedTextScope &) = delete;
 };

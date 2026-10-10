@@ -87,6 +87,7 @@ static void native_help_begin_frame(void *renderer) {
     auto &layer = g_native_help_layer;
     layer.ready = false;
     native_info_begin_frame();
+    native_stocks_begin_frame();
     layer.frames.clear();
     layer.collapsed_titles.clear();
     layer.native_renderer = nullptr;

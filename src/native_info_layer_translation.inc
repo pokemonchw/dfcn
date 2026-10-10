@@ -1,6 +1,14 @@
 void Overlay::render_native_info_layer(SDL_Renderer *renderer) {
+    render_native_fortress_layer(renderer, false);
+}
+
+void Overlay::render_native_stocks_layer(SDL_Renderer *renderer) {
+    render_native_fortress_layer(renderer, true);
+}
+
+void Overlay::render_native_fortress_layer(SDL_Renderer *renderer, bool stocks) {
     TranslationStateScope translation;
-    auto &layer = g_native_info_layer;
+    auto &layer = stocks ? g_native_stocks_layer : g_native_info_layer;
     if (!renderer || !layer.ready || layer.renderer != renderer) return;
     if (!config_.enabled || !face_ || rules_.empty()) {
         native_ui_paint_grid(layer, renderer, {});
@@ -20,7 +28,7 @@ void Overlay::render_native_info_layer(SDL_Renderer *renderer) {
         decltype(Overlay::observed_glyph_chars_) glyphs;
         decltype(Overlay::observed_glyph_epoch_) glyph_epochs;
         decltype(Overlay::suppressed_glyphs_) suppressed;
-        explicit ViewScope(Overlay &value)
+        ViewScope(Overlay &value, graphicst *foreground)
             : overlay(value), graphics(value.gps_), matches(std::move(value.prepared_matches_)),
               tooltip(std::move(g_native_toolbar_tooltip)), readback(value.graphical_clear_readback_),
               repairs(std::move(value.native_border_repairs_)),
@@ -31,7 +39,7 @@ void Overlay::render_native_info_layer(SDL_Renderer *renderer) {
               glyphs(std::move(value.observed_glyph_chars_)),
               glyph_epochs(std::move(value.observed_glyph_epoch_)),
               suppressed(std::move(value.suppressed_glyphs_)) {
-            overlay.gps_ = g_native_info_layer.foreground.graphics();
+            overlay.gps_ = foreground;
             overlay.graphical_clear_readback_ = nullptr;
         }
         ~ViewScope() {
@@ -48,16 +56,37 @@ void Overlay::render_native_info_layer(SDL_Renderer *renderer) {
             overlay.observed_glyph_epoch_ = std::move(glyph_epochs);
             overlay.suppressed_glyphs_ = std::move(suppressed);
         }
-    } view(*this);
-    NativeInfoCapturedTextScope captions;
+    } view(*this, layer.foreground.graphics());
+    NativeInfoCapturedTextScope captions(stocks ? g_native_stocks_text : g_native_info_text);
     NativeInfoForegroundScope foreground;
     NativeUiReadScope component(gps_, nullptr);
     NativePanelReadScope panels(gps_);
     CellReadCacheScope cells(*this);
     // One matching/layout pass for this submitted component. No glyph-copy
     // callback enters its translation and no translated frame is cached.
-    prepared_matches_ = find_native_info_matches();
+    prepared_matches_ = stocks ? find_native_stocks_matches() : find_native_info_matches();
     normalize_native_split_text();
+
+    if (stocks) {
+        // The Stocks producer supplies each field and its bounds. Its private
+        // layer never enters page discovery, generic prose layout or per-glyph
+        // suppression. Only the submitted caption spans need translation.
+        for (auto &match : prepared_matches_) {
+            if (match.target.empty() || match.native_split_duplicate) continue;
+            const int left = match.layout_x >= 0 ? match.layout_x : match.x;
+            if (match.layout_clip_right > left)
+                layout_fortress_text_rows(renderer, {{&match}}, left, match.layout_clip_right);
+        }
+        native_ui_paint_grid(layer, renderer, prepared_matches_);
+        for (const auto &match : prepared_matches_) {
+            if (match.target.empty() || match.native_split_duplicate) continue;
+            Match text = match;
+            text.graphical_clear_width = text.graphical_clear_height = 0;
+            text.graphical_auto_foreground = false;
+            draw_match(renderer, text);
+        }
+        return;
+    }
 
     // Keep independent native fields out of the generic column/prose pass,
     // following the existing management-page layout order.

@@ -2189,8 +2189,12 @@ static NativeTextGridOrigin native_text_grid_origin(
 #include "native_dfhack_layers.inc"
 static thread_local const graphicst *g_native_help_write_graphics = nullptr;
 static thread_local const graphicst *g_native_info_write_graphics = nullptr;
+static thread_local const graphicst *g_native_stocks_write_graphics = nullptr;
 static thread_local bool g_native_info_foreground = false;
 static bool native_info_background_cell_hidden(const graphicst *, int, int) noexcept;
+static bool native_stocks_background_view(const graphicst *) noexcept;
+static bool native_stocks_background_cell_hidden(const graphicst *, int, int) noexcept;
+static bool native_stocks_background_copy_hidden(SDL_Renderer *, const SDL_Rect *) noexcept;
 static bool native_private_ui_write_active(const graphicst *gps) noexcept {
     return gps && (gps == g_native_help_write_graphics || native_dfhack_layer_write_active(gps));
 }
@@ -3307,6 +3311,8 @@ public:
     void render_dfhack_layer(SDL_Renderer *renderer);
     void render_native_help_layer(SDL_Renderer *renderer);
     void render_native_info_layer(SDL_Renderer *renderer);
+    void render_native_stocks_layer(SDL_Renderer *renderer);
+    void render_native_fortress_layer(SDL_Renderer *renderer, bool stocks);
     void queue_dfhack_layer_translation();
     bool native_frame_submitted() const noexcept { return native_frame_submitted_; }
     void render_ime_popup(SDL_Renderer *renderer);
@@ -3388,6 +3394,7 @@ public:
 
 private:
     std::vector<Match> find_native_info_matches() const;
+    std::vector<Match> find_native_stocks_matches() const;
     std::vector<Match> find_native_info_background_matches(int only_y,
         const unsigned char *screen_override) const;
     void append_native_info_grid_matches(const std::vector<std::string> &rows,
@@ -15613,6 +15620,7 @@ std::vector<Match> Overlay::resolve_native_knowledge_matches(
 #include "native_panel_layout.inc"
 #include "native_help_layers.inc"
 #include "native_info_layers.inc"
+#include "native_stocks_layers.inc"
 
 struct NativeKeybindingScope {
     SDL_Rect table{};
@@ -16118,6 +16126,7 @@ static void native_ui_paint_grid(NativeUiLayerStorage &layer, SDL_Renderer *rend
     const std::vector<Match> &matches);
 #include "native_help_layer_translation.inc"
 #include "native_info_layer_matching.inc"
+#include "native_stocks_layer_translation.inc"
 #include "native_info_layer_translation.inc"
 
 static void native_dfhack_redraw_background(SDL_Renderer *renderer,
@@ -42785,6 +42794,8 @@ static void native_help_present_layers(SDL_Renderer *renderer,
     void (*draw_help)(SDL_Renderer *));
 static void native_info_present_layer(SDL_Renderer *renderer,
     void (*draw_info)(SDL_Renderer *));
+static void native_stocks_present_layer(SDL_Renderer *renderer,
+    void (*draw_stocks)(SDL_Renderer *));
 
 extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
     SlowBoundaryTiming boundary("present boundary");
@@ -42795,6 +42806,9 @@ extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
     g_overlay.render(renderer);
     native_info_present_layer(renderer, [](SDL_Renderer *info_renderer) {
         g_overlay.render_native_info_layer(info_renderer);
+    });
+    native_stocks_present_layer(renderer, [](SDL_Renderer *stocks_renderer) {
+        g_overlay.render_native_stocks_layer(stocks_renderer);
     });
     native_help_present_layers(renderer, [](SDL_Renderer *help_renderer) {
         g_overlay.render_native_help_layer(help_renderer);
