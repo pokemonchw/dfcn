@@ -192,12 +192,50 @@ void Overlay::append_embark_site_names(const NativeTextCard &card,
     }
 }
 
+void Overlay::append_embark_site_ecology(const NativeTextCard &card,
+        std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const {
+    // The native ecological field supplies the meaning of short values such
+    // as Temperate and Calm. Resolve the complete label/value production
+    // before generic words or a mod's unrelated item/creature vocabulary.
+    constexpr std::array<std::string_view, 4> labels = {
+        "Temperature:", "Trees:", "Other Vegetation:", "Surroundings:"
+    };
+    for (const auto &row : card.rows) {
+        const auto label = std::find_if(labels.begin(), labels.end(), [&](auto prefix) {
+            return row.source.starts_with(prefix);
+        });
+        if (label == labels.end() || row.foregrounds.size() != row.source.size() ||
+                rows[row.y].compare(row.x, row.source.size(), row.source) != 0) continue;
+        const auto target = exact_literal_translation(
+            "Embark site ecology: " + normalize_utterance(row.source));
+        if (!target) continue;
+        const size_t value_at = row.source.find_first_not_of(' ', label->size());
+        std::vector<uint32_t> cps;
+        if (value_at == std::string::npos || !decode_utf8(*target, cps)) continue;
+        Match field{row.x, row.y, static_cast<int>(row.source.size()),
+            kEmbarkSiteRowRule, *target, row.source};
+        field.layout_foreground_rgb = row.foregrounds.front();
+        bool value = false;
+        for (uint32_t cp : cps) {
+            field.layout_glyph_foreground_rgb.push_back(row.foregrounds[value ? value_at : 0]);
+            if (cp == ':' || cp == 0xff1a) value = true;
+        }
+        std::erase_if(matches, [&](const Match &match) {
+            return match.y == row.y && match.x < row.x + static_cast<int>(row.source.size()) &&
+                row.x < match.x + match.length;
+        });
+        std::fill_n(rows[row.y].begin() + row.x, row.source.size(), ' ');
+        if (only_y < 0 || only_y == row.y) matches.push_back(std::move(field));
+    }
+}
+
 void Overlay::append_embark_site_resources(NativeTextCard &card,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const {
     // Native reserves a fixed resource band even when the preceding site list
     // grows into it. Read complete addst fields before their overwritten grid
     // fragments reach name/word matching. Vocabulary only identifies fields;
-    // their translations still come from the ordinary dictionary.
+    // contextual dictionary entries retain resource meanings when extensions
+    // give the same English words unrelated item or color meanings.
     constexpr std::array<std::string_view, 25> resources = {
         "Shallow Clay", "Shallow Sand", "Clay", "Sand", "Iron", "Gold",
         "Silver", "Copper", "Nickel", "Zinc", "Platinum", "Tin", "Lead",
@@ -217,7 +255,8 @@ void Overlay::append_embark_site_resources(NativeTextCard &card,
                     (cursor + name.size() == source.size() || source[cursor + name.size()] == ' ');
             });
             if (term == resources.end()) return std::vector<Resource>{};
-            auto target = exact_literal_translation(*term);
+            auto target = exact_literal_translation("Embark site resource: " + std::string(*term));
+            if (!target) target = exact_literal_translation(*term);
             parts.push_back({cursor, *term, target ? *target : std::string(*term)});
             cursor += term->size();
         }

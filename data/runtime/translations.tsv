@@ -35941,6 +35941,7 @@ DFHack help: | | (e.g., worldgen being vague). |	| | （例如，worldgen 含糊
 DFHack hotkeys hint: Quickly run saved commands.	快速执行已保存的命令。	l
 Designate an item for dumping in a dumping zone.	指定将物品运到物品倾倒区。	hj
 Dig a channel, making a ramp on the level below.	挖掘沟道，在下一层形成斜坡。	hj
+Embark site ecology: Surroundings: Untamed Wilds	周围环境：未驯服的荒野
 Forgive me, but I couldn't follow your rambling.	恕我直言，你东拉西扯的，我听不明白。	hP
 Fortress activity: Make electrum bars (use bars)	制作琥珀金锭（使用金属锭）	li
 Fortress activity: suffix (unreachable location)	（无法抵达地点）	li
@@ -37317,6 +37318,8 @@ DFHack help: | | | | | L: loaded I: invalid | |	| | | | | L：已加载 I：无�
 DFHack hotkeys hint: Destroy the selected item.	销毁选中的物品。	l
 DFHack hotkeys hint: Teleport or destroy items.	传送或销毁物品。	l
 Desired grid height for scaling (default = {d})	缩放的目标网格高度 (默认 = {d})	wt
+Embark site ecology: Other Vegetation: Moderate	其他植被：适中
+Embark site ecology: Surroundings: Joyous Wilds	周围环境：欢悦荒野
 Fortress activity: Agitated Wilderness Creature	躁动的野生生物	li
 Fortress activity: Make electrum bars (use ore)	制作琥珀金锭（使用矿石）	li
 Fortress activity: suffix (cannot follow order)	（无法执行命令）	li
@@ -40296,6 +40299,9 @@ Desired Evil Square Count in Large Subregions	大型子区域的邪恶方格目�
 Desired Evil Square Count in Small Subregions	小型子区域的邪恶方格目标数量
 Desired Good Square Count in Large Subregions	大型子区域的善良方格目标数量
 Desired Good Square Count in Small Subregions	小型子区域的善良方格目标数量
+Embark site ecology: Other Vegetation: Scarce	其他植被：极少
+Embark site ecology: Surroundings: Terrifying	周围环境：恐怖
+Embark site ecology: Surroundings: Wilderness	周围环境：荒野
 Fail the internal struggle, completely shaken	没能克服内心挣扎，彻底动摇	hP
 Fail the struggle against great mortification	没能克服强烈的羞愧难当	hP
 For {u} of my years, I rescued lost children.	我曾经专门救助迷路的孩子，干了{u1}年。	hPt
@@ -41905,6 +41911,8 @@ DFHack help: unretire-anyone ===============	unretire-anyone ===============	l
 DFHack help: warmdamptoolbar ~~~~~~~~~~~~~~~	warmdamp工具栏~~~~~~~~~~~~~~~	l
 Desired River Start Locations (Post-Erosion)	侵蚀后河流源头目标数量
 Do Orographic Precipitation and Rain Shadows	启用地形降水与雨影
+Embark site ecology: Other Vegetation: Thick	其他植被：茂密
+Embark site ecology: Trees: Heavily Forested	树木：茂密森林
 Events in other modes are incorporated here.	其他游戏模式下发生的各类事件都会整合并入当前模式中。	hP
 Events in other modes are incorporated here.	其他游戏模式下发生的各类事件都会整合并入当前模式中。	w
 Fail the struggle against existential crisis	没能克服存在危机	hP
@@ -43448,6 +43456,11 @@ DFHack help: wait: Temporarily leave party.	等待：暂时离开队伍。	l
 DFHack help: was incinerated by dragon fire	被龙火焚烧	l
 DFHack help: workflow count BOULDER/CLAY 20	工作流程计数 BOULDER/CLAY 20	l
 DFHack help: workflow count CRAFTS//GOLD 20	工作流程计数 CRAFTS//GOLD 20	l
+Embark site ecology: Other Vegetation: None	其他植被：无
+Embark site ecology: Surroundings: Mirthful	周围环境：欢乐
+Embark site ecology: Surroundings: Sinister	周围环境：阴森
+Embark site ecology: Temperature: Scorching	温度：酷热
+Embark site ecology: Temperature: Temperate	温度：温和
 Exchange, give, take or show personal items	交换、赠送、拿取或展示随身物品	hP
 Explore the history of The Past Dimensions.	探索“往昔维度”的历史。	l
 Forbid toppled building items during sieges	围城期间禁用被推倒建筑的物品	wi
@@ -45149,6 +45162,8 @@ DFHack help: x = center.x - (x - center.x)	x = center.x - (x - center.x)	l
 DFHack help: | Level | name | text | pen |	|水平|名称 |文字|笔|	l
 DFHack help: | | Enter: load ESC: exit | |	| |输入：加载ESC：退出| |	l
 DFHack help: | | indeterminate location. |	| |位置不确定。 |	l
+Embark site ecology: Surroundings: Haunted	周围环境：闹鬼
+Embark site ecology: Temperature: Freezing	温度：严寒
 Embark with a group to start a settlement.	与一群人共同出发，建立一处聚落。	hP
 Embark with a group to start a settlement.	与一群人共同出发，建立一处聚落。	l
 Finish setting item/building designations.	结束物品和建筑指定操作。	hj
@@ -46932,6 +46947,8 @@ DFHack help: watch combat in slow motion.	以慢动作观看战斗。	l
 DFHack help: | -3 | unquestionably weak |	| -3 |毫无疑问的弱|	l
 Diplomacy tree-fell count (untamed wilds)	外交砍树限额（蛮荒之地）
 Do this if you want to keep the old save.	若想保留旧存档，请选择此项。	w
+Embark site ecology: Surroundings: Serene	周围环境：祥和
+Embark site resource: Extremely deep soil	极深土层
 FARMING CIVILIZATION PLACED WITHOUT CROPS	已放置的农耕政权没有作物	hP
 Five hundred or more people were expelled	至少五百人遭到驱逐	h
 Follow destiny or strike out on your own.	顺从天意，还是自己闯出一条路？	w
@@ -50522,6 +50539,8 @@ DFHack help: xstair = staircase up/down	xstair = 上下楼梯	l
 DFHack help: | -4 | unfathomably weak |	| -4 |弱得难以想象|	l
 DFHack hotkeys hint: No help available.	暂无帮助信息。	l
 Embark preparations were not completed.	启程准备尚未完成。	wl
+Embark site ecology: Surroundings: Calm	周围环境：宁静
+Embark site resource: Flux stone layers	助熔石层
 Equipment and pet points remaining: {d}	剩余装备与宠物点数：{d}	wt
 Fail the struggle against great anguish	没能克服强烈的痛苦万分	hP
 Fail the struggle against great despair	没能克服强烈的绝望	hP
@@ -52445,6 +52464,9 @@ Display worn clothing dyes (fort mode)	显示穿着服装染料(要塞模式)	w
 Displays an indicator on fertile eggs.	在受精蛋上显示一个标识.	w
 Do you have wisdom to share, preacher?	布道者，你有什么智慧要分享吗？	hP
 Don't try to throw your weight around.	别想在这里仗势欺人。	hP
+Embark site ecology: Temperature: Cold	温度：寒冷
+Embark site ecology: Temperature: Warm	温度：温暖
+Embark site resource: Flux stone layer	助熔石层
 Fail the struggle against great dismay	没能克服强烈的沮丧	hP
 Fail the struggle against great fright	没能克服强烈的惊恐	hP
 Fail the struggle against great horror	没能克服强烈的恐怖	hP
@@ -54386,6 +54408,7 @@ DFHack hotkeys hint: Quickstart guide	快速入门指南	l
 Dismiss minor feeling of being shaken	不在意些许动摇	hP
 Display worn clothing dyes (adv mode)	显示穿着服装染料(冒险模式)	w
 Don't waste my time with this drivel.	别拿这些胡言乱语浪费我的时间。	hP
+Embark site ecology: Temperature: Hot	温度：炎热
 Enemy/merchant population trigger {d}	敌人/商人人口阈值 {d}	wt
 Enemy/merchant production trigger {d}	敌人/商人创造财富阈值 {d}	wt
 Fail the struggle against great agony	没能克服强烈的极度痛苦	hP
@@ -56414,6 +56437,9 @@ Do I look like I need to calm down?!	我看起来像是需要冷静吗？！	hP
 Do not keep everything for yourself.	不要把一切都留给自己。	hP
 Drink water only from designed zones	仅在指定区域饮水	wi
 Earliest compatible version: {d}.{d}	最早兼容版本：{d}.{d}	wt
+Embark site ecology: Trees: Woodland	树木：林地
+Embark site resource: Varied aquifer	混合含水层
+Embark site resource: Very deep soil	非常深的土壤
 Enable testing arena (on next title)	启用测试竞技场(下次标题时)	w
 Fail the struggle against great fear	没能克服强烈的恐惧	hP
 Fail the struggle against great rage	没能克服强烈的狂怒	hP
@@ -58396,6 +58422,8 @@ Designating restricted traffic area	设置限制通行区域	wo
 Dig a ramp on this level, going up.	在本层挖掘通往上一层的斜坡。	hj
 Edit the recenter hotkey locations.	编辑重新居中热键的位置。	hj
 Edit the recenter hotkey locations.	编辑重新居中热键的位置。	wl
+Embark site resource: Heavy aquifer	重含水层
+Embark site resource: Light aquifer	轻度含水层
 Empty unimproved glazable large pot	未上釉的可上釉的空大罐	wi
 Engrave artwork into a smooth wall.	在平滑墙壁上雕刻艺术作品。	hj
 Engraving smoothed floors and walls	在平滑地板与墙壁上雕刻	wo
@@ -60700,6 +60728,10 @@ Despite some minor reservations...	尽管还有一些小小的保留意见……
 Dismiss minor feeling of pessimism	不在意些许悲观	hP
 Do not mix similar food in barrels	不将同类食物混装于圆桶	wi
 Elevation Weighted Range ({d}-{d})	海拔加权范围（{d}-{d}）	wt
+Embark site ecology: Trees: Scarce	树木：极少
+Embark site ecology: Trees: Sparse	树木：稀疏
+Embark site resource: Shallow Clay	浅黏土
+Embark site resource: Shallow Sand	浅沙
 Erase a portion of this stockpile.	擦除此储物堆的一部分。	hj
 Express astonishment at seeing {p}	对见到{p1}表示惊讶	hPt
 Forbid trap cleaning during sieges	围城期间禁止清洁陷阱	wi
@@ -62926,6 +62958,7 @@ Drainage Weighted Range ({d}-{d})	排水度加权范围（{d}-{d}）	wt
 Duel of {a} and {a} in the wilds.	在荒野中，{a1}与{a2}的决斗。	htEi
 Eat not the fruits of your labor.	不要享用自己劳动的成果。	hP
 Embark finder: Clear find results	清除查找结果	w
+Embark site resource: Little soil	少量土壤
 Famous preserver of the knowledge	名声显赫的博学大师	w
 Fertilizer is not needed to farm.	[C:7:0:0]不[C:6:0:1]施肥[C:7:0:0]也可以种植。	hq
 Fortress activity: Attend Meeting	参加会面	li
@@ -65127,6 +65160,7 @@ Dismiss minor feeling of anguish	不在意些许痛苦万分	hP
 Dismiss minor feeling of despair	不在意些许绝望	hP
 Dismiss minor feeling of sadness	不在意些许悲伤	hP
 Duel of {a} and {a} in the wilds	在荒野中，{a1}与{a2}的决斗	htEi
+Embark site ecology: Trees: None	树木：无
 Empty unimproved glazable statue	未上釉的可上釉的雕像	wi
 Enemy/merchant trade trigger {d}	敌人/商人出口财富阈值 {d}	wt
 Express your emotions (new menu)	表达你的情绪（新菜单）	hP
@@ -67318,6 +67352,8 @@ Display all errorlogs on screen	在屏幕上显示所有错误日志	w
 Dozens of people were expelled.	数十人遭到驱逐。	h
 Duel of {a} and {a} during {e}.	在{e1}期间，{a1}与{a2}的决斗。	htEi
 Duel of {a} and {a} within {p}.	在{p1}，{a1}与{a2}的决斗。	htEi
+Embark site resource: Deep soil	深厚土层
+Embark site resource: Some soil	一些土壤
 Erase a portion of this burrow.	擦除此活动区的一部分。	hj
 Finalizing generated objects...	完成生成的对象......	w
 Fortification carving blueprint	城防垛口开凿蓝图	wo
@@ -69805,6 +69841,7 @@ Duel of {a} and {a} during {e}	在{e1}期间，{a1}与{a2}的决斗	htEi
 Duel of {a} and {a} within {p}	在{p1}，{a1}与{a2}的决斗	htEi
 Economy population trigger {d}	经济人口阈值 {d}	wt
 Economy production trigger {d}	经济创造财富阈值 {d}	wt
+Embark site resource: Platinum	铂
 Empty unimproved glazable item	未上釉的可上釉的工艺品	wi
 Exhort to finish current quest	敦促完成当前任务	hP
 Express outrage over dismissal	对被敷衍表示愤慨	hP
@@ -72190,6 +72227,7 @@ Don't tell me to calm myself.	别叫我冷静。	hP
 Don't walk off with anything.	别顺手拿走东西。	hP
 Dwarvemon Entity Type {d}.{d}	矮人兽实体类型 {d}.{d}	wt
 Embark finder: Partial match.	部分条件匹配。	w
+Embark site resource: Aquifer	含水层
 Empty unimproved glazable jug	未上釉的可上釉的空壶	wi
 Engraved on the floor is {s}.	地面上刻有{s1}。	hHt
 Erase a portion of this zone.	擦除此区域的一部分。	hj
@@ -74538,6 +74576,9 @@ Do you approve this request?	是否批准此请求？	hP
 Do you have a story to tell?	你有什么故事要讲吗？	hP
 Dwarvemon Entity All {d}.{d}	矮人兽全部实体 {d}.{d}	wt
 Embark site action: Unretire	结束退役	l
+Embark site resource: Copper	铜
+Embark site resource: Nickel	镍
+Embark site resource: Silver	银
 Engraved on the wall is {s}.	墙上刻有{s1}。	hHt
 Explain your current journey	说明你当前的旅程	hP
 Famous protector of the weak	声名显赫的庇护者	w
@@ -79041,6 +79082,12 @@ Duel of {a} and {a} at {p}	在{p1}，{a1}与{a2}的决斗	htEi
 Duel of {a} and {a} in {d}	{d1}年的{a1}与{a2}的决斗	htEi
 Duel of {a} and {a} in {p}	在{p1}，{a1}与{a2}的决斗	htEi
 Economically linked to you	与你有经济联系	w
+Embark site resource: Clay	黏土
+Embark site resource: Gold	金
+Embark site resource: Iron	铁
+Embark site resource: Lead	铅
+Embark site resource: Sand	沙
+Embark site resource: Zinc	锌
 Examination of the Patient	病患检查	hi
 Express horror at the gift	对礼物表示惊恐	hP
 Extend room rental for {q}	续租客房，费用{q1}	hPt
@@ -81073,6 +81120,8 @@ Destruction of {p} in {p}	在{p2}，{p1}毁灭事件	htEi
 Diplomacy tree-fell count	外交砍树限额
 Don't let the enemy rest.	别让敌人喘息。	hP
 Economy trade trigger {d}	经济出口财富阈值 {d}	wt
+Embark site resource: Ice	冰
+Embark site resource: Tin	锡
 Engravings start obscured	雕刻开始模糊	w
 Entombed and memorialized	已埋葬和铭记	wi
 Equipment/pet points: {d}	装备与宠物点数：{d}	wtl

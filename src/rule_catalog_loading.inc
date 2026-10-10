@@ -913,6 +913,8 @@ void Overlay::build_trie(std::function<void()>* catalog_publication) {
         if (rules_[rule_index].source.starts_with("Preference reason: ") ||
             rules_[rule_index].source.starts_with("Build menu: ") ||
             rules_[rule_index].source.starts_with("Embark finder: ") ||
+            rules_[rule_index].source.starts_with("Embark site resource: ") ||
+            rules_[rule_index].source.starts_with("Embark site ecology: ") ||
             rules_[rule_index].source.starts_with("Zone type: ") ||
             rules_[rule_index].source.starts_with("Fortress activity: ") ||
             rules_[rule_index].source.starts_with("Fortress schedule editor: ") ||

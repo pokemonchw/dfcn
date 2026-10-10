@@ -4564,6 +4564,8 @@ private:
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
     void append_embark_site_names(const NativeTextCard &card,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
+    void append_embark_site_ecology(const NativeTextCard &card,
+        std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
     void append_embark_site_resources(NativeTextCard &card,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
     void append_embark_finder_fields(std::vector<std::string> &rows,
@@ -17206,6 +17208,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     if (embark_site) {
         append_embark_site_headings(*embark_site, screen_rows, result, only_y);
         append_adventure_travel_status_paragraphs(*embark_site, screen_rows, result, only_y);
+        append_embark_site_ecology(*embark_site, screen_rows, result, only_y);
         append_embark_site_names(*embark_site, screen_rows, result, only_y);
         append_embark_site_resources(*embark_site, screen_rows, result, only_y);
     }

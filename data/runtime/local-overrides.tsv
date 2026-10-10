@@ -4012,6 +4012,34 @@ Drainage	排水性	wi
 Volcanism	火山活动度	wi
 Savagery	野性	wi
 
+# Embark resources are native geological fields. Their lookup-only scope
+# preserves these meanings when extensions reuse the words for other items.
+Embark site resource: Shallow Clay	浅黏土
+Embark site resource: Shallow Sand	浅沙
+Embark site resource: Clay	黏土
+Embark site resource: Sand	沙
+Embark site resource: Iron	铁
+Embark site resource: Gold	金
+Embark site resource: Silver	银
+Embark site resource: Copper	铜
+Embark site resource: Nickel	镍
+Embark site resource: Zinc	锌
+Embark site resource: Platinum	铂
+Embark site resource: Tin	锡
+Embark site resource: Lead	铅
+Embark site resource: Extremely deep soil	极深土层
+Embark site resource: Very deep soil	非常深的土壤
+Embark site resource: Deep soil	深厚土层
+Embark site resource: Some soil	一些土壤
+Embark site resource: Little soil	少量土壤
+Embark site resource: Varied aquifer	混合含水层
+Embark site resource: Heavy aquifer	重含水层
+Embark site resource: Light aquifer	轻度含水层
+Embark site resource: Aquifer	含水层
+Embark site resource: Ice	冰
+Embark site resource: Flux stone layers	助熔石层
+Embark site resource: Flux stone layer	助熔石层
+
 # Embark site finder: fixed field labels and compact filter values.  These
 # must be whole-label rules; word/procedural fallback produced partial strings
 # such as "Flux 石材 Layer" and treated the biome-alignment field literally.
@@ -11557,3 +11585,29 @@ Wiltwonders	枯萎奇观	w
 Wiltwonders	枯萎奇观	h
 # Adventure look-list renderer: inline text after the native page keys.
 to view other pages	查看其他页	wl
+
+# Native ecological label/value fields, independent of mod vocabulary.
+Embark site ecology: Temperature: Freezing	温度：严寒
+Embark site ecology: Temperature: Cold	温度：寒冷
+Embark site ecology: Temperature: Temperate	温度：温和
+Embark site ecology: Temperature: Warm	温度：温暖
+Embark site ecology: Temperature: Hot	温度：炎热
+Embark site ecology: Temperature: Scorching	温度：酷热
+Embark site ecology: Trees: None	树木：无
+Embark site ecology: Trees: Scarce	树木：极少
+Embark site ecology: Trees: Sparse	树木：稀疏
+Embark site ecology: Trees: Woodland	树木：林地
+Embark site ecology: Trees: Heavily Forested	树木：茂密森林
+Embark site ecology: Other Vegetation: None	其他植被：无
+Embark site ecology: Other Vegetation: Scarce	其他植被：极少
+Embark site ecology: Other Vegetation: Moderate	其他植被：适中
+Embark site ecology: Other Vegetation: Thick	其他植被：茂密
+Embark site ecology: Surroundings: Serene	周围环境：祥和
+Embark site ecology: Surroundings: Calm	周围环境：宁静
+Embark site ecology: Surroundings: Sinister	周围环境：阴森
+Embark site ecology: Surroundings: Mirthful	周围环境：欢乐
+Embark site ecology: Surroundings: Wilderness	周围环境：荒野
+Embark site ecology: Surroundings: Haunted	周围环境：闹鬼
+Embark site ecology: Surroundings: Joyous Wilds	周围环境：欢悦荒野
+Embark site ecology: Surroundings: Untamed Wilds	周围环境：未驯服的荒野
+Embark site ecology: Surroundings: Terrifying	周围环境：恐怖
