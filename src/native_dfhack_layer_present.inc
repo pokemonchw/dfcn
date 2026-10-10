@@ -110,19 +110,23 @@ struct NativeDfhackLayerSdlState {
 struct NativeDfhackLayerRendererGrid {
     void *renderer;
     graphicst *game_graphics = nullptr;
+    graphicst *private_graphics = nullptr;
     NativeDfhackOutputBinding previous_graphics;
+    std::array<unsigned char, sizeof(graphicst::texblits)> previous_texblits{};
     std::array<void *, 14> previous{};
     unsigned char previous_viewport_zoom = 0;
 
     NativeDfhackLayerRendererGrid(void *current, graphicst &gps) noexcept
-        : renderer(current), game_graphics(native_graphics()) {
+        : renderer(current), game_graphics(native_graphics()), private_graphics(&gps) {
         // The private SDL target is already bound and PresentScope owns the
         // same mutex as native root rendering. Native tile/map helpers also
         // read the EXE's static graphicst, including its refresh output; bind
         // that output to the committed private arrays only for these passes.
         if (game_graphics) {
             previous_graphics = NativeDfhackOutputBinding::capture(*game_graphics);
+            std::memcpy(previous_texblits.data(), &game_graphics->texblits, previous_texblits.size());
             NativeDfhackOutputBinding::capture(gps).apply(*game_graphics);
+            std::memcpy(&game_graphics->texblits, &gps.texblits, sizeof(gps.texblits));
         }
         // renderer has the same seven fields in each plane, but its top
         // texture field order differs from graphicst's field order.
@@ -145,7 +149,12 @@ struct NativeDfhackLayerRendererGrid {
         std::memcpy(static_cast<unsigned char *>(renderer) + sizeof(void *),
             previous.data(), sizeof(previous));
         *(static_cast<unsigned char *>(renderer) + 0x180) = previous_viewport_zoom;
-        if (game_graphics) previous_graphics.apply(*game_graphics);
+        if (game_graphics) {
+            std::memcpy(&private_graphics->texblits, &game_graphics->texblits,
+                sizeof(private_graphics->texblits));
+            previous_graphics.apply(*game_graphics);
+            std::memcpy(&game_graphics->texblits, previous_texblits.data(), previous_texblits.size());
+        }
     }
 };
 

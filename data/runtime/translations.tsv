@@ -37207,6 +37207,7 @@ DFHack GUI Notification settings: warn_starving	饥渴困倦警报	l
 DFHack GUI Notification settings: warn_stranded	居民受困	l
 DFHack GUI Quickfort: Delete selected blueprint	删除选中蓝图	l
 DFHack GUI Quickfort: Unlock blueprint position	解锁蓝图位置	l
+DFHack GUI Rename caption: Generate random name	随机生成名称	l
 DFHack help: "--exclude <string>[,<string>...]"	"--exclude <string>[,<string>...]"	l
 DFHack help: "--unit <id>" Set the target unit.	"--unit <id>" 设置目标单位。	l
 DFHack help: "Cavern dweller maximum attackers"	"地下洞穴居民最大攻击者"	l
@@ -38644,6 +38645,7 @@ DFHack GUI Design: Mirror Point: {d}, {d}, {d}	镜像点：{d}, {d}, {d}	l
 DFHack GUI Notification settings: bleeding_adv	血量余量（冒险）	l
 DFHack GUI Notification settings: moody_status	奇异心境进度	l
 DFHack GUI Notification settings: wildlife_adv	野生动物（冒险）	l
+DFHack GUI Rename caption: Randomize component	随机生成组成部分	l
 DFHack GUI Squad assignment: need for training	训练需求	l
 DFHack GUI Workshop workers: (or double click)	（或双击）	l
 DFHack help: "(no)chop <burrow>[,<burrow>...]"	"（不）砍<活动区>[，<活动区>...]"	l
@@ -41706,6 +41708,7 @@ DFHack GUI Notification settings: Toggle all	全部切换	l
 DFHack GUI Notification settings: auto_train	训练小队设置	l
 DFHack GUI Quickfort: Baseline dig priority:	基础挖掘优先级：	l
 DFHack GUI Quickfort: Preview manager orders	预览管理者订单	l
+DFHack GUI Rename caption: Select new target	选择重命名对象	l
 DFHack GUI Squad assignment: melee potential	近战潜力	l
 DFHack GUI Workshop workers: Toggle selected	切换所选	l
 DFHack help: "-Q", "--max-quality <integer>"	"-Q", "--max-quality <integer>"	l
@@ -43274,6 +43277,8 @@ DFHack GUI Control tool: startdwarf.overlay	初始矮人列表滚动（startdwar
 DFHack GUI Control tool: stockpiles.hauling	矿车站点条件（stockpiles.hauling）	l
 DFHack GUI Control tool: stockpiles.overlay	储物区自动化（stockpiles.overlay）	l
 DFHack GUI Input prompt: Enter new command:	输入新命令：	l
+DFHack GUI Rename caption: Name components:	名称组成：	l
+DFHack GUI Rename caption: Second Adjective	第二形容词	l
 DFHack GUI Squad assignment: ambusher skill	伏击技能	l
 DFHack GUI Squad assignment: crossbow skill	弩术技能	l
 DFHack GUI Teleport: Include friendly units	包含友好单位	l
@@ -44929,6 +44934,11 @@ DFHack GUI Notification settings: Disabled	禁用	l
 DFHack GUI Notification settings: wildlife	野生动物（要塞）	l
 DFHack GUI Quickfort: Blueprint tiles: {d}	蓝图格数：{d}	l
 DFHack GUI Quickfort: Invalid tiles:   {d}	无效格数：{d}	l
+DFHack GUI Rename caption: Clear component	清除组成部分	l
+DFHack GUI Rename caption: First Adjective	第一形容词	l
+DFHack GUI Rename caption: Hyphen Compound	连字符复合词	l
+DFHack GUI Rename caption: Past Participle	过去分词	l
+DFHack GUI Rename caption: Present Partici	现在分词	l
 DFHack GUI Sitemap: Click on a name or hit	点击名称或按下	l
 DFHack GUI Sitemap: Nobody around. Spooky!	附近没有生物，令人毛骨悚然！	l
 DFHack GUI Squad assignment: Hates combat:	厌恶战斗：	l
@@ -46757,6 +46767,12 @@ DFHack GUI Mod manager: Enter preset name	输入预设名称	l
 DFHack GUI Notification settings: Enabled	启用	l
 DFHack GUI Notification settings: injured	受伤居民	l
 DFHack GUI Quickfort: No blueprint loaded	尚未加载蓝图	l
+DFHack GUI Rename caption: Front Compound	前部复合词	l
+DFHack GUI Rename caption: Next component	下一组成部分	l
+DFHack GUI Rename caption: Prev component	上一组成部分	l
+DFHack GUI Rename caption: part of speech	词性	l
+DFHack GUI Rename caption: part_of_speech	词性	l
+DFHack GUI Rename type: PerformanceTroupe	表演团体	l
 DFHack GUI Sitemap: caged merchant animal	被囚禁的商队动物	l
 DFHack GUI Squad assignment: hammer skill	战锤技能	l
 DFHack GUI Squad assignment: stress level	压力程度	l
@@ -48519,6 +48535,11 @@ DFHack GUI Item type selector: rough gem	粗糙宝石	l
 DFHack GUI Notification settings: Toggle	切换	l
 DFHack GUI Quickfort: Current blueprint:	当前蓝图：	l
 DFHack GUI Quickfort: Load new blueprint	加载新蓝图	l
+DFHack GUI Rename caption: Present (1st)	现在时（第一人称）	l
+DFHack GUI Rename caption: Present (3rd)	现在时（第三人称）	l
+DFHack GUI Rename caption: Rear Compound	后部复合词	l
+DFHack GUI Rename caption: Singular Noun	单数名词	l
+DFHack GUI Rename type: NecromancerTower	死灵法师塔	l
 DFHack GUI Sitemap: the selected target.	选中的目标。	l
 DFHack GUI Squad assignment: spear skill	长矛技能	l
 DFHack GUI Squad assignment: sword skill	剑术技能	l
@@ -50323,6 +50344,9 @@ DFHack GUI Design: Clear entire z-level	清除本层全部指定	l
 DFHack GUI Design: Mouse: {d}, {d}, {d}	鼠标：{d}, {d}, {d}	l
 DFHack GUI Input prompt: Enter command:	输入命令：	l
 DFHack GUI Mod manager: Modlist Manager	模组列表管理器	l
+DFHack GUI Rename type: FigureFirstOnly	仅名字人物	l
+DFHack GUI Rename type: LegendaryFigure	传奇人物	l
+DFHack GUI Rename type: MerchantCompany	商贸公司	l
 DFHack GUI Sitemap: Unknown affiliation	所属势力不明	l
 DFHack GUI Squad assignment: Officials:	官员：	l
 DFHack GUI Squad assignment: Toggle all	切换全部	l
@@ -52194,6 +52218,9 @@ DFHack GUI Mass remove: Constructions:	构筑物：	l
 DFHack GUI Mod manager: Enter new name	输入新名称	l
 DFHack GUI Mod manager: Overwrite {s}?	覆盖预设“{s1}”？	l
 DFHack GUI Mod manager: Set as default	设为默认	l
+DFHack GUI Rename caption: Change sort	更改排序	l
+DFHack GUI Rename caption: Plural Noun	复数名词	l
+DFHack GUI Rename type: MigratingGroup	迁徙团体	l
 DFHack GUI Squad assignment: Nobility:	贵族：	l
 DFHack GUI Squad assignment: axe skill	战斧技能	l
 DFHack GUI Teleport: Click name or hit	点击名称或按	l
@@ -54157,6 +54184,11 @@ DFHack GUI Design: Second Curve Point	第二曲线控制点	l
 DFHack GUI Frame status: PAUSE FORCED	强制暂停	l
 DFHack GUI Legends race filter: Races	种族	l
 DFHack GUI Quickfort: Double click or	双击或	l
+DFHack GUI Rename caption: First Name	名字	l
+DFHack GUI Rename caption: Name type:	名称类型：	l
+DFHack GUI Rename type: CountingHouse	账房	l
+DFHack GUI Rename type: FalseIdentity	假身份	l
+DFHack GUI Rename type: FigureNoFirst	仅姓氏人物	l
 DFHack GUI Sitemap: caged fort animal	被囚禁的要塞动物	l
 DFHack GUI Sitemap: caged fort member	被囚禁的要塞居民	l
 DFHack help: " and loaded on startup.	"并在启动时加载。	l
@@ -56107,6 +56139,15 @@ DFHack GUI Mod manager: Yes, proceed	确认继续	l
 DFHack GUI Quickfort: No description	没有描述	l
 DFHack GUI Quickfort: Shift click or	Shift 点击或	l
 DFHack GUI Quickfort: Undo blueprint	撤销蓝图	l
+DFHack GUI Rename caption: Adjective	形容词	l
+DFHack GUI Rename caption: Language:	语言：	l
+DFHack GUI Rename caption: Preterite	过去时	l
+DFHack GUI Rename type: Civilization	文明	l
+DFHack GUI Rename type: GeneralStore	杂货店	l
+DFHack GUI Rename type: MilitaryUnit	军事单位	l
+DFHack GUI Rename type: MountainPeak	山峰	l
+DFHack GUI Rename type: NomadicGroup	游牧团体	l
+DFHack GUI Rename type: OutcastGroup	被逐团体	l
 DFHack GUI Squad assignment: Exclude	排除	l
 DFHack GUI Squad assignment: Include	包含	l
 DFHack GUI Squad assignment: Maimed:	残疾：	l
@@ -58139,6 +58180,9 @@ DFHack GUI Mass remove: Leave alone	不处理	l
 DFHack GUI Mass remove: Stockpiles:	储物堆：	l
 DFHack GUI Mod manager: Delete {s}?	删除预设“{s1}”？	l
 DFHack GUI Quickfort: Down z-levels	向下重复楼层	l
+DFHack GUI Rename language: English	英语	l
+DFHack GUI Rename type: MusicalForm	音乐形式	l
+DFHack GUI Rename type: WeaponStore	武器店	l
 DFHack GUI Sitemap: merchant animal	商队动物	l
 DFHack GUI Viewer status: No output	无输出	l
 DFHack help: "--markedfor <action>"	"--markedfor <action>"	l
@@ -60347,6 +60391,16 @@ DFHack GUI Item type selector: any	任意	l
 DFHack GUI Mass remove: Buildings:	建筑：	l
 DFHack GUI Quickfort: Click or hit	点击或按	l
 DFHack GUI Quickfort: No transform	无变换	l
+DFHack GUI Rename caption: English	词义	l
+DFHack GUI Rename caption: Search:	搜索：	l
+DFHack GUI Rename language: Goblin	地精语	l
+DFHack GUI Rename language: Kobold	狗头人语	l
+DFHack GUI Rename type: ArmorStore	护甲店	l
+DFHack GUI Rename type: CraftGuild	工匠行会	l
+DFHack GUI Rename type: CraftStore	工艺品店	l
+DFHack GUI Rename type: EntitySite	据点政权	l
+DFHack GUI Rename type: HighPriest	大祭司	l
+DFHack GUI Rename type: PoeticForm	诗歌形式	l
 DFHack GUI Sitemap: Shift-click or	按住 Shift 点击，或按下	l
 DFHack GUI Sitemap: caged friendly	被囚禁的友好生物	l
 DFHack GUI Sitemap: caged merchant	被囚禁的商人	l
@@ -62628,6 +62682,15 @@ DFHack GUI Control tool: work-now	缩短工作间歇（work-now）	l
 DFHack GUI Mod manager: (default)	（默认）	l
 DFHack GUI Quickfort: Add marker:	添加标记：	l
 DFHack GUI Quickfort: Up z-levels	向上重复楼层	l
+DFHack GUI Rename caption: Prefix	前缀	l
+DFHack GUI Rename caption: Random	随机	l
+DFHack GUI Rename caption: Rename	重命名	l
+DFHack GUI Rename caption: native	原文	l
+DFHack GUI Rename language: Dwarf	矮人语	l
+DFHack GUI Rename language: Human	人类语	l
+DFHack GUI Rename type: DanceForm	舞蹈形式	l
+DFHack GUI Rename type: FoodStore	食品店	l
+DFHack GUI Rename type: Guildhall	行会大厅	l
 DFHack GUI Sitemap: caged hostile	被囚禁的敌对生物	l
 DFHack GUI Sitemap: caged invader	被囚禁的入侵者	l
 DFHack GUI Sitemap: caged visitor	被囚禁的访客	l
@@ -64775,6 +64838,16 @@ DFHack GUI Journal: Prev Section	上一节	l
 DFHack GUI Quickfort: Blueprint:	蓝图标记：	l
 DFHack GUI Quickfort: No matches	没有匹配的蓝图	l
 DFHack GUI Quickfort: Transform:	变换：	l
+DFHack GUI Rename caption: Clear	清除	l
+DFHack GUI Rename caption: The X	主体词组	l
+DFHack GUI Rename type: ArtImage	艺术图像	l
+DFHack GUI Rename type: Artifact	神器	l
+DFHack GUI Rename type: Festival	节庆	l
+DFHack GUI Rename type: Hospital	医院	l
+DFHack GUI Rename type: MeadHall	宴会厅	l
+DFHack GUI Rename type: Monument	纪念碑	l
+DFHack GUI Rename type: Religion	宗教	l
+DFHack GUI Rename type: TrueName	真名	l
 DFHack GUI Title: Delete command	删除命令	l
 DFHack help: "--alignto <value>"	"--alignto <value>"	l
 DFHack help: "--command [ ... ]"	"--command [ ... ]"	l
@@ -66989,6 +67062,11 @@ DFHack GUI Mod manager: Warning	警告	l
 DFHack GUI Quickfort: Damp dig:	潮湿挖掘：	l
 DFHack GUI Quickfort: Warm dig:	温热挖掘：	l
 DFHack GUI Quickfort: to apply.	应用蓝图。	l
+DFHack GUI Rename caption: Of X	所属词组	l
+DFHack GUI Rename language: Elf	精灵语	l
+DFHack GUI Rename type: Dungeon	洞穴	l
+DFHack GUI Rename type: ElfTree	精灵树木	l
+DFHack GUI Rename type: Library	图书馆	l
 DFHack GUI Sitemap: fort animal	要塞动物	l
 DFHack GUI Sitemap: fort member	要塞居民	l
 DFHack GUI Teleport: (friendly)	（友好）	l
@@ -69406,6 +69484,13 @@ DFHack GUI Mod manager: Delete	删除	l
 DFHack GUI Mod manager: Rename	重命名	l
 DFHack GUI Quickfort: Filters:	筛选：	l
 DFHack GUI Quickfort: Library:	内置：	l
+DFHack GUI Rename type: Battle	战役	l
+DFHack GUI Rename type: Bridge	桥梁	l
+DFHack GUI Rename type: Figure	人物	l
+DFHack GUI Rename type: Region	区域	l
+DFHack GUI Rename type: Temple	神殿	l
+DFHack GUI Rename type: Tunnel	隧道	l
+DFHack GUI Rename type: Vessel	船只	l
 DFHack GUI Sitemap: No matches	没有匹配项	l
 DFHack GUI Sitemap: to zoom to	以定位至	l
 DFHack GUI Teleport: (citizen)	（公民）	l
@@ -71864,6 +71949,11 @@ DFHack GUI Caption: Edit name	编辑名称	l
 DFHack GUI Mass remove: Mode:	模式：	l
 DFHack GUI Quickfort: Hidden:	隐藏项：	l
 DFHack GUI Quickfort: Repeat:	重复：	l
+DFHack GUI Rename type: River	河流	l
+DFHack GUI Rename type: Siege	围攻	l
+DFHack GUI Rename type: Squad	小队	l
+DFHack GUI Rename type: Vault	秘库	l
+DFHack GUI Rename type: World	世界	l
 DFHack GUI Title: Add command	添加命令	l
 DFHack GUI Title: CP437 table	CP437 字符表	l
 DFHack GUI Title: Mass Remove	批量移除	l
@@ -74148,6 +74238,11 @@ DFHack GUI Design: Priority:	优先级：	l
 DFHack GUI Design: Rectangle	矩形	l
 DFHack GUI Design: Vertical:	纵向：	l
 DFHack GUI Mod manager: Load	载入	l
+DFHack GUI Rename type: Keep	城堡	l
+DFHack GUI Rename type: Road	道路	l
+DFHack GUI Rename type: Site	聚居地	l
+DFHack GUI Rename type: Tomb	陵墓	l
+DFHack GUI Rename type: Wall	城墙	l
 DFHack GUI Sitemap: friendly	友好生物	l
 DFHack GUI Sitemap: merchant	商人	l
 DFHack GUI Sitemap: wildlife	野生动物	l
@@ -76428,6 +76523,7 @@ DFHack GUI Design: Reverse:	反向：	l
 DFHack GUI Design: Spacing:	间距：	l
 DFHack GUI Quickfort: fliph	横向翻转	l
 DFHack GUI Quickfort: flipv	纵向翻转	l
+DFHack GUI Rename type: War	战争	l
 DFHack GUI Sitemap: Unknown	未知	l
 DFHack GUI Sitemap: hostile	敌对生物	l
 DFHack GUI Sitemap: invader	入侵者	l

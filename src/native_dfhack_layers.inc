@@ -1,5 +1,6 @@
-// DFHack selects a separate graphicst and output buffers. The game's static
-// graphicst remains its own drawing/translation input during foreign writes.
+// Every DFHack drawing path uses private output buffers on the real graphicst.
+// Lua globals, retained native handles and C++ gps therefore share one drawing
+// state. Native parent segments restore the game's own output binding.
 using NativeDfhackLayerTexture = std::remove_pointer_t<decltype(graphicst::screentexpos)>;
 static void native_dfhack_gpu_suspend() noexcept;
 static void native_dfhack_gpu_resume() noexcept;
@@ -196,6 +197,14 @@ public:
 struct NativeDfhackLayerGraphicsDeleter {
     void operator()(graphicst *graphics) const noexcept {
 #ifdef _WIN32
+        // texblitst is a trivial native value. Release its vector storage
+        // through the same host vector destructor used by native rich-text
+        // scratch buffers, never through the core's MinGW allocator.
+        if (graphics && native_pe_supported()) {
+            const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+            const auto destroy = native_pe_address(executable, 0x66b70);
+            if (destroy) reinterpret_cast<void (*)(void *)>(destroy)(&graphics->texblits);
+        }
         delete graphics;
 #else
         // The ABI view borrows game textures and metadata vectors. Only the
@@ -404,12 +413,24 @@ static graphicst **native_dfhack_graphics_slot() noexcept {
     return static_cast<graphicst **>(dlsym(RTLD_DEFAULT, "_ZN2df6global3gpsE"));
 #endif
 }
+static NativeDfhackOutputBinding native_dfhack_layer_source_binding(const graphicst &gps) noexcept;
+static void native_dfhack_layer_save_active() noexcept;
+static void native_dfhack_layer_bind_active() noexcept;
+static void native_dfhack_layer_abort_active() noexcept;
 static bool native_dfhack_prepare_staging(bool begin = false) {
     const auto *gps = native_graphics();
     if (!gps) return false;
+    native_dfhack_layer_save_active();
+    const auto native = native_dfhack_layer_source_binding(*gps);
     const bool start = begin || !g_native_dfhack_layer_staging_pending;
     auto &s = g_native_dfhack_layer_staging;
-    s.prepare(*gps, NativeDfhackOutputBinding::capture(*gps), start);
+    try {
+        s.prepare(*gps, native, start);
+    } catch (...) {
+        native_dfhack_layer_abort_active();
+        throw;
+    }
+    native_dfhack_layer_bind_active();
     if (start) clear_native_dfhack_text_buffer(s.graphics.get());
     s.page_revision = native_dfhack_layer_page_revision();
     g_native_dfhack_layer_staging_pending = true;
@@ -441,12 +462,63 @@ class NativeDfhackLayerWriteScope {
     graphicst *gps_ = nullptr;
     graphicst **slot_ = nullptr;
     graphicst *saved_ = nullptr;
+    graphicst *native_ = nullptr;
+    NativeDfhackOutputBinding native_output_;
+    std::array<unsigned char, sizeof(graphicst::texblits)> native_texblits_{};
     NativeDfhackLayerWriteScope *previous_ = nullptr;
     bool installed_ = false;
+    bool private_bound_ = false;
     unsigned paused_ = 0;
     bool native_layout_dirty_ = false;
     inline static thread_local NativeDfhackLayerWriteScope *active_ = nullptr;
     friend class NativeDfhackNativeLayerScope;
+    friend NativeDfhackOutputBinding native_dfhack_layer_source_binding(const graphicst &) noexcept;
+    friend void native_dfhack_layer_save_active() noexcept;
+    friend void native_dfhack_layer_bind_active() noexcept;
+    friend void native_dfhack_layer_abort_active() noexcept;
+
+    void save_private() noexcept {
+        if (!private_bound_) return;
+        auto &storage = g_native_dfhack_layer_staging;
+        storage.save_draw_state(*native_);
+        storage.output.apply(*gps_);
+        // A native push may reallocate this MSVC vector. Keep its current
+        // header with the private frame before restoring the native owner.
+        std::memcpy(&gps_->texblits, &native_->texblits, sizeof(gps_->texblits));
+    }
+    void bind_private() noexcept {
+        gps_ = g_native_dfhack_layer_staging.graphics.get();
+        if (!gps_) return;
+        const auto redraw = native_->force_full_display_count;
+        g_native_dfhack_layer_staging.output.apply(*native_);
+        // Redraw requests schedule the host frame rather than belonging to
+        // either output buffer. Keep Lua/C++ requests and native consumption
+        // live instead of restoring a retained private frame's old count.
+        native_->force_full_display_count = redraw;
+        std::memcpy(&native_->texblits, &gps_->texblits, sizeof(gps_->texblits));
+        // The private read view is a partial ABI structure, not a replacement
+        // for the full native object used by DFHack's generated accessors.
+        *slot_ = native_;
+        private_bound_ = true;
+        NativeUiReadScope::invalidate_reads();
+    }
+    void restore_native() noexcept {
+        if (!private_bound_) return;
+        const auto redraw = native_->force_full_display_count;
+        native_output_.apply(*native_);
+        native_->force_full_display_count = redraw;
+        std::memcpy(&native_->texblits, native_texblits_.data(), native_texblits_.size());
+        private_bound_ = false;
+        NativeUiReadScope::invalidate_reads();
+    }
+    void abort() noexcept {
+        restore_native();
+        *slot_ = saved_;
+        installed_ = false;
+        active_ = previous_;
+        g_native_dfhack_layer_staging_pending = false;
+        g_native_dfhack_layer_commit_pending = false;
+    }
 public:
     explicit NativeDfhackLayerWriteScope(bool enter = true, bool synchronize = false) noexcept {
         if (!enter || (active_ && !active_->paused_)) return;
@@ -455,20 +527,24 @@ public:
             lock_ = std::unique_lock<std::recursive_mutex>(g_native_dfhack_layer_mutex);
             slot_ = native_dfhack_graphics_slot();
             if (!slot_) return;
-            const auto *native = native_graphics();
-            if (!native) return;
+            native_ = native_graphics();
+            if (!native_) return;
             const auto &staging = g_native_dfhack_layer_staging;
             if ((synchronize || !g_native_dfhack_layer_staging_pending ||
-                    staging.dimx != native->dimx || staging.dimy != native->dimy) &&
+                    staging.dimx != native_->dimx || staging.dimy != native_->dimy) &&
                     !native_dfhack_prepare_staging()) return;
             gps_ = g_native_dfhack_layer_staging.graphics.get();
-            saved_ = *slot_; *slot_ = gps_;
+            native_output_ = NativeDfhackOutputBinding::capture(*native_);
+            std::memcpy(native_texblits_.data(), &native_->texblits, native_texblits_.size());
+            saved_ = *slot_;
             previous_ = active_; active_ = this; installed_ = true;
+            bind_private();
         } catch (...) { gps_ = nullptr; }
     }
     ~NativeDfhackLayerWriteScope() {
         if (!installed_) return;
-        g_native_dfhack_layer_staging.save_draw_state(*gps_);
+        save_private();
+        restore_native();
         *slot_ = saved_; active_ = previous_;
         // An actual render may be called from inside doUpdate. Its storage
         // cannot become committed while that outer write still selects it.
@@ -482,9 +558,28 @@ public:
     }
     static bool in_progress() noexcept { return active_ != nullptr; }
     static graphicst *graphics() noexcept {
+        native_dfhack_layer_save_active();
         return active_ && !active_->paused_ ? active_->gps_ : native_graphics();
     }
 };
+
+static NativeDfhackOutputBinding native_dfhack_layer_source_binding(const graphicst &gps) noexcept {
+    const auto *scope = NativeDfhackLayerWriteScope::active_;
+    return scope && !scope->paused_ ? scope->native_output_
+                                  : NativeDfhackOutputBinding::capture(gps);
+}
+static void native_dfhack_layer_save_active() noexcept {
+    auto *scope = NativeDfhackLayerWriteScope::active_;
+    if (scope && !scope->paused_) scope->save_private();
+}
+static void native_dfhack_layer_bind_active() noexcept {
+    auto *scope = NativeDfhackLayerWriteScope::active_;
+    if (scope && !scope->paused_) scope->bind_private();
+}
+static void native_dfhack_layer_abort_active() noexcept {
+    auto *scope = NativeDfhackLayerWriteScope::active_;
+    if (scope && !scope->paused_) scope->abort();
+}
 
 static graphicst *native_dfhack_graphics() noexcept {
     return NativeDfhackLayerWriteScope::graphics();
@@ -547,22 +642,26 @@ public:
             native_dfhack_gpu_suspend();
         }
         if (!scope_->paused_++) {
-            g_native_dfhack_layer_staging.save_draw_state(*scope_->gps_);
-            *scope_->slot_ = native_graphics();
+            scope_->save_private();
+            scope_->restore_native();
+            *scope_->slot_ = scope_->native_;
         }
     }
     ~NativeDfhackNativeLayerScope() {
         if (!scope_) return;
         if (!--scope_->paused_) {
             try {
+                // Native rendering can resize or replace its buffers. These
+                // current bindings, including its vector, are restored when
+                // the surrounding foreign segment eventually returns.
+                scope_->native_output_ = NativeDfhackOutputBinding::capture(*scope_->native_);
+                std::memcpy(scope_->native_texblits_.data(), &scope_->native_->texblits,
+                    scope_->native_texblits_.size());
                 if (scope_->native_layout_dirty_ && !native_dfhack_prepare_staging())
                     throw std::bad_alloc();
-                *scope_->slot_ = scope_->gps_;
+                scope_->bind_private();
             } catch (...) {
-                *scope_->slot_ = scope_->saved_; scope_->installed_ = false;
-                NativeDfhackLayerWriteScope::active_ = scope_->previous_;
-                g_native_dfhack_layer_staging_pending = false;
-                g_native_dfhack_layer_commit_pending = false;
+                if (scope_->installed_) scope_->abort();
             }
             scope_->native_layout_dirty_ = false;
         }
@@ -589,7 +688,7 @@ static bool native_dfhack_layer_ui_written(const graphicst *gps, int x, int y) n
 static void native_dfhack_layer_note_ui_write(const graphicst *gps, int x, int y) noexcept {
     auto &s = g_native_dfhack_layer_staging;
     if (native_dfhack_layer_write_active(gps) && x >= 0 && y >= 0 && x < s.dimx && y < s.dimy)
-        s.written[static_cast<size_t>(x) * s.dimy + y] |= uint8_t{1} << static_cast<size_t>(s.graphics->top_in_use);
+        s.written[static_cast<size_t>(x) * s.dimy + y] |= uint8_t{1} << static_cast<size_t>(gps->top_in_use);
 }
 
 class NativeDfhackLayerPresentScope {

@@ -1,5 +1,33 @@
 // Borrow live arguments to verified native calls and the current screen chain.
 // All event data published to the overlay is copied into core objects.
+static uintptr_t native_viewscreen_page_owner(uintptr_t screen) {
+    using ForeignScreenPredicate = bool (*)(void *);
+#ifdef _WIN32
+    const auto module = GetModuleHandleW(L"dfhack.dll");
+    const auto foreign = module ? reinterpret_cast<ForeignScreenPredicate>(GetProcAddress(module,
+        "?is_instance@dfhack_viewscreen@DFHack@@SA_NPEAUviewscreen@df@@@Z")) : nullptr;
+#else
+    const auto foreign = reinterpret_cast<ForeignScreenPredicate>(dlsym(RTLD_DEFAULT,
+        "_ZN6DFHack17dfhack_viewscreen11is_instanceEPN2df10viewscreenE"));
+#endif
+    if (!foreign) return screen;
+    // DFHack owns an independent output layer. Its viewscreens do not replace
+    // the native page's semantic context; ordinary native child screens do.
+    // Ask DFHack for ownership rather than inferring it from a vtable name.
+    std::array<uintptr_t, 64> visited{};
+    for (size_t depth = 0; depth < visited.size(); ++depth) {
+        if (!screen || screen > UINTPTR_MAX - 0x10 ||
+            std::find(visited.begin(), visited.begin() + depth, screen) != visited.begin() + depth)
+            return 0;
+        visited[depth] = screen;
+        if (!foreign(reinterpret_cast<void *>(screen))) return screen;
+        uintptr_t parent = 0;
+        if (!native_history_copy(screen + 0x10, parent)) return 0;
+        screen = parent;
+    }
+    return 0;
+}
+
 static uintptr_t native_current_viewscreen() {
     const uintptr_t base = native_history_profile_base();
     if (!base) return 0;
@@ -15,9 +43,7 @@ static uintptr_t native_current_viewscreen() {
         uintptr_t child = 0;
         if (!native_history_copy(screen + 8, child)) return 0;
         if (child) { screen = child; continue; }
-        // Only the actual current screen owns this decision. A paused map
-        // underneath another viewscreen does not establish map ownership.
-        return screen;
+        return native_viewscreen_page_owner(screen);
     }
     return 0;
 }
@@ -143,20 +169,8 @@ static bool native_arena_map_screen() {
 }
 
 static bool native_history_worldgen_page() {
-    const uintptr_t base = native_history_profile_base();
-    if (!base) return false;
-    uintptr_t screen = native_reference_address(base, native_history_layout::gview_rva) + 8;
-    std::array<uintptr_t, 64> visited{};
-    for (size_t depth = 0; depth < visited.size(); ++depth) {
-        if (std::find(visited.begin(), visited.begin() + depth, screen) != visited.begin() + depth)
-            return false;
-        visited[depth] = screen;
-        uintptr_t child = 0;
-        if (!native_history_copy(screen + 8, child)) return false;
-        if (child) { screen = child; continue; }
-        return native_history_object_is(screen, "viewscreen_new_regionst");
-    }
-    return false;
+    const uintptr_t screen = native_current_viewscreen();
+    return screen && native_history_object_is(screen, "viewscreen_new_regionst");
 }
 
 static std::optional<std::pair<int, int>> native_history_chronicle_row_bounds() {

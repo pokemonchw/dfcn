@@ -656,3 +656,102 @@ DFHack GUI Animal assignment: Click to assign/unassign to cage/restraint. Shift 
 DFHack GUI Animal assignment: Note that pets cannot be assigned to cages or restraints.	注意：宠物无法分配到笼子或锁链。	l
 DFHack GUI Animal assignment: Unknown vermin	未知小动物	l
 DFHack GUI Animal assignment: Unknown small pet	未知小型宠物	l
+
+# gui/rename.lua: generated-name editor. Native language words, first_name,
+# search input and sort arrows remain source data in the dedicated reader.
+DFHack GUI Rename caption: Rename	重命名	l
+DFHack GUI Rename caption: Select new target	选择重命名对象	l
+DFHack GUI Rename caption: Generate random name	随机生成名称	l
+DFHack GUI Rename caption: Language:	语言：	l
+DFHack GUI Rename caption: Name type:	名称类型：	l
+DFHack GUI Rename caption: Name components:	名称组成：	l
+DFHack GUI Rename caption: Change sort	更改排序	l
+DFHack GUI Rename caption: Search:	搜索：	l
+DFHack GUI Rename caption: English	词义	l
+DFHack GUI Rename caption: native	原文	l
+DFHack GUI Rename caption: part of speech	词性	l
+DFHack GUI Rename caption: part_of_speech	词性	l
+DFHack GUI Rename caption: First Name	名字	l
+DFHack GUI Rename caption: Front Compound	前部复合词	l
+DFHack GUI Rename caption: Rear Compound	后部复合词	l
+DFHack GUI Rename caption: First Adjective	第一形容词	l
+DFHack GUI Rename caption: Second Adjective	第二形容词	l
+DFHack GUI Rename caption: Hyphen Compound	连字符复合词	l
+DFHack GUI Rename caption: The X	主体词组	l
+DFHack GUI Rename caption: Of X	所属词组	l
+DFHack GUI Rename caption: Random	随机	l
+DFHack GUI Rename caption: Clear	清除	l
+DFHack GUI Rename caption: Prev component	上一组成部分	l
+DFHack GUI Rename caption: Next component	下一组成部分	l
+DFHack GUI Rename caption: Randomize component	随机生成组成部分	l
+DFHack GUI Rename caption: Clear component	清除组成部分	l
+DFHack GUI Rename caption: Singular Noun	单数名词	l
+DFHack GUI Rename caption: Plural Noun	复数名词	l
+DFHack GUI Rename caption: Adjective	形容词	l
+DFHack GUI Rename caption: Prefix	前缀	l
+DFHack GUI Rename caption: Present (1st)	现在时（第一人称）	l
+DFHack GUI Rename caption: Present (3rd)	现在时（第三人称）	l
+DFHack GUI Rename caption: Preterite	过去时	l
+DFHack GUI Rename caption: Past Participle	过去分词	l
+DFHack GUI Rename caption: Present Partici	现在分词	l
+DFHack GUI Rename language: Dwarf	矮人语	l
+DFHack GUI Rename language: Elf	精灵语	l
+DFHack GUI Rename language: Human	人类语	l
+DFHack GUI Rename language: Goblin	地精语	l
+DFHack GUI Rename language: Kobold	狗头人语	l
+DFHack GUI Rename language: English	英语	l
+DFHack GUI Rename type: Figure	人物	l
+DFHack GUI Rename type: Artifact	神器	l
+DFHack GUI Rename type: Civilization	文明	l
+DFHack GUI Rename type: Squad	小队	l
+DFHack GUI Rename type: Site	聚居地	l
+DFHack GUI Rename type: World	世界	l
+DFHack GUI Rename type: Region	区域	l
+DFHack GUI Rename type: Dungeon	洞穴	l
+DFHack GUI Rename type: LegendaryFigure	传奇人物	l
+DFHack GUI Rename type: FigureNoFirst	仅姓氏人物	l
+DFHack GUI Rename type: FigureFirstOnly	仅名字人物	l
+DFHack GUI Rename type: ArtImage	艺术图像	l
+DFHack GUI Rename type: EntitySite	据点政权	l
+DFHack GUI Rename type: ElfTree	精灵树木	l
+DFHack GUI Rename type: NomadicGroup	游牧团体	l
+DFHack GUI Rename type: MigratingGroup	迁徙团体	l
+DFHack GUI Rename type: Vessel	船只	l
+DFHack GUI Rename type: MilitaryUnit	军事单位	l
+DFHack GUI Rename type: Religion	宗教	l
+DFHack GUI Rename type: MountainPeak	山峰	l
+DFHack GUI Rename type: River	河流	l
+DFHack GUI Rename type: Temple	神殿	l
+DFHack GUI Rename type: Keep	城堡	l
+DFHack GUI Rename type: MeadHall	宴会厅	l
+DFHack GUI Rename type: CraftStore	工艺品店	l
+DFHack GUI Rename type: WeaponStore	武器店	l
+DFHack GUI Rename type: ArmorStore	护甲店	l
+DFHack GUI Rename type: GeneralStore	杂货店	l
+DFHack GUI Rename type: FoodStore	食品店	l
+DFHack GUI Rename type: War	战争	l
+DFHack GUI Rename type: Battle	战役	l
+DFHack GUI Rename type: Siege	围攻	l
+DFHack GUI Rename type: Road	道路	l
+DFHack GUI Rename type: Wall	城墙	l
+DFHack GUI Rename type: Bridge	桥梁	l
+DFHack GUI Rename type: Tunnel	隧道	l
+DFHack GUI Rename type: HighPriest	大祭司	l
+DFHack GUI Rename type: Monument	纪念碑	l
+DFHack GUI Rename type: Tomb	陵墓	l
+DFHack GUI Rename type: OutcastGroup	被逐团体	l
+DFHack GUI Rename type: TrueName	真名	l
+DFHack GUI Rename type: Vault	秘库	l
+DFHack GUI Rename type: PerformanceTroupe	表演团体	l
+DFHack GUI Rename type: Library	图书馆	l
+DFHack GUI Rename type: PoeticForm	诗歌形式	l
+DFHack GUI Rename type: MusicalForm	音乐形式	l
+DFHack GUI Rename type: DanceForm	舞蹈形式	l
+DFHack GUI Rename type: Festival	节庆	l
+DFHack GUI Rename type: FalseIdentity	假身份	l
+DFHack GUI Rename type: MerchantCompany	商贸公司	l
+DFHack GUI Rename type: CountingHouse	账房	l
+DFHack GUI Rename type: CraftGuild	工匠行会	l
+DFHack GUI Rename type: Guildhall	行会大厅	l
+DFHack GUI Rename type: NecromancerTower	死灵法师塔	l
+DFHack GUI Rename type: Hospital	医院	l
