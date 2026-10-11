@@ -5365,6 +5365,32 @@ Justice intelligence tab: Actors	人物	l
 Justice intelligence tab: Organizations	组织	l
 Justice intelligence tab: Plots	阴谋	l
 Justice actor: Unidentified	身份不明	l
+# Actors card supplier: data/extracted/justice-actors-producers/decompiled-source.txt.
+Justice actor: Nameless	无名者	l
+Justice actor: Highest known in organization	组织中已知的最高层成员	l
+Justice actor: Associated Organization: Unidentified	关联组织：尚未查明	l
+Justice actor field: Associated Organization	关联组织	l
+Justice actor field: Associated Plot	关联阴谋	l
+Justice plot: Org	组织	l
+Justice plot organization: Unidentified	尚未查明	l
+Justice plot organization: Nameless	无名者	l
+# Native Justice organization summaries and chart roles; these abbreviations
+# are finite producer captions, not names or ordinary dictionary words.
+Justice organization: Selected actor	选中人物	l
+Justice organization: One member	1名成员	l
+Justice organization: members	{d}名成员	l
+Justice organization role: Boss	首领	l
+Justice organization role: Membr	成员	l
+Justice organization role: Thief	窃贼	l
+Justice organization role: Crrpt	腐败者	l
+Justice organization role: Assas	刺客	l
+Justice organization role: Snatc	绑匪	l
+Justice organization role: Sabtr	破坏者	l
+Justice organization role: Framr	构陷者	l
+Justice organization role: Asset	内应	l
+Justice organization status: RIP	已故	l
+Justice organization initials: Nameless	无名	l
+Justice organization initials: Unidentified	不明	l
 Associated Plot:	关联阴谋：	wl
 Desired metal cages and chains in dungeons: {d} of {d}	监牢中的金属笼子和锁链：现有 {d1}，需要 {d2}	wtl
 Untitled/unnamed	无标题／未命名	w
@@ -11635,4 +11661,42 @@ Embark site ecology: Surroundings: Haunted	周围环境：闹鬼
 Embark site ecology: Surroundings: Joyous Wilds	周围环境：欢悦荒野
 Embark site ecology: Surroundings: Untamed Wilds	周围环境：未驯服的荒野
 Embark site ecology: Surroundings: Terrifying	周围环境：恐怖
+
+# Counterintelligence plot list_name switch: Steam 0x2b6b69..0x2b6fb9,
+# Classic 0x2b4729..0x2b4b79. Resolve only complete typed Justice plot fields.
+# Details absent/Location/unknown retain A plot with no date; conviction
+# action 0/2/3 and unknown actions use the separate direct-year productions.
+Justice plot: A plot	一项阴谋	l
+Justice plot: Sabotage	破坏	l
+Justice plot: Abduct	绑架	l
+Justice plot: Assassinate	暗杀	l
+Justice plot: Steal	窃取	l
+Justice plot: Corrupt	拉拢	l
+Justice plot: Provide Position	提供职位	l
+Justice plot: Infiltrate	渗透	l
+Justice plot: Frame	诬陷	l
+Justice plot: Start War	挑起战争	l
+Justice plot: , agreed in {d}	（第{d}年商定）	l
+Justice plot: Attempted Bribery in {d}	贿赂未遂（第{d}年）	l
+Justice plot: Attempted Espionage in {d}	间谍活动未遂（第{d}年）	l
+Justice plot: Attempted Embezzlement in {d}	挪用资金未遂（第{d}年）	l
+Justice plot: A plot in {d}	一项阴谋（第{d}年）	l
+Justice plot: Sabotage {t}	破坏{t}	l
+Justice plot: Abduct {t}	绑架{t}	l
+Justice plot: Assassinate {t}	暗杀{t}	l
+Justice plot: Steal {t}	窃取{t}	l
+Justice plot: Corrupt {e}	拉拢{e}	l
+Justice plot: Corrupt {s} of {e}	拉拢{e}的{s}	l
+Justice plot: Provide Position in {t}	在{t}中提供职位	l
+Justice plot: Infiltrate {t}	渗透{t}	l
+Justice plot: Frame {t}	诬陷{t}	l
+Justice plot: Start War between {e1} and {e2}	挑起{e1}与{e2}之间的战争	l
+Justice plot: Figure {n} the {s}	{n}（{s}）	l
+Justice plot: Corrupt of	拉拢任职者	l
+Justice plot: Corrupt of {e}	拉拢{e}的任职者	l
+Justice plot: Corrupt {s} of	拉拢{s}	l
+Justice plot: Provide Position in	提供职位	l
+Justice plot: Start War between and	挑起战争	l
+Justice plot: Start War between {e} and	挑起涉及{e}的战争	l
+Justice plot: Start War between and {e}	挑起涉及{e}的战争	l
 sandy loam Cavern Floor	砂质壤土洞窟地板	l

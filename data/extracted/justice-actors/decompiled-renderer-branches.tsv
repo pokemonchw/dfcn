@@ -1,0 +1,31 @@
+edition	branch	condition_rva	target_rva	condition	production
+reference	dirty-refresh	0x476a14	0x476a24	justice+0x420 != 0	clear dirty; refresh native catalogs
+reference	main-tab-gate	0x476b7c	0x476b94	selected main tab == Intelligence	otherwise no intelligence body
+reference	empty-intelligence	0x476ba3	0x476c0a	global report, actor, organization, plot catalogs all empty	two empty-intelligence sentences
+reference	mode0-interrogations	0x4771fb	0x4789aa	justice+0x290 == 0	report paragraphs or report list
+reference	mode1-actors	0x477203	0x478433	justice+0x290 == 1	actor catalog +0x318..+0x320
+reference	mode2-organizations	0x47720c	0x4777bb	justice+0x290 == 2	organization catalog +0x330..+0x338
+reference	mode3-plots	0x477215	0x47721e	justice+0x290 == 3	plot catalog +0x348..+0x350
+reference	actor-selected-size	0x478453	0x47846e	selected index >=0 and <actor_count	materialize selected actor; add extra body rows to scroll extent
+reference	actor-per-card-supplier	0x478530	0x478542	every catalog entry	materialize actor complete title/body
+reference	actor-selected-extra-rows	0x478554	0x47857d	selected card and body count>=3	reserve count rows, otherwise minimum3
+reference	actor-title-visible	0x478674	0x4786c2	titleY in viewport	draw complete actor+0x58
+reference	actor-single-body-row	0x47887b	0x478880	body_count ==1	body starts titleY+2; otherwise titleY+1
+reference	actor-body-count-selected	0x478891	0x4788a8	card selected	display max(3,body_count); others3
+reference	actor-body-row-visible	0x4788c0	0x4788ec	row_index<body_count and rowY in viewport	draw complete string* from actor+0x78 vector
+reference	actor-scrollbar	0x47895c	0x47899a	content_height > viewport_height	native scroll bar; otherwise no bar
+classic	dirty-refresh	0x4745d4	0x4745e4	justice+0x420 != 0	clear dirty; refresh native catalogs
+classic	main-tab-gate	0x47473c	0x474754	selected main tab == Intelligence	otherwise no intelligence body
+classic	empty-intelligence	0x474763	0x4747ca	global report, actor, organization, plot catalogs all empty	two empty-intelligence sentences
+classic	mode0-interrogations	0x474dbb	0x47656a	justice+0x290 == 0	report paragraphs or report list
+classic	mode1-actors	0x474dc3	0x475ff3	justice+0x290 == 1	actor catalog +0x318..+0x320
+classic	mode2-organizations	0x474dcc	0x47537b	justice+0x290 == 2	organization catalog +0x330..+0x338
+classic	mode3-plots	0x474dd5	0x474dde	justice+0x290 == 3	plot catalog +0x348..+0x350
+classic	actor-selected-size	0x476013	0x47602e	selected index >=0 and <actor_count	materialize selected actor; add extra body rows to scroll extent
+classic	actor-per-card-supplier	0x4760f0	0x476102	every catalog entry	materialize actor complete title/body
+classic	actor-selected-extra-rows	0x476114	0x47613d	selected card and body count>=3	reserve count rows, otherwise minimum3
+classic	actor-title-visible	0x476234	0x476282	titleY in viewport	draw complete actor+0x58
+classic	actor-single-body-row	0x47643b	0x476440	body_count ==1	body starts titleY+2; otherwise titleY+1
+classic	actor-body-count-selected	0x476451	0x476468	card selected	display max(3,body_count); others3
+classic	actor-body-row-visible	0x476480	0x4764ac	row_index<body_count and rowY in viewport	draw complete string* from actor+0x78 vector
+classic	actor-scrollbar	0x47651c	0x47655a	content_height > viewport_height	native scroll bar; otherwise no bar

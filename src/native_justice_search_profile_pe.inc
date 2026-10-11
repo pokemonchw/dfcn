@@ -37,12 +37,15 @@ static bool resolve_native_justice_search_profile(NativeJusticeSearchProfile &pr
                 reinterpret_cast<const void *>(&capture_native_justice_search_query)},
             // RBP is stable throughout the filter. Its -79 temporary is the
             // folded query; RDX was dead at each original one-argument call.
+            // At both plot calls, nonvolatile RBX is the filtered vector and
+            // RSI is its current byte offset. Recover that exact candidate
+            // into R8 before replacing RDX with the copied query address.
             {0x4794a5, 0x52cee0,
-                reinterpret_cast<const void *>(&capture_native_justice_search_term<JournalSearchKind::Plot>),
-                {0x48,0x8d,0x55,0x87}},
+                reinterpret_cast<const void *>(&capture_native_justice_plot_search_term<JournalSearchKind::Plot>),
+                {0x48,0x8b,0x13,0x4c,0x8b,0x04,0x32,0x48,0x8d,0x55,0x87}},
             {0x4794c2, 0x52cee0,
-                reinterpret_cast<const void *>(&capture_native_justice_search_term<JournalSearchKind::PlotOrganization>),
-                {0x48,0x8d,0x55,0x87}},
+                reinterpret_cast<const void *>(&capture_native_justice_plot_search_term<JournalSearchKind::PlotOrganization>),
+                {0x48,0x8b,0x13,0x4c,0x8b,0x04,0x32,0x48,0x8d,0x55,0x87}},
             {0x479709, 0x52cee0,
                 reinterpret_cast<const void *>(&capture_native_justice_search_term<JournalSearchKind::Organization>),
                 {0x48,0x8d,0x55,0x87}},

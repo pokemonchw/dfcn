@@ -1,0 +1,311 @@
+edition	image_identity	owner	owner_rva	instruction_rva	source_kind	literal_rva	operand_role	text
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b690e	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6984	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6996	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b699f	rip-relative	0x16290e0	finite-text-operand-or-substring	Unidentified
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6b6f	rip-relative	0x16290d4	finite-text-operand-or-substring	A plot
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6bbe	rip-relative	0x16290c8	finite-text-operand-or-substring	Sabotage
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6bde	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6c01	rip-relative	0x1629164	finite-text-operand-or-substring	Abduct
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6c25	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6c79	rip-relative	0x1629158	finite-text-operand-or-substring	Assassinate
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6c82	rip-relative	0x1629150	finite-text-operand-or-substring	Steal
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6ca6	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6cd4	rip-relative	0x1629148	finite-text-operand-or-substring	Corrupt
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6d02	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6d92	rip-relative	0x1628fa8	finite-text-operand-or-substring	 of
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6dae	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6dde	rip-relative	0x1629130	finite-text-operand-or-substring	Provide Position
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6e02	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6e3a	rip-relative	0x1629050	finite-text-operand-or-substring	Attempted Embezzlement
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6e49	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6e55	rip-relative	0x1629100	finite-text-operand-or-substring	Attempted Espionage
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6e64	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6e70	rip-relative	0x1629118	finite-text-operand-or-substring	Attempted Bribery
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6e7f	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6e8b	rip-relative	0x1629040	finite-text-operand-or-substring	Infiltrate
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6eaf	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6ed2	rip-relative	0x1629034	finite-text-operand-or-substring	Frame
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6ef6	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6f25	rip-relative	0x1629028	finite-text-operand-or-substring	Start War
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6f4b	rip-relative	0x1629018	finite-text-operand-or-substring	 between 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6f74	rip-relative	0x15e9110	separator	 and 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b6f9d	rip-relative	0x1629170	finite-text-operand-or-substring	, agreed in 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b7808	rip-relative	0x1629010	finite-text-operand-or-substring	Boss
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b78c4	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b7953	rip-relative	0x162900c	finite-text-operand-or-substring	RIP
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b7a15	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b7a78	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b7a8c	rip-relative	0x16290e0	finite-text-operand-or-substring	Unidentified
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b86b6	rip-relative	0x1629004	finite-text-operand-or-substring	Membr
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b8711	rip-relative	0x160032c	finite-text-operand-or-substring	Thief
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b8749	rip-relative	0x16290b8	finite-text-operand-or-substring	Crrpt
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b877f	rip-relative	0x16290b0	finite-text-operand-or-substring	Assas
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b87b1	rip-relative	0x16290a8	finite-text-operand-or-substring	Snatc
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b87d6	rip-relative	0x16290a0	finite-text-operand-or-substring	Sabtr
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b87ee	rip-relative	0x1629098	finite-text-operand-or-substring	Framr
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b880c	rip-relative	0x16290c0	finite-text-operand-or-substring	Asset
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b8a50	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b8b41	rip-relative	0x162900c	finite-text-operand-or-substring	RIP
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fb2e	rip-relative	0x15f7140	finite-text-operand-or-substring	Tabs
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fbc4	rip-relative	0x163ed68	finite-text-operand-or-substring	Open cases
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fbf8	rip-relative	0x163cfd8	finite-text-operand-or-substring	Right panel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fc08	rip-relative	0x163cfe0	finite-text-operand-or-substring	nel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fc16	rip-relative	0x163cfe2	finite-text-operand-or-substring	l
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fcff	rip-relative	0x163ed5c	finite-text-operand-or-substring	Cases
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fd0b	rip-relative	0x163ed60	finite-text-operand-or-substring	s
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fd85	rip-relative	0x163ec80	finite-text-operand-or-substring	Closed cases
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fdba	rip-relative	0x163cfd8	finite-text-operand-or-substring	Right panel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fdca	rip-relative	0x163cfe0	finite-text-operand-or-substring	nel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fdd8	rip-relative	0x163cfe2	finite-text-operand-or-substring	l
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46febb	rip-relative	0x163ed5c	finite-text-operand-or-substring	Cases
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46fec7	rip-relative	0x163ed60	finite-text-operand-or-substring	s
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46ff3f	rip-relative	0x163ec70	finite-text-operand-or-substring	Cold cases
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46ff74	rip-relative	0x163cfd8	finite-text-operand-or-substring	Right panel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46ff84	rip-relative	0x163cfe0	finite-text-operand-or-substring	nel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x46ff92	rip-relative	0x163cfe2	finite-text-operand-or-substring	l
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470075	rip-relative	0x163ed5c	finite-text-operand-or-substring	Cases
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470081	rip-relative	0x163ed60	finite-text-operand-or-substring	s
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x4700fb	rip-relative	0x163ec60	finite-text-operand-or-substring	Fortress guard
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x47013b	rip-relative	0x163ec50	finite-text-operand-or-substring	Cage/Chain Reqs
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x47014b	rip-relative	0x163ec58	finite-text-operand-or-substring	in Reqs
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470157	rip-relative	0x163ec5c	finite-text-operand-or-substring	eqs
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470165	rip-relative	0x163ec5e	finite-text-operand-or-substring	s
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470223	rip-relative	0x163ecc0	finite-text-operand-or-substring	Desired metal cages and chains in dungeons: 
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x47022d	rip-relative	0x163ecd0	finite-text-operand-or-substring	ges and chains in dungeons: 
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470238	rip-relative	0x163ece0	finite-text-operand-or-substring	n dungeons: 
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470245	rip-relative	0x163ece8	finite-text-operand-or-substring	ns: 
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470263	rip-relative	0x15eb518	finite-text-operand-or-substring	 of 
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x4702e7	rip-relative	0x163ecb0	finite-text-operand-or-substring	Guards List
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x4702f7	rip-relative	0x163ecb8	finite-text-operand-or-substring	ist
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470305	rip-relative	0x163ecba	finite-text-operand-or-substring	t
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470385	rip-relative	0x163eca0	finite-text-operand-or-substring	Convicts
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x4703c8	rip-relative	0x163ec90	finite-text-operand-or-substring	Convict list
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x4703d8	rip-relative	0x163ec98	finite-text-operand-or-substring	list
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x47046b	rip-relative	0x163cfd8	finite-text-operand-or-substring	Right panel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x47047b	rip-relative	0x163cfe0	finite-text-operand-or-substring	nel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470489	rip-relative	0x163cfe2	finite-text-operand-or-substring	l
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x4708e5	rip-relative	0x163cfd8	finite-text-operand-or-substring	Right panel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x4708f5	rip-relative	0x163cfe0	finite-text-operand-or-substring	nel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470903	rip-relative	0x163cfe2	finite-text-operand-or-substring	l
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470b14	rip-relative	0x163cfd8	finite-text-operand-or-substring	Right panel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470bc9	rip-relative	0x163cfd8	finite-text-operand-or-substring	Right panel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470dc6	rip-relative	0x163cfd8	finite-text-operand-or-substring	Right panel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470dd6	rip-relative	0x163cfe0	finite-text-operand-or-substring	nel
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470de4	rip-relative	0x163cfe2	finite-text-operand-or-substring	l
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x470fa2	rip-relative	0x18afd88	finite-text-operand-or-substring	Unit List
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x47107a	rip-relative	0x18afd88	finite-text-operand-or-substring	Unit List
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x4711f2	rip-relative	0x18afd88	finite-text-operand-or-substring	Unit List
+reference	PE:6a70a6d9:02711000	intelligence-input	0x4751a0	0x47524c	rip-relative	0x15f7140	finite-text-operand-or-substring	Tabs
+reference	PE:6a70a6d9:02711000	intelligence-input	0x4751a0	0x4752d9	rip-relative	0x163f188	finite-text-operand-or-substring	Intelligence
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476aa1	rip-relative	0x15f7140	finite-text-operand-or-substring	Tabs
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476b86	rip-relative	0x163f188	finite-text-operand-or-substring	Intelligence
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476c54	rip-relative	0x163f158	finite-text-operand-or-substring	There is no intelligence information yet.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476c5e	rip-relative	0x163f168	finite-text-operand-or-substring	lligence information yet.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476c69	rip-relative	0x163f178	finite-text-operand-or-substring	tion yet.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476c76	rip-relative	0x163f180	finite-text-operand-or-substring	.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476cdb	rip-relative	0x163f110	finite-text-operand-or-substring	If a crime involves a conspiracy, an interrogation may reveal the plot.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476ce5	rip-relative	0x163f120	finite-text-operand-or-substring	ves a conspiracy, an interrogation may reveal the plot.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476cf0	rip-relative	0x163f130	finite-text-operand-or-substring	, an interrogation may reveal the plot.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476cfb	rip-relative	0x163f140	finite-text-operand-or-substring	on may reveal the plot.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476d06	rip-relative	0x163f150	finite-text-operand-or-substring	e plot.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476d0f	rip-relative	0x163f154	finite-text-operand-or-substring	ot.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x476d1a	rip-relative	0x163f156	finite-text-operand-or-substring	.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x47700a	rip-relative	0x15ec288	finite-text-operand-or-substring	Plots
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x477013	rip-relative	0x15ec28c	finite-text-operand-or-substring	s
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x477071	rip-relative	0x15ec228	finite-text-operand-or-substring	Organizations
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x47707e	rip-relative	0x15ec230	finite-text-operand-or-substring	tions
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x477087	rip-relative	0x15ec234	finite-text-operand-or-substring	s
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x4770e5	rip-relative	0x15ec21c	finite-text-operand-or-substring	Actors
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x4770ee	rip-relative	0x15ec220	finite-text-operand-or-substring	rs
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x477154	rip-relative	0x163f100	finite-text-operand-or-substring	Interrogations
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x477161	rip-relative	0x163f108	finite-text-operand-or-substring	ations
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x47716a	rip-relative	0x163f10c	finite-text-operand-or-substring	ns
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x47752a	rip-relative	0x15eb514	separator	/
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x477689	rip-relative	0x15ec824	finite-text-operand-or-substring	Org: 
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x477692	rip-relative	0x15ec828	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x477b38	rip-relative	0x15eb514	separator	/
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x478212	rip-relative	0x163f1b0	finite-text-operand-or-substring	Selected actor: 
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x4782f0	rip-relative	0x15ec7b8	finite-text-operand-or-substring	One member
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x4782fd	rip-relative	0x15ec7c0	finite-text-operand-or-substring	er
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x478371	rip-relative	0x15ec818	finite-text-operand-or-substring	 members
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x47877f	rip-relative	0x15eb514	separator	/
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x478a2a	rip-relative	0x163f1e8	finite-text-operand-or-substring	Prepared by 
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x478a37	rip-relative	0x163f1f0	finite-text-operand-or-substring	 by 
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x478f73	rip-relative	0x163eeb0	finite-text-operand-or-substring	Officer: 
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x478f80	rip-relative	0x163eeb8	separator	 
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x479169	rip-relative	0x163f1c8	finite-text-operand-or-substring	No interrogation reports.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x479173	rip-relative	0x163f1d8	finite-text-operand-or-substring	 reports.
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x479180	rip-relative	0x163f1e0	finite-text-operand-or-substring	.
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa948a3	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa9495e	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94a3b	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94a5d	rip-relative	0x15ed9bc	finite-text-operand-or-substring	The 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94a78	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94af2	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94b11	rip-relative	0x15ed9bc	finite-text-operand-or-substring	The 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94b1a	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94b9a	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94bb9	rip-relative	0x15ed9bc	finite-text-operand-or-substring	The 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94bc2	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94d1f	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94d4b	rip-relative	0x15ed9bc	finite-text-operand-or-substring	The 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94d62	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94e09	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94e18	rip-relative	0x16ced90	finite-text-operand-or-substring	of 
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94e1f	rip-relative	0x16cee1c	finite-text-operand-or-substring	Of 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b44ce	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4544	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4556	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b455f	rip-relative	0x1623f20	finite-text-operand-or-substring	Unidentified
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b472f	rip-relative	0x1623f14	finite-text-operand-or-substring	A plot
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b477e	rip-relative	0x1623f08	finite-text-operand-or-substring	Sabotage
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b479e	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b47c1	rip-relative	0x1623eec	finite-text-operand-or-substring	Abduct
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b47e5	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4839	rip-relative	0x1623ee0	finite-text-operand-or-substring	Assassinate
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4842	rip-relative	0x1623ed8	finite-text-operand-or-substring	Steal
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4866	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4894	rip-relative	0x1623ed0	finite-text-operand-or-substring	Corrupt
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b48c2	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4952	rip-relative	0x1623e04	finite-text-operand-or-substring	 of
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b496e	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b499e	rip-relative	0x1624130	finite-text-operand-or-substring	Provide Position
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b49c2	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b49fa	rip-relative	0x16240e8	finite-text-operand-or-substring	Attempted Embezzlement
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4a09	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4a15	rip-relative	0x1624100	finite-text-operand-or-substring	Attempted Espionage
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4a24	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4a30	rip-relative	0x1624118	finite-text-operand-or-substring	Attempted Bribery
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4a3f	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4a4b	rip-relative	0x16240d8	finite-text-operand-or-substring	Infiltrate
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4a6f	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4a92	rip-relative	0x16240cc	finite-text-operand-or-substring	Frame
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4ab6	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4ae5	rip-relative	0x16240c0	finite-text-operand-or-substring	Start War
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4b0b	rip-relative	0x16240b0	finite-text-operand-or-substring	 between 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4b34	rip-relative	0x15e40bc	separator	 and 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b4b5d	rip-relative	0x1623ef8	finite-text-operand-or-substring	, agreed in 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b53c8	rip-relative	0x1624178	finite-text-operand-or-substring	Boss
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b5484	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b5513	rip-relative	0x1624174	finite-text-operand-or-substring	RIP
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b55d5	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b5638	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b564c	rip-relative	0x1623f20	finite-text-operand-or-substring	Unidentified
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b6276	rip-relative	0x162416c	finite-text-operand-or-substring	Membr
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b62d1	rip-relative	0x15fb19c	finite-text-operand-or-substring	Thief
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b6309	rip-relative	0x162415c	finite-text-operand-or-substring	Crrpt
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b633f	rip-relative	0x1624154	finite-text-operand-or-substring	Assas
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b6371	rip-relative	0x162414c	finite-text-operand-or-substring	Snatc
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b6396	rip-relative	0x1624144	finite-text-operand-or-substring	Sabtr
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b63ae	rip-relative	0x1623ff0	finite-text-operand-or-substring	Framr
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b63cc	rip-relative	0x1624164	finite-text-operand-or-substring	Asset
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b6610	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b6701	rip-relative	0x1624174	finite-text-operand-or-substring	RIP
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d6ee	rip-relative	0x15f2134	finite-text-operand-or-substring	Tabs
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d784	rip-relative	0x1639de0	finite-text-operand-or-substring	Open cases
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d7b8	rip-relative	0x1637b98	finite-text-operand-or-substring	Right panel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d7c8	rip-relative	0x1637ba0	finite-text-operand-or-substring	nel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d7d6	rip-relative	0x1637ba2	finite-text-operand-or-substring	l
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d8bf	rip-relative	0x1639dd8	finite-text-operand-or-substring	Cases
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d8cb	rip-relative	0x1639ddc	finite-text-operand-or-substring	s
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d945	rip-relative	0x1639dc8	finite-text-operand-or-substring	Closed cases
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d97a	rip-relative	0x1637b98	finite-text-operand-or-substring	Right panel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d98a	rip-relative	0x1637ba0	finite-text-operand-or-substring	nel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46d998	rip-relative	0x1637ba2	finite-text-operand-or-substring	l
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46da7b	rip-relative	0x1639dd8	finite-text-operand-or-substring	Cases
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46da87	rip-relative	0x1639ddc	finite-text-operand-or-substring	s
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46daff	rip-relative	0x1639e50	finite-text-operand-or-substring	Cold cases
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46db34	rip-relative	0x1637b98	finite-text-operand-or-substring	Right panel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46db44	rip-relative	0x1637ba0	finite-text-operand-or-substring	nel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46db52	rip-relative	0x1637ba2	finite-text-operand-or-substring	l
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dc35	rip-relative	0x1639dd8	finite-text-operand-or-substring	Cases
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dc41	rip-relative	0x1639ddc	finite-text-operand-or-substring	s
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dcbb	rip-relative	0x1639e40	finite-text-operand-or-substring	Fortress guard
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dcfb	rip-relative	0x1639e30	finite-text-operand-or-substring	Cage/Chain Reqs
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dd0b	rip-relative	0x1639e38	finite-text-operand-or-substring	in Reqs
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dd17	rip-relative	0x1639e3c	finite-text-operand-or-substring	eqs
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dd25	rip-relative	0x1639e3e	finite-text-operand-or-substring	s
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dde3	rip-relative	0x1639e00	finite-text-operand-or-substring	Desired metal cages and chains in dungeons: 
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dded	rip-relative	0x1639e10	finite-text-operand-or-substring	ges and chains in dungeons: 
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46ddf8	rip-relative	0x1639e20	finite-text-operand-or-substring	n dungeons: 
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46de05	rip-relative	0x1639e28	finite-text-operand-or-substring	ns: 
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46de23	rip-relative	0x15e64d0	finite-text-operand-or-substring	 of 
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dea7	rip-relative	0x1639d20	finite-text-operand-or-substring	Guards List
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46deb7	rip-relative	0x1639d28	finite-text-operand-or-substring	ist
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46dec5	rip-relative	0x1639d2a	finite-text-operand-or-substring	t
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46df45	rip-relative	0x1639d10	finite-text-operand-or-substring	Convicts
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46df88	rip-relative	0x1639d00	finite-text-operand-or-substring	Convict list
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46df98	rip-relative	0x1639d08	finite-text-operand-or-substring	list
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e02b	rip-relative	0x1637b98	finite-text-operand-or-substring	Right panel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e03b	rip-relative	0x1637ba0	finite-text-operand-or-substring	nel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e049	rip-relative	0x1637ba2	finite-text-operand-or-substring	l
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e4a5	rip-relative	0x1637b98	finite-text-operand-or-substring	Right panel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e4b5	rip-relative	0x1637ba0	finite-text-operand-or-substring	nel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e4c3	rip-relative	0x1637ba2	finite-text-operand-or-substring	l
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e6d4	rip-relative	0x1637b98	finite-text-operand-or-substring	Right panel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e789	rip-relative	0x1637b98	finite-text-operand-or-substring	Right panel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e986	rip-relative	0x1637b98	finite-text-operand-or-substring	Right panel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e996	rip-relative	0x1637ba0	finite-text-operand-or-substring	nel
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46e9a4	rip-relative	0x1637ba2	finite-text-operand-or-substring	l
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46eb62	rip-relative	0x18a9d58	finite-text-operand-or-substring	Unit List
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46ec3a	rip-relative	0x18a9d58	finite-text-operand-or-substring	Unit List
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46edb2	rip-relative	0x18a9d58	finite-text-operand-or-substring	Unit List
+classic	PE:6a70b91c:0270a000	intelligence-input	0x472d60	0x472e0c	rip-relative	0x15f2134	finite-text-operand-or-substring	Tabs
+classic	PE:6a70b91c:0270a000	intelligence-input	0x472d60	0x472e99	rip-relative	0x1639cf0	finite-text-operand-or-substring	Intelligence
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474661	rip-relative	0x15f2134	finite-text-operand-or-substring	Tabs
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474746	rip-relative	0x1639cf0	finite-text-operand-or-substring	Intelligence
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474814	rip-relative	0x1639d98	finite-text-operand-or-substring	There is no intelligence information yet.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x47481e	rip-relative	0x1639da8	finite-text-operand-or-substring	lligence information yet.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474829	rip-relative	0x1639db8	finite-text-operand-or-substring	tion yet.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474836	rip-relative	0x1639dc0	finite-text-operand-or-substring	.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x47489b	rip-relative	0x1639d50	finite-text-operand-or-substring	If a crime involves a conspiracy, an interrogation may reveal the plot.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4748a5	rip-relative	0x1639d60	finite-text-operand-or-substring	ves a conspiracy, an interrogation may reveal the plot.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4748b0	rip-relative	0x1639d70	finite-text-operand-or-substring	, an interrogation may reveal the plot.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4748bb	rip-relative	0x1639d80	finite-text-operand-or-substring	on may reveal the plot.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4748c6	rip-relative	0x1639d90	finite-text-operand-or-substring	e plot.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4748cf	rip-relative	0x1639d94	finite-text-operand-or-substring	ot.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4748da	rip-relative	0x1639d96	finite-text-operand-or-substring	.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474bca	rip-relative	0x15e71f4	finite-text-operand-or-substring	Plots
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474bd3	rip-relative	0x15e71f8	finite-text-operand-or-substring	s
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474c31	rip-relative	0x15e7220	finite-text-operand-or-substring	Organizations
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474c3e	rip-relative	0x15e7228	finite-text-operand-or-substring	tions
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474c47	rip-relative	0x15e722c	finite-text-operand-or-substring	s
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474ca5	rip-relative	0x15e7218	finite-text-operand-or-substring	Actors
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474cae	rip-relative	0x15e721c	finite-text-operand-or-substring	rs
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474d14	rip-relative	0x1639d40	finite-text-operand-or-substring	Interrogations
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474d21	rip-relative	0x1639d48	finite-text-operand-or-substring	ations
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x474d2a	rip-relative	0x1639d4c	finite-text-operand-or-substring	ns
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4750ea	rip-relative	0x15e64cc	separator	/
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x475249	rip-relative	0x15e778c	finite-text-operand-or-substring	Org: 
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x475252	rip-relative	0x15e7790	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4756f8	rip-relative	0x15e64cc	separator	/
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x475dd2	rip-relative	0x1639c60	finite-text-operand-or-substring	Selected actor: 
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x475eb0	rip-relative	0x15e77b0	finite-text-operand-or-substring	One member
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x475ebd	rip-relative	0x15e77b8	finite-text-operand-or-substring	er
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x475f31	rip-relative	0x15e7780	finite-text-operand-or-substring	 members
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x47633f	rip-relative	0x15e64cc	separator	/
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4765ea	rip-relative	0x1639d30	finite-text-operand-or-substring	Prepared by 
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x4765f7	rip-relative	0x1639d38	finite-text-operand-or-substring	 by 
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x476b33	rip-relative	0x1639ab0	finite-text-operand-or-substring	Officer: 
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x476b40	rip-relative	0x1639ab8	separator	 
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x476d29	rip-relative	0x1639c78	finite-text-operand-or-substring	No interrogation reports.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x476d33	rip-relative	0x1639c88	finite-text-operand-or-substring	 reports.
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x476d40	rip-relative	0x1639c90	finite-text-operand-or-substring	.
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91923	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa919de	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91abb	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91add	rip-relative	0x15e89c4	finite-text-operand-or-substring	The 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91af8	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91b72	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91b91	rip-relative	0x15e89c4	finite-text-operand-or-substring	The 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91b9a	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91c1a	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91c39	rip-relative	0x15e89c4	finite-text-operand-or-substring	The 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91c42	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91d9f	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91dcb	rip-relative	0x15e89c4	finite-text-operand-or-substring	The 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91de2	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91e89	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91e98	rip-relative	0x16cb220	finite-text-operand-or-substring	of 
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91e9f	rip-relative	0x16cb2ac	finite-text-operand-or-substring	Of 

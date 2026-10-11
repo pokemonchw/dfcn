@@ -1,0 +1,67 @@
+edition	branch	condition_rva	target_rva	condition	production
+reference	refresh	0x476a14	0x476a24	justice+420 != 0	clear dirty and refresh native catalogs
+reference	main-tab	0x476b7c	0x4791de	selected tab != Intelligence	no intelligence body
+reference	all-empty	0x476ba3	0x476c10	reports,actors,organizations,plots original catalogs all empty	two empty intelligence sentences
+reference	plots-mode	0x477215	0x47721e	mode+290 == 3	plots renderer
+reference	no-filtered-plot	0x4772a4	0x477748	filtered_count <= 0	empty body; optional scrollbar condition only
+reference	display-title-copy	0x4772df	0x4772e6	plot+50 == 0	copy complete plot+00 to +40
+reference	card-background-row	0x477326	0x4773f8	card row outside viewport	skip row draw
+reference	card-background-column	0x47733b	0x4773f8	left > right	skip row draw
+reference	card-background-top-edge	0x47736a	0x477393	row == titleY	top edge corners and center tiles
+reference	card-background-bottom-edge	0x477398	0x4773c1	row == titleY+4	bottom edge corners and center tiles
+reference	title-visible	0x47741a	0x47761c	titleY outside viewport	skip title/counter
+reference	title-selected	0x477435	0x477451	ordinal == selected+294	selected title color
+reference	counter-selected	0x47747a	0x477496	ordinal == selected+294	selected counter color
+reference	org-row-visible	0x47761c	0x4776fe	titleY+1 outside viewport	skip organization row
+reference	org-nonempty	0x47762e	0x4776fe	plot+80 == 0	skip organization row
+reference	org-selected	0x477645	0x477661	ordinal == selected+294	selected organization color
+reference	next-card	0x47771a	0x4772d0	ordinal+1 < filtered_count	advance titleY and orgY by 5
+reference	scrollbar	0x47774d	0x4791f3	total_rows <= viewport_rows	no scrollbar
+reference	filter-query-empty	0x479458	0x47962e	lowercase query empty	retain full original candidate catalog
+reference	filter-title-match	0x47951f	0x479658	lowercase complete title contains query	retain record without requiring org match
+reference	filter-org-match	0x4795ae	0x47966b	lowercase cached org name contains query	retain record
+reference	filter-neither-match	0x4795d8	0x4795f5	neither title nor organization contains query	erase record pointer
+reference	filter-result-empty	0x479639	0x479648	filtered vector empty	selected ordinal = -1
+reference	input-no-data	0x4753ae	0x4769a4	all original intelligence catalogs empty	skip input body
+reference	input-plot-tab-empty	0x475458	0x47546e	original plot catalog empty	plots tab disabled
+reference	input-mode-change	0x47550e	0x475699	left click enabled unselected tab rectangle	set mode and reset/refilter
+reference	input-plot-mode	0x475541	0x47554b	mode == 3	plots input branch
+reference	input-scroll-required	0x475588	0x475593	count*5 > viewport_rows	reserve scrollbar columns
+reference	input-scroll-hit	0x475593	0x475608	active mouse in scrollable viewport	native scrollbar input
+reference	input-drag	0x475627	0x47573e	justice+2cc == 0	otherwise continue drag handling
+reference	input-card-click	0x475886	0x4758ad	left click inside card five-row rectangle	set selected+294 only
+reference	producer-org-truncate	0x2b7b3d	0x2b7b46	cached org length > viewport byte budget	truncate +70 without ellipsis
+reference	producer-org-fallback-truncate	0x2b8c57	0x2b8c60	fallback org length > viewport byte budget	truncate +70 without ellipsis
+classic	refresh	0x4745d4	0x4745e4	justice+420 != 0	clear dirty and refresh native catalogs
+classic	main-tab	0x47473c	0x476d9e	selected tab != Intelligence	no intelligence body
+classic	all-empty	0x474763	0x4747d0	reports,actors,organizations,plots original catalogs all empty	two empty intelligence sentences
+classic	plots-mode	0x474dd5	0x474dde	mode+290 == 3	plots renderer
+classic	no-filtered-plot	0x474e64	0x475308	filtered_count <= 0	empty body; optional scrollbar condition only
+classic	display-title-copy	0x474e9f	0x474ea6	plot+50 == 0	copy complete plot+00 to +40
+classic	card-background-row	0x474ee6	0x474fb8	card row outside viewport	skip row draw
+classic	card-background-column	0x474efb	0x474fb8	left > right	skip row draw
+classic	card-background-top-edge	0x474f2a	0x474f53	row == titleY	top edge corners and center tiles
+classic	card-background-bottom-edge	0x474f58	0x474f81	row == titleY+4	bottom edge corners and center tiles
+classic	title-visible	0x474fda	0x4751dc	titleY outside viewport	skip title/counter
+classic	title-selected	0x474ff5	0x475011	ordinal == selected+294	selected title color
+classic	counter-selected	0x47503a	0x475056	ordinal == selected+294	selected counter color
+classic	org-row-visible	0x4751dc	0x4752be	titleY+1 outside viewport	skip organization row
+classic	org-nonempty	0x4751ee	0x4752be	plot+80 == 0	skip organization row
+classic	org-selected	0x475205	0x475221	ordinal == selected+294	selected organization color
+classic	next-card	0x4752da	0x474e90	ordinal+1 < filtered_count	advance titleY and orgY by 5
+classic	scrollbar	0x47530d	0x476db3	total_rows <= viewport_rows	no scrollbar
+classic	filter-query-empty	0x477018	0x4771ee	lowercase query empty	retain full original candidate catalog
+classic	filter-title-match	0x4770df	0x477218	lowercase complete title contains query	retain record without requiring org match
+classic	filter-org-match	0x47716e	0x47722b	lowercase cached org name contains query	retain record
+classic	filter-neither-match	0x477198	0x4771b5	neither title nor organization contains query	erase record pointer
+classic	filter-result-empty	0x4771f9	0x477208	filtered vector empty	selected ordinal = -1
+classic	input-no-data	0x472f6e	0x474564	all original intelligence catalogs empty	skip input body
+classic	input-plot-tab-empty	0x473018	0x47302e	original plot catalog empty	plots tab disabled
+classic	input-mode-change	0x4730ce	0x473259	left click enabled unselected tab rectangle	set mode and reset/refilter
+classic	input-plot-mode	0x473101	0x47310b	mode == 3	plots input branch
+classic	input-scroll-required	0x473148	0x473153	count*5 > viewport_rows	reserve scrollbar columns
+classic	input-scroll-hit	0x473153	0x4731c8	active mouse in scrollable viewport	native scrollbar input
+classic	input-drag	0x4731e7	0x4732fe	justice+2cc == 0	otherwise continue drag handling
+classic	input-card-click	0x473446	0x47346d	left click inside card five-row rectangle	set selected+294 only
+classic	producer-org-truncate	0x2b56fd	0x2b5706	cached org length > viewport byte budget	truncate +70 without ellipsis
+classic	producer-org-fallback-truncate	0x2b6817	0x2b6820	fallback org length > viewport byte budget	truncate +70 without ellipsis

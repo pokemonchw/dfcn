@@ -29,3 +29,42 @@ journal-person	{s}	{s1}	$message	ELF 0x17c91d0..0x17c9403,0x17c9e29..0x17c9e76; 
 # title renderer handles normal species; these are its two divine variants.
 journal-person-kind	{s} deity	{s1}神祇	$creature	ELF 0x17c8a7c..0x17c8b37,0x17c9c16..0x17c9ca5; native creature label + deity
 journal-person-kind	Force	自然之灵		ELF 0x17c9b28/0x17c9dc0; regional FORCE historical figure, shared with relationship caption
+# Justice and Adventure share this complete intrigue plot title constructor.
+# Steam 53.16 0x2b6760..0x2b9040; Classic uses the same switch at -0x2440.
+# Type 12, empty item lists and unsupported subjects keep the undated default.
+# Type 11 keeps its own "in YEAR" tail, including an unsupported subkind.
+# All dynamic fields are original complete formatter output, never row clips.
+justice-plot	A plot	一项阴谋		PE Steam 0x2b6760..0x2b9040; empty/default/type12
+justice-plot	{s}, agreed in {s}	{s1}（第{s2}年商定）	justice-plot-core,$digits	PE Steam 0x2b6760..0x2b9040; types5..10/13..15 common year tail
+justice-plot	{s} in {s}	{s1}（第{s2}年）	justice-plot-attempted,$digits	PE Steam 0x2b6760..0x2b9040; type11 attempt year tail
+justice-plot-attempted	Attempted Bribery	贿赂未遂		PE Steam 0x2b6760..0x2b9040; type11 subkind0
+justice-plot-attempted	Attempted Espionage	间谍活动未遂		PE Steam 0x2b6760..0x2b9040; type11 subkind2
+justice-plot-attempted	Attempted Embezzlement	挪用资金未遂		PE Steam 0x2b6760..0x2b9040; type11 subkind3
+justice-plot-attempted	A plot	一项阴谋		PE Steam 0x2b6760..0x2b9040; type11 unsupported subkind
+justice-plot-core	Corrupt {s} of {s}	拉拢{s2}的{s1}	$office,$name	PE Steam 0x2b6760..0x2b9040; type5 position.name and entity formatter
+justice-plot-core	Corrupt of {s}	拉拢{s1}的任职者	$name	PE Steam 0x2b6d02..0x2b6dae; type5 position exists with an empty title
+justice-plot-core	Corrupt {s} of	拉拢{s1}	$office	PE Steam 0x2b6d02..0x2b6dae; type5 entity formatter returned an empty name
+justice-plot-core	Corrupt of	拉拢任职者		PE Steam 0x2b6d02..0x2b6dae; type5 both office and entity names empty
+justice-plot-core	Corrupt {s}	拉拢{s1}	$name	PE Steam 0x2b6760..0x2b9040; type5 position lookup failed, entity present
+justice-plot-core	Corrupt	拉拢		PE Steam 0x2b6760..0x2b9040; type5 entity or position ID=-1
+justice-plot-core	Steal {s}	窃取{s1}	agreement-item	PE Steam 0x2b6760..0x2b9040; type6 b94400 artifact/book formatter
+justice-plot-core	Steal	窃取		PE Steam 0x2b6760..0x2b9040; type6 artifact ID=-1
+justice-plot-core	Provide Position in {s}	提供{s1}的职位	$name	PE Steam 0x2b6760..0x2b9040; type7 entity formatter
+justice-plot-core	Provide Position	提供职位		PE Steam 0x2b6760..0x2b9040; type7 entity ID=-1
+justice-plot-core	Provide Position in	提供职位		PE Steam 0x2b6dde..0x2b6e20; type7 entity formatter returned an empty name
+justice-plot-core	Assassinate {s}	刺杀{s1}	$historical-actor	PE Steam 0x2b6760..0x2b9040; type8 b92f10 complete HF/identity formatter
+justice-plot-core	Assassinate	刺杀		PE Steam 0x2b6760..0x2b9040; type8 HF ID=-1
+justice-plot-core	Abduct {s}	绑架{s1}	$historical-actor	PE Steam 0x2b6760..0x2b9040; type9 b92f10 complete HF/identity formatter
+justice-plot-core	Abduct	绑架		PE Steam 0x2b6760..0x2b9040; type9 HF ID=-1
+justice-plot-core	Sabotage {s}	破坏{s1}的活动	$name	PE Steam 0x2b6760..0x2b9040; type10 entity ID present
+justice-plot-core	Sabotage {s}	破坏{s1}的活动	$historical-actor	PE Steam 0x2b6760..0x2b9040; type10 absent entity, HF ID present
+justice-plot-core	Sabotage	破坏活动		PE Steam 0x2b6760..0x2b9040; type10 both IDs=-1
+justice-plot-core	Infiltrate {s}	渗透{s1}	$name	PE Steam 0x2b6760..0x2b9040; type13 entity formatter
+justice-plot-core	Infiltrate	渗透		PE Steam 0x2b6760..0x2b9040; type13 entity ID=-1
+justice-plot-core	Frame {s}	栽赃{s1}	$historical-actor	PE Steam 0x2b6760..0x2b9040; type14 b92f10 complete HF/identity formatter
+justice-plot-core	Frame	栽赃		PE Steam 0x2b6760..0x2b9040; type14 HF ID=-1
+justice-plot-core	Start War between {s} and {s}	挑起{s1}与{s2}之间的战争	$name,$name	PE Steam 0x2b6760..0x2b9040; type15 both entity IDs present
+justice-plot-core	Start War	挑起战争		PE Steam 0x2b6760..0x2b9040; type15 either entity ID=-1
+justice-plot-core	Start War between {s} and	挑起涉及{s1}的战争	$name	PE Steam 0x2b6f25..0x2b6f98; type15 second entity name empty
+justice-plot-core	Start War between and {s}	挑起涉及{s1}的战争	$name	PE Steam 0x2b6f25..0x2b6f98; type15 first entity name empty
+justice-plot-core	Start War between and	挑起战争		PE Steam 0x2b6f25..0x2b6f98; type15 both entity names empty

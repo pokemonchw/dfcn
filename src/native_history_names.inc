@@ -341,7 +341,8 @@ static bool capture_native_history_original_name(uintptr_t base, uintptr_t addre
 }
 
 static bool capture_native_history_name(uintptr_t base, uintptr_t address,
-        NativeHistoryName &result, std::array<int32_t, 7> *native_indices = nullptr) {
+        NativeHistoryName &result, std::array<int32_t, 7> *native_indices = nullptr,
+        bool include_hidden_words = false) {
     // The fields are contiguous in both supported name layouts. Read them
     // once instead of issuing separate process-memory calls for seven WORD
     // indices, seven POS values and each scalar/string header. Generated
@@ -383,7 +384,10 @@ static bool capture_native_history_name(uintptr_t base, uintptr_t address,
             !native_history_copy(policy_address + size_t(game_mode) * 4,
                 copy.nickname_mode)) return false;
         if (copy.nickname_mode < 0 || copy.nickname_mode > 2) return false;
-        if (copy.nickname_mode == 2) { result = std::move(copy); return true; }
+        if (copy.nickname_mode == 2 && !include_hidden_words) {
+            result = std::move(copy);
+            return true;
+        }
     }
     NativeBorrowedVector<uintptr_t> words;
     const uintptr_t words_address = native_history_global(0x24ed770);

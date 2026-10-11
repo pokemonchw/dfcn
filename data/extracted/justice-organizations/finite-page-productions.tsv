@@ -1,0 +1,32 @@
+role	reference_rva	classic_rva	native_text	condition_or_field
+main-tab	0x476b86	0x474746	Intelligence	selected main tab gate
+subtab	0x477071	0x474c31	Organizations	justice+0x290 == 2
+empty-state	0x476c54	0x474814	There is no intelligence information yet.	all intelligence source catalogs empty
+empty-explanation	0x476cdb	0x47489b	If a crime involves a conspiracy, an interrogation may reveal the plot.	all intelligence source catalogs empty
+card-title	0x477a7b	0x47563b	<organization.complete_title>	organization+0x58 supplied from full +0x18
+card-counter	0x477be5	0x4757a5	<index+1>/<total>	decimal + slash + decimal
+collapsed-one	0x4782f0	0x475eb0	One member	node vector count == 1
+collapsed-many	0x478371	0x475f31	<count> members	node vector count != 1 including zero
+selected-prefix	0x478212	0x475dd2	Selected actor: 	selected node nonnull and footer within viewport
+selected-identity	0x47827f	0x475e3f	<actor.complete_name>	selected node[0] actor+0x18 complete original string
+boss-role	0x2b7808	0x2b53c8	Boss	independent root node
+member-role	0x2b86b6	0x2b6276	Membr	default role, unmatched role-vector, out-of-range enum, enum12/13
+thief-role	0x2b8711	0x2b62d1	Thief	role-vector matches and enum6
+corrupt-role	0x2b8749	0x2b6309	Crrpt	role-vector matches and enum7/11
+assassin-role	0x2b877f	0x2b633f	Assas	role-vector matches and enum8
+abductor-role	0x2b87b1	0x2b6371	Snatc	role-vector matches and enum9
+saboteur-role	0x2b87d6	0x2b6396	Sabtr	role-vector matches and enum10
+framer-role	0x2b87ee	0x2b63ae	Framr	role-vector matches and enum14
+asset-role	0x2b880c	0x2b63cc	Asset	role-vector matches and enum5/15
+death-boss	0x2b7953	0x2b5513	RIP	actor.historical_figure+0x30 != -1
+death-member	0x2b8b41	0x2b6701	RIP	actor.historical_figure+0x30 != -1
+death-alive	0x2b7946	0x2b5506		actor.historical_figure+0x30 == -1; node+0x68 remains empty
+nameless-actor	0x2b690e	0x2b44ce	Nameless	revealed real figure lacks set name
+nameless-identity	0x2b6984	0x2b4544	Nameless	identity visible name absent or unset
+nameless-lookup	0x2b6996	0x2b4556	Nameless	identity lookup fails
+unidentified-actor	0x2b699f	0x2b455f	Unidentified	unrevealed real name and no identity ids
+nameless-organization	0x2b7a15	0x2b55d5	Nameless	revealed boss lacks set name
+nameless-organization-identity	0x2b7a78	0x2b5638	Nameless	boss identity visible name absent or unset
+unidentified-organization	0x2b7a8c	0x2b564c	Unidentified	unrevealed boss name and no identity ids
+node-initials	0x2b782c	0x2b53ec	<first byte> <surname first byte>	independently generated node+0x48; empty source parts may produce empty field
+node-fallback	0x2b7976	0x2b5536	<first 3 bytes of actor.complete_name>	actor+0x10 null; truncation only if original size>=4; uppercase gives NAM/UNI

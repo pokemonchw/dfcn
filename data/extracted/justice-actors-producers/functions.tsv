@@ -1,0 +1,25 @@
+edition	image_identity	owner	start_rva	end_rva	image_path
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1eeb	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b9040	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	year-number	0x52c130	0x52c1e3	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	integer-format	0x52c2b0	0x52c388	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94ea2	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93927	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	entity-name	0xb92900	0xb92a78	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	artifact-name	0xb94400	0xb94710	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	position-title	0x99a3c0	0x99a4d3	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	language-word	0xd2cb50	0xd2cc1c	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	figure-context	0x72080	0x72170	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1e7b	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b6c00	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	year-number	0x529cf0	0x529da3	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	integer-format	0x529db0	0x529e88	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91f22	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb90967	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	entity-name	0xb8f940	0xb8fab8	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	artifact-name	0xb91440	0xb91750	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	position-title	0x997bf0	0x997d03	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	language-word	0xd29b90	0xd29c5c	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	figure-context	0x72010	0x72100	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe
+reference	PE:6a70a6d9:02711000	actor-title-shorten	0x52d910	0x52ded4	D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+classic	PE:6a70b91c:0270a000	actor-title-shorten	0x52b330	0x52b8f4	C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe

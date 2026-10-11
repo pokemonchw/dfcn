@@ -1,0 +1,97 @@
+edition	image	instruction_rva	operand_rva	source
+steam	PE:6a70a6d9:02711000	0x2b690e	0x16290f0	Nameless
+steam	PE:6a70a6d9:02711000	0x2b6984	0x16290f0	Nameless
+steam	PE:6a70a6d9:02711000	0x2b6996	0x16290f0	Nameless
+steam	PE:6a70a6d9:02711000	0x2b699f	0x16290e0	Unidentified
+steam	PE:6a70a6d9:02711000	0x2b6b6f	0x16290d4	A plot
+steam	PE:6a70a6d9:02711000	0x2b6bbe	0x16290c8	Sabotage
+steam	PE:6a70a6d9:02711000	0x2b6bde	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b6c01	0x1629164	Abduct
+steam	PE:6a70a6d9:02711000	0x2b6c25	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b6c79	0x1629158	Assassinate
+steam	PE:6a70a6d9:02711000	0x2b6c82	0x1629150	Steal
+steam	PE:6a70a6d9:02711000	0x2b6ca6	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b6cd4	0x1629148	Corrupt
+steam	PE:6a70a6d9:02711000	0x2b6d02	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b6d92	0x1628fa8	 of
+steam	PE:6a70a6d9:02711000	0x2b6dae	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b6dde	0x1629130	Provide Position
+steam	PE:6a70a6d9:02711000	0x2b6e02	0x15ecfb4	 in 
+steam	PE:6a70a6d9:02711000	0x2b6e3a	0x1629050	Attempted Embezzlement
+steam	PE:6a70a6d9:02711000	0x2b6e49	0x15ecfb4	 in 
+steam	PE:6a70a6d9:02711000	0x2b6e55	0x1629100	Attempted Espionage
+steam	PE:6a70a6d9:02711000	0x2b6e64	0x15ecfb4	 in 
+steam	PE:6a70a6d9:02711000	0x2b6e70	0x1629118	Attempted Bribery
+steam	PE:6a70a6d9:02711000	0x2b6e7f	0x15ecfb4	 in 
+steam	PE:6a70a6d9:02711000	0x2b6e8b	0x1629040	Infiltrate
+steam	PE:6a70a6d9:02711000	0x2b6eaf	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b6ed2	0x1629034	Frame
+steam	PE:6a70a6d9:02711000	0x2b6ef6	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b6f25	0x1629028	Start War
+steam	PE:6a70a6d9:02711000	0x2b6f4b	0x1629018	 between 
+steam	PE:6a70a6d9:02711000	0x2b6f74	0x15e9110	 and 
+steam	PE:6a70a6d9:02711000	0x2b6f9d	0x1629170	, agreed in 
+steam	PE:6a70a6d9:02711000	0x2b7808	0x1629010	Boss
+steam	PE:6a70a6d9:02711000	0x2b78c4	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b7953	0x162900c	RIP
+steam	PE:6a70a6d9:02711000	0x2b7a15	0x16290f0	Nameless
+steam	PE:6a70a6d9:02711000	0x2b7a78	0x16290f0	Nameless
+steam	PE:6a70a6d9:02711000	0x2b7a8c	0x16290e0	Unidentified
+steam	PE:6a70a6d9:02711000	0x2b86b6	0x1629004	Membr
+steam	PE:6a70a6d9:02711000	0x2b8711	0x160032c	Thief
+steam	PE:6a70a6d9:02711000	0x2b8749	0x16290b8	Crrpt
+steam	PE:6a70a6d9:02711000	0x2b877f	0x16290b0	Assas
+steam	PE:6a70a6d9:02711000	0x2b87b1	0x16290a8	Snatc
+steam	PE:6a70a6d9:02711000	0x2b87d6	0x16290a0	Sabtr
+steam	PE:6a70a6d9:02711000	0x2b87ee	0x1629098	Framr
+steam	PE:6a70a6d9:02711000	0x2b880c	0x16290c0	Asset
+steam	PE:6a70a6d9:02711000	0x2b8a50	0x15e873c	 
+steam	PE:6a70a6d9:02711000	0x2b8b41	0x162900c	RIP
+classic	PE:6a70b91c:0270a000	0x2b44ce	0x1623ec0	Nameless
+classic	PE:6a70b91c:0270a000	0x2b4544	0x1623ec0	Nameless
+classic	PE:6a70b91c:0270a000	0x2b4556	0x1623ec0	Nameless
+classic	PE:6a70b91c:0270a000	0x2b455f	0x1623f20	Unidentified
+classic	PE:6a70b91c:0270a000	0x2b472f	0x1623f14	A plot
+classic	PE:6a70b91c:0270a000	0x2b477e	0x1623f08	Sabotage
+classic	PE:6a70b91c:0270a000	0x2b479e	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b47c1	0x1623eec	Abduct
+classic	PE:6a70b91c:0270a000	0x2b47e5	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b4839	0x1623ee0	Assassinate
+classic	PE:6a70b91c:0270a000	0x2b4842	0x1623ed8	Steal
+classic	PE:6a70b91c:0270a000	0x2b4866	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b4894	0x1623ed0	Corrupt
+classic	PE:6a70b91c:0270a000	0x2b48c2	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b4952	0x1623e04	 of
+classic	PE:6a70b91c:0270a000	0x2b496e	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b499e	0x1624130	Provide Position
+classic	PE:6a70b91c:0270a000	0x2b49c2	0x15e7f2c	 in 
+classic	PE:6a70b91c:0270a000	0x2b49fa	0x16240e8	Attempted Embezzlement
+classic	PE:6a70b91c:0270a000	0x2b4a09	0x15e7f2c	 in 
+classic	PE:6a70b91c:0270a000	0x2b4a15	0x1624100	Attempted Espionage
+classic	PE:6a70b91c:0270a000	0x2b4a24	0x15e7f2c	 in 
+classic	PE:6a70b91c:0270a000	0x2b4a30	0x1624118	Attempted Bribery
+classic	PE:6a70b91c:0270a000	0x2b4a3f	0x15e7f2c	 in 
+classic	PE:6a70b91c:0270a000	0x2b4a4b	0x16240d8	Infiltrate
+classic	PE:6a70b91c:0270a000	0x2b4a6f	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b4a92	0x16240cc	Frame
+classic	PE:6a70b91c:0270a000	0x2b4ab6	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b4ae5	0x16240c0	Start War
+classic	PE:6a70b91c:0270a000	0x2b4b0b	0x16240b0	 between 
+classic	PE:6a70b91c:0270a000	0x2b4b34	0x15e40bc	 and 
+classic	PE:6a70b91c:0270a000	0x2b4b5d	0x1623ef8	, agreed in 
+classic	PE:6a70b91c:0270a000	0x2b53c8	0x1624178	Boss
+classic	PE:6a70b91c:0270a000	0x2b5484	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b5513	0x1624174	RIP
+classic	PE:6a70b91c:0270a000	0x2b55d5	0x1623ec0	Nameless
+classic	PE:6a70b91c:0270a000	0x2b5638	0x1623ec0	Nameless
+classic	PE:6a70b91c:0270a000	0x2b564c	0x1623f20	Unidentified
+classic	PE:6a70b91c:0270a000	0x2b6276	0x162416c	Membr
+classic	PE:6a70b91c:0270a000	0x2b62d1	0x15fb19c	Thief
+classic	PE:6a70b91c:0270a000	0x2b6309	0x162415c	Crrpt
+classic	PE:6a70b91c:0270a000	0x2b633f	0x1624154	Assas
+classic	PE:6a70b91c:0270a000	0x2b6371	0x162414c	Snatc
+classic	PE:6a70b91c:0270a000	0x2b6396	0x1624144	Sabtr
+classic	PE:6a70b91c:0270a000	0x2b63ae	0x1623ff0	Framr
+classic	PE:6a70b91c:0270a000	0x2b63cc	0x1624164	Asset
+classic	PE:6a70b91c:0270a000	0x2b6610	0x15e3720	 
+classic	PE:6a70b91c:0270a000	0x2b6701	0x1624174	RIP

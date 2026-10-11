@@ -46,6 +46,7 @@ std::optional<std::string> Overlay::translate_justice_case_text(
     if (source.empty() || source.ends_with("...")) return std::nullopt;
     if (auto target = exact_literal_translation("Justice case: " + source)) return target;
     if (auto target = exact_literal_translation("Justice detail: " + source)) return target;
+    if (auto target = exact_literal_translation("Justice organization: " + source)) return target;
 
     // The native detail page appends report.officer_name without a colon
     // or sentence terminator (PE 0x478a2a..0x478a70). It is metadata, not
@@ -76,6 +77,13 @@ std::optional<std::string> Overlay::translate_justice_case_text(
 
     const size_t number_end = source.find_first_not_of("0123456789");
     if (number_end > 0 && number_end < source.size() && source[number_end] == ' ') {
+        if (auto members = exact_literal_translation("Justice organization: " +
+                std::string(trim_view(std::string_view(source).substr(number_end))))) {
+            if (const size_t count = members->find("{d}"); count != std::string::npos) {
+                members->replace(count, 3, source.substr(0, number_end));
+                return members;
+            }
+        }
         auto sentence = exact_literal_translation("Justice sentence: " +
             std::string(trim_view(std::string_view(source).substr(number_end))));
         if (sentence) {
@@ -91,6 +99,13 @@ std::optional<std::string> Overlay::translate_justice_case_text(
     if (colon != std::string::npos) {
         const std::string label(trim_view(std::string_view(source).substr(0, colon)));
         std::string_view value = trim_view(std::string_view(source).substr(colon + 1));
+        if (label == "Selected actor") {
+            const auto caption = exact_literal_translation("Justice organization: Selected actor");
+            auto person = exact_literal_translation("Justice actor: " + std::string(value));
+            if (!person) person = translate_unit_identity(value, true);
+            return caption && person ? std::optional<std::string>(*caption + "：" + *person)
+                                     : std::nullopt;
+        }
         if (label == "Interrogation Report" || label == "Interrogation report") {
             const size_t caption_end = justice_report_caption_end(source);
             if (!caption_end) return std::nullopt;

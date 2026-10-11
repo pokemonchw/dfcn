@@ -1,0 +1,133 @@
+Fortress Justice -> Intelligence -> Plots: native renderer, input and filter
+
+Read directly from the two configured Windows 53.16 PE images, without loading
+or executing either image. Addresses below are Steam/reference RVAs; matching
+Classic instructions in these owners are reference minus 0x2440. Literal and
+helper addresses have their own image-specific addresses retained in the ASM.
+
+Owners and callers
+ renderer: 0x4769d0..0x4792c7; direct caller 0x3969e1 in 0x396010
+ input: 0x4751a0..0x4769cd; direct caller 0x323cef in 0x311c10
+ filter: 0x479330..0x479a1b; direct callers 0x2b8ef7 and 0x471ad6
+ mode reset: 0x4792d0..0x479326, tail calls filter
+ catalog population: 0x2b6760..0x2b9040; refresh calls it at 0x471a6e
+ plot insertion/sorting: 0x479d60..0x479ef5
+
+Native fields used by the Plots renderer
+ justice+0x278..0x280 = original sorted plot pointer catalog
+ justice+0x300..0x308 = original search candidate pointer catalog
+ justice+0x348..0x350 = filtered visible plot pointer catalog
+ justice+0x290 = intelligence subtab: 0 reports, 1 actors, 2 organizations, 3 plots
+ justice+0x294 = selected record ordinal, -1 if filter leaves no record
+ justice+0x298 = query NativeString
+ justice+0x2c8 = scroll position, +0x2cc = drag flag
+ plot record size = 0x90
+ plot+0x00 = complete original plot title NativeString
+ plot+0x20 = lowercase sorting title NativeString
+ plot+0x40 = display title NativeString, initialized empty
+ plot+0x60 = native agreement pointer
+ plot+0x68 = organization historical-figure identifier
+ plot+0x70 = cached organization display name NativeString
+ Each NativeString has length +0x10 and capacity +0x18, with SSO capacity <=15.
+
+Common intelligence gates and texts
+ Dirty justice+0x420 triggers catalog refresh and is cleared.
+ The selected main tab must equal the exact string Intelligence.
+ Only when the global interrogation catalog and source actor/org/plot catalogs
+ are all empty does the renderer draw these complete sentences:
+  There is no intelligence information yet.
+  If a crime involves a conspiracy, an interrogation may reveal the plot.
+ Otherwise it renders four subtabs: Interrogations, Actors, Organizations, Plots.
+ Each subtab is enabled only when its own original source catalog is nonempty.
+ The mode dispatch is 0x4771f7..0x477218.
+
+Plots pseudocode (0x47721e..0x4777bb)
+ count = (justice.filtered_plots.end - begin) / sizeof(void*)
+ total_rows = count * 5
+ start_y = viewport_top - clamp(scroll, 0, max(total_rows - viewport_rows, 0))
+ right_edge reserves two columns only when total_rows exceeds viewport_rows
+ for i, plot in filtered_plots:
+   if plot.display_title.empty():
+     plot.display_title.assign(plot.original_title.data(), plot.original_title.size())
+   draw_native_card_background_for_rows(start_y..start_y+4), clipped by viewport
+   if start_y in viewport:
+     color = selected ? 0x1010006 : 0x1000006
+     draw(plot+0x40) at left+2, start_y
+     color = selected ? 0x1010004 : 0x1000004
+     counter = decimal(i+1) + "/" + decimal(count)
+     draw(counter) at right_edge - counter.size() - 2, start_y
+   if start_y+1 in viewport and plot.org_name.size() != 0:
+     color = selected ? 0x1010003 : 0x1000003
+     draw("Org: ") at left+2, start_y+1
+     draw(plot+0x70) immediately after that independent draw
+   start_y += 5
+ if total_rows > viewport_rows:
+   draw native scrollbar bound to justice+0x2c8 and drag flag+0x2cc
+
+Draw call and return addresses
+ title: call 0x47746c, return 0x477471, string address = plot+0x40
+ counter: call 0x4775d7, return 0x4775dc, temporary NativeString
+ Org label: call 0x4776aa, return 0x4776af, temporary NativeString
+ Org name: call 0x4776f5, return 0x4776fa, string address = plot+0x70
+ The renderer passes complete NativeString fields, without internal ellipsis or
+ shortening. The native display-title lazy copy and insertion/sorting helper
+ preserve the complete title. The complete original title is obtainable as
+ NativeString at captured-title-address - 0x40.
+ The organization field can already have been shortened by its producer before
+ the renderer receives it. At 0x2b7b1e..0x2b7b79 and 0x2b8c38..0x2b8c9b the
+ producer truncates plot+0x70 to dimx - (nonzero global 0x189c298 ? 23 : 4) - 5
+ bytes, writing size and a NUL terminator, without ellipsis. Complete organization
+ text must be recovered from the corresponding native source identity.
+
+Selection and detail branches
+ Plot selection changes only title/counter/org foreground color. No plot-detail
+ panel, selected-card expansion, extra description paragraph, or status caption
+ exists in this Plots rendering branch. All cards remain exactly five rows.
+ The input branch 0x47554b..0x4758bd uses the same five-row content height and
+ five-row card hit boxes. Clicking a card only sets justice+0x294 at 0x4758b4.
+ Wheel/scrollbar handling updates +0x2c8; dragging updates +0x2cc. Native mode
+ changes write +0x290 at 0x4756a0, then reset query, selected ordinal, scroll,
+ drag, and report/organization selection fields before refiltering.
+
+Plots filter pseudocode (0x47942a..0x479682)
+ lower_query = lowercase(copy(justice.query))
+ filtered_plots = copy(justice+0x300 pointer vector)
+ if !lower_query.empty():
+   for record in reverse(filtered_plots):
+     title = lowercase(copy(record.original_title at +0x00))
+     org = lowercase(copy(record.cached_org_name at +0x70))
+     if neither contains lower_query as a byte substring:
+       erase pointer record from filtered_plots
+ selected_ordinal = filtered_plots.empty() ? -1 : 0
+ Query fold: call 0x479403, return 0x479408
+ Title fold: call 0x4794a5, return 0x4794aa; source plot+0x00
+ Organization fold: call 0x4794c2, return 0x4794c7; source plot+0x70
+ Empty filtered Plots produces an empty body; this branch has no separate
+ No plots or No matches sentence.
+
+Source inventory boundaries
+ The ASM retains every instruction and branch, including viewport clipping,
+ selected/unselected colors, byte-length alignment, scrolling, SSO string
+ handling, allocator cleanup and allocation failure branches. native-sources.tsv
+ records every RIP-relative ASCII operand, direct call and direct control edge
+ of the renderer/filter/refresh; native-input-and-population-sources.tsv records
+ the equivalent input/catalog/insertion sources. SIMD interior literal operands
+ are suffixes of complete strings, rather than distinct language productions.
+ Plot title/organization construction is separately extracted from the actual
+ catalog population owner, including its switch and identity-source branches.
+
+Global owner provenance for full-source recovery
+ The fortress renderer passes an inline global info_interfacest at reference
+ RVA 0x18a61c0 (LEA at 0x3fa53f, direct call at 0x3fa546), not a global pointer.
+ The info renderer selects inline justice at info+0xa10 (LEA at 0x3969d0), then
+ calls the intelligence renderer at 0x3969e1.
+ Thus reference justice object RVA = 0x18a6bd0. Actual Classic PE counterparts
+ are info 0x18a0190 and justice 0x18a0ba0. Existing PE relocation bindings already
+ map both exact global object bases. Read owner with native_reference_address
+ at 0x18a6bd0 without pointer dereference, then use same owner-relative offsets.
+ Original organization candidates are owner+0x2e8..0x2f0; original actor
+ candidates are owner+0x2d0..0x2d8. Filtering does not destroy these catalogs.
+ Full source recovery matches plot.organization_hfid (+0x68) to the native HF
+ identifier, rather than guessing identity from the cached clipped spelling.
+ The source organization/actor construction and fallback branches are retained
+ in both catalog-population ASM files and their separate constructor extraction.

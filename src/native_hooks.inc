@@ -49,6 +49,8 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_stocks_search_hooks.inc"
 #include "native_unit_search_hooks.inc"
 #include "native_unit_identity_hooks.inc"
+#include "native_justice_organizations.inc"
+#include "native_justice_plots.inc"
 #include "native_squad_name_hooks.inc"
 #include "native_adventure_charge_hooks.inc"
 #include "native_adventure_introduction.inc"
@@ -63,6 +65,7 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_item_picker_search_hooks.inc"
 #include "native_kitchen_search_hooks.inc"
 #include "native_justice_search_hooks.inc"
+#include "native_justice_actor_capture.inc"
 #include "native_job_details_search_hooks.inc"
 #include "native_adventure_barter_search_hooks.inc"
 #include "native_construction_search_hooks.inc"
@@ -131,6 +134,7 @@ static bool install_sdl_hooks() {
         {"Translated display, hauling and trade search", install_native_item_picker_search_hook},
         {"Translated Kitchen search", install_native_kitchen_search_hook},
         {"Translated counterintelligence search", install_native_justice_search_hook},
+        {"Complete counterintelligence actor fields", install_native_justice_actor_capture_hook},
         {"Translated task-detail search", install_native_job_details_search_hook},
         {"Translated adventure barter search", install_native_adventure_barter_search_hook},
         {"Translated construction material search", install_native_construction_search_hook},
@@ -215,6 +219,7 @@ static void uninstall_sdl_hooks() {
     uninstall_native_adventure_barter_search_hook();
     uninstall_native_job_details_search_hook();
     uninstall_native_justice_search_hook();
+    uninstall_native_justice_actor_capture_hook();
     uninstall_native_kitchen_search_hook();
     uninstall_native_item_picker_search_hook();
     uninstall_native_conversation_search_hook();
@@ -271,6 +276,7 @@ static bool native_hooks_detached() {
         !native_item_picker_search_hook_active() &&
         !native_kitchen_search_hook_active() &&
         !native_justice_search_hook_active() &&
+        !native_justice_actor_capture_hook_active() &&
         !native_job_details_search_hook_active() &&
         !native_adventure_barter_search_hook_active() &&
         !native_construction_search_hook_active() &&

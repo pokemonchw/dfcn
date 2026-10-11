@@ -1,0 +1,35 @@
+edition	image_identity	role	owner_rva	end_rva	anchor_rva	literal_rva	text
+reference	PE:6a70a6d9:02711000	literal-anchor	0xc2110	0xca4f9	0xc2e94	0x15ec228	Organizations
+reference	PE:6a70a6d9:02711000	literal-anchor	0xc2110	0xca4f9	0xc7f85	0x15ec818	 members
+reference	PE:6a70a6d9:02711000	literal-anchor	0x4769d0	0x4792c7	0x477071	0x15ec228	Organizations
+reference	PE:6a70a6d9:02711000	literal-anchor	0x4769d0	0x4792c7	0x478212	0x163f1b0	Selected actor: 
+reference	PE:6a70a6d9:02711000	literal-anchor	0x4769d0	0x4792c7	0x478371	0x15ec818	 members
+reference	PE:6a70a6d9:02711000	append-character	0xb9b80	0xb9cc4			
+reference	PE:6a70a6d9:02711000	organization-title-layout	0xd1650	0xd1832			
+reference	PE:6a70a6d9:02711000	intelligence-actor-constructor	0x2b66a0	0x2b6760			
+reference	PE:6a70a6d9:02711000	intelligence-catalog-producer	0x2b6760	0x2b8f45			
+reference	PE:6a70a6d9:02711000	intelligence-refresh	0x46faa0	0x471eae			
+reference	PE:6a70a6d9:02711000	intelligence-input	0x4751a0	0x4769cd			
+reference	PE:6a70a6d9:02711000	intelligence-renderer	0x4769d0	0x4792c7			
+reference	PE:6a70a6d9:02711000	intelligence-search-filter	0x479330	0x479a1b			
+reference	PE:6a70a6d9:02711000	uppercase-name-fragment	0x52d3c0	0x52d5fe			
+reference	PE:6a70a6d9:02711000	language-name-renderer	0xa946e0	0xa94ea2			
+reference	PE:6a70a6d9:02711000	identity-name	0xc3a4f0	0xc3a588			
+reference	PE:6a70a6d9:02711000	surname-word	0xd2cb50	0xd2cc1c			
+classic	PE:6a70b91c:0270a000	literal-anchor	0xc20a0	0xca489	0xc2e24	0x15e7220	Organizations
+classic	PE:6a70b91c:0270a000	literal-anchor	0xc20a0	0xca489	0xc7f15	0x15e7780	 members
+classic	PE:6a70b91c:0270a000	literal-anchor	0x474590	0x476e87	0x474c31	0x15e7220	Organizations
+classic	PE:6a70b91c:0270a000	literal-anchor	0x474590	0x476e87	0x475dd2	0x1639c60	Selected actor: 
+classic	PE:6a70b91c:0270a000	literal-anchor	0x474590	0x476e87	0x475f31	0x15e7780	 members
+classic	PE:6a70b91c:0270a000	append-character	0xb9b10	0xb9c54			
+classic	PE:6a70b91c:0270a000	organization-title-layout	0xd15e0	0xd17c2			
+classic	PE:6a70b91c:0270a000	intelligence-actor-constructor	0x2b4260	0x2b4320			
+classic	PE:6a70b91c:0270a000	intelligence-catalog-producer	0x2b4320	0x2b6b05			
+classic	PE:6a70b91c:0270a000	intelligence-refresh	0x46d660	0x46fa6e			
+classic	PE:6a70b91c:0270a000	intelligence-input	0x472d60	0x47458d			
+classic	PE:6a70b91c:0270a000	intelligence-renderer	0x474590	0x476e87			
+classic	PE:6a70b91c:0270a000	intelligence-search-filter	0x476ef0	0x4775db			
+classic	PE:6a70b91c:0270a000	uppercase-name-fragment	0x52ade0	0x52b01e			
+classic	PE:6a70b91c:0270a000	language-name-renderer	0xa91760	0xa91f22			
+classic	PE:6a70b91c:0270a000	identity-name	0xc37530	0xc375c8			
+classic	PE:6a70b91c:0270a000	surname-word	0xd29b90	0xd29c5c			

@@ -1,0 +1,259 @@
+Justice > Intelligence > Actors: native producers
+
+This is a native source extraction. It records instruction operands, dispatch
+arrays, field offsets and reconstructed append flow. It does not execute the
+translation implementation or the game. The two PE image paths come from
+data/runtime/native-pe-images.json. All addresses below are RVAs in the reference
+image unless a classic address is explicitly stated.
+
+Entry and body ownership
+------------------------
+actor entry creation and plot title construction:
+  reference 0x2b6760..0x2b9040; classic 0x2b4320..0x2b6c00.
+actor title and body supplier:
+  reference 0xd1840..0xd1eeb; classic 0xd17d0..0xd1e7b.
+The fortress renderer invokes the body supplier for its selected actor and for
+the displayed cards. The title is actor_entryst.p_list_name at +0x58. Body lines
+are heap std::string pointers in actor.main_text_box's vector at +0x78..+0x80.
+
+actor_entryst layout used by these native instructions:
+  +0x00 historical_figure*
+  +0x08 identity*
+  +0x10 language_name*
+  +0x18 list_name (full source title)
+  +0x38 simple_list_name
+  +0x58 p_list_name (native shortened title)
+  +0x78 body vector begin; +0x80 end; +0x88 capacity
+  +0xA0 alias identity id vector begin; +0xA8 end; +0xB0 capacity
+  +0xB8 principle_org*
+  +0xC0 associated_org* vector begin; +0xC8 end
+  +0xD8 associated_plot* vector begin; +0xE0 end
+  +0xF0 actor flags
+organization_entryst +0x18 is its full list_name, +0x90 principle_actor_entry*.
+An organization list_name is built from its principle actor name; it is not a
+historical_entity name. Therefore Associated Organization often contains a
+person's generated name, as in the user's screenshot.
+plot_entryst +0x00 full list_name; +0x60 agreement*; +0x68 master_hfid;
+  +0x70 organization_name.
+
+Actor source title
+------------------
+Entry constructor's actor name selection at 0x2b68db..0x2b69af:
+  if knowledge flags byte +0x04 has bit 0x08:
+    if historical figure's language_name.has_name is set:
+      name = language_name(figure +0x38, capitalize=true, extra=false)
+      actor.name_ptr = figure +0x38
+    else name = "Nameless"
+  else if known alias_identity_id vector is nonempty:
+    identity = lookup(first alias id)
+    if identity and identity name getter returns a named language_name:
+      name = language_name(identity name, capitalize=true, extra=false)
+      actor.name_ptr = identity name
+      actor.iden = identity
+    else name = "Nameless"
+  else name = "Unidentified"
+The organization principle actor name repeats the same selection flow at
+0x2b79e3..0x2b7a9d. Names can contain a first name, a nickname in `...' quotes,
+compound language words, articles, and an "of" part. Nickname options are read
+from the native name display settings. The full language_name and word-form
+producers are retained as reference-language-name.asm/reference-language-word.asm
+and their classic counterparts. Generated field values are world-dependent;
+they are not a finite list of screenshot names.
+
+Actor title shorten production
+-------------------------------
+reference 0x52d910..0x52ded4; classic 0x52b330..0x52b8f4.
+The actor supplier calls this routine at reference 0xd18c8 / classic 0xd1858
+only after copying full list_name into an empty p_list_name and finding its byte
+length greater than max_bytes. The complete title remains in actor.list_name.
+
+shorten(title, max_bytes):
+  if title begins with case-insensitive ASCII "A ":
+    delete the space and the A/a;
+    if title.bytes <= max_bytes: return;
+  if title begins with case-insensitive ASCII "An ":
+    delete the space, N/n, then A/a;
+    if title.bytes <= max_bytes: return;
+  if title begins with case-insensitive ASCII "The ":
+    delete the space, E/e, H/h, then T/t;
+    if title.bytes <= max_bytes: return;
+  // Each article is an independently tested leading-byte branch. The three
+  // branches run in this order while the title remains above max_bytes.
+  for index = title.bytes-1 down to 1:
+    if title[index-1] == ASCII space: continue;
+    if title[index] is one of a/e/i/o/u/A/E/I/O/U:
+      erase exactly that byte;
+      if title.bytes <= max_bytes: return;
+  if title.bytes > max_bytes:
+    title = its first max_bytes bytes;
+  return;
+
+The reverse vowel pass preserves byte zero and the first byte of every word
+whose previous byte is ASCII space. It deletes no consonants and no additional
+spaces. The final fallback writes the shortened byte length and a terminating
+NUL at that length. No dot, ellipsis, replacement character or other text is
+appended. A shortened actor title can therefore be neither a full-title prefix
+nor a contiguous substring: it is the full title with bytes deleted in order.
+The association body strings use raw prefix_bytes instead of this routine.
+
+Both complete instruction bodies are retained as *-actor-title-shorten.asm.
+Their call/jump edges and conditional branches are included in calls.tsv and
+branches.tsv; functions.tsv identifies both ownership ranges and image paths.
+
+Body supplier reconstructed append flow
+--------------------------------------
+max_bytes = 58;
+if native graphic mode flag at VA 0x14189c298 is zero:
+  max_bytes = native screen width at VA 0x1423cd784 - 4;
+if actor.p_list_name.empty():
+  actor.p_list_name = actor.list_name;
+  shorten(actor.p_list_name, max_bytes);
+if actor.body.begin != actor.body.end:
+  return;  // body is lazy cached; its strings are not rebuilt each draw
+for alias_id in actor.alias_identity_id:
+  if actor.iden && actor.iden.id == alias_id: continue;
+  identity = lookup(alias_id);
+  if !identity || !identity.name.has_name: continue;
+  body.push("Alias: " + language_name(identity.name, true, false));
+if actor.principle_org:
+  if actor.principle_org.principle_actor_entry == actor:
+    body.push("Highest known in organization");
+  else:
+    body.push(prefix_bytes("Associated Organization: " +
+                           actor.principle_org.list_name, max_bytes));
+for org in actor.associated_org:
+  if org == actor.principle_org: continue;
+  body.push(prefix_bytes("Associated Organization: " + org.list_name,
+                         max_bytes));
+for plot in actor.associated_plot:
+  body.push(prefix_bytes("Associated Plot: " + plot.list_name, max_bytes));
+
+Alias rows do not use max_bytes truncation. The association rows truncate the
+assembled English prefix AND dynamic value before rendering. The full source
+names and plot title remain available in the referenced native records. The
+renderer can therefore receive an incomplete prefix or incomplete generated
+name even though the underlying data is complete.
+
+Plot title source
+-----------------
+agreement +0x28/+0x30 is its vector<agreement_details*>.
+agreement_details +0x04 agree_year; +0x10 data pointer; +0x18 subject enum.
+The plot title starts as "A plot". An empty details vector leaves that fallback.
+Only the first detail determines the displayed title. The title switch is the
+11-entry array at 0x2b8f48 (classic 0x2b6b08), indexed by subject - 5. Values
+outside 5..15, and value 12 (Location), retain "A plot" with no year suffix.
+
+Every recognized normal subject below appends ", agreed in " + decimal(year),
+including bare titles whose optional target ids are -1. Only subject 11 uses
+the different " in " + decimal(year) suffix.
+
+5 PositionCorruption (branch 0x2b6cd4):
+  title = "Corrupt";
+  if data.position_id@+0x14 != -1 && data.target_entity_id@+0x10 != -1:
+    title += " ";
+    entity = lookup(data.target_entity_id);
+    assignment = entity ? lookup(entity.positions.own, position_id) : null;
+    position = assignment ? entity_position_for_assignment(assignment) : null;
+    if position:
+      // dl=-1, r8b=0, r9b=0 chooses the generic singular title at position+0x98.
+      title += capitalize(position.generic_singular) + " of";
+    title += " " + entity_name(data.target_entity_id);
+  // If any lookup in the position path fails, the entity is still appended.
+6 PlotStealArtifact (0x2b6c82):
+  title = "Steal";
+  if data.artifact_id@+0x0C != -1:
+    title += " " + artifact_name(data.artifact_id);
+7 PromisePosition (0x2b6dde):
+  title = "Provide Position";
+  if data.entity_id@+0x28 != -1:
+    title += " in " + entity_name(data.entity_id);
+8 PlotAssassination (0x2b6c79):
+  title = "Assassinate";
+  if data.target_hfid@+0x0C != -1:
+    title += " " + historical_figure_name(data.target_hfid);
+9 PlotAbduct (0x2b6c01):
+  title = "Abduct";
+  if data.target_hfid@+0x0C != -1:
+    title += " " + historical_figure_name(data.target_hfid);
+10 PlotSabotage (0x2b6bbe):
+  title = "Sabotage";
+  if data.target_entity_id@+0x10 != -1:
+    title += " " + entity_name(data.target_entity_id);
+  else if data.target_hfid@+0x0C != -1:
+    title += " " + historical_figure_name(data.target_hfid);
+11 PlotConviction (0x2b6e25):
+  // data +0x00..+0x18 is the criminal-index vector.
+  switch data.corruption_action@+0x18:
+    0 BRIBE_OFFICIAL: title = "Attempted Bribery";
+    2 CORRUPT_IN_PLACE_GENERALLY: title = "Attempted Espionage";
+    3 INDUCE_TO_EMBEZZLE: title = "Attempted Embezzlement";
+    default: title remains "A plot";
+  title += " in " + decimal(year);
+  // No organization field is appended in this subject. No "agreed" suffix.
+12 Location:
+  title remains "A plot" and no suffix is added.
+13 PlotInfiltrationCoup (0x2b6e8b):
+  title = "Infiltrate";
+  if data.target_entity_id@+0x08 != -1:
+    title += " " + entity_name(data.target_entity_id);
+14 PlotFrameTreason (0x2b6ed2):
+  title = "Frame";
+  if data.target_hfid@+0x08 != -1:
+    title += " " + historical_figure_name(data.target_hfid);
+15 PlotInduceWar (0x2b6f25):
+  title = "Start War";
+  if data.attacker_entity_id@+0x08 != -1 &&
+     data.defender_entity_id@+0x0C != -1:
+    title += " between " + entity_name(data.attacker_entity_id) +
+             " and " + entity_name(data.defender_entity_id);
+
+For Corrupt's failed position lookup, the native flow writes two separating
+spaces before the entity: one at 0x2b6d02 and another at 0x2b6dae. This is a
+real native append variant, not a new semantic target kind. The full normal
+suffix is at 0x2b6f9d and year append at 0x2b6fb9.
+
+Called target fields and finite fallback literals
+------------------------------------------------
+The normal plot constructor initializes a description context with identities
+null, all ids -1 and flags 0 before historical_figure_name. It passes generic
+gender/capitalization words set to 1. Thus the helper's interrogation labels
+"interrogator"/"subject" and identity-specific "an unidentified creature" are
+retained in the helper source but are not selected by this normal plot path.
+reference 0xb92f10..0xb93927 / classic 0xb8ff50..0xb90967:
+  absent historical_figure id -> "an unknown creature";
+  available named figure -> generated language_name;
+  unnamed figure -> caste/creature raw name with "a "/"the ", optionally
+    "zombie " or "ghostly " as selected by the native creature state.
+reference 0xb92900..0xb92a78 / classic 0xb8f940..0xb8fab8:
+  absent historical_entity id -> "an unknown civilization";
+  available entity -> generated language_name of the entity.
+reference 0xb94400..0xb94710 / classic 0xb91440..0xb91750:
+  absent artifact id -> "an unknown artifact";
+  artifact title missing -> "Untitled";
+  artifact existing -> generated artifact language_name or stored book title.
+LPAGE markers retained in the helpers are emitted only when their context flag
+requests a Legends hyperlink; normal actor plot construction passes false.
+
+Additional same-constructor graph fields
+---------------------------------------
+The latter half of actor-entries constructs the Organizations/Plots hierarchy.
+Those fields share the producer but are separate from Actors card body strings.
+Its fixed graph labels are "Boss", "Membr", "Thief", "Crrpt", "Assas", "Snatc",
+"Sabtr", "Framr", "Asset", and deceased status "RIP". Switch arrays at
+0x2b8f74, 0x2b8fa0 and 0x2b8fcc describe party/role selection and label selection;
+their exact targets for all 5..15 subject values are retained in switches.tsv.
+These graph labels must not be mistaken for omitted Actors card prose.
+
+Data files
+----------
+functions.tsv records native function ownership and image identities.
+literals.tsv records printable RIP-relative operands and short inline fragments.
+calls.tsv records direct call and jump targets, with instruction kind preserved.
+branches.tsv records every conditional jump in the selected native functions.
+switches.tsv records every relevant subject and language-word dispatch slot.
+*-actor-associations.asm and *-actor-entries.asm retain every instruction in both
+native functions, including the lazy-cache and optional/missing-id branches.
+The remaining .asm files retain the dynamic field name, position, word and year
+producers called by these title constructors. This inventory describes finite
+branches and dynamic field construction; a game's generated values have no
+finite exhaustive catalogue of literal complete sentences.

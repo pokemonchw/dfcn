@@ -1,0 +1,229 @@
+edition	image_identity	owner	function_rva	instruction_rva	encoding	literal_rva	operand_role	source
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1967	rip-relative	0x15ecfa0	finite-text-operand-or-substring	Alias: 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1971	rip-relative	0x15ecfa4	finite-text-operand-or-substring	s: 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd197c	rip-relative	0x15ecfa6	separator	 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1aa1	rip-relative	0x15ecff0	finite-text-operand-or-substring	Highest known in organization
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1b0a	rip-relative	0x15ed010	finite-text-operand-or-substring	Associated Organization: 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1b14	rip-relative	0x15ed020	finite-text-operand-or-substring	ization: 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1b21	rip-relative	0x15ed028	separator	 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1c7c	rip-relative	0x15ed010	finite-text-operand-or-substring	Associated Organization: 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1c86	rip-relative	0x15ed020	finite-text-operand-or-substring	ization: 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1c93	rip-relative	0x15ed028	separator	 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1de6	rip-relative	0x15ecfc0	finite-text-operand-or-substring	Associated Plot: 
+reference	PE:6a70a6d9:02711000	actor-associations	0xd1840	0xd1df0	rip-relative	0x15ecfd0	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b690e	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6984	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6996	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b699f	rip-relative	0x16290e0	finite-text-operand-or-substring	Unidentified
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6b6f	rip-relative	0x16290d4	finite-text-operand-or-substring	A plot
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6bbe	rip-relative	0x16290c8	finite-text-operand-or-substring	Sabotage
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6bde	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6c01	rip-relative	0x1629164	finite-text-operand-or-substring	Abduct
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6c25	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6c79	rip-relative	0x1629158	finite-text-operand-or-substring	Assassinate
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6c82	rip-relative	0x1629150	finite-text-operand-or-substring	Steal
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6ca6	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6cd4	rip-relative	0x1629148	finite-text-operand-or-substring	Corrupt
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6d02	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6d92	rip-relative	0x1628fa8	finite-text-operand-or-substring	 of
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6dae	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6dde	rip-relative	0x1629130	finite-text-operand-or-substring	Provide Position
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6e02	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6e3a	rip-relative	0x1629050	finite-text-operand-or-substring	Attempted Embezzlement
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6e49	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6e55	rip-relative	0x1629100	finite-text-operand-or-substring	Attempted Espionage
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6e64	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6e70	rip-relative	0x1629118	finite-text-operand-or-substring	Attempted Bribery
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6e7f	rip-relative	0x15ecfb4	finite-text-operand-or-substring	 in 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6e8b	rip-relative	0x1629040	finite-text-operand-or-substring	Infiltrate
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6eaf	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6ed2	rip-relative	0x1629034	finite-text-operand-or-substring	Frame
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6ef6	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6f25	rip-relative	0x1629028	finite-text-operand-or-substring	Start War
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6f4b	rip-relative	0x1629018	finite-text-operand-or-substring	 between 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6f74	rip-relative	0x15e9110	separator	 and 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b6f9d	rip-relative	0x1629170	finite-text-operand-or-substring	, agreed in 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b7808	rip-relative	0x1629010	finite-text-operand-or-substring	Boss
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b78c4	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b7953	rip-relative	0x162900c	finite-text-operand-or-substring	RIP
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b7a15	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b7a78	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b7a8c	rip-relative	0x16290e0	finite-text-operand-or-substring	Unidentified
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b86b6	rip-relative	0x1629004	finite-text-operand-or-substring	Membr
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b8711	rip-relative	0x160032c	finite-text-operand-or-substring	Thief
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b8749	rip-relative	0x16290b8	finite-text-operand-or-substring	Crrpt
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b877f	rip-relative	0x16290b0	finite-text-operand-or-substring	Assas
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b87b1	rip-relative	0x16290a8	finite-text-operand-or-substring	Snatc
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b87d6	rip-relative	0x16290a0	finite-text-operand-or-substring	Sabtr
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b87ee	rip-relative	0x1629098	finite-text-operand-or-substring	Framr
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b880c	rip-relative	0x16290c0	finite-text-operand-or-substring	Asset
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b8a50	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	actor-entries	0x2b6760	0x2b8b41	rip-relative	0x162900c	finite-text-operand-or-substring	RIP
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa948a3	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa9495e	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94a3b	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94a5d	rip-relative	0x15ed9bc	finite-text-operand-or-substring	The 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94a78	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94af2	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94b11	rip-relative	0x15ed9bc	finite-text-operand-or-substring	The 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94b1a	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94b9a	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94bb9	rip-relative	0x15ed9bc	finite-text-operand-or-substring	The 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94bc2	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94d1f	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94d4b	rip-relative	0x15ed9bc	finite-text-operand-or-substring	The 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94d62	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94e09	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94e18	rip-relative	0x16ced90	finite-text-operand-or-substring	of 
+reference	PE:6a70a6d9:02711000	language-name	0xa946e0	0xa94e1f	rip-relative	0x16cee1c	finite-text-operand-or-substring	Of 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb92f8a	rip-relative	0x16df900	finite-text-operand-or-substring	interrogator
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb92fa1	rip-relative	0x1674d08	finite-text-operand-or-substring	subject
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93073	rip-relative	0x16290f0	finite-text-operand-or-substring	Nameless
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb9310e	rip-relative	0x16df8e0	finite-text-operand-or-substring	an unidentified creature
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93133	rip-relative	0x15fdb08	finite-text-operand-or-substring	[LPAGE:HF:
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93153	rip-relative	0x15fd690	finite-text-operand-or-substring	]
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb9325d	rip-relative	0x1662ef8	finite-text-operand-or-substring	myself
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93266	rip-relative	0x1662efc	finite-text-operand-or-substring	lf
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb9331b	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb9333f	rip-relative	0x167db90	finite-text-operand-or-substring	zombie 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93377	rip-relative	0x15fdbb8	finite-text-operand-or-substring	ghostly 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93499	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb934c8	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93551	rip-relative	0x15e956c	finite-text-operand-or-substring	 the 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93575	rip-relative	0x167db90	finite-text-operand-or-substring	zombie 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb935ad	rip-relative	0x15fdbb8	finite-text-operand-or-substring	ghostly 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb936cd	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb9374e	rip-relative	0x15ed620	finite-text-operand-or-substring	a 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93755	rip-relative	0x15e8e48	finite-text-operand-or-substring	the 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb9377d	rip-relative	0x167db90	finite-text-operand-or-substring	zombie 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb937b5	rip-relative	0x15fdbb8	finite-text-operand-or-substring	ghostly 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb9381c	rip-relative	0x15e873c	separator	 
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93867	rip-relative	0x15e9260	finite-text-operand-or-substring	's
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb93886	rip-relative	0x15fda88	finite-text-operand-or-substring	[/LPAGE]
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb938dc	rip-relative	0x1663cd8	finite-text-operand-or-substring	an unknown creature
+reference	PE:6a70a6d9:02711000	figure-name	0xb92f10	0xb938f2	rip-relative	0x15e9260	finite-text-operand-or-substring	's
+reference	PE:6a70a6d9:02711000	entity-name	0xb92900	0xb9296a	rip-relative	0x165e438	finite-text-operand-or-substring	[LPAGE:ENT:
+reference	PE:6a70a6d9:02711000	entity-name	0xb92900	0xb9298a	rip-relative	0x15fd690	finite-text-operand-or-substring	]
+reference	PE:6a70a6d9:02711000	entity-name	0xb92900	0xb929f4	rip-relative	0x15fda88	finite-text-operand-or-substring	[/LPAGE]
+reference	PE:6a70a6d9:02711000	entity-name	0xb92900	0xb92a4c	rip-relative	0x16df940	finite-text-operand-or-substring	an unknown civilization
+reference	PE:6a70a6d9:02711000	artifact-name	0xb94400	0xb944bf	rip-relative	0x15fdaa8	finite-text-operand-or-substring	[LPAGE:ARTIFACT:
+reference	PE:6a70a6d9:02711000	artifact-name	0xb94400	0xb944ce	rip-relative	0x16df718	finite-text-operand-or-substring	[LPAGE:BOOK:
+reference	PE:6a70a6d9:02711000	artifact-name	0xb94400	0xb944f3	rip-relative	0x15fd690	finite-text-operand-or-substring	]
+reference	PE:6a70a6d9:02711000	artifact-name	0xb94400	0xb945b0	inline-immediate-fragment		finite-short-string-fragment	Untitled
+reference	PE:6a70a6d9:02711000	artifact-name	0xb94400	0xb9460b	inline-immediate-fragment		finite-short-string-fragment	Untitled
+reference	PE:6a70a6d9:02711000	artifact-name	0xb94400	0xb94686	rip-relative	0x15fda88	finite-text-operand-or-substring	[/LPAGE]
+reference	PE:6a70a6d9:02711000	artifact-name	0xb94400	0xb946de	rip-relative	0x16df700	finite-text-operand-or-substring	an unknown artifact
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd18f7	rip-relative	0x15e7fb0	finite-text-operand-or-substring	Alias: 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1901	rip-relative	0x15e7fb4	finite-text-operand-or-substring	s: 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd190c	rip-relative	0x15e7fb6	separator	 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1a31	rip-relative	0x15e7f70	finite-text-operand-or-substring	Highest known in organization
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1a9a	rip-relative	0x15e7f90	finite-text-operand-or-substring	Associated Organization: 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1aa4	rip-relative	0x15e7fa0	finite-text-operand-or-substring	ization: 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1ab1	rip-relative	0x15e7fa8	separator	 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1c0c	rip-relative	0x15e7f90	finite-text-operand-or-substring	Associated Organization: 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1c16	rip-relative	0x15e7fa0	finite-text-operand-or-substring	ization: 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1c23	rip-relative	0x15e7fa8	separator	 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1d76	rip-relative	0x15e7fc8	finite-text-operand-or-substring	Associated Plot: 
+classic	PE:6a70b91c:0270a000	actor-associations	0xd17d0	0xd1d80	rip-relative	0x15e7fd8	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b44ce	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4544	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4556	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b455f	rip-relative	0x1623f20	finite-text-operand-or-substring	Unidentified
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b472f	rip-relative	0x1623f14	finite-text-operand-or-substring	A plot
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b477e	rip-relative	0x1623f08	finite-text-operand-or-substring	Sabotage
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b479e	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b47c1	rip-relative	0x1623eec	finite-text-operand-or-substring	Abduct
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b47e5	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4839	rip-relative	0x1623ee0	finite-text-operand-or-substring	Assassinate
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4842	rip-relative	0x1623ed8	finite-text-operand-or-substring	Steal
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4866	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4894	rip-relative	0x1623ed0	finite-text-operand-or-substring	Corrupt
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b48c2	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4952	rip-relative	0x1623e04	finite-text-operand-or-substring	 of
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b496e	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b499e	rip-relative	0x1624130	finite-text-operand-or-substring	Provide Position
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b49c2	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b49fa	rip-relative	0x16240e8	finite-text-operand-or-substring	Attempted Embezzlement
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4a09	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4a15	rip-relative	0x1624100	finite-text-operand-or-substring	Attempted Espionage
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4a24	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4a30	rip-relative	0x1624118	finite-text-operand-or-substring	Attempted Bribery
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4a3f	rip-relative	0x15e7f2c	finite-text-operand-or-substring	 in 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4a4b	rip-relative	0x16240d8	finite-text-operand-or-substring	Infiltrate
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4a6f	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4a92	rip-relative	0x16240cc	finite-text-operand-or-substring	Frame
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4ab6	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4ae5	rip-relative	0x16240c0	finite-text-operand-or-substring	Start War
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4b0b	rip-relative	0x16240b0	finite-text-operand-or-substring	 between 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4b34	rip-relative	0x15e40bc	separator	 and 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b4b5d	rip-relative	0x1623ef8	finite-text-operand-or-substring	, agreed in 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b53c8	rip-relative	0x1624178	finite-text-operand-or-substring	Boss
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b5484	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b5513	rip-relative	0x1624174	finite-text-operand-or-substring	RIP
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b55d5	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b5638	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b564c	rip-relative	0x1623f20	finite-text-operand-or-substring	Unidentified
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b6276	rip-relative	0x162416c	finite-text-operand-or-substring	Membr
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b62d1	rip-relative	0x15fb19c	finite-text-operand-or-substring	Thief
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b6309	rip-relative	0x162415c	finite-text-operand-or-substring	Crrpt
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b633f	rip-relative	0x1624154	finite-text-operand-or-substring	Assas
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b6371	rip-relative	0x162414c	finite-text-operand-or-substring	Snatc
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b6396	rip-relative	0x1624144	finite-text-operand-or-substring	Sabtr
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b63ae	rip-relative	0x1623ff0	finite-text-operand-or-substring	Framr
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b63cc	rip-relative	0x1624164	finite-text-operand-or-substring	Asset
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b6610	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	actor-entries	0x2b4320	0x2b6701	rip-relative	0x1624174	finite-text-operand-or-substring	RIP
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91923	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa919de	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91abb	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91add	rip-relative	0x15e89c4	finite-text-operand-or-substring	The 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91af8	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91b72	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91b91	rip-relative	0x15e89c4	finite-text-operand-or-substring	The 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91b9a	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91c1a	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91c39	rip-relative	0x15e89c4	finite-text-operand-or-substring	The 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91c42	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91d9f	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91dcb	rip-relative	0x15e89c4	finite-text-operand-or-substring	The 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91de2	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91e89	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91e98	rip-relative	0x16cb220	finite-text-operand-or-substring	of 
+classic	PE:6a70b91c:0270a000	language-name	0xa91760	0xa91e9f	rip-relative	0x16cb2ac	finite-text-operand-or-substring	Of 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb8ffca	rip-relative	0x16da770	finite-text-operand-or-substring	interrogator
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb8ffe1	rip-relative	0x166fb90	finite-text-operand-or-substring	subject
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb900b3	rip-relative	0x1623ec0	finite-text-operand-or-substring	Nameless
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb9014e	rip-relative	0x16da750	finite-text-operand-or-substring	an unidentified creature
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb90173	rip-relative	0x15f8b40	finite-text-operand-or-substring	[LPAGE:HF:
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb90193	rip-relative	0x15f8664	finite-text-operand-or-substring	]
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb9029d	rip-relative	0x165df6c	finite-text-operand-or-substring	myself
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb902a6	rip-relative	0x165df70	finite-text-operand-or-substring	lf
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb9035b	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb9037f	rip-relative	0x16789f8	finite-text-operand-or-substring	zombie 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb903b7	rip-relative	0x15f8b70	finite-text-operand-or-substring	ghostly 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb904d9	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb90508	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb90591	rip-relative	0x15e4548	finite-text-operand-or-substring	 the 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb905b5	rip-relative	0x16789f8	finite-text-operand-or-substring	zombie 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb905ed	rip-relative	0x15f8b70	finite-text-operand-or-substring	ghostly 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb9070d	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb9078e	rip-relative	0x15e8618	finite-text-operand-or-substring	a 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb90795	rip-relative	0x15e3e34	finite-text-operand-or-substring	the 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb907bd	rip-relative	0x16789f8	finite-text-operand-or-substring	zombie 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb907f5	rip-relative	0x15f8b70	finite-text-operand-or-substring	ghostly 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb9085c	rip-relative	0x15e3720	separator	 
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb908a7	rip-relative	0x15e4214	finite-text-operand-or-substring	's
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb908c6	rip-relative	0x15f8b50	finite-text-operand-or-substring	[/LPAGE]
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb9091c	rip-relative	0x165ed98	finite-text-operand-or-substring	an unknown creature
+classic	PE:6a70b91c:0270a000	figure-name	0xb8ff50	0xb90932	rip-relative	0x15e4214	finite-text-operand-or-substring	's
+classic	PE:6a70b91c:0270a000	entity-name	0xb8f940	0xb8f9aa	rip-relative	0x16592f8	finite-text-operand-or-substring	[LPAGE:ENT:
+classic	PE:6a70b91c:0270a000	entity-name	0xb8f940	0xb8f9ca	rip-relative	0x15f8664	finite-text-operand-or-substring	]
+classic	PE:6a70b91c:0270a000	entity-name	0xb8f940	0xb8fa34	rip-relative	0x15f8b50	finite-text-operand-or-substring	[/LPAGE]
+classic	PE:6a70b91c:0270a000	entity-name	0xb8f940	0xb8fa8c	rip-relative	0x16da720	finite-text-operand-or-substring	an unknown civilization
+classic	PE:6a70b91c:0270a000	artifact-name	0xb91440	0xb914ff	rip-relative	0x15f8a20	finite-text-operand-or-substring	[LPAGE:ARTIFACT:
+classic	PE:6a70b91c:0270a000	artifact-name	0xb91440	0xb9150e	rip-relative	0x16da4e8	finite-text-operand-or-substring	[LPAGE:BOOK:
+classic	PE:6a70b91c:0270a000	artifact-name	0xb91440	0xb91533	rip-relative	0x15f8664	finite-text-operand-or-substring	]
+classic	PE:6a70b91c:0270a000	artifact-name	0xb91440	0xb915f0	inline-immediate-fragment		finite-short-string-fragment	Untitled
+classic	PE:6a70b91c:0270a000	artifact-name	0xb91440	0xb9164b	inline-immediate-fragment		finite-short-string-fragment	Untitled
+classic	PE:6a70b91c:0270a000	artifact-name	0xb91440	0xb916c6	rip-relative	0x15f8b50	finite-text-operand-or-substring	[/LPAGE]
+classic	PE:6a70b91c:0270a000	artifact-name	0xb91440	0xb9171e	rip-relative	0x16da4d0	finite-text-operand-or-substring	an unknown artifact

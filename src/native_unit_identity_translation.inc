@@ -1,5 +1,75 @@
 // Render one semantic identity for drawing and searching. Classification is
 // already settled by native fields and formatter arguments, not its spelling.
+std::optional<std::string> Overlay::translate_native_justice_organization_initials(
+        const NativeUnitIdentity &person,
+        const std::array<int32_t, 7> &native_indices) const {
+    TranslationStateScope translation_scope;
+    const auto &name = person.name;
+    if (!name.has_name) return std::nullopt;
+    const auto first_glyph = [](std::string_view text) -> std::optional<std::string> {
+        const auto glyph = decode_utf8_at(text, 0);
+        if (!glyph) return std::nullopt;
+        return std::string(text.substr(0, glyph->second));
+    };
+    const auto phonetic_word = [&](std::string_view word) -> std::string {
+        if (word.empty()) return {};
+        if (contains_cjk_utf8(word)) return native_text_to_utf8(word);
+        const auto reviewed = native_name_reviewed_transliterations_.find(
+            lower_native_name(std::string(word)));
+        return reviewed != native_name_reviewed_transliterations_.end() && !reviewed->second.empty()
+            ? reviewed->second : transliterate_native_history_name(word);
+    };
+    std::string result;
+    const bool given = !name.first_name.empty();
+    if (given) {
+        const std::string target = name.language < 0
+            ? native_text_to_utf8(name.first_name) : phonetic_word(name.first_name);
+        const auto initial = first_glyph(target);
+        if (!initial) return std::nullopt;
+        result += *initial;
+    }
+    const bool surname = native_indices[0] != -1 || native_indices[1] != -1;
+    if (surname) {
+        std::string english;
+        for (size_t slot = 0; slot < 2; ++slot) {
+            if (native_indices[slot] == -1) continue;
+            const auto &word = name.words[slot];
+            if (word.id.empty()) return std::nullopt;
+            english += word.english_form;
+        }
+        // The producer appends no surname initial when both valid forms
+        // are empty. Keep a known given initial without inventing a group.
+        if (english.empty())
+            return result.empty() ? std::nullopt : std::optional<std::string>(std::move(result));
+        std::optional<std::string> target;
+        if (given) {
+            // EnglishName concatenates these exact POS forms into its first
+            // WORD group. Nicknames and the remaining title slots are absent
+            // from the native diagram's two-initial representation.
+            target = english_character_names_.compound(english);
+        } else {
+            // Without literal first_name, this WORD group occupies the full
+            // identity's proper-name position and uses its native roots.
+            if (!person.native_name_words_valid) return std::nullopt;
+            std::string native;
+            for (size_t slot = 0; slot < 2; ++slot) {
+                if (native_indices[slot] == -1 || name.words[slot].english_form.empty()) continue;
+                const auto &word = person.native_name_words[slot];
+                if (word.empty()) return std::nullopt;
+                const std::string translated = phonetic_word(word);
+                if (translated.empty()) return std::nullopt;
+                native += translated;
+            }
+            if (!native.empty()) target = std::move(native);
+        }
+        if (!target) return std::nullopt;
+        const auto initial = first_glyph(*target);
+        if (!initial) return std::nullopt;
+        result += *initial;
+    }
+    return result.empty() ? std::nullopt : std::optional<std::string>(std::move(result));
+}
+
 std::optional<std::string> Overlay::translate_native_unit_identity(
         const NativeUnitIdentity &unit) const {
     TranslationStateScope translation_scope;

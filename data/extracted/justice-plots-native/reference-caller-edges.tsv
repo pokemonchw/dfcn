@@ -1,0 +1,5 @@
+edition	image_identity	source_function_rva	call_rva	target_rva	encoding
+reference	PE:6a70a6d9:02711000	0x396010	0x3969e1	0x4769d0	E8 rel32
+reference	PE:6a70a6d9:02711000	0x2b6760	0x2b8ef7	0x479330	E8 rel32
+reference	PE:6a70a6d9:02711000	0x46faa0	0x471ad6	0x479330	E8 rel32
+reference	PE:6a70a6d9:02711000	0x311c10	0x323cef	0x4751a0	E8 rel32

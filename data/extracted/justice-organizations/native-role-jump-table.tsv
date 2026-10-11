@@ -1,0 +1,237 @@
+edition	image_identity	table_role	entry_rva	enum_value	target_rva
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fcc	5	0x2b87fa
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fd0	6	0x2b8701
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fd4	7	0x2b8733
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fd8	8	0x2b8769
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fdc	9	0x2b879f
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fe0	10	0x2b87ca
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fe4	11	0x2b8733
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fe8	12	0x2b8827
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8fec	13	0x2b8827
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8ff0	14	0x2b87e2
+reference	PE:6a70a6d9:02711000	organization-node-role	0x2b8ff4	15	0x2b87fa
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f48		0x2b6cd4
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f4c		0x2b6c82
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f50		0x2b6dde
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f54		0x2b6c79
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f58		0x2b6c01
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f5c		0x2b6bbe
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f60		0x2b6e25
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f64		0x2b6fbe
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f68		0x2b6e8b
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f6c		0x2b6ed2
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f70		0x2b6f25
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f74		0x2b70cf
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f78		0x2b704e
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f7c		0x2b711e
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f80		0x2b704e
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f84		0x2b704e
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f88		0x2b704e
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f8c		0x2b7232
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f90		0x2b7110
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f94		0x2b70ad
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f98		0x2b7285
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8f9c		0x2b70ad
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fa0		0x2b7f1f
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fa4		0x2b7d93
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fa8		0x2b7fb6
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fac		0x2b8130
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fb0		0x2b8130
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fb4		0x2b8130
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fb8		0x2b81c2
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fbc		0x2b8100
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fc0		0x2b7e78
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fc4		0x2b8232
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fc8		0x2b82e2
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fcc		0x2b87fa
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fd0		0x2b8701
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fd4		0x2b8733
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fd8		0x2b8769
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fdc		0x2b879f
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fe0		0x2b87ca
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fe4		0x2b8733
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fe8		0x2b8827
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8fec		0x2b8827
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8ff0		0x2b87e2
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8ff4		0x2b87fa
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8ff8		0x2b88df
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b8ffc		0x2b88e9
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9000		0x2b88fd
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9004		0x2b88f3
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9008		0x2b8907
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b900c		0x2b8914
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9010		0x2b8921
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9014		0x2b892e
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9018		0x2b893b
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b901c		0x2b89b4
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9020		0x2b89be
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9024		0x2b89d2
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9028		0x2b89c8
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b902c		0x2b89dc
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9030		0x2b89e9
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9034		0x2b89f6
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b9038		0x2b8a03
+reference	PE:6a70a6d9:02711000	catalog-embedded-switch-table	0x2b903c		0x2b8a10
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc1c	0	0xd2cb9e
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc20	1	0xd2cba8
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc24	2	0xd2cbbc
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc28	3	0xd2cbb2
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc2c	4	0xd2cbc6
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc30	5	0xd2cbd3
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc34	6	0xd2cbe0
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc38	7	0xd2cbed
+reference	PE:6a70a6d9:02711000	surname-word-part	0xd2cc3c	8	0xd2cbfa
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d600	0	0x52d545
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d604	1	0x52d594
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d608	2	0x52d56e
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d60c	3	0x52d581
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d610	4	0x52d5ba
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d614	5	0x52d5cd
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d618	6	0x52d5a7
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d61c	7	0x52d55b
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d620	8	0x52d5de
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d624	9	0x2080100
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d628	10	0x8040308
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d62c	11	0x8080808
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d630	12	0x8080808
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d634	13	0x6080805
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d638	14	0x8080808
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d63c	15	0x8080808
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d640	16	0x8080808
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d644	17	0x7080808
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d648	18	0xcccccccc
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d64c	19	0xcccccccc
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d650	20	0x245c8948
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d654	21	0x6c894818
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d658	22	0x48572024
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d65c	23	0x3310698b
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d660	24	0x1b740db
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d664	25	0x48d38b44
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d668	26	0x840fed85
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d66c	27	0x23e
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d670	28	0x24748948
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d674	29	0xcb8b4410
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d678	30	0x18718b48
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d67c	31	0x2474894c
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d680	32	0x358d4c18
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d684	33	0xffad2978
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d688	34	0x841f0f
+reference	PE:6a70a6d9:02711000	uppercase-extended-byte	0x52d68c	35	0x0
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6b8c	5	0x2b63ba
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6b90	6	0x2b62c1
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6b94	7	0x2b62f3
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6b98	8	0x2b6329
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6b9c	9	0x2b635f
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6ba0	10	0x2b638a
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6ba4	11	0x2b62f3
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6ba8	12	0x2b63e7
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6bac	13	0x2b63e7
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6bb0	14	0x2b63a2
+classic	PE:6a70b91c:0270a000	organization-node-role	0x2b6bb4	15	0x2b63ba
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b08		0x2b4894
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b0c		0x2b4842
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b10		0x2b499e
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b14		0x2b4839
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b18		0x2b47c1
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b1c		0x2b477e
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b20		0x2b49e5
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b24		0x2b4b7e
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b28		0x2b4a4b
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b2c		0x2b4a92
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b30		0x2b4ae5
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b34		0x2b4c8f
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b38		0x2b4c0e
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b3c		0x2b4cde
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b40		0x2b4c0e
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b44		0x2b4c0e
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b48		0x2b4c0e
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b4c		0x2b4df2
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b50		0x2b4cd0
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b54		0x2b4c6d
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b58		0x2b4e45
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b5c		0x2b4c6d
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b60		0x2b5adf
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b64		0x2b5953
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b68		0x2b5b76
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b6c		0x2b5cf0
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b70		0x2b5cf0
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b74		0x2b5cf0
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b78		0x2b5d82
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b7c		0x2b5cc0
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b80		0x2b5a38
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b84		0x2b5df2
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b88		0x2b5ea2
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b8c		0x2b63ba
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b90		0x2b62c1
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b94		0x2b62f3
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b98		0x2b6329
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6b9c		0x2b635f
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6ba0		0x2b638a
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6ba4		0x2b62f3
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6ba8		0x2b63e7
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bac		0x2b63e7
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bb0		0x2b63a2
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bb4		0x2b63ba
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bb8		0x2b649f
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bbc		0x2b64a9
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bc0		0x2b64bd
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bc4		0x2b64b3
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bc8		0x2b64c7
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bcc		0x2b64d4
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bd0		0x2b64e1
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bd4		0x2b64ee
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bd8		0x2b64fb
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bdc		0x2b6574
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6be0		0x2b657e
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6be4		0x2b6592
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6be8		0x2b6588
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bec		0x2b659c
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bf0		0x2b65a9
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bf4		0x2b65b6
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bf8		0x2b65c3
+classic	PE:6a70b91c:0270a000	catalog-embedded-switch-table	0x2b6bfc		0x2b65d0
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c5c	0	0xd29bde
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c60	1	0xd29be8
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c64	2	0xd29bfc
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c68	3	0xd29bf2
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c6c	4	0xd29c06
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c70	5	0xd29c13
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c74	6	0xd29c20
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c78	7	0xd29c2d
+classic	PE:6a70b91c:0270a000	surname-word-part	0xd29c7c	8	0xd29c3a
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b020	0	0x52af65
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b024	1	0x52afb4
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b028	2	0x52af8e
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b02c	3	0x52afa1
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b030	4	0x52afda
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b034	5	0x52afed
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b038	6	0x52afc7
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b03c	7	0x52af7b
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b040	8	0x52affe
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b044	9	0x2080100
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b048	10	0x8040308
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b04c	11	0x8080808
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b050	12	0x8080808
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b054	13	0x6080805
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b058	14	0x8080808
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b05c	15	0x8080808
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b060	16	0x8080808
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b064	17	0x7080808
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b068	18	0xcccccccc
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b06c	19	0xcccccccc
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b070	20	0x245c8948
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b074	21	0x6c894818
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b078	22	0x48572024
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b07c	23	0x3310698b
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b080	24	0x1b740db
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b084	25	0x48d38b44
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b088	26	0x840fed85
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b08c	27	0x23e
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b090	28	0x24748948
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b094	29	0xcb8b4410
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b098	30	0x18718b48
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b09c	31	0x2474894c
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b0a0	32	0x358d4c18
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b0a4	33	0xffad4f58
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b0a8	34	0x841f0f
+classic	PE:6a70b91c:0270a000	uppercase-extended-byte	0x52b0ac	35	0x0

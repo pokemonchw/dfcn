@@ -1,0 +1,18 @@
+subject_kind	native_condition	source_grammar	empty_or_unknown_branch	steam_rva	classic_rva
+all	no agreement items	A plot	no date	0x2b6b7e..0x2b6b90	0x2b473e..0x2b4750
+outside 5..15	unknown subject	A plot	no date	0x2b6b99..0x2b6ba2	0x2b4759..0x2b4762
+5	goal.position_id +14 and entity_id +10 != -1	Corrupt {position} of {entity}	position lookup failure: Corrupt {entity}; either ID -1: Corrupt; entity lookup failure: an unknown civilization	0x2b6cd4..0x2b6dd7	0x2b4894..0x2b4997
+6	goal.artifact_id +0c != -1	Steal {artifact}	ID -1: Steal; artifact missing: an unknown artifact; named artifact uses language name; unnamed book: Untitled; unnamed item: native item description	0x2b6c82..0x2b6ccf	0x2b4842..0x2b488f
+7	goal.entity_id +28 != -1	Provide Position in {entity}	ID -1: Provide Position; entity missing: an unknown civilization	0x2b6dde..0x2b6e20	0x2b499e..0x2b49e0
+8	goal.hf_id +0c != -1	Assassinate {actor}	ID -1: Assassinate; HF missing: an unknown creature; HF formatter can include species, zombie, ghostly, Nameless, an unidentified creature	0x2b6c79 -> 0x2b6c08..0x2b6c74	0x2b4839 -> 0x2b47c8..0x2b4834
+9	goal.hf_id +0c != -1	Abduct {actor}	ID -1: Abduct; same HF formatter as Assassinate	0x2b6c01..0x2b6c74	0x2b47c1..0x2b4834
+10	goal.entity_id +10 != -1	Sabotage {entity}	entity ID -1: fallback goal.hf_id +0c -> Sabotage {actor}; both IDs -1: Sabotage; lookup fallbacks from entity/HF formatters	0x2b6bbe..0x2b6bfc -> 0x2b6c1b / 0x2b6f92	0x2b477e..0x2b47bc -> 0x2b47db / 0x2b4b52
+11/0	goal.subkind +18 == 0	Attempted Bribery in {year}	year only; no entity/name append	0x2b6e70..0x2b6e86 -> 0x2b6fa4	0x2b4a30..0x2b4a46 -> 0x2b4b64
+11/2	goal.subkind +18 == 2	Attempted Espionage in {year}	year only; no entity/name append	0x2b6e55..0x2b6e6b -> 0x2b6fa4	0x2b4a15..0x2b4a2b -> 0x2b4b64
+11/3	goal.subkind +18 == 3	Attempted Embezzlement in {year}	year only; no entity/name append	0x2b6e3a..0x2b6e50 -> 0x2b6fa4	0x2b49fa..0x2b4a10 -> 0x2b4b64
+11/other	goal.subkind +18 is neither 0, 2 nor 3	A plot in {year}	includes 1 and all unknown values; native retains default A plot	0x2b6e25..0x2b6e38 -> 0x2b6e7f	0x2b49e5..0x2b49f8 -> 0x2b4a3f
+12	subject 12	A plot	no date	0x2b8f64 -> 0x2b6fbe	0x2b6b24 -> 0x2b4b7e
+13	goal.entity_id +08 != -1	Infiltrate {entity}	ID -1: Infiltrate; entity missing: an unknown civilization	0x2b6e8b..0x2b6ecd	0x2b4a4b..0x2b4a8d
+14	goal.hf_id +08 != -1	Frame {actor}	ID -1: Frame; same HF formatter as Assassinate	0x2b6ed2..0x2b6f20	0x2b4a92..0x2b4ae0
+15	goal.entity_a +08 and entity_b +0c != -1	Start War between {entity_a} and {entity_b}	either ID -1: Start War; each missing lookup: an unknown civilization	0x2b6f25..0x2b6f98	0x2b4ae5..0x2b4b58
+5..10 / 13..15	all understood subject branches, including missing target ID	{core}, agreed in {year}	year = first agreement item +04, decimal integer appended without season/month/day; source names may be empty but prefix and date survive	0x2b6f9d..0x2b6fb9	0x2b4b5d..0x2b4b79

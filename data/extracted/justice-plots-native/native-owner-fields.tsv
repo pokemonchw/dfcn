@@ -1,0 +1,5 @@
+edition	image_identity	field	rva	encoding	source_instruction_rva	detail
+reference	PE:6a70a6d9:02711000	info_interfacest	0x18a61c0	inline global object; LEA	0x3fa53f	passed as this to complete info renderer
+reference	PE:6a70a6d9:02711000	justice_interfacest	0x18a6bd0	inline object at info+0xa10	0x3969d0	passed as this to intelligence renderer
+classic	PE:6a70b91c:0270a000	info_interfacest	0x18a0190	inline global object; LEA	0x3f80ff	passed as this to complete info renderer
+classic	PE:6a70b91c:0270a000	justice_interfacest	0x18a0ba0	inline object at info+0xa10	0x394590	passed as this to intelligence renderer

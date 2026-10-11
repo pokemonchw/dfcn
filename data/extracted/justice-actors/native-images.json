@@ -1,0 +1,14 @@
+[
+  {
+    "edition": "reference",
+    "path": "D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe",
+    "identity": "PE:6a70a6d9:02711000",
+    "owner_rva": "0x4769d0..0x4792c7"
+  },
+  {
+    "edition": "classic",
+    "path": "C:/Users/WIN11/Downloads/df_53_16_win/Dwarf Fortress.exe",
+    "identity": "PE:6a70b91c:0270a000",
+    "owner_rva": "0x474590..0x476e87"
+  }
+]
