@@ -1722,27 +1722,54 @@ std::optional<std::string> Overlay::translate_poetic_form_description_unit(
     // sentence instead of mirroring the English modifier chain.
     std::string translated;
     size_t cursor = 0;
-    const bool has_opening = source.find(", originating in ") != std::string::npos &&
+    // The native generator chooses a civilization, a performance group or
+    // an individual creator for the provenance field.
+    struct FormOrigin {
+        std::string_view source, prefix, suffix;
+        bool person;
+    };
+    static constexpr auto form_origins = std::to_array<FormOrigin>({
+        {", originating in ", "，起源于“", "”", false},
+        {" which grew out of the performances of ",
+         "，从“", "”的表演中发展而来", false},
+        {" originally devised by ", "，最初由", "创作", true},
+    });
+    auto find_origin = [&](std::string_view text) {
+        const FormOrigin* origin = nullptr;
+        size_t at = std::string_view::npos;
+        for (const auto& candidate : form_origins) {
+            const size_t candidate_at = text.find(candidate.source);
+            if (candidate_at < at) {
+                origin = &candidate;
+                at = candidate_at;
+            }
+        }
+        return std::pair{origin, at};
+    };
+    const bool has_opening = find_origin(source).first &&
         source.find(" poetic ") != std::string::npos;
     if (!native_chapter || has_opening) {
-    static constexpr std::string_view origin_marker = ", originating in ";
     // A generated title or civilization may itself contain a period. The
     // next fixed poetic clause, outside quotes/parentheses, closes the opening.
     const auto opening_spans = form_description_sentences(source, "poetry",
-        [](std::string_view sentence) -> std::optional<std::string> {
-            return sentence.find(", originating in ") != std::string_view::npos
+        [&](std::string_view sentence) -> std::optional<std::string> {
+            return find_origin(sentence).first
                 ? std::optional<std::string>("opening") : std::nullopt;
         }, false);
     if (opening_spans.empty()) return std::nullopt;
     const size_t opening_end = opening_spans.front().content_end;
     if (opening_end >= source.size() || source[opening_end] != '.') return std::nullopt;
     const std::string_view opening(source.data(), opening_end);
-    const size_t origin_at = opening.find(origin_marker);
-    if (origin_at == std::string_view::npos) return std::nullopt;
+    const auto [origin_form, origin_at] = find_origin(opening);
+    if (!origin_form) return std::nullopt;
     std::string_view identity = opening.substr(0, origin_at);
-    const auto origin = translate_generated_reference(
-        opening.substr(origin_at + origin_marker.size()));
+    const auto raw_origin = opening.substr(origin_at + origin_form->source.size());
+    auto origin = origin_form->person ? translate_legends_actor(raw_origin) : std::nullopt;
+    if (!origin || origin->empty() || contains_ascii_letters(*origin))
+        origin = translate_generated_reference(raw_origin);
     if (!origin) return std::nullopt;
+    const std::string provenance = std::string(origin_form->prefix) +
+        *origin + std::string(origin_form->suffix);
 
     struct FormIdentity { std::string_view source; std::string_view chinese; };
     static constexpr auto form_identities = std::to_array<FormIdentity>({
@@ -1798,10 +1825,10 @@ std::optional<std::string> Overlay::translate_poetic_form_description_unit(
     identity.remove_prefix(form->source.size());
     if (form_title) {
         translated = "“" + *form_title + "”是一种" +
-                     std::string(form->chinese) + "，起源于“" + *origin + "”";
+                     std::string(form->chinese) + provenance;
     } else {
         translated = "这是一种" + std::string(form->chinese) +
-                     "，起源于“" + *origin + "”";
+                     provenance;
     }
     if (!identity.empty()) {
         if (strip_prefix(identity, " intended ")) {

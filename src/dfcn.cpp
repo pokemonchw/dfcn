@@ -80,6 +80,7 @@ namespace dfcn {
 static std::vector<NativeHistoryDraw> captured_native_history_draws();
 static std::vector<NativeHistoryUnboundDraw> captured_native_history_unbound_draws();
 static uintptr_t native_history_profile_base();
+static uintptr_t native_reference_va(uintptr_t address);
 static uintptr_t native_reference_address(uintptr_t base, uintptr_t offset);
 static std::optional<NativeJusticeOrganizationCaption>
 capture_native_justice_organization_caption(
