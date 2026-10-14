@@ -83,6 +83,7 @@ void Overlay::render_native_tooltip_layer(SDL_Renderer *renderer) {
         g_native_tooltip_widget_frame = frame;
         g_native_toolbar_tooltip.reset();
         prepared_matches_.clear();
+        if (!capture_toolbar_tooltip_document(frame)) continue;
         append_toolbar_tooltip_matches(rows, prepared_matches_, -1, false);
         layout_toolbar_tooltip(renderer);
         for (bool top_layer : {false, true})

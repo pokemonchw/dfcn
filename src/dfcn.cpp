@@ -2575,6 +2575,11 @@ struct NativeTooltipWidgetFrame {
     uint64_t epoch = 0;
     std::vector<std::string> rows;
     std::string body_source;
+    // Legacy paragraph producers supply these before their first pixel write.
+    // Other widget documents retain their own wrapped-row discovery.
+    int paragraph_rows = -1;
+    int paragraph_indent = 1;
+    int shortcut_row = -1;
     bool top_layer = false;
     bool isolated = false;
     const unsigned char *grid_identity = nullptr;
@@ -4736,6 +4741,7 @@ private:
         const std::vector<std::string> &rows) const;
     void capture_toolbar_tooltip(
         const std::vector<std::string> &rows, bool raw_layer) const;
+    bool capture_toolbar_tooltip_document(const NativeTooltipWidgetFrame &frame) const;
     std::optional<SDL_Rect> native_toolbar_tooltip_frame() const;
     void append_toolbar_tooltip_matches(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, bool raw_layer) const;

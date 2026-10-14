@@ -799,48 +799,64 @@ std::optional<NativeToolbarTooltip> Overlay::find_toolbar_tooltip(
     return best;
 }
 
-// Source ownership can need the foreground frame before tooltip translation
-// runs. Share capture and strict frame validation with every background panel
-// instead of making their identity depend on whether a border is hovered.
+// A native producer submits its document before drawing. The private output
+// pass uses this directly, without rediscovering a clipped card on the page.
+bool Overlay::capture_toolbar_tooltip_document(const NativeTooltipWidgetFrame &frame) const {
+    const auto &box = frame.bounds;
+    if (box.w < 3 || box.h < 3 || frame.rows.size() != static_cast<size_t>(box.h)) return false;
+    NativeToolbarTooltip card;
+    card.left = box.x;
+    card.top = box.y;
+    card.right = card.text_right = box.x + box.w - 1;
+    card.bottom = box.y + box.h - 1;
+    card.text_x = box.x + 1;
+    card.body_x = box.x + frame.paragraph_indent;
+    card.text_y = box.y + 1;
+    card.native_frame = card.whole_frame = card.widget_frame = true;
+    card.widget_top_layer = frame.top_layer;
+    card.occlusions = frame.occlusions;
+    int body_end = card.text_y;
+    if (frame.paragraph_rows >= 0) {
+        // Row count, indent and shortcut position come from the hooked
+        // paragraph renderer, independently of visibility or border pixels.
+        body_end += frame.paragraph_rows;
+        if (body_end > card.bottom || card.body_x >= card.text_right) return false;
+        if (frame.shortcut_row > 0 && frame.shortcut_row < box.h - 1) {
+            card.keys_y = box.y + frame.shortcut_row;
+            card.key_rows.push_back(card.keys_y);
+        }
+    } else {
+        for (int y = card.text_y; y < card.bottom; ++y) {
+            const auto line = trim_view(std::string_view(frame.rows[y - box.y]).substr(1, box.w - 2));
+            if (line.starts_with("Hotkey:")) {
+                if (card.keys_y < 0) card.keys_y = y;
+                card.key_rows.push_back(y);
+            } else if (!line.empty() && card.keys_y < 0) body_end = y + 1;
+        }
+    }
+    const int indent = card.body_x - box.x;
+    for (int y = card.text_y; y < body_end; ++y) {
+        std::string line = frame.rows[y - box.y].substr(indent, box.w - indent - 1);
+        const size_t end = line.find_last_not_of(' ');
+        line.resize(end == std::string::npos ? 0 : end + 1);
+        if (!card.rows.empty()) card.source += '\n';
+        card.source += line;
+        card.rows.push_back(std::move(line));
+    }
+    if (!frame.body_source.empty()) card.source = frame.body_source;
+    if (card.source.empty()) return false;
+    translate_deity_tooltip_fields(card);
+    g_native_toolbar_tooltip = std::move(card);
+    return true;
+}
+
+// Shared-page fallback retains its current visibility/occlusion validation.
 void Overlay::capture_toolbar_tooltip(
         const std::vector<std::string> &rows, bool raw_layer) const {
     if (!gps_ || NativeTooltipPageScope::active) return;
     if (!g_native_toolbar_tooltip || !g_native_toolbar_tooltip->widget_frame) {
-        if (const auto widget = captured_native_tooltip_widget(*gps_)) {
-            const auto &box = widget->bounds;
-            NativeToolbarTooltip card;
-            card.left = box.x;
-            card.top = box.y;
-            card.right = card.text_right = box.x + box.w - 1;
-            card.bottom = box.y + box.h - 1;
-            card.text_x = card.body_x = box.x + 1;
-            card.text_y = box.y + 1;
-            card.native_frame = card.whole_frame = card.widget_frame = true;
-            card.widget_top_layer = widget->top_layer;
-            card.occlusions = widget->occlusions;
-            int body_end = card.text_y;
-            for (int y = card.text_y; y < card.bottom; ++y) {
-                const auto line = trim_view(std::string_view(widget->rows[y - box.y]).substr(1, box.w - 2));
-                if (line.starts_with("Hotkey:")) {
-                    if (card.keys_y < 0) card.keys_y = y;
-                    card.key_rows.push_back(y);
-                } else if (!line.empty() && card.keys_y < 0) body_end = y + 1;
-            }
-            for (int y = card.text_y; y < body_end; ++y) {
-                std::string line = widget->rows[y - box.y].substr(1, box.w - 2);
-                const size_t end = line.find_last_not_of(' ');
-                line.resize(end == std::string::npos ? 0 : end + 1);
-                if (!card.rows.empty()) card.source += '\n';
-                card.source += line;
-                card.rows.push_back(std::move(line));
-            }
-            if (!widget->body_source.empty()) card.source = widget->body_source;
-            if (!card.source.empty()) {
-                translate_deity_tooltip_fields(card);
-                g_native_toolbar_tooltip = std::move(card);
-                return;
-            }
-        }
+        if (const auto widget = captured_native_tooltip_widget(*gps_))
+            if (capture_toolbar_tooltip_document(*widget)) return;
         if (g_native_toolbar_tooltip) return;
         auto context = rows;
         if (raw_layer) {
