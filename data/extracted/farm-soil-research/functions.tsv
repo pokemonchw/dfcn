@@ -1,0 +1,7 @@
+farm_update	0x1405702b0	0x1405713f3
+tile_designation	0x14007dc40	0x14007dcc6
+tile_geological_material	0x14014e100	0x14014e2a7
+inorganic_flag	0x14014d7f0	0x14014d816
+tile_underground_region	0x14151a570	0x14151a606
+underground_region_lookup	0x1400bc120	0x1400bc130
+random_u32	0x140eb68b0	0x140eb6a93
