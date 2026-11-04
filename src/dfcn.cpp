@@ -22777,9 +22777,13 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     auto has_save_delete_warning = [](const std::string &row) {
         return row.find("Clicking delete will instantly delete!") !=
                    std::string::npos ||
+            row.find("Clicking delete will instantly delete this game!") !=
+                   std::string::npos ||
             row.find("Don't click it unless you're sure you want to delete it.") !=
                    std::string::npos ||
             row.find("(only this inactive copy will be deleted)") !=
+                   std::string::npos ||
+            row.find("(no other folders will be deleted)") !=
                    std::string::npos;
     };
     bool save_delete_dialog = std::any_of(

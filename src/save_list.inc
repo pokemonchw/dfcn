@@ -17,7 +17,7 @@ static bool is_save_list_action(std::string_view source) {
         save_list_actions.end();
 }
 
-// World and inactive-copy deletion dialogs are framed documents, not world-list
+// World and save-file deletion dialogs are framed documents, not world-list
 // records or unrelated labels centered inside their old English ink spans.
 // Detach only a complete current frame; the caller restores it after page
 // layout. Translation, wrapping, metrics and native skins remain shared.
@@ -28,14 +28,22 @@ std::vector<Match> Overlay::layout_save_confirmation(SDL_Renderer *renderer) {
     const auto is_prompt = [](const Match &match) {
         return !match.native_split_duplicate &&
             (match.source.starts_with("Are you sure you want to delete") ||
+             match.source.starts_with("Clicking delete will instantly delete this game!") ||
              match.source.starts_with("Clicking delete will instantly delete!"));
     };
     if (std::none_of(matches.begin(), matches.end(), is_prompt)) return {};
     normalize_native_split_text();
     const auto anchor = std::find_if(matches.begin(), matches.end(), is_prompt);
     if (anchor == matches.end()) return {};
-    const bool inactive_copy = anchor->source.starts_with("Clicking delete");
-    const std::vector<std::string_view> messages = inactive_copy
+    const bool saved_game = anchor->source.starts_with(
+        "Clicking delete will instantly delete this game!");
+    const bool file_dialog = anchor->source.starts_with("Clicking delete");
+    const std::vector<std::string_view> messages = saved_game
+        ? std::vector<std::string_view>{
+            "Clicking delete will instantly delete this game!",
+            "Don't click it unless you're sure you want to delete it.",
+            "(no other folders will be deleted)"}
+        : file_dialog
         ? std::vector<std::string_view>{
             "Clicking delete will instantly delete!",
             "Don't click it unless you're sure you want to delete it.",
@@ -61,7 +69,7 @@ std::vector<Match> Overlay::layout_save_confirmation(SDL_Renderer *renderer) {
     struct Button { size_t index; SDL_Rect box; };
     std::vector<Button> buttons;
     for (std::string_view label : {"Delete", "File", "Back"}) {
-        if (!inactive_copy && label == "File") continue;
+        if (!file_dialog && label == "File") continue;
         for (size_t i = 0; i < matches.size(); ++i) {
             const Match &match = matches[i];
             if (!inside(match) || match.source != label || match.target.empty() ||
@@ -74,7 +82,7 @@ std::vector<Match> Overlay::layout_save_confirmation(SDL_Renderer *renderer) {
             break;
         }
     }
-    if (buttons.size() != (inactive_copy ? 3u : 2u)) return {};
+    if (buttons.size() != (file_dialog ? 3u : 2u)) return {};
     for (size_t i = 1; i < buttons.size(); ++i)
         if (buttons[i].box.y != buttons[0].box.y ||
             buttons[i - 1].box.x + buttons[i - 1].box.w >= buttons[i].box.x)
@@ -167,32 +175,47 @@ std::vector<Match> Overlay::layout_save_confirmation(SDL_Renderer *renderer) {
         }
         return !field.target.empty();
     };
-    Match heading;
+    // Save-file dialogs can have both a name/mode row and a colored date row.
+    // Join fragments on each native baseline without folding the date into
+    // the name or centering either row within its old English ink span.
+    std::vector<std::vector<size_t>> title_lines;
+    for (size_t i : title) {
+        if (title_lines.empty() || (file_dialog &&
+                source_top(matches[i]) != source_top(matches[title_lines.back().front()])))
+            title_lines.emplace_back();
+        title_lines.back().push_back(i);
+    }
+    std::vector<Match> headings(title_lines.size());
     std::vector<Match> prose(messages.size());
-    if (!compose(title, heading)) return {};
+    for (size_t i = 0; i < title_lines.size(); ++i)
+        if (!compose(title_lines[i], headings[i])) return {};
     for (size_t i = 0; i < paragraphs.size(); ++i)
         if (!compose(paragraphs[i], prose[i])) return {};
 
     int left = right;
     for (size_t i : body) left = std::min(left, matches[i].x);
     const int text_right = right - (left - panel->x);
-    if (text_right <= left || question_top < source_top(heading) + tile_h) return {};
+    if (text_right <= left || question_top < source_top(headings.back()) + tile_h) return {};
     struct Field { size_t index; Match match; int left, width, top; bool centered; };
     std::vector<Field> fields;
-    fields.push_back({title.front(), std::move(heading), origin_x + left * tile_w,
-        (text_right - left) * tile_w, source_top(matches[title.front()]), !inactive_copy});
+    for (size_t i = 0; i < title_lines.size(); ++i) {
+        const size_t first = title_lines[i].front();
+        const int top = source_top(matches[first]);
+        if (i > 0 && top < fields.back().top + tile_h) return {};
+        fields.push_back({first, std::move(headings[i]), origin_x + left * tile_w,
+            (text_right - left) * tile_w, top, !file_dialog});
+    }
     for (const Button &button : buttons)
         fields.push_back({button.index, matches[button.index],
             origin_x + button.box.x * tile_w, button.box.w * tile_w,
             button.box.y * tile_h + (button.box.h - 1) * tile_h / 2, true});
 
     const int pixels = unified_font_pixels();
-    if (inactive_copy) {
+    if (file_dialog) {
         // These warnings are three independent native lines. Keep each
-        // sentence's baseline and the title's shared left inset; joining
-        // them as prose compresses the dialog and shifts its world name.
-        if (source_top(matches[title.back()]) != fields.front().top) return {};
-        int previous_top = fields.front().top;
+        // sentence's baseline and the title/date's shared left inset;
+        // joining them as prose compresses the dialog and shifts its name.
+        int previous_top = fields[title_lines.size() - 1].top;
         for (size_t i = 0; i < prose.size(); ++i) {
             const int top = source_top(matches[paragraphs[i].front()]);
             if (top < previous_top + tile_h || top + tile_h > actions_top) return {};
