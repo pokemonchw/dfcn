@@ -11,6 +11,50 @@ struct NativeHelpIndexLayout {
     std::optional<SDL_Rect> intro;
 };
 
+static std::optional<NativePauseCompactMenu> native_pause_compact_layout(void *menu,
+        const graphicst &gps, int32_t screen_left, int32_t screen_right) {
+    // The verified options_interfacest owner selects its ordinary branch
+    // only after these save/help/confirmation flags. Its mode-5 constructor
+    // writes actions 14 and 15 and leaves the paragraph vector empty.
+    std::array<unsigned char, 0xea> state{};
+    if (!native_history_copy_bytes(reinterpret_cast<uintptr_t>(menu), state.data(), state.size()))
+        return std::nullopt;
+    int32_t mode = -1;
+    std::memcpy(&mode, state.data() + 0x4, sizeof(mode));
+    if (mode != 5 || state[0xc8] || state[0xe9] || state[0xa0] || state[0xa1] ||
+            state[0x78] || state[0x40] || state[0x41] || state[0x42] ||
+            state[0x43] || state[0x44] || state[0x45]) return std::nullopt;
+    NativeBorrowedVector<uintptr_t> paragraphs;
+    NativeBorrowedVector<int32_t> actions;
+    std::memcpy(&paragraphs, state.data() + 0x28, sizeof(paragraphs));
+    std::memcpy(&actions, state.data() + 0x48, sizeof(actions));
+    std::array<int32_t, 2> action_ids{};
+    if (!paragraphs.valid(65536) || paragraphs.size() ||
+            !actions.valid(2) || actions.size() != action_ids.size() ||
+            !native_history_copy_bytes(reinterpret_cast<uintptr_t>(actions.begin),
+                action_ids.data(), sizeof(action_ids)) ||
+            action_ids != std::array<int32_t, 2>{14, 15}) return std::nullopt;
+
+    // PE 0x1e1722..0x1e17e4: empty prose plus two actions gives height 12;
+    // the outer frame is centre +/-31 and each button is centre +/-22.
+    // Caption rows start at top+5 and advance by three (0x1e2111).
+    const int64_t center = (int64_t(screen_left) + screen_right) / 2;
+    const int64_t left = center - 31, right = center + 31;
+    const int64_t top = int64_t(gps.dimy) / 2 - 6, bottom = top + 12;
+    if (screen_right < screen_left || left < 0 || right >= gps.dimx ||
+            top < 0 || bottom >= gps.dimy) return std::nullopt;
+    NativePauseCompactMenu layout;
+    for (size_t index = 0; index < layout.buttons.size(); ++index)
+        layout.buttons[index] = SDL_Rect{static_cast<int>(center - 21),
+            static_cast<int>(top + 5 + 3 * index), 43, 1};
+    // The renderer omits the music inset when fewer than eight rows remain
+    // (0x1e2162). Its frame spans bottom+1..bottom+4; only two rows are text.
+    if (bottom <= int64_t(gps.dimy) - 8)
+        layout.soundtrack = SDL_Rect{static_cast<int>(left + 1),
+            static_cast<int>(bottom + 2), 61, 2};
+    return layout;
+}
+
 static void capture_native_pause_ending_body(void *menu) {
     g_native_pause_ending_body.reset();
     try {
@@ -110,6 +154,7 @@ static void native_pause_draw(void *menu, uint32_t tick, int32_t screen_left,
     }
     TranslationStateScope translation;
     g_native_pause_ending_body.reset();
+    g_native_pause_compact_menu.reset();
     auto *gps = native_graphics();
     const auto help_index = gps
         ? native_help_index_layout(menu, *gps, screen_left, screen_right) : std::nullopt;
@@ -164,10 +209,12 @@ static void native_pause_draw(void *menu, uint32_t tick, int32_t screen_left,
     NativeUiGridBinding output(gps, *layer.foreground.graphics());
     NativeInfoCapturedTextScope captions(g_native_pause_text);
     NativePauseWriteScope writing(gps);
+    const auto compact_menu = native_pause_compact_layout(menu, *gps, screen_left, screen_right);
     callback.call_native([&] { original(menu, tick, screen_left, screen_right); });
     capture_native_pause_ending_body(menu);
     layer.foreground.graphics()->top_in_use = gps->top_in_use;
     layer.ready = true;
+    g_native_pause_compact_menu = compact_menu;
     NativeUiReadScope::invalidate_reads();
 }
 

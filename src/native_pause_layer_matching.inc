@@ -40,6 +40,7 @@ std::vector<Match> Overlay::find_native_pause_matches() const {
         return Match{x, draw.y, right - x, kUiMessageRule, {},
             std::string(text.substr(0, right - x))};
     };
+#include "native_pause_compact_matches.inc"
     const auto reserve_input = [&](int x, int y, int width) {
         if (x < 0 || y < 0 || y >= gps_->dimy || width <= 0 || width > gps_->dimx - x)
             return;

@@ -68,7 +68,9 @@ void Overlay::render_native_pause_layer(SDL_Renderer *renderer) {
     for (const auto &match : prepared_matches_)
         if (complete_paragraph(match)) paragraphs.push_back(match);
     std::erase_if(prepared_matches_, complete_paragraph);
-    const bool menu = layout_pause_menu(renderer);
+    // Mode-5 fields already carry the rectangles from their native owner.
+    // Do not route them through caption-based recognition or embark replay.
+    const bool menu = native_pause_compact_view(gps_) || layout_pause_menu(renderer);
     if (!menu) for (auto &match : prepared_matches_) {
         if (match.target.empty() || match.native_help_source_only ||
                 match.native_split_duplicate || match.layout_prepared) continue;

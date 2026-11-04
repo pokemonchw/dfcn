@@ -3,6 +3,19 @@
 static NativeUiLayerStorage g_native_pause_layer;
 static NativeInfoCapturedText g_native_pause_text;
 
+// Mode 5 owns two action slots and one soundtrack inset. These rectangles
+// are the native logical text areas, independent of any caption spelling.
+struct NativePauseCompactMenu {
+    std::array<SDL_Rect, 2> buttons{};
+    SDL_Rect soundtrack{};
+};
+static std::optional<NativePauseCompactMenu> g_native_pause_compact_menu;
+
+static bool native_pause_compact_view(const graphicst *graphics) {
+    return graphics && g_native_pause_layer.ready && g_native_pause_compact_menu &&
+        graphics == g_native_pause_layer.foreground.graphics();
+}
+
 // options_interfacest keeps the ended game's prose as a native string
 // vector. Retain that complete current allocation with the private draw;
 // its constructor can have run before this core or this frame existed.
@@ -29,5 +42,6 @@ static void native_pause_begin_frame() {
     g_native_pause_layer.renderer = nullptr;
     g_native_pause_text.clear();
     g_native_pause_ending_body.reset();
+    g_native_pause_compact_menu.reset();
     NativeUiReadScope::invalidate_reads();
 }

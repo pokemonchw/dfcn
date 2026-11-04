@@ -1053,6 +1053,12 @@ static std::optional<std::string> native_ui_layer_cache_context(
         key.value(g_native_squads_member_order_caller);
         for (auto caller : g_native_squads_equipment_callers) key.value(caller);
     }
+    if (&layer == &g_native_pause_layer) {
+        key.optional(g_native_pause_compact_menu, [&](const auto &menu) {
+            for (const auto &button : menu.buttons) key.rect(button);
+            key.rect(menu.soundtrack);
+        });
+    }
     return key.finish();
 }
 
