@@ -10,7 +10,7 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[list]\n[*]将 Cheese 的译名由“芝士片”修正为“奶酪”。\n[/list]\n",
+  "changelog": "[list]\n[*]将物品 Crown、Crowns 的译名统一为“头冠”，修正骨制等材料物品仍显示“王冠”的不一致。\n[*]将 Persistence Crown 同步修正为“坚持头冠”。\n[/list]\n",
   "github_url": "https://github.com/pokemonchw/dfcn",
   "required_items": [
     3811193379,

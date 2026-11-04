@@ -1,3 +1,4 @@
-Dwarvemon 简体中文汉化 2.22-zh-Hans.13（2026-10-28）
+Dwarvemon 简体中文汉化 2.22-zh-Hans.14（2026-11-05）
 
-- 将 Cheese 的译名由“芝士片”修正为“奶酪”。
+- 将物品 Crown、Crowns 的译名统一为“头冠”，修正骨制等材料物品仍显示“王冠”的不一致。
+- 将 Persistence Crown 同步修正为“坚持头冠”。
