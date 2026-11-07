@@ -1,0 +1,6 @@
+name	start	end
+register_history_aggregate	0x1409946b0	0x140994b5d
+register_historical_factor	0x1407dd040	0x1407dd104
+trade_history_sum	0x14091e6a0	0x14091e9c9
+register_trade_schedule	0x14091e570	0x14091e697
+register_general_evaluation	0x140994b60	0x140994d74

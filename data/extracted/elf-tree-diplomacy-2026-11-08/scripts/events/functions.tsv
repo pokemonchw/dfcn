@@ -1,0 +1,11 @@
+name	start	end
+concluded_diplomacy_trade	0x140a6ab80	0x140a6abf8
+concluded_attack	0x140a6ac00	0x140a6ac78
+rejected_diplomacy	0x140102d60	0x140102dac
+rejected_attack	0x140102db0	0x140102dfc
+rejected_trade	0x140102e00	0x140102e5b
+made_diplomacy	0x1401030a0	0x1401030e5
+made_attack	0x1401030f0	0x140103137
+made_trade	0x140103140	0x1401031b1
+register_diplomatic_history	0x140994330	0x1409943fe
+get_diplomacy_state	0x1400ff950	0x1400ffa7c

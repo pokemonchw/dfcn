@@ -1,0 +1,29 @@
+path_without_extension	start_va	end_va_exclusive	formats	purpose
+events/concluded_diplomacy_trade	0x140a6ab80	0x140a6abf8	c,asm	Concluded TreeQuota diplomacy_value and trade_desire
+events/concluded_attack	0x140a6ac00	0x140a6ac78	c,asm	Concluded TreeQuota attack_desire
+events/rejected_diplomacy	0x140102d60	0x140102dac	c,asm	Rejected agreement diplomacy_value
+events/rejected_attack	0x140102db0	0x140102dfc	c,asm	Rejected agreement attack_desire
+events/rejected_trade	0x140102e00	0x140102e5b	c,asm	Rejected agreement trade_desire
+events/made_diplomacy	0x1401030a0	0x1401030e5	c,asm	Made agreement diplomacy_value
+events/made_attack	0x1401030f0	0x140103137	c,asm	Made agreement attack_desire
+events/made_trade	0x140103140	0x1401031b1	c,asm	Made agreement trade_desire
+events/register_diplomatic_history	0x140994330	0x1409943fe	c,asm	Append historical event IDs to both diplomacy histories
+events/get_diplomacy_state	0x1400ff950	0x1400ffa7c	c,asm	Find or create bilateral diplomacy record
+world/register_history_aggregate	0x1409946b0	0x140994b5d	c,asm	Annual diplomacy history evaluation with age 1 and 2 skipped
+world/register_historical_factor	0x1407dd040	0x1407dd104	c,asm	Add factor to historical evaluation
+world/trade_history_sum	0x14091e6a0	0x14091e9c9	c,asm	Tick-aged historical trade_desire sum
+world/register_trade_schedule	0x14091e570	0x14091e697	c,asm	Trade threshold and caravan scheduling
+world/register_general_evaluation	0x140994b60	0x140994d74	c,asm	General diplomacy evaluation factors
+quota/14091e210	0x14091e210	0x14091e3c0	c,asm	Settle previous TreeQuota and queue six-bin conclusion for later history event creation
+quota/140dcd130	0x140dcd130	0x140dcdbe4	c,asm	Decrement installed and pending accepted quota on tree removal
+fortress/1409159a0	0x1409159a0	0x140915c24	c,asm	Normal peaceful attack eligibility and cooldown gates
+fortress/140915c30	0x140915c30	0x140915c6b	c,asm	Attack desire threshold 10 wrapper
+fortress/140915c70	0x140915c70	0x140915f0a	c,asm	Tick-aged attack_desire aggregation and gift subtraction
+fortress/140e5d220	0x140e5d220	0x140e5d3a6	c,asm	Seasonal diplomacy and attack scheduling; threshold 30 for new diplomat
+fortress/140e5f890	0x140e5f890	0x140e5f9fc	c,asm	Cancel friendly timed events and queue event type 10
+fortress/140915f10	0x140915f10	0x14091e20c	c,asm	Construct SITE_INVASION army controller
+fortress/140acaa50	0x140acaa50	0x140acb82b	c,asm	Prepare diplomat meeting topics from existing relation
+fortress/1413f51f0	0x1413f51f0	0x1413f534d	c,asm	Queue rumor propagation record
+world/fn_140976010	0x140976010	0x1409761c6	c,asm	Create war history collection and set both relation states to 1 or 5
+world/personality_roll	0x140e11b00	0x140e11bab	asm	Effective personality facet random roll with temporary traits and clipping
+world/allied_strength	0x1409e4100	0x1409e41d5	asm	Sum eligible allied civilization strengths
