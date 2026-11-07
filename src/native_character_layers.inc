@@ -3,6 +3,48 @@
 static NativeUiLayerStorage g_native_character_layer;
 static NativeInfoCapturedText g_native_character_text;
 static uintptr_t g_native_character_owner = 0;
+// The entry hook receives the actual native object. Nested native draws
+// restore the previous owner instead of reconstructing it from a stack string.
+static thread_local uintptr_t g_native_character_drawing_sheet = 0;
+static thread_local uint64_t g_native_character_draw_scope_id = 0;
+static thread_local uint64_t g_native_character_draw_scope_sequence = 0;
+struct NativeCharacterDrawOwnerScope {
+    uintptr_t previous = g_native_character_drawing_sheet;
+    uint64_t previous_scope = g_native_character_draw_scope_id;
+    explicit NativeCharacterDrawOwnerScope(const void *sheet) {
+        g_native_character_drawing_sheet = reinterpret_cast<uintptr_t>(sheet);
+        g_native_character_draw_scope_id = ++g_native_character_draw_scope_sequence;
+    }
+    ~NativeCharacterDrawOwnerScope() {
+        g_native_character_drawing_sheet = previous;
+        g_native_character_draw_scope_id = previous_scope;
+    }
+};
+
+static uintptr_t native_character_sheet_field(uintptr_t sheet, size_t reference,
+        std::string_view member, size_t width = 24) {
+#ifdef _WIN32
+    static constexpr native_history_abi::FieldOffset members[] = {
+        {0, "view_sheets_interfacest", "open"},
+        {4, "view_sheets_interfacest", "context"},
+        {8, "view_sheets_interfacest", "active_sheet"},
+        {0xc, "view_sheets_interfacest", "active_id"},
+        {0x90, "view_sheets_interfacest", "tab"},
+        {0xc0, "view_sheets_interfacest", "active_sub_tab"},
+        {0x1840, "view_sheets_interfacest", "rel_name"},
+        {0x1870, "view_sheets_interfacest", "relation_f"},
+        {0x1888, "view_sheets_interfacest", "rel_unid"},
+        {0x18a0, "view_sheets_interfacest", "rel_hf"},
+    };
+    const auto identity = native_history_abi::generated_id(member);
+    for (const auto &field : members)
+        if (field.reference == reference && field.member == identity)
+            return field.address(sheet, 0, width, width);
+    return 0;
+#else
+    return native_history_object_member(sheet, "view_sheets_interfacest", member, width);
+#endif
+}
 static int32_t g_native_character_context = -1;
 static int32_t g_native_character_active_id = -1;
 static int32_t g_native_character_active_sub_tab = -1;
@@ -15,8 +57,8 @@ static bool native_character_open() noexcept {
     uint8_t open = 0;
     int32_t type = -1;
     return g_native_character_owner &&
-        native_history_copy(g_native_character_owner, open) && open == 1 &&
-        native_history_copy(g_native_character_owner + 8, type) && type == 0;
+        native_history_copy(native_character_sheet_field(g_native_character_owner, 0, "open", 1), open) && open == 1 &&
+        native_history_copy(native_character_sheet_field(g_native_character_owner, 8, "active_sheet", 4), type) && type == 0;
 }
 
 static bool native_character_foreground_view(const graphicst *graphics) noexcept {

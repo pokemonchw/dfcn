@@ -300,8 +300,13 @@ void Overlay::append_fortress_location_list_matches(std::vector<std::string> &ro
                         ? exact_literal_translation(complete) : translate_identity(complete);
                     break;
                 case NativeLocationPickerField::FaithChoice:
-                    target = complete == "(No particular deity)" || complete == "No particular deity"
-                        ? exact_literal_translation(complete) : translate_identity(complete);
+                    // Both exact built-in fallbacks belong to the proved
+                    // choice row. Reuse its existing localized UI wording;
+                    // generated identities keep their separate name route.
+                    if (complete == "(No Specific Deity)")
+                        target = exact_literal_translation("(No particular deity)");
+                    else target = complete == "(No particular deity)" || complete == "No particular deity"
+                            ? exact_literal_translation(complete) : translate_identity(complete);
                     break;
                 case NativeLocationPickerField::FaithDeity:
                     target = translate_identity(complete);

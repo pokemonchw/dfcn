@@ -89,8 +89,24 @@ static bool native_reference_calls(std::vector<NativeCall> &calls, uintptr_t ori
     if (elf_runtime::automatic() && origin == 0x400000) native_origin = elf_runtime::state().executable_origin;
 #endif
     for (auto &call : calls) {
+#ifdef _WIN32
+        const auto reference = origin + call.va;
+        const auto &pe = pe_runtime::state();
+        const bool named_prefix = !call.target && !call.prefix.empty() &&
+            reference <= UINT32_MAX && std::binary_search(pe.proven_method_calls.begin(),
+                pe.proven_method_calls.end(), static_cast<uint32_t>(reference));
+        if (named_prefix && (call.inline_original.size() < call.prefix.size() ||
+                !std::equal(call.prefix.begin(), call.prefix.end(), call.inline_original.begin()))) return false;
+#endif
         if (call.va > UINTPTR_MAX - origin || call.target > UINTPTR_MAX - origin ||
             !native_reference_bytes(origin + call.va, call.inline_original)) return false;
+#ifdef _WIN32
+        // The named-call proof owns complete instructions and has traced the
+        // native MOV's source register to the actual virtual receiver. Replay
+        // those admitted bytes, so a register allocation change cannot leave
+        // an obsolete canonical receiver in the callback relay.
+        if (named_prefix) std::copy_n(call.inline_original.begin(), call.prefix.size(), call.prefix.begin());
+#endif
         const uintptr_t site = native_reference_va(origin + call.va);
         const uintptr_t target = call.target ? native_reference_va(origin + call.target) : 0;
         if (!site || site < native_origin || (call.target && (!target || target < native_origin))) return false;

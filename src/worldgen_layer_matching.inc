@@ -1,3 +1,5 @@
+#include "native_chronicle_layout.inc"
+
 // The native world-generation renderer owns this page and publishes its
 // actual addst captions, token positions and panel geometry. Matching reads
 // only those writes; it never discovers text by walking the screen grid.
@@ -9,7 +11,6 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
     const int left = std::clamp(g_native_worldgen_panel.x + 1, 0, gps_->dimx);
     const int right = std::clamp(g_native_worldgen_panel.x +
         g_native_worldgen_panel.w - 1, left, gps_->dimx);
-    if (left >= right) return result;
     const int tile_w = gps_->tile_pixel_x, tile_h = gps_->tile_pixel_y;
     const int origin_x = (gps_->screen_pixel_x - gps_->dimx * tile_w) / 2;
     const int origin_y = (gps_->screen_pixel_y - gps_->dimy * tile_h) / 2;
@@ -246,7 +247,7 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
         if (!button) continue;
         prose_bottom = std::min(prose_bottom, button->y);
         reserved_fields.emplace(y, row.x);
-        const auto source = normalize_utterance(row.source);
+        const auto source = normalize_utterance(complete_text(row));
         auto target = exact_literal_translation(source);
         std::shared_ptr<const dfcn::TranslationResult> translation;
         // History-length buttons use the same numeric rules as ordinary
@@ -396,6 +397,37 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
     // Only captured UI fields enter literal/numeric matching. English event
     // words in the chronicle are never sent through this catalog matcher.
     const auto match_field = [&](const NativeTextCardRow &row) {
+        // The native addst may have shortened a copied string. Translation
+        // uses its retained complete field; suppression still owns only the
+        // actual visible bytes, and never expands into the undrawn suffix.
+        if (!row.complete_source.empty()) {
+            const auto complete = trim_view(row.complete_source);
+            auto target = exact_literal_translation(complete);
+            std::shared_ptr<const TranslationResult> translation;
+            if (!target) for (int index : candidate_template_rules(complete)) {
+                const auto &rule = rules_[index];
+                if (!rule.numeric_template || rule.template_kinds.empty() ||
+                        !std::all_of(rule.template_kinds.begin(), rule.template_kinds.end(),
+                            [](char kind) { return kind == 'd'; })) continue;
+                size_t end = 0;
+                std::vector<std::string> captures;
+                if (!match_template(rule, complete, 0, &end, &captures) ||
+                        end != complete.size()) continue;
+                auto resolved = translate_template_captures_display(rule, captures, complete);
+                if (!resolved.usable() || !resolved.changed()) continue;
+                target = resolved.target;
+                translation = std::make_shared<const TranslationResult>(std::move(resolved));
+                break;
+            }
+            if (target && !target->empty() && *target != complete) {
+                Match match{row.x, row.y, static_cast<int>(row.source.size()),
+                    kWorldgenSummaryRule, *target, row.source};
+                match.translation_result = std::move(translation);
+                match.layout_native_clip = field_clip(row);
+                result.push_back(std::move(match));
+                return;
+            }
+        }
         std::vector<Match> candidates;
         const auto literals = [&](const std::vector<TrieNode> &trie, bool fold_case) {
             if (trie.empty()) return;
@@ -553,169 +585,20 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
 
     if (heading_y < 0 || prose_top >= prose_bottom) return result;
     const SDL_Rect prose_clip = pixels({left, prose_top, right - left, prose_bottom - prose_top});
-    struct Event {
-        std::shared_ptr<const NativeHistoryDocument> document;
-        std::optional<std::pair<int64_t, int64_t>> offset;
-        std::set<size_t> confirmed;
-        std::map<int, std::vector<Match>> rows;
-        std::vector<Match> source_rows;
-        const WorldgenHistoryEventMemory *memory = nullptr;
-        int first_line = -1;
-        bool conflict = false;
-    };
-    std::map<uint64_t, Event> events;
-    std::map<std::pair<int, int>, uint64_t> token_owners;
-    for (const auto &draw : captured_native_history_draws()) {
-        if (!draw.document || draw.token_index >= draw.document->tokens.size() ||
-                draw.y < prose_top || draw.y >= prose_bottom) continue;
-        const auto &token = draw.document->tokens[draw.token_index];
-        if (token.source.empty()) continue;
-        const int first = std::max({left, draw.x, draw.clip_left});
-        const int end = static_cast<int>(std::min<int64_t>(std::min(right, draw.clip_right),
-            int64_t(draw.x) + int64_t(token.source.size())));
-        if (first >= end) continue;
-        auto &event = events[draw.document->sequence];
-        event.document = draw.document;
-        const std::pair<int64_t, int64_t> offset{int64_t(draw.x) - token.x, int64_t(draw.y) - token.y};
-        if (event.offset && *event.offset != offset) event.conflict = true;
-        else event.offset = offset;
-        bool current = true;
-        for (int x = first; current && x < end; ++x)
-            current = visible_char_at(x, draw.y) == static_cast<unsigned char>(token.source[x - draw.x]);
-        if (!current) { event.conflict = true; continue; }
-        if (!event.confirmed.insert(draw.token_index).second) { event.conflict = true; continue; }
-        const std::string source = token.source.substr(first - draw.x, end - first);
-        event.rows[draw.y].push_back({first, draw.y, end - first, kWorldgenChronicleRule, {}, source});
-        remember_span(first, draw.y, source);
-        for (int x = first; x < end; ++x) {
-            const auto [owner, inserted] = token_owners.emplace(std::pair{draw.y, x}, draw.document->sequence);
-            if (!inserted && owner->second != draw.document->sequence) {
-                event.conflict = true;
-                events[owner->second].conflict = true;
-            }
-        }
-    }
-    // Unbound native tokens reserve their original ink; their missing
-    // semantic record cannot be filled by literal matching or another event.
-    std::set<int> retained_rows;
-    for (const auto &draw : captured_native_history_unbound_draws()) {
-        if (draw.y < prose_top || draw.y >= prose_bottom || draw.source.empty()) continue;
-        const int first = std::max({left, draw.x, draw.clip_left});
-        const int end = static_cast<int>(std::min<int64_t>(std::min(right, draw.clip_right),
-            int64_t(draw.x) + int64_t(draw.source.size())));
-        bool current = first < end;
-        for (int x = first; current && x < end; ++x)
-            current = visible_char_at(x, draw.y) == static_cast<unsigned char>(draw.source[x - draw.x]);
-        if (!current) continue;
-        retained_rows.insert(draw.y);
-        for (int x = first; x < end; ++x) {
-            const auto owner = token_owners.find({draw.y, x});
-            if (owner != token_owners.end()) events[owner->second].conflict = true;
-        }
-    }
-    for (const auto &[y, rows] : fields) {
-        if (y < prose_top || y >= prose_bottom) continue;
-        for (const auto &field : rows) for (size_t i = 0; i < field.row.source.size(); ++i) {
-            const int x = field.row.x + static_cast<int>(i);
-            if (x >= left && x < right && field.row.source[i] != ' ' && !token_owners.contains({y, x}))
-                retained_rows.insert(y);
-        }
-    }
-    std::vector<Event *> ordered;
-    for (auto &[sequence, event] : events) if (!event.rows.empty()) ordered.push_back(&event);
-    std::sort(ordered.begin(), ordered.end(), [](const Event *a, const Event *b) {
-        return a->rows.begin()->first < b->rows.begin()->first;
-    });
-    for (Event *event : ordered) {
-        auto &rows = event->source_rows;
-        for (auto &[y, spans] : event->rows) {
-            std::sort(spans.begin(), spans.end(), [](const Match &a, const Match &b) { return a.x < b.x; });
-            const int first = spans.front().x;
-            int end = first;
-            for (const auto &span : spans) end = std::max(end, span.x + span.length);
-            std::string source(end - first, ' ');
-            for (const auto &span : spans) source.replace(span.x - first, span.length, span.source);
-            // Only the published caption runs of this event row are checked
-            // for uncovered ink. No other screen row is read or interpreted.
-            const auto caption_row = fields.find(y);
-            if (caption_row != fields.end()) for (const auto &field : caption_row->second) {
-                for (size_t i = 0; i < field.row.source.size(); ++i) {
-                    const int x = field.row.x + static_cast<int>(i);
-                    if (x < left || x >= right || field.row.source[i] == ' ') continue;
-                    const auto owner = token_owners.find({y, x});
-                    if (owner == token_owners.end() || owner->second != event->document->sequence)
-                        event->conflict = true;
-                }
-            }
-            remember_span(first, y, source);
-            rows.push_back({first, y, end - first, kWorldgenChronicleRule, {}, std::move(source)});
-        }
-        int64_t complete_first = INT64_MAX, complete_last = INT64_MIN;
-        if (!event->offset) event->conflict = true;
-        else for (size_t i = 0; i < event->document->tokens.size(); ++i) {
-            const auto &token = event->document->tokens[i];
-            if (trim_view(token.source).empty()) continue;
-            const int64_t x = int64_t(token.x) + event->offset->first;
-            const int64_t y = int64_t(token.y) + event->offset->second;
-            complete_first = std::min(complete_first, y);
-            complete_last = std::max(complete_last, y);
-            if (!event->confirmed.contains(i) && y >= prose_top && y < prose_bottom &&
-                    x < right && x + int64_t(token.source.size()) > left) event->conflict = true;
-        }
-        if (complete_first > rows.front().y || complete_last < rows.back().y ||
-                complete_last - complete_first >= 16384) event->conflict = true;
-        event->first_line = event->conflict ? -1 : static_cast<int>(rows.front().y - complete_first);
-        if (event->first_line > 0) continue;
-        event->memory = event->conflict ? nullptr : worldgen_cached_history_event(*event->document);
-        if (!event->memory || event->memory->target.empty())
-            for (const auto &row : rows) retained_rows.insert(row.y);
-    }
-    int next_y = prose_top;
-    for (Event *event : ordered) {
-        auto &rows = event->source_rows;
-        if (event->first_line > 0) {
-            // A scrolled-away record keeps ownership of its visible tail,
-            // while the complete event memory decides which record it is.
-            for (auto &row : rows) { row.layout_native_clip = prose_clip; result.push_back(std::move(row)); }
-            continue;
-        }
-        for (int y : retained_rows) if (y < rows.front().y) next_y = std::max(next_y, y + 1);
-        rows.front().layout_native_clip = prose_clip;
-        std::vector<Match> fitted;
-        // Measure the complete cached event in its current viewport. The
-        // paragraph-layout cache retains this width/font/color result.
-        bool fits = event->memory && !event->memory->target.empty() && append_bounded_paragraph(
-            rows, event->memory->target, context, fitted, -1, right, right,
-            event->memory->foreground_colors, false, left);
-        int display_y = next_y;
-        for (const auto &row : fitted) if (!row.target.empty()) {
-            const int height = (std::max(tile_h, row.layout_line_height_pixels) + tile_h - 1) / tile_h;
-            const auto occupied = retained_rows.lower_bound(display_y);
-            if (occupied != retained_rows.end() && *occupied < display_y + height) fits = false;
-            display_y += height;
-        }
-        if (!fits) {
-            next_y = std::max(next_y, rows.back().y + 1);
-            for (auto &row : rows) {
-                retained_rows.insert(row.y);
-                row.native_help_source_only = true;
-                row.native_help_review_source = event->document->native_source;
-                row.layout_native_clip = prose_clip;
-                result.push_back(std::move(row));
-            }
-            continue;
-        }
-        for (auto &row : fitted) {
-            if (!row.target.empty()) {
-                row.layout_y = next_y;
-                row.layout_pixel_y = 0;
-                row.layout_native_clip = prose_clip;
-                row.layout_fixed_baseline = true;
-                next_y += (std::max(tile_h, row.layout_line_height_pixels) + tile_h - 1) / tile_h;
-            }
-            result.push_back(std::move(row));
-        }
-    }
+    std::map<int, std::vector<NativeTextCardRow>> chronicle_fields;
+    for (const auto &[y, values] : fields) for (const auto &field : values)
+        chronicle_fields[y].push_back(field.row);
+    auto layouts = native_chronicle_layout(left, right, prose_top, prose_bottom, tile_h,
+        prose_clip, chronicle_fields, captured_native_history_draws(), captured_native_history_unbound_draws(),
+        context, [&](int x, int y, unsigned char expected) { return visible_char_at(x, y) == expected; },
+        [&](const NativeHistoryDocument &document) { return worldgen_cached_history_event(document); },
+        [&](const auto &rows, std::string_view target, auto &source, auto &fitted,
+                const auto &colors, int begin, int end) {
+            return append_bounded_paragraph(rows, target, source, fitted, -1, end, end, colors, false, begin);
+        });
+    for (auto &layout : layouts)
+        result.insert(result.end(), std::make_move_iterator(layout.matches.begin()),
+            std::make_move_iterator(layout.matches.end()));
     return result;
 }
 

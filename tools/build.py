@@ -7,6 +7,7 @@ import argparse
 import ctypes
 from datetime import datetime
 import hashlib
+import json
 import os
 from pathlib import Path
 import platform
@@ -14,6 +15,7 @@ import re
 import shlex
 import shutil
 import stat
+import struct
 import subprocess
 import sys
 import tempfile
@@ -243,6 +245,14 @@ def deploy_runtime_data(directory: Path) -> None:
         install(runtime / name, (ROOT / "third_party" / name).read_bytes())
     name = "native-addresses/pe-seed.bin" if sys.platform == "win32" else "native-addresses/elf-seed.bin"
     install(runtime / name, (RUNTIME / name).read_bytes())
+    # These are the production scanner's sealed, image/seed-owned catalogs.
+    # Publish them with the seed so an independently installed game uses the
+    # generated layout immediately instead of repeating the same scan.
+    if sys.platform == "win32":
+        install(runtime / "hde64.LICENSE.txt", (ROOT / "compat/hde64/LICENSE.txt").read_bytes())
+        seed_digest = hashlib.sha256((RUNTIME / name).read_bytes()).hexdigest()
+        for source in sorted((RUNTIME / "native-addresses/cache").glob(f"*-{seed_digest}.bin")):
+            install(runtime / source.relative_to(RUNTIME), source.read_bytes())
     for source in sorted((RUNTIME / "rulesets").rglob("*.toml")):
         install(runtime / source.relative_to(RUNTIME), source.read_bytes())
     for source in sorted((RUNTIME / "opencc").rglob("*")):
@@ -413,19 +423,101 @@ def needs_update(outputs: list[Path], inputs: list[Path]) -> bool:
     return any(path.stat().st_mtime_ns > built_at for path in inputs)
 
 
-def generate_data(env: dict[str, str]) -> None:
+def use_prepared_pe_sources() -> None:
+    """Consume existing reference data when its source image is unavailable."""
+    seed = RUNTIME / "native-addresses/pe-seed.bin"
+    prepared = [seed, ROOT / "src/native_pe_build_bindings.inc",
+                ROOT / "src/native_history_layouts.inc",
+                ROOT / "src/native_history_event_profiles.inc",
+                ROOT / "src/preference_vocabulary.inc", ROOT / "src/creature_vocabulary.inc"]
+    missing = [str(path) for path in prepared if not path.is_file()]
+    if missing:
+        raise RuntimeError("The generation reference is unavailable and prepared build inputs are missing: "
+                           + ", ".join(missing))
+    with seed.open("rb") as source:
+        header = source.read(16)
+        if len(header) != 16 or header[:8] != b"DFCNPE01":
+            raise RuntimeError(f"Unsupported prepared PE address seed: {seed}")
+        schema, count = struct.unpack_from("<II", header, 8)
+        if schema not in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13) or count > 1000000:
+            raise RuntimeError(f"Unsupported prepared PE address seed header: {seed}")
+        encoded = source.read(count * 8)
+        if len(encoded) != count * 8:
+            raise RuntimeError(f"Truncated prepared PE address seed: {seed}")
+    spans = []
+    for address, length in sorted(struct.iter_unpack("<II", encoded)):
+        if not address or not length or address + length > 0xffffffff:
+            raise RuntimeError(f"Invalid prepared PE resource span: {address:#x}+{length:#x}")
+        end = address + length
+        if spans and address <= spans[-1][1]:
+            spans[-1] = spans[-1][0], max(spans[-1][1], end)
+        else:
+            spans.append((address, end))
+    from native_pe_coordinates import collect_required_coordinates
+    missing = []
+    index = 0
+    for address, length in collect_required_coordinates(ROOT).items():
+        while index < len(spans) and spans[index][1] <= address:
+            index += 1
+        if index == len(spans) or spans[index][0] > address or spans[index][1] < address + length:
+            missing.append((address, length))
+    if missing:
+        # A new RTTI root may already have a reviewed edition mapping even
+        # though it was not in the previous consumer's required list.
+        from native_pe_seed_evidence import _read
+        from native_reference_semantics import augment_reference_tables
+        _, known, _, tables, _ = _read(seed)
+        metadata = json.loads((RUNTIME / "native-addresses/pe-layout-semantics.json").read_text(encoding="utf-8"))
+        identities = {reference for reference, _, _ in
+            augment_reference_tables(ROOT, known, tables, metadata)}
+        missing = [(address, length) for address, length in missing
+                   if length > 8 or address not in identities]
+    if missing:
+        # The old consumer list is not the extent of the stored reference
+        # evidence. The mandatory refresh below can recover newly consumed
+        # instructions from complete stored bodies or a reviewed edition's
+        # image-owned canonical shape. It refuses missing evidence before
+        # publication; an older installed game never becomes the reference.
+        print("Preparing additional reference resources from retained evidence: "
+              + ", ".join(f"{address:#010x}+{length:#x}" for address, length in missing), flush=True)
+    print("No generation reference configured; using existing generated sources and PE address seed.", flush=True)
+
+
+def generate_history_layouts(env: dict[str, str], objdump: Path | None = None) -> None:
     layout_inputs = [ROOT / "tools/build_history_layouts.py",
-                     *file_inputs(UPSTREAM / "df-structures", {".xml"})]
-    if needs_update([ROOT / "src/native_history_layouts.inc"], layout_inputs):
-        run([sys.executable, "-B", "tools/build_history_layouts.py"], env)
-    history_inputs = [ROOT / "tools/build_history_event_profiles.py",
-                      native_game_executable(GAME)]
+                     ROOT / "tools/native_standard_library_layouts.py",
+                     ROOT / "tools/native_reference_semantics.py",
+                     ROOT / "tools/build_pe_image_bindings.py",
+                     ROOT / "tools/pe_instruction_match.py",
+                     *file_inputs(UPSTREAM / "df-structures", {".xml"}),
+                     *[path for path in file_inputs(ROOT / "src", {".h", ".inc", ".cpp"})
+                       if path.name != "native_history_layouts.inc"]]
+    command = [sys.executable, "-B", "tools/build_history_layouts.py"]
+    if objdump is not None:
+        if not objdump.is_file():
+            raise RuntimeError(f"Required native disassembler is missing: {objdump}")
+        command.extend(["--objdump", objdump])
+        sources = native_edition_sources(ROOT)
+        evidence = [RUNTIME / "native-pe-images.json", RUNTIME / "native-addresses/pe-seed.bin"]
+        if sources.get("classic"):
+            evidence.append(sources["classic"])
+        layout_inputs.extend(path for path in evidence if path.is_file())
+    outputs = [ROOT / "src/native_history_layouts.inc", RUNTIME / "native-addresses/pe-layout-semantics.json"]
+    if needs_update(outputs, layout_inputs):
+        run(command, env)
+
+
+def generate_data(env: dict[str, str], reference: Path | None = None,
+                  objdump: Path | None = None) -> None:
+    generate_history_layouts(env, objdump)
+    history_image = reference or native_game_executable(GAME)
+    history_inputs = [ROOT / "tools/build_history_event_profiles.py", history_image]
     history_output = ROOT / "src/native_history_event_profiles_elf.inc"
     if sys.platform == "win32":
         history_inputs.append(EXTRACTED / "native-history-event-layouts.tsv")
         history_output = ROOT / "src/native_history_event_profiles.inc"
     if needs_update([history_output], history_inputs):
-        run([sys.executable, "-B", "tools/build_history_event_profiles.py"], env)
+        run([sys.executable, "-B", "tools/build_history_event_profiles.py", "--exe", history_image], env)
     dictionary = RUNTIME / "translations.tsv"
     anatomy = RUNTIME / "rulesets/zh-Hans/health/bodypart/raw_names.toml"
     creature_names = RUNTIME / "rulesets/zh-Hans/creatures/name/raw_names.toml"
@@ -942,8 +1034,23 @@ def main() -> int:
                                    "source in data/runtime/native-pe-images.json's bootstrap path.")
             shutil.copyfile(bootstrap_source, checked_path(bootstrap_candidate))
         compiler, env, dependency_includes, dependency_libraries = native_tools(args, abi)
-        generate_data(env)
-        if pe_sources:
+        compile_flags = ["-std=c++20", *split_arguments(env.get("CXXFLAGS", "-O2")),
+                         "-Wall", "-Wextra", "-Wpedantic", *abi["compile"],
+                         "-Icompat", "-Isrc", "-Ithird_party/tomlplusplus/include",
+                         "-Ithird_party/opencc/src", "-DOpencc_BUILT_AS_STATIC", "-iquote",
+                         "g_src",
+                         *dependency_includes, *split_arguments(env.get("CPPFLAGS", ""))]
+        link_flags = ["-shared", *split_arguments(env.get("LDFLAGS", "")),
+                      *dependency_libraries, *abi["link"], *split_arguments(env.get("LDLIBS", ""))]
+        if "-static" in [*compile_flags, *link_flags]:
+            raise RuntimeError("Global static linking is unsupported; SDL2 must remain dynamically linked.")
+        layout_objdump = Path(compiler[0]).with_name("objdump.exe") if pe_sources else None
+        if pe_sources and not pe_sources.get("reference"):
+            use_prepared_pe_sources()
+            generate_history_layouts(env, layout_objdump)
+        else:
+            generate_data(env, pe_sources.get("reference"), layout_objdump)
+        if pe_sources.get("reference"):
             from build_pe_image_bindings import generate as generate_pe_bindings
             output = ROOT / "src/native_pe_build_bindings.inc"
             inputs = [ROOT / "tools/build_pe_image_bindings.py", ROOT / "tools/pe_instruction_match.py",
@@ -965,6 +1072,111 @@ def main() -> int:
                     raise RuntimeError(f"Required native disassembler is missing: {objdump}")
                 generate_pe_seed(pe_sources["reference"], pe_sources["classic"], objdump,
                                  output, seed_output)
+        if pe_sources:
+            # The source argument contracts and deployed address cache share
+            # the runtime's complete control-flow decoder, including EH and
+            # switch ingress. Build their producer before refreshing the seed.
+            catalog_tool = ROOT / "build/native-address-catalog.exe"
+            catalog_inputs = [ROOT / "tools/native_address_catalog.cpp",
+                              *file_inputs(ROOT / "src", {".h"}),
+                              *file_inputs(ROOT / "compat/hde64", {".h", ".c"}),
+                              ROOT / "compat/graphics_abi.h"]
+            if needs_update([catalog_tool], catalog_inputs):
+                catalog_tool.parent.mkdir(parents=True, exist_ok=True)
+                run([*compiler, *compile_flags, "-o", str(catalog_tool),
+                     "tools/native_address_catalog.cpp", "-static-libgcc", "-static-libstdc++",
+                     "-Wl,-Bstatic", "-lwinpthread", "-Wl,-Bdynamic", "-lbcrypt"], env)
+            from native_pe_seed_evidence import refresh as refresh_pe_evidence
+            from native_target_abi import prepare_target
+            target_image = pe_sources.get("game") or pe_sources["reference"]
+            objdump = Path(compiler[0]).with_name("objdump.exe")
+            if not objdump.is_file():
+                raise RuntimeError(f"Required native disassembler is missing: {objdump}")
+            target_profile = prepare_target(ROOT, target_image, objdump=objdump)
+            target_profiles = [target_profile] if target_profile else []
+            if target_profile:
+                # Retain declarations derived for other exact images with the
+                # same canonical ABI producer. Switching installations should
+                # extend the package's version coverage, not replace it.
+                for cached_path in sorted((EXTRACTED / "cache/native-abi").glob("*.json")):
+                    if cached_path.stem == target_profile["sha256"]:
+                        continue
+                    try:
+                        cached_profile = json.loads(cached_path.read_text(encoding="utf-8"))
+                    except (OSError, ValueError):
+                        continue
+                    if (cached_profile.get("schema") == target_profile["schema"]
+                            and cached_profile.get("revision") == target_profile["revision"]
+                            and cached_profile.get("sha256") == cached_path.stem
+                            and re.fullmatch(r"[0-9a-f]{64}", cached_path.stem)):
+                        target_profiles.append(cached_profile)
+            evidence_inputs = [ROOT / "tools/native_pe_seed_evidence.py",
+                               ROOT / "tools/native_history_semantic_evidence.py",
+                               ROOT / "tools/native_target_abi.py", target_image,
+                               ROOT / "tools/native_graphics_header_layout.py",
+                               ROOT / "tools/native_graphics_image_evidence.py",
+                               ROOT / "tools/native_reference_semantics.py",
+                               ROOT / "tools/native_enum_evidence.py",
+                               ROOT / "tools/native_type_extent_evidence.py",
+                               ROOT / "tools/native_identity_tables.py",
+                               ROOT / "tools/native_standard_library_layouts.py",
+                               ROOT / "tools/native_frame_evidence.py",
+                               ROOT / "tools/native_typed_member_evidence.py",
+                               ROOT / "tools/native_frame_receiver_evidence.py",
+                               ROOT / "tools/native_receiver_alias_evidence.py",
+                               ROOT / "tools/native_method_call_evidence.py",
+                               ROOT / "tools/native_method_abi_evidence.py",
+                               ROOT / "tools/native_inline_resize_evidence.py",
+                               ROOT / "tools/native_callable_search_evidence.py",
+                               ROOT / "tools/native_text_draw_evidence.py",
+                               ROOT / "tools/native_workshop_recipe_evidence.py",
+                               ROOT / "tools/native_chooser_feature_evidence.py",
+                               ROOT / "tools/native_optional_panel_evidence.py",
+                               ROOT / "tools/native_reference_resources.py",
+                               ROOT / "tools/native_pe_coordinates.py",
+                               ROOT / "compat/graphics_abi.h",
+                               ROOT / "src/native_runtime.h",
+                               ROOT / "src/native_history_layouts.inc",
+                               *file_inputs(ROOT / "src", {".h", ".inc", ".cpp"})]
+            seed_output = RUNTIME / "native-addresses/pe-seed.bin"
+            # Installing an older image can preserve an older file timestamp.
+            # Dependency mtimes alone must not keep a different image's ABI
+            # declaration in the seed. Bind this generation to content too.
+            evidence_key = hashlib.sha256(json.dumps(target_profiles, sort_keys=True,
+                separators=(",", ":")).encode("utf-8")).hexdigest() if target_profile else \
+                hashlib.sha256(target_image.read_bytes()).hexdigest()
+            evidence_stamp = ROOT / "data/extracted/cache/native-build/pe-evidence-inputs.json"
+            try:
+                recorded_evidence = json.loads(evidence_stamp.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                recorded_evidence = {}
+            seed_digest = hashlib.sha256(seed_output.read_bytes()).hexdigest()
+            with seed_output.open("rb") as stream:
+                seed_header = stream.read(12)
+            if (len(seed_header) != 12 or struct.unpack_from("<I", seed_header, 8)[0] != 13
+                    or recorded_evidence != {"input": evidence_key, "seed": seed_digest}
+                    or needs_update([seed_output], evidence_inputs)):
+                objdump = Path(compiler[0]).with_name("objdump.exe")
+                if not objdump.is_file():
+                    raise RuntimeError(f"Required native disassembler is missing: {objdump}")
+                argument_output = ROOT / "data/extracted/cache/native-build/pe-source-arguments.bin"
+                argument_output.parent.mkdir(parents=True, exist_ok=True)
+                from native_typed_member_evidence import prepare_reference_catalog
+                source_catalog = prepare_reference_catalog(ROOT, seed_output, objdump)
+                run([str(catalog_tool), "--source-arguments", str(pe_sources["classic"]),
+                     str(source_catalog), str(argument_output)], env)
+                refresh_pe_evidence(ROOT, seed_output, objdump,
+                                    target_profiles=target_profiles,
+                                    argument_evidence=argument_output.read_bytes(),
+                                    reference_catalog=source_catalog)
+                evidence_stamp.parent.mkdir(parents=True, exist_ok=True)
+                stamp_candidate = evidence_stamp.with_suffix(".publish")
+                try:
+                    stamp_candidate.write_text(json.dumps({"input": evidence_key,
+                        "seed": hashlib.sha256(seed_output.read_bytes()).hexdigest()}) + "\n", encoding="utf-8")
+                    stamp_candidate.replace(evidence_stamp)
+                finally:
+                    stamp_candidate.unlink(missing_ok=True)
         elif sys.platform == "linux" and sources.get("classic"):
             from build_native_image_bindings import (
                 Image, binding_sources, generate as generate_elf_bindings,
@@ -988,18 +1200,15 @@ def main() -> int:
                            UPSTREAM / "df-structures/symbols.xml", *elf_binding_sources(ROOT)]
             if needs_update([seed_output], seed_inputs):
                 generate_elf_seed(sources["reference"], seed_output)
-        compile_flags = ["-std=c++20", *split_arguments(env.get("CXXFLAGS", "-O2")),
-                         "-Wall", "-Wextra", "-Wpedantic", *abi["compile"],
-                         "-Icompat", "-Isrc", "-Ithird_party/tomlplusplus/include",
-                         "-Ithird_party/opencc/src", "-DOpencc_BUILT_AS_STATIC", "-iquote",
-                         "g_src",
-                         *dependency_includes, *split_arguments(env.get("CPPFLAGS", ""))]
-        link_flags = ["-shared", *split_arguments(env.get("LDFLAGS", "")),
-                      *dependency_libraries, *abi["link"], *split_arguments(env.get("LDLIBS", ""))]
-        if "-static" in [*compile_flags, *link_flags]:
-            raise RuntimeError("Global static linking is unsupported; SDL2 must remain dynamically linked.")
+        if pe_sources:
+            # Produce the actual cache consumed by the deployed core, using
+            # exactly its runtime scanner and the installed image on disk.
+            # Generation is part of this entry, never an alternative build.
+            run([str(catalog_tool), str(pe_sources.get("game") or pe_sources["reference"]),
+                 str(RUNTIME / "native-addresses/pe-seed.bin"),
+                 str(RUNTIME / "native-addresses/cache")], env)
         core_inputs = [SCRIPT, *file_inputs(ROOT / "src", {".cpp", ".h", ".inc", ".exports"}),
-                       *file_inputs(ROOT / "compat", {".h"}),
+                       *file_inputs(ROOT / "compat", {".h", ".c"}),
                        *file_inputs(ROOT / "third_party/tomlplusplus/include", {".h", ".hpp"}),
                        *file_inputs(ROOT / "third_party/opencc/src", {".cpp", ".h", ".hpp"}),
                        ROOT / "third_party/pinyin-data/pinyin_data.inc"]

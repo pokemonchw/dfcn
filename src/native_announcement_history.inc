@@ -45,13 +45,9 @@ static bool native_announcement_history_row(uintptr_t address, NativeAnnouncemen
     // and compiler-owned ELF offsets. A single header read replaces separate
     // guarded reads for type, flags, repeats, identity and the string header.
     constexpr auto &fields = native_history_layout::f_report_fields;
-    constexpr size_t snapshot_size = [] {
-        size_t result = 0;
-        for (const auto &field : native_history_layout::f_report_fields)
-            result = std::max(result, field.native + field.size);
-        return result;
-    }();
-    std::array<unsigned char, snapshot_size> snapshot{};
+    const size_t snapshot_size = native_history_snapshot_size(fields);
+    if (!snapshot_size) return false;
+    std::vector<unsigned char> snapshot(snapshot_size);
     if (!native_history_copy_bytes(address, snapshot.data(), snapshot.size())) return false;
     if (native_fields) native_announcement_log_report_fields(snapshot.data(), *native_fields);
     int16_t type = -1;
@@ -143,14 +139,9 @@ struct NativeAnnouncementLogParentVersion {
 static bool native_announcement_log_read_version(uintptr_t parent,
         NativeAnnouncementLogParentVersion &version, bool guarded) {
     constexpr auto &fields = native_history_layout::f_report_fields;
-    constexpr size_t snapshot_size = [] {
-        size_t size = 0;
-        for (const auto &field : native_history_layout::f_report_fields)
-            size = std::max(size, field.native + field.size);
-        return size;
-    }();
-    if (!parent || snapshot_size > UINTPTR_MAX - parent) return false;
-    std::array<unsigned char, snapshot_size> snapshot{};
+    const size_t snapshot_size = native_history_snapshot_size(fields);
+    if (!parent || !snapshot_size || snapshot_size > UINTPTR_MAX - parent) return false;
+    std::vector<unsigned char> snapshot(snapshot_size);
     if (guarded) {
         if (!native_history_copy_bytes(parent, snapshot.data(), snapshot.size())) return false;
     } else std::memcpy(snapshot.data(), reinterpret_cast<const void *>(parent), snapshot.size());
@@ -417,13 +408,9 @@ static std::vector<NativeAnnouncementLogVisibleRecord> native_announcement_log_p
             }
     const auto version_of = [&](uintptr_t parent, NativeAnnouncementLogParentVersion &version) {
         constexpr auto &fields = native_history_layout::f_report_fields;
-        constexpr size_t snapshot_size = [] {
-            size_t size = 0;
-            for (const auto &field : native_history_layout::f_report_fields)
-                size = std::max(size, field.native + field.size);
-            return size;
-        }();
-        std::array<unsigned char, snapshot_size> snapshot{};
+        const size_t snapshot_size = native_history_snapshot_size(fields);
+        if (!snapshot_size) return false;
+        std::vector<unsigned char> snapshot(snapshot_size);
         if (!copy_live(parent, snapshot.data(), snapshot.size())) {
             // Optional typed metadata cannot remove an otherwise readable
             // parent. Its string header still supplies a bounded version.

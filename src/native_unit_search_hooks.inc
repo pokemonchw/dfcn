@@ -3,11 +3,13 @@
 using NativeUnitSearchFindFn = size_t (*)(const char *, size_t, size_t,
                                          const char *, size_t);
 using NativeUnitSearchFoldFn = void (*)(NativeString *);
+using NativeUnitSearchPredicateFn = bool (*)(void *, const void *);
 struct NativeUnitSearchProfile {
     uintptr_t base = 0;
     NativeUnitSearchFindFn find = nullptr;
     NativeUnitSearchFoldFn fold = nullptr;
     std::vector<NativeCall> calls;
+    NativeUnitSearchPredicateFn predicate = nullptr;
 };
 static size_t capture_native_unit_search_find(const char *, size_t, size_t,
                                               const char *, size_t);
@@ -17,11 +19,16 @@ static void capture_native_unit_search_query_fold(NativeString *);
 static void capture_native_unit_search_name_fold(NativeString *, const NativeString *);
 static void capture_native_unit_search_term(NativeString *, const NativeString *);
 static bool capture_native_unit_search_job_reject(const NativeString *, const NativeString *);
+#ifdef _WIN32
+static bool capture_native_unit_search_predicate(void *, const void *);
+static void capture_native_unit_search_scoped_fold(NativeString *);
+#endif
 #include "native_unit_search_profile.inc"
 
 static NativeCallHook g_native_unit_search_hook;
 static NativeUnitSearchFindFn g_real_native_unit_search_find = nullptr;
 static NativeUnitSearchFoldFn g_real_native_unit_search_fold = nullptr;
+static NativeUnitSearchPredicateFn g_real_native_unit_search_predicate = nullptr;
 struct NativeUnitSearchIdentity {
     std::string source, folded;
     std::optional<std::string> target;
@@ -29,6 +36,31 @@ struct NativeUnitSearchIdentity {
 static NativeUnitSearchIdentity &native_unit_search_identity() {
     return reloadable_thread_state<NativeUnitSearchIdentity, struct UnitSearchIdentityTag>();
 }
+
+#ifdef _WIN32
+static const NativeString *&native_unit_search_query() {
+    return reloadable_thread_state<const NativeString *, struct UnitSearchQueryTag>();
+}
+static bool capture_native_unit_search_predicate(void *capture, const void *argument) {
+    NativeInputCallbackScope callback;
+    if (!g_real_native_unit_search_predicate) return true;
+    auto &query = native_unit_search_query();
+    const auto *previous = query;
+    void *widget = nullptr;
+    if (capture) std::memcpy(&widget, capture, sizeof(widget));
+    query = static_cast<const NativeString *>(native_object_member_address(widget,
+        {0x680, "widget_unit_list", "filter_str"}, sizeof(NativeString)));
+    struct Restore { const NativeString *&slot; const NativeString *value;
+        ~Restore() { slot = value; } } restore{query, previous};
+    // The native invoker owns the argument copy and its variant/pair tag.
+    // Preserve it byte-for-byte; the game's original predicate still decides
+    // candidate eligibility and performs both its name and activity lookups.
+    return callback.call_native([&] { return g_real_native_unit_search_predicate(capture, argument); });
+}
+static void capture_native_unit_search_scoped_fold(NativeString *text) {
+    capture_native_unit_search_name_fold(text, native_unit_search_query());
+}
+#endif
 
 static void capture_native_unit_search_query_fold(NativeString *text) {
     fold_native_search_query(text, g_real_native_unit_search_fold);
@@ -130,6 +162,7 @@ static void uninstall_native_unit_search_hook() {
     if (g_native_unit_search_hook.uninstall("Native unit translated search")) {
         g_real_native_unit_search_find = nullptr;
         g_real_native_unit_search_fold = nullptr;
+        g_real_native_unit_search_predicate = nullptr;
     }
 }
 
@@ -144,6 +177,7 @@ static bool install_native_unit_search_hook() {
     if (profile.calls.empty() || !profile.find || !profile.fold) return false;
     g_real_native_unit_search_find = profile.find;
     g_real_native_unit_search_fold = profile.fold;
+    g_real_native_unit_search_predicate = profile.predicate;
     if (!g_native_unit_search_hook.install(profile.base, profile.calls,
                                            "Native unit translated search")) {
         uninstall_native_unit_search_hook();

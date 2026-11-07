@@ -153,16 +153,21 @@ static bool native_dfhack_render_game_method(uintptr_t address) noexcept {
         reinterpret_cast<LPCWSTR>(address), &module) && module == GetModuleHandleW(nullptr);
 }
 
+static size_t native_dfhack_render_slot() noexcept {
+    return native_object_virtual_slot("abstract_interfacest", "render", 3, "void(uint32_t)", 1);
+}
+
 static void native_dfhack_render_custom_callback(void *screen, uint32_t tick) {
     NativeInputCallbackScope callback;
     NativeDfhackRenderMethod method = nullptr;
     void **table = nullptr;
-    if (!screen || !native_history_copy(reinterpret_cast<uintptr_t>(screen), table) || !table) return;
+    const size_t slot = native_dfhack_render_slot();
+    if (slot == SIZE_MAX || !screen || !native_history_copy(reinterpret_cast<uintptr_t>(screen), table) || !table) return;
     {
         std::lock_guard<std::recursive_mutex> lock(g_native_dfhack_render_mutex);
         const auto known = std::find_if(g_native_dfhack_render_custom_hooks.begin(),
             g_native_dfhack_render_custom_hooks.end(), [&](const auto &hook) {
-                return hook.slot == table + 3;
+                return hook.slot == table + slot;
             });
         if (known != g_native_dfhack_render_custom_hooks.end())
             method = reinterpret_cast<NativeDfhackRenderMethod>(known->original);
@@ -180,21 +185,22 @@ static bool native_dfhack_render_ensure_custom(void *screen) {
     if (!screen || !api.foreign_screen(screen) || api.identity(screen)) return true;
     void **table = nullptr;
     void *method = nullptr;
-    if (!native_history_copy(reinterpret_cast<uintptr_t>(screen), table) || !table ||
-            !native_history_copy(reinterpret_cast<uintptr_t>(table + 3), method) || !method) return false;
+    const size_t slot = native_dfhack_render_slot();
+    if (slot == SIZE_MAX || !native_history_copy(reinterpret_cast<uintptr_t>(screen), table) || !table ||
+            !native_history_copy(reinterpret_cast<uintptr_t>(table + slot), method) || !method) return false;
     // The exported Lua method already has a complete entry hook. C++ custom
     // viewscreens need their full override, not the resize-only base method.
     if (method == reinterpret_cast<void *>(GetProcAddress(api.module,
             "?render@dfhack_lua_viewscreen@DFHack@@UEAAXI@Z"))) return true;
     const auto known = std::find_if(g_native_dfhack_render_custom_hooks.begin(),
-        g_native_dfhack_render_custom_hooks.end(), [&](const auto &hook) { return hook.slot == table + 3; });
+        g_native_dfhack_render_custom_hooks.end(), [&](const auto &hook) { return hook.slot == table + slot; });
     if (known != g_native_dfhack_render_custom_hooks.end()) {
         if (known->installed) return true;
         if (!known->install("DFHack custom viewscreen private layer")) return false;
         g_native_dfhack_render_custom_live.fetch_add(1, std::memory_order_release);
         return true;
     }
-    g_native_dfhack_render_custom_hooks.push_back({table + 3, method,
+    g_native_dfhack_render_custom_hooks.push_back({table + slot, method,
         reinterpret_cast<void *>(&native_dfhack_render_custom_callback)});
     if (!g_native_dfhack_render_custom_hooks.back().install("DFHack custom viewscreen private layer")) return false;
     g_native_dfhack_render_custom_live.fetch_add(1, std::memory_order_release);
@@ -306,7 +312,8 @@ static std::string_view native_dfhack_render_name(const void *host) noexcept {
 
 static bool native_dfhack_render_ensure_host(const void *host, bool foreign_content) {
     auto &api = g_native_dfhack_render_api;
-    if (!host || !api.table(host)) return false;
+    const size_t slot = native_dfhack_render_slot();
+    if (slot == SIZE_MAX || !host || !api.table(host)) return false;
     for (bool bottom : {true, false}) {
         auto it = std::find_if(g_native_dfhack_render_links.begin(), g_native_dfhack_render_links.end(),
             [&](const auto *link) { return link->host == host && link->bottom == bottom && link->object; });
@@ -329,7 +336,7 @@ static bool native_dfhack_render_ensure_host(const void *host, bool foreign_cont
         if (!native_dfhack_prepare_render_link_relay(link)) { HeapFree(GetProcessHeap(), 0, link); return false; }
         link->object = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, 0x70);
         if (!link->object) return false;
-        api.construct(link->object, host, 3, link->relay, &link->chain,
+        api.construct(link->object, host, static_cast<int>(slot), link->relay, &link->chain,
             bottom ? INT_MIN : INT_MAX, bottom ? "dfcn native render segment" : "dfcn DFHack render layer");
         g_native_dfhack_render_links.push_back(link);
         g_native_dfhack_render_objects_live.fetch_add(1, std::memory_order_release);
@@ -342,6 +349,8 @@ static bool native_dfhack_render_ensure_host(const void *host, bool foreign_cont
 
 static bool native_dfhack_render_place_bottom(NativeDfhackRenderLinkContext &bottom) {
     if (!bottom.object || !bottom.bottom) return true;
+    const size_t slot = native_dfhack_render_slot();
+    if (slot == SIZE_MAX) return false;
     auto &registry = g_native_dfhack_render_api.registry;
     void *previous = nullptr;
     const void *previous_host = nullptr;
@@ -379,7 +388,7 @@ static bool native_dfhack_render_place_bottom(NativeDfhackRenderLinkContext &bot
         if (host != bottom.host) break;
         if (!native_history_copy(reinterpret_cast<uintptr_t>(link) + 0x20, priority)) return false;
         if (priority != INT_MIN) break;
-        if (!native_history_copy(reinterpret_cast<uintptr_t>(link) + 8, index) || index != 3 ||
+        if (!native_history_copy(reinterpret_cast<uintptr_t>(link) + 8, index) || index != static_cast<int32_t>(slot) ||
                 !registry.applied(link) || visited.size() >= 4096 ||
                 std::find(visited.begin(), visited.end(), link) != visited.end()) return false;
         visited.push_back(link);
@@ -418,6 +427,8 @@ static bool native_dfhack_render_refresh(bool reorder) noexcept {
     try {
         std::lock_guard<std::recursive_mutex> lock(g_native_dfhack_render_mutex);
         auto &api = g_native_dfhack_render_api;
+        const size_t slot = native_dfhack_render_slot();
+        if (slot == SIZE_MAX) return false;
         auto *screen = api.screen(false);
         const auto *current_host = screen ? api.identity(screen) : nullptr;
         const auto revision = g_native_dfhack_render_registry_revision.load(std::memory_order_acquire);
@@ -440,7 +451,7 @@ static bool native_dfhack_render_refresh(bool reorder) noexcept {
             int32_t index = -1;
             if (!native_history_copy(reinterpret_cast<uintptr_t>(link), host) ||
                     !native_history_copy(reinterpret_cast<uintptr_t>(link) + 8, index)) return false;
-            if (index != 3) continue;
+            if (index != static_cast<int32_t>(slot)) continue;
             const auto name = native_dfhack_render_name(host);
             if (name.starts_with("viewscreen") || name.starts_with("dfhack_")) {
                 hosts.push_back(host);
@@ -464,7 +475,7 @@ static bool native_dfhack_render_refresh(bool reorder) noexcept {
             // every native parent, since renderParent dispatches that vtable.
             else if (!api.foreign_screen(parent_screen) || !native_dfhack_render_ensure_custom(parent_screen)) return false;
             void *parent = nullptr;
-            if (!native_history_copy(reinterpret_cast<uintptr_t>(parent_screen) + 0x10, parent)) return false;
+            if (!native_object_read_member(parent_screen, {0x10, "viewscreen", "parent"}, parent)) return false;
             parent_screen = parent;
         }
         std::sort(hosts.begin(), hosts.end(), std::less<const void *>{});

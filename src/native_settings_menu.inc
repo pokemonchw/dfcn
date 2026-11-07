@@ -9,9 +9,15 @@ struct NativeSettingsMenuBindings {
     Destroy destroy = nullptr;
     uintptr_t nineslice_table = 0, text_table = 0;
     Render nineslice_render = nullptr, text_render = nullptr;
+    size_t widget_size = 0x150, nineslice_size = 0x160, text_size = 0x180;
+    size_t rect_offset = 0x10, widget_flag_offset = 0xa0;
+    size_t skin_offset = 0x150, skin_flag_offset = 0x158;
+    size_t text_offset = 0x150, foreground_offset = 0x170, background_offset = 0x172;
+    size_t bright_offset = 0x174, justify_offset = 0x175, space_offset = 0x178, text_flag_offset = 0x17c;
+    bool layout_ready = true;
 
     bool ready() const {
-        return construct && destroy && nineslice_table && text_table &&
+        return layout_ready && construct && destroy && nineslice_table && text_table &&
             nineslice_render && text_render;
     }
 };
@@ -29,6 +35,32 @@ static const NativeSettingsMenuBindings &native_settings_menu_bindings() {
             native_reference_address(base, 0x1412c70));
         value.nineslice_table = native_reference_address(base, 0x15eef60);
         value.text_table = native_reference_address(base, 0x1618aa0);
+        value.widget_size = native_history_abi::type_size(native_history_abi::semantic_id("widget"), 0x150);
+        value.nineslice_size = native_history_abi::type_size(native_history_abi::semantic_id("widget_nineslice"), 0x160);
+        value.text_size = native_history_abi::type_size(native_history_abi::semantic_id("widget_text"), 0x180);
+        value.layout_ready = value.widget_size && value.widget_size <= value.nineslice_size &&
+            value.widget_size <= value.text_size && value.nineslice_size <= (1u << 20) && value.text_size <= (1u << 20);
+        for (const auto name : {"widget", "widget_nineslice", "widget_text"}) {
+            const auto *type = native_history_abi::type(native_history_abi::semantic_id(name));
+            if (type && type->alignment > alignof(std::max_align_t)) value.layout_ready = false;
+        }
+        const auto resolve = [&](native_history_abi::FieldOffset member, size_t width, size_t extent) {
+            if (!member.contains(0, width, width)) { value.layout_ready = false; return size_t{}; }
+            const auto offset = member.runtime();
+            if (offset > extent || width > extent - offset) value.layout_ready = false;
+            return offset;
+        };
+        value.rect_offset = resolve({0x10, "widget", "rect"}, 16, value.widget_size);
+        value.widget_flag_offset = resolve({0xa0, "widget", "flag"}, 1, value.widget_size);
+        value.skin_offset = resolve({0x150, "widget_nineslice", "selected_texpos"}, sizeof(void *), value.nineslice_size);
+        value.skin_flag_offset = resolve({0x158, "widget_nineslice", "flag"}, 1, value.nineslice_size);
+        value.text_offset = resolve({0x150, "widget_text", "str"}, sizeof(NativeString), value.text_size);
+        value.foreground_offset = resolve({0x170, "widget_text", "fg"}, 2, value.text_size);
+        value.background_offset = resolve({0x172, "widget_text", "bg"}, 2, value.text_size);
+        value.bright_offset = resolve({0x174, "widget_text", "bright"}, 1, value.text_size);
+        value.justify_offset = resolve({0x175, "widget_text", "just"}, 1, value.text_size);
+        value.space_offset = resolve({0x178, "widget_text", "space"}, 4, value.text_size);
+        value.text_flag_offset = resolve({0x17c, "widget_text", "flag"}, 4, value.text_size);
 #else
         value.construct = reinterpret_cast<NativeSettingsMenuBindings::Construct>(
             dlsym(RTLD_DEFAULT, "_ZN7widgets6widgetC2Ev"));
@@ -41,51 +73,67 @@ static const NativeSettingsMenuBindings &native_settings_menu_bindings() {
         value.nineslice_table = slices ? slices + 2 * sizeof(void *) : 0;
         value.text_table = text ? text + 2 * sizeof(void *) : 0;
 #endif
+#ifdef _WIN32
+        value.nineslice_render = reinterpret_cast<NativeSettingsMenuBindings::Render>(native_object_virtual_method(
+            reinterpret_cast<void *const *>(value.nineslice_table), "abstract_interfacest", "render", 3, "void(uint32_t)", 1));
+        value.text_render = reinterpret_cast<NativeSettingsMenuBindings::Render>(native_object_virtual_method(
+            reinterpret_cast<void *const *>(value.text_table), "abstract_interfacest", "render", 3, "void(uint32_t)", 1));
+#else
         if (value.nineslice_table)
             native_history_copy(value.nineslice_table + 3 * sizeof(void *), value.nineslice_render);
         if (value.text_table)
             native_history_copy(value.text_table + 3 * sizeof(void *), value.text_render);
+#endif
         return value;
     }();
     return bindings;
 }
 
-// Both verified ABIs use widget size 0x150, rect+0x10, and text::str+0x150.
 // Only the game-constructed base is destroyed here. The borrowed text field
 // and nineslice texture pointer never transfer allocation ownership to it.
 class NativeSettingsMenuWidget {
-    alignas(16) std::array<unsigned char, 0x180> storage_{};
+    std::vector<std::max_align_t> storage_;
     const NativeSettingsMenuBindings &bindings_;
     uintptr_t base_table_ = 0;
+    unsigned char *data() noexcept { return reinterpret_cast<unsigned char *>(storage_.data()); }
+    size_t size() const noexcept { return storage_.size() * sizeof(std::max_align_t); }
+    void clear_extension() noexcept {
+        std::memset(data() + bindings_.widget_size, 0, size() - bindings_.widget_size);
+    }
 public:
     explicit NativeSettingsMenuWidget(const NativeSettingsMenuBindings &bindings)
-        : bindings_(bindings) {
-        bindings_.construct(storage_.data());
-        std::memcpy(&base_table_, storage_.data(), sizeof(base_table_));
+        : storage_(((std::max)(bindings.nineslice_size, bindings.text_size) + sizeof(std::max_align_t) - 1) /
+              sizeof(std::max_align_t)), bindings_(bindings) {
+        if (!bindings_.ready()) throw std::runtime_error("Native settings widget layout unavailable");
+        std::memset(data(), 0, size());
+        bindings_.construct(data());
+        std::memcpy(&base_table_, data(), sizeof(base_table_));
         // These drawing-only components have no activation or tooltip owner.
         // They receive modal input through settings_menu_event instead.
-        storage_[0xa0] = 0;
+        data()[bindings_.widget_flag_offset] = 0;
     }
     ~NativeSettingsMenuWidget() {
-        std::fill(storage_.begin() + 0x150, storage_.end(), 0);
-        std::memcpy(storage_.data(), &base_table_, sizeof(base_table_));
-        bindings_.destroy(storage_.data());
+        clear_extension();
+        std::memcpy(data(), &base_table_, sizeof(base_table_));
+        bindings_.destroy(data());
     }
     template<typename Value> void set(size_t offset, const Value &value) {
-        std::memcpy(storage_.data() + offset, &value, sizeof(value));
+        if (offset > size() || sizeof(value) > size() - offset)
+            throw std::runtime_error("Native settings widget field exceeds object extent");
+        std::memcpy(data() + offset, &value, sizeof(value));
     }
     void rect(const SDL_Rect &box) {
         const std::array<int32_t, 4> bounds{
             box.x, box.y, box.x + box.w - 1, box.y + box.h - 1};
-        set(0x10, bounds);
+        set(bindings_.rect_offset, bounds);
     }
     void nineslice(const SDL_Rect &box, const int32_t *skin) {
         set(0, bindings_.nineslice_table);
         rect(box);
-        set(0x150, skin);
+        set(bindings_.skin_offset, skin);
         const uint8_t replace_character = 1;
-        set(0x158, replace_character);
-        bindings_.nineslice_render(storage_.data(), 0);
+        set(bindings_.skin_flag_offset, replace_character);
+        bindings_.nineslice_render(data(), 0);
     }
     void text(int x, int y, std::string_view source) {
         set(0, bindings_.text_table);
@@ -102,16 +150,16 @@ public:
 #else
         NativeString borrowed(source);
 #endif
-        set(0x150, borrowed);
+        set(bindings_.text_offset, borrowed);
         const int16_t foreground = 7, background = 0;
         const uint8_t bright = 1, left = 0;
         const uint32_t zero = 0;
-        set(0x170, foreground); set(0x172, background);
-        set(0x174, bright); set(0x175, left);
-        set(0x178, zero); set(0x17c, zero);
-        bindings_.text_render(storage_.data(), 0);
+        set(bindings_.foreground_offset, foreground); set(bindings_.background_offset, background);
+        set(bindings_.bright_offset, bright); set(bindings_.justify_offset, left);
+        set(bindings_.space_offset, zero); set(bindings_.text_flag_offset, zero);
+        bindings_.text_render(data(), 0);
         // The temporary owns any host string storage; the native base does not.
-        std::fill(storage_.begin() + 0x150, storage_.end(), 0);
+        clear_extension();
     }
 };
 
@@ -201,7 +249,7 @@ static void native_settings_menu_prepare() try {
     // is held: retain the previous complete component if another writer owns it.
     std::unique_lock<std::recursive_mutex> writer(g_native_dfhack_layer_mutex, std::try_to_lock);
     if (!writer.owns_lock()) return;
-    auto *owner = native_graphics_owner();
+    auto *owner = native_graphics_owner_view();
     const auto &bindings = native_settings_menu_bindings();
     const auto ui = native_ui_settings();
     // Share adjacent button borders on short grids as optional mods add rows.
@@ -247,7 +295,7 @@ static void native_settings_menu_prepare() try {
             g_native_help_write_graphics = previous_help;
         }
     } view(owner);
-    NativeUiGridBinding output(owner, *grid);
+    NativeUiGridBinding output(native_graphics_owner(), *grid);
     NativeSettingsMenuWidget skin(bindings), text(bindings);
     const std::array<int32_t, 9> border{
         ui->texpos_border_nw, ui->texpos_border_n, ui->texpos_border_ne,
@@ -302,7 +350,7 @@ static void native_settings_menu_prepare() try {
                 ? "地图预览：开" : "地图预览：关") :
             menu.export_result ? "关闭" : kNativeSettingsMenuLabels[action + 1]);
     }
-    grid->top_in_use = owner->top_in_use;
+    native_graphics_read_member(native_graphics_owner(), offsetof(graphicst, top_in_use), grid->top_in_use);
     layer.ready = true;
 } catch (...) {
     TranslationStateScope translation;

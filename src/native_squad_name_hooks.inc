@@ -9,6 +9,7 @@ using NativeSquadNameAbbreviateFn = void (*)(NativeString *);
 using NativeSquadReturnAppendFn = NativeString *(*)(NativeString *, const NativeString *);
 struct NativeSquadNameHooks {
     NativeCallHook calls;
+    NativeEntryHook copy_source, assign_source, destroy_source;
     NativeSquadAliasCopyFn copy = nullptr;
     NativeSquadAliasAssignFn assign = nullptr;
     NativeSquadAliasDestroyFn destroy = nullptr, destroy_direct = nullptr;
@@ -21,6 +22,7 @@ static NativeSquadNameHooks g_native_squad_name_hooks;
 
 static bool native_squad_alias_field(const NativeString *source, std::string &alias) {
     const uintptr_t owner = reinterpret_cast<uintptr_t>(source);
+    if (!native_history_layout::squad_alias_offset.contains(0, sizeof(NativeString), sizeof(NativeString))) return false;
     const size_t offset = native_history_layout::squad_alias_offset;
     if (!owner || owner < offset) return false;
     NativeBorrowedVector<uintptr_t> squads;
@@ -34,14 +36,73 @@ static bool native_squad_alias_field(const NativeString *source, std::string &al
     return false;
 }
 
+static bool native_squad_alias_copy_source(const NativeString *source, std::string &alias) {
+    std::string_view actual;
+    if (source && native_string_view(source, &actual, 65536) &&
+            native_squad_alias_source_target(actual, reinterpret_cast<uintptr_t>(source))) {
+        alias.assign(actual);
+        return true;
+    }
+    return native_squad_alias_field(source, alias);
+}
+
+static bool native_squad_alias_owned_buffer(uintptr_t owner, const char *data,
+        size_t length, std::string &value) {
+    GameString snapshot{};
+    if (!owner || !data || !length || length > 65536 ||
+            !native_history_copy(owner, snapshot) || snapshot.size != length ||
+            snapshot.size > snapshot.capacity) return false;
+    const uintptr_t buffer = snapshot.capacity <= 15
+        ? owner : reinterpret_cast<uintptr_t>(snapshot.storage.heap);
+    if (buffer != reinterpret_cast<uintptr_t>(data)) return false;
+    // Registry owners can outlive an inlined native destructor. Read both the
+    // header and its current bytes through the guarded native-copy boundary.
+    return native_history_copy_string_snapshot(owner,
+        reinterpret_cast<const unsigned char *>(&snapshot), value);
+}
+
+static bool native_squad_alias_buffer_source(const char *data, size_t length, std::string &alias) {
+    if (!data || !length || length > 65536) return false;
+    // Copies of an alias keep their own string lifetime. Propagate only from
+    // the currently owned buffer, never from another string with equal text.
+    {
+        std::lock_guard<std::mutex> lock(g_native_squad_alias_mutex);
+        if (g_native_squad_alias_epoch == g_embark_item_capture_epoch.load(std::memory_order_acquire)) {
+            for (const auto &[owner, binding] : g_native_squad_alias_owners) {
+                std::string actual;
+                if (native_squad_alias_owned_buffer(owner, data, length, actual) &&
+                        actual == binding.source) {
+                    alias = std::move(actual);
+                    return true;
+                }
+            }
+        }
+    }
+    NativeBorrowedVector<uintptr_t> squads;
+    if (!native_history_layout::squad_alias_offset.contains(0, sizeof(NativeString), sizeof(NativeString)) ||
+            !native_history_read_vector(native_history_global(0x24e37c0), squads) || squads.size() > 65536)
+        return false;
+    const size_t offset = native_history_layout::squad_alias_offset;
+    for (size_t i = 0; i < squads.size(); ++i) {
+        const uintptr_t squad = native_history_vector_at(squads, i);
+        if (!squad || squad > UINTPTR_MAX - offset) continue;
+        std::string actual;
+        if (native_squad_alias_owned_buffer(squad + offset, data, length, actual)) {
+            alias = std::move(actual);
+            return true;
+        }
+    }
+    return false;
+}
+
 static NativeString *capture_native_squad_alias_copy(NativeString *output,
         const NativeString *source) {
     NativeInputCallbackScope callback;
     std::string alias;
     bool authored = false;
     try {
+        if (g_overlay.translation_enabled()) authored = native_squad_alias_copy_source(source, alias);
         forget_native_squad_alias(reinterpret_cast<uintptr_t>(output));
-        if (g_overlay.translation_enabled()) authored = native_squad_alias_field(source, alias);
     } catch (...) {}
     NativeString *result = nullptr;
     callback.call_native([&] { result = g_native_squad_name_hooks.copy(output, source); });
@@ -60,28 +121,8 @@ static NativeString *capture_native_squad_alias_assign(NativeString *output,
     NativeInputCallbackScope callback;
     std::string alias;
     try {
+        if (g_overlay.translation_enabled()) native_squad_alias_buffer_source(data, length, alias);
         forget_native_squad_alias(reinterpret_cast<uintptr_t>(output));
-        NativeBorrowedVector<uintptr_t> squads;
-        if (g_overlay.translation_enabled() && data && length > 0 && length <= 65536 &&
-                native_history_read_vector(native_history_global(0x24e37c0), squads) &&
-                squads.size() <= 65536) {
-            for (size_t i = 0; i < squads.size(); ++i) {
-                const uintptr_t squad = native_history_vector_at(squads, i);
-                if (!squad || squad > UINTPTR_MAX - native_history_layout::squad_alias_offset)
-                    continue;
-                const auto *field = reinterpret_cast<const NativeString *>(
-                    squad + native_history_layout::squad_alias_offset);
-                std::string_view actual;
-                // This caller has already unpacked the native string. Its
-                // data pointer and length still prove the particular alias
-                // field; matching another squad's spelling is insufficient.
-                if (native_string_view(field, &actual, 65536) &&
-                        actual.data() == data && actual.size() == length) {
-                    alias.assign(actual);
-                    break;
-                }
-            }
-        }
     } catch (...) {}
     NativeString *result = nullptr;
     callback.call_native([&] { result = g_native_squad_name_hooks.assign(output, data, length); });
@@ -157,14 +198,10 @@ static void capture_native_mission_return_history(void *event, NativeString *out
     NativeHistoryCallbackScope history_callback;
     try { forget_native_mission_return_owner(reinterpret_cast<uintptr_t>(output)); }
     catch (...) {}
-    // Squad hooks precede history installation and survive its removal.
-    // Resolve the real subtype's d0 function during either lifecycle gap.
-    if (!g_overlay.translation_enabled() || g_native_history_sentence_slot != 0xd0) {
-        const void *table = nullptr;
-        NativeHistorySentenceFn original = nullptr;
-        std::memcpy(&table, event, sizeof(table));
-        std::memcpy(&original, static_cast<const unsigned char *>(table) + 0xd0, sizeof(original));
-        callback.call_native([&] { original(event, output, context, translated, glyphs_only); });
+    // Squad hooks use their independently proved formatter contract even
+    // when optional Chronicle or Legends hooks could not be installed.
+    if (!g_overlay.translation_enabled() || !native_history_formatter_ready()) {
+        callback.call_native([&] { native_history_call_formatter(event, output, context, translated, glyphs_only); });
         return;
     }
     struct PendingScope {
@@ -199,6 +236,10 @@ static void capture_native_mission_return_history(void *event, NativeString *out
         remember_native_mission_return_history_string(reinterpret_cast<uintptr_t>(output),
             std::move(document));
     } catch (...) {}
+}
+
+static void capture_native_mission_return_history_context(void *event, NativeString *output, void *context) {
+    capture_native_mission_return_history(event, output, context, true, false);
 }
 
 static NativeString *capture_native_mission_return_history_append(NativeString *output,
@@ -305,12 +346,18 @@ static void capture_native_squad_alias_destroy(NativeString *source) {
     });
 }
 
-static bool native_squad_name_hooks_active() { return g_native_squad_name_hooks.calls.active(); }
+static bool native_squad_name_hooks_active() {
+    const auto &hooks = g_native_squad_name_hooks;
+    return hooks.calls.active() || hooks.copy_source.active() || hooks.assign_source.active() || hooks.destroy_source.active();
+}
 
 static void uninstall_native_squad_name_hooks() {
     if (!native_callbacks_idle()) return;
     auto &hooks = g_native_squad_name_hooks;
     if (!hooks.calls.uninstall("Native authored squad name restore")) return;
+    if (!hooks.copy_source.uninstall("Native squad alias copy source restore") ||
+            !hooks.assign_source.uninstall("Native squad alias assignment source restore") ||
+            !hooks.destroy_source.uninstall("Native squad alias lifetime restore")) return;
     hooks.copy = nullptr;
     hooks.assign = nullptr;
     hooks.destroy = nullptr;
@@ -323,7 +370,7 @@ static void uninstall_native_squad_name_hooks() {
     clear_native_mission_returns();
 }
 
-static bool install_native_squad_name_hooks() {
+static bool install_native_complete_squad_name_hooks() {
     auto &hooks = g_native_squad_name_hooks;
     if (hooks.calls.installed) return true;
     if (native_squad_name_hooks_active()) {
@@ -347,26 +394,6 @@ static bool install_native_squad_name_hooks() {
     // Keep literal NativeCall sites so the normal build collects coordinates
     // for both Windows editions without a separate address inventory.
     std::vector<NativeCall> calls{
-        // The virtual CALL R10 is only three bytes. Own its preceding MOV
-        // as one six-byte operation and replay that argument in the relay.
-        {0x10dbef, 0, reinterpret_cast<const void *>(&capture_native_mission_return_history),
-            {0x48,0x8b,0xcf}, {0x48,0x8b,0xcf,0x41,0xff,0xd2}},
-        {0x10dd96, 0, reinterpret_cast<const void *>(&capture_native_mission_return_history),
-            {0x48,0x8b,0xcf}, {0x48,0x8b,0xcf,0x41,0xff,0xd2}},
-        {0x10dfb9, 0, reinterpret_cast<const void *>(&capture_native_mission_return_history),
-            {0x48,0x8b,0xcf}, {0x48,0x8b,0xcf,0x41,0xff,0xd2}},
-        {0x10dc26, 0xb9d10,
-            reinterpret_cast<const void *>(&capture_native_mission_return_history_append)},
-        {0x10ddcd, 0xb9d10,
-            reinterpret_cast<const void *>(&capture_native_mission_return_history_append)},
-        {0x10dff0, 0xb9d10,
-            reinterpret_cast<const void *>(&capture_native_mission_return_history_append)},
-        {0x10dc33, 0x67e30,
-            reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
-        {0x10ddda, 0x67e30,
-            reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
-        {0x10dffd, 0x67e30,
-            reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
         // Travellers: actual language_name versus squad.alias branches share
         // one append. Unit parties reach separate native append call sites.
         {0x10db66, 0xa946e0,
@@ -448,6 +475,33 @@ static bool install_native_squad_name_hooks() {
         {0x44bec1, 0x6f850,
             reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<true>)},
     };
+    if (native_pe_return_suffix_feature("mission_return_history_suffix",
+            {0x10db8c, 0x10dd33, 0x10df34, 0x10df56},
+            {0x10dc3f, 0x10dde6, 0x10e009},
+            {native_pe_rva(0x6f560), native_pe_rva(0x7dbe0), native_pe_rva(0x67e30)})) {
+        calls.insert(calls.begin(), {
+        // The virtual CALL R10 is only three bytes. Own its preceding MOV
+        // as one six-byte operation and replay that argument in the relay.
+        {0x10dbef, 0, native_history_formatter_callback("getSentence", &capture_native_mission_return_history, &capture_native_mission_return_history_context),
+            {0x48,0x8b,0xcf}, {0x48,0x8b,0xcf,0x41,0xff,0xd2}},
+        {0x10dd96, 0, native_history_formatter_callback("getSentence", &capture_native_mission_return_history, &capture_native_mission_return_history_context),
+            {0x48,0x8b,0xcf}, {0x48,0x8b,0xcf,0x41,0xff,0xd2}},
+        {0x10dfb9, 0, native_history_formatter_callback("getSentence", &capture_native_mission_return_history, &capture_native_mission_return_history_context),
+            {0x48,0x8b,0xcf}, {0x48,0x8b,0xcf,0x41,0xff,0xd2}},
+        {0x10dc26, 0xb9d10,
+            reinterpret_cast<const void *>(&capture_native_mission_return_history_append)},
+        {0x10ddcd, 0xb9d10,
+            reinterpret_cast<const void *>(&capture_native_mission_return_history_append)},
+        {0x10dff0, 0xb9d10,
+            reinterpret_cast<const void *>(&capture_native_mission_return_history_append)},
+        {0x10dc33, 0x67e30,
+            reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
+        {0x10ddda, 0x67e30,
+            reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
+        {0x10dffd, 0x67e30,
+            reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
+        });
+    }
     struct InstallGuard {
         bool committed = false;
         ~InstallGuard() { if (!committed) uninstall_native_squad_name_hooks(); }
@@ -456,6 +510,61 @@ static bool install_native_squad_name_hooks() {
             !hooks.calls.install(base, calls, "Native authored squad name")) return false;
     guard.committed = true;
     return true;
+}
+
+// A page's changed caller or an optional traveller-history suffix must not
+// remove protection from unrelated authored squad fields. The shared native
+// string operations expose their actual sources even when a caller cannot
+// yet be located. Observe them as one lifetime-complete transaction.
+static bool install_native_squad_alias_sources() {
+    auto &hooks = g_native_squad_name_hooks;
+    if (native_squad_name_hooks_active()) return false;
+    const auto base = native_history_profile_base();
+    const auto copy = native_pe_address(base, 0x6f5a0);
+    const auto assign = native_pe_address(base, 0x6f8d0);
+    const auto destroy = native_pe_address(base, 0x6f850);
+    std::vector<unsigned char> copy_prefix{0x40,0x53,0x48,0x83,0xec,0x20};
+    std::vector<unsigned char> assign_prefix{0x48,0x89,0x5c,0x24,0x10};
+    std::vector<unsigned char> destroy_prefix{0x40,0x53,0x48,0x83,0xec,0x20};
+    if (!base || !copy || !assign || !destroy ||
+            !native_history_layout::squad_alias_offset.contains(0, sizeof(NativeString), sizeof(NativeString)) ||
+            !native_history_global(0x24e37c0) ||
+            !native_pe_bytes(0x6f5a0, copy_prefix) || !native_pe_bytes(0x6f8d0, assign_prefix) ||
+            !native_pe_bytes(0x6f850, destroy_prefix)) return false;
+    struct InstallGuard {
+        bool committed = false;
+        ~InstallGuard() { if (!committed) { try { uninstall_native_squad_name_hooks(); } catch (...) {} } }
+    } guard;
+    if (!hooks.copy_source.prepare(reinterpret_cast<unsigned char *>(copy), copy_prefix,
+            reinterpret_cast<const void *>(&capture_native_squad_alias_copy), {}, "Native squad alias copy source") ||
+            !hooks.assign_source.prepare(reinterpret_cast<unsigned char *>(assign), assign_prefix,
+            reinterpret_cast<const void *>(&capture_native_squad_alias_assign), {}, "Native squad alias assignment source") ||
+            !hooks.destroy_source.prepare(reinterpret_cast<unsigned char *>(destroy), destroy_prefix,
+            reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<true>), {}, "Native squad alias lifetime")) return false;
+    hooks.copy = reinterpret_cast<NativeSquadAliasCopyFn>(hooks.copy_source.original);
+    hooks.assign = reinterpret_cast<NativeSquadAliasAssignFn>(hooks.assign_source.original);
+    hooks.destroy_direct = reinterpret_cast<NativeSquadAliasDestroyFn>(hooks.destroy_source.original);
+    hooks.base = base;
+    if (!hooks.copy || !hooks.assign || !hooks.destroy_direct ||
+            !hooks.copy_source.install("Native squad alias copy source") ||
+            !hooks.assign_source.install("Native squad alias assignment source") ||
+            !hooks.destroy_source.install("Native squad alias lifetime")) return false;
+    guard.committed = true;
+    log_line("INFO", "Native squad aliases protected by their actual copy/assignment sources");
+    return true;
+}
+
+static bool install_native_squad_name_hooks() {
+    const auto &hooks = g_native_squad_name_hooks;
+    if (hooks.copy_source.installed && hooks.assign_source.installed && hooks.destroy_source.installed) return true;
+    try {
+        if (install_native_complete_squad_name_hooks()) return true;
+    } catch (const std::exception &error) {
+        log_line("WARN", std::string("Native squad extensions deferred: ") + error.what());
+    } catch (...) { log_line("WARN", "Native squad extensions deferred during installation"); }
+    if (native_squad_name_hooks_active()) uninstall_native_squad_name_hooks();
+    if (native_squad_name_hooks_active()) return false;
+    return install_native_squad_alias_sources();
 }
 #else
 #include "native_squad_name_search_profile_elf.inc"

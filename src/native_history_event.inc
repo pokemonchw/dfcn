@@ -27,11 +27,10 @@ static std::optional<NativeHistoryEventData> snapshot_native_history_event_heade
     // the subtype fields below. Both supported producers read id at +0x20;
     // ELF does reuse the header's tail padding for the following subtype.
     NativeHistoryEventData identity;
-    const uintptr_t address = reinterpret_cast<uintptr_t>(event);
     if (!capture_native_history_event_identity(event, identity.native_type) ||
-        !native_history_copy(address + 0x08, identity.year) ||
-        !native_history_copy(address + 0x0c, identity.seconds) ||
-        !native_history_copy(address + 0x20, identity.id) || identity.id < 0 ||
+        !native_history_copy(native_history_event_field(event, identity.native_type, 0x08, sizeof(identity.year)), identity.year) ||
+        !native_history_copy(native_history_event_field(event, identity.native_type, 0x0c, sizeof(identity.seconds)), identity.seconds) ||
+        !native_history_copy(native_history_event_field(event, identity.native_type, 0x20, sizeof(identity.id)), identity.id) || identity.id < 0 ||
         !capture_native_history_context(context, identity)) return std::nullopt;
     return identity;
 }

@@ -66,6 +66,8 @@ _SEARCH_ELEMENT = {
     'native_stockpile_search_profile.inc': None,
 }
 _EXCLUDED = {
+    'native_dfhack_display_inputs.inc', # Current renderer instruction sites are discovered from function scopes.
+    'native_dfhack_display_input_ui_profile.inc', # Canonical scope provenance, never target patch locations.
     'native_ime_adapter.inc',  # The fixed image coordinates belong to SDL2.dll.
     'native_pe_binding.h',    # Relocation interface and image metadata, not owners.
     'native_pe_resolver.h',   # Runtime seed/cache parsing uses numeric metadata.
@@ -190,6 +192,10 @@ def _byte_count(tokens, pairs, begin, end):
 
 
 def _select_search_element(name: str, tokens: list[str], elf=False) -> list[str]:
+    # PE unit search now consumes a typed callable contract. Its legacy ELF
+    # alternatives remain in the platform-excluded aggregate below it.
+    if name == 'native_unit_search_profile.inc' and not elf:
+        return tokens
     if name not in _SEARCH_ELEMENT:
         return tokens
     pairs = _pairs(tokens)
@@ -234,6 +240,190 @@ def _initializer_name(tokens, pairs, begin):
     return tokens[before] if before >= 0 and _IDENTIFIER.fullmatch(tokens[before]) else None
 
 
+def _native_call_coordinates(tokens, pairs, constants, byte_arrays, add):
+    """Read actual NativeCall aggregates, independent of callback spelling.
+
+    The container's C++ type (or the typed native_reference_calls API) owns
+    these records. An integer array alone is not a list of game coordinates;
+    it is expanded only as the range of a loop that submits NativeCall sites.
+    This collects requirements, never target addresses or executable bytes.
+    """
+    braces = sorted((a, b) for a, b in pairs.items() if a < b and tokens[a] == '{')
+
+    def scope(index):
+        containing = [(a, b) for a, b in braces if a < index < b]
+        return max(containing, default=(-1, len(tokens)))
+
+    def qualified(parts):
+        value = ''.join(parts)
+        return value if re.fullmatch(r'[A-Za-z_]\w*(?:(?:\.|->)[A-Za-z_]\w*)*', value) else None
+
+    containers, initializers = [], []
+    for index, token in enumerate(tokens):
+        if token != 'NativeCall':
+            continue
+        after = index + 1
+        collection = index > 0 and tokens[index - 1] == '<'
+        if collection:
+            # vector<NativeCall> and array<NativeCall, N>. No arbitrary
+            # surrounding template or member named `calls` grants this type.
+            if index < 2 or tokens[index - 2] not in ('vector', 'array'):
+                continue
+            while after < len(tokens) and tokens[after] not in ('>', ';', '{'):
+                after += 1
+            if after == len(tokens) or tokens[after] != '>':
+                continue
+            after += 1
+        elif tokens[after:after + 1] == ['{']:
+            initializers.append((after, pairs.get(after, after), False))
+            continue
+        while tokens[after:after + 1] in (['&'], ['*'], ['const']):
+            after += 1
+        if after >= len(tokens) or not _IDENTIFIER.fullmatch(tokens[after]):
+            continue
+        name, declaration = tokens[after], after
+        after += 1
+        if tokens[after:after + 1] == ['['] and after in pairs:
+            collection = True
+            after = pairs[after] + 1
+        if tokens[after:after + 1] == ['=']:
+            after += 1
+        if tokens[after:after + 1] == ['{'] and after in pairs:
+            initializers.append((after, pairs[after], collection))
+        if collection:
+            left, right = scope(declaration)
+            arguments = [(a, b) for a, b in pairs.items()
+                         if a < declaration < b and tokens[a] == '(']
+            if arguments:
+                # A typed parameter owns only its function body, not every
+                # later local called `calls` in the same namespace/file.
+                _, close = max(arguments)
+                body = close + 1
+                if tokens[body:body + 1] == ['{'] and body in pairs:
+                    containers.append((name, body, pairs[body]))
+            else:
+                containers.append((name, declaration, right))
+
+    # Includes typed parameters and profile members whose declaration lives
+    # in another source file. The API's argument, not its identifier's name,
+    # proves that these push_back records are NativeCalls.
+    for index, token in enumerate(tokens):
+        if token != 'native_reference_calls' or tokens[index + 1:index + 2] != ['('] or index + 1 not in pairs:
+            continue
+        arguments = _parts(tokens, pairs, index + 2, pairs[index + 1])
+        if not arguments:
+            continue
+        name = qualified(tokens[slice(*arguments[0])])
+        if name:
+            left, right = scope(index)
+            containers.append((name, left, right))
+
+    for index, token in enumerate(tokens):
+        if token != '=' or tokens[index + 1:index + 2] != ['{'] or index + 1 not in pairs:
+            continue
+        name = _assignment_name(tokens, index)
+        if name and any(key == name and left < index < right for key, left, right in containers):
+            initializers.append((index + 1, pairs[index + 1], True))
+
+    arrays = []
+    for begin, end in braces:
+        name = _initializer_name(tokens, pairs, begin)
+        if not name:
+            continue
+        parts = _parts(tokens, pairs, begin + 1, end)
+        values = [_number(tokens[a:b], constants) for a, b in parts]
+        if values and all(value is not None for value in values):
+            arrays.append((name, begin, scope(begin)[1], values))
+
+    loops = []
+    for index, token in enumerate(tokens):
+        if token != 'for' or tokens[index + 1:index + 2] != ['('] or index + 1 not in pairs:
+            continue
+        end = pairs[index + 1]
+        colons = [at for at in range(index + 2, end) if tokens[at] == ':']
+        if len(colons) != 1 or ';' in tokens[index + 2:end]:
+            continue
+        colon = colons[0]
+        if colon == index + 2 or not _IDENTIFIER.fullmatch(tokens[colon - 1]):
+            continue
+        source = tokens[colon + 1:end]
+        values = None
+        if len(source) == 1:
+            matches = [entry for entry in arrays if entry[0] == source[0] and entry[1] < index < entry[2]]
+            if matches:
+                values = max(matches, key=lambda entry: entry[1])[3]
+        elif source[:1] == ['{'] and pairs.get(colon + 1) == end - 1:
+            entries = _parts(tokens, pairs, colon + 2, end - 1)
+            candidates = [_number(tokens[a:b], constants) for a, b in entries]
+            if candidates and all(value is not None for value in candidates):
+                values = candidates
+        if values is None:
+            continue
+        begin = end + 1
+        if tokens[begin:begin + 1] == ['{'] and begin in pairs:
+            stop = pairs[begin]
+        else:
+            stop = begin
+            while stop < len(tokens) and tokens[stop] != ';':
+                if tokens[stop] in ('(', '[', '{') and stop in pairs:
+                    stop = pairs[stop] + 1
+                else:
+                    stop += 1
+        loops.append((begin, stop, tokens[colon - 1], values))
+
+    def record(begin, end):
+        parts = _parts(tokens, pairs, begin, end)
+        if len(parts) < 3:
+            return
+        sites = [_number(tokens[slice(*parts[0])], constants)]
+        if sites[0] is None:
+            expression = ''.join(tokens[slice(*parts[0])])
+            matches = [entry for entry in loops if entry[0] <= begin < entry[1] and entry[2] == expression]
+            if matches:
+                sites = max(matches, key=lambda entry: entry[0])[3]
+        target = _number(tokens[slice(*parts[1])], constants)
+        width = 5
+        if len(parts) > 4:
+            original = tokens[slice(*parts[4])]
+            width = max(width, _byte_count(tokens, pairs, *parts[4]) or byte_arrays.get(''.join(original), 0))
+        for site in sites:
+            add(site, width)
+        add(target)
+
+    for begin, end, collection in initializers:
+        if begin >= end:
+            continue
+        if not collection:
+            record(begin + 1, end)
+            continue
+        entries = _parts(tokens, pairs, begin + 1, end)
+        # std::array's extra aggregate braces do not introduce a record.
+        if len(entries) == 1:
+            a, b = entries[0]
+            if tokens[a:a + 2] == ['{', '{'] and pairs.get(a) == b - 1:
+                entries = _parts(tokens, pairs, a + 1, b - 1)
+        for a, b in entries:
+            if tokens[a:a + 1] == ['{'] and pairs.get(a) == b - 1:
+                record(a + 1, b - 1)
+
+    for index, token in enumerate(tokens):
+        if token not in ('push_back', 'emplace_back') or tokens[index + 1:index + 2] != ['('] or index + 1 not in pairs:
+            continue
+        if index < 2 or tokens[index - 1] not in ('.', '->'):
+            continue
+        start = index - 2
+        while start >= 2 and tokens[start - 1] in ('.', '->') and _IDENTIFIER.fullmatch(tokens[start - 2]):
+            start -= 2
+        name = qualified(tokens[start:index - 1])
+        if not name or not any(key == name and left < index < right for key, left, right in containers):
+            continue
+        begin, end = index + 2, pairs[index + 1]
+        if tokens[begin:begin + 1] == ['{'] and pairs.get(begin) == end - 1:
+            record(begin + 1, end - 1)
+        elif token == 'emplace_back':
+            record(begin, end)
+
+
 def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], elf=False) -> None:
     pairs = _pairs(tokens)
     constants, byte_arrays = {}, {}
@@ -244,13 +434,6 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         if rva is not None and 0 < rva < 0x10000000 and width and width > 0:
             rva += origin if bias is None else bias
             required[rva] = max(required.get(rva, 0), width)
-
-    if name == 'native_adventure_introduction.inc':
-        # These UTF-16 spans pass through the local append lambda, so its
-        # numeric caller arguments are not visible at native_pe_address().
-        # Include each literal's zero terminator and the complete patch span.
-        for address, content in PE_READONLY_LITERAL_ANCHORS.items():
-            add(address, len(content))
 
     # Resolve only single-valued local assignments; a later unknown assignment
     # does not turn a structure coordinate into a game address.
@@ -282,6 +465,8 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         if variable:
             byte_arrays[variable] = size
 
+    _native_call_coordinates(tokens, pairs, constants, byte_arrays, add)
+
     call_arrays = {
         'native_rich_profile.inc': {'wrap_calls', 'draw_calls'},
         'native_history_profile.inc': {'item_calls'},
@@ -298,7 +483,7 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
 
     apis = {
         'native_pe_rva': 0, 'native_pe_bytes': 0, 'native_reference_rva': 0,
-        'native_reference_bytes': 0, 'native_pe_address': 1,
+        'native_reference_bytes': 0, 'native_pe_address': 1, 'native_pe_type_identity': 1,
         'native_reference_address': 1, 'native_pe_match': 1,
         'native_fortress_alert_address': 2 if elf else 1,
     }
@@ -341,7 +526,8 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         # A call-site variable does not obscure its literal target coordinate.
         if len(parts) >= 3 and values[1] is not None:
             wrapper = ''.join(tokens[slice(*parts[2])])
-            if 'reinterpret_cast<' in wrapper and ('capture_' in wrapper or 'dfcn_' in wrapper):
+            if (('reinterpret_cast<' in wrapper and ('capture_' in wrapper or 'dfcn_' in wrapper))
+                    or 'native_history_formatter_callback(' in wrapper):
                 size = _byte_count(tokens, pairs, *parts[4]) if len(parts) > 4 else None
                 add(first, max(5, size or 0))
                 add(values[1])
@@ -349,9 +535,13 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         if first is None or first < 0x10000:
             continue
         if name in ('native_history_event_profiles.inc', 'native_history_event_profiles_elf.inc') and len(parts) == 6 and all(v is not None for v in values[:5]):
-            add(first, 0xd8)  # getType slot 0 and getSentence slot 26.
-            add(values[1], values[4])
-            add(values[2])
+            # Windows event identity uses verified RTTI -> canonical event
+            # kind. Its semantic catalog owns the vtable root and virtual ABI;
+            # old immediate-return bytes and sentence bodies are not consumed.
+            if elf:
+                add(first, 0xd8)
+                add(values[1], values[4])
+                add(values[2])
             continue
         if name == 'native_stocks_search_profile.inc' and len(parts) == 3 and values[1] is not None and values[1] > first:
             add(first, values[1] - first)
@@ -405,7 +595,7 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
                 add(value, 5 if variable.endswith('_call') else 1)
 
 
-def collect_required_coordinates(root: Path) -> dict[int, int]:
+def collect_required_coordinates(root: Path, exclude_names=()) -> dict[int, int]:
     """Return recognized Windows game RVAs and their minimum continuous spans.
 
     ``root`` is the repository root, not the source directory. No binaries are
@@ -413,7 +603,7 @@ def collect_required_coordinates(root: Path) -> dict[int, int]:
     """
     required: dict[int, int] = {}
     for path in sorted((Path(root) / 'src').iterdir()):
-        if path.suffix not in ('.h', '.inc', '.cpp') or path.name in _EXCLUDED:
+        if path.suffix not in ('.h', '.inc', '.cpp') or path.name in _EXCLUDED or path.name in exclude_names:
             continue
         if '_elf' in path.stem or 'build_bindings' in path.stem:
             continue
@@ -428,4 +618,40 @@ def collect_required_coordinates(root: Path) -> dict[int, int]:
             continue
         tokens = _select_search_element(path.name, _TOKEN.findall(text))
         _file_coordinates(path.name, tokens, required)
+    # These complete inline operations have a distinct runtime contract:
+    # actual string object, width register and paired draw are all proved.
+    # Their historical byte lengths must not also require an unchanged frame.
+    from native_inline_resize_evidence import collect_inline_resize_coordinates
+    for reference in collect_inline_resize_coordinates(Path(root)):
+        required.pop(reference, None)
     return dict(sorted(required.items()))
+
+
+def collect_identity_only_coordinates(root: Path) -> set[int]:
+    """Explicit vptr-comparison contracts with no additional byte/slot owner.
+
+    Merely requesting one byte does not prove identity-only use. The owning
+    C++ call must name this API, and another resource contract takes priority.
+    """
+    identities, ordinary = set(), {}
+    for path in sorted((Path(root) / 'src').iterdir()):
+        if path.suffix not in ('.h', '.inc', '.cpp') or path.name in _EXCLUDED:
+            continue
+        if '_elf' in path.stem or 'build_bindings' in path.stem or path.name == 'native_history_layouts.inc':
+            continue
+        tokens = _select_search_element(path.name, _TOKEN.findall(_windows_source(path.read_text(encoding='utf-8-sig'))))
+        pairs = _pairs(tokens)
+        for index, token in enumerate(tokens):
+            if token != 'native_pe_type_identity' or tokens[index + 1:index + 2] != ['('] or index + 1 not in pairs:
+                continue
+            args = _parts(tokens, pairs, index + 2, pairs[index + 1])
+            value = _number(tokens[slice(*args[1])]) if len(args) == 2 else None
+            if value is None or value < 0x10000:
+                raise ValueError(f'Type-identity binding needs a literal canonical coordinate in {path.name}')
+            identities.add(value)
+        ordinary_tokens = ['identity_contract' if token == 'native_pe_type_identity' else token for token in tokens]
+        _file_coordinates(path.name, ordinary_tokens, ordinary)
+    for reference in identities:
+        if any(address <= reference < address + length for address, length in ordinary.items()):
+            raise ValueError(f'Type identity also has a direct byte/slot consumer at {reference:#x}')
+    return identities

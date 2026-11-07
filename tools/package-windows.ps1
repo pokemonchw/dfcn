@@ -111,6 +111,7 @@ try {
     foreach ($name in @('dfhack-help.LICENSE', 'lua-output.LICENSE', 'pinyin-data/LICENSE')) {
         Add-RuntimeFile (Join-Path $projectRoot ('third_party/' + $name)) ('dfcn/data/runtime/' + $name)
     }
+    Add-RuntimeFile (Join-Path $projectRoot 'compat/hde64/LICENSE.txt') 'dfcn/data/runtime/hde64.LICENSE.txt'
 
     $rulesRoot = Join-Path $projectRoot 'data\runtime\rulesets'
     # The complete TOML tree is loaded recursively by the runtime.
@@ -142,7 +143,7 @@ try {
         'third_party/pinyin-data/LICENSE', 'data/runtime/phrase-pinyin-data/LICENSE',
         'data/runtime/english-pronunciation/britfone.LICENSE',
         'data/runtime/english-pronunciation/MFA-LICENSE.txt',
-        'third_party/opencc/LICENSE', 'third_party/opencc/SOURCE'
+        'third_party/opencc/LICENSE', 'third_party/opencc/SOURCE', 'compat/hde64/LICENSE.txt'
     )) {
         [void]$notices.AppendLine()
         [void]$notices.AppendLine('## ' + $relative)

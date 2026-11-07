@@ -63,7 +63,14 @@ static void native_reports_draw(void *reports, uint32_t tick) {
     g_native_reports_panel = {left, top, right - left + 1, bottom - top + 1};
     layer.native_renderer = g_native_help_layer.native_renderer;
     layer.renderer = g_native_help_layer.renderer;
-    NativeUiGridBinding output(gps, *layer.foreground.graphics());
+    std::optional<NativeUiGridBinding> output;
+    if (!native_ui_bind_grid(output, gps, *layer.foreground.graphics())) {
+        layer.ready = false;
+        g_native_reports_background_grid = nullptr;
+        g_native_reports_background_graphics = nullptr;
+        callback.call_native([&] { original(reports, tick); });
+        return;
+    }
     NativeInfoCapturedTextScope captions(g_native_reports_text);
     struct WriteScope {
         const graphicst *previous = g_native_reports_write_graphics;
@@ -71,7 +78,8 @@ static void native_reports_draw(void *reports, uint32_t tick) {
         ~WriteScope() { g_native_reports_write_graphics = previous; }
     } writing(gps);
     callback.call_native([&] { original(reports, tick); });
-    layer.foreground.graphics()->top_in_use = gps->top_in_use;
+    native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+        layer.foreground.graphics()->top_in_use);
     layer.ready = true;
     NativeUiReadScope::invalidate_reads();
 }

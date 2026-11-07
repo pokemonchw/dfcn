@@ -28,36 +28,71 @@ static std::string_view native_character_kinship_fallback(int32_t relation) {
 }
 
 using NativeCharacterRelationCopyFn = NativeString *(*)(NativeString *, const NativeString *);
+using NativeCharacterCountFormatFn = void (*)(int32_t, NativeString *);
 struct NativeCharacterRelationsHook {
     NativeCallHook code;
+#ifdef _WIN32
+    std::array<NativeCallHook, 3> overview;
+#endif
     NativeCaptionDrawFn draw = nullptr;
     NativeCharacterRelationCopyFn copy = nullptr;
+    NativeCharacterCountFormatFn count_format = nullptr;
     uintptr_t base = 0;
 };
 static NativeCharacterRelationsHook g_native_character_relations_hook;
 
-static uintptr_t native_character_sheet_field(uintptr_t sheet, size_t legacy,
-        std::string_view member) {
 #ifdef _WIN32
-    return sheet + legacy;
-#else
-    return native_history_object_member(sheet, "view_sheets_interfacest", member);
-#endif
+struct NativeCharacterRelationIdentity {
+    uintptr_t sheet = 0, output = 0, cached = 0;
+    size_t index = 0;
+};
+static thread_local NativeCharacterRelationIdentity g_native_character_relation_identity;
+
+static std::optional<size_t> native_character_relation_name_index(uintptr_t sheet,
+        const NativeString *source) {
+    NativeBorrowedVector<uintptr_t> names;
+    if (!sheet || !source || !native_history_read_vector(
+            native_character_sheet_field(sheet, 0x1840, "rel_name"), names) || names.size() > 65536)
+        return std::nullopt;
+    std::optional<size_t> found;
+    for (size_t index = 0; index < names.size(); ++index)
+        if (native_history_vector_at(names, index) == reinterpret_cast<uintptr_t>(source)) {
+            if (found) return std::nullopt;
+            found = index;
+        }
+    return found;
 }
+
+static std::optional<NativeCharacterRelationIdentity> native_character_relation_identity_for(
+        const NativeString *output) {
+    const auto identity = g_native_character_relation_identity;
+    NativeBorrowedVector<uintptr_t> names;
+    if (!identity.sheet || identity.sheet != g_native_character_drawing_sheet ||
+            identity.output != reinterpret_cast<uintptr_t>(output) ||
+            !native_history_read_vector(native_character_sheet_field(identity.sheet, 0x1840, "rel_name"), names) ||
+            names.size() > 65536 || identity.index >= names.size() ||
+            native_history_vector_at(names, identity.index) != identity.cached) return std::nullopt;
+    return identity;
+}
+#endif
 
 static void remember_native_character_relation_identity(NativeString *output,
         const NativeString *source, const void *sheet, size_t index) {
     try {
         const auto capture = [&] {
             const uintptr_t base = g_native_character_relations_hook.base;
+#ifdef _WIN32
+            const uintptr_t object = g_native_character_drawing_sheet;
+#else
             const uintptr_t object = reinterpret_cast<uintptr_t>(sheet);
+#endif
             std::string_view text;
-            if (!base || !object || object > UINTPTR_MAX - 0x18b8 ||
+            if (!base || !object ||
                     !g_overlay.translation_enabled() ||
                     !native_string_view(output, &text, 65536) || text.empty()) return;
             int32_t object_type = -1, page = -1;
-            if (!native_history_copy(object + 8, object_type) || object_type != 0 ||
-                    !native_history_copy(object + 0xc0, page) || page != 6) return;
+            if (!native_history_copy(native_character_sheet_field(object, 8, "active_sheet", 4), object_type) || object_type != 0 ||
+                    !native_history_copy(native_character_sheet_field(object, 0xc0, "active_sub_tab", 4), page) || page != 6) return;
             NativeBorrowedVector<uintptr_t> names, figures;
             NativeBorrowedVector<int32_t> units;
             if (!native_history_read_vector(native_character_sheet_field(object, 0x1840, "rel_name"), names) || names.size() > 65536 ||
@@ -103,36 +138,37 @@ static void remember_native_character_relation_identity(NativeString *output,
 // allocation before addst writes its glyphs; translation readiness does not
 // determine whether the relationship has a name above it.
 static void capture_native_character_relation_row(NativeDrawnTextRow &row,
-        const graphicst *graphics, const NativeString *source, uintptr_t caller) {
+        const graphicst *graphics, const NativeString *source, uintptr_t caller,
+        int width) {
 #ifdef _WIN32
     try {
         const auto &hook = g_native_character_relations_hook;
         const uintptr_t owner = reinterpret_cast<uintptr_t>(source);
         if (!hook.base || !hook.code.active() ||
                 caller != native_reference_address(hook.base, 0x176dc5) ||
-                !graphics || !source || row.top_layer || owner < 0x3a00 ||
+                !graphics || !source || row.top_layer || width != 0 ||
                 graphics->dimx <= 0 || graphics->dimx > 1000 ||
                 graphics->dimy <= 0 || graphics->dimy > 1000) return;
-        // The source is the renderer's [rsp+3a00] string. These slots are
-        // read from that same frame, not from our callback's current stack.
-        const uintptr_t frame = owner - 0x3a00;
-        if (frame > UINTPTR_MAX - 0xb268) return;
-        int32_t left = -1, right = -1, top = -1, index = -1;
-        uintptr_t sheet = 0;
-        if (!native_history_copy(frame + 0x2c8, left) ||
-                !native_history_copy(frame + 0x548, right) ||
-                !native_history_copy(frame + 0x16c, top) ||
-                !native_history_copy(frame + 0x140, index) ||
-                !native_history_copy(frame + 0xb260, sheet) ||
+        const auto identity = native_character_relation_identity_for(source);
+        if (!identity) return;
+        const uintptr_t sheet = identity->sheet;
+        const size_t index = identity->index;
+        // The complete Frame component proves the native R-L comparison
+        // and its path to this exact string argument. Read both live operands
+        // through that contract, then verify the actual cursor's allocation.
+        int32_t left = -1, right = -1;
+        const uintptr_t left_address = native_pe_frame_relative(owner, 0x176db1, 0x176cde, 4);
+        const uintptr_t right_address = native_pe_frame_relative(owner, 0x176db1, 0x176ce5, 4);
+        if (!native_history_copy(left_address, left) || !native_history_copy(right_address, right) ||
                 left < 0 || left >= graphics->dimx || right <= left ||
                 right >= graphics->dimx || right - left <= 16 ||
-                top < 0 || top >= graphics->dimy - 2 || index < 0 ||
-                graphics->screenx != left + 7 || graphics->screeny != top + 1 ||
-                !sheet || sheet > UINTPTR_MAX - 0x18b8) return;
+                graphics->screeny < 0 || graphics->screeny >= graphics->dimy ||
+                graphics->screenx != left + 7 ||
+                !sheet) return;
         int32_t object_type = -1, page = -1;
         NativeBorrowedVector<uintptr_t> names;
-        if (!native_history_copy(sheet + 8, object_type) || object_type != 0 ||
-                !native_history_copy(sheet + 0xc0, page) || page != 6 ||
+        if (!native_history_copy(native_character_sheet_field(sheet, 8, "active_sheet", 4), object_type) || object_type != 0 ||
+                !native_history_copy(native_character_sheet_field(sheet, 0xc0, "active_sub_tab", 4), page) || page != 6 ||
                 !native_history_read_vector(native_character_sheet_field(
                     sheet, 0x1840, "rel_name"), names) || names.size() > 65536 ||
                 static_cast<size_t>(index) >= names.size()) return;
@@ -155,7 +191,7 @@ static void capture_native_character_relation_row(NativeDrawnTextRow &row,
         row.complete_source.assign(complete);
         // The name starts at L+7, so its exclusive allocated edge is R-9.
         // This keeps the two native action buttons outside the text column.
-        row.character_relation_right = right - 9;
+        row.character_relation_right = graphics->screenx + static_cast<int32_t>(capacity);
         row.caption_source = true;
         if (complete.empty() || row.unit_identity_target) return;
         if (const auto identity = native_unit_identity_source_binding(complete, owner)) {
@@ -205,29 +241,66 @@ static void capture_native_character_relation_row(NativeDrawnTextRow &row,
     (void)graphics;
     (void)source;
     (void)caller;
+    (void)width;
 #endif
 }
 
 static NativeString *capture_native_character_relation_identity(NativeString *output,
-        const NativeString *source, const void *sheet, size_t index) {
+        const NativeString *source
+#ifndef _WIN32
+        , const void *sheet, size_t index
+#endif
+        ) {
     NativeInputCallbackScope callback;
     const auto original = g_native_character_relations_hook.copy;
+#ifdef _WIN32
+    g_native_character_relation_identity = {};
+#endif
     NativeString *result = original
         ? callback.call_native([&] { return original(output, source); }) : output;
+#ifdef _WIN32
+    try {
+        const auto row = native_character_relation_name_index(g_native_character_drawing_sheet, source);
+        if (row) {
+            g_native_character_relation_identity = {g_native_character_drawing_sheet,
+                reinterpret_cast<uintptr_t>(output), reinterpret_cast<uintptr_t>(source), *row};
+            remember_native_character_relation_identity(output, source,
+                reinterpret_cast<const void *>(g_native_character_drawing_sheet), *row);
+        }
+    } catch (...) { g_native_character_relation_identity = {}; }
+#else
     remember_native_character_relation_identity(output, source, sheet, index);
+#endif
     return result;
 }
 
 static void capture_native_character_relation(graphicst *graphics, const NativeString *source,
+#ifdef _WIN32
+        NativeJustification justification, int width) {
+#else
         const void *sheet, size_t index) {
+    const auto justification = static_cast<NativeJustification>(0);
+    const int width = 0;
+#endif
+    auto *const native_graphics = graphics;
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     const auto original = g_native_character_relations_hook.draw;
     try {
         const auto capture = [&] {
             const uintptr_t base = g_native_character_relations_hook.base;
+#ifdef _WIN32
+            if (justification != static_cast<NativeJustification>(0) || width != 0) return;
+            const auto identity = native_character_relation_identity_for(source);
+            if (!identity) return;
+            const uintptr_t object = identity->sheet;
+            const size_t row_index = identity->index;
+#else
             const uintptr_t object = reinterpret_cast<uintptr_t>(sheet);
+            const size_t row_index = index;
+#endif
             std::string_view text;
-            if (!base || !object || object > UINTPTR_MAX - 0x18b8 ||
+            if (!base || !object ||
                 !graphics || !graphics->screen || !g_overlay.translation_enabled() ||
                 graphics->dimx <= 0 || graphics->dimx > 1000 ||
                 graphics->dimy <= 0 || graphics->dimy > 1000 ||
@@ -242,19 +315,19 @@ static void capture_native_character_relation(graphicst *graphics, const NativeS
             int32_t object_type = -1, page = -1, unit_id = -1;
             // 1a1cb0 dispatches object+8 == 0 to its unit lookup; its second
             // switch dispatches object+c0 == 6 to the relationship builder.
-            if (!native_history_copy(object + 0x8, object_type) || object_type != 0 ||
-                !native_history_copy(object + 0xc0, page) || page != 6 ||
-                !native_history_copy(object + 0xc, unit_id) || unit_id < 0) return;
+            if (!native_history_copy(native_character_sheet_field(object, 8, "active_sheet", 4), object_type) || object_type != 0 ||
+                !native_history_copy(native_character_sheet_field(object, 0xc0, "active_sub_tab", 4), page) || page != 6 ||
+                !native_history_copy(native_character_sheet_field(object, 0xc, "active_id", 4), unit_id) || unit_id < 0) return;
 
             NativeBorrowedVector<int16_t> relations;
             NativeBorrowedVector<uintptr_t> relatives;
             if (!native_history_copy(native_character_sheet_field(object, 0x1870, "relation_f"), relations) || !relations.valid(65536) ||
                 !native_history_read_vector(native_character_sheet_field(object, 0x18a0, "rel_hf"), relatives) ||
                 relatives.size() != relations.size() || relatives.size() > 65536 ||
-                index >= relations.size()) return;
+                row_index >= relations.size()) return;
             int16_t relation = -1;
             if (!native_history_copy(reinterpret_cast<uintptr_t>(relations.begin) +
-                    index * sizeof(int16_t), relation) || relation < 0 || relation > 71) return;
+                    row_index * sizeof(int16_t), relation) || relation < 0 || relation > 71) return;
             const auto fallback = native_character_kinship_fallback(relation);
             remember_native_character_relation(graphics->screenx, graphics->screeny,
                 text, fallback, graphics);
@@ -264,7 +337,7 @@ static void capture_native_character_relation(graphicst *graphics, const NativeS
             // The parallel HF-pointer vector survives even when the relative
             // has no current unit. The builder inserts it beside the relation
             // at 1a3d39/1a3d8c, preserving the exact displayed row ordering.
-            const uintptr_t relative = native_history_vector_at(relatives, index);
+            const uintptr_t relative = native_history_vector_at(relatives, row_index);
             uintptr_t unit = 0;
             int32_t subject_id = -1, relative_id = -1;
             if (!relative || relative > UINTPTR_MAX - 0xe4 ||
@@ -285,20 +358,60 @@ static void capture_native_character_relation(graphicst *graphics, const NativeS
     } catch (...) {
         // A missing record or allocation must never interrupt the native row.
     }
-    // Call the actual addst entry, including its existing shared caption
-    // hook. The original caller passes both justification and width as zero.
-    if (original) callback.call_native([&] { original(graphics, source, static_cast<NativeJustification>(0), 0); });
+    // Capture eligibility never changes the game's actual draw arguments.
+    if (original) callback.call_native([&] {
+        native_graphics_call(original, graphics ? graphics : native_graphics, source, justification, width);
+    });
 }
 
 enum class NativeCharacterOverviewCount { Lovers, Children, Pets };
 
+#ifdef _WIN32
+struct NativeCharacterOverviewIdentity {
+    uintptr_t sheet = 0, output = 0;
+    int32_t count = -1;
+};
+static thread_local std::array<NativeCharacterOverviewIdentity, 3> g_native_character_overview_identity;
+
+template<NativeCharacterOverviewCount Kind>
+static void capture_native_character_overview_number(int32_t count, NativeString *output) {
+    NativeInputCallbackScope callback;
+    constexpr auto index = static_cast<size_t>(Kind);
+    g_native_character_overview_identity[index] = {};
+    const auto original = g_native_character_relations_hook.count_format;
+    if (!original) return;
+    callback.call_native([&] { original(count, output); });
+    if (g_native_character_drawing_sheet && output && count >= 2)
+        g_native_character_overview_identity[index] = {
+            g_native_character_drawing_sheet, reinterpret_cast<uintptr_t>(output), count};
+}
+#endif
+
 template<NativeCharacterOverviewCount Kind>
 static void capture_native_character_overview_count(graphicst *graphics,
+#ifdef _WIN32
+        const NativeString *source, NativeJustification justification, int width) {
+#else
         const NativeString *source, int32_t count) {
+    const auto justification = static_cast<NativeJustification>(0);
+    const int width = 0;
+#endif
+    auto *const native_graphics = graphics;
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     const auto original = g_native_character_relations_hook.draw;
+#ifdef _WIN32
+    constexpr auto index = static_cast<size_t>(Kind);
+    const auto identity = g_native_character_overview_identity[index];
+    g_native_character_overview_identity[index] = {};
+    const int32_t count = identity.sheet && identity.sheet == g_native_character_drawing_sheet &&
+        identity.output == reinterpret_cast<uintptr_t>(source) ? identity.count : -1;
+#endif
     try {
         const auto capture = [&] {
+#ifdef _WIN32
+            if (justification != static_cast<NativeJustification>(0) || width != 0) return;
+#endif
             std::string_view text;
             if (!graphics || !graphics->screen || !g_overlay.translation_enabled() ||
                     graphics->dimx <= 0 || graphics->dimx > 1000 ||
@@ -308,8 +421,8 @@ static void capture_native_character_overview_count(graphicst *graphics,
                     count < 2 || !native_string_view(source, &text, 256) || text.empty()) return;
             // The family branches count historical-figure links of type 3
             // (children) and type 5 (lovers). The pet branch counts units
-            // whose pet-owner ID is the current unit. Each relay reads the
-            // exact int32 accumulator from the native caller frame. A lone
+            // whose pet-owner ID is the current unit. The number formatter
+            // supplies its actual count and destination string. A lone
             // relative/pet uses its identity branch; zero draws no row.
             // The source supplies only the native draw span, never the kind
             // or number. See data/extracted/character-overview-family.
@@ -326,155 +439,143 @@ static void capture_native_character_overview_count(graphicst *graphics,
         // Preserve the original draw even if the overlay cannot allocate.
     }
     if (original) callback.call_native([&] {
-        original(graphics, source, static_cast<NativeJustification>(0), 0);
+        native_graphics_call(original, graphics ? graphics : native_graphics, source, justification, width);
     });
 }
 
 static bool native_character_relations_hook_active() {
-    return g_native_character_relations_hook.code.active();
+    const auto &hook = g_native_character_relations_hook;
+    if (hook.code.active()) return true;
+#ifdef _WIN32
+    for (const auto &pair : hook.overview) if (pair.active()) return true;
+#endif
+    return false;
+}
+
+static void native_character_relations_release_inactive_state() {
+    auto &hook = g_native_character_relations_hook;
+    if (!hook.code.active()) {
+        hook.copy = nullptr;
+#ifdef _WIN32
+        g_native_character_relation_identity = {};
+#endif
+    }
+#ifdef _WIN32
+    bool counts_active = false;
+    for (size_t index = 0; index < hook.overview.size(); ++index) {
+        if (hook.overview[index].active()) counts_active = true;
+        else g_native_character_overview_identity[index] = {};
+    }
+    if (!counts_active) hook.count_format = nullptr;
+#else
+    if (!hook.code.active()) hook.count_format = nullptr;
+#endif
+    // A failed restore retains the originals used by any remaining callback.
+    // Only the final transaction's successful removal retires shared state.
+    if (!native_character_relations_hook_active()) {
+        hook.draw = nullptr;
+        hook.base = 0;
+        clear_native_character_relations();
+    }
 }
 
 static bool uninstall_native_character_relations_hook() {
     if (!native_callbacks_idle()) return false;
     auto &hook = g_native_character_relations_hook;
-    if (!hook.code.uninstall("Character relationship capture restore")) return false;
-    hook.draw = nullptr;
-    hook.copy = nullptr;
-    hook.base = 0;
-    clear_native_character_relations();
-    return true;
+    bool restored = true;
+    const auto restore = [&](NativeCallHook &code, const char *label) {
+        if (!code.active()) return;
+        try { if (!code.uninstall(label)) restored = false; }
+        catch (...) { restored = false; }
+    };
+    restore(hook.code, "Character relationship capture restore");
+#ifdef _WIN32
+    for (auto &pair : hook.overview)
+        restore(pair, "Character overview count pair restore");
+#endif
+    native_character_relations_release_inactive_state();
+    return restored && !native_character_relations_hook_active();
 }
 
 #ifdef _WIN32
+static bool install_native_character_relation_pair(NativeCallHook &code,
+        uintptr_t base, std::vector<NativeCall> &calls, const char *label,
+        bool dependencies, bool &restore_failed) {
+    if (code.installed) return true;
+    const auto restore = [&] {
+        if (!code.active()) return true;
+        try { return code.uninstall(label); } catch (...) { return false; }
+    };
+    if (!restore()) { restore_failed = true; return false; }
+    bool installed = false;
+    try {
+        // NativeCallHook validates both E8/callee identities before publishing
+        // either patch. A formatter without its matching draw is never kept.
+        installed = dependencies && native_reference_calls(calls, 0) &&
+            code.install(base, calls, label);
+    } catch (...) {}
+    if (installed) return true;
+    if (!restore() || code.active()) restore_failed = true;
+    report_native_patch_error("WARN", label,
+        "complete call pair unavailable; independent character captures remain enabled");
+    return false;
+}
+
 static bool install_native_character_relations_hook() {
     auto &hook = g_native_character_relations_hook;
-    if (hook.code.installed) return true;
-    if (native_character_relations_hook_active() && !uninstall_native_character_relations_hook())
-        return false;
-    struct InstallGuard {
-        bool committed = false;
-        ~InstallGuard() {
-            if (!committed) {
-                try { uninstall_native_character_relations_hook(); } catch (...) {}
-            }
-        }
-    } guard;
     const uintptr_t base = native_history_profile_base();
-    if (!base) return false;
-    const NativeCaptionSignature signatures[] = {
-        // Overview accumulators and their number-formatter arguments share
-        // this caller frame in both PE editions. Type 3 increments children
-        // at +da0; type 5 increments lovers at +d9c; matched pet owners
-        // increment pets at +da4.
-        {0x1602b8, {0x8b,0x84,0x24,0xa0,0x0d,0x00,0x00,0xff,0xc0,
-            0x89,0x84,0x24,0xa0,0x0d,0x00,0x00}},
-        {0x160330, {0x8b,0x84,0x24,0x9c,0x0d,0x00,0x00,0xff,0xc0,
-            0x89,0x84,0x24,0x9c,0x0d,0x00,0x00}},
-        {0x1607fa, {0x8b,0x84,0x24,0xa4,0x0d,0x00,0x00,0xff,0xc0,
-            0x89,0x84,0x24,0xa4,0x0d,0x00,0x00}},
-        {0x1603a6, {0x48,0x8d,0x94,0x24,0x60,0x41,0x00,0x00,
-            0x8b,0x8c,0x24,0x9c,0x0d,0x00,0x00}},
-        {0x160584, {0x48,0x8d,0x94,0x24,0x40,0x42,0x00,0x00,
-            0x8b,0x8c,0x24,0xa0,0x0d,0x00,0x00}},
-        {0x160870, {0x48,0x8d,0x94,0x24,0x20,0x42,0x00,0x00,
-            0x8b,0x8c,0x24,0xa4,0x0d,0x00,0x00}},
-        // The three count rows draw their own stack strings with zero
-        // justification/width, leaving R8 available to carry the count.
-        {0x1603ce, {0x45,0x33,0xc9,0x45,0x33,0xc0,
-            0x48,0x8d,0x94,0x24,0x60,0x41,0x00,0x00,
-            0x48,0x8d,0x0d,0x0d,0xa0,0x4e,0x02,0xe8,0x78,0x95,0x97,0x00}},
-        {0x1605ac, {0x45,0x33,0xc9,0x45,0x33,0xc0,
-            0x48,0x8d,0x94,0x24,0x40,0x42,0x00,0x00,
-            0x48,0x8d,0x0d,0x2f,0x9e,0x4e,0x02,0xe8,0x9a,0x93,0x97,0x00}},
-        {0x160898, {0x45,0x33,0xc9,0x45,0x33,0xc0,
-            0x48,0x8d,0x94,0x24,0x20,0x42,0x00,0x00,
-            0x48,0x8d,0x0d,0x43,0x9b,0x4e,0x02,0xe8,0xae,0x90,0x97,0x00}},
-        // Identity draw copies this exact row from sheet.names before resize.
-        {0x176c6a, {0x48,0x8b,0x84,0x24,0x60,0xb2,0x00,0x00,
-            0x48,0x05,0x40,0x18,0x00,0x00}},
-        {0x176c80, {0x48,0x63,0x84,0x24,0x40,0x01,0x00,0x00}},
-        {0x176c98, {0x48,0x8b,0x00,0x48,0x8b,0xd0,
-            0x48,0x8d,0x8c,0x24,0x00,0x3a,0x00,0x00}},
-        // The name draw uses this frame's L/T coordinates and R-L-16
-        // allocation even when no resize occurs. Its return address owns
-        // the complete relation row captured by the shared addst hook.
-        {0x176cac, {0x8b,0x84,0x24,0xc8,0x02,0x00,0x00,0x83,0xc0,0x07,
-            0x8b,0x8c,0x24,0x6c,0x01,0x00,0x00,0xff,0xc1,0x44,0x8b,0xc0,0x8b,0xd1,
-            0x48,0x8d,0x0d,0x25,0x37,0x4d,0x02,0xe8,0x50,0x44,0xf4,0xff}},
-        {0x176cde, {0x8b,0x8c,0x24,0xc8,0x02,0x00,0x00,
-            0x8b,0x94,0x24,0x48,0x05,0x00,0x00,0x2b,0xd1,0x8b,0xca,0xff,0xc9,
-            0x83,0xe9,0x0e,0x48,0x63,0xc9,0x48,0x3b,0xc1}},
-        {0x176d01, {0x8b,0x84,0x24,0xc8,0x02,0x00,0x00,
-            0x8b,0x8c,0x24,0x48,0x05,0x00,0x00,0x2b,0xc8,0x8b,0xc1,0xff,0xc8,
-            0x83,0xe8,0x0f,0x89,0x84,0x24,0x54,0x0b,0x00,0x00}},
-        {0x176dab, {0x45,0x33,0xc9,0x45,0x33,0xc0,
-            0x48,0x8d,0x94,0x24,0x00,0x3a,0x00,0x00,
-            0x48,0x8d,0x0d,0x30,0x36,0x4d,0x02,0xe8,0x9b,0x2b,0x96,0x00}},
-        {0x1a39c0, {0x48,0x8d,0x86,0x88,0x18,0x00,0x00,
-            0x48,0x89,0x45,0xe0}},
-        // The current row uses this sheet pointer and signed 32-bit index.
-        {0x176ecb, {0x48,0x8b,0x84,0x24,0x60,0xb2,0x00,0x00,
-            0x48,0x05,0x70,0x18,0x00,0x00}},
-        {0x176ee1, {0x48,0x63,0x84,0x24,0x40,0x01,0x00,0x00}},
-        // Formatter, capitalization and draw keep the same stack string.
-        {0x176ef9, {0x45,0x33,0xc9,0x45,0x33,0xc0,
-            0x48,0x8d,0x94,0x24,0x00,0x3a,0x00,0x00,0x0f,0xb7,0x08,
-            0xe8,0x71,0x36,0x5e,0x00}},
-        {0x176f0f, {0x48,0x8d,0x8c,0x24,0x00,0x3a,0x00,0x00,
-            0xe8,0x34,0x67,0x3b,0x00}},
-        {0x176f1c, {0x45,0x33,0xc9,0x45,0x33,0xc0,
-            0x48,0x8d,0x94,0x24,0x00,0x3a,0x00,0x00,
-            0x48,0x8d,0x0d,0xbf,0x34,0x4d,0x02,0xe8,0x2a,0x2a,0x96,0x00}},
-        // Relationship builder's parallel relation/HF vectors, and the
-        // unit-to-HF ID load used by its original subject resolver.
-        {0x1a39ad, {0x48,0x8d,0x86,0x70,0x18,0x00,0x00,
-            0x48,0x89,0x45,0xd8,0x48,0x8b,0xc8}},
-        {0x1a39d3, {0x48,0x8d,0x86,0xa0,0x18,0x00,0x00,
-            0x48,0x89,0x45,0xa0,0x48,0x8b,0xc8}},
-        {0x13b3090, {0x8b,0x91,0x30,0x0c,0x00,0x00}}
-    };
-    NativePatchPages readable;
-    for (const auto &signature : signatures) {
-        if (!collect_native_patch_pages(readable, native_pe_address(base, signature.address), signature.bytes.size(),
-                native_patch_page_size(), true, "Character relationship identity") ||
-            !native_pe_match(base, signature.address,
-                signature.bytes.data(), signature.bytes.size())) {
-            log_line("ERROR", "Native character relationship call/ABI identity mismatch");
-            return false;
-        }
-    }
-    clear_native_character_relations();
+    const auto draw = reinterpret_cast<NativeCaptionDrawFn>(native_pe_address(base, 0xad9960));
+    const auto copy = reinterpret_cast<NativeCharacterRelationCopyFn>(native_pe_address(base, 0x6f5d0));
+    const auto count_format = reinterpret_cast<NativeCharacterCountFormatFn>(native_pe_address(base, 0x52c130));
+    if (!base || !draw || (native_character_relations_hook_active() &&
+            (hook.base != base || hook.draw != draw || (hook.copy && hook.copy != copy) ||
+             (hook.count_format && hook.count_format != count_format)))) return false;
+    // NativeCallHook retains each proved E8/callee contract below. The
+    // callbacks additionally validate their actual draw parameters, the
+    // formatter/copy destination and the entry-owned sheet. Row allocation
+    // has its own complete Frame contract; no old private stack encoding is
+    // an installation prerequisite for the independent count/title capture.
+    if (!native_character_relations_hook_active()) clear_native_character_relations();
     hook.base = base;
-    hook.draw = reinterpret_cast<NativeCaptionDrawFn>(native_pe_address(base, 0xad9960));
-    hook.copy = reinterpret_cast<NativeCharacterRelationCopyFn>(native_pe_address(base, 0x6f5d0));
-    // The relay is entered by CALL, so its RSP is eight bytes below the
-    // caller frame. Preserve RCX/RDX; pass sheet and signed row index in the
-    // otherwise-zero R8/R9. MOVSXD matches the original int32 index load.
-    std::vector<NativeCall> calls = {
-        // Each count relay reads its original int32 accumulator plus the
-        // return-address adjustment. The distinct call site supplies the
-        // relationship kind; no English caption participates in selection.
-        {0x1603e3, 0xad9960,
-        reinterpret_cast<const void *>(&capture_native_character_overview_count<NativeCharacterOverviewCount::Lovers>),
-        {0x44,0x8b,0x84,0x24,0xa4,0x0d,0x00,0x00}},
-        {0x1605c1, 0xad9960,
-        reinterpret_cast<const void *>(&capture_native_character_overview_count<NativeCharacterOverviewCount::Children>),
-        {0x44,0x8b,0x84,0x24,0xa8,0x0d,0x00,0x00}},
-        {0x1608ad, 0xad9960,
-        reinterpret_cast<const void *>(&capture_native_character_overview_count<NativeCharacterOverviewCount::Pets>),
-        {0x44,0x8b,0x84,0x24,0xac,0x0d,0x00,0x00}},
+    hook.draw = draw;
+    hook.copy = copy;
+    hook.count_format = count_format;
+    std::vector<NativeCall> relations = {
         {0x176ca6, 0x6f5d0,
-        reinterpret_cast<const void *>(&capture_native_character_relation_identity),
-        {0x4c,0x8b,0x84,0x24,0x68,0xb2,0x00,0x00,
-         0x4c,0x63,0x8c,0x24,0x48,0x01,0x00,0x00}},
+        reinterpret_cast<const void *>(&capture_native_character_relation_identity)},
         {0x176f31, 0xad9960,
-        reinterpret_cast<const void *>(&capture_native_character_relation),
-        {0x4c,0x8b,0x84,0x24,0x68,0xb2,0x00,0x00,
-         0x4c,0x63,0x8c,0x24,0x48,0x01,0x00,0x00}}};
-    if (!native_reference_calls(calls, 0) || !hook.code.install(base, calls, "Native character relationship capture")) return false;
-    guard.committed = true;
-    log_line("INFO", "Enabled native character relationship identity and title capture");
-    return true;
+        reinterpret_cast<const void *>(&capture_native_character_relation)}};
+    std::vector<NativeCall> lovers = {
+        // ECX is the integer, RDX the native string. These calls discard the
+        // formatter result and then append their original English suffix.
+        {0x1603b5, 0x52c130,
+        reinterpret_cast<const void *>(&capture_native_character_overview_number<NativeCharacterOverviewCount::Lovers>)},
+        {0x1603e3, 0xad9960,
+        reinterpret_cast<const void *>(&capture_native_character_overview_count<NativeCharacterOverviewCount::Lovers>)}};
+    std::vector<NativeCall> children = {
+        {0x160593, 0x52c130,
+        reinterpret_cast<const void *>(&capture_native_character_overview_number<NativeCharacterOverviewCount::Children>)},
+        {0x1605c1, 0xad9960,
+        reinterpret_cast<const void *>(&capture_native_character_overview_count<NativeCharacterOverviewCount::Children>)}};
+    std::vector<NativeCall> pets = {
+        {0x16087f, 0x52c130,
+        reinterpret_cast<const void *>(&capture_native_character_overview_number<NativeCharacterOverviewCount::Pets>)},
+        {0x1608ad, 0xad9960,
+        reinterpret_cast<const void *>(&capture_native_character_overview_count<NativeCharacterOverviewCount::Pets>)}};
+    bool restore_failed = false;
+    const bool relation_ready = install_native_character_relation_pair(hook.code, base, relations,
+        "Native character relationship identity and title capture", copy != nullptr, restore_failed);
+    const bool lovers_ready = install_native_character_relation_pair(hook.overview[0], base, lovers,
+        "Native character overview lovers count", count_format != nullptr, restore_failed);
+    const bool children_ready = install_native_character_relation_pair(hook.overview[1], base, children,
+        "Native character overview children count", count_format != nullptr, restore_failed);
+    const bool pets_ready = install_native_character_relation_pair(hook.overview[2], base, pets,
+        "Native character overview pets count", count_format != nullptr, restore_failed);
+    native_character_relations_release_inactive_state();
+    if (relation_ready) log_line("INFO", "Enabled native character relationship identity and title capture");
+    if (lovers_ready || children_ready || pets_ready)
+        log_line("INFO", "Enabled independently bound character overview count pairs");
+    return !restore_failed && (relation_ready || lovers_ready || children_ready || pets_ready);
 }
 #else
 #include "native_character_relations_search_profile_elf.inc"

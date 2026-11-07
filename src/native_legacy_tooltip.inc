@@ -243,6 +243,7 @@ static void capture_native_legacy_tooltip_text(graphicst *gps, Draw &&draw) {
 
 static void capture_native_legacy_tooltip_row(graphicst *gps, const NativeString *source,
         NativeJustification just, int width) {
+    gps = native_graphics_view(gps);
     NativeInputCallbackScope callback;
     const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
 #ifdef _WIN32
@@ -261,7 +262,7 @@ static void capture_native_legacy_tooltip_row(graphicst *gps, const NativeString
 #endif
     capture_native_legacy_tooltip_text(gps, [&] {
         const auto draw = [&] {
-            callback.call_native([&] { original(gps, source, just, width); });
+            callback.call_native([&] { native_graphics_call(original, gps, source, just, width); });
         };
         // This call site is the actual toolbar text writer. Publish its
         // submitted row directly rather than relying on another caption

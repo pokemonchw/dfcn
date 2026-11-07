@@ -5,6 +5,10 @@ static NativeInfoCapturedText g_native_designation_text;
 static std::unique_ptr<NativeUiGridBinding> g_native_designation_output;
 static std::unique_ptr<NativeInfoCapturedTextScope> g_native_designation_captions;
 static std::unique_ptr<TranslationStateScope> g_native_designation_translation;
+// The first category cursor is also reached again by its native tile loop.
+// If its first isolation attempt fails, keep this entire producer native;
+// a later loop iteration must not start a private frame halfway through it.
+static bool g_native_designation_begin_attempted = false;
 
 static void native_designation_submit_span(int x, int y, int length) {
     const auto *gps = native_graphics();
@@ -28,6 +32,8 @@ static void native_designation_submit_span(int x, int y, int length) {
 
 static bool native_designation_begin_draw() {
     if (g_native_designation_output) return true;
+    if (g_native_designation_begin_attempted) return false;
+    g_native_designation_begin_attempted = true;
     try {
         auto translation = std::make_unique<TranslationStateScope>();
         auto *gps = native_graphics();
@@ -62,17 +68,19 @@ static void native_designation_end_draw() {
     if (!g_native_designation_output) return;
     auto &layer = g_native_designation_layer;
     auto *gps = native_graphics();
-    layer.foreground.graphics()->top_in_use = gps->top_in_use;
+    native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+        layer.foreground.graphics()->top_in_use);
     // Continue the native producer with its final cursor/palette, while the
     // binding restores only the parent output ownership and clipping state.
     const auto continuation = NativeDfhackOutputBinding::capture(*gps);
     native_designation_restore_output();
-    std::memcpy(&gps->screenx, continuation.draw.data(), continuation.draw.size());
+    continuation.apply_draw(*gps);
     layer.ready = !layer.frames.empty();
 }
 
 static void native_designation_begin_frame() {
     native_designation_restore_output();
+    g_native_designation_begin_attempted = false;
     auto &layer = g_native_designation_layer;
     for (const auto &frame : layer.frames) layer.foreground.clear(frame);
     layer.frames.clear();

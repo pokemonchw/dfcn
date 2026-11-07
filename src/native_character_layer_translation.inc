@@ -68,6 +68,7 @@ void Overlay::render_native_character_layer(SDL_Renderer *renderer) {
     X(frame_prepared_) \
     X(native_ui_input_read_) \
     X(native_ui_frame_ready_) \
+    X(native_captured_ui_frame_) \
     X(native_prepared_ui_frame_) \
     X(native_ui_layout_page_) \
     X(native_ui_toolbar_tooltip_) \
@@ -166,6 +167,7 @@ void Overlay::render_native_character_layer(SDL_Renderer *renderer) {
             overlay.frame_prepared_ = false;
             overlay.native_ui_input_read_ = true;
             overlay.native_ui_frame_ready_ = false;
+            overlay.native_captured_ui_frame_.reset();
             overlay.native_prepared_ui_frame_ = {};
             overlay.native_ui_layout_page_.reset();
             overlay.native_ui_toolbar_tooltip_.reset();

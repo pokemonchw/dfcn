@@ -1,5 +1,11 @@
 // Borrow live arguments to verified native calls and the current screen chain.
 // All event data published to the overlay is copied into core objects.
+static uintptr_t native_viewscreen_field(uintptr_t object,
+        native_history_abi::FieldOffset field, size_t width) noexcept {
+    try { return field.address(object, 0, width, width); }
+    catch (...) { return 0; }
+}
+
 static uintptr_t native_viewscreen_page_owner(uintptr_t screen) {
     using ForeignScreenPredicate = bool (*)(void *);
 #ifdef _WIN32
@@ -16,13 +22,14 @@ static uintptr_t native_viewscreen_page_owner(uintptr_t screen) {
     // Ask DFHack for ownership rather than inferring it from a vtable name.
     std::array<uintptr_t, 64> visited{};
     for (size_t depth = 0; depth < visited.size(); ++depth) {
-        if (!screen || screen > UINTPTR_MAX - 0x10 ||
+        if (!screen ||
             std::find(visited.begin(), visited.begin() + depth, screen) != visited.begin() + depth)
             return 0;
         visited[depth] = screen;
         if (!foreign(reinterpret_cast<void *>(screen))) return screen;
         uintptr_t parent = 0;
-        if (!native_history_copy(screen + 0x10, parent)) return 0;
+        if (!native_history_copy(native_viewscreen_field(screen,
+                {0x10, "viewscreen", "parent"}, sizeof(parent)), parent)) return 0;
         screen = parent;
     }
     return 0;
@@ -32,16 +39,17 @@ static uintptr_t native_current_viewscreen() {
     const uintptr_t base = native_history_profile_base();
     if (!base) return 0;
     const uintptr_t view = native_reference_address(base, native_history_layout::gview_rva);
-    if (!view || view > UINTPTR_MAX - 8) return 0;
-    uintptr_t screen = view + 8;
+    uintptr_t screen = native_viewscreen_field(view, {8, "interfacest", "view"}, 1);
+    if (!screen) return 0;
     std::array<uintptr_t, 64> visited{};
     for (size_t depth = 0; depth < visited.size(); ++depth) {
-        if (screen > UINTPTR_MAX - 8 ||
+        if (!screen ||
             std::find(visited.begin(), visited.begin() + depth, screen) != visited.begin() + depth)
             return 0;
         visited[depth] = screen;
         uintptr_t child = 0;
-        if (!native_history_copy(screen + 8, child)) return 0;
+        if (!native_history_copy(native_viewscreen_field(screen,
+                {8, "viewscreen", "child"}, sizeof(child)), child)) return 0;
         if (child) { screen = child; continue; }
         return native_viewscreen_page_owner(screen);
     }
@@ -218,9 +226,16 @@ static bool native_history_worldgen_page() {
     return screen && native_history_object_is(screen, "viewscreen_new_regionst");
 }
 
+#ifdef _WIN32
+static std::optional<std::pair<int, int>> g_native_history_chronicle_observed_rows;
+#endif
 static std::optional<std::pair<int, int>> native_history_chronicle_row_bounds() {
+#ifdef _WIN32
+    return g_native_history_chronicle_observed_rows;
+#else
     // Native draw bindings own rows 10..19; installation verifies their code.
     return native_history_profile_base() ? std::optional(std::pair<int, int>{10, 20}) : std::nullopt;
+#endif
 }
 
 struct NativeHistoryRichWord {
@@ -247,11 +262,17 @@ static_assert(sizeof(NativeHistoryRichBox) == 64);
 static_assert(offsetof(NativeHistoryRichBox, links) == 0x18);
 static_assert(offsetof(NativeHistoryRichBox, current_width) == 0x30);
 
+#include "native_history_markup_view.inc"
+
 // Scratch uses the host's allocator; no native owning header is copied.
 struct NativeHistoryScratch {
     NativeString source = native_empty_string();
     NativeHistoryRichBox box{};
-    NativeHistoryScratch() { box.current_width = -1; }
+    NativeHistoryScratch() {
+        if (!native_history_markup_scratch_ready())
+            throw std::runtime_error("Native retained markup construction layout unavailable");
+        box.current_width = -1;
+    }
     NativeHistoryScratch(const NativeHistoryScratch &) = delete;
     NativeHistoryScratch &operator=(const NativeHistoryScratch &) = delete;
     ~NativeHistoryScratch() {
@@ -272,6 +293,50 @@ struct NativeHistoryScratch {
 };
 
 using NativeHistorySentenceFn = void (*)(void *, NativeString *, void *, bool, bool);
+using NativeHistoryContextSentenceFn = void (*)(void *, NativeString *, void *);
+static bool native_history_formatter_method_ready(std::string_view method) noexcept {
+    // Direct event consumers share the discovered formatter ABI, not the
+    // installation state of Chronicle or Legends page interception.
+    try {
+        const uintptr_t base = native_history_profile_base();
+        if (!base || native_history_event_identity_base() != base) return false;
+        if (method != "getSentence" && method != "getPhrase") return false;
+        const auto contract = native_history_abi::history_method(method, method == "getPhrase" ? 0xd8 : 0xd0);
+        if (contract.slot % sizeof(uintptr_t) || contract.slot > 65536) return false;
+        return (contract.parameter_shape == native_history_abi::sentence_shape && contract.argument_count == 4) ||
+            (contract.parameter_shape == native_history_abi::sentence_context_shape && contract.argument_count == 2);
+    } catch (...) {
+        return false;
+    }
+}
+static bool native_history_formatter_ready() noexcept {
+    return native_history_formatter_method_ready("getSentence") &&
+        native_history_formatter_method_ready("getPhrase");
+}
+static bool native_history_formatter_context_only(std::string_view method) {
+    const auto contract = native_history_abi::history_method(method, method == "getPhrase" ? 0xd8 : 0xd0);
+    if (contract.parameter_shape == native_history_abi::sentence_context_shape && contract.argument_count == 2)
+        return true;
+    if (contract.parameter_shape == native_history_abi::sentence_shape && contract.argument_count == 4)
+        return false;
+    throw std::runtime_error("Unsupported discovered history formatter signature: " + std::string(method));
+}
+static const void *native_history_formatter_callback(std::string_view method,
+        NativeHistorySentenceFn extended, NativeHistoryContextSentenceFn context_only) {
+    return native_history_formatter_context_only(method)
+        ? reinterpret_cast<const void *>(context_only) : reinterpret_cast<const void *>(extended);
+}
+static void native_history_call_formatter(void *event, NativeString *source, void *context,
+        bool translated, bool glyphs_only, std::string_view method = "getSentence") {
+    const auto contract = native_history_abi::history_method(method, method == "getPhrase" ? 0xd8 : 0xd0);
+    const void *table = nullptr;
+    void *original = nullptr;
+    std::memcpy(&table, event, sizeof(table));
+    std::memcpy(&original, static_cast<const unsigned char *>(table) + contract.slot, sizeof(original));
+    if (native_history_formatter_context_only(method))
+        reinterpret_cast<NativeHistoryContextSentenceFn>(original)(event, source, context);
+    else reinterpret_cast<NativeHistorySentenceFn>(original)(event, source, context, translated, glyphs_only);
+}
 using NativeHistoryAppendFn = void (*)(NativeHistoryRichBox *, const NativeString *);
 using NativeHistoryLayoutFn = void (*)(NativeHistoryRichBox *, int);
 using NativeHistoryDrawFn = void (*)(graphicst *, const NativeString *, NativeJustification, int);
@@ -279,6 +344,12 @@ static NativeHistoryAppendFn g_real_native_history_append = nullptr;
 static NativeHistoryLayoutFn g_real_native_history_layout = nullptr;
 static NativeHistoryDrawFn g_real_native_history_draw = nullptr;
 static NativeHistoryRichBox *g_native_history_box = nullptr;
+#ifdef _WIN32
+// Retained chronicle words are only owned while their native clear operation
+// is observed. Other event formatters and UI pages do not depend on this.
+static bool g_native_history_chronicle_lifetime_ready = false;
+#endif
+static bool g_native_history_legends_capture_ready = false;
 static size_t g_native_history_sentence_slot = 0;
 static std::atomic_uint g_active_native_history_callbacks{0};
 static std::atomic_uint64_t g_native_history_capture_generation{1};
@@ -300,35 +371,39 @@ static NativeHistoryPending &pending_native_history() {
 }
 
 static size_t native_history_word_count(const NativeHistoryRichBox *box) {
-    return box && box->words.valid(kNativeHistoryCaptureTokens) ? box->words.size() : SIZE_MAX;
+    NativeBorrowedVector<NativeHistoryRichWord *> words{};
+    return native_history_markup_read(reinterpret_cast<uintptr_t>(box),
+        {0, "markup_text_boxst", "word"}, words) && words.valid(kNativeHistoryCaptureTokens)
+        ? words.size() : SIZE_MAX;
 }
 
 static bool copy_native_history_tokens(const NativeHistoryRichBox *box, size_t begin,
         std::vector<NativeHistoryToken> &tokens, size_t length = SIZE_MAX) {
-    const size_t count = native_history_word_count(box);
-    if (count == SIZE_MAX || begin > count || !box->links.valid(kNativeHistoryCaptureTokens)) return false;
+    NativeHistoryRichBox view{};
+    if (!native_history_markup_box(reinterpret_cast<uintptr_t>(box), view)) return false;
+    const size_t count = view.words.size();
+    if (begin > count) return false;
     if (length == SIZE_MAX) length = count - begin;
     if (length > count - begin || length > kNativeHistoryDocumentTokens) return false;
     tokens.clear();
     tokens.reserve(length);
     for (size_t i = begin; i < begin + length; ++i) {
-        const auto *word = box->words.begin[i];
-        std::string_view source;
-        if (!word || !native_string_view(&word->text, &source, 262144)) return false;
+        NativeHistoryMarkupWord word;
+        if (!native_history_markup_word(native_history_markup_element(view.words, i), word)) return false;
         NativeHistoryToken token;
-        token.identity = reinterpret_cast<uintptr_t>(word);
-        token.source.assign(source);
-        token.x = word->x;
-        token.y = word->y;
-        token.color = (int(word->red) << 16) | (int(word->green) << 8) | int(word->blue);
-        if (word->link_index >= 0) {
-            if (static_cast<size_t>(word->link_index) >= box->links.size()) return false;
-            const auto *link = box->links.begin[word->link_index];
-            if (!link || link->type < -1 || link->type > 11) return false;
-            token.link_type = link->type;
-            token.link_id = link->id;
-            token.link_subid = link->subid;
-        } else if (word->link_index != -1) return false;
+        token.identity = word.text;
+        token.source = std::move(word.source);
+        token.x = word.x;
+        token.y = word.y;
+        token.color = (int(word.red) << 16) | (int(word.green) << 8) | int(word.blue);
+        if (word.link_index >= 0) {
+            NativeHistoryRichLink link{};
+            if (!native_history_markup_link(native_history_markup_element(view.links,
+                    static_cast<size_t>(word.link_index)), link) || link.type < -1 || link.type > 11) return false;
+            token.link_type = link.type;
+            token.link_id = link.id;
+            token.link_subid = link.subid;
+        } else if (word.link_index != -1) return false;
         tokens.push_back(std::move(token));
     }
     return true;
@@ -345,20 +420,20 @@ static std::optional<NativeActivityDetailDocument> native_activity_detail_docume
     // PE 53.16: creatures_interfacest+0x180. Both selectors clear this box
     // at 0x1427fb1/0x14287f9, then pass it in R9 to 0x26b800. The existing
     // edition binding maps the Steam global to Classic RVA 0x18a04d0.
-    const uintptr_t address = native_reference_address(base, 0x18a6500);
+    const uintptr_t address = native_history_markup_box_from_words(native_reference_address(base, 0x18a6500));
 #else
     // ELF selectors pass this box to 0x15c1200 at 0x204e655/0x204f1e5.
     const uintptr_t address = base ? native_reference_address(base, 0x26fb2f8 - 0x400000) : 0;
 #endif
     NativeHistoryRichBox box{};
-    if (!address || !native_history_copy(address, box) ||
+    if (!address || !native_history_markup_box(address, box) ||
             !box.words.valid(16384) || box.words.size() == 0 ||
             box.current_width <= 0 || box.current_width > 1000) return std::nullopt;
     std::vector<uintptr_t> words(box.words.size());
     if (!native_history_copy_bytes(reinterpret_cast<uintptr_t>(box.words.begin),
             words.data(), words.size() * sizeof(uintptr_t)) ||
             std::none_of(words.begin(), words.end(), [&](uintptr_t word) {
-                return visible_words.contains(word);
+                return visible_words.contains(native_history_markup_text(word));
             })) return std::nullopt;
     NativeActivityDetailDocument document;
     document.width = box.current_width;
@@ -370,20 +445,16 @@ static std::optional<NativeActivityDetailDocument> native_activity_detail_docume
     };
     for (size_t index = 0; index < box.words.size(); ++index) {
         const uintptr_t word = words[index];
-        struct Fields {
-            uint8_t red, green, blue, padding;
-            int32_t link, x, y;
-            uint32_t flags;
-        } fields{};
+        NativeHistoryMarkupWord fields;
         NativeHistoryToken token;
-        if (!word || !native_history_copy_string(word, token.source) ||
-                !native_history_copy(word + offsetof(NativeHistoryRichWord, red), fields)) return std::nullopt;
+        if (!native_history_markup_word(word, fields)) return std::nullopt;
+        token.source = std::move(fields.source);
         if (fields.flags & 7) flush(); // Native [R], [B] and [P] controls.
         if (token.source.empty()) continue;
         if (fields.x < 0 || fields.y < 0 || fields.x > 262144 || fields.y > 262144 ||
                 token.source.size() > 262144 - bytes) return std::nullopt;
         bytes += token.source.size();
-        token.identity = word; // NativeString is the word's first member.
+        token.identity = fields.text;
         token.x = fields.x;
         token.y = fields.y;
         token.color = (int(fields.red) << 16) | (int(fields.green) << 8) | fields.blue;
@@ -407,11 +478,6 @@ static void capture_native_history_sentence_range(void *event, NativeString *sou
     NativeHistoryCallbackScope scope;
     // This callsite is virtual: retain the exact event subtype's implementation,
     // rather than remembering whichever formatter happened to run first.
-    const void *table = nullptr;
-    NativeHistorySentenceFn original = nullptr;
-    std::memcpy(&table, event, sizeof(table));
-    std::memcpy(&original, static_cast<const unsigned char *>(table) +
-        g_native_history_sentence_slot, sizeof(original));
     std::optional<NativeHistoryEventData> snapshot;
     try {
         pending_native_history() = {};
@@ -428,7 +494,7 @@ static void capture_native_history_sentence_range(void *event, NativeString *sou
     // Never catch an exception from DF or replace its original output buffer.
     {
         NativeHistoryActiveScope active(snapshot ? &*snapshot : nullptr);
-        original(event, source, context, translated, glyphs_only);
+        native_history_call_formatter(event, source, context, translated, glyphs_only);
     }
     try {
         auto &pending = pending_native_history();
@@ -477,6 +543,9 @@ static void capture_native_history_sentence(void *event, NativeString *source,
         void *context, bool translated, bool glyphs_only) {
     capture_native_history_sentence_range(event, source, context, translated, glyphs_only, 0);
 }
+static void capture_native_history_sentence_context(void *event, NativeString *source, void *context) {
+    capture_native_history_sentence_range(event, source, context, true, false, 0);
+}
 
 static void capture_native_history_append(NativeHistoryRichBox *box, const NativeString *source) {
     NativeHistoryCallbackScope scope;
@@ -490,6 +559,9 @@ static void capture_native_history_append(NativeHistoryRichBox *box, const Nativ
         // The verified caller adds precisely [R] between getSentence and append.
         // Both the same live string and its complete value must still agree.
         if (box == g_native_history_box && captured.source == source && captured.event &&
+#ifdef _WIN32
+            g_native_history_chronicle_lifetime_ready &&
+#endif
             captured.generation == g_native_history_capture_generation.load(std::memory_order_acquire) &&
             native_string_view(source, &text, 262147) && text.ends_with("[R]") &&
             text.substr(0, text.size() - 3) == captured.native_source)
@@ -514,16 +586,19 @@ static void capture_native_history_layout(NativeHistoryRichBox *box, int width) 
     // The native richbox returns immediately at the same current_width;
     // append invalidates that width and a resize changes it. Mirror this
     // lifetime for the owned coordinates, not the number of draw frames.
-    const bool relayout = box && box->current_width != width;
+    NativeHistoryRichBox before{};
+    const bool relayout = !native_history_markup_box(reinterpret_cast<uintptr_t>(box), before) ||
+        before.current_width != width;
     if (g_real_native_history_layout) g_real_native_history_layout(box, width);
     if (!box) return;
     try {
         // This is the game's own layout/render thread. Recover retained tabs
         // after core reload before their first native word is drawn.
-        recover_native_history_legends(box);
+        if (g_native_history_legends_capture_ready) recover_native_history_legends(box);
         const uintptr_t owner = reinterpret_cast<uintptr_t>(box);
-        const size_t count = native_history_word_count(box);
-        if (count == SIZE_MAX) return;
+        NativeHistoryRichBox view{};
+        if (!native_history_markup_box(owner, view)) return;
+        const size_t count = view.words.size();
         struct LayoutStamp {
             uintptr_t begin = 0, end = 0, first = 0, last = 0;
             uintptr_t links_begin = 0, links_end = 0;
@@ -534,11 +609,11 @@ static void capture_native_history_layout(NativeHistoryRichBox *box, int width) 
         auto &layouts = reloadable_thread_state<std::unordered_map<uintptr_t, LayoutStamp>,
             struct HistoryLayoutStampsTag>();
         LayoutStamp current{
-            reinterpret_cast<uintptr_t>(box->words.begin), reinterpret_cast<uintptr_t>(box->words.end),
-            count ? reinterpret_cast<uintptr_t>(box->words.begin[0]) : 0,
-            count ? reinterpret_cast<uintptr_t>(box->words.begin[count - 1]) : 0,
-            reinterpret_cast<uintptr_t>(box->links.begin), reinterpret_cast<uintptr_t>(box->links.end),
-            box->current_width, box->max_y, native_history_registry_revision()};
+            reinterpret_cast<uintptr_t>(view.words.begin), reinterpret_cast<uintptr_t>(view.words.end),
+            count ? native_history_markup_element(view.words, 0) : 0,
+            count ? native_history_markup_element(view.words, count - 1) : 0,
+            reinterpret_cast<uintptr_t>(view.links.begin), reinterpret_cast<uintptr_t>(view.links.end),
+            view.current_width, view.max_y, native_history_registry_revision()};
         const auto previous = layouts.find(owner);
         if (!relayout && previous != layouts.end() && previous->second == current) return;
         const auto remember_layout = [&]() {
@@ -556,7 +631,7 @@ static void capture_native_history_layout(NativeHistoryRichBox *box, int width) 
         std::unordered_map<uintptr_t, size_t> positions;
         positions.reserve(count);
         for (size_t i = 0; i < count; ++i) {
-            const uintptr_t identity = reinterpret_cast<uintptr_t>(box->words.begin[i]);
+            const uintptr_t identity = native_history_markup_text(native_history_markup_element(view.words, i));
             if (!identity || !positions.emplace(identity, i).second) return;
         }
         std::vector<std::shared_ptr<const NativeHistoryDocument>> updated;
@@ -583,10 +658,10 @@ static void capture_native_history_layout(NativeHistoryRichBox *box, int width) 
     } catch (...) {}
 }
 
-static void capture_native_history_draw(graphicst *graphics, const NativeString *source,
-        NativeJustification justification, int width) {
+static graphicst *observe_native_history_draw(graphicst *graphics, const NativeString *source) noexcept {
     NativeHistoryCallbackScope scope;
     try {
+        graphics = native_graphics_view(graphics);
         std::string_view text;
         if (graphics && graphics->screenx >= 0 && graphics->screenx < graphics->dimx &&
             graphics->screeny >= 0 && graphics->screeny < graphics->dimy &&
@@ -622,9 +697,23 @@ static void capture_native_history_draw(graphicst *graphics, const NativeString 
                 graphics->screenx, graphics->screeny, clip_left, clip_right, foreground);
         }
     } catch (...) {}
-    if (g_real_native_history_draw) g_real_native_history_draw(graphics, source, justification, width);
+    return graphics;
 }
 
+static void capture_native_history_draw(graphicst *graphics, const NativeString *source,
+        NativeJustification justification, int width) {
+    graphics = observe_native_history_draw(graphics, source);
+    if (g_real_native_history_draw) native_graphics_call(g_real_native_history_draw, graphics, source, justification, width);
+}
+
+#ifdef _WIN32
+struct NativeHistoryCallGroup {
+    std::vector<NativeCall> calls;
+    uint32_t mode = 0;
+    bool source = false, requires_source = false;
+    const char *label = "Native Legends source";
+};
+#endif
 struct NativeHistoryProfile {
     uintptr_t base = 0;
     NativeHistoryRichBox *box = nullptr;
@@ -637,23 +726,57 @@ struct NativeHistoryProfile {
     std::vector<unsigned char> legends_render_prefix;
     void **legends_render_slot = nullptr;
     std::vector<NativeCall> calls;
+#ifdef _WIN32
+    std::vector<NativeHistoryCallGroup> groups;
+    uint32_t recovery_modes = 0;
+    bool recovery_ready = false, grouped = false;
+#endif
 };
 #include "native_history_legends.inc"
 #include "native_mission_report.inc"
 #include "native_performance_form_description.inc"
 #include "native_performance_story_description.inc"
 #include "native_history_frame.inc"
+#include "native_history_semantic_hooks.inc"
 #include "native_history_profile.inc"
+#include "native_history_chronicle_hooks.inc"
 
 static NativeCallHook g_native_history_hooks;
+#ifdef _WIN32
+static std::vector<NativeCallHook> g_native_history_page_groups;
+static bool native_history_page_groups_active() {
+    return std::any_of(g_native_history_page_groups.begin(), g_native_history_page_groups.end(),
+        [](const auto &hook) { return hook.active(); });
+}
+static bool uninstall_native_history_page_groups() {
+    // Stop outer producers before retiring the shared sentence/transfer pair.
+    for (auto at = g_native_history_page_groups.rbegin(); at != g_native_history_page_groups.rend(); ++at)
+        if (!at->uninstall("Native Legends group restore")) return false;
+    g_native_history_page_groups.clear();
+    g_native_history_legends_producer_modes = 0;
+    g_native_history_legends_recovery_modes = 0;
+    g_native_history_legends_recovery_ready = false;
+    return true;
+}
+#else
+static bool native_history_page_groups_active() { return false; }
+static bool uninstall_native_history_page_groups() { return true; }
+#endif
 static bool native_history_hooks_active() {
     return g_native_history_hooks.active() || g_native_history_render_hook.active() ||
+        native_history_page_groups_active() ||
+        native_history_chronicle_hooks_active() ||
+        native_history_semantic_hooks_active() ||
         g_active_native_history_callbacks.load(std::memory_order_acquire) != 0;
 }
 static bool uninstall_native_history_hooks() {
     if (g_active_native_history_callbacks.load(std::memory_order_acquire) != 0) return false;
     if (!g_native_history_render_hook.uninstall("Native Legends render")) return false;
     if (!g_native_history_hooks.uninstall("Native history calls")) return false;
+    if (!uninstall_native_history_page_groups()) return false;
+    g_native_history_legends_capture_ready = false;
+    if (!uninstall_native_history_semantic_hooks()) return false;
+    if (!uninstall_native_history_chronicle_hooks()) return false;
     g_real_native_history_append = nullptr;
     g_real_native_history_layout = nullptr;
     g_real_native_history_draw = nullptr;
@@ -661,6 +784,9 @@ static bool uninstall_native_history_hooks() {
     g_real_native_history_artifact_item = nullptr;
     g_real_native_history_building_label = nullptr;
     g_native_history_box = nullptr;
+#ifdef _WIN32
+    g_native_history_chronicle_lifetime_ready = false;
+#endif
     g_native_history_sentence_slot = 0;
     g_native_history_capture_generation.fetch_add(1, std::memory_order_acq_rel);
     clear_native_history_legends();
@@ -669,6 +795,94 @@ static bool uninstall_native_history_hooks() {
     return true;
 }
 static bool install_native_history_hooks() {
+#ifdef _WIN32
+    if (g_native_history_legends_capture_ready && g_native_history_chronicle_lifetime_ready) return true;
+    if (native_history_hooks_active() && !uninstall_native_history_hooks()) return false;
+    // Resolve page signatures before any shared entry is patched. A page
+    // miss cannot revoke a separately proved Chronicle transaction.
+    NativeHistoryProfile profile;
+    bool legends_ready = false;
+    try {
+        legends_ready = resolve_native_history_profile(profile) &&
+            (profile.grouped || (!profile.calls.empty() && profile.sentence_slot &&
+                profile.append && profile.layout && profile.draw)) &&
+            (profile.legends_render_entry || profile.legends_render_slot);
+    } catch (...) {}
+    const bool chronicle_ready = install_native_history_chronicle_hooks();
+    if (!chronicle_ready && native_history_chronicle_hooks_active()) return false;
+    if (!install_native_history_semantic_hooks()) return false;
+    if (legends_ready) {
+        g_native_history_legends_grouped = profile.grouped;
+        if (!chronicle_ready) {
+            g_real_native_history_append = profile.append;
+            g_real_native_history_layout = profile.layout;
+        }
+        g_native_history_sentence_slot = profile.sentence_slot;
+        g_real_native_history_draw = profile.draw;
+        try {
+            legends_ready = (profile.grouped || g_native_history_hooks.install(
+                profile.base, profile.calls, "Native Legends history calls")) &&
+                g_native_history_render_hook.install(profile,
+                    reinterpret_cast<void *>(&capture_native_history_render), "Native Legends render");
+        } catch (...) { legends_ready = false; }
+    }
+    g_native_history_legends_capture_ready = legends_ready;
+    if (!legends_ready) {
+        if (!g_native_history_render_hook.uninstall("Native Legends render restore") ||
+                !g_native_history_hooks.uninstall("Native Legends calls restore") ||
+                !uninstall_native_history_page_groups() ||
+                g_native_history_render_hook.active() || g_native_history_hooks.active()) return false;
+        clear_native_history_legends();
+        log_line("WARN", "Native Legends page capture unavailable; independent chronicle bindings retained");
+    } else if (profile.grouped) {
+        try { g_native_history_page_groups.resize(profile.groups.size()); }
+        catch (...) {
+            log_line("WARN", "Native Legends source transaction allocation unavailable; completed render retained");
+            return true;
+        }
+        bool source_ready = false;
+        bool public_abi_ready = false;
+        size_t enabled = 0;
+        for (size_t i = 0; i < profile.groups.size(); ++i) {
+            const auto &group = profile.groups[i];
+            auto &hook = g_native_history_page_groups[i];
+            if (group.requires_source && !source_ready) continue;
+            if (group.source) {
+                g_real_native_history_describe = reinterpret_cast<NativeHistoryDescribeFn>(
+                    native_pe_address(profile.base, 0xb8eeb0));
+                g_real_native_history_links = reinterpret_cast<NativeHistoryLinksFn>(
+                    native_pe_address(profile.base, 0xd4ecb0));
+                g_real_native_history_counted_transfer = reinterpret_cast<NativeHistoryCountedTransferFn>(
+                    native_pe_address(profile.base, 0x6fa10));
+            }
+            bool installed = false;
+            try { installed = hook.install(profile.base, group.calls, group.label); }
+            catch (...) {}
+            if (!installed) {
+                if (!hook.uninstall("Native Legends group restore") || hook.active()) return false;
+                if (group.source) {
+                    g_real_native_history_describe = nullptr;
+                    g_real_native_history_links = nullptr;
+                    g_real_native_history_counted_transfer = nullptr;
+                }
+                log_line("WARN", std::string(group.label) + " unavailable; native source retained");
+                continue;
+            }
+            ++enabled;
+            if (group.source) source_ready = true;
+            if (group.requires_source && group.mode && group.calls.size() == 3)
+                public_abi_ready = true;
+            if (group.mode && group.mode < 32)
+                g_native_history_legends_producer_modes |= uint32_t{1} << group.mode;
+        }
+        g_native_history_legends_recovery_ready = source_ready && public_abi_ready && profile.recovery_ready;
+        g_native_history_legends_recovery_modes = g_native_history_legends_recovery_ready ?
+            profile.recovery_modes : 0;
+        log_line("INFO", "Enabled native Legends completed render and " +
+            std::to_string(enabled) + " independent source/draw transactions");
+    } else log_line("INFO", "Enabled native Legends event, token and draw capture");
+    return chronicle_ready || legends_ready || native_history_semantic_hooks_active();
+#else
     if (g_native_history_hooks.installed) return true;
     if (native_history_hooks_active() && !uninstall_native_history_hooks()) return false;
     NativeHistoryProfile profile;
@@ -696,6 +910,8 @@ static bool install_native_history_hooks() {
         uninstall_native_history_hooks();
         return false;
     }
+    g_native_history_legends_capture_ready = true;
     log_line("INFO", "Enabled native history event, token and draw capture");
     return true;
+#endif
 }

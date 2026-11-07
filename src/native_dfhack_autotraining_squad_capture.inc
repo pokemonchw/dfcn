@@ -71,9 +71,10 @@ static std::optional<NativeDfhackAutotrainingSquadText> native_dfhack_autotraini
     std::string alias;
     if (!base || !native_history_find_structure_id(native_history_global(0x24e37c0),
                 0, static_cast<int32_t>(id), squad) || !squad ||
-            squad > UINTPTR_MAX - native_history_layout::squad_alias_offset ||
-            !native_history_copy_string(squad + native_history_layout::squad_alias_offset, alias) ||
-            !capture_native_history_name(base, squad + 8, result.generated_name))
+            !native_history_copy_string(native_history_layout::squad_alias_offset.address(
+                squad, 0, sizeof(NativeString), sizeof(NativeString)), alias) ||
+            !capture_native_history_name(base, native_history_object_member(
+                squad, "squad", "name.first_name", sizeof(NativeString)), result.generated_name))
         return std::nullopt;
     const auto generated = reconstruct_site_english_name(result.generated_name);
     if (!generated || generated->empty()) return std::nullopt;

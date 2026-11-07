@@ -49,7 +49,7 @@ public:
                 auto *owner = native_graphics_owner();
                 if (!owner) { inputs_ = nullptr; return; }
                 native_dfhack_apply_render_schedule(*owner);
-                std::memcpy(inputs_, owner, sizeof(graphicst));
+                if (!native_graphics_snapshot(inputs_, owner)) { inputs_ = nullptr; return; }
                 native_dfhack_publish_display_source(*owner);
             } else if (previous_ && previous_->inputs_) {
                 std::memcpy(inputs_, previous_->inputs_, sizeof(graphicst));
@@ -68,6 +68,13 @@ public:
         previous_selector_ = native_dfhack_display_inputs_select(inputs_);
         g_native_graphics_read_view = inputs_;
         renderer_grid_.emplace(renderer, *inputs_, false);
+        if (!renderer_grid_->valid()) {
+            renderer_grid_.reset();
+            native_dfhack_display_inputs_select(previous_selector_);
+            g_native_graphics_read_view = previous_view_;
+            inputs_ = nullptr;
+            return;
+        }
         if (!previous_) g_native_dfhack_render_read_ready = true;
         active_ = this;
     }
@@ -99,6 +106,7 @@ public:
         g_native_graphics_read_view = previous_view_;
     }
     bool valid() const noexcept { return inputs_ != nullptr; }
+    static bool active() noexcept { return active_ != nullptr; }
 };
 
 static void native_dfhack_graphics_display(void *renderer) {
@@ -115,21 +123,73 @@ static void native_dfhack_graphics_display(void *renderer) {
     // pointers with newly published map/text-layer ownership below.
     // Header pinning and scheduling feedback only try the writer lock; a busy
     // producer therefore cannot create a T -> M blocking lock inversion.
-    TranslationStateScope translation;
-    NativeDfhackDisplayOwnershipScope ownership(renderer);
-    if (!ownership.valid()) return;
     {
-        struct OverlayReadScope {
-            graphicst *previous = g_overlay.bind_render_graphics(native_graphics());
-            ~OverlayReadScope() { g_overlay.bind_render_graphics(previous); }
-        } overlay_read;
-        NativeWorldgenDisplayScope page;
-        bind_native_worldgen_display_frame(native_graphics());
-        NativeMapGpuFrame map(renderer);
-        NativeFortressMapHudDisplayScope fortress_hud;
-        callback.call_native([&] { original(renderer); });
+        TranslationStateScope translation;
+        NativeDfhackDisplayOwnershipScope ownership(renderer);
+        if (ownership.valid()) {
+            {
+                struct OverlayReadScope {
+                    graphicst *previous = g_overlay.bind_render_graphics(native_graphics());
+                    ~OverlayReadScope() { g_overlay.bind_render_graphics(previous); }
+                } overlay_read;
+                NativeWorldgenDisplayScope page;
+                bind_native_worldgen_display_frame(native_graphics());
+                NativeMapGpuFrame map(renderer);
+                NativeFortressMapHudDisplayScope fortress_hud;
+                callback.call_native([&] { original(renderer); });
+            }
+            ownership.resume();
+            return;
+        }
     }
-    ownership.resume();
+    // A missing private-render field must not discard the game's display.
+    // Leave our translation lock before waiting for its native output owner.
+    // Reentrant displays already have a pinned input and retain that scope.
+    const bool pinned = NativeDfhackDisplayOwnershipScope::active();
+    std::unique_lock<std::recursive_mutex> writer(g_native_dfhack_layer_mutex, std::defer_lock);
+    if (!pinned) {
+        if (translation_state_detail::depth) {
+            if (!writer.try_lock()) {
+                // Another callback still owns T, so waiting for an M owner
+                // that needs T would deadlock. Preserve the preceding frame
+                // and retry naturally at the next display boundary.
+                static bool reported = false;
+                if (!reported) {
+                    reported = true;
+                    log_line("WARN", "Native display deferred while a nested callback and private graphics writer own conflicting locks");
+                }
+                return;
+            }
+        } else writer.lock();
+    }
+    std::optional<NativeDfhackNativeLayerScope> native;
+    if (!pinned) native.emplace(false);
+    struct NativeDisplayFallbackScope {
+        bool pinned;
+        graphicst *previous_view = nullptr, *previous_selector = nullptr;
+        bool previous_masked = g_native_ui_input_masked;
+        bool previous_drawing = g_drawing_overlay;
+        explicit NativeDisplayFallbackScope(bool has_pinned_input) : pinned(has_pinned_input) {
+            if (!pinned) {
+                previous_view = std::exchange(g_native_graphics_read_view, nullptr);
+                previous_selector = native_dfhack_display_inputs_select(nullptr);
+                // Present must not reuse a stale translated snapshot for a
+                // frame that was drawn directly from the native buffers.
+                g_native_dfhack_render_read_ready = false;
+            }
+            g_native_ui_input_masked = true;
+            g_drawing_overlay = true;
+        }
+        ~NativeDisplayFallbackScope() {
+            g_drawing_overlay = previous_drawing;
+            g_native_ui_input_masked = previous_masked;
+            if (!pinned) {
+                native_dfhack_display_inputs_select(previous_selector);
+                g_native_graphics_read_view = previous_view;
+            }
+        }
+    } fallback(pinned);
+    callback.call_native([&] { original(renderer); });
 }
 struct NativeDfhackGraphicsOwnershipScope {
     std::unique_lock<std::recursive_mutex> lock{g_native_dfhack_layer_mutex};
@@ -201,11 +261,46 @@ static void native_dfhack_graphics_release(void *renderer) {
     callback.call_native([&] { original(renderer); });
 }
 
+static void uninstall_native_dfhack_graphics_ownership();
+
 static bool install_native_dfhack_graphics_ownership() {
     constexpr const char *label = "Native graphics buffer ownership";
     const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-    if (!base || !native_pe_supported()) return false;
-    if (!install_native_dfhack_display_inputs()) return false;
+    if (!base || !native_pe_supported()) {
+        report_native_patch_error("ERROR", label, "native executable or usable address catalog is unavailable");
+        return false;
+    }
+    struct InstallGuard {
+        bool committed = false;
+        ~InstallGuard() {
+            if (!committed) {
+                try { uninstall_native_dfhack_graphics_ownership(); } catch (...) {}
+            }
+        }
+    } guard;
+    // Keep each complete canonical prefix attached to its reference in the
+    // production contract. Only sealed address/byte evidence may translate
+    // these bytes; the live entry is checked by prepare, never used as its
+    // own expected signature.
+    std::vector<unsigned char> resize_prefix{0x48,0x89,0x5c,0x24,0x08};
+    std::vector<unsigned char> zoom_prefix{0x48,0x89,0x5c,0x24,0x08};
+    std::vector<unsigned char> release_prefix{0x40,0x53,0x48,0x83,0xec,0x20};
+    std::vector<unsigned char> display_prefix{0x41,0x55,0x48,0x83,0xec,0x40};
+    if (!native_pe_bytes(0x8e4870, resize_prefix)) {
+        report_native_patch_error("ERROR", label, "resize prefix evidence is unavailable at reference 0x8e4870"); return false;
+    }
+    if (!native_pe_bytes(0xad9460, zoom_prefix)) {
+        report_native_patch_error("ERROR", label, "zoom prefix evidence is unavailable at reference 0xad9460"); return false;
+    }
+    if (!native_pe_bytes(0x8e4690, release_prefix)) {
+        report_native_patch_error("ERROR", label, "release prefix evidence is unavailable at reference 0x8e4690"); return false;
+    }
+    if (!native_pe_bytes(0x8e3a10, display_prefix)) {
+        report_native_patch_error("ERROR", label, "display prefix evidence is unavailable at reference 0x8e3a10"); return false;
+    }
+    if (!install_native_dfhack_display_inputs()) {
+        report_native_patch_error("ERROR", label, "display input selector installation failed"); return false;
+    }
     // 0x8e4870 releases/reallocates the renderer grids and publishes their
     // pointers into graphicst, then invokes the viewport resize at 0xad9460.
     // 0xad9460 also runs separately for native zoom/reset commands. The
@@ -225,19 +320,23 @@ static bool install_native_dfhack_graphics_ownership() {
         reinterpret_cast<const void *>(&native_dfhack_graphics_release),
         reinterpret_cast<const void *>(&native_dfhack_graphics_display),
     }};
-    const std::array<std::vector<unsigned char>, 4> prefixes{{
-        {0x48,0x89,0x5c,0x24,0x08},
-        {0x48,0x89,0x5c,0x24,0x08},
-        {0x40,0x53,0x48,0x83,0xec,0x20},
-        {0x41,0x55,0x48,0x83,0xec,0x40},
-    }};
+    const std::array<const std::vector<unsigned char> *, 4> prefixes{
+        &resize_prefix, &zoom_prefix, &release_prefix, &display_prefix};
+    const std::array<const char *, 4> names{"resize", "zoom", "release", "display"};
     for (size_t i = 0; i < entries.size(); ++i) {
         auto &[entry, address] = entries[i];
         if (!address || (!entry->original && !entry->prepare(
-                reinterpret_cast<unsigned char *>(address), prefixes[i], wrappers[i], {}, label)) ||
-                !entry->install(label)) return false;
+                reinterpret_cast<unsigned char *>(address), *prefixes[i], wrappers[i], {}, label)) ||
+                !entry->install(label)) {
+            std::ostringstream message;
+            message << label << ": " << names[i] << " entry installation failed; native=0x" << std::hex
+                << (address ? address - base : 0);
+            log_line("ERROR", message.str());
+            return false;
+        }
     }
     g_native_dfhack_graphics_ownership_ready.store(true, std::memory_order_release);
+    guard.committed = true;
     return true;
 }
 

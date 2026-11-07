@@ -334,6 +334,136 @@ struct NativeRelativeFixup {
     uintptr_t target;
 };
 
+#ifdef _WIN32
+struct NativeEntryInstruction {
+    size_t source = 0, length = 0, output = 0, emitted = 0, displacement = 0;
+    enum Kind { Plain, Rip, Call, Jump, Conditional } kind = Plain;
+    uintptr_t target = 0;
+    unsigned condition = 0;
+};
+
+static bool native_entry_instruction(const unsigned char *bytes, size_t available,
+        uintptr_t address, NativeEntryInstruction &instruction) {
+    unsigned char bounded[32]{};
+    if (!available) return false;
+    std::memcpy(bounded, bytes, (std::min)(available, size_t{16}));
+    // ENDBR64 is a position-independent landing pad, including on decoders
+    // whose opcode tables predate CET.
+    if (available >= 4 && !std::memcmp(bytes, "\xf3\x0f\x1e\xfa", 4)) {
+        instruction.length = instruction.emitted = 4; return true;
+    }
+    display_decode::hde64s decoded{};
+    display_decode::hde64_disasm(bounded, &decoded);
+    if (!decoded.len || decoded.len > available || (decoded.flags & F_ERROR)) return false;
+    instruction.length = instruction.emitted = decoded.len;
+    if (decoded.flags & F_RELATIVE) {
+        if (decoded.p_66 || decoded.p_67 || decoded.p_lock || decoded.p_rep || decoded.p_seg || decoded.rex)
+            return false;
+        int64_t relative = 0;
+        if ((decoded.opcode == 0xe8 || decoded.opcode == 0xe9) && decoded.len == 5) {
+            instruction.kind = decoded.opcode == 0xe8 ? NativeEntryInstruction::Call : NativeEntryInstruction::Jump;
+            relative = static_cast<int32_t>(decoded.imm.imm32);
+        } else if (decoded.opcode == 0xeb && decoded.len == 2) {
+            instruction.kind = NativeEntryInstruction::Jump;
+            relative = static_cast<int8_t>(decoded.imm.imm8);
+        } else if (decoded.opcode >= 0x70 && decoded.opcode <= 0x7f && decoded.len == 2) {
+            instruction.kind = NativeEntryInstruction::Conditional;
+            instruction.condition = decoded.opcode & 15;
+            relative = static_cast<int8_t>(decoded.imm.imm8);
+        } else if (decoded.opcode == 0x0f && decoded.opcode2 >= 0x80 && decoded.opcode2 <= 0x8f && decoded.len == 6) {
+            instruction.kind = NativeEntryInstruction::Conditional;
+            instruction.condition = decoded.opcode2 & 15;
+            relative = static_cast<int32_t>(decoded.imm.imm32);
+        } else return false; // LOOP/JCXZ/XBEGIN need different state-preserving rewrites.
+        instruction.emitted = instruction.kind == NativeEntryInstruction::Conditional ? 6 : 5;
+        instruction.displacement = decoded.len - display_decode::immediate_width(decoded);
+        instruction.target = address + decoded.len + relative;
+    } else if ((decoded.flags & F_MODRM) && decoded.modrm_mod == 0 && decoded.modrm_rm == 5 && !decoded.p_67) {
+        if (!(decoded.flags & F_DISP32)) return false;
+        instruction.kind = NativeEntryInstruction::Rip;
+        instruction.displacement = decoded.len - display_decode::immediate_width(decoded) - 4;
+        instruction.target = address + decoded.len + static_cast<int32_t>(decoded.disp.disp32);
+    }
+    return true;
+}
+
+static bool native_entry_relocation_plan(uintptr_t address, const std::vector<unsigned char> &prefix,
+        const std::vector<NativeRelativeFixup> &fixups, std::vector<NativeEntryInstruction> &instructions,
+        NativeRelayRange &range, size_t &length, const char *label) {
+    length = 0;
+    for (size_t at = 0; at < prefix.size();) {
+        NativeEntryInstruction instruction;
+        instruction.source = at; instruction.output = length;
+        if (!native_entry_instruction(prefix.data() + at, prefix.size() - at, address + at, instruction)) {
+            report_native_patch_error("ERROR", label, "entry contains an unsupported or partial instruction");
+            return false;
+        }
+        at += instruction.length; length += instruction.emitted;
+        instructions.push_back(instruction);
+    }
+    for (const auto &instruction : instructions) {
+        if (instruction.kind == NativeEntryInstruction::Plain) continue;
+        if (instruction.target >= address && instruction.target < address + prefix.size()) {
+            if (instruction.kind == NativeEntryInstruction::Rip || instruction.kind == NativeEntryInstruction::Call ||
+                    std::none_of(instructions.begin(), instructions.end(), [&](const auto &other) {
+                        return address + other.source == instruction.target;
+                    })) {
+                report_native_patch_error("ERROR", label, "entry relocation has an unsupported internal target");
+                return false;
+            }
+        } else range.include(instruction.target);
+    }
+    // Retain the reviewed operand identity checks. The decoder additionally
+    // discovers every relative operand, so an omitted fixup cannot corrupt it.
+    for (const auto &fixup : fixups) {
+        const auto instruction = std::find_if(instructions.begin(), instructions.end(), [&](const auto &value) {
+            return value.source + value.length == fixup.instruction_end &&
+                value.source + value.displacement == fixup.displacement_offset &&
+                value.displacement + 4 <= value.length && value.kind != NativeEntryInstruction::Plain;
+        });
+        if (instruction == instructions.end() || instruction->target != fixup.target) {
+            report_native_patch_error("ERROR", label, "relative operand identity mismatch");
+            return false;
+        }
+    }
+    return true;
+}
+
+static bool emit_native_entry_relocation(unsigned char *destination, uintptr_t source,
+        const std::vector<unsigned char> &prefix, const std::vector<NativeEntryInstruction> &instructions,
+        const char *label) {
+    for (const auto &instruction : instructions) {
+        auto *output = destination + instruction.output;
+        std::memcpy(output, prefix.data() + instruction.source, instruction.length);
+        if (instruction.kind == NativeEntryInstruction::Plain) continue;
+        auto target = instruction.target;
+        if (target >= source && target < source + prefix.size()) {
+            const auto found = std::find_if(instructions.begin(), instructions.end(), [&](const auto &value) {
+                return source + value.source == target;
+            });
+            if (found == instructions.end()) return false;
+            target = reinterpret_cast<uintptr_t>(destination + found->output);
+        }
+        size_t displacement = instruction.displacement;
+        if (instruction.kind == NativeEntryInstruction::Conditional) {
+            output[0] = 0x0f; output[1] = static_cast<unsigned char>(0x80 | instruction.condition); displacement = 2;
+        } else if (instruction.kind == NativeEntryInstruction::Call || instruction.kind == NativeEntryInstruction::Jump) {
+            output[0] = instruction.kind == NativeEntryInstruction::Call ? 0xe8 : 0xe9; displacement = 1;
+        }
+        const intptr_t distance = static_cast<intptr_t>(target) -
+            reinterpret_cast<intptr_t>(output + instruction.emitted);
+        if (distance < INT32_MIN || distance > INT32_MAX) {
+            report_native_branch_error(label, reinterpret_cast<uintptr_t>(output), target); return false;
+        }
+        const int32_t relative = static_cast<int32_t>(distance);
+        std::memcpy(output + displacement, &relative, sizeof(relative));
+    }
+    return true;
+}
+#endif
+
+#include "native_entry_prefix_runtime.inc"
+
 struct NativeEntryHook {
     std::vector<NativeCodePatch> patches;
     void *relay = nullptr;
@@ -341,6 +471,51 @@ struct NativeEntryHook {
     void *original = nullptr;
     bool installed = false;
     bool active() const { return installed || relay != nullptr; }
+
+#ifdef _WIN32
+    bool prepare_discovered(uint32_t reference, uint32_t reference_table,
+            std::string_view type, std::string_view method, std::string_view signature,
+            uint32_t arguments, const void *wrapper, const char *label) {
+        const auto &state = pe_runtime::state();
+        if (!pe_runtime::usable(state) || state.edition <= 2 || !wrapper) return false;
+        const auto entry = address_runtime::resolve(state.function_owners, reference);
+        const auto table = native_pe_rva(reference_table);
+        const auto *abi = native_history_abi::method(native_history_abi::semantic_id(type),
+            native_history_abi::semantic_id(method));
+        const auto certificate = std::find_if(state.entry_prefixes.begin(), state.entry_prefixes.end(),
+            [&](const auto &value) { return value.reference == reference; });
+        const auto *live = native_live_entry_prefix(reference);
+        if (!entry || !table || !abi || abi->parameter_shape != native_history_abi::semantic_id(signature) ||
+                abi->argument_count != arguments || abi->slot % sizeof(void *) ||
+                uint64_t(table) + abi->slot + sizeof(void *) > state.size ||
+                certificate == state.entry_prefixes.end() || !live || live->native != entry ||
+                !pe_runtime::entry_prefix_detail::contract(state, *certificate) ||
+                certificate->native != entry || certificate->table_reference != reference_table ||
+                certificate->table != table || certificate->slot != abi->slot ||
+                certificate->type != native_history_abi::semantic_id(type) ||
+                certificate->method != native_history_abi::semantic_id(method)) {
+            report_native_patch_error("ERROR", label, "entry identity or method ABI unavailable"); return false;
+        }
+        const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+        if (!base) return false;
+        // The sealed original virtual slot names this independently proved
+        // native body. A live DFHack wrapper stays in the original call chain;
+        // its address and bytes never become a patch candidate here.
+        const uintptr_t target = base + entry;
+        DWORD64 owner = 0;
+        const auto *function = RtlLookupFunctionEntry(target, &owner, nullptr);
+        if (!function || owner != base || function->BeginAddress != entry ||
+                function->EndAddress <= entry || function->EndAddress > state.size ||
+                function->EndAddress > certificate->end || function->UnwindData != certificate->unwind ||
+                uint64_t(entry) + live->prefix.size() > function->EndAddress) {
+            report_native_patch_error("ERROR", label, "entry lacks an exact bounded unwind function"); return false;
+        }
+        // Complete CFG/EH/table dependencies were checked before our display
+        // selectors changed the body. Only the certified prefix is moved;
+        // prepare still checks all live prefix bytes and every relocation.
+        return prepare(reinterpret_cast<unsigned char *>(target), live->prefix, wrapper, {}, label);
+    }
+#endif
 
     bool prepare(unsigned char *address, const std::vector<unsigned char> &prefix,
             const void *wrapper, const std::vector<NativeRelativeFixup> &fixups,
@@ -361,6 +536,12 @@ struct NativeEntryHook {
         NativeRelayRange range;
         range.include(reinterpret_cast<uintptr_t>(address));
         range.include(reinterpret_cast<uintptr_t>(address + prefix.size()));
+        size_t relocated_length = prefix.size();
+#ifdef _WIN32
+        std::vector<NativeEntryInstruction> instructions;
+        if (!native_entry_relocation_plan(reinterpret_cast<uintptr_t>(address), prefix, fixups,
+                instructions, range, relocated_length, label)) return false;
+#else
         std::map<size_t, size_t> operands;
         for (const auto &fixup : fixups) {
             if (fixup.instruction_end > prefix.size() || fixup.displacement_offset > fixup.instruction_end ||
@@ -377,7 +558,8 @@ struct NativeEntryHook {
             operands.emplace(fixup.displacement_offset, fixup.displacement_offset + 4);
             range.include(fixup.target);
         }
-        relay = allocate_native_relay(range, prefix.size() + 64, &relay_size, label);
+#endif
+        relay = allocate_native_relay(range, relocated_length + 64, &relay_size, label);
         if (!relay) return false;
         NativeRelayGuard guard{relay, relay_size, installed, label};
         auto *memory = static_cast<unsigned char *>(relay);
@@ -385,6 +567,10 @@ struct NativeEntryHook {
         auto *trampoline = memory + 32;
         static constexpr std::array<unsigned char, 4> endbr{{0xf3, 0x0f, 0x1e, 0xfa}};
         std::copy(endbr.begin(), endbr.end(), trampoline);
+#ifdef _WIN32
+        if (!emit_native_entry_relocation(trampoline + endbr.size(), reinterpret_cast<uintptr_t>(address),
+                prefix, instructions, label)) return false;
+#else
         std::copy(prefix.begin(), prefix.end(), trampoline + endbr.size());
         for (const auto &fixup : fixups) {
             const intptr_t distance = static_cast<intptr_t>(fixup.target) -
@@ -397,9 +583,10 @@ struct NativeEntryHook {
             const int32_t relative = static_cast<int32_t>(distance);
             std::memcpy(trampoline + endbr.size() + fixup.displacement_offset, &relative, sizeof(relative));
         }
-        if (!native_relative_branch(trampoline + endbr.size() + prefix.size(), 0xe9, address + prefix.size())) {
+#endif
+        if (!native_relative_branch(trampoline + endbr.size() + relocated_length, 0xe9, address + prefix.size())) {
             report_native_branch_error(label,
-                reinterpret_cast<uintptr_t>(trampoline + endbr.size() + prefix.size()),
+                reinterpret_cast<uintptr_t>(trampoline + endbr.size() + relocated_length),
                 reinterpret_cast<uintptr_t>(address + prefix.size()));
             return false;
         }

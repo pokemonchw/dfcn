@@ -1,5 +1,10 @@
 static NativeUiLayerTarget g_native_petition_target;
 #ifdef _WIN32
+// Only this inline detail is owned by the optional-panel contract. The
+// adjacent trade tooltip, stockpile fields and common successor stay active.
+DFCN_NATIVE_OPTIONAL_PANEL("fortress.accepted_petition_detail", 0x3d6950,
+    0x3f7dda, 0x3f92fe, 0x3f6bd3, 0x3f6c06, 0x3f7d9b,
+    0x3f9310, 0x3f9325, 0x3f97b5, 0x3f97e5, 0x18acef8)
 static NativeCallHook g_native_petition_producer_hooks;
 using NativePetitionCursorFn = void (*)(graphicst *, int32_t, int32_t);
 static NativePetitionCursorFn g_native_petition_cursor_original = nullptr;
@@ -7,6 +12,7 @@ static const unsigned char *g_native_petition_successor_flag = nullptr;
 static void uninstall_native_petition_layer_hook();
 
 static void native_petition_begin_cursor(graphicst *graphics, int32_t y, int32_t x) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
     const auto original = g_native_petition_cursor_original;
@@ -14,7 +20,7 @@ static void native_petition_begin_cursor(graphicst *graphics, int32_t y, int32_t
     // This cursor starts the 61-column, 18-row skin loop before any stores.
     // Later iterations must retain the same output instead of clearing it.
     if (graphics == native_graphics()) native_petition_begin_draw({x, 3, 61, 18});
-    callback.call_native([&] { original(graphics, y, x); });
+    callback.call_native([&] { native_graphics_call(original, graphics, y, x); });
 }
 
 static bool native_petition_finish() {
@@ -32,6 +38,7 @@ static bool install_native_petition_layer_hook() {
         uninstall_native_petition_layer_hook();
         if (g_native_petition_producer_hooks.active()) return false;
     }
+    if (native_pe_feature_span_absent("fortress.accepted_petition_detail", 0x3f7fce, 5)) return true;
     const auto base = native_history_profile_base();
     const auto cursor = native_reference_address(base, 0xbb120);
     const auto flag = native_reference_address(base, 0x18a2cf8);

@@ -278,21 +278,41 @@ static void capture_native_reading_box(
     remember_native_knowledge_document(owner, std::move(document));
 }
 
+#ifdef _WIN32
+static bool capture_native_owned_character_wrap(NativeKnowledgeTextBox *box,
+    const NativeString *source, NativeWrapTiming &timing);
+static uintptr_t capture_native_owned_character_row(const char *row);
+#endif
+
 static void dfcn_capture_native_knowledge_wrap(
         NativeKnowledgeTextBox *box, const NativeString *source) {
+#ifdef _WIN32
+    NativeCharacterRichMutationScope mutation;
+#endif
     NativeWrapTiming timing("knowledge", box, source);
     {
         auto native_timing = timing.phase(NativeWrapTiming::Stage::Native);
         if (g_real_native_knowledge_wrap) g_real_native_knowledge_wrap(box, source);
     }
     try {
+#ifdef _WIN32
+        if (capture_native_owned_character_wrap(box, source, timing)) return;
+        const auto sheet = g_native_character_drawing_sheet
+            ? g_native_character_drawing_sheet : g_native_character_owner;
+        // A new character box can be wrapped before joining its source vector.
+        // Capture it provisionally; only positive page ownership permits growth.
+        const bool grow_rows = !g_native_character_drawing_sheet &&
+            !native_character_rich_live(reinterpret_cast<const void *>(sheet));
+#else
+        constexpr bool grow_rows = true;
+#endif
         auto translation_wait = timing.phase(NativeWrapTiming::Stage::TranslationLock);
         dfcn::TranslationStateScope translation_scope;
         translation_wait.stop();
         auto capture_wait = timing.phase(NativeWrapTiming::Stage::CaptureLock);
         std::lock_guard<std::mutex> lock(g_native_knowledge_mutex);
         capture_wait.stop();
-        capture_native_reading_box(box, source, false, false, false, timing);
+        capture_native_reading_box(box, source, false, false, false, timing, grow_rows);
     } catch (...) {
         // The game has already completed its original wrap operation.
     }
@@ -310,13 +330,19 @@ static void prepare_native_overview_thoughts_cache(const void *sheet,
         bool overview = true, const char *current_row = nullptr) {
     if (!sheet || !native_character_capture_enabled(sheet)) return;
     const auto [source_offset, box_offset] = native_character_layout.thought_vectors.front();
-    const auto *bytes = static_cast<const unsigned char *>(sheet);
-    const auto sources = NativeBorrowedVector<const NativeString *>::read(bytes + source_offset);
+    const auto *source_address = native_character_field_address(sheet, source_offset,
+        sizeof(NativeBorrowedVector<const NativeString *>));
+    const auto *box_address = native_character_field_address(sheet, box_offset,
+        sizeof(NativeBorrowedVector<NativeKnowledgeTextBox *>));
+    const auto *width_address = native_character_field_address(sheet,
+        native_character_layout.recent_thought_width, sizeof(int32_t));
+    if (!source_address || !box_address || !width_address) return;
+    const auto sources = NativeBorrowedVector<const NativeString *>::read(source_address);
     if (!sources.valid(16384) || sources.size() == 0) return;
     {
         std::lock_guard<std::mutex> lock(g_native_knowledge_mutex);
         const auto page = g_native_knowledge_documents.find(
-            reinterpret_cast<uintptr_t>(sheet) + source_offset);
+            reinterpret_cast<uintptr_t>(source_address));
         if (overview) {
             if (page != g_native_knowledge_documents.end() && page->second->overview_footer) return;
         } else {
@@ -335,9 +361,7 @@ static void prepare_native_overview_thoughts_cache(const void *sheet,
     // bounded footer's whole-box fit calculation; do not trim live iterators
     // or free allocations belonging to the game's C++ runtime.
     const int32_t invalid_width = -1;
-    std::memcpy(const_cast<unsigned char *>(bytes) + box_offset +
-        sizeof(NativeBorrowedVector<NativeKnowledgeTextBox *>),
-        &invalid_width, sizeof(invalid_width));
+    std::memcpy(const_cast<void *>(width_address), &invalid_width, sizeof(invalid_width));
 }
 
 // A draw can reuse already-wrapped native boxes without another wrap callback.
@@ -347,11 +371,15 @@ static void prepare_native_overview_thoughts_cache(const void *sheet,
 static bool native_character_page_binding_current(
         const void *sheet, bool health, const char *current_row) {
     if (!sheet || !current_row) return false;
-    const auto *bytes = static_cast<const unsigned char *>(sheet);
     const auto &layout = native_character_layout;
-    const size_t source_offset = health ? layout.health_sources : layout.personality_sources;
-    const size_t box_offset = health ? layout.health_boxes : layout.personality_boxes;
-    const uintptr_t owner = reinterpret_cast<uintptr_t>(bytes + source_offset);
+    const auto *source_address = native_character_field_address(sheet,
+        health ? layout.health_sources : layout.personality_sources,
+        sizeof(NativeBorrowedVector<const NativeString *>));
+    const auto *box_address = native_character_field_address(sheet,
+        health ? layout.health_boxes : layout.personality_boxes,
+        sizeof(NativeBorrowedVector<NativeKnowledgeTextBox *>));
+    if (!source_address || !box_address) return false;
+    const uintptr_t owner = reinterpret_cast<uintptr_t>(source_address);
     const auto row = g_native_knowledge_row_owners.find(reinterpret_cast<uintptr_t>(current_row));
     if (row == g_native_knowledge_row_owners.end() || row->second.first != owner ||
         row->second.second < 0) return false;
@@ -364,8 +392,8 @@ static bool native_character_page_binding_current(
         page.row_addresses.size() != page.rows.size() ||
         page.row_addresses[line] != reinterpret_cast<uintptr_t>(current_row) ||
         page.rows[line] != current_row) return false;
-    const auto sources = NativeBorrowedVector<const NativeString *>::read(bytes + source_offset);
-    const auto boxes = NativeBorrowedVector<NativeKnowledgeTextBox *>::read(bytes + box_offset);
+    const auto sources = NativeBorrowedVector<const NativeString *>::read(source_address);
+    const auto boxes = NativeBorrowedVector<NativeKnowledgeTextBox *>::read(box_address);
     if (!sources.valid(256) || !boxes.valid(256) || sources.size() == 0 ||
         sources.size() != boxes.size() || sources.size() != page.box_boundaries.size()) return false;
     size_t source_end = 0, row_end = 0;
@@ -556,7 +584,7 @@ captured_native_character_personality_document(const graphicst *graphics,
 static void capture_native_character_document(
         NativeKnowledgeTextBox *box, const NativeString *source, const void *sheet,
         bool health, bool thoughts, NativeWrapTiming &timing,
-        const char *current_row = nullptr, bool grow_rows = true) {
+        const char *current_row = nullptr, bool grow_rows = true, bool refresh_owned_page = false) {
     if (!native_character_capture_enabled(sheet)) return;
     try {
         auto translation_wait = timing.phase(NativeWrapTiming::Stage::TranslationLock);
@@ -567,14 +595,18 @@ static void capture_native_character_document(
         capture_wait.stop();
         auto aggregate_timing = timing.phase(NativeWrapTiming::Stage::Aggregate);
         const bool personality = !health && !thoughts;
-        if (current_row && !thoughts &&
+        if (!refresh_owned_page && current_row && !thoughts &&
             native_character_page_binding_current(sheet, health, current_row)) return;
-        if (current_row && sheet && thoughts) {
+        if (!refresh_owned_page && current_row && sheet && thoughts) {
             const auto row = g_native_knowledge_row_owners.find(
                 reinterpret_cast<uintptr_t>(current_row));
             if (row != g_native_knowledge_row_owners.end()) {
                 for (const auto &[source_offset, box_offset] : native_character_layout.thought_vectors) {
-                    const uintptr_t owner = reinterpret_cast<uintptr_t>(sheet) + source_offset;
+                    const auto *source_address = native_character_field_address(sheet, source_offset,
+                        sizeof(NativeBorrowedVector<const NativeString *>));
+                    if (!source_address || !native_character_field_address(sheet, box_offset,
+                            sizeof(NativeBorrowedVector<NativeKnowledgeTextBox *>))) continue;
+                    const uintptr_t owner = reinterpret_cast<uintptr_t>(source_address);
                     if (row->second.first != owner) continue;
                     const auto found = g_native_knowledge_documents.find(owner);
                     if (found != g_native_knowledge_documents.end() && found->second->thoughts &&
@@ -590,6 +622,7 @@ static void capture_native_character_document(
         // its vectors may not yet contain every box. Unclassified call sites
         // must prove ownership before invalidating a different page's owner.
         if ((!box && !current_row) || !native_character_description_active(sheet, health)) return;
+        if (!thoughts && !native_character_page_fields_available(sheet, health, false)) return;
         if (!thoughts && !current_row)
             capture_native_reading_box(box, source, personality, health, false, timing);
         std::vector<const NativeString *> sources;
@@ -597,7 +630,7 @@ static void capture_native_character_document(
         uintptr_t owner = 0;
         if (!native_character_page(sheet, health, sources, boxes, thoughts,
                 thoughts ? box : nullptr, thoughts ? source : nullptr, &owner, current_row)) {
-            if (thoughts && !current_row)
+            if (thoughts && !current_row && native_character_page_fields_available(sheet, false, true))
                 capture_native_reading_box(box, source, false, false, false, timing, grow_rows);
             return;
         }
@@ -708,6 +741,86 @@ static void capture_native_character_document(
     } catch (...) {}
 }
 
+#ifdef _WIN32
+static bool capture_native_owned_character_wrap(NativeKnowledgeTextBox *box,
+        const NativeString *source, NativeWrapTiming &timing) {
+    const auto sheet = g_native_character_drawing_sheet
+        ? g_native_character_drawing_sheet : g_native_character_owner;
+    const auto owner = native_character_rich_owner(reinterpret_cast<const void *>(sheet), box, source);
+    if (!owner) return false;
+    const bool health = owner->group == NativeCharacterRichGroup::Health;
+    const bool thoughts = owner->group == NativeCharacterRichGroup::Recent ||
+        owner->group == NativeCharacterRichGroup::Memories;
+    capture_native_character_document(box, source, owner->sheet, health, thoughts,
+        timing, nullptr, !owner->overview);
+    return true;
+}
+
+static uintptr_t capture_native_owned_character_row(const char *row) {
+    // Only the real render receiver supplies a draw owner. A previous Present
+    // or a global sheet address cannot classify a row from another native view.
+    if (!row || !g_native_character_drawing_sheet || !g_native_character_draw_scope_id) return 0;
+    try {
+        const auto owner = native_character_rich_owner(
+            reinterpret_cast<const void *>(g_native_character_drawing_sheet), nullptr, nullptr, row);
+        if (!owner) return 0;
+        const bool health = owner->group == NativeCharacterRichGroup::Health;
+        const bool thoughts = owner->group == NativeCharacterRichGroup::Recent ||
+            owner->group == NativeCharacterRichGroup::Memories;
+        struct PreparedPages {
+            uint64_t generation = 0;
+            std::array<std::weak_ptr<const NativeKnowledgeDocument>, 4> documents;
+        };
+        auto &prepared = reloadable_thread_state<PreparedPages, struct NativeCharacterRichPreparedTag>();
+        const auto generation = native_character_rich_index().generation;
+        if (prepared.generation != generation) {
+            prepared.documents = {};
+            prepared.generation = generation;
+        }
+        const auto group = static_cast<size_t>(owner->group);
+        const auto current = [&](const std::shared_ptr<const NativeKnowledgeDocument> &page) {
+            if (!page || page->personality != (!health && !thoughts) || page->health != health ||
+                    page->thoughts != thoughts || page->overview_footer != owner->overview ||
+                    page->width != owner->box->width || owner->index >= page->box_boundaries.size()) return false;
+            const auto binding = g_native_knowledge_row_owners.find(reinterpret_cast<uintptr_t>(row));
+            if (binding == g_native_knowledge_row_owners.end() || binding->second.first != owner->page ||
+                    binding->second.second < 0) return false;
+            const auto line = static_cast<size_t>(binding->second.second);
+            if (line >= page->rows.size() || line >= page->row_addresses.size() ||
+                    page->row_addresses[line] != reinterpret_cast<uintptr_t>(row) || page->rows[line] != row)
+                return false;
+            const size_t start = owner->index ? page->box_boundaries[owner->index - 1].source_end : 0;
+            const size_t end = page->box_boundaries[owner->index].source_end;
+            const size_t prefix = 9 + (owner->index ? 3 : 0);
+            std::string_view source;
+            return native_string_view(owner->source, &source) && end >= start && end <= page->source.size() &&
+                end - start == prefix + source.size() &&
+                std::string_view(page->source).substr(start + prefix, source.size()) == source;
+        };
+        {
+            std::lock_guard<std::mutex> lock(g_native_knowledge_mutex);
+            const auto found = g_native_knowledge_documents.find(owner->page);
+            if (found != g_native_knowledge_documents.end() &&
+                    prepared.documents[group].lock() == found->second && current(found->second)) return owner->page;
+        }
+        NativeWrapTiming timing("character-owned-draw", nullptr, nullptr, !health && !thoughts, health, thoughts);
+        // current_row forbids append/trim even for a scrolling page. Rebuild
+        // from all live native components once per render/rewrap generation.
+        capture_native_character_document(nullptr, nullptr, owner->sheet, health, thoughts,
+            timing, row, !owner->overview, true);
+        {
+            std::lock_guard<std::mutex> lock(g_native_knowledge_mutex);
+            const auto found = g_native_knowledge_documents.find(owner->page);
+            if (found != g_native_knowledge_documents.end() && current(found->second)) {
+                prepared.documents[group] = found->second;
+                return owner->page;
+            }
+        }
+    } catch (...) {}
+    return 0;
+}
+#endif
+
 static void capture_native_character_wrap(
         NativeKnowledgeTextBox *box, const NativeString *source, const void *sheet,
         bool health, bool thoughts = false, bool grow_rows = true);
@@ -737,6 +850,10 @@ static void dfcn_capture_native_overview_thoughts_wrap(
 
 static void dfcn_capture_native_knowledge_draw(
         graphicst *graphics, const char *text, const char *colors) {
+    graphics = native_graphics_view(graphics);
+#ifdef _WIN32
+    const auto character_page = graphics && text ? capture_native_owned_character_row(text) : 0;
+#endif
     // The story preview retains its colored rows across core replacement.
     // Recover their selected event before the shared writer publishes them.
     if (graphics && text) prepare_native_performance_story_document(text);
@@ -761,7 +878,7 @@ static void dfcn_capture_native_knowledge_draw(
     // before its owner exists. Still perform the native call if locking fails.
     try { lock.lock(); } catch (...) {}
 #endif
-    if (g_real_native_knowledge_draw) g_real_native_knowledge_draw(graphics, text, colors);
+    if (g_real_native_knowledge_draw) native_graphics_call(g_real_native_knowledge_draw, graphics, text, colors);
     try {
 #ifndef _WIN32
         lock.lock();
@@ -772,6 +889,14 @@ static void dfcn_capture_native_knowledge_draw(
             if (row != g_native_knowledge_row_owners.end()) {
                 const auto document = g_native_knowledge_documents.find(row->second.first);
                 if (document != g_native_knowledge_documents.end() &&
+#ifdef _WIN32
+                    // A reused row allocation cannot carry a previous unit's
+                    // character aggregate into the current render. Generic
+                    // prose remains available when page ownership is unknown.
+                    (!g_native_character_drawing_sheet ||
+                        (!document->second->personality && !document->second->health && !document->second->thoughts) ||
+                        character_page == row->second.first) &&
+#endif
                     row->second.second >= 0 &&
                     static_cast<size_t>(row->second.second) < document->second->rows.size() &&
                     document->second->rows[static_cast<size_t>(row->second.second)] == text) {
@@ -822,6 +947,9 @@ static void dfcn_capture_native_knowledge_draw(
 static void capture_native_character_wrap(
         NativeKnowledgeTextBox *box, const NativeString *source, const void *sheet,
         bool health, bool thoughts, bool grow_rows) {
+#ifdef _WIN32
+    NativeCharacterRichMutationScope mutation;
+#endif
     NativeWrapTiming timing(thoughts ? "thoughts" : health ? "health" : "personality",
         box, source, !health && !thoughts, health, thoughts);
     {
@@ -835,8 +963,9 @@ static void capture_native_character_wrap(
 
 static void dfcn_capture_native_thoughts_draw(graphicst *graphics,
         const char *text, const char *colors, const void *sheet) {
+    graphics = native_graphics_view(graphics);
     if (!native_character_capture_enabled(sheet)) {
-        if (g_real_native_knowledge_draw) g_real_native_knowledge_draw(graphics, text, colors);
+        if (g_real_native_knowledge_draw) native_graphics_call(g_real_native_knowledge_draw, graphics, text, colors);
         return;
     }
     // The native renderer can reuse every box without calling wrap after a
@@ -853,8 +982,9 @@ static void dfcn_capture_native_thoughts_draw(graphicst *graphics,
 
 static void dfcn_capture_native_personality_draw(graphicst *graphics,
         const char *text, const char *colors, const void *sheet) {
+    graphics = native_graphics_view(graphics);
     if (!native_character_capture_enabled(sheet)) {
-        if (g_real_native_knowledge_draw) g_real_native_knowledge_draw(graphics, text, colors);
+        if (g_real_native_knowledge_draw) native_graphics_call(g_real_native_knowledge_draw, graphics, text, colors);
         return;
     }
     // The native Traits/Values/Preferences/Needs renderer retains the complete
@@ -871,8 +1001,9 @@ static void dfcn_capture_native_personality_draw(graphicst *graphics,
 
 static void dfcn_capture_native_overview_thoughts_draw(graphicst *graphics,
         const char *text, const char *colors, const void *sheet) {
+    graphics = native_graphics_view(graphics);
     if (!native_character_capture_enabled(sheet)) {
-        if (g_real_native_knowledge_draw) g_real_native_knowledge_draw(graphics, text, colors);
+        if (g_real_native_knowledge_draw) native_graphics_call(g_real_native_knowledge_draw, graphics, text, colors);
         return;
     }
     if (graphics && text && sheet) {

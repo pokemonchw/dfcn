@@ -1,5 +1,6 @@
 {
-  "reference": "../Dwarf Fortress.exe",
+  "game": "../Dwarf Fortress.exe",
+  "reference": null,
   "classic": "C:/Games/df_53_16_win/Dwarf Fortress.exe",
   "bootstrap": "C:/Games/df_53_16_win/dfhooks.dll",
   "deploy_classic": false

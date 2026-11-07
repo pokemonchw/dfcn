@@ -8,8 +8,10 @@
 #include <ctime>
 #include <cstring>
 #include <filesystem>
+#include <memory>
 #include <optional>
 #include <string>
+#include <utility>
 #include <vector>
 
 #ifdef _WIN32
@@ -52,6 +54,9 @@ inline void native_localtime(std::tm &result, const std::time_t &time) {
 // Consumer threads read their pinned header while the update thread binds the
 // executable's graphicst to private writer buffers.
 inline thread_local graphicst *g_native_graphics_read_view = nullptr;
+#ifdef _WIN32
+inline thread_local std::unique_ptr<graphicst> g_native_graphics_owner_read_view;
+#endif
 inline graphicst *native_graphics_owner() {
 #ifdef _WIN32
     constexpr uintptr_t gps_rva = 0x0264a3f0;
@@ -68,8 +73,192 @@ inline graphicst *native_graphics_owner() {
 #endif
 }
 
+// Only this pointer may be passed as `this` to the game's graphicst methods.
+// Core-owned read headers always use the reference layout below.
+inline void *native_graphics_raw_owner() { return native_graphics_owner(); }
+
+inline const graphicst *native_graphics_identity(const graphicst *graphics) noexcept {
+#ifdef _WIN32
+    if (graphics && graphics == g_native_graphics_owner_read_view.get()) return native_graphics_owner();
+#endif
+    return graphics;
+}
+inline graphicst *native_graphics_identity(graphicst *graphics) noexcept {
+    return const_cast<graphicst *>(native_graphics_identity(static_cast<const graphicst *>(graphics)));
+}
+
+inline bool native_graphics_layout_changed() noexcept {
+#ifdef _WIN32
+    const auto &state = pe_runtime::state();
+    // Failure or partial coverage must never select the reference struct as
+    // an unknown executable's raw layout. Exact baseline identities alone
+    // can use that layout directly.
+    if (!pe_runtime::usable(state)) return true;
+    // Scanned builds always use the canonical header, including those where
+    // the present fields happen to retain their offsets. Absent enum tokens
+    // still need zero slots instead of bytes from the next native member.
+    if (state.edition > 2) return true;
+    if (state.graphics_fields.empty()) return state.edition > 2;
+    const auto root = pe_runtime::resolve(state.ranges, 0x0264a3f0);
+    for (const auto &field : state.graphics_fields)
+        if (uint64_t(root) + field.begin - 0x0264a3f0 != field.native) return true;
+#endif
+    return false;
+}
+
+// A native field must be backed by the resolver's actual member evidence.
+// Consecutive spans can form one field only when their native bytes are also
+// consecutive. Reordered texture enum arrays deliberately fail that rule.
+inline const void *native_graphics_member_address(const graphicst *graphics,
+        size_t reference, size_t length) noexcept {
+    if (!graphics || !length || reference > sizeof(graphicst) ||
+            length > sizeof(graphicst) - reference) return nullptr;
+#ifdef _WIN32
+    if (!native_pe_usable() || !native_graphics_owner()) return nullptr;
+    if (graphics == native_graphics_owner()) {
+        const auto &state = pe_runtime::state();
+        if (!pe_runtime::usable(state)) return nullptr;
+        if (state.graphics_fields.empty()) {
+            if (state.edition > 2) return nullptr;
+        } else {
+            constexpr uint32_t reference_root = 0x0264a3f0;
+            uint32_t coordinate = reference_root + static_cast<uint32_t>(reference);
+            const auto stop = coordinate + static_cast<uint32_t>(length);
+            const auto &fields = state.graphics_fields;
+            auto field = std::upper_bound(fields.begin(), fields.end(), coordinate,
+                [](uint32_t value, const auto &span) { return value < span.begin; });
+            if (field == fields.begin()) return nullptr;
+            --field;
+            uint32_t first = 0;
+            size_t consumed = 0;
+            while (coordinate < stop) {
+                if (field == fields.end() || coordinate < field->begin || coordinate >= field->end)
+                    return nullptr;
+                const uint64_t native = uint64_t(field->native) + coordinate - field->begin;
+                const auto count = std::min(stop, field->end) - coordinate;
+                if (!native || native + count > state.size ||
+                        (consumed && uint64_t(first) + consumed != native)) return nullptr;
+                if (!consumed) first = static_cast<uint32_t>(native);
+                consumed += count;
+                coordinate += count;
+                ++field;
+            }
+            const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+            return executable ? reinterpret_cast<const void *>(executable + first) : nullptr;
+        }
+    }
+#endif
+    return reinterpret_cast<const unsigned char *>(graphics) + reference;
+}
+
+inline void *native_graphics_member_address(graphicst *graphics,
+        size_t reference, size_t length) noexcept {
+    return const_cast<void *>(native_graphics_member_address(
+        static_cast<const graphicst *>(graphics), reference, length));
+}
+
+template <typename Value>
+inline const Value *native_graphics_member(const graphicst *graphics, size_t reference) noexcept {
+    return static_cast<const Value *>(native_graphics_member_address(graphics, reference, sizeof(Value)));
+}
+template <typename Value>
+inline Value *native_graphics_member(graphicst *graphics, size_t reference) noexcept {
+    return static_cast<Value *>(native_graphics_member_address(graphics, reference, sizeof(Value)));
+}
+template <typename Value>
+inline bool native_graphics_read_member(const graphicst *graphics,
+        size_t reference, Value &value) noexcept {
+    const auto *source = native_graphics_member_address(
+        native_graphics_identity(graphics), reference, sizeof(Value));
+    if (!source) return false;
+    std::memcpy(&value, source, sizeof(Value));
+    return true;
+}
+template <typename Value>
+inline bool native_graphics_write_member(graphicst *graphics,
+        size_t reference, const Value &value) noexcept {
+    auto *owner = native_graphics_identity(graphics);
+    auto *destination = native_graphics_member_address(owner, reference, sizeof(Value));
+    if (!destination) return false;
+    std::memcpy(destination, &value, sizeof(Value));
+    if (graphics != owner)
+        std::memcpy(reinterpret_cast<unsigned char *>(graphics) + reference, &value, sizeof(Value));
+    return true;
+}
+
+inline bool native_graphics_snapshot(void *destination, const graphicst *source) noexcept {
+    if (!destination || !source) return false;
+#ifdef _WIN32
+    if (!native_pe_usable() || !native_graphics_owner()) return false;
+    if (source == native_graphics_owner()) {
+        const auto &state = pe_runtime::state();
+        if (!pe_runtime::usable(state)) return false;
+        const auto &fields = state.graphics_fields;
+        if (fields.empty()) {
+            if (state.edition > 2) return false;
+        } else {
+            constexpr uint32_t reference_root = 0x0264a3f0;
+            constexpr uint32_t reference_end = reference_root + sizeof(graphicst);
+            if (destination == source) return false;
+            uint32_t preceding = reference_root;
+            for (const auto &field : fields) {
+                if (field.begin < preceding || field.end <= field.begin ||
+                        field.end > reference_end || !field.native ||
+                        uint64_t(field.native) + field.end - field.begin > state.size) return false;
+                preceding = field.end;
+            }
+            const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+            if (!executable) return false;
+            auto *bytes = static_cast<unsigned char *>(destination);
+            // Unmapped members and positively absent tokens have no borrowed
+            // bytes. Each writer still requires its own member binding;
+            // these zero slots do not constitute an absence declaration.
+            std::memset(bytes, 0, sizeof(graphicst));
+            for (const auto &field : fields)
+                std::memcpy(bytes + field.begin - reference_root,
+                    reinterpret_cast<const void *>(executable + field.native), field.end - field.begin);
+            return true;
+        }
+    }
+#endif
+    if (destination != source) std::memcpy(destination, source, sizeof(graphicst));
+    return true;
+}
+
+inline graphicst *native_graphics_owner_view() {
+    auto *owner = native_graphics_owner();
+    if (!owner || !native_graphics_layout_changed()) return owner;
+#ifdef _WIN32
+    // A read header is large; keep it off the game's render stack. Nested
+    // render transactions pin their own snapshots through the existing TLS
+    // read-view slot rather than lending this fallback to a native writer.
+    auto &view = g_native_graphics_owner_read_view;
+    if (!view) view = std::make_unique<graphicst>();
+    return native_graphics_snapshot(view.get(), owner) ? view.get() : nullptr;
+#else
+    return owner;
+#endif
+}
+
 inline graphicst *native_graphics() {
-    return g_native_graphics_read_view ? g_native_graphics_read_view : native_graphics_owner();
+    auto *view = g_native_graphics_read_view;
+    if (!view || native_graphics_identity(view) == native_graphics_owner())
+        return native_graphics_owner_view();
+    return view;
+}
+
+inline graphicst *native_graphics_view(graphicst *graphics) {
+    return graphics == native_graphics_owner() ? native_graphics_owner_view() : graphics;
+}
+
+// Hooks inspect the canonical header, but the game's member functions must
+// retain their actual object. Refresh the borrowed read view after the native
+// call so cursor advancement and buffer rotations are visible to capture.
+template <typename Function, typename... Arguments>
+inline void native_graphics_call(Function function, graphicst *graphics, Arguments &&...arguments) {
+    auto *owner = native_graphics_identity(graphics);
+    function(owner, std::forward<Arguments>(arguments)...);
+    if (graphics && graphics != owner) native_graphics_snapshot(graphics, owner);
 }
 
 struct NativeUiSettings {
@@ -146,6 +335,161 @@ static_assert(offsetof(NativeUiSettingsAbi, texpos_scrollbar) == 0x3644);
 static_assert(offsetof(NativeUiSettingsAbi, texpos_scrollbar_offcenter_scroller_hover) == 0x36ec);
 static_assert(offsetof(NativeUiSettingsAbi, texpos_sort_ascending_active) == 0x390c);
 static_assert(offsetof(NativeUiSettingsAbi, texpos_sort_descending_inactive) == 0x393c);
+
+// A reference offset identifies a member, not a displacement to add to an
+// unknown executable's object. Keep init/enabler native method receivers raw
+// and resolve the core's individual reads through their proved member spans.
+inline const void *native_pe_field_address(uint32_t object, size_t offset, size_t length) noexcept {
+    const auto &state = pe_runtime::state();
+    if (!pe_runtime::usable(state) || !length || offset > UINT32_MAX || length > UINT32_MAX ||
+            uint64_t(object) + offset + length > UINT32_MAX) return nullptr;
+    const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+    const auto owner = native_pe_rva(object);
+    if (!executable || !owner) return nullptr;
+    if (state.edition == 1 || state.edition == 2) {
+        return uint64_t(owner) + offset + length <= state.size
+            ? reinterpret_cast<const void *>(executable + owner + offset) : nullptr;
+    }
+    const uint32_t begin = object + static_cast<uint32_t>(offset);
+    const uint32_t end = begin + static_cast<uint32_t>(length);
+    uint32_t at = begin, first = 0;
+    size_t consumed = 0;
+    while (at < end) {
+        const address_runtime::FieldBinding *match = nullptr;
+        for (const auto &field : state.fields) {
+            if (field.object != object || field.sources < 2 || at < uint64_t(object) + field.offset ||
+                    at >= uint64_t(object) + field.offset + field.width) continue;
+            if (match) return nullptr;
+            match = &field;
+        }
+        if (!match) return nullptr;
+        const auto inside = at - object - match->offset;
+        const auto count = (std::min)(end - at, match->width - inside);
+        const uint64_t native = uint64_t(owner) + match->native_offset + inside;
+        if (!native || native + count > state.size || (consumed && uint64_t(first) + consumed != native))
+            return nullptr;
+        if (!consumed) first = static_cast<uint32_t>(native);
+        consumed += count; at += count;
+    }
+    return reinterpret_cast<const void *>(executable + first);
+}
+
+template <typename Value>
+inline bool native_pe_read_field(uint32_t object, size_t offset, Value &value) noexcept {
+    const auto *source = native_pe_field_address(object, offset, sizeof(Value));
+    if (!source) return false;
+    std::memcpy(&value, source, sizeof(Value));
+    return true;
+}
+
+inline const void *native_object_member_address(const void *object,
+        native_history_abi::FieldOffset member, size_t width) noexcept {
+    if (!native_pe_supported()) return nullptr;
+    return reinterpret_cast<const void *>(member.address(
+        reinterpret_cast<uintptr_t>(object), 0, width, width));
+}
+inline void *native_object_member_address(void *object,
+        native_history_abi::FieldOffset member, size_t width) noexcept {
+    return const_cast<void *>(native_object_member_address(static_cast<const void *>(object), member, width));
+}
+template <typename Value>
+inline bool native_object_read_member(const void *object,
+        native_history_abi::FieldOffset member, Value &value) noexcept {
+    const auto *source = native_object_member_address(object, member, sizeof(Value));
+    if (!source) return false;
+    std::memcpy(&value, source, sizeof(Value));
+    return true;
+}
+
+inline bool native_map_geometry(const void *object, bool map_port,
+        std::array<uint32_t, 13> &geometry) noexcept {
+    static constexpr std::array<native_history_abi::FieldOffset, 11> port{{
+        {0x00, "graphic_map_portst", "flag"},
+        {0x04, "graphic_map_portst", "dim_x"}, {0x08, "graphic_map_portst", "dim_y"},
+        {0x0c, "graphic_map_portst", "clipx"}, {0x14, "graphic_map_portst", "clipy"},
+        {0x1c, "graphic_map_portst", "screen_x"}, {0x20, "graphic_map_portst", "screen_y"},
+        {0x24, "graphic_map_portst", "top_left_corner_x"},
+        {0x28, "graphic_map_portst", "top_left_corner_y"},
+        {0x2c, "graphic_map_portst", "pixel_perc_x"},
+        {0x30, "graphic_map_portst", "pixel_perc_y"}
+    }};
+    static constexpr std::array<native_history_abi::FieldOffset, 7> viewport{{
+        {0x00, "graphic_viewportst", "flag"},
+        {0x04, "graphic_viewportst", "dim_x"}, {0x08, "graphic_viewportst", "dim_y"},
+        {0x0c, "graphic_viewportst", "clipx"}, {0x14, "graphic_viewportst", "clipy"},
+        {0x1c, "graphic_viewportst", "screen_x"}, {0x20, "graphic_viewportst", "screen_y"}
+    }};
+    geometry.fill(0);
+    const auto *members = map_port ? port.data() : viewport.data();
+    const size_t count = map_port ? port.size() : viewport.size();
+    for (size_t index = 0, destination = 0; index < count; ++index) {
+        const size_t words = index == 3 || index == 4 ? 2 : 1;
+        const auto *source = native_object_member_address(object, members[index], words * sizeof(uint32_t));
+        if (!source) return false;
+        std::memcpy(geometry.data() + destination, source, words * sizeof(uint32_t));
+        destination += words;
+    }
+    return true;
+}
+
+inline bool native_renderer_geometry(const void *renderer, std::array<int32_t, 8> &geometry) noexcept {
+    static constexpr std::array<native_history_abi::FieldOffset, 8> fields{{
+        {0x158, "renderer_2d_base", "dispx"}, {0x15c, "renderer_2d_base", "dispy"},
+        {0x160, "renderer_2d_base", "dimx"}, {0x164, "renderer_2d_base", "dimy"},
+        {0x168, "renderer_2d_base", "dispx_z"}, {0x16c, "renderer_2d_base", "dispy_z"},
+        {0x170, "renderer_2d_base", "origin_x"}, {0x174, "renderer_2d_base", "origin_y"}
+    }};
+    for (size_t index = 0; index < fields.size(); ++index)
+        if (!native_object_read_member(renderer, fields[index], geometry[index])) return false;
+    return true;
+}
+
+inline bool native_renderer_raster(const void *renderer, std::array<int32_t, 4> &raster) noexcept {
+    static constexpr std::array<native_history_abi::FieldOffset, 4> fields{{
+        {0x168, "renderer_2d_base", "dispx_z"}, {0x16c, "renderer_2d_base", "dispy_z"},
+        {0x170, "renderer_2d_base", "origin_x"}, {0x174, "renderer_2d_base", "origin_y"}
+    }};
+    for (size_t index = 0; index < fields.size(); ++index)
+        if (!native_object_read_member(renderer, fields[index], raster[index])) return false;
+    return true;
+}
+
+inline bool native_renderer_output_members(void *renderer, std::array<void *, 14> &fields) noexcept {
+    static constexpr std::array<native_history_abi::FieldOffset, 14> members{{
+        {0x08, "renderer", "screen"}, {0x10, "renderer", "screentexpos"},
+        {0x18, "renderer", "screentexpos_lower"}, {0x20, "renderer", "screentexpos_anchored"},
+        {0x28, "renderer", "screentexpos_anchored_x"}, {0x30, "renderer", "screentexpos_anchored_y"},
+        {0x38, "renderer", "screentexpos_flag"}, {0x40, "renderer", "screen_top"},
+        {0x48, "renderer", "screentexpos_top"}, {0x50, "renderer", "screentexpos_top_lower"},
+        {0x58, "renderer", "screentexpos_top_anchored"}, {0x60, "renderer", "screentexpos_top_anchored_x"},
+        {0x68, "renderer", "screentexpos_top_anchored_y"}, {0x70, "renderer", "screentexpos_top_flag"}
+    }};
+    for (size_t index = 0; index < fields.size(); ++index) {
+        fields[index] = native_object_member_address(renderer, members[index], sizeof(void *));
+        if (!fields[index]) return false;
+    }
+    return true;
+}
+
+inline size_t native_object_virtual_slot(std::string_view type,
+        std::string_view method, uint32_t reference_slot, std::string_view signature,
+        uint32_t argument_count) noexcept {
+    if (!native_pe_supported()) return SIZE_MAX;
+    if (const auto *binding = native_history_abi::method(
+            native_history_abi::semantic_id(type), native_history_abi::semantic_id(method))) {
+        if (binding->parameter_shape != native_history_abi::semantic_id(signature) ||
+                binding->argument_count != argument_count || binding->slot % sizeof(void *)) return SIZE_MAX;
+        return binding->slot / sizeof(void *);
+    }
+    return native_history_abi::snapshot().reference_identity ? reference_slot : SIZE_MAX;
+}
+inline void *native_object_virtual_method(void *const *table, std::string_view type,
+        std::string_view method, uint32_t reference_slot, std::string_view signature,
+        uint32_t argument_count) noexcept {
+    if (!table) return nullptr;
+    const size_t slot = native_object_virtual_slot(type, method, reference_slot, signature, argument_count);
+    return slot != SIZE_MAX ? table[slot] : nullptr;
+}
 #endif
 
 inline const auto *native_ui_settings_source() {
@@ -166,14 +510,52 @@ inline const auto *native_ui_settings_source() {
     return settings;
 }
 
+inline const void *native_ui_settings_member_address(const void *settings, size_t offset, size_t length) noexcept {
+    if (!settings || !length) return nullptr;
+#ifdef _WIN32
+    if (!native_pe_usable() || !native_ui_settings_source()) return nullptr;
+    if (settings == native_ui_settings_source()) return native_pe_field_address(0x023cd770, offset, length);
+#endif
+    return static_cast<const unsigned char *>(settings) + offset;
+}
+
+template <typename Value>
+inline bool native_ui_settings_read_member(const void *settings, size_t offset, Value &value) noexcept {
+    const auto *source = native_ui_settings_member_address(settings, offset, sizeof(Value));
+    if (!source) return false;
+    std::memcpy(&value, source, sizeof(Value));
+    return true;
+}
+
+#ifdef _WIN32
+inline const NativeUiSettingsAbi *native_ui_settings_view() noexcept {
+    const auto *source = native_ui_settings_source();
+    const auto &state = pe_runtime::state();
+    if (!source || !pe_runtime::usable(state)) return nullptr;
+    if (state.edition == 1 || state.edition == 2) return source;
+    static thread_local NativeUiSettingsAbi view{};
+    std::memset(&view, 0, sizeof(view));
+    bool copied = false;
+    for (const auto &field : state.fields) {
+        if (field.object != 0x023cd770 || field.offset >= sizeof(view) ||
+                field.width > sizeof(view) - field.offset) continue;
+        const auto *member = native_pe_field_address(field.object, field.offset, field.width);
+        if (!member) return nullptr;
+        std::memcpy(reinterpret_cast<unsigned char *>(&view) + field.offset, member, field.width);
+        copied = true;
+    }
+    return copied ? &view : nullptr;
+}
+#endif
+
 inline std::optional<bool> native_ui_classic(const void *settings) {
     if (!settings) return std::nullopt;
-    // init.display.flag is the first field in both native layouts. Its
+    // init.display.flag is the first field in the reference layouts. Its
     // flagarray view is a pointer followed by a 32-bit byte count; bit zero
     // is USE_GRAPHICS. Decode data here, not a host-specific UI policy.
     struct DisplayFlags { const unsigned char *array; int32_t slotnum; } flags{};
     static_assert(sizeof(DisplayFlags) == 16);
-    std::memcpy(&flags, settings, sizeof(flags));
+    if (!native_ui_settings_read_member(settings, 0, flags)) return std::nullopt;
     if (!flags.array || flags.slotnum <= 0) return std::nullopt;
     return (flags.array[0] & 1) == 0;
 }
@@ -183,7 +565,11 @@ inline std::optional<bool> native_ui_classic() {
 }
 
 inline std::optional<NativeUiSettings> native_ui_settings() {
+#ifdef _WIN32
+    const auto *settings = native_ui_settings_view();
+#else
     const auto *settings = native_ui_settings_source();
+#endif
     if (!settings) return std::nullopt;
     const auto classic = native_ui_classic(settings);
     if (!classic) return std::nullopt;

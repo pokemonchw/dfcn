@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "scopes": [
+    {
+      "owner": 9293232,
+      "flags": 0
+    },
+    {
+      "owner": 9293664,
+      "flags": 0
+    },
+    {
+      "owner": 9295808,
+      "flags": 0
+    },
+    {
+      "owner": 9295917,
+      "flags": 0
+    },
+    {
+      "owner": 9296368,
+      "flags": 0
+    },
+    {
+      "owner": 9296477,
+      "flags": 0
+    },
+    {
+      "owner": 9297058,
+      "flags": 0
+    },
+    {
+      "owner": 9297687,
+      "flags": 0
+    },
+    {
+      "owner": 9297888,
+      "flags": 0
+    },
+    {
+      "owner": 9302878,
+      "flags": 0
+    },
+    {
+      "owner": 9303907,
+      "flags": 0
+    },
+    {
+      "owner": 9312813,
+      "flags": 0
+    },
+    {
+      "owner": 9313408,
+      "flags": 1
+    },
+    {
+      "owner": 9320976,
+      "flags": 0
+    },
+    {
+      "owner": 9321406,
+      "flags": 0
+    }
+  ]
+}

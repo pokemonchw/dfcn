@@ -1,324 +1,24 @@
 // Executable identities and native ABI lookup only. Caption ownership,
 // capture, patch installation and teardown live in native_caption_hooks.inc.
 #ifdef _WIN32
-static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
-    const auto *base = reinterpret_cast<const unsigned char *>(GetModuleHandleW(nullptr));
-    if (!base) return false;
-    if (!native_pe_supported()) return false;
-    profile.base = reinterpret_cast<uintptr_t>(base);
-    // Pinned 53.16 widgets::text_truncated vtable (symbols.xml). The widget
-    // schema gives rect, str, original_str and text justification; render is
-    // abstract_interfacest slot 3, preceding widget's destructor on both ABIs.
-    profile.truncated_widget = {
-        reinterpret_cast<void **>(native_pe_address(profile.base, 0x162dc10) + 3 * sizeof(void *)),
-        0x10, 0x150, 0x180, 0x175};
-    // Only widgets::textbox owns editable str/flags/maxlen/textbox_type.
-    // The abstract interface render precedes the widget destructor at slot 3.
-    const auto textbox_table = native_pe_address(profile.base, 0x1710d18);
-    profile.textbox_widget = {textbox_table,
-        reinterpret_cast<void **>(textbox_table + 3 * sizeof(void *)),
-        reinterpret_cast<void *>(native_pe_address(profile.base, 0x14191e0)),
-        native_pe_address(profile.base, 0x1419581)};
-    // container::render invokes widget::render before drawing its children.
-    // Save the complete page before Tooltip overwrites it, as on ELF; rect
-    // and name retain the shared widget offsets used by the capture.
-    profile.tooltip_container_slot = reinterpret_cast<void **>(
-        native_pe_address(profile.base, 0x15eb4a8) + 3 * sizeof(void *));
-    profile.tooltip_container_render = reinterpret_cast<void *>(native_pe_address(profile.base, 0x1414c10));
-    // The fixed fortress toolbar uses a separate inline floating card.
-    profile.legacy_toolbar_tooltip = true;
-    // widgets::text_multiline::render (0x14198c0) uses its own temporary
-    // string vector via 0x52def0, never curses_text_boxst::add_paragraph.
-    // 0x14198d2..0x14198f1 takes max(rect.x2-rect.x1+1, min_w), and
-    // 0x1419920..0x1419983 draws each original row at (rect.x1, rect.y1+i)
-    // through addst_flag. Capture that render scope through its vtable;
-    // no shared-vector layout or persistent borrowed strings are needed.
-    const auto multiline_slot = reinterpret_cast<void **>(
-        native_pe_address(profile.base, 0x15f6ee8) + 3 * sizeof(void *));
-    // This profile is also resolved after caption installation by the
-    // announcement adapter. The installer owns mutable-slot validation.
-    profile.multiline_widget = {
-        multiline_slot, 0x10, 0x150, 0xc4, native_pe_address(profile.base, 0x1419988),
-        reinterpret_cast<void *>(native_pe_address(profile.base, 0x14198c0)),
-        reinterpret_cast<void **>(native_pe_address(profile.base, 0x15f6ee8) + 4 * sizeof(void *)),
-        reinterpret_cast<void *>(native_pe_address(profile.base, 0x1419860)),
-        reinterpret_cast<NativeCaptionWidgetArrangeFn>(native_pe_address(profile.base, 0x14101a0)), 0xc8};
-    // The void arrange at slot 4 estimates min_h with str.size/width+1.
-    // rows_container (0x1415670) and scroll_rows (0x1415dab) call this slot
-    // before reading max(rect.height,min_h) for the next child's top offset.
-    // Correct its word-wrap count before returning, then use the base arrange
-    // to update rect without repeating the multiline height estimate.
-    profile.resize_target = 0xe1230;
-    profile.draw_target = 0xad9960;
-    // The two fortress report hover renderers count their native row vector, then
-    // clear screen and draw HOVER_RECTANGLE at gps+0x1924 before any text.
-    // The row-count hook redirects both inline producers into the private
-    // notification output until their last body addst. Both use paragraph
-    // +0x48 for width and the same anchor.
-    // Native bounds are [left, bottom-rows-3] through [left+width+4, bottom].
-    profile.announcement_page = {0x6ee50, {0x3fa9eb, 0x3facde},
-        reinterpret_cast<const int32_t *>(native_pe_address(profile.base, 0x18a93bc)),
-        reinterpret_cast<const int32_t *>(native_pe_address(profile.base, 0x18a93c0)), 0x48};
-    // The expanded alert/all-report/unit-report window clears a different
-    // fixed rectangle before assembling its rows. Its single four-register
-    // caller owns the complete private output scope for every branch.
-    // Reference 40d64b..40d728: left=int32(R8)+4, top=4, 94 by 35 cells.
-    profile.announcement_popup_call = 0x3fa6f8;
-    profile.announcement_popup_target = 0x40d5f0;
-    // Both native string::resize implementations take (this, size, fill).
-    profile.resize = reinterpret_cast<NativeCaptionResizeFn>(native_pe_address(profile.base, profile.resize_target));
-    profile.draw = reinterpret_cast<NativeCaptionDrawFn>(native_pe_address(profile.base, profile.draw_target));
-    // Both decompiled Adventure travel structure-card branches bind every
-    // direct addst call, including their dynamic names and shrine formats.
-#include "native_travel_structures_profile.inc"
-    // All 98 item classes and 57 building classes converge on these title
-    // calls; the remaining three calls are the engraving/terrain sheets.
-    // These are return addresses of verified E8 calls to addst, never a
-    // text/coordinate guess. Other executable profiles leave this empty.
-    profile.info_titles.sites = {
-        {native_pe_address(profile.base, 0x154a28), NativeInfoTitleKind::Item},
-        // ViewSheets/ITEM_LIST formats each complete item before shortening
-        // its caption. Books can supply just their work title, with no item
-        // actions, count or quality marks to identify the row by its skin.
-        {native_pe_address(profile.base, 0x15a261), NativeInfoTitleKind::ItemList},
-        // Nobles' office-symbol chooser owns separate item, assignment and
-        // value fields. Item/assignment ink is shortened to 22 cells, while
-        // their columns extend 24 cells up to the optional Value label.
-        {native_pe_address(profile.base, 0x425ddd), NativeInfoTitleKind::NobleSymbolItem, 24},
-        {native_pe_address(profile.base, 0x425f5e), NativeInfoTitleKind::NobleSymbolPosition, 24},
-        {native_pe_address(profile.base, 0x426057), NativeInfoTitleKind::NobleSymbolValue, 7},
-        {native_pe_address(profile.base, 0x4260af), NativeInfoTitleKind::NobleSymbolAmount},
-        {native_pe_address(profile.base, 0x18057a), NativeInfoTitleKind::Building},
-        // Coffin details draw the associated tomb's stored name directly.
-        {native_pe_address(profile.base, 0x195db5), NativeInfoTitleKind::Building},
-        {native_pe_address(profile.base, 0x158a79), NativeInfoTitleKind::Engraving},
-        {native_pe_address(profile.base, 0x158af4), NativeInfoTitleKind::Terrain},
-        {native_pe_address(profile.base, 0x158f72), NativeInfoTitleKind::PlannedEngraving},
-        // Display furniture manually draws each item and its independent
-        // status over a picture strip. Bind these addst callers directly:
-        // neither the outer sheet nor a generic rectangle owns the fields.
-        {native_pe_address(profile.base, 0x18b338), NativeInfoTitleKind::Item},
-        {native_pe_address(profile.base, 0x18b3c0), NativeInfoTitleKind::DisplayStatus},
-        {native_pe_address(profile.base, 0x18b417), NativeInfoTitleKind::DisplayStatus},
-        // The Adventure chooser's quantity popup draws the selected item's
-        // complete c65450 designation immediately above its numeric prompt.
-        // Give that same item-name field to the shared native title reader.
-        {native_pe_address(profile.base, 0x88472f), NativeInfoTitleKind::Item}};
-    // Civilization detail draws prefix, entity and value separately, with
-    // addchar supplying the colon. These verified addst return addresses
-    // identify the fields without accepting unrelated text under the panel.
-    // Keep unverified executable profiles empty for the geometric fallback.
-    profile.civilization_fields = {
-        {native_pe_address(profile.base, 0x1c4d01), NativeCivilizationField::TradePrefix}, // Exports to
-        {native_pe_address(profile.base, 0x1c4d37), NativeCivilizationField::TradeEntity},
-        {native_pe_address(profile.base, 0x1c4da1), NativeCivilizationField::TradeValue},  // Petty Annoyance
-        {native_pe_address(profile.base, 0x1c4e12), NativeCivilizationField::TradePrefix}, // Exports to
-        {native_pe_address(profile.base, 0x1c4e48), NativeCivilizationField::TradeEntity},
-        {native_pe_address(profile.base, 0x1c4eb2), NativeCivilizationField::TradeValue},  // Terror
-        {native_pe_address(profile.base, 0x1c4f26), NativeCivilizationField::TradePrefix}, // Imports from
-        {native_pe_address(profile.base, 0x1c4f5c), NativeCivilizationField::TradeEntity},
-        {native_pe_address(profile.base, 0x1c4fc3), NativeCivilizationField::TradeValue},  // None
-        {native_pe_address(profile.base, 0x1c4ffb), NativeCivilizationField::TradePrefix}, // Imports from
-        {native_pe_address(profile.base, 0x1c5031), NativeCivilizationField::TradeEntity},
-        {native_pe_address(profile.base, 0x1c5099), NativeCivilizationField::TradeValue},  // Amount
-        {native_pe_address(profile.base, 0x1c50fc), NativeCivilizationField::TradePrefix}, // Offerings from
-        {native_pe_address(profile.base, 0x1c5132), NativeCivilizationField::TradeEntity},
-        {native_pe_address(profile.base, 0x1c51d4), NativeCivilizationField::TradeValue},  // Death
-        {native_pe_address(profile.base, 0x1c522f), NativeCivilizationField::TradeValue},  // Vengeance
-        {native_pe_address(profile.base, 0x1c5289), NativeCivilizationField::TradeValue},  // None
-        {native_pe_address(profile.base, 0x1c52cd), NativeCivilizationField::TradeValue},  // Amount
-        {native_pe_address(profile.base, 0x1c5f6f), NativeCivilizationField::OfficialName},
-        {native_pe_address(profile.base, 0x1c6025), NativeCivilizationField::OfficialPosition},
-        // The fortress HUD draws the complete native rank below its site
-        // names. Retain this producer meaning before the restricted HUD
-        // matcher considers the ordinary counter/date captions.
-        {native_pe_address(profile.base, 0x3f3202), NativeCivilizationField::FortressRank}};
-    // The location chooser draws over the map before a later native pass can
-    // replace that grid. Retain these fields at their verified addst callers,
-    // while their allocated button/picture strip is still available.
-    profile.location_picker_fields = {
-        {native_pe_address(profile.base, 0x3bb2fc), NativeLocationPickerField::Prompt},
-        {native_pe_address(profile.base, 0x3bb6bc), NativeLocationPickerField::Action}, // inn/tavern
-        {native_pe_address(profile.base, 0x3bb66a), NativeLocationPickerField::Action}, // temple
-        {native_pe_address(profile.base, 0x3bb5d8), NativeLocationPickerField::Action}, // library
-        {native_pe_address(profile.base, 0x3bb585), NativeLocationPickerField::Action}, // guildhall
-        {native_pe_address(profile.base, 0x3bb716), NativeLocationPickerField::Action}, // hospital
-        {native_pe_address(profile.base, 0x3bbbd0), NativeLocationPickerField::Name},
-        {native_pe_address(profile.base, 0x3bbec9), NativeLocationPickerField::Faith},
-        {native_pe_address(profile.base, 0x3bc051), NativeLocationPickerField::Guild},
-        {native_pe_address(profile.base, 0x3bc0cc), NativeLocationPickerField::Kind}, // Tavern
-        {native_pe_address(profile.base, 0x3bc153), NativeLocationPickerField::Kind}, // Library
-        {native_pe_address(profile.base, 0x3bc1c9), NativeLocationPickerField::Kind}, // Hospital
-        // The guild subpage draws each profession plus " hall" as one
-        // caption, followed by an optional requested/existing tier row.
-        {native_pe_address(profile.base, 0x3b9863), NativeLocationPickerField::GuildChoice},
-        {native_pe_address(profile.base, 0x3b9aff), NativeLocationPickerField::GuildStatus}, // Want
-        {native_pe_address(profile.base, 0x3b9c47), NativeLocationPickerField::GuildStatus}, // Have
-        // The adjacent guild card has complete count/label/entity fields.
-        // Their original cursor and closed card own every translated row.
-        {native_pe_address(profile.base, 0x3b9fc9), NativeLocationPickerField::GuildWorkers},
-        {native_pe_address(profile.base, 0x3ba012), NativeLocationPickerField::GuildWorkers}, // None
-        {native_pe_address(profile.base, 0x3ba082), NativeLocationPickerField::GuildLabel},
-        {native_pe_address(profile.base, 0x3ba16e), NativeLocationPickerField::GuildName},
-        {native_pe_address(profile.base, 0x3ba1db), NativeLocationPickerField::GuildMembers},
-        {native_pe_address(profile.base, 0x3ba21d), NativeLocationPickerField::GuildMembers}, // None
-        {native_pe_address(profile.base, 0x3ba285), NativeLocationPickerField::GuildMissing},
-        // The temple dedication subpage owns identities, all Want/Have
-        // grades and the complete faith card through these separate draws.
-        {native_pe_address(profile.base, 0x3ba720), NativeLocationPickerField::FaithChoice},
-        {native_pe_address(profile.base, 0x3ba96d), NativeLocationPickerField::FaithStatus}, // Want
-        {native_pe_address(profile.base, 0x3baac1), NativeLocationPickerField::FaithStatus}, // Have
-        {native_pe_address(profile.base, 0x3bae3a), NativeLocationPickerField::FaithCount},
-        {native_pe_address(profile.base, 0x3bae67), NativeLocationPickerField::FaithCount},
-        {native_pe_address(profile.base, 0x3baec0), NativeLocationPickerField::FaithWorship},
-        {native_pe_address(profile.base, 0x3baf80), NativeLocationPickerField::FaithDeity},
-        {native_pe_address(profile.base, 0x3bb052), NativeLocationPickerField::FaithSphere}};
-    // World missions use one complete title draw for every goal in the
-    // removable list and another in the selected mission's detail frame.
-    // Both pass width zero; the list first calls resize at 0x1c6677, so
-    // the shared capture retains the full source before its three dots.
-    // Unverified executable profiles leave these caller bindings empty.
-    profile.mission_title_returns = {
-        native_pe_address(profile.base, 0x1c66da), native_pe_address(profile.base, 0x1c8f44)};
-    // render's prologue stores this at entry rsp+8, then pushes rdi and
-    // reserves 0xb250 bytes: view_sheets is thus at caller rsp+0xb260.
-    // Building selection stores its actual lookup result at rsp+0xd0.
-    // addst receives the title string at rsp+0x3900 on both rename paths.
-    profile.info_titles.building_slot = -0x3830;
-    profile.info_titles.sheet_slot = 0x7960;
-    profile.info_titles.building_name = 0xd0;
-    profile.info_titles.editing_name = 0x1d59;
-    // ITEM_LIST's title is at rsp+0x3d60; rsp+0x788 holds the inclusive
-    // button right. Its text starts at L+7 and resizes to R-L-15 bytes,
-    // giving the exclusive title boundary R-8, before the scrollbar.
-    profile.info_titles.item_list_right_slot = -0x3578;
-    profile.info_titles.item_list_right_inset = 8;
-    // Places draws the farm name at rbp+0xb0 with rbp=rsp+0x100.
-    // The current building is stored at rsp+0x40, hence source-0x170.
-    // Its native formatter copies building.name whenever that field is
-    // nonempty, even when the authored spelling is exactly "Farm Plot".
-    profile.info_titles.farm_name_return_address = native_pe_address(profile.base, 0x39e048);
-    // The crop draw copies the selected plant's complete RAW name (+0x70)
-    // at record top+2, including Item Tagger's suffixes, without resizing.
-    profile.info_titles.farm_crop_return_address = native_pe_address(profile.base, 0x39e1f3);
-    profile.info_titles.farm_building_slot = -0x170;
-    // The spoor constructor alone shortens record+0x28 to 50 bytes here;
-    // 0x407efd..0x40849d append its direction and optional party ownership.
-    // Fortress and adventure map loops pass that same string directly.
-    // Rebuilding the record invalidates captures before any new text is set.
-    profile.map_track_shorten_call = 0x407ef8;
-    profile.map_track_shorten_target = 0x52d910;
-    // The LOOK stack string has a separate pre-draw shortening call. Its
-    // actual target retains the native <=50-byte fast path before 0x52d910.
-    profile.adventure_look_track_shorten_call = 0x7f4e21;
-    profile.adventure_look_track_shorten_target = 0x52dee0;
-    // unit-name render (0x14237a0) rebuilds its captions on every draw.
-    // 0x1330c30 supplies name/profession together; the narrow two-line path
-    // instead uses 0x1330500 for the name and 0x1330880 for the profession.
-    // The final path uses 0x1330260 for a name without its profession.
-    // All four calls remove vowels in place; if still too long, the caller
-    // writes length/terminator inline and replaces its last three cells.
-    // No further resize call intervenes. The same NativeString owners at
-    // 0x18b00b8/0x18b00d8 reach width-zero addst at 0x1423d2e,
-    // 0x1423d73 or 0x1423faf, preserving each line's actual coordinates.
-    profile.roster_shorten_target = 0x52d910;
-    profile.roster_shorten_calls = {0x14239b9, 0x1423b20, 0x1423c24, 0x1423e8c};
-    profile.map_caption_build = reinterpret_cast<NativeCaptionBuildFn>(native_pe_address(profile.base, 0x406860));
-    profile.map_caption_text_offset = 0x28;
-    profile.map_hover_list = native_reference_address(native_history_profile_base(),
-        native_history_layout::ui_look_list_rva);
-    // Fortress/arena (0x3f9553/0x3f9775) and adventure
-    // (0xb02ff4/0xb0322c) each have classic and graphical hover loops.
-    // All four pass lookinfost::display_str at +0x28 directly to addst.
-    // The return address establishes that owner before reading its enum.
-    profile.map_hover_returns = {
-        native_pe_address(profile.base, 0x3f9558), native_pe_address(profile.base, 0x3f977a),
-        native_pe_address(profile.base, 0xb02ff9), native_pe_address(profile.base, 0xb03231)};
-#include "native_adventure_look_caption_profile.inc"
-    // Three complete stores to the incoming shadow space; no relative
-    // address or branch is displaced by the shared entry-hook trampoline.
-    profile.map_caption_build_prefix = {
-        0x48,0x89,0x5c,0x24,0x10,0x48,0x89,0x74,0x24,0x18,
-        0x48,0x89,0x7c,0x24,0x20};
-    // 53.16's top_addst specialization loops through top_addchar (0x1bb000),
-    // writing screen_top. Unlike the ELF export, its native callers provide
-    // no width/justification arguments. The entire relocatable prefix ends
-    // before its RIP-relative cookie read at 0xad9a4f.
-    profile.top_simple_draw = reinterpret_cast<NativeCaptionSimpleDrawFn>(native_pe_address(profile.base, 0xad9a40));
-    profile.top_draw_entry_prefix = {
-        0x48,0x89,0x5c,0x24,0x18,0x48,0x89,0x74,0x24,0x20,
-        0x57,0x48,0x83,0xec,0x50};
-    // The flagged base entry uses the same string/width ABI plus its fifth
-    // stack argument; addchar_flag writes one base row and retains sflag.
-    profile.flag_draw = reinterpret_cast<NativeCaptionFlagDrawFn>(native_pe_address(profile.base, 0xad9870));
-    profile.flag_draw_entry_prefix = {
-        0x48,0x89,0x5c,0x24,0x18,0x55,0x56,0x57,0x48,0x83,0xec,0x50};
-    // Character inventory names also use these entries, outside the embark
-    // call-site list: 0x169e1a/0x169e9b (name), 0x169f78/0x169ff9
-    // (location), and 0x16ae68/0x16aee9 (nested item). Each pair resizes
-    // and draws the same NativeString with fill/just/width all zero. Bind
-    // the shared clipped-caption capture so every such row retains its full
-    // source before the native caller writes the final three dots.
-    // End before resize's short branch and draw's RIP-relative cookie load;
-    // both prefixes contain complete, position-independent instructions.
-    profile.resize_entry_prefix = {0x48,0x8b,0x41,0x10,0x48,0x3b,0xd0};
-    profile.draw_entry_prefix = {0x40,0x53,0x56,0x57,0x48,0x83,0xec,0x50};
-    profile.signatures = {
-        {profile.resize_target, {0x48,0x8b,0x41,0x10,0x48,0x3b,0xd0,0x77}},
-        {profile.draw_target, {0x40,0x53,0x56,0x57,0x48,0x83,0xec,0x50}},
-        {0x154a23, {0xe8,0x38,0x4f,0x98,0x00}},
-        {0x15a25c, {0xe8,0xff,0xf6,0x97,0x00}},
-        {0x180575, {0xe8,0xe6,0x93,0x95,0x00}},
-        {0x158a74, {0xe8,0xe7,0x0e,0x98,0x00}},
-        {0x158aef, {0xe8,0x6c,0x0e,0x98,0x00}},
-        {0x158f6d, {0xe8,0xee,0x09,0x98,0x00}},
-        {0x88472a, {0xe8,0x31,0x52,0x25,0x00}},
-        {0x1c66d5, {0xe8,0x86,0x32,0x91,0x00}},
-        {0x1c8f3f, {0xe8,0x1c,0x0a,0x91,0x00}},
-        {0x3bb2f7, {0xe8,0x64,0xe6,0x71,0x00}},
-        {0x3bb6b7, {0xe8,0xa4,0xe2,0x71,0x00}},
-        {0x3bb665, {0xe8,0xf6,0xe2,0x71,0x00}},
-        {0x3bb5d3, {0xe8,0x88,0xe3,0x71,0x00}},
-        {0x3bb580, {0xe8,0xdb,0xe3,0x71,0x00}},
-        {0x3bb711, {0xe8,0x4a,0xe2,0x71,0x00}},
-        {0x3bbbcb, {0xe8,0x90,0xdd,0x71,0x00}},
-        {0x3bbec4, {0xe8,0x97,0xda,0x71,0x00}},
-        {0x3bc04c, {0xe8,0x0f,0xd9,0x71,0x00}},
-        {0x3bc0c7, {0xe8,0x94,0xd8,0x71,0x00}},
-        {0x3bc14e, {0xe8,0x0d,0xd8,0x71,0x00}},
-        {0x3bc1c4, {0xe8,0x97,0xd7,0x71,0x00}},
-        // Pin the live-object frame layout as well as the draw caller.
-        {0x14ef9e, {0x48,0x89,0x4c,0x24,0x08,0x57,0xb8,0x50,0xb2,0x00,0x00,
-            0xe8,0x12,0xbe,0x3e,0x01,0x48,0x2b,0xe0}},
-        {0x17f619, {0x48,0x8b,0x84,0x24,0x60,0xb2,0x00,0x00,
-            0x48,0x83,0xc0,0x0c,0x8b,0x10,0x48,0x8d,0x0d,0xda,0xe8,0x26,0x02,
-            0xe8,0x1d,0x87,0xee,0xff,0x48,0x89,0x84,0x24,0xd0,0x00,0x00,0x00}},
-        {0x1804a6, {0x48,0x8b,0x84,0x24,0x60,0xb2,0x00,0x00,
-            0x48,0x05,0x59,0x1d,0x00,0x00,0x0f,0xb6,0x00}},
-        {0x1804f1, {0x48,0x8b,0x84,0x24,0xd0,0x00,0x00,0x00,
-            0x48,0x05,0xd0,0x00,0x00,0x00,0x48,0x8b,0xd0}},
-        {0x180560, {0x45,0x33,0xc9,0x45,0x33,0xc0,
-            0x48,0x8d,0x94,0x24,0x00,0x39,0x00,0x00}},
-        // Bind the farm-name caller, its source/frame relation, and the
-        // same building.name ownership branch used by the native formatter.
-        {0x39ac30, {0x48,0x8d,0xac,0x24,0xe0,0xfe,0xff,0xff,
-            0x48,0x81,0xec,0x20,0x02,0x00,0x00}},
-        {0x39b939, {0x48,0x63,0x06,0x48,0x8d,0x0c,0x40,
-            0x48,0x8b,0x44,0xce,0x08,0x4c,0x8b,0x3c,0xd0,
-            0x4c,0x89,0x7c,0x24,0x40}},
-        {0x39c67e, {0x48,0x8b,0x7c,0x24,0x40}},
-        {0x39e01c, {0x48,0x8b,0x07,0x48,0x8d,0x95,0xb0,0x00,0x00,0x00,
-            0x48,0x8b,0xcf,0xff,0x90,0x88,0x01,0x00,0x00}},
-        {0x39e02f, {0x45,0x33,0xc9,0x48,0x8d,0x95,0xb0,0x00,0x00,0x00,
-            0x48,0x8d,0x35,0xb0,0xc3,0x2a,0x02,0x48,0x8b,0xce,
-            0xe8,0x18,0xb9,0x73,0x00}},
-        {0x54f330, {0x48,0x83,0xb9,0xe0,0x00,0x00,0x00,0x00,
-            0x48,0x8b,0xc2,0x74,0x22,0x48,0x8d,0x91,0xd0,0x00,0x00,0x00}},
-        {0x1419983, {0xe8,0xe8,0xfe,0x6b,0xff}},
-        {0x1419860, {0x40,0x53,0x48,0x83,0xec,0x20,0x48,0x8b,0xd9,
-            0xe8,0x32,0x69,0xff,0xff}},
-        {0x14101a0, {0x40,0x53,0x48,0x83,0xec,0x50,0xf6,0x81,
-            0xa0,0x00,0x00,0x00,0x08}}};
+// The separate detail rows are owned only between the main-name draw and
+// the location chooser's footer. A target without these rows must still prove
+// the actual main-name formatter, both resize arms, draw and footer path.
+DFCN_NATIVE_CHOOSER_SUFFIX("location_chooser.detail_rows", 0x3b9270, 0x3bbb50,
+    0x3bbb75, 0x3bc1dd, 0x3bc1f5, 0x3bc22b)
+// These intervals are actual canonical string lifetimes. The row pass must
+// prove their formatter/literal methods, resize arms, draw and natural loop
+// before it may classify the two status rows as absent on another build.
+DFCN_NATIVE_CHOOSER_ROW("location_chooser.guild_status", 0x3b9270, 0x3b9811, 0x3b9796, 0x3b97e4, 1)
+DFCN_NATIVE_CHOOSER_ROW("location_chooser.faith_status", 0x3b9270, 0x3ba6d1, 0x3ba5de, 0x3ba691, 2)
+// This exact built-in fallback changed wording between native builds.
+// It is an assignment-role variant only inside the complete faith row proof.
+DFCN_NATIVE_CHOOSER_LITERAL_VARIANT("location_chooser.faith_status", "(No particular deity)", "(No Specific Deity)")
+// Retain the literal source contracts for normal address-data generation.
+// Construction is independent of page/widget availability; each observer is
+// resolved and installed as its own transaction after the shared text entries.
+static std::vector<NativeCaptionInlineResize> native_inline_caption_reference_sites() {
+    std::vector<NativeCaptionInlineResize> inline_resizes;
     // Adventure action rows obtain the complete caption through the virtual
     // calls at 0x885572/0x885586, then inline the shrinking resize at 0x8855b1.
     // The existing 0xe1230 entry cannot see this store. Replace its five whole
@@ -330,7 +30,7 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
     // The caller's eight pushes and sub rsp,0x108 retain 16-byte alignment
     // and existing shadow space. The relay tail-jumps to the wrapper, adding
     // only this call's return address; all nonvolatile registers remain intact.
-    profile.inline_resizes = {{0x8855b1,
+    inline_resizes = {{0x8855b1,
         {0x48,0x89,0x5d,0x90, 0x48,0x8d,0x45,0x80,
          0x48,0x83,0x7d,0x98,0x0f, 0x48,0x0f,0x47,0x45,0x80,
          0xc6,0x04,0x18,0x00},
@@ -652,6 +352,509 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
          {0x48,0x03,0x51,0x10}, true},
         {0x3bbffa, {0xe8,0xb1,0x52,0xd2,0xff},
          {0x48,0x03,0x51,0x10}, true}};
+    // Guild rows use the same resize-and-dots path as the faith chooser.
+    // Retain each complete profession caption and requested/existing tier.
+    inline_resizes.push_back({0x3b9811, {0xe8,0x1a,0x7a,0xd2,0xff}, {}, true});
+    inline_resizes.push_back({0x3b9aae, {0xe8,0x7d,0x77,0xd2,0xff}, {}, true});
+    inline_resizes.push_back({0x3b9bf6, {0xe8,0x35,0x76,0xd2,0xff}, {}, true});
+    // The guild card shortens the entity name to 20 bytes before drawing.
+    inline_resizes.push_back({0x3ba123, {0xe8,0x08,0x71,0xd2,0xff}, {}, true});
+    // The faith chooser clips at length >= width-1 and can append one zero
+    // byte before replacing its last three cells with dots. Preserve the
+    // complete owner through that exact native path, as for other captions.
+    inline_resizes.push_back({0x3ba6d1, {0xe8,0x5a,0x6b,0xd2,0xff}, {}, true});
+    inline_resizes.push_back({0x3ba91c, {0xe8,0x0f,0x69,0xd2,0xff}, {}, true});
+    inline_resizes.push_back({0x3baa70, {0xe8,0xbb,0x67,0xd2,0xff}, {}, true});
+    // The header and assigned-unit paths write dots after their native
+    // resize calls. Preserve their complete NativeString before that edit;
+    // the header's width-1 branch can grow by one zero byte.
+    inline_resizes.push_back({0x3b1832, {0xe8,0xf9,0xf9,0xd2,0xff}, {}, true});
+    inline_resizes.push_back({0x3b8488, {0xe8,0xa3,0x8d,0xd2,0xff}, {}, true});
+    // Construction material rows inline both name-width branches before
+    // addst at 38270a. The generic resize hook never sees these stores.
+    // Replace their complete length/terminator blocks with the same resize
+    // capture, preserving the original caption before the native dots.
+    // The following jumps lead to cmp rdi/r14,3, which replaces flags;
+    // dot stores reload RAX and the draw resets RCX/RDX/R9 and ignores R8.
+    // All remaining live values are nonvolatile. Eight pushes and sub
+    // rsp,0x178 provide aligned calls and the native shadow space.
+    inline_resizes.push_back({0x3825a5,
+        {0x48,0x89,0x7d,0xd8,0x48,0x8d,0x45,0xc8,
+         0x48,0x83,0x7d,0xe0,0x0f,0x48,0x0f,0x47,0x45,0xc8,
+         0xc6,0x04,0x38,0x00},
+        // rcx = &name (rbp-0x38), rdx = selected width (rdi).
+        {0x48,0x8d,0x4d,0xc8,0x48,0x8b,0xd7,0x45,0x33,0xc0}});
+    inline_resizes.push_back({0x38268c,
+        {0x4c,0x89,0x75,0xd8,0x48,0x8d,0x45,0xc8,
+         0x48,0x83,0x7d,0xe0,0x0f,0x48,0x0f,0x47,0x45,0xc8,
+         0x42,0xc6,0x04,0x30,0x00},
+        // rcx = &name (rbp-0x38), rdx = unselected width (r14).
+        {0x48,0x8d,0x4d,0xc8,0x49,0x8b,0xd6,0x45,0x33,0xc0}});
+    // Replace only the inline length/terminator stores with the identical native
+    // resize operation. Each block is straight-line, has no interior entry, and
+    // is followed by fresh draw arguments or a compare that resets flags. The
+    // caller has aligned stack/shadow space; all nonvolatile registers survive.
+    // Caption's width-1 growth branch writes dots, so retain its unpadded source.
+    inline_resizes.push_back({0x27caa7,
+        {0x48,0x89,0x5d,0x00,0x48,0x8d,0x45,0xf0,0x48,0x83,0x7d,0x08,0x0f,
+         0x48,0x0f,0x47,0x45,0xf0,0xc6,0x04,0x18,0x00},
+        {0x48,0x8d,0x4d,0xf0,0x48,0x89,0xda,0x45,0x31,0xc0}});
+    inline_resizes.push_back({0x27cb13,
+        {0xe8,0x98,0x47,0xe6,0xff}, {0x48,0x03,0x51,0x10}, true});
+    inline_resizes.push_back({0x27cea1,
+        {0x48,0x89,0x55,0x20,0x48,0x8d,0x45,0x10,0x49,0x83,0xff,0x0f,
+         0x48,0x0f,0x47,0x45,0x10,0xc6,0x04,0x10,0x00},
+        {0x48,0x8d,0x4d,0x10,0x45,0x31,0xc0}, false, {}, true});
+    inline_resizes.push_back({0x27d16d,
+        {0x48,0x89,0x55,0xe0,0x48,0x8d,0x45,0xd0,0x48,0x83,0x7d,0xe8,0x0f,
+         0x48,0x0f,0x47,0x45,0xd0,0xc6,0x04,0x10,0x00},
+        {0x48,0x8d,0x4d,0xd0,0x45,0x31,0xc0}, false, {}, true});
+    return inline_resizes;
+}
+static bool native_inline_caption_observer_contract(const NativeCaptionInlineResize &site) {
+    if (!site.suffix.empty()) return false;
+    const auto op = pe_runtime::inline_resize_detail::canonical_operation(site.original.data(), site.original.size());
+    return (op && op.length == site.original.size()) ||
+        (site.original.size() == 5 && site.original.front() == 0xe8 && site.arguments.empty());
+}
+
+static bool native_inline_caption_append_contract(const NativeCaptionInlineResize &site) {
+    if (!site.zero_pad_one || site.plain_shrink || !site.suffix.empty() ||
+            site.original.size() != 5 || site.original[0] != 0xe8 ||
+            site.arguments != std::vector<unsigned char>{0x48,0x03,0x51,0x10}) return false;
+    int32_t displacement = 0;
+    std::memcpy(&displacement, site.original.data() + 1, sizeof(displacement));
+    // This declaration's old relay converted append's count into resize's
+    // total width. Observe the count without altering the actual native ABI.
+    return int64_t(site.address) + 5 + displacement == 0xe12b0;
+}
+
+static uintptr_t resolve_native_caption_append_target(uintptr_t base) {
+    // RCX is the string, RDX the additional count, R8B the fill byte. The
+    // retained complete entry reads capacity/size, checks available space,
+    // then stores size+count. This is not string::resize(size, fill).
+    static constexpr unsigned char append_abi[]{
+        0x48,0x89,0x5c,0x24,0x18,0x55,0x56,0x57,0x41,0x55,0x41,0x56,
+        0x48,0x83,0xec,0x20,0x48,0x8b,0x69,0x18,0x48,0x8b,0xf2,
+        0x4c,0x8b,0x71,0x10,0x48,0x8b,0xc5,0x49,0x2b,0xc6,
+        0x45,0x0f,0xbe,0xe8,0x48,0x8b,0xf9,0x48,0x3b,0xd0,0x77,0x2f,
+        0x49,0x8d,0x04,0x16,0x48,0x89,0x41,0x10};
+    return base && native_pe_match(base, 0xe12b0, append_abi, std::size(append_abi))
+        ? native_pe_address(base, 0xe12b0) : 0;
+}
+
+static bool resolve_native_inline_caption_append_site(uintptr_t base, uintptr_t append,
+        NativeCaptionInlineResize &site) {
+    const auto &state = pe_runtime::state();
+    if (!base || !append || !pe_runtime::usable(state) || site.address > UINT32_MAX ||
+            !native_inline_caption_append_contract(site)) return false;
+    const auto reference = static_cast<uint32_t>(site.address);
+    if (!native_pe_bytes(reference, site.original)) return false;
+    const auto native = native_pe_rva(reference);
+    if (!native || native > UINT32_MAX || uint64_t(native) + 5 > state.size ||
+            native > UINTPTR_MAX - base) return false;
+    int32_t displacement = 0;
+    std::memcpy(&displacement, site.original.data() + 1, sizeof(displacement));
+    if (site.original[0] != 0xe8 || int64_t(base + native) + 5 + displacement != int64_t(append))
+        return false;
+    address_runtime::InlineResizeBinding binding{};
+    binding.reference = reference;
+    binding.native_instruction = static_cast<uint32_t>(native);
+    binding.length = 5;
+    binding.frame_register = 1;
+    binding.width_register = 2;
+    binding.flags = pe_runtime::inline_resize_detail::call_form | 2u;
+    site.discovered = binding;
+    site.address = native;
+    site.arguments.clear();
+    return true;
+}
+
+static bool resolve_native_inline_caption_site(uintptr_t base, uintptr_t resize,
+        NativeCaptionInlineResize &site) {
+    using namespace pe_runtime::inline_resize_detail;
+    const auto &state = pe_runtime::state();
+    if (!base || !resize || !pe_runtime::usable(state) ||
+            !native_inline_caption_observer_contract(site) || site.address > UINT32_MAX) return false;
+    const auto reference = static_cast<uint32_t>(site.address);
+    const uint32_t flags = (site.plain_shrink ? 1u : 0u) | (site.zero_pad_one ? 2u : 0u);
+    const auto found = std::find_if(state.inline_resizes.begin(), state.inline_resizes.end(),
+        [&](const auto &binding) { return binding.reference == reference; });
+    address_runtime::InlineResizeBinding binding{};
+    if (found != state.inline_resizes.end()) {
+        if (std::find_if(std::next(found), state.inline_resizes.end(),
+                [&](const auto &other) { return other.reference == reference; }) != state.inline_resizes.end() ||
+                std::find(state.missing_inline_resizes.begin(), state.missing_inline_resizes.end(), reference) !=
+                    state.missing_inline_resizes.end() ||
+                (found->flags & ~operation_forms) != flags || !found->owner) return false;
+        binding = *found;
+        if (!binding.native_instruction || binding.length < 5 || binding.length > 128 ||
+                uint64_t(binding.native_instruction) + binding.length > state.size ||
+                binding.native_instruction > UINTPTR_MAX - base) return false;
+        site.original.resize(binding.length);
+        if (!native_history_copy_bytes(base + binding.native_instruction,
+                site.original.data(), site.original.size())) return false;
+    } else {
+        // Only the exact reviewed baseline identities may use their literal
+        // instruction contract without a generated observer binding. Missing
+        // proof on every other executable leaves this operation untouched.
+        if (state.edition != 1 && state.edition != 2) return false;
+        if (!native_pe_bytes(reference, site.original)) return false;
+        const auto native = native_pe_rva(reference);
+        if (!native || native > UINT32_MAX || uint64_t(native) + site.original.size() > state.size ||
+                native > UINTPTR_MAX - base) return false;
+        binding.reference = reference;
+        binding.native_instruction = static_cast<uint32_t>(native);
+        binding.length = static_cast<uint32_t>(site.original.size());
+        binding.flags = flags;
+        if (site.original.size() == 5 && site.original.front() == 0xe8) {
+            binding.flags |= call_form;
+            binding.frame_register = 1;
+            binding.width_register = 2;
+        } else {
+            const auto target = canonical_operation(site.original.data(), site.original.size());
+            if (!target) return false;
+            binding.frame_register = target.frame;
+            binding.width_register = target.width;
+            binding.object_displacement = target.object;
+        }
+    }
+    if (!valid_forms(binding.flags)) return false;
+    if (binding.flags & call_form) {
+        if (binding.length != 5 || binding.frame_register != 1 || binding.width_register != 2 ||
+                binding.object_displacement || site.original.front() != 0xe8) return false;
+        int32_t displacement = 0;
+        std::memcpy(&displacement, site.original.data() + 1, sizeof(displacement));
+        if (int64_t(base + binding.native_instruction) + 5 + displacement != int64_t(resize)) return false;
+    } else if (binding.flags & guard_form) {
+        const auto guard = resize_guard(site.original.data(), site.original.size());
+        const auto target = int64_t(binding.native_instruction) + guard.length + guard.displacement;
+        if (!guard.length || guard.width != binding.width_register ||
+                (binding.frame_register != 4 && binding.frame_register != 5) || target <= 0 || target >= state.size) return false;
+    } else {
+        const auto target = operation(site.original.data(), site.original.size());
+        if (!target || target.length != binding.length || target.frame != binding.frame_register ||
+                target.width != binding.width_register || target.object != binding.object_displacement ||
+                bool(target.constant_width) != bool(binding.flags & constant_end_form)) return false;
+    }
+    site.discovered = binding;
+    site.address = binding.native_instruction;
+    site.arguments.clear();
+    return true;
+}
+
+#include "native_caption_widget_profile_pe.inc"
+#include "native_caption_semantic_profile_pe.inc"
+
+// The shared text entries do not depend on any particular page's callers,
+// inline clipping blocks, widget observers or temporary frame coordinates.
+// Keep their exact instruction contracts usable when those additions are
+// unavailable in an otherwise identified executable.
+static bool resolve_native_basic_caption_profile(NativeCaptionProfile &profile) {
+    profile = {};
+    profile.base = native_history_profile_base();
+    if (!profile.base || !native_pe_supported()) return false;
+    profile.resize_target = 0xe1230;
+    profile.draw_target = 0xad9960;
+    profile.resize_entry_prefix = {0x48,0x8b,0x41,0x10,0x48,0x3b,0xd0};
+    profile.draw_entry_prefix = {0x40,0x53,0x56,0x57,0x48,0x83,0xec,0x50};
+    const unsigned char resize_guard[]{0x48,0x8b,0x41,0x10,0x48,0x3b,0xd0,0x77};
+    if (!native_pe_bytes(profile.draw_target, profile.draw_entry_prefix)) return false;
+    profile.draw = reinterpret_cast<NativeCaptionDrawFn>(native_pe_address(profile.base, profile.draw_target));
+    profile.draw_target = native_pe_rva(profile.draw_target);
+    if (!profile.draw || !profile.draw_target) return false;
+    // Clipping observation is an independent capability. The draw entry can
+    // still capture complete native strings when resize is not identified.
+    if (native_pe_match(profile.base, profile.resize_target, resize_guard, sizeof(resize_guard)) &&
+            native_pe_bytes(profile.resize_target, profile.resize_entry_prefix)) {
+        profile.resize = reinterpret_cast<NativeCaptionResizeFn>(
+            native_pe_address(profile.base, profile.resize_target));
+        profile.resize_target = native_pe_rva(profile.resize_target);
+    } else {
+        profile.resize_target = 0;
+    }
+    if (!profile.resize || !profile.resize_target) {
+        profile.resize = nullptr;
+        profile.resize_target = 0;
+        profile.resize_entry_prefix.clear();
+    }
+    profile.flag_draw_entry_prefix = {
+        0x48,0x89,0x5c,0x24,0x18,0x55,0x56,0x57,0x48,0x83,0xec,0x50};
+    if (native_pe_bytes(0xad9870, profile.flag_draw_entry_prefix))
+        profile.flag_draw = reinterpret_cast<NativeCaptionFlagDrawFn>(native_pe_address(profile.base, 0xad9870));
+    profile.top_draw_entry_prefix = {
+        0x48,0x89,0x5c,0x24,0x18,0x48,0x89,0x74,0x24,0x20,0x57,0x48,0x83,0xec,0x50};
+    if (native_pe_bytes(0xad9a40, profile.top_draw_entry_prefix))
+        profile.top_simple_draw = reinterpret_cast<NativeCaptionSimpleDrawFn>(native_pe_address(profile.base, 0xad9a40));
+    // This separately identified caller remains an editable string even
+    // when the optional textbox vtable observer is not installed.
+    profile.textbox_widget.text_return_address = native_pe_address(profile.base, 0x1419581);
+    // The shared addst entry receives ui_look_list's actual display_str even
+    // without a private hover viewport or its six producer-boundary hooks.
+    // A missing record layout disables only this source classification. Each
+    // record's enum and payload still need their own runtime field evidence.
+    const native_history_abi::FieldOffset look_text{0x28, "lookinfost", "display_str"};
+    const native_history_abi::FieldOffset look_type{0, "lookinfost", "type"};
+    if (look_text.contains(0, sizeof(NativeString), sizeof(NativeString)) &&
+            look_type.contains(0, sizeof(int32_t), sizeof(int32_t))) {
+        profile.map_caption_text_offset = look_text.runtime();
+        profile.map_hover_list = native_reference_address(profile.base,
+            native_history_layout::ui_look_list_rva);
+        for (const uintptr_t reference : {uintptr_t{0x3f9558}, uintptr_t{0x3f977a},
+                uintptr_t{0xb02ff9}, uintptr_t{0xb03231}}) {
+            if (const auto caller = native_pe_address(profile.base, reference))
+                profile.map_hover_returns.push_back(caller);
+        }
+    }
+    return true;
+}
+static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
+    const auto *base = reinterpret_cast<const unsigned char *>(GetModuleHandleW(nullptr));
+    if (!base) return false;
+    if (!native_pe_supported()) return false;
+    profile.base = reinterpret_cast<uintptr_t>(base);
+    const size_t render_index = native_object_virtual_slot(
+        "abstract_interfacest", "render", 3, "void(uint32_t)", 1);
+    const size_t arrange_index = native_object_virtual_slot(
+        "abstract_interfacest", "arrange", 4, "void()", 0);
+    if (render_index == SIZE_MAX || arrange_index == SIZE_MAX) return false;
+    const auto slot = [](uintptr_t table, size_t index) -> void ** {
+        return table ? reinterpret_cast<void **>(table) + index : nullptr;
+    };
+    // RTTI establishes the owner table; the semantic contract establishes
+    // the target method slot and the fields retained by these widgets.
+    profile.truncated_widget = {
+        slot(native_pe_address(profile.base, 0x162dc10), render_index),
+        {0x10, "widget", "rect"}, {0x150, "widget_text", "str"},
+        {0x180, "widget_text_truncated", "original_str"}, {0x175, "widget_text", "just"}};
+    // Only widgets::textbox owns editable str/flags/maxlen/textbox_type.
+    // The abstract interface render precedes the widget destructor at slot 3.
+    const auto textbox_table = native_pe_address(profile.base, 0x1710d18);
+    profile.textbox_widget = {textbox_table,
+        slot(textbox_table, render_index),
+        reinterpret_cast<void *>(native_pe_address(profile.base, 0x14191e0)),
+        native_pe_address(profile.base, 0x1419581)};
+    // container::render invokes widget::render before drawing its children.
+    // Save the complete page before Tooltip overwrites it, as on ELF; rect
+    // and name retain the shared widget offsets used by the capture.
+    profile.tooltip_container_slot = slot(native_pe_address(profile.base, 0x15eb4a8), render_index);
+    profile.tooltip_container_render = reinterpret_cast<void *>(native_pe_address(profile.base, 0x1414c10));
+    // The fixed fortress toolbar uses a separate inline floating card.
+    profile.legacy_toolbar_tooltip = true;
+    // widgets::text_multiline::render (0x14198c0) uses its own temporary
+    // string vector via 0x52def0, never curses_text_boxst::add_paragraph.
+    // 0x14198d2..0x14198f1 takes max(rect.x2-rect.x1+1, min_w), and
+    // 0x1419920..0x1419983 draws each original row at (rect.x1, rect.y1+i)
+    // through addst_flag. Capture that render scope through its vtable;
+    // no shared-vector layout or persistent borrowed strings are needed.
+    const auto multiline_table = native_pe_address(profile.base, 0x15f6ee8);
+    const auto multiline_slot = slot(multiline_table, render_index);
+    // This profile is also resolved after caption installation by the
+    // announcement adapter. The installer owns mutable-slot validation.
+    profile.multiline_widget = {
+        multiline_slot, {0x10, "widget", "rect"}, {0x150, "widget_text", "str"},
+        {0xc4, "widget", "min_w"}, native_pe_address(profile.base, 0x1419988),
+        reinterpret_cast<void *>(native_pe_address(profile.base, 0x14198c0)),
+        slot(multiline_table, arrange_index),
+        reinterpret_cast<void *>(native_pe_address(profile.base, 0x1419860)),
+        reinterpret_cast<NativeCaptionWidgetArrangeFn>(native_pe_address(profile.base, 0x14101a0)),
+        {0xc8, "widget", "min_h"}};
+    const auto base_widget_table = native_pe_address(profile.base, 0x1785a80);
+    if (!base_widget_table || native_object_virtual_method(
+            reinterpret_cast<void *const *>(base_widget_table), "abstract_interfacest", "arrange",
+            4, "void()", 0) != reinterpret_cast<void *>(profile.multiline_widget.base_arrange) ||
+            !profile.truncated_widget.rect.contains(0, 16, 16) ||
+            !profile.truncated_widget.text.contains(0, sizeof(NativeString), sizeof(NativeString)) ||
+            !profile.truncated_widget.original_text.contains(0, sizeof(NativeString), sizeof(NativeString)) ||
+            !profile.truncated_widget.justification.contains(0, 1, 1) ||
+            !profile.multiline_widget.minimum_width.contains(0, 4, 4) ||
+            !profile.multiline_widget.minimum_height.contains(0, 4, 4)) return false;
+    // The void arrange at slot 4 estimates min_h with str.size/width+1.
+    // rows_container (0x1415670) and scroll_rows (0x1415dab) call this slot
+    // before reading max(rect.height,min_h) for the next child's top offset.
+    // Correct its word-wrap count before returning, then use the base arrange
+    // to update rect without repeating the multiline height estimate.
+    profile.resize_target = 0xe1230;
+    profile.draw_target = 0xad9960;
+    // The two fortress report hover renderers count their native row vector, then
+    // clear screen and draw HOVER_RECTANGLE at gps+0x1924 before any text.
+    // The row-count hook redirects both inline producers into the private
+    // notification output until their last body addst. Both use paragraph
+    // +0x48 for width and the same anchor.
+    // Native bounds are [left, bottom-rows-3] through [left+width+4, bottom].
+    profile.announcement_page = {0x6ee50, {0x3fa9eb, 0x3facde},
+        reinterpret_cast<const int32_t *>(native_pe_address(profile.base, 0x18a93bc)),
+        reinterpret_cast<const int32_t *>(native_pe_address(profile.base, 0x18a93c0)), 0x48};
+    // The expanded alert/all-report/unit-report window clears a different
+    // fixed rectangle before assembling its rows. Its single four-register
+    // caller owns the complete private output scope for every branch.
+    // Reference 40d64b..40d728: left=int32(R8)+4, top=4, 94 by 35 cells.
+    profile.announcement_popup_call = 0x3fa6f8;
+    profile.announcement_popup_target = 0x40d5f0;
+    // Both native string::resize implementations take (this, size, fill).
+    profile.resize = reinterpret_cast<NativeCaptionResizeFn>(native_pe_address(profile.base, profile.resize_target));
+    profile.draw = reinterpret_cast<NativeCaptionDrawFn>(native_pe_address(profile.base, profile.draw_target));
+    // All 98 item classes and 57 building classes converge on these title
+    // calls; the remaining three calls are the engraving/terrain sheets.
+    // These are return addresses of verified E8 calls to addst, never a
+    // text/coordinate guess. Other executable profiles leave this empty.
+    profile.info_titles.sites = {
+        {native_pe_address(profile.base, 0x154a28), NativeInfoTitleKind::Item},
+        // ViewSheets/ITEM_LIST formats each complete item before shortening
+        // its caption. Books can supply just their work title, with no item
+        // actions, count or quality marks to identify the row by its skin.
+        {native_pe_address(profile.base, 0x15a261), NativeInfoTitleKind::ItemList},
+        // Nobles' office-symbol chooser owns separate item, assignment and
+        // value fields. Item/assignment ink is shortened to 22 cells, while
+        // their columns extend 24 cells up to the optional Value label.
+        {native_pe_address(profile.base, 0x425ddd), NativeInfoTitleKind::NobleSymbolItem, 24},
+        {native_pe_address(profile.base, 0x425f5e), NativeInfoTitleKind::NobleSymbolPosition, 24},
+        {native_pe_address(profile.base, 0x426057), NativeInfoTitleKind::NobleSymbolValue, 7},
+        {native_pe_address(profile.base, 0x4260af), NativeInfoTitleKind::NobleSymbolAmount},
+        {native_pe_address(profile.base, 0x18057a), NativeInfoTitleKind::Building},
+        // Coffin details draw the associated tomb's stored name directly.
+        {native_pe_address(profile.base, 0x195db5), NativeInfoTitleKind::Building},
+        {native_pe_address(profile.base, 0x158a79), NativeInfoTitleKind::Engraving},
+        {native_pe_address(profile.base, 0x158af4), NativeInfoTitleKind::Terrain},
+        {native_pe_address(profile.base, 0x158f72), NativeInfoTitleKind::PlannedEngraving},
+        // Display furniture manually draws each item and its independent
+        // status over a picture strip. Bind these addst callers directly:
+        // neither the outer sheet nor a generic rectangle owns the fields.
+        {native_pe_address(profile.base, 0x18b338), NativeInfoTitleKind::Item},
+        {native_pe_address(profile.base, 0x18b3c0), NativeInfoTitleKind::DisplayStatus},
+        {native_pe_address(profile.base, 0x18b417), NativeInfoTitleKind::DisplayStatus},
+        // The Adventure chooser's quantity popup draws the selected item's
+        // complete c65450 designation immediately above its numeric prompt.
+        // Give that same item-name field to the shared native title reader.
+        {native_pe_address(profile.base, 0x88472f), NativeInfoTitleKind::Item}};
+    // World missions use one complete title draw for every goal in the
+    // removable list and another in the selected mission's detail frame.
+    // Both pass width zero; the list first calls resize at 0x1c6677, so
+    // the shared capture retains the full source before its three dots.
+    // Unverified executable profiles leave these caller bindings empty.
+    profile.mission_title_returns = {
+        native_pe_address(profile.base, 0x1c66da), native_pe_address(profile.base, 0x1c8f44)};
+    // The render entry publishes its actual sheet argument; the building
+    // title resolves its active ID through the native building collection.
+    profile.info_titles.building_slot = 0;
+    profile.info_titles.sheet_slot = 0;
+    profile.info_titles.building_name = {0xd0, "building", "name"};
+    profile.info_titles.editing_name = {0x1d59, "view_sheets_interfacest", "building_entering_nickname"};
+    // ITEM_LIST's right edge is read through its discovered frame operands.
+    // Its L+7 text start and R-L-15 capacity leave the scrollbar at R-8.
+    profile.info_titles.item_list_right_slot = 0;
+    profile.info_titles.item_list_right_inset = 8;
+    // The native farm formatter publishes its real receiver and output.
+    // Preserve an authored name even when its spelling is "Farm Plot".
+    profile.info_titles.farm_name_return_address = native_pe_address(profile.base, 0x39e048);
+    // The crop draw copies the selected plant's complete RAW name (+0x70)
+    // at record top+2, including Item Tagger's suffixes, without resizing.
+    profile.info_titles.farm_crop_return_address = native_pe_address(profile.base, 0x39e1f3);
+    profile.info_titles.farm_building_slot = 0;
+    // The spoor constructor alone shortens record+0x28 to 50 bytes here;
+    // 0x407efd..0x40849d append its direction and optional party ownership.
+    // Fortress and adventure map loops pass that same string directly.
+    // Rebuilding the record invalidates captures before any new text is set.
+    profile.map_track_shorten_call = 0x407ef8;
+    profile.map_track_shorten_target = 0x52d910;
+    // The LOOK stack string has a separate pre-draw shortening call. Its
+    // actual target retains the native <=50-byte fast path before 0x52d910.
+    profile.adventure_look_track_shorten_call = 0x7f4e21;
+    profile.adventure_look_track_shorten_target = 0x52dee0;
+    // unit-name render (0x14237a0) rebuilds its captions on every draw.
+    // 0x1330c30 supplies name/profession together; the narrow two-line path
+    // instead uses 0x1330500 for the name and 0x1330880 for the profession.
+    // The final path uses 0x1330260 for a name without its profession.
+    // All four calls remove vowels in place; if still too long, the caller
+    // writes length/terminator inline and replaces its last three cells.
+    // No further resize call intervenes. The same NativeString owners at
+    // 0x18b00b8/0x18b00d8 reach width-zero addst at 0x1423d2e,
+    // 0x1423d73 or 0x1423faf, preserving each line's actual coordinates.
+    profile.roster_shorten_target = 0x52d910;
+    profile.roster_shorten_calls = {0x14239b9, 0x1423b20, 0x1423c24, 0x1423e8c};
+    profile.map_caption_build = reinterpret_cast<NativeCaptionBuildFn>(native_pe_address(profile.base, 0x406860));
+    const native_history_abi::FieldOffset look_text{0x28, "lookinfost", "display_str"};
+    if (!look_text.contains(0, sizeof(NativeString), sizeof(NativeString))) return false;
+    profile.map_caption_text_offset = look_text.runtime();
+    profile.map_hover_list = native_reference_address(native_history_profile_base(),
+        native_history_layout::ui_look_list_rva);
+    // Fortress/arena (0x3f9553/0x3f9775) and adventure
+    // (0xb02ff4/0xb0322c) each have classic and graphical hover loops.
+    // All four pass lookinfost::display_str at +0x28 directly to addst.
+    // The return address establishes that owner before reading its enum.
+    profile.map_hover_returns = {
+        native_pe_address(profile.base, 0x3f9558), native_pe_address(profile.base, 0x3f977a),
+        native_pe_address(profile.base, 0xb02ff9), native_pe_address(profile.base, 0xb03231)};
+#include "native_adventure_look_caption_profile.inc"
+    // Three complete stores to the incoming shadow space; no relative
+    // address or branch is displaced by the shared entry-hook trampoline.
+    profile.map_caption_build_prefix = {
+        0x48,0x89,0x5c,0x24,0x10,0x48,0x89,0x74,0x24,0x18,
+        0x48,0x89,0x7c,0x24,0x20};
+    // 53.16's top_addst specialization loops through top_addchar (0x1bb000),
+    // writing screen_top. Unlike the ELF export, its native callers provide
+    // no width/justification arguments. The entire relocatable prefix ends
+    // before its RIP-relative cookie read at 0xad9a4f.
+    profile.top_simple_draw = reinterpret_cast<NativeCaptionSimpleDrawFn>(native_pe_address(profile.base, 0xad9a40));
+    profile.top_draw_entry_prefix = {
+        0x48,0x89,0x5c,0x24,0x18,0x48,0x89,0x74,0x24,0x20,
+        0x57,0x48,0x83,0xec,0x50};
+    // The flagged base entry uses the same string/width ABI plus its fifth
+    // stack argument; addchar_flag writes one base row and retains sflag.
+    profile.flag_draw = reinterpret_cast<NativeCaptionFlagDrawFn>(native_pe_address(profile.base, 0xad9870));
+    profile.flag_draw_entry_prefix = {
+        0x48,0x89,0x5c,0x24,0x18,0x55,0x56,0x57,0x48,0x83,0xec,0x50};
+    // Character inventory names also use these entries, outside the embark
+    // call-site list: 0x169e1a/0x169e9b (name), 0x169f78/0x169ff9
+    // (location), and 0x16ae68/0x16aee9 (nested item). Each pair resizes
+    // and draws the same NativeString with fill/just/width all zero. Bind
+    // the shared clipped-caption capture so every such row retains its full
+    // source before the native caller writes the final three dots.
+    // End before resize's short branch and draw's RIP-relative cookie load;
+    // both prefixes contain complete, position-independent instructions.
+    profile.resize_entry_prefix = {0x48,0x8b,0x41,0x10,0x48,0x3b,0xd0};
+    profile.draw_entry_prefix = {0x40,0x53,0x56,0x57,0x48,0x83,0xec,0x50};
+    profile.signatures = {
+        {profile.resize_target, {0x48,0x8b,0x41,0x10,0x48,0x3b,0xd0,0x77}},
+        {profile.draw_target, {0x40,0x53,0x56,0x57,0x48,0x83,0xec,0x50}},
+        {0x154a23, {0xe8,0x38,0x4f,0x98,0x00}},
+        {0x15a25c, {0xe8,0xff,0xf6,0x97,0x00}},
+        {0x180575, {0xe8,0xe6,0x93,0x95,0x00}},
+        {0x158a74, {0xe8,0xe7,0x0e,0x98,0x00}},
+        {0x158aef, {0xe8,0x6c,0x0e,0x98,0x00}},
+        {0x158f6d, {0xe8,0xee,0x09,0x98,0x00}},
+        {0x88472a, {0xe8,0x31,0x52,0x25,0x00}},
+        {0x1c66d5, {0xe8,0x86,0x32,0x91,0x00}},
+        {0x1c8f3f, {0xe8,0x1c,0x0a,0x91,0x00}},
+        {0x3bb2f7, {0xe8,0x64,0xe6,0x71,0x00}},
+        {0x3bb6b7, {0xe8,0xa4,0xe2,0x71,0x00}},
+        {0x3bb665, {0xe8,0xf6,0xe2,0x71,0x00}},
+        {0x3bb5d3, {0xe8,0x88,0xe3,0x71,0x00}},
+        {0x3bb580, {0xe8,0xdb,0xe3,0x71,0x00}},
+        {0x3bb711, {0xe8,0x4a,0xe2,0x71,0x00}},
+        {0x3bbbcb, {0xe8,0x90,0xdd,0x71,0x00}},
+        {0x3bbec4, {0xe8,0x97,0xda,0x71,0x00}},
+        {0x3bc04c, {0xe8,0x0f,0xd9,0x71,0x00}},
+        {0x3bc0c7, {0xe8,0x94,0xd8,0x71,0x00}},
+        {0x3bc14e, {0xe8,0x0d,0xd8,0x71,0x00}},
+        {0x3bc1c4, {0xe8,0x97,0xd7,0x71,0x00}},
+        // Places/Zones still consumes these separately gated frame locals.
+        {0x39ac30, {0x48,0x8d,0xac,0x24,0xe0,0xfe,0xff,0xff,
+            0x48,0x81,0xec,0x20,0x02,0x00,0x00}},
+        {0x39b939, {0x48,0x63,0x06,0x48,0x8d,0x0c,0x40,
+            0x48,0x8b,0x44,0xce,0x08,0x4c,0x8b,0x3c,0xd0,
+            0x4c,0x89,0x7c,0x24,0x40}},
+        {0x39c67e, {0x48,0x8b,0x7c,0x24,0x40}},
+        // Farm getName keeps its ordinary this/output ABI and owned-name
+        // branch gate; its caller's stack displacement is no longer used.
+        {0x54f330, {0x48,0x83,0xb9,0xe0,0x00,0x00,0x00,0x00,
+            0x48,0x8b,0xc2,0x74,0x22,0x48,0x8d,0x91,0xd0,0x00,0x00,0x00}},
+        {0x1419983, {0xe8,0xe8,0xfe,0x6b,0xff}},
+        {0x1419860, {0x40,0x53,0x48,0x83,0xec,0x20,0x48,0x8b,0xd9,
+            0xe8,0x32,0x69,0xff,0xff}},
+        {0x14101a0, {0x40,0x53,0x48,0x83,0xec,0x50,0xf6,0x81,
+            0xa0,0x00,0x00,0x00,0x08}}};
+    profile.inline_resizes = native_inline_caption_reference_sites();
     profile.sites = {
         {0x105cda3,0x105ce01,NativeFieldKind::EmbarkItem},
         {0x105eee9,0x105ef47,NativeFieldKind::EmbarkItem},
@@ -675,90 +878,7 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
         // Codices: native title and capitalized item description.
         {0xd42094,0xd420f3,NativeFieldKind::BookTitle},
         {0xd42141,0xd42183,NativeFieldKind::BookType}};
-    // Guild rows use the same resize-and-dots path as the faith chooser.
-    // Retain each complete profession caption and requested/existing tier.
-    profile.inline_resizes.push_back({0x3b9811, {0xe8,0x1a,0x7a,0xd2,0xff}, {}, true});
-    profile.inline_resizes.push_back({0x3b9aae, {0xe8,0x7d,0x77,0xd2,0xff}, {}, true});
-    profile.inline_resizes.push_back({0x3b9bf6, {0xe8,0x35,0x76,0xd2,0xff}, {}, true});
-    // The guild card shortens the entity name to 20 bytes before drawing.
-    profile.inline_resizes.push_back({0x3ba123, {0xe8,0x08,0x71,0xd2,0xff}, {}, true});
-    // The faith chooser clips at length >= width-1 and can append one zero
-    // byte before replacing its last three cells with dots. Preserve the
-    // complete owner through that exact native path, as for other captions.
-    profile.inline_resizes.push_back({0x3ba6d1, {0xe8,0x5a,0x6b,0xd2,0xff}, {}, true});
-    profile.inline_resizes.push_back({0x3ba91c, {0xe8,0x0f,0x69,0xd2,0xff}, {}, true});
-    profile.inline_resizes.push_back({0x3baa70, {0xe8,0xbb,0x67,0xd2,0xff}, {}, true});
-    // The decompiled location-detail renderer owns complete sources at
-    // these addst calls. In particular its rank/value/threshold is ONE
-    // buffer, while the worshipper count and noun are separate draws.
-    // Use executable callers for every branch instead of guessing a title
-    // or a rank from words left in the screen grid.
-    struct NativeLocationDetailCall {
-        uintptr_t call;
-        std::array<unsigned char, 5> bytes;
-        NativeLocationPickerField field;
-    };
-    static constexpr NativeLocationDetailCall detail_sites[] = {
-        {0x3b1887, {0xe8,0xd4,0x80,0x72,0x00}, NativeLocationPickerField::DetailName},
-        // Guild detail draws its profession/type first, then a generated
-        // entity name and a separate complete member-count clause. The
-        // unestablished branch uses the same row with worker counts.
-        {0x3b1af2, {0xe8,0x69,0x7e,0x72,0x00}, NativeLocationPickerField::DetailGuildKind},
-        {0x3b1b68, {0xe8,0xf3,0x7d,0x72,0x00}, NativeLocationPickerField::DetailGuildName},
-        {0x3b1bc3, {0xe8,0x98,0x7d,0x72,0x00}, NativeLocationPickerField::DetailGuildCount}, // members
-        {0x3b1be9, {0xe8,0x72,0x7d,0x72,0x00}, NativeLocationPickerField::DetailGuildCount}, // no members
-        {0x3b1c2e, {0xe8,0x2d,0x7d,0x72,0x00}, NativeLocationPickerField::DetailGuildName}, // no established guild
-        {0x3b1c96, {0xe8,0xc5,0x7c,0x72,0x00}, NativeLocationPickerField::DetailGuildCount}, // workers
-        {0x3b1cbc, {0xe8,0x9f,0x7c,0x72,0x00}, NativeLocationPickerField::DetailGuildCount}, // no workers
-        {0x3b1df3, {0xe8,0x68,0x7b,0x72,0x00}, NativeLocationPickerField::DetailKind}, // Shrine
-        {0x3b1e2d, {0xe8,0x2e,0x7b,0x72,0x00}, NativeLocationPickerField::DetailKind}, // Temple
-        {0x3b1e67, {0xe8,0xf4,0x7a,0x72,0x00}, NativeLocationPickerField::DetailKind}, // Temple complex
-        // Organized-religion name, Dedicated to deity, or No particular deity.
-        {0x3b1fca, {0xe8,0x91,0x79,0x72,0x00}, NativeLocationPickerField::DetailDedication},
-        {0x3b26ee, {0xe8,0x6d,0x72,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // members, if established
-        {0x3b2720, {0xe8,0x3b,0x72,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // members
-        {0x3b276b, {0xe8,0xf0,0x71,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // all visitors
-        {0x3b27af, {0xe8,0xac,0x71,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // residents
-        {0x3b27e3, {0xe8,0x78,0x71,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // citizens
-        {0x3b4cf7, {0xe8,0x64,0x4c,0x72,0x00}, NativeLocationPickerField::DetailRank}, // guild rank/value/threshold
-        {0x3b4e84, {0xe8,0xd7,0x4a,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // guildhall agreement
-        {0x3b4ecd, {0xe8,0x8e,0x4a,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // grand guildhall agreement
-        {0x3b6aab, {0xe8,0xb0,0x2e,0x72,0x00}, NativeLocationPickerField::DetailRank},
-        {0x3b6b56, {0xe8,0x05,0x2e,0x72,0x00}, NativeLocationPickerField::DetailCount}, // number or No
-        {0x3b6bb4, {0xe8,0xa7,0x2d,0x72,0x00}, NativeLocationPickerField::DetailCountWord}, // worshippers
-        {0x3b6bda, {0xe8,0x81,0x2d,0x72,0x00}, NativeLocationPickerField::DetailCountWord}, // worshipper
-        {0x3b702a, {0xe8,0x31,0x29,0x72,0x00}, NativeLocationPickerField::DetailRequirement},
-        {0x3b7121, {0xe8,0x3a,0x28,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // Recognize priesthood
-        {0x3b7260, {0xe8,0xfb,0x26,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // Recognize high priest
-        {0x3b72c0, {0xe8,0x9b,0x26,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // temple required
-        {0x3b732e, {0xe8,0x2d,0x26,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // temple complex required
-        {0x3b73c6, {0xe8,0x95,0x25,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // temple agreement
-        {0x3b7413, {0xe8,0x48,0x25,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // complex agreement
-        {0x3b7470, {0xe8,0xeb,0x24,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // organized religion required
-        {0x3b762b, {0xe8,0x30,0x23,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // chests label
-        {0x3b77f9, {0xe8,0x62,0x21,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // instruments label
-        {0x3b7b2a, {0xe8,0x31,0x1e,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // dance-floor label
-        {0x3b7be9, {0xe8,0x72,0x1d,0x72,0x00}, NativeLocationPickerField::DetailFixed}, // no dance floor
-        // All ten fixed occupation branches and the entity_position title
-        // share the same list row and add-person button allocation.
-        {0x3b7efd, {0xe8,0x5e,0x1a,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Tavern Keeper
-        {0x3b7feb, {0xe8,0x70,0x19,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Performer
-        {0x3b8018, {0xe8,0x43,0x19,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Scholar
-        {0x3b8045, {0xe8,0x16,0x19,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Scribe
-        {0x3b8072, {0xe8,0xe9,0x18,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Mercenary
-        {0x3b809f, {0xe8,0xbc,0x18,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Monster Slayer
-        {0x3b80cc, {0xe8,0x8f,0x18,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Doctor
-        {0x3b80f9, {0xe8,0x62,0x18,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Diagnostician
-        {0x3b8126, {0xe8,0x35,0x18,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Surgeon
-        {0x3b8153, {0xe8,0x08,0x18,0x72,0x00}, NativeLocationPickerField::DetailRole}, // Bone Doctor
-        {0x3b8199, {0xe8,0xc2,0x17,0x72,0x00}, NativeLocationPickerField::DetailRole}, // complete generated priest title
-        {0x3b84db, {0xe8,0x80,0x14,0x72,0x00}, NativeLocationPickerField::DetailUnit},
-    };
-    for (const auto &site : detail_sites) {
-        profile.location_picker_fields.push_back({native_pe_address(profile.base, site.call + 5), site.field});
-        profile.signatures.push_back({site.call,
-            std::vector<unsigned char>(site.bytes.begin(), site.bytes.end())});
-    }
+    populate_native_caption_semantic_profile(profile);
     profile.signatures.push_back({0x39e1ee, {0xe8,0x6d,0xb7,0x73,0x00}});
     // Guild and faith subpage callers use the same normal profile signature
     // gate as the new detail fields, for both supported native PE editions.
@@ -780,40 +900,22 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
     profile.signatures.push_back({0x3baebb, {0xe8,0xa0,0xea,0x71,0x00}});
     profile.signatures.push_back({0x3baf7b, {0xe8,0xe0,0xe9,0x71,0x00}});
     profile.signatures.push_back({0x3bb04d, {0xe8,0x0e,0xe9,0x71,0x00}});
-    // The header and assigned-unit paths write dots after their native
-    // resize calls. Preserve their complete NativeString before that edit;
-    // the header's width-1 branch can grow by one zero byte.
-    profile.inline_resizes.push_back({0x3b1832, {0xe8,0xf9,0xf9,0xd2,0xff}, {}, true});
-    profile.inline_resizes.push_back({0x3b8488, {0xe8,0xa3,0x8d,0xd2,0xff}, {}, true});
     profile.signatures.push_back({0x3b1832, {0xe8,0xf9,0xf9,0xd2,0xff}});
     profile.signatures.push_back({0x3b8488, {0xe8,0xa3,0x8d,0xd2,0xff}});
 #include "native_adventure_crafting_profile.inc"
-#include "native_accepted_petition_profile.inc"
-    // Construction material rows inline both name-width branches before
-    // addst at 38270a. The generic resize hook never sees these stores.
-    // Replace their complete length/terminator blocks with the same resize
-    // capture, preserving the original caption before the native dots.
-    // The following jumps lead to cmp rdi/r14,3, which replaces flags;
-    // dot stores reload RAX and the draw resets RCX/RDX/R9 and ignores R8.
-    // All remaining live values are nonvolatile. Eight pushes and sub
-    // rsp,0x178 provide aligned calls and the native shadow space.
-    profile.inline_resizes.push_back({0x3825a5,
-        {0x48,0x89,0x7d,0xd8,0x48,0x8d,0x45,0xc8,
-         0x48,0x83,0x7d,0xe0,0x0f,0x48,0x0f,0x47,0x45,0xc8,
-         0xc6,0x04,0x38,0x00},
-        // rcx = &name (rbp-0x38), rdx = selected width (rdi).
-        {0x48,0x8d,0x4d,0xc8,0x48,0x8b,0xd7,0x45,0x33,0xc0}});
-    profile.inline_resizes.push_back({0x38268c,
-        {0x4c,0x89,0x75,0xd8,0x48,0x8d,0x45,0xc8,
-         0x48,0x83,0x7d,0xe0,0x0f,0x48,0x0f,0x47,0x45,0xc8,
-         0x42,0xc6,0x04,0x30,0x00},
-        // rcx = &name (rbp-0x38), rdx = unselected width (r14).
-        {0x48,0x8d,0x4d,0xc8,0x49,0x8b,0xd6,0x45,0x33,0xc0}});
     profile.signatures.push_back({0x381630,
         {0x40,0x55,0x53,0x56,0x57,0x41,0x54,0x41,0x55,
          0x41,0x56,0x41,0x57,0x48,0x8d,0x6c,0x24,0x88,
          0x48,0x81,0xec,0x78,0x01,0x00,0x00}});
     profile.signatures.push_back({0x38270a, {0xe8,0x51,0x72,0x75,0x00}});
+    std::erase_if(profile.signatures, [](const auto &site) {
+        return native_pe_chooser_span_absent(static_cast<uint32_t>(site.address),
+            static_cast<uint32_t>(site.bytes.size()));
+    });
+    std::erase_if(profile.inline_resizes, [](const auto &site) {
+        return native_pe_chooser_span_absent(static_cast<uint32_t>(site.address),
+            static_cast<uint32_t>(site.original.size()));
+    });
     // Resolve the reference PE coordinates once. Shared hook installation
     // consumes only the selected executable's addresses and original bytes.
     for (auto &signature : profile.signatures) {
@@ -821,6 +923,11 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
         signature.address = native_pe_rva(signature.address);
         if (!signature.address) return false;
     }
+    // The independent inline stage owns these operations, including when a
+    // page-specific full profile is unavailable. Never patch them twice.
+    std::erase_if(profile.inline_resizes, [](const auto &site) {
+        return native_inline_caption_observer_contract(site) || native_inline_caption_append_contract(site);
+    });
     for (auto &site : profile.inline_resizes) {
         if (!native_pe_bytes(site.address, site.original)) return false;
         site.address = native_pe_rva(site.address);

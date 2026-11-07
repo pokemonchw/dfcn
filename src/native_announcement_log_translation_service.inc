@@ -414,13 +414,16 @@ public:
         }
         return true;
     }
-    void stop() {
+    void request_stop() {
         {
             std::lock_guard<std::mutex> lock(mutex_);
             stopping_ = true;
             cancel_locked();
         }
         ready_.notify_all();
+    }
+    void stop() {
+        request_stop();
         // Joining holds neither the service mutex nor a translation lock.
         for (auto &worker : workers_) if (worker.joinable()) worker.join();
         Reports retired;
@@ -841,63 +844,99 @@ public:
         return viewport_revision_.load(std::memory_order_acquire);
     }
 };
-static NativeAnnouncementLogTranslationService g_native_announcement_log_translation_service;
+// Windows runs static destructors under the loader lock during process exit.
+// The OS may already have terminated our workers then: neither joining them nor
+// destroying joinable std::threads is valid there. Normal core shutdown stops
+// the workers outside that lock and explicitly releases this storage after all
+// callbacks detach. Process termination leaves the storage for the OS to reclaim.
+union NativeAnnouncementLogTranslationLifetime {
+    std::optional<NativeAnnouncementLogTranslationService> service;
+    NativeAnnouncementLogTranslationLifetime() : service(std::in_place) {}
+    ~NativeAnnouncementLogTranslationLifetime() {}
+};
+static NativeAnnouncementLogTranslationLifetime g_native_announcement_log_translation_lifetime;
+static auto &g_native_announcement_log_translation_service =
+    g_native_announcement_log_translation_lifetime.service;
 static bool native_announcement_log_translation_start() {
-    return g_native_announcement_log_translation_service.start();
+    auto &service = g_native_announcement_log_translation_service;
+    if (!service) service.emplace();
+    return service->start();
+}
+static void native_announcement_log_translation_request_stop() {
+    if (auto &service = g_native_announcement_log_translation_service)
+        service->request_stop();
 }
 static void native_announcement_log_translation_stop() {
-    g_native_announcement_log_translation_service.stop();
+    if (auto &service = g_native_announcement_log_translation_service) service->stop();
+}
+static void native_announcement_log_translation_release() {
+    auto &service = g_native_announcement_log_translation_service;
+    if (!service) return;
+    service->stop();
+    service.reset();
 }
 static void native_announcement_log_translation_publish_catalog(
         std::vector<NativeAnnouncementLogTranslator> translators, uint64_t generation) {
-    g_native_announcement_log_translation_service.publish_catalog(std::move(translators), generation);
+    auto &service = g_native_announcement_log_translation_service;
+    if (!service) service.emplace();
+    service->publish_catalog(std::move(translators), generation);
 }
 static std::shared_ptr<const NativeAnnouncementLogTranslationResult>
 native_announcement_log_translation_request(
         std::shared_ptr<const NativeAnnouncementLogDocument> document, int foreground, bool urgent) {
     try {
-        return g_native_announcement_log_translation_service.request(std::move(document), foreground, urgent);
+        if (auto &service = g_native_announcement_log_translation_service)
+            return service->request(std::move(document), foreground, urgent);
+        return {};
     } catch (const std::bad_alloc &) { return {}; }
 }
 static std::shared_ptr<const NativeAnnouncementLogTranslationResult>
 native_announcement_log_translation_complete_native(
         std::shared_ptr<const NativeAnnouncementLogDocument> document, int foreground,
         const NativeAnnouncementLogTranslator &resolve) {
-    return g_native_announcement_log_translation_service.complete_native(
-        std::move(document), foreground, resolve);
+    if (auto &service = g_native_announcement_log_translation_service)
+        return service->complete_native(std::move(document), foreground, resolve);
+    return {};
 }
 static uint64_t native_announcement_log_translation_revision() noexcept {
-    return g_native_announcement_log_translation_service.revision();
+    const auto &service = g_native_announcement_log_translation_service;
+    return service ? service->revision() : 0;
 }
 static uint64_t native_announcement_log_translation_viewport_revision() noexcept {
-    return g_native_announcement_log_translation_service.viewport_revision();
+    const auto &service = g_native_announcement_log_translation_service;
+    return service ? service->viewport_revision() : 0;
 }
 static void native_announcement_log_translation_reset(uintptr_t world, uint64_t session) {
-    g_native_announcement_log_translation_service.reset(world, session);
+    if (auto &service = g_native_announcement_log_translation_service) service->reset(world, session);
 }
 static void native_announcement_log_translation_begin_viewport() {
-    g_native_announcement_log_translation_service.begin_viewport();
+    if (auto &service = g_native_announcement_log_translation_service) service->begin_viewport();
 }
 static void native_announcement_log_translation_end_viewport() {
-    g_native_announcement_log_translation_service.end_viewport();
+    if (auto &service = g_native_announcement_log_translation_service) service->end_viewport();
 }
 static void native_announcement_log_translation_forget(
         std::shared_ptr<const NativeAnnouncementLogDocument> document) {
-    g_native_announcement_log_translation_service.forget(document);
+    if (auto &service = g_native_announcement_log_translation_service) service->forget(document);
 }
 static std::vector<NativeAnnouncementLogDependency>
 native_announcement_log_translation_dependencies(size_t maximum) {
-    return g_native_announcement_log_translation_service.dependencies(maximum);
+    if (auto &service = g_native_announcement_log_translation_service) return service->dependencies(maximum);
+    return {};
 }
 static std::optional<NativeAnnouncementLogDependency>
 native_announcement_log_translation_visible_dependency(
         std::shared_ptr<const NativeAnnouncementLogDocument> document) {
-    return g_native_announcement_log_translation_service.visible_dependency(document);
+    if (auto &service = g_native_announcement_log_translation_service) return service->visible_dependency(document);
+    return std::nullopt;
 }
 static void native_announcement_log_translation_release_dependency(
         const std::shared_ptr<const NativeAnnouncementLogDocument> &document, bool attempted) noexcept {
-    g_native_announcement_log_translation_service.release_dependency(document, attempted);
+    if (auto &service = g_native_announcement_log_translation_service)
+        service->release_dependency(document, attempted);
 }
 static size_t native_announcement_log_preheat_capacity(size_t maximum_pending) {
-    return g_native_announcement_log_translation_service.preheat_capacity(maximum_pending);
+    if (auto &service = g_native_announcement_log_translation_service)
+        return service->preheat_capacity(maximum_pending);
+    return 0;
 }

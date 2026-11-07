@@ -108,6 +108,7 @@ static void capture_native_river_english(const void *river, NativeString *output
 
 static void capture_native_river_name_draw(graphicst *graphics, const NativeString *source,
         NativeJustification just, int width) {
+    graphics = native_graphics_view(graphics);
     const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
     NativeInputCallbackScope callback;
     auto &state = native_river_pending();
@@ -118,7 +119,7 @@ static void capture_native_river_name_draw(graphicst *graphics, const NativeStri
     NativeRiverNameFactScope scope(owned ? &pending.fact : nullptr);
     capture_native_limited_caption_draw(graphics, source, just, width, [&] {
         if (const auto original = g_native_clipped_caption_hooks.draw)
-            callback.call_native([&] { original(graphics, source, just, width); });
+            callback.call_native([&] { native_graphics_call(original, graphics, source, just, width); });
     }, false, NativeInfoTitleKind::None, false, {}, false,
         NativeCivilizationField::None, false, {},
         NativeLocationPickerField::None, NativeTravelBuildingField::None, caller);

@@ -76,7 +76,7 @@ static void prepare_native_performance_story_document(const char *drawn_row) {
         uint8_t open = 0;
         uintptr_t choice = 0;
         int32_t type = -1, id = -1;
-        if (!base || !perform || g_native_history_sentence_slot != 0xd0 ||
+        if (!base || !perform || !native_history_formatter_ready() ||
                 !g_real_native_knowledge_wrap ||
                 !native_history_copy(native_history_object_member(perform,
                     "adventure_interface_performst", "open", sizeof(open)), open) || open != 1 ||
@@ -236,9 +236,13 @@ static void prepare_native_performance_story_document(const char *drawn_row) {
             NativeHistoryPending previous = std::move(pending_native_history());
             ~PendingScope() { pending_native_history() = std::move(previous); }
         } pending_scope;
-        alignas(16) std::array<unsigned char, 0xc8> context{};
-        initialize_native_history_context(context.data());
-        std::fill_n(context.begin(), sizeof(uint32_t), 0);
+        std::vector<std::max_align_t> context;
+        if (!initialize_native_history_context(context)) return;
+        const uint32_t context_flags = 0;
+        const auto flags = native_history_object_member(reinterpret_cast<uintptr_t>(context.data()),
+            "history_event_context", "flags", sizeof(context_flags));
+        if (!flags) return;
+        std::memcpy(reinterpret_cast<void *>(flags), &context_flags, sizeof(context_flags));
         NativeMissionReportScratch sentence(base);
         std::string_view source;
         std::string rich_source;
@@ -265,7 +269,10 @@ static void prepare_native_performance_story_document(const char *drawn_row) {
             const uintptr_t assign = native_history_page_address(NativeHistoryPageSymbol::AssignLiteral);
             const uintptr_t history = native_history_global(0x24f9cb8);
             if (!assign || !history) return;
-            std::memcpy(context.data() + focus_offset, &id, sizeof(id));
+            const auto focus = native_history_object_field(reinterpret_cast<uintptr_t>(context.data()),
+                "history_event_context", focus_offset, sizeof(id));
+            if (!focus) return;
+            std::memcpy(reinterpret_cast<void *>(focus), &id, sizeof(id));
             reinterpret_cast<NativeHistoryLiteralFn>(assign)(&sentence.source, "[C:6:0:1]");
             capture_native_history_describe(reinterpret_cast<void *>(history),
                 context.data(), true, &sentence.source);

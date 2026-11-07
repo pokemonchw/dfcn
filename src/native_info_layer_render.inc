@@ -6,6 +6,81 @@ static uintptr_t g_native_info_vtable = 0;
 static NativeUiLayerTarget g_native_info_target;
 using NativeInfoDrawFn = void (*)(void *, uint32_t, int32_t, int32_t);
 
+static NativeInfoPage native_info_current_page(uintptr_t widget) {
+    using native_history_abi::FieldOffset;
+    using native_history_abi::enum_value;
+#ifdef _WIN32
+    const FieldOffset mode{0x1bc, "info_interfacest", "current_mode"};
+#else
+    const FieldOffset mode{0x1d8, "info_interfacest", "current_mode"};
+#endif
+    int32_t value = -1;
+    if (!native_history_copy(mode.address(widget, 0, sizeof(value), sizeof(value)), value))
+        return NativeInfoPage::None;
+    const std::array modes{
+        enum_value("info_interface_mode_type", "NONE", -1),
+        enum_value("info_interface_mode_type", "CREATURES", 0),
+        enum_value("info_interface_mode_type", "JOBS", 1),
+        enum_value("info_interface_mode_type", "BUILDINGS", 2),
+        enum_value("info_interface_mode_type", "LABOR", 3),
+        enum_value("info_interface_mode_type", "WORK_ORDERS", 4),
+        enum_value("info_interface_mode_type", "ADMINISTRATORS", 5),
+        enum_value("info_interface_mode_type", "ARTIFACTS", 6),
+        enum_value("info_interface_mode_type", "JUSTICE", 7)};
+    std::optional<NativeInfoPage> result;
+    for (size_t i = 0; i < modes.size(); ++i) if (modes[i] && *modes[i] == value) {
+        if (result) return NativeInfoPage::None;
+        result = static_cast<NativeInfoPage>(static_cast<int32_t>(i) - 1);
+    }
+    return result.value_or(NativeInfoPage::None);
+}
+
+static NativeInfoLaborPage native_info_current_labor_page(uintptr_t widget) {
+    using native_history_abi::FieldOffset;
+    using native_history_abi::enum_value;
+#ifdef _WIN32
+    const FieldOffset labor{0x458, "info_interfacest", "labor"};
+#else
+    const FieldOffset labor{0x498, "info_interfacest", "labor"};
+#endif
+    const uintptr_t owner = labor.address(widget, 0, 1, 1);
+    if (!owner) return NativeInfoLaborPage::None;
+    const std::array children{
+#ifdef _WIN32
+        FieldOffset{0x178, "labor_interfacest", "work_details"},
+        FieldOffset{0x188, "labor_interfacest", "standing_orders"},
+        FieldOffset{0x198, "labor_interfacest", "kitchen"},
+        FieldOffset{0x1a8, "labor_interfacest", "stone_use"}};
+#else
+        FieldOffset{0x198, "labor_interfacest", "work_details"},
+        FieldOffset{0x1a8, "labor_interfacest", "standing_orders"},
+        FieldOffset{0x1b8, "labor_interfacest", "kitchen"},
+        FieldOffset{0x1c8, "labor_interfacest", "stone_use"}};
+#endif
+    const FieldOffset visibility{0xa0, "widget", "flag"};
+    const auto active = enum_value("widget_flag", "VISIBILITY_ACTIVE", 1);
+    const auto visible = enum_value("widget_flag", "VISIBILITY_VISIBLE", 2);
+    if (!active || !visible || *active <= 0 || *active > UINT8_MAX ||
+            *visible <= 0 || *visible > UINT8_MAX ||
+            (*active & (*active - 1)) || (*visible & (*visible - 1)) || (*active & *visible))
+        return NativeInfoLaborPage::None;
+    const auto visibility_mask = static_cast<uint8_t>(*active | *visible);
+    NativeInfoLaborPage result = NativeInfoLaborPage::None;
+    for (size_t i = 0; i < children.size(); ++i) {
+        uintptr_t child = 0;
+        if (!native_history_copy(children[i].address(owner, 0, sizeof(child), sizeof(child)), child))
+            return NativeInfoLaborPage::None;
+        if (!child) continue;
+        uint8_t flags = 0;
+        if (!native_history_copy(visibility.address(child, 0, sizeof(flags), sizeof(flags)), flags))
+            return NativeInfoLaborPage::None;
+        if ((flags & visibility_mask) != visibility_mask) continue;
+        if (result != NativeInfoLaborPage::None) return NativeInfoLaborPage::None;
+        result = static_cast<NativeInfoLaborPage>(i);
+    }
+    return result;
+}
+
 static void native_info_draw(void *widget, uint32_t tick, int32_t screen_left,
         int32_t screen_right) {
     NativeInputCallbackScope callback;
@@ -40,6 +115,7 @@ static void native_info_draw(void *widget, uint32_t tick, int32_t screen_left,
         } catch (...) { isolate = false; }
     }
     if (!isolate) {
+        if (!g_native_info_write_graphics) native_info_begin_frame();
         callback.call_native([&] { original(widget, tick, screen_left, screen_right); }); return;
     }
     // The native fill loop uses [screen_left + 4, screen_right - 28] and
@@ -51,60 +127,47 @@ static void native_info_draw(void *widget, uint32_t tick, int32_t screen_left,
     const int right = static_cast<int>(std::clamp<int64_t>(int64_t(screen_right) - 28, -1, gps->dimx - 1));
 #ifdef _WIN32
     int grid_y = gps->dimy;
-    // Both PE editions keep init.display.grid_y at +0x18.
-    if (settings) std::memcpy(&grid_y,
-        reinterpret_cast<const unsigned char *>(settings) + 0x18, sizeof(grid_y));
+    native_ui_settings_read_member(settings, 0x18, grid_y);
 #else
     const int grid_y = settings ? settings->display.grid_y : gps->dimy;
 #endif
     const int bottom = std::min(gps->dimy - 1, grid_y - 4);
     if (left > right || top > bottom) {
+        native_info_begin_frame();
         callback.call_native([&] { original(widget, tick, screen_left, screen_right); }); return;
     }
-    g_native_info_background_grid = gps->screen;
+    // Read optional page contracts before binding. A missing page field
+    // suppresses only page-specific matching; native drawing still runs.
+    NativeInfoPage page = NativeInfoPage::None;
+    NativeInfoLaborPage labor_page = NativeInfoLaborPage::None;
+    try {
+        page = native_info_current_page(reinterpret_cast<uintptr_t>(widget));
+        if (page == NativeInfoPage::Labor)
+            labor_page = native_info_current_labor_page(reinterpret_cast<uintptr_t>(widget));
+    } catch (...) {
+        page = NativeInfoPage::None;
+        labor_page = NativeInfoLaborPage::None;
+    }
+    struct Publication {
+        bool completed = false;
+        ~Publication() { if (!completed) native_info_begin_frame(); }
+    } publication;
+    const auto *background = gps->screen;
+    std::optional<NativeUiGridBinding> output;
+    if (!native_ui_bind_grid(output, gps, *layer.foreground.graphics())) {
+        native_info_begin_frame();
+        publication.completed = true; // No private output was claimed.
+        callback.call_native([&] { original(widget, tick, screen_left, screen_right); });
+        return;
+    }
+    layer.ready = false;
+    g_native_info_background_grid = background;
     g_native_info_background_graphics = gps;
     g_native_info_panel = {left, top, right - left + 1, bottom - top + 1};
-    // The direct renderer switches on info_interfacest::current_mode here.
-    // Carry this frame's producer ownership into matching and layout.
-    constexpr size_t mode_offset =
-#ifdef _WIN32
-        0x1bc;
-#else
-        0x1d8;
-#endif
-    std::memcpy(&g_native_info_page, static_cast<const unsigned char *>(widget) + mode_offset,
-        sizeof(g_native_info_page));
-    g_native_info_labor_page = NativeInfoLaborPage::None;
-    if (g_native_info_page == NativeInfoPage::Labor) {
-        // The Labor container is followed by four shared_ptr page owners
-        // in enum order. Its PE and ELF layouts have different base sizes.
-        // Read the current visible child once for this draw; page strings
-        // must not probe another subpage's widget ancestry.
-        constexpr size_t labor_children_offset =
-#ifdef _WIN32
-            0x5d0; // info +0x458, then widget_container +0x178.
-#else
-            0x630; // info +0x498, then widget_container +0x198.
-#endif
-        std::array<uintptr_t, 8> children{};
-        if (native_history_copy_bytes(reinterpret_cast<uintptr_t>(widget) + labor_children_offset,
-                children.data(), sizeof(children))) {
-            for (size_t i = 0; i < 4; ++i) {
-                uint8_t flags = 0;
-                if (!children[i * 2] || children[i * 2] > UINTPTR_MAX - 0xa0 ||
-                        !native_history_copy(children[i * 2] + 0xa0, flags) ||
-                        (flags & 3) != 3) continue;
-                if (g_native_info_labor_page != NativeInfoLaborPage::None) {
-                    g_native_info_labor_page = NativeInfoLaborPage::None;
-                    break;
-                }
-                g_native_info_labor_page = static_cast<NativeInfoLaborPage>(i);
-            }
-        }
-    }
+    g_native_info_page = page;
+    g_native_info_labor_page = labor_page;
     layer.native_renderer = g_native_help_layer.native_renderer;
     layer.renderer = g_native_help_layer.renderer;
-    NativeUiGridBinding output(gps, *layer.foreground.graphics());
     NativeInfoCapturedTextScope captions;
     struct WriteScope {
         const graphicst *previous = g_native_info_write_graphics;
@@ -112,8 +175,10 @@ static void native_info_draw(void *widget, uint32_t tick, int32_t screen_left,
         ~WriteScope() { g_native_info_write_graphics = previous; }
     } writing(gps);
     callback.call_native([&] { original(widget, tick, screen_left, screen_right); });
-    layer.foreground.graphics()->top_in_use = gps->top_in_use;
+    native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+        layer.foreground.graphics()->top_in_use);
     layer.ready = true;
+    publication.completed = true;
     NativeUiReadScope::invalidate_reads();
 }
 

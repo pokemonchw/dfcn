@@ -8,6 +8,7 @@ static NativePetitionsIteratorEqualFn g_native_petitions_iterator_equal = nullpt
 static void uninstall_native_petitions_layer_hook();
 
 static void native_petitions_frame_cursor(graphicst *graphics, int32_t y, int32_t x) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
     const auto original = g_native_petitions_cursor;
@@ -17,7 +18,7 @@ static void native_petitions_frame_cursor(graphicst *graphics, int32_t y, int32_
             if (native_petitions_begin_draw()) native_petitions_submit_skin_cell(x, y);
         } catch (...) {}
     }
-    callback.call_native([&] { original(graphics, y, x); });
+    callback.call_native([&] { native_graphics_call(original, graphics, y, x); });
 }
 
 static bool native_petitions_end_iterator(const void *iterator, const void *end) {
@@ -29,17 +30,25 @@ static bool native_petitions_end_iterator(const void *iterator, const void *end)
     if (g_native_petitions_output) {
         const auto address = reinterpret_cast<uintptr_t>(iterator);
         int32_t next_row = 0, bottom = 0;
-        // Both reviewed PE editions keep this iterator at rbp+0x288,
-        // next record's first row at rbp-0x78, and the bottom border at
-        // rbp-0x80. The native loop exits if its third row reaches bottom.
-        // Ending at these two comparisons covers an empty list, rejected
-        // agreements, the last agreement and a full panel before any later
-        // fortress component receives the output binding.
-        const bool full = address >= 0x308 &&
-            native_history_copy(address - 0x300, next_row) &&
-            native_history_copy(address - 0x308, bottom) &&
-            int64_t(next_row) + 2 >= bottom;
-        if (exhausted || full) native_petitions_end_draw();
+        const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
+        const auto base = native_history_profile_base();
+        uintptr_t row_address = 0, bottom_address = 0;
+        // Bind the actual iterator argument to independently decoded local
+        // operands. Different compiler frames do not retain these deltas.
+        if (caller == native_reference_address(base, 0x3f9997)) {
+            row_address = native_pe_frame_relative(address, 0x3f998b, 0x3f995a, 4);
+            bottom_address = native_pe_frame_relative(address, 0x3f998b, 0x3f984d, 4);
+        } else if (caller == native_reference_address(base, 0x3fa38e)) {
+            row_address = native_pe_frame_relative(address, 0x3fa382, 0x3fa363, 4);
+            bottom_address = native_pe_frame_relative(address, 0x3fa382, 0x3fa36b, 4);
+        }
+        const bool rows = native_history_copy(row_address, next_row) &&
+            native_history_copy(bottom_address, bottom);
+        // These two comparisons cover empty/exhausted lists and the native
+        // third-row boundary. An invalid frame must not retain this output
+        // binding while the host continues into another component.
+        if (exhausted || !rows || int64_t(next_row) + 2 >= bottom)
+            native_petitions_end_draw();
     }
     return exhausted;
 }
@@ -54,6 +63,28 @@ static bool install_native_petitions_layer_hook() {
     const auto cursor = native_reference_address(base, 0xbb120);
     const auto equal = native_reference_address(base, 0xb9970);
     if (!base || !cursor || !equal) return false;
+    const auto &state = pe_runtime::state();
+    const auto has_frame_pair = [&](uint32_t anchor, uint32_t member) {
+        const pe_runtime::FrameOperandBinding *source = nullptr, *field = nullptr;
+        for (const auto &binding : state.frame_operands) {
+            if (binding.reference == anchor) {
+                if (source) return false;
+                source = &binding;
+            }
+            if (binding.reference == member) {
+                if (field) return false;
+                field = &binding;
+            }
+        }
+        return source && field && source->owner && source->owner == field->owner &&
+            source->access_width == 0 && field->access_width >= 4;
+    };
+    // Starting a private producer requires both of its exit-frame contracts.
+    // Missing local evidence leaves just this component on the native grid.
+    if (!pe_runtime::usable(state) ||
+            !has_frame_pair(0x3f998b, 0x3f995a) || !has_frame_pair(0x3f998b, 0x3f984d) ||
+            !has_frame_pair(0x3fa382, 0x3fa363) || !has_frame_pair(0x3fa382, 0x3fa36b) ||
+            !native_reference_address(base, 0x3f9997) || !native_reference_address(base, 0x3fa38e)) return false;
     g_native_petitions_cursor = reinterpret_cast<NativePetitionsCursorFn>(cursor);
     g_native_petitions_iterator_equal = reinterpret_cast<NativePetitionsIteratorEqualFn>(equal);
     // Complete native owner: fortress-rectangle/pe-reference-placement-renderer-owner.asm.

@@ -155,7 +155,8 @@ public:
     }
     template <typename Painter>
     bool paint(NativeUiLayerStorage &layer, SDL_Renderer *renderer,
-            const NativeBitmapFontTextures &fonts, Painter &&painter) {
+            const NativeBitmapFontTextures &fonts, Painter &&painter, bool &completed) {
+        completed = false;
 #ifdef _WIN32
         try {
             if (!renderer || !layer.native_renderer ||
@@ -163,19 +164,16 @@ public:
                     SDL_GetRenderTarget(renderer) != g_native_announcement_log_raster_destination)
                 return false;
             std::array<int32_t, 4> raster{};
-            if (!native_font_metrics_detail::copy_native_font_memory(
-                    reinterpret_cast<uintptr_t>(layer.native_renderer) + 0x168,
-                    raster.data(), sizeof(raster)) || raster[0] <= 0 || raster[1] <= 0)
+            if (!native_renderer_raster(layer.native_renderer, raster) || raster[0] <= 0 || raster[1] <= 0)
                 return false;
             // Texture getter 8dd2f9/8dd40c also selects resampling from these
             // two renderer fields (renderer_2d_base in the upstream ABI).
             uint8_t viewport_zoom = 0;
             int32_t viewport_zoom_factor = 0;
-            const auto native = reinterpret_cast<uintptr_t>(layer.native_renderer);
-            if (!native_font_metrics_detail::copy_native_font_value(
-                    native + 0x180, viewport_zoom) ||
-                    !native_font_metrics_detail::copy_native_font_value(
-                    native + 0x184, viewport_zoom_factor)) return false;
+            if (!native_object_read_member(layer.native_renderer,
+                    {0x180, "renderer_2d_base", "use_viewport_zoom"}, viewport_zoom) ||
+                    !native_object_read_member(layer.native_renderer,
+                    {0x184, "renderer_2d_base", "viewport_zoom_factor"}, viewport_zoom_factor)) return false;
             int width = 0, height = 0;
             if (auto *destination = SDL_GetRenderTarget(renderer))
                 SDL_QueryTexture(destination, nullptr, nullptr, &width, &height);
@@ -236,6 +234,7 @@ public:
                             // interrupted frame alone and retry next frame.
                             return !cleared;
                         }
+                completed = true;
                 return true;
             };
             auto &cache = target_.frame_cache;
@@ -254,8 +253,10 @@ public:
                 // destinations away from the last row/column. A replacement
                 // renderer keeps the conservative complete repaint path.
                 const bool cell_local_painter = methods && native_pe_supported() &&
-                    reinterpret_cast<uintptr_t>(methods[0]) == native_pe_address(executable, 0x8ddc20) &&
-                    reinterpret_cast<uintptr_t>(methods[2]) == native_pe_address(executable, 0x8ddfe0);
+                    reinterpret_cast<uintptr_t>(native_object_virtual_method(methods, "renderer", "update_tile",
+                        0, "void(int32_t,int32_t)", 2)) == native_pe_address(executable, 0x8ddc20) &&
+                    reinterpret_cast<uintptr_t>(native_object_virtual_method(methods, "renderer", "update_top_tile",
+                        2, "void(int32_t,int32_t)", 2)) == native_pe_address(executable, 0x8ddfe0);
                 dirty = changed_interior_rows(layer, cell_local_painter);
                 if (dirty && dirty->empty()) return composite();
             }
@@ -308,7 +309,7 @@ public:
                     }
                     ~FramesScope() { layer.frames = std::move(original); }
                 } frames(layer, std::move(*dirty));
-                if (!layer.frames.empty()) painter();
+                if (!layer.frames.empty() && !painter()) return false;
                 state.restore();
             }
             painted_ = std::move(current);

@@ -9,6 +9,14 @@ using NativeHistoryLinksFn = void (*)(void *, NativeHistoryRichBox *);
 static NativeHistoryDescribeFn g_real_native_history_describe = nullptr;
 static NativeHistoryCollectionFn g_real_native_history_collection = nullptr;
 static NativeHistoryLinksFn g_real_native_history_links = nullptr;
+#ifdef _WIN32
+using NativeHistoryCountedTransferFn = NativeString *(*)(NativeString *, const char *, size_t);
+static NativeHistoryCountedTransferFn g_real_native_history_counted_transfer = nullptr;
+static uint32_t g_native_history_legends_producer_modes = 0;
+static uint32_t g_native_history_legends_recovery_modes = 0;
+static bool g_native_history_legends_recovery_ready = false;
+static bool g_native_history_legends_grouped = false;
+#endif
 
 struct NativeHistoryLegendsSpan {
     size_t begin = 0, end = 0;
@@ -26,6 +34,14 @@ struct NativeHistoryLegendsPage {
     size_t prefix_size = 0;
     bool local_source = false, valid = false;
     bool source_started = false, source_complete = false;
+#ifdef _WIN32
+    // A formatter's real string object must be the source of the actual
+    // final append into describe's fourth argument. No stack offset or
+    // equal-looking substring establishes this transfer.
+    const NativeString *local_object = nullptr;
+    bool local_transfer = false, local_ambiguous = false, transfer_required = false;
+    std::string output_prefix, transferred_source;
+#endif
     size_t missing_snapshots = 0;
     bool collection_ranges_complete = true;
     std::string complete_source;
@@ -83,20 +99,44 @@ struct NativeHistoryLegendsTab {
 };
 
 static uintptr_t native_history_legends_screen() {
-    const uintptr_t base = native_history_profile_base();
-    if (!base) return {};
-    uintptr_t screen = native_reference_address(base, native_history_layout::gview_rva) + 8;
-    std::array<uintptr_t, 64> visited{};
-    for (size_t depth = 0; depth < visited.size(); ++depth) {
-        if (std::find(visited.begin(), visited.begin() + depth, screen) != visited.begin() + depth)
-            return {};
-        visited[depth] = screen;
-        uintptr_t child = 0;
-        if (!native_history_copy(screen + 8, child)) return {};
-        if (child) { screen = child; continue; }
-        return native_history_object_is(screen, "viewscreen_legendsst") ? screen : 0;
+    const auto screen = native_current_viewscreen();
+    return screen && native_history_object_is(screen, "viewscreen_legendsst") ? screen : 0;
+}
+
+// Preserve the core's semantic page kinds even if the target reorders its
+// enum. Each token is an independent declaration, not an integer heuristic.
+static std::optional<int32_t> native_history_legends_mode(int32_t value) {
+    using native_history_abi::enum_value;
+    const std::array modes{
+        enum_value("legends_mode_type", "NONE", -1),
+        enum_value("legends_mode_type", "MAIN", 0),
+        enum_value("legends_mode_type", "HFS", 1),
+        enum_value("legends_mode_type", "SITES", 2),
+        enum_value("legends_mode_type", "ARTIFACTS", 3),
+        enum_value("legends_mode_type", "BOOKS", 4),
+        enum_value("legends_mode_type", "SUBREGIONS", 5),
+        enum_value("legends_mode_type", "ENTITIES", 6),
+        enum_value("legends_mode_type", "ART", 7),
+        enum_value("legends_mode_type", "ABS", 8),
+        enum_value("legends_mode_type", "ERA", 9),
+        enum_value("legends_mode_type", "HEC", 10),
+        enum_value("legends_mode_type", "MAPS", 11),
+        enum_value("legends_mode_type", "FEATURE_LAYERS", 12),
+        enum_value("legends_mode_type", "POPULATIONS", 13)};
+    std::optional<int32_t> result;
+    for (size_t i = 0; i < modes.size(); ++i) if (modes[i] && *modes[i] == value) {
+        if (result) return std::nullopt;
+        result = static_cast<int32_t>(i) - 1;
     }
-    return 0;
+    return result;
+}
+
+static uintptr_t native_history_legends_tab_box(uintptr_t tab) noexcept {
+    return native_viewscreen_field(tab, {0x28, "legend_pagest", "text_box"}, 1);
+}
+
+static uintptr_t native_history_legends_tab_header(uintptr_t tab) noexcept {
+    return native_viewscreen_field(tab, {0, "legend_pagest", "header"}, sizeof(NativeString));
 }
 
 static NativeHistoryLegendsTab native_history_legends_tab(bool history_only = true) {
@@ -104,11 +144,14 @@ static NativeHistoryLegendsTab native_history_legends_tab(bool history_only = tr
     if (!screen) return {};
     NativeBorrowedVector<uintptr_t> tabs{};
     int32_t selected = -1, type = -1, index = -1;
-    if (!native_history_read_vector(native_history_object_field(screen, "viewscreen_legendsst", 0x428), tabs) || !tabs.valid(4096) ||
-        !native_history_copy(native_history_object_field(screen, "viewscreen_legendsst", 0x440), selected) || selected < 0) return {};
+    if (!native_history_markup_read(screen, {0x428, "viewscreen_legendsst", "page"}, tabs) || !tabs.valid(4096) ||
+        !native_history_markup_read(screen, {0x440, "viewscreen_legendsst", "active_page_index"}, selected) || selected < 0) return {};
     const uintptr_t tab = native_history_vector_at(tabs, static_cast<size_t>(selected));
-    if (!tab || !native_history_copy(tab + 0x20, type) ||
-            !native_history_copy(tab + 0x24, index)) return {};
+    if (!tab || !native_history_markup_read(tab, {0x20, "legend_pagest", "mode"}, type) ||
+            !native_history_markup_read(tab, {0x24, "legend_pagest", "index"}, index)) return {};
+    const auto mode = native_history_legends_mode(type);
+    if (!mode) return {};
+    type = *mode;
     // d401c7 selects this tab; d4084f subtracts one before the render
     // switch. Only detail tabs with verified event producers own a richbox.
     // The frame context still distinguishes root, catalog, art and map tabs.
@@ -122,7 +165,7 @@ static NativeHistoryLegendsTab native_history_legends_tab(bool history_only = tr
 static uintptr_t native_history_legends_box() {
     if (g_native_history_frame) return g_native_history_frame->owner;
     const auto current = native_history_legends_tab();
-    return current.tab ? current.tab + 0x28 : 0;
+    return native_history_legends_tab_box(current.tab);
 }
 
 static bool native_history_legends_artwork_page() {
@@ -138,7 +181,7 @@ static std::optional<NativeHistoryLegendsCaption> native_history_legends_caption
     // The selected tab owns the complete pinned title, even when its tab
     // button is shortened. Age/collection titles have no quoted name/gloss
     // identity; that is not a reason to send their rich body to plain prose.
-    if (!current.tab || !native_history_copy_string(current.tab, caption.source) ||
+    if (!current.tab || !native_history_copy_string(native_history_legends_tab_header(current.tab), caption.source) ||
             caption.source.empty()) return std::nullopt;
     caption.event_title = current.type == 9;
     // The region detail tab remains typed when its introduction scrolls out
@@ -213,14 +256,16 @@ static bool native_history_legends_draw_observed() {
     // native word vector avoids treating a long non-event prefix as an
     // indefinitely pending event page merely because no event is visible.
     NativeBorrowedVector<uintptr_t> words;
-    if (!native_history_read_vector(owner, words) || !words.valid(kNativeHistoryCaptureTokens)) return false;
+    if (!native_history_markup_read(owner, {0, "markup_text_boxst", "word"}, words) ||
+            !words.valid(kNativeHistoryCaptureTokens)) return false;
     std::array<uintptr_t, 256> identities{};
     for (size_t begin = 0; begin < words.size(); begin += identities.size()) {
         const size_t count = std::min(identities.size(), words.size() - begin);
         if (!native_history_copy_bytes(reinterpret_cast<uintptr_t>(words.begin) +
                 begin * sizeof(uintptr_t), identities.data(), count * sizeof(uintptr_t))) return false;
-        if (std::find(identities.begin(), identities.begin() + count, identity) ==
-                identities.begin() + count) continue;
+        if (std::none_of(identities.begin(), identities.begin() + count, [&](uintptr_t word) {
+                return native_history_markup_text(word) == identity;
+            })) continue;
         std::string current;
         return native_history_copy_string(identity, current) && current == source;
     }
@@ -233,13 +278,14 @@ static bool same_native_history_legends_fingerprint(const NativeHistoryLegendsRe
 }
 
 static bool native_history_legends_fingerprint(uintptr_t box, NativeHistoryLegendsReady &value) {
-    NativeBorrowedVector<uintptr_t> words{};
-    if (!box || !native_history_read_vector(box, words) || !words.valid(kNativeHistoryCaptureTokens)) return false;
+    NativeHistoryRichBox view{};
+    if (!native_history_markup_box(box, view)) return false;
+    const auto &words = view.words;
     value.begin = reinterpret_cast<uintptr_t>(words.begin);
     value.end = reinterpret_cast<uintptr_t>(words.end);
     if (words.size()) {
-        value.first = native_history_vector_at(words, 0);
-        value.last = native_history_vector_at(words, words.size() - 1);
+        value.first = native_history_markup_element(words, 0);
+        value.last = native_history_markup_element(words, words.size() - 1);
         if (!value.first || !value.last) return false;
     }
     return true;
@@ -304,7 +350,13 @@ static void begin_native_history_legends_page(NativeHistoryLegendsPage &page,
     page.local_source = local_source;
     page.valid = native_string_view(source, &prefix, kNativeHistorySourceLimit);
     page.source_started = page.valid;
-    if (page.valid) page.prefix_size = prefix.size();
+    if (page.valid) {
+        page.prefix_size = prefix.size();
+#ifdef _WIN32
+        page.transfer_required = local_source && g_native_history_legends_grouped;
+        if (page.transfer_required) page.output_prefix.assign(prefix);
+#endif
+    }
 }
 
 static void finish_native_history_page_segment(const NativeString *source, size_t control_suffix);
@@ -319,6 +371,12 @@ static void finish_native_history_legends_page(NativeHistoryLegendsPage page) {
         page.generation != g_native_history_capture_generation.load(std::memory_order_acquire) ||
         !native_string_view(page.source, &complete, kNativeHistorySourceLimit) ||
         complete.size() < page.prefix_size) return;
+#ifdef _WIN32
+    if (page.transfer_required && (!page.local_transfer || page.local_ambiguous ||
+            complete.size() != page.output_prefix.size() + page.transferred_source.size() ||
+            complete.substr(0, page.output_prefix.size()) != page.output_prefix ||
+            complete.substr(page.output_prefix.size()) != page.transferred_source)) return;
+#endif
     std::erase_if(page.spans, [&](auto &span) {
         if (page.local_source) { span.begin += page.prefix_size; span.end += page.prefix_size; }
         const bool invalid = span.begin > span.end || span.end > complete.size() ||
@@ -350,8 +408,10 @@ static void capture_native_history_describe(void *history, void *context, bool b
     try {
         begin_native_history_legends_page(page, source, true);
         if (context) {
-            native_history_copy(reinterpret_cast<uintptr_t>(context) + 0x20, page.figure_id);
-            native_history_copy(reinterpret_cast<uintptr_t>(context) + 0x18, page.artifact_id);
+            native_history_copy(native_history_object_member(reinterpret_cast<uintptr_t>(context),
+                "history_event_context", "histfig_id", sizeof(page.figure_id)), page.figure_id);
+            native_history_copy(native_history_object_member(reinterpret_cast<uintptr_t>(context),
+                "history_event_context", "artifact_id", sizeof(page.artifact_id)), page.artifact_id);
             page.introduction = snapshot_native_history_region_introduction(
                 reinterpret_cast<uintptr_t>(context));
             if (!page.introduction)
@@ -466,16 +526,20 @@ static void capture_native_history_legends_sentence(void *event, NativeString *s
     NativeHistoryCallbackScope callback;
     const auto *page = native_history_legends_state().active;
     if (!page || !page->valid) {
-        const void *table = nullptr;
-        NativeHistorySentenceFn original = nullptr;
-        std::memcpy(&table, event, sizeof(table));
-        std::memcpy(&original, static_cast<const unsigned char *>(table) +
-            g_native_history_sentence_slot, sizeof(original));
-        original(event, source, context, translated, glyphs_only);
+        native_history_call_formatter(event, source, context, translated, glyphs_only);
         return;
     }
     size_t begin = SIZE_MAX;
     try {
+#ifdef _WIN32
+        auto *active = native_history_legends_state().active;
+        if (active->transfer_required) {
+            if (source == active->source || active->local_transfer ||
+                    (active->local_object && active->local_object != source))
+                active->local_ambiguous = true;
+            else active->local_object = source;
+        }
+#endif
         std::string_view prefix;
         if (native_string_view(source, &prefix, kNativeHistorySourceLimit)) begin = prefix.size();
     } catch (...) {}
@@ -483,6 +547,52 @@ static void capture_native_history_legends_sentence(void *event, NativeString *s
     try { append_native_history_legends_span(source, begin, true); }
     catch (...) { ++native_history_legends_state().active->missing_snapshots; }
 }
+static void capture_native_history_legends_sentence_context(void *event, NativeString *source, void *context) {
+    capture_native_history_legends_sentence(event, source, context, true, false);
+}
+static void capture_native_history_inline_collection_sentence_context(void *event, NativeString *source, void *context) {
+    capture_native_history_inline_collection_sentence(event, source, context, true, false);
+}
+
+#ifdef _WIN32
+static NativeString *capture_native_history_local_transfer(NativeString *destination,
+        const char *data, size_t length) {
+    NativeHistoryCallbackScope callback;
+    auto *page = native_history_legends_state().active;
+    bool observed = false;
+    std::string transferred;
+    try {
+        std::string_view local, prefix;
+        observed = page && page->local_source && page->source_started &&
+            !page->local_ambiguous && !page->local_transfer && page->source == destination &&
+            page->local_object && page->local_object != destination &&
+            native_string_view(page->local_object, &local, kNativeHistorySourceLimit) &&
+            local.data() == data && local.size() == length &&
+            native_string_view(destination, &prefix, kNativeHistorySourceLimit) &&
+            prefix == page->output_prefix && length <= kNativeHistorySourceLimit - prefix.size();
+        if (observed) transferred.assign(local);
+        else if (page && page->local_source) page->local_ambiguous = true;
+    } catch (...) {
+        observed = false;
+        if (page && page->local_source) page->local_ambiguous = true;
+    }
+    // This standard three-argument native CALL runs exactly once. The
+    // transaction cannot be installed without its independently bound callee.
+    auto *result = g_real_native_history_counted_transfer(destination, data, length);
+    try {
+        std::string_view after;
+        if (observed && native_history_legends_state().active == page &&
+                native_string_view(destination, &after, kNativeHistorySourceLimit) &&
+                after.size() == page->output_prefix.size() + transferred.size() &&
+                after.substr(0, page->output_prefix.size()) == page->output_prefix &&
+                after.substr(page->output_prefix.size()) == transferred) {
+            page->transferred_source = std::move(transferred);
+            page->local_transfer = true;
+        } else if (page && page->local_source) page->local_ambiguous = true;
+    } catch (...) { if (page && page->local_source) page->local_ambiguous = true; }
+    return result;
+}
+#endif
 
 static void capture_native_history_legends_append(NativeHistoryRichBox *box,
         const NativeString *source) {
@@ -525,8 +635,10 @@ static bool bind_native_history_legends_page(NativeHistoryLegendsPage page,
         NativeHistoryRichBox *box, size_t parsed_begin, bool *region_bound = nullptr) {
     if (region_bound) *region_bound = false;
     try {
-        const size_t count = native_history_word_count(box);
-        if (!page.source_complete || count == SIZE_MAX || parsed_begin > count) return false;
+        NativeHistoryRichBox view{};
+        if (!page.source_complete || !native_history_markup_box(reinterpret_cast<uintptr_t>(box), view)) return false;
+        const size_t count = view.words.size();
+        if (parsed_begin > count) return false;
         // The native parser flushes at [R]/[B]/[P] and emits an empty
         // control word with flags 1/2/4. Lists use [R] for every record;
         // ordinary events use [B]. Compare only native control boundaries.
@@ -545,11 +657,12 @@ static bool bind_native_history_legends_page(NativeHistoryLegendsPage page,
             at = end + 1;
         }
         for (size_t i = parsed_begin; i < count; ++i) {
-            const auto *word = box->words.begin[i];
-            if (!word) return false;
-            if (word->flags & 7) {
+            uint32_t flags = 0;
+            if (!native_history_markup_read(native_history_markup_element(view.words, i),
+                    {0x30, "markup_text_wordst", "flags"}, flags)) return false;
+            if (flags & 7) {
                 if (word_breaks.size() >= source_controls.size() ||
-                    (word->flags & 7) != source_controls[word_breaks.size()]) return false;
+                    (flags & 7) != source_controls[word_breaks.size()]) return false;
                 word_breaks.push_back(i);
             }
         }
@@ -558,12 +671,10 @@ static bool bind_native_history_legends_page(NativeHistoryLegendsPage page,
         const auto append_region = [&](size_t first, size_t last) {
             if (first > last || last > count) return false;
             for (size_t index = first; index < last; ++index) {
-                const auto *word = box->words.begin[index];
-                std::string_view text;
-                if (!word || !native_string_view(&word->text, &text, 262144)) return false;
                 NativeHistoryToken token;
-                token.identity = reinterpret_cast<uintptr_t>(word);
-                token.source.assign(text);
+                token.identity = native_history_markup_text(native_history_markup_element(view.words, index));
+                if (!token.identity || !native_history_copy_string(token.identity, token.source) ||
+                        token.source.size() > 262144) return false;
                 history_region.push_back(std::move(token));
             }
             return true;
@@ -675,8 +786,78 @@ static void capture_native_history_legends_links(void *screen, NativeHistoryRich
     } catch (...) {}
 }
 
+#ifdef _WIN32
+struct NativeHistoryRecoveryFocus {
+    int32_t type;
+    native_history_abi::FieldOffset ids, context;
+};
+static constexpr NativeHistoryRecoveryFocus native_history_recovery_focuses[]{
+    {1, {0x1b0, "viewscreen_legendsst", "histfigs"}, {0x20, "history_event_context", "histfig_id"}},
+    {2, {0x1c8, "viewscreen_legendsst", "sites"}, {0x28, "history_event_context", "site_id"}},
+    {3, {0x1e0, "viewscreen_legendsst", "artifacts"}, {0x18, "history_event_context", "artifact_id"}},
+    {4, {0x1f8, "viewscreen_legendsst", "codices"}, {0x18, "history_event_context", "artifact_id"}},
+    {5, {0x210, "viewscreen_legendsst", "regions"}, {0x2c, "history_event_context", "region_id"}},
+    {12, {0x228, "viewscreen_legendsst", "layers"}, {0x30, "history_event_context", "layer_id"}},
+    {6, {0x240, "viewscreen_legendsst", "entities"}, {0x1c, "history_event_context", "entity_id"}},
+    {8, {0x258, "viewscreen_legendsst", "structure_sites"}, {0x28, "history_event_context", "site_id"}},
+    {13, {0x288, "viewscreen_legendsst", "entity_population"}, {0x34, "history_event_context", "entity_population_id"}}
+};
+static constexpr NativeHistoryRecoveryFocus native_history_recovery_structure{
+    8, {0x270, "viewscreen_legendsst", "structures_indices"},
+    {0x38, "history_event_context", "abstract_building_id"}};
+
+static bool native_history_recovery_focus_ready(const NativeHistoryRecoveryFocus &focus,
+        size_t context_size) {
+    constexpr size_t vector_size = sizeof(NativeBorrowedVector<int32_t>);
+    if (!focus.ids.contains(0, vector_size, vector_size) ||
+            !focus.context.contains(0, sizeof(int32_t), sizeof(int32_t))) return false;
+    (void)focus.ids.runtime();
+    const auto offset = focus.context.runtime();
+    return offset <= context_size && sizeof(int32_t) <= context_size - offset;
+}
+
+// These modes authorize our own typed scratch construction. They do not
+// assert that a private page constructor or any of its CALLs was located.
+static uint32_t native_history_legends_named_recovery_modes() {
+    std::vector<std::max_align_t> context;
+    if (!native_history_markup_scratch_ready() || !initialize_native_history_context(context)) return 0;
+    const size_t bytes = context.size() * sizeof(std::max_align_t);
+    uint32_t modes = 0;
+    for (const auto &focus : native_history_recovery_focuses) {
+        try {
+            if (native_history_recovery_focus_ready(focus, bytes) &&
+                    (focus.type != 8 || native_history_recovery_focus_ready(native_history_recovery_structure, bytes)))
+                modes |= uint32_t{1} << focus.type;
+        } catch (...) {}
+    }
+    return modes;
+}
+#endif
+
 static bool native_history_legends_recovery_context(const NativeHistoryLegendsTab &tab,
-        std::array<unsigned char, 0xc8> &context) {
+        std::vector<std::max_align_t> &context) {
+#ifdef _WIN32
+    const auto focus = std::find_if(std::begin(native_history_recovery_focuses),
+        std::end(native_history_recovery_focuses), [&](const auto &entry) { return entry.type == tab.type; });
+    if (focus == std::end(native_history_recovery_focuses) || tab.index < 0 ||
+            !initialize_native_history_context(context)) return false;
+    const size_t bytes = context.size() * sizeof(std::max_align_t);
+    const auto copy_id = [&](const NativeHistoryRecoveryFocus &entry) {
+        if (!native_history_recovery_focus_ready(entry, bytes)) return false;
+        NativeBorrowedVector<int32_t> ids{};
+        if (!native_history_copy(entry.ids.address(tab.screen, 0, sizeof(ids), sizeof(ids)), ids) ||
+                !ids.valid(1048576) || static_cast<size_t>(tab.index) >= ids.size()) return false;
+        int32_t id = -1;
+        if (!native_history_copy(reinterpret_cast<uintptr_t>(ids.begin) +
+                sizeof(int32_t) * static_cast<size_t>(tab.index), id) || id < 0) return false;
+        const auto destination = entry.context.address(reinterpret_cast<uintptr_t>(context.data()),
+            0, sizeof(id), sizeof(id));
+        if (!destination) return false;
+        std::memcpy(reinterpret_cast<void *>(destination), &id, sizeof(id));
+        return true;
+    };
+    return copy_id(*focus) && (tab.type != 8 || copy_id(native_history_recovery_structure));
+#else
     // Each entry is the screen ID vector and context field used immediately
     // before the verified history::describe call in that tab's constructor.
     struct Focus { int32_t type; size_t vector, field; };
@@ -701,34 +882,38 @@ static bool native_history_legends_recovery_context(const NativeHistoryLegendsTa
             static_cast<size_t>(tab.index) >= ids.size() ||
             !native_history_copy(reinterpret_cast<uintptr_t>(ids.begin) +
                 sizeof(int32_t) * static_cast<size_t>(tab.index), id) || id < 0) return false;
-        std::memcpy(context.data() + field, &id, sizeof(id));
+        const auto address = native_history_object_field(reinterpret_cast<uintptr_t>(context.data()),
+            "history_event_context", field, sizeof(id));
+        if (!address) return false;
+        std::memcpy(reinterpret_cast<void *>(address), &id, sizeof(id));
         return true;
     };
-    // The game's context constructor is a leaf that initializes exactly c8
-    // bytes; it owns neither a vector nor a string and needs no destructor.
-    initialize_native_history_context(context.data());
+    // The context consists of scalar values and borrowed pointers.
+    if (!initialize_native_history_context(context)) return false;
     return copy_id(focus->vector, focus->field) &&
         (tab.type != 8 || copy_id(0x270, 0x38));
+#endif
 }
 
 static bool same_native_history_legends_words(const NativeHistoryRichBox &generated,
         const NativeHistoryRichBox &existing) {
-    const size_t count = native_history_word_count(&generated);
-    if (count == SIZE_MAX || count != native_history_word_count(&existing) ||
-        !generated.links.valid(kNativeHistoryCaptureTokens) || !existing.links.valid(kNativeHistoryCaptureTokens) ||
-        generated.links.size() != existing.links.size()) return false;
-    for (size_t i = 0; i < generated.links.size(); ++i) {
-        const auto *a = generated.links.begin[i], *b = existing.links.begin[i];
-        if (!a || !b || a->type != b->type || a->id != b->id || a->subid != b->subid) return false;
+    NativeHistoryRichBox left{}, right{};
+    if (!native_history_markup_box(reinterpret_cast<uintptr_t>(&generated), left) ||
+            !native_history_markup_box(reinterpret_cast<uintptr_t>(&existing), right) ||
+            left.words.size() != right.words.size() || left.links.size() != right.links.size()) return false;
+    const size_t count = left.words.size();
+    for (size_t i = 0; i < left.links.size(); ++i) {
+        NativeHistoryRichLink a{}, b{};
+        if (!native_history_markup_link(native_history_markup_element(left.links, i), a) ||
+                !native_history_markup_link(native_history_markup_element(right.links, i), b) ||
+                a.type != b.type || a.id != b.id || a.subid != b.subid) return false;
     }
     for (size_t i = 0; i < count; ++i) {
-        const auto *a = generated.words.begin[i], *b = existing.words.begin[i];
-        std::string_view first, second;
-        if (!a || !b || !native_string_view(&a->text, &first, 262144) ||
-            !native_string_view(&b->text, &second, 262144) || first != second ||
-            a->red != b->red || a->green != b->green || a->blue != b->blue ||
-            a->flags != b->flags ||
-            a->link_index != b->link_index) return false;
+        NativeHistoryMarkupWord a, b;
+        if (!native_history_markup_word(native_history_markup_element(left.words, i), a) ||
+                !native_history_markup_word(native_history_markup_element(right.words, i), b) ||
+                a.source != b.source || a.red != b.red || a.green != b.green || a.blue != b.blue ||
+                a.flags != b.flags || a.link_index != b.link_index) return false;
     }
     // Word+23 is uninitialized padding (constructor 78bac0), not alignment.
     // Layout changes only x/y/max_y. Content, control flags, and typed links
@@ -740,8 +925,16 @@ static bool same_native_history_legends_words(const NativeHistoryRichBox &genera
 
 static void recover_native_history_legends(NativeHistoryRichBox *box) {
     const auto tab = native_history_legends_tab();
+#ifdef _WIN32
+    // This is an independently admitted scratch operation, not a claim that
+    // the retained tab's private producer CALLs have been found. Its named
+    // focus and full regenerated token/link equality are still mandatory.
+    if (g_native_history_legends_grouped && (!g_native_history_legends_recovery_ready ||
+            tab.type < 0 || tab.type >= 32 ||
+            !(g_native_history_legends_recovery_modes & (uint32_t{1} << tab.type)))) return;
+#endif
     const uintptr_t owner = reinterpret_cast<uintptr_t>(box);
-    if (!tab.tab || tab.tab + 0x28 != owner ||
+    if (!tab.tab || native_history_legends_tab_box(tab.tab) != owner ||
         (native_history_legends_ready() && native_history_legends_ownership_confirmed())) return;
     NativeHistoryLegendsReady fingerprint;
     if (!native_history_legends_fingerprint(owner, fingerprint)) return;
@@ -765,7 +958,7 @@ static void recover_native_history_legends(NativeHistoryRichBox *box) {
             report("no matching native age/collection body");
         return;
     }
-    alignas(16) std::array<unsigned char, 0xc8> context{};
+    std::vector<std::max_align_t> context;
     if (!g_real_native_history_describe || !g_real_native_history_append ||
         !g_real_native_history_links || !native_history_legends_recovery_context(tab, context)) {
         report("no verified native focus context");
@@ -773,6 +966,7 @@ static void recover_native_history_legends(NativeHistoryRichBox *box) {
     }
     NativeHistoryScratch scratch;
     const uintptr_t history = native_history_global(0x24f9cb8);
+    if (!history) { report("native history owner unavailable"); return; }
     capture_native_history_describe(reinterpret_cast<void *>(history),
         context.data(), false, &scratch.source);
     auto &state = native_history_legends_state();
@@ -786,6 +980,15 @@ static void recover_native_history_legends(NativeHistoryRichBox *box) {
     g_real_native_history_links(reinterpret_cast<void *>(tab.screen), &scratch.box);
     if (!same_native_history_legends_words(scratch.box, *box)) {
         report("regenerated native page does not match retained tokens");
+        return;
+    }
+    const auto current = native_history_legends_tab();
+    NativeHistoryLegendsReady after;
+    if (current.screen != tab.screen || current.tab != tab.tab || current.type != tab.type ||
+            current.index != tab.index || native_history_legends_tab_box(current.tab) != owner ||
+            !native_history_legends_fingerprint(owner, after) ||
+            !same_native_history_legends_fingerprint(fingerprint, after)) {
+        report("selected native page changed during reconstruction");
         return;
     }
     const size_t events = page.spans.size();
@@ -806,4 +1009,11 @@ static void clear_native_history_legends() {
     g_real_native_history_describe = nullptr;
     g_real_native_history_collection = nullptr;
     g_real_native_history_links = nullptr;
+#ifdef _WIN32
+    g_real_native_history_counted_transfer = nullptr;
+    g_native_history_legends_producer_modes = 0;
+    g_native_history_legends_recovery_modes = 0;
+    g_native_history_legends_recovery_ready = false;
+    g_native_history_legends_grouped = false;
+#endif
 }

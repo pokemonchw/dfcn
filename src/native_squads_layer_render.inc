@@ -12,10 +12,11 @@ static void uninstall_native_squads_layer_hook();
 
 static void capture_native_squads_member_cursor(graphicst *graphics,
         int32_t y, int32_t x) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     const auto original = g_native_squads_member_cursor_original;
     if (!original) return;
-    callback.call_native([&] { original(graphics, y, x); });
+    callback.call_native([&] { native_graphics_call(original, graphics, y, x); });
     if (!graphics || graphics != g_native_squads_write_graphics) return;
     try {
         const auto &panel = g_native_squads_panel;
@@ -51,17 +52,16 @@ static void native_squads_draw(void *squads, uint32_t tick, int32_t screen_left,
         gps->screen && gps->screen_top && gps->dimx > 0 && gps->dimx <= 1000 &&
         gps->dimy > 0 && gps->dimy <= 1000;
     int32_t schedule_id = -1;
-    if (isolate) std::memcpy(&schedule_id, static_cast<unsigned char *>(squads) + 0xb4,
-        sizeof(schedule_id));
+    if (isolate && !native_object_read_member(squads,
+            {0xb4, "squads_interfacest", "editing_squad_schedule_id"}, schedule_id))
+        isolate = false;
     const int left = gps ? static_cast<int>(std::clamp<int64_t>(
         int64_t(screen_right) - (schedule_id == -1 ? 27 : 47), 0, gps->dimx)) : 0;
     const int right = gps ? std::min(screen_right, gps->dimx - 1) : -1;
     const auto *settings = native_ui_settings_source();
     int grid_y = gps ? gps->dimy : 0;
-    // Both native PE editions keep init.display.grid_y at +0x18. The
-    // producer's opaque sidebar starts at row 18 and includes grid_y - 4.
-    if (settings) std::memcpy(&grid_y,
-        reinterpret_cast<const unsigned char *>(settings) + 0x18, sizeof(grid_y));
+    // The producer's opaque sidebar includes init.display.grid_y - 4.
+    native_ui_settings_read_member(settings, 0x18, grid_y);
     const int bottom = gps ? std::min(gps->dimy - 1, grid_y - 4) : -1;
     isolate = isolate && left <= right && bottom >= 18;
     const SDL_Rect panel{left, 18, right - left + 1, bottom - 17};
@@ -94,7 +94,14 @@ static void native_squads_draw(void *squads, uint32_t tick, int32_t screen_left,
     layer.native_renderer = g_native_help_layer.native_renderer;
     layer.renderer = g_native_help_layer.renderer;
     {
-        NativeUiGridBinding output(gps, *layer.foreground.graphics());
+        std::optional<NativeUiGridBinding> output;
+        if (!native_ui_bind_grid(output, gps, *layer.foreground.graphics())) {
+            layer.ready = false;
+            g_native_squads_background_grid = nullptr;
+            g_native_squads_background_top_grid = nullptr;
+            callback.call_native([&] { original(squads, tick, screen_left, screen_right); });
+            return;
+        }
         NativeInfoCapturedTextScope captions(g_native_squads_text);
         struct WriteScope {
             const graphicst *previous = g_native_squads_write_graphics;
@@ -102,7 +109,8 @@ static void native_squads_draw(void *squads, uint32_t tick, int32_t screen_left,
             ~WriteScope() { g_native_squads_write_graphics = previous; }
         } writing(gps);
         callback.call_native([&] { original(squads, tick, screen_left, screen_right); });
-        layer.foreground.graphics()->top_in_use = gps->top_in_use;
+        native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+            layer.foreground.graphics()->top_in_use);
     }
     layer.ready = true;
     NativeUiReadScope::invalidate_reads();
@@ -112,8 +120,7 @@ static void native_squads_draw(void *squads, uint32_t tick, int32_t screen_left,
 }
 
 static bool install_native_squads_layer_hook() {
-    if (g_native_squads_draw_hook.installed &&
-            g_native_squads_member_cursor_hook.installed) return true;
+    if (g_native_squads_draw_hook.installed) return true;
     if (g_native_squads_draw_hook.active() || g_native_squads_member_cursor_hook.active()) {
         uninstall_native_squads_layer_hook();
         if (g_native_squads_draw_hook.active() || g_native_squads_member_cursor_hook.active())
@@ -132,24 +139,27 @@ static bool install_native_squads_layer_hook() {
     // Complete position-independent MOV [RSP+0x10],RBX. The direct native
     // caller passes (squads, tick, screen_left, screen_right) in both editions.
     std::vector<unsigned char> prefix{0x48,0x89,0x5c,0x24,0x10};
-    if (!owner || !draw || !g_native_squads_member_cursor_original ||
+    if (!owner || !draw ||
             !native_reference_bytes(0x4411f0, prefix) ||
             !g_native_squads_draw_hook.prepare(draw, prefix,
                 reinterpret_cast<const void *>(&native_squads_draw), {}, label)) return false;
     g_native_squads_owner = owner;
-    g_native_squads_footer_callers = {
-        native_reference_address(base, 0x44659d) + 5,
-        native_reference_address(base, 0x4465e1) + 5,
-        native_reference_address(base, 0x446625) + 5,
-        native_reference_address(base, 0x446669) + 5,
+    const auto caller = [](uintptr_t address) {
+        return address ? address + 5 : 0;
     };
-    g_native_squads_member_name_caller = native_reference_address(base, 0x444605) + 5;
-    g_native_squads_member_order_caller = native_reference_address(base, 0x44475b) + 5;
+    g_native_squads_footer_callers = {
+        caller(native_reference_address(base, 0x44659d)),
+        caller(native_reference_address(base, 0x4465e1)),
+        caller(native_reference_address(base, 0x446625)),
+        caller(native_reference_address(base, 0x446669)),
+    };
+    g_native_squads_member_name_caller = caller(native_reference_address(base, 0x444605));
+    g_native_squads_member_order_caller = caller(native_reference_address(base, 0x44475b));
     g_native_squads_equipment_callers = {
-        native_reference_address(base, 0x450a50) + 5,
-        native_reference_address(base, 0x450ed6) + 5,
-        native_reference_address(base, 0x4512ab) + 5,
-        native_reference_address(base, 0x4516ec) + 5,
+        caller(native_reference_address(base, 0x450a50)),
+        caller(native_reference_address(base, 0x450ed6)),
+        caller(native_reference_address(base, 0x4512ab)),
+        caller(native_reference_address(base, 0x4516ec)),
     };
     // Occupied members in graphical and classic mode share this 4x3
     // selection-control loop. The native cursor signature is (gps, y, x).
@@ -157,9 +167,18 @@ static bool install_native_squads_layer_hook() {
         {0x44434d, 0xbb120,
             reinterpret_cast<const void *>(&capture_native_squads_member_cursor)},
     };
-    if (!native_reference_calls(calls, 0) ||
-            !g_native_squads_member_cursor_hook.install(base, calls,
-                "Native Squads member column source")) return false;
+    bool member_columns = false;
+    try {
+        member_columns = g_native_squads_member_cursor_original && native_reference_calls(calls, 0) &&
+            g_native_squads_member_cursor_hook.install(base, calls,
+                "Native Squads member column source");
+    } catch (...) {}
+    if (!member_columns) {
+        if (!g_native_squads_member_cursor_hook.uninstall("Native Squads member column source restore") ||
+                g_native_squads_member_cursor_hook.active()) return false;
+        g_native_squads_member_cursor_original = nullptr;
+        log_line("WARN", "Native Squads member column extension deferred; captured sidebar text remains enabled");
+    }
     if (!g_native_squads_draw_hook.install(label)) return false;
     guard.committed = true;
     log_line("INFO", "Redirected the complete Squads sidebar and its child pages to a private output layer");
@@ -174,6 +193,7 @@ static void uninstall_native_squads_layer_hook() {
         g_native_squads_member_cursor_original = nullptr;
         g_native_squads_member_name_caller = 0;
         g_native_squads_member_order_caller = 0;
+        g_native_squads_footer_callers = {};
         g_native_squads_equipment_callers = {};
         g_native_squads_target.release();
         native_squads_begin_frame();

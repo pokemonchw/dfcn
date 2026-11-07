@@ -2,6 +2,10 @@
 // association body strings to the native card width. Bind the overlay's
 // complete source to the exact native string owner without altering the card.
 #ifdef _WIN32
+// Reviewed source RCX contracts: info.render passes its named justice
+// subobject to justice.render; target discovery must prove that same chain.
+DFCN_NATIVE_COMPOUND_RECEIVER(0x396010, "info_interfacest")
+DFCN_NATIVE_COMPOUND_RECEIVER(0x4769d0, "justice_interfacest")
 using NativeJusticeActorSupplyFn = void (*)(void *);
 
 struct NativeJusticeActorCapturedSource {

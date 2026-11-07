@@ -37,14 +37,22 @@ static void capture_native_announcement_log(uint64_t owner, uint64_t second,
     TranslationStateScope translation;
     auto *gps = native_graphics();
     auto &layer = g_native_announcement_log_layer;
-    if (!gps || !owner || !gps->screen || !gps->screen_top ||
-            gps->dimx <= 0 || gps->dimx > 1000 || gps->dimy <= 0 || gps->dimy > 1000) {
-        log_line("ERROR", "Announcement layer cannot capture invalid native graphics; shared output is not used");
+    // A nested native renderer is already using this document's private
+    // output. Its caller owns the frame and must retain that ownership.
+    if (native_announcement_log_foreground_view(gps)) {
+        callback.call_native([&] { original(owner, second, third, fourth); });
         return;
     }
-    if (native_announcement_log_foreground_view(gps)) {
-        // A recursive call is already bound to this same private output.
+    const auto native_fallback = [&] {
+        native_announcement_log_begin_frame();
+        g_native_announcement_log_source_context_valid = false;
         callback.call_native([&] { original(owner, second, third, fourth); });
+    };
+    if (!gps || !owner || !g_native_help_layer.native_renderer || !g_native_help_layer.renderer ||
+            !gps->screen || !gps->screen_top ||
+            gps->dimx <= 0 || gps->dimx > 1000 || gps->dimy <= 0 || gps->dimy > 1000) {
+        log_line("WARN", "Announcement graphics unavailable; retaining the native page draw");
+        native_fallback();
         return;
     }
     size_t first_visible = 0, end_visible = 0;
@@ -54,8 +62,7 @@ static void capture_native_announcement_log(uint64_t owner, uint64_t second,
         const auto *settings = native_ui_settings_source();
         int32_t grid_y = 0, scroll = 0;
 #ifdef _WIN32
-        if (settings) std::memcpy(&grid_y,
-            reinterpret_cast<const unsigned char *>(settings) + 0x18, sizeof(grid_y));
+        native_ui_settings_read_member(settings, 0x18, grid_y);
 #else
         if (settings) grid_y = settings->display.grid_y;
 #endif
@@ -78,7 +85,8 @@ static void capture_native_announcement_log(uint64_t owner, uint64_t second,
         }
     } catch (...) {}
     if (!panel) {
-        log_line("ERROR", "Announcement native allocation is unavailable; shared output is not used");
+        log_line("WARN", "Announcement panel ownership unavailable; retaining the native page draw");
+        native_fallback();
         return;
     }
     try {
@@ -95,11 +103,13 @@ static void capture_native_announcement_log(uint64_t owner, uint64_t second,
         layer.frames.push_back(*panel);
         g_native_announcement_log_panel = *panel;
     } catch (...) {
-        log_line("ERROR", "Announcement private output allocation failed; shared output is not used");
+        log_line("WARN", "Announcement private allocation failed; retaining the native page draw");
+        native_fallback();
         return;
     }
     layer.native_renderer = g_native_help_layer.native_renderer;
     layer.renderer = g_native_help_layer.renderer;
+    bool native_draw_started = false;
     try {
         // Redirect before the first native background/border store. The grid
         // starts empty, so no live HUD glyph or texture enters this document.
@@ -113,15 +123,26 @@ static void capture_native_announcement_log(uint64_t owner, uint64_t second,
         } writing(gps);
         // Preserve all four register arguments; the complete native body
         // consumes no incoming stack arguments on either supported host ABI.
-        callback.call_native([&] { original(owner, second, third, fourth); });
-        layer.foreground.graphics()->top_in_use = gps->top_in_use;
+        callback.call_native([&] {
+            native_draw_started = true;
+            original(owner, second, third, fourth);
+        });
+        native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+            layer.foreground.graphics()->top_in_use);
         // A retained layer can be presented after the capture epoch advances.
         // Freeze its complete parents now, alongside their actual drawn rows.
         try { g_native_announcement_log_records = native_announcement_log_paragraphs(
             owner, first_visible, end_visible); }
         catch (...) { g_native_announcement_log_records.clear(); }
     } catch (...) {
-        log_line("ERROR", "Announcement native draw failed inside its private layer; shared output is not used");
+        if (!native_draw_started) {
+            log_line("WARN", "Announcement output binding failed; retaining the native page draw");
+            native_fallback();
+        } else {
+            native_announcement_log_begin_frame();
+            g_native_announcement_log_source_context_valid = false;
+            log_line("ERROR", "Announcement native draw failed inside its private layer");
+        }
         return;
     }
     // Submit the current viewport before publishing its first frame. Parsing
@@ -137,14 +158,14 @@ static void capture_native_announcement_log(uint64_t owner, uint64_t second,
             g_native_announcement_log_fonts->append_native_context(
                 g_native_announcement_log_resources);
         if (layer.native_renderer) {
-            const auto native = reinterpret_cast<uintptr_t>(layer.native_renderer);
             std::array<int32_t, 4> raster{};
             uint8_t zoom = 0;
             int32_t factor = 0;
-            if (native_font_metrics_detail::copy_native_font_memory(
-                        native + 0x168, raster.data(), sizeof(raster)) &&
-                    native_font_metrics_detail::copy_native_font_value(native + 0x180, zoom) &&
-                    native_font_metrics_detail::copy_native_font_value(native + 0x184, factor)) {
+            if (native_renderer_raster(layer.native_renderer, raster) &&
+                    native_object_read_member(layer.native_renderer,
+                        {0x180, "renderer_2d_base", "use_viewport_zoom"}, zoom) &&
+                    native_object_read_member(layer.native_renderer,
+                        {0x184, "renderer_2d_base", "viewport_zoom_factor"}, factor)) {
                 auto &resources = g_native_announcement_log_resources;
                 resources.append(reinterpret_cast<const char *>(raster.data()), sizeof(raster));
                 resources.append(reinterpret_cast<const char *>(&zoom), sizeof(zoom));
@@ -273,13 +294,34 @@ static void uninstall_native_announcement_hook() {
         clear_native_announcement_unit_identities();
     }
 }
+static bool install_native_optional_announcement_fields() {
+    // Family and spoken-token producers contribute independent semantic
+    // records. Missing records already retain their native text; neither
+    // producer owns the submission entry or the complete log page.
+    const auto optional = [](const char *label, auto install, auto uninstall, auto active) {
+        bool installed = false;
+        try { installed = install(); }
+        catch (const std::exception &error) {
+            log_line("WARN", std::string(label) + ": " + error.what());
+        } catch (...) { log_line("WARN", std::string(label) + ": binding preparation failed"); }
+        if (installed) return true;
+        // A failed code restoration is still a real error. Keep its saved
+        // originals alive until the owning teardown can restore the patch.
+        if (!uninstall() || active()) return false;
+        log_line("WARN", std::string(label) +
+            " deferred; announcement submission and page capture remain enabled");
+        return true;
+    };
+    return optional("Native announcement kinship fields", install_native_announcement_kinship_hook,
+            uninstall_native_announcement_kinship_hook, native_announcement_kinship_hook_active) &&
+        optional("Native announcement speech fields", install_native_announcement_log_speech_hook,
+            uninstall_native_announcement_log_speech_hook, native_announcement_log_speech_hook_active);
+}
+
 static bool install_native_announcement_hook() {
     if (g_native_announcement_entry.installed && g_native_speech_transform_entry.installed
-            && g_native_announcement_log_entry.installed
-#ifdef _WIN32
-            && g_native_threat_details_entry.installed && g_native_threat_family_calls.installed
-#endif
-        ) return install_native_announcement_log_speech_hook();
+            && g_native_announcement_log_entry.installed)
+        return install_native_optional_announcement_fields();
     if (native_announcement_hook_active()) {
         uninstall_native_announcement_hook();
         if (native_announcement_hook_active()) return false;
@@ -323,14 +365,10 @@ static bool install_native_announcement_hook() {
             return false;
         }
     }
-    if (!install_native_announcement_kinship_hook()) {
+    if (!install_native_optional_announcement_fields()) {
         uninstall_native_announcement_hook();
         return false;
     }
-    if (!install_native_announcement_log_speech_hook()) {
-        uninstall_native_announcement_hook();
-        return false;
-    }
-    log_line("INFO", "Enabled complete native announcement source capture");
+    log_line("INFO", "Enabled native announcement submission, speech source and log page capture");
     return true;
 }

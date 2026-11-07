@@ -15,6 +15,7 @@ static void native_map_restore_missing_outputs();
 // prepared before the producer runs and may precede its final map bindings.
 struct NativeMapDisplaySource {
     uint64_t serial = 0;
+    uintptr_t owner = 0;
     int dimx = 0, dimy = 0;
     int screen_pixel_x = 0, screen_pixel_y = 0;
     int tile_pixel_x = 0, tile_pixel_y = 0;

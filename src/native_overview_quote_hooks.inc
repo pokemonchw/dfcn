@@ -17,6 +17,10 @@ static NativeOverviewQuoteHook g_native_overview_quote_hook;
 
 static void capture_native_overview_quote_row(graphicst *graphics,
         const NativeString *source, const void *sheet, const void *caller_frame) {
+#ifdef _WIN32
+    sheet = reinterpret_cast<const void *>(g_native_character_drawing_sheet);
+#endif
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     const auto original = g_native_overview_quote_hook.draw;
     std::optional<NativeOverviewQuoteDraw> pending;
@@ -24,29 +28,30 @@ static void capture_native_overview_quote_row(graphicst *graphics,
         const auto capture = [&] {
             const uintptr_t object = reinterpret_cast<uintptr_t>(sheet);
             const uintptr_t frame = reinterpret_cast<uintptr_t>(caller_frame);
-            if (!object || object > UINTPTR_MAX - 0x1cfc || !frame ||
-                    frame > UINTPTR_MAX - 0xb268 || !graphics || !graphics->screen ||
+            if (!object || !frame || !graphics || !graphics->screen ||
                     !g_overlay.translation_enabled() || graphics->dimx <= 0 ||
                     graphics->dimx > 1000 || graphics->dimy <= 0 || graphics->dimy > 1000)
                 return;
             int32_t object_type = -1, page = -1;
-            if (!native_history_copy(object + 8, object_type) || object_type != 0 ||
-                    !native_history_copy(object + 0xc0, page) || page != 0) return;
+            const native_history_abi::FieldOffset active_sheet{8, "view_sheets_interfacest", "active_sheet"};
+            const native_history_abi::FieldOffset active_tab{0xc0, "view_sheets_interfacest", "active_sub_tab"};
+            if (!native_history_copy(active_sheet.address(object, 0, 4, 4), object_type) || object_type != 0 ||
+                    !native_history_copy(active_tab.address(object, 0, 4, 4), page) || page != 0) return;
 
             int32_t left = 0, right = 0, summary_top = 0, pane_bottom = 0;
             int32_t writer_x = 0, next_y = 0, bottom = 0, width = 0, cached_width = 0;
             uintptr_t live_sheet = 0;
 #ifdef _WIN32
-            if (!native_history_copy(frame + 0x88, left) ||
-                    !native_history_copy(frame + 0xb0, right) ||
-                    !native_history_copy(frame + 0x104, summary_top) ||
-                    !native_history_copy(frame + 0x108, pane_bottom) ||
-                    !native_history_copy(frame + 0xb4, writer_x) ||
-                    !native_history_copy(frame + 0x84, next_y) ||
-                    !native_history_copy(frame + 0x7a4, bottom) ||
-                    !native_history_copy(frame + 0x1068, width) ||
-                    !native_history_copy(frame + 0xb260, live_sheet) || live_sheet != object ||
-                    !native_history_copy(object + 0x1cf8, cached_width)) return;
+            const native_history_abi::FieldOffset thought_width{0x1cf8, "view_sheets_interfacest", "current_thought_width"};
+            if (!native_history_copy(native_pe_frame_relative(frame, 0x168e8e, 0x168cb0, 4, "view_sheets_interfacest"), left) ||
+                    !native_history_copy(native_pe_frame_relative(frame, 0x168e8e, 0x168cb7, 4, "view_sheets_interfacest"), right) ||
+                    !native_history_copy(native_pe_frame_relative(frame, 0x168e8e, 0x1689fe, 4, "view_sheets_interfacest"), summary_top) ||
+                    !native_history_copy(native_pe_frame_relative(frame, 0x168e8e, 0x168a45, 4, "view_sheets_interfacest"), pane_bottom) ||
+                    !native_history_copy(native_pe_frame_relative(frame, 0x168e8e, 0x168e43, 4, "view_sheets_interfacest"), writer_x) ||
+                    !native_history_copy(native_pe_frame_relative(frame, 0x168e8e, 0x168e67, 4, "view_sheets_interfacest"), next_y) ||
+                    !native_history_copy(native_pe_frame_relative(frame, 0x168e8e, 0x168e31, 4, "view_sheets_interfacest"), bottom) ||
+                    !native_history_copy(native_pe_frame_relative(frame, 0x168e8e, 0x168cc5, 4, "view_sheets_interfacest"), width) ||
+                    !native_history_copy(thought_width.address(object, 0, 4, 4), cached_width)) return;
             // 168a45 sets B-1; adventure's bottom button subtracts three
             // more rows at 168a62. The live caller slot is the actual limit.
             if (left < 0 || right <= left + 7 || right >= graphics->dimx ||
@@ -92,9 +97,12 @@ static void capture_native_overview_quote_row(graphicst *graphics,
                     graphics->screeny >= bottom) return;
 
             NativeBorrowedVector<uintptr_t> rows;
+#ifdef _WIN32
+            const native_history_abi::FieldOffset thought_rows{0x1ce0, "view_sheets_interfacest", "current_thought.text"};
+#endif
             if (!native_history_read_vector(
 #ifdef _WIN32
-                    object + 0x1ce0,
+                    thought_rows.address(object, 0, 24, 24),
 #else
                     native_history_object_member(object, "view_sheets_interfacest", "current_thought.text"),
 #endif
@@ -117,9 +125,12 @@ static void capture_native_overview_quote_row(graphicst *graphics,
             captured.top = top;
             captured.bottom = bottom;
             captured.thoughts_bottom = thoughts_bottom;
+#ifdef _WIN32
+            const native_history_abi::FieldOffset raw_thought{0x1cc0, "view_sheets_interfacest", "raw_current_thought"};
+#endif
             if (!native_history_copy_string(
 #ifdef _WIN32
-                    object + 0x1cc0,
+                    raw_thought.address(object, 0, sizeof(NativeString), sizeof(NativeString)),
 #else
                     native_history_object_member(object, "view_sheets_interfacest", "raw_current_thought"),
 #endif
@@ -151,7 +162,7 @@ static void capture_native_overview_quote_row(graphicst *graphics,
     // Keep the actual addst entry and its existing caption capture. This
     // caller originally supplies zero for both justification and width.
     if (original) {
-        callback.call_native([&] { original(graphics, source, static_cast<NativeJustification>(0), 0); });
+        callback.call_native([&] { native_graphics_call(original, graphics, source, static_cast<NativeJustification>(0), 0); });
         // The source vector was complete before this call, but screen cells
         // were not. Publish only after the final visible row's actual write.
         try {
@@ -200,29 +211,8 @@ static bool install_native_overview_quote_hooks() {
         return false;
     const uintptr_t base = native_history_profile_base();
     if (!base) return false;
-    const NativeCaptionSignature signatures[] = {
-        // Incoming this is saved before push rdi / sub rsp,b250.
-        {0x14ef90, {0x44,0x89,0x4c,0x24,0x20,0x44,0x89,0x44,0x24,0x18,
-            0x89,0x54,0x24,0x10,0x48,0x89,0x4c,0x24,0x08,0x57,
-            0xb8,0x50,0xb2,0x00,0x00}},
-        {0x168c91, {0x48,0x8b,0x84,0x24,0x60,0xb2,0x00,0x00,
-            0x48,0x05,0xc0,0x1c,0x00,0x00}},
-        {0x168d6c, {0x48,0x05,0xe0,0x1c,0x00,0x00}},
-        {0x168e43, {0x44,0x8b,0x84,0x24,0xb4,0x00,0x00,0x00,
-            0x8b,0x94,0x24,0x84,0x00,0x00,0x00}},
-        {0x168e5e, {0x8b,0x84,0x24,0x84,0x00,0x00,0x00,0xff,0xc0,
-            0x89,0x84,0x24,0x84,0x00,0x00,0x00}},
-        {0x168e7b, {0x48,0x8b,0x00,0x45,0x33,0xc9,0x45,0x33,0xc0,
-            0x48,0x8b,0xd0}},
-    };
-    NativePatchPages readable;
-    for (const auto &signature : signatures) {
-        if (!collect_native_patch_pages(readable, native_pe_address(base, signature.address),
-                signature.bytes.size(), native_patch_page_size(), true,
-                "Native overview quote identity") ||
-                !native_pe_match(base, signature.address, signature.bytes.data(),
-                    signature.bytes.size())) return false;
-    }
+    // Named sheet fields and individually evidenced native frame operands
+    // replace the old fixed prologue/member/stack-layout signatures.
     struct InstallGuard {
         bool committed = false;
         ~InstallGuard() { if (!committed) uninstall_native_overview_quote_hooks(); }
@@ -230,12 +220,11 @@ static bool install_native_overview_quote_hooks() {
     clear_native_overview_quote_draw();
     hook.base = base;
     hook.draw = reinterpret_cast<NativeCaptionDrawFn>(native_pe_address(base, 0xad9960));
-    // The native CALL pushed eight bytes. Preserve GPS/source in RCX/RDX,
-    // pass this from caller rsp+b260 and that exact caller frame in R8/R9.
+    // The real draw entry owns the sheet. Only the actual caller RSP is
+    // relayed; no historical local is used to manufacture an object pointer.
     std::vector<NativeCall> calls{{0x168e8e, 0xad9960,
         reinterpret_cast<const void *>(&capture_native_overview_quote_row),
-        {0x4c,0x8b,0x84,0x24,0x68,0xb2,0x00,0x00,
-         0x4c,0x8d,0x4c,0x24,0x08}}};
+        {0x4c,0x8d,0x4c,0x24,0x08}}};
     if (!native_reference_calls(calls, 0) ||
             !hook.code.install(base, calls, "Native overview quote capture")) return false;
     guard.committed = true;

@@ -6,11 +6,14 @@ struct NativeDfhackDisplayInputSite {
     unsigned char *address = nullptr;
     size_t field = 0, displacement = 0;
     std::vector<unsigned char> instruction;
+    uintptr_t native_target = 0;
+    bool native_owned = false;
 };
 
 struct NativeDfhackDisplayInputs {
     std::vector<NativeCodePatch> patches;
     std::vector<size_t> fields;
+    std::vector<uintptr_t> native_fields;
     void *relay = nullptr, *data = nullptr;
     size_t relay_size = 0, data_size = 0;
     uintptr_t graphics = 0;
@@ -34,8 +37,8 @@ struct NativeDfhackDisplayInputs {
         graphicst *previous = selected;
         auto *slots = field_slots();
         if (!slots) return previous;
-        const uintptr_t source = inputs ? reinterpret_cast<uintptr_t>(inputs) : graphics;
         for (size_t i = 0; i < fields.size(); ++i) {
+            if (i < native_fields.size() && native_fields[i]) { slots[i] = native_fields[i]; continue; }
             // cached_texturest lazily replaces Surface with Texture in place.
             // Keep that renderer-owned cache on the real graphicst: a frame
             // header copy would discard the promotion and leak a new GPU
@@ -44,7 +47,11 @@ struct NativeDfhackDisplayInputs {
             const bool native_texture = i == native_texture_base_slot ||
                 (fields[i] >= offsetof(graphicst, tex) &&
                     fields[i] < offsetof(graphicst, tex) + sizeof(graphicst::tex));
-            slots[i] = (native_texture ? graphics : source) + fields[i];
+            if (i == native_texture_base_slot) slots[i] = graphics;
+            else if (native_texture || !inputs)
+                slots[i] = reinterpret_cast<uintptr_t>(native_graphics_member_address(
+                    reinterpret_cast<graphicst *>(graphics), fields[i], 1));
+            else slots[i] = reinterpret_cast<uintptr_t>(inputs) + fields[i];
         }
         selected = inputs;
         *enabled() = inputs ? 1 : 0;
@@ -53,7 +60,7 @@ struct NativeDfhackDisplayInputs {
     bool uninstall() {
         constexpr const char *label = "Native display input snapshot";
         if (!active()) {
-            patches.clear(); fields.clear(); graphics = 0;
+            patches.clear(); fields.clear(); native_fields.clear(); graphics = 0;
             native_texture_base_slot = ~size_t{0};
             selected = nullptr; return true;
         }
@@ -67,6 +74,7 @@ struct NativeDfhackDisplayInputs {
         if (!release_native_relay(data, data_size, label)) return false;
         patches.clear();
         fields.clear();
+        native_fields.clear();
         graphics = 0;
         native_texture_base_slot = ~size_t{0};
         selected = nullptr;
@@ -75,7 +83,7 @@ struct NativeDfhackDisplayInputs {
 };
 static NativeDfhackDisplayInputs g_native_dfhack_display_inputs;
 
-static bool native_dfhack_display_input_profile(uintptr_t base,
+static bool native_dfhack_display_input_reference_profile(uintptr_t base,
         std::vector<NativeDfhackDisplayInputSite> &sites) {
     const uintptr_t graphics = native_pe_address(base, 0x264a3f0);
     if (!graphics) return false;
@@ -88,7 +96,9 @@ static bool native_dfhack_display_input_profile(uintptr_t base,
         int32_t relative = 0;
         std::memcpy(&relative, instruction.data() + displacement, sizeof(relative));
         // native_pe_bytes supplies the edition-specific RIP displacement.
-        if (address + instruction.size() + relative != graphics + field) return false;
+        const auto target = reinterpret_cast<uintptr_t>(native_graphics_member_address(
+            reinterpret_cast<graphicst *>(graphics), field, 1));
+        if (!target || address + instruction.size() + relative != target) return false;
         sites.push_back({reinterpret_cast<unsigned char *>(address), field,
             displacement, instruction});
         return true;
@@ -323,6 +333,58 @@ static bool native_dfhack_display_input_profile(uintptr_t base,
     return !sites.empty();
 }
 
+static bool native_dfhack_display_input_profile(uintptr_t base,
+        std::vector<NativeDfhackDisplayInputSite> &sites) {
+    const auto &state = pe_runtime::state();
+    const auto reject = [&](const char *reason, const address_runtime::DisplaySite *site = nullptr) {
+        std::ostringstream message;
+        message << "Native display input snapshot: " << reason;
+        if (site) message << "; instruction=0x" << std::hex << site->address
+            << " field=0x" << site->field << " target=0x" << site->target
+            << " role=0x" << site->flags << " displacement=" << std::dec << site->displacement
+            << " length=" << site->instruction.size();
+        log_line("ERROR", message.str());
+        return false;
+    };
+    if (!pe_runtime::usable(state)) return reject("address catalog is not usable");
+    if (state.edition == 1 || state.edition == 2) {
+        if (!native_dfhack_display_input_reference_profile(base, sites))
+            return reject("reference display operand contract is unavailable");
+        return true;
+    }
+    if (!state.missing_display_scopes.empty() || state.display_sites.empty()) {
+        std::ostringstream message;
+        message << "Native display input snapshot: incomplete display scope evidence; sites="
+            << state.display_sites.size() << " missing=" << state.missing_display_scopes.size();
+        if (!state.missing_display_scopes.empty())
+            message << " first_reference=0x" << std::hex << state.missing_display_scopes.front();
+        log_line("ERROR", message.str());
+        return false;
+    }
+    for (const auto &site : state.display_sites) {
+        const bool native_owned = (site.flags & 1) != 0;
+        // graphicst is the core's projected subset, not the full native
+        // object. Address-only renderer resources remain on their proved
+        // native targets and can lie beyond that subset; select() never
+        // indexes the snapshot for these sites.
+        if (!native_owned && site.field >= sizeof(graphicst))
+            return reject("snapshot field is outside the canonical projection", &site);
+        if (!site.address || (site.flags & ~1u) || site.instruction.size() < 6 ||
+                site.displacement < 2 || site.displacement + 4 > site.instruction.size() ||
+                uint64_t(site.address) + site.instruction.size() > state.size || !site.target || site.target >= state.size)
+            return reject("invalid sealed selector contract", &site);
+        auto *address = reinterpret_cast<unsigned char *>(base + site.address);
+        if (std::memcmp(address, site.instruction.data(), site.instruction.size()))
+            return reject("native instruction differs from sealed evidence", &site);
+        int32_t relative; std::memcpy(&relative, site.instruction.data() + site.displacement, 4);
+        if (int64_t(site.address) + site.instruction.size() + relative != site.target)
+            return reject("RIP operand differs from its proved target", &site);
+        sites.push_back({address, site.field, site.displacement, site.instruction,
+            base + site.target, native_owned});
+    }
+    return true;
+}
+
 static bool native_dfhack_display_input_displacement(unsigned char *destination,
         size_t length, size_t offset, uintptr_t target) {
     const intptr_t relative = static_cast<intptr_t>(target) -
@@ -337,10 +399,18 @@ static bool install_native_dfhack_display_inputs() {
     constexpr const char *label = "Native display input snapshot";
     auto &hook = g_native_dfhack_display_inputs;
     if (hook.installed) return flush_native_code_patches(hook.patches, label);
-    if (!hook.uninstall() || !native_pe_supported()) return false;
+    if (!hook.uninstall()) {
+        report_native_patch_error("ERROR", label, "previous selector ownership could not be released"); return false;
+    }
+    if (!native_pe_supported()) {
+        report_native_patch_error("ERROR", label, "address catalog is not usable"); return false;
+    }
     const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
     std::vector<NativeDfhackDisplayInputSite> sites;
-    if (!base || !native_dfhack_display_input_profile(base, sites)) return false;
+    if (!base) {
+        report_native_patch_error("ERROR", label, "native executable base is unavailable"); return false;
+    }
+    if (!native_dfhack_display_input_profile(base, sites)) return false;
     NativeRelayRange range;
     for (const auto &site : sites) range.include(reinterpret_cast<uintptr_t>(site.address));
     const uintptr_t graphics = native_pe_address(base, 0x264a3f0);
@@ -368,6 +438,7 @@ static bool install_native_dfhack_display_inputs() {
     hook.graphics = graphics;
     hook.native_texture_base_slot = ~size_t{0};
     hook.fields.reserve(sites.size());
+    hook.native_fields.reserve(sites.size());
     const uintptr_t native_texture_base = native_pe_address(base, 0x8e1cc6);
     for (const auto &site : sites) {
         // This LEA supplies R12 solely for tex[index] in update_all. Other
@@ -375,11 +446,20 @@ static bool install_native_dfhack_display_inputs() {
         if (reinterpret_cast<uintptr_t>(site.address) == native_texture_base)
             hook.native_texture_base_slot = hook.fields.size();
         hook.fields.push_back(site.field);
+        hook.native_fields.push_back(site.native_owned ? site.native_target : 0);
     }
     hook.select(nullptr);
     auto *relay = static_cast<unsigned char *>(hook.relay);
     for (size_t i = 0; i < sites.size(); ++i) {
         const auto &site = sites[i];
+        const auto reject = [&](const char *reason) {
+            std::ostringstream message;
+            message << label << ": " << reason << "; instruction=0x" << std::hex
+                << reinterpret_cast<uintptr_t>(site.address) - base << " field=0x" << site.field
+                << " native_target=0x" << site.native_target << " native_owned=" << site.native_owned;
+            log_line("ERROR", message.str());
+            return false;
+        };
         auto *stub = relay + i * stride;
         const size_t length = site.instruction.size();
         size_t legacy_size = 0;
@@ -394,7 +474,8 @@ static bool install_native_dfhack_display_inputs() {
             original_rex = site.instruction[opcode_at++];
         const unsigned char opcode = site.instruction[opcode_at];
         const size_t opcode_size = opcode == 0x0f ? 2 : 1;
-        if (opcode_at + opcode_size + 1 != site.displacement) return false;
+        if (opcode_at + opcode_size + 1 != site.displacement)
+            return reject("selector prefix/displacement encoding is unsupported");
         const unsigned char original_modrm = site.instruction[site.displacement - 1];
         const unsigned reg = ((original_modrm >> 3) & 7) | ((original_rex & 4) ? 8 : 0);
         NativeCodePatch patch{site.address, site.instruction,
@@ -407,7 +488,7 @@ static bool install_native_dfhack_display_inputs() {
             patch.replacement[opcode_at] = 0x8b;
             const intptr_t relative = static_cast<intptr_t>(selected) -
                 reinterpret_cast<intptr_t>(site.address + length);
-            if (relative < INT32_MIN || relative > INT32_MAX) return false;
+            if (relative < INT32_MIN || relative > INT32_MAX) return reject("selected field slot is outside RIP reach");
             const int32_t displacement = static_cast<int32_t>(relative);
             std::memcpy(patch.replacement.data() + site.displacement,
                 &displacement, sizeof(displacement));
@@ -419,7 +500,8 @@ static bool install_native_dfhack_display_inputs() {
             const unsigned char pointer_load[]{static_cast<unsigned char>(0x48 | (reg >= 8 ? 4 : 0)),
                 0x8b, static_cast<unsigned char>((low << 3) | 5),0,0,0,0};
             std::memcpy(stub, pointer_load, sizeof(pointer_load));
-            if (!native_dfhack_display_input_displacement(stub, sizeof(pointer_load), 3, selected)) return false;
+            if (!native_dfhack_display_input_displacement(stub, sizeof(pointer_load), 3, selected))
+                return reject("load selector cannot reach its field slot");
             size_t at = sizeof(pointer_load);
             const unsigned char dereference_rex = static_cast<unsigned char>(
                 0x40 | (original_rex & 8) | (reg >= 8 ? 5 : 0));
@@ -429,7 +511,8 @@ static bool install_native_dfhack_display_inputs() {
             stub[at++] = static_cast<unsigned char>((low == 5 ? 0x40 : 0) | (low << 3) | low);
             if (low == 4) stub[at++] = 0x24;
             if (low == 5) stub[at++] = 0;
-            if (!native_relative_branch(stub + at, 0xe9, site.address + length)) return false;
+            if (!native_relative_branch(stub + at, 0xe9, site.address + length))
+                return reject("load selector cannot reach its continuation");
         } else {
             // Arithmetic, conditional loads, byte comparisons and stores use
             // a saved scratch register. MOV, PUSH, POP and JMP leave flags
@@ -443,7 +526,7 @@ static bool install_native_dfhack_display_inputs() {
                 static_cast<unsigned char>(((scratch & 7) << 3) | 5),0,0,0,0};
             std::memcpy(stub + at, pointer_load, sizeof(pointer_load));
             if (!native_dfhack_display_input_displacement(stub + at,
-                    sizeof(pointer_load), 3, selected)) return false;
+                    sizeof(pointer_load), 3, selected)) return reject("operation selector cannot reach its field slot");
             at += sizeof(pointer_load);
             for (size_t prefix = 0; prefix < legacy_size; ++prefix)
                 stub[at++] = site.instruction[prefix];
@@ -455,12 +538,13 @@ static bool install_native_dfhack_display_inputs() {
                 stub[at++] = site.instruction[tail];
             stub[at++] = 0x41;
             stub[at++] = static_cast<unsigned char>(0x58 | (scratch & 7));
-            if (!native_relative_branch(stub + at, 0xe9, site.address + length)) return false;
+            if (!native_relative_branch(stub + at, 0xe9, site.address + length))
+                return reject("operation selector cannot reach its continuation");
         }
         if (opcode != 0x8d || legacy_size) {
             const intptr_t relative = reinterpret_cast<intptr_t>(stub) -
                 reinterpret_cast<intptr_t>(site.address + 5);
-            if (relative < INT32_MIN || relative > INT32_MAX) return false;
+            if (relative < INT32_MIN || relative > INT32_MAX) return reject("native instruction cannot reach its selector");
             patch.replacement[0] = 0xe9;
             const int32_t displacement = static_cast<int32_t>(relative);
             std::memcpy(patch.replacement.data() + 1, &displacement, sizeof(displacement));

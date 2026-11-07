@@ -149,7 +149,7 @@ static void native_map_preview_prepare() try {
     }
     std::unique_lock<std::recursive_mutex> writer(g_native_dfhack_layer_mutex, std::try_to_lock);
     if (!writer.owns_lock()) return;
-    auto *owner = native_graphics_owner();
+    auto *owner = native_graphics_owner_view();
     const auto screen = native_current_viewscreen();
     if (screen != state.screen) {
         state.screen = screen;
@@ -227,7 +227,7 @@ static void native_map_preview_prepare() try {
             g_native_help_write_graphics = previous_help;
         }
     } view(owner);
-    NativeUiGridBinding output(owner, *grid);
+    NativeUiGridBinding output(native_graphics_owner(), *grid);
     NativeSettingsMenuWidget skin(bindings), text(bindings);
     const std::array<int32_t, 9> border{
         ui->texpos_border_nw, ui->texpos_border_n, ui->texpos_border_ne,
@@ -267,7 +267,7 @@ static void native_map_preview_prepare() try {
     caption(height - 4, "Blue: water; green: vegetation", "蓝：水系  绿：林草  黄：沙漠");
     caption(height - 3, "Brightness: elevation", "灰褐：山地  白：冰川  明暗：高程");
     caption(height - 2, "Cell overview; rivers schematic", "选址格概览；河道示意，非逐格地图");
-    grid->top_in_use = owner->top_in_use;
+    native_graphics_read_member(native_graphics_owner(), offsetof(graphicst, top_in_use), grid->top_in_use);
     layer.ready = true;
 } catch (...) {
     g_map_preview_layer.ready = false;

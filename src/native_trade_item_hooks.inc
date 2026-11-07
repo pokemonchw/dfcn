@@ -5,11 +5,13 @@ using NativeTradeItemNameFn = void (*)(void *, NativeString *, bool, int32_t);
 using NativeTradeItemDrawFn = void (*)(graphicst *, const NativeString *, NativeJustification, int);
 static NativeTradeItemNameFn g_native_trade_item_name = nullptr;
 static NativeTradeItemDrawFn g_native_trade_item_draw = nullptr;
-static NativeCallHook g_native_trade_item_calls;
+static std::array<NativeCallHook, 4> g_native_trade_item_calls;
+static bool g_native_trade_item_initialized = false;
 
 struct NativeTradeItemPending {
     uintptr_t string_owner = 0;
     uint64_t epoch = 0;
+    size_t producer = 0; // Zero belongs to the independent display picker.
     NativeTradeItemCaption caption;
 };
 struct NativeTradeItemPendingTag {};
@@ -32,6 +34,7 @@ static bool native_trade_item_draw_source(std::string_view complete,
             shortened.substr(0, shortened.size() - 3);
 }
 
+template<size_t Producer>
 static void capture_native_trade_item_name(void *item, NativeString *output,
         bool generic, int32_t mode) {
     NativeInputCallbackScope callback;
@@ -42,6 +45,7 @@ static void capture_native_trade_item_name(void *item, NativeString *output,
         NativeTradeItemPending pending;
         pending.string_owner = reinterpret_cast<uintptr_t>(output);
         pending.epoch = g_embark_item_capture_epoch.load(std::memory_order_acquire);
+        pending.producer = Producer + 1;
         if (!item || !output ||
                 !native_history_copy_string(pending.string_owner, pending.caption.source) ||
                 pending.caption.source.empty() || pending.caption.source.size() > 4096 ||
@@ -60,8 +64,10 @@ static void capture_native_trade_item_name(void *item, NativeString *output,
     }
 }
 
+template<size_t Producer>
 static void capture_native_trade_item_draw(graphicst *graphics, const NativeString *source,
         NativeJustification justification, int width) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
     NativeTradeItemPending pending;
@@ -77,7 +83,8 @@ static void capture_native_trade_item_draw(graphicst *graphics, const NativeStri
         // no item identity until its own formatter runs.
         pending = std::move(native_trade_item_pending());
         native_trade_item_pending() = {};
-        if (width != 0 || pending.string_owner != reinterpret_cast<uintptr_t>(source) ||
+        if (width != 0 || pending.producer != Producer + 1 ||
+                pending.string_owner != reinterpret_cast<uintptr_t>(source) ||
                 pending.epoch != g_embark_item_capture_epoch.load(std::memory_order_acquire) ||
                 !graphics || graphics->dimx <= 0 || graphics->dimx > 1000 ||
                 graphics->dimy <= 0 || graphics->dimy > 1000 || !graphics->screen ||
@@ -102,16 +109,9 @@ static void capture_native_trade_item_draw(graphicst *graphics, const NativeStri
             if (building_draw && caller == building_draw + 5) {
                 title_kind = NativeInfoTitleKind::Item;
                 caption_right = x + static_cast<int>(shortened.size());
-                // Both PE editions use source=rsp+3b80, right=rsp+298 and
-                // role width=rsp+e38. The formatter reserves 16 action cells
-                // and another three when a building/task role is present.
-                int32_t right = 0, role_width = 0;
-                if (pending.string_owner >= 0x38e8 &&
-                        native_history_copy(pending.string_owner - 0x38e8, right) &&
-                        native_history_copy(pending.string_owner - 0x2d48, role_width) &&
-                        (role_width == 0 || role_width == 3) &&
-                        right > 0 && right <= dimx && right - 16 - role_width >= caption_right)
-                    caption_right = std::min<int>(right - 16 - role_width, clip[1] + 1);
+                // Only the actual submitted span owns these cells. Private
+                // caller stack slots cannot enlarge it without their own
+                // independently discovered frame contract.
             }
 #endif
         }
@@ -120,7 +120,7 @@ static void capture_native_trade_item_draw(graphicst *graphics, const NativeStri
     // captures the native write, and DF retains every original argument.
     const auto original = g_native_trade_item_draw;
     if (original) callback.call_native([&] {
-        original(graphics, source, justification, width);
+        native_graphics_call(original, graphics, source, justification, width);
     });
     try {
         if (!pending.string_owner || !grid || !graphics || graphics->screen != grid ||
@@ -146,17 +146,24 @@ static void capture_native_trade_item_draw(graphicst *graphics, const NativeStri
 }
 
 static bool native_trade_item_hooks_active() {
-    return g_native_trade_item_calls.active();
+    return std::any_of(g_native_trade_item_calls.begin(), g_native_trade_item_calls.end(),
+        [](const auto &hook) { return hook.active(); });
 }
 static void uninstall_native_trade_item_hooks() {
-    if (!native_callbacks_idle() ||
-            !g_native_trade_item_calls.uninstall("Native trade item source restore")) return;
+    if (!native_callbacks_idle()) return;
+    g_native_trade_item_initialized = false;
+    bool restored = true;
+    for (auto it = g_native_trade_item_calls.rbegin(); it != g_native_trade_item_calls.rend(); ++it)
+        restored = it->uninstall("Native trade item source restore") && restored;
+    // Shared native callbacks and pending ownership survive any still-live
+    // patch, including a failed per-pair rollback.
+    if (!restored || native_trade_item_hooks_active()) return;
     g_native_trade_item_name = nullptr;
     g_native_trade_item_draw = nullptr;
     try { native_trade_item_pending() = {}; } catch (...) {}
 }
 static bool install_native_trade_item_hooks() {
-    if (g_native_trade_item_calls.installed) return true;
+    if (g_native_trade_item_initialized) return true;
     if (native_trade_item_hooks_active()) {
         uninstall_native_trade_item_hooks();
         if (native_trade_item_hooks_active()) return false;
@@ -179,43 +186,77 @@ static bool install_native_trade_item_hooks() {
         bool committed = false;
         ~InstallGuard() { if (!committed) uninstall_native_trade_item_hooks(); }
     } guard;
-    // 53.16 reference: counteroffer and both main trade-list columns pass
-    // R14 (the actual item) and RBP+e0 (their item-name string). Classic uses
-    // the shared reference relocation table for these same native callers.
-    std::vector<NativeCall> calls{
+    // Each complete producer/draw pair is its own transaction. Both wrappers
+    // retain exactly the native four-argument ABI, without borrowing caller
+    // registers or stack locals. One absent page cannot disable another.
+    std::vector<NativeCall> building_calls{
 #ifdef _WIN32
         // The building sheet iterates building_actual::contained_items and
         // passes each actual item to the formatter, then draws that same
         // NativeString at rsp+3b80 after shortening it for the action strip.
         // Both incorporated materials and loose products share this path.
-        {0x19d4ae, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name)},
-        {0x19d5ad, 0xad9960, reinterpret_cast<const void *>(&capture_native_trade_item_draw)},
+        {0x19d4ae, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name<0>)},
+        {0x19d5ad, 0xad9960, reinterpret_cast<const void *>(&capture_native_trade_item_draw<0>)},
+#endif
+    };
+    std::vector<NativeCall> barter_calls{
+#ifdef _WIN32
         // Both adventure barter panes share this formatter/draw pair. The
         // same NativeString at RBP+78 is resized at 270b97 between the calls;
         // retain its original source and actual item before that mutation.
-        {0x270b5b, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name)},
-        {0x270bec, 0xad9960, reinterpret_cast<const void *>(&capture_native_trade_item_draw)},
-        {0x386bcc, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name)},
-        {0x386c66, 0xad9960, reinterpret_cast<const void *>(&capture_native_trade_item_draw)},
-        {0x387b4f, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name)},
-        {0x387be2, 0xad9960, reinterpret_cast<const void *>(&capture_native_trade_item_draw)},
+        {0x270b5b, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name<1>)},
+        {0x270bec, 0xad9960, reinterpret_cast<const void *>(&capture_native_trade_item_draw<1>)},
+#endif
+    };
+    std::vector<NativeCall> left_calls{
+#ifdef _WIN32
+        {0x386bcc, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name<2>)},
+        {0x386c66, 0xad9960, reinterpret_cast<const void *>(&capture_native_trade_item_draw<2>)},
 #else
         // Both columns of trade_interfacest::render keep the item pointer
         // in RDI and their own name string in RSI before shortening it.
-        {0xd82464, 0xe68020, reinterpret_cast<const void *>(&capture_native_trade_item_name)},
-        {0xd8248e, 0x425170, reinterpret_cast<const void *>(&capture_native_trade_item_draw)},
-        {0xd82c02, 0xe68020, reinterpret_cast<const void *>(&capture_native_trade_item_name)},
-        {0xd82c35, 0x425170, reinterpret_cast<const void *>(&capture_native_trade_item_draw)},
+        {0xd82464, 0xe68020, reinterpret_cast<const void *>(&capture_native_trade_item_name<2>)},
+        {0xd8248e, 0x425170, reinterpret_cast<const void *>(&capture_native_trade_item_draw<2>)},
 #endif
     };
-    if (!native_reference_calls(calls, 0) ||
-            !g_native_trade_item_calls.install(
+    std::vector<NativeCall> right_calls{
+#ifdef _WIN32
+        {0x387b4f, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name<3>)},
+        {0x387be2, 0xad9960, reinterpret_cast<const void *>(&capture_native_trade_item_draw<3>)},
+#else
+        {0xd82c02, 0xe68020, reinterpret_cast<const void *>(&capture_native_trade_item_name<3>)},
+        {0xd82c35, 0x425170, reinterpret_cast<const void *>(&capture_native_trade_item_draw<3>)},
+#endif
+    };
+    const std::array<std::vector<NativeCall> *, 4> groups{
+        &building_calls, &barter_calls, &left_calls, &right_calls};
+    const char *const labels[]{"Native building item source", "Native adventure barter item source",
+        "Native left trade item source", "Native right trade item source"};
+    size_t enabled = 0, deferred = 0;
+    for (size_t index = 0; index < groups.size(); ++index) {
+        auto &calls = *groups[index];
+        if (calls.empty()) continue;
+        auto &hook = g_native_trade_item_calls[index];
+        bool installed = false;
+        try {
+            installed = native_reference_calls(calls, 0) && hook.install(
 #ifdef _WIN32
                 base,
 #else
                 elf_runtime::state().executable.bias,
 #endif
-                calls, "Native trade item source")) return false;
+                calls, labels[index]);
+        } catch (...) {}
+        if (installed) { ++enabled; continue; }
+        if (!hook.uninstall(labels[index]) || hook.active()) return false;
+        ++deferred;
+        report_native_patch_error("WARN", labels[index],
+            "complete formatter/draw pair unavailable; this producer retains native behavior");
+    }
+    if (!enabled) return false;
+    g_native_trade_item_initialized = true;
     guard.committed = true;
+    log_line("INFO", "Native trade item producers: " + std::to_string(enabled) +
+        " enabled, " + std::to_string(deferred) + " deferred");
     return true;
 }

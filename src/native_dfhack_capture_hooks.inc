@@ -95,7 +95,7 @@ public:
         // SDL temporarily masks English glyphs while painting this layer.
         // Never wait for its translation lock while holding the writer lock;
         // a busy layer leaves this read on the shared native input instead.
-        auto *gps = native_graphics_owner();
+        auto *gps = native_graphics_owner_view();
         if (!gps || !native_character_open() || !native_character_background_view(gps)) return;
         const auto *source = g_native_character_layer.foreground.graphics();
         if (source->dimx != gps->dimx || source->dimy != gps->dimy ||
@@ -109,7 +109,9 @@ public:
         // The native sheet no longer writes its tabs to the shared grid.
         // Expose its original cells so DFHack can find anchors such as the
         // Overview tab. Its own reader still resolves pens and both planes.
-        binding_.emplace(gps, *source);
+        // A missing optional character output contract leaves readTile on
+        // the already selected native input; the original is still called.
+        native_ui_bind_grid(binding_, native_graphics_owner(), *source);
 #endif
     }
 };

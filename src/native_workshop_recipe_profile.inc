@@ -6,6 +6,20 @@ static bool resolve_native_workshop_recipe_profile(NativeWorkshopRecipeProfile &
     const auto *base = reinterpret_cast<const unsigned char *>(GetModuleHandleW(nullptr));
     if (!base) return false;
     if (!native_pe_supported()) return false;
+    const auto *recipe = native_pe_workshop_recipe("workshop_recipe",
+        "interface_button_building_new_jobst", "prepare_tool_tip",
+        0x8c2ca0, 0x8e7310, 0xbb9b0, 0x153ae14, 29);
+    if (!recipe || !native_pe_rva(0x8e7310) || !native_pe_rva(0xbb9b0)) return false;
+    if (recipe->mode == 2) {
+        profile.base = reinterpret_cast<uintptr_t>(base);
+        profile.paragraph_width = static_cast<int>(recipe->width);
+        profile.shared_paragraphs = true;
+        for (const auto site : recipe->paragraph_calls)
+            profile.paragraph_calls.push_back({site, recipe->paragraph_target,
+                reinterpret_cast<const void *>(&capture_native_workshop_recipe_paragraph)});
+        return !profile.paragraph_calls.empty();
+    }
+    if (recipe->mode != 1) return false;
 
     struct Signature { uintptr_t rva; std::vector<unsigned char> bytes; };
     const Signature signatures[]{

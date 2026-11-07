@@ -48,7 +48,7 @@ static bool validate_indirect_call(uintptr_t return_address, void **expected_slo
 static bool native_validate_game() {
     const auto &binding = pe_runtime::state();
     static const bool reported = [&binding] {
-        log_line(binding.complete ? "INFO" : "ERROR", binding.message);
+        log_line(binding.complete ? "INFO" : pe_runtime::usable(binding) ? "WARN" : "ERROR", binding.message);
         return true;
     }();
     (void)reported;

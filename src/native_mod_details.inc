@@ -56,9 +56,10 @@ static NativeModDetails native_mod_details(bool background_owner, const graphics
         // A DFHack window becomes the current viewscreen while rendering
         // the selector beneath it. Only the restored background pass may
         // borrow that parent's ownership; the foreground keeps its controls.
-        if (!background_owner || screen > UINTPTR_MAX - 0x10) return {};
+        if (!background_owner) return {};
         uintptr_t parent = 0;
-        if (!native_history_copy(screen + 0x10, parent)) return {};
+        if (!native_history_copy(native_viewscreen_field(screen,
+                {0x10, "viewscreen", "parent"}, sizeof(parent)), parent)) return {};
         screen = parent;
     }
     if (!fields) return {};

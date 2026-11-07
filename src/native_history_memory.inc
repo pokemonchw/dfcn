@@ -11,9 +11,10 @@ static uintptr_t native_history_bound_field(uintptr_t object,
         const auto &field = fields[i];
         if (coordinate < field.legacy || coordinate - field.legacy >= field.size) continue;
         const size_t delta = coordinate - field.legacy;
-        if (width > field.size - delta || field.native > UINTPTR_MAX - object ||
-                delta > UINTPTR_MAX - object - field.native) return 0;
-        const uintptr_t address = object + field.native + delta;
+        if (width > field.size - delta || !field.native.contains(delta, width, field.size)) return 0;
+        const size_t offset = field.native;
+        if (offset > UINTPTR_MAX - object || delta > UINTPTR_MAX - object - offset) return 0;
+        const uintptr_t address = object + offset + delta;
         return width <= UINTPTR_MAX - address ? address : 0;
     }
     return 0;
@@ -88,6 +89,7 @@ static uintptr_t native_history_object_member(uintptr_t object, std::string_view
     for (size_t i = 0; i < layout->count; ++i) {
         const auto &field = layout->fields[i];
         if (field.name && member == field.name && width <= field.size &&
+                field.native.contains(0, width, field.size) &&
                 field.native <= UINTPTR_MAX - object) return object + field.native;
     }
     return 0;
@@ -97,12 +99,39 @@ static size_t native_history_virtual_slot(uintptr_t object, size_t coordinate) {
     const auto *layout = native_history_dynamic_layout(object);
     if (!layout || coordinate % sizeof(uintptr_t) || coordinate / sizeof(uintptr_t) >= layout->slot_count)
         return SIZE_MAX;
-    return layout->slots[coordinate / sizeof(uintptr_t)];
+    const size_t index = coordinate / sizeof(uintptr_t);
+#ifdef _WIN32
+    if (layout->methods) {
+        const auto &reference = layout->methods[index];
+        if (const auto *method = native_history_abi::method(reference.type, reference.method)) {
+            // A slot mapping alone does not authorize using a changed C++
+            // function type. Specialized callers handle supported contracts.
+            return method->parameter_shape == reference.parameter_shape ? method->slot : SIZE_MAX;
+        }
+    }
+    if (!native_history_abi::snapshot().reference_identity) return SIZE_MAX;
+#endif
+    return layout->slots[index];
+}
+
+template<typename Fields>
+static size_t native_history_snapshot_size(const Fields &fields) {
+    size_t extent = 0;
+    for (const auto &field : fields) {
+        if (!field.native.contains(0, field.size, field.size)) return 0;
+        const size_t offset = field.native;
+        // These are small borrowed record snapshots, never whole worlds.
+        if (offset > 1024 * 1024 || field.size > 1024 * 1024 - offset) return 0;
+        extent = std::max(extent, offset + field.size);
+    }
+    return extent;
 }
 
 static uintptr_t native_history_global(uintptr_t coordinate) {
     const uintptr_t base = native_history_profile_base();
     if (!base) return 0;
+    if ((coordinate == 0x24ed770 || coordinate == 0x24ed7a0) &&
+            !native_history_word_tables_ready()) return 0;
     if (coordinate == 0x189c298) return native_reference_address(base, native_history_layout::gamemode_rva);
     if (coordinate == 0x239367c)
         return native_history_object_field(native_reference_address(base, native_history_layout::plotinfo_rva),

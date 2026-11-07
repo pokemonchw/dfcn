@@ -92,6 +92,7 @@ def package():
                 break
         for name in ("dfhack-help.LICENSE", "lua-output.LICENSE", "pinyin-data/LICENSE"):
             copy(ROOT / "third_party" / name, "dfcn/data/runtime/" + name)
+        copy(ROOT / "compat/hde64/LICENSE.txt", "dfcn/data/runtime/hde64.LICENSE.txt")
         (runtime / "dfcn/THIRD_PARTY_NOTICES.md").write_text(notices_module.notices(),
                                                            encoding="utf-8")
         write_archive(runtime, ROOT / "DFCN-Windows-x64-minimal.zip")

@@ -203,7 +203,8 @@ static void capture_native_workshop_recipe_paragraph(void *paragraph,
     size_t first = SIZE_MAX;
     try {
         std::string_view value;
-        if (width == 29 && native_string_view(source,&value,65536) &&
+        if (width == g_native_workshop_recipe_hooks.paragraph_width && width > 0 &&
+                native_string_view(source,&value,65536) &&
                 !value.empty() && value.find('\0') == std::string_view::npos) {
             complete.assign(value);
             first = native_paragraph_row_count(paragraph);

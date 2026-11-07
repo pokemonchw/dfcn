@@ -87,10 +87,10 @@ static bool native_tooltip_begin_draw(NativeTooltipWidgetFrame &frame) {
             gps, *layer.foreground.graphics());
         // Restrict only this temporary native output. The binding preserves
         // the parent's complete cursor and clip state for its continuation.
-        gps->clipx[0] = visible.x;
-        gps->clipx[1] = static_cast<long>(visible.x) + visible.w - 1;
-        gps->clipy[0] = visible.y;
-        gps->clipy[1] = static_cast<long>(visible.y) + visible.h - 1;
+        const std::array<long, 2> clipx{visible.x, static_cast<long>(visible.x) + visible.w - 1};
+        const std::array<long, 2> clipy{visible.y, static_cast<long>(visible.y) + visible.h - 1};
+        native_graphics_write_member(gps, offsetof(graphicst, clipx), clipx);
+        native_graphics_write_member(gps, offsetof(graphicst, clipy), clipy);
         layer.native_renderer = g_native_help_layer.native_renderer;
         layer.renderer = g_native_help_layer.renderer;
         frame.isolated = true;

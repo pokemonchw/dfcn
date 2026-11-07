@@ -90,16 +90,16 @@ public:
 #ifdef _WIN32
         binding_ = binding();
         if (!renderer || !native_renderer || !binding_.geometry || gps.dimx <= 0 ||
-                gps.dimy <= 0 || !native_font_metrics_detail::copy_native_font_memory(
-                    reinterpret_cast<uintptr_t>(native_renderer) + 0x168,
-                    raster_.data(), sizeof(raster_)) ||
+                gps.dimy <= 0 || !native_renderer_raster(native_renderer, raster_) ||
                 raster_[0] <= 0 || raster_[1] <= 0) return false;
         // Use precisely the geometry consumed by update_tile, including its
         // real origin. No inferred gps-centering equality gates this path.
         void **methods = nullptr;
         std::memcpy(&methods, native_renderer, sizeof(methods));
-        ready_ = methods && reinterpret_cast<uintptr_t>(methods[0]) == binding_.base_draw &&
-            reinterpret_cast<uintptr_t>(methods[2]) == binding_.top_draw;
+        ready_ = reinterpret_cast<uintptr_t>(native_object_virtual_method(methods,
+                "renderer", "update_tile", 0, "void(int32_t,int32_t)", 2)) == binding_.base_draw &&
+            reinterpret_cast<uintptr_t>(native_object_virtual_method(methods,
+                "renderer", "update_top_tile", 2, "void(int32_t,int32_t)", 2)) == binding_.top_draw;
 #else
         (void)renderer; (void)native_renderer; (void)gps;
 #endif

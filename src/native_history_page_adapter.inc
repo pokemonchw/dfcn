@@ -161,8 +161,9 @@ static bool native_history_typed_getter(uintptr_t object, size_t coordinate, int
     return slot != SIZE_MAX && native_history_page_getter(object, slot, value);
 }
 
-static void initialize_native_history_context(void *destination) {
-    // d2b7f5..d2b942 and all Legends constructors initialize the same c8 bytes.
+static bool initialize_native_history_context(std::vector<std::max_align_t> &destination) {
+    // These reviewed constructor values belong to named source members. Copy
+    // each value into its discovered target field, never the whole old object.
     std::array<uint64_t, 25> context;
     context.fill(UINT64_MAX);
     context[0] = 2;
@@ -171,5 +172,18 @@ static void initialize_native_history_context(void *destination) {
     context[9] = 0xffffffffffff;
     context[10] = 0xffff00ffffffffff;
     context[11] = 0xffffffffffff0000;
-    std::memcpy(destination, context.data(), sizeof(context));
+    const auto size = native_history_abi::type_size(native_history_abi::semantic_id("history_event_context"), sizeof(context));
+    if (!size || size > 65536) return false;
+    if (const auto *type = native_history_abi::type(native_history_abi::semantic_id("history_event_context"));
+            type && type->alignment > alignof(std::max_align_t)) return false;
+    destination.assign((size + sizeof(std::max_align_t) - 1) / sizeof(std::max_align_t), {});
+    auto *bytes = reinterpret_cast<unsigned char *>(destination.data());
+    for (const auto &field : native_history_layout::f_history_event_context_fields) {
+        if (field.legacy > sizeof(context) || field.size > sizeof(context) - field.legacy ||
+                !field.native.contains(0, field.size, field.size)) return false;
+        const size_t offset = field.native;
+        if (offset > size || field.size > size - offset) return false;
+        std::memcpy(bytes + offset, reinterpret_cast<const unsigned char *>(context.data()) + field.legacy, field.size);
+    }
+    return true;
 }

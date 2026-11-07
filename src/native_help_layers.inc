@@ -45,7 +45,7 @@ public:
         if (!enabled || !source || (active_ && source == active_->graphics())) return;
         header_.reset(new (std::nothrow) Header);
         if (!header_) return;
-        std::memcpy(header_->bytes.data(), source, header_->bytes.size());
+        if (!native_graphics_snapshot(header_->bytes.data(), source)) { header_.reset(); return; }
         if (detach_map) native_ui_detach_map_output(*graphics());
         owner_ = &owner;
         original_ = owner.bind_render_graphics(graphics());
@@ -202,35 +202,119 @@ struct NativeUiLayerStorage {
 };
 static NativeUiLayerStorage g_native_help_layer;
 
+// A private canvas borrows the real renderer. Resolve its complete UI ABI
+// before redirecting output, rather than discovering a missing painter only
+// after the original page has already drawn into private memory.
+struct NativeUiRendererContract {
+    using TileFn = void (*)(void *, int, int);
+    void *renderer = nullptr;
+    SDL_Renderer *sdl = nullptr;
+    std::array<void *, 14> outputs{};
+    std::array<TileFn, 2> tiles{}, anchors{};
+
+    bool resolve(void *value, SDL_Renderer *expected = nullptr) noexcept {
+        *this = {};
+        if (!value) return false;
+        void **methods = nullptr;
+        std::memcpy(&methods, value, sizeof(methods));
+        if (!methods) return false;
+#ifdef _WIN32
+        if (!native_renderer_output_members(value, outputs) ||
+                !native_object_read_member(value,
+                    {0x108, "renderer_2d_base", "sdl_renderer"}, sdl)) return false;
+        tiles[0] = reinterpret_cast<TileFn>(native_object_virtual_method(methods,
+            "renderer", "update_tile", 0, "void(int32_t,int32_t)", 2));
+        anchors[0] = reinterpret_cast<TileFn>(native_object_virtual_method(methods,
+            "renderer", "update_anchor_tile", 1, "void(int32_t,int32_t)", 2));
+        tiles[1] = reinterpret_cast<TileFn>(native_object_virtual_method(methods,
+            "renderer", "update_top_tile", 2, "void(int32_t,int32_t)", 2));
+        anchors[1] = reinterpret_cast<TileFn>(native_object_virtual_method(methods,
+            "renderer", "update_top_anchor_tile", 3, "void(int32_t,int32_t)", 2));
+#else
+        for (size_t i = 0; i < outputs.size(); ++i)
+            outputs[i] = static_cast<unsigned char *>(value) + (i + 1) * sizeof(void *);
+        std::memcpy(&sdl, static_cast<unsigned char *>(value) + 0x108, sizeof(sdl));
+        for (size_t i = 0; i < tiles.size(); ++i) {
+            tiles[i] = reinterpret_cast<TileFn>(methods[i * 2]);
+            anchors[i] = reinterpret_cast<TileFn>(methods[i * 2 + 1]);
+        }
+#endif
+        if (!sdl || (expected && sdl != expected) ||
+                !tiles[0] || !tiles[1] || !anchors[0] || !anchors[1]) return false;
+        for (size_t i = 0; i < outputs.size(); ++i) {
+            const auto begin = reinterpret_cast<uintptr_t>(outputs[i]);
+            if (!begin || sizeof(void *) > UINTPTR_MAX - begin) return false;
+            for (size_t j = 0; j < i; ++j) {
+                const auto preceding = reinterpret_cast<uintptr_t>(outputs[j]);
+                if (begin < preceding + sizeof(void *) && preceding < begin + sizeof(void *))
+                    return false;
+            }
+        }
+        renderer = value;
+        return true;
+    }
+};
+
 // Both inlined game stores and graphicst helpers use the game's static gps.
 // Redirect only its UI output and cursor state, leaving map bindings owned
 // by the game throughout. Raster helpers also borrow the renderer's array slots.
 class NativeUiGridBinding {
     graphicst *gps_;
+    graphicst *read_view_;
     NativeDfhackOutputBinding previous_;
+    NativeDfhackOutputBinding::AccessPlan output_access_;
     void *renderer_;
     std::array<void *, 14> renderer_pointers_{};
+    std::array<void *, 14> renderer_fields_{};
 public:
     NativeUiGridBinding(graphicst *gps, const graphicst &view, void *renderer = nullptr)
-        : gps_(gps), previous_(NativeDfhackOutputBinding::capture(*gps)), renderer_(renderer) {
-        const auto binding = NativeDfhackOutputBinding::capture(view);
+        : gps_(native_graphics_identity(gps)), read_view_(gps), renderer_(renderer) {
+        NativeDfhackOutputBinding::AccessPlan source_access;
+        NativeUiRendererContract raster;
+        if (!gps_ || !output_access_.resolve(*gps_, false) ||
+                !source_access.resolve(view, false))
+            throw std::runtime_error("Native UI output layout unavailable");
+        if (renderer_ && !raster.resolve(renderer_))
+            throw std::runtime_error("Native renderer output or painter layout unavailable");
+        renderer_fields_ = raster.outputs;
+        NativeDfhackOutputBinding binding;
+        output_access_.capture(previous_);
+        source_access.capture(binding);
+        // Save every renderer slot before the first write as well. Everything
+        // below is a non-allocating copy using this transaction's saved plan.
+        if (renderer_)
+            for (size_t index = 0; index < renderer_fields_.size(); ++index)
+                std::memcpy(&renderer_pointers_[index], renderer_fields_[index], sizeof(void *));
         // UI snapshots may detach map output. Never copy those null aliases
         // into the real gps, including during nested or retained UI bindings.
-        binding.apply(*gps_, false);
+        output_access_.apply(binding);
+        if (gps != gps_) native_graphics_snapshot(gps, gps_);
         NativeUiReadScope::invalidate_reads();
         if (renderer_) {
-            auto *fields = static_cast<unsigned char *>(renderer_) + sizeof(void *);
-            std::memcpy(renderer_pointers_.data(), fields, sizeof(renderer_pointers_));
-            std::memcpy(fields, binding.pointers.data(), sizeof(renderer_pointers_));
+            for (size_t index = 0; index < renderer_fields_.size(); ++index) {
+                std::memcpy(renderer_fields_[index], &binding.pointers[index], sizeof(void *));
+            }
         }
     }
     ~NativeUiGridBinding() {
         if (renderer_)
-            std::memcpy(static_cast<unsigned char *>(renderer_) + sizeof(void *),
-                renderer_pointers_.data(), sizeof(renderer_pointers_));
+            for (size_t index = 0; index < renderer_fields_.size(); ++index)
+                std::memcpy(renderer_fields_[index], &renderer_pointers_[index], sizeof(void *));
         // Native drawing may create or rotate map viewports while bound.
         // Keep their live values instead of restoring an older snapshot.
-        previous_.apply(*gps_, false);
+        output_access_.apply(previous_);
+        if (read_view_ != gps_) native_graphics_snapshot(read_view_, gps_);
         NativeUiReadScope::invalidate_reads();
     }
 };
+
+// Optional producers must decide whether isolation succeeded before calling
+// the game. A failed constructor has made no writes; callers keep that draw
+// on its original output instead of crossing the native ABI with an exception.
+static bool native_ui_bind_grid(std::optional<NativeUiGridBinding> &binding,
+        graphicst *gps, const graphicst &view, void *renderer = nullptr) noexcept {
+    try {
+        binding.emplace(gps, view, renderer);
+        return true;
+    } catch (...) { return false; }
+}

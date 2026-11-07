@@ -49,8 +49,8 @@ static bool capture_native_history_page_event(int32_t id, NativeHistoryEventData
     if (!native_history_find_structure_id(native_history_global(0x24f9cb8), 0x20, id, address) || !address) return false;
     int32_t type = -1;
     if (!capture_native_history_event_identity(reinterpret_cast<void *>(address), type)) return false;
-    alignas(16) std::array<unsigned char, 0xc8> context{};
-    initialize_native_history_context(context.data());
+    std::vector<std::max_align_t> context;
+    if (!initialize_native_history_context(context)) return false;
     NativeHistoryPageString output;
     NativeHistoryActiveScope active(&parent, parent.id == -1 && parent.native_type == -1);
     capture_native_history_nested_title(reinterpret_cast<void *>(address), &output.value,

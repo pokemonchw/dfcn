@@ -145,8 +145,8 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
             field.match.layout_native_clip->w = field.match.layout_length * gps->tile_pixel_x;
             field.match.layout_ellipsize = true;
         }
-        if (draw.native_caller == g_native_squads_member_name_caller ||
-                draw.native_caller == g_native_squads_member_order_caller) {
+        if (draw.native_caller && (draw.native_caller == g_native_squads_member_name_caller ||
+                draw.native_caller == g_native_squads_member_order_caller)) {
             // The producer draws the member's selection box before its text.
             // Its captured cursor positions own the right edge, including the
             // scrollbar offset; no skin, border or empty-cell search is needed.
@@ -162,7 +162,7 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
             }
         }
         for (size_t index = 0; index < g_native_squads_footer_callers.size(); ++index)
-            if (draw.native_caller == g_native_squads_footer_callers[index])
+            if (draw.native_caller && draw.native_caller == g_native_squads_footer_callers[index])
                 field.footer = static_cast<int>(index);
         fields.push_back(std::move(field));
     }

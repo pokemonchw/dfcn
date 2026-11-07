@@ -29,9 +29,7 @@ static void native_stocks_draw(void *stocks, uint32_t tick, int32_t screen_left,
         int64_t(screen_right) - 28, -1, gps->dimx - 1)) : -1;
 #ifdef _WIN32
     int grid_y = gps ? gps->dimy : 0;
-    // init.display.grid_y is a native 32-bit field at +0x18 in both PE editions.
-    if (settings) std::memcpy(&grid_y,
-        reinterpret_cast<const unsigned char *>(settings) + 0x18, sizeof(grid_y));
+    native_ui_settings_read_member(settings, 0x18, grid_y);
 #else
     const int grid_y = settings ? settings->display.grid_y : gps ? gps->dimy : 0;
 #endif
@@ -67,7 +65,14 @@ static void native_stocks_draw(void *stocks, uint32_t tick, int32_t screen_left,
         std::max(0, (grid_y - 11) / 3)) ? 4 : 2);
     layer.native_renderer = g_native_help_layer.native_renderer;
     layer.renderer = g_native_help_layer.renderer;
-    NativeUiGridBinding output(gps, *layer.foreground.graphics());
+    std::optional<NativeUiGridBinding> output;
+    if (!native_ui_bind_grid(output, gps, *layer.foreground.graphics())) {
+        layer.ready = false;
+        g_native_stocks_background_grid = nullptr;
+        g_native_stocks_background_graphics = nullptr;
+        callback.call_native([&] { original(stocks, tick, screen_left, screen_right); });
+        return;
+    }
     NativeInfoCapturedTextScope captions(g_native_stocks_text);
     struct WriteScope {
         const graphicst *previous = g_native_stocks_write_graphics;
@@ -75,7 +80,8 @@ static void native_stocks_draw(void *stocks, uint32_t tick, int32_t screen_left,
         ~WriteScope() { g_native_stocks_write_graphics = previous; }
     } writing(gps);
     callback.call_native([&] { original(stocks, tick, screen_left, screen_right); });
-    layer.foreground.graphics()->top_in_use = gps->top_in_use;
+    native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+        layer.foreground.graphics()->top_in_use);
     layer.ready = true;
     NativeUiReadScope::invalidate_reads();
 }

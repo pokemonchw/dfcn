@@ -24,6 +24,7 @@ static bool native_worldgen_main_view(const graphicst *graphics) noexcept {
     // confirming the published page owner. Match that grid, not the producer's
     // header address or its earlier member of the native double buffer.
     return graphics && g_native_worldgen_layer.ready && g_native_worldgen_owner &&
+        native_current_viewscreen() == g_native_worldgen_owner &&
         graphics->screen == g_native_worldgen_background_grid &&
         !native_worldgen_output_active(graphics) &&
         graphics->dimx == g_native_worldgen_layer.foreground.dimx &&
@@ -35,13 +36,33 @@ static bool native_worldgen_has_frame() noexcept {
         g_native_worldgen_background_graphics && g_native_worldgen_background_grid;
 }
 
-static bool native_worldgen_caption_editable(uintptr_t caller) noexcept {
-    // The latter two native branches draw only while their typed editor is
-    // active. The preset-name writer also draws the ordinary retained name.
-    return caller && ((caller == g_native_worldgen_edit_returns[0] &&
-            g_native_worldgen_parameter_name_editing) ||
-        caller == g_native_worldgen_edit_returns[1] ||
-        caller == g_native_worldgen_edit_returns[2]);
+static bool native_worldgen_exclusive_output() {
+    const auto screen = native_current_viewscreen();
+    if (!screen || !native_history_object_is(screen, "viewscreen_new_regionst")) return false;
+    return native_worldgen_has_frame() && g_native_worldgen_owner == screen;
+}
+
+static bool native_worldgen_shared_view(const graphicst *graphics) {
+#ifdef _WIN32
+    if (!graphics || !native_display_worldgen_page() || native_worldgen_output_active(graphics) ||
+            native_worldgen_main_view(graphics) || native_private_ui_write_active(graphics)) return false;
+    // Optional private components can render over worldgen. The current
+    // page type must never reclassify their separate grids as shared input.
+    const auto *display = native_dfhack_render_read_graphics();
+    if (!display || graphics->screen != display->screen ||
+            graphics->screen_top != display->screen_top ||
+            graphics->dimx != display->dimx || graphics->dimy != display->dimy) return false;
+    return true;
+#else
+    (void)graphics;
+    return false;
+#endif
+}
+
+// A mixed producer cannot authorize raw-grid discovery. Its independently
+// completed string writes can still use the shared native raster boundary.
+static bool native_captured_ui_view(const graphicst *graphics) {
+    return native_map_mixed_view(graphics) || native_worldgen_shared_view(graphics);
 }
 
 static bool native_worldgen_consume_frame_submission() noexcept {

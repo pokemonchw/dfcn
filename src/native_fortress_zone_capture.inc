@@ -47,13 +47,24 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
     if (!type && !related && !current_location && !detail_location) return std::nullopt;
 
     const uintptr_t buildings = native_reference_address(base, 0x23edf10);
+    const native_history_abi::FieldOffset building_id{0x50, "building", "id"};
+    const native_history_abi::FieldOffset building_name{0xd0, "building", "name"};
+    const native_history_abi::FieldOffset building_site{0x114, "building", "site_id"};
+    const native_history_abi::FieldOffset building_location{0x118, "building", "location_id"};
+    const native_history_abi::FieldOffset site_buildings{0x2b0, "world_site", "buildings"};
+    const native_history_abi::FieldOffset location_id_field{8, "abstract_building", "id"};
     const auto current_building = [&](uintptr_t candidate) {
-        if (!candidate || candidate > UINTPTR_MAX - 0x1c0 || !buildings) return false;
+        if (!candidate || !buildings || !building_id.contains(0, 4, 4)) return false;
         int32_t id = -1;
         uintptr_t actual = 0;
-        return native_history_copy(candidate + 0x50, id) && id >= 0 &&
-            native_history_find_structure_id(buildings, 0x50, id, actual) &&
+        return native_history_copy(building_id.address(candidate, 0, 4, 4), id) && id >= 0 &&
+            native_history_find_structure_id(buildings, building_id.runtime(), id, actual) &&
             actual == candidate;
+    };
+    const auto find_location = [&](uintptr_t site, int32_t id, uintptr_t &location) {
+        return location_id_field.contains(0, 4, 4) &&
+            native_history_find_structure_id(site_buildings.address(site, 0, 24, 24),
+                location_id_field.runtime(), id, location);
     };
 
     NativeFortressZoneCaption caption;
@@ -67,13 +78,12 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
                 !native_history_copy(source - 0x1a80, location) || !location)
             return std::nullopt;
         int32_t site_id = -1, location_id = -1;
-        if (!native_history_copy(building + 0x114, site_id) || site_id < 0 ||
-                !native_history_copy(building + 0x118, location_id) || location_id < 0)
+        if (!native_history_copy(building_site.address(building, 0, 4, 4), site_id) || site_id < 0 ||
+                !native_history_copy(building_location.address(building, 0, 4, 4), location_id) || location_id < 0)
             return std::nullopt;
         const uintptr_t site = native_history_find_subject(base, NativeHistoryObjectKind::Site, site_id);
         uintptr_t actual_location = 0;
-        if (!site || site > UINTPTR_MAX - 0x2c8 ||
-                !native_history_find_structure_id(site + 0x2b0, 8, location_id, actual_location) ||
+        if (!find_location(site, location_id, actual_location) ||
                 actual_location != location) return std::nullopt;
         const auto *layout = native_history_dynamic_layout(location);
         if (!layout) return std::nullopt;
@@ -127,7 +137,8 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
         // 39c70c checks building.name.size; its nonempty branch passes the
         // owned string at building+0xd0 directly, without a stack copy.
         // Confirm membership before treating source-0xd0 as that owner.
-        if (source >= 0xd0 && current_building(source - 0xd0)) return caption;
+        if (building_name.contains(0, sizeof(NativeString), sizeof(NativeString)) &&
+                source >= building_name.runtime() && current_building(source - building_name.runtime())) return caption;
     }
 
     // The default type and every related-identity branch pass rbp+0xb0.
@@ -139,7 +150,8 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
         ? std::optional<NativeFortressZoneCaption>(caption) : std::nullopt;
     if (type) {
         std::string name;
-        if (native_history_copy_string(building + 0xd0, name) && name.empty())
+        if (native_history_copy_string(building_name.address(building, 0,
+                sizeof(NativeString), sizeof(NativeString)), name) && name.empty())
             caption.authored = false;
         return caption;
     }
@@ -149,15 +161,14 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
     // 7db20 verifies site_id, but 67e80 resolves location_id in the current
     // fortress site's buildings, exactly as the native renderer does.
     int32_t site_id = -1, location_id = -1;
-    if (!native_history_copy(building + 0x114, site_id) ||
-            !native_history_copy(building + 0x118, location_id)) return std::nullopt;
+    if (!native_history_copy(building_site.address(building, 0, 4, 4), site_id) ||
+            !native_history_copy(building_location.address(building, 0, 4, 4), location_id)) return std::nullopt;
     if (site_id >= 0 && location_id >= 0) {
         caption.kind = Kind::Location;
         uintptr_t site = 0, location = 0;
         if (native_history_find_subject(base, NativeHistoryObjectKind::Site, site_id) &&
                 native_history_copy(native_reference_address(base, 0x239a1f0), site) &&
-                site && site <= UINTPTR_MAX - 0x2c8 &&
-                native_history_find_structure_id(site + 0x2b0, 8, location_id, location) &&
+                find_location(site, location_id, location) &&
                 location) {
             const auto *layout = native_history_dynamic_layout(location);
             if (layout) {
@@ -179,26 +190,29 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
     // the already hooked 1330c30 formatter, whose target is bound to source.
     // A missing live unit falls back to history::figures by HF.unit_id.
     int32_t unit_id = -1;
-    if (!native_history_copy(building + 0x1a0, unit_id)) return std::nullopt;
+    const native_history_abi::FieldOffset assigned_unit{0x1a0, "building_civzonest", "assigned_unit_id"};
+    if (!native_history_copy(assigned_unit.address(building, 0, 4, 4), unit_id)) return std::nullopt;
     if (unit_id >= 0) {
         caption.kind = Kind::Unit;
         uintptr_t unit = 0;
-        if (!native_history_find_structure_id(native_reference_address(base, 0x23e50b0),
-                0x130, unit_id, unit) || unit) return caption;
+        const native_history_abi::FieldOffset unit_id_field{0x130, "unit", "id"};
+        if (!unit_id_field.contains(0, 4, 4) ||
+                !native_history_find_structure_id(native_reference_address(base, 0x23e50b0),
+                    unit_id_field.runtime(), unit_id, unit) || unit) return caption;
 
         // 30ff50 scans this vector backwards: its key is +d8 unit_id,
         // whereas the vector's ordering and b92f10's key use +e0 HF id.
         NativeBorrowedVector<uintptr_t> figures;
-        const uintptr_t history = native_reference_address(base, 0x24f9cb8);
-        if (!history || !native_history_read_vector(history + 0x60, figures)) return caption;
+        const native_history_abi::FieldOffset figure_unit{0xd8, "historical_figure", "unit_id"};
+        const native_history_abi::FieldOffset figure_name{0x38, "historical_figure", "name"};
+        if (!native_history_read_vector(native_history_global(0x24f9d18), figures)) return caption;
         for (size_t index = figures.size(); index > 0; --index) {
             const uintptr_t figure = native_history_vector_at(figures, index - 1);
             int32_t owner_id = -1;
-            if (!figure || figure > UINTPTR_MAX - 0xe4 ||
-                    !native_history_copy(figure + 0xd8, owner_id) || owner_id != unit_id)
+            if (!native_history_copy(figure_unit.address(figure, 0, 4, 4), owner_id) || owner_id != unit_id)
                 continue;
             NativeUnitIdentity identity;
-            const uintptr_t name = figure + 0x38;
+            const uintptr_t name = figure_name.address(figure, 0, 1, 120);
             // Places passes a fresh, empty context and 1/1 to b92f10.
             // That path uses this HF.name through EnglishName (b93504),
             // without a disguised identity, pronoun, or creature suffix.
@@ -223,7 +237,8 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
     // renders the count for two or more; 39cb07 renders squad.name at +8
     // for exactly one, capitalizes it, and appends " assigned".
     NativeBorrowedVector<uintptr_t> assignments;
-    if (!native_history_read_vector(building + 0x1a8, assignments)) return std::nullopt;
+    const native_history_abi::FieldOffset squad_rooms{0x1a8, "building_civzonest", "squad_room_info"};
+    if (!native_history_read_vector(squad_rooms.address(building, 0, 24, 24), assignments)) return std::nullopt;
     if (assignments.size() >= 2) {
         caption.kind = Kind::SquadCount;
         return caption;
@@ -232,12 +247,16 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
     const uintptr_t assignment = native_history_vector_at(assignments, 0);
     int32_t squad_id = -1;
     uintptr_t squad = 0;
-    if (!assignment || !native_history_copy(assignment, squad_id) || squad_id < 0 ||
+    const native_history_abi::FieldOffset assignment_squad{0, "building_squad_infost", "squad_id"};
+    const native_history_abi::FieldOffset squad_id_field{0, "squad", "id"};
+    const native_history_abi::FieldOffset squad_name{8, "squad", "name"};
+    if (!native_history_copy(assignment_squad.address(assignment, 0, 4, 4), squad_id) || squad_id < 0 ||
+            !squad_id_field.contains(0, 4, 4) ||
             !native_history_find_structure_id(native_reference_address(base, 0x24e37c0),
-                0, squad_id, squad) || !squad) return std::nullopt;
+                squad_id_field.runtime(), squad_id, squad) || !squad) return std::nullopt;
     caption.kind = Kind::Squad;
     NativeHistoryName name;
-    if (squad <= UINTPTR_MAX - 8 && capture_native_history_name(base, squad + 8, name))
+    if (capture_native_history_name(base, squad_name.address(squad, 0, 1, 120), name))
         caption.squad_name = std::make_shared<const NativeHistoryName>(std::move(name));
     // This native branch never reads squad.alias. A nonempty alias elsewhere
     // must not replace the generated name that this particular draw chose.

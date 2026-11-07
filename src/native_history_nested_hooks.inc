@@ -116,10 +116,6 @@ static void capture_native_history_nested_title(void *event, NativeString *outpu
     NativeHistoryCallbackScope callback;
     // These are the live arguments of the replaced virtual call. Resolve the
     // same function the native caller selected, even if capture is declined.
-    const void *vtable = nullptr;
-    NativeHistorySentenceFn original = nullptr;
-    std::memcpy(&vtable, event, sizeof(vtable));
-    std::memcpy(&original, static_cast<const unsigned char *>(vtable) + 0xd8, sizeof(original));
     auto *parent = active_native_history_capture().event;
     auto &state = native_history_nested_state();
     struct RestorePath {
@@ -172,7 +168,7 @@ static void capture_native_history_nested_title(void *event, NativeString *outpu
         // A declined child must not append its typed object labels into its
         // parent. The original call and native output are always preserved.
         NativeHistoryActiveScope active(snapshot ? &*snapshot : nullptr);
-        original(event, output, context, translated, glyphs_only);
+        native_history_call_formatter(event, output, context, translated, glyphs_only, "getPhrase");
     }
     try {
         if (!snapshot || !parent) return;
@@ -220,4 +216,7 @@ static void capture_native_history_nested_title(void *event, NativeString *outpu
             else parent->children.erase(id);
         }
     } catch (...) {}
+}
+static void capture_native_history_nested_title_context(void *event, NativeString *output, void *context) {
+    capture_native_history_nested_title(event, output, context, true, false);
 }

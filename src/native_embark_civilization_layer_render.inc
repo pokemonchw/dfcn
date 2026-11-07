@@ -22,6 +22,7 @@ static void native_embark_civilization_owner(void *screen) {
 }
 
 static void native_embark_civilization_frame_cursor(graphicst *graphics, int32_t y, int32_t x) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
     if (!g_native_embark_civilization_cursor) return;
@@ -30,10 +31,11 @@ static void native_embark_civilization_frame_cursor(graphicst *graphics, int32_t
     // title, selection state, map position or resolution heuristic is needed.
     if (graphics == native_graphics() && !g_native_embark_civilization_capture_attempted)
         native_embark_civilization_begin_draw(SDL_Rect{x, y, 38, 41});
-    callback.call_native([&] { g_native_embark_civilization_cursor(graphics, y, x); });
+    callback.call_native([&] { native_graphics_call(g_native_embark_civilization_cursor, graphics, y, x); });
 }
 
 static void native_embark_civilization_box_cursor(graphicst *graphics, int32_t y, int32_t x) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
     if (!g_native_embark_civilization_cursor) return;
@@ -49,7 +51,7 @@ static void native_embark_civilization_box_cursor(graphicst *graphics, int32_t y
             try { boxes.push_back({x, y, 4, 3}); } catch (...) {}
         }
     }
-    callback.call_native([&] { g_native_embark_civilization_cursor(graphics, y, x); });
+    callback.call_native([&] { native_graphics_call(g_native_embark_civilization_cursor, graphics, y, x); });
 }
 
 static void native_embark_civilization_end_viewport(const void *settings,

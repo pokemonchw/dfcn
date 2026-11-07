@@ -6,37 +6,34 @@ using NativeHistoryCollectionRecoveryScratch = NativeHistoryScratch;
 
 static std::optional<size_t> native_history_collection_suffix(
         const NativeHistoryRichBox &generated, const NativeHistoryRichBox &existing) {
-    const size_t count = native_history_word_count(&generated);
-    const size_t total = native_history_word_count(&existing);
-    if (!count || count == SIZE_MAX || total == SIZE_MAX || count > total ||
-            !generated.links.valid(kNativeHistoryCaptureTokens) ||
-            !existing.links.valid(kNativeHistoryCaptureTokens)) return std::nullopt;
+    NativeHistoryRichBox left{}, right{};
+    if (!native_history_markup_box(reinterpret_cast<uintptr_t>(&generated), left) ||
+            !native_history_markup_box(reinterpret_cast<uintptr_t>(&existing), right)) return std::nullopt;
+    const size_t count = left.words.size(), total = right.words.size();
+    if (!count || count > total) return std::nullopt;
     const size_t begin = total - count;
     // The constructor's description ends at a native control-word boundary.
     // Never bind an equal-looking suffix that begins in the middle of a row.
     if (begin) {
-        const auto *previous = existing.words.begin[begin - 1];
-        if (!previous || !(previous->flags & 7)) return std::nullopt;
+        uint32_t flags = 0;
+        if (!native_history_markup_read(native_history_markup_element(right.words, begin - 1),
+                {0x30, "markup_text_wordst", "flags"}, flags) || !(flags & 7)) return std::nullopt;
     }
     const auto link = [](const NativeHistoryRichBox &box, int32_t index,
             NativeHistoryRichLink &result) {
         if (index == -1) { result = {-1, -1, -1}; return true; }
         if (index < 0 || static_cast<size_t>(index) >= box.links.size()) return false;
-        const auto *value = box.links.begin[index];
-        if (!value) return false;
-        result = *value;
-        return true;
+        return native_history_markup_link(native_history_markup_element(box.links,
+            static_cast<size_t>(index)), result);
     };
     for (size_t index = 0; index < count; ++index) {
-        const auto *a = generated.words.begin[index];
-        const auto *b = existing.words.begin[begin + index];
-        std::string_view first, second;
+        NativeHistoryMarkupWord a, b;
         NativeHistoryRichLink first_link{}, second_link{};
-        if (!a || !b || !native_string_view(&a->text, &first, kNativeHistoryStringLimit) ||
-                !native_string_view(&b->text, &second, kNativeHistoryStringLimit) || first != second ||
-                a->red != b->red || a->green != b->green || a->blue != b->blue ||
-                a->flags != b->flags || !link(generated, a->link_index, first_link) ||
-                !link(existing, b->link_index, second_link) ||
+        if (!native_history_markup_word(native_history_markup_element(left.words, index), a) ||
+                !native_history_markup_word(native_history_markup_element(right.words, begin + index), b) ||
+                a.source != b.source || a.red != b.red || a.green != b.green || a.blue != b.blue ||
+                a.flags != b.flags || !link(left, a.link_index, first_link) ||
+                !link(right, b.link_index, second_link) ||
                 first_link.type != second_link.type || first_link.id != second_link.id ||
                 first_link.subid != second_link.subid) return std::nullopt;
     }
@@ -111,7 +108,7 @@ static bool recover_native_history_collection_page(const NativeHistoryLegendsTab
             }
             std::string_view expected, retained;
             if (!native_string_view(&title.value, &expected, kNativeHistoryStringLimit) ||
-                    !native_string_view(reinterpret_cast<const NativeString *>(tab.tab),
+                    !native_string_view(reinterpret_cast<const NativeString *>(native_history_legends_tab_header(tab.tab)),
                         &retained, kNativeHistoryStringLimit) || expected != retained) continue;
             const size_t total = native_history_word_count(box);
             if (total == SIZE_MAX) continue;
@@ -149,12 +146,13 @@ static bool recover_native_history_collection_page(const NativeHistoryLegendsTab
         selected_begin, &region_bound);
     bool prefix_complete = true;
     if (selected_begin) {
+        NativeHistoryRichBox view{};
+        if (!native_history_markup_box(reinterpret_cast<uintptr_t>(box), view)) return false;
         size_t prefix_end = selected_begin;
         while (prefix_end) {
-            const auto *word = box->words.begin[prefix_end - 1];
-            std::string_view source;
-            if (!word || !native_string_view(&word->text, &source, kNativeHistoryStringLimit)) return false;
-            if (!source.empty() || !(word->flags & 7)) break;
+            NativeHistoryMarkupWord word;
+            if (!native_history_markup_word(native_history_markup_element(view.words, prefix_end - 1), word)) return false;
+            if (!word.source.empty() || !(word.flags & 7)) break;
             --prefix_end;
         }
         if (prefix_end) {

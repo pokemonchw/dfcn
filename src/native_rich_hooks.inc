@@ -8,6 +8,7 @@ struct NativeRichCallSite {
     uintptr_t address, target;
     NativeRichCallKind kind;
     std::vector<unsigned char> argument;
+    bool character_owner = false;
 };
 struct NativeRichSignature {
     uintptr_t address;
@@ -59,7 +60,66 @@ static bool uninstall_native_rich_hooks() {
     return true;
 }
 
-static const void *native_rich_callback(NativeRichCallKind kind) {
+#ifdef _WIN32
+template<auto Capture>
+static void capture_native_rich_character_wrap(NativeKnowledgeTextBox *box, const NativeString *source) {
+    // Draws own the actual entry receiver; input callbacks can use the
+    // independently resolved sheet only when its live source/box pair
+    // confirms ownership. Neither path borrows a compiler-private register.
+    const auto sheet = g_native_character_drawing_sheet
+        ? g_native_character_drawing_sheet : g_native_character_owner;
+    if (!g_native_character_drawing_sheet) {
+        // An input can be constructing a box that is not yet attached to
+        // the sheet. Keep it generic until an actual vector/row owns it;
+        // a global address alone does not establish document provenance.
+        bool owns = false;
+        try {
+            std::vector<const NativeString *> sources;
+            std::vector<NativeKnowledgeTextBox *> boxes;
+            constexpr bool health = Capture == &dfcn_capture_native_health_wrap;
+            constexpr bool thoughts = Capture == &dfcn_capture_native_thoughts_wrap ||
+                Capture == &dfcn_capture_native_overview_thoughts_wrap;
+            owns = native_character_page(reinterpret_cast<const void *>(sheet), health,
+                sources, boxes, thoughts, box, source);
+        } catch (...) {}
+        if (!owns) {
+            dfcn_capture_native_knowledge_wrap(box, source);
+            return;
+        }
+    }
+    Capture(box, source, reinterpret_cast<const void *>(sheet));
+}
+
+template<auto Capture>
+static void capture_native_rich_character_draw(graphicst *graphics, const char *text, const char *colors) {
+    Capture(graphics, text, colors, reinterpret_cast<const void *>(g_native_character_drawing_sheet));
+}
+#endif
+
+static const void *native_rich_callback(NativeRichCallKind kind, bool character_owner = false) {
+#ifdef _WIN32
+    if (character_owner) {
+        switch (kind) {
+        case NativeRichCallKind::Health:
+            return reinterpret_cast<const void *>(&capture_native_rich_character_wrap<dfcn_capture_native_health_wrap>);
+        case NativeRichCallKind::Personality:
+            return reinterpret_cast<const void *>(&capture_native_rich_character_wrap<dfcn_capture_native_personality_wrap>);
+        case NativeRichCallKind::Thoughts:
+            return reinterpret_cast<const void *>(&capture_native_rich_character_wrap<dfcn_capture_native_thoughts_wrap>);
+        case NativeRichCallKind::OverviewThoughts:
+            return reinterpret_cast<const void *>(&capture_native_rich_character_wrap<dfcn_capture_native_overview_thoughts_wrap>);
+        case NativeRichCallKind::PersonalityDraw:
+            return reinterpret_cast<const void *>(&capture_native_rich_character_draw<dfcn_capture_native_personality_draw>);
+        case NativeRichCallKind::ThoughtsDraw:
+            return reinterpret_cast<const void *>(&capture_native_rich_character_draw<dfcn_capture_native_thoughts_draw>);
+        case NativeRichCallKind::OverviewThoughtsDraw:
+            return reinterpret_cast<const void *>(&capture_native_rich_character_draw<dfcn_capture_native_overview_thoughts_draw>);
+        default: return nullptr;
+        }
+    }
+#else
+    (void)character_owner;
+#endif
     switch (kind) {
     case NativeRichCallKind::Wrap:
         return reinterpret_cast<const void *>(&dfcn_capture_native_knowledge_wrap);
@@ -128,7 +188,7 @@ static bool install_native_rich_hooks() {
     std::vector<NativeCall> calls;
     calls.reserve(profile.calls.size());
     for (const auto &site : profile.calls)
-        calls.push_back({site.address,site.target,native_rich_callback(site.kind),site.argument});
+        calls.push_back({site.address,site.target,native_rich_callback(site.kind, site.character_owner),site.argument});
 
     if (profile.entry_address && !hooks.entry.prepare(profile.entry_address, profile.entry_prefix,
             native_rich_callback(NativeRichCallKind::Wrap), {}, "Rich-text entry")) return false;

@@ -1,0 +1,2972 @@
+{
+  "schema": 1,
+  "source": "Bay 12 53.16 graphics.h canonical enum identities",
+  "arrays": [
+    {
+      "field": "texpos_button_main",
+      "tokens": [
+        {
+          "index": 0,
+          "token": "DIG"
+        },
+        {
+          "index": 1,
+          "token": "LOWER_MENU"
+        },
+        {
+          "index": 2,
+          "token": "DIG_DIG_ACTIVE"
+        },
+        {
+          "index": 3,
+          "token": "DIG_DIG_INACTIVE"
+        },
+        {
+          "index": 4,
+          "token": "DIG_STAIRS_ACTIVE"
+        },
+        {
+          "index": 5,
+          "token": "DIG_STAIRS_INACTIVE"
+        },
+        {
+          "index": 6,
+          "token": "DIG_RAMP_ACTIVE"
+        },
+        {
+          "index": 7,
+          "token": "DIG_RAMP_INACTIVE"
+        },
+        {
+          "index": 8,
+          "token": "DIG_CHANNEL_ACTIVE"
+        },
+        {
+          "index": 9,
+          "token": "DIG_CHANNEL_INACTIVE"
+        },
+        {
+          "index": 10,
+          "token": "DIG_REMOVE_STAIRS_RAMPS_ACTIVE"
+        },
+        {
+          "index": 11,
+          "token": "DIG_REMOVE_STAIRS_RAMPS_INACTIVE"
+        },
+        {
+          "index": 12,
+          "token": "FREE_PAINT_ACTIVE"
+        },
+        {
+          "index": 13,
+          "token": "FREE_PAINT_INACTIVE"
+        },
+        {
+          "index": 14,
+          "token": "PAINT_RECTANGLE_ACTIVE"
+        },
+        {
+          "index": 15,
+          "token": "PAINT_RECTANGLE_INACTIVE"
+        },
+        {
+          "index": 16,
+          "token": "CLICK_ACTIVE"
+        },
+        {
+          "index": 17,
+          "token": "CLICK_INACTIVE"
+        },
+        {
+          "index": 18,
+          "token": "FREE_PAINT_BORDER_ACTIVE"
+        },
+        {
+          "index": 19,
+          "token": "FREE_PAINT_BORDER_INACTIVE"
+        },
+        {
+          "index": 20,
+          "token": "PAINT_RECTANGLE_BORDER_ACTIVE"
+        },
+        {
+          "index": 21,
+          "token": "PAINT_RECTANGLE_BORDER_INACTIVE"
+        },
+        {
+          "index": 22,
+          "token": "DIG_MODE_ALL_ACTIVE"
+        },
+        {
+          "index": 23,
+          "token": "DIG_MODE_ALL_INACTIVE"
+        },
+        {
+          "index": 24,
+          "token": "DIG_MODE_AUTO_ACTIVE"
+        },
+        {
+          "index": 25,
+          "token": "DIG_MODE_AUTO_INACTIVE"
+        },
+        {
+          "index": 26,
+          "token": "DIG_MODE_ONLY_ORE_GEM_ACTIVE"
+        },
+        {
+          "index": 27,
+          "token": "DIG_MODE_ONLY_ORE_GEM_INACTIVE"
+        },
+        {
+          "index": 28,
+          "token": "DIG_MODE_ONLY_GEM_ACTIVE"
+        },
+        {
+          "index": 29,
+          "token": "DIG_MODE_ONLY_GEM_INACTIVE"
+        },
+        {
+          "index": 30,
+          "token": "PRIORITY_1_ACTIVE"
+        },
+        {
+          "index": 31,
+          "token": "PRIORITY_1_INACTIVE"
+        },
+        {
+          "index": 32,
+          "token": "PRIORITY_2_ACTIVE"
+        },
+        {
+          "index": 33,
+          "token": "PRIORITY_2_INACTIVE"
+        },
+        {
+          "index": 34,
+          "token": "PRIORITY_3_ACTIVE"
+        },
+        {
+          "index": 35,
+          "token": "PRIORITY_3_INACTIVE"
+        },
+        {
+          "index": 36,
+          "token": "PRIORITY_4_ACTIVE"
+        },
+        {
+          "index": 37,
+          "token": "PRIORITY_4_INACTIVE"
+        },
+        {
+          "index": 38,
+          "token": "PRIORITY_5_ACTIVE"
+        },
+        {
+          "index": 39,
+          "token": "PRIORITY_5_INACTIVE"
+        },
+        {
+          "index": 40,
+          "token": "PRIORITY_6_ACTIVE"
+        },
+        {
+          "index": 41,
+          "token": "PRIORITY_6_INACTIVE"
+        },
+        {
+          "index": 42,
+          "token": "PRIORITY_7_ACTIVE"
+        },
+        {
+          "index": 43,
+          "token": "PRIORITY_7_INACTIVE"
+        },
+        {
+          "index": 44,
+          "token": "DES_BLUEPRINT_ACTIVE"
+        },
+        {
+          "index": 45,
+          "token": "DES_BLUEPRINT_INACTIVE"
+        },
+        {
+          "index": 46,
+          "token": "DES_FROM_BLUEPRINT_ACTIVE"
+        },
+        {
+          "index": 47,
+          "token": "DES_FROM_BLUEPRINT_INACTIVE"
+        },
+        {
+          "index": 48,
+          "token": "DES_TO_BLUEPRINT_ACTIVE"
+        },
+        {
+          "index": 49,
+          "token": "DES_TO_BLUEPRINT_INACTIVE"
+        },
+        {
+          "index": 50,
+          "token": "OPEN_RIGHT"
+        },
+        {
+          "index": 51,
+          "token": "CLOSE_LEFT"
+        },
+        {
+          "index": 52,
+          "token": "DES_CHOP_ACTIVE"
+        },
+        {
+          "index": 53,
+          "token": "DES_CHOP_INACTIVE"
+        },
+        {
+          "index": 54,
+          "token": "DES_GATHER_ACTIVE"
+        },
+        {
+          "index": 55,
+          "token": "DES_GATHER_INACTIVE"
+        },
+        {
+          "index": 56,
+          "token": "DES_SMOOTH_ACTIVE"
+        },
+        {
+          "index": 57,
+          "token": "DES_SMOOTH_INACTIVE"
+        },
+        {
+          "index": 58,
+          "token": "DES_SMOOTH_SMOOTH_ACTIVE"
+        },
+        {
+          "index": 59,
+          "token": "DES_SMOOTH_SMOOTH_INACTIVE"
+        },
+        {
+          "index": 60,
+          "token": "DES_SMOOTH_ENGRAVE_ACTIVE"
+        },
+        {
+          "index": 61,
+          "token": "DES_SMOOTH_ENGRAVE_INACTIVE"
+        },
+        {
+          "index": 62,
+          "token": "DES_SMOOTH_TRACK_ACTIVE"
+        },
+        {
+          "index": 63,
+          "token": "DES_SMOOTH_TRACK_INACTIVE"
+        },
+        {
+          "index": 64,
+          "token": "DES_SMOOTH_FORTIFY_ACTIVE"
+        },
+        {
+          "index": 65,
+          "token": "DES_SMOOTH_FORTIFY_INACTIVE"
+        },
+        {
+          "index": 66,
+          "token": "DES_ITEM_BUILDING"
+        },
+        {
+          "index": 67,
+          "token": "DES_CLAIM_ACTIVE"
+        },
+        {
+          "index": 68,
+          "token": "DES_CLAIM_INACTIVE"
+        },
+        {
+          "index": 69,
+          "token": "DES_FORBID_ACTIVE"
+        },
+        {
+          "index": 70,
+          "token": "DES_FORBID_INACTIVE"
+        },
+        {
+          "index": 71,
+          "token": "DES_DUMP_ACTIVE"
+        },
+        {
+          "index": 72,
+          "token": "DES_DUMP_INACTIVE"
+        },
+        {
+          "index": 73,
+          "token": "DES_UNDUMP_ACTIVE"
+        },
+        {
+          "index": 74,
+          "token": "DES_UNDUMP_INACTIVE"
+        },
+        {
+          "index": 75,
+          "token": "DES_MELT_ACTIVE"
+        },
+        {
+          "index": 76,
+          "token": "DES_MELT_INACTIVE"
+        },
+        {
+          "index": 77,
+          "token": "DES_UNMELT_ACTIVE"
+        },
+        {
+          "index": 78,
+          "token": "DES_UNMELT_INACTIVE"
+        },
+        {
+          "index": 79,
+          "token": "DES_UNHIDE_ACTIVE"
+        },
+        {
+          "index": 80,
+          "token": "DES_UNHIDE_INACTIVE"
+        },
+        {
+          "index": 81,
+          "token": "DES_HIDE_ACTIVE"
+        },
+        {
+          "index": 82,
+          "token": "DES_HIDE_INACTIVE"
+        },
+        {
+          "index": 83,
+          "token": "DES_TRAFFIC"
+        },
+        {
+          "index": 84,
+          "token": "DES_TRAFFIC_HIGH_ACTIVE"
+        },
+        {
+          "index": 85,
+          "token": "DES_TRAFFIC_HIGH_INACTIVE"
+        },
+        {
+          "index": 86,
+          "token": "DES_TRAFFIC_NORMAL_ACTIVE"
+        },
+        {
+          "index": 87,
+          "token": "DES_TRAFFIC_NORMAL_INACTIVE"
+        },
+        {
+          "index": 88,
+          "token": "DES_TRAFFIC_LOW_ACTIVE"
+        },
+        {
+          "index": 89,
+          "token": "DES_TRAFFIC_LOW_INACTIVE"
+        },
+        {
+          "index": 90,
+          "token": "DES_TRAFFIC_RESTRICTED_ACTIVE"
+        },
+        {
+          "index": 91,
+          "token": "DES_TRAFFIC_RESTRICTED_INACTIVE"
+        },
+        {
+          "index": 92,
+          "token": "DES_ERASE"
+        },
+        {
+          "index": 93,
+          "token": "INFO_CREATURES"
+        },
+        {
+          "index": 94,
+          "token": "INFO_TASKS"
+        },
+        {
+          "index": 95,
+          "token": "INFO_PLACES"
+        },
+        {
+          "index": 96,
+          "token": "INFO_LABOR"
+        },
+        {
+          "index": 97,
+          "token": "INFO_WORK_ORDERS"
+        },
+        {
+          "index": 98,
+          "token": "INFO_NOBLES"
+        },
+        {
+          "index": 99,
+          "token": "INFO_OBJECTS"
+        },
+        {
+          "index": 100,
+          "token": "INFO_JUSTICE"
+        },
+        {
+          "index": 101,
+          "token": "INFO_CREATURES_ACTIVE"
+        },
+        {
+          "index": 102,
+          "token": "INFO_TASKS_ACTIVE"
+        },
+        {
+          "index": 103,
+          "token": "INFO_PLACES_ACTIVE"
+        },
+        {
+          "index": 104,
+          "token": "INFO_LABOR_ACTIVE"
+        },
+        {
+          "index": 105,
+          "token": "INFO_WORK_ORDERS_ACTIVE"
+        },
+        {
+          "index": 106,
+          "token": "INFO_NOBLES_ACTIVE"
+        },
+        {
+          "index": 107,
+          "token": "INFO_OBJECTS_ACTIVE"
+        },
+        {
+          "index": 108,
+          "token": "INFO_JUSTICE_ACTIVE"
+        },
+        {
+          "index": 109,
+          "token": "SQUADS"
+        },
+        {
+          "index": 110,
+          "token": "WORLD"
+        },
+        {
+          "index": 111,
+          "token": "BUILDING_INACTIVE"
+        },
+        {
+          "index": 112,
+          "token": "BUILDING_ACTIVE"
+        },
+        {
+          "index": 113,
+          "token": "UNUSED_113"
+        },
+        {
+          "index": 114,
+          "token": "STOCKPILE_INACTIVE"
+        },
+        {
+          "index": 115,
+          "token": "STOCKPILE_ACTIVE"
+        },
+        {
+          "index": 116,
+          "token": "STOCKPILE_NEW"
+        },
+        {
+          "index": 117,
+          "token": "STOCKPILE_REMOVE"
+        },
+        {
+          "index": 118,
+          "token": "STOCKPILE_REPAINT"
+        },
+        {
+          "index": 119,
+          "token": "STOCKPILE_ERASE_INACTIVE"
+        },
+        {
+          "index": 120,
+          "token": "STOCKPILE_ERASE_ACTIVE"
+        },
+        {
+          "index": 121,
+          "token": "STOCKPILE_REMOVE_EXISTING"
+        },
+        {
+          "index": 122,
+          "token": "STOCKPILE_TYPE_INACTIVE"
+        },
+        {
+          "index": 123,
+          "token": "STOCKPILE_TYPE_ACTIVE"
+        },
+        {
+          "index": 124,
+          "token": "STOCKPILE_TAKE_FROM_ANYWHERE"
+        },
+        {
+          "index": 125,
+          "token": "STOCKPILE_TAKE_FROM_LINKS_ONLY"
+        },
+        {
+          "index": 126,
+          "token": "STOCKPILE_SET_CONNECTIONS"
+        },
+        {
+          "index": 127,
+          "token": "STOCKPILE_CONNECTIONS_REMOVE"
+        },
+        {
+          "index": 128,
+          "token": "STOCKPILE_CONNECTIONS_ADD_GIVE_LINK"
+        },
+        {
+          "index": 129,
+          "token": "STOCKPILE_CONNECTIONS_ADD_TAKE_LINK"
+        },
+        {
+          "index": 130,
+          "token": "STOCKPILE_CONNECTIONS_GIVE_LINK"
+        },
+        {
+          "index": 131,
+          "token": "STOCKPILE_CONNECTIONS_TAKE_LINK"
+        },
+        {
+          "index": 132,
+          "token": "STOCKPILE_CONNECTIONS_WORKSHOP_ADD_GIVE_LINK"
+        },
+        {
+          "index": 133,
+          "token": "STOCKPILE_CONNECTIONS_WORKSHOP_ADD_TAKE_LINK"
+        },
+        {
+          "index": 134,
+          "token": "STOCKPILE_CONNECTIONS_WORKSHOP_GIVE_LINK"
+        },
+        {
+          "index": 135,
+          "token": "STOCKPILE_CONNECTIONS_WORKSHOP_TAKE_LINK"
+        },
+        {
+          "index": 136,
+          "token": "CUSTOM_STOCKPILE_ORGANIC_ON"
+        },
+        {
+          "index": 137,
+          "token": "CUSTOM_STOCKPILE_ORGANIC_OFF"
+        },
+        {
+          "index": 138,
+          "token": "CUSTOM_STOCKPILE_INORGANIC_ON"
+        },
+        {
+          "index": 139,
+          "token": "CUSTOM_STOCKPILE_INORGANIC_OFF"
+        },
+        {
+          "index": 140,
+          "token": "CUSTOM_STOCKPILE_EMPTY_CAGE_ON"
+        },
+        {
+          "index": 141,
+          "token": "CUSTOM_STOCKPILE_EMPTY_CAGE_OFF"
+        },
+        {
+          "index": 142,
+          "token": "CUSTOM_STOCKPILE_EMPTY_ANIMAL_TRAP_ON"
+        },
+        {
+          "index": 143,
+          "token": "CUSTOM_STOCKPILE_EMPTY_ANIMAL_TRAP_OFF"
+        },
+        {
+          "index": 144,
+          "token": "CUSTOM_STOCKPILE_PREPARED_FOOD_ON"
+        },
+        {
+          "index": 145,
+          "token": "CUSTOM_STOCKPILE_PREPARED_FOOD_OFF"
+        },
+        {
+          "index": 146,
+          "token": "CUSTOM_STOCKPILE_USABLE_ARMOR_ON"
+        },
+        {
+          "index": 147,
+          "token": "CUSTOM_STOCKPILE_USABLE_ARMOR_OFF"
+        },
+        {
+          "index": 148,
+          "token": "CUSTOM_STOCKPILE_USABLE_WEAPON_ON"
+        },
+        {
+          "index": 149,
+          "token": "CUSTOM_STOCKPILE_USABLE_WEAPON_OFF"
+        },
+        {
+          "index": 150,
+          "token": "CUSTOM_STOCKPILE_UNUSABLE_ARMOR_ON"
+        },
+        {
+          "index": 151,
+          "token": "CUSTOM_STOCKPILE_UNUSABLE_ARMOR_OFF"
+        },
+        {
+          "index": 152,
+          "token": "CUSTOM_STOCKPILE_UNUSABLE_WEAPON_ON"
+        },
+        {
+          "index": 153,
+          "token": "CUSTOM_STOCKPILE_UNUSABLE_WEAPON_OFF"
+        },
+        {
+          "index": 154,
+          "token": "CUSTOM_STOCKPILE_CORPSES_ON"
+        },
+        {
+          "index": 155,
+          "token": "CUSTOM_STOCKPILE_CORPSES_OFF"
+        },
+        {
+          "index": 156,
+          "token": "ZONE_INACTIVE"
+        },
+        {
+          "index": 157,
+          "token": "ZONE_ACTIVE"
+        },
+        {
+          "index": 158,
+          "token": "ZONE_REMOVE"
+        },
+        {
+          "index": 159,
+          "token": "ZONE_PREVIOUS"
+        },
+        {
+          "index": 160,
+          "token": "ZONE_NEXT"
+        },
+        {
+          "index": 161,
+          "token": "ZONE_REPAINT"
+        },
+        {
+          "index": 162,
+          "token": "ZONE_ERASE_INACTIVE"
+        },
+        {
+          "index": 163,
+          "token": "ZONE_ERASE_ACTIVE"
+        },
+        {
+          "index": 164,
+          "token": "ZONE_SUSPEND_INACTIVE"
+        },
+        {
+          "index": 165,
+          "token": "ZONE_SUSPEND"
+        },
+        {
+          "index": 166,
+          "token": "ZONE_REMOVE_EXISTING"
+        },
+        {
+          "index": 167,
+          "token": "ZONE_TYPE_INACTIVE"
+        },
+        {
+          "index": 168,
+          "token": "ZONE_TYPE_ACTIVE"
+        },
+        {
+          "index": 169,
+          "token": "ZONE_PICK_ANIMALS"
+        },
+        {
+          "index": 170,
+          "token": "ZONE_GATHER_TREE_INACTIVE"
+        },
+        {
+          "index": 171,
+          "token": "ZONE_GATHER_TREE_ACTIVE"
+        },
+        {
+          "index": 172,
+          "token": "ZONE_GATHER_SHRUB_INACTIVE"
+        },
+        {
+          "index": 173,
+          "token": "ZONE_GATHER_SHRUB_ACTIVE"
+        },
+        {
+          "index": 174,
+          "token": "ZONE_GATHER_FALLEN_INACTIVE"
+        },
+        {
+          "index": 175,
+          "token": "ZONE_GATHER_FALLEN_ACTIVE"
+        },
+        {
+          "index": 176,
+          "token": "ZONE_PIT_INACTIVE"
+        },
+        {
+          "index": 177,
+          "token": "ZONE_PIT_ACTIVE"
+        },
+        {
+          "index": 178,
+          "token": "ZONE_POND_INACTIVE"
+        },
+        {
+          "index": 179,
+          "token": "ZONE_POND_ACTIVE"
+        },
+        {
+          "index": 180,
+          "token": "ZONE_LOCATION_ASSIGN"
+        },
+        {
+          "index": 181,
+          "token": "ZONE_LOCATION_DETAILS"
+        },
+        {
+          "index": 182,
+          "token": "ZONE_ASSIGN_UNIT"
+        },
+        {
+          "index": 183,
+          "token": "ZONE_SQUAD_LIST"
+        },
+        {
+          "index": 184,
+          "token": "ZONE_SHOOT_LEFT_ACTIVE"
+        },
+        {
+          "index": 185,
+          "token": "ZONE_SHOOT_RIGHT_ACTIVE"
+        },
+        {
+          "index": 186,
+          "token": "ZONE_SHOOT_UP_ACTIVE"
+        },
+        {
+          "index": 187,
+          "token": "ZONE_SHOOT_DOWN_ACTIVE"
+        },
+        {
+          "index": 188,
+          "token": "ZONE_SHOOT_LEFT_INACTIVE"
+        },
+        {
+          "index": 189,
+          "token": "ZONE_SHOOT_RIGHT_INACTIVE"
+        },
+        {
+          "index": 190,
+          "token": "ZONE_SHOOT_UP_INACTIVE"
+        },
+        {
+          "index": 191,
+          "token": "ZONE_SHOOT_DOWN_INACTIVE"
+        },
+        {
+          "index": 192,
+          "token": "ZONE_SQUAD_SLEEP_ACTIVE"
+        },
+        {
+          "index": 193,
+          "token": "ZONE_SQUAD_TRAIN_ACTIVE"
+        },
+        {
+          "index": 194,
+          "token": "ZONE_SQUAD_INDIV_EQ_ACTIVE"
+        },
+        {
+          "index": 195,
+          "token": "ZONE_SQUAD_SQUAD_EQ_ACTIVE"
+        },
+        {
+          "index": 196,
+          "token": "ZONE_SQUAD_SLEEP_INACTIVE"
+        },
+        {
+          "index": 197,
+          "token": "ZONE_SQUAD_TRAIN_INACTIVE"
+        },
+        {
+          "index": 198,
+          "token": "ZONE_SQUAD_INDIV_EQ_INACTIVE"
+        },
+        {
+          "index": 199,
+          "token": "ZONE_SQUAD_SQUAD_EQ_INACTIVE"
+        },
+        {
+          "index": 200,
+          "token": "ZONE_TOMB_CITIZEN_BURIAL_ACTIVE"
+        },
+        {
+          "index": 201,
+          "token": "ZONE_TOMB_CITIZEN_BURIAL_INACTIVE"
+        },
+        {
+          "index": 202,
+          "token": "ZONE_TOMB_PET_BURIAL_ACTIVE"
+        },
+        {
+          "index": 203,
+          "token": "ZONE_TOMB_PET_BURIAL_INACTIVE"
+        },
+        {
+          "index": 204,
+          "token": "BURROW_INACTIVE"
+        },
+        {
+          "index": 205,
+          "token": "BURROW_ACTIVE"
+        },
+        {
+          "index": 206,
+          "token": "HAULING_INACTIVE"
+        },
+        {
+          "index": 207,
+          "token": "HAULING_ACTIVE"
+        },
+        {
+          "index": 208,
+          "token": "BUILDING_PLACEMENT_INACTIVE_BUTTON"
+        },
+        {
+          "index": 209,
+          "token": "BUILDING_PLACEMENT_ACTIVE_BUTTON"
+        },
+        {
+          "index": 210,
+          "token": "BUILDING_PLACEMENT_BRIDGE_N"
+        },
+        {
+          "index": 211,
+          "token": "BUILDING_PLACEMENT_BRIDGE_S"
+        },
+        {
+          "index": 212,
+          "token": "BUILDING_PLACEMENT_BRIDGE_W"
+        },
+        {
+          "index": 213,
+          "token": "BUILDING_PLACEMENT_BRIDGE_E"
+        },
+        {
+          "index": 214,
+          "token": "BUILDING_PLACEMENT_BRIDGE_RETRACT"
+        },
+        {
+          "index": 215,
+          "token": "BUILDING_PLACEMENT_NS"
+        },
+        {
+          "index": 216,
+          "token": "BUILDING_PLACEMENT_WE"
+        },
+        {
+          "index": 217,
+          "token": "BUILDING_PLACEMENT_SCREW_PUMP_N"
+        },
+        {
+          "index": 218,
+          "token": "BUILDING_PLACEMENT_SCREW_PUMP_S"
+        },
+        {
+          "index": 219,
+          "token": "BUILDING_PLACEMENT_SCREW_PUMP_W"
+        },
+        {
+          "index": 220,
+          "token": "BUILDING_PLACEMENT_SCREW_PUMP_E"
+        },
+        {
+          "index": 221,
+          "token": "BUILDING_PLACEMENT_N"
+        },
+        {
+          "index": 222,
+          "token": "BUILDING_PLACEMENT_S"
+        },
+        {
+          "index": 223,
+          "token": "BUILDING_PLACEMENT_W"
+        },
+        {
+          "index": 224,
+          "token": "BUILDING_PLACEMENT_E"
+        },
+        {
+          "index": 225,
+          "token": "BUILDING_PLACEMENT_NE"
+        },
+        {
+          "index": 226,
+          "token": "BUILDING_PLACEMENT_SE"
+        },
+        {
+          "index": 227,
+          "token": "BUILDING_PLACEMENT_SW"
+        },
+        {
+          "index": 228,
+          "token": "BUILDING_PLACEMENT_NW"
+        },
+        {
+          "index": 229,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_ACTIVE_TRIGGER"
+        },
+        {
+          "index": 230,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_INACTIVE_TRIGGER"
+        },
+        {
+          "index": 231,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_0_ON"
+        },
+        {
+          "index": 232,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_1_ON"
+        },
+        {
+          "index": 233,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_2_ON"
+        },
+        {
+          "index": 234,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_3_ON"
+        },
+        {
+          "index": 235,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_4_ON"
+        },
+        {
+          "index": 236,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_5_ON"
+        },
+        {
+          "index": 237,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_6_ON"
+        },
+        {
+          "index": 238,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_7_ON"
+        },
+        {
+          "index": 239,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_0_OFF"
+        },
+        {
+          "index": 240,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_1_OFF"
+        },
+        {
+          "index": 241,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_2_OFF"
+        },
+        {
+          "index": 242,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_3_OFF"
+        },
+        {
+          "index": 243,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_4_OFF"
+        },
+        {
+          "index": 244,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_5_OFF"
+        },
+        {
+          "index": 245,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_6_OFF"
+        },
+        {
+          "index": 246,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_WATER_7_OFF"
+        },
+        {
+          "index": 247,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_0_ON"
+        },
+        {
+          "index": 248,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_1_ON"
+        },
+        {
+          "index": 249,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_2_ON"
+        },
+        {
+          "index": 250,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_3_ON"
+        },
+        {
+          "index": 251,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_4_ON"
+        },
+        {
+          "index": 252,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_5_ON"
+        },
+        {
+          "index": 253,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_6_ON"
+        },
+        {
+          "index": 254,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_7_ON"
+        },
+        {
+          "index": 255,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_0_OFF"
+        },
+        {
+          "index": 256,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_1_OFF"
+        },
+        {
+          "index": 257,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_2_OFF"
+        },
+        {
+          "index": 258,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_3_OFF"
+        },
+        {
+          "index": 259,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_4_OFF"
+        },
+        {
+          "index": 260,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_5_OFF"
+        },
+        {
+          "index": 261,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_6_OFF"
+        },
+        {
+          "index": 262,
+          "token": "BUILDING_PLACEMENT_PRESSURE_PLATE_MAGMA_7_OFF"
+        },
+        {
+          "index": 263,
+          "token": "BUILDING_PLACEMENT_TRACK_STOP_NO_DUMPING"
+        },
+        {
+          "index": 264,
+          "token": "BUILDING_PLACEMENT_TRACK_STOP_FRICTION_LOWEST"
+        },
+        {
+          "index": 265,
+          "token": "BUILDING_PLACEMENT_TRACK_STOP_FRICTION_LOW"
+        },
+        {
+          "index": 266,
+          "token": "BUILDING_PLACEMENT_TRACK_STOP_FRICTION_MIDDLE"
+        },
+        {
+          "index": 267,
+          "token": "BUILDING_PLACEMENT_TRACK_STOP_FRICTION_HIGH"
+        },
+        {
+          "index": 268,
+          "token": "BUILDING_PLACEMENT_TRACK_STOP_FRICTION_HIGHEST"
+        },
+        {
+          "index": 269,
+          "token": "BUILDING_PLACEMENT_ROLLERS_SPEED_1"
+        },
+        {
+          "index": 270,
+          "token": "BUILDING_PLACEMENT_ROLLERS_SPEED_2"
+        },
+        {
+          "index": 271,
+          "token": "BUILDING_PLACEMENT_ROLLERS_SPEED_3"
+        },
+        {
+          "index": 272,
+          "token": "BUILDING_PLACEMENT_ROLLERS_SPEED_4"
+        },
+        {
+          "index": 273,
+          "token": "BUILDING_PLACEMENT_ROLLERS_SPEED_5"
+        },
+        {
+          "index": 274,
+          "token": "ASSIGN_TRADE_CULLING_MANDATES_ON"
+        },
+        {
+          "index": 275,
+          "token": "ASSIGN_TRADE_CULLING_MANDATES_OFF"
+        },
+        {
+          "index": 276,
+          "token": "ASSIGN_TRADE_SORT_BY_DISTANCE_ON"
+        },
+        {
+          "index": 277,
+          "token": "ASSIGN_TRADE_SORT_BY_DISTANCE_OFF"
+        },
+        {
+          "index": 278,
+          "token": "ASSIGN_TRADE_SORT_BY_VALUE_ON"
+        },
+        {
+          "index": 279,
+          "token": "ASSIGN_TRADE_SORT_BY_VALUE_OFF"
+        },
+        {
+          "index": 280,
+          "token": "WORK_ORDERS_CREATE_NEW"
+        },
+        {
+          "index": 281,
+          "token": "WORK_ORDERS_ACTIVE"
+        },
+        {
+          "index": 282,
+          "token": "WORK_ORDERS_WAITING"
+        },
+        {
+          "index": 283,
+          "token": "WORK_ORDERS_CHECKING"
+        },
+        {
+          "index": 284,
+          "token": "WORK_ORDERS_READY"
+        },
+        {
+          "index": 285,
+          "token": "WORK_ORDERS_VALIDATED"
+        },
+        {
+          "index": 286,
+          "token": "WORK_ORDERS_NOT_VALIDATED"
+        },
+        {
+          "index": 287,
+          "token": "WORK_ORDERS_PRIORITY_UP"
+        },
+        {
+          "index": 288,
+          "token": "WORK_ORDERS_PRIORITY_DOWN"
+        },
+        {
+          "index": 289,
+          "token": "WORK_ORDERS_CONDITIONS"
+        },
+        {
+          "index": 290,
+          "token": "WORK_ORDERS_DETAILS"
+        },
+        {
+          "index": 291,
+          "token": "WORK_ORDERS_REMOVE"
+        },
+        {
+          "index": 292,
+          "token": "WORK_ORDERS_ADD_ITEM_CONDITION"
+        },
+        {
+          "index": 293,
+          "token": "WORK_ORDERS_ADD_ORDER_CONDITION"
+        },
+        {
+          "index": 294,
+          "token": "WORK_ORDERS_CHANGE_TYPE"
+        },
+        {
+          "index": 295,
+          "token": "WORK_ORDERS_CHANGE_MAT"
+        },
+        {
+          "index": 296,
+          "token": "WORK_ORDERS_CHANGE_ADJ"
+        },
+        {
+          "index": 297,
+          "token": "WORK_ORDERS_ADD_SUGGESTED_CONDITION"
+        },
+        {
+          "index": 298,
+          "token": "WORK_ORDERS_CHANGE_FREQUENCY"
+        },
+        {
+          "index": 299,
+          "token": "WORK_ORDERS_ENTER_AMOUNT"
+        },
+        {
+          "index": 300,
+          "token": "WORK_ORDERS_INCREASE_AMOUNT"
+        },
+        {
+          "index": 301,
+          "token": "WORK_ORDERS_DECREASE_AMOUNT"
+        },
+        {
+          "index": 302,
+          "token": "WORK_ORDERS_CHANGE_ORDER_CONDITION_CHECK_TYPE"
+        },
+        {
+          "index": 303,
+          "token": "WORK_ORDERS_ADJECTIVE_SELECTED"
+        },
+        {
+          "index": 304,
+          "token": "WORK_ORDERS_ADJECTIVE_NOT_SELECTED"
+        },
+        {
+          "index": 305,
+          "token": "NOBLES_ASSIGN_SYMBOL"
+        },
+        {
+          "index": 306,
+          "token": "NOBLES_BEDROOM_NA"
+        },
+        {
+          "index": 307,
+          "token": "NOBLES_BEDROOM_MISSING"
+        },
+        {
+          "index": 308,
+          "token": "NOBLES_BEDROOM_PARTIAL"
+        },
+        {
+          "index": 309,
+          "token": "NOBLES_BEDROOM_GOOD"
+        },
+        {
+          "index": 310,
+          "token": "NOBLES_OFFICE_NA"
+        },
+        {
+          "index": 311,
+          "token": "NOBLES_OFFICE_MISSING"
+        },
+        {
+          "index": 312,
+          "token": "NOBLES_OFFICE_PARTIAL"
+        },
+        {
+          "index": 313,
+          "token": "NOBLES_OFFICE_GOOD"
+        },
+        {
+          "index": 314,
+          "token": "NOBLES_DINING_NA"
+        },
+        {
+          "index": 315,
+          "token": "NOBLES_DINING_MISSING"
+        },
+        {
+          "index": 316,
+          "token": "NOBLES_DINING_PARTIAL"
+        },
+        {
+          "index": 317,
+          "token": "NOBLES_DINING_GOOD"
+        },
+        {
+          "index": 318,
+          "token": "NOBLES_TOMB_NA"
+        },
+        {
+          "index": 319,
+          "token": "NOBLES_TOMB_MISSING"
+        },
+        {
+          "index": 320,
+          "token": "NOBLES_TOMB_PARTIAL"
+        },
+        {
+          "index": 321,
+          "token": "NOBLES_TOMB_GOOD"
+        },
+        {
+          "index": 322,
+          "token": "NOBLES_ADD"
+        },
+        {
+          "index": 323,
+          "token": "NOBLES_DEMANDS_NA"
+        },
+        {
+          "index": 324,
+          "token": "NOBLES_DEMANDS_TIME_GOOD"
+        },
+        {
+          "index": 325,
+          "token": "NOBLES_DEMANDS_TIME_WARN_1"
+        },
+        {
+          "index": 326,
+          "token": "NOBLES_DEMANDS_TIME_WARN_2"
+        },
+        {
+          "index": 327,
+          "token": "NOBLES_DEMANDS_TIME_WARN_3"
+        },
+        {
+          "index": 328,
+          "token": "NOBLES_MANDATES_NA"
+        },
+        {
+          "index": 329,
+          "token": "NOBLES_MANDATES_TIME_GOOD"
+        },
+        {
+          "index": 330,
+          "token": "NOBLES_MANDATES_TIME_WARN_1"
+        },
+        {
+          "index": 331,
+          "token": "NOBLES_MANDATES_TIME_WARN_2"
+        },
+        {
+          "index": 332,
+          "token": "NOBLES_MANDATES_TIME_WARN_3"
+        },
+        {
+          "index": 333,
+          "token": "NOBLES_FURN_NA"
+        },
+        {
+          "index": 334,
+          "token": "NOBLES_FURN_MISSING"
+        },
+        {
+          "index": 335,
+          "token": "NOBLES_FURN_PARTIAL"
+        },
+        {
+          "index": 336,
+          "token": "NOBLES_FURN_GOOD"
+        },
+        {
+          "index": 337,
+          "token": "NOBLES_ACCOUNTING_1_INACTIVE"
+        },
+        {
+          "index": 338,
+          "token": "NOBLES_ACCOUNTING_2_INACTIVE"
+        },
+        {
+          "index": 339,
+          "token": "NOBLES_ACCOUNTING_3_INACTIVE"
+        },
+        {
+          "index": 340,
+          "token": "NOBLES_ACCOUNTING_4_INACTIVE"
+        },
+        {
+          "index": 341,
+          "token": "NOBLES_ACCOUNTING_5_INACTIVE"
+        },
+        {
+          "index": 342,
+          "token": "NOBLES_ACCOUNTING_1_ACTIVE"
+        },
+        {
+          "index": 343,
+          "token": "NOBLES_ACCOUNTING_2_ACTIVE"
+        },
+        {
+          "index": 344,
+          "token": "NOBLES_ACCOUNTING_3_ACTIVE"
+        },
+        {
+          "index": 345,
+          "token": "NOBLES_ACCOUNTING_4_ACTIVE"
+        },
+        {
+          "index": 346,
+          "token": "NOBLES_ACCOUNTING_5_ACTIVE"
+        },
+        {
+          "index": 347,
+          "token": "LABOR_KITCHEN_COOK_CANNOT"
+        },
+        {
+          "index": 348,
+          "token": "LABOR_KITCHEN_COOK_ALLOWED"
+        },
+        {
+          "index": 349,
+          "token": "LABOR_KITCHEN_COOK_RESTRICTED"
+        },
+        {
+          "index": 350,
+          "token": "LABOR_KITCHEN_BREW_CANNOT"
+        },
+        {
+          "index": 351,
+          "token": "LABOR_KITCHEN_BREW_ALLOWED"
+        },
+        {
+          "index": 352,
+          "token": "LABOR_KITCHEN_BREW_RESTRICTED"
+        },
+        {
+          "index": 353,
+          "token": "LABOR_STONE_USE_MAGMA_SAFE"
+        },
+        {
+          "index": 354,
+          "token": "LABOR_STONE_USE_MAGMA_UNSAFE"
+        },
+        {
+          "index": 355,
+          "token": "LABOR_STONE_USE_ALLOWED"
+        },
+        {
+          "index": 356,
+          "token": "LABOR_STONE_USE_RESTRICTED"
+        },
+        {
+          "index": 357,
+          "token": "WORKER_ONLY_DO_ASSIGNED_JOBS"
+        },
+        {
+          "index": 358,
+          "token": "WORKER_DO_ANY_AVAILABLE_JOB"
+        },
+        {
+          "index": 359,
+          "token": "LABOR_WORKER_ASSIGNED"
+        },
+        {
+          "index": 360,
+          "token": "LABOR_WORKER_UNASSIGNED"
+        },
+        {
+          "index": 361,
+          "token": "LABOR_WORKER_ASSIGNED_EVERYBODY"
+        },
+        {
+          "index": 362,
+          "token": "LABOR_WORKER_ASSIGNED_NOBODY"
+        },
+        {
+          "index": 363,
+          "token": "LABOR_EDIT_WORK_DETAIL"
+        },
+        {
+          "index": 364,
+          "token": "WORK_DETAIL_MINERS"
+        },
+        {
+          "index": 365,
+          "token": "WORK_DETAIL_WOODCUTTERS"
+        },
+        {
+          "index": 366,
+          "token": "WORK_DETAIL_HUNTERS"
+        },
+        {
+          "index": 367,
+          "token": "WORK_DETAIL_PLANTERS"
+        },
+        {
+          "index": 368,
+          "token": "WORK_DETAIL_FISHERMEN"
+        },
+        {
+          "index": 369,
+          "token": "WORK_DETAIL_STONECUTTERS"
+        },
+        {
+          "index": 370,
+          "token": "WORK_DETAIL_ENGRAVERS"
+        },
+        {
+          "index": 371,
+          "token": "WORK_DETAIL_PLANT_GATHERERS"
+        },
+        {
+          "index": 372,
+          "token": "WORK_DETAIL_HAULERS"
+        },
+        {
+          "index": 373,
+          "token": "WORK_DETAIL_ORDERLIES"
+        },
+        {
+          "index": 374,
+          "token": "WORK_DETAIL_SIEGE_OPERATORS"
+        },
+        {
+          "index": 375,
+          "token": "WORK_DETAIL_CUSTOM_1"
+        },
+        {
+          "index": 376,
+          "token": "WORK_DETAIL_CUSTOM_2"
+        },
+        {
+          "index": 377,
+          "token": "WORK_DETAIL_CUSTOM_3"
+        },
+        {
+          "index": 378,
+          "token": "WORK_DETAIL_CUSTOM_4"
+        },
+        {
+          "index": 379,
+          "token": "WORK_DETAIL_CUSTOM_5"
+        },
+        {
+          "index": 380,
+          "token": "WORK_DETAIL_CUSTOM_6"
+        },
+        {
+          "index": 381,
+          "token": "WORK_DETAIL_CUSTOM_7"
+        },
+        {
+          "index": 382,
+          "token": "WORK_DETAIL_CUSTOM_8"
+        },
+        {
+          "index": 383,
+          "token": "LOCATION_RESERVED_INCREASE_AMOUNT"
+        },
+        {
+          "index": 384,
+          "token": "LOCATION_RESERVED_DECREASE_AMOUNT"
+        },
+        {
+          "index": 385,
+          "token": "LOCATION_RESERVED_ENTER_AMOUNT"
+        },
+        {
+          "index": 386,
+          "token": "LOCATION_ASSIGN_OCCUPATION"
+        },
+        {
+          "index": 387,
+          "token": "LOCATION_OCCUPATION_TAVERN_KEEPER"
+        },
+        {
+          "index": 388,
+          "token": "LOCATION_OCCUPATION_PERFORMER"
+        },
+        {
+          "index": 389,
+          "token": "LOCATION_OCCUPATION_MERCENARY"
+        },
+        {
+          "index": 390,
+          "token": "LOCATION_OCCUPATION_MONSTER_SLAYER"
+        },
+        {
+          "index": 391,
+          "token": "LOCATION_OCCUPATION_SCHOLAR"
+        },
+        {
+          "index": 392,
+          "token": "LOCATION_OCCUPATION_SCRIBE"
+        },
+        {
+          "index": 393,
+          "token": "LOCATION_OCCUPATION_DOCTOR"
+        },
+        {
+          "index": 394,
+          "token": "LOCATION_POSITION_TEMPLE"
+        },
+        {
+          "index": 395,
+          "token": "LOCATION_PERMISSION_ON_VISITORS"
+        },
+        {
+          "index": 396,
+          "token": "LOCATION_PERMISSION_ON_RESIDENTS"
+        },
+        {
+          "index": 397,
+          "token": "LOCATION_PERMISSION_ON_CITIZENS"
+        },
+        {
+          "index": 398,
+          "token": "LOCATION_PERMISSION_ON_MEMBERS"
+        },
+        {
+          "index": 399,
+          "token": "LOCATION_PERMISSION_OFF_VISITORS"
+        },
+        {
+          "index": 400,
+          "token": "LOCATION_PERMISSION_OFF_RESIDENTS"
+        },
+        {
+          "index": 401,
+          "token": "LOCATION_PERMISSION_OFF_CITIZENS"
+        },
+        {
+          "index": 402,
+          "token": "LOCATION_PERMISSION_OFF_MEMBERS"
+        },
+        {
+          "index": 403,
+          "token": "LOCATION_OCCUPATION_REMOVE_WORKER"
+        },
+        {
+          "index": 404,
+          "token": "STOCKPILE_TOOL_SETTINGS"
+        },
+        {
+          "index": 405,
+          "token": "STOCKPILE_TOOLS_ENTER_AMOUNT"
+        },
+        {
+          "index": 406,
+          "token": "STOCKPILE_TOOLS_INCREASE_AMOUNT"
+        },
+        {
+          "index": 407,
+          "token": "STOCKPILE_TOOLS_DECREASE_AMOUNT"
+        },
+        {
+          "index": 408,
+          "token": "STOCKPILE_ON"
+        },
+        {
+          "index": 409,
+          "token": "STOCKPILE_PARTIAL"
+        },
+        {
+          "index": 410,
+          "token": "STOCKPILE_OFF"
+        },
+        {
+          "index": 411,
+          "token": "BURROW_RECENTER"
+        },
+        {
+          "index": 412,
+          "token": "BURROW_SUSPEND_ACTIVE"
+        },
+        {
+          "index": 413,
+          "token": "BURROW_SUSPEND_INACTIVE"
+        },
+        {
+          "index": 414,
+          "token": "BURROW_REPAINT"
+        },
+        {
+          "index": 415,
+          "token": "BURROW_DELETE"
+        },
+        {
+          "index": 416,
+          "token": "BURROW_ADD_UNIT"
+        },
+        {
+          "index": 417,
+          "token": "HAULING_ADD_STOP"
+        },
+        {
+          "index": 418,
+          "token": "HAULING_ADD_VEHICLE"
+        },
+        {
+          "index": 419,
+          "token": "HAULING_VEHICLE_GOOD"
+        },
+        {
+          "index": 420,
+          "token": "HAULING_VEHICLE_MOVING"
+        },
+        {
+          "index": 421,
+          "token": "HAULING_VEHICLE_TROUBLED"
+        },
+        {
+          "index": 422,
+          "token": "HAULING_STOP_ITEMS"
+        },
+        {
+          "index": 423,
+          "token": "HAULING_STOP_LINKS"
+        },
+        {
+          "index": 424,
+          "token": "HAULING_STOP_CONDITIONS"
+        },
+        {
+          "index": 425,
+          "token": "HAULING_RENAME_ROUTE"
+        },
+        {
+          "index": 426,
+          "token": "HAULING_RENAME_STOP"
+        },
+        {
+          "index": 427,
+          "token": "HAULING_DELETE_ROUTE"
+        },
+        {
+          "index": 428,
+          "token": "HAULING_DELETE_STOP"
+        },
+        {
+          "index": 429,
+          "token": "HAULING_STOP_LINKS_GIVE_TO_STOCKPILE"
+        },
+        {
+          "index": 430,
+          "token": "HAULING_STOP_LINKS_TAKE_FROM_STOCKPILE"
+        },
+        {
+          "index": 431,
+          "token": "HAULING_STOP_LINKS_EXCHANGE_WITH_STOCKPILE"
+        },
+        {
+          "index": 432,
+          "token": "HAULING_STOP_LINKS_ADD_GIVE_TO_STOCKPILE"
+        },
+        {
+          "index": 433,
+          "token": "HAULING_STOP_LINKS_ADD_TAKE_FROM_STOCKPILE"
+        },
+        {
+          "index": 434,
+          "token": "HAULING_STOP_LINKS_ADD_EXCHANGE_WITH_STOCKPILE"
+        },
+        {
+          "index": 435,
+          "token": "HAULING_STOP_CONDITIONS_NEW"
+        },
+        {
+          "index": 436,
+          "token": "HAULING_STOP_CONDITIONS_INCREASE"
+        },
+        {
+          "index": 437,
+          "token": "HAULING_STOP_CONDITIONS_DECREASE"
+        },
+        {
+          "index": 438,
+          "token": "HAULING_STOP_CONDITIONS_N"
+        },
+        {
+          "index": 439,
+          "token": "HAULING_STOP_CONDITIONS_S"
+        },
+        {
+          "index": 440,
+          "token": "HAULING_STOP_CONDITIONS_W"
+        },
+        {
+          "index": 441,
+          "token": "HAULING_STOP_CONDITIONS_E"
+        },
+        {
+          "index": 442,
+          "token": "HAULING_STOP_CONDITIONS_PUSH_OFF"
+        },
+        {
+          "index": 443,
+          "token": "HAULING_STOP_CONDITIONS_GUIDE"
+        },
+        {
+          "index": 444,
+          "token": "HAULING_STOP_CONDITIONS_RIDE"
+        },
+        {
+          "index": 445,
+          "token": "HAULING_STOP_CONDITIONS_AT_MOST"
+        },
+        {
+          "index": 446,
+          "token": "HAULING_STOP_CONDITIONS_AT_LEAST"
+        },
+        {
+          "index": 447,
+          "token": "HAULING_STOP_CONDITIONS_DESIRED_ITEMS"
+        },
+        {
+          "index": 448,
+          "token": "HAULING_STOP_CONDITIONS_ANY_ITEMS"
+        },
+        {
+          "index": 449,
+          "token": "HAULING_STOP_CONDITIONS_DELETE"
+        },
+        {
+          "index": 450,
+          "token": "UNIT_SELECTOR_ASSIGNED"
+        },
+        {
+          "index": 451,
+          "token": "UNIT_SELECTOR_UNASSIGNED"
+        },
+        {
+          "index": 452,
+          "token": "BURROW_WORKSHOPS_EVERYWHERE"
+        },
+        {
+          "index": 453,
+          "token": "BURROW_WORKSHOPS_BURROW_ONLY"
+        },
+        {
+          "index": 454,
+          "token": "SQUADS_RECENTER"
+        },
+        {
+          "index": 455,
+          "token": "SQUADS_POSITIONS"
+        },
+        {
+          "index": 456,
+          "token": "SQUADS_SELECTED"
+        },
+        {
+          "index": 457,
+          "token": "SQUADS_NOT_SELECTED"
+        },
+        {
+          "index": 458,
+          "token": "SQUADS_KILL_ORDER"
+        },
+        {
+          "index": 459,
+          "token": "SQUADS_MOVE_ORDER"
+        },
+        {
+          "index": 460,
+          "token": "SQUADS_PATROL_ORDER"
+        },
+        {
+          "index": 461,
+          "token": "SQUADS_DEFEND_BURROW_ORDER"
+        },
+        {
+          "index": 462,
+          "token": "SQUADS_TRAIN_ORDER"
+        },
+        {
+          "index": 463,
+          "token": "SQUADS_CANCEL_ORDER"
+        },
+        {
+          "index": 464,
+          "token": "SQUADS_CHANGE_ALERT"
+        },
+        {
+          "index": 465,
+          "token": "SQUADS_INSPECT"
+        },
+        {
+          "index": 466,
+          "token": "SQUADS_DISBAND"
+        },
+        {
+          "index": 467,
+          "token": "SQUADS_EQUIPMENT_WEAPON_GOOD"
+        },
+        {
+          "index": 468,
+          "token": "SQUADS_EQUIPMENT_SHIELD_GOOD"
+        },
+        {
+          "index": 469,
+          "token": "SQUADS_EQUIPMENT_ARMOR_GOOD"
+        },
+        {
+          "index": 470,
+          "token": "SQUADS_EQUIPMENT_PANTS_GOOD"
+        },
+        {
+          "index": 471,
+          "token": "SQUADS_EQUIPMENT_HELMET_GOOD"
+        },
+        {
+          "index": 472,
+          "token": "SQUADS_EQUIPMENT_GLOVES_GOOD"
+        },
+        {
+          "index": 473,
+          "token": "SQUADS_EQUIPMENT_SHOES_GOOD"
+        },
+        {
+          "index": 474,
+          "token": "SQUADS_EQUIPMENT_QUIVER_GOOD"
+        },
+        {
+          "index": 475,
+          "token": "SQUADS_EQUIPMENT_AMMO_GOOD"
+        },
+        {
+          "index": 476,
+          "token": "SQUADS_EQUIPMENT_BACKPACK_GOOD"
+        },
+        {
+          "index": 477,
+          "token": "SQUADS_EQUIPMENT_FLASK_GOOD"
+        },
+        {
+          "index": 478,
+          "token": "SQUADS_EQUIPMENT_WEAPON_WARNING"
+        },
+        {
+          "index": 479,
+          "token": "SQUADS_EQUIPMENT_SHIELD_WARNING"
+        },
+        {
+          "index": 480,
+          "token": "SQUADS_EQUIPMENT_ARMOR_WARNING"
+        },
+        {
+          "index": 481,
+          "token": "SQUADS_EQUIPMENT_PANTS_WARNING"
+        },
+        {
+          "index": 482,
+          "token": "SQUADS_EQUIPMENT_HELMET_WARNING"
+        },
+        {
+          "index": 483,
+          "token": "SQUADS_EQUIPMENT_GLOVES_WARNING"
+        },
+        {
+          "index": 484,
+          "token": "SQUADS_EQUIPMENT_SHOES_WARNING"
+        },
+        {
+          "index": 485,
+          "token": "SQUADS_EQUIPMENT_QUIVER_WARNING"
+        },
+        {
+          "index": 486,
+          "token": "SQUADS_EQUIPMENT_AMMO_WARNING"
+        },
+        {
+          "index": 487,
+          "token": "SQUADS_EQUIPMENT_BACKPACK_WARNING"
+        },
+        {
+          "index": 488,
+          "token": "SQUADS_EQUIPMENT_FLASK_WARNING"
+        },
+        {
+          "index": 489,
+          "token": "SQUADS_EQUIPMENT_WEAPON_MISSING"
+        },
+        {
+          "index": 490,
+          "token": "SQUADS_EQUIPMENT_SHIELD_MISSING"
+        },
+        {
+          "index": 491,
+          "token": "SQUADS_EQUIPMENT_ARMOR_MISSING"
+        },
+        {
+          "index": 492,
+          "token": "SQUADS_EQUIPMENT_PANTS_MISSING"
+        },
+        {
+          "index": 493,
+          "token": "SQUADS_EQUIPMENT_HELMET_MISSING"
+        },
+        {
+          "index": 494,
+          "token": "SQUADS_EQUIPMENT_GLOVES_MISSING"
+        },
+        {
+          "index": 495,
+          "token": "SQUADS_EQUIPMENT_SHOES_MISSING"
+        },
+        {
+          "index": 496,
+          "token": "SQUADS_EQUIPMENT_QUIVER_MISSING"
+        },
+        {
+          "index": 497,
+          "token": "SQUADS_EQUIPMENT_AMMO_MISSING"
+        },
+        {
+          "index": 498,
+          "token": "SQUADS_EQUIPMENT_BACKPACK_MISSING"
+        },
+        {
+          "index": 499,
+          "token": "SQUADS_EQUIPMENT_FLASK_MISSING"
+        },
+        {
+          "index": 500,
+          "token": "SQUADS_LEFT_ACTIVE"
+        },
+        {
+          "index": 501,
+          "token": "SQUADS_RIGHT_ACTIVE"
+        },
+        {
+          "index": 502,
+          "token": "SQUADS_LEFT_INACTIVE"
+        },
+        {
+          "index": 503,
+          "token": "SQUADS_RIGHT_INACTIVE"
+        },
+        {
+          "index": 504,
+          "token": "FARM_ACTIVE_OPTION"
+        },
+        {
+          "index": 505,
+          "token": "FARM_INACTIVE_OPTION"
+        },
+        {
+          "index": 506,
+          "token": "DISPLAY_FURNITURE_ITEM_ON"
+        },
+        {
+          "index": 507,
+          "token": "DISPLAY_FURNITURE_ITEM_OFF"
+        },
+        {
+          "index": 508,
+          "token": "RECENTER_HOTKEYS"
+        },
+        {
+          "index": 509,
+          "token": "RECENTER_SURFACE"
+        },
+        {
+          "index": 510,
+          "token": "RECENTER_DEEPEST"
+        },
+        {
+          "index": 511,
+          "token": "RECENTER_RECENTER"
+        },
+        {
+          "index": 512,
+          "token": "RECENTER_SET_LOCATION"
+        },
+        {
+          "index": 513,
+          "token": "RECENTER_REMOVE_OR_CLEAR"
+        },
+        {
+          "index": 514,
+          "token": "ARENA_CREATE_CREATURE"
+        },
+        {
+          "index": 515,
+          "token": "ARENA_INCREASE_TEAM"
+        },
+        {
+          "index": 516,
+          "token": "ARENA_DECREASE_TEAM"
+        },
+        {
+          "index": 517,
+          "token": "ARENA_INCREASE_SKILL"
+        },
+        {
+          "index": 518,
+          "token": "ARENA_DECREASE_SKILL"
+        },
+        {
+          "index": 519,
+          "token": "ARENA_INCREASE_EQUIPMENT"
+        },
+        {
+          "index": 520,
+          "token": "ARENA_DECREASE_EQUIPMENT"
+        },
+        {
+          "index": 521,
+          "token": "ARENA_CONDITION_ASSIGNED"
+        },
+        {
+          "index": 522,
+          "token": "ARENA_CONDITION_UNASSIGNED"
+        },
+        {
+          "index": 523,
+          "token": "ARENA_FLUIDS"
+        },
+        {
+          "index": 524,
+          "token": "ARENA_FLUIDS_WATER_UNSELECTED"
+        },
+        {
+          "index": 525,
+          "token": "ARENA_FLUIDS_WATER_SELECTED"
+        },
+        {
+          "index": 526,
+          "token": "ARENA_FLUIDS_MAGMA_UNSELECTED"
+        },
+        {
+          "index": 527,
+          "token": "ARENA_FLUIDS_MAGMA_SELECTED"
+        },
+        {
+          "index": 528,
+          "token": "ARENA_FLUIDS_REMOVE_UNSELECTED"
+        },
+        {
+          "index": 529,
+          "token": "ARENA_FLUIDS_REMOVE_SELECTED"
+        },
+        {
+          "index": 530,
+          "token": "ARENA_FLUIDS_SNOW_UNSELECTED"
+        },
+        {
+          "index": 531,
+          "token": "ARENA_FLUIDS_SNOW_SELECTED"
+        },
+        {
+          "index": 532,
+          "token": "ARENA_FLUIDS_MUD_UNSELECTED"
+        },
+        {
+          "index": 533,
+          "token": "ARENA_FLUIDS_MUD_SELECTED"
+        },
+        {
+          "index": 534,
+          "token": "ARENA_WEATHER"
+        },
+        {
+          "index": 535,
+          "token": "ARENA_CREATE_TREE"
+        },
+        {
+          "index": 536,
+          "token": "ARENA_ENTER_AMOUNT"
+        },
+        {
+          "index": 537,
+          "token": "CONTRACT_LIST"
+        },
+        {
+          "index": 538,
+          "token": "EXPAND_LIST"
+        },
+        {
+          "index": 539,
+          "token": "SELECT_ALL"
+        },
+        {
+          "index": 540,
+          "token": "ADVENTURE_INTERACT"
+        },
+        {
+          "index": 541,
+          "token": "ADVENTURE_SEARCH"
+        },
+        {
+          "index": 542,
+          "token": "ADVENTURE_CRAFT"
+        },
+        {
+          "index": 543,
+          "token": "ADVENTURE_CLIMB"
+        },
+        {
+          "index": 544,
+          "token": "ADVENTURE_JUMP"
+        },
+        {
+          "index": 545,
+          "token": "ADVENTURE_TALK"
+        },
+        {
+          "index": 546,
+          "token": "ADVENTURE_PERFORM"
+        },
+        {
+          "index": 547,
+          "token": "ADVENTURE_STRIKE"
+        },
+        {
+          "index": 548,
+          "token": "ADVENTURE_WRESTLE"
+        },
+        {
+          "index": 549,
+          "token": "ADVENTURE_SHOOT"
+        },
+        {
+          "index": 550,
+          "token": "ADVENTURE_ABILITY"
+        },
+        {
+          "index": 551,
+          "token": "ADVENTURE_STATUS"
+        },
+        {
+          "index": 552,
+          "token": "ADVENTURE_LOG"
+        },
+        {
+          "index": 553,
+          "token": "ADVENTURE_INVENTORY"
+        },
+        {
+          "index": 554,
+          "token": "ADVENTURE_MOVEMENT_OPTIONS"
+        },
+        {
+          "index": 555,
+          "token": "ADVENTURE_COMBAT_OPTIONS"
+        },
+        {
+          "index": 556,
+          "token": "ADVENTURE_TRAVEL"
+        },
+        {
+          "index": 557,
+          "token": "ADVENTURE_SLEEP"
+        },
+        {
+          "index": 558,
+          "token": "ADVENTURE_BUILD"
+        },
+        {
+          "index": 559,
+          "token": "ADVENTURE_INVENTORY_DROP_INACTIVE"
+        },
+        {
+          "index": 560,
+          "token": "ADVENTURE_INVENTORY_DROP_ACTIVE"
+        },
+        {
+          "index": 561,
+          "token": "ADVENTURE_INVENTORY_WEAR_INACTIVE"
+        },
+        {
+          "index": 562,
+          "token": "ADVENTURE_INVENTORY_WEAR_ACTIVE"
+        },
+        {
+          "index": 563,
+          "token": "ADVENTURE_INVENTORY_REMOVE_INACTIVE"
+        },
+        {
+          "index": 564,
+          "token": "ADVENTURE_INVENTORY_REMOVE_ACTIVE"
+        },
+        {
+          "index": 565,
+          "token": "ADVENTURE_INVENTORY_PUT_INTO_INACTIVE"
+        },
+        {
+          "index": 566,
+          "token": "ADVENTURE_INVENTORY_PUT_INTO_ACTIVE"
+        },
+        {
+          "index": 567,
+          "token": "ADVENTURE_INVENTORY_EAT_DRINK_INACTIVE"
+        },
+        {
+          "index": 568,
+          "token": "ADVENTURE_INVENTORY_EAT_DRINK_ACTIVE"
+        },
+        {
+          "index": 569,
+          "token": "ADVENTURE_INVENTORY_INTERACT_INACTIVE"
+        },
+        {
+          "index": 570,
+          "token": "ADVENTURE_INVENTORY_INTERACT_ACTIVE"
+        },
+        {
+          "index": 571,
+          "token": "ADVENTURE_COMBAT_ICON_WRESTLE"
+        },
+        {
+          "index": 572,
+          "token": "ADVENTURE_COMBAT_ICON_GRAB"
+        },
+        {
+          "index": 573,
+          "token": "ADVENTURE_COMBAT_ICON_JOINT_LOCK"
+        },
+        {
+          "index": 574,
+          "token": "ADVENTURE_COMBAT_ICON_CHOKE"
+        },
+        {
+          "index": 575,
+          "token": "ADVENTURE_COMBAT_ICON_TAKEDOWN"
+        },
+        {
+          "index": 576,
+          "token": "ADVENTURE_COMBAT_ICON_THROW"
+        },
+        {
+          "index": 577,
+          "token": "ADVENTURE_COMBAT_ICON_PINCH"
+        },
+        {
+          "index": 578,
+          "token": "ADVENTURE_COMBAT_ICON_GOUGE"
+        },
+        {
+          "index": 579,
+          "token": "ADVENTURE_COMBAT_ICON_BREAK"
+        },
+        {
+          "index": 580,
+          "token": "ADVENTURE_COMBAT_ICON_LOOSEN"
+        },
+        {
+          "index": 581,
+          "token": "ADVENTURE_COMBAT_ICON_SHAKE"
+        },
+        {
+          "index": 582,
+          "token": "ADVENTURE_COMBAT_ICON_STRANGLE"
+        },
+        {
+          "index": 583,
+          "token": "ADVENTURE_COMBAT_ICON_LATCHED_ON"
+        },
+        {
+          "index": 584,
+          "token": "ADVENTURE_COMBAT_ICON_BP_GRASP"
+        },
+        {
+          "index": 585,
+          "token": "ADVENTURE_COMBAT_ICON_BP_STANCE"
+        },
+        {
+          "index": 586,
+          "token": "ADVENTURE_COMBAT_ICON_BP_HEAD"
+        },
+        {
+          "index": 587,
+          "token": "ADVENTURE_COMBAT_ICON_BP_UPPERBODY"
+        },
+        {
+          "index": 588,
+          "token": "ADVENTURE_COMBAT_ICON_BP_LOWERBODY"
+        },
+        {
+          "index": 589,
+          "token": "ADVENTURE_COMBAT_ICON_BP_SIGHT"
+        },
+        {
+          "index": 590,
+          "token": "ADVENTURE_COMBAT_ICON_BP_LIMB_GRASP"
+        },
+        {
+          "index": 591,
+          "token": "ADVENTURE_COMBAT_ICON_BP_LIMB_STANCE"
+        },
+        {
+          "index": 592,
+          "token": "ADVENTURE_COMBAT_ICON_BP_CIRCULATION"
+        },
+        {
+          "index": 593,
+          "token": "ADVENTURE_COMBAT_ICON_BP_BREATHE"
+        },
+        {
+          "index": 594,
+          "token": "ADVENTURE_COMBAT_ICON_BP_GUTS"
+        },
+        {
+          "index": 595,
+          "token": "ADVENTURE_COMBAT_ICON_BP_THROAT"
+        },
+        {
+          "index": 596,
+          "token": "ADVENTURE_COMBAT_ICON_BP_JOINT"
+        },
+        {
+          "index": 597,
+          "token": "ADVENTURE_COMBAT_ICON_BP_INTERNAL"
+        },
+        {
+          "index": 598,
+          "token": "ADVENTURE_COMBAT_ICON_BP_DIGIT"
+        },
+        {
+          "index": 599,
+          "token": "ADVENTURE_COMBAT_ICON_BP_SMELL"
+        },
+        {
+          "index": 600,
+          "token": "ADVENTURE_COMBAT_ICON_BP_HEAR"
+        },
+        {
+          "index": 601,
+          "token": "ADVENTURE_COMBAT_ICON_BP_THOUGHT"
+        },
+        {
+          "index": 602,
+          "token": "ADVENTURE_COMBAT_ICON_BP_NERVOUS"
+        },
+        {
+          "index": 603,
+          "token": "ADVENTURE_COMBAT_ICON_BP_FLIER"
+        },
+        {
+          "index": 604,
+          "token": "ADVENTURE_COMBAT_ICON_QUICK"
+        },
+        {
+          "index": 605,
+          "token": "ADVENTURE_COMBAT_ICON_HEAVY"
+        },
+        {
+          "index": 606,
+          "token": "ADVENTURE_COMBAT_ICON_WILD"
+        },
+        {
+          "index": 607,
+          "token": "ADVENTURE_COMBAT_ICON_PRECISE"
+        },
+        {
+          "index": 608,
+          "token": "ADVENTURE_COMBAT_ICON_CHARGE"
+        },
+        {
+          "index": 609,
+          "token": "ADVENTURE_COMBAT_ICON_MULTI"
+        },
+        {
+          "index": 610,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_STAB"
+        },
+        {
+          "index": 611,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_SLASH"
+        },
+        {
+          "index": 612,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_SLAP"
+        },
+        {
+          "index": 613,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_HACK"
+        },
+        {
+          "index": 614,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_BASH"
+        },
+        {
+          "index": 615,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_LASH"
+        },
+        {
+          "index": 616,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_POMMEL_STRIKE"
+        },
+        {
+          "index": 617,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_PUNCH"
+        },
+        {
+          "index": 618,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_KICK"
+        },
+        {
+          "index": 619,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_BITE"
+        },
+        {
+          "index": 620,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_STING"
+        },
+        {
+          "index": 621,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_PINCER"
+        },
+        {
+          "index": 622,
+          "token": "ADVENTURE_COMBAT_ICON_VERB_PUSH"
+        },
+        {
+          "index": 623,
+          "token": "ADVENTURE_COMBAT_PREF_STRIKE_ON"
+        },
+        {
+          "index": 624,
+          "token": "ADVENTURE_COMBAT_PREF_CHARGE_ON"
+        },
+        {
+          "index": 625,
+          "token": "ADVENTURE_COMBAT_PREF_WRESTLE_ON"
+        },
+        {
+          "index": 626,
+          "token": "ADVENTURE_COMBAT_PREF_ACCORDING_ON"
+        },
+        {
+          "index": 627,
+          "token": "ADVENTURE_COMBAT_PREF_DODGE_MOVE_ON"
+        },
+        {
+          "index": 628,
+          "token": "ADVENTURE_COMBAT_PREF_DODGE_STAND_ON"
+        },
+        {
+          "index": 629,
+          "token": "ADVENTURE_COMBAT_PREF_CHARGE_DEF_MOVE_ON"
+        },
+        {
+          "index": 630,
+          "token": "ADVENTURE_COMBAT_PREF_CHARGE_DEF_STAND_ON"
+        },
+        {
+          "index": 631,
+          "token": "ADVENTURE_COMBAT_PREF_CHARGE_DEF_ACCORDING_ON"
+        },
+        {
+          "index": 632,
+          "token": "ADVENTURE_COMBAT_PREF_STRIKE_OFF"
+        },
+        {
+          "index": 633,
+          "token": "ADVENTURE_COMBAT_PREF_CHARGE_OFF"
+        },
+        {
+          "index": 634,
+          "token": "ADVENTURE_COMBAT_PREF_WRESTLE_OFF"
+        },
+        {
+          "index": 635,
+          "token": "ADVENTURE_COMBAT_PREF_ACCORDING_OFF"
+        },
+        {
+          "index": 636,
+          "token": "ADVENTURE_COMBAT_PREF_DODGE_MOVE_OFF"
+        },
+        {
+          "index": 637,
+          "token": "ADVENTURE_COMBAT_PREF_DODGE_STAND_OFF"
+        },
+        {
+          "index": 638,
+          "token": "ADVENTURE_COMBAT_PREF_CHARGE_DEF_MOVE_OFF"
+        },
+        {
+          "index": 639,
+          "token": "ADVENTURE_COMBAT_PREF_CHARGE_DEF_STAND_OFF"
+        },
+        {
+          "index": 640,
+          "token": "ADVENTURE_COMBAT_PREF_CHARGE_DEF_ACCORDING_OFF"
+        },
+        {
+          "index": 641,
+          "token": "ADVENTURE_COMPANIONS"
+        },
+        {
+          "index": 642,
+          "token": "ADVENTURE_COMPANIONS_ASSUME_CONTROL"
+        },
+        {
+          "index": 643,
+          "token": "ADVENTURE_COMPANIONS_FOLLOW_LEADER"
+        },
+        {
+          "index": 644,
+          "token": "ADVENTURE_COMPANIONS_MANUAL_CONTROL"
+        },
+        {
+          "index": 645,
+          "token": "ADVENTURE_RECENTER"
+        },
+        {
+          "index": 646,
+          "token": "ADVENTURE_GO_UP_STAIRS"
+        },
+        {
+          "index": 647,
+          "token": "ADVENTURE_GO_DOWN_STAIRS"
+        },
+        {
+          "index": 648,
+          "token": "ADVENTURE_YIELDED_YES"
+        },
+        {
+          "index": 649,
+          "token": "ADVENTURE_YIELDED_NO"
+        },
+        {
+          "index": 650,
+          "token": "ADVENTURE_WEAPONS_SHEATHED"
+        },
+        {
+          "index": 651,
+          "token": "ADVENTURE_WEAPONS_DRAWN"
+        },
+        {
+          "index": 652,
+          "token": "ADVENTURE_WEAPONS_NONE"
+        },
+        {
+          "index": 653,
+          "token": "ADVENTURE_YOU_ARE_PROJECTILE"
+        },
+        {
+          "index": 654,
+          "token": "ADVENTURE_YOU_ARE_RIDING"
+        },
+        {
+          "index": 655,
+          "token": "ADVENTURE_STANDING"
+        },
+        {
+          "index": 656,
+          "token": "ADVENTURE_PRONE"
+        },
+        {
+          "index": 657,
+          "token": "ADVENTURE_TRAVEL_GO_UP"
+        },
+        {
+          "index": 658,
+          "token": "ADVENTURE_TRAVEL_GO_DOWN"
+        },
+        {
+          "index": 659,
+          "token": "ADVENTURE_TRAVEL_STOP_TRAVELING"
+        },
+        {
+          "index": 660,
+          "token": "ADVENTURE_TRAVEL_SNEAK_ON"
+        },
+        {
+          "index": 661,
+          "token": "ADVENTURE_TRAVEL_SNEAK_OFF"
+        },
+        {
+          "index": 662,
+          "token": "ADVENTURE_TRAVEL_MAP"
+        },
+        {
+          "index": 663,
+          "token": "ADVENTURE_TRAVEL_SLEEP"
+        },
+        {
+          "index": 664,
+          "token": "ADVENTURE_TRAVEL_CLOUDS_ON"
+        },
+        {
+          "index": 665,
+          "token": "ADVENTURE_TRAVEL_CLOUDS_OFF"
+        },
+        {
+          "index": 666,
+          "token": "ADVENTURE_TRAVEL_TRACKS_ON"
+        },
+        {
+          "index": 667,
+          "token": "ADVENTURE_TRAVEL_TRACKS_OFF"
+        },
+        {
+          "index": 668,
+          "token": "ADVENTURE_TRAVEL_LOG"
+        },
+        {
+          "index": 669,
+          "token": "ADVENTURE_INTERACTION_ICON_RETRACT_INTO_BP"
+        },
+        {
+          "index": 670,
+          "token": "ADVENTURE_INTERACTION_ICON_UNRETRACT_FROM_BP"
+        },
+        {
+          "index": 671,
+          "token": "ADVENTURE_INTERACTION_ICON_ROOT_AROUND"
+        },
+        {
+          "index": 672,
+          "token": "ADVENTURE_INTERACTION_ICON_LAUNCH_ICE_BOLT"
+        },
+        {
+          "index": 673,
+          "token": "ADVENTURE_INTERACTION_ICON_VANISH"
+        },
+        {
+          "index": 674,
+          "token": "ADVENTURE_INTERACTION_ICON_PROPEL_AWAY"
+        },
+        {
+          "index": 675,
+          "token": "ADVENTURE_INTERACTION_ICON_RAISE_FOG"
+        },
+        {
+          "index": 676,
+          "token": "ADVENTURE_INTERACTION_ICON_CAUSE_PAIN"
+        },
+        {
+          "index": 677,
+          "token": "ADVENTURE_INTERACTION_ICON_BLISTER"
+        },
+        {
+          "index": 678,
+          "token": "ADVENTURE_INTERACTION_ICON_PARALYZE"
+        },
+        {
+          "index": 679,
+          "token": "ADVENTURE_INTERACTION_ICON_CAUSE_BLEEDING"
+        },
+        {
+          "index": 680,
+          "token": "ADVENTURE_INTERACTION_ICON_SICKEN_COUGH_BLOOD"
+        },
+        {
+          "index": 681,
+          "token": "ADVENTURE_INTERACTION_ICON_SICKEN_VOMIT_BLOOD"
+        },
+        {
+          "index": 682,
+          "token": "ADVENTURE_INTERACTION_ICON_SICKEN_NAUSEA"
+        },
+        {
+          "index": 683,
+          "token": "ADVENTURE_INTERACTION_ICON_ROT"
+        },
+        {
+          "index": 684,
+          "token": "ADVENTURE_INTERACTION_ICON_BLIND"
+        },
+        {
+          "index": 685,
+          "token": "ADVENTURE_INTERACTION_ICON_SUFFOCATE"
+        },
+        {
+          "index": 686,
+          "token": "ADVENTURE_INTERACTION_ICON_CAUSE_DIZZINESS"
+        },
+        {
+          "index": 687,
+          "token": "ADVENTURE_INTERACTION_ICON_HURL_FIREBALL"
+        },
+        {
+          "index": 688,
+          "token": "ADVENTURE_INTERACTION_ICON_SPRAY_FIRE_JET"
+        },
+        {
+          "index": 689,
+          "token": "ADVENTURE_INTERACTION_ICON_SPRAY_WEB"
+        },
+        {
+          "index": 690,
+          "token": "ADVENTURE_INTERACTION_ICON_SPRAY_DUST"
+        },
+        {
+          "index": 691,
+          "token": "ADVENTURE_INTERACTION_ICON_SPRAY_VAPOR"
+        },
+        {
+          "index": 692,
+          "token": "ADVENTURE_INTERACTION_ICON_SPRAY_GAS"
+        },
+        {
+          "index": 693,
+          "token": "ADVENTURE_INTERACTION_ICON_SPIT_SOLID_GLOB"
+        },
+        {
+          "index": 694,
+          "token": "ADVENTURE_INTERACTION_ICON_SPIT_LIQUID_GLOB"
+        },
+        {
+          "index": 695,
+          "token": "ADVENTURE_INTERACTION_ICON_EMIT_DUST"
+        },
+        {
+          "index": 696,
+          "token": "ADVENTURE_INTERACTION_ICON_EMIT_VAPOR"
+        },
+        {
+          "index": 697,
+          "token": "ADVENTURE_INTERACTION_ICON_EMIT_GAS"
+        },
+        {
+          "index": 698,
+          "token": "ADVENTURE_INTERACTION_ICON_TRANSFORM"
+        },
+        {
+          "index": 699,
+          "token": "ADVENTURE_INTERACTION_ICON_ANIMATE_CORPSE"
+        },
+        {
+          "index": 700,
+          "token": "ADVENTURE_INTERACTION_ICON_RAISE_INTELLIGENT_UNDEAD"
+        },
+        {
+          "index": 701,
+          "token": "ADVENTURE_INTERACTION_ICON_SUMMON_BOGEYMAN"
+        },
+        {
+          "index": 702,
+          "token": "ADVENTURE_INTERACTION_ICON_SUMMON_NIGHTMARE"
+        },
+        {
+          "index": 703,
+          "token": "ADVENTURE_INTERACTION_ICON_CREATE_GHOUL"
+        },
+        {
+          "index": 704,
+          "token": "ADVENTURE_INTERACTION_ICON_LUCK_CURSE"
+        },
+        {
+          "index": 705,
+          "token": "ADVENTURE_GO_DOWN_RAMP_N"
+        },
+        {
+          "index": 706,
+          "token": "ADVENTURE_GO_DOWN_RAMP_S"
+        },
+        {
+          "index": 707,
+          "token": "ADVENTURE_GO_DOWN_RAMP_W"
+        },
+        {
+          "index": 708,
+          "token": "ADVENTURE_GO_DOWN_RAMP_E"
+        },
+        {
+          "index": 709,
+          "token": "ADVENTURE_GO_DOWN_RAMP_NW"
+        },
+        {
+          "index": 710,
+          "token": "ADVENTURE_GO_DOWN_RAMP_NE"
+        },
+        {
+          "index": 711,
+          "token": "ADVENTURE_GO_DOWN_RAMP_SW"
+        },
+        {
+          "index": 712,
+          "token": "ADVENTURE_GO_DOWN_RAMP_SE"
+        },
+        {
+          "index": 713,
+          "token": "CONTRACT_LIST_SMALL"
+        },
+        {
+          "index": 714,
+          "token": "EXPAND_LIST_SMALL"
+        }
+      ]
+    },
+    {
+      "field": "texpos_button_building_info",
+      "tokens": [
+        {
+          "index": 0,
+          "token": "BUILDING_INFO_DOOR_FORBIDDEN_ACTIVE"
+        },
+        {
+          "index": 1,
+          "token": "BUILDING_INFO_DOOR_FORBIDDEN"
+        },
+        {
+          "index": 2,
+          "token": "BUILDING_INFO_DOOR_PERMITTED_ACTIVE"
+        },
+        {
+          "index": 3,
+          "token": "BUILDING_INFO_DOOR_PERMITTED"
+        },
+        {
+          "index": 4,
+          "token": "BUILDING_INFO_ACTIVE"
+        },
+        {
+          "index": 5,
+          "token": "BUILDING_INFO_INACTIVE"
+        },
+        {
+          "index": 6,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_PRACTICE_FIRE_ACTIVE"
+        },
+        {
+          "index": 7,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_PRACTICE_FIRE"
+        },
+        {
+          "index": 8,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_FIRE_AT_WILL_ACTIVE"
+        },
+        {
+          "index": 9,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_FIRE_AT_WILL"
+        },
+        {
+          "index": 10,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_PREPARE_TO_FIRE_ACTIVE"
+        },
+        {
+          "index": 11,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_PREPARE_TO_FIRE"
+        },
+        {
+          "index": 12,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_KEEP_LOADED_ACTIVE"
+        },
+        {
+          "index": 13,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_KEEP_LOADED"
+        },
+        {
+          "index": 14,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_NOT_IN_USE_ACTIVE"
+        },
+        {
+          "index": 15,
+          "token": "BUILDING_INFO_SIEGE_ENGINE_NOT_IN_USE"
+        },
+        {
+          "index": 16,
+          "token": "BUILDING_INFO_ANIMAL_TRAP_MEAT_ACTIVE"
+        },
+        {
+          "index": 17,
+          "token": "BUILDING_INFO_ANIMAL_TRAP_MEAT"
+        },
+        {
+          "index": 18,
+          "token": "BUILDING_INFO_ANIMAL_TRAP_FISH_ACTIVE"
+        },
+        {
+          "index": 19,
+          "token": "BUILDING_INFO_ANIMAL_TRAP_FISH"
+        },
+        {
+          "index": 20,
+          "token": "BUILDING_INFO_ANIMAL_TRAP_GEM_ACTIVE"
+        },
+        {
+          "index": 21,
+          "token": "BUILDING_INFO_ANIMAL_TRAP_GEM"
+        },
+        {
+          "index": 22,
+          "token": "BUILDING_INFO_ANIMAL_TRAP_NONE_ACTIVE"
+        },
+        {
+          "index": 23,
+          "token": "BUILDING_INFO_ANIMAL_TRAP_NONE"
+        }
+      ]
+    }
+  ]
+}

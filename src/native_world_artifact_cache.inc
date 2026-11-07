@@ -4,25 +4,8 @@
 static std::optional<std::vector<std::string>> native_world_artifact_description_lines() {
     const uintptr_t base = native_history_profile_base();
     if (!base) return std::nullopt;
-    const auto current_screen = [&]() -> uintptr_t {
-        const uintptr_t view = native_reference_address(base, native_history_layout::gview_rva);
-        if (!view || view > UINTPTR_MAX - 8) return 0;
-        uintptr_t screen = view + 8;
-        std::array<uintptr_t, 64> visited{};
-        for (size_t depth = 0; depth < visited.size(); ++depth) {
-            if (!screen || screen > UINTPTR_MAX - 8 ||
-                    std::find(visited.begin(), visited.begin() + depth, screen) !=
-                        visited.begin() + depth) return 0;
-            visited[depth] = screen;
-            uintptr_t child = 0;
-            if (!native_history_copy(screen + 8, child)) return 0;
-            if (child) { screen = child; continue; }
-            return native_history_object_is(screen, "viewscreen_worldst") ? screen : 0;
-        }
-        return 0;
-    };
-    const uintptr_t screen = current_screen();
-    if (!screen) return std::nullopt;
+    const uintptr_t screen = native_current_viewscreen();
+    if (!screen || !native_history_object_is(screen, "viewscreen_worldst")) return std::nullopt;
     const uintptr_t artifact_field = native_history_object_member(screen,
         "viewscreen_worldst", "last_hover_artifact", sizeof(uintptr_t));
     const uintptr_t lines_field = native_history_object_member(screen,
@@ -62,7 +45,7 @@ static std::optional<std::vector<std::string>> native_world_artifact_description
     NativeBorrowedVector<uintptr_t> current_lines;
     // No state survives this call. Reject selection changes, replaced
     // vectors and detached world screens instead of accepting a stale cache.
-    if (!bytes || current_screen() != screen ||
+    if (!bytes || native_current_viewscreen() != screen ||
             !native_history_copy(artifact_field, current_artifact) ||
             current_artifact != artifact ||
             !native_history_copy(item_field, current_item) || current_item != item ||

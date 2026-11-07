@@ -4,6 +4,7 @@ static NativeUiLayerTarget g_native_character_target;
 
 static void native_character_paint_grid(NativeUiLayerStorage &layer,
         SDL_Renderer *renderer, const std::vector<Match> &matches, const SDL_Rect *panel) {
+    NativeUiPaintCompletion::Attempt completed(layer);
 #ifdef _WIN32
     // Select the character header for every native SDL input, including
     // RIP-relative helpers; the main page's selected header stays untouched.
@@ -11,9 +12,11 @@ static void native_character_paint_grid(NativeUiLayerStorage &layer,
         ReadCacheScope() { NativeUiReadScope::invalidate_reads(); }
         ~ReadCacheScope() { NativeUiReadScope::invalidate_reads(); }
     } reads;
-    NativeDfhackLayerRendererGrid input(layer.native_renderer, *layer.foreground.graphics());
+    NativeDfhackLayerRendererGrid input(layer.native_renderer, *layer.foreground.graphics(), false);
+    if (!input.valid()) return;
 #endif
     native_ui_paint_grid(layer, renderer, matches, panel);
+    completed.complete = true;
 }
 
 #ifdef _WIN32
@@ -23,15 +26,14 @@ using NativeCharacterDrawFn = void (*)(void *, uint32_t, int32_t, int32_t);
 static bool native_character_frames(const void *sheet, const graphicst &gps,
         int32_t screen_right, std::vector<SDL_Rect> &frames, SDL_Rect &panel) {
     int32_t context = -1, grid_x = gps.dimx, grid_y = gps.dimy, width_percent = 100;
-    if (!native_history_copy(reinterpret_cast<uintptr_t>(sheet) + 4, context)) return false;
+    if (!native_history_copy(native_character_sheet_field(reinterpret_cast<uintptr_t>(sheet), 4, "context", 4), context)) return false;
     const auto *settings = native_ui_settings_source();
-    // The normal native entry loads init.display.grid_y at +0x18. Its
-    // prepare-carefully branch also reads grid_x +0x14 and width +0x3c.
+    // Resolve the display fields independently: native initst can insert
+    // members without changing the meanings of these reference coordinates.
     if (settings) {
-        const uintptr_t init = reinterpret_cast<uintptr_t>(settings);
-        if (!native_history_copy(init + 0x14, grid_x) ||
-                !native_history_copy(init + 0x18, grid_y) ||
-                !native_history_copy(init + 0x3c, width_percent)) return false;
+        if (!native_ui_settings_read_member(settings, 0x14, grid_x) ||
+                !native_ui_settings_read_member(settings, 0x18, grid_y) ||
+                !native_ui_settings_read_member(settings, 0x3c, width_percent)) return false;
     }
     int64_t left = int64_t(screen_right) - 97;
     int64_t right = int64_t(screen_right) - 37;
@@ -59,7 +61,7 @@ static bool native_character_frames(const void *sheet, const graphicst &gps,
     frames = {{body_left, body_top, body_right - body_left + 1, body_bottom - body_top + 1}};
     panel = frames.front();
     NativeBorrowedVector<int32_t> tabs;
-    if (!native_history_copy(reinterpret_cast<uintptr_t>(sheet) + 0x90, tabs) ||
+    if (!native_history_copy(native_character_sheet_field(reinterpret_cast<uintptr_t>(sheet), 0x90, "tab"), tabs) ||
             !tabs.valid(65536)) return false;
     if (tabs.size()) {
         // 0x151786/0x15191b places each sheet selector at right+1..+4;
@@ -86,10 +88,12 @@ static void native_character_draw(void *sheet, uint32_t tick, int32_t screen_lef
     NativeInputCallbackScope callback;
     const auto original = reinterpret_cast<NativeCharacterDrawFn>(g_native_character_draw_hook.original);
     if (!original) return;
+    NativeCharacterDrawOwnerScope owner_scope(sheet);
     TranslationStateScope translation;
     // Native sheet helpers and inlined stores address the executable's gps.
     // Bind that exact writer even when a parent owns another private layer.
-    auto *gps = native_graphics_owner();
+    auto *gps = native_graphics_owner_view();
+    auto *native = native_graphics_owner();
     auto &layer = g_native_character_layer;
     bool isolate = reinterpret_cast<uintptr_t>(sheet) == g_native_character_owner &&
         native_character_open() && gps && gps->screen && gps->screen_top &&
@@ -121,23 +125,38 @@ static void native_character_draw(void *sheet, uint32_t tick, int32_t screen_lef
     }
     layer.frames = std::move(frames);
     g_native_character_panel = panel;
-    native_history_copy(g_native_character_owner + 4, g_native_character_context);
-    native_history_copy(g_native_character_owner + 0xc, g_native_character_active_id);
-    native_history_copy(g_native_character_owner + 0xc0, g_native_character_active_sub_tab);
+    native_history_copy(native_character_sheet_field(g_native_character_drawing_sheet, 4, "context", 4), g_native_character_context);
+    native_history_copy(native_character_sheet_field(g_native_character_drawing_sheet, 0xc, "active_id", 4), g_native_character_active_id);
+    native_history_copy(native_character_sheet_field(g_native_character_drawing_sheet, 0xc0, "active_sub_tab", 4), g_native_character_active_sub_tab);
     g_native_character_sources.adopt_pending_events();
     g_native_character_background_grid = gps->screen;
     g_native_character_background_top_grid = gps->screen_top;
     {
-        NativeUiGridBinding output(gps, *layer.foreground.graphics());
+        std::optional<NativeUiGridBinding> output;
+        if (!native_ui_bind_grid(output, native, *layer.foreground.graphics())) {
+            layer.ready = false;
+            g_native_character_background_grid = nullptr;
+            g_native_character_background_top_grid = nullptr;
+            callback.call_native([&] { original(sheet, tick, screen_left, screen_right); });
+            return;
+        }
         NativeInfoCapturedTextScope captions(g_native_character_text);
         NativeCharacterCapturedTextScope sources;
         struct WriteScope {
             const graphicst *previous = g_native_character_write_graphics;
-            explicit WriteScope(const graphicst *graphics) { g_native_character_write_graphics = graphics; }
-            ~WriteScope() { g_native_character_write_graphics = previous; }
+            graphicst *previous_read = g_native_graphics_read_view;
+            explicit WriteScope(graphicst *graphics) {
+                g_native_character_write_graphics = graphics;
+                g_native_graphics_read_view = graphics;
+            }
+            ~WriteScope() {
+                g_native_character_write_graphics = previous;
+                g_native_graphics_read_view = previous_read;
+            }
         } writing(gps);
         callback.call_native([&] { original(sheet, tick, screen_left, screen_right); });
-        layer.foreground.graphics()->top_in_use = gps->top_in_use;
+        native_graphics_read_member(native, offsetof(graphicst, top_in_use),
+            layer.foreground.graphics()->top_in_use);
     }
     layer.ready = true;
     NativeUiReadScope::invalidate_reads();
@@ -196,6 +215,14 @@ static void native_character_present_layer(SDL_Renderer *renderer,
 #else
     if (layer.renderer != renderer) return;
 #endif
+    auto &cache = g_native_character_target.frame_cache;
+    struct CompositeGuard {
+        NativeUiLayerFrameCache &value;
+        bool completed = false;
+        ~CompositeGuard() { if (!completed) value.invalidate(); }
+    } composite{cache};
+    NativeUiRendererContract raster;
+    if (!raster.resolve(layer.native_renderer, renderer)) return;
     const auto *gps = layer.foreground.graphics();
     const int width = gps->screen_pixel_x, height = gps->screen_pixel_y;
     if (width <= 0 || height <= 0 || gps->tile_pixel_x <= 0 || gps->tile_pixel_y <= 0) return;
@@ -219,40 +246,51 @@ static void native_character_present_layer(SDL_Renderer *renderer,
         DrawingScope() { g_drawing_overlay = true; }
         ~DrawingScope() { g_drawing_overlay = previous; }
     } drawing;
-    if (!g_native_character_target.prepare(renderer, width, height)) return;
+    const auto draw_complete = [&] {
+        NativeUiPaintCompletion completion(layer);
+        try { draw_character(renderer); }
+        catch (...) { return false; }
+        return completion.complete();
+    };
+    if (!g_native_character_target.prepare(renderer, width, height)) {
+        if (state.bind_composite(width, height)) draw_complete();
+        return;
+    }
     std::optional<std::string> context;
     try { context = native_ui_layer_cache_context(layer); } catch (...) {}
-    auto &cache = g_native_character_target.frame_cache;
     const bool retained = context && cache.matches(layer, renderer, width, height,
         draw_character, *context, true);
+    bool captured = false;
     if (!retained) {
         cache.invalidate();
-        bool captured = false;
         if (context) {
             try { cache.capture(layer, renderer, width, height, draw_character, *context, true); captured = true; }
             catch (...) {}
         }
-        if (!state.bind(g_native_character_target.texture, width, height)) return;
-        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+        if (!state.bind(g_native_character_target.texture, width, height)) {
+            if (state.bind_composite(width, height)) draw_complete();
+            return;
+        }
+        if (SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE) != 0 ||
+                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0) != 0) return;
         for (const auto &box : pixels) {
             if (SDL_RenderSetClipRect(renderer, &box) != 0 ||
                     SDL_RenderFillRect(renderer, &box) != 0) return;
         }
         // The callback paints only layer.frames. Keep its native coordinates
         // while the private target prevents any writes to the shared output.
-        SDL_RenderSetClipRect(renderer, nullptr);
-        draw_character(renderer);
-        if (captured) {
-            try {
-                const auto completed = native_ui_layer_cache_context(layer);
-                if (completed && *completed == *context) cache.publish();
-            } catch (...) {}
-        }
+        if (SDL_RenderSetClipRect(renderer, nullptr) != 0 || !draw_complete()) return;
     }
     if (!state.bind_composite(width, height)) return;
     for (const auto &box : pixels) {
         if (SDL_RenderSetClipRect(renderer, &box) != 0) return;
-        SDL_RenderCopy(renderer, g_native_character_target.texture, &box, &box);
+        if (SDL_RenderCopy(renderer, g_native_character_target.texture, &box, &box) != 0) return;
+    }
+    composite.completed = true;
+    if (captured) {
+        try {
+            const auto completed = native_ui_layer_cache_context(layer);
+            if (completed && *completed == *context) cache.publish();
+        } catch (...) {}
     }
 }

@@ -39,25 +39,28 @@ static bool native_topbar_begin_draw() {
 }
 
 static void native_topbar_begin_cursor(graphicst *graphics, int32_t y, int32_t x) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
     const auto original = g_native_topbar_cursor_original;
     if (!original) return;
     if (graphics == native_graphics()) native_topbar_begin_draw();
-    callback.call_native([&] { original(graphics, y, x); });
+    callback.call_native([&] { native_graphics_call(original, graphics, y, x); });
 }
 
 static void native_topbar_begin_color(graphicst *graphics, int32_t foreground,
         int32_t background, uint8_t bright) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
     const auto original = g_native_topbar_color_original;
     if (!original) return;
     if (graphics == native_graphics()) native_topbar_begin_draw();
-    callback.call_native([&] { original(graphics, foreground, background, bright); });
+    callback.call_native([&] { native_graphics_call(original, graphics, foreground, background, bright); });
 }
 
 static void native_topbar_end_cursor(graphicst *graphics, int32_t y, int32_t x) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
     const auto original = g_native_topbar_cursor_original;
@@ -65,7 +68,7 @@ static void native_topbar_end_cursor(graphicst *graphics, int32_t y, int32_t x) 
     // The common next writer starts the right sidebar. It also runs after
     // the arena branch, which never enters this fortress top-bar capture.
     if (graphics == native_graphics()) native_topbar_end_draw();
-    callback.call_native([&] { original(graphics, y, x); });
+    callback.call_native([&] { native_graphics_call(original, graphics, y, x); });
 }
 
 static bool install_native_topbar_layer_hook() {

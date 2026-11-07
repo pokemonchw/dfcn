@@ -28,36 +28,6 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         0x4c, 0x8d, 0x44, 0x24, 0x30, 0x48, 0x8b, 0xcf,
         0xe8, 0x04, 0x86, 0x81, 0xff,
     }};
-    static constexpr std::array<unsigned char, 7> health_tab{{
-        0x41, 0x39, 0x9d, 0x7c, 0x1c, 0x00, 0x00,
-    }};
-    static constexpr std::array<unsigned char, 7> health_sources{{
-        0x49, 0x8d, 0x8d, 0x88, 0x1c, 0x00, 0x00,
-    }};
-    static constexpr std::array<unsigned char, 7> personality_sources{{
-        0x49, 0x8d, 0x8d, 0x90, 0x1a, 0x00, 0x00,
-    }};
-    // Both supported PE renderers load their personality box vector from the
-    // sheet saved at caller RSP+0xb260 before iterating the colored rows.
-    static constexpr std::array<unsigned char, 14> personality_draw_boxes{{
-        0x48, 0x8b, 0x84, 0x24, 0x60, 0xb2, 0x00, 0x00,
-        0x48, 0x05, 0xa8, 0x1a, 0x00, 0x00,
-    }};
-    // The input handler saves its sheet at entry RSP+8. Six pushes and
-    // LEA RBP,[RSP-0x2f] put that saved argument at RBP+0x67.
-    static constexpr std::array<unsigned char, 19> thought_input_frame{{
-        0x48, 0x89, 0x4c, 0x24, 0x08, 0x55, 0x53, 0x57,
-        0x41, 0x54, 0x41, 0x55, 0x41, 0x57, 0x48, 0x8d,
-        0x6c, 0x24, 0xd1,
-    }};
-    // Only the recent-thought input loop borrows R15 for its source iterator,
-    // then restores the sheet from the saved argument after wrapping.
-    static constexpr std::array<unsigned char, 3> thought_input_iterator{{
-        0x4c, 0x8b, 0xff,
-    }};
-    static constexpr std::array<unsigned char, 4> thought_input_restore{{
-        0x4c, 0x8b, 0x7d, 0x67,
-    }};
     profile.base = reinterpret_cast<uintptr_t>(base);
     profile.wrap = reinterpret_cast<NativeKnowledgeWrapFn>(native_pe_address(profile.base, wrap_rva));
     profile.draw = reinterpret_cast<NativeKnowledgeDrawFn>(native_pe_address(profile.base, draw_rva));
@@ -71,14 +41,7 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
     profile.signatures = {
         {wrap_rva, {wrap_entry.begin(), wrap_entry.end()}},
         {draw_rva, {draw_entry.begin(), draw_entry.end()}},
-        {0x858588, {blank_append.begin(), blank_append.end()}},
-        {0x1b2b77, {health_tab.begin(), health_tab.end()}},
-        {0x1b2ba9, {health_sources.begin(), health_sources.end()}},
-        {0x1b791f, {personality_sources.begin(), personality_sources.end()}},
-        {0x17f2a0, {personality_draw_boxes.begin(), personality_draw_boxes.end()}},
-        {0x8d97b0, {thought_input_frame.begin(), thought_input_frame.end()}},
-        {0x8dafc7, {thought_input_iterator.begin(), thought_input_iterator.end()}},
-        {0x8db00f, {thought_input_restore.begin(), thought_input_restore.end()}}};
+        {0x858588, {blank_append.begin(), blank_append.end()}}};
     static constexpr std::array<uintptr_t, 35> wrap_calls{{
         0x16906d, 0x16ca53, 0x16da60, 0x17cb6d, 0x17d9e2, 0x17e10b, 0x17f070,
         0x1b2c87, 0x1b31fb, 0x1b67f7, 0x1b7167, 0x1b7577, 0x1b79c7,
@@ -92,8 +55,6 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         0x17de1f, 0x17e548, 0x17f4ad, 0x872b3d,
     }};
     for (uintptr_t address : wrap_calls) {
-        profile.call_signatures.push_back({address,wrap_rva});
-        std::vector<unsigned char> argument;
         const bool health = address == 0x16ca53 || address == 0x1b2c87 || address == 0x8da0d5;
         const bool personality = address == 0x17f070 || address == 0x1b79c7 || address == 0x8db366;
         // The intervening character-page calls use the same sheet argument.
@@ -107,28 +68,19 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         const auto kind = address == 0x16906d ? NativeRichCallKind::OverviewThoughts
             : health ? NativeRichCallKind::Health
             : personality ? NativeRichCallKind::Personality : NativeRichCallKind::Thoughts;
-        // Preserve RCX/RDX; the third argument is the native sheet in R8.
-        if (address == 0x16ca53 || address == 0x17f070 || thought_render)
-            argument = {0x4c,0x8b,0x84,0x24,0x68,0xb2,0x00,0x00};
-        else if (address == 0x1b2c87 || address == 0x1b79c7 || thought_mouse)
-            argument = {0x4d,0x8b,0xc5}; // R8 = R13, mouse handler.
-        else if (address == 0x8dafe5)
-            argument = {0x4c,0x8b,0x45,0x67}; // R8 = [RBP+0x67]; R15 holds the source iterator.
-        else
-            argument = {0x4d,0x8b,0xc7}; // R8 = R15, input handler.
-        profile.calls.push_back({address,wrap_rva,kind,std::move(argument)});
+        // The live source/box pair identifies its page in the resolved
+        // sheet. Preserve the actual two-argument native wrap ABI.
+        profile.calls.push_back({address,wrap_rva,kind,{},true});
     }
     for (uintptr_t address : draw_calls) {
-        profile.call_signatures.push_back({address,draw_rva});
         if (address == 0x1692ee || address == 0x17de1f || address == 0x17e548 ||
             address == 0x17f4ad) {
-            // The render frame retains the sheet at caller RSP+0xb260.
-            // Preserve graphics/text/colors; CALL adds eight bytes before
-            // this relay loads the fourth argument into R9.
+            // Preserve the native three-argument draw ABI. Its actual sheet
+            // comes from the nested entry ownership scope in the callback.
             profile.calls.push_back({address,draw_rva,
                 address == 0x1692ee ? NativeRichCallKind::OverviewThoughtsDraw :
                 address == 0x17f4ad ? NativeRichCallKind::PersonalityDraw : NativeRichCallKind::ThoughtsDraw,
-                {0x4c,0x8b,0x8c,0x24,0x68,0xb2,0x00,0x00}});
+                {},true});
         }
     }
     if (!native_pe_bytes(wrap_rva, profile.entry_prefix) ||
@@ -138,16 +90,25 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         signature.address = native_pe_rva(signature.address);
         if (!signature.address) return false;
     }
-    for (auto &signature : profile.call_signatures) {
-        signature.address = native_pe_rva(signature.address);
-        signature.target = native_pe_rva(signature.target);
-        if (!signature.address || !signature.target) return false;
-    }
-    for (auto &site : profile.calls) {
-        site.address = native_pe_rva(site.address);
+    // The entry hooks capture ordinary rich text independently. Missing
+    // classified page calls must not disable those common native entries.
+    // Each admitted page call still needs its exact mapped E8 and target.
+    std::vector<NativeRichCallSite> resolved;
+    for (auto site : profile.calls) {
+        const auto reference = site.address;
+        site.address = native_pe_rva(reference);
         site.target = native_pe_rva(site.target);
-        if (!site.address || !site.target) return false;
+        if (!site.address || !site.target) {
+            std::ostringstream message;
+            message << "Rich-text page call unavailable at reference 0x" << std::hex << reference
+                << "; common rich-text capture remains enabled";
+            log_line("WARN", message.str());
+            continue;
+        }
+        profile.call_signatures.push_back({site.address, site.target});
+        resolved.push_back(std::move(site));
     }
+    profile.calls = std::move(resolved);
     return true;
 }
 #else

@@ -4,8 +4,8 @@ static bool capture_native_history_context(const void *context,
         NativeHistoryEventData &result) {
     if (!context) return true;
     const uintptr_t address = reinterpret_cast<uintptr_t>(context);
-    // history_event_context: PE formatter and ELF worldgen producer agree
-    // on these fixed-width fields (ELF d2b7f5..d2b942). Evidence pointers and
+    // Resolve these fixed-width values by their declared member identities.
+    // Evidence pointers and
     // the explicitly uninitialized family_relationship field are excluded.
     struct Field { const char *key; size_t offset; size_t width; };
     static constexpr Field schema[] = {
@@ -30,17 +30,18 @@ static bool capture_native_history_context(const void *context,
     };
     decltype(result.context) fields;
     for (const auto &entry : schema) {
-        if (entry.offset > UINTPTR_MAX - address) return false;
+        const auto field = native_history_object_member(address, "history_event_context", entry.key, entry.width);
+        if (!field) return false;
         int32_t value = -1;
         if (entry.width == 4) {
-            if (!native_history_copy(address + entry.offset, value)) return false;
+            if (!native_history_copy(field, value)) return false;
         } else if (entry.width == 2) {
             int16_t short_value = -1;
-            if (!native_history_copy(address + entry.offset, short_value)) return false;
+            if (!native_history_copy(field, short_value)) return false;
             value = short_value;
         } else {
             int8_t byte = -1;
-            if (!native_history_copy(address + entry.offset, byte)) return false;
+            if (!native_history_copy(field, byte)) return false;
             value = byte;
         }
         fields.emplace(entry.key, value);

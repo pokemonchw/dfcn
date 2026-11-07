@@ -11,6 +11,7 @@ using NativeUnitIdentityCapitalizeFn = void (*)(NativeString *);
 
 struct NativeUnitIdentityCall {
     uintptr_t unit = 0;
+    uintptr_t selected_name = 0;
     NativeUnitIdentityCall *parent = nullptr;
     NativeHistoryName name;
     std::string native_name, native_role;
@@ -63,6 +64,15 @@ struct NativeUnitIdentityHooks {
 #endif
 };
 static NativeUnitIdentityHooks g_native_unit_identity_hooks;
+
+#ifdef _WIN32
+struct NativeUnitHeaderIdentityHooks {
+    NativeCallHook name;
+    NativeUnitIdentityEnglishNameFn english_name = nullptr;
+    uintptr_t base = 0;
+};
+static NativeUnitHeaderIdentityHooks g_native_unit_header_identity_hooks;
+#endif
 
 static uint64_t current_native_identity_translation_catalog() noexcept {
     return g_overlay.native_identity_translation_catalog_generation();
@@ -348,11 +358,45 @@ static void capture_native_announcement_pet_english_name(const void *name,
     } catch (...) {}
 }
 
+#ifdef _WIN32
+static uintptr_t native_character_header_unit() {
+    const auto sheet = g_native_character_drawing_sheet;
+    uint8_t open = 0;
+    int32_t kind = -1, id = -1;
+    if (!sheet || !native_history_copy(native_character_sheet_field(sheet, 0, "open", 1), open) || !open ||
+            !native_history_copy(native_character_sheet_field(sheet, 8, "active_sheet", 4), kind) || kind != 0 ||
+            !native_history_copy(native_character_sheet_field(sheet, 0xc, "active_id", 4), id) || id < 0) return 0;
+    NativeBorrowedVector<uintptr_t> units;
+    if (!native_history_read_vector(native_history_global(0x23e50b0), units) || units.size() > 1000000) return 0;
+    static constexpr native_history_abi::FieldOffset unit_id{0x130, "unit", "id"};
+    size_t first = 0, last = units.size();
+    while (first < last) {
+        const auto middle = first + (last - first) / 2;
+        const auto unit = native_history_vector_at(units, middle);
+        int32_t candidate = -1;
+        if (!unit || !native_history_copy(unit_id.address(unit, 0, 4, 4), candidate)) return 0;
+        if (candidate == id) return unit;
+        if (candidate < id) first = middle + 1;
+        else last = middle;
+    }
+    return 0;
+}
+#endif
+
 static void capture_native_unit_header_english_name(const void *name,
-        NativeString *output, bool first, void *unit) {
+        NativeString *output, bool first,
+#ifdef _WIN32
+        bool second) {
+#else
+        void *unit) {
+#endif
     NativeInputCallbackScope callback;
     callback.call_native([&] {
+#ifdef _WIN32
+        g_native_unit_header_identity_hooks.english_name(name, output, first, second);
+#else
         g_native_unit_identity_hooks.english_name(name, output, first, false);
+#endif
     });
     try {
         if (!g_overlay.translation_enabled()) return;
@@ -366,7 +410,12 @@ static void capture_native_unit_header_english_name(const void *name,
         // a unit TLS scope. Its separate addchar calls own the outer quotes.
         // This dedicated formatter already proves an English character name.
         // Optional native metadata must not block translation of that text.
-        if (capture_native_history_name(g_native_unit_identity_hooks.base,
+        if (capture_native_history_name(
+#ifdef _WIN32
+                g_native_unit_header_identity_hooks.base,
+#else
+                g_native_unit_identity_hooks.base,
+#endif
                 reinterpret_cast<uintptr_t>(name), snapshot.name, &indices))
             snapshot.native_name_words_valid = capture_native_unit_identity_name_words(
                 reinterpret_cast<uintptr_t>(name), snapshot.name,
@@ -374,9 +423,16 @@ static void capture_native_unit_header_english_name(const void *name,
         snapshot.native_name = original;
         snapshot.form = NativeUnitIdentityForm::NameOnly;
         snapshot.english_name = true;
+#ifdef _WIN32
+        const auto unit = native_character_header_unit();
+#endif
         publish_native_unit_identity_snapshot(std::move(snapshot),
             reinterpret_cast<uintptr_t>(output), original,
+#ifdef _WIN32
+            unit, true, true);
+#else
             reinterpret_cast<uintptr_t>(unit), true, true);
+#endif
     } catch (...) {
         // Never unwind across the sheet's native formatter call.
     }
@@ -706,9 +762,15 @@ static void capture_native_conversation_portrait_capitalization(NativeString *ou
 // a custom profession replaces the selected RAW/office/status role.
 using NativeUnitMovementReferenceFn = void (*)(void *, NativeString *, int32_t, bool, bool);
 
+static uintptr_t native_unit_reference_primary_name(uintptr_t unit) noexcept {
+    const native_history_abi::FieldOffset name{8, "unit", "name"};
+    return name.address(unit, 0, 1, 120);
+}
+
 static void capture_native_unit_reference_selected_name(uintptr_t address) noexcept {
     auto *call = g_native_unit_identity_call;
     if (!call || !call->reference_output) return;
+    call->selected_name = address;
     call->name_seen = true;
     try {
         std::array<int32_t, 7> indices;
@@ -733,13 +795,29 @@ static const void *capture_native_unit_movement_selected_name(const void *identi
 }
 
 static NativeString *capture_native_unit_movement_given_name(NativeString *output,
-        const char *source, size_t length, const void *selected_name) {
+        const char *source, size_t length) {
     NativeInputCallbackScope callback;
-    // 132e6c0 may replace a linked identity with unit+8 after the player
-    // recognizes it. At 132eeaa, [rsp+48] still holds that final language_name
-    // while R9 can already be its heap-backed first_name bytes. The existing
-    // assign call's relay supplies the actual selected field as argument 4.
-    capture_native_unit_reference_selected_name(reinterpret_cast<uintptr_t>(selected_name));
+    // Recognition can replace the selected linked identity with unit.name.
+    // The real assign arguments identify the final first_name storage even
+    // when the compiler moves its temporary language_name pointer elsewhere.
+    if (auto *call = g_native_unit_identity_call; call && call->reference_output) {
+        uintptr_t selected = 0;
+        bool ambiguous = false;
+        const std::array<uintptr_t, 2> candidates{
+            call->selected_name, native_unit_reference_primary_name(call->unit)};
+        const native_history_abi::FieldOffset first_name{0, "language_name", "first_name"};
+        for (auto candidate : candidates) {
+            if (!candidate || candidate == selected) continue;
+            const auto address = first_name.address(candidate, 0, sizeof(NativeString), sizeof(NativeString));
+            std::string_view actual;
+            if (!address || !native_string_view(reinterpret_cast<const NativeString *>(address), &actual, 262144) ||
+                    actual.data() != source || actual.size() != length) continue;
+            if (selected) { ambiguous = true; break; }
+            selected = candidate;
+        }
+        if (selected && !ambiguous) capture_native_unit_reference_selected_name(selected);
+        else { call->name_seen = true; call->name_failed = true; }
+    }
     record_native_unit_reference_part<NativeUnitReferencePartKind::GivenName, true>(
         output, source, length);
     NativeString *result = nullptr;
@@ -758,7 +836,7 @@ static void capture_native_unit_movement_reference(void *unit, NativeString *out
     call.reference_use_custom = use_custom;
     {
         NativeUnitIdentityActiveScope scope(call);
-        capture_native_unit_reference_selected_name(call.unit + 8);
+        capture_native_unit_reference_selected_name(native_unit_reference_primary_name(call.unit));
         const auto original = reinterpret_cast<NativeUnitMovementReferenceFn>(
             g_native_unit_identity_hooks.entries[6].original);
         callback.call_native([&] { original(unit, output, article, capitalize, use_custom); });
@@ -825,7 +903,7 @@ static std::optional<NativeAnnouncementLogSpeechHeader> native_announcement_log_
     call.reference_use_custom = true;
     {
         NativeUnitIdentityActiveScope scope(call);
-        capture_native_unit_reference_selected_name(unit + 8);
+        capture_native_unit_reference_selected_name(native_unit_reference_primary_name(unit));
         const auto original = reinterpret_cast<NativeUnitMovementReferenceFn>(hooks.entries[6].original);
         // The speech wrapper's 684b0e..684b23 arguments are exactly
         // (unit, output, -1, true, true). Replaying only this formatter does
@@ -1178,7 +1256,7 @@ static void capture_native_unit_identity_name_only(void *unit, NativeString *out
     finish_native_unit_identity_call<2>(call, output, false);
 }
 
-static bool native_unit_identity_hooks_active() {
+static bool native_complete_unit_identity_hooks_active() {
 #ifndef _WIN32
     if (std::any_of(g_native_unit_identity_hooks.observers.begin(),
             g_native_unit_identity_hooks.observers.end(),
@@ -1190,7 +1268,7 @@ static bool native_unit_identity_hooks_active() {
             [](const auto &entry) { return entry.active(); });
 }
 
-static void uninstall_native_unit_identity_hooks() {
+static void uninstall_native_complete_unit_identity_hooks() {
     if (!native_callbacks_idle()) return;
     auto &hooks = g_native_unit_identity_hooks;
 #ifndef _WIN32
@@ -1210,14 +1288,32 @@ static void uninstall_native_unit_identity_hooks() {
     hooks.base = 0;
 }
 
+static bool native_unit_identity_hooks_active() {
 #ifdef _WIN32
-static bool install_native_unit_identity_hooks() {
+    if (g_native_unit_header_identity_hooks.name.active()) return true;
+#endif
+    return native_complete_unit_identity_hooks_active();
+}
+
+static void uninstall_native_unit_identity_hooks() {
+    if (!native_callbacks_idle()) return;
+    uninstall_native_complete_unit_identity_hooks();
+#ifdef _WIN32
+    auto &header = g_native_unit_header_identity_hooks;
+    if (!header.name.uninstall("Native character header identity restore") || header.name.active()) return;
+    header.english_name = nullptr;
+    header.base = 0;
+#endif
+}
+
+#ifdef _WIN32
+static bool install_native_complete_unit_identity_hooks() {
     auto &hooks = g_native_unit_identity_hooks;
     if (hooks.names.installed && std::all_of(hooks.entries.begin(), hooks.entries.end(),
             [](const auto &entry) { return entry.installed; })) return true;
-    if (native_unit_identity_hooks_active()) {
-        uninstall_native_unit_identity_hooks();
-        if (native_unit_identity_hooks_active()) return false;
+    if (native_complete_unit_identity_hooks_active()) {
+        uninstall_native_complete_unit_identity_hooks();
+        if (native_complete_unit_identity_hooks_active()) return false;
     }
     hooks.base = native_history_profile_base();
     if (!hooks.base) return false;
@@ -1232,7 +1328,11 @@ static bool install_native_unit_identity_hooks() {
         native_pe_address(hooks.base, 0x52d650));
     struct InstallGuard {
         bool committed = false;
-        ~InstallGuard() { if (!committed) uninstall_native_unit_identity_hooks(); }
+        ~InstallGuard() {
+            if (!committed) {
+                try { uninstall_native_complete_unit_identity_hooks(); } catch (...) {}
+            }
+        }
     } guard;
     struct Entry {
         uintptr_t rva;
@@ -1241,10 +1341,23 @@ static bool install_native_unit_identity_hooks() {
     };
     // Reference PE 53.16 AMD64. Every prefix ends at a complete instruction
     // before the first relative operand. All argument registers are untouched.
+    // These free formatters receive the actual unit in RCX. Retain that
+    // declared argument type so discovery can prove saved receiver aliases
+    // and named members independently in each executable.
+    DFCN_NATIVE_RECEIVER(0x132f980, "unit")
+    DFCN_NATIVE_RECEIVER(0x1330260, "unit")
+    DFCN_NATIVE_RECEIVER(0x1330500, "unit")
+    DFCN_NATIVE_RECEIVER(0x1330880, "unit")
+    DFCN_NATIVE_RECEIVER(0x1330c30, "unit")
+    DFCN_NATIVE_RECEIVER(0x1331500, "unit")
+    DFCN_NATIVE_RECEIVER(0x132e430, "unit")
     const Entry entries[]{
         {0x132f980, {0x48,0x89,0x5c,0x24,0x18},
             reinterpret_cast<const void *>(&capture_native_unit_identity_format<0>)},
-        {0x1330260, {0x40,0x53,0x56,0x41,0x55,0x48,0x83,0xec,0x40},
+        // The three complete nonvolatile PUSH instructions already cover
+        // the five-byte entry jump. Replay their independently mapped bytes;
+        // the native continuation owns its version's stack allocation.
+        {0x1330260, {0x40,0x53,0x56,0x41,0x55},
             reinterpret_cast<const void *>(&capture_native_unit_identity_format<1>)},
         {0x1330500, {0x48,0x89,0x5c,0x24,0x18},
             reinterpret_cast<const void *>(&capture_native_unit_identity_name_only)},
@@ -1303,14 +1416,6 @@ static bool install_native_unit_identity_hooks() {
             reinterpret_cast<const void *>(&capture_native_conversation_portrait_capitalization)},
         {0x278fa6, 0x52d650,
             reinterpret_cast<const void *>(&capture_native_conversation_portrait_capitalization)},
-        // Sheet header: output [rsp+0x3da0] goes unchanged to addst at
-        // 0x15c1f8. The quotes at 0x15c1de/0x15c209 are separate glyphs.
-        // Caller [rsp+0xa8] is its unit. CALL places the return address
-        // on the stack, so the relay reads [rsp+0xb0] into R9. The original
-        // fourth argument is fixed false at 0x15c176 and restored by wrapper.
-        {0x15c18c, 0xa946e0,
-            reinterpret_cast<const void *>(&capture_native_unit_header_english_name),
-            {0x4c,0x8b,0x8c,0x24,0xb0,0x00,0x00,0x00}},
         // The artifact name follows the separately drawn Creator of prefix.
         {0x15d415, 0xa94030,
             reinterpret_cast<const void *>(&capture_native_unit_header_creation_name)},
@@ -1424,10 +1529,7 @@ static bool install_native_unit_identity_hooks() {
             reinterpret_cast<const void *>(&capture_native_unit_reference_part<
                 NativeUnitReferencePartKind::Literal, true>)},
         {0x132eeaa, 0x6f8d0,
-            // Classic 1329e1a uses the same selected-name stack slot.
-            // CALL adds the return address: caller +48 becomes relay +50.
-            reinterpret_cast<const void *>(&capture_native_unit_movement_given_name),
-            {0x4c,0x8b,0x4c,0x24,0x50}},
+            reinterpret_cast<const void *>(&capture_native_unit_movement_given_name)},
         {0x132f939, 0x6f8d0,
             reinterpret_cast<const void *>(&capture_native_unit_reference_part<
                 NativeUnitReferencePartKind::Authored, true>)},
@@ -1501,6 +1603,55 @@ static bool install_native_unit_identity_hooks() {
         if (!entry.install("Native unit identity formatter")) return false;
     guard.committed = true;
     return true;
+}
+
+static bool install_native_unit_header_identity_hook() {
+    auto &header = g_native_unit_header_identity_hooks;
+    if (header.name.installed) return true;
+    if (header.name.active() &&
+            (!header.name.uninstall("Native character header identity restore") || header.name.active()))
+        return false;
+    header.english_name = nullptr;
+    header.base = native_history_profile_base();
+    if (!header.base) return false;
+    header.english_name = reinterpret_cast<NativeUnitIdentityEnglishNameFn>(
+        native_pe_address(header.base, 0xa946e0));
+    if (!header.english_name) return false;
+    // This source is the actual four-argument English-name formatter in the
+    // selected sheet header. Its output is captured before clipping; the
+    // shared addst entry recognizes that same string independently of other
+    // unit formatter, organization-name and artifact-name call sites.
+    std::vector<NativeCall> calls{
+        {0x15c18c, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_unit_header_english_name)}};
+    if (!native_reference_calls(calls, 0) || !header.name.install(header.base, calls,
+            "Native character header identity")) return false;
+    log_line("INFO", "Enabled independently bound character header name capture");
+    return true;
+}
+
+static bool install_native_unit_identity_hooks() {
+    bool header_ready = false, complete_ready = false;
+    try { header_ready = install_native_unit_header_identity_hook(); } catch (...) {}
+    if (!header_ready) {
+        auto &header = g_native_unit_header_identity_hooks;
+        bool restored = false;
+        try { restored = header.name.uninstall("Native character header identity restore"); } catch (...) {}
+        if (!restored || header.name.active()) return false;
+        header.english_name = nullptr;
+        header.base = 0;
+        report_native_patch_error("WARN", "Native character header identity",
+            "independent formatter call unavailable; native name remains unchanged");
+    }
+    try { complete_ready = install_native_complete_unit_identity_hooks(); } catch (...) {}
+    if (!complete_ready) {
+        try { uninstall_native_complete_unit_identity_hooks(); } catch (...) {}
+        if (native_complete_unit_identity_hooks_active()) return false;
+        report_native_patch_error("WARN", "Native unit identity formatters",
+            header_ready ? "complete formatter transaction unavailable; independent header capture remains enabled"
+                         : "complete formatter transaction unavailable; native identities remain unchanged");
+    }
+    return header_ready || complete_ready;
 }
 #else
 #include "native_unit_identity_search_profile_elf.inc"

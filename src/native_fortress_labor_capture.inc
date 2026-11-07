@@ -25,10 +25,10 @@ static std::optional<NativeFortressLaborCaption> capture_native_fortress_labor_c
         case 0x15eef08: return native_pe_address(base, 0x15eef08);
         case 0x15f6f68: return native_pe_address(base, 0x15f6f68);
         case 0x163bf00: return native_pe_address(base, 0x163bf00);
-        case 0x163be90: return native_pe_address(base, 0x163be90);
+        case 0x163be90: return native_pe_type_identity(base, 0x163be90);
         case 0x163c1c0: return native_pe_address(base, 0x163c1c0);
         case 0x1785b28: return native_pe_address(base, 0x1785b28);
-        case 0x163c900: return native_pe_address(base, 0x163c900);
+        case 0x163c900: return native_pe_type_identity(base, 0x163c900);
         case 0x2399980: return native_pe_address(base, 0x2399980);
         default: return uintptr_t{0};
         }

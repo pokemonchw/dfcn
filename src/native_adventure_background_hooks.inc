@@ -44,8 +44,7 @@ static size_t capture_native_adventure_background_tooltip(const void *document,
         int32_t grid_y = 0;
         if (!document || !count || !gps || !gps->screen || !settings ||
                 gps->dimx <= 0 || gps->dimx > 1000 || gps->dimy <= 20 ||
-                gps->dimy > 1000 || !native_history_copy(
-                    reinterpret_cast<uintptr_t>(settings) + 0x18, grid_y) ||
+                gps->dimy > 1000 || !native_ui_settings_read_member(settings, 0x18, grid_y) ||
                 grid_y <= 20 || grid_y > 1000) return count;
         // The native loop uses init.display.grid_y rather than gps.dimy.
         // Its text is two columns inside the fixed 32-column frame, with

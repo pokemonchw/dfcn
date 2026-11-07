@@ -118,7 +118,7 @@ static std::vector<NativeMissionReportParagraph> native_mission_report_paragraph
         int32_t mode = -1;
         // World render 1c194f/1c1a6a and input 1d3bfe select the report
         // panel with viewscreen_worldst.page(+1b4)==5.
-        if (!screen || g_native_history_sentence_slot != 0xd0 || !g_real_native_paragraph ||
+        if (!screen || !native_history_formatter_ready() || !g_real_native_paragraph ||
                 !native_history_object_is(screen, "viewscreen_worldst") ||
                 !native_history_copy(native_history_object_member(screen, "viewscreen_worldst", "view_mode"), mode) || mode != 5 ||
                 !native_history_copy(native_history_object_member(screen, "viewscreen_worldst", "active_mission_report"), report) || !report) {
@@ -196,10 +196,13 @@ static std::vector<NativeMissionReportParagraph> native_mission_report_paragraph
             if (!event || id < 0) continue;
             int32_t type = -1;
             if (!capture_native_history_event_identity(reinterpret_cast<void *>(event), type)) continue;
-            alignas(16) std::array<unsigned char, 0xc8> context{};
-            initialize_native_history_context(context.data());
+            std::vector<std::max_align_t> context;
+            if (!initialize_native_history_context(context)) continue;
             const uint32_t context_flags = 0;
-            std::memcpy(context.data(), &context_flags, sizeof(context_flags));
+            const auto flags = native_history_object_member(reinterpret_cast<uintptr_t>(context.data()),
+                "history_event_context", "flags", sizeof(context_flags));
+            if (!flags) continue;
+            std::memcpy(reinterpret_cast<void *>(flags), &context_flags, sizeof(context_flags));
             NativeMissionReportScratch scratch(base);
             capture_native_history_sentence_range(reinterpret_cast<void *>(event),
                 &scratch.source, context.data(), true, false, 0);

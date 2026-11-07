@@ -81,6 +81,7 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_job_details_search_hooks.inc"
 #include "native_adventure_barter_search_hooks.inc"
 #include "native_construction_search_hooks.inc"
+#include "native_adventure_hover_source.inc"
 #include "native_caption_hooks.inc"
 #include "native_adventure_home_source.inc"
 #include "native_adventure_personality_source.inc"
@@ -140,88 +141,206 @@ static std::array<NativeImportHook, 3> g_render_hooks;
 
 static bool install_sdl_hooks() {
     [[maybe_unused]] NativePatchMappingScope mapping_scope;
-    const std::pair<const char *, bool (*)()> stages[] = {
-        {"SDL binding discovery", native_prepare_render_bindings},
-        {"Native graphics buffer ownership", install_native_dfhack_graphics_ownership},
-        {"Stone economic-use bounds guard", install_native_stone_use_guard},
-        {"Native left-click delivery", install_native_mouse_click_hook},
-        {"Unicode input and search", install_native_input_hooks},
-        {"Translated Arena tree search", install_native_arena_tree_search_hook},
-        {"Translated item search", install_native_item_search_hook},
-        {"Translated Stocks search", install_native_stocks_search_hook},
-        {"Translated unit search", install_native_unit_search_hook},
-        {"Native unit identity fields", install_native_unit_identity_hooks},
-        {"Native authored squad names", install_native_squad_name_hooks},
-        {"Native adventure charge fields", install_native_adventure_charge_hooks},
-        {"Native adventure introduction error text", install_native_adventure_introduction_hooks},
-        {"Native overview event source", install_native_overview_event_hooks},
-        {"Translated Legends search", install_native_legends_search_hook},
-        {"Translated workshop search", install_native_workshop_search_hook},
-        {"Translated task and work-order material search", install_native_material_search_hook},
-        {"Translated stockpile search", install_native_stockpile_search_hook},
-        {"Translated image creator search", install_native_symbol_search_hook},
-        {"Conversation keyword search", install_native_conversation_search_hook},
-        {"Adventure journal search", install_native_journal_search_hook},
-        {"Translated display, hauling and trade search", install_native_item_picker_search_hook},
-        {"Translated Kitchen search", install_native_kitchen_search_hook},
-        {"Translated counterintelligence search", install_native_justice_search_hook},
-        {"Complete counterintelligence actor fields", install_native_justice_actor_capture_hook},
-        {"Translated task-detail search", install_native_job_details_search_hook},
-        {"Translated adventure barter search", install_native_adventure_barter_search_hook},
-        {"Translated construction material search", install_native_construction_search_hook},
-        {"Complete caption capture", install_native_caption_hooks},
-        {"Character kinship captions", install_native_character_relations_hook},
-        {"Native overview quote draw", install_native_overview_quote_hooks},
-        {"Complete paragraph capture", install_native_paragraph_hook},
-        {"Complete trade reply capture", install_native_trade_paragraph_hooks},
-        {"Complete journal event source", install_native_journal_event_hooks},
-        {"Trade item memory capture", install_native_trade_item_hooks},
-        {"Complete workshop requirement capture", install_native_workshop_recipe_hooks},
-        {"Rich-text capture", install_native_rich_hooks},
-        {"Native attribute and skill tooltip layer", install_native_adventure_hover_hook},
-        {"Complete announcement capture", install_native_announcement_hook},
-        {"Native history event capture", install_native_history_hooks},
-        {"Native tutorials and help layer", install_native_help_layer_hook},
-        {"Native resolution selector layer", install_native_resolution_layer_hook},
-        {"Native fortress management layer", install_native_info_layer_hook},
-        {"Native character sheet layer", install_native_character_layer_hook},
-        {"Native Stocks layer", install_native_stocks_layer_hook},
-        {"Native display item assignment layer", install_native_display_layer_hook},
-        {"Native fortress Squads layer", install_native_squads_layer_hook},
-        {"Native announcements and report tabs layer", install_native_reports_layer_hook},
-        {"Native Escape menu layer", install_native_pause_layer_hook},
-        {"Native world generation layer", install_native_worldgen_layer_hook},
-        {"Native map layer", install_native_map_layer_hook},
-        {"Native fortress top bar layer", install_native_topbar_layer_hook},
-        {"Native accepted petition detail layer", install_native_petition_layer_hook},
-        {"Native accepted petitions layer", install_native_petitions_layer_hook},
-        {"Native designation tools layer", install_native_designation_layer_hook},
-        {"Native map hover list layer", install_native_map_hover_layer_hook},
-        {"Native embark civilization layer", install_native_embark_civilization_layer_hook},
-        {"Optional fortress riding module", install_native_riding_hook},
+    // The shared rendering boundary must be safe before any capture callback
+    // is exposed. Individual text/search/page contracts are independent: a
+    // missing address disables only its own transaction.
+    if (!native_prepare_render_bindings()) {
+        log_line("ERROR", "Native render import bindings could not be prepared");
+        return false;
+    }
+#ifdef _WIN32
+    prepare_native_entry_prefix_certificates();
+#endif
+    if (!install_native_dfhack_graphics_ownership()) {
+        log_line("ERROR", "Native graphics ownership could not be installed");
+        return false;
+    }
+    struct Stage {
+        const char *label;
+        bool (*install)();
+        void (*uninstall)();
+        bool (*active)();
     };
-    for (const auto &[label, install] : stages) {
-        if (!install()) {
-            report_native_patch_error("ERROR", label, "core initialization stopped at this stage");
+    const Stage stages[]{
+        {"Native shared UI raster boundary", install_native_ui_raster_hook,
+            [] { (void)uninstall_native_ui_raster_hook(); }, [] { return native_ui_raster_hook_active(); }},
+        {"Stone economic-use bounds guard", install_native_stone_use_guard,
+            [] { (void)g_native_stone_use_guard.uninstall(); }, [] { return g_native_stone_use_guard.active(); }},
+        {"Native left-click delivery", install_native_mouse_click_hook,
+            [] { (void)g_native_mouse_click_hook.uninstall(); }, [] { return g_native_mouse_click_hook.active(); }},
+        {"Unicode input and search", install_native_input_hooks,
+            [] { (void)uninstall_native_input_hooks(); }, [] { return native_input_hooks_active(); }},
+        {"Translated Arena tree search", install_native_arena_tree_search_hook,
+            [] { (void)uninstall_native_arena_tree_search_hook(); }, [] { return native_arena_tree_search_hook_active(); }},
+        {"Translated item search", install_native_item_search_hook,
+            [] { (void)uninstall_native_item_search_hook(); }, [] { return native_item_search_hook_active(); }},
+        {"Translated Stocks search", install_native_stocks_search_hook,
+            [] { (void)uninstall_native_stocks_search_hook(); }, [] { return native_stocks_search_hook_active(); }},
+        {"Translated unit search", install_native_unit_search_hook,
+            [] { (void)uninstall_native_unit_search_hook(); }, [] { return native_unit_search_hook_active(); }},
+        {"Native unit identity fields", install_native_unit_identity_hooks,
+            [] { (void)uninstall_native_unit_identity_hooks(); }, [] { return native_unit_identity_hooks_active(); }},
+        {"Native authored squad names", install_native_squad_name_hooks,
+            [] { (void)uninstall_native_squad_name_hooks(); }, [] { return native_squad_name_hooks_active(); }},
+        {"Native adventure charge fields", install_native_adventure_charge_hooks,
+            [] { (void)uninstall_native_adventure_charge_hooks(); }, [] { return native_adventure_charge_hooks_active(); }},
+        {"Native adventure introduction error text", install_native_adventure_introduction_hooks,
+            [] { (void)uninstall_native_adventure_introduction_hooks(); }, [] { return native_adventure_introduction_hooks_active(); }},
+        {"Native overview event source", install_native_overview_event_hooks,
+            [] { (void)uninstall_native_overview_event_hooks(); }, [] { return native_overview_event_hooks_active(); }},
+        {"Translated Legends search", install_native_legends_search_hook,
+            [] { (void)uninstall_native_legends_search_hook(); }, [] { return native_legends_search_hook_active(); }},
+        {"Translated workshop search", install_native_workshop_search_hook,
+            [] { (void)uninstall_native_workshop_search_hook(); }, [] { return native_workshop_search_hook_active(); }},
+        {"Translated task and work-order material search", install_native_material_search_hook,
+            [] { (void)uninstall_native_material_search_hook(); }, [] { return native_material_search_hook_active(); }},
+        {"Translated stockpile search", install_native_stockpile_search_hook,
+            [] { (void)uninstall_native_stockpile_search_hook(); }, [] { return native_stockpile_search_hook_active(); }},
+        {"Translated image creator search", install_native_symbol_search_hook,
+            [] { (void)uninstall_native_symbol_search_hook(); }, [] { return native_symbol_search_hook_active(); }},
+        {"Conversation keyword search", install_native_conversation_search_hook,
+            [] { (void)uninstall_native_conversation_search_hook(); }, [] { return native_conversation_search_hook_active(); }},
+        {"Adventure journal search", install_native_journal_search_hook,
+            [] { (void)uninstall_native_journal_search_hook(); }, [] { return native_journal_search_hook_active(); }},
+        {"Translated display, hauling and trade search", install_native_item_picker_search_hook,
+            [] { (void)uninstall_native_item_picker_search_hook(); }, [] { return native_item_picker_search_hook_active(); }},
+        {"Translated Kitchen search", install_native_kitchen_search_hook,
+            [] { (void)uninstall_native_kitchen_search_hook(); }, [] { return native_kitchen_search_hook_active(); }},
+        {"Translated counterintelligence search", install_native_justice_search_hook,
+            [] { (void)uninstall_native_justice_search_hook(); }, [] { return native_justice_search_hook_active(); }},
+        {"Complete counterintelligence actor fields", install_native_justice_actor_capture_hook,
+            [] { (void)uninstall_native_justice_actor_capture_hook(); }, [] { return native_justice_actor_capture_hook_active(); }},
+        {"Translated task-detail search", install_native_job_details_search_hook,
+            [] { (void)uninstall_native_job_details_search_hook(); }, [] { return native_job_details_search_hook_active(); }},
+        {"Translated adventure barter search", install_native_adventure_barter_search_hook,
+            [] { (void)uninstall_native_adventure_barter_search_hook(); }, [] { return native_adventure_barter_search_hook_active(); }},
+        {"Translated construction material search", install_native_construction_search_hook,
+            [] { (void)uninstall_native_construction_search_hook(); }, [] { return native_construction_search_hook_active(); }},
+        {"Complete caption capture", install_native_caption_hooks,
+            [] { (void)uninstall_native_caption_hooks(); }, [] { return native_caption_hooks_active(); }},
+        {"Native inline caption capture", install_native_inline_caption_hooks,
+            [] { (void)uninstall_native_inline_caption_hooks(); }, [] { return native_inline_caption_hooks_active(); }},
+        {"Character kinship captions", install_native_character_relations_hook,
+            [] { (void)uninstall_native_character_relations_hook(); }, [] { return native_character_relations_hook_active(); }},
+        {"Native overview quote draw", install_native_overview_quote_hooks,
+            [] { (void)uninstall_native_overview_quote_hooks(); }, [] { return native_overview_quote_hooks_active(); }},
+        {"Complete paragraph capture", install_native_paragraph_hook,
+            [] { (void)uninstall_native_paragraph_hook(); }, [] { return native_paragraph_hooks_active(); }},
+        {"Complete trade reply capture", install_native_trade_paragraph_hooks,
+            [] { (void)uninstall_native_trade_paragraph_hooks(); }, [] { return native_trade_paragraph_hooks_active(); }},
+        {"Complete journal event source", install_native_journal_event_hooks,
+            [] { (void)uninstall_native_journal_event_hooks(); }, [] { return native_journal_event_hooks_active(); }},
+        {"Trade item memory capture", install_native_trade_item_hooks,
+            [] { (void)uninstall_native_trade_item_hooks(); }, [] { return native_trade_item_hooks_active(); }},
+        {"Complete workshop requirement capture", install_native_workshop_recipe_hooks,
+            [] { (void)uninstall_native_workshop_recipe_hooks(); }, [] { return native_workshop_recipe_hooks_active(); }},
+        {"Rich-text capture", install_native_rich_hooks,
+            [] { (void)uninstall_native_rich_hooks(); }, [] { return native_rich_hooks_active(); }},
+        {"Native attribute and skill tooltip layer", install_native_adventure_hover_hook,
+            [] { (void)uninstall_native_adventure_hover_hook(); }, [] { return native_adventure_hover_hook_active(); }},
+        {"Complete announcement capture", install_native_announcement_hook,
+            [] { (void)uninstall_native_announcement_hook(); }, [] { return native_announcement_hook_active(); }},
+        {"Native history event capture", install_native_history_hooks,
+            [] { (void)uninstall_native_history_hooks(); }, [] { return native_history_hooks_active(); }},
+        {"Native tutorials and help layer", install_native_help_layer_hook,
+            [] { (void)uninstall_native_help_layer_hook(); }, [] { return native_help_layer_hook_active(); }},
+        {"Native resolution selector layer", install_native_resolution_layer_hook,
+            [] { (void)uninstall_native_resolution_layer_hook(); }, [] { return native_resolution_layer_hook_active(); }},
+        {"Native fortress management layer", install_native_info_layer_hook,
+            [] { (void)uninstall_native_info_layer_hook(); }, [] { return native_info_layer_hook_active(); }},
+        {"Native character sheet layer", install_native_character_layer_hook,
+            [] { (void)uninstall_native_character_layer_hook(); }, [] { return native_character_layer_hook_active(); }},
+        {"Native Stocks layer", install_native_stocks_layer_hook,
+            [] { (void)uninstall_native_stocks_layer_hook(); }, [] { return native_stocks_layer_hook_active(); }},
+        {"Native display item assignment layer", install_native_display_layer_hook,
+            [] { (void)uninstall_native_display_layer_hook(); }, [] { return native_display_layer_hook_active(); }},
+        {"Native fortress Squads layer", install_native_squads_layer_hook,
+            [] { (void)uninstall_native_squads_layer_hook(); }, [] { return native_squads_layer_hook_active(); }},
+        {"Native announcements and report tabs layer", install_native_reports_layer_hook,
+            [] { (void)uninstall_native_reports_layer_hook(); }, [] { return native_reports_layer_hook_active(); }},
+        {"Native Escape menu layer", install_native_pause_layer_hook,
+            [] { (void)uninstall_native_pause_layer_hook(); }, [] { return native_pause_layer_hook_active(); }},
+        {"Native world generation layer", install_native_worldgen_layer_hook,
+            [] { (void)uninstall_native_worldgen_layer_hook(); }, [] { return native_worldgen_layer_hook_active(); }},
+        {"Native map layer", install_native_map_layer_hook,
+            [] { (void)uninstall_native_map_layer_hook(); }, [] { return native_map_layer_hook_active(); }},
+        {"Native fortress top bar layer", install_native_topbar_layer_hook,
+            [] { (void)uninstall_native_topbar_layer_hook(); }, [] { return native_topbar_layer_hook_active(); }},
+        {"Native accepted petition detail layer", install_native_petition_layer_hook,
+            [] { (void)uninstall_native_petition_layer_hook(); }, [] { return native_petition_layer_hook_active(); }},
+        {"Native accepted petitions layer", install_native_petitions_layer_hook,
+            [] { (void)uninstall_native_petitions_layer_hook(); }, [] { return native_petitions_layer_hook_active(); }},
+        {"Native designation tools layer", install_native_designation_layer_hook,
+            [] { (void)uninstall_native_designation_layer_hook(); }, [] { return native_designation_layer_hook_active(); }},
+        {"Native map hover list layer", install_native_map_hover_layer_hook,
+            [] { (void)uninstall_native_map_hover_layer_hook(); }, [] { return native_map_hover_layer_hook_active(); }},
+        {"Native embark civilization layer", install_native_embark_civilization_layer_hook,
+            [] { (void)uninstall_native_embark_civilization_layer_hook(); }, [] { return native_embark_civilization_layer_hook_active(); }},
+        {"Optional fortress riding module", install_native_riding_hook,
+            [] { (void)uninstall_native_riding_hook(); }, [] { return native_riding_hooks_active(); }},
+        // DFHack can arrive later; Present retries these optional observers.
+        {"DFHack render layers", install_native_dfhack_render_layers,
+            [] { (void)uninstall_native_dfhack_render_layers(); }, [] { return native_dfhack_render_layers_active(); }},
+        {"DFHack text capture", install_native_dfhack_capture_hook,
+            [] { (void)uninstall_native_dfhack_capture_hook(); }, [] { return native_dfhack_capture_hook_active(); }},
+        {"DFHack console text", install_native_dfhack_console_hook,
+            [] { (void)uninstall_native_dfhack_console_hook(); }, [] { return native_dfhack_console_hook_active(); }},
+        {"DFHack Lua output", install_native_dfhack_lua_output_hook,
+            [] { (void)uninstall_native_dfhack_lua_output_hook(); }, [] { return native_dfhack_lua_output_hook_active(); }},
+        {"DFHack site map", install_native_dfhack_sitemap_hook,
+            [] { (void)uninstall_native_dfhack_sitemap_hook(); }, [] { return native_dfhack_sitemap_hook_active(); }},
+        {"DFHack message box", install_native_dfhack_messagebox_hook,
+            [] { (void)uninstall_native_dfhack_messagebox_hook(); }, [] { return native_dfhack_messagebox_hook_active(); }},
+        {"DFHack prompt", install_native_dfhack_prompt_hook,
+            [] { (void)uninstall_native_dfhack_prompt_hook(); }, [] { return native_dfhack_prompt_hook_active(); }},
+        {"DFHack Stonesense", install_native_dfhack_stonesense_hook,
+            [] { (void)uninstall_native_dfhack_stonesense_hook(); }, [] { return native_dfhack_stonesense_hook_active(); }},
+    };
+    size_t enabled = 0, unavailable = 0;
+    for (const auto &stage : stages) {
+        bool installed = false;
+        try { installed = stage.install(); }
+        catch (const std::exception &error) {
+            report_native_patch_error("WARN", stage.label, error.what());
+        } catch (...) {
+            report_native_patch_error("WARN", stage.label, "native feature binding was rejected");
+        }
+        if (installed) { ++enabled; continue; }
+        // Some installers have prepared several relays before a later
+        // dependency becomes unavailable. Restore that feature before moving
+        // on, and retain the existing fatal path for a real rollback failure.
+        try { stage.uninstall(); } catch (...) {}
+        if (stage.active()) {
+            report_native_patch_error("ERROR", stage.label, "failed feature could not restore its native hooks");
             return false;
         }
+        ++unavailable;
+        report_native_patch_error("WARN", stage.label,
+            "feature unavailable for this executable; other translation features remain enabled");
     }
-    // DFHack may be loaded after this core. Present retries this optional
-    // observer until its exported tile hook is available.
-    (void)install_native_dfhack_render_layers();
-    (void)install_native_dfhack_capture_hook();
-    (void)install_native_dfhack_console_hook();
-    (void)install_native_dfhack_lua_output_hook();
-    (void)install_native_dfhack_sitemap_hook();
-    (void)install_native_dfhack_messagebox_hook();
-    (void)install_native_dfhack_prompt_hook();
-    (void)install_native_dfhack_stonesense_hook();
-    for (auto &hook : g_render_hooks) {
-        if (!hook.install("SDL render/mouse binding")) return false;
+    log_line("INFO", "Native feature bindings: " + std::to_string(enabled) + " enabled, " +
+        std::to_string(unavailable) + " unavailable");
+    for (size_t index = 0; index < 2; ++index)
+        if (!g_render_hooks[index].install("SDL render binding")) return false;
+    auto &mouse = g_render_hooks[2];
+    bool mouse_ready = false;
+    if (mouse.slot) {
+        try { mouse_ready = mouse.install("SDL mouse remapping binding"); }
+        catch (...) {}
     }
-    g_copy_hook_active = true;
-    g_legends_mouse_hook_active = true;
-    log_line("INFO", "Enabled shared text capture, Unicode search, glyph suppression and mouse mapping");
+    if (mouse.slot && !mouse_ready) {
+        // A failed optional import still has to restore its own callback.
+        // Never leave an active partial transaction behind during fallback.
+        bool restored = false;
+        try { restored = mouse.uninstall("SDL mouse remapping restore"); }
+        catch (...) {}
+        if (!restored || mouse.active()) return false;
+    }
+    g_copy_hook_active = g_render_hooks[0].active();
+    g_legends_mouse_hook_active = mouse.active();
+    if (!g_legends_mouse_hook_active)
+        log_line("WARN", "Native mouse remapping unavailable; independent translation rendering remains enabled");
+    log_line("INFO", "Enabled SDL translation rendering with individually resolved native features");
     return true;
 }
 
@@ -235,6 +354,7 @@ static void uninstall_sdl_hooks() {
     uninstall_native_designation_layer_hook();
     uninstall_native_map_hover_layer_hook();
     uninstall_native_map_layer_hook();
+    uninstall_native_ui_raster_hook();
     uninstall_native_worldgen_layer_hook();
     uninstall_native_pause_layer_hook();
     uninstall_native_reports_layer_hook();
@@ -270,6 +390,7 @@ static void uninstall_sdl_hooks() {
     uninstall_native_paragraph_hook();
     uninstall_native_overview_quote_hooks();
     uninstall_native_character_relations_hook();
+    uninstall_native_inline_caption_hooks();
     uninstall_native_caption_hooks();
     if (!native_caption_hooks_active()) native_notification_release_layer();
     uninstall_native_construction_search_hook();
@@ -310,6 +431,7 @@ static bool native_hooks_detached() {
         !native_help_layer_hook_active() &&
         !native_resolution_layer_hook_active() &&
         !native_map_layer_hook_active() &&
+        !native_ui_raster_hook_active() &&
         !native_topbar_layer_hook_active() &&
         !native_petition_layer_hook_active() &&
         !native_petitions_layer_hook_active() &&
@@ -338,6 +460,7 @@ static bool native_hooks_detached() {
         !native_journal_event_hooks_active() &&
         !native_trade_item_hooks_active() &&
         !native_workshop_recipe_hooks_active() &&
+        !native_inline_caption_hooks_active() &&
         !native_caption_hooks_active() && !native_conversation_search_hook_active() &&
         !native_character_relations_hook_active() &&
         !native_overview_quote_hooks_active() &&
@@ -386,6 +509,7 @@ static void request_native_process_exit() noexcept {
     // console/plugins. Stop accepting work without joining or freeing any
     // callback-owned arrays, catalogs, fonts, textures or native interposes.
     g_native_identity_translation_jobs.request_stop();
+    try { native_announcement_log_translation_request_stop(); } catch (...) {}
     g_render_workers.request_stop();
     try { g_overlay.request_dfhack_translation_stop(); } catch (...) {}
 }
@@ -399,6 +523,7 @@ static bool stop_reloadable_core() {
     // Join without the translation lock and retain catalogs/fonts until every
     // native callback has detached. Retiring captures reject new queued jobs.
     stop_native_identity_translation_jobs();
+    native_announcement_log_translation_stop();
     g_render_workers.shutdown();
     g_overlay.stop_dfhack_translation_worker();
     // Process exit has no future DFHack suspension context for retiring links.
@@ -426,6 +551,9 @@ static bool stop_reloadable_core() {
         g_ime_popup_snapshot = {};
     }
     native_cleanup();
+    // This path has stopped every worker and detached every native callback.
+    // Release the explicit service lifetime here, never from the CRT detach.
+    native_announcement_log_translation_release();
     g_native_hook_thread = {};
     g_real_present = nullptr;
     g_real_copy = nullptr;

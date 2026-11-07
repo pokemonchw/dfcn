@@ -1,5 +1,5 @@
-// Native history identity adapter. Host-specific globals are verified against
-// the supported 53.16 PE/ELF; borrowed name/WORD/figure layouts are shared.
+// Native history identity adapter. Host globals and borrowed fields use the
+// selected image's independently resolved address and layout contracts.
 // Borrowed addresses are used only while the original event formatter runs;
 // the public snapshot contains owned strings and WORD identities only.
 static bool native_history_copy_bytes(uintptr_t address, void *destination, size_t size) {
@@ -80,14 +80,6 @@ static uintptr_t native_history_profile_base() {
         if (!native_validate_game() || !native_pe_supported()) return 0;
         const auto address = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
         if (!address) return 0;
-        // RVA d2cb50 is the game's English WORD/POS resolver. These loads
-        // establish the actual runtime word table, independent of RAW order.
-        static constexpr unsigned char word_table_loads[] = {
-            0x48, 0x8b, 0x05, 0x16, 0x0c, 0x7c, 0x01,
-            0x4c, 0x8b, 0x0d, 0x07, 0x0c, 0x7c, 0x01,
-        };
-        if (!native_pe_match(address, 0xd2cb5b, word_table_loads,
-                sizeof(word_table_loads))) return 0;
         return address;
 #else
         ModuleBuildId module;
@@ -98,6 +90,26 @@ static uintptr_t native_history_profile_base() {
 #endif
     }();
     return base;
+}
+
+static bool native_history_word_tables_ready() {
+#ifdef _WIN32
+    static const bool ready = [] {
+        const auto base = native_history_profile_base();
+        // These exact loads establish the English WORD/POS table. They
+        // authorize language consumers only, never the module base used by
+        // screen ownership, basic captions or other independently bound UI.
+        static constexpr unsigned char word_table_loads[] = {
+            0x48, 0x8b, 0x05, 0x16, 0x0c, 0x7c, 0x01,
+            0x4c, 0x8b, 0x0d, 0x07, 0x0c, 0x7c, 0x01,
+        };
+        return base && native_pe_match(base, 0xd2cb5b, word_table_loads,
+            sizeof(word_table_loads));
+    }();
+    return ready;
+#else
+    return native_history_profile_base() != 0;
+#endif
 }
 
 #ifndef _WIN32
@@ -199,24 +211,24 @@ static uintptr_t native_history_find_subject(uintptr_t base,
     if (lookup_read_complete) *lookup_read_complete = false;
     if (!base || id < 0) return 0;
     uintptr_t vector = 0;
-    size_t id_offset = 0;
+    native_history_abi::FieldOffset id_field{0, "artifact_record", "id"};
     switch (kind) {
     case NativeHistoryObjectKind::Figure:
         // RVA 67dc0: history.figures at +0x60; figure ID at +0xe0.
         vector = native_history_global(0x24f9d18);
-        id_offset = 0xe0;
+        id_field = {0xe0, "historical_figure", "id"};
         break;
     case NativeHistoryObjectKind::Entity:
         // RVA b92900 calls ba0a0 on this vector; IDs are at +4.
         vector = native_history_global(0x23d17f8);
-        id_offset = 4;
+        id_field = {4, "historical_entity", "id"};
         break;
     case NativeHistoryObjectKind::Site: {
         // RVA b9395e -> 7db20: world_data.sites at +0x178, ID +0x88.
         uintptr_t world_data = 0;
         if (!native_history_copy(native_history_global(0x24ebb58), world_data) || !world_data) return 0;
         vector = native_history_object_field(world_data, "world_data", 0x178);
-        id_offset = 0x88;
+        id_field = {0x88, "world_site", "id"};
         break;
     }
     case NativeHistoryObjectKind::World: {
@@ -250,7 +262,9 @@ static uintptr_t native_history_find_subject(uintptr_t base,
         if (!native_history_copy(native_history_global(0x24ebb58), world_data) || !world_data) return 0;
         const bool layer = kind == NativeHistoryObjectKind::Underground;
         vector = native_history_object_field(world_data, "world_data", layer ? 0x250 : 0x238);
-        id_offset = layer ? 0x80 : 0x78;
+        id_field = layer
+            ? native_history_abi::FieldOffset{0x80, "world_underground_region", "index"}
+            : native_history_abi::FieldOffset{0x78, "world_region", "index"};
         break;
     }
     }
@@ -267,14 +281,14 @@ static uintptr_t native_history_find_subject(uintptr_t base,
             const size_t middle = begin + half;
             const uintptr_t candidate = native_history_vector_at(values, middle);
             int32_t candidate_id = -1;
-            if (!candidate || !native_history_copy(candidate + id_offset, candidate_id)) return 0;
+            if (!native_history_copy(id_field.address(candidate, 0, 4, 4), candidate_id)) return 0;
             if (id >= candidate_id) begin = middle;
             count -= half;
         }
         for (size_t index = begin; index < begin + count; ++index) {
             const uintptr_t candidate = native_history_vector_at(values, index);
             int32_t candidate_id = -1;
-            if (!candidate || !native_history_copy(candidate + id_offset, candidate_id)) return 0;
+            if (!native_history_copy(id_field.address(candidate, 0, 4, 4), candidate_id)) return 0;
             if (candidate_id == id) {
                 if (lookup_read_complete) *lookup_read_complete = true;
                 return candidate;
@@ -288,7 +302,7 @@ static uintptr_t native_history_find_subject(uintptr_t base,
         const size_t middle = begin + (end - begin) / 2;
         const uintptr_t candidate = native_history_vector_at(values, middle);
         int32_t candidate_id = -1;
-        if (!candidate || !native_history_copy(candidate + id_offset, candidate_id)) return 0;
+        if (!native_history_copy(id_field.address(candidate, 0, 4, 4), candidate_id)) return 0;
         if (candidate_id == id) {
             if (lookup_read_complete) *lookup_read_complete = true;
             return candidate;
@@ -412,13 +426,9 @@ static bool capture_native_history_original_name(uintptr_t base, uintptr_t addre
         std::string &result) {
     if (!base || !address) return false;
     constexpr auto &fields = native_history_layout::f_language_name_fields;
-    constexpr size_t snapshot_size = [] {
-        size_t result = 0;
-        for (const auto &field : native_history_layout::f_language_name_fields)
-            result = std::max(result, field.native + field.size);
-        return result;
-    }();
-    std::array<unsigned char, snapshot_size> snapshot{};
+    const size_t snapshot_size = native_history_snapshot_size(fields);
+    if (!snapshot_size) return false;
+    std::vector<unsigned char> snapshot(snapshot_size);
     if (!native_history_copy_bytes(address, snapshot.data(), snapshot.size())) return false;
     uint8_t has_name = 0;
     std::memcpy(&has_name, snapshot.data() + fields[6].native, sizeof(has_name));
@@ -515,13 +525,9 @@ static bool capture_native_history_name(uintptr_t base, uintptr_t address,
     // indices, seven POS values and each scalar/string header. Generated
     // bindings retain the reviewed PE offsets and compiler-owned ELF offsets.
     constexpr auto &fields = native_history_layout::f_language_name_fields;
-    constexpr size_t snapshot_size = [] {
-        size_t result = 0;
-        for (const auto &field : native_history_layout::f_language_name_fields)
-            result = std::max(result, field.native + field.size);
-        return result;
-    }();
-    std::array<unsigned char, snapshot_size> snapshot{};
+    const size_t snapshot_size = native_history_snapshot_size(fields);
+    if (!snapshot_size) return false;
+    std::vector<unsigned char> snapshot(snapshot_size);
     if (!native_history_copy_bytes(address, snapshot.data(), snapshot.size())) return false;
     uint8_t has_name = 0;
     NativeHistoryName copy;
@@ -568,10 +574,11 @@ static bool capture_native_history_name(uintptr_t base, uintptr_t address,
         const uintptr_t raw = native_history_vector_at(words, static_cast<size_t>(index));
         // language_word.word at +0 is its stable WORD_ID. The nine English
         // forms at +0x20 are deliberately not parsed to recover that ID.
-        if (!raw || !native_history_copy_string(raw, word.id) || word.id.empty()) return false;
+        if (!raw || !native_history_copy_string(native_history_object_field(
+                raw, "language_word", 0, 32), word.id) || word.id.empty()) return false;
         std::string form;
-        if (!native_history_copy_string(raw + 0x20 + size_t(word.part_of_speech) * 0x20,
-                form)) return false;
+        if (!native_history_copy_string(native_history_object_field(raw, "language_word",
+                0x20 + size_t(word.part_of_speech) * 0x20, 32), form)) return false;
         word.has_form = !form.empty();
         word.english_form = std::move(form);
     }
@@ -682,21 +689,17 @@ static NativeHistoryEntityParentWord capture_native_history_entity_parent_word(
     if (stamp.parent && native_history_parent_polity_type(stamp.entity_type)) {
         const uintptr_t address = native_history_object_field(stamp.parent, "historical_entity", 0x20);
         constexpr auto &fields = native_history_layout::f_language_name_fields;
-        constexpr size_t head_index = fields[2].native + 5 * sizeof(int32_t);
-        constexpr size_t head_pos = fields[3].native + 5 * sizeof(int16_t);
-        constexpr size_t snapshot_end = fields[6].native + sizeof(uint8_t);
-        std::array<unsigned char, snapshot_end - head_index> snapshot{};
-        // Copy only the head slot and the following scalar name fields.
-        // Their offsets come from the same bindings as full name capture.
-        if (!address || address > UINTPTR_MAX - head_index ||
-                !native_history_copy_bytes(address + head_index,
+        const size_t snapshot_size = native_history_snapshot_size(fields);
+        if (!snapshot_size) return {};
+        std::vector<unsigned char> snapshot(snapshot_size);
+        if (!address || !native_history_copy_bytes(address,
                     snapshot.data(), snapshot.size())) return {};
-        std::memcpy(&stamp.has_name, snapshot.data() + fields[6].native - head_index,
+        std::memcpy(&stamp.has_name, snapshot.data() + fields[6].native,
             sizeof(stamp.has_name));
-        std::memcpy(&stamp.name_type, snapshot.data() + fields[5].native - head_index,
+        std::memcpy(&stamp.name_type, snapshot.data() + fields[5].native,
             sizeof(stamp.name_type));
-        std::memcpy(&stamp.index, snapshot.data(), sizeof(stamp.index));
-        std::memcpy(&stamp.pos, snapshot.data() + head_pos - head_index, sizeof(stamp.pos));
+        std::memcpy(&stamp.index, snapshot.data() + fields[2].native + 5 * sizeof(int32_t), sizeof(stamp.index));
+        std::memcpy(&stamp.pos, snapshot.data() + fields[3].native + 5 * sizeof(int16_t), sizeof(stamp.pos));
     }
     if (const auto found = words.find(parent_id);
             found != words.end() && found->second.stamp == stamp) {

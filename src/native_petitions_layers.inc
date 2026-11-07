@@ -112,12 +112,13 @@ static void native_petitions_end_draw() {
     if (!g_native_petitions_output) return;
     auto &layer = g_native_petitions_layer;
     auto *gps = native_graphics();
-    layer.foreground.graphics()->top_in_use = gps->top_in_use;
+    native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+        layer.foreground.graphics()->top_in_use);
     const auto continuation = NativeDfhackOutputBinding::capture(*gps);
     native_petitions_restore_output();
     // The next native component inherits the producer's cursor and palette,
     // while output arrays and clipping return to the parent owner.
-    std::memcpy(&gps->screenx, continuation.draw.data(), continuation.draw.size());
+    continuation.apply_draw(*gps);
     g_native_petitions_background_grid = gps->screen;
     layer.ready = !layer.frames.empty();
     NativeUiReadScope::invalidate_reads();

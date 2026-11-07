@@ -22,6 +22,7 @@ static graphicst *native_dfhack_render_read_graphics();
 static void capture_native_map_display_source(const graphicst &graphics) noexcept {
     auto &source = g_native_map_display_source;
     source.serial = g_native_map_frame_serial;
+    source.owner = native_current_viewscreen();
     source.dimx = graphics.dimx; source.dimy = graphics.dimy;
     source.screen_pixel_x = graphics.screen_pixel_x;
     source.screen_pixel_y = graphics.screen_pixel_y;
@@ -39,8 +40,8 @@ static void capture_native_map_display_source(const graphicst &graphics) noexcep
 static void bind_native_map_display_frame(const graphicst *graphics) noexcept {
     if (!graphics || graphics != native_dfhack_render_read_graphics() ||
             graphics != g_native_graphics_read_view || !graphics->screen ||
-            !g_native_map_layer.ready || !g_native_map_background_grid ||
-            g_native_map_mixed_grid || g_native_map_write_graphics ||
+            ((!g_native_map_layer.ready || !g_native_map_background_grid) &&
+                !g_native_map_mixed_grid) || g_native_map_write_graphics ||
             native_private_ui_write_active(graphics) ||
             NativeDfhackForegroundScope::active || g_native_info_foreground ||
             g_native_character_foreground) return;
@@ -64,6 +65,7 @@ static void bind_native_map_display_frame(const graphicst *graphics) noexcept {
         }
     const auto &source = g_native_map_display_source;
     if (!source.serial || source.serial != g_native_map_frame_serial ||
+            !source.owner || source.owner != native_current_viewscreen() ||
             source.dimx != graphics->dimx || source.dimy != graphics->dimy ||
             source.screen_pixel_x != graphics->screen_pixel_x ||
             source.screen_pixel_y != graphics->screen_pixel_y ||
@@ -79,7 +81,10 @@ static void bind_native_map_display_frame(const graphicst *graphics) noexcept {
     }
     // Classic frames without map objects retain the existing exact-buffer
     // path; dimensions alone cannot establish their native owner.
-    if (has_map) g_native_map_background_grid = graphics->screen;
+    if (has_map) {
+        if (g_native_map_mixed_grid) g_native_map_mixed_grid = graphics->screen;
+        else g_native_map_background_grid = graphics->screen;
+    }
 }
 
 static void native_map_clear_empty_ui_cells(graphicst &gps) {
@@ -125,7 +130,7 @@ static void native_map_producer(void *map, int32_t tick, void *context) {
             layer.frames = {{0, 0, gps->dimx, gps->dimy}};
         } catch (...) { isolate = false; }
     }
-    if (!isolate) {
+    const auto draw_native = [&] {
         g_native_map_mixed_grid = gps ? gps->screen : nullptr;
         // A later direct producer can run without another begin_frame.
         // Retire the preceding private source proof before native drawing
@@ -139,18 +144,27 @@ static void native_map_producer(void *map, int32_t tick, void *context) {
             g_native_map_display_source = {};
         }
         NativeUiReadScope::invalidate_reads();
+        // The native map is still the producer even when its output cannot
+        // be isolated. Do not lend its addst symbols to shared HUD readers.
+        NativeInfoCapturedText map_text;
+        NativeInfoCapturedTextScope captions(map_text);
         callback.call_native([&] { original(map, tick, context); });
-        return;
-    }
+        if (gps && !g_native_map_write_graphics)
+            capture_native_map_display_source(*gps);
+    };
+    if (!isolate) { draw_native(); return; }
     const auto *background = gps->screen;
-    native_map_clear_empty_ui_cells(*gps);
     // Neither branch owns prose. Keep any native glyph/caption callbacks
     // produced for map symbols out of the independent HUD text registries.
     NativeInfoCapturedText map_text;
     {
         // prepare() borrows the source viewport/map-port objects unchanged.
         // Their native output remains independent of the HUD character grid.
-        NativeUiGridBinding output(gps, *layer.foreground.graphics());
+        std::optional<NativeUiGridBinding> output;
+        if (!native_ui_bind_grid(output, gps, *layer.foreground.graphics())) {
+            draw_native();
+            return;
+        }
         NativeInfoCapturedTextScope captions(map_text);
         struct WriteScope {
             const graphicst *previous = g_native_map_write_graphics;
@@ -158,8 +172,13 @@ static void native_map_producer(void *map, int32_t tick, void *context) {
             ~WriteScope() { g_native_map_write_graphics = previous; }
         } writing(gps);
         callback.call_native([&] { original(map, tick, context); });
-        layer.foreground.graphics()->top_in_use = gps->top_in_use;
+        native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+            layer.foreground.graphics()->top_in_use);
     }
+    // The private producer completed and all borrowed bindings have been
+    // restored. Only now remove empty shared cells; a failed bind must leave
+    // the original native input untouched for its single fallback draw.
+    native_map_clear_empty_ui_cells(*gps);
     g_native_map_background_grid = background;
     g_native_map_mixed_grid = nullptr;
     g_native_map_classic = native_ui_classic().value_or(false);

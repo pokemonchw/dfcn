@@ -367,7 +367,14 @@ void Overlay::note_main_menu_developer_copy(SDL_Renderer *renderer,
     const auto *texture_owner = native_graphics_owner();
     if (!texture_owner) return;
     for (int slot : {7, 8, 9}) {
+#ifdef _WIN32
+        const auto *cached = static_cast<const unsigned char *>(native_graphics_member_address(
+            texture_owner, offsetof(graphicst, tex) + size_t(slot) * sizeof(texture_owner->tex[0]),
+            sizeof(texture_owner->tex[0])));
+        if (!cached) continue;
+#else
         const auto *cached = reinterpret_cast<const unsigned char *>(&texture_owner->tex[slot]);
+#endif
         SDL_Texture *developer = nullptr;
         std::memcpy(&developer, cached + 8, sizeof(developer));
         if (cached[16] != 0 || developer != texture) continue;

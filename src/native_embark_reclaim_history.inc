@@ -2,11 +2,22 @@
 // addst loop still owns the selected events. The overlay consumes these
 // owned records with the drawn rows, never a later live selection.
 static uintptr_t native_reclaim_screen_field(uintptr_t screen, size_t legacy,
-        std::string_view member) {
+        std::string_view member, size_t width) {
 #ifdef _WIN32
-    return screen + legacy;
+    using native_history_abi::FieldOffset;
+    static constexpr std::array fields{
+        FieldOffset{0x275, "viewscreen_choose_start_sitest", "choosing_reclaim"},
+        FieldOffset{0x340, "viewscreen_choose_start_sitest", "reclaim_detail_box_last_processing_dimx"},
+        FieldOffset{0x2ac, "viewscreen_choose_start_sitest", "selected_reclaim"},
+        FieldOffset{0x338, "viewscreen_choose_start_sitest", "reclaim_detail_she"},
+        FieldOffset{0x330, "viewscreen_choose_start_sitest", "reclaim_detail_he"},
+        FieldOffset{0x318, "viewscreen_choose_start_sitest", "reclaim_detail_box.text"}};
+    for (const auto &field : fields)
+        if (field.reference == legacy && field.member == native_history_abi::generated_id(member))
+            return native_viewscreen_field(screen, field, width);
+    return 0;
 #else
-    return native_history_object_member(screen, "viewscreen_choose_start_sitest", member);
+    return native_history_object_member(screen, "viewscreen_choose_start_sitest", member, width);
 #endif
 }
 
@@ -81,39 +92,24 @@ capture_native_embark_reclaim_history_draw(graphicst *graphics,
     const auto read_state = [&]() -> std::optional<State> {
         State state;
         state.generation = g_native_history_capture_generation.load(std::memory_order_acquire);
-        const uintptr_t view = native_reference_address(base, native_history_layout::gview_rva);
-        if (!view || view > UINTPTR_MAX - 8) return std::nullopt;
-        uintptr_t screen = view + 8;
-        std::array<uintptr_t, 64> visited{};
-        bool current = false;
-        for (size_t depth = 0; depth < visited.size(); ++depth) {
-            if (screen > UINTPTR_MAX - 0x344 ||
-                    std::find(visited.begin(), visited.begin() + depth, screen) !=
-                        visited.begin() + depth) return std::nullopt;
-            visited[depth] = screen;
-            uintptr_t child = 0;
-            if (!native_history_copy(screen + 8, child)) return std::nullopt;
-            if (child) { screen = child; continue; }
-            current = true;
-            break;
-        }
+        const uintptr_t screen = native_current_viewscreen();
         uintptr_t table = 0;
         uint8_t reclaim = 0;
         // RTTI: viewscreen_choose_start_sitest, vtable RVA 1749000.
         // Native render 1050fdc gates this panel with byte +275.
-        if (!current || !native_history_copy(screen, table) ||
+        if (!screen || !native_history_copy(screen, table) ||
                 !native_history_object_is(screen, "viewscreen_choose_start_sitest") ||
-                !native_history_copy(native_reclaim_screen_field(screen, 0x275, "choosing_reclaim"), reclaim) || !reclaim ||
-                !native_history_copy(native_reclaim_screen_field(screen, 0x340, "reclaim_detail_box_last_processing_dimx"), state.width) || state.width != 34 ||
-                !native_history_copy(native_reclaim_screen_field(screen, 0x2ac, "selected_reclaim"), state.selection) || state.selection < 0 ||
-                !native_history_copy(native_reclaim_screen_field(screen, 0x338, "reclaim_detail_she"), state.events[0]) ||
-                !native_history_copy(native_reclaim_screen_field(screen, 0x330, "reclaim_detail_he"), state.events[1]) ||
+                !native_history_copy(native_reclaim_screen_field(screen, 0x275, "choosing_reclaim", sizeof(reclaim)), reclaim) || !reclaim ||
+                !native_history_copy(native_reclaim_screen_field(screen, 0x340, "reclaim_detail_box_last_processing_dimx", sizeof(state.width)), state.width) || state.width != 34 ||
+                !native_history_copy(native_reclaim_screen_field(screen, 0x2ac, "selected_reclaim", sizeof(state.selection)), state.selection) || state.selection < 0 ||
+                !native_history_copy(native_reclaim_screen_field(screen, 0x338, "reclaim_detail_she", sizeof(state.events[0])), state.events[0]) ||
+                !native_history_copy(native_reclaim_screen_field(screen, 0x330, "reclaim_detail_he", sizeof(state.events[1])), state.events[1]) ||
                 (!state.events[0] && !state.events[1]) ||
                 (state.events[0] && state.events[0] == state.events[1])) return std::nullopt;
         state.screen = screen;
 
         NativeBorrowedVector<uintptr_t> lines;
-        if (!native_history_copy(native_reclaim_screen_field(screen, 0x318, "reclaim_detail_box.text"), lines) ||
+        if (!native_history_copy(native_reclaim_screen_field(screen, 0x318, "reclaim_detail_box.text", sizeof(lines)), lines) ||
                 !lines.valid(kNativeHistorySourceLimit) || lines.size() == 0) return std::nullopt;
         state.lines = {reinterpret_cast<uintptr_t>(lines.begin),
             reinterpret_cast<uintptr_t>(lines.end), reinterpret_cast<uintptr_t>(lines.capacity)};
@@ -122,12 +118,13 @@ capture_native_embark_reclaim_history_draw(graphicst *graphics,
         // The screen's +1a0 WORD is deliberately not used: it truncates IDs.
         NativeBorrowedVector<int32_t> sites;
         if (!native_history_copy(native_history_global(0x24ebb58), state.world_data) ||
-                !state.world_data || state.world_data > UINTPTR_MAX - 0x483e8 ||
+                !state.world_data ||
                 !native_history_copy(
 #ifdef _WIN32
-                    state.world_data + 0x483d0,
+                    native_viewscreen_field(state.world_data,
+                        {0x483d0, "world_data", "old_sites"}, sizeof(sites)),
 #else
-                    native_history_object_member(state.world_data, "world_data", "old_sites"),
+                    native_history_object_member(state.world_data, "world_data", "old_sites", sizeof(sites)),
 #endif
                     sites) ||
                 !sites.valid(1u << 24) || static_cast<size_t>(state.selection) >= sites.size() ||
@@ -139,12 +136,17 @@ capture_native_embark_reclaim_history_draw(graphicst *graphics,
         for (size_t at = 0; at < state.events.size(); ++at) {
             const uintptr_t event = state.events[at];
             if (!event) continue;
-            if (event > UINTPTR_MAX - 0x24 ||
-                    !capture_native_history_event_identity(reinterpret_cast<const void *>(event),
+            if (!capture_native_history_event_identity(reinterpret_cast<const void *>(event),
                         state.types[at]) ||
-                    !native_history_copy(event + 0x20, state.ids[at]) || state.ids[at] < 0 ||
-                    !native_history_copy(event + 8, state.years[at]) ||
-                    !native_history_copy(event + 12, state.seconds[at])) return std::nullopt;
+                    !native_history_copy(native_viewscreen_field(event,
+                        {0x20, "history_event", "id"}, sizeof(state.ids[at])),
+                        state.ids[at]) || state.ids[at] < 0 ||
+                    !native_history_copy(native_viewscreen_field(event,
+                        {8, "history_event", "year"}, sizeof(state.years[at])),
+                        state.years[at]) ||
+                    !native_history_copy(native_viewscreen_field(event,
+                        {12, "history_event", "seconds"}, sizeof(state.seconds[at])),
+                        state.seconds[at])) return std::nullopt;
             // The complete producer switch at 1054090..10541ee admits only
             // these types. Meanings and every flag branch use the shared
             // native event adapters and semantic renderer.
@@ -228,12 +230,15 @@ capture_native_embark_reclaim_history_draw(graphicst *graphics,
     for (size_t part = 0; part < next.paragraphs.size(); ++part) {
         if (!before->events[part] || next.paragraphs[part]) continue;
         captured = true;
-        alignas(16) std::array<unsigned char, 0xc8> context;
-        initialize_native_history_context(context.data());
+        std::vector<std::max_align_t> context;
+        if (!initialize_native_history_context(context)) continue;
         // Choose-start uses the unmodified 072080 constructor: flags are
         // zero, unlike chronicle/Legends callers that subsequently set bit 1.
         const uint32_t context_flags = 0;
-        std::memcpy(context.data(), &context_flags, sizeof(context_flags));
+        const auto flags = native_history_object_member(reinterpret_cast<uintptr_t>(context.data()),
+            "history_event_context", "flags", sizeof(context_flags));
+        if (!flags) continue;
+        std::memcpy(reinterpret_cast<void *>(flags), &context_flags, sizeof(context_flags));
         auto event = snapshot_native_history_event(
             reinterpret_cast<const void *>(before->events[part]), context.data());
         if (!event || event->fields.contains("snapshot.incomplete") ||

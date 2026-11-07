@@ -68,7 +68,7 @@ inline std::string hex_digest(const std::array<unsigned char, 32> &digest) {
 struct Section {
     std::uint32_t begin = 0, end = 0, raw = 0, raw_size = 0, flags = 0;
 };
-struct Function { std::uint32_t begin = 0, end = 0; };
+struct Function { std::uint32_t begin = 0, end = 0, owner = 0, unwind = 0; };
 
 class Image {
 public:
@@ -141,17 +141,25 @@ public:
         digest = sha256(file.data(), file.size());
     }
 
-    // Known image identities and saved coordinate maps only need the headers
-    // and digest. Build discovery indexes when a fresh scan is required.
+    // A saved entry certificate may name an import tail. Loading that cache
+    // needs the bounded import directory, not the full discovery indexes.
+    void prepare_imports() {
+        if (imports_prepared_) return;
+        imports_.clear();
+        parse_imports();
+        imports_prepared_ = true;
+    }
+
+    // Fresh discovery (including ABI evidence on reviewed images) also needs
+    // unwind ownership, relocation and RTTI indexes.
     void prepare_scan() {
         if (scan_prepared_) return;
         functions.clear();
         relocations.clear();
-        imports_.clear();
         vtables_.clear();
         parse_functions();
         parse_relocations();
-        parse_imports();
+        prepare_imports();
         index_vtables();
         scan_prepared_ = true;
     }
@@ -180,6 +188,9 @@ public:
     std::vector<std::uint32_t> find_vtables(const std::string &decorated_name) const {
         const auto found = vtables_.find(decorated_name);
         return found == vtables_.end() ? std::vector<std::uint32_t>{} : found->second;
+    }
+    bool rtti_catalog_complete() const {
+        return scan_prepared_ && !vtables_.empty();
     }
 
     std::uint32_t import_slot(std::string library, const std::string &symbol) const {
@@ -214,6 +225,7 @@ public:
 
 private:
     bool scan_prepared_ = false;
+    bool imports_prepared_ = false;
     std::uint32_t headers_size_ = 0;
     std::array<IMAGE_DATA_DIRECTORY, IMAGE_NUMBEROF_DIRECTORY_ENTRIES> directories_{};
     std::unordered_map<std::string, std::vector<std::uint32_t>> vtables_;
@@ -264,6 +276,7 @@ private:
         if (!data) return;
         const auto &entry = directories_[IMAGE_DIRECTORY_ENTRY_EXCEPTION];
         if (entry.Size % 12) throw std::runtime_error("Invalid game executable runtime function table size");
+        std::vector<std::uint32_t> unwind_entries;
         for (std::size_t offset = 0; offset < entry.Size; offset += 12) {
             std::uint32_t begin = 0, end = 0, unwind = 0;
             std::memcpy(&begin, data + offset, 4);
@@ -273,7 +286,34 @@ private:
             if (!owner || !(owner->flags & IMAGE_SCN_MEM_EXECUTE) || !read(unwind, 4) ||
                 (!functions.empty() && begin < functions.back().end))
                 throw std::runtime_error("Invalid game executable runtime function range");
-            functions.push_back({begin, end});
+            functions.push_back({begin, end, begin, unwind});
+            unwind_entries.push_back(unwind);
+        }
+        // A split MSVC routine can have several disjoint .pdata records. The
+        // chained unwind record proves their common entry; address proximity
+        // or a reference fragment's byte offset supplies no such identity.
+        for (std::size_t index = 0; index < functions.size(); ++index) {
+            std::size_t current = index;
+            for (std::size_t depth = 0; ; ++depth) {
+                if (depth >= 64) throw std::runtime_error("Cyclic or excessive game unwind chain");
+                const auto unwind = unwind_entries[current];
+                const auto *header = read(unwind, 4);
+                if (!header || (header[0] & 7) != 1) throw std::runtime_error("Unsupported game unwind metadata");
+                if (!(header[0] & (4 << 3))) break;
+                if (header[0] & (3 << 3)) throw std::runtime_error("Conflicting game unwind flags");
+                const auto *chain = read(unwind + 4 + ((std::uint32_t(header[2]) + 1) & ~1u) * 2, 12);
+                if (!chain) throw std::runtime_error("Truncated game unwind chain");
+                std::array<std::uint32_t, 3> parent{};
+                std::memcpy(parent.data(), chain, 12);
+                const auto found = std::lower_bound(functions.begin(), functions.end(), parent[0],
+                    [](const auto &function, std::uint32_t value) { return function.begin < value; });
+                if (found == functions.end() || found->begin != parent[0] || found->end != parent[1])
+                    throw std::runtime_error("Game unwind chain has no exact parent function");
+                current = static_cast<std::size_t>(found - functions.begin());
+                if (unwind_entries[current] != parent[2])
+                    throw std::runtime_error("Game unwind chain has inconsistent parent metadata");
+            }
+            functions[index].owner = functions[current].begin;
         }
     }
 

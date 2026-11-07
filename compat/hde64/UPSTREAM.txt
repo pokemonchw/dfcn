@@ -1,0 +1,7 @@
+Hacker Disassembler Engine 64, vendored from MinHook v1.3.4:
+https://github.com/TsudaKageyu/minhook/tree/v1.3.4/src/hde
+License: LICENSE.txt (upstream MinHook/HDE distribution license).
+
+DFCN changes: hde64_disasm is static inline and hde64_table is static so
+the decoder can be included in the production core and address-data compiler.
+No decoder algorithm or opcode tables are changed.

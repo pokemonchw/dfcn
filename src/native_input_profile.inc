@@ -1,13 +1,23 @@
 // Native entry discovery only; editing, search and hook lifetimes are shared.
 #ifdef _WIN32
-static bool prepare_native_input_profile(NativeInputProfile &profile) {
-    const HMODULE module = GetModuleHandleW(nullptr);
-    const uintptr_t base = reinterpret_cast<uintptr_t>(module);
-    if (!base || !native_pe_supported()) return false;
+static bool prepare_native_arena_input_profile(uintptr_t base, NativeArenaContext &arena) {
     static constexpr std::array<unsigned char, 5> filter_prefix{{0x48, 0x89, 0x5c, 0x24, 0x10}};
     static constexpr std::array<unsigned char, 7> picker_reference{{0x48, 0x8d, 0x1d, 0xb1, 0xe1, 0xfe, 0x00}};
     if (!native_pe_match(base, 0x000f7ec0, filter_prefix.data(), filter_prefix.size()) ||
         !native_pe_match(base, 0x008b9f70, picker_reference.data(), picker_reference.size())) return false;
+    NativeArenaContext candidate{
+        reinterpret_cast<unsigned char *>(native_pe_address(base, 0x018a8110)),
+        reinterpret_cast<unsigned char *>(native_pe_address(base, 0x024eca68)),
+        reinterpret_cast<NativeArenaFilterFn>(native_pe_address(base, 0x000f7ec0))};
+    if (!native_arena_context_available(candidate)) return false;
+    arena = candidate;
+    return true;
+}
+
+static bool prepare_native_input_profile(NativeInputProfile &profile) {
+    const HMODULE module = GetModuleHandleW(nullptr);
+    const uintptr_t base = reinterpret_cast<uintptr_t>(module);
+    if (!base || !native_pe_supported()) return false;
     profile.entry = reinterpret_cast<unsigned char *>(native_pe_address(base, 0x00c39700));
     profile.prefix = {0x40, 0x53, 0x56, 0x57, 0x41, 0x56};
     if (!profile.entry || !native_pe_bytes(0x00c39700, profile.prefix)) return false;
@@ -15,14 +25,14 @@ static bool prepare_native_input_profile(NativeInputProfile &profile) {
     if (!native_pe_match(base, 0x00c38aa0, ui_text_call, sizeof(ui_text_call))) return false;
     profile.ui_text_input_return = reinterpret_cast<const void *>(native_pe_address(base, 0x00c38aa5));
     if (!profile.ui_text_input_return) return false;
-    profile.arena = {
-        reinterpret_cast<unsigned char *>(native_pe_address(base, 0x018a8110)),
-        reinterpret_cast<unsigned char *>(native_pe_address(base, 0x024eca68)),
-        reinterpret_cast<NativeArenaFilterFn>(native_pe_address(base, 0x000f7ec0))};
-    if (!profile.arena.picker || !profile.arena.raws || !profile.arena.filter) return false;
     void **start = find_iat_slot(module, "SDL2.dll", "SDL_StartTextInput");
     if (!start) return false;
     profile.start_slots.push_back(start);
+    // The shared editor and IME own their own entry/import contracts. Arena
+    // search may bind only after its separate code and complete layout proof.
+    profile.arena = {};
+    try { (void)prepare_native_arena_input_profile(base, profile.arena); }
+    catch (...) { profile.arena = {}; }
     return true;
 }
 #else
@@ -125,7 +135,7 @@ static bool prepare_native_input_profile(NativeInputProfile &profile) {
     dl_iterate_phdr(find_present_slot, &library);
     dl_iterate_phdr(find_main_import_slot, &main);
     profile.original = reinterpret_cast<NativeTextInputFn>(dlsym(RTLD_DEFAULT, symbol));
-    if (!library.slot || !profile.original || !locate_native_arena_profile(profile.arena)) return false;
+    if (!library.slot || !profile.original) return false;
     // The library's four-argument overload calls its five-argument export
     // through this import. Include a direct main import when it exists.
     profile.text_slots.push_back(library.slot);
@@ -137,6 +147,11 @@ static bool prepare_native_input_profile(NativeInputProfile &profile) {
     if (main_start.slot && main_start.slot != library_start.slot) profile.start_slots.push_back(main_start.slot);
     // Some SDL backends start input without a game-owned import. The common
     // text-entry callback also refreshes the SDL input rectangle on every edit.
+    NativeArenaContext arena;
+    profile.arena = {};
+    try {
+        if (locate_native_arena_profile(arena) && native_arena_context_available(arena)) profile.arena = arena;
+    } catch (...) { profile.arena = {}; }
     return true;
 }
 #endif

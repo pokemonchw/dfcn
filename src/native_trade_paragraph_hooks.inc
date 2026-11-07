@@ -126,6 +126,7 @@ static void capture_native_adventure_barter_retained_reply(
 
 static void capture_native_adventure_barter_reply_draw(graphicst *graphics,
         const NativeString *source, void *screen, int width) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
     try {
@@ -139,7 +140,7 @@ static void capture_native_adventure_barter_reply_draw(graphicst *graphics,
     // identity; calling the hooked entry here would bind our return address.
     capture_native_limited_caption_draw(graphics, source, NativeJustification{}, width, [&] {
         if (const auto original = g_native_clipped_caption_hooks.draw)
-            callback.call_native([&] { original(graphics, source, NativeJustification{}, width); });
+            callback.call_native([&] { native_graphics_call(original, graphics, source, NativeJustification{}, width); });
     }, false, NativeInfoTitleKind::None, false, {}, false,
         NativeCivilizationField::None, false, {}, NativeLocationPickerField::None,
         NativeTravelBuildingField::None, caller);

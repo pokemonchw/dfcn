@@ -40,9 +40,13 @@ struct NativeTopbarSiteClip {
         right = graphics->clipx[1];
         // Constrain the original writer too: its unbounded native name must
         // not leave glyphs underneath the population and mood artwork.
-        graphics->clipx[1] = std::min(right, long(native_topbar_site_right() - 1));
+        native_graphics_write_member(graphics, offsetof(graphicst, clipx) + sizeof(long),
+            std::min(right, long(native_topbar_site_right() - 1)));
     }
-    ~NativeTopbarSiteClip() { if (graphics) graphics->clipx[1] = right; }
+    ~NativeTopbarSiteClip() {
+        if (graphics) native_graphics_write_member(graphics,
+            offsetof(graphicst, clipx) + sizeof(long), right);
+    }
 };
 
 static bool native_topbar_foreground_view(const graphicst *graphics) noexcept {

@@ -1,57 +1,54 @@
-// The Windows adventure initializer's missing-start-square branch calls
-// MessageBoxW directly, outside SDL's paragraph renderer. Keep these two
-// UTF-16 literals inside their original spans and restore them with the
-// shared patch lifecycle; no executable file or native call is replaced.
+// Releases use either MessageBoxA or MessageBoxW for this native error. Bind
+// the actual import by name; string pooling and literal encoding are not
+// executable-address contracts. Other dialogs retain their original handler.
 #ifdef _WIN32
-static std::vector<NativeCodePatch> g_native_adventure_introduction_patches;
-static bool g_native_adventure_introduction_installed = false;
+static NativeImportHook g_native_adventure_message_a, g_native_adventure_message_w;
+using NativeAdventureMessageA = int (WINAPI *)(HWND, LPCSTR, LPCSTR, UINT);
+using NativeAdventureMessageW = int (WINAPI *)(HWND, LPCWSTR, LPCWSTR, UINT);
+
+static int WINAPI native_adventure_message_a(HWND window, LPCSTR text, LPCSTR caption, UINT flags) {
+    if (text && caption && std::strcmp(text, "Could not locate adventure start square") == 0 &&
+            std::strcmp(caption, "FATAL ERROR") == 0)
+        return MessageBoxW(window, L"无法找到冒险起始方格", L"致命错误", flags);
+    return reinterpret_cast<NativeAdventureMessageA>(g_native_adventure_message_a.original)(
+        window, text, caption, flags);
+}
+
+static int WINAPI native_adventure_message_w(HWND window, LPCWSTR text, LPCWSTR caption, UINT flags) {
+    if (text && caption && lstrcmpW(text, L"Could not locate adventure start square") == 0 &&
+            lstrcmpW(caption, L"FATAL ERROR") == 0)
+        return MessageBoxW(window, L"无法找到冒险起始方格", L"致命错误", flags);
+    return reinterpret_cast<NativeAdventureMessageW>(g_native_adventure_message_w.original)(
+        window, text, caption, flags);
+}
 
 static bool native_adventure_introduction_hooks_active() {
-    return g_native_adventure_introduction_installed ||
-        native_code_patches_pending(g_native_adventure_introduction_patches);
+    return g_native_adventure_message_a.active() || g_native_adventure_message_w.active();
 }
 
 static void uninstall_native_adventure_introduction_hooks() {
     constexpr const char *label = "Native adventure introduction error text";
-    if (g_native_adventure_introduction_installed &&
-            !write_native_code_patches(g_native_adventure_introduction_patches,
-                false, label, &g_native_adventure_introduction_installed, false)) return;
-    if (!flush_native_code_patches(g_native_adventure_introduction_patches, label)) return;
-    g_native_adventure_introduction_patches.clear();
+    g_native_adventure_message_w.uninstall(label);
+    g_native_adventure_message_a.uninstall(label);
 }
 
 static bool install_native_adventure_introduction_hooks() {
     constexpr const char *label = "Native adventure introduction error text";
-    if (g_native_adventure_introduction_installed)
-        return flush_native_code_patches(g_native_adventure_introduction_patches, label);
-    uninstall_native_adventure_introduction_hooks();
-    if (native_adventure_introduction_hooks_active() || !native_validate_game()) return false;
-    auto *base = reinterpret_cast<unsigned char *>(GetModuleHandleW(nullptr));
-    const auto append = [&](uintptr_t reference_rva, const auto &source, const auto &target) {
-        if (sizeof(target) > sizeof(source)) return false;
-        const uintptr_t address = native_pe_address(reinterpret_cast<uintptr_t>(base), reference_rva);
-        if (!address || sizeof(source) - 1 > UINTPTR_MAX - address ||
-                sizeof(source) - 1 > UINTPTR_MAX - reference_rva ||
-                native_pe_address(reinterpret_cast<uintptr_t>(base), reference_rva + sizeof(source) - 1) !=
-                    address + sizeof(source) - 1) return false;
-        NativeCodePatch patch{
-            reinterpret_cast<unsigned char *>(address),
-            std::vector<unsigned char>(sizeof(source)),
-            std::vector<unsigned char>(sizeof(source), 0)};
-        // Include each original terminator in the expected signature and
-        // preserve the complete original byte extent for ownership/restoration.
-        std::memcpy(patch.original.data(), source, sizeof(source));
-        std::memcpy(patch.replacement.data(), target, sizeof(target));
-        g_native_adventure_introduction_patches.push_back(std::move(patch));
-        return true;
+    if (!native_validate_game()) return false;
+    const auto module = GetModuleHandleW(nullptr);
+    auto prepare = [&](NativeImportHook &hook, const char *symbol, void *replacement) {
+        if (hook.installed) return true;
+        hook.slot = find_iat_slot(module, "USER32.dll", symbol);
+        if (!hook.slot) return true; // The target release does not use this import.
+        hook.replacement = replacement;
+        return hook.install(label);
     };
-    // Reference 0x7ea1de/0x7ea1e5 and classic 0x7e7a5e/0x7e7a65
-    // load these caption/text addresses before the native MessageBoxW call.
-    if (!append(0x16aba48, L"FATAL ERROR", L"致命错误") ||
-            !append(0x16ad410,
-                L"Could not locate adventure start square", L"无法找到冒险起始方格")) return false;
-    return write_native_code_patches(g_native_adventure_introduction_patches,
-        true, label, &g_native_adventure_introduction_installed, false);
+    if (!prepare(g_native_adventure_message_a, "MessageBoxA", reinterpret_cast<void *>(&native_adventure_message_a)) ||
+            !prepare(g_native_adventure_message_w, "MessageBoxW", reinterpret_cast<void *>(&native_adventure_message_w))) {
+        uninstall_native_adventure_introduction_hooks();
+        return false;
+    }
+    return true;
 }
 #else
 static bool native_adventure_introduction_hooks_active() { return false; }

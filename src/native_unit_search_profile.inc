@@ -1,6 +1,31 @@
 // Native register/field bindings only; every roster uses the same matcher.
 static bool resolve_native_unit_search_profile(NativeUnitSearchProfile &profile) {
     const uintptr_t base = native_history_profile_base();
+#ifdef _WIN32
+    const auto *binding = native_pe_callable_search("unit_list", 0x1424c30,
+        0x1432770, 0x52cee0, 0xe1990, 0xc65450, 0x1330c30);
+    // Keep the helpers independently required. Callable RTTI and a matching
+    // capture alone do not establish the formatter/fold/find calling ABI.
+    if (!base || !binding || !native_pe_rva(0x52cee0) || !native_pe_rva(0xe1990) ||
+            !native_pe_rva(0xc65450) || !native_pe_rva(0x1330c30)) return false;
+    profile.base = base;
+    profile.find = &native_search_byte_find;
+    profile.fold = reinterpret_cast<NativeUnitSearchFoldFn>(base + binding->fold_target);
+    profile.predicate = reinterpret_cast<NativeUnitSearchPredicateFn>(base + binding->predicate);
+    profile.calls = {
+        {binding->invoker_call, binding->predicate,
+            reinterpret_cast<const void *>(&capture_native_unit_search_predicate)},
+        {binding->query_fold, binding->fold_target,
+            reinterpret_cast<const void *>(&capture_native_unit_search_query_fold)},
+        {binding->fold_call, binding->fold_target,
+            reinterpret_cast<const void *>(&capture_native_unit_search_scoped_fold)},
+        {binding->name_find, binding->find_target,
+            reinterpret_cast<const void *>(&capture_native_unit_search_find)},
+        {binding->job_find, binding->find_target,
+            reinterpret_cast<const void *>(&capture_native_unit_search_job_find)},
+    };
+    return true;
+#else
     const NativeSearchBinding<NativeUnitSearchProfile> bindings[]{
         {{
             {0x1424c62, {0x48,0x8b,0x01,0x48,0x39,0x98,0x90,0x06,0,0,
@@ -81,4 +106,5 @@ static bool resolve_native_unit_search_profile(NativeUnitSearchProfile &profile)
         }}}
     };
     return resolve_native_search_binding(bindings, profile, "Complete roster search");
+#endif
 }

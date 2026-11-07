@@ -539,7 +539,7 @@ void Overlay::layout_toolbar_tooltip(SDL_Renderer *renderer) {
         const int origin_x = (gps_->screen_pixel_x - gps_->dimx * tile_w) / 2;
         const int origin_y = (gps_->screen_pixel_y - gps_->dimy * tile_h) / 2;
         for (Match &match : prepared_matches_) {
-            if (match.rule != kToolbarTooltipBodyRule) continue;
+            if (match.rule != kToolbarTooltipBodyRule || match.native_adventure_hover_paint) continue;
             match.layout_x = left;
             match.layout_length = card.text_right - left;
             match.layout_y = match.y;
@@ -563,6 +563,7 @@ void Overlay::layout_toolbar_tooltip(SDL_Renderer *renderer) {
     std::string target;
     for (size_t i = 0; i < prepared_matches_.size(); ++i) {
         const Match &match = prepared_matches_[i];
+        if (match.native_adventure_hover_paint) continue;
         if (match.rule == kToolbarTooltipBodyRule) {
             body.push_back(i);
             target += match.target;

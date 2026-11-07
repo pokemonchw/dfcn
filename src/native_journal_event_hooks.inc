@@ -6,6 +6,20 @@ using NativeJournalEventBuildFn = void (*)(void *);
 static NativeJournalEventBuildFn g_native_journal_event_build = nullptr;
 static NativeCallHook g_native_journal_event_calls;
 
+template<typename T>
+static bool native_journal_read(uintptr_t object, native_history_abi::FieldOffset field,
+        T &value) {
+    return native_history_copy(native_viewscreen_field(object, field, sizeof(value)), value);
+}
+
+static bool native_journal_screen_mode(uintptr_t screen, int16_t &mode) {
+    const uintptr_t base = native_history_profile_base();
+    const uintptr_t expected = base ? native_reference_address(base, 0x15eb450) : 0;
+    uintptr_t vtable = 0;
+    return expected && screen && native_history_copy(screen, vtable) && vtable == expected &&
+        native_journal_read(screen, {0x256, "viewscreen_adventure_logst", "mode"}, mode);
+}
+
 static bool native_journal_event_rows(uintptr_t owner,
         std::vector<std::string> &rows, std::vector<uintptr_t> &addresses) {
     NativeBorrowedVector<uintptr_t> native_rows;
@@ -72,35 +86,46 @@ static void retain_native_journal_card_paragraphs(uintptr_t owner) {
 
 static void retain_native_journal_event(void *summary) {
     const uintptr_t object = reinterpret_cast<uintptr_t>(summary);
-    if (!object || object > UINTPTR_MAX - 0xf0 || !g_overlay.translation_enabled()) return;
+    if (!object || !g_overlay.translation_enabled()) return;
+    using native_history_abi::enum_value;
+    const auto incident = enum_value("adventure_log_event_type", "INCIDENT", 0);
+    const auto rumor = enum_value("adventure_log_event_type", "RUMOR", 1);
     int32_t mode = -1;
-    if (!native_history_copy(object, mode) || (mode != 0 && mode != 1)) return;
+    if (!native_journal_read(object, {0, "adventure_log_eventst", "type"}, mode) ||
+            ((!incident || mode != *incident) && (!rumor || mode != *rumor))) return;
 
-    // +a0 is shortened to 50 bytes after wrapping. +68 remains the complete
-    // native title, and +c0 retains ALL its wraps, even though DF draws two.
+    // p_list_name is shortened to 50 bytes after wrapping. summary remains
+    // complete, and p_list_box retains every wrap, though DF draws only two.
+    const uintptr_t title_address = native_viewscreen_field(object,
+        {0x68, "adventure_log_eventst", "summary"}, sizeof(NativeString));
+    const uintptr_t displayed_address = native_viewscreen_field(object,
+        {0xa0, "adventure_log_eventst", "p_list_name"}, sizeof(NativeString));
+    const uintptr_t title_owner = native_viewscreen_field(object,
+        {0xc0, "adventure_log_eventst", "p_list_box.text"}, sizeof(NativeBorrowedVector<uintptr_t>));
     std::vector<std::string> title_rows;
     std::vector<uintptr_t> title_addresses;
     std::string title;
-    if (native_history_copy_string(object + 0x68, title)) {
-        if (!native_journal_event_rows(object + 0xc0, title_rows, title_addresses) ||
+    if (title_owner && native_history_copy_string(title_address, title)) {
+        if (!native_journal_event_rows(title_owner, title_rows, title_addresses) ||
                 title_rows.size() < 2) {
-            // c31d4 draws +a0 whenever the vector contains fewer than two
+            // c31d4 draws p_list_name whenever the vector contains fewer than two
             // rows, including a single cached wrap with a different address.
             // Bind that real std::string address to the same complete title.
             title_rows.clear();
             title_addresses.clear();
             std::string displayed;
-            if (native_history_copy_string(object + 0xa0, displayed) && !displayed.empty()) {
+            if (native_history_copy_string(displayed_address, displayed) && !displayed.empty()) {
                 title_rows = {std::move(displayed)};
-                title_addresses = {object + 0xa0};
+                title_addresses = {displayed_address};
             }
         }
-        if (!title_rows.empty() && !native_journal_event_interval_captured(object + 0xc0, 50,
+        if (!title_rows.empty() && !native_journal_event_interval_captured(title_owner, 50,
                 title_rows, title_addresses, 0, title_rows.size(), title))
-            remember_native_paragraph(object + 0xc0, 50, std::move(title),
+            remember_native_paragraph(title_owner, 50, std::move(title),
                 std::move(title_rows), 0, std::move(title_addresses), true);
     }
-    retain_native_journal_card_paragraphs(object + 0xd8);
+    retain_native_journal_card_paragraphs(native_viewscreen_field(object,
+        {0xd8, "adventure_log_eventst", "main_text_box.text"}, sizeof(NativeBorrowedVector<uintptr_t>)));
 }
 
 // The current viewscreen owns these cached rows even when no constructor or
@@ -108,21 +133,29 @@ static void retain_native_journal_event(void *summary) {
 // its grid; journal identity must not depend on a translated tab or border.
 static bool refresh_native_journal_event_sources(const graphicst *graphics) {
     if (!graphics || graphics->dimy <= 0 || graphics->dimy > 1000) return false;
-    const uintptr_t base = native_history_profile_base();
     const uintptr_t screen = native_current_viewscreen();
-    uintptr_t vtable = 0;
+    using native_history_abi::FieldOffset;
+    using native_history_abi::enum_value;
+    const auto events = enum_value("adventure_log_mode", "EVENTS", 0);
+    const auto people = enum_value("adventure_log_mode", "PEOPLE", 2);
     int16_t mode = -1;
-    if (!base || !screen || screen > UINTPTR_MAX - 0x5a8 ||
-            !native_history_copy(screen, vtable) ||
-            vtable != native_reference_address(base, 0x15eb450) ||
-            !native_history_copy(screen + 0x256, mode) || (mode != 0 && mode != 2)) return false;
-    const bool event_view = mode == 0;
+    if (!native_journal_screen_mode(screen, mode) ||
+            ((!events || mode != *events) && (!people || mode != *people)) ||
+            (events && people && *events == *people)) return false;
+    const bool event_view = events && mode == *events;
+    const auto cards_field = event_view
+        ? FieldOffset{0x578, "viewscreen_adventure_logst", "adventure_log_event"}
+        : FieldOffset{0x590, "viewscreen_adventure_logst", "histfig_entry"};
+    const auto scroll_field = event_view
+        ? FieldOffset{0x2ac, "viewscreen_adventure_logst", "scroll_position_events"}
+        : FieldOffset{0x2b4, "viewscreen_adventure_logst", "scroll_position_people"};
     NativeBorrowedVector<uintptr_t> cards;
     int32_t scroll = 0, selected = -1;
-    if (!native_history_read_vector(screen + (event_view ? 0x578 : 0x590), cards) ||
+    if (!native_history_read_vector(native_viewscreen_field(screen, cards_field, sizeof(cards)), cards) ||
             cards.size() > 65536 ||
-            !native_history_copy(screen + (event_view ? 0x2ac : 0x2b4), scroll) ||
-            !native_history_copy(screen + 0x250, selected)) return event_view;
+            !native_journal_read(screen, scroll_field, scroll) ||
+            !native_journal_read(screen, {0x250, "viewscreen_adventure_logst", "selected"}, selected))
+        return event_view;
     // c2f79..c3040 / c88ed select the same bounded Events / People slice.
     const size_t count = static_cast<size_t>(std::max(0, (graphics->dimy - 6) / 5));
     const size_t first = static_cast<size_t>(std::clamp<int64_t>(scroll, 0,
@@ -132,10 +165,11 @@ static bool refresh_native_journal_event_sources(const graphicst *graphics) {
         const uintptr_t card = native_history_vector_at(cards, index);
         if (!card) return;
         if (event_view) retain_native_journal_event(reinterpret_cast<void *>(card));
-        // d1f4d returns as soon as People+68 contains cached rows. The
+        // d1f4d returns as soon as the People card contains cached rows. The
         // original blank separators delimit every complete native paragraph.
-        else if (card <= UINTPTR_MAX - 0x80 && g_overlay.translation_enabled())
-            retain_native_journal_card_paragraphs(card + 0x68);
+        else if (g_overlay.translation_enabled())
+            retain_native_journal_card_paragraphs(native_viewscreen_field(card,
+                {0x68, "histfig_entryst", "main_text_box.text"}, sizeof(NativeBorrowedVector<uintptr_t>)));
     };
     for (size_t index = first; index < last; ++index) {
         retain_card(index);

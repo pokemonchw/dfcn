@@ -2,6 +2,13 @@
 // under the mouse. This adapter never invokes the lazy midmap generator and
 // never changes the selection, world cache, map buffers or input state.
 #ifdef _WIN32
+template <typename Value>
+static bool native_map_preview_read_member(const void *object,
+        native_history_abi::FieldOffset field, Value &value) {
+    return native_history_copy(field.address(reinterpret_cast<uintptr_t>(object),
+        0, sizeof(value), sizeof(value)), value);
+}
+
 static bool native_map_preview_selection_page(uintptr_t screen) {
     if (!screen || !native_history_object_is(screen, "viewscreen_choose_start_sitest")) return false;
     const auto field = [&](std::string_view name, auto &value) {
@@ -58,7 +65,7 @@ static bool native_map_preview_snapshot(DfcnMapPreviewFrame &frame) {
     frame = {};
 #ifdef _WIN32
     const uintptr_t screen = native_current_viewscreen();
-    const auto *gps = native_graphics_owner();
+    const auto *gps = native_graphics_owner_view();
     const auto classic = native_ui_classic();
     if (!native_map_preview_selection_page(screen) ||
             !gps || !gps->screen || !classic || gps->dimx < 1 || gps->dimx > 1000 ||
@@ -95,8 +102,10 @@ static bool native_map_preview_snapshot(DfcnMapPreviewFrame &frame) {
         // use gps+0x78 (main_map_port), not the fortress's main_viewport.
         const uintptr_t map_port = reinterpret_cast<uintptr_t>(gps->main_map_port);
         if (!map_port || gps->precise_mouse_x < 0 || gps->precise_mouse_y < 0 ||
-                !native_history_copy(map_port + 4, map_width) ||
-                !native_history_copy(map_port + 8, map_height) ||
+                !native_map_preview_read_member(reinterpret_cast<const void *>(map_port),
+                    {4, "graphic_map_portst", "dim_x"}, map_width) ||
+                !native_map_preview_read_member(reinterpret_cast<const void *>(map_port),
+                    {8, "graphic_map_portst", "dim_y"}, map_height) ||
                 map_width < 1 || map_width > 4096 ||
                 map_height < 1 || map_height > 4096 ||
                 gps->precise_mouse_x / 16 >= map_width ||
@@ -132,10 +141,12 @@ static bool native_map_preview_snapshot(DfcnMapPreviewFrame &frame) {
 
     struct Detail {
         int x = 0, y = 0;
-        // PE 53.16 world_region_details primitive arrays, through the final
-        // horizontal river elevation. Constructor fba6b0, generator fba7f0
-        // and lookup fc1ad0 establish these offsets in the installed image.
-        std::array<unsigned char, 0x21d2> bytes{};
+        std::array<uint8_t, 17 * 17> biome{};
+        std::array<int16_t, 17 * 17> elevation{};
+        struct River {
+            std::array<int16_t, 16 * 17> minimum{}, maximum{}, elevation{};
+            std::array<int8_t, 16 * 17> active{};
+        } vertical, horizontal;
     };
     std::vector<Detail> loaded;
     loaded.reserve(4);
@@ -146,9 +157,10 @@ static bool native_map_preview_snapshot(DfcnMapPreviewFrame &frame) {
     // cover a <=16 by <=16 selection, including a world-square boundary.
     for (size_t i = details.size(); i > 0 && loaded.size() < wanted; --i) {
         const uintptr_t detail = native_history_vector_at(details, i - 1);
+        const auto *object = reinterpret_cast<const void *>(detail);
         std::array<int16_t, 2> pos{};
-        if (!detail || detail > UINTPTR_MAX - 0x21d2 ||
-                !native_history_copy(detail + 0x12e4, pos) ||
+        if (!detail || !native_map_preview_read_member(object,
+                    {0x12e4, "world_region_details", "pos"}, pos) ||
                 pos[0] < frame.world_x || pos[0] > last_world_x ||
                 pos[1] < frame.world_y || pos[1] > last_world_y ||
                 std::any_of(loaded.begin(), loaded.end(), [&](const Detail &item) {
@@ -156,12 +168,25 @@ static bool native_map_preview_snapshot(DfcnMapPreviewFrame &frame) {
                 })) continue;
         Detail value;
         value.x = pos[0]; value.y = pos[1];
-        if (native_history_copy_bytes(detail, value.bytes.data(), value.bytes.size()))
+        // Copy only the declared primitive arrays. Source and target may
+        // place these members in different parts of the native object.
+        if (native_map_preview_read_member(object, {0, "world_region_details", "biome"}, value.biome) &&
+                native_map_preview_read_member(object, {0x122, "world_region_details", "elevation"}, value.elevation) &&
+                native_map_preview_read_member(object, {0x12f2, "world_region_details", "rivers_vertical.x_min"}, value.vertical.minimum) &&
+                native_map_preview_read_member(object, {0x1512, "world_region_details", "rivers_vertical.x_max"}, value.vertical.maximum) &&
+                native_map_preview_read_member(object, {0x1732, "world_region_details", "rivers_vertical.active"}, value.vertical.active) &&
+                native_map_preview_read_member(object, {0x1842, "world_region_details", "rivers_vertical.elevation"}, value.vertical.elevation) &&
+                native_map_preview_read_member(object, {0x1a62, "world_region_details", "rivers_horizontal.y_min"}, value.horizontal.minimum) &&
+                native_map_preview_read_member(object, {0x1c82, "world_region_details", "rivers_horizontal.y_max"}, value.horizontal.maximum) &&
+                native_map_preview_read_member(object, {0x1ea2, "world_region_details", "rivers_horizontal.active"}, value.horizontal.active) &&
+                native_map_preview_read_member(object, {0x1fb2, "world_region_details", "rivers_horizontal.elevation"}, value.horizontal.elevation))
             loaded.push_back(std::move(value));
     }
 
     struct Region { int16_t type = -1, water = -30000; };
     std::map<std::pair<int, int>, Region> region_cache;
+    const size_t region_stride = native_history_abi::type_size(
+        native_history_abi::semantic_id("region_map_entry"), 0x70);
     const auto region_for = [&](int x, int y) -> Region {
         x = std::clamp(x, 0, world_width - 1);
         y = std::clamp(y, 0, world_height - 1);
@@ -171,10 +196,13 @@ static bool native_map_preview_snapshot(DfcnMapPreviewFrame &frame) {
         Region result;
         uintptr_t column = 0;
         int32_t id = -1;
-        if (have_regions && region_map <= UINTPTR_MAX - static_cast<size_t>(x) * sizeof(uintptr_t) &&
+        if (have_regions && region_stride && static_cast<size_t>(y) <= UINTPTR_MAX / region_stride &&
+                region_map <= UINTPTR_MAX - static_cast<size_t>(x) * sizeof(uintptr_t) &&
                 native_history_copy(region_map + static_cast<size_t>(x) * sizeof(uintptr_t), column) &&
-                column && column <= UINTPTR_MAX - (static_cast<size_t>(y) * 0x70 + 0x64) &&
-                native_history_copy(column + static_cast<size_t>(y) * 0x70 + 0x60, id) &&
+                column && column <= UINTPTR_MAX - static_cast<size_t>(y) * region_stride &&
+                native_map_preview_read_member(reinterpret_cast<const void *>(
+                    column + static_cast<size_t>(y) * region_stride),
+                    {0x60, "region_map_entry", "region_id"}, id) &&
                 id >= 0 && static_cast<size_t>(id) < regions.size()) {
             const uintptr_t region = native_history_vector_at(regions, static_cast<size_t>(id));
             if (region) {
@@ -197,16 +225,11 @@ static bool native_map_preview_snapshot(DfcnMapPreviewFrame &frame) {
         });
         if (detail == loaded.end()) continue;
         const int local_x = absolute_x % 16, local_y = absolute_y % 16;
-        const auto word = [&](size_t offset) {
-            int16_t value;
-            std::memcpy(&value, detail->bytes.data() + offset, sizeof(value));
-            return value;
-        };
         const size_t vertex = static_cast<size_t>(local_x) * 17 + local_y;
-        cell.elevation = word(0x122 + vertex * 2);
+        cell.elevation = detail->elevation[vertex];
         if (cell.elevation == -30000) continue;
         cell.available = 1;
-        const unsigned biome = detail->bytes[vertex] & 15;
+        const unsigned biome = detail->biome[vertex] & 15;
         if (biome >= 1 && biome <= 9) {
             const auto region = region_for(detail->x + static_cast<int>((biome - 1) % 3) - 1,
                 detail->y + 1 - static_cast<int>((biome - 1) / 3));
@@ -216,24 +239,23 @@ static bool native_map_preview_snapshot(DfcnMapPreviewFrame &frame) {
         // cells. Retained edge data there must not draw a river over open water.
         if ((cell.biome == 4 || cell.biome == 5) && cell.water_elevation > cell.elevation)
             continue;
-        const auto river_edge = [&](size_t minimum, size_t maximum, size_t active,
-                size_t elevation, uint8_t bit) {
-            const int16_t first = word(minimum), last = word(maximum);
+        const auto river_edge = [&](const Detail::River &river, size_t at, uint8_t bit) {
+            const int16_t first = river.minimum[at], last = river.maximum[at];
             // Native removal invalidates the extent while leaving flow bytes
             // untouched. Do not resurrect a removed river from its flow flag.
-            if (!detail->bytes[active] || first == -30000 || last == -30000 || first > last) return;
+            if (!river.active[at] || first == -30000 || last == -30000 || first > last) return;
             cell.river = 1; cell.river_edges |= bit;
-            const int16_t level = word(elevation);
+            const int16_t level = river.elevation[at];
             if (level != -30000 && (cell.river_elevation == -30000 || level < cell.river_elevation))
                 cell.river_elevation = level;
         };
-        const size_t north = vertex * 2, south = (vertex + 1) * 2;
-        const size_t west = (static_cast<size_t>(local_x) * 16 + local_y) * 2;
-        const size_t east = (static_cast<size_t>(local_x + 1) * 16 + local_y) * 2;
-        river_edge(0x12f2 + north, 0x1512 + north, 0x1732 + north / 2, 0x1842 + north, 1);
-        river_edge(0x1a62 + east, 0x1c82 + east, 0x1ea2 + east / 2, 0x1fb2 + east, 2);
-        river_edge(0x12f2 + south, 0x1512 + south, 0x1732 + south / 2, 0x1842 + south, 4);
-        river_edge(0x1a62 + west, 0x1c82 + west, 0x1ea2 + west / 2, 0x1fb2 + west, 8);
+        const size_t north = vertex, south = vertex + 1;
+        const size_t west = static_cast<size_t>(local_x) * 16 + local_y;
+        const size_t east = static_cast<size_t>(local_x + 1) * 16 + local_y;
+        river_edge(detail->vertical, north, 1);
+        river_edge(detail->horizontal, east, 2);
+        river_edge(detail->vertical, south, 4);
+        river_edge(detail->horizontal, west, 8);
     }
     return true;
 #else

@@ -106,7 +106,10 @@ static void uninstall_native_input_hooks() {
         it->uninstall("Native text-input binding");
     // Keep the original entry trampoline while any native callback can still
     // be using it. The common shutdown retains the core and retries later.
-    if (native_callbacks_idle()) g_native_text_input_entry.uninstall("Native text-input entry");
+    if (native_callbacks_idle()) {
+        g_native_text_input_entry.uninstall("Native text-input entry");
+        clear_native_arena_context();
+    }
 }
 
 static bool install_native_input_hooks() {
@@ -117,7 +120,7 @@ static bool install_native_input_hooks() {
     }
     NativeInputProfile profile;
     if (!prepare_native_input_profile(profile)) {
-        log_line("ERROR", "Cannot validate native Unicode input and Arena creature-search bindings");
+        log_line("ERROR", "Cannot validate native Unicode input bindings");
         return false;
     }
     g_native_text_input_imports.clear();
@@ -137,7 +140,6 @@ static bool install_native_input_hooks() {
     g_native_ui_text_input_return = profile.ui_text_input_return;
 #endif
     g_real_start_text_input = &SDL_StartTextInput;
-    bind_native_arena_context(profile.arena.picker, profile.arena.raws, profile.arena.filter);
     auto failed = [] {
         uninstall_native_input_hooks();
         return false;
@@ -148,8 +150,13 @@ static bool install_native_input_hooks() {
     for (auto &hook : g_native_start_input_imports)
         if (!hook.install("SDL text-input binding")) return failed();
     if (!install_native_ime_hooks()) return failed();
+    bind_native_arena_context(profile.arena.picker, profile.arena.raws, profile.arena.filter);
     g_native_input_ready = true;
-    log_line("INFO", "Enabled shared Unicode editing, IME positioning and translated Arena search");
+    log_line("INFO", "Enabled shared Unicode editing and IME positioning");
+    if (g_native_arena.picker)
+        log_line("INFO", "Enabled optional translated Arena creature search");
+    else
+        log_line("WARN", "Arena creature-search bindings are incomplete; native Arena search remains active");
     return true;
 }
 

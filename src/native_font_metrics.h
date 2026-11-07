@@ -56,25 +56,21 @@ inline bool copy_native_font_value(uintptr_t address, T &value) {
 }
 
 inline std::optional<NativeFontSource> current_native_font_source() {
-    static const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-    const uintptr_t enabler = native_pe_address(executable, 0x02390290);
-    const uintptr_t settings = native_pe_address(executable, 0x023cd770);
-    if (!enabler || !settings) return std::nullopt;
-
     uint8_t fullscreen = 0;
     uint32_t flags = 0;
     struct RawSurfaces { uintptr_t begin = 0, end = 0, capacity = 0; } raws;
-    if (!copy_native_font_value(enabler + 0x8, fullscreen) ||
-            !copy_native_font_value(enabler + 0x338, flags) ||
-            !copy_native_font_value(enabler + 0x348, raws) ||
+    if (!native_pe_read_field(0x02390290, 0x8, fullscreen) ||
+            !native_pe_read_field(0x02390290, 0x338, flags) ||
+            !native_pe_read_field(0x02390290, 0x348, raws) ||
             !raws.begin || raws.end < raws.begin || raws.capacity < raws.end ||
             (raws.end - raws.begin) % sizeof(SDL_Surface *) ||
             (raws.end - raws.begin) / sizeof(SDL_Surface *) > (1u << 24))
         return std::nullopt;
 
     NativeFontSource result;
-    result.table = settings + ((flags & 0x4) ? 0xd8 : (fullscreen & 0x1) ? 0x8d8 : 0x4d8);
     std::array<int32_t, 256> textures{};
+    result.table = reinterpret_cast<uintptr_t>(native_pe_field_address(0x023cd770,
+        (flags & 0x4) ? 0xd8 : (fullscreen & 0x1) ? 0x8d8 : 0x4d8, sizeof(textures)));
     if (!copy_native_font_memory(result.table, textures.data(), sizeof(textures)))
         return std::nullopt;
     const size_t count = (raws.end - raws.begin) / sizeof(SDL_Surface *);
@@ -276,18 +272,13 @@ public:
     explicit NativeBitmapFontTextures(bool needed, bool capture_native_context = false) noexcept {
 #ifdef _WIN32
         if (!needed) return;
-        const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-        const auto settings = native_pe_address(executable, 0x023cd770);
-        const auto enabler = native_pe_address(executable, 0x02390290);
-        if (!settings || !enabler) return;
         native_context_ready_ = capture_native_context;
         constexpr std::array<size_t, 9> offsets{{
             0xd8, 0x4d8, 0x8d8, 0x18d8, 0x1cd8, 0x20d8,
             0x24d8, 0x28d8, 0x2cd8
         }};
         for (size_t i = 0; i < offsets.size(); ++i)
-            if (!native_font_metrics_detail::copy_native_font_memory(
-                    settings + offsets[i], tables_[i].data(), sizeof(tables_[i]))) {
+            if (!native_pe_read_field(0x023cd770, offsets[i], tables_[i])) {
                 tables_[i].fill(0);
                 native_context_ready_ = false;
             }
@@ -301,17 +292,17 @@ public:
         uint32_t enabler_flags = 0;
         uint8_t display = 0;
         using native_font_metrics_detail::copy_native_font_value;
-        if (!copy_native_font_value(enabler + 0x8, fullscreen_) ||
-                !copy_native_font_value(enabler + 0x338, enabler_flags) ||
-                !copy_native_font_value(settings, display_flags) ||
-                !copy_native_font_value(settings + 0x8, display_flag_count) ||
+        if (!native_pe_read_field(0x02390290, 0x8, fullscreen_) ||
+                !native_pe_read_field(0x02390290, 0x338, enabler_flags) ||
+                !native_pe_read_field(0x023cd770, 0, display_flags) ||
+                !native_pe_read_field(0x023cd770, 0x8, display_flag_count) ||
                 (display_flag_count > 0 &&
                     !copy_native_font_value(display_flags, display)) ||
                 // Texture getter 8dd2ee reads init.display.filter_mode.
-                !copy_native_font_value(settings + 0x50, filter_mode_) ||
+                !native_pe_read_field(0x023cd770, 0x50, filter_mode_) ||
                 // Texture getter 8dd177..8dd1a0 indexes this raw-surface
                 // vector. Its identity supplements the nine atlas-ID tables.
-                !copy_native_font_value(enabler + 0x348, resource_pool_) ||
+                !native_pe_read_field(0x02390290, 0x348, resource_pool_) ||
                 resource_pool_[1] < resource_pool_[0] ||
                 resource_pool_[2] < resource_pool_[1] ||
                 (resource_pool_[1] - resource_pool_[0]) % sizeof(SDL_Surface *))
@@ -369,11 +360,9 @@ inline std::optional<int> native_hover_center_background_rgb(const graphicst &gp
 #ifdef _WIN32
     using native_font_metrics_detail::copy_native_font_memory;
     using native_font_metrics_detail::copy_native_font_value;
-    const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-    const uintptr_t enabler = native_pe_address(executable, 0x02390290);
     struct RawSurfaces { uintptr_t begin = 0, end = 0, capacity = 0; } raws;
-    if (!enabler || centre <= 0 ||
-            !copy_native_font_value(enabler + 0x348, raws) || !raws.begin ||
+    if (centre <= 0 ||
+            !native_pe_read_field(0x02390290, 0x348, raws) || !raws.begin ||
             raws.end < raws.begin || raws.capacity < raws.end ||
             (raws.end - raws.begin) % sizeof(SDL_Surface *) ||
             (raws.end - raws.begin) / sizeof(SDL_Surface *) > (1u << 24) ||
@@ -444,18 +433,16 @@ inline std::optional<SDL_Rect> native_anchored_tile_draw_bounds(const graphicst 
     // renderer+158/15c are the native scale denominators; +168/16c
     // are the interface tile pitch and +170/174 its pixel origin.
     std::array<int32_t, 8> geometry{};
-    const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-    const auto enabler = native_pe_address(executable, 0x02390290);
     struct RawSurfaces { uintptr_t begin = 0, end = 0, capacity = 0; } raws;
     SDL_Surface *address = nullptr;
     SDL_Surface surface{};
-    if (texture <= 0 || !enabler ||
-            !copy_native_font_value(reinterpret_cast<uintptr_t>(renderer) + 0x158, geometry) ||
+    if (texture <= 0 ||
+            !native_renderer_geometry(renderer, geometry) ||
             geometry[0] <= 0 || geometry[1] <= 0 || geometry[4] != gps.tile_pixel_x ||
             geometry[5] != gps.tile_pixel_y || geometry[4] <= 0 || geometry[5] <= 0 ||
             geometry[6] != (gps.screen_pixel_x - gps.dimx * gps.tile_pixel_x) / 2 ||
             geometry[7] != (gps.screen_pixel_y - gps.dimy * gps.tile_pixel_y) / 2 ||
-            !copy_native_font_value(enabler + 0x348, raws) || !raws.begin ||
+            !native_pe_read_field(0x02390290, 0x348, raws) || !raws.begin ||
             raws.end < raws.begin || raws.capacity < raws.end ||
             (raws.end - raws.begin) % sizeof(SDL_Surface *) ||
             (raws.end - raws.begin) / sizeof(SDL_Surface *) > (1u << 24) ||
@@ -477,10 +464,10 @@ inline std::optional<SDL_Rect> native_anchored_tile_draw_bounds(const graphicst 
     SDL_Surface current{};
     RawSurfaces current_raws;
     std::array<int32_t, 8> current_geometry{};
-    if (!copy_native_font_value(enabler + 0x348, current_raws) ||
+    if (!native_pe_read_field(0x02390290, 0x348, current_raws) ||
             current_raws.begin != raws.begin || current_raws.end != raws.end ||
             current_raws.capacity != raws.capacity ||
-            !copy_native_font_value(reinterpret_cast<uintptr_t>(renderer) + 0x158, current_geometry) ||
+            !native_renderer_geometry(renderer, current_geometry) ||
             current_geometry != geometry ||
             !copy_native_font_value(raws.begin + static_cast<size_t>(texture) * sizeof(address),
                 current_address) || current_address != address ||

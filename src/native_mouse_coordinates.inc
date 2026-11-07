@@ -97,13 +97,13 @@ static uintptr_t native_mouse_coordinates_fortress() {
     auto screen = native_current_viewscreen();
     std::array<uintptr_t, 64> visited{};
     for (size_t depth = 0; screen && depth < visited.size(); ++depth) {
-        if (screen > UINTPTR_MAX - 0x10 ||
-                std::find(visited.begin(), visited.begin() + depth, screen) != visited.begin() + depth)
+        if (std::find(visited.begin(), visited.begin() + depth, screen) != visited.begin() + depth)
             return 0;
         visited[depth] = screen;
         if (native_history_object_is(screen, "viewscreen_dwarfmodest")) return screen;
         uintptr_t parent = 0;
-        if (!native_history_copy(screen + 0x10, parent)) return 0;
+        if (!native_object_read_member(reinterpret_cast<const void *>(screen),
+                {0x10, "viewscreen", "parent"}, parent)) return 0;
         screen = parent;
     }
     return 0;
@@ -236,7 +236,7 @@ static void native_mouse_coordinates_prepare() try {
     }
     std::unique_lock<std::recursive_mutex> writer(g_native_dfhack_layer_mutex, std::try_to_lock);
     if (!writer.owns_lock()) return;
-    const auto *gps = native_graphics_owner();
+    const auto *gps = native_graphics_owner_view();
     if (!gps || !gps->screen || gps->dimx < 1 || gps->dimx > 1000 ||
             gps->dimy < 1 || gps->dimy > 1000 ||
             !g_native_help_layer.native_renderer || !g_native_help_layer.renderer ||

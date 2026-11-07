@@ -4,11 +4,9 @@
 static NativeUiLayerTarget g_native_worldgen_target;
 #ifdef _WIN32
 static NativeEntryHook g_native_worldgen_draw_hook;
-static NativeEntryHook g_native_worldgen_history_clear_hook;
 static uintptr_t g_native_worldgen_vtable = 0;
 using NativeWorldgenDrawFn = void (*)(void *, uint32_t);
 using NativeWorldgenViewportFn = void (*)(const void *, int32_t *, int32_t *);
-using NativeWorldgenHistoryClearFn = void (*)(NativeHistoryRichBox *);
 static NativeWorldgenViewportFn g_native_worldgen_viewport = nullptr;
 
 // The producer and SDL display can hold different members of the native
@@ -17,18 +15,24 @@ static NativeWorldgenViewportFn g_native_worldgen_viewport = nullptr;
 static void bind_native_worldgen_display_frame(const graphicst *graphics) {
     if (!graphics || graphics != native_dfhack_render_read_graphics() ||
             graphics != g_native_graphics_read_view || !graphics->screen ||
-            !native_worldgen_has_frame() || g_drawing_overlay ||
+            !g_native_worldgen_layer.ready || !g_native_worldgen_owner ||
+            !g_native_worldgen_background_graphics || g_drawing_overlay ||
             native_private_ui_write_active(graphics) ||
             NativeDfhackForegroundScope::active || g_native_info_foreground ||
             g_native_character_foreground) return;
     const auto *source = g_native_worldgen_layer.foreground.graphics();
+    if (graphics->screen == source->screen || graphics->screen == source->screen_top) return;
     if (graphics->dimx != source->dimx || graphics->dimy != source->dimy ||
             graphics->screen_pixel_x != source->screen_pixel_x ||
             graphics->screen_pixel_y != source->screen_pixel_y ||
             graphics->tile_pixel_x != source->tile_pixel_x ||
             graphics->tile_pixel_y != source->tile_pixel_y ||
-            graphics->screen == source->screen || graphics->screen == source->screen_top ||
-            native_current_viewscreen() != g_native_worldgen_owner) return;
+            native_current_viewscreen() != g_native_worldgen_owner) {
+        // This is the actual pinned main display, not a private reader. A
+        // reused buffer cannot keep the previous page's published binding.
+        g_native_worldgen_background_grid = nullptr;
+        return;
+    }
     // Dimensions alone never claim another page or a private component.
     // Keep main_view's exact-grid check after proving this native binding.
     g_native_worldgen_background_grid = graphics->screen;
@@ -54,23 +58,6 @@ static void native_worldgen_clear_shared_ui(graphicst &gps) {
     clear(gps.screentexpos_top_anchored_y); clear(gps.screentexpos_top_flag);
 }
 
-static void native_worldgen_history_clear(NativeHistoryRichBox *box) {
-    NativeInputCallbackScope callback;
-    const auto original = reinterpret_cast<NativeWorldgenHistoryClearFn>(
-        g_native_worldgen_history_clear_hook.original);
-    if (!original) return;
-    if (box && box == g_native_history_box) {
-        // The native clear deletes words before retaining the vector capacity.
-        // Invalidate their typed ownership before any address can be reused.
-        // A later producer render is too late: it could erase new events that
-        // the simulation already appended after this clear.
-        remember_native_history_region(reinterpret_cast<uintptr_t>(box), {});
-        g_native_history_capture_generation.fetch_add(1, std::memory_order_acq_rel);
-        invalidate_worldgen_event_cache();
-    }
-    callback.call_native([&] { original(box); });
-}
-
 static void native_worldgen_draw(void *screen, uint32_t tick) {
     NativeInputCallbackScope callback;
     const auto original = reinterpret_cast<NativeWorldgenDrawFn>(
@@ -83,9 +70,19 @@ static void native_worldgen_draw(void *screen, uint32_t tick) {
         return;
     }
     TranslationStateScope translation;
+    NativeWorldgenEditScope editors(reinterpret_cast<uintptr_t>(screen));
+    NativeHistoryChronicleDrawScope chronicle_words;
+    g_native_worldgen_parameter_name_editing = editors.inputs[0].active;
     auto &layer = g_native_worldgen_layer;
+    bool native_started = false, native_failed = false, private_draw = false;
+    const auto draw_native = [&] {
+        native_started = true;
+        try { callback.call_native([&] { original(screen, tick); }); }
+        catch (...) { native_failed = true; throw; }
+    };
+    try {
     auto *gps = native_graphics();
-    bool isolate = gps && g_native_help_layer.native_renderer &&
+    bool isolate = gps && g_native_worldgen_viewport && g_native_help_layer.native_renderer &&
         g_native_help_layer.renderer && !native_private_ui_write_active(gps) &&
         !g_native_info_write_graphics && !g_native_stocks_write_graphics &&
         !g_native_display_write_graphics &&
@@ -105,7 +102,9 @@ static void native_worldgen_draw(void *screen, uint32_t tick) {
         } catch (...) { isolate = false; }
     }
     if (!isolate) {
-        callback.call_native([&] { original(screen, tick); });
+        native_worldgen_begin_frame();
+        g_native_worldgen_parameter_name_editing = editors.inputs[0].active;
+        draw_native();
         return;
     }
     int32_t left = 0, right = gps->dimx - 1;
@@ -132,11 +131,6 @@ static void native_worldgen_draw(void *screen, uint32_t tick) {
     g_native_worldgen_panel = ordinary_progress ?
         SDL_Rect{left, 0, std::min(80, gps->dimx - left), std::min(25, gps->dimy)} :
         SDL_Rect{left, 0, right - left + 1, gps->dimy};
-    uint8_t editing = 0;
-    g_native_worldgen_parameter_name_editing = native_history_copy(
-        native_history_object_member(g_native_worldgen_owner,
-            "viewscreen_new_regionst", "entering_param_name", sizeof(editing)),
-        editing) && editing != 0;
     layer.native_renderer = g_native_help_layer.native_renderer;
     layer.renderer = g_native_help_layer.renderer;
     const int16_t previous_redraw = gps->force_full_display_count;
@@ -154,75 +148,85 @@ static void native_worldgen_draw(void *screen, uint32_t tick) {
             ~WriteScope() { g_native_worldgen_write_graphics = previous; }
         } writing(gps);
         begin_native_history_draw_pass();
-        callback.call_native([&] { original(screen, tick); });
-        layer.foreground.graphics()->top_in_use = gps->top_in_use;
-        requested_redraw = gps->force_full_display_count;
-        requested_title = gps->display_title;
-        requested_background = gps->display_background;
+        private_draw = true;
+        draw_native();
+        native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+            layer.foreground.graphics()->top_in_use);
+        native_graphics_read_member(gps, offsetof(graphicst, force_full_display_count), requested_redraw);
+        native_graphics_read_member(gps, offsetof(graphicst, display_title), requested_title);
+        native_graphics_read_member(gps, offsetof(graphicst, display_background), requested_background);
     }
     native_worldgen_clear_shared_ui(*gps);
     // These select the host scene rendered by update_all (8e1cbf/8e1d69),
     // not the private UI grid. Do not restore an old menu background/title
     // or lose a map redraw request when restoring the output arrays.
-    gps->force_full_display_count = std::max(previous_redraw, requested_redraw);
-    gps->display_title = requested_title;
-    gps->display_background = requested_background;
+    native_graphics_write_member(gps, offsetof(graphicst, force_full_display_count),
+        std::max(previous_redraw, requested_redraw));
+    native_graphics_write_member(gps, offsetof(graphicst, display_title), requested_title);
+    native_graphics_write_member(gps, offsetof(graphicst, display_background), requested_background);
     layer.ready = true;
     ++g_native_worldgen_published_revision;
     NativeUiReadScope::invalidate_reads();
+    } catch (...) {
+        if (native_failed) throw; // Never replay an exception from the game.
+        if (private_draw && native_started) {
+            // Native output is already present in the private canvas. A
+            // failed optional readback must not discard or draw it twice.
+            layer.ready = true;
+            ++g_native_worldgen_published_revision;
+            NativeUiReadScope::invalidate_reads();
+        } else {
+            native_worldgen_begin_frame();
+            g_native_worldgen_parameter_name_editing = editors.inputs[0].active;
+            if (!native_started) draw_native();
+        }
+    }
 }
 
 static bool install_native_worldgen_layer_hook() {
-    if (g_native_worldgen_draw_hook.installed &&
-            g_native_worldgen_history_clear_hook.installed) return true;
+    if (g_native_worldgen_draw_hook.installed) return true;
     constexpr const char *label = "Native world generation complete draw entry";
     const auto base = native_history_profile_base();
     const auto table = native_reference_address(base, 0x1721480);
     auto *draw = reinterpret_cast<unsigned char *>(
         native_reference_address(base, 0xdf8a80));
     const auto viewport = native_reference_address(base, 0x41f640);
-    auto *clear = reinterpret_cast<unsigned char *>(
-        native_reference_address(base, 0xe37d0));
     // Hook the native renderer's body, preserving DFHack's render interpose
     // chain. Its live vtable slot can legitimately name a wrapper, as in the
     // Legends renderer, and must not be required to still name this body.
     // MOV [RSP+0x10],RBX is position independent on both pinned PEs.
     std::vector<unsigned char> prefix{0x48,0x89,0x5c,0x24,0x10};
     std::vector<unsigned char> viewport_prefix{0x48,0x8b,0xca,0x49,0x8b,0xd0};
-    // PUSH RSI; SUB RSP,0x20 are complete position-independent instructions.
-    // The same richbox ABI is already bound by native_history_profile.
-    std::vector<unsigned char> clear_prefix{0x40,0x56,0x48,0x83,0xec,0x20};
-    if (!table || !draw || !viewport || !clear || !g_native_history_box ||
+    // The settings, mods and parameter pages need the viewscreen renderer,
+    // not the Legends/event formatter transaction. A missing chronicle ABI
+    // must not disable every caption on this independently identified view.
+    if (!table || !draw ||
             !native_reference_bytes(0xdf8a80, prefix) ||
-            !native_reference_bytes(0x41f640, viewport_prefix) ||
-            !native_reference_bytes(0xe37d0, clear_prefix) ||
             !g_native_worldgen_draw_hook.prepare(draw, prefix,
-                reinterpret_cast<const void *>(&native_worldgen_draw), {}, label) ||
-            !g_native_worldgen_history_clear_hook.prepare(clear, clear_prefix,
-                reinterpret_cast<const void *>(&native_worldgen_history_clear), {},
-                "Native world generation chronicle clear entry"))
+                reinterpret_cast<const void *>(&native_worldgen_draw), {}, label)) {
+        log_line("WARN", "Native world generation: viewscreen draw binding unavailable");
         return false;
+    }
     g_native_worldgen_vtable = table;
-    g_native_worldgen_viewport = reinterpret_cast<NativeWorldgenViewportFn>(viewport);
+    const bool viewport_ready = viewport &&
+        native_reference_bytes(0x41f640, viewport_prefix);
+    g_native_worldgen_viewport = viewport_ready ?
+        reinterpret_cast<NativeWorldgenViewportFn>(viewport) : nullptr;
+    if (!viewport_ready)
+        log_line("WARN", "Native world generation: private viewport unavailable; retaining completed native string captures");
     g_native_worldgen_edit_returns = {native_reference_address(base, 0xe0317a),
         native_reference_address(base, 0xe037d9), native_reference_address(base, 0xe03fdb)};
     if (std::any_of(g_native_worldgen_edit_returns.begin(),
             g_native_worldgen_edit_returns.end(), [](uintptr_t address) { return !address; }))
-        return false;
-    if (!g_native_worldgen_history_clear_hook.install(
-            "Native world generation chronicle clear entry")) return false;
-    if (g_native_worldgen_draw_hook.install(label)) return true;
-    g_native_worldgen_history_clear_hook.uninstall(
-        "Native world generation chronicle clear restore");
-    return false;
+        log_line("WARN", "Native world generation: editor call identities incomplete; protecting actual editor fields");
+    // Chronicle allocation lifetime is owned by its event-source transaction.
+    // This screen renderer remains independent of both history page packages.
+    return g_native_worldgen_draw_hook.install(label);
 }
 
 static void uninstall_native_worldgen_layer_hook() {
     g_native_worldgen_draw_hook.uninstall("Native world generation draw entry restore");
-    g_native_worldgen_history_clear_hook.uninstall(
-        "Native world generation chronicle clear restore");
-    if (!g_native_worldgen_draw_hook.active() &&
-            !g_native_worldgen_history_clear_hook.active()) {
+    if (!g_native_worldgen_draw_hook.active()) {
         g_native_worldgen_vtable = 0;
         g_native_worldgen_viewport = nullptr;
         g_native_worldgen_edit_returns = {};
@@ -234,8 +238,7 @@ static void uninstall_native_worldgen_layer_hook() {
     }
 }
 static bool native_worldgen_layer_hook_active() {
-    return g_native_worldgen_draw_hook.active() ||
-        g_native_worldgen_history_clear_hook.active();
+    return g_native_worldgen_draw_hook.active();
 }
 #else
 // No corresponding ELF producer binding has been established for this page.

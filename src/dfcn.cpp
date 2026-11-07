@@ -67,6 +67,7 @@
 #include "native_adventure_belief_source.h"
 #include "native_adventure_home_source.h"
 #include "native_adventure_personality_source.h"
+#include "native_adventure_hover_source.h"
 #include "native_unit_identity.h"
 #include "native_justice_organizations.h"
 #include "native_justice_plots.h"
@@ -129,20 +130,37 @@ static bool capture_native_history_age_title(std::string_view base_title,
 static uint64_t native_history_entity_parent_revision(uint64_t draw_epoch);
 static uint64_t native_identity_translation_context();
 static bool native_history_worldgen_page();
+static uintptr_t native_current_viewscreen();
+static bool native_history_object_is(uintptr_t object, std::string_view type);
+static bool native_worldgen_exclusive_output();
+static graphicst *native_dfhack_render_read_graphics();
 #ifdef _WIN32
 // renderer::display consumes one completed native page. Resolve its screen
 // chain once for that draw, instead of repeating guarded reads per glyph.
 // Calls outside the verified display boundary retain the live lookup.
+static thread_local const bool *g_native_display_worldgen_exclusive = nullptr;
 static thread_local const bool *g_native_display_worldgen_page = nullptr;
 class NativeWorldgenDisplayScope {
-    const bool *previous_ = g_native_display_worldgen_page;
+    const bool *previous_ = g_native_display_worldgen_exclusive;
+    const bool *previous_page_ = g_native_display_worldgen_page;
+    bool exclusive_ = native_worldgen_exclusive_output();
     bool worldgen_page_ = native_history_worldgen_page();
 public:
-    NativeWorldgenDisplayScope() { g_native_display_worldgen_page = &worldgen_page_; }
-    ~NativeWorldgenDisplayScope() { g_native_display_worldgen_page = previous_; }
+    NativeWorldgenDisplayScope() {
+        g_native_display_worldgen_exclusive = &exclusive_;
+        g_native_display_worldgen_page = &worldgen_page_;
+    }
+    ~NativeWorldgenDisplayScope() {
+        g_native_display_worldgen_exclusive = previous_;
+        g_native_display_worldgen_page = previous_page_;
+    }
     NativeWorldgenDisplayScope(const NativeWorldgenDisplayScope &) = delete;
     NativeWorldgenDisplayScope &operator=(const NativeWorldgenDisplayScope &) = delete;
 };
+static bool native_display_worldgen_exclusive() {
+    return g_native_display_worldgen_exclusive
+        ? *g_native_display_worldgen_exclusive : native_worldgen_exclusive_output();
+}
 static bool native_display_worldgen_page() {
     return g_native_display_worldgen_page
         ? *g_native_display_worldgen_page : native_history_worldgen_page();
@@ -688,6 +706,11 @@ struct Match {
     // The action chooser's ordinary addst writer leaves old half-font flags
     // in the grid. Its bound source owns one row through every layout pass.
     bool native_adventure_choice_row = false;
+    // A complete setup-screen hover document owns only its actual plane.
+    // Its prepared output is independent of the private tooltip widget.
+    std::shared_ptr<const NativeAdventureHoverPaint> native_adventure_hover_paint{};
+    bool native_adventure_hover_masked = false;
+    size_t native_adventure_hover_output = ~size_t{0};
     // Squad text arrives with explicit producer bounds on its private grid.
     // It must never borrow another component's caption geometry.
     bool native_squads_foreground = false;
@@ -734,6 +757,9 @@ struct Match {
     // the game's original glyphs. Its first row carries the whole source for
     // review, independent of the current wrapping width.
     bool native_help_source_only = false;
+    // This match was masked in its captured native plane before update_all.
+    // It owns no pixel-clear recovery or neighbouring panel discovery.
+    bool native_captured_span = false;
     std::string native_help_review_source{};
     // Set when a page pass has already assigned a stable text box.
     bool layout_prepared = false;
@@ -1331,6 +1357,7 @@ struct NativeBorderRepair {
 };
 
 extern bool g_copy_hook_active;
+extern bool g_native_glyph_interception_ready;
 
 static std::string unescape_tsv(std::string_view input, bool *ok) {
     std::string out;
@@ -2422,6 +2449,15 @@ struct NativeDrawnTextRow {
     const unsigned char *draw_grid = nullptr;
     int draw_dimx = 0, draw_dimy = 0;
     uint64_t draw_epoch = 0;
+    // Only the post-addst path can publish completed writes. A preparatory
+    // paragraph record does not authorize masking a shared map/UI raster.
+    bool completed_draw = false;
+    uintptr_t draw_owner = 0;
+    bool worldgen_draw = false;
+    // Only the verified flagged-addst entry supplies these actual argument
+    // bits. Retained grid flags from an ordinary addst are not writer proof.
+    uint32_t native_half_writer = 0;
+    std::shared_ptr<const NativeAdventureHoverDocument> adventure_hover_document{};
     NativeMapHoverContext map_hover{};
     bool editable_text = false;
     // The travel renderer's verified addst caller owns each structure row.
@@ -2456,6 +2492,38 @@ struct NativeDrawnTextRow {
     // The relation name writer owns a complete two-row record and reserves
     // the columns beyond this edge for its recenter/view controls.
     int character_relation_right = -1;
+};
+
+struct NativeCapturedUiFrame {
+    struct Span {
+        Match match;
+        bool top_layer = false;
+        uint64_t sequence = 0;
+        // Preserve the complete captured interval, including its spaces,
+        // independently of the trimmed text translated inside that interval.
+        int x = 0, y = 0;
+        int paired_y = -1;
+        uint64_t paired_sequence = 0;
+        std::string source;
+    };
+    struct Chronicle {
+        std::shared_ptr<const NativeHistoryDocument> document;
+        bool top_layer = false;
+        uint64_t history_generation = 0, history_revision = 0;
+        // Original native writes and independently bounded destination cells.
+        // All reordered Chinese rows commit as one semantic event.
+        std::vector<Span> sources, guards;
+        std::vector<Match> matches;
+    };
+    SDL_Renderer *renderer = nullptr;
+    SDL_Texture *target = nullptr;
+    std::array<const unsigned char *, 2> grids{};
+    int dimx = 0, dimy = 0, tile_x = 0, tile_y = 0, pixel_x = 0, pixel_y = 0;
+    bool top_in_use = false, committed = false;
+    uintptr_t owner = 0;
+    uint64_t capture_epoch = 0, capture_revision = 0;
+    std::vector<Span> spans;
+    std::vector<Chronicle> chronicles;
 };
 static std::mutex g_native_drawn_text_mutex;
 static std::vector<NativeDrawnTextRow> g_native_drawn_text_rows;
@@ -2881,7 +2949,10 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         NativeTravelBuildingField travel_building_field = NativeTravelBuildingField::None,
         uintptr_t native_caller = 0,
         std::optional<std::string> squad_alias_target = std::nullopt,
-        std::optional<NativeTradeItemCaption> trade_item_caption = std::nullopt) {
+        std::optional<NativeTradeItemCaption> trade_item_caption = std::nullopt,
+        bool completed_draw = false, uintptr_t draw_owner = 0, bool worldgen_draw = false,
+        uint32_t native_half_writer = 0,
+        std::shared_ptr<const NativeAdventureHoverDocument> adventure_hover_document = {}) {
     if (native_private_ui_write_active(graphics)) return;
     const bool character = graphics && graphics == g_native_character_write_graphics;
     const bool display = graphics && graphics == g_native_display_write_graphics;
@@ -2972,6 +3043,11 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
                 native_workshop_choice_field(native_caller) != NativeWorkshopChoiceField::None)
             row.caption_source = true;
         row.sequence = ++g_native_drawn_text_sequence;
+        row.completed_draw = completed_draw;
+        row.draw_owner = draw_owner;
+        row.worldgen_draw = worldgen_draw;
+        row.native_half_writer = native_half_writer;
+        row.adventure_hover_document = std::move(adventure_hover_document);
         row.editable_text = NativeEditableTextScope::active;
         row.top_layer = top_layer;
         if (graphics) {
@@ -3091,7 +3167,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
             }
 #endif
         }
-        if (!complete_source.empty() && complete_source != source &&
+        if (!complete_source.empty() && (completed_draw || complete_source != source) &&
             complete_source.size() <= 4096 &&
             complete_source.find('\0') == std::string_view::npos &&
             complete_source.find_first_of("\r\n") == std::string_view::npos)
@@ -3760,6 +3836,8 @@ public:
     void invalidate_render_resources();
     void render(SDL_Renderer *renderer);
     bool prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *renderer);
+    void commit_native_ui_input(SDL_Renderer *renderer) noexcept;
+    void cancel_native_ui_input() noexcept;
     bool native_ui_copy_passthrough() const noexcept {
         return native_ui_frame_ready_ && native_ui_copy_passthrough_;
     }
@@ -3770,7 +3848,7 @@ public:
         if (main_menu_frame_ && dest)
             note_main_menu_developer_copy(renderer, texture, *dest);
     }
-    void render_dfhack_layer(SDL_Renderer *renderer, const NativeDfhackTranslatedFrame &frame);
+    bool render_dfhack_layer(SDL_Renderer *renderer, const NativeDfhackTranslatedFrame &frame);
     std::shared_ptr<const NativeDfhackTranslatedFrame> completed_dfhack_layer_frame(
         std::shared_ptr<const NativeDfhackLayerStorage> latest) noexcept;
     void render_native_help_layer(SDL_Renderer *renderer);
@@ -4676,6 +4754,7 @@ private:
     // The main UI owns one match/layout result from raster entry to Present.
     bool native_ui_input_read_ = false;
     bool native_ui_frame_ready_ = false;
+    std::shared_ptr<NativeCapturedUiFrame> native_captured_ui_frame_;
     std::array<std::shared_ptr<NativePreparedUiFrame>, 2> native_prepared_ui_frame_;
     std::shared_ptr<NativeTooltipPage> native_ui_layout_page_;
     std::optional<NativeToolbarTooltip> native_ui_toolbar_tooltip_;
@@ -5500,6 +5579,8 @@ private:
     void prepare_frame();
     std::shared_ptr<NativeTooltipPage> prepare_frame_layout(SDL_Renderer *renderer);
     void mask_native_ui_matches(NativeUiLayerGrid &input);
+    bool prepare_native_captured_ui_input(NativeUiLayerGrid &input, SDL_Renderer *renderer);
+    bool render_native_captured_ui(SDL_Renderer *renderer);
     bool prepare_immediate_row(bool top_layer, int y);
     const std::vector<Match> &prepare_immediate_base_matches();
     const NativeKnowledgeLayout &prepare_native_knowledge_layout(
@@ -5569,6 +5650,9 @@ private:
     void layout_adventure_personality_actions(SDL_Renderer *renderer);
     void append_adventure_personality_description(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw) const;
+    void append_adventure_hover_documents(std::vector<std::string> &rows,
+        std::vector<Match> &matches, std::vector<Match> &untranslated,
+        int only_y, const unsigned char *raw) const;
     void recover_adventure_skill_rows();
     void ensure_adventure_background_matches();
     void prepare_adventure_hover_suppression();
@@ -7925,6 +8009,7 @@ void Overlay::reset_render_state() {
     destroy_textures();
     frame_prepared_ = false;
     native_ui_frame_ready_ = false;
+    native_captured_ui_frame_.reset();
     native_prepared_ui_frame_ = {};
     native_ui_layout_page_.reset();
     native_ui_toolbar_tooltip_.reset();
@@ -8025,8 +8110,9 @@ void Overlay::invalidate_render_resources() {
     reset_render_state();
     legends_hit_rows_.clear();
     legends_renderer_ = nullptr;
-    if (gps_) gps_->force_full_display_count = std::max<int16_t>(
-        gps_->force_full_display_count, 2);
+    if (auto *redraw = native_graphics_member<int16_t>(native_graphics_identity(gps_),
+            offsetof(graphicst, force_full_display_count)))
+        *redraw = std::max<int16_t>(*redraw, 2);
 }
 
 void Overlay::toggle_translation() {
@@ -8123,9 +8209,9 @@ void Overlay::set_translation_enabled(bool enabled) {
     legends_renderer_ = nullptr;
     // The native renderer can reuse unchanged cells. Force a complete redraw
     // of both layers to restore suppressed English and erase Chinese pixels.
-    if (gps_) gps_->force_full_display_count =
-        std::max<decltype(gps_->force_full_display_count)>(
-            gps_->force_full_display_count, 2);
+    if (auto *redraw = native_graphics_member<int16_t>(native_graphics_identity(gps_),
+            offsetof(graphicst, force_full_display_count)))
+        *redraw = std::max<int16_t>(*redraw, 2);
     log_line("INFO", config_.enabled
         ? "Translation enabled"
         : "Translation disabled; showing native interface");
@@ -18330,12 +18416,12 @@ static void native_ui_paint_grid(NativeUiLayerStorage &layer, SDL_Renderer *rend
 #include "native_embark_civilization_layer_translation.inc"
 #include "worldgen_layer_matching.inc"
 
-void Overlay::render_dfhack_layer(SDL_Renderer *renderer,
+bool Overlay::render_dfhack_layer(SDL_Renderer *renderer,
         const NativeDfhackTranslatedFrame &frame) {
     TranslationStateScope translation_scope;
     if (!renderer || !NativeDfhackForegroundScope::active || !config_.enabled ||
             !face_ || rules_.empty() || !frame.source || !frame.matches ||
-            frame.source->page_revision != native_dfhack_layer_page_revision()) return;
+            frame.source->page_revision != native_dfhack_layer_page_revision()) return false;
     struct LayerGraphicsScope {
         graphicst *&graphics;
         graphicst *previous;
@@ -18345,7 +18431,7 @@ void Overlay::render_dfhack_layer(SDL_Renderer *renderer,
     } layer_graphics(gps_, frame.source->graphics.get());
     if (!gps_ || !gps_->screen ||
             gps_->dimx <= 0 || gps_->dimx > 1000 ||
-            gps_->dimy <= 0 || gps_->dimy > 1000) return;
+            gps_->dimy <= 0 || gps_->dimy > 1000) return false;
     struct LayerDrawingScope {
         bool previous_drawing = g_drawing_overlay;
         GraphicalClearReadback *&readback;
@@ -18370,6 +18456,7 @@ void Overlay::render_dfhack_layer(SDL_Renderer *renderer,
         if (text.rule == -8) text.rule = -13;
         draw_match(renderer, text);
     }
+    return true;
 }
 
 std::vector<Match> Overlay::find_matches(int only_y,
@@ -18401,7 +18488,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     std::vector<Match> adventure_background_cards;
     if (!gps_ || !gps_->screen || gps_->dimx <= 0 || gps_->dimx > 1000 ||
         gps_->dimy <= 0 || gps_->dimy > 1000 || trie_.empty() ||
-        only_y >= gps_->dimy || native_map_mixed_view(gps_) ||
+        only_y >= gps_->dimy || native_captured_ui_view(gps_) ||
         native_map_artwork_grid(screen_override)) {
         return result;
     }
@@ -18420,10 +18507,11 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         if (find_main_menu_matches(only_y, screen_override, result)) return result;
         if (find_settings_video_matches(only_y, screen_override, result)) return result;
     }
-    // This native view owns its captions and event viewport from the first
-    // frame; its private renderer never enters the shared screen matcher.
+    // A published private page or the map/event viewport owns its input.
+    // Independently identified parameter forms can still use shared captions
+    // when their private producer is unavailable.
 #ifdef _WIN32
-    if (native_history_worldgen_page()) return result;
+    if (native_worldgen_exclusive_output()) return result;
 #endif
     // This native component already owns the management pages. The main
     // grid contains only the remaining HUD/background; do not rediscover
@@ -18983,6 +19071,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     // The barter producer owns its complete dialogue and independent fields
     // before caption recovery can reinterpret a wrapped reply as names/items.
     std::vector<Match> untranslated_help_rows;
+    append_adventure_hover_documents(screen_rows, result, untranslated_help_rows,
+        only_y, screen_override);
     append_adventure_barter_fields(screen_rows, result, untranslated_help_rows,
         only_y, screen_override);
     // Likewise claim complete covered captions before their exposed tails
@@ -35119,7 +35209,7 @@ void Overlay::prepare_frame() {
     captured_embark_item_suppress_.clear();
     // Terrain has no text ownership. A producer that could not redirect its
     // output cannot grant its shared grid to UI discovery or raw recovery.
-    if (native_map_mixed_view(gps_)) {
+    if (native_captured_ui_view(gps_)) {
         frame_prepared_ = true;
         return;
     }
@@ -35128,7 +35218,7 @@ void Overlay::prepare_frame() {
     // main page's grid discovery or recovery passes.
     if (native_worldgen_main_view(gps_)
 #ifdef _WIN32
-            || native_history_worldgen_page()
+            || native_worldgen_exclusive_output()
 #endif
             ) {
         frame_prepared_ = true;
@@ -37560,6 +37650,7 @@ std::optional<SDL_Rect> Overlay::native_caption_button_rect(const Match &match) 
 #include "adventure_skills.inc"
 #include "personality_needs.inc"
 #include "adventure_personality.inc"
+#include "native_adventure_hover_matching.inc"
 #include "adventure_hover.inc"
 #include "adventure_background.inc"
 
@@ -40931,9 +41022,9 @@ int Overlay::intercept_glyph_copy(SDL_Renderer *renderer, SDL_Texture *texture,
     TranslationStateScope translation_scope;
     RenderTimingScope glyph_timing(render_timings_, config_.trace_render_timing, RenderTimingStage::Glyph);
     if (!real_copy || !dest) return real_copy ? real_copy(renderer, texture, source, dest) : -1;
-    if (native_map_mixed_view(gps_) || native_worldgen_main_view(gps_)
+    if (native_captured_ui_view(gps_) || native_worldgen_main_view(gps_)
 #ifdef _WIN32
-            || native_display_worldgen_page()
+            || native_display_worldgen_exclusive()
 #endif
             )
         return real_copy(renderer, texture, source, dest);
@@ -42410,7 +42501,8 @@ void Overlay::draw_match(SDL_Renderer *renderer, const Match &match) {
         }
     }
     if (match.rule == -8 ||
-        (config_.clear_background && !g_copy_hook_active && !match.native_dfhack_foreground)) {
+        (config_.clear_background && !g_copy_hook_active && !match.native_dfhack_foreground &&
+            !match.native_captured_span)) {
         RenderTimingScope clear_timing(render_timings_, config_.trace_render_timing,
             RenderTimingStage::DrawClearPixels);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
@@ -43040,6 +43132,10 @@ SDL_Rect Overlay::native_text_draw_region(const Match &match, bool *owner_bounds
         // Those measured run boxes must never replace the native allocation.
         intersect(*match.layout_native_clip);
         bounded_owner = true;
+        if (match.native_captured_span) {
+            if (owner_bounds) *owner_bounds = true;
+            return region;
+        }
     } else if (match.native_picture_caption_box) {
         intersect(pixels(*match.native_picture_caption_box));
         bounded_owner = true;
@@ -43544,8 +43640,10 @@ std::shared_ptr<NativeTooltipPage> Overlay::prepare_frame_layout(SDL_Renderer *r
 }
 
 void Overlay::mask_native_ui_matches(NativeUiLayerGrid &input) {
+    native_reserve_adventure_hover_sources(prepared_matches_);
     const NativeBitmapFontTextures fonts(!prepared_matches_.empty());
     for (const Match &match : prepared_matches_) {
+        if (match.native_adventure_hover_paint) continue;
         if (match.native_help_source_only || match.native_dfhack_foreground) continue;
         const int source_length = native_match_source_length(match);
         const auto source = native_match_source(match);
@@ -43589,21 +43687,42 @@ void Overlay::mask_native_ui_matches(NativeUiLayerGrid &input) {
     }
 }
 
+#include "native_captured_ui_matching.inc"
+
+void Overlay::cancel_native_ui_input() noexcept {
+    native_ui_frame_ready_ = false;
+    native_captured_ui_frame_.reset();
+    native_ui_copy_passthrough_ = false;
+    native_ui_layout_page_.reset();
+    native_ui_toolbar_tooltip_.reset();
+    frame_prepared_ = false;
+}
+
 bool Overlay::prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *renderer) {
     NativeCapturedTextReadScope captured_text_reads;
     NativeAdventureBackgroundReadScope adventure_background_reads;
     native_ui_frame_ready_ = false;
+    native_captured_ui_frame_.reset();
     native_ui_copy_passthrough_ = false;
     native_ui_layout_page_.reset();
     native_ui_toolbar_tooltip_.reset();
     apply_requested_reload();
     if (!renderer || !config_.enabled || !face_ || rules_.empty() || !gps_ || !gps_->screen ||
             gps_->dimx <= 0 || gps_->dimx > 1000 || gps_->dimy <= 0 || gps_->dimy > 1000 ||
-            native_map_mixed_view(gps_) || native_worldgen_main_view(gps_)
+            native_worldgen_main_view(gps_)) return false;
+    if (native_captured_ui_view(gps_)) {
+        prepared_matches_.clear();
+        suppress_base_.clear(); suppress_top_.clear();
+        native_prepared_ui_frame_ = {};
+        main_menu_frame_ = settings_video_frame_ = fortress_map_frame_ = false;
+        native_knowledge_frame_matches_.reset();
+        native_knowledge_frame_transition_ = false;
+        native_border_repairs_.clear();
+        return prepare_native_captured_ui_input(input, renderer);
+    }
 #ifdef _WIN32
-            || native_display_worldgen_page()
+    if (native_display_worldgen_exclusive()) return false;
 #endif
-            ) return false;
     NativeUiTextReadView ui_text_read(*this, gps_, native_map_background_view(gps_));
     // Map-port/background copies precede update_all in this same display.
     // Their SDL cover describes pixels already painted, not the UI bytes
@@ -43638,7 +43757,9 @@ bool Overlay::prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *re
     const auto cached_frame = cache_context
         ? std::find_if(native_prepared_ui_frame_.begin(), native_prepared_ui_frame_.end(),
             [&](const auto &frame) {
-                return frame && frame->matches_source(*gps_, renderer, *cache_context);
+                return frame &&
+                    (g_native_glyph_interception_ready || frame->copy_passthrough) &&
+                    frame->matches_source(*gps_, renderer, *cache_context);
             })
         : native_prepared_ui_frame_.end();
     if (cached_frame != native_prepared_ui_frame_.end()) {
@@ -43673,7 +43794,15 @@ bool Overlay::prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *re
     // Keep every physical source span even when layout drops duplicate
     // halves or replaces fragments with a complete document.
     mask_native_ui_matches(input);
+    std::vector<std::shared_ptr<const NativeAdventureHoverPaint>> hover_reservations;
+    for (const auto &match : prepared_matches_)
+        if (match.native_adventure_hover_paint) hover_reservations.push_back(match.native_adventure_hover_paint);
     native_ui_layout_page_ = prepare_frame_layout(renderer);
+    // Layout can remove a whole candidate. Its native sources still cannot
+    // become unrelated generic fragments within this same preparation.
+    native_reserve_adventure_hover_sources(prepared_matches_, &hover_reservations);
+    // Whole tooltip documents commit only after layout retained every member.
+    native_mask_adventure_hover_documents(input, *gps_, prepared_matches_, suppress_base_, suppress_top_);
     // Layout can recover complete fields. They enter this same raster input,
     // before any English copy, rather than appearing only at Present.
     mask_native_ui_matches(input);
@@ -43695,6 +43824,14 @@ bool Overlay::prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *re
                         !(match.rule == kAdventureBackgroundDescriptionRule &&
                             match.layout_native_clip && match.graphical_clear_background_rgb >= 0));
             });
+    if (!g_native_glyph_interception_ready && !native_ui_copy_passthrough_) {
+        // This frame still needs glyph identities for border or pixel
+        // recovery. Its mask is only a private candidate: discard it before
+        // the native renderer consumes any byte, without stopping unrelated
+        // pre-masked pages or independently painted component layers.
+        cancel_native_ui_input();
+        return false;
+    }
     // Keep both native buffer variants at this shared input boundary. Each
     // retains its exact ownership context, translation/layout and source arrays;
     // dynamic ownership or pixel recovery continues through the full path.
@@ -43741,10 +43878,12 @@ bool Overlay::prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *re
 void Overlay::render(SDL_Renderer *renderer) {
     TranslationStateScope translation_scope;
     NativeCapturedTextReadScope captured_text_reads;
+    apply_requested_reload();
+    if (render_native_captured_ui(renderer)) return;
     const bool map_artwork = native_map_mixed_view(gps_);
-    if (map_artwork || native_worldgen_main_view(gps_)
+    if (native_captured_ui_view(gps_) || native_worldgen_main_view(gps_)
 #ifdef _WIN32
-            || native_history_worldgen_page()
+            || native_worldgen_exclusive_output()
 #endif
             ) {
         apply_requested_reload();
@@ -44321,11 +44460,12 @@ static uintptr_t g_base_glyph_return = 0;
 static uintptr_t g_top_glyph_return = 0;
 static uintptr_t g_full_top_glyph_return = 0;
 bool g_copy_hook_active = false;
+bool g_native_glyph_interception_ready = false;
 
 static void apply_pending_arena_translated_search();
 static void apply_pending_name_editor_search();
 static void native_dfhack_present_layer(SDL_Renderer *renderer,
-    void (*draw_translation)(SDL_Renderer *, const NativeDfhackTranslatedFrame &));
+    bool (*draw_translation)(SDL_Renderer *, const NativeDfhackTranslatedFrame &));
 static void native_help_present_layers(SDL_Renderer *renderer,
     void (*draw_help)(SDL_Renderer *));
 static void native_info_present_layer(SDL_Renderer *renderer,
@@ -44395,7 +44535,7 @@ extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
             graphicst *previous_overlay = nullptr;
             GraphicsReadScope() {
                 auto *graphics = native_dfhack_render_read_graphics();
-                if (!graphics) graphics = native_graphics_owner();
+                if (!graphics) graphics = native_graphics_owner_view();
                 g_native_graphics_read_view = graphics;
                 previous_selector = native_dfhack_display_inputs_select(graphics);
                 previous_overlay = g_overlay.bind_render_graphics(graphics);
@@ -44482,7 +44622,7 @@ extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
         boundary.checkpoint("overlay_render");
         native_dfhack_present_layer(renderer, [](SDL_Renderer *layer_renderer,
                 const NativeDfhackTranslatedFrame &frame) {
-            g_overlay.render_dfhack_layer(layer_renderer, frame);
+            return g_overlay.render_dfhack_layer(layer_renderer, frame);
         });
         boundary.checkpoint("dfhack_layer");
         apply_pending_name_editor_search();
@@ -44512,8 +44652,13 @@ extern "C" int dfcn_render_copy(SDL_Renderer *renderer, SDL_Texture *texture,
         g_overlay.note_native_ui_passthrough_copy(renderer, texture, dest);
         return g_real_copy ? g_real_copy(renderer, texture, source, dest) : -1;
     }
+    // Without both native glyph identities, an unclassified SDL copy may
+    // still be text. It cannot authorize occlusion or glyph suppression.
+    // Independently masked inputs and private painters need neither path.
+    if (!g_native_glyph_interception_ready)
+        return g_real_copy ? g_real_copy(renderer, texture, source, dest) : -1;
     TranslationStateScope translation;
-    if (native_map_mixed_view(native_graphics()) || native_worldgen_main_view(native_graphics()))
+    if (native_captured_ui_view(native_graphics()) || native_worldgen_main_view(native_graphics()))
         return g_real_copy ? g_real_copy(renderer, texture, source, dest) : -1;
     // The opaque management component is submitted on its own target.
     // Covered background copies have no visible pixels and must not

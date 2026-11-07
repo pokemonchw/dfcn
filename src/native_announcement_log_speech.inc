@@ -51,15 +51,15 @@ static bool native_announcement_log_speech_text(const NativeString *source, std:
 }
 static void native_announcement_log_speech_context(const void *context, NativeAnnouncementLogSpeech &speech) {
     if (!context) return;
-    // history_event_context in df.d_basics.xml. Each coordinate below is read
-    // by 685d00 / ELF 10338c0; no pointers or speculative union values escape.
-    std::array<unsigned char, 0x58> bytes{};
-    if (!native_history_copy_bytes(reinterpret_cast<uintptr_t>(context), bytes.data(), bytes.size())) return;
+    // Resolve the declared context member; its reference coordinate is only
+    // documentation of the existing formatter's source field.
     const auto add = [&](std::string name, size_t offset, size_t size) {
+        (void)offset;
+        const auto address = native_history_object_member(reinterpret_cast<uintptr_t>(context), "history_event_context", name, size);
         int64_t value = 0;
-        if (size == 4) { int32_t v; std::memcpy(&v, bytes.data() + offset, 4); value = v; }
-        else if (size == 2) { int16_t v; std::memcpy(&v, bytes.data() + offset, 2); value = v; }
-        else { int8_t v; std::memcpy(&v, bytes.data() + offset, 1); value = v; }
+        if (size == 4) { int32_t v; if (!native_history_copy(address, v)) return; value = v; }
+        else if (size == 2) { int16_t v; if (!native_history_copy(address, v)) return; value = v; }
+        else { int8_t v; if (!native_history_copy(address, v)) return; value = v; }
         speech.parameters.emplace(std::move(name), value);
     };
     for (const auto &[name, offset] : std::initializer_list<std::pair<const char *, size_t>>{
@@ -79,7 +79,9 @@ static std::optional<NativeUnitIdentity> native_announcement_log_speech_unit(int
     NativeUnitIdentity identity;
     size_t id_offset = SIZE_MAX;
     for (const auto &field : native_history_layout::f_unit_fields)
-        if (std::string_view(field.name) == "id") { id_offset = field.native; break; }
+        if (std::string_view(field.name) == "id" && field.native.contains(0, sizeof(int32_t), field.size)) {
+            id_offset = field.native; break;
+        }
     if (id < 0 || id_offset == SIZE_MAX ||
             !native_history_material_find_id(native_history_page_address(NativeHistoryPageSymbol::Units),
                 id_offset, id, unit) || !unit || !capture_native_unit_identity(unit, identity)) return {};
@@ -244,13 +246,9 @@ static NativeAnnouncementLogSpeechSubmission begin_native_announcement_log_speec
                 "activity_event_conversationst", "turns"), turns) ||
             turns.size() != live->before_size + 1 || reinterpret_cast<uintptr_t>(turns.end) == live->before_end) return ticket;
     const auto utterance = native_history_vector_at(turns, turns.size() - 1);
-    constexpr size_t snapshot_size = [] {
-        size_t size = 0;
-        for (const auto &field : native_history_layout::f_utterancest_fields)
-            size = std::max(size, field.native + field.size);
-        return size;
-    }();
-    std::array<unsigned char, snapshot_size> bytes{};
+    const size_t snapshot_size = native_history_snapshot_size(native_history_layout::f_utterancest_fields);
+    if (!snapshot_size) return ticket;
+    std::vector<unsigned char> bytes(snapshot_size);
     if (!utterance || !native_history_copy_bytes(utterance, bytes.data(), bytes.size())) return ticket;
     auto speech = std::make_shared<NativeAnnouncementLogSpeech>(live->speech);
     const auto integer = [&](std::string_view name, int32_t &value) {
@@ -314,7 +312,7 @@ static NativeAnnouncementLogSpeechSubmission begin_native_announcement_log_speec
     if (native_history_copy(native_history_global(0x23e5110), player) && player)
         for (const auto &field : native_history_layout::f_unit_fields)
             if (std::string_view(field.name) == "id") {
-                native_history_copy(player + field.native, player_id);
+                native_history_copy(field.native.address(player, 0, sizeof(player_id), field.size), player_id);
                 break;
             }
     if (player_id >= 0 && speech->speaker_ref[0] == player_id && speech->header_source == "You: ") {
@@ -448,19 +446,19 @@ static bool install_native_announcement_log_speech_hook() {
     unsigned char *entry = nullptr;
     std::vector<unsigned char> prefix;
 #ifdef _WIN32
-    NativeCaptionProfile profile;
-    if (!resolve_native_caption_profile(profile)) return false;
+    const auto executable = native_history_profile_base();
+    if (!executable || !native_pe_supported()) return false;
     // Retained complete PE sources: speech-wrapper 684a10 / classic 682430;
     // token replacement 52cc90 / classic 52a6b0. No incoming args are changed.
     prefix = {0x40,0x55,0x53,0x56,0x57};
-    if (!native_pe_match(profile.base, 0x684a10, prefix.data(), prefix.size()) ||
+    if (!native_pe_match(executable, 0x684a10, prefix.data(), prefix.size()) ||
             !native_pe_bytes(0x684a10, prefix)) return false;
-    entry = reinterpret_cast<unsigned char *>(native_pe_address(profile.base, 0x684a10));
+    entry = reinterpret_cast<unsigned char *>(native_pe_address(executable, 0x684a10));
     std::vector<unsigned char> replacement = {0x48,0x89,0x5c,0x24,0x18};
-    if (!native_pe_match(profile.base, 0x52cc90, replacement.data(), replacement.size()) ||
+    if (!native_pe_match(executable, 0x52cc90, replacement.data(), replacement.size()) ||
             !native_pe_bytes(0x52cc90, replacement) ||
             !g_native_announcement_log_speech_replace_entry.prepare(
-                reinterpret_cast<unsigned char *>(native_pe_address(profile.base, 0x52cc90)), replacement,
+                reinterpret_cast<unsigned char *>(native_pe_address(executable, 0x52cc90)), replacement,
                 reinterpret_cast<const void *>(&capture_native_announcement_log_speech_replace), {}, "Native speech token fields")) return false;
     g_real_native_announcement_log_speech_replace = reinterpret_cast<NativeAnnouncementLogSpeechReplaceFn>(
         g_native_announcement_log_speech_replace_entry.original);

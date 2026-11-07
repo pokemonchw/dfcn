@@ -77,12 +77,13 @@ static void native_map_hover_end_draw() {
     if (!g_native_map_hover_output) return;
     auto &layer = g_native_map_hover_layer;
     auto *gps = native_graphics();
-    layer.foreground.graphics()->top_in_use = gps->top_in_use;
+    native_graphics_read_member(gps, offsetof(graphicst, top_in_use),
+        layer.foreground.graphics()->top_in_use);
     const auto continuation = NativeDfhackOutputBinding::capture(*gps);
     native_map_hover_restore_output();
     // Restore the parent's ownership and clip, retaining the native writer's
     // final cursor/palette for the renderer's unrelated successor branches.
-    std::memcpy(&gps->screenx, continuation.draw.data(), continuation.draw.size());
+    continuation.apply_draw(*gps);
     layer.ready = true;
     NativeUiReadScope::invalidate_reads();
 }

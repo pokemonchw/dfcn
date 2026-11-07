@@ -1,27 +1,28 @@
 // Every accepted-petition addst in the independently extracted PE/ELF regions.
 // Type 5 (temple) and type 10 (guildhall), both levels and all location states.
 #ifdef _WIN32
+    if (!native_pe_feature_span_absent("fortress.accepted_petition_detail", 0x3f7fce, 5)) {
     profile.location_picker_fields.insert(profile.location_picker_fields.end(), {
-        {native_pe_address(profile.base, 0x3f7fd3), NativeLocationPickerField::PetitionFixed},
+        {native_pe_address(profile.base, 0x3f7fd3), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f7fce, 0xad9960, nullptr}},
         {native_pe_address(profile.base, 0x3f810f), NativeLocationPickerField::PetitionRequest},
         {native_pe_address(profile.base, 0x3f8175), NativeLocationPickerField::PetitionFor},
         {native_pe_address(profile.base, 0x3f828e), NativeLocationPickerField::PetitionGuild},
-        {native_pe_address(profile.base, 0x3f8373), NativeLocationPickerField::PetitionFixed},
-        {native_pe_address(profile.base, 0x3f85c3), NativeLocationPickerField::PetitionFixed},
-        {native_pe_address(profile.base, 0x3f85fd), NativeLocationPickerField::PetitionFixed},
+        {native_pe_address(profile.base, 0x3f8373), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f836e, 0xad9960, nullptr}},
+        {native_pe_address(profile.base, 0x3f85c3), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f85be, 0xad9960, nullptr}},
+        {native_pe_address(profile.base, 0x3f85fd), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f85f8, 0xad9960, nullptr}},
         {native_pe_address(profile.base, 0x3f869c), NativeLocationPickerField::PetitionLocation},
-        {native_pe_address(profile.base, 0x3f86ff), NativeLocationPickerField::PetitionFixed},
+        {native_pe_address(profile.base, 0x3f86ff), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f86fa, 0xad9960, nullptr}},
         {native_pe_address(profile.base, 0x3f88e8), NativeLocationPickerField::PetitionDate},
         {native_pe_address(profile.base, 0x3f8a1b), NativeLocationPickerField::PetitionRequest},
         {native_pe_address(profile.base, 0x3f8a81), NativeLocationPickerField::PetitionFor},
         {native_pe_address(profile.base, 0x3f8b6b), NativeLocationPickerField::PetitionFaith},
-        {native_pe_address(profile.base, 0x3f8c50), NativeLocationPickerField::PetitionFixed},
-        {native_pe_address(profile.base, 0x3f8cd0), NativeLocationPickerField::PetitionFixed},
-        {native_pe_address(profile.base, 0x3f8d27), NativeLocationPickerField::PetitionFixed},
-        {native_pe_address(profile.base, 0x3f8fa3), NativeLocationPickerField::PetitionFixed},
-        {native_pe_address(profile.base, 0x3f8fdd), NativeLocationPickerField::PetitionFixed},
+        {native_pe_address(profile.base, 0x3f8c50), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f8c4b, 0xad9960, nullptr}},
+        {native_pe_address(profile.base, 0x3f8cd0), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f8ccb, 0xad9960, nullptr}},
+        {native_pe_address(profile.base, 0x3f8d27), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f8d22, 0xad9960, nullptr}},
+        {native_pe_address(profile.base, 0x3f8fa3), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f8f9e, 0xad9960, nullptr}},
+        {native_pe_address(profile.base, 0x3f8fdd), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f8fd8, 0xad9960, nullptr}},
         {native_pe_address(profile.base, 0x3f908f), NativeLocationPickerField::PetitionLocation},
-        {native_pe_address(profile.base, 0x3f90f6), NativeLocationPickerField::PetitionFixed},
+        {native_pe_address(profile.base, 0x3f90f6), NativeLocationPickerField::PetitionFixed, NativeCall{0x3f90f1, 0xad9960, nullptr}},
         {native_pe_address(profile.base, 0x3f92df), NativeLocationPickerField::PetitionDate},
     });
     profile.signatures.push_back({0x3f7fce, {0xe8,0x8d,0x19,0x6e,0x00}});
@@ -45,6 +46,7 @@
     profile.signatures.push_back({0x3f908a, {0xe8,0xd1,0x08,0x6e,0x00}});
     profile.signatures.push_back({0x3f90f1, {0xe8,0x6a,0x08,0x6e,0x00}});
     profile.signatures.push_back({0x3f92da, {0xe8,0x81,0x06,0x6e,0x00}});
+    }
 #else
     profile.location_picker_fields.insert(profile.location_picker_fields.end(), {
         {native_reference_va(0x169f838), NativeLocationPickerField::PetitionFixed},

@@ -1,5 +1,6 @@
 // One identity contract for every native producer and retained-page recovery.
-// Generated files supply only verified RVAs and getType instruction bytes.
+// Generated profiles pair canonical event kinds with their RTTI tables. ELF's
+// existing identity profile additionally retains getter instruction evidence.
 struct NativeHistoryEventIdentityProfile {
     uintptr_t vtable, get_type, get_sentence;
     int32_t native_type;
@@ -15,16 +16,31 @@ struct NativeHistoryEventIdentityProfile {
 static uintptr_t native_history_event_identity_base() {
     static const uintptr_t image = []() -> uintptr_t {
         const uintptr_t base = native_history_profile_base();
-        if (!base || base > UINTPTR_MAX - 0xd0) return 0;
+        const size_t sentence_slot = native_history_abi::history_method("getSentence", 0xd0).slot;
+        const auto *type_method = native_history_abi::method(native_history_abi::history_event_type,
+            native_history_abi::semantic_id("getType"));
+        if (!type_method && !native_history_abi::snapshot().reference_identity) return 0;
+        if (type_method && (type_method->parameter_shape !=
+                native_history_abi::semantic_id("history_event_type()") || type_method->argument_count)) return 0;
+        if (!base || base > UINTPTR_MAX - sentence_slot) return 0;
+#ifdef _WIN32
+        // A discovered image identifies events by its verified RTTI table and
+        // the source semantic profile below. Enum ordinals and getType's tiny
+        // immediate-return body may change between releases. Its validated
+        // parameter contract is required, but executing/comparing that getter
+        // is unnecessary for this RTTI-based identity lookup.
+        return base;
+#else
+        const size_t type_slot = type_method ? type_method->slot : 0;
         for (const auto &profile : native_history_event_identity_profiles) {
             uintptr_t type_entry = 0, sentence_entry = 0;
             std::array<uint8_t, 10> type_code{};
             if (!profile.type_code_size || profile.type_code_size > type_code.size() ||
-                profile.vtable > UINTPTR_MAX - base - 0xd0 ||
+                profile.vtable > UINTPTR_MAX - base - sentence_slot ||
                 profile.get_type > UINTPTR_MAX - base ||
                 profile.get_sentence > UINTPTR_MAX - base ||
-                !native_history_copy(native_reference_address(base, profile.vtable), type_entry) ||
-                !native_history_copy(native_reference_address(base, profile.vtable) + 0xd0, sentence_entry) ||
+                !native_history_copy(native_reference_address(base, profile.vtable) + type_slot, type_entry) ||
+                !native_history_copy(native_reference_address(base, profile.vtable) + sentence_slot, sentence_entry) ||
                 type_entry != native_reference_address(base, profile.get_type) ||
                 sentence_entry != native_reference_address(base, profile.get_sentence) ||
                 !native_history_copy_bytes(type_entry, type_code.data(), profile.type_code_size) ||
@@ -32,6 +48,7 @@ static uintptr_t native_history_event_identity_base() {
                 return 0;
         }
         return base;
+#endif
     }();
     return image;
 }

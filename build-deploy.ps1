@@ -54,19 +54,30 @@ try {
         throw 'This entry point requires the configured Windows x64 host.'
     }
     if (-not [System.IO.File]::Exists($imageConfigPath)) {
-        throw "Local game configuration is missing: $imageConfigPath. Configure this machine's reference and classic images; the source workspace need not be inside the game directory."
+        throw "Local game configuration is missing: $imageConfigPath. Configure this machine's game image and optional generation reference; the source workspace need not be inside the game directory."
     }
     $imageConfig = [System.IO.File]::ReadAllText($imageConfigPath) | ConvertFrom-Json
-    $referenceImage = Resolve-ProjectPath ([string]$imageConfig.reference)
-    $classicImage = Resolve-ProjectPath ([string]$imageConfig.classic)
-    $gameRoots = @([System.IO.Path]::GetDirectoryName($referenceImage))
+    $gameImagePath = if ($imageConfig.game) { [string]$imageConfig.game } else { [string]$imageConfig.reference }
+    $gameImage = Resolve-ProjectPath $gameImagePath
+    $referenceImage = if ($imageConfig.reference) { Resolve-ProjectPath ([string]$imageConfig.reference) } else { $null }
+    $classicImage = if ($imageConfig.classic) { Resolve-ProjectPath ([string]$imageConfig.classic) } else { $null }
+    $gameRoots = @([System.IO.Path]::GetDirectoryName($gameImage))
     if ($imageConfig.deploy_classic -eq $true) {
+        if (-not $classicImage) { throw "Classic deployment requires a classic image in $imageConfigPath." }
         $gameRoots += [System.IO.Path]::GetDirectoryName($classicImage)
     }
     $gameRoots = @($gameRoots | Select-Object -Unique)
-    $requiredFiles = @($python, $compiler, $buildScript, $referenceImage, $classicImage,
+    $requiredFiles = @($python, $compiler, $buildScript, $gameImage,
             (Join-Path $sdl 'include\SDL2\SDL.h'),
             (Join-Path $sdl 'lib\libSDL2.dll.a'))
+    if ($referenceImage) {
+        if (-not $classicImage) { throw "PE data generation requires a classic image in $imageConfigPath." }
+        $requiredFiles += $referenceImage
+        $requiredFiles += $classicImage
+    }
+    elseif ($imageConfig.deploy_classic -eq $true) {
+        $requiredFiles += $classicImage
+    }
     foreach ($gameRoot in $gameRoots) {
         if (-not [System.IO.File]::Exists((Join-Path $gameRoot 'dfhooks.dll'))) {
             $requiredFiles += Resolve-ProjectPath ([string]$imageConfig.bootstrap)

@@ -3,6 +3,7 @@
 static void capture_native_site_name_draw_with(graphicst *graphics,
         const NativeString *source, uintptr_t site, int name_right,
         NativeJustification just, uintptr_t caller) {
+    graphics = native_graphics_view(graphics);
     NativeInputCallbackScope callback;
     NativeHistoryName name;
     bool owned = false;
@@ -35,7 +36,7 @@ static void capture_native_site_name_draw_with(graphicst *graphics,
     NativeSiteNameFactScope scope(owned ? &name : nullptr);
     capture_native_limited_caption_draw(graphics, source, just, 0, [&] {
         if (const auto original = g_native_clipped_caption_hooks.draw)
-            callback.call_native([&] { original(graphics, source, just, 0); });
+            callback.call_native([&] { native_graphics_call(original, graphics, source, just, 0); });
     }, false, NativeInfoTitleKind::None, false, {}, false,
         NativeCivilizationField::None, false, {},
         NativeLocationPickerField::None, NativeTravelBuildingField::None, caller, name_clip);
@@ -57,7 +58,7 @@ static void capture_native_worldgen_site_name_draw(graphicst *graphics,
 #endif
 
 #ifdef _WIN32
-static bool append_native_site_name_draw_calls(std::vector<NativeCall> &calls) {
+static std::vector<NativeCall> native_site_name_draw_calls() {
     // Legends Site rows: 7db20 resolves the actual site into RDI at d4164b;
     // d417e1 draws only [rbp+128]'s name/quoted-gloss field. The separate
     // d41920 type column retains its original native classification.
@@ -86,8 +87,90 @@ static bool append_native_site_name_draw_calls(std::vector<NativeCall> &calls) {
             reinterpret_cast<const void *>(&capture_native_worldgen_site_name_draw),
             {0x45, 0x89, 0xc1, 0x49, 0x89, 0xd8}},
     };
-    if (!native_reference_calls(site_calls, 0)) return false;
-    calls.insert(calls.end(), site_calls.begin(), site_calls.end());
+    return site_calls;
+}
+
+static std::array<uintptr_t, 5> native_site_name_draw_returns() {
+    // Literal return consumers are also collected by the normal seed build.
+    return {native_pe_rva(0xd417e6), native_pe_rva(0x1c2305), native_pe_rva(0x1c785b),
+        native_pe_rva(0xdfde74), native_pe_rva(0xdfdef4)};
+}
+
+static bool resolve_native_site_name_draw_call(NativeCall &call, uintptr_t resume) {
+    if (!call.va || !call.target || call.va > UINTPTR_MAX - 5) return false;
+    const auto displacement = int64_t(call.target) - int64_t(call.va) - 5;
+    if (displacement < INT32_MIN || displacement > INT32_MAX) return false;
+    std::vector<unsigned char> expected{0xe8, 0, 0, 0, 0};
+    const int32_t relative = static_cast<int32_t>(displacement);
+    std::memcpy(expected.data() + 1, &relative, sizeof(relative));
+    if (!native_pe_bytes(call.va, expected)) return false;
+    const auto site = native_reference_va(call.va);
+    if (!site || site > UINTPTR_MAX - 5 || resume != site + 5) return false;
+    std::vector<NativeCall> one{call};
+    if (!native_reference_calls(one, 0)) return false;
+    call = std::move(one.front());
+    return true;
+}
+
+static bool append_native_site_name_draw_calls(std::vector<NativeCall> &calls) {
+    // Each writer owns a complete site-name fact by itself. A missing catalog
+    // or world-map observer cannot disable the world's other name writers.
+    auto sites = native_site_name_draw_calls();
+    const auto returns = native_site_name_draw_returns();
+    if (sites.size() != returns.size()) return false;
+    for (size_t index = 0; index < sites.size(); ++index)
+        if (resolve_native_site_name_draw_call(sites[index], returns[index])) calls.push_back(std::move(sites[index]));
+    return true;
+}
+
+static std::array<NativeCallHook, 5> g_native_independent_site_name_hooks;
+
+static bool native_independent_site_name_hooks_active() {
+    return std::any_of(g_native_independent_site_name_hooks.begin(),
+        g_native_independent_site_name_hooks.end(), [](const auto &hook) { return hook.active(); });
+}
+
+static bool uninstall_native_independent_site_name_hooks() {
+    for (auto it = g_native_independent_site_name_hooks.rbegin();
+            it != g_native_independent_site_name_hooks.rend(); ++it) {
+        if (!it->uninstall("Native site-name observer restore") || it->active()) return false;
+    }
+    return true;
+}
+
+static bool install_native_independent_site_name_hooks() {
+    // The complete profile already owns its admitted CALLs. Fallback observers
+    // run only after the basic addst trampoline is installed, and are removed
+    // before that trampoline or its original pointer can be released.
+    if (g_native_caption_hooks.code.active()) return true;
+    if (!g_native_clipped_caption_hooks.draw_entry.installed || !g_native_clipped_caption_hooks.draw) return false;
+    const auto base = native_history_profile_base();
+    if (!base) return false;
+    auto calls = native_site_name_draw_calls();
+    const auto returns = native_site_name_draw_returns();
+    if (calls.size() != g_native_independent_site_name_hooks.size()) return false;
+    size_t enabled = 0, deferred = 0;
+    for (size_t index = 0; index < calls.size(); ++index) {
+        auto &hook = g_native_independent_site_name_hooks[index];
+        if (hook.installed) { ++enabled; continue; }
+        bool installed = false;
+        try {
+            if (resolve_native_site_name_draw_call(calls[index], returns[index]))
+                installed = hook.install(base, {calls[index]}, "Native site-name observer");
+        } catch (const std::exception &error) {
+            log_line("WARN", std::string("Native site-name observer: ") + error.what());
+        } catch (...) { log_line("WARN", "Native site-name observer preparation failed"); }
+        if (installed) { ++enabled; continue; }
+        bool restored = false;
+        try { restored = hook.uninstall("Native site-name observer rollback"); } catch (...) {}
+        if (!restored || hook.active()) {
+            log_line("ERROR", "Native site-name observer restoration incomplete; retaining draw trampoline");
+            return false;
+        }
+        ++deferred;
+    }
+    log_line("INFO", "Native site-name observers: " + std::to_string(enabled) +
+        " enabled, " + std::to_string(deferred) + " deferred independently");
     return true;
 }
 #else

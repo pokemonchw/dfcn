@@ -10,18 +10,29 @@ std::vector<Match> Overlay::find_native_display_matches() const {
         if (draw.y < 0 || draw.y >= gps_->dimy || draw.x < 0 || draw.x >= gps_->dimx ||
                 draw.source.empty() || draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
                 draw.draw_grid != (draw.top_layer ? gps_->screen_top : gps_->screen)) continue;
-        const bool category = draw.native_caller == g_native_display_category_caller;
-        const bool group = draw.native_caller == g_native_display_group_caller;
-        const bool item = draw.native_caller == g_native_display_item_caller ||
+        const bool category = g_native_display_category_caller &&
+            draw.native_caller == g_native_display_category_caller;
+        const bool group = g_native_display_group_caller &&
+            draw.native_caller == g_native_display_group_caller;
+        const bool item = (g_native_display_item_caller && draw.native_caller == g_native_display_item_caller) ||
             draw.trade_item_caption.has_value();
-        const bool empty_count = draw.native_caller == g_native_display_empty_count_caller;
-        const bool filter = draw.native_caller == g_native_display_filter_caller || draw.editable_text;
-        if (!category && !group && !item && !empty_count && !filter) continue;
+        const bool empty_count = g_native_display_empty_count_caller &&
+            draw.native_caller == g_native_display_empty_count_caller;
+        const bool filter = (g_native_display_filter_caller &&
+            draw.native_caller == g_native_display_filter_caller) || draw.editable_text;
+        const bool ordinary_ui = !category && !group && !item && !empty_count && !filter;
         int left = draw.x;
-        int right = g_native_display_content_right;
-        if (category) right = g_native_display_category_right - 8;
-        else if (empty_count) right = g_native_display_category_right;
-        else if (item) right -= 5; // Native checkbox and its leading gutter.
+        // An unclassified writer still belongs to this actual private page.
+        // Its submitted span/clip can carry ordinary UI labels, but supplies
+        // no category, item identity, column width or authored-name guess.
+        int right = static_cast<int>(std::min<int64_t>(gps_->dimx,
+            int64_t(draw.x) + draw.source.size()));
+        if (category && g_native_display_category_right > 0)
+            right = g_native_display_category_right - 8;
+        else if (empty_count && g_native_display_category_right > 0)
+            right = g_native_display_category_right;
+        else if (!ordinary_ui && !category && !empty_count && g_native_display_content_right > 0)
+            right = g_native_display_content_right - (item ? 5 : 0);
         right = std::min(right, gps_->dimx);
         if (draw.draw_clip) {
             if (draw.y < draw.draw_clip->y || draw.y >= draw.draw_clip->y + draw.draw_clip->h)
@@ -38,6 +49,7 @@ std::vector<Match> Overlay::find_native_display_matches() const {
                 static_cast<unsigned char>(draw.source[end - draw.x])) ++end;
         while (end > left && draw.source[end - draw.x - 1] == ' ') --end;
         if (end <= left) continue;
+        if (ordinary_ui) right = end;
         auto &used = occupied.try_emplace(draw.y, gps_->dimx, false).first->second;
         if (std::any_of(used.begin() + left, used.begin() + end, [](bool value) { return value; }))
             continue;
@@ -90,8 +102,13 @@ std::vector<Match> Overlay::find_native_display_matches() const {
                 translated = TranslationResult::translated(complete, *wood, "display-wood-caption");
             }
             if (!target) target = native_text_to_utf8(complete);
-        } else if (empty_count) {
+        } else {
             target = exact_literal_translation(complete);
+            if (!target && ordinary_ui) {
+                std::vector<int> colors;
+                target = translate_help_paragraph(complete,
+                    std::vector<int>(complete.size(), 7), colors, true);
+            }
         }
         if (!target || target->empty() || target->find_first_of("\r\n") != std::string::npos) continue;
         Match match{left, draw.y, end - left, group || item ? kFortressItemCaptionRule : -2,

@@ -320,6 +320,14 @@ public:
         optional(input.draw_clip, [&](const auto &box) { rect(box); });
         grid(input.draw_grid); value(input.draw_dimx); value(input.draw_dimy);
         value(input.draw_epoch == epoch);
+        optional(input.adventure_hover_document, [&](const auto &document) {
+            address(document.screen); address(document.vector);
+            address(document.begin); address(document.end); address(document.capacity);
+            address(document.index_address); value(document.index);
+            value(document.epoch == input.draw_epoch);
+            range(document.rows, [&](const auto &row) { address(row.address); text(row.source); });
+            value(input.completed_draw); address(input.draw_owner); value(input.native_half_writer);
+        });
         value(input.map_hover.kind); value(input.map_hover.fragment);
         for (auto item : input.map_hover.data) value(item);
         value(input.editable_text); value(input.travel_building_field);

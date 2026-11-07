@@ -47,11 +47,15 @@ static std::optional<NativePerformanceChoice> capture_native_performance_choice(
                     native_history_find_structure_id(native_history_global(0x24f9cb8),
                         0x20, result.id, address) && address &&
                     capture_native_history_event_identity(reinterpret_cast<void *>(address), native_type)) {
-                alignas(16) std::array<unsigned char, 0xc8> context{};
-                initialize_native_history_context(context.data());
+                std::vector<std::max_align_t> context;
+                if (!initialize_native_history_context(context)) return result;
                 // The performance constructor supplies a neutral context,
                 // unlike Legends' English-gloss flag in the same ABI.
-                std::fill_n(context.begin(), sizeof(uint32_t), 0);
+                const uint32_t context_flags = 0;
+                const auto flags = native_history_object_member(reinterpret_cast<uintptr_t>(context.data()),
+                    "history_event_context", "flags", sizeof(context_flags));
+                if (!flags) return result;
+                std::memcpy(reinterpret_cast<void *>(flags), &context_flags, sizeof(context_flags));
                 auto snapshot = snapshot_native_history_event_header(
                     reinterpret_cast<void *>(address), context.data());
                 if (snapshot && !capture_native_history_subject_title_fields(

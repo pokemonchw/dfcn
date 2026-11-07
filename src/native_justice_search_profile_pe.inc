@@ -3,6 +3,10 @@
 // result catalogs +318/+330/+348. Every branch restores its complete catalog
 // before searching; clearing the query and selection remain native.
 // Edition coordinates and relative operands use the shared image binding.
+// Source init passes its unchanged justice receiver to the filter. These
+// declarations grant no target type until the real compound CALL chain agrees.
+DFCN_NATIVE_COMPOUND_RECEIVER(0x46faa0, "justice_interfacest")
+DFCN_NATIVE_COMPOUND_RECEIVER(0x479330, "justice_interfacest")
 static bool resolve_native_justice_search_profile(NativeJusticeSearchProfile &profile) {
     const uintptr_t base = native_history_profile_base();
     const NativeSearchBinding<NativeJusticeSearchProfile> bindings[]{
