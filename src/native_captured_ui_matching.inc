@@ -118,7 +118,7 @@ bool Overlay::prepare_native_captured_ui_input(NativeUiLayerGrid &input,
         revision = g_native_drawn_text_revision;
         epoch = g_native_drawn_text_epoch;
     }
-    std::array draws{captured_native_drawn_text_rows(), captured_native_drawn_text_rows(true)};
+    const std::array snapshots{captured_native_drawn_text_view(), captured_native_drawn_text_view(true)};
     {
         std::lock_guard<std::mutex> lock(g_native_drawn_text_mutex);
         if (!epoch || revision != g_native_drawn_text_revision || epoch != g_native_drawn_text_epoch)
@@ -132,6 +132,13 @@ bool Overlay::prepare_native_captured_ui_input(NativeUiLayerGrid &input,
     frame->pixel_x = gps_->screen_pixel_x; frame->pixel_y = gps_->screen_pixel_y;
     frame->top_in_use = gps_->top_in_use;
     frame->owner = owner; frame->capture_epoch = epoch; frame->capture_revision = revision;
+    // Keep the shared immutable snapshot alive. Only a draw whose proven
+    // display buffer changes needs another copy of its owned semantic data.
+    std::array<std::vector<const NativeDrawnTextRow *>, 2> draws;
+    for (size_t plane = 0; plane < draws.size(); ++plane) {
+        draws[plane].reserve(snapshots[plane].size());
+        for (const auto &draw : snapshots[plane]) draws[plane].push_back(&draw);
+    }
     // The pinned display can consume the other native buffer. Resolve only
     // completed writes from this owner, retaining their plane, epoch, caller
     // and complete source. The map binding above separately proves its frame
@@ -141,7 +148,9 @@ bool Overlay::prepare_native_captured_ui_input(NativeUiLayerGrid &input,
         gps_ == g_native_graphics_read_view && (worldgen ||
             (g_native_map_display_source.serial == g_native_map_frame_serial &&
              g_native_map_display_source.owner == owner));
-    if (bound_display) for (auto &plane : draws) for (auto &draw : plane) {
+    std::deque<NativeDrawnTextRow> rebound_draws;
+    if (bound_display) for (auto &plane : draws) for (auto &record : plane) {
+        const auto &draw = *record;
         const auto *grid = frame->grids[draw.top_layer ? 1 : 0];
         if (!draw.completed_draw || draw.draw_owner != owner || draw.draw_epoch != epoch ||
                 !draw.draw_grid || draw.draw_grid == grid || !grid ||
@@ -149,7 +158,11 @@ bool Overlay::prepare_native_captured_ui_input(NativeUiLayerGrid &input,
         NativeCapturedUiFrame::Span span;
         span.x = draw.x; span.y = draw.y; span.source = draw.source;
         span.top_layer = draw.top_layer;
-        if (native_captured_ui_span_current(span, *frame, *gps_)) draw.draw_grid = grid;
+        if (native_captured_ui_span_current(span, *frame, *gps_)) {
+            rebound_draws.push_back(draw);
+            rebound_draws.back().draw_grid = grid;
+            record = &rebound_draws.back();
+        }
     }
 #endif
     const auto current_record = [&](const NativeDrawnTextRow &draw) {
@@ -162,8 +175,10 @@ bool Overlay::prepare_native_captured_ui_input(NativeUiLayerGrid &input,
     };
     // Include untranslated/input records in overwrite ownership. Equal
     // glyphs from a later authored source must not inherit an earlier label.
-    std::array<std::unordered_map<size_t, uint64_t>, 2> writers;
-    for (const auto &plane : draws) for (const auto &draw : plane) {
+    std::array<std::vector<NativeCapturedUiWriter>, 2> writers;
+    for (auto &plane : writers) plane.resize(size_t(frame->dimx) * frame->dimy);
+    for (const auto &plane : draws) for (const auto *record : plane) {
+        const auto &draw = *record;
         if (!current_record(draw)) continue;
         for (size_t byte = 0; byte < draw.source.size(); ++byte) {
             const int x = draw.x + static_cast<int>(byte);
@@ -172,17 +187,19 @@ bool Overlay::prepare_native_captured_ui_input(NativeUiLayerGrid &input,
                     draw.y < draw.draw_clip->y ||
                     draw.y >= int64_t(draw.draw_clip->y) + draw.draw_clip->h)) continue;
             auto &latest = writers[draw.top_layer ? 1 : 0][size_t(x) * frame->dimy + draw.y];
-            latest = std::max(latest, draw.sequence);
+            latest.sequence = std::max(latest.sequence, draw.sequence);
+            latest.present = true;
         }
     }
-    const auto chronicle = native_shared_chronicle_snapshot(worldgen, draws);
+    const auto chronicle = native_shared_chronicle_snapshot(worldgen, snapshots);
     const int origin_x = (frame->pixel_x - frame->dimx * frame->tile_x) / 2;
     const int origin_y = (frame->pixel_y - frame->dimy * frame->tile_y) / 2;
     constexpr uint32_t upper_half = 1u << 3, lower_half = 1u << 4;
     constexpr uint32_t half_mask = upper_half | lower_half;
     struct OwnedDraw { const NativeDrawnTextRow *draw; uint32_t half; };
     std::array<std::map<std::pair<int, int>, std::vector<OwnedDraw>>, 2> owned_draws;
-    for (const auto &plane : draws) for (const auto &draw : plane) {
+    for (const auto &plane : draws) for (const auto *record : plane) {
+        const auto &draw = *record;
         if (!current_record(draw) || !draw.completed_draw || draw.draw_owner != owner ||
                 !draw.sequence || !draw.native_caller || !draw.draw_clip || draw.complete_source.empty() ||
                 draw.editable_text || draw.info_title_authored || draw.squad_alias_target ||
@@ -206,8 +223,8 @@ bool Overlay::prepare_native_captured_ui_input(NativeUiLayerGrid &input,
         if (half != draw.native_half_writer) continue;
         for (size_t byte = 0; own && byte < draw.source.size(); ++byte) {
             const size_t at = (size_t(draw.x) + byte) * frame->dimy + draw.y;
-            const auto writer = writers[draw.top_layer ? 1 : 0].find(at);
-            own = writer != writers[draw.top_layer ? 1 : 0].end() && writer->second == draw.sequence;
+            const auto &writer = writers[draw.top_layer ? 1 : 0][at];
+            own = writer.present && writer.sequence == draw.sequence;
             // Mixed flags are not one native text run. A half is admitted
             // only below, with its independently completed opposite writer.
             if (flags && (flags[at] & half_mask) != half) own = false;
@@ -275,7 +292,24 @@ bool Overlay::prepare_native_captured_ui_input(NativeUiLayerGrid &input,
             target = translate_site_display(*draw.site_name, source);
         } else if (draw.river_name) {
             route = 3;
-            target = translate_river_name(draw.river_name->identity,
+            auto identity = draw.river_name->identity;
+            // The river object has no current segment size. Retain the
+            // adjacent native category writer just as the dedicated panel
+            // route does, so a Stream does not acquire the neutral river G.
+            if (identity.size == RiverSize::Unknown)
+                for (const auto &[position, labels] : owned_draws[draw.top_layer ? 1 : 0]) {
+                    if (position.second != draw.y || position.first >= draw.x) continue;
+                    for (const auto &owned : labels) {
+                        const auto &label = *owned.draw;
+                        if (label.sequence >= draw.sequence ||
+                                label.native_half_writer != draw.native_half_writer ||
+                                label.x + int(label.source.size()) != draw.x ||
+                                label.source != label.complete_source) continue;
+                        const auto category = RiverNames::category(trim_view(label.source));
+                        if (category != RiverSize::Unknown) identity.size = category;
+                    }
+                }
+            target = translate_river_name(identity,
                 draw.river_name->field, draw.river_name->complete_source);
         } else if (worldgen && region_caller && draw.native_caller == region_caller) {
             route = 4;

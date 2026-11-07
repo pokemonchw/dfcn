@@ -51,7 +51,7 @@ inline bool usable(const State &state) noexcept {
 }
 
 // Discovery semantics are part of cache ownership, independently of seed data.
-inline constexpr uint32_t discovery_revision = 54;
+inline constexpr uint32_t discovery_revision = 57;
 
 struct Profile {
     std::string label;
@@ -274,16 +274,8 @@ inline Catalog load_catalog(const std::filesystem::path &path) {
     return load_catalog(Reader(path));
 }
 
-inline State scan(const Image &image, const Catalog &catalog, const address_runtime::Progress &report = {}) {
-    if (report) report("Native discovery: reading image-pinned semantic declarations");
-    const auto declared = catalog.schema >= 3
-        ? native_history_abi::target_layout(image, catalog.history_semantics)
-        : address_runtime::InitialEvidence{};
-    auto result = address_runtime::scan(image, catalog, {
-        {0x0264a3f0, static_cast<uint32_t>(sizeof(graphicst))},
-        {0x023cd770, 0x3958},
-        {0x02390290, 0x360},
-    }, false, catalog.field_specs, catalog.schema >= 2, declared, report);
+inline State discover_consumed_contracts(const Image &image, const Catalog &catalog, State result,
+        const address_runtime::Progress &report = {}) {
     auto literal_scopes = discover_literal_scopes(image, catalog, result, report);
     global_value_detail::Cache<Image, Catalog> global_values(image, catalog);
     const auto variable_callers = [&](const Progress &output) {
@@ -436,6 +428,19 @@ inline State scan(const Image &image, const Catalog &catalog, const address_runt
     return result;
 }
 
+inline State scan(const Image &image, const Catalog &catalog, const address_runtime::Progress &report = {}) {
+    if (report) report("Native discovery: reading image-pinned semantic declarations");
+    const auto declared = catalog.schema >= 3
+        ? native_history_abi::target_layout(image, catalog.history_semantics)
+        : address_runtime::InitialEvidence{};
+    auto result = address_runtime::scan(image, catalog, {
+        {0x0264a3f0, static_cast<uint32_t>(sizeof(graphicst))},
+        {0x023cd770, 0x3958},
+        {0x02390290, 0x360},
+    }, false, catalog.field_specs, catalog.schema >= 2, declared, report);
+    return discover_consumed_contracts(image, catalog, std::move(result), report);
+}
+
 inline void write_number(std::ostream &output, uint32_t value) {
     output.write(reinterpret_cast<const char *>(&value), sizeof(value));
 }
@@ -450,7 +455,7 @@ inline void write_bindings(std::ostream &output, const State &state) {
     }
 }
 
-inline void read_fields(Reader &reader, State &state) {
+inline void read_fields(Reader &reader, State &state, uint32_t snapshot_schema) {
     state.fields.resize(reader.count());
     for (auto &field : state.fields) {
         field = {reader.number(), reader.number(), reader.number(), reader.number(), reader.number(), reader.number()};
@@ -594,9 +599,11 @@ inline void read_fields(Reader &reader, State &state) {
     }
     state.missing_inline_resizes.resize(reader.count(65536));
     for (auto &reference : state.missing_inline_resizes) reference = reader.number();
-    state.callable_searches.resize(reader.count(65536));
+    state.callable_searches.resize(reader.count(64));
+    size_t callable_payload = 0;
     previous = 0;
     for (auto &search : state.callable_searches) {
+        callable_payload += 64;
         search = {reader.number(), reader.number(), reader.number(), reader.number(), reader.number(), reader.number(),
             reader.number(), reader.number(), reader.number(), reader.number(), reader.number()};
         if (!search.contract || search.contract <= previous || !search.predicate || search.predicate >= state.size ||
@@ -608,6 +615,47 @@ inline void read_fields(Reader &reader, State &state) {
                 !search.fold_target || search.fold_target >= state.size ||
                 !search.find_target || search.find_target >= state.size || !search.argument_shape)
             throw std::runtime_error("Invalid cached callable search contract");
+        const auto base_low = reader.number(), base_high = reader.number();
+        search.preferred_base = uint64_t(base_low) | (uint64_t(base_high) << 32);
+        search.evidence.resize(reader.count(1000000));
+        callable_payload += search.evidence.size() * 8;
+        uint32_t previous_end = 0;
+        size_t total = 0;
+        for (auto &span : search.evidence) {
+            span.address = reader.number(); span.bytes = reader.blob(); total += span.bytes.size();
+            callable_payload += span.bytes.size();
+            if (span.bytes.empty() || span.address < previous_end ||
+                    uint64_t(span.address) + span.bytes.size() > state.size || total > 16u * 1024u * 1024u ||
+                    callable_payload > 32u * 1024u * 1024u)
+                throw std::runtime_error("Invalid cached callable evidence span");
+            previous_end = span.address + static_cast<uint32_t>(span.bytes.size());
+        }
+        search.relocations.resize(reader.count(1000000));
+        callable_payload += search.relocations.size() * 12;
+        if (callable_payload > 32u * 1024u * 1024u) throw std::runtime_error("Oversized cached callable evidence");
+        previous_end = 0;
+        for (auto &[address, value] : search.relocations) {
+            address = reader.number(); const auto low = reader.number(), high = reader.number();
+            value = uint64_t(low) | (uint64_t(high) << 32);
+            const bool sealed = std::any_of(search.evidence.begin(), search.evidence.end(), [&](const auto &span) {
+                return span.address <= address && uint64_t(address) + 8 <= uint64_t(span.address) + span.bytes.size();
+            });
+            if (!address || address < previous_end || uint64_t(address) + 8 > state.size || !sealed)
+                throw std::runtime_error("Invalid cached callable relocation");
+            previous_end = address + 8;
+        }
+        search.throw_slots.resize(reader.count(16));
+        callable_payload += search.throw_slots.size() * 4;
+        if (callable_payload > 32u * 1024u * 1024u) throw std::runtime_error("Oversized cached callable evidence");
+        previous_end = 0;
+        for (auto &slot : search.throw_slots) {
+            slot = reader.number();
+            if (!slot || slot < previous_end || uint64_t(slot) + 8 > state.size)
+                throw std::runtime_error("Invalid cached callable throw import");
+            previous_end = slot + 8;
+        }
+        if (!search.preferred_base || search.evidence.empty())
+            throw std::runtime_error("Missing cached callable live evidence");
         previous = search.contract;
     }
     state.missing_callable_searches.resize(reader.count(65536));
@@ -678,6 +726,26 @@ inline void read_fields(Reader &reader, State &state) {
         }
         entry.imported_tail_slots.resize(reader.count(1));
         for (auto &slot : entry.imported_tail_slots) slot = reader.number();
+        if (snapshot_schema >= 3) {
+            entry.external_literal_boundaries.resize(reader.count(128));
+            std::pair<uint32_t, uint32_t> previous_literal{};
+            for (auto &literal : entry.external_literal_boundaries) {
+                literal = {reader.number(), reader.number(), reader.number(), reader.number()};
+                const auto key = std::pair{literal.candidate, literal.width};
+                const auto finish = uint64_t(literal.candidate) + literal.width;
+                const bool sealed = std::any_of(entry.evidence.begin(), entry.evidence.end(), [&](const auto &span) {
+                    return span.address <= literal.instruction && finish <= uint64_t(span.address) + span.bytes.size();
+                });
+                if (!literal.owner || literal.owner >= state.size || literal.owner == entry.native ||
+                        !literal.instruction || literal.instruction < literal.owner ||
+                        (literal.instruction >= entry.native && literal.instruction < entry.end) ||
+                        literal.candidate < literal.instruction || (literal.width != 4 && literal.width != 8) ||
+                        finish > state.size || finish > uint64_t(literal.instruction) + 15 ||
+                        key <= previous_literal || !sealed)
+                    throw std::runtime_error("Invalid cached external instruction literal boundary");
+                previous_literal = key;
+            }
+        }
         if (!owns_prefix || !entry_prefix_detail::contract(state, entry))
             throw std::runtime_error("Invalid cached entry CFG identity or prefix");
     }
@@ -772,6 +840,20 @@ inline void write_fields(std::ostream &output, const State &state) {
         write_number(output, search.name_find); write_number(output, search.job_find); write_number(output, search.query_fold);
         write_number(output, search.fold_target); write_number(output, search.find_target);
         write_number(output, search.argument_shape); write_number(output, search.capture_offset);
+        write_number(output, static_cast<uint32_t>(search.preferred_base));
+        write_number(output, static_cast<uint32_t>(search.preferred_base >> 32));
+        write_number(output, static_cast<uint32_t>(search.evidence.size()));
+        for (const auto &span : search.evidence) {
+            write_number(output, span.address); write_number(output, static_cast<uint32_t>(span.bytes.size()));
+            output.write(reinterpret_cast<const char *>(span.bytes.data()), span.bytes.size());
+        }
+        write_number(output, static_cast<uint32_t>(search.relocations.size()));
+        for (const auto &[address, value] : search.relocations) {
+            write_number(output, address); write_number(output, static_cast<uint32_t>(value));
+            write_number(output, static_cast<uint32_t>(value >> 32));
+        }
+        write_number(output, static_cast<uint32_t>(search.throw_slots.size()));
+        for (auto slot : search.throw_slots) write_number(output, slot);
     }
     write_number(output, static_cast<uint32_t>(state.missing_callable_searches.size()));
     for (auto reference : state.missing_callable_searches) write_number(output, reference);
@@ -814,6 +896,11 @@ inline void write_fields(std::ostream &output, const State &state) {
         }
         write_number(output, static_cast<uint32_t>(entry.imported_tail_slots.size()));
         for (const auto slot : entry.imported_tail_slots) write_number(output, slot);
+        write_number(output, static_cast<uint32_t>(entry.external_literal_boundaries.size()));
+        for (const auto &literal : entry.external_literal_boundaries) {
+            write_number(output, literal.owner); write_number(output, literal.instruction);
+            write_number(output, literal.candidate); write_number(output, literal.width);
+        }
     }
 }
 inline bool complete_state(State &state, const Catalog &catalog) {
@@ -853,6 +940,26 @@ inline size_t known_profile_index(const Image &image, const Catalog &catalog) {
     return catalog.known.size();
 }
 
+// Edition describes the retained source ABI roles, not a position in an
+// expandable list of image identities. Additional reviewed images still use
+// the discovered ABI; their profile only supplies authenticated coordinates.
+inline unsigned profile_edition(const Catalog &catalog, size_t index) {
+    if (index >= catalog.known.size()) return 3;
+    const Profile *canonical = nullptr;
+    for (const auto &candidate : catalog.known) {
+        if (!candidate.label.ends_with(" Steam") || candidate.ranges.empty() ||
+                !std::all_of(candidate.ranges.begin(), candidate.ranges.end(),
+                    [](const Range &range) { return range.begin == range.native; })) continue;
+        if (canonical) return 3;
+        canonical = &candidate;
+    }
+    if (!canonical) return 3;
+    const auto &profile = catalog.known[index];
+    if (&profile == canonical) return 1;
+    const auto classic = canonical->label.substr(0, canonical->label.size() - 6) + " Classic";
+    return profile.label == classic ? 2 : 3;
+}
+
 // Both the normal address-data compiler and the running core produce the
 // consumed ABI bindings from the same reviewed image identity and metadata.
 // Return incomplete evidence to the caller so production diagnostics retain
@@ -862,47 +969,98 @@ inline State prepare_known(Image &image, const Catalog &catalog, size_t index,
     if (index >= catalog.known.size() || known_profile_index(image, catalog) != index)
         throw std::runtime_error("Packaged address data does not own this executable");
     const auto &profile = catalog.known[index];
+    image.prepare_scan();
+    const auto declared = catalog.schema >= 3
+        ? native_history_abi::target_layout(image, catalog.history_semantics)
+        : address_runtime::InitialEvidence{};
+    if (declared.roots.empty() || declared.fields.empty()) {
+        // A reviewed address profile is not a declaration of every global
+        // member. Without an image-pinned layout, use the same instruction
+        // evidence and field voting as any other installed executable.
+        if (report) report("Reviewed image has no complete declaration input; resolving its full address graph");
+        auto discovered = scan(image, catalog, report);
+        discovered.edition = profile_edition(catalog, index);
+        return discovered;
+    }
     State state;
     state.size = image.size;
-    state.edition = static_cast<unsigned>(index + 1);
-    state.ranges = profile.ranges;
+    state.edition = profile_edition(catalog, index);
+    Bindings bindings;
+    for (const auto &range : profile.ranges) {
+        if (!image.section(range.native, range.end - range.begin))
+            throw std::runtime_error("Reviewed coordinate is outside its image section");
+        bindings.add(range.begin, range.end - range.begin, range.native);
+    }
     state.bytes = profile.bytes;
-    for (const auto &field : catalog.field_specs) {
-        const auto root = resolve(state.ranges, field.object);
-        const auto address = resolve(state.ranges, field.object + field.offset);
-        // The two reviewed images own the compiled baseline ABI. Their
-        // required-resource maps need not enumerate each graphics member.
-        const auto baseline_extent = field.object == 0x0264a3f0 ? sizeof(graphicst) :
-            field.object == 0x023cd770 ? size_t(0x3958) : field.object == 0x02390290 ? size_t(0x360) : 0;
-        if ((state.edition == 1 || state.edition == 2) && baseline_extent && root &&
-                uint64_t(field.offset) + field.width <= baseline_extent &&
-                uint64_t(root) + field.offset + field.width <= state.size &&
-                image.section(root + field.offset, field.width)) {
-            state.fields.push_back({field.object, field.offset, field.offset, field.width, UINT32_MAX, field.flags});
-            continue;
+    for (const auto &root : declared.roots) {
+        if (root.end != uint64_t(root.begin) + 1 || !image.section(root.native))
+            throw std::runtime_error("Invalid image-owned reviewed root");
+        bindings.add(root.begin, 1, root.native);
+    }
+    for (const auto &table : declared.virtual_tables) {
+        const auto width = table.end > table.begin ? uint64_t(table.end) - table.begin : 0;
+        const auto *section = image.section(table.native, static_cast<size_t>(width));
+        if (!table.begin || !width || (width & 7) || width > 32768 || !section ||
+                (section->flags & (Image::execute_flag | Image::write_flag)))
+            throw std::runtime_error("Invalid image-owned reviewed virtual table");
+        for (uint32_t offset = 0; offset < width; offset += 8) {
+            const auto *bytes = image.read(table.native + offset, 8);
+            uint64_t pointer = 0;
+            if (bytes) std::memcpy(&pointer, bytes, 8);
+            if (!bytes || pointer < image.preferred_base || pointer - image.preferred_base >= image.size)
+                throw std::runtime_error("Invalid image-owned reviewed virtual method");
+            const auto *code = image.section(static_cast<uint32_t>(pointer - image.preferred_base));
+            if (!code || !(code->flags & Image::execute_flag))
+                throw std::runtime_error("Non-executable image-owned reviewed virtual method");
         }
-        const auto end = resolve(state.ranges, field.object + field.offset + field.width - 1);
-        if (root && address >= root && end == uint64_t(address) + field.width - 1)
-            state.fields.push_back({field.object, field.offset, address - root, field.width, UINT32_MAX, field.flags});
+        bindings.add(table.begin, table.end - table.begin, table.native);
     }
-    // Reviewed coordinates still require actual unwind/function scopes for
-    // the consumed frame, named-call and inline-operation contracts.
-    image.prepare_scan();
-    if (catalog.schema >= 6) {
-        if (report) report("Native discovery: preparing consumed ABI contracts for " + profile.label);
-        discover_frame_operands(image, catalog.frame_semantics, state, report);
+    for (const auto &field : declared.fields) {
+        const auto root = bindings.lookup(field.object);
+        const auto spec = std::find_if(catalog.field_specs.begin(), catalog.field_specs.end(), [&](const auto &value) {
+            return value.object == field.object && value.offset == field.offset &&
+                value.width == field.width && value.flags == field.flags;
+        });
+        const uint64_t address = uint64_t(root) + field.native_offset;
+        if (!root || field.sources < 2 || spec == catalog.field_specs.end() ||
+                ((field.flags & 2) && field.native_offset != field.offset) ||
+                address + field.width > image.size || !image.section(static_cast<uint32_t>(address), field.width))
+            throw std::runtime_error("Invalid image-owned reviewed field");
+        bindings.add(field.object + field.offset, field.width, static_cast<uint32_t>(address));
+        state.fields.push_back(field);
     }
-    if (catalog.schema >= 7) discover_method_calls(image, catalog.method_calls, state, report);
-    if (catalog.schema >= 8) discover_inline_resizes(image, catalog, state, report);
-    if (catalog.schema >= 12) discover_chooser_features(image, catalog, state, report);
-    if (catalog.schema >= 12) discover_chooser_rows(image, catalog, state, report);
-    if (catalog.schema >= 9) discover_callable_searches(image, catalog, state, report);
-    if (catalog.schema >= 11) discover_workshop_recipes(image, catalog, state, report);
-    if (catalog.schema >= 13) discover_optional_panels(image, catalog, state, report);
-    discover_output_regions(image, catalog, state, report);
-    complete_state(state, catalog);
-    state.validated = true;
-    state.message = "Game address table: " + profile.label;
+    state.ranges = bindings.export_ranges();
+    for (const auto &byte : state.bytes) {
+        const auto *actual = image.read(resolve(state.ranges, byte.address), 1);
+        if (!actual || *actual != byte.native)
+            throw std::runtime_error("Reviewed byte evidence differs from its image");
+    }
+    state.absent_fields = declared.absent_fields;
+    std::sort(state.absent_fields.begin(), state.absent_fields.end());
+    state.absent_fields.erase(std::unique(state.absent_fields.begin(), state.absent_fields.end()), state.absent_fields.end());
+    std::map<uint32_t, uint32_t> owners;
+    const auto add_owner = [&](uint32_t reference, uint32_t native) {
+        const auto function = std::lower_bound(image.functions.begin(), image.functions.end(), native,
+            [](const auto &value, uint32_t address) { return value.begin < address; });
+        if (!native || function == image.functions.end() || function->begin != native ||
+                (function->owner && function->owner != native)) return;
+        const auto [found, inserted] = owners.emplace(reference, native);
+        if (!inserted && found->second != native)
+            throw std::runtime_error("Reviewed and declared function scopes disagree");
+    };
+    for (const auto &owner : declared.function_owners) add_owner(owner.begin, owner.native);
+    for (const auto &pattern : catalog.patterns) {
+        // A reviewed entry coordinate and a real target .pdata beginning
+        // grant a function scope, never a body-wide address delta.
+        if (!(pattern.flags & 2) || !pattern.owner) continue;
+        add_owner(pattern.owner, resolve(profile.ranges, pattern.owner));
+    }
+    for (const auto &[reference, native] : owners)
+        state.function_owners.push_back({reference, reference + 1, native});
+    if (report) report("Native discovery: preparing shared consumed contracts for " + profile.label);
+    state = discover_consumed_contracts(image, catalog, std::move(state), report);
+    state.message = "Game address table: " + profile.label +
+        (state.message.empty() ? "" : "; " + state.message);
     return state;
 }
 
@@ -932,7 +1090,7 @@ public:
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
         const auto digest = hex_digest(seed);
         // Bump this revision when discovery rules or the snapshot format change.
-        name_ = L"Local\\DFCN.NativeAddresses." + std::to_wstring(discovery_revision) + L"." +
+        name_ = L"Local\\DFCN.NativeAddresses." + std::to_wstring(discovery_revision) + L".contracts4." +
             std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
@@ -953,7 +1111,8 @@ public:
             if (!view.value) return false;
             const auto *data = static_cast<const unsigned char *>(view.value);
             Reader reader(std::vector<unsigned char>(data + sizeof(uint32_t), data + length), true);
-            reader.magic("DFCNPM54");
+            const auto snapshot_schema = reader.magic("DFCNPM57", 4);
+            if (snapshot_schema != 4) return false;
             const auto low = reader.number(), high = reader.number();
             if (((uint64_t(high) << 32) | low) != base_ || reader.number() != timestamp_ ||
                 reader.number() != size_) return false;
@@ -963,7 +1122,7 @@ public:
             candidate.complete = reader.count(1) != 0;
             candidate.validated = reader.count(1) != 0;
             read_bindings(reader, candidate.ranges, candidate.bytes);
-            read_fields(reader, candidate);
+            read_fields(reader, candidate, snapshot_schema);
             candidate.missing.resize(reader.count());
             for (auto &reference : candidate.missing) {
                 reference = reader.number();
@@ -993,7 +1152,7 @@ public:
             if (!state.validated && (!state.ranges.empty() || !state.fields.empty() ||
                     !state.semantic_fields.empty() || !state.semantic_methods.empty())) return false;
             std::ostringstream output(std::ios::binary | std::ios::out);
-            output.write("DFCNPM54", 8); write_number(output, 1);
+            output.write("DFCNPM57", 8); write_number(output, 4);
             write_number(output, static_cast<uint32_t>(base_));
             write_number(output, static_cast<uint32_t>(uint64_t(base_) >> 32));
             write_number(output, timestamp_); write_number(output, size_);
@@ -1038,7 +1197,7 @@ inline void save_cache(const std::filesystem::path &path, const Image &image,
     const auto candidate = std::filesystem::path(path.wstring() + L".publish");
     try {
         std::ostringstream output(std::ios::binary | std::ios::out);
-        output.write("DFCNPC54", 8); write_number(output, 1);
+        output.write("DFCNPC57", 8); write_number(output, 4);
         output.write(reinterpret_cast<const char *>(catalog.digest.data()), catalog.digest.size());
         output.write(reinterpret_cast<const char *>(image.digest.data()), image.digest.size());
         write_number(output, image.size);
@@ -1067,16 +1226,21 @@ inline void save_cache(const std::filesystem::path &path, const Image &image,
 inline bool load_cache(const std::filesystem::path &path, Image &image,
                        const Catalog &catalog, State &state) {
     try {
-        Reader reader(path, true); reader.magic("DFCNPC54");
+        Reader reader(path, true);
+        const auto snapshot_schema = reader.magic("DFCNPC57", 4);
+        // Callable terminals now carry their complete immutable proof and
+        // named throw import for live validation. Older partial snapshots
+        // must pass the current discovery rather than inherit a missing role.
+        if (snapshot_schema != 4) return false;
         std::array<unsigned char, 32> seed{}, binary{};
         reader.read(seed.data(), seed.size()); reader.read(binary.data(), binary.size());
         if (seed != catalog.digest || binary != image.digest || reader.number() != image.size) return false;
         State candidate;
         const auto index = known_profile_index(image, catalog);
-        candidate.edition = index < 2 && index < catalog.known.size() ? static_cast<unsigned>(index + 1) : 3;
+        candidate.edition = profile_edition(catalog, index);
         candidate.size = image.size;
         read_bindings(reader, candidate.ranges, candidate.bytes);
-        read_fields(reader, candidate);
+        read_fields(reader, candidate, snapshot_schema);
         const bool stored_complete = reader.count(1) != 0;
         std::vector<uint32_t> stored_missing(reader.count());
         for (auto &reference : stored_missing) {
@@ -1116,6 +1280,21 @@ inline bool load_cache(const std::filesystem::path &path, Image &image,
             if (!entry.imported_tail_slots.empty()) image.prepare_imports();
             for (const auto slot : entry.imported_tail_slots)
                 if (!entry_prefix_detail::imported_tail_identity(image, slot)) return false;
+        }
+        for (const auto &search : candidate.callable_searches) {
+            if (search.preferred_base != image.preferred_base) return false;
+            for (const auto &span : search.evidence) {
+                const auto *actual = image.read(span.address, span.bytes.size());
+                if (!actual || std::memcmp(actual, span.bytes.data(), span.bytes.size())) return false;
+            }
+            for (const auto &[address, value] : search.relocations) {
+                const auto *actual = image.read(address, 8); uint64_t pointer = 0;
+                if (actual) std::memcpy(&pointer, actual, 8);
+                if (!actual || pointer != value) return false;
+            }
+            if (!search.throw_slots.empty()) image.prepare_imports();
+            for (const auto slot : search.throw_slots)
+                if (!callable_exception_detail::throw_import(image, slot)) return false;
         }
         if (complete_state(candidate, catalog) != stored_complete || candidate.missing != stored_missing) return false;
         candidate.validated = true;

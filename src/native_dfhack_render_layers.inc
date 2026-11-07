@@ -637,6 +637,9 @@ static void native_dfhack_render_thread_callback() {
 }
 
 static bool install_native_dfhack_render_layers() {
+    // Present retries this installer after DFHack arrives. The retry cannot
+    // bypass the same complete ownership contract as initial installation.
+    if (!g_native_dfhack_graphics_ownership_ready.load(std::memory_order_acquire)) return false;
     std::lock_guard<std::recursive_mutex> lock(g_native_dfhack_render_mutex);
     // A deferred shutdown retains the native doUpdate entry so it can retire
     // interpose links in DFHack's own suspension context. Present retries must
@@ -786,3 +789,103 @@ static bool native_dfhack_render_native_scan_blocked(const graphicst *) noexcept
 static bool native_dfhack_render_frame_capturing(const graphicst *) noexcept { return false; }
 static bool native_dfhack_render_capture_ui_write(const graphicst *, int, int, bool = true) noexcept { return false; }
 #endif
+
+// The remaining optional installers are defined later in native_hooks.inc.
+// Present drives their late-module discovery through one bounded scheduler.
+static bool install_native_dfhack_capture_hook();
+static bool install_native_dfhack_console_hook();
+static bool install_native_dfhack_lua_output_hook();
+static bool install_native_dfhack_sitemap_hook();
+static bool install_native_dfhack_messagebox_hook();
+static bool install_native_dfhack_prompt_hook();
+static bool install_native_dfhack_stonesense_hook();
+
+static std::array<uint64_t, 24> native_dfhack_retry_environment() noexcept {
+    std::array<uint64_t, 24> identity{};
+#ifdef _WIN32
+    constexpr const wchar_t *modules[]{L"dfhack.dll", L"lua53.dll", L"dfhooks_dfcn.dll",
+        L"stonesense.plug.dll", L"allegro_font-5.2.dll", L"allegro_ttf-5.2.dll", L"allegro-5.2.dll"};
+    for (size_t index = 0; index < std::size(modules); ++index) {
+        HMODULE module = nullptr;
+        // Lease only an already loaded module while reading its immutable
+        // PE identity; never load a missing plugin or borrow an unpinned header.
+        if (!GetModuleHandleExW(0, modules[index], &module)) continue;
+        const auto *base = reinterpret_cast<const unsigned char *>(module);
+        identity[index * 3] = reinterpret_cast<uintptr_t>(module);
+        const auto *dos = reinterpret_cast<const IMAGE_DOS_HEADER *>(base);
+        if (dos->e_magic == IMAGE_DOS_SIGNATURE && dos->e_lfanew > 0 && dos->e_lfanew <= 4096) {
+            const auto *nt = reinterpret_cast<const IMAGE_NT_HEADERS64 *>(base + dos->e_lfanew);
+            if (nt->Signature == IMAGE_NT_SIGNATURE &&
+                    nt->OptionalHeader.Magic == IMAGE_NT_OPTIONAL_HDR64_MAGIC) {
+                identity[index * 3 + 1] = nt->FileHeader.TimeDateStamp;
+                identity[index * 3 + 2] = nt->OptionalHeader.SizeOfImage;
+            }
+        }
+        FreeLibrary(module);
+    }
+    identity[21] = g_native_dfhack_graphics_ownership_ready.load(std::memory_order_acquire);
+#else
+    // The ELF loader publishes process-wide add/remove generations. A plugin
+    // reload is therefore observed even if the loader reuses its old address.
+    dl_iterate_phdr([](dl_phdr_info *info, size_t size, void *data) {
+        if (size >= offsetof(dl_phdr_info, dlpi_subs) + sizeof(info->dlpi_subs)) {
+            auto &value = *static_cast<std::array<uint64_t, 24> *>(data);
+            value[0] = info->dlpi_adds;
+            value[1] = info->dlpi_subs;
+        }
+        return 1;
+    }, &identity);
+#endif
+    return identity;
+}
+
+static void retry_native_dfhack_hooks() {
+    // Overlay::render owns TranslationStateScope, serializing this state with
+    // the render/install lifecycle. No installer waits or sleeps between tries.
+    if (g_native_process_exiting.load(std::memory_order_acquire)) return;
+    using Clock = std::chrono::steady_clock;
+    struct Retry {
+        Clock::time_point next{};
+        unsigned delay_ms = 1000;
+    };
+    struct Stage { bool (*install)(); const char *label; };
+    static constexpr Stage stages[]{
+        {install_native_dfhack_render_layers, "DFHack render layers"},
+        {install_native_dfhack_capture_hook, "DFHack text capture"},
+        {install_native_dfhack_console_hook, "DFHack console text"},
+        {install_native_dfhack_lua_output_hook, "DFHack Lua output"},
+        {install_native_dfhack_sitemap_hook, "DFHack site map"},
+        {install_native_dfhack_messagebox_hook, "DFHack message box"},
+        {install_native_dfhack_prompt_hook, "DFHack prompt"},
+        {install_native_dfhack_stonesense_hook, "DFHack Stonesense"},
+    };
+    static std::array<Retry, std::size(stages)> retries;
+    static std::array<uint64_t, 24> environment{};
+    static Clock::time_point next_module_probe{};
+    const auto now = Clock::now();
+    if (now >= next_module_probe) {
+        const auto current = native_dfhack_retry_environment();
+        next_module_probe = now + std::chrono::seconds(1);
+        if (current != environment) {
+            environment = current;
+            retries = {};
+        }
+    }
+    for (size_t index = 0; index < std::size(stages); ++index) {
+        auto &retry = retries[index];
+        if (now < retry.next) continue;
+        bool installed = false;
+        try { installed = stages[index].install(); }
+        catch (const std::exception &error) {
+            report_native_patch_error("WARN", stages[index].label, error.what());
+        } catch (...) {
+            report_native_patch_error("WARN", stages[index].label, "deferred installer failed");
+        }
+        // False also includes temporarily unavailable native slots or memory,
+        // not just immutable signature rejection. Keep eventual recovery, but
+        // never repeat the same failed parsing and diagnostics at frame rate.
+        if (installed) retry.delay_ms = 1000;
+        retry.next = Clock::now() + std::chrono::milliseconds(retry.delay_ms);
+        if (!installed) retry.delay_ms = std::min(retry.delay_ms * 2, 30000u);
+    }
+}

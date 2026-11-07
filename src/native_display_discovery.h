@@ -528,16 +528,24 @@ inline bool no_eh_continuations(const Image &image, uint32_t begin, uint32_t end
             // Conditional cleanup: test one construction-state bit, clear
             // that same bit, destroy the named frame-local, then RET. The
             // sole branch goes directly to the complete stack epilogue.
-            const auto *body = image.read(action, 41);
-            if (body && independent_extent(action, 41, true) &&
-                    exact(action + 9, "\x8b\x45", 2) && !(body[11] & 3) &&
-                    exact(action + 12, "\x83\xe0", 2) && body[14] && body[14] < 0x80 &&
-                    !(body[14] & (body[14] - 1)) &&
-                    exact(action + 15, "\x85\xc0\x74\x10\x83\x65", 6) && body[21] == body[11] &&
-                    body[22] == static_cast<unsigned char>(~body[14]) &&
-                    exact(action + 23, "\x48\x8d\x8d", 3) && exact(action + 30, "\xe8", 1) &&
-                    exact(action + 35, "\x48\x83\xc4\x20\x5d\xc3", 6))
-                return object_action(relative(action + 30, 5), visited);
+            for (const bool short_displacement : {false, true}) {
+                const uint32_t call = short_displacement ? 27 : 30;
+                const auto *body = image.read(action, call + 11);
+                // disp8 and disp32 name the same kind of establisher-frame
+                // local. The conditional edge must still land exactly on
+                // this family's restoring epilogue, never inside the CALL.
+                if (body && independent_extent(action, call + 11, true) &&
+                        exact(action + 9, "\x8b\x45", 2) && !(body[11] & 3) &&
+                        exact(action + 12, "\x83\xe0", 2) && body[14] && body[14] < 0x80 &&
+                        !(body[14] & (body[14] - 1)) &&
+                        exact(action + 15, "\x85\xc0\x74", 3) && body[18] == call + 5 - 19 &&
+                        exact(action + 19, "\x83\x65", 2) && body[21] == body[11] &&
+                        body[22] == static_cast<unsigned char>(~body[14]) &&
+                        exact(action + 23, short_displacement ? "\x48\x8d\x4d" : "\x48\x8d\x8d", 3) &&
+                        exact(action + call, "\xe8", 1) &&
+                        exact(action + call + 5, "\x48\x83\xc4\x20\x5d\xc3", 6))
+                    return object_action(relative(action + call, 5), visited);
+            }
             // Allocation cleanup: load the owned object from the establisher
             // frame, pass its concrete size to delete, then restore/RET.
             if (independent_extent(action, 32, true) && exact(action + 9, "\xba", 1) &&

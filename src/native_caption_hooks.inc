@@ -2192,15 +2192,17 @@ static void capture_native_roster_shorten(NativeString *source, int width) {
 
 static void remember_native_clipped_resize(NativeString *source, size_t width, char fill,
         bool zero_pad_one = false, bool plain_shrink = false) {
-    if (g_native_tooltip_write || (native_private_ui_write_active(native_graphics()) &&
-            native_graphics() != g_native_worldgen_write_graphics &&
-            native_graphics() != g_native_topbar_write_graphics &&
-            native_graphics() != g_native_map_hover_write_graphics &&
-            native_graphics() != g_native_petition_write_graphics &&
-            native_graphics() != g_native_petitions_write_graphics &&
-            native_graphics() != g_native_designation_write_graphics &&
-            native_graphics() != g_native_embark_civilization_write_graphics) ||
-            native_caption_separate_output(native_graphics())) return;
+    if (g_native_tooltip_write) return;
+    const auto *graphics = native_graphics();
+    if ((native_private_ui_write_active(graphics) &&
+            graphics != g_native_worldgen_write_graphics &&
+            graphics != g_native_topbar_write_graphics &&
+            graphics != g_native_map_hover_write_graphics &&
+            graphics != g_native_petition_write_graphics &&
+            graphics != g_native_petitions_write_graphics &&
+            graphics != g_native_designation_write_graphics &&
+            graphics != g_native_embark_civilization_write_graphics) ||
+            native_caption_separate_output(graphics)) return;
     auto &state = native_clipped_pending();
     if (!state.busy) {
         state.busy = true;
@@ -4502,7 +4504,8 @@ static void append_native_caption_calls(std::vector<NativeCall> &calls,
 static bool native_caption_hooks_active() {
 #ifdef _WIN32
     if (g_native_farm_name_hook.active() || native_independent_caption_widgets_active() ||
-            native_independent_site_name_hooks_active()) return true;
+            native_independent_site_name_hooks_active() ||
+            native_independent_river_name_hooks_active()) return true;
 #endif
 #ifndef _WIN32
     if (g_native_main_caption_calls.active()) return true;
@@ -4957,6 +4960,7 @@ static bool install_native_caption_hooks() {
         register_native_static_caption_roles();
         install_native_independent_caption_widgets();
         if (!install_native_independent_site_name_hooks()) return false;
+        if (!install_native_independent_river_name_hooks()) return false;
         return true;
     }
     try {
@@ -4969,6 +4973,7 @@ static bool install_native_caption_hooks() {
     if (!install_native_basic_caption_hooks()) return false;
     install_native_independent_caption_widgets();
     if (!install_native_independent_site_name_hooks()) return false;
+    if (!install_native_independent_river_name_hooks()) return false;
     return true;
 #else
     return install_native_complete_caption_hooks();
@@ -5101,8 +5106,9 @@ static bool install_native_inline_caption_hooks() {
 
 static bool uninstall_native_caption_hooks() {
 #ifdef _WIN32
-    // Site callbacks forward to draw_entry.original. Keep the original and
-    // its capture state alive until every independent CALL is restored.
+    // River and site callbacks forward to draw_entry.original. Keep that
+    // trampoline and its capture state until every independent CALL is restored.
+    if (!uninstall_native_independent_river_name_hooks() || native_independent_river_name_hooks_active()) return false;
     if (!uninstall_native_independent_site_name_hooks() || native_independent_site_name_hooks_active()) return false;
     // Inline CALL observers execute resize_entry.original directly. A failed
     // observer restoration must keep that trampoline and its capture state.

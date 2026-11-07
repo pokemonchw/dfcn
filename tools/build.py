@@ -1088,31 +1088,53 @@ def main() -> int:
                      "-Wl,-Bstatic", "-lwinpthread", "-Wl,-Bdynamic", "-lbcrypt"], env)
             from native_pe_seed_evidence import refresh as refresh_pe_evidence
             from native_target_abi import prepare_target
-            target_image = pe_sources.get("game") or pe_sources["reference"]
+            target_images = [pe_sources.get("game") or pe_sources["reference"]]
+            if pe_sources.get("deploy_classic", False):
+                target_images.append(pe_sources["classic"])
+            target_images = list(dict.fromkeys(image.resolve() for image in target_images))
             objdump = Path(compiler[0]).with_name("objdump.exe")
             if not objdump.is_file():
                 raise RuntimeError(f"Required native disassembler is missing: {objdump}")
-            target_profile = prepare_target(ROOT, target_image, objdump=objdump)
-            target_profiles = [target_profile] if target_profile else []
-            if target_profile:
+            target_profiles_by_hash = {}
+            for target_image in target_images:
+                target_profile = prepare_target(ROOT, target_image, objdump=objdump)
+                if target_profile:
+                    target_profiles_by_hash[target_profile["sha256"]] = target_profile
+            if target_profiles_by_hash:
                 # Retain declarations derived for other exact images with the
                 # same canonical ABI producer. Switching installations should
                 # extend the package's version coverage, not replace it.
+                active_producers = {(profile["schema"], profile["revision"])
+                                    for profile in target_profiles_by_hash.values()}
+                # This reviewed transition changes only source-table alias
+                # admission/provenance, not a layout or image-evidence rule.
+                # Both hashes include the complete ABI producer and its layout
+                # inputs. Any later change disables these predecessors.
+                compatible_predecessors = {
+                    (1, "80cb9b47a53a1d580f66870e5f685ca1f8aff127ea71da0c291d75c7fdfd2885"): (
+                        (1, "09fcb5dcbc811392816aa2b5197004718dbcfbff75eb61965563ae12d64fa7a8"),
+                        (1, "66829c41ecd8fcc005dc15cefc42dee3f574198420ad2b05aa30e087576c36b4"),
+                    ),
+                }
+                active_producers.update(previous
+                                        for producer in tuple(active_producers)
+                                        for previous in compatible_predecessors.get(producer, ()))
                 for cached_path in sorted((EXTRACTED / "cache/native-abi").glob("*.json")):
-                    if cached_path.stem == target_profile["sha256"]:
+                    if cached_path.stem in target_profiles_by_hash:
                         continue
                     try:
                         cached_profile = json.loads(cached_path.read_text(encoding="utf-8"))
                     except (OSError, ValueError):
                         continue
-                    if (cached_profile.get("schema") == target_profile["schema"]
-                            and cached_profile.get("revision") == target_profile["revision"]
+                    if ((cached_profile.get("schema"), cached_profile.get("revision")) in active_producers
                             and cached_profile.get("sha256") == cached_path.stem
                             and re.fullmatch(r"[0-9a-f]{64}", cached_path.stem)):
-                        target_profiles.append(cached_profile)
-            evidence_inputs = [ROOT / "tools/native_pe_seed_evidence.py",
+                        target_profiles_by_hash[cached_path.stem] = cached_profile
+            target_profiles = [target_profiles_by_hash[digest]
+                               for digest in sorted(target_profiles_by_hash)]
+            evidence_inputs = [SCRIPT, ROOT / "tools/native_pe_seed_evidence.py",
                                ROOT / "tools/native_history_semantic_evidence.py",
-                               ROOT / "tools/native_target_abi.py", target_image,
+                               ROOT / "tools/native_target_abi.py", *target_images,
                                ROOT / "tools/native_graphics_header_layout.py",
                                ROOT / "tools/native_graphics_image_evidence.py",
                                ROOT / "tools/native_reference_semantics.py",
@@ -1142,9 +1164,11 @@ def main() -> int:
             # Installing an older image can preserve an older file timestamp.
             # Dependency mtimes alone must not keep a different image's ABI
             # declaration in the seed. Bind this generation to content too.
-            evidence_key = hashlib.sha256(json.dumps(target_profiles, sort_keys=True,
-                separators=(",", ":")).encode("utf-8")).hexdigest() if target_profile else \
-                hashlib.sha256(target_image.read_bytes()).hexdigest()
+            evidence_key = hashlib.sha256(json.dumps({
+                "images": sorted({hashlib.sha256(image.read_bytes()).hexdigest()
+                                  for image in target_images}),
+                "profiles": target_profiles,
+            }, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
             evidence_stamp = ROOT / "data/extracted/cache/native-build/pe-evidence-inputs.json"
             try:
                 recorded_evidence = json.loads(evidence_stamp.read_text(encoding="utf-8"))
@@ -1204,9 +1228,10 @@ def main() -> int:
             # Produce the actual cache consumed by the deployed core, using
             # exactly its runtime scanner and the installed image on disk.
             # Generation is part of this entry, never an alternative build.
-            run([str(catalog_tool), str(pe_sources.get("game") or pe_sources["reference"]),
-                 str(RUNTIME / "native-addresses/pe-seed.bin"),
-                 str(RUNTIME / "native-addresses/cache")], env)
+            for target_image in target_images:
+                run([str(catalog_tool), str(target_image),
+                     str(RUNTIME / "native-addresses/pe-seed.bin"),
+                     str(RUNTIME / "native-addresses/cache")], env)
         core_inputs = [SCRIPT, *file_inputs(ROOT / "src", {".cpp", ".h", ".inc", ".exports"}),
                        *file_inputs(ROOT / "compat", {".h", ".c"}),
                        *file_inputs(ROOT / "third_party/tomlplusplus/include", {".h", ".hpp"}),

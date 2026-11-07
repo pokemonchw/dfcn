@@ -125,8 +125,8 @@ static void capture_native_river_name_draw(graphicst *graphics, const NativeStri
         NativeLocationPickerField::None, NativeTravelBuildingField::None, caller);
 }
 
-static bool append_native_river_name_calls(std::vector<NativeCall> &calls) {
 #ifdef _WIN32
+static std::vector<NativeCall> native_river_name_calls() {
     // Verified worldgen, adventure, detailed embark and coarse embark producers.
     std::vector<NativeCall> river_calls{
         {0xdfe524, 0xa946e0, reinterpret_cast<const void *>(&capture_native_river_english)},
@@ -138,8 +138,81 @@ static bool append_native_river_name_calls(std::vector<NativeCall> &calls) {
         {0x104dcad, 0xa946e0, reinterpret_cast<const void *>(&capture_native_river_english)},
         {0x104dd69, 0xad9960, reinterpret_cast<const void *>(&capture_native_river_name_draw)},
     };
-    if (!native_reference_calls(river_calls, 0)) return false;
+    return river_calls;
+}
+
+static bool append_native_river_name_calls(std::vector<NativeCall> &calls) {
+    const auto sites = native_river_name_calls();
+    // A formatter and its consuming draw form one source transaction. A
+    // missing page must not discard the other pages' complete river facts.
+    for (size_t index = 0; index + 1 < sites.size(); index += 2) {
+        std::vector<NativeCall> pair{sites[index], sites[index + 1]};
+        if (native_reference_calls(pair, 0))
+            calls.insert(calls.end(), pair.begin(), pair.end());
+    }
+    return true;
+}
+
+static std::array<NativeCallHook, 4> g_native_independent_river_name_hooks;
+
+static bool native_independent_river_name_hooks_active() {
+    return std::any_of(g_native_independent_river_name_hooks.begin(),
+        g_native_independent_river_name_hooks.end(), [](const auto &hook) { return hook.active(); });
+}
+
+static bool uninstall_native_independent_river_name_hooks() {
+    for (auto it = g_native_independent_river_name_hooks.rbegin();
+            it != g_native_independent_river_name_hooks.rend(); ++it) {
+        if (!it->uninstall("Native river-name observer restore") || it->active()) return false;
+    }
+    return true;
+}
+
+static bool install_native_independent_river_name_hooks() {
+    // Complete caption installation owns these same CALLs. The basic path
+    // restores the semantic observers separately after its draw trampoline
+    // exists, so an unrelated page extension cannot remove river meanings.
+    if (g_native_caption_hooks.code.active()) return true;
+    if (!g_native_clipped_caption_hooks.draw_entry.installed ||
+            !g_native_clipped_caption_hooks.draw) return false;
+    const auto base = native_history_profile_base();
+    if (!base) return false;
+    const auto sites = native_river_name_calls();
+    if (sites.size() != g_native_independent_river_name_hooks.size() * 2) return false;
+    size_t enabled = 0, deferred = 0;
+    for (size_t index = 0; index < g_native_independent_river_name_hooks.size(); ++index) {
+        auto &hook = g_native_independent_river_name_hooks[index];
+        if (hook.installed) {
+            if (!flush_native_code_patches(hook.patches, "Native river-name observer")) return false;
+            ++enabled;
+            continue;
+        }
+        bool installed = false;
+        try {
+            std::vector<NativeCall> pair{sites[index * 2], sites[index * 2 + 1]};
+            if (native_reference_calls(pair, 0))
+                installed = hook.install(base, pair, "Native river-name observer");
+        } catch (const std::exception &error) {
+            log_line("WARN", std::string("Native river-name observer: ") + error.what());
+        } catch (...) { log_line("WARN", "Native river-name observer preparation failed"); }
+        if (installed) { ++enabled; continue; }
+        // Both CALLs are owned by the same persistent hook. A failed publish
+        // is rolled back as a pair; failed restoration keeps its patch/relay
+        // records and the shared draw trampoline alive for another restore.
+        bool restored = false;
+        try { restored = hook.uninstall("Native river-name observer rollback"); } catch (...) {}
+        if (!restored || hook.active()) {
+            log_line("ERROR", "Native river-name observer restoration incomplete; retaining draw trampoline");
+            return false;
+        }
+        ++deferred;
+    }
+    log_line("INFO", "Native river-name observers: " + std::to_string(enabled) +
+        " enabled, " + std::to_string(deferred) + " deferred independently");
+    return true;
+}
 #else
+static bool append_native_river_name_calls(std::vector<NativeCall> &calls) {
     // ELF 53.16: travel, worldgen hover, detailed embark, coarse embark.
     // Each formatter's RDI is the object returned by c558d0(world,x,y,&segment).
     const std::vector<NativeCall> river_calls{
@@ -152,7 +225,7 @@ static bool append_native_river_name_calls(std::vector<NativeCall> &calls) {
         {0x1f4ea2d, 0x12c58d0, reinterpret_cast<const void *>(&capture_native_river_english)},
         {0x1f4ea62, 0x425170, reinterpret_cast<const void *>(&capture_native_river_name_draw)},
     };
-#endif
     calls.insert(calls.end(), river_calls.begin(), river_calls.end());
     return true;
 }
+#endif

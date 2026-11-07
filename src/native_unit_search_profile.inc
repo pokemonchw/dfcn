@@ -6,7 +6,7 @@ static bool resolve_native_unit_search_profile(NativeUnitSearchProfile &profile)
         0x1432770, 0x52cee0, 0xe1990, 0xc65450, 0x1330c30);
     // Keep the helpers independently required. Callable RTTI and a matching
     // capture alone do not establish the formatter/fold/find calling ABI.
-    if (!base || !binding || !native_pe_rva(0x52cee0) || !native_pe_rva(0xe1990) ||
+    if (!base || !native_callable_search_live_ready(binding) || !native_pe_rva(0x52cee0) || !native_pe_rva(0xe1990) ||
             !native_pe_rva(0xc65450) || !native_pe_rva(0x1330c30)) return false;
     profile.base = base;
     profile.find = &native_search_byte_find;

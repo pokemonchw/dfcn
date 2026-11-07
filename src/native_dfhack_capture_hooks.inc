@@ -395,6 +395,9 @@ static NativeDfhackReadTileFn *native_dfhack_find_get_tile_slot() {
 }
 
 static bool install_native_dfhack_capture_hook() {
+#ifdef _WIN32
+    if (!g_native_dfhack_graphics_ownership_ready.load(std::memory_order_acquire)) return false;
+#endif
     std::lock_guard<std::mutex> lock(g_native_dfhack_hook_mutex);
     bool available = false;
     auto *slot = native_dfhack_find_set_tile_slot(available);

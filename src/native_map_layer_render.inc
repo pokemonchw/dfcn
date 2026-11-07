@@ -290,20 +290,14 @@ static void native_map_ui_draw(void *renderer) {
 // translation input must not depend on optional terrain/private-map hooks.
 static bool install_native_ui_raster_hook() {
 #ifdef _WIN32
-    const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-    const auto install = [&](NativeEntryHook &hook, uintptr_t coordinate,
-            std::vector<unsigned char> prefix, const void *callback, const char *label,
+    const auto install = [&](NativeEntryHook &hook, uint32_t coordinate,
+            const void *callback, const char *label,
             std::string_view method) {
         if (hook.installed) return true;
-        if (native_pe_edition() > 2)
-            return hook.prepare_discovered(static_cast<uint32_t>(coordinate), 0x16bf0f0,
-                "renderer_2d_base", method, "void()", 0, callback, label) && hook.install(label);
-        auto *entry = reinterpret_cast<unsigned char *>(native_pe_address(base, coordinate));
-        return entry && native_pe_bytes(coordinate, prefix) &&
-            hook.prepare(entry, prefix, callback, {}, label) && hook.install(label);
+        return hook.prepare_discovered(coordinate, 0x16bf0f0,
+            "renderer_2d_base", method, "void()", 0, callback, label) && hook.install(label);
     };
     return install(g_native_map_ui_draw_hook, 0x8e1c80,
-            {0x48,0x89,0x5c,0x24,0x10},
             reinterpret_cast<const void *>(&native_map_ui_draw), "Native shared UI raster boundary", "update_all");
 #else
     if (g_native_map_ui_draw_hook.installed) return true;
@@ -332,17 +326,9 @@ static bool install_native_map_layer_hook() {
 #ifdef _WIN32
     if (g_native_map_clear_hook.installed) return true;
     constexpr const char *label = "Native map clear ownership";
-    if (native_pe_edition() > 2)
-        return g_native_map_clear_hook.prepare_discovered(0x8e1c40, 0x16bf0f0,
+    return g_native_map_clear_hook.prepare_discovered(0x8e1c40, 0x16bf0f0,
             "renderer_2d_base", "do_blank_screen_fill", "void()", 0,
             reinterpret_cast<const void *>(&native_map_clear), label) &&
-            g_native_map_clear_hook.install(label);
-    const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-    auto *entry = reinterpret_cast<unsigned char *>(native_pe_address(base, 0x8e1c40));
-    std::vector<unsigned char> prefix{0x40,0x53,0x48,0x83,0xec,0x30};
-    return entry && native_pe_bytes(0x8e1c40, prefix) &&
-        g_native_map_clear_hook.prepare(entry, prefix,
-            reinterpret_cast<const void *>(&native_map_clear), {}, label) &&
         g_native_map_clear_hook.install(label);
 #else
     return true;

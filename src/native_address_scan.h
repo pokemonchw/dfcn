@@ -77,6 +77,13 @@ struct CallableSearchBinding {
     uint32_t contract = 0, predicate = 0, invoker_call = 0, fold_call = 0;
     uint32_t name_find = 0, job_find = 0, query_fold = 0;
     uint32_t fold_target = 0, find_target = 0, argument_shape = 0, capture_offset = 0;
+    struct EvidenceSpan { uint32_t address = 0; std::vector<unsigned char> bytes; };
+    uint64_t preferred_base = 0;
+    std::vector<EvidenceSpan> evidence;
+    std::vector<std::pair<uint32_t, uint64_t>> relocations;
+    // Actual IAT slots of the independently named noreturn throw runtime.
+    // Their loader-written values cannot be part of the immutable journal.
+    std::vector<uint32_t> throw_slots;
 };
 struct RecipeBinding {
     uint32_t contract = 0, owner = 0, mode = 0, width = 0, paragraph_target = 0;
@@ -89,6 +96,9 @@ struct OutputRegionBinding {
 struct EntryEvidenceSpan {
     uint32_t address = 0;
     std::vector<unsigned char> bytes;
+};
+struct ExternalLiteralBoundary {
+    uint32_t owner = 0, instruction = 0, candidate = 0, width = 0;
 };
 struct EntryPrefixBinding {
     uint32_t reference = 0, native = 0, end = 0, unwind = 0;
@@ -103,6 +113,10 @@ struct EntryPrefixBinding {
     // Named import tail transfers are terminals, but their loader-written IAT
     // targets must also be ruled out as live entries into the moved prefix.
     std::vector<uint32_t> imported_tail_slots;
+    // Complete external CFG evidence proves these exact raw DWORD/QWORD
+    // windows cross non-address instruction encoding fields. They never
+    // exempt a branch, LEA or any other candidate from the entry veto.
+    std::vector<ExternalLiteralBoundary> external_literal_boundaries;
 };
 inline std::string layout_conflict_message(uint32_t reference, uint32_t target,
         uint32_t object, uint32_t base, size_t sources) {

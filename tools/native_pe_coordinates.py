@@ -424,6 +424,155 @@ def _native_call_coordinates(tokens, pairs, constants, byte_arrays, add):
             record(begin, end)
 
 
+def _local_resource_facts(tokens, pairs):
+    """Resolve the consumed lexical value, not the last same-named local.
+
+    This only sizes source requirements. It grants no target coordinates or
+    instruction identity. Unknown constructions stay with their typed owner.
+    """
+    scopes = [(a, b) for a, b in pairs.items() if a < b and tokens[a] == '{']
+
+    def scope(at):
+        return max(((a, b) for a, b in scopes if a < at < b), default=(-1, len(tokens)))
+
+    definitions = {}
+    for at, token in enumerate(tokens):
+        if token != '=':
+            continue
+        name = _assignment_name(tokens, at)
+        if not name:
+            continue
+        begin, end = at + 1, at + 1
+        if tokens[begin:begin + 1] == ['{'] and begin in pairs:
+            end = pairs[begin] + 1
+        else:
+            while end < len(tokens) and tokens[end] not in (',', ';', '{'):
+                if tokens[end] in ('(', '[') and end in pairs:
+                    end = pairs[end] + 1
+                else:
+                    end += 1
+        definitions.setdefault(name, []).append((at, scope(at), begin, end))
+    for begin, end in scopes:
+        name = _initializer_name(tokens, pairs, begin)
+        if name:
+            definitions.setdefault(name, []).append((begin, scope(begin), begin, end + 1))
+
+    def definition(name, at):
+        choices = [entry for entry in definitions.get(name, ())
+                   if entry[0] < at and entry[1][0] < at < entry[1][1]]
+        return max(choices, key=lambda entry: (entry[1][0], entry[0]), default=None)
+
+    def number(expr, at, arguments=None, seen=frozenset()):
+        direct = _number(expr)
+        if direct is not None:
+            return direct
+        name = ''.join(expr)
+        if arguments and name in arguments:
+            return arguments[name][0]
+        value = definition(name, at)
+        if value is None or (name, value[0]) in seen:
+            return None
+        return number(tokens[value[2]:value[3]], value[0], arguments,
+                      seen | {(name, value[0])})
+
+    def byte_width(begin, end, at, arguments=None, seen=frozenset()):
+        literal = _byte_count(tokens, pairs, begin, end)
+        if literal:
+            return literal
+        while begin < end and tokens[begin] == '{' and pairs.get(begin) == end - 1:
+            begin, end = begin + 1, end - 1
+        expr = ''.join(tokens[begin:end])
+        # A copied iterator range retains its source array's byte count.
+        for form in (r'(?:std::)?begin\((\w+)\),(?:std::)?end\((\w+)\)',
+                     r'(\w+)\.begin\(\),(\w+)\.end\(\)'):
+            match = re.fullmatch(form, expr)
+            if match and match[1] == match[2]:
+                return named_width(match[1], at, arguments, seen)
+        match = re.fullmatch(r'(\w+)\+(0[xX][0-9a-fA-F]+|\d+),\1\+(0[xX][0-9a-fA-F]+|\d+)', expr)
+        if match:
+            size = named_width(match[1], at, arguments, seen)
+            left, right = int(match[2], 0), int(match[3], 0)
+            return right - left if size is not None and 0 <= left < right <= size else None
+        name = re.sub(r'\.data\(\)$', '', expr)
+        return named_width(name, at, arguments, seen)
+
+    def named_width(name, at, arguments=None, seen=frozenset()):
+        if arguments and name in arguments:
+            return arguments[name][1]
+        value = definition(name, at)
+        if value is None or (name, value[0]) in seen:
+            return None
+        return byte_width(value[2], value[3], value[0], arguments,
+                          seen | {(name, value[0])})
+
+    def count(expr, at, arguments=None):
+        value = number(expr, at, arguments)
+        if value is not None:
+            return value
+        text = ''.join(expr)
+        match = re.fullmatch(r'(?:sizeof\((\w+)\)|(\w+)\.size\(\)|std::size\((\w+)\))', text)
+        if match:
+            return named_width(next(value for value in match.groups() if value), at, arguments)
+        return None
+
+    return number, byte_width, count, scope, definition
+
+
+def _wrapped_byte_requirements(tokens, pairs, facts, add):
+    """Follow local lambda parameters only into the actual byte-proof API.
+
+    A wrapper name or an integer by itself is never an address contract. This
+    covers identity(rva, bytes) without listing any hook or version address.
+    """
+    number, byte_width, count, scope, definition = facts
+    for at, token in enumerate(tokens):
+        if token != '=' or tokens[at + 1:at + 2] != ['['] or at + 1 not in pairs:
+            continue
+        name = _assignment_name(tokens, at)
+        arguments = pairs[at + 1] + 1
+        if not name or tokens[arguments:arguments + 1] != ['('] or arguments not in pairs:
+            continue
+        end = pairs[arguments]
+        body = end + 1
+        if tokens[body:body + 1] != ['{'] or body not in pairs:
+            continue
+        params = _parts(tokens, pairs, arguments + 1, end)
+        names = [tokens[b - 1] for a, b in params]
+        if not all(_IDENTIFIER.fullmatch(value) for value in names):
+            continue
+        uses = []
+        for use in range(body + 1, pairs[body]):
+            if tokens[use] not in ('native_pe_match', 'native_pe_bytes', 'native_reference_bytes') or \
+                    tokens[use + 1:use + 2] != ['('] or use + 1 not in pairs:
+                continue
+            uses.append((use, _parts(tokens, pairs, use + 2, pairs[use + 1])))
+        if not uses:
+            continue
+        left, right = scope(at)
+        for call in range(pairs[body] + 1, right):
+            if tokens[call] != name or tokens[call + 1:call + 2] != ['('] or call + 1 not in pairs:
+                continue
+            bound = definition(name, call)
+            if bound is None or bound[0] != at:
+                continue
+            values = _parts(tokens, pairs, call + 2, pairs[call + 1])
+            if len(values) != len(names):
+                continue
+            actual = {key: (number(tokens[a:b], call), byte_width(a, b, call))
+                      for key, (a, b) in zip(names, values)}
+            for use, args in uses:
+                match = tokens[use] == 'native_pe_match'
+                position = 1 if match else 0
+                if len(args) <= position + 1:
+                    continue
+                rva = number(tokens[slice(*args[position])], use, actual)
+                width = byte_width(*args[position + 1], use, actual)
+                if match and len(args) > 3:
+                    width = count(tokens[slice(*args[3])], use, actual) or width
+                if width:
+                    add(rva, width)
+
+
 def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], elf=False) -> None:
     pairs = _pairs(tokens)
     constants, byte_arrays = {}, {}
@@ -466,6 +615,10 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
             byte_arrays[variable] = size
 
     _native_call_coordinates(tokens, pairs, constants, byte_arrays, add)
+    local_facts = _local_resource_facts(tokens, pairs)
+    local_number, local_bytes, local_count, _, _ = local_facts
+    if not elf:
+        _wrapped_byte_requirements(tokens, pairs, local_facts, add)
 
     call_arrays = {
         'native_rich_profile.inc': {'wrap_calls', 'draw_calls'},
@@ -496,14 +649,12 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         position = apis[token]
         if len(args) <= position:
             continue
-        rva = _number(tokens[slice(*args[position])], constants)
+        rva = local_number(tokens[slice(*args[position])], index)
         width = 1
         if token in ('native_pe_bytes', 'native_reference_bytes', 'native_pe_match') and len(args) > position + 1:
-            source = ''.join(tokens[slice(*args[position + 1])])
-            source = re.sub(r'\.data\(\)$', '', source)
-            width = byte_arrays.get(source, 1)
+            width = local_bytes(*args[position + 1], index) or 1
         if token == 'native_pe_match' and len(args) > 3:
-            width = _number(tokens[slice(*args[3])], constants) or width
+            width = local_count(tokens[slice(*args[3])], index) or width
         bias = (0x400000 if token in ('native_reference_rva', 'native_reference_address') else 0) if elf else None
         add(rva, width, bias)
 

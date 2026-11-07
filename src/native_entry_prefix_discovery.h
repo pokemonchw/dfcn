@@ -96,11 +96,15 @@ inline bool header_dependencies(const Read &read, uint32_t image_size, HeaderDep
 // candidate is conservative. Runtime repeats this over the current main-PE
 // executable sections, so an unrelated extension's legitimate code patch
 // does not require byte-for-byte equality of the entire text section.
-template<typename Sections, typename Read>
+template<typename Sections, typename Read, typename Literal>
 inline bool external_reference_veto(const Sections &sections, uint32_t execute_flag,
         uint32_t image_size, uint64_t image_base, uint32_t begin, uint32_t end, size_t prefix_size,
-        bool mapped, const Read &read, DecodeFailure &failure) {
+        bool mapped, const Read &read, DecodeFailure &failure, const Literal &literal,
+        bool protect_data = false) {
     const auto interior = [&](int64_t target) { return target > begin && target < int64_t(begin) + prefix_size; };
+    const auto data_address = [&](int64_t target) {
+        return target >= begin && target < int64_t(begin) + prefix_size;
+    };
     for (const auto &section : sections) {
         if (!(section.flags & execute_flag)) continue;
         if (section.end <= section.begin || section.end > image_size) return false;
@@ -141,20 +145,60 @@ inline bool external_reference_veto(const Sections &sections, uint32_t execute_f
                 // segment prefix. Also veto 32-bit/overridden LEA lookalikes;
                 // an unproved width cannot grant a positive entry witness.
                 int32_t displacement; std::memcpy(&displacement, raw + 2, 4);
-                candidate |= interior(int64_t(address) + 6 + displacement);
+                const auto target = int64_t(address) + 6 + displacement;
+                candidate |= protect_data ? data_address(target) : interior(target);
+            }
+            if (protect_data && left >= 6) {
+                // A classified encoding window must not also have a direct
+                // RIP-memory use as RVA data. Prefilter prefixes/opcode/ModRM
+                // in the already-read section; no per-byte page query occurs.
+                size_t opcode = 0;
+                while (opcode < left && opcode < 13) {
+                    const auto byte = raw[opcode];
+                    if ((byte >= 0x40 && byte <= 0x4f) || byte == 0x66 || byte == 0x67 ||
+                            byte == 0xf0 || byte == 0xf2 || byte == 0xf3 || byte == 0x26 ||
+                            byte == 0x2e || byte == 0x36 || byte == 0x3e || byte == 0x64 || byte == 0x65)
+                        ++opcode;
+                    else break;
+                }
+                const auto modrm = opcode < left ? opcode + (raw[opcode] == 0x0f ? 2 : 1) : left;
+                if (modrm < left && left - modrm >= 5 && (raw[modrm] & 0xc7) == 5) {
+                    std::array<unsigned char, 32> encoded{};
+                    const auto available = (std::min)(size_t(left), size_t(15));
+                    std::memcpy(encoded.data(), raw, available);
+                    hde64s op{};
+                    hde64_disasm(encoded.data(), &op);
+                    if (op.len && op.len <= available && !(op.flags & F_ERROR) &&
+                            (op.flags & F_MODRM) && (op.flags & F_DISP32) &&
+                            !op.p_67 && op.modrm_mod == 0 && op.modrm_rm == 5) {
+                        const auto target = int64_t(address) + op.len + static_cast<int32_t>(op.disp.disp32);
+                        auto width = access_width(op);
+                        if (op.opcode == 0xff && (op.modrm_reg == 2 || op.modrm_reg == 4)) width = 8;
+                        candidate |= data_address(target);
+                        // Known bounded operands also veto accesses beginning
+                        // before this row and overlapping it. An unsupported
+                        // width supplies no invented extent; this is a direct
+                        // reference check, not arbitrary pointer dataflow.
+                        if (width && width != UINT32_MAX && target >= 0)
+                            candidate |= target < int64_t(begin) + prefix_size &&
+                                uint64_t(target) + width > begin;
+                    }
+                }
             }
             if (left >= 4) {
                 // MSVC also stores switch targets as image-relative DWORDs
                 // inside executable sections. This does not interpret an
                 // arbitrary constant as a real switch; it can only refuse.
                 uint32_t rva; std::memcpy(&rva, raw, 4);
-                candidate |= interior(rva);
+                if ((protect_data ? data_address(rva) : interior(rva)) && !literal(address, 4)) candidate = true;
             }
             if (left >= 8) {
                 // A live extension can embed a new absolute jump literal
                 // without adding a loader DIR64 record (FF25/movabs stubs).
                 uint64_t pointer; std::memcpy(&pointer, raw, 8);
-                candidate |= pointer > image_base + begin && pointer < image_base + begin + prefix_size;
+                if ((protect_data ? pointer >= image_base + begin : pointer > image_base + begin) &&
+                        pointer < image_base + begin + prefix_size &&
+                        !literal(address, 8)) candidate = true;
             }
             if (candidate) {
                 failure = {address, "possible external reference enters patch prefix interior", 0};
@@ -162,6 +206,50 @@ inline bool external_reference_veto(const Sections &sections, uint32_t execute_f
             }
         }
     }
+    return true;
+}
+
+template<typename Sections, typename Read>
+inline bool external_reference_veto(const Sections &sections, uint32_t execute_flag,
+        uint32_t image_size, uint64_t image_base, uint32_t begin, uint32_t end, size_t prefix_size,
+        bool mapped, const Read &read, DecodeFailure &failure) {
+    return external_reference_veto(sections, execute_flag, image_size, image_base, begin, end,
+        prefix_size, mapped, read, failure, [](uint32_t, uint32_t) { return false; });
+}
+
+// A raw pointer-sized window can straddle the SIB byte and only part of an
+// ordinary memory displacement. It is not an encoded address in that case.
+// This predicate never exempts a control transfer, RIP-relative operand,
+// immediate, whole displacement, or bytes outside one complete instruction.
+template<typename Read>
+inline bool external_literal_encoding(const ExternalLiteralBoundary &value,
+        uint32_t image_size, const Read &read, uint32_t &length) {
+    length = 0;
+    if (!value.owner || !value.instruction || value.owner > value.instruction ||
+            (value.width != 4 && value.width != 8) || value.candidate < value.instruction ||
+            uint64_t(value.candidate) + value.width > image_size) return false;
+    std::array<unsigned char, 32> raw{};
+    size_t available = 0;
+    while (available < 15 && uint64_t(value.instruction) + available < image_size) {
+        const auto *byte = read(value.instruction + static_cast<uint32_t>(available), 1);
+        if (!byte) break;
+        raw[available++] = *byte;
+    }
+    hde64s op{};
+    hde64_disasm(raw.data(), &op);
+    if (!op.len || op.len > available || (op.flags & F_ERROR) ||
+            (op.opcode != 0x8b && op.opcode != 0x89) ||
+            op.p_66 || op.p_67 || op.p_lock || op.p_rep || op.p_seg ||
+            !(op.flags & F_MODRM) || !(op.flags & F_SIB) || !(op.flags & F_DISP32) ||
+            (op.flags & (F_IMM8 | F_IMM16 | F_IMM32 | F_IMM64)) ||
+            op.modrm_mod != 2 || op.modrm_rm != 4 || op.len < 7) return false;
+    const uint64_t displacement = uint64_t(value.instruction) + op.len - 4;
+    // Starting in the displacement, including any of its subwindows, is
+    // never enough. The window must cross the real SIB/displacement boundary.
+    if (value.candidate >= displacement ||
+            uint64_t(value.candidate) + value.width <= displacement ||
+            uint64_t(value.candidate) + value.width > uint64_t(value.instruction) + op.len) return false;
+    length = op.len;
     return true;
 }
 
@@ -266,7 +354,7 @@ public:
         }
         return true;
     }
-    bool seal(EntryPrefixBinding &result) const {
+    template<typename Certificate> bool seal(Certificate &result) const {
         // Do not split a DIR64 operand at a journal edge. Its complete original
         // value is needed for exact ASLR-aware live comparison.
         for (const auto &[address, value] : relocations) {
@@ -289,6 +377,245 @@ public:
         return true;
     }
 };
+
+// Resolve only colliding raw-literal candidates. A complete external owner,
+// not a backwards byte pattern, supplies the instruction boundary. Its code,
+// EH metadata and every decoder dependency join the entry's existing journal.
+template<typename Image> class ExternalLiteralProof {
+    const Image &image_;
+    EvidenceImage<Image> &observed_;
+    EntryPrefixBinding &entry_;
+    struct OwnerCode {
+        bool valid = false;
+        uint32_t end = 0;
+        std::map<uint32_t, Instruction> code;
+        std::set<uint32_t> reached;
+    };
+    std::map<uint32_t, OwnerCode> owners_;
+    std::set<uint32_t> checked_rows_;
+
+    bool owner_code(uint32_t owner, OwnerCode &result) {
+        const auto regions = frame_detail::logical_regions(image_, owner);
+        if (regions.size() != 1 || regions.front().first != owner ||
+                regions.front().second <= owner || regions.front().second - owner > 2u * 1024u * 1024u)
+            return false;
+        result.end = regions.front().second;
+        DecodeFailure failure;
+        if (!observed_.read(owner, result.end - owner) ||
+                !no_eh_continuations(observed_, owner, result.end, &failure)) return false;
+        std::vector<Instruction> rows;
+        std::set<uint32_t> entries;
+        ControlFlow flow;
+        if (!decode(observed_, owner, result.end, rows, &entries, &failure, &flow)) return false;
+        for (auto &row : rows)
+            if (!result.code.emplace(row.address, std::move(row)).second) return false;
+        const auto local = [&](int64_t target) { return target >= owner && target < result.end; };
+        const auto independent = [&](int64_t target) {
+            const auto found = std::lower_bound(image_.functions.begin(), image_.functions.end(), target,
+                [](const auto &item, int64_t address) { return item.begin < address; });
+            return found != image_.functions.end() && found->begin == target &&
+                (!found->owner || found->owner == target);
+        };
+        std::map<uint32_t, std::vector<uint32_t>> edges;
+        std::set<uint32_t> roots{owner}, invalid;
+        for (const auto &part : image_.functions) if ((part.owner ? part.owner : part.begin) == owner) {
+            if (!result.code.count(part.begin)) return false;
+            roots.insert(part.begin);
+        }
+        for (const auto &[address, pointer] : image_.relocations) {
+            (void)address;
+            if (pointer >= image_.preferred_base + owner && pointer < image_.preferred_base + result.end) {
+                const auto target = static_cast<uint32_t>(pointer - image_.preferred_base);
+                if (!result.code.count(target)) return false;
+                roots.insert(target);
+            }
+        }
+        for (const auto &[address, row] : result.code) {
+            const auto &op = row.decoded;
+            const auto after = address + op.len;
+            const bool conditional = (op.opcode >= 0x70 && op.opcode <= 0x7f) ||
+                (op.opcode >= 0xe0 && op.opcode <= 0xe3) ||
+                (op.opcode == 0x0f && op.opcode2 >= 0x80 && op.opcode2 <= 0x8f);
+            const bool jump = op.opcode == 0xe9 || op.opcode == 0xeb;
+            const bool indirect = op.opcode == 0xff && (op.modrm_reg == 4 || op.modrm_reg == 5);
+            const auto edge = [&](int64_t target, bool tail) {
+                if (local(target) && result.code.count(static_cast<uint32_t>(target)))
+                    edges[address].push_back(static_cast<uint32_t>(target));
+                else if (!tail || !independent(target)) invalid.insert(address);
+            };
+            if (conditional || jump) {
+                if (op.flags & F_IMM16) invalid.insert(address);
+                else edge(int64_t(after) + ((op.flags & F_IMM8) ?
+                    int64_t(static_cast<int8_t>(op.imm.imm8)) :
+                    int64_t(static_cast<int32_t>(op.imm.imm32))), true);
+            }
+            if (indirect) {
+                const auto targets = flow.indirect_edges.find(address);
+                if (targets == flow.indirect_edges.end() || targets->second.empty()) invalid.insert(address);
+                else for (const auto target : targets->second) edge(target, false);
+            }
+            int64_t escaped = -1;
+            if (op.opcode == 0xe8) {
+                if (!(op.flags & F_IMM32)) invalid.insert(address);
+                else escaped = int64_t(after) + static_cast<int32_t>(op.imm.imm32);
+            }
+            if (op.opcode == 0x8d && op.rex_w && !op.p_67 && op.modrm_mod == 0 && op.modrm_rm == 5)
+                escaped = int64_t(after) + static_cast<int32_t>(op.disp.disp32);
+            if (local(escaped)) {
+                if (!result.code.count(static_cast<uint32_t>(escaped))) return false;
+                roots.insert(static_cast<uint32_t>(escaped));
+            }
+            if (op.opcode == 0xca || op.opcode == 0xcb || op.opcode == 0xcf) invalid.insert(address);
+            const bool terminal = jump || indirect || op.opcode == 0xc2 || op.opcode == 0xc3 ||
+                op.opcode == 0xcc || (op.opcode == 0x0f && op.opcode2 == 0x0b) ||
+                flow.nonreturning_calls.count(address);
+            if (!terminal) {
+                if (result.code.count(after)) edges[address].push_back(after);
+                else invalid.insert(address);
+            }
+        }
+        std::vector<uint32_t> pending(roots.begin(), roots.end());
+        while (!pending.empty()) {
+            const auto address = pending.back(); pending.pop_back();
+            if (!result.reached.insert(address).second) continue;
+            if (!result.code.count(address) || invalid.count(address)) return false;
+            const auto &successors = edges[address];
+            pending.insert(pending.end(), successors.begin(), successors.end());
+        }
+        return true;
+    }
+
+public:
+    ExternalLiteralProof(const Image &image, EvidenceImage<Image> &observed, EntryPrefixBinding &entry)
+        : image_(image), observed_(observed), entry_(entry) {}
+    bool operator()(uint32_t candidate, uint32_t width) {
+        auto function = std::upper_bound(image_.functions.begin(), image_.functions.end(), candidate,
+            [](uint32_t address, const auto &item) { return address < item.begin; });
+        if (function == image_.functions.begin()) return false;
+        --function;
+        if (candidate < function->begin || uint64_t(candidate) + width > function->end) return false;
+        const auto owner = function->owner ? function->owner : function->begin;
+        if (owner == entry_.native || entry_.external_literal_boundaries.size() >= 128) return false;
+        auto [cached, added] = owners_.try_emplace(owner);
+        if (added) cached->second.valid = owner_code(owner, cached->second);
+        const auto &scope = cached->second;
+        if (!scope.valid) return false;
+        auto row = scope.code.upper_bound(candidate);
+        if (row == scope.code.begin()) return false;
+        --row;
+        ExternalLiteralBoundary value{owner, row->first, candidate, width};
+        uint32_t length = 0;
+        if (!scope.reached.count(value.instruction) ||
+                !external_literal_encoding(value, image_.size,
+                    [&](uint32_t address, size_t count) { return observed_.read(address, count); }, length) ||
+                uint64_t(value.instruction) + length > function->end) return false;
+        if (!checked_rows_.count(value.instruction)) {
+            const auto interior = [&](uint64_t target) {
+                return target > value.instruction && target < uint64_t(value.instruction) + length;
+            };
+            for (const auto &part : image_.functions) if (interior(part.begin)) return false;
+            for (const auto &[address, pointer] : image_.relocations) {
+                (void)address;
+                if (pointer >= image_.preferred_base + value.instruction &&
+                        pointer < image_.preferred_base + value.instruction + length) return false;
+            }
+            DecodeFailure failure;
+            // No exception recursion: the classified row must itself have no
+            // ambiguous external entry into any encoding byte. Only its real
+            // beginning may be named by a direct control transfer.
+            if (!external_reference_veto(image_.sections, Image::execute_flag, image_.size,
+                    image_.preferred_base, value.instruction, value.instruction + length, length,
+                    false, [&](uint32_t address, size_t count) { return image_.read(address, count); }, failure,
+                    [](uint32_t, uint32_t) { return false; }, true))
+                return false;
+            checked_rows_.insert(value.instruction);
+        }
+        entry_.external_literal_boundaries.push_back(value);
+        return true;
+    }
+};
+
+template<typename Read>
+inline bool external_literal_owner(const ExternalLiteralBoundary &value, uint32_t image_size,
+        uint32_t length, const HeaderDependencies &headers, const Read &read) {
+    const auto &exception = headers.directories[1];
+    if (!exception.VirtualAddress || !exception.Size || exception.Size % 12) return false;
+    const auto *table = read(exception.VirtualAddress, exception.Size);
+    if (!table) return false;
+    uint32_t begin = 0, end = 0, unwind = 0;
+    for (size_t offset = 0; offset < exception.Size; offset += 12) {
+        uint32_t row[3]{};
+        std::memcpy(row, table + offset, sizeof(row));
+        if (row[0] <= value.instruction && uint64_t(value.instruction) + length <= row[1]) {
+            if (begin) return false;
+            begin = row[0]; end = row[1]; unwind = row[2];
+        }
+    }
+    if (!begin) return false;
+    std::set<uint32_t> visited;
+    for (;;) {
+        if (begin >= end || end > image_size || !unwind ||
+                !visited.insert(unwind).second || visited.size() > 64) return false;
+        const auto *header = read(unwind, 4);
+        if (!header || (header[0] & 7) != 1) return false;
+        if (!(header[0] & (4 << 3))) break;
+        const uint64_t next = uint64_t(unwind) + 4 + ((uint32_t(header[2]) + 1) & ~1u) * 2;
+        if (next > image_size || 12 > uint64_t(image_size) - next) return false;
+        const auto *parent = read(static_cast<uint32_t>(next), 12);
+        if (!parent) return false;
+        std::memcpy(&begin, parent, 4); std::memcpy(&end, parent + 4, 4);
+        std::memcpy(&unwind, parent + 8, 4);
+    }
+    // The classification was proved over the complete caller, not just an
+    // isolated opcode. Keep that full independent root in the cache contract.
+    if (begin != value.owner || !read(begin, end - begin)) return false;
+    // header_dependencies appends the complete section table last.
+    if (headers.fields.empty()) return false;
+    const auto [section_begin, section_end] = headers.fields.back();
+    if ((section_end - section_begin) % sizeof(IMAGE_SECTION_HEADER)) return false;
+    const auto *sections = read(section_begin, section_end - section_begin);
+    if (!sections) return false;
+    for (uint32_t offset = 0; offset < section_end - section_begin; offset += sizeof(IMAGE_SECTION_HEADER)) {
+        IMAGE_SECTION_HEADER section{};
+        std::memcpy(&section, sections + offset, sizeof(section));
+        const uint64_t finish = uint64_t(section.VirtualAddress) +
+            (std::max)(section.Misc.VirtualSize, section.SizeOfRawData);
+        if ((section.Characteristics & IMAGE_SCN_MEM_EXECUTE) &&
+                value.owner >= section.VirtualAddress && uint64_t(value.owner) < finish &&
+                value.instruction >= section.VirtualAddress && uint64_t(value.instruction) + length <= finish)
+            return true;
+    }
+    return false;
+}
+
+template<typename Read>
+inline bool external_literal_contract(const EntryPrefixBinding &entry, uint32_t image_size,
+        const Read &read) {
+    if (entry.external_literal_boundaries.empty()) return true;
+    HeaderDependencies headers;
+    if (!header_dependencies(read, image_size, headers)) return false;
+    std::pair<uint32_t, uint32_t> previous{};
+    for (const auto &value : entry.external_literal_boundaries) {
+        const std::pair<uint32_t, uint32_t> key{value.candidate, value.width};
+        uint32_t length = 0;
+        if (key <= previous || value.owner == entry.native ||
+                (value.instruction >= entry.native && value.instruction < entry.end) ||
+                !external_literal_encoding(value, image_size, read, length) ||
+                !external_literal_owner(value, image_size, length, headers, read) ||
+                !read(value.owner, 1)) return false;
+        previous = key;
+        const auto *raw = read(value.candidate, value.width);
+        if (!raw) return false;
+        uint64_t target = 0;
+        std::memcpy(&target, raw, value.width);
+        if (value.width == 8) {
+            if (target < entry.preferred_base) return false;
+            target -= entry.preferred_base;
+        }
+        if (target <= entry.native || target >= uint64_t(entry.native) + entry.prefix.size()) return false;
+    }
+    return true;
+}
 
 inline bool contract(const State &state, const EntryPrefixBinding &value) {
     const auto spec = std::find_if(std::begin(specs), std::end(specs), [&](const auto &item) {
@@ -313,8 +640,19 @@ inline bool contract(const State &state, const EntryPrefixBinding &value) {
     const auto method = std::find_if(state.semantic_methods.begin(), state.semantic_methods.end(), [&](const auto &item) {
         return item.type == value.type && item.method == value.method;
     });
+    const auto recorded = [&](uint32_t address, size_t count) -> const unsigned char * {
+        auto found = std::upper_bound(value.evidence.begin(), value.evidence.end(), address,
+            [](uint32_t location, const auto &span) { return location < span.address; });
+        if (found == value.evidence.begin()) return nullptr;
+        --found;
+        const auto offset = uint64_t(address) - found->address;
+        return offset <= found->bytes.size() && count <= found->bytes.size() - offset ?
+            found->bytes.data() + static_cast<size_t>(offset) : nullptr;
+    };
     return method != state.semantic_methods.end() && method->slot == value.slot &&
-        method->parameter_shape == value.parameter_shape && method->argument_count == value.argument_count;
+        method->parameter_shape == value.parameter_shape && method->argument_count == value.argument_count &&
+        value.external_literal_boundaries.size() <= 128 &&
+        external_literal_contract(value, state.size, recorded);
 }
 
 template<typename Image>
@@ -461,8 +799,14 @@ inline bool prove(const Image &image, const State &state, const Spec &spec,
         const auto &successors = edges[address];
         pending.insert(pending.end(), successors.begin(), successors.end());
     }
+    ExternalLiteralProof<Image> literals(image, observed, value);
     if (!external_reference_veto(image.sections, Image::execute_flag, image.size, image.preferred_base, value.native, value.end,
-            value.prefix.size(), false, [&](uint32_t address, size_t count) { return image.read(address, count); }, failure)) return false;
+            value.prefix.size(), false, [&](uint32_t address, size_t count) { return image.read(address, count); },
+            failure, [&](uint32_t address, uint32_t width) { return literals(address, width); })) return false;
+    std::sort(value.external_literal_boundaries.begin(), value.external_literal_boundaries.end(),
+        [](const auto &left, const auto &right) {
+            return std::pair{left.candidate, left.width} < std::pair{right.candidate, right.width};
+        });
     std::sort(value.imported_tail_slots.begin(), value.imported_tail_slots.end());
     value.imported_tail_slots.erase(std::unique(value.imported_tail_slots.begin(), value.imported_tail_slots.end()),
         value.imported_tail_slots.end());
@@ -475,9 +819,8 @@ template<typename Image>
 inline void discover_entry_prefixes(const Image &image, address_runtime::State &state,
         const address_runtime::Progress &report = {}) {
     state.entry_prefixes.clear();
-    // Baselines still use their explicitly reviewed entry prefixes. This
-    // certificate is required by the discovered-ABI consumers only.
-    if (state.edition <= 2) return;
+    // Every image consumes the same owner, method ABI and complete CFG
+    // contract. A packaged coordinate map cannot replace this evidence.
     for (const auto &spec : entry_prefix_detail::specs) {
         address_runtime::EntryPrefixBinding value;
         display_decode::DecodeFailure failure;

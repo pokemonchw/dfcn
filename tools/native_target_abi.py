@@ -116,7 +116,20 @@ def _version_hints(image):
     return list(dict.fromkeys(hints))
 
 
-def _identity_table(image, content):
+def _symbol_declaration(node, table=False):
+    # Publishing aliases do not change an ABI. Keep every coordinate, nested
+    # name, attribute and identity restriction; ignore only the table label
+    # and whitespace used to format XML. Different declarations stay ambiguous.
+    attributes = tuple(sorted((key, value) for key, value in node.attrib.items()
+                              if not (table and key == 'name')))
+    text = node.text if node.text and node.text.strip() else ''
+    # A table's tail belongs to its parent, after </symbol-table>.
+    tail = node.tail if not table and node.tail and node.tail.strip() else ''
+    return (node.tag, attributes, text,
+            tuple(_symbol_declaration(child) for child in node), tail)
+
+
+def _identity_table(image, content, aliases=None):
     root = ET.fromstring(content)
     candidates = []
     for table in root.findall('symbol-table'):
@@ -129,9 +142,13 @@ def _identity_table(image, content):
         if hashes and hashlib.md5(image.data).hexdigest() not in hashes:
             continue
         candidates.append(table)
-    if len(candidates) != 1:
+    if not candidates:
         return None
     table = candidates[0]
+    declaration = _symbol_declaration(table, table=True)
+    if any(_symbol_declaration(candidate, table=True) != declaration
+           for candidate in candidates[1:]):
+        return None
     matched = 0
     failures = []
     for entry in table.findall('vtable-address'):
@@ -152,21 +169,26 @@ def _identity_table(image, content):
     if failures or matched < 32:
         raise RuntimeError('Official ABI timestamp matched but RTTI image identity differs: ' +
                            ', '.join(failures[:8]) + f' ({matched} matched)')
+    if aliases is not None:
+        aliases.extend(sorted({candidate.get('name', '') for candidate in candidates}))
     return table
 
 
 def _source(root, image, cache):
     local = root / 'data/upstream/df-structures'
     symbols = (local / 'symbols.xml').read_bytes()
-    table = _identity_table(image, symbols)
+    aliases = []
+    table = _identity_table(image, symbols, aliases)
     if table is not None:
-        return local, table, {'url': 'https://github.com/DFHack/df-structures', 'revision': 'pinned-local'}
+        return local, table, {'url': 'https://github.com/DFHack/df-structures', 'revision': 'pinned-local',
+                              'table_aliases': aliases}
     # Previously fetched sources are selected by their declared image identity,
     # never by a locally inferred version directory name.
     for source in sorted((cache / 'sources').glob('*/symbols.xml')):
-        table = _identity_table(image, source.read_bytes())
+        table = _identity_table(image, source.read_bytes(), aliases)
         if table is not None:
-            return source.parent, table, {'url': RAW + source.parent.name, 'revision': source.parent.name}
+            return source.parent, table, {'url': RAW + source.parent.name, 'revision': source.parent.name,
+                                         'table_aliases': aliases}
     hints = _version_hints(image)
     if not hints:
         raise SourceUnavailable(f'No official ABI source cached for PE timestamp {image.timestamp:#x}; executable has no release search hint')
@@ -190,7 +212,7 @@ def _source(root, image, cache):
             if target['type'] != 'commit' or not re.fullmatch(r'[0-9a-f]{40}', commit):
                 raise RuntimeError('Invalid official ABI source commit')
             symbols = _fetch(RAW + commit + '/symbols.xml', 4 * 1024 * 1024)
-            table = _identity_table(image, symbols)
+            table = _identity_table(image, symbols, aliases)
             if table is None:
                 errors.append(ref['ref'])
                 continue
@@ -209,7 +231,8 @@ def _source(root, image, cache):
             if not (destination / 'symbols.xml').is_file() or (destination / 'symbols.xml').read_bytes() != symbols:
                 raise RuntimeError('Official ABI source archive differs from its pinned symbols')
             return destination, table, {'url': RAW + commit, 'revision': commit,
-                                        'tag': ref['ref'], 'archive_sha256': hashlib.sha256(archive).hexdigest()}
+                                        'tag': ref['ref'], 'archive_sha256': hashlib.sha256(archive).hexdigest(),
+                                        'table_aliases': aliases}
     raise SourceUnavailable(f'No official ABI declaration matches PE timestamp {image.timestamp:#x}; searched ' + ', '.join(errors))
 
 

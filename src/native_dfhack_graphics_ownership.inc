@@ -265,6 +265,9 @@ static void uninstall_native_dfhack_graphics_ownership();
 
 static bool install_native_dfhack_graphics_ownership() {
     constexpr const char *label = "Native graphics buffer ownership";
+    // Published only after every lifetime hook and every display selector
+    // has installed. Partial preparation never grants a private writer.
+    g_native_dfhack_graphics_ownership_ready.store(false, std::memory_order_release);
     const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
     if (!base || !native_pe_supported()) {
         report_native_patch_error("ERROR", label, "native executable or usable address catalog is unavailable");

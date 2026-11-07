@@ -67,6 +67,21 @@ std::string Overlay::translate_river_name(const RiverNameIdentity &identity,
         std::to_string(identity.finalized) + "\t" +
         std::to_string(config_.native_language_original) + "\t" +
         site_name_decision_key(complete, name.type, name.words);
+    // A provisional missing form can recover without changing WORD/POS.
+    // Include every remaining semantic input so its untranslated result
+    // cannot hide the later complete capture of the same river.
+    const auto append_input = [&](std::string_view value) {
+        key += '\t';
+        key += std::to_string(value.size());
+        key += ':';
+        key += value;
+    };
+    append_input(name.first_name);
+    append_input(name.nickname);
+    for (const auto &word : name.words) {
+        append_input(word.has_form ? "1" : "0");
+        append_input(word.english_form);
+    }
     if (const auto cached = river_name_cache_.find(key); cached != river_name_cache_.end())
         return cached->second.text;
     const auto *decision = river_names_.decision(identity, field, complete);

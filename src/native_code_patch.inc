@@ -477,7 +477,7 @@ struct NativeEntryHook {
             std::string_view type, std::string_view method, std::string_view signature,
             uint32_t arguments, const void *wrapper, const char *label) {
         const auto &state = pe_runtime::state();
-        if (!pe_runtime::usable(state) || state.edition <= 2 || !wrapper) return false;
+        if (!pe_runtime::usable(state) || !wrapper) return false;
         const auto entry = address_runtime::resolve(state.function_owners, reference);
         const auto table = native_pe_rva(reference_table);
         const auto *abi = native_history_abi::method(native_history_abi::semantic_id(type),

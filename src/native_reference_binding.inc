@@ -55,8 +55,10 @@ static uintptr_t native_reference_address(uintptr_t base, uintptr_t offset) {
 }
 
 static bool native_reference_bytes(uintptr_t reference_va, std::vector<unsigned char> &expected) {
+#ifdef _WIN32
+    return native_pe_bytes(reference_va, expected);
+#else
     if (!native_reference_relocated() || expected.empty()) return true;
-#ifndef _WIN32
     if (!native_reference_va(reference_va) || expected.size() > UINTPTR_MAX - reference_va)
         return false;
     const auto apply = [&](const auto &bytes) {
@@ -77,13 +79,13 @@ static bool native_reference_bytes(uintptr_t reference_va, std::vector<unsigned 
         return apply(binding.bytes);
     }
     return apply(native_elf_edition_bytes);
-#else
-    return native_pe_bytes(reference_va, expected);
 #endif
 }
 
 static bool native_reference_calls(std::vector<NativeCall> &calls, uintptr_t origin) {
+#ifndef _WIN32
     if (!native_reference_relocated()) return true;
+#endif
     uintptr_t native_origin = origin;
 #ifndef _WIN32
     if (elf_runtime::automatic() && origin == 0x400000) native_origin = elf_runtime::state().executable_origin;

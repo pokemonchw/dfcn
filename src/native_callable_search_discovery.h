@@ -1,5 +1,6 @@
 #pragma once
 #include "native_method_call_discovery.h"
+#include "native_callable_exception_evidence.h"
 #include <optional>
 
 namespace dfcn::pe_runtime::callable_search_detail {
@@ -114,6 +115,89 @@ inline void invalidate_string(Flow &flow, const Value &object) {
     for (int at = 0; at < 32; ++at) flow.stored.erase(key(add(object, at)));
 }
 struct Targets { uint32_t fold, find, item, unit; };
+struct LeafEffect { bool valid = false; uint16_t preserved = 0; };
+template<typename Image>
+inline LeafEffect read_only_scalar_leaf(const Image &image, uint32_t entry) {
+    const auto *section = image.section(entry, 1);
+    if (!entry || !section || !(section->flags & Image::execute_flag)) return {};
+    uint32_t end = static_cast<uint32_t>((std::min)(uint64_t(section->end), uint64_t(entry) + 512));
+    const auto function = frame_detail::function_at(image, entry);
+    const bool framed = function != image.functions.end();
+    if (framed) {
+        if (function->begin != entry || function->end > end || (function->owner && function->owner != entry) ||
+                frame_detail::logical_regions(image, entry).size() != 1) return {};
+        const auto *unwind = image.read(function->unwind, 4);
+        if (!unwind || unwind[0] != 1 || unwind[1] || unwind[2] || unwind[3]) return {};
+        end = function->end;
+    } else {
+        const auto *before = entry ? image.read(entry - 1, 1) : nullptr;
+        if (!before || *before != 0xcc) return {};
+        const auto next = std::lower_bound(image.functions.begin(), image.functions.end(), entry,
+            [](const auto &value, uint32_t address) { return value.begin < address; });
+        if (next != image.functions.end()) end = (std::min)(end, next->begin);
+    }
+    std::map<uint32_t, Instruction> code;
+    uint16_t written = 0;
+    bool bounded = framed;
+    for (uint32_t at = entry; at < end;) {
+        Instruction row;
+        if (!callable_exception_detail::instruction(image, at, end, row)) return {};
+        const auto &op = row.decoded;
+        if (!framed && op.opcode == 0xcc && op.len == 1) { end = at; bounded = true; break; }
+        const bool conditional = (op.opcode >= 0x70 && op.opcode <= 0x7f) ||
+            (op.opcode == 0x0f && op.opcode2 >= 0x80 && op.opcode2 <= 0x8f);
+        const bool jump = op.opcode == 0xe9 || op.opcode == 0xeb;
+        // This is a complete side-effect whitelist, not an inference from a
+        // write-register decoder's lack of knowledge about some instruction.
+        // Memory operands occur only in ordinary integer loads. Every other
+        // operation works on registers/flags; CALL, store, stack adjustment,
+        // indirect transfer and unknown instructions reject the whole leaf.
+        const bool load = op.opcode == 0x8b ||
+            (op.opcode == 0x0f && (op.opcode2 == 0xb6 || op.opcode2 == 0xb7 || op.opcode2 == 0xbe || op.opcode2 == 0xbf));
+        const bool scalar = op.modrm_mod == 3 &&
+            (op.opcode == 0x89 || op.opcode == 0x01 || op.opcode == 0x03 ||
+             op.opcode == 0x31 || op.opcode == 0x33 || op.opcode == 0x39 || op.opcode == 0x3b ||
+             ((op.opcode == 0x81 || op.opcode == 0x83) && (op.modrm_reg == 0 || op.modrm_reg == 7)) ||
+             (op.opcode == 0x0f && op.opcode2 == 0xaf));
+        if (!conditional && !jump && op.opcode != 0xc3 && !load && !scalar &&
+                !(op.opcode >= 0xb8 && op.opcode <= 0xbf)) return {};
+        if (op.opcode != 0xc3) for (unsigned reg = 0; reg < 16; ++reg) if (writes_gpr(op, reg)) {
+            // The complete frameless body neither saves nor restores any
+            // nonvolatile register. RET alone consumes the CALL return slot.
+            if (!callable_exception_detail::volatile_register(reg)) return {};
+            written |= uint16_t(1u << reg);
+        }
+        code.emplace(at, std::move(row));
+        at += op.len;
+    }
+    if (!bounded || code.empty() || !code.count(entry) || !image.read(entry, end - entry)) return {};
+    std::set<uint32_t> visited;
+    std::vector<uint32_t> pending{entry};
+    unsigned returns = 0;
+    while (!pending.empty()) {
+        const auto at = pending.back(); pending.pop_back();
+        if (!visited.insert(at).second) continue;
+        const auto found = code.find(at); if (found == code.end()) return {};
+        const auto &row = found->second; const auto &op = row.decoded;
+        const uint32_t next = at + op.len;
+        if (op.opcode == 0xc3) { ++returns; continue; }
+        const bool conditional = (op.opcode >= 0x70 && op.opcode <= 0x7f) ||
+            (op.opcode == 0x0f && op.opcode2 >= 0x80 && op.opcode2 <= 0x8f);
+        const bool jump = op.opcode == 0xe9 || op.opcode == 0xeb;
+        if (conditional || jump) {
+            const auto target = method_call_detail::branch_destination(row);
+            // This bounded leaf family is acyclic. Every edge progresses to
+            // a decoded instruction and every reachable path ends in RET.
+            if (target <= at || !code.count(target)) return {};
+            pending.push_back(target);
+        }
+        if (!jump) { if (!code.count(next)) return {}; pending.push_back(next); }
+    }
+    if (!returns || visited.size() != code.size()) return {};
+    constexpr uint16_t volatile_mask = (1u << 0) | (1u << 1) | (1u << 2) |
+        (1u << 8) | (1u << 9) | (1u << 10) | (1u << 11);
+    return {true, static_cast<uint16_t>(volatile_mask & ~written)};
+}
 inline uint32_t direct_target(const Instruction &instruction) {
     if (instruction.decoded.opcode != 0xe8 || instruction.decoded.len != 5) return 0;
     return instruction.address + 5 + static_cast<int32_t>(instruction.decoded.imm.imm32);
@@ -142,7 +226,7 @@ inline bool comparison(const Flow &flow, uint32_t offset, std::string &text) {
         fifth->second == memory(add(query, 16));
 }
 inline Flow transfer(Flow flow, const Instruction &instruction, const Targets &targets,
-        bool query, uint32_t capture) {
+        bool query, uint32_t capture, LeafEffect leaf = {}) {
     const auto &op = instruction.decoded;
     const unsigned reg = op.modrm_reg + (op.rex_r ? 8 : 0), rm = op.modrm_rm + (op.rex_b ? 8 : 0);
     const auto at = address(flow, instruction);
@@ -152,14 +236,15 @@ inline Flow transfer(Flow flow, const Instruction &instruction, const Targets &t
             invalidate_string(flow, flow.reg[2]); flow.formatted.insert(key(flow.reg[2]));
         } else if (target == targets.fold && flow.formatted.count(key(argument))) {
             invalidate_string(flow, argument); flow.folded.insert(key(argument));
-        } else if (target != targets.find) {
+        } else if (target != targets.find && !leaf.valid) {
             // Unknown calls cannot preserve a local string they receive.
             for (const auto index : {1u, 2u, 8u, 9u}) if (flow.reg[index].base == "stack") {
                 flow.formatted.erase(key(flow.reg[index])); flow.folded.erase(key(flow.reg[index]));
                 invalidate_string(flow, flow.reg[index]);
             }
         }
-        for (const auto index : {0u, 1u, 2u, 8u, 9u, 10u, 11u}) flow.reg[index] = {};
+        for (const auto index : {0u, 1u, 2u, 8u, 9u, 10u, 11u})
+            if (!leaf.valid || !(leaf.preserved & (1u << index))) flow.reg[index] = {};
         flow.reg[0] = {"return@" + std::to_string(instruction.address), 0}; return flow;
     }
     if (op.opcode >= 0x50 && op.opcode <= 0x57) { flow.reg[4] = add(flow.reg[4], -8); return flow; }
@@ -224,7 +309,7 @@ inline Flow transfer(Flow flow, const Instruction &instruction, const Targets &t
 struct Analysis { uint32_t fold = 0, name = 0, job = 0; bool valid = false; std::string failure; };
 template<typename Image>
 inline Analysis analyze(const Image &image, uint32_t owner, uint32_t offset,
-        const Targets &targets, bool query, uint32_t capture) {
+        const Targets &targets, bool query, uint32_t capture, std::set<uint32_t> *throw_slots = nullptr) {
     const auto reject = [](uint32_t address, const std::string &reason) {
         std::ostringstream message; message << reason << " at 0x" << std::hex << address;
         return Analysis{0, 0, 0, false, message.str()};
@@ -240,14 +325,45 @@ inline Analysis analyze(const Image &image, uint32_t owner, uint32_t offset,
     Flow entry; entry.reg[1] = {query ? "closure" : "capture", 0};
     entry.reg[2] = {"argument", 0}; entry.reg[4] = {"stack", 0};
     std::map<uint32_t, Flow> incoming{{owner, entry}}; std::vector<uint32_t> pending{owner};
+    std::map<uint32_t, uint32_t> exception_targets;
+    std::map<uint32_t, LeafEffect> scalar_leaves;
+    bool exceptional_owner_proved = false;
     size_t updates = 0;
     while (!pending.empty()) {
         if (++updates > code.size() * 64) return reject(owner, "callable flow did not converge");
         const auto current = pending.back(); pending.pop_back();
         const auto found = code.find(current); if (found == code.end()) return reject(current, "callable CFG leaves scope");
         const auto &instruction = found->second; const auto &op = instruction.decoded;
-        const auto after = transfer(incoming.at(current), instruction, targets, query, capture);
+        LeafEffect leaf;
+        if (const auto target = direct_target(instruction); target && target != targets.fold && target != targets.find &&
+                target != targets.item && target != targets.unit) {
+            auto [effect, inserted] = scalar_leaves.emplace(target, LeafEffect{});
+            if (inserted) effect->second = read_only_scalar_leaf(image, target);
+            leaf = effect->second;
+        }
+        const auto after = transfer(incoming.at(current), instruction, targets, query, capture, leaf);
         if (op.opcode == 0xc3 || op.opcode == 0xc2 || op.opcode == 0xcc) continue;
+        if (const auto target = direct_target(instruction)) {
+            auto [terminal, inserted] = exception_targets.emplace(target, 0);
+            if (inserted) terminal->second = callable_exception_detail::prove(image, target);
+            if (terminal->second) {
+                if (!exceptional_owner_proved) {
+                    for (const auto &[begin, end] : frame_detail::logical_regions(image, owner)) {
+                        DecodeFailure failure;
+                        if (!display_decode::no_eh_continuations(image, begin, end, &failure)) {
+                            std::ostringstream reason;
+                            reason << "throwing callable has unproved exception continuation: owner=0x" << std::hex << begin;
+                            if (failure.address) reason << " action=0x" << failure.address;
+                            if (failure.reason && *failure.reason) reason << " " << failure.reason;
+                            return reject(current, reason.str());
+                        }
+                    }
+                    exceptional_owner_proved = true;
+                }
+                if (throw_slots) throw_slots->insert(terminal->second);
+                continue;
+            }
+        }
         if (op.opcode == 0xff && op.modrm_reg >= 2) {
             // MSVC's checked string deallocation has an imported, explicitly
             // nonreturning invalid-parameter arm. This closes that arm; it
@@ -330,6 +446,7 @@ inline void discover_callable_searches(const Image &image, const Catalog &catalo
         address_runtime::Progress report = {}) {
     using namespace callable_search_detail;
     state.callable_searches.clear(); state.missing_callable_searches.clear();
+    size_t sealed_payload = 0;
     for (const auto &entry : read(catalog.callable_search)) {
         const Targets targets{mapped(state, entry.fold), mapped(state, entry.find), mapped(state, entry.item), mapped(state, entry.unit)};
         uint32_t offset = UINT32_MAX;
@@ -337,16 +454,19 @@ inline void discover_callable_searches(const Image &image, const Catalog &catalo
         else for (const auto &field : state.semantic_fields)
             if (field.type == entry.type && field.member == entry.member && field.size == 32) offset = field.offset;
         std::vector<CallableSearchBinding> candidates;
+        struct CandidateSource { uint32_t query_owner, query_table, invoker_owner, predicate_table; };
+        std::vector<CandidateSource> sources;
         std::string failure;
         const std::string variant = "@_NV?$variant@PEAVunitst@@PEAVitemst@@@std@@@std@@";
         const std::string pair = "@_NU?$pair@PEAX_N@std@@@std@@";
         if (targets.fold && targets.find && targets.item && targets.unit && offset != UINT32_MAX &&
                 entry.predicate_name.ends_with(variant) && image.rtti_catalog_complete()) {
             std::set<uint32_t> query_calls;
+            std::map<uint32_t, std::pair<uint32_t, uint32_t>> query_sources;
             for (const auto table : image.find_vtables(entry.query_name))
                 for (const auto function : table_functions(image, table)) {
                     const auto result = analyze(image, function, offset, targets, true, entry.capture);
-                    if (result.valid) query_calls.insert(result.fold);
+                    if (result.valid) { query_calls.insert(result.fold); query_sources.emplace(result.fold, std::pair{function, table}); }
                     else if (result.failure.find("fold has") != std::string::npos) failure = result.failure;
                 }
             if (query_calls.size() == 1) for (uint32_t shape = 1; shape <= 2; ++shape) {
@@ -359,11 +479,47 @@ inline void discover_callable_searches(const Image &image, const Catalog &catalo
                     if (!result.valid) { failure = result.failure; continue; }
                     candidates.push_back({entry.identity, predicate, call, result.fold, result.name, result.job,
                         *query_calls.begin(), targets.fold, targets.find, shape, entry.capture});
+                    const auto source = query_sources.at(*query_calls.begin());
+                    sources.push_back({source.first, source.second, function, table});
                 }
             }
         }
         if (candidates.size() == 1) {
-            state.callable_searches.push_back(candidates.front());
+            auto &binding = candidates.front();
+            const auto &source = sources.front();
+            entry_prefix_detail::EvidenceImage<Image> observed(image);
+            std::set<uint32_t> slots;
+            const auto query = analyze(observed, source.query_owner, offset, targets, true, entry.capture, &slots);
+            const auto predicate = analyze(observed, binding.predicate, offset, targets, false, entry.capture, &slots);
+            const auto invocation = invoker(observed, source.invoker_owner, entry.capture);
+            const bool sealed = query.valid && predicate.valid && query.fold == binding.query_fold &&
+                predicate.fold == binding.fold_call && predicate.name == binding.name_find && predicate.job == binding.job_find &&
+                invocation == std::pair{binding.invoker_call, binding.predicate} &&
+                observed.read(source.query_table, 6 * 8) && observed.read(source.predicate_table, 6 * 8) &&
+                observed.indexes() && observed.seal(binding);
+            if (!sealed) {
+                state.missing_callable_searches.push_back(entry.identity);
+                if (report) report("Native callable search unresolved: complete live evidence could not be sealed; " +
+                    (query.valid ? predicate.failure : query.failure));
+                continue;
+            }
+            binding.throw_slots.assign(slots.begin(), slots.end());
+            // Unlike entry patches, this certificate needs no whole-image
+            // negative pointer veto. Retain only ASLR operands in its reads.
+            std::erase_if(binding.relocations, [&](const auto &relocation) {
+                return std::none_of(binding.evidence.begin(), binding.evidence.end(), [&](const auto &span) {
+                    return span.address <= relocation.first && uint64_t(relocation.first) + 8 <= uint64_t(span.address) + span.bytes.size();
+                });
+            });
+            size_t payload = 64 + binding.evidence.size() * 8 + binding.relocations.size() * 12 + binding.throw_slots.size() * 4;
+            for (const auto &span : binding.evidence) payload += span.bytes.size();
+            if (payload > 32u * 1024u * 1024u - sealed_payload || binding.throw_slots.size() > 16) {
+                state.missing_callable_searches.push_back(entry.identity);
+                if (report) report("Native callable search unresolved: bounded live evidence budget exceeded");
+                continue;
+            }
+            sealed_payload += payload;
+            state.callable_searches.push_back(std::move(binding));
             if (report) { std::ostringstream message; message << "Native callable search proved: 0x" << std::hex
                 << entry.owner << " -> 0x" << candidates.front().predicate << " argument-shape=" << std::dec
                 << candidates.front().argument_shape; report(message.str()); }
@@ -387,11 +543,16 @@ inline bool complete_callable_searches(address_runtime::State &state, const std:
             [](const auto &binding, uint32_t identity) { return binding.contract < identity; });
         bool valid = at != state.callable_searches.end() && at->contract == entry.identity &&
             at->capture_offset == entry.capture && (at->argument_shape == 1 || at->argument_shape == 2) &&
-            at->fold_target == mapped(state, entry.fold) && at->find_target == mapped(state, entry.find);
+            at->fold_target == mapped(state, entry.fold) && at->find_target == mapped(state, entry.find) &&
+            at->preferred_base && !at->evidence.empty();
         if (valid) {
             std::set<uint32_t> calls;
-            for (auto address : {at->invoker_call, at->fold_call, at->name_find, at->job_find, at->query_fold})
-                if (!address || uint64_t(address) + 5 > state.size || !calls.insert(address).second) valid = false;
+            for (auto address : {at->invoker_call, at->fold_call, at->name_find, at->job_find, at->query_fold}) {
+                const bool sealed = std::any_of(at->evidence.begin(), at->evidence.end(), [&](const auto &span) {
+                    return span.address <= address && uint64_t(address) + 5 <= uint64_t(span.address) + span.bytes.size();
+                });
+                if (!address || uint64_t(address) + 5 > state.size || !calls.insert(address).second || !sealed) valid = false;
+            }
             if (!at->predicate || at->predicate >= state.size || !at->fold_target || !at->find_target) valid = false;
         }
         if (valid) admitted.insert(entry.identity); else state.missing_callable_searches.push_back(entry.identity);

@@ -269,6 +269,12 @@ class NativeUiGridBinding {
 public:
     NativeUiGridBinding(graphicst *gps, const graphicst &view, void *renderer = nullptr)
         : gps_(native_graphics_identity(gps)), read_view_(gps), renderer_(renderer) {
+#ifdef _WIN32
+        // Tooltip/notification and local menu producers can enter outside
+        // the page installers. Refuse before the first native buffer write.
+        if (!g_native_dfhack_graphics_ownership_ready.load(std::memory_order_acquire))
+            throw std::runtime_error("Complete native graphics ownership unavailable");
+#endif
         NativeDfhackOutputBinding::AccessPlan source_access;
         NativeUiRendererContract raster;
         if (!gps_ || !output_access_.resolve(*gps_, false) ||

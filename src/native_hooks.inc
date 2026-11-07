@@ -151,19 +151,31 @@ static bool install_sdl_hooks() {
 #ifdef _WIN32
     prepare_native_entry_prefix_certificates();
 #endif
-    if (!install_native_dfhack_graphics_ownership()) {
-        log_line("ERROR", "Native graphics ownership could not be installed");
-        return false;
+    bool private_graphics = false;
+    try { private_graphics = install_native_dfhack_graphics_ownership(); }
+    catch (const std::exception &error) {
+        report_native_patch_error("WARN", "Native graphics buffer ownership", error.what());
+    } catch (...) {
+        report_native_patch_error("WARN", "Native graphics buffer ownership", "binding was rejected");
+    }
+    if (!private_graphics) {
+        try { uninstall_native_dfhack_graphics_ownership(); } catch (...) {}
+        if (native_dfhack_graphics_ownership_active()) {
+            log_line("ERROR", "Native graphics ownership rollback left active hooks; core initialization stopped");
+            return false;
+        }
+        log_line("WARN", "Complete graphics ownership unavailable; shared raster masking and private UI/DFHack redraws remain native; independent text sources, input and search remain available");
     }
     struct Stage {
         const char *label;
         bool (*install)();
         void (*uninstall)();
         bool (*active)();
+        bool requires_private_graphics = false;
     };
     const Stage stages[]{
         {"Native shared UI raster boundary", install_native_ui_raster_hook,
-            [] { (void)uninstall_native_ui_raster_hook(); }, [] { return native_ui_raster_hook_active(); }},
+            [] { (void)uninstall_native_ui_raster_hook(); }, [] { return native_ui_raster_hook_active(); }, true},
         {"Stone economic-use bounds guard", install_native_stone_use_guard,
             [] { (void)g_native_stone_use_guard.uninstall(); }, [] { return g_native_stone_use_guard.active(); }},
         {"Native left-click delivery", install_native_mouse_click_hook,
@@ -237,52 +249,52 @@ static bool install_sdl_hooks() {
         {"Rich-text capture", install_native_rich_hooks,
             [] { (void)uninstall_native_rich_hooks(); }, [] { return native_rich_hooks_active(); }},
         {"Native attribute and skill tooltip layer", install_native_adventure_hover_hook,
-            [] { (void)uninstall_native_adventure_hover_hook(); }, [] { return native_adventure_hover_hook_active(); }},
+            [] { (void)uninstall_native_adventure_hover_hook(); }, [] { return native_adventure_hover_hook_active(); }, true},
         {"Complete announcement capture", install_native_announcement_hook,
-            [] { (void)uninstall_native_announcement_hook(); }, [] { return native_announcement_hook_active(); }},
+            [] { (void)uninstall_native_announcement_hook(); }, [] { return native_announcement_hook_active(); }, true},
         {"Native history event capture", install_native_history_hooks,
             [] { (void)uninstall_native_history_hooks(); }, [] { return native_history_hooks_active(); }},
         {"Native tutorials and help layer", install_native_help_layer_hook,
-            [] { (void)uninstall_native_help_layer_hook(); }, [] { return native_help_layer_hook_active(); }},
+            [] { (void)uninstall_native_help_layer_hook(); }, [] { return native_help_layer_hook_active(); }, true},
         {"Native resolution selector layer", install_native_resolution_layer_hook,
-            [] { (void)uninstall_native_resolution_layer_hook(); }, [] { return native_resolution_layer_hook_active(); }},
+            [] { (void)uninstall_native_resolution_layer_hook(); }, [] { return native_resolution_layer_hook_active(); }, true},
         {"Native fortress management layer", install_native_info_layer_hook,
-            [] { (void)uninstall_native_info_layer_hook(); }, [] { return native_info_layer_hook_active(); }},
+            [] { (void)uninstall_native_info_layer_hook(); }, [] { return native_info_layer_hook_active(); }, true},
         {"Native character sheet layer", install_native_character_layer_hook,
-            [] { (void)uninstall_native_character_layer_hook(); }, [] { return native_character_layer_hook_active(); }},
+            [] { (void)uninstall_native_character_layer_hook(); }, [] { return native_character_layer_hook_active(); }, true},
         {"Native Stocks layer", install_native_stocks_layer_hook,
-            [] { (void)uninstall_native_stocks_layer_hook(); }, [] { return native_stocks_layer_hook_active(); }},
+            [] { (void)uninstall_native_stocks_layer_hook(); }, [] { return native_stocks_layer_hook_active(); }, true},
         {"Native display item assignment layer", install_native_display_layer_hook,
-            [] { (void)uninstall_native_display_layer_hook(); }, [] { return native_display_layer_hook_active(); }},
+            [] { (void)uninstall_native_display_layer_hook(); }, [] { return native_display_layer_hook_active(); }, true},
         {"Native fortress Squads layer", install_native_squads_layer_hook,
-            [] { (void)uninstall_native_squads_layer_hook(); }, [] { return native_squads_layer_hook_active(); }},
+            [] { (void)uninstall_native_squads_layer_hook(); }, [] { return native_squads_layer_hook_active(); }, true},
         {"Native announcements and report tabs layer", install_native_reports_layer_hook,
-            [] { (void)uninstall_native_reports_layer_hook(); }, [] { return native_reports_layer_hook_active(); }},
+            [] { (void)uninstall_native_reports_layer_hook(); }, [] { return native_reports_layer_hook_active(); }, true},
         {"Native Escape menu layer", install_native_pause_layer_hook,
-            [] { (void)uninstall_native_pause_layer_hook(); }, [] { return native_pause_layer_hook_active(); }},
+            [] { (void)uninstall_native_pause_layer_hook(); }, [] { return native_pause_layer_hook_active(); }, true},
         {"Native world generation layer", install_native_worldgen_layer_hook,
-            [] { (void)uninstall_native_worldgen_layer_hook(); }, [] { return native_worldgen_layer_hook_active(); }},
+            [] { (void)uninstall_native_worldgen_layer_hook(); }, [] { return native_worldgen_layer_hook_active(); }, true},
         {"Native map layer", install_native_map_layer_hook,
-            [] { (void)uninstall_native_map_layer_hook(); }, [] { return native_map_layer_hook_active(); }},
+            [] { (void)uninstall_native_map_layer_hook(); }, [] { return native_map_layer_hook_active(); }, true},
         {"Native fortress top bar layer", install_native_topbar_layer_hook,
-            [] { (void)uninstall_native_topbar_layer_hook(); }, [] { return native_topbar_layer_hook_active(); }},
+            [] { (void)uninstall_native_topbar_layer_hook(); }, [] { return native_topbar_layer_hook_active(); }, true},
         {"Native accepted petition detail layer", install_native_petition_layer_hook,
-            [] { (void)uninstall_native_petition_layer_hook(); }, [] { return native_petition_layer_hook_active(); }},
+            [] { (void)uninstall_native_petition_layer_hook(); }, [] { return native_petition_layer_hook_active(); }, true},
         {"Native accepted petitions layer", install_native_petitions_layer_hook,
-            [] { (void)uninstall_native_petitions_layer_hook(); }, [] { return native_petitions_layer_hook_active(); }},
+            [] { (void)uninstall_native_petitions_layer_hook(); }, [] { return native_petitions_layer_hook_active(); }, true},
         {"Native designation tools layer", install_native_designation_layer_hook,
-            [] { (void)uninstall_native_designation_layer_hook(); }, [] { return native_designation_layer_hook_active(); }},
+            [] { (void)uninstall_native_designation_layer_hook(); }, [] { return native_designation_layer_hook_active(); }, true},
         {"Native map hover list layer", install_native_map_hover_layer_hook,
-            [] { (void)uninstall_native_map_hover_layer_hook(); }, [] { return native_map_hover_layer_hook_active(); }},
+            [] { (void)uninstall_native_map_hover_layer_hook(); }, [] { return native_map_hover_layer_hook_active(); }, true},
         {"Native embark civilization layer", install_native_embark_civilization_layer_hook,
-            [] { (void)uninstall_native_embark_civilization_layer_hook(); }, [] { return native_embark_civilization_layer_hook_active(); }},
+            [] { (void)uninstall_native_embark_civilization_layer_hook(); }, [] { return native_embark_civilization_layer_hook_active(); }, true},
         {"Optional fortress riding module", install_native_riding_hook,
             [] { (void)uninstall_native_riding_hook(); }, [] { return native_riding_hooks_active(); }},
         // DFHack can arrive later; Present retries these optional observers.
         {"DFHack render layers", install_native_dfhack_render_layers,
-            [] { (void)uninstall_native_dfhack_render_layers(); }, [] { return native_dfhack_render_layers_active(); }},
+            [] { (void)uninstall_native_dfhack_render_layers(); }, [] { return native_dfhack_render_layers_active(); }, true},
         {"DFHack text capture", install_native_dfhack_capture_hook,
-            [] { (void)uninstall_native_dfhack_capture_hook(); }, [] { return native_dfhack_capture_hook_active(); }},
+            [] { (void)uninstall_native_dfhack_capture_hook(); }, [] { return native_dfhack_capture_hook_active(); }, true},
         {"DFHack console text", install_native_dfhack_console_hook,
             [] { (void)uninstall_native_dfhack_console_hook(); }, [] { return native_dfhack_console_hook_active(); }},
         {"DFHack Lua output", install_native_dfhack_lua_output_hook,
@@ -298,6 +310,12 @@ static bool install_sdl_hooks() {
     };
     size_t enabled = 0, unavailable = 0;
     for (const auto &stage : stages) {
+        if (stage.requires_private_graphics && !private_graphics) {
+            ++unavailable;
+            report_native_patch_error("WARN", stage.label,
+                "complete graphics ownership unavailable; retaining native rendering");
+            continue;
+        }
         bool installed = false;
         try { installed = stage.install(); }
         catch (const std::exception &error) {

@@ -341,7 +341,7 @@ static bool native_shared_chronicle_registry_current(uint64_t generation, uint64
 }
 
 static NativeSharedChronicleSnapshot native_shared_chronicle_snapshot(bool worldgen,
-        const std::array<std::vector<NativeDrawnTextRow>, 2> &captions) {
+        const std::array<NativeDrawnTextView, 2> &captions) {
     NativeSharedChronicleSnapshot result;
 #ifdef _WIN32
     if (!worldgen || !g_native_history_chronicle_lifetime_ready || !g_native_history_box) return result;

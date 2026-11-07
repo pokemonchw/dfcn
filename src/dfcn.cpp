@@ -43903,14 +43903,7 @@ void Overlay::render(SDL_Renderer *renderer) {
         native_ui_toolbar_tooltip_.reset();
         return;
     }
-    (void)install_native_dfhack_render_layers();
-    (void)install_native_dfhack_capture_hook();
-    (void)install_native_dfhack_console_hook();
-    (void)install_native_dfhack_lua_output_hook();
-    (void)install_native_dfhack_sitemap_hook();
-    (void)install_native_dfhack_messagebox_hook();
-    (void)install_native_dfhack_prompt_hook();
-    (void)install_native_dfhack_stonesense_hook();
+    retry_native_dfhack_hooks();
     struct EndKnowledgeFrame {
         std::optional<std::vector<Match>> &matches;
         bool &transition;
@@ -44726,6 +44719,7 @@ DFCN_EXPORT void dfhooks_init() {
         dfcn::stop_reloadable_core();
         return;
     }
+    dfcn::native_prepare_live_abi_plans();
     dfcn::start_native_identity_translation_jobs();
     dfcn::native_mouse_coordinates_load();
     dfcn::native_map_preview_load();

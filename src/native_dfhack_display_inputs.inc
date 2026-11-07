@@ -347,11 +347,8 @@ static bool native_dfhack_display_input_profile(uintptr_t base,
         return false;
     };
     if (!pe_runtime::usable(state)) return reject("address catalog is not usable");
-    if (state.edition == 1 || state.edition == 2) {
-        if (!native_dfhack_display_input_reference_profile(base, sites))
-            return reject("reference display operand contract is unavailable");
-        return true;
-    }
+    // A packaged image identity supplies discovery evidence, not a different
+    // renderer path. Every image consumes the same complete selector set.
     if (!state.missing_display_scopes.empty() || state.display_sites.empty()) {
         std::ostringstream message;
         message << "Native display input snapshot: incomplete display scope evidence; sites="

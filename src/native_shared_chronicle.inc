@@ -13,10 +13,17 @@ struct NativeSharedChronicleSnapshot {
     bool stable = false;
 };
 
+// Presence is distinct from sequence zero: an unclassified writer still
+// reserves its cells, including spaces, against a paragraph destination.
+struct NativeCapturedUiWriter {
+    uint64_t sequence = 0;
+    bool present = false;
+};
+
 // The registry and native allocation lock are defined with the hooks later
 // in this translation unit. Rendering consumes only their immutable snapshot.
 static NativeSharedChronicleSnapshot native_shared_chronicle_snapshot(bool worldgen,
-        const std::array<std::vector<NativeDrawnTextRow>, 2> &captions);
+        const std::array<NativeDrawnTextView, 2> &captions);
 static bool native_shared_chronicle_registry_current(uint64_t generation, uint64_t revision);
 
 static bool native_shared_chronicle_current(const NativeCapturedUiFrame::Chronicle &group,
@@ -58,8 +65,8 @@ template<typename CurrentRecord, typename Memory, typename Fit>
 static std::vector<NativeCapturedUiFrame::Chronicle> native_shared_chronicle_plan(
         const NativeSharedChronicleSnapshot &snapshot, const NativeCapturedUiFrame &frame,
         const graphicst &gps, const NativeUiLayerGrid &input,
-        const std::array<std::vector<NativeDrawnTextRow>, 2> &captions,
-        const std::array<std::unordered_map<size_t, uint64_t>, 2> &writers,
+        const std::array<std::vector<const NativeDrawnTextRow *>, 2> &captions,
+        const std::array<std::vector<NativeCapturedUiWriter>, 2> &writers,
         const NativeBitmapFontTextures &fonts, CurrentRecord current_record, Memory memory, Fit fit) {
     std::vector<NativeCapturedUiFrame::Chronicle> result;
     if (!snapshot.stable || !snapshot.rows || !snapshot.width || *snapshot.width <= 0 ||
@@ -71,6 +78,12 @@ static std::vector<NativeCapturedUiFrame::Chronicle> native_shared_chronicle_pla
     std::optional<SDL_Rect> allocation;
     std::optional<int64_t> paragraph_left;
     std::optional<bool> plane;
+    // Token ownership supplies the exact object and position. Index those
+    // identities once instead of scanning every caption for every token.
+    // Keep every candidate so duplicate valid writers remain ambiguous.
+    std::map<std::tuple<uintptr_t, int, int>, std::vector<const NativeDrawnTextRow *>> captions_by_origin;
+    for (const auto &values : captions) for (const auto *caption : values)
+        captions_by_origin[{caption->address, caption->x, caption->y}].push_back(caption);
     const auto same_clip = [](const SDL_Rect &a, const SDL_Rect &b) {
         return a.x == b.x && a.y == b.y && a.w == b.w && a.h == b.h;
     };
@@ -85,9 +98,9 @@ static std::vector<NativeCapturedUiFrame::Chronicle> native_shared_chronicle_pla
         const auto &raster = input.planes[draw.top_layer ? 1 : 0];
         for (size_t byte = 0; byte < draw.source.size(); ++byte) {
             const size_t at = (size_t(draw.x) + byte) * frame.dimy + draw.y;
-            const auto last = writers[draw.top_layer ? 1 : 0].find(at);
+            const auto &last = writers[draw.top_layer ? 1 : 0][at];
             const auto expected = static_cast<unsigned char>(draw.source[byte]);
-            if (last == writers[draw.top_layer ? 1 : 0].end() || last->second != draw.sequence ||
+            if (!last.present || last.sequence != draw.sequence ||
                     raster.screen[at * 8] != expected || (raster.flags[at] & ((1u << 3) | (1u << 4))) ||
                     (expected != ' ' && native_ui_top_layer_at(gps, at) != draw.top_layer)) return false;
             if (expected != ' ') for (size_t slot : {size_t{0}, size_t{1}, size_t{2}})
@@ -111,11 +124,13 @@ static std::vector<NativeCapturedUiFrame::Chronicle> native_shared_chronicle_pla
         if (first >= end || draw.y < snapshot.rows->first || draw.y >= snapshot.rows->second) continue;
         const NativeDrawnTextRow *match = nullptr;
         bool ambiguous = false;
-        for (const auto &values : captions) for (const auto &caption : values) {
-            if (caption.address != token.identity || caption.x != first || caption.y != draw.y ||
-                    caption.sequence <= before_draw->second ||
+        const auto candidates = captions_by_origin.find({token.identity, first, draw.y});
+        const auto visible = std::string_view(token.source).substr(first - draw.x, end - first);
+        if (candidates != captions_by_origin.end()) for (const auto *candidate : candidates->second) {
+            const auto &caption = *candidate;
+            if (caption.sequence <= before_draw->second ||
                     caption.complete_source != token.source || caption.source !=
-                    token.source.substr(first - draw.x, end - first) || !owned(caption) ||
+                    visible || !owned(caption) ||
                     caption.draw_clip->x != draw.clip_left ||
                     int64_t(caption.draw_clip->x) + caption.draw_clip->w != draw.clip_right) continue;
             if (match) ambiguous = true; else match = &caption;
@@ -152,7 +167,8 @@ static std::vector<NativeCapturedUiFrame::Chronicle> native_shared_chronicle_pla
     std::map<int, std::vector<NativeTextCardRow>> fields;
     // Retain all current writers, including unsupported events and controls.
     // Split overwritten captures at actual sequence boundaries, never by text.
-    for (const auto &values : captions) for (const auto &draw : values) {
+    for (const auto &values : captions) for (const auto *record : values) {
+        const auto &draw = *record;
         if (!current_record(draw) || draw.top_layer != *plane || draw.y < top || draw.y >= bottom) continue;
         int first = -1;
         const auto flush = [&](int end) {
@@ -165,8 +181,8 @@ static std::vector<NativeCapturedUiFrame::Chronicle> native_shared_chronicle_pla
             bool current = x < draw.x + static_cast<int>(draw.source.size()) && x >= left && x < right;
             if (current) {
                 const size_t at = size_t(x) * frame.dimy + draw.y;
-                const auto writer = writers[*plane ? 1 : 0].find(at);
-                current = writer != writers[*plane ? 1 : 0].end() && writer->second == draw.sequence &&
+                const auto &writer = writers[*plane ? 1 : 0][at];
+                current = writer.present && writer.sequence == draw.sequence &&
                     raster.screen[at * 8] == static_cast<unsigned char>(draw.source[x - draw.x]);
             }
             if (current && first < 0) first = x;
@@ -218,8 +234,8 @@ static std::vector<NativeCapturedUiFrame::Chronicle> native_shared_chronicle_pla
                         if (erased.contains(at)) continue;
                         // Unknown ink/artwork, a different completed writer
                         // (even spaces), or the other plane reserves the cell.
-                        const auto writer = writers[*plane ? 1 : 0].find(at);
-                        if ((ch && ch != ' ') || writer != writers[*plane ? 1 : 0].end() ||
+                        const auto &writer = writers[*plane ? 1 : 0][at];
+                        if ((ch && ch != ' ') || writer.present ||
                                 (raster.flags[at] & ((1u << 3) | (1u << 4))) ||
                                 (native_ui_top_layer_at(gps, at) != *plane &&
                                  (gps.screen_top && gps.screen_top[at * 8] && gps.screen_top[at * 8] != ' '))) valid = false;

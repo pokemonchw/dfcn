@@ -12,6 +12,7 @@ static bool install_native_dfhack_capture_hook();
 static void uninstall_native_dfhack_capture_hook();
 static bool native_dfhack_capture_hook_active();
 static bool install_native_dfhack_render_layers();
+static void retry_native_dfhack_hooks();
 static void uninstall_native_dfhack_render_layers();
 static bool native_dfhack_render_layers_active();
 static bool native_dfhack_render_native_scan_blocked(const graphicst *gps) noexcept;

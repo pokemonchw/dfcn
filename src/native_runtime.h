@@ -9,7 +9,9 @@
 #include <cstring>
 #include <filesystem>
 #include <memory>
+#include <map>
 #include <optional>
+#include <set>
 #include <string>
 #include <utility>
 #include <vector>
@@ -62,9 +64,12 @@ inline graphicst *native_graphics_owner() {
     constexpr uintptr_t gps_rva = 0x0264a3f0;
     // The main executable base is fixed for this core's lifetime. Keep the
     // address lookup out of per-cell readers; settings themselves stay live.
-    static const auto executable = GetModuleHandleW(nullptr);
-    return executable ? reinterpret_cast<graphicst *>(
-        native_pe_address(reinterpret_cast<uintptr_t>(executable), gps_rva)) : nullptr;
+    static auto *const graphics = [] {
+        const auto executable = GetModuleHandleW(nullptr);
+        return executable ? reinterpret_cast<graphicst *>(
+            native_pe_address(reinterpret_cast<uintptr_t>(executable), gps_rva)) : nullptr;
+    }();
+    return graphics;
 #else
     // gps is a process-lifetime object; keep symbol lookup out of native
     // caption and DFHack tile callbacks while reading its live buffers.
@@ -89,22 +94,116 @@ inline graphicst *native_graphics_identity(graphicst *graphics) noexcept {
 
 inline bool native_graphics_layout_changed() noexcept {
 #ifdef _WIN32
-    const auto &state = pe_runtime::state();
-    // Failure or partial coverage must never select the reference struct as
-    // an unknown executable's raw layout. Exact baseline identities alone
-    // can use that layout directly.
-    if (!pe_runtime::usable(state)) return true;
-    // Scanned builds always use the canonical header, including those where
-    // the present fields happen to retain their offsets. Absent enum tokens
-    // still need zero slots instead of bytes from the next native member.
-    if (state.edition > 2) return true;
-    if (state.graphics_fields.empty()) return state.edition > 2;
-    const auto root = pe_runtime::resolve(state.ranges, 0x0264a3f0);
-    for (const auto &field : state.graphics_fields)
-        if (uint64_t(root) + field.begin - 0x0264a3f0 != field.native) return true;
-#endif
+    // Every PE reader uses the canonical header, even when all present
+    // members retain their offsets. Missing members and absent enum tokens
+    // need zero slots, not borrowed bytes from the native object.
+    return true;
+#else
     return false;
+#endif
 }
+
+#ifdef _WIN32
+struct NativeLiveCopySpan {
+    size_t offset = 0, length = 0;
+    uintptr_t source = 0; // Zero denotes an uncovered destination interval.
+};
+struct NativeLiveCopyPlan {
+    std::vector<NativeLiveCopySpan> spans;
+    bool ready = false;
+};
+
+// Only immutable address evidence is cached. Every execution copies the
+// current game values, including scalars changed by the preceding native call.
+inline NativeLiveCopyPlan native_make_live_copy_plan(
+        std::vector<NativeLiveCopySpan> copies, size_t extent) {
+    NativeLiveCopyPlan result;
+    if (copies.empty()) return result;
+    std::sort(copies.begin(), copies.end(), [](const auto &left, const auto &right) {
+        return left.offset < right.offset || (left.offset == right.offset && left.length < right.length);
+    });
+    std::vector<NativeLiveCopySpan> merged;
+    for (const auto &copy : copies) {
+        if (!copy.source || !copy.length || copy.offset > extent || copy.length > extent - copy.offset ||
+                copy.length > UINTPTR_MAX - copy.source) return {};
+        if (!merged.empty()) {
+            auto &last = merged.back();
+            const auto end = last.offset + last.length;
+            if (copy.offset <= end) {
+                const auto delta = copy.offset - last.offset;
+                const bool consecutive = delta <= UINTPTR_MAX - last.source && last.source + delta == copy.source;
+                if (copy.offset < end && !consecutive) return {};
+                if (consecutive) {
+                    last.length = std::max(end, copy.offset + copy.length) - last.offset;
+                    continue;
+                }
+            }
+        }
+        merged.push_back(copy);
+    }
+    size_t preceding = 0;
+    for (const auto &copy : merged) {
+        if (preceding < copy.offset) result.spans.push_back({preceding, copy.offset - preceding, 0});
+        result.spans.push_back(copy);
+        preceding = copy.offset + copy.length;
+    }
+    if (preceding < extent) result.spans.push_back({preceding, extent - preceding, 0});
+    result.ready = true;
+    return result;
+}
+inline void native_execute_live_copy_plan(void *destination, const NativeLiveCopyPlan &plan) noexcept {
+    auto *bytes = static_cast<unsigned char *>(destination);
+    for (const auto &span : plan.spans) {
+        if (span.source) std::memcpy(bytes + span.offset, reinterpret_cast<const void *>(span.source), span.length);
+        else std::memset(bytes + span.offset, 0, span.length);
+    }
+}
+
+struct NativeGraphicsCopyPlan {
+    uintptr_t owner = 0;
+    NativeLiveCopyPlan copy;
+    // Each byte names its maximal contiguous source/destination span. This
+    // makes frequent member reads constant-time without accepting enum holes.
+    std::vector<uint32_t> members;
+};
+inline const NativeGraphicsCopyPlan &native_graphics_copy_plan() noexcept {
+    // pe_runtime::state() and the main executable base have core lifetime.
+    static const NativeGraphicsCopyPlan plan = []() noexcept {
+        NativeGraphicsCopyPlan result;
+        try {
+            const auto &state = pe_runtime::state();
+            const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+            if (!pe_runtime::usable(state) || !executable || state.size > UINTPTR_MAX - executable) return result;
+            constexpr uint32_t root = 0x0264a3f0;
+            constexpr uint64_t end = uint64_t(root) + sizeof(graphicst);
+            const auto owner = pe_runtime::resolve(state.ranges, root);
+            if (!owner || owner >= state.size) return result;
+            result.owner = executable + owner;
+            if (state.graphics_fields.empty()) return result;
+            std::vector<NativeLiveCopySpan> copies;
+            copies.reserve(state.graphics_fields.size());
+            uint32_t preceding = root;
+            for (const auto &field : state.graphics_fields) {
+                if (field.begin < preceding || field.end <= field.begin || field.end > end || !field.native ||
+                        uint64_t(field.native) + field.end - field.begin > state.size) return result;
+                copies.push_back({field.begin - root, field.end - field.begin, executable + field.native});
+                preceding = field.end;
+            }
+            result.copy = native_make_live_copy_plan(std::move(copies), sizeof(graphicst));
+            if (!result.copy.ready) return result;
+            if (result.copy.spans.size() >= UINT32_MAX) { result.copy = {}; return result; }
+            result.members.resize(sizeof(graphicst));
+            for (size_t index = 0; index < result.copy.spans.size(); ++index) {
+                const auto &span = result.copy.spans[index];
+                if (span.source) std::fill_n(result.members.begin() + span.offset, span.length,
+                    static_cast<uint32_t>(index + 1));
+            }
+            return result;
+        } catch (...) { return NativeGraphicsCopyPlan{}; }
+    }();
+    return plan;
+}
+#endif
 
 // A native field must be backed by the resolver's actual member evidence.
 // Consecutive spans can form one field only when their native bytes are also
@@ -114,38 +213,15 @@ inline const void *native_graphics_member_address(const graphicst *graphics,
     if (!graphics || !length || reference > sizeof(graphicst) ||
             length > sizeof(graphicst) - reference) return nullptr;
 #ifdef _WIN32
-    if (!native_pe_usable() || !native_graphics_owner()) return nullptr;
-    if (graphics == native_graphics_owner()) {
-        const auto &state = pe_runtime::state();
-        if (!pe_runtime::usable(state)) return nullptr;
-        if (state.graphics_fields.empty()) {
-            if (state.edition > 2) return nullptr;
-        } else {
-            constexpr uint32_t reference_root = 0x0264a3f0;
-            uint32_t coordinate = reference_root + static_cast<uint32_t>(reference);
-            const auto stop = coordinate + static_cast<uint32_t>(length);
-            const auto &fields = state.graphics_fields;
-            auto field = std::upper_bound(fields.begin(), fields.end(), coordinate,
-                [](uint32_t value, const auto &span) { return value < span.begin; });
-            if (field == fields.begin()) return nullptr;
-            --field;
-            uint32_t first = 0;
-            size_t consumed = 0;
-            while (coordinate < stop) {
-                if (field == fields.end() || coordinate < field->begin || coordinate >= field->end)
-                    return nullptr;
-                const uint64_t native = uint64_t(field->native) + coordinate - field->begin;
-                const auto count = std::min(stop, field->end) - coordinate;
-                if (!native || native + count > state.size ||
-                        (consumed && uint64_t(first) + consumed != native)) return nullptr;
-                if (!consumed) first = static_cast<uint32_t>(native);
-                consumed += count;
-                coordinate += count;
-                ++field;
-            }
-            const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-            return executable ? reinterpret_cast<const void *>(executable + first) : nullptr;
-        }
+    const auto &plan = native_graphics_copy_plan();
+    if (!plan.owner) return nullptr;
+    if (reinterpret_cast<uintptr_t>(graphics) == plan.owner) {
+        if (!plan.copy.ready) return nullptr;
+        const auto index = plan.members[reference];
+        if (!index) return nullptr;
+        const auto &span = plan.copy.spans[index - 1];
+        const auto inside = reference - span.offset;
+        return length <= span.length - inside ? reinterpret_cast<const void *>(span.source + inside) : nullptr;
     }
 #endif
     return reinterpret_cast<const unsigned char *>(graphics) + reference;
@@ -189,36 +265,12 @@ inline bool native_graphics_write_member(graphicst *graphics,
 inline bool native_graphics_snapshot(void *destination, const graphicst *source) noexcept {
     if (!destination || !source) return false;
 #ifdef _WIN32
-    if (!native_pe_usable() || !native_graphics_owner()) return false;
-    if (source == native_graphics_owner()) {
-        const auto &state = pe_runtime::state();
-        if (!pe_runtime::usable(state)) return false;
-        const auto &fields = state.graphics_fields;
-        if (fields.empty()) {
-            if (state.edition > 2) return false;
-        } else {
-            constexpr uint32_t reference_root = 0x0264a3f0;
-            constexpr uint32_t reference_end = reference_root + sizeof(graphicst);
-            if (destination == source) return false;
-            uint32_t preceding = reference_root;
-            for (const auto &field : fields) {
-                if (field.begin < preceding || field.end <= field.begin ||
-                        field.end > reference_end || !field.native ||
-                        uint64_t(field.native) + field.end - field.begin > state.size) return false;
-                preceding = field.end;
-            }
-            const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-            if (!executable) return false;
-            auto *bytes = static_cast<unsigned char *>(destination);
-            // Unmapped members and positively absent tokens have no borrowed
-            // bytes. Each writer still requires its own member binding;
-            // these zero slots do not constitute an absence declaration.
-            std::memset(bytes, 0, sizeof(graphicst));
-            for (const auto &field : fields)
-                std::memcpy(bytes + field.begin - reference_root,
-                    reinterpret_cast<const void *>(executable + field.native), field.end - field.begin);
-            return true;
-        }
+    const auto &plan = native_graphics_copy_plan();
+    if (!plan.owner) return false;
+    if (reinterpret_cast<uintptr_t>(source) == plan.owner) {
+        if (destination == source || !plan.copy.ready) return false;
+        native_execute_live_copy_plan(destination, plan.copy);
+        return true;
     }
 #endif
     if (destination != source) std::memcpy(destination, source, sizeof(graphicst));
@@ -339,39 +391,85 @@ static_assert(offsetof(NativeUiSettingsAbi, texpos_sort_descending_inactive) == 
 // A reference offset identifies a member, not a displacement to add to an
 // unknown executable's object. Keep init/enabler native method receivers raw
 // and resolve the core's individual reads through their proved member spans.
+struct NativePeFieldIndex {
+    std::map<uint32_t, std::vector<NativeLiveCopySpan>> objects;
+    bool ready = false;
+};
+inline const NativePeFieldIndex &native_pe_field_index() noexcept {
+    static const NativePeFieldIndex index = []() noexcept {
+        NativePeFieldIndex result;
+        try {
+            const auto &state = pe_runtime::state();
+            const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+            if (!pe_runtime::usable(state) || !executable || state.size > UINTPTR_MAX - executable) return result;
+            std::map<uint32_t, std::vector<const address_runtime::FieldBinding *>> objects;
+            for (const auto &field : state.fields)
+                if (field.sources >= 2 && field.width) objects[field.object].push_back(&field);
+            for (const auto &[object, fields] : objects) {
+                const auto owner = pe_runtime::resolve(state.ranges, object);
+                if (!owner || owner >= state.size) continue;
+                struct Edge { uint64_t offset; size_t field; bool enter; };
+                std::vector<Edge> edges;
+                const uint64_t limit = UINT32_MAX - object;
+                for (size_t field = 0; field < fields.size(); ++field) {
+                    const auto &binding = *fields[field];
+                    if (binding.offset >= limit) continue;
+                    edges.push_back({binding.offset, field, true});
+                    edges.push_back({std::min(limit, uint64_t(binding.offset) + binding.width), field, false});
+                }
+                std::sort(edges.begin(), edges.end(), [](const auto &left, const auto &right) {
+                    return left.offset < right.offset;
+                });
+                std::set<size_t> active;
+                std::vector<NativeLiveCopySpan> spans;
+                uint64_t preceding = 0;
+                for (size_t at = 0; at < edges.size();) {
+                    const auto offset = edges[at].offset;
+                    if (preceding < offset && active.size() == 1) {
+                        const auto &field = *fields[*active.begin()];
+                        const uint64_t native = uint64_t(owner) + field.native_offset + preceding - field.offset;
+                        if (native && native < state.size) {
+                            const auto length = std::min(offset - preceding, uint64_t(state.size) - native);
+                            const NativeLiveCopySpan span{static_cast<size_t>(preceding),
+                                static_cast<size_t>(length), executable + static_cast<uintptr_t>(native)};
+                            if (!spans.empty() && spans.back().offset + spans.back().length == span.offset &&
+                                    spans.back().source + spans.back().length == span.source)
+                                spans.back().length += span.length;
+                            else spans.push_back(span);
+                        }
+                    }
+                    // Multiple qualifying bindings leave their overlap
+                    // unavailable, even when the surrounding bytes align.
+                    do {
+                        if (edges[at].enter) active.insert(edges[at].field);
+                        else active.erase(edges[at].field);
+                        ++at;
+                    } while (at < edges.size() && edges[at].offset == offset);
+                    preceding = offset;
+                }
+                if (!spans.empty()) result.objects.emplace(object, std::move(spans));
+            }
+            result.ready = true;
+            return result;
+        } catch (...) { return NativePeFieldIndex{}; }
+    }();
+    return index;
+}
 inline const void *native_pe_field_address(uint32_t object, size_t offset, size_t length) noexcept {
-    const auto &state = pe_runtime::state();
-    if (!pe_runtime::usable(state) || !length || offset > UINT32_MAX || length > UINT32_MAX ||
+    if (!length || offset > UINT32_MAX || length > UINT32_MAX ||
             uint64_t(object) + offset + length > UINT32_MAX) return nullptr;
-    const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-    const auto owner = native_pe_rva(object);
-    if (!executable || !owner) return nullptr;
-    if (state.edition == 1 || state.edition == 2) {
-        return uint64_t(owner) + offset + length <= state.size
-            ? reinterpret_cast<const void *>(executable + owner + offset) : nullptr;
-    }
-    const uint32_t begin = object + static_cast<uint32_t>(offset);
-    const uint32_t end = begin + static_cast<uint32_t>(length);
-    uint32_t at = begin, first = 0;
-    size_t consumed = 0;
-    while (at < end) {
-        const address_runtime::FieldBinding *match = nullptr;
-        for (const auto &field : state.fields) {
-            if (field.object != object || field.sources < 2 || at < uint64_t(object) + field.offset ||
-                    at >= uint64_t(object) + field.offset + field.width) continue;
-            if (match) return nullptr;
-            match = &field;
-        }
-        if (!match) return nullptr;
-        const auto inside = at - object - match->offset;
-        const auto count = (std::min)(end - at, match->width - inside);
-        const uint64_t native = uint64_t(owner) + match->native_offset + inside;
-        if (!native || native + count > state.size || (consumed && uint64_t(first) + consumed != native))
-            return nullptr;
-        if (!consumed) first = static_cast<uint32_t>(native);
-        consumed += count; at += count;
-    }
-    return reinterpret_cast<const void *>(executable + first);
+    const auto &index = native_pe_field_index();
+    if (!index.ready) return nullptr;
+    const auto object_spans = index.objects.find(object);
+    if (object_spans == index.objects.end()) return nullptr;
+    const auto &spans = object_spans->second;
+    auto span = std::upper_bound(spans.begin(), spans.end(), offset,
+        [](size_t value, const auto &candidate) { return value < candidate.offset; });
+    if (span == spans.begin()) return nullptr;
+    --span;
+    const auto inside = offset - span->offset;
+    if (inside >= span->length || length > span->length - inside) return nullptr;
+    return reinterpret_cast<const void *>(span->source + inside);
 }
 
 template <typename Value>
@@ -499,9 +597,11 @@ inline const auto *native_ui_settings_source() {
     constexpr uintptr_t init_rva = 0x023cd770;
     // The main image stays fixed for the process lifetime. Widget scans call
     // this per cell; resolve its base once while reading live settings below.
-    static const auto executable = GetModuleHandleW(nullptr);
-    const auto *settings = executable ? reinterpret_cast<const NativeUiSettingsAbi *>(
-        native_pe_address(reinterpret_cast<uintptr_t>(executable), init_rva)) : nullptr;
+    static const auto *const settings = [] {
+        const auto executable = GetModuleHandleW(nullptr);
+        return executable ? reinterpret_cast<const NativeUiSettingsAbi *>(
+            native_pe_address(reinterpret_cast<uintptr_t>(executable), init_rva)) : nullptr;
+    }();
 #else
     // The game library and its init object stay loaded for the process
     // lifetime. Cache only the address; callers still read live settings.
@@ -528,25 +628,47 @@ inline bool native_ui_settings_read_member(const void *settings, size_t offset, 
 }
 
 #ifdef _WIN32
+inline const NativeLiveCopyPlan &native_ui_settings_copy_plan() noexcept {
+    static const NativeLiveCopyPlan plan = []() noexcept {
+        try {
+            if (!native_ui_settings_source() || !native_pe_field_index().ready) return NativeLiveCopyPlan{};
+            std::vector<NativeLiveCopySpan> copies;
+            for (const auto &field : pe_runtime::state().fields) {
+                if (field.object != 0x023cd770 || field.offset >= sizeof(NativeUiSettingsAbi) ||
+                        field.width > sizeof(NativeUiSettingsAbi) - field.offset) continue;
+                const auto *member = native_pe_field_address(field.object, field.offset, field.width);
+                if (!member) return NativeLiveCopyPlan{};
+                copies.push_back({field.offset, field.width, reinterpret_cast<uintptr_t>(member)});
+            }
+            return native_make_live_copy_plan(std::move(copies), sizeof(NativeUiSettingsAbi));
+        } catch (...) { return NativeLiveCopyPlan{}; }
+    }();
+    return plan;
+}
 inline const NativeUiSettingsAbi *native_ui_settings_view() noexcept {
-    const auto *source = native_ui_settings_source();
-    const auto &state = pe_runtime::state();
-    if (!source || !pe_runtime::usable(state)) return nullptr;
-    if (state.edition == 1 || state.edition == 2) return source;
+    const auto &plan = native_ui_settings_copy_plan();
+    if (!plan.ready) return nullptr;
+    // This private TLS header is exposed only as const. Its uncovered bytes
+    // stay at their initial zero value; refreshing padding for every button
+    // candidate does not add any live settings information.
     static thread_local NativeUiSettingsAbi view{};
-    std::memset(&view, 0, sizeof(view));
-    bool copied = false;
-    for (const auto &field : state.fields) {
-        if (field.object != 0x023cd770 || field.offset >= sizeof(view) ||
-                field.width > sizeof(view) - field.offset) continue;
-        const auto *member = native_pe_field_address(field.object, field.offset, field.width);
-        if (!member) return nullptr;
-        std::memcpy(reinterpret_cast<unsigned char *>(&view) + field.offset, member, field.width);
-        copied = true;
-    }
-    return copied ? &view : nullptr;
+    auto *bytes = reinterpret_cast<unsigned char *>(&view);
+    for (const auto &span : plan.spans)
+        if (span.source) std::memcpy(bytes + span.offset, reinterpret_cast<const void *>(span.source), span.length);
+    return &view;
 }
 #endif
+
+// Initialize immutable projections after address discovery and before render
+// hooks start. Individual readers retain their safe lazy initialization path.
+inline void native_prepare_live_abi_plans() noexcept {
+#ifdef _WIN32
+    (void)native_graphics_owner();
+    (void)native_graphics_copy_plan();
+    (void)native_pe_field_index();
+    (void)native_ui_settings_copy_plan();
+#endif
+}
 
 inline std::optional<bool> native_ui_classic(const void *settings) {
     if (!settings) return std::nullopt;

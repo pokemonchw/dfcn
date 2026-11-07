@@ -8,8 +8,10 @@ struct NativeLiveEntryPrefix {
 };
 static std::vector<NativeLiveEntryPrefix> g_native_live_entry_prefixes;
 
+template<typename Recorded>
 static bool native_live_external_entry_references(uintptr_t base, const address_runtime::State &state,
-        const address_runtime::EntryPrefixBinding &entry, NativePatchPages &pages, size_t page_size, uint32_t &failed) {
+        const address_runtime::EntryPrefixBinding &entry, NativePatchPages &pages, size_t page_size, uint32_t &failed,
+        const Recorded &recorded) {
     constexpr const char *label = "Native entry CFG live ownership";
     const auto read = [&](uint32_t address, size_t count) -> const unsigned char * {
         if (!count || uint64_t(address) + count > state.size ||
@@ -39,13 +41,38 @@ static bool native_live_external_entry_references(uintptr_t base, const address_
             part.PointerToRawData, part.SizeOfRawData, part.Characteristics});
     }
     display_decode::DecodeFailure failure;
-    const bool valid = pe_runtime::entry_prefix_detail::external_reference_veto(sections, IMAGE_SCN_MEM_EXECUTE,
-        state.size, base, entry.native, entry.end, entry.prefix.size(), true, read, failure);
+    const auto classified = [&](uint32_t address, uint32_t width) {
+        const std::pair<uint32_t, uint32_t> key{address, width};
+        const auto found = std::lower_bound(entry.external_literal_boundaries.begin(),
+            entry.external_literal_boundaries.end(), key, [](const auto &value, const auto &wanted) {
+                return std::pair{value.candidate, value.width} < wanted;
+            });
+        uint32_t length = 0;
+        return found != entry.external_literal_boundaries.end() &&
+            found->candidate == address && found->width == width &&
+            pe_runtime::entry_prefix_detail::external_literal_encoding(*found, state.size, recorded, length);
+    };
+    bool valid = pe_runtime::entry_prefix_detail::external_reference_veto(sections, IMAGE_SCN_MEM_EXECUTE,
+        state.size, base, entry.native, entry.end, entry.prefix.size(), true, read, failure, classified);
+    // The complete sealed caller has already matched the live image. Recheck
+    // negative external-entry evidence for each classified instruction too;
+    // a new extension cannot make its SIB bytes an alternate executable entry.
+    std::set<uint32_t> checked;
+    for (const auto &value : entry.external_literal_boundaries) {
+        if (!valid) break;
+        if (!checked.insert(value.instruction).second) continue;
+        uint32_t length = 0;
+        valid = pe_runtime::entry_prefix_detail::external_literal_encoding(value, state.size, recorded, length) &&
+            pe_runtime::entry_prefix_detail::external_reference_veto(sections, IMAGE_SCN_MEM_EXECUTE,
+                state.size, base, value.instruction, value.instruction + length, length, true, read, failure,
+                [](uint32_t, uint32_t) { return false; }, true);
+    }
     if (!valid && failure.address) failed = failure.address;
     return valid;
 }
 
-static bool native_rebase_entry_evidence(const address_runtime::EntryPrefixBinding &entry,
+template<typename Certificate>
+static bool native_rebase_entry_evidence(const Certificate &entry,
         uintptr_t base, uint32_t address, std::vector<unsigned char> &bytes) {
     const uint64_t end = uint64_t(address) + bytes.size();
     auto at = std::lower_bound(entry.relocations.begin(), entry.relocations.end(), address,
@@ -62,13 +89,21 @@ static bool native_rebase_entry_evidence(const address_runtime::EntryPrefixBindi
     return true;
 }
 
+#include "native_callable_search_runtime.inc"
+
 static void prepare_native_entry_prefix_certificates() noexcept {
     g_native_live_entry_prefixes.clear();
+    g_native_live_callable_searches.clear();
     try {
         const auto &state = pe_runtime::state();
-        if (!pe_runtime::usable(state) || state.edition <= 2) return;
+        if (!pe_runtime::usable(state)) return;
         const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
         if (!base) return;
+        try { prepare_native_callable_search_certificates(state, base); }
+        catch (...) {
+            g_native_live_callable_searches.clear();
+            try { log_line("WARN", "Native callable search live evidence unavailable; retaining native search"); } catch (...) {}
+        }
         const auto page_size = native_patch_page_size();
         for (const auto &entry : state.entry_prefixes) {
             constexpr const char *label = "Native entry CFG live ownership";
@@ -80,7 +115,7 @@ static void prepare_native_entry_prefix_certificates() noexcept {
             pe_runtime::entry_prefix_detail::HeaderDependencies headers;
             // Derive every header boundary and required field from the sealed
             // certificate, never from mutable live bytes. This accepts both
-            // old r54 whole-header spans and new field-only journals.
+            // whole-header spans and field-only journals.
             const auto recorded = [&](uint32_t address, size_t count) -> const unsigned char * {
                 auto found = std::upper_bound(entry.evidence.begin(), entry.evidence.end(), address,
                     [](uint32_t location, const auto &span) { return location < span.address; });
@@ -92,6 +127,14 @@ static void prepare_native_entry_prefix_certificates() noexcept {
             };
             const bool header_ready = pe_runtime::entry_prefix_detail::header_dependencies(recorded, state.size, headers);
             accepted = accepted && header_ready;
+            std::vector<std::pair<uint32_t, uint32_t>> classified_rows;
+            for (const auto &boundary : entry.external_literal_boundaries) {
+                if (!accepted) break;
+                uint32_t length = 0;
+                accepted = pe_runtime::entry_prefix_detail::external_literal_encoding(
+                    boundary, state.size, recorded, length);
+                if (accepted) classified_rows.emplace_back(boundary.instruction, boundary.instruction + length);
+            }
             for (const auto &span : entry.evidence) {
                 if (!accepted) break;
                 auto expected = span.bytes;
@@ -127,6 +170,8 @@ static void prepare_native_entry_prefix_certificates() noexcept {
                 uint64_t pointer = 0;
                 std::memcpy(&pointer, reinterpret_cast<const void *>(base + address), 8);
                 if (pointer > base + entry.native && pointer < base + entry.native + entry.prefix.size()) accepted = false;
+                for (const auto &[begin, end] : classified_rows)
+                    if (pointer >= base + begin && pointer < base + end) accepted = false;
             }
             for (const auto address : entry.imported_tail_slots) {
                 if (!accepted) break;
@@ -138,9 +183,11 @@ static void prepare_native_entry_prefix_certificates() noexcept {
                 std::memcpy(&pointer, reinterpret_cast<const void *>(base + address), 8);
                 if (!pointer || (pointer > base + entry.native &&
                         pointer < base + entry.native + entry.prefix.size())) accepted = false;
+                for (const auto &[begin, end] : classified_rows)
+                    if (pointer >= base + begin && pointer < base + end) accepted = false;
             }
             auto prefix = entry.prefix;
-            if (accepted) accepted = native_live_external_entry_references(base, state, entry, pages, page_size, failed);
+            if (accepted) accepted = native_live_external_entry_references(base, state, entry, pages, page_size, failed, recorded);
             if (accepted) accepted = native_rebase_entry_evidence(entry, base, entry.native, prefix);
             if (accepted) {
                 g_native_live_entry_prefixes.push_back({&state, entry.reference, entry.native, std::move(prefix)});

@@ -1,6 +1,7 @@
 #pragma once
 #include "native_frame_discovery.h"
 #include "native_frame_registers.h"
+#include "native_argument_alias_evidence.h"
 
 namespace dfcn::pe_runtime::inline_resize_detail {
 struct Operation {
@@ -484,6 +485,7 @@ inline void discover_inline_resizes(const Image &image, const Catalog &catalog,
         frame_detail::TargetRbpFrame frame;
     };
     std::map<uint32_t, Scope> scopes;
+    argument_alias_detail::Cache<Image> frame_origins(image);
     const auto specs = read(blob);
     std::map<uint32_t, std::vector<InlineResizeBinding>> matches;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> paired;
@@ -565,8 +567,29 @@ inline void discover_inline_resizes(const Image &image, const Catalog &catalog,
             // The complete store/select/terminator expression establishes
             // the width register's role. The relay reads that actual register,
             // so register allocation need not agree with the reference image.
-            if (target.frame == 5 && (!scope.frame.valid || address < scope.frame.ready ||
-                    uint64_t(address) + target.length > scope.frame.end)) continue;
+            if (target.frame == 5) {
+                if (!scope.frame.valid || address < scope.frame.ready) continue;
+                if (uint64_t(address) + target.length > scope.frame.end) {
+                    // A main epilogue can precede live cold blocks in address
+                    // order. Its POP/RET ends that path, not every later RBP
+                    // lifetime. Require the existing complete CFG/EH analysis
+                    // to retain the same unwind-proved prologue origin at
+                    // each actual operation boundary and its continuation.
+                    const auto &origins = frame_origins.get(owner);
+                    bool live = scope.frame.origin_known && origins.valid;
+                    uint32_t cursor = address;
+                    const uint64_t end = uint64_t(address) + target.length;
+                    while (live && cursor < end) {
+                        const auto at = origins.code.find(cursor);
+                        const auto origin = origins.origin(cursor, 5);
+                        live = at != origins.code.end() && origin && *origin == scope.frame.rsp_offset &&
+                            uint64_t(cursor) + at->second.decoded.len <= end;
+                        if (live) cursor += at->second.decoded.len;
+                    }
+                    const auto after = origins.origin(cursor, 5);
+                    if (!live || cursor != end || !after || *after != scope.frame.rsp_offset) continue;
+                }
+            }
             ++frames;
             const auto branch = scope.targets.upper_bound(address);
             if (branch != scope.targets.end() && *branch < uint64_t(address) + target.length) continue;
