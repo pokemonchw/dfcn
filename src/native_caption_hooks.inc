@@ -4499,11 +4499,94 @@ static void append_native_caption_calls(std::vector<NativeCall> &calls,
 
 #ifdef _WIN32
 #include "native_caption_widget_transactions.inc"
+
+// Item fields have their own small CALL transactions. The full profile owns
+// the same sites when available; its unrelated widget/page requirements must
+// not prevent the basic caption path from retaining complete item sources.
+static std::array<NativeCallHook, 7> g_native_independent_item_caption_hooks;
+
+static void capture_native_independent_item_resize(NativeString *source,
+        size_t width, char fill) {
+    const auto *graphics = native_graphics();
+    if (!g_native_tooltip_write && !native_private_ui_write_active(graphics) &&
+            !native_caption_separate_output(graphics))
+        capture_native_field_resize(pending_native_embark(), source, width, false, true);
+    // Forward through the shared observer, not its saved trampoline: both
+    // the item registry and ordinary complete-caption geometry need this draw.
+    capture_native_clipped_resize(source, width, fill);
+}
+
+static void capture_native_independent_item_draw(graphicst *graphics,
+        const NativeString *source, NativeJustification just, int width) {
+    graphics = native_graphics_view(graphics);
+    if (!g_native_tooltip_write && !native_private_ui_write_active(graphics) &&
+            !native_caption_separate_output(graphics))
+        capture_native_field_draw(pending_native_embark(), graphics, source,
+            NativeFieldKind::EmbarkItem);
+    capture_native_clipped_draw(graphics, source, just, width);
+}
+
+static bool native_independent_item_caption_hooks_active() {
+    return std::any_of(g_native_independent_item_caption_hooks.begin(),
+        g_native_independent_item_caption_hooks.end(),
+        [](const auto &hook) { return hook.active(); });
+}
+
+static bool uninstall_native_independent_item_caption_hooks() {
+    for (auto it = g_native_independent_item_caption_hooks.rbegin();
+            it != g_native_independent_item_caption_hooks.rend(); ++it) {
+        if (!it->uninstall("Native complete item field restore") || it->active()) return false;
+    }
+    return true;
+}
+
+static bool install_native_independent_item_caption_hooks() {
+    // A complete transaction already owns every item CALL. Do not install
+    // over it, including a partially restored transaction with a live relay.
+    if (g_native_caption_hooks.code.active()) return true;
+    const auto &shared = g_native_clipped_caption_hooks;
+    if (!shared.resize_entry.installed || !shared.resize ||
+            !shared.draw_entry.installed || !shared.draw) return true;
+    const auto base = native_history_profile_base();
+    if (!base) return false;
+    const auto sites = native_item_caption_reference_sites();
+    if (sites.size() != g_native_independent_item_caption_hooks.size()) return false;
+    size_t enabled = 0, deferred = 0;
+    for (size_t index = 0; index < sites.size(); ++index) {
+        auto &hook = g_native_independent_item_caption_hooks[index];
+        if (hook.installed) { ++enabled; continue; }
+        const auto &site = sites[index];
+        std::vector<NativeCall> calls{
+            {site.resize, 0xe1230,
+                reinterpret_cast<const void *>(&capture_native_independent_item_resize)},
+            {site.draw, 0xad9960,
+                reinterpret_cast<const void *>(&capture_native_independent_item_draw)}};
+        bool installed = false;
+        try {
+            if (native_reference_calls(calls, 0))
+                installed = hook.install(base, calls, "Native complete item field");
+        } catch (const std::exception &error) {
+            log_line("WARN", std::string("Native complete item field: ") + error.what());
+        } catch (...) { log_line("WARN", "Native complete item field preparation failed"); }
+        if (installed) { ++enabled; continue; }
+        bool restored = false;
+        try { restored = hook.uninstall("Native complete item field rollback"); } catch (...) {}
+        if (!restored || hook.active()) {
+            log_line("ERROR", "Native complete item field restoration incomplete; retaining shared entries");
+            return false;
+        }
+        ++deferred;
+    }
+    log_line("INFO", "Native complete item fields: " + std::to_string(enabled) +
+        " enabled, " + std::to_string(deferred) + " deferred independently");
+    return true;
+}
 #endif
 
 static bool native_caption_hooks_active() {
 #ifdef _WIN32
     if (g_native_farm_name_hook.active() || native_independent_caption_widgets_active() ||
+            native_independent_item_caption_hooks_active() ||
             native_independent_site_name_hooks_active() ||
             native_independent_river_name_hooks_active()) return true;
 #endif
@@ -4958,6 +5041,7 @@ static bool install_native_caption_hooks() {
     if (g_native_basic_caption_installed && g_native_clipped_caption_hooks.draw_entry.installed &&
             g_native_clipped_caption_hooks.draw) {
         register_native_static_caption_roles();
+        if (!install_native_independent_item_caption_hooks()) return false;
         install_native_independent_caption_widgets();
         if (!install_native_independent_site_name_hooks()) return false;
         if (!install_native_independent_river_name_hooks()) return false;
@@ -4971,6 +5055,7 @@ static bool install_native_caption_hooks() {
     if (native_caption_hooks_active() && !uninstall_native_caption_hooks()) return false;
     if (native_caption_hooks_active()) return false;
     if (!install_native_basic_caption_hooks()) return false;
+    if (!install_native_independent_item_caption_hooks()) return false;
     install_native_independent_caption_widgets();
     if (!install_native_independent_site_name_hooks()) return false;
     if (!install_native_independent_river_name_hooks()) return false;
@@ -5106,6 +5191,10 @@ static bool install_native_inline_caption_hooks() {
 
 static bool uninstall_native_caption_hooks() {
 #ifdef _WIN32
+    // These CALLs invoke the shared resize/draw observers. Restore them before
+    // any shared entry, trampoline or capture storage can be released.
+    if (!uninstall_native_independent_item_caption_hooks() ||
+            native_independent_item_caption_hooks_active()) return false;
     // River and site callbacks forward to draw_entry.original. Keep that
     // trampoline and its capture state until every independent CALL is restored.
     if (!uninstall_native_independent_river_name_hooks() || native_independent_river_name_hooks_active()) return false;

@@ -1,6 +1,20 @@
 // Executable identities and native ABI lookup only. Caption ownership,
 // capture, patch installation and teardown live in native_caption_hooks.inc.
 #ifdef _WIN32
+static std::vector<NativeCaptionSite> native_item_caption_reference_sites() {
+    return {
+        {0x105cda3,0x105ce01,NativeFieldKind::EmbarkItem},
+        {0x105eee9,0x105ef47,NativeFieldKind::EmbarkItem},
+        {0x105fc25,0x105fc83,NativeFieldKind::EmbarkItem},
+        {0x1060878,0x10608d9,NativeFieldKind::EmbarkItem},
+        {0x10613f2,0x1061450,NativeFieldKind::EmbarkItem},
+        // Adventure equipment owns separate selected/available item loops.
+        // Each pair keeps the same live name through resize and draw; the
+        // selected loop reuses that string for its point cost only afterwards.
+        {0x631a66,0x631ac1,NativeFieldKind::EmbarkItem},
+        {0x632b21,0x632b7c,NativeFieldKind::EmbarkItem}};
+}
+
 // The separate detail rows are owned only between the main-name draw and
 // the location chooser's footer. A target without these rows must still prove
 // the actual main-name formatter, both resize arms, draw and footer path.
@@ -855,19 +869,8 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
         {0x14101a0, {0x40,0x53,0x48,0x83,0xec,0x50,0xf6,0x81,
             0xa0,0x00,0x00,0x00,0x08}}};
     profile.inline_resizes = native_inline_caption_reference_sites();
-    profile.sites = {
-        {0x105cda3,0x105ce01,NativeFieldKind::EmbarkItem},
-        {0x105eee9,0x105ef47,NativeFieldKind::EmbarkItem},
-        {0x105fc25,0x105fc83,NativeFieldKind::EmbarkItem},
-        {0x1060878,0x10608d9,NativeFieldKind::EmbarkItem},
-        {0x10613f2,0x1061450,NativeFieldKind::EmbarkItem},
-        // Adventure equipment uses separate selected/available item loops.
-        // Each pair resizes and draws the same native name at its item cursor;
-        // the selected loop reuses that string for the point cost only AFTER
-        // this draw. Capture here so long generated-material names retain
-        // their complete item noun and use the shared equipment compositor.
-        {0x631a66,0x631ac1,NativeFieldKind::EmbarkItem},
-        {0x632b21,0x632b7c,NativeFieldKind::EmbarkItem},
+    profile.sites = native_item_caption_reference_sites();
+    profile.sites.insert(profile.sites.end(), {
         {0x62729b,0x6272fa,NativeFieldKind::Origin},
         // Legends categories 3/4 share title/type ownership and layout.
         // Artifacts: title uses [rbp+0x168]; getDescription at 0xd41ca7
@@ -877,7 +880,7 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
         {0xd41cd1,0xd41d1f,NativeFieldKind::BookType},
         // Codices: native title and capitalized item description.
         {0xd42094,0xd420f3,NativeFieldKind::BookTitle},
-        {0xd42141,0xd42183,NativeFieldKind::BookType}};
+        {0xd42141,0xd42183,NativeFieldKind::BookType}});
     populate_native_caption_semantic_profile(profile);
     profile.signatures.push_back({0x39e1ee, {0xe8,0x6d,0xb7,0x73,0x00}});
     // Guild and faith subpage callers use the same normal profile signature

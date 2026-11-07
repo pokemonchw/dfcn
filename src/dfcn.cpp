@@ -23904,7 +23904,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
                 visible_key, y, start, *complete);
             if (!translated || translated->empty()) return false;
             Match captured{
-                start, y, screen_length, -13,
+                start, y, screen_length, kEmbarkComposedCapturedItemRule,
                 std::move(*translated), std::string(visible_key),
             };
             captured.native_source = row.substr(static_cast<size_t>(start),
@@ -35544,11 +35544,12 @@ void Overlay::prepare_frame() {
                     }
                     const int right = capture.screen_x +
                         static_cast<int>(capture.visible.size());
-                    const bool already_represented = std::any_of(
+                    const auto represented = std::find_if(
                         prepared_matches_.begin(), prepared_matches_.end(),
                         [&](const Match &match) {
                             if (match.y != capture.screen_y) return false;
-                            if (match.rule == -13 &&
+                            if ((match.rule == kEmbarkComposedCapturedItemRule ||
+                                 match.rule == -13) &&
                                 normalize_embark_field_sequence(match.source) ==
                                     normalize_embark_field_sequence(
                                         capture.visible)) {
@@ -35561,7 +35562,22 @@ void Overlay::prepare_frame() {
                             // membership are the shared, stable identity.
                             return composed_food_owns_capture(match, capture);
                         });
-                    if (!already_represented) {
+                    if (represented != prepared_matches_.end()) {
+                        // find_matches already bound the complete memory source
+                        // to its final physical span, including spaces inserted
+                        // by graphical columns. Do not replace that ownership
+                        // with the native cursor or the shorter GameString span.
+                        const int left = std::clamp(represented->x, 0, gps_->dimx);
+                        const int end = std::clamp(
+                            represented->x + represented->length, 0, gps_->dimx);
+                        for (int x = left; x < end; ++x) {
+                            const size_t tile =
+                                static_cast<size_t>(x) * gps_->dimy + represented->y;
+                            captured_embark_item_suppress_[tile] = 1;
+                        }
+                        continue;
+                    }
+                    {
                         auto translated = translate_embark_equipment_item(
                             capture.visible, capture.screen_y, capture.screen_x,
                             capture.complete);
@@ -35576,7 +35592,7 @@ void Overlay::prepare_frame() {
                             capture.screen_x,
                             capture.screen_y,
                             static_cast<int>(capture.visible.size()),
-                            -13,
+                            kEmbarkComposedCapturedItemRule,
                             std::move(*translated),
                             capture.visible,
                         });
