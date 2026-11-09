@@ -8,14 +8,27 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'package-windows-library.ps1')
 $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $gameRoot = [IO.Directory]::GetParent($projectRoot).FullName
+$bootstrapPath = Join-Path $gameRoot 'dfhooks.dll'
 $imageConfigPath = Join-Path $projectRoot 'data\runtime\native-pe-images.json'
 if ([IO.File]::Exists($imageConfigPath)) {
     $imageConfig = [IO.File]::ReadAllText($imageConfigPath) | ConvertFrom-Json
-    $referenceImagePath = [string]$imageConfig.reference
-    if (-not [IO.Path]::IsPathRooted($referenceImagePath)) {
-        $referenceImagePath = [IO.Path]::Combine($projectRoot, $referenceImagePath)
+    $configuredBootstrap = [string]$imageConfig.bootstrap
+    if (-not [string]::IsNullOrWhiteSpace($configuredBootstrap)) {
+        if (-not [IO.Path]::IsPathRooted($configuredBootstrap)) {
+            $configuredBootstrap = [IO.Path]::Combine($projectRoot, $configuredBootstrap)
+        }
+        $bootstrapPath = [IO.Path]::GetFullPath($configuredBootstrap)
+    } else {
+        foreach ($imagePath in @([string]$imageConfig.game, [string]$imageConfig.reference)) {
+            if ([string]::IsNullOrWhiteSpace($imagePath)) { continue }
+            if (-not [IO.Path]::IsPathRooted($imagePath)) {
+                $imagePath = [IO.Path]::Combine($projectRoot, $imagePath)
+            }
+            $gameRoot = [IO.Path]::GetDirectoryName([IO.Path]::GetFullPath($imagePath))
+            $bootstrapPath = Join-Path $gameRoot 'dfhooks.dll'
+            break
+        }
     }
-    $gameRoot = [IO.Path]::GetDirectoryName([IO.Path]::GetFullPath($referenceImagePath))
 }
 $outputPath = Join-Path $projectRoot 'DFCN-Windows-x64-minimal.zip'
 $stagingPath = Join-Path $projectRoot ('DFCN-Windows-x64-minimal.' + [Guid]::NewGuid().ToString('N') + '.tmp')
@@ -56,7 +69,7 @@ try {
     $archiveStream = [IO.File]::Open($stagingPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
     $archive = [IO.Compression.ZipArchive]::new($archiveStream, [IO.Compression.ZipArchiveMode]::Create, $true)
 
-    Add-RuntimeFile (Join-Path $gameRoot 'dfhooks.dll') 'dfhooks.dll'
+    Add-RuntimeFile $bootstrapPath 'dfhooks.dll'
     # Exactly one loader path; no second root-level copy of dfhooks_dfcn.dll.
     Add-RuntimeText 'dfhooks_dfcn.ini' "dfcn/dfhooks_dfcn.dll`n"
     Add-RuntimeFile (Join-Path $projectRoot 'LICENSE') 'dfcn/LICENSE'
@@ -110,6 +123,19 @@ try {
     }
     foreach ($name in @('dfhack-help.LICENSE', 'lua-output.LICENSE', 'pinyin-data/LICENSE')) {
         Add-RuntimeFile (Join-Path $projectRoot ('third_party/' + $name)) ('dfcn/data/runtime/' + $name)
+    }
+
+    # Include production address catalogs for this seed.
+    # Other game images retain the runtime's existing address discovery path.
+    $seedHash = (Get-FileHash -LiteralPath (Join-Path $projectRoot 'data/runtime/native-addresses/pe-seed.bin') -Algorithm SHA256).Hash.ToLowerInvariant()
+    $cacheRoot = Join-Path $projectRoot 'data/runtime/native-addresses/cache'
+    if ([IO.Directory]::Exists($cacheRoot)) {
+        $cachePattern = '^[0-9a-f]{64}-' + $seedHash + '\.bin$'
+        foreach ($file in ([IO.Directory]::GetFiles($cacheRoot, '*.bin') | Sort-Object)) {
+            if ([IO.Path]::GetFileName($file) -cnotmatch $cachePattern) { continue }
+            $relative = $file.Substring($projectRoot.Length + 1).Replace('\', '/')
+            Add-RuntimeFile $file ('dfcn/' + $relative)
+        }
     }
 
     $rulesRoot = Join-Path $projectRoot 'data\runtime\rulesets'
