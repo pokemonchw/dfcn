@@ -17,7 +17,9 @@ $windowsArchive = Join-Path $projectRoot 'DFCN-Windows-x64-minimal.zip'
 $item = [IO.File]::ReadAllText((Join-Path $workshopRoot 'published-item.json')) | ConvertFrom-Json
 $itemId = [string]$item.publishedfileid
 if ($itemId -notmatch '^\d+$') { throw 'The saved Workshop item ID is invalid.' }
-$stagingRoot = Join-Path $workshopRoot ('package-' + [Guid]::NewGuid().ToString('N') + '.tmp')
+# Address catalog filenames contain two full hashes; keep the temporary prefix
+# short enough for Windows PowerShell's ZIP extraction path limit.
+$stagingRoot = Join-Path $workshopRoot ('pkg-' + [Guid]::NewGuid().ToString('N').Substring(0, 16))
 $payloadRoot = Join-Path $stagingRoot 'content'
 $outputPath = Join-Path $projectRoot 'DFCN-Windows-workshop.zip'
 
