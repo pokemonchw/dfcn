@@ -73,7 +73,8 @@ inline std::optional<NativeFontSource> current_native_font_source() {
         return std::nullopt;
 
     NativeFontSource result;
-    result.table = settings + ((flags & 0x4) ? 0xd8 : (fullscreen & 0x1) ? 0x8d8 : 0x4d8);
+    result.table = settings + native_pe_init_field_offset(
+        (flags & 0x4) ? 0xd8 : (fullscreen & 0x1) ? 0x8d8 : 0x4d8);
     std::array<int32_t, 256> textures{};
     if (!copy_native_font_memory(result.table, textures.data(), sizeof(textures)))
         return std::nullopt;
@@ -287,7 +288,8 @@ public:
         }};
         for (size_t i = 0; i < offsets.size(); ++i)
             if (!native_font_metrics_detail::copy_native_font_memory(
-                    settings + offsets[i], tables_[i].data(), sizeof(tables_[i]))) {
+                    settings + native_pe_init_field_offset(offsets[i]),
+                    tables_[i].data(), sizeof(tables_[i]))) {
                 tables_[i].fill(0);
                 native_context_ready_ = false;
             }

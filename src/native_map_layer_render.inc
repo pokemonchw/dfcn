@@ -264,8 +264,15 @@ static bool install_native_map_layer_hook() {
             std::vector<unsigned char> prefix, const void *callback, const char *label) {
         if (hook.installed) return true;
         auto *entry = reinterpret_cast<unsigned char *>(native_pe_address(base, coordinate));
-        return entry && native_pe_bytes(coordinate, prefix) &&
-            hook.prepare(entry, prefix, callback, {}, label) && hook.install(label);
+        if (!entry) {
+            log_line("ERROR", std::string(label) + ": native function address is unavailable");
+            return false;
+        }
+        if (!native_pe_bytes(coordinate, prefix)) {
+            log_line("ERROR", std::string(label) + ": native entry signature cannot be resolved");
+            return false;
+        }
+        return hook.prepare(entry, prefix, callback, {}, label) && hook.install(label);
     };
     return install(g_native_map_clear_hook, 0x8e1c40,
             {0x40,0x53,0x48,0x83,0xec,0x30},

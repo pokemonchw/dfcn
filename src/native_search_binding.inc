@@ -4,6 +4,7 @@
 struct NativeSearchSignature {
     uintptr_t offset;
     std::vector<unsigned char> bytes;
+    bool bytes_are_native = false;
 };
 
 #ifdef _WIN32
@@ -78,7 +79,8 @@ static bool native_search_signatures_match(uintptr_t base,
         if (signature.bytes.empty() || signature.offset > UINTPTR_MAX - base)
             return fail("invalid signature extent");
         auto expected = signature.bytes;
-        if (!native_reference_bytes(native_search_reference_origin + signature.offset, expected))
+        if (!signature.bytes_are_native &&
+            !native_reference_bytes(native_search_reference_origin + signature.offset, expected))
             return fail("unresolved expected-byte binding");
         const uintptr_t address = native_reference_address(base, signature.offset);
         if (!address) return fail("unresolved address binding");

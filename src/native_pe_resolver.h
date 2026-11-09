@@ -149,7 +149,8 @@ inline Catalog load_catalog(Reader reader) {
         pattern.raw = reader.blob(); pattern.mask = reader.blob();
         if (!pattern.reference || pattern.raw.empty() || pattern.mask.size() != pattern.raw.size() ||
             uint64_t(pattern.reference) + pattern.raw.size() > UINT32_MAX ||
-            (pattern.flags & ~7u) || !(pattern.flags & 5u))
+            (pattern.flags & ~31u) || !(pattern.flags & 5u) ||
+            ((pattern.flags & 8u) && (!(pattern.flags & 1u) || (pattern.flags & 2u))))
             throw std::runtime_error("Invalid scan pattern");
         for (auto byte : pattern.mask) if (byte > 1) throw std::runtime_error("Invalid scan mask");
         pattern.fixups.resize(reader.count(100000));
@@ -182,11 +183,51 @@ inline Catalog load_catalog(const std::filesystem::path &path) {
     return load_catalog(Reader(path));
 }
 
+inline uint32_t ui_settings_tail_shift(const Image &image) {
+    // The 53.17 Steam audio update grows init's media settings by eight
+    // bytes. Independent unchanged callers establish both the real init
+    // root and the shifted font/widget fields. Restrict this layout to the
+    // exact reviewed image; an arbitrary new version must still be resolved.
+    return hex_digest(image.digest) ==
+        "3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16" ? 8u : 0u;
+}
+
+#include "native_pe_5317_bindings.inc"
+
+inline void adapt_required(Catalog &catalog, uint32_t settings_shift) {
+    if (settings_shift != 8) return;
+    // Profiles with explicit 53.17 opcodes consume their actual instruction
+    // lengths: the mouse CMP loses a REX prefix; clothing search constructs
+    // its caption before NativeString::find. Keep the interleaved calls as
+    // separate resources and preserve both 53.16 editions' original extents.
+    for (auto &[reference, length] : catalog.required) {
+        if (reference == 0x1b2b77 && length == 7) length = 6;
+        if (reference == 0x8b9daf && length == 101) length = 63;
+        if (reference == 0x8b9e3a && length == 95) length = 35;
+        if (reference == 0x8b9e99 && length == 65) length = 11;
+    }
+}
+
 inline State scan(const Image &image, const Catalog &catalog) {
-    return address_runtime::scan(image, catalog, {
+    const auto shift = ui_settings_tail_shift(image);
+    std::vector<Range> fields;
+    // DFHack/df-structures 94e27cc: volume_ui_fort precedes the old
+    // time_between_songs_fort (+0x78); volume_ui_adv precedes the old
+    // title_music_str (+0x88). The following input/font/widget tail gains 8.
+    if (shift) {
+        fields.push_back({0x023cd7e8, 0x023cd7f8, 0x023cd7ec});
+        fields.push_back({0x023cd7f8, 0x023d10d4, 0x023cd7f8 + shift});
+    }
+    const std::vector<Range> reviewed_ranges = shift
+        ? std::vector<Range>(std::begin(kSteam5317Ranges), std::end(kSteam5317Ranges)) : std::vector<Range>{};
+    const std::vector<Byte> reviewed_bytes = shift
+        ? std::vector<Byte>(std::begin(kSteam5317Bytes), std::end(kSteam5317Bytes)) : std::vector<Byte>{};
+    auto result = address_runtime::scan(image, catalog, {
         {0x0264a3f0, static_cast<uint32_t>(sizeof(graphicst))},
-        {0x023cd770, 0x3958},
-    });
+        {0x023cd770, 0x3964},
+    }, false, fields, reviewed_ranges, reviewed_bytes);
+    result.ui_settings_tail_shift = shift;
+    return result;
 }
 
 inline void write_number(std::ostream &output, uint32_t value) {
@@ -229,7 +270,7 @@ public:
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
         const auto digest = hex_digest(seed);
         // Bump this revision when discovery rules or the snapshot format change.
-        name_ = L"Local\\DFCN.NativeAddresses.1." + std::to_wstring(GetCurrentProcessId()) + L"." +
+        name_ = L"Local\\DFCN.NativeAddresses.3." + std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
             std::wstring(digest.begin(), digest.end());
@@ -249,7 +290,7 @@ public:
             if (!view.value) return false;
             const auto *data = static_cast<const unsigned char *>(view.value);
             Reader reader(std::vector<unsigned char>(data + sizeof(uint32_t), data + length), true);
-            reader.magic("DFCNPM01");
+            reader.magic("DFCNPM03");
             const auto low = reader.number(), high = reader.number();
             if (((uint64_t(high) << 32) | low) != base_ || reader.number() != timestamp_ ||
                 reader.number() != size_) return false;
@@ -257,6 +298,8 @@ public:
             candidate.size = size_;
             candidate.edition = reader.count(3);
             candidate.complete = reader.count(1) != 0;
+            candidate.ui_settings_tail_shift = reader.count(8);
+            if (candidate.ui_settings_tail_shift != 0 && candidate.ui_settings_tail_shift != 8) return false;
             read_bindings(reader, candidate.ranges, candidate.bytes);
             candidate.missing.resize(reader.count());
             for (auto &reference : candidate.missing) {
@@ -281,11 +324,12 @@ public:
         try {
             if (name_.empty() || state.size != size_ || state.message.size() > 65536) return false;
             std::ostringstream output(std::ios::binary | std::ios::out);
-            output.write("DFCNPM01", 8); write_number(output, 1);
+            output.write("DFCNPM03", 8); write_number(output, 1);
             write_number(output, static_cast<uint32_t>(base_));
             write_number(output, static_cast<uint32_t>(uint64_t(base_) >> 32));
             write_number(output, timestamp_); write_number(output, size_);
             write_number(output, state.edition); write_number(output, state.complete ? 1 : 0);
+            write_number(output, state.ui_settings_tail_shift);
             write_bindings(output, state);
             write_number(output, static_cast<uint32_t>(state.missing.size()));
             for (const auto reference : state.missing) write_number(output, reference);
@@ -320,10 +364,11 @@ inline void save_cache(const std::filesystem::path &path, const Image &image,
     const auto candidate = std::filesystem::path(path.wstring() + L".publish");
     try {
         std::ostringstream output(std::ios::binary | std::ios::out);
-        output.write("DFCNPC01", 8); write_number(output, 1);
+        output.write("DFCNPC03", 8); write_number(output, 1);
         output.write(reinterpret_cast<const char *>(catalog.digest.data()), catalog.digest.size());
         output.write(reinterpret_cast<const char *>(image.digest.data()), image.digest.size());
         write_number(output, image.size);
+        write_number(output, state.ui_settings_tail_shift);
         write_bindings(output, state);
         if (!output) throw std::runtime_error("Cannot finish address cache");
         const auto payload = output.str();
@@ -343,11 +388,13 @@ inline void save_cache(const std::filesystem::path &path, const Image &image,
 inline bool load_cache(const std::filesystem::path &path, const Image &image,
                        const Catalog &catalog, State &state) {
     try {
-        Reader reader(path, true); reader.magic("DFCNPC01");
+        Reader reader(path, true); reader.magic("DFCNPC03");
         std::array<unsigned char, 32> seed{}, binary{};
         reader.read(seed.data(), seed.size()); reader.read(binary.data(), binary.size());
         if (seed != catalog.digest || binary != image.digest || reader.number() != image.size) return false;
         state.edition = 3; state.size = image.size;
+        state.ui_settings_tail_shift = reader.count(8);
+        if (state.ui_settings_tail_shift != ui_settings_tail_shift(image)) return false;
         read_bindings(reader, state.ranges, state.bytes); reader.finish();
         for (const auto &range : state.ranges)
             if (uint64_t(range.native) + range.end - range.begin > image.size ||
@@ -381,19 +428,21 @@ inline State prepare() {
         if (process_cache.load(state)) {
             Catalog current;
             current.required = read_required(seed);
+            adapt_required(current, state.ui_settings_tail_shift);
             State coverage = state;
             if (complete_spans(coverage, current) == state.complete) return state;
         }
         // Use the same seed bytes for the process key and discovery, even if a
         // new package is published while this core is being initialized.
         seed.rewind();
-        const auto catalog = load_catalog(std::move(seed));
+        auto catalog = load_catalog(std::move(seed));
         std::vector<wchar_t> filename(32768);
         const auto length = GetModuleFileNameW(nullptr, filename.data(), static_cast<DWORD>(filename.size()));
         if (!length || length >= filename.size()) throw std::runtime_error("Cannot locate the running game executable");
         Image image(std::filesystem::path(std::wstring(filename.data(), length)));
         if (nt->FileHeader.TimeDateStamp != image.timestamp || nt->OptionalHeader.SizeOfImage != image.size)
             throw std::runtime_error("Running game image differs from its executable file");
+        adapt_required(catalog, ui_settings_tail_shift(image));
         state = {};
         state.size = image.size;
         const auto retain = [&process_cache](State &value) {

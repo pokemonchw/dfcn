@@ -12,6 +12,18 @@ inline unsigned native_pe_edition() {
 inline bool native_pe_supported() { return native_pe_edition() != 0; }
 inline bool native_pe_classic() { return native_pe_edition() == 2; }
 inline bool native_pe_relocated() { return native_pe_supported() && native_pe_edition() != 1; }
+inline bool native_pe_steam_5317() {
+    const auto &state = pe_runtime::state();
+    return state.complete && state.ui_settings_tail_shift == 8;
+}
+inline size_t native_pe_init_field_offset(size_t reference) {
+    const auto &state = pe_runtime::state();
+    // Two inserted volume fields split media into a +4 span and a +8
+    // tail. Display flags/grid and the actual native object root stay put.
+    if (!state.complete || !state.ui_settings_tail_shift || reference < 0x78 || reference >= 0x3964)
+        return reference;
+    return reference + (reference < 0x88 ? 4 : state.ui_settings_tail_shift);
+}
 inline uintptr_t native_pe_rva(uintptr_t address) {
     const auto &state = pe_runtime::state();
     if (!state.complete || !address || address > UINT32_MAX) return 0;

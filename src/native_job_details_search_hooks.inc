@@ -72,9 +72,6 @@ static size_t capture_native_job_details_search_find(const char *text,
     return result;
 }
 
-#ifdef _WIN32
-#include "native_job_details_search_profile_pe.inc"
-#else
 template<NativeJobDetailsSearchKind Kind>
 static size_t capture_native_job_details_search_native_find(
         const NativeString *term, const NativeString *query) {
@@ -84,6 +81,23 @@ static size_t capture_native_job_details_search_native_find(
     return capture_native_job_details_search_find<Kind>(
         text.data(), text.size(), term, needle.data(), needle.size());
 }
+
+#ifdef _WIN32
+// 53.17's clothing selector calls NativeString::find(term, query, start).
+// The verified caller supplies start == 0 and no longer passes C-string views.
+static size_t capture_native_job_details_search_clothing_find_5317(
+        const NativeString *term, const NativeString *query, size_t start) {
+    if (start == 0)
+        return capture_native_job_details_search_native_find<NativeJobDetailsSearchKind::Creature>(
+            term, query);
+    g_native_job_details_search_caption.term = nullptr;
+    std::string_view text, needle;
+    if (!native_string_view(term, &text, 65536) ||
+        !native_string_view(query, &needle, 4096)) return SIZE_MAX;
+    return native_search_byte_find(text.data(), text.size(), start, needle.data(), needle.size());
+}
+#include "native_job_details_search_profile_pe.inc"
+#else
 #include "native_job_details_search_profile_elf.inc"
 #endif
 

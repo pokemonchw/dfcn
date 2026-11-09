@@ -187,6 +187,14 @@ inline std::optional<NativeUiSettings> native_ui_settings() {
     if (!settings) return std::nullopt;
     const auto classic = native_ui_classic(settings);
     if (!classic) return std::nullopt;
+#ifdef _WIN32
+    // Only this local atlas view follows the relocated tail. The display
+    // flags above and native method callers keep the actual init root.
+    constexpr size_t atlas_begin = offsetof(NativeUiSettingsAbi, texpos_neutral_intro_button);
+    settings = reinterpret_cast<const NativeUiSettingsAbi *>(
+        reinterpret_cast<const unsigned char *>(settings) +
+        native_pe_init_field_offset(atlas_begin) - atlas_begin);
+#endif
     NativeUiSettings result;
     result.classic = *classic;
     size_t scrollbar_at = 0;

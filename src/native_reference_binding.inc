@@ -89,11 +89,21 @@ static bool native_reference_calls(std::vector<NativeCall> &calls, uintptr_t ori
     if (elf_runtime::automatic() && origin == 0x400000) native_origin = elf_runtime::state().executable_origin;
 #endif
     for (auto &call : calls) {
-        if (call.va > UINTPTR_MAX - origin || call.target > UINTPTR_MAX - origin ||
-            !native_reference_bytes(origin + call.va, call.inline_original)) return false;
+        const auto fail = [&](const char *reason) {
+            log_line("ERROR", std::string("Native call relocation: ") + reason +
+                "; reference site=" + std::to_string(call.va) +
+                "; reference target=" + std::to_string(call.target) +
+                "; reference origin=" + std::to_string(origin));
+            return false;
+        };
+        if (call.va > UINTPTR_MAX - origin || call.target > UINTPTR_MAX - origin)
+            return fail("reference address overflow");
+        if (!native_reference_bytes(origin + call.va, call.inline_original))
+            return fail("inline instruction signature cannot be resolved");
         const uintptr_t site = native_reference_va(origin + call.va);
         const uintptr_t target = call.target ? native_reference_va(origin + call.target) : 0;
-        if (!site || site < native_origin || (call.target && (!target || target < native_origin))) return false;
+        if (!site || site < native_origin) return fail("call site is unavailable");
+        if (call.target && (!target || target < native_origin)) return fail("call target is unavailable");
         call.va = site - native_origin;
         if (call.target) call.target = target - native_origin;
     }

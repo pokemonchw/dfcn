@@ -14,6 +14,7 @@ import re
 import shlex
 import shutil
 import stat
+import struct
 import subprocess
 import sys
 import tempfile
@@ -413,19 +414,59 @@ def needs_update(outputs: list[Path], inputs: list[Path]) -> bool:
     return any(path.stat().st_mtime_ns > built_at for path in inputs)
 
 
-def generate_data(env: dict[str, str]) -> None:
+def pe_image_timestamp(path: Path) -> int:
+    """Identify generation sources without treating the active game as a baseline."""
+    with path.open("rb") as image:
+        dos = image.read(64)
+        if len(dos) != 64 or dos[:2] != b"MZ":
+            raise RuntimeError(f"Not a Windows PE generation source: {path}")
+        image.seek(struct.unpack_from("<I", dos, 0x3c)[0])
+        header = image.read(26)
+    if (len(header) != 26 or header[:4] != b"PE\0\0"
+            or struct.unpack_from("<H", header, 4)[0] != 0x8664
+            or struct.unpack_from("<H", header, 24)[0] != 0x20b):
+        raise RuntimeError(f"Not a Windows x64 PE generation source: {path}")
+    return struct.unpack_from("<I", header, 8)[0]
+
+
+def retain_pe_reference_resources() -> None:
+    """Keep reviewed reference evidence when Steam has replaced the source image."""
+    from native_pe_seed_refinement import retained_prefix
+
+    bindings = ROOT / "src/native_pe_build_bindings.inc"
+    seed = RUNTIME / "native-addresses/pe-seed.bin"
+    for path in (bindings, seed):
+        if not path.is_file():
+            raise RuntimeError(f"The configured PE images are not the fixed 53.16 references, "
+                               f"and the existing reference resource is missing: {path}")
+    # Local wrapper consumers can expand without the original executable:
+    # the frozen edition map must already prove their complete reference span.
+    # refine() publishes the expanded requirements together with its windows.
+    retained_prefix(ROOT, seed.read_bytes())
+    print("Configured PE images are not the fixed Steam/Classic 53.16 references; "
+          "using existing PE bindings and seed with the current required resource spans.", flush=True)
+
+
+def generate_data(env: dict[str, str], *, pe_reference: Path | None = None,
+                  preserve_pe_profiles: bool = False) -> None:
     layout_inputs = [ROOT / "tools/build_history_layouts.py",
                      *file_inputs(UPSTREAM / "df-structures", {".xml"})]
     if needs_update([ROOT / "src/native_history_layouts.inc"], layout_inputs):
         run([sys.executable, "-B", "tools/build_history_layouts.py"], env)
-    history_inputs = [ROOT / "tools/build_history_event_profiles.py",
-                      native_game_executable(GAME)]
+    history_image = pe_reference or native_game_executable(GAME)
+    history_inputs = [ROOT / "tools/build_history_event_profiles.py", history_image]
     history_output = ROOT / "src/native_history_event_profiles_elf.inc"
     if sys.platform == "win32":
         history_inputs.append(EXTRACTED / "native-history-event-layouts.tsv")
         history_output = ROOT / "src/native_history_event_profiles.inc"
-    if needs_update([history_output], history_inputs):
-        run([sys.executable, "-B", "tools/build_history_event_profiles.py"], env)
+    if preserve_pe_profiles:
+        if not history_output.is_file():
+            raise RuntimeError(f"The fixed Steam 53.16 reference is unavailable and the existing "
+                               f"history event profile is missing: {history_output}")
+        print("Using existing Windows history event profiles from the fixed 53.16 reference.", flush=True)
+    elif needs_update([history_output], history_inputs):
+        run([sys.executable, "-B", "tools/build_history_event_profiles.py",
+             "--exe", str(history_image)], env)
     dictionary = RUNTIME / "translations.tsv"
     anatomy = RUNTIME / "rulesets/zh-Hans/health/bodypart/raw_names.toml"
     creature_names = RUNTIME / "rulesets/zh-Hans/creatures/name/raw_names.toml"
@@ -942,8 +983,17 @@ def main() -> int:
                                    "source in data/runtime/native-pe-images.json's bootstrap path.")
             shutil.copyfile(bootstrap_source, checked_path(bootstrap_candidate))
         compiler, env, dependency_includes, dependency_libraries = native_tools(args, abi)
-        generate_data(env)
-        if pe_sources:
+        pe_timestamps = {name: pe_image_timestamp(pe_sources[name])
+                         for name in ("reference", "classic")} if pe_sources else {}
+        pe_generation_ready = pe_timestamps == {"reference": 0x6a70a6d9, "classic": 0x6a70b91c}
+        generate_data(env, pe_reference=pe_sources.get("reference"),
+                      preserve_pe_profiles=bool(pe_sources) and pe_timestamps["reference"] != 0x6a70a6d9)
+        if pe_sources and not pe_generation_ready:
+            retain_pe_reference_resources()
+            from native_pe_seed_refinement import refine as refine_pe_seed
+            refine_pe_seed(ROOT, RUNTIME / "native-addresses/pe-seed.bin",
+                           Path(compiler[0]).with_name("objdump.exe"))
+        elif pe_sources:
             from build_pe_image_bindings import generate as generate_pe_bindings
             output = ROOT / "src/native_pe_build_bindings.inc"
             inputs = [ROOT / "tools/build_pe_image_bindings.py", ROOT / "tools/pe_instruction_match.py",

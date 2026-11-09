@@ -59,12 +59,16 @@ try {
     $imageConfig = [System.IO.File]::ReadAllText($imageConfigPath) | ConvertFrom-Json
     $referenceImage = Resolve-ProjectPath ([string]$imageConfig.reference)
     $classicImage = Resolve-ProjectPath ([string]$imageConfig.classic)
-    $gameRoots = @([System.IO.Path]::GetDirectoryName($referenceImage))
+    $gameImage = $referenceImage
+    if (-not [string]::IsNullOrWhiteSpace([string]$imageConfig.game)) {
+        $gameImage = Resolve-ProjectPath ([string]$imageConfig.game)
+    }
+    $gameRoots = @([System.IO.Path]::GetDirectoryName($gameImage))
     if ($imageConfig.deploy_classic -eq $true) {
         $gameRoots += [System.IO.Path]::GetDirectoryName($classicImage)
     }
     $gameRoots = @($gameRoots | Select-Object -Unique)
-    $requiredFiles = @($python, $compiler, $buildScript, $referenceImage, $classicImage,
+    $requiredFiles = @($python, $compiler, $buildScript, $gameImage, $referenceImage, $classicImage,
             (Join-Path $sdl 'include\SDL2\SDL.h'),
             (Join-Path $sdl 'lib\libSDL2.dll.a'))
     foreach ($gameRoot in $gameRoots) {

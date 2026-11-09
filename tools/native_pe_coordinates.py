@@ -69,6 +69,7 @@ _EXCLUDED = {
     'native_ime_adapter.inc',  # The fixed image coordinates belong to SDL2.dll.
     'native_pe_binding.h',    # Relocation interface and image metadata, not owners.
     'native_pe_resolver.h',   # Runtime seed/cache parsing uses numeric metadata.
+    'native_pe_5317_bindings.inc',  # Reviewed migration pairs, not reference consumers.
     'native_pe_image.h',      # PE directory fields and SHA256, not game resources.
 }
 
@@ -234,6 +235,261 @@ def _initializer_name(tokens, pairs, begin):
     return tokens[before] if before >= 0 and _IDENTIFIER.fullmatch(tokens[before]) else None
 
 
+def _constant_alternatives(tokens, constants):
+    """Read scalar caller coordinates, including both arms of a conditional."""
+    pairs = _pairs(tokens)
+    while tokens[:1] == ['('] and pairs.get(0) == len(tokens) - 1:
+        tokens = tokens[1:-1]
+        pairs = _pairs(tokens)
+    value = _number(tokens, constants)
+    if value is not None:
+        return (value,)
+    question, nested, index = None, 0, 0
+    while index < len(tokens):
+        if tokens[index] in ('(', '[', '{') and index in pairs:
+            index = pairs[index] + 1
+            continue
+        if tokens[index] == '?':
+            if question is None:
+                question = index
+            else:
+                nested += 1
+        elif tokens[index] == ':' and question is not None:
+            if nested:
+                nested -= 1
+            else:
+                return (*_constant_alternatives(tokens[question + 1:index], constants),
+                        *_constant_alternatives(tokens[index + 1:], constants))
+        index += 1
+    return ()
+
+
+def _resource_lambdas(tokens, pairs, apis, elf):
+    """Follow explicit lambda parameters into the native binding APIs only."""
+    result = []
+    for index, token in enumerate(tokens):
+        if token != '=' or tokens[index + 1:index + 2] != ['['] or index + 1 not in pairs:
+            continue
+        name = _assignment_name(tokens, index)
+        if not name or not _IDENTIFIER.fullmatch(name):
+            continue
+        parameters = pairs[index + 1] + 1
+        if tokens[parameters:parameters + 1] != ['('] or parameters not in pairs:
+            continue
+        arguments = _parts(tokens, pairs, parameters + 1, pairs[parameters])
+        names = []
+        for begin, end in arguments:
+            declaration = tokens[begin:end]
+            if '=' in declaration:
+                declaration = declaration[:declaration.index('=')]
+            names.append(declaration[-1] if declaration and
+                         _IDENTIFIER.fullmatch(declaration[-1]) else None)
+        body = pairs[parameters] + 1
+        while body < len(tokens) and tokens[body] not in ('{', ';'):
+            body += 1
+        if body not in pairs or tokens[body] != '{':
+            continue
+        body_end = pairs[body]
+        scopes = [end for begin, end in pairs.items()
+                  if tokens[begin] == '{' and begin < index < body_end < end]
+        if not scopes:
+            continue
+        flows = set()
+        for call in range(body + 1, body_end):
+            api = tokens[call]
+            if api not in apis or tokens[call + 1:call + 2] != ['('] or call + 1 not in pairs:
+                continue
+            args = _parts(tokens, pairs, call + 2, pairs[call + 1])
+            coordinate = apis[api]
+            if len(args) <= coordinate:
+                continue
+            source = tokens[slice(*args[coordinate])]
+            if len(source) != 1 or source[0] not in names:
+                continue
+            byte_parameter = count_parameter = None
+            if api in ('native_pe_bytes', 'native_reference_bytes', 'native_pe_match') and len(args) > coordinate + 1:
+                source = ''.join(tokens[slice(*args[coordinate + 1])])
+                source = re.sub(r'\.data\(\)$', '', source)
+                if source in names:
+                    byte_parameter = names.index(source)
+            if api == 'native_pe_match' and len(args) > 3:
+                source = tokens[slice(*args[3])]
+                if len(source) == 1 and source[0] in names:
+                    count_parameter = names.index(source[0])
+            bias = (0x400000 if api in ('native_reference_rva', 'native_reference_address') else 0) if elf else None
+            flows.add((names.index(tokens[slice(*args[coordinate])][0]),
+                       byte_parameter, count_parameter, bias))
+        if flows:
+            result.append((name, body_end + 1, min(scopes), len(arguments), flows))
+    return result
+
+
+def _scope(tokens, pairs, position):
+    scopes = [(begin, end) for begin, end in pairs.items()
+              if tokens[begin] == '{' and begin < position < end]
+    return max(scopes, default=(-1, len(tokens)))
+
+
+def _scalar_arrays(tokens, pairs, constants):
+    arrays = []
+    for begin, end in pairs.items():
+        if tokens[begin] != '{' or begin >= end:
+            continue
+        variable = _initializer_name(tokens, pairs, begin)
+        if not variable:
+            continue
+        left, right = begin, end + 1
+        while tokens[left] == '{' and pairs.get(left) == right - 1:
+            left, right = left + 1, right - 1
+        parts = _parts(tokens, pairs, left, right)
+        values = [_number(tokens[a:b], constants) for a, b in parts]
+        if values and all(value is not None for value in values):
+            scope_begin, scope_end = _scope(tokens, pairs, begin)
+            arrays.append((variable, begin, scope_begin, scope_end, values))
+    return arrays
+
+
+def _array_values(arrays, variable, position):
+    visible = [(declaration, values) for name, declaration, begin, end, values in arrays
+               if name == variable and declaration < position and begin < position < end]
+    return max(visible, default=(0, ()))[1]
+
+
+def _range_variables(tokens, pairs, constants, arrays):
+    variables = []
+    for index, token in enumerate(tokens):
+        if token != 'for' or tokens[index + 1:index + 2] != ['('] or index + 1 not in pairs:
+            continue
+        close = pairs[index + 1]
+        colon, at = None, index + 2
+        while at < close:
+            if tokens[at] in ('(', '[', '{') and at in pairs:
+                at = pairs[at] + 1
+                continue
+            if tokens[at] == ':':
+                colon = at
+                break
+            at += 1
+        if colon is None or not _IDENTIFIER.fullmatch(tokens[colon - 1]):
+            continue
+        source = tokens[colon + 1:close]
+        if len(source) == 1:
+            values = _array_values(arrays, source[0], index)
+        elif source[:1] == ['{'] and pairs.get(colon + 1) == close - 1:
+            values = [_number(tokens[a:b], constants)
+                      for a, b in _parts(tokens, pairs, colon + 2, close - 1)]
+            if any(value is None for value in values):
+                continue
+        else:
+            continue
+        body, end = close + 1, close + 1
+        if tokens[body:body + 1] == ['{']:
+            end = pairs.get(body, body)
+        else:
+            while end < len(tokens) and tokens[end] != ';':
+                end = pairs[end] + 1 if tokens[end] in ('(', '[', '{') and end in pairs else end + 1
+        if values:
+            variables.append((tokens[colon - 1], body, end, values))
+    return variables
+
+
+def _coordinate_values(expression, constants, arrays, variables, position):
+    values = _constant_alternatives(expression, constants)
+    if values:
+        return values
+    if len(expression) == 1:
+        visible = [(begin, values) for name, begin, end, values in variables
+                   if expression[0] == name and begin <= position < end]
+        return max(visible, default=(0, ()))[1]
+    if len(expression) >= 4 and expression[1] == '[' and expression[-1] == ']':
+        values = _array_values(arrays, expression[0], position)
+        # The scalar table also contains mutable loop initializers (row = 0).
+        # Only a literal index selects one entry; a runtime index can consume
+        # every entry of this proven constant resource array.
+        subscript = _number(expression[2:-1])
+        if subscript is not None:
+            return values[subscript:subscript + 1] if 0 <= subscript < len(values) else ()
+        return values
+    return ()
+
+
+def _native_call_records(tokens, pairs):
+    """NativeCall containers, their initializers, and their append arguments.
+
+    A call to native_reference_calls proves the exact container expression's
+    type even when its declaration is in an included profile definition.
+    Wrapper spelling is never used to recognize these records.
+    """
+    containers, records = set(), set()
+    for index, token in enumerate(tokens):
+        if token == 'native_reference_calls' and tokens[index + 1:index + 2] == ['('] and index + 1 in pairs:
+            args = _parts(tokens, pairs, index + 2, pairs[index + 1])
+            if args:
+                expression = tuple(tokens[slice(*args[0])])
+                if expression and all(_IDENTIFIER.fullmatch(value) or value in ('.', '->') for value in expression):
+                    containers.add((expression, *_scope(tokens, pairs, index)))
+        # Existing production declarations use vector<NativeCall>; also accept
+        # an explicitly typed NativeCall object without depending on its name.
+        if token != 'NativeCall':
+            continue
+        at = index + 1
+        vector = tokens[max(0, index - 2):index] == ['vector', '<']
+        if vector:
+            if tokens[at:at + 1] != ['>']:
+                continue
+            at += 1
+        while tokens[at:at + 1] in (['const'], ['&'], ['*']):
+            at += 1
+        if at >= len(tokens) or not _IDENTIFIER.fullmatch(tokens[at]):
+            continue
+        variable = tokens[at]
+        after = at + 1
+        if vector:
+            scope = _scope(tokens, pairs, index)
+            if tokens[after:after + 1] in ([','], [')']):
+                # A function parameter belongs to its body, not the enclosing
+                # namespace where unrelated variables can share this name.
+                parameters = [(left, right) for left, right in pairs.items()
+                              if tokens[left] == '(' and left < index < right]
+                if not parameters:
+                    continue
+                body = max(parameters)[1] + 1
+                while body < len(tokens) and tokens[body] not in ('{', ';'):
+                    body += 1
+                if tokens[body:body + 1] != ['{'] or body not in pairs:
+                    continue
+                scope = body, pairs[body]
+            containers.add(((variable,), *scope))
+        if tokens[after:after + 1] == ['=']:
+            after += 1
+        if tokens[after:after + 1] == ['{'] and after in pairs:
+            if vector:
+                for left, right in _parts(tokens, pairs, after + 1, pairs[after]):
+                    if tokens[left:left + 1] == ['{'] and pairs.get(left) == right - 1:
+                        records.add((left + 1, right - 1))
+            else:
+                records.add((after + 1, pairs[after]))
+    for expression, scope_begin, scope_end in containers:
+        width = len(expression)
+        for index in range(scope_begin + 1, scope_end):
+            if tuple(tokens[index:index + width]) != expression:
+                continue
+            after = index + width
+            if tokens[after:after + 1] == ['=']:
+                after += 1
+            if tokens[after:after + 1] == ['{'] and after in pairs:
+                for left, right in _parts(tokens, pairs, after + 1, pairs[after]):
+                    if tokens[left:left + 1] == ['{'] and pairs.get(left) == right - 1:
+                        records.add((left + 1, right - 1))
+            elif (tokens[after:after + 1] == ['.'] and tokens[after + 1:after + 2] in
+                    (['push_back'], ['emplace_back']) and tokens[after + 2:after + 3] == ['('] and after + 2 in pairs):
+                left, right = after + 3, pairs[after + 2]
+                if tokens[left:left + 1] == ['{'] and pairs.get(left) == right - 1:
+                    left, right = left + 1, right - 1
+                records.add((left, right))
+    return sorted(records)
+
+
 def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], elf=False) -> None:
     pairs = _pairs(tokens)
     constants, byte_arrays = {}, {}
@@ -304,6 +560,66 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
     }
     if elf:
         apis.update({'native_reference_va': 0, 'native_elf_history_address': 0})
+
+    scalar_arrays = _scalar_arrays(tokens, pairs, constants) if not elf else []
+    range_variables = _range_variables(tokens, pairs, constants, scalar_arrays) if not elf else []
+    if not elf:
+        for begin, end in _native_call_records(tokens, pairs):
+            parts = _parts(tokens, pairs, begin, end)
+            if len(parts) < 3:
+                continue
+            width = 5
+            if len(parts) > 4:
+                source = ''.join(tokens[slice(*parts[4])])
+                width = max(width, _byte_count(tokens, pairs, *parts[4]) or byte_arrays.get(source, 0))
+            for position, extent in ((0, width), (1, 1)):
+                for coordinate in _coordinate_values(tokens[slice(*parts[position])], constants,
+                                                     scalar_arrays, range_variables, begin):
+                    add(coordinate, extent)
+
+    # Names such as address/identity/install have no binding meaning by
+    # themselves. Admit their callers only after the local lambda body proves
+    # which argument reaches a native coordinate API, and which owns bytes.
+    action_writer_field = False
+    for alias, begin, end, arity, flows in _resource_lambdas(tokens, pairs, apis, elf):
+        for index in range(begin, end):
+            if (tokens[index] != alias or tokens[index + 1:index + 2] != ['(']
+                    or index + 1 not in pairs or (index and tokens[index - 1] in ('.', '->', '::'))):
+                continue
+            args = _parts(tokens, pairs, index + 2, pairs[index + 1])
+            if len(args) != arity:
+                continue
+            for coordinate, byte_parameter, count_parameter, bias in flows:
+                width = 1
+                if byte_parameter is not None:
+                    source = ''.join(tokens[slice(*args[byte_parameter])])
+                    source = re.sub(r'\.data\(\)$', '', source)
+                    width = (_byte_count(tokens, pairs, *args[byte_parameter])
+                             or byte_arrays.get(source, 1))
+                if count_parameter is not None:
+                    width = _number(tokens[slice(*args[count_parameter])], constants) or width
+                argument = tokens[slice(*args[coordinate])]
+                for address in _coordinate_values(argument, constants, scalar_arrays, range_variables, index):
+                    add(address, width, bias)
+                if (not elf and name == 'adventure_action_panel.inc'
+                        and argument == ['entry', '.', 'rva']):
+                    action_writer_field = True
+
+    if action_writer_field:
+        # This owner's find_if lambda passes Writer::rva through the proven
+        # native address adapter. The other fields are text/flags, never RVAs.
+        for begin, end in pairs.items():
+            if (tokens[begin] != '{' or begin >= end
+                    or _initializer_name(tokens, pairs, begin) != 'writers'
+                    or tokens[max(0, begin - 5):begin] != ['Writer', 'writers', '[', ']', '=']):
+                continue
+            for left, right in _parts(tokens, pairs, begin + 1, end):
+                if tokens[left:left + 1] != ['{'] or pairs.get(left) != right - 1:
+                    continue
+                fields = _parts(tokens, pairs, left + 1, right - 1)
+                if fields:
+                    add(_number(tokens[slice(*fields[0])], constants))
+
     for index, token in enumerate(tokens):
         if token not in apis or tokens[index + 1:index + 2] != ['('] or index + 1 not in pairs:
             continue
@@ -311,7 +627,8 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         position = apis[token]
         if len(args) <= position:
             continue
-        rva = _number(tokens[slice(*args[position])], constants)
+        coordinates = _coordinate_values(tokens[slice(*args[position])], constants,
+                                         scalar_arrays, range_variables, index)
         width = 1
         if token in ('native_pe_bytes', 'native_reference_bytes', 'native_pe_match') and len(args) > position + 1:
             source = ''.join(tokens[slice(*args[position + 1])])
@@ -320,7 +637,8 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         if token == 'native_pe_match' and len(args) > 3:
             width = _number(tokens[slice(*args[3])], constants) or width
         bias = (0x400000 if token in ('native_reference_rva', 'native_reference_address') else 0) if elf else None
-        add(rva, width, bias)
+        for rva in coordinates:
+            add(rva, width, bias)
 
     for begin, end in pairs.items():
         if tokens[begin] != '{' or begin >= end:

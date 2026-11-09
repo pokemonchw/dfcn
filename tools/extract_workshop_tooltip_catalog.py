@@ -119,15 +119,15 @@ def native_edition_sources(project_root: Path | None = None) -> dict:
         return {}
     config = json.loads(config_path.read_text(encoding="utf-8"))
     return {**config, **{name: (root / Path(config[name]).expanduser()).resolve()
-                        for name in ("reference", "classic", "bootstrap") if config.get(name)}}
+                        for name in ("game", "reference", "classic", "bootstrap") if config.get(name)}}
 
 
 def native_game_directory(project_root: Path | None = None) -> Path:
-    """Use the configured reference game, or the existing in-game layout."""
+    """Use the active game independently of the pinned reference image."""
     root = Path(project_root).resolve() if project_root is not None else Path(__file__).resolve().parents[1]
     sources = native_edition_sources(root)
     if sources:
-        return sources["reference"].parent
+        return (sources.get("game") or sources["reference"]).parent
     return root.parent
 
 

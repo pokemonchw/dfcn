@@ -674,7 +674,8 @@ struct NativeDfhackLayerPaintContext {
         }};
         if (settings)
             for (size_t i = 0; i < offsets.size(); ++i)
-                font_tables[i] = reinterpret_cast<const int32_t *>(settings + offsets[i]);
+                font_tables[i] = reinterpret_cast<const int32_t *>(
+                    settings + native_pe_init_field_offset(offsets[i]));
         active = this;
     }
     bool character_texture(int32_t texture, unsigned char character) const noexcept {

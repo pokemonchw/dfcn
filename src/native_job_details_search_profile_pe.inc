@@ -1,11 +1,11 @@
-// Windows 53.16 task-detail caption selectors. These addresses and bytes
-// come from the installed Steam PE, including both target/reagent color modes
-// and the clothing-size selector's inline main-feed filter. Every original
-// find starts at zero; its R8 receives only a borrowed NativeString identity.
-// RBP is unchanged by the rel32 tail relay, and all stack arguments survive.
+// Windows task-detail caption selectors use 53.16 reference addresses, with
+// explicit 53.17 clothing-selector opcodes below. Both target/reagent color
+// modes and the clothing-size selector retain their native result ordering.
+// The C-string find relays borrow R8 for NativeString identity; 53.17 clothing
+// uses its native three-argument string ABI. RBP and stack arguments survive.
 static bool resolve_native_job_details_search_profile_pe(NativeJobDetailsSearchProfile &profile) {
     const uintptr_t base = native_history_profile_base();
-    const NativeSearchBinding<NativeJobDetailsSearchProfile> bindings[]{
+    NativeSearchBinding<NativeJobDetailsSearchProfile> bindings[]{
         {{
             // Dye selector keeps its native result and master tuples.
             {0x221490, {
@@ -213,6 +213,42 @@ static bool resolve_native_job_details_search_profile_pe(NativeJobDetailsSearchP
                 {0x4c,0x8d,0x45,0xff}},
         }}}
     };
+    if (native_pe_steam_5317()) {
+        // The new clothing selector builds its complete caption through the
+        // native race-name helper. Its query is RBP-1 and caption is RBP-21.
+        // Each signature ends before its separately bound fold/find call;
+        // the reference catalog keeps the older, longer extents for 53.16.
+        for (auto &signature : bindings[0].signatures) {
+            if (signature.offset == 0x8b9daf || signature.offset == 0x8b9e3a ||
+                signature.offset == 0x8b9e99) signature.bytes_are_native = true;
+            if (signature.offset == 0x8b9daf) signature.bytes = {
+                0x48,0x8d,0x0d,0x76,0x06,0xff,0x00,0xe8,0x61,0xd3,0x79,0xff,0x45,0x33,0xe4,0x44,
+                0x89,0x25,0x97,0x06,0xff,0x00,0x44,0x88,0x25,0x94,0x06,0xff,0x00,0x4c,0x39,0x25,
+                0xa1,0x06,0xff,0x00,0x0f,0x84,0xb1,0x00,0x00,0x00,0x48,0x8d,0x15,0x84,0x06,0xff,
+                0x00,0x48,0x8d,0x4d,0xff,0xe8,0x73,0xd6,0x79,0xff,0x90,0x48,0x8d,0x4d,0xff
+            };
+            else if (signature.offset == 0x8b9e3a) signature.bytes = {
+                0x48,0x8d,0x4d,0xdf,0xe8,0xf4,0xd6,0x79,0xff,0x90,0x41,0xb9,0xff,0xff,0xff,0xff,
+                0x41,0xb0,0x01,0x48,0x8d,0x55,0xdf,0x0f,0xb7,0x0b,0xe8,0x8e,0xa0,0x1e,0x00,0x48,
+                0x8d,0x4d,0xdf
+            };
+            else if (signature.offset == 0x8b9e99) signature.bytes = {
+                0x45,0x33,0xc0,0x48,0x8d,0x55,0xff,0x48,0x8d,0x4d,0xdf
+            };
+        }
+        for (auto &call : bindings[0].profile.calls) {
+            if (call.va == 0x8b9e94) call.prefix = {0x48,0x8d,0x55,0xff};
+            else if (call.va == 0x8b9ec0) {
+                // This exact-digest CALL targets the new NativeString wrapper,
+                // not the C-string helper used by the other selectors.
+                call.target = 0;
+                call.wrapper = reinterpret_cast<const void *>(
+                    &capture_native_job_details_search_clothing_find_5317);
+                call.prefix.clear();
+                call.inline_original = {0xe8,0x25,0xf2,0x80,0xff};
+            }
+        }
+    }
     return resolve_native_search_binding(bindings, profile, "Task-detail caption search");
 }
 

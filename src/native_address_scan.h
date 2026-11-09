@@ -36,6 +36,7 @@ struct State {
     unsigned edition = 0;
     bool complete = false;
     uint32_t size = 0;
+    uint32_t ui_settings_tail_shift = 0;
     std::vector<Range> ranges;
     std::vector<Byte> bytes;
     std::vector<uint32_t> missing;
@@ -142,9 +143,17 @@ inline uint32_t operand_target(const Image &image, const Pattern &pattern,
 
 template <typename Image, typename Catalog>
 inline State scan(const Image &image, const Catalog &catalog,
-        const std::vector<std::pair<uint32_t, uint32_t>> &global_layouts = {}, bool infer_global_roots = false) {
+        const std::vector<std::pair<uint32_t, uint32_t>> &global_layouts = {}, bool infer_global_roots = false,
+        const std::vector<Range> &global_field_layouts = {},
+        const std::vector<Range> &reviewed_ranges = {}, const std::vector<Byte> &reviewed_bytes = {}) {
     State state; state.edition = 3; state.size = image.size;
+    const auto field_offset = [&](uint32_t object, uint32_t reference) {
+        const auto relocated = resolve(global_field_layouts, reference);
+        return uint64_t(relocated ? relocated : reference) - object;
+    };
     Bindings bindings;
+    for (const auto &range : reviewed_ranges)
+        bindings.add(range.begin, range.end - range.begin, range.native);
     std::unordered_map<uint32_t, std::set<uint32_t>> hints;
     std::set<uint32_t> code_targets;
     for (const auto &pattern : catalog.patterns)
@@ -152,14 +161,17 @@ inline State scan(const Image &image, const Catalog &catalog,
     for (const auto &pattern : catalog.patterns)
         for (const auto &fixup : pattern.fixups) if (fixup.kind & 0x100) code_targets.insert(fixup.target);
 
+    std::vector<const Pattern *> whole_patterns;
+    for (const auto &pattern : catalog.patterns)
+        if (pattern.flags & 2) whole_patterns.push_back(&pattern);
     std::vector<uint32_t> owners(catalog.patterns.size());
     for (size_t index = 0; index < catalog.patterns.size(); ++index) {
         const auto &pattern = catalog.patterns[index];
         owners[index] = pattern.owner ? pattern.owner : pattern.reference;
-        for (const auto &whole : catalog.patterns) if ((whole.flags & 2) &&
-            whole.reference <= pattern.reference &&
-            uint64_t(pattern.reference) + pattern.raw.size() <= uint64_t(whole.reference) + whole.raw.size()) {
-            owners[index] = whole.reference; break;
+        for (const auto *whole : whole_patterns) if (
+            whole->reference <= pattern.reference &&
+            uint64_t(pattern.reference) + pattern.raw.size() <= uint64_t(whole->reference) + whole->raw.size()) {
+            owners[index] = whole->reference; break;
         }
     }
 
@@ -193,7 +205,7 @@ inline State scan(const Image &image, const Catalog &catalog,
         functions[function.end - function.begin].push_back(function.begin);
     for (size_t index = 0; index < catalog.patterns.size(); ++index) {
         const auto &pattern = catalog.patterns[index];
-        if (pattern.flags & 2) continue;
+        if (pattern.flags & (2 | 8)) continue;
         size_t run = 0, best = 0, begin = 0;
         for (size_t offset = 0; offset < pattern.raw.size(); ++offset) {
             run = pattern.mask[offset] ? 0 : run + 1;
@@ -224,7 +236,10 @@ inline State scan(const Image &image, const Catalog &catalog,
         const auto append = [&](uint32_t address) {
             if (pattern_matches(image, pattern, address)) candidates[index].push_back(address);
         };
-        if (pattern.flags & 2) {
+        if (pattern.flags & 8) {
+            // Complete short leaf bodies need a proven RTTI slot or caller.
+            // Their bytes alone do not identify a function globally.
+        } else if (pattern.flags & 2) {
             const auto found = functions.find(static_cast<uint32_t>(pattern.raw.size()));
             if (found != functions.end()) for (auto address : found->second) append(address);
         } else if (anchors[index].valid) {
@@ -238,6 +253,7 @@ inline State scan(const Image &image, const Catalog &catalog,
 
     std::unordered_map<uint32_t, std::map<uint32_t, std::set<uint32_t>>> data_evidence;
     std::map<uint32_t, Byte> changes;
+    for (const auto &byte : reviewed_bytes) changes.emplace(byte.address, byte);
     bool progress = true;
     while (progress) {
         progress = false;
@@ -292,8 +308,8 @@ inline State scan(const Image &image, const Catalog &catalog,
                 if (!code_targets.count(fixup.target)) {
                     data_evidence[fixup.target][target].insert(owners[index]);
                     for (const auto &[object, extent] : global_layouts) if (infer_global_roots)
-                        if (fixup.target >= object && fixup.target - object < extent && target >= fixup.target - object)
-                            data_evidence[object][target - (fixup.target - object)].insert(owners[index]);
+                        if (fixup.target >= object && fixup.target - object < extent && target >= field_offset(object, fixup.target))
+                            data_evidence[object][static_cast<uint32_t>(target - field_offset(object, fixup.target))].insert(owners[index]);
                 }
             }
         }
@@ -302,7 +318,7 @@ inline State scan(const Image &image, const Catalog &catalog,
             const auto &[target, owners] = *evidence.begin();
             for (const auto &[object, extent] : global_layouts) if (reference >= object && reference - object < extent) {
                 const auto base = bindings.lookup(object);
-                if (base && uint64_t(base) + reference - object != target)
+                if (base && uint64_t(base) + field_offset(object, reference) != target)
                     throw std::runtime_error("Native global object layout changed at " + std::to_string(reference));
             }
             // Globals have no stable value to scan. Require two independently
