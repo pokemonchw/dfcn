@@ -189,8 +189,8 @@ BOIL_V	8	VerbGerund	boiling	604	boil	沸腾	1	1	15	0
 BOLD	0	Noun	boldness	608	boldness	勇猛	1	1	17	0
 BOLD	1	NounPlural	boldnesses	608	boldness	勇猛	1	1	17	0
 BOLD	2	Adjective	bold	608	bold	勇猛	1	1	12	0
-BOLT	0	Noun	bolt	616	bolt	门闩	4	1	74	0
-BOLT	1	NounPlural	bolts	616	bolt	门闩	4	1	74	0
+BOLT	0	Noun	bolt	616	bolt	弩矢	4	1	74	0
+BOLT	1	NounPlural	bolts	616	bolt	弩矢	4	1	74	0
 BOLT	4	Verb	bolt	616	bolt	闩住	4	1	15	0
 BOLT	5	Verb3rdPerson	bolts	616	bolt	闩住	4	1	15	0
 BOLT	6	VerbPast	bolted	616	bolt	闩住	2	1	15	0

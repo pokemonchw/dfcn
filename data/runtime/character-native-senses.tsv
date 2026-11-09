@@ -590,8 +590,8 @@ BOIL_V	VERB	boils	action	intransitive	none	沸腾
 BOLD	ADJ	bold	quality	abstract	none	勇猛	勇猛		
 BOLD	NOUN	boldness	object	object	none	勇猛			
 BOLD	NOUN	boldnesses	object	object	none	勇猛			
-BOLT	NOUN	bolt	object	artifact	none	门闩			
-BOLT	NOUN	bolts	object	artifact	none	门闩			
+BOLT	NOUN	bolt	object	weapon	none	弩矢			
+BOLT	NOUN	bolts	object	weapon	none	弩矢			
 BOLT	VERB	bolt	action	transitive	none	闩住			
 BOLT	VERB	bolted	action	transitive	none	闩住			
 BOLT	VERB	bolted	state	transitive	result	闩锁			
