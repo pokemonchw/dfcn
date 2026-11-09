@@ -10,8 +10,8 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[h2]DFCN v53.16-20261109.2[/h2]\n[list]\n[*]回退上一版的部分 Windows 核心改动，包括跨版本适配、界面绘制优化和长物品名称处理。\n[*]补全载入存档时模组兼容版本更新提示及操作按钮的翻译，保留模组名称和版本号原文。\n[*]补齐物品名称中 bolt、bolts 的“弩矢”译文。\n[/list]\n",
-  "release_tag": "v53.16-20261109.2",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261109.2",
+  "changelog": "[h2]DFCN v53.17-20261110[/h2]\n[list]\n[*]适配 Windows Steam 版 Dwarf Fortress 53.17，更新汉化界面及中文搜索的兼容支持。\n[*]统一据点与地方势力的中文命名规则，完善形容词、复合词和“……之……”结构的翻译。\n[*]调整据点与地方势力的名称后缀，玩家要塞统一使用“堡”，并同步开局命名预览与游戏内名称。\n[*]修复世界地图据点信息中掌控种族丢失的问题，保留“被……掌控”的说明。\n[*]修复存档列表中的要塞名称翻译，使用对应存档的名称信息，与游戏内地名采用一致的译法。\n[*]修复存档列表中长要塞名称与存档状态重叠、名称显示不全及越界文字残留的问题。\n[/list]\n",
+  "release_tag": "v53.17-20261110",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110",
   "github_url": "https://github.com/pokemonchw/dfcn"
 }

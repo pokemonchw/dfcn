@@ -6,7 +6,7 @@ DFCN 是 **Byayoi 同人社区**的《Dwarf Fortress（矮人要塞）》汉化�
 
 社区官网：[byayoi.org](https://byayoi.org/)
 
-项目在游戏渲染阶段捕获英文文本，通过词表与语法规则生成中文，再进行字形测量、换行和覆盖绘制，不修改游戏 RAW 或存档。提供 Windows 与 Linux 原生适配，当前适配版本为 **53.16**；Windows 支持 Steam 版与官网免费版。
+项目在游戏渲染阶段捕获英文文本，通过词表与语法规则生成中文，再进行字形测量、换行和覆盖绘制，不修改游戏 RAW 或存档。提供 Windows 与 Linux 原生适配；Windows 支持 Steam 53.17 / 53.16 与官网免费版 53.16，Linux 适配 53.16。
 
 Windows 本版的显示语言由配置中的 BCP 47 标签 `language` 控制：默认 `zh-Hans` 为简体中文，`zh-Hant` 将全部译文通过离线 OpenCC 转为台湾正体及常用词汇，也接受 `zh-CN` / `zh-TW`、`zh-Hans-CN` / `zh-Hant-TW`。自定义小队名称保持原样。配置模板位于 `data/runtime/config.ini`，已安装游戏优先读取游戏根目录的 `dfcn_config.ini`。
 
@@ -20,7 +20,7 @@ Windows 与 Linux 共用汉化数据载入优化：TOML 规则图按节点及引
 
 ## Windows 安装与使用
 
-当前运行包适用于 **Dwarf Fortress 53.16 / Windows x64**，无需编译，也无需安装 DFHack 或其他外部 Mod。
+当前运行包适用于 **Windows x64 的 Dwarf Fortress Steam 53.17 / 53.16 与官网免费版 53.16**，无需编译，也无需安装 DFHack 或其他外部 Mod。
 
 **Steam 创意工坊：**订阅 [DFCN 汉化](https://steamcommunity.com/sharedfiles/filedetails/?id=3811193379) 并下载完成后，运行订阅目录 `你的 Steam 库目录/steamapps/workshop/content/975370/3811193379/` 中的 [`install.bat`](workshop/content/install.bat)。脚本使用 Windows 自带 PowerShell，自动查找 Steam 游戏目录，安装 `dfhooks.dll` 并生成指向订阅目录的 `dfhooks_dfcn.ini`，无需手动复制文件或编辑路径，支持跨 Steam 库和中文路径。也可单独下载该 BAT 运行，它会查找已经下载的汉化订阅内容。
 
@@ -28,7 +28,7 @@ Windows 与 Linux 共用汉化数据载入优化：TOML 规则图按节点及引
 
 汉化启动时优先读取游戏根目录的 `dfcn_config.ini`；文件不存在时，从订阅目录的 `DFCN/dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖。订阅目录中的 `config.ini` 保留为默认模板，复制失败时作为回退配置。手动安装、路径示例与卸载方法见 [安装说明](workshop/content/INSTALL.txt)。
 
-**GitHub Release：**从 [v53.16-20261109.2](https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261109.2) 下载 `DFCN-Windows-x64-minimal.zip`，解压后将全部内容按原有目录结构复制到游戏根目录，包括 `dfhooks.dll`、`dfhooks_dfcn.ini` 和整个 `dfcn` 文件夹。汉化设置同样使用游戏根目录的 `dfcn_config.ini`，首次启动时由 `dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖；复制失败时读取默认模板。完整变化见 Release 更新日志。
+**GitHub Release：**从 [v53.17-20261110](https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110) 下载 `DFCN-Windows-x64-minimal.zip`，解压后将全部内容按原有目录结构复制到游戏根目录，包括 `dfhooks.dll`、`dfhooks_dfcn.ini` 和整个 `dfcn` 文件夹。汉化设置同样使用游戏根目录的 `dfcn_config.ini`，首次启动时由 `dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖；复制失败时读取默认模板。完整变化见 Release 更新日志。
 
 Windows 汉化核心与翻译数据按汉化模块所在目录定位，支持将运行文件保留在工坊目录；用户配置统一使用游戏根目录的 `dfcn_config.ini`。游戏中按 **Shift+F10** 开启或关闭汉化，保留当前核心与数据；按 **Shift+F5** 关闭再开启汉化时，重新加载核心与数据。数据仅在启动、**Shift+F5** 重新开启或 **Ctrl+Shift+F10** 显式刷新时加载，不自动检查文件变化。安装仅添加汉化自身文件，不改写磁盘上的游戏本体、RAW 或存档；取消订阅不会删除已复制的入口文件和 `dfcn_config.ini`，卸载时需手动移除自己安装的汉化文件。
 
@@ -90,8 +90,8 @@ Linux 宿主打包已有的 Windows 交叉编译产物时，使用固定 Python 
 Windows 工坊包和六个公开扩展 ZIP，不编译或生成数据。
 工坊发布工具 `tools/publish-workshop.py` 支持 Linux 已安装的 Steamworks 库及现有登录会话。
 
-当前 Windows 发布版本为 **v53.16-20261109.2**，变化见
-[更新日志](docs/releases/v53.16-20261109.2.md)。
+当前 Windows 发布版本为 **v53.17-20261110**，变化见
+[更新日志](docs/releases/v53.17-20261110.md)。
 
 ## Linux 交叉编译 Windows x64
 

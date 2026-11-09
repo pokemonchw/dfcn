@@ -1,9 +1,9 @@
 DFCN · 矮人要塞简体中文汉化 / Windows x64
-适用游戏版本：Dwarf Fortress 53.16，支持 Steam 版与官网免费版。
+适用游戏版本：Dwarf Fortress Steam 53.17 / 53.16 与官网免费版 53.16。
 Byayoi 同人社区：https://byayoi.org/
 GitHub：https://github.com/pokemonchw/dfcn
 Release：https://github.com/pokemonchw/dfcn/releases
-本包版本：v53.16-20261109.2。完整更新说明见压缩包根目录 CHANGELOG.txt。
+本包版本：v53.17-20261110。完整更新说明见压缩包根目录 CHANGELOG.txt。
 随包提供思源黑体简体粗体及许可；默认 min_font_pixels=16、font_scale=1.1。
 已有游戏根目录 dfcn_config.ini 不会被覆盖。
 
