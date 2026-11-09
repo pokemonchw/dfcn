@@ -2609,26 +2609,26 @@ absolute	boldnesses	absolute boldnesses	绝对勇猛	BOLD	plural	勇猛	data/run
 most exalted	boldnesses	most exalted boldnesses	至尊勇猛	BOLD	plural	勇猛	data/runtime/translations.tsv:87842	609	candidate noun form; native religion WORD selection determines reachability
 most holy	boldnesses	most holy boldnesses	至圣勇猛	BOLD	plural	勇猛	data/runtime/translations.tsv:95007	609	candidate noun form; native religion WORD selection determines reachability
 most sacred	boldnesses	most sacred boldnesses	至圣勇猛	BOLD	plural	勇猛	data/runtime/translations.tsv:90162	609	candidate noun form; native religion WORD selection determines reachability
-high	bolt	high bolt	高阶门闩	BOLT	singular	门闩	data/runtime/translations.tsv:138646	617	candidate noun form; native religion WORD selection determines reachability
-first	bolt	first bolt	第一门闩	BOLT	singular	门闩	data/runtime/translations.tsv:135328	617	candidate noun form; native religion WORD selection determines reachability
-exalted	bolt	exalted bolt	高尚门闩	BOLT	singular	门闩	data/runtime/translations.tsv:127335	617	candidate noun form; native religion WORD selection determines reachability
-holy	bolt	holy bolt	神圣门闩	BOLT	singular	门闩	data/runtime/translations.tsv:139117	617	candidate noun form; native religion WORD selection determines reachability
-sacred	bolt	sacred bolt	神圣门闩	BOLT	singular	门闩	data/runtime/translations.tsv:134031	617	candidate noun form; native religion WORD selection determines reachability
-most high	bolt	most high bolt	至高门闩	BOLT	singular	门闩	data/runtime/translations.tsv:120115	617	candidate noun form; native religion WORD selection determines reachability
-absolute	bolt	absolute bolt	绝对门闩	BOLT	singular	门闩	data/runtime/translations.tsv:122395	617	candidate noun form; native religion WORD selection determines reachability
-most exalted	bolt	most exalted bolt	至尊门闩	BOLT	singular	门闩	data/runtime/translations.tsv:104970	617	candidate noun form; native religion WORD selection determines reachability
-most holy	bolt	most holy bolt	至圣门闩	BOLT	singular	门闩	data/runtime/translations.tsv:120581	617	candidate noun form; native religion WORD selection determines reachability
-most sacred	bolt	most sacred bolt	至圣门闩	BOLT	singular	门闩	data/runtime/translations.tsv:111164	617	candidate noun form; native religion WORD selection determines reachability
-high	bolts	high bolts	高阶门闩	BOLT	plural	门闩	data/runtime/translations.tsv:135917	617	candidate noun form; native religion WORD selection determines reachability
-first	bolts	first bolts	第一门闩	BOLT	plural	门闩	data/runtime/translations.tsv:131646	617	candidate noun form; native religion WORD selection determines reachability
-exalted	bolts	exalted bolts	高尚门闩	BOLT	plural	门闩	data/runtime/translations.tsv:123182	617	candidate noun form; native religion WORD selection determines reachability
-holy	bolts	holy bolts	神圣门闩	BOLT	plural	门闩	data/runtime/translations.tsv:136625	617	candidate noun form; native religion WORD selection determines reachability
-sacred	bolts	sacred bolts	神圣门闩	BOLT	plural	门闩	data/runtime/translations.tsv:129953	617	candidate noun form; native religion WORD selection determines reachability
-most high	bolts	most high bolts	至高门闩	BOLT	plural	门闩	data/runtime/translations.tsv:114816	617	candidate noun form; native religion WORD selection determines reachability
-absolute	bolts	absolute bolts	绝对门闩	BOLT	plural	门闩	data/runtime/translations.tsv:117519	617	candidate noun form; native religion WORD selection determines reachability
-most exalted	bolts	most exalted bolts	至尊门闩	BOLT	plural	门闩	data/runtime/translations.tsv:100874	617	candidate noun form; native religion WORD selection determines reachability
-most holy	bolts	most holy bolts	至圣门闩	BOLT	plural	门闩	data/runtime/translations.tsv:115521	617	candidate noun form; native religion WORD selection determines reachability
-most sacred	bolts	most sacred bolts	至圣门闩	BOLT	plural	门闩	data/runtime/translations.tsv:106423	617	candidate noun form; native religion WORD selection determines reachability
+high	bolt	high bolt	高阶弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:138646	617	candidate noun form; native religion WORD selection determines reachability
+first	bolt	first bolt	第一弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:135328	617	candidate noun form; native religion WORD selection determines reachability
+exalted	bolt	exalted bolt	高尚弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:127335	617	candidate noun form; native religion WORD selection determines reachability
+holy	bolt	holy bolt	神圣弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:139117	617	candidate noun form; native religion WORD selection determines reachability
+sacred	bolt	sacred bolt	神圣弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:134031	617	candidate noun form; native religion WORD selection determines reachability
+most high	bolt	most high bolt	至高弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:120115	617	candidate noun form; native religion WORD selection determines reachability
+absolute	bolt	absolute bolt	绝对弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:122395	617	candidate noun form; native religion WORD selection determines reachability
+most exalted	bolt	most exalted bolt	至尊弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:104970	617	candidate noun form; native religion WORD selection determines reachability
+most holy	bolt	most holy bolt	至圣弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:120581	617	candidate noun form; native religion WORD selection determines reachability
+most sacred	bolt	most sacred bolt	至圣弩矢	BOLT	singular	弩矢	data/runtime/translations.tsv:111164	617	candidate noun form; native religion WORD selection determines reachability
+high	bolts	high bolts	高阶弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:135917	617	candidate noun form; native religion WORD selection determines reachability
+first	bolts	first bolts	第一弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:131646	617	candidate noun form; native religion WORD selection determines reachability
+exalted	bolts	exalted bolts	高尚弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:123182	617	candidate noun form; native religion WORD selection determines reachability
+holy	bolts	holy bolts	神圣弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:136625	617	candidate noun form; native religion WORD selection determines reachability
+sacred	bolts	sacred bolts	神圣弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:129953	617	candidate noun form; native religion WORD selection determines reachability
+most high	bolts	most high bolts	至高弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:114816	617	candidate noun form; native religion WORD selection determines reachability
+absolute	bolts	absolute bolts	绝对弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:117519	617	candidate noun form; native religion WORD selection determines reachability
+most exalted	bolts	most exalted bolts	至尊弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:100874	617	candidate noun form; native religion WORD selection determines reachability
+most holy	bolts	most holy bolts	至圣弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:115521	617	candidate noun form; native religion WORD selection determines reachability
+most sacred	bolts	most sacred bolts	至圣弩矢	BOLT	plural	弩矢	data/runtime/translations.tsv:106423	617	candidate noun form; native religion WORD selection determines reachability
 high	bone	high bone	高阶骨头	BONE	singular	骨头	data/runtime/translations.tsv:138647	631	candidate noun form; native religion WORD selection determines reachability
 first	bone	first bone	第一骨头	BONE	singular	骨头	data/runtime/translations.tsv:135329	631	candidate noun form; native religion WORD selection determines reachability
 exalted	bone	exalted bone	高尚骨头	BONE	singular	骨头	data/runtime/translations.tsv:127336	631	candidate noun form; native religion WORD selection determines reachability

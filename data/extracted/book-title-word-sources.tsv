@@ -134,8 +134,8 @@ NOUN_PLURAL	BOIL	boils	疖	data/vanilla/vanilla_languages/objects/language_words
 NOUN_SINGULAR	BOLD	boldness	勇猛	data/vanilla/vanilla_languages/objects/language_words.txt:609	word+0x20	PE:RVA=0xee3e90..0xee40b0
 NOUN_PLURAL	BOLD	boldnesses	勇猛	data/vanilla/vanilla_languages/objects/language_words.txt:609	word+0x40	PE:RVA=0xee3e90..0xee40b0
 ADJ	BOLD	bold	勇猛	data/vanilla/vanilla_languages/objects/language_words.txt:610	word+0x60	PE:RVA=0xee3cf0..0xee3e8f
-NOUN_SINGULAR	BOLT	bolt	门闩	data/vanilla/vanilla_languages/objects/language_words.txt:617	word+0x20	PE:RVA=0xee3e90..0xee40b0
-NOUN_PLURAL	BOLT	bolts	门闩	data/vanilla/vanilla_languages/objects/language_words.txt:617	word+0x40	PE:RVA=0xee3e90..0xee40b0
+NOUN_SINGULAR	BOLT	bolt	弩矢	data/vanilla/vanilla_languages/objects/language_words.txt:617	word+0x20	PE:RVA=0xee3e90..0xee40b0
+NOUN_PLURAL	BOLT	bolts	弩矢	data/vanilla/vanilla_languages/objects/language_words.txt:617	word+0x40	PE:RVA=0xee3e90..0xee40b0
 NOUN_SINGULAR	BONE	bone	骨头	data/vanilla/vanilla_languages/objects/language_words.txt:631	word+0x20	PE:RVA=0xee3e90..0xee40b0
 NOUN_PLURAL	BONE	bones	骨头	data/vanilla/vanilla_languages/objects/language_words.txt:631	word+0x40	PE:RVA=0xee3e90..0xee40b0
 NOUN_SINGULAR	BOOK	book	书	data/vanilla/vanilla_languages/objects/language_words.txt:644	word+0x20	PE:RVA=0xee3e90..0xee40b0

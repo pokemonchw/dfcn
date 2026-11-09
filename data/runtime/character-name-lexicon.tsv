@@ -587,16 +587,12 @@ boils	沸腾	沸腾		action	intransitive	沸腾	none
 bold	勇猛	勇猛		quality	abstract		none	
 boldness	勇猛	勇猛		object	object		none	
 boldnesses	勇猛	勇猛		object	object		none	
-bolt	门闩	门闩		object	artifact		none	
-bolt	弩矢	弩箭		object	weapon		none	
-bolt	霹雳	闪电		object	nature|celestial		none	
+bolt	弩矢	弩矢		object	weapon		none	
 bolt	闩住	闩住		action	transitive	闩住	none	
 bolted	闩住	闩住		action	transitive	闩住	none	
 bolted	闩锁	闩锁		state	transitive	闩住	result	
 bolting	闩住	闩住		action	transitive	闩住	process	
-bolts	门闩	门闩		object	artifact		none	
-bolts	弩矢	弩箭		object	weapon		none	
-bolts	霹雳	闪电		object	nature|celestial		none	
+bolts	弩矢	弩矢		object	weapon		none	
 bolts	闩住	闩住		action	transitive	闩住	none	
 bone	骨	骨		object	material|body		none	
 bones	骨	骨		object	material|body		none	

@@ -587,16 +587,12 @@ boils	action	intransitive	none	沸腾	abstract	沸腾			沸腾		沸	沸腾		acti
 bold	quality	abstract	none	勇猛	abstract|quality	勇猛	勇猛				猛	勇猛		property.moral			none				勇猛	猛	勇猛	bound	complete	direct	direct		bold
 boldness	object	object	none	勇猛	abstract	勇猛		勇猛			猛	勇猛		virtue.courage			none				勇猛	猛	勇猛	bound	complete	direct	direct		boldness
 boldnesses	object	object	none	勇猛	abstract	勇猛		勇猛			猛	勇猛		virtue.courage			none				勇猛	猛	勇猛	bound	complete	direct	direct		boldness
-bolt	object	artifact	none	门闩	artifact	门闩		门闩			闩	门闩		tool.component			none				门闩	闩	门闩	bound	complete	direct	direct		bolt
-bolt	object	weapon	none	弩矢	weapon	弩矢		弩矢			矢	弩矢		weapon.ammo			none				弩箭	矢	弩矢	bound	complete	direct	direct		bolt
-bolt	object	nature|celestial	none	霹雳	nature|celestial	霹雳		霹雳			霆	霹雳		weather.thunder			none				闪电	霆	霹雳	bound	natural	direct	direct		bolt
+bolt	object	weapon	none	弩矢	weapon	弩矢		弩矢			矢	弩矢		weapon.ammo			none				弩矢	矢	弩矢	bound	complete	direct	direct		bolt
 bolt	action	transitive	none	闩住	abstract	闩住			闩住		闩	闩住		action.bind		bind	transitive	physical			闩住	闩	闩住	bound	complete	direct	direct		bolt
 bolted	action	transitive	none	闩住	abstract	闩住			闩住		闩	闩住		action.bind		bind	transitive	physical			闩住	闩	闩住	bound	complete	direct	direct		bolt
 bolted	state	transitive	result	闩锁	abstract	闩锁	闩锁的		闩住		闩	闩锁		property.change		bind	transitive	physical			闩锁	闩	闩锁	bound	complete	direct	direct		bolted
 bolting	action	transitive	process	闩住	abstract	闩住			闩住		闩	闩住		action.bind		bind	transitive	physical			闩住	闩	闩住	bound	complete	direct	direct		bolting
-bolts	object	artifact	none	门闩	artifact	门闩		门闩			闩	门闩		tool.component			none				门闩	闩	门闩	bound	complete	direct	direct		bolt
-bolts	object	weapon	none	弩矢	weapon	弩矢		弩矢			矢	弩矢		weapon.ammo			none				弩箭	矢	弩矢	bound	complete	direct	direct		bolt
-bolts	object	nature|celestial	none	霹雳	nature|celestial	霹雳		霹雳			霆	霹雳		weather.thunder			none				闪电	霆	霹雳	bound	natural	direct	direct		bolt
+bolts	object	weapon	none	弩矢	weapon	弩矢		弩矢			矢	弩矢		weapon.ammo			none				弩矢	矢	弩矢	bound	complete	direct	direct		bolt
 bolts	action	transitive	none	闩住	abstract	闩住			闩住		闩	闩住		action.bind		bind	transitive	physical			闩住	闩	闩住	bound	complete	direct	direct		bolt
 bone	object	material|body	none	骨	material|body	白骨	骨	骨			骨	白骨		body.bone			none				骨	骨	骨骼	natural	natural	direct	direct		bone
 bones	object	material|body	none	骨	material|body	白骨	白骨	白骨			骨	白骨		body.bone			none				骨	骨	骨骼	natural	natural	direct	direct		bone
