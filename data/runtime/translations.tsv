@@ -186430,3 +186430,13 @@ of	所属	h
 .	。	hq
 :	：	h
 ;	；	h
+
+# Save-loading mod compatibility prompt; maintained in ui-messages.tsv.
+Newer compatible version of mod detected: {c} (save uses {c}, not found)	检测到模组有兼容的新版本：{c1}（存档使用 {c2}，未找到该版本）	hPt
+Newer compatible version of mod detected: {c} (save uses {c})	检测到模组有兼容的新版本：{c1}（存档使用 {c2}）	hPt
+Newer compatible version of mod detected:	检测到模组有兼容的新版本：	hP
+Update	更新	hP
+Update all	全部更新	hP
+Don't update	不更新	hP
+Don't update any	全部不更新	hP
+Back to title	返回主菜单	hP

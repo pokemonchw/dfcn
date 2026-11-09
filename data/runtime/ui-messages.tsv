@@ -7,6 +7,18 @@
 # emits both complete forms, retaining capture identities and Chinese word order.
 # Single brackets such as [consumed] remain literal text.
 
+# Save loading: the heading and mod/version row form one compatibility prompt.
+# UI {c} slots preserve authored mod names and version strings as complete fields.
+# Keep the heading in each template so the open first field cannot swallow it.
+Newer compatible version of mod detected: {c} (save uses {c}, not found)	检测到模组有兼容的新版本：{c1}（存档使用 {c2}，未找到该版本）
+Newer compatible version of mod detected: {c} (save uses {c})	检测到模组有兼容的新版本：{c1}（存档使用 {c2}）
+Newer compatible version of mod detected:	检测到模组有兼容的新版本：
+Update	更新
+Update all	全部更新
+Don't update	不更新
+Don't update any	全部不更新
+Back to title	返回主菜单
+
 # Fortress revisit introduction: complete heading and semantic paragraphs.
 A Dwarven Outpost Revisited: You have returned.	[C:7:0:1]重访矮人前哨：[C:7:0:0]你回来了。
 How have your sturdy charges fared in your absence? Have they gone on adventures or moved on to richer delving at new frontier settlements? Perhaps they are all still here, unwilling to leave the magnificent fortress you prepared for them.	你不在的这段日子里，那些坚韧的子民过得如何？他们是否踏上冒险之旅，或已迁往新的边疆聚落，去开掘更丰饶的矿藏？也许他们全都还在这里，不愿离开你为他们建造的宏伟要塞。
