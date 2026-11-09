@@ -25,9 +25,13 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
     if (!name.has_name) {
         issue(Status::MissingInput, {}, "Missing native river name"); return out;
     }
-    const bool has_front = present(0) && present(1), has_nominal = present(5);
+    const bool site = kind == InputKind::SiteSlots;
+    const bool has_front = present(0) && present(1);
+    const bool has_nominal = present(5) || (site && present(4));
+    const bool has_front_word = present(0) || present(1);
+    const bool has_adjective = present(2) || present(3);
     if (!name.first_name.empty() || !name.nickname.empty() ||
-        present(0) != present(1) || (present(3) && !present(2)) ||
+        (!site && (present(0) != present(1) || (present(3) && !present(2)))) ||
         (kind == InputKind::NativeSlots &&
          (name.type != 20 ||
           (!has_nominal && (present(2) || present(3) || present(4) || present(6))) ||
@@ -44,7 +48,11 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
         if (!word.has_form || word.english_form.empty()) {
             issue(Status::MissingInput, {slot}, "Missing native WORD/form"); return out;
         }
-        if (!native_slot_pos(slot, word.part_of_speech)) {
+        // A site owns each selected WORD/POS independently of its role.
+        // River generation's restricted pools cannot reject those choices
+        // (e.g. a noun modifier or a gerund nominal head).
+        if (site ? word.part_of_speech < 0 || word.part_of_speech > 8 :
+                !native_slot_pos(slot, word.part_of_speech)) {
             issue(Status::InvalidSlots, {slot}, "POS is not licensed for this native slot"); return out;
         }
         meanings[slot] = meaning(word);
@@ -52,11 +60,13 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
             word.english_form, meanings[slot]);
     }
     if (has_front) out.structure.front = Compound{0, 1};
+    else if (site && has_front_word) out.structure.single_front = present(0) ? 0 : 1;
     for (size_t slot : {size_t(2), size_t(3)})
         if (present(slot)) out.structure.modifiers.push_back(slot);
     if (has_nominal) {
         Nominal nominal;
-        if (present(4)) nominal.compound = Compound{4, 5};
+        nominal.head = present(5) ? 5 : 4;
+        if (present(4) && present(5)) nominal.compound = Compound{4, 5};
         out.structure.nominal = nominal;
         if (present(6)) out.structure.title = Title{6, nominal};
     }
@@ -85,51 +95,107 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
     const auto adjective_group = [&]() {
         std::string result;
         for (size_t slot : {size_t(2), size_t(3)}) if (present(slot)) {
+            if (!result.empty()) result += "、";
+            if (site && name.words[slot].part_of_speech != 2) {
+                // A modifier slot does not turn the selected noun/verb into
+                // an ADJ sense. Preserve its complete native-POS meaning.
+                result += meanings[slot].empty() ? source_word(slot) : meanings[slot];
+                continue;
+            }
             auto &surface = out.adjectives[slot];
             surface = lexicon.translate_adjective(out.senses[slot], meanings[slot]);
-            if (!result.empty()) result += "、";
             if (surface.status == EnglishCharacterNames::AdjectiveSurface::Status::Resolved)
                 result += surface.text;
             else {
                 issue(Status::MissingAdjectiveSurface, {slot}, "Missing bound ADJ display surface");
-                result += source_word(slot);
+                result += site && !meanings[slot].empty() ? meanings[slot] : source_word(slot);
             }
         }
         return result;
     };
+    const auto independent_adjectives = [&]() {
+        if (!present(2) || !present(3)) return adjective_group();
+        out.structure.adjective_name = Compound{2, 3};
+        auto selected = select_compound(*out.structure.adjective_name, Policy::FullSurname);
+        std::string result;
+        if (selected.composition.classified()) result = selected.composition.text;
+        else {
+            result = adjective_group();
+            issue(Status::MissingCompoundConstruction, {2, 3},
+                "Missing adjective-name construction; retaining ADJ meanings");
+        }
+        out.selections.push_back(std::move(selected));
+        return result;
+    };
     if (has_front) {
         out.front = compound(*out.structure.front);
+    } else if (out.structure.single_front) {
+        const size_t slot = *out.structure.single_front;
+        out.front = meanings[slot].empty() ? source_word(slot) : meanings[slot];
     }
-    if (kind == InputKind::AdjectiveName) {
-        if (present(3)) {
-            out.structure.adjective_name = Compound{2, 3};
-            auto selected = select_compound(*out.structure.adjective_name, Policy::FullSurname);
-            if (selected.composition.classified()) out.head = selected.composition.text;
-            else {
-                // They remain adjectives when no naming construction exists;
-                // use their ADJ meanings, never their pronunciations.
-                out.head = adjective_group();
-                issue(Status::MissingCompoundConstruction, {2, 3},
-                    "Missing adjective-name construction; retaining ADJ meanings");
-            }
-            out.selections.push_back(std::move(selected));
-        } else {
-            out.head = adjective_group();
+    if (site && present(6)) {
+        // Site AA of BB also admits F/R + Q without N. Compose the complete
+        // AA first, retaining both roots and both independent modifiers.
+        // Its of-complement belongs to the nominal title when one exists;
+        // otherwise it qualifies the complete F/R-based site name.
+        if (!has_front_word && !has_nominal && !has_adjective) {
+            issue(Status::InvalidSlots, {6}, "Site of-complement has no name head");
+            return out;
         }
+        out.structure.site_complement = 6;
+        const bool adjective_only = !has_front_word && !has_nominal;
+        const size_t context_slot = has_nominal ? out.structure.nominal->head : has_front_word ?
+            (present(1) ? 1 : 0) : (present(3) ? 3 : 2);
+        auto head_senses = out.senses[context_slot];
+        const bool compound_head = has_nominal ? out.structure.nominal->compound.has_value() :
+            has_front_word ? has_front : present(2) && present(3);
+        if (has_nominal) {
+            out.head = compound_head ? compound(*out.structure.nominal->compound) :
+                meanings[context_slot].empty() ? source_word(context_slot) : meanings[context_slot];
+            out.head_source = compound_head ? Result::HeadSource::Compound :
+                meanings[context_slot].empty() ? Result::HeadSource::SourceForm : Result::HeadSource::NativeNounMeaning;
+        } else if (adjective_only) out.head = independent_adjectives();
+        if (!adjective_only) out.modifiers = adjective_group();
+        if (compound_head) {
+            const auto &chosen = out.selections.back().composition;
+            if (chosen.classified()) {
+                const auto &native_head = chosen.reversed ? chosen.left_sense : chosen.right_sense;
+                std::erase_if(head_senses, [&](const auto &sense) { return sense.key != native_head; });
+            }
+        }
+        auto selected = lexicon.surname_compose_typed(out.senses[6], head_senses, Policy::Title22z);
+        out.site_complement = selected.classified() ? selected.left_word :
+            meanings[6].empty() ? source_word(6) : meanings[6];
+        if (selected.classified() && !compound_head && !adjective_only) {
+            if (has_nominal) {
+                out.head = selected.right_word;
+                out.head_source = Result::HeadSource::ContextDouble;
+            } else out.front = selected.right_word;
+        }
+        // A site relation needs no forced 2+2 title: when that literary form
+        // is unavailable, complete WORD/POS meanings still own AA and BB.
+        out.selections.push_back({{6, context_slot}, Policy::Title22z, std::move(selected)});
         return out;
     }
-    if (kind == InputKind::ModifiedFront) {
+    if (kind == InputKind::AdjectiveName ||
+            (site && !has_front_word && !has_nominal && has_adjective)) {
+        out.head = independent_adjectives();
+        return out;
+    }
+    if (kind == InputKind::ModifiedFront ||
+            (site && has_front_word && !has_nominal && has_adjective)) {
         out.modifiers = adjective_group();
         return out;
     }
     if (!has_nominal) {
-        if (!has_front) issue(Status::MissingInput, {}, "Empty native river name");
+        if (!has_front_word) issue(Status::MissingInput, {}, "Empty native name");
         return out;
     }
     const auto &nominal = *out.structure.nominal;
+    const size_t head_slot = nominal.head;
     out.modifiers = adjective_group();
     bool title_head_resolved = true;
-    auto head_senses = out.senses[5];
+    auto head_senses = out.senses[head_slot];
     if (nominal.compound) {
         if (out.structure.title) {
             auto selected = select_compound(*nominal.compound, Policy::TitleHead11);
@@ -177,26 +243,30 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
             out.unresolved_title = "the " + out.head + " of " + source_word(6);
         }
         out.selections.push_back({{6, 5}, Policy::Title22z, std::move(selected)});
+    } else if (!nominal.compound && site && !has_adjective) {
+        out.head = meanings[head_slot].empty() ? source_word(head_slot) : meanings[head_slot];
+        out.head_source = meanings[head_slot].empty() ? Result::HeadSource::SourceForm :
+            Result::HeadSource::NativeNounMeaning;
     } else if (!nominal.compound) {
         const size_t nearest = present(3) ? 3 : 2;
-        auto selected = lexicon.surname_compose_typed(out.senses[nearest], out.senses[5],
+        auto selected = lexicon.surname_compose_typed(out.senses[nearest], out.senses[head_slot],
             Policy::AdjectiveHeadDouble);
         if (selected.classified()) {
             out.head = selected.right_word;
             out.head_source = Result::HeadSource::ContextDouble;
         }
         else {
-            issue(Status::MissingContextDouble, {nearest, 5},
+            issue(Status::MissingContextDouble, {nearest, head_slot},
                 "Missing property/material AdjectiveHeadDouble forms/permission");
             // N is an independent noun, already proven by its native slot
             // and POS. A missing literary ADJ+N construction does not erase
             // its WORD/NOUN translation. Keep the full lexical meaning,
             // without promoting it to a classified surname or 22z title.
-            out.head = meanings[5].empty() ? source_word(5) : meanings[5];
-            out.head_source = meanings[5].empty() ? Result::HeadSource::SourceForm :
+            out.head = meanings[head_slot].empty() ? source_word(head_slot) : meanings[head_slot];
+            out.head_source = meanings[head_slot].empty() ? Result::HeadSource::SourceForm :
                 Result::HeadSource::NativeNounMeaning;
         }
-        out.selections.push_back({{nearest, 5}, Policy::AdjectiveHeadDouble, std::move(selected)});
+        out.selections.push_back({{nearest, head_slot}, Policy::AdjectiveHeadDouble, std::move(selected)});
     }
     return out;
 }

@@ -1053,6 +1053,35 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
             (world_site_typed_heading(source) || (source.starts_with("The ") &&
                 (source.find(" Of ") != std::string::npos ||
                     (facts && source.find(" of ") != std::string::npos))));
+        // Keep the complete displayed type beside the extracted name. Its
+        // RAW race adjective is information about this site, not a naming
+        // root; it must survive both native heading orders and gloss records.
+        std::string site_name_source = source;
+        std::string_view site_type_source;
+        if (identity) {
+            if (const auto record = split_legends_figure_record(source);
+                    record && record->sex.empty() && world_site_type_shape(record->species)) {
+                site_type_source = record->species;
+                site_name_source = std::string(record->native_name) +
+                    ", \"" + std::string(record->gloss) + "\"";
+            }
+        } else if (site_heading || compact_site_heading) {
+            const size_t type_begin = compact_site_heading ? source.rfind(", ") + 2
+                : source.starts_with("The ") ? 4 : 0;
+            const size_t type_end = compact_site_heading ? source.size()
+                : lower(source).find(" of ", type_begin);
+            if (type_end != std::string::npos && type_end > type_begin) {
+                site_type_source = std::string_view(source).substr(type_begin, type_end - type_begin);
+                site_name_source = compact_site_heading ? source.substr(0, type_begin - 2)
+                    : source.substr(type_end + 4);
+            }
+        }
+        const auto with_site_controller = [&](std::optional<std::string> name) {
+            if (name && !name->empty() && !site_type_source.empty())
+                if (const auto race = translate_world_site_controller(site_type_source))
+                    *name = "被" + *race + "掌控的" + *name;
+            return name;
+        };
         facts = facts || identity || site_heading || compact_site_heading || source.starts_with("Population:") ||
             source == "No civilized population" || source == "Your location" ||
             source == "Inaccessible from your location" || source == "A short trip" ||
@@ -1083,18 +1112,8 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
             if (!target) target = translate_legends_item(source);
         }
         if (!target && site_draw) {
-            std::string_view name_source = source;
-            if (site_heading || compact_site_heading) {
-                const size_t type_begin = compact_site_heading ? source.rfind(", ") + 2
-                    : source.starts_with("The ") ? 4 : 0;
-                const size_t type_end = compact_site_heading ? source.size()
-                    : lower(source).find(" of ", type_begin);
-                if (type_end != std::string::npos && type_end > type_begin)
-                    name_source = compact_site_heading
-                        ? std::string_view(source).substr(0, type_begin - 2)
-                        : std::string_view(source).substr(type_end + 4);
-            }
-            target = translate_site_display(*site_draw->site_name, name_source);
+            target = with_site_controller(translate_site_display(
+                *site_draw->site_name, site_name_source));
         }
         // Native headings use `The <type> Of <site name>` or `<name>, <type>`.
         // Resolve the
@@ -1139,8 +1158,7 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
             if (!target) {
                 if (const auto record = split_legends_figure_record(source);
                         record && record->sex.empty() && world_site_type_shape(record->species))
-                    target = translate_legends_place(std::string(record->native_name) +
-                        ", \"" + std::string(record->gloss) + "\"");
+                    target = with_site_controller(translate_legends_place(site_name_source));
                 else if (split_generated_name_identity(source))
                     target = translate_site_reference(source);
             }
@@ -1148,16 +1166,8 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
                     split_generated_name_identity(source)))
                 target = translate_procedural_fragment(source);
         } else if (!target && (site_heading || compact_site_heading)) {
-            const size_t type_begin = compact_site_heading ? source.rfind(", ") + 2
-                : source.starts_with("The ") ? 4 : 0;
-            const size_t type_end = compact_site_heading ? source.size()
-                : lower(source).find(" of ", type_begin);
-            if (type_end != std::string::npos && type_end > type_begin) {
-                const auto name = compact_site_heading
-                    ? std::string_view(source).substr(0, type_begin - 2)
-                    : std::string_view(source).substr(type_end + 4);
-                target = translate_site_reference(name);
-            }
+            if (!site_type_source.empty())
+                target = with_site_controller(translate_site_reference(site_name_source));
             // Without a resolved site, keep the complete heading rather than
             // silently deleting its type or a geographic naming word.
             if (!target) target = native_text_to_utf8(source);

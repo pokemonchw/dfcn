@@ -33,7 +33,7 @@ public:
     using Policy = EnglishCharacterNames::ComposePolicy;
     using Composition = EnglishCharacterNames::Composition;
     using Senses = EnglishCharacterNames::NativeSenses;
-    enum class InputKind { NativeSlots, AdjectiveName, ModifiedFront };
+    enum class InputKind { NativeSlots, AdjectiveName, ModifiedFront, SiteSlots };
     enum class Status { Complete, MissingInput, InvalidSlots, MissingAdjectiveSurface,
         MissingContextDouble, MissingCompoundConstruction, CompoundTransliterated };
     struct Compound { size_t left, right; };
@@ -47,8 +47,10 @@ public:
     };
     struct Structure {
         std::optional<Compound> front;
+        std::optional<size_t> single_front;
         std::optional<Nominal> nominal;
         std::optional<Title> title;
+        std::optional<size_t> site_complement;
         std::optional<Compound> adjective_name;
         std::vector<size_t> modifiers;
         InputKind kind = InputKind::NativeSlots;
@@ -70,7 +72,7 @@ public:
             std::string complement, head;
             std::string attached() const { return complement + "之" + head; }
             std::string standalone(std::string_view generic) const {
-                return complement + head + "之" + std::string(generic);
+                return generic.empty() ? attached() : complement + head + "之" + std::string(generic);
             }
         };
         NativeHistoryName source;
@@ -79,7 +81,7 @@ public:
         std::array<EnglishCharacterNames::AdjectiveSurface, 7> adjectives;
         std::vector<Selection> selections;
         std::vector<Issue> issues;
-        std::string front, head, modifiers, unresolved_title;
+        std::string front, head, modifiers, unresolved_title, site_complement;
         HeadSource head_source = HeadSource::None;
         std::optional<TitleSurface> title;
         RiverSize category = RiverSize::Unknown;
@@ -87,7 +89,19 @@ public:
         uint64_t resource_revision = 0;
         std::string display(std::string_view generic) const {
             const auto adjective = modifiers.empty() ? "" : modifiers + "的";
-            const bool title_only = !structure.front && structure.modifiers.empty();
+            if (structure.kind == InputKind::SiteSlots) {
+                const std::string ownership = structure.site_complement ? site_complement + "之" : "";
+                if (!front.empty()) {
+                    // F, R or their compound alone owns the site's core.
+                    // Neither a nominal title nor its of-complement can
+                    // separate that core from the actual site-type suffix.
+                    const std::string named_site = adjective + front + std::string(generic);
+                    return head.empty() ? ownership + named_site :
+                        named_site + "." + ownership + head;
+                }
+                return head.empty() ? "" : ownership + adjective + head + std::string(generic);
+            }
+            const bool title_only = !structure.front && !structure.single_front && structure.modifiers.empty();
             if (title) {
                 // The two selected title words stay double-width. A title
                 // alone names the water; an attached title follows its name.

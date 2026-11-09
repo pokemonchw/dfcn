@@ -52,6 +52,7 @@ static std::optional<std::string> reconstruct_site_english_name(
     append(english, capitalized(forms[0] + forms[1]));
     // Reproduce the native English formatter, including its hidden slot 4
     // rule and compound title. This is input text, never a Chinese gloss.
+    bool open_title_compound = false;
     if (!name.words[2].id.empty() || !name.words[3].id.empty() ||
             !name.words[5].id.empty()) {
         std::string title;
@@ -61,11 +62,17 @@ static std::optional<std::string> reconstruct_site_english_name(
             append(title, capitalized(forms[4]));
             title += '-';
             title += capitalized(forms[5]);
+            open_title_compound = forms[5].empty();
         } else append(title, capitalized(forms[5]));
         if (!title.empty()) append(english, (english.empty() ? "The " : "the ") + title);
     }
-    if (!forms[6].empty())
-        append(english, (english.empty() ? "Of " : "of ") + capitalized(forms[6]));
+    if (!forms[6].empty()) {
+        // The native formatter suppresses the separator after H's hyphen.
+        // When N is empty the displayed suffix is H-of Q, not H- of Q.
+        const std::string complement = (english.empty() ? "Of " : "of ") + capitalized(forms[6]);
+        if (open_title_compound) english += complement;
+        else append(english, complement);
+    }
     return english.empty() ? std::nullopt : std::optional<std::string>(std::move(english));
 }
 
@@ -97,6 +104,11 @@ static std::string site_name_attribute_suffix(std::string_view label,
     // Town alone is a coarse settlement category; only hamlet/town output
     // proves its finer class. Other unknown site types retain a neutral word.
     return site_type == 5 ? "聚落" : "地点";
+}
+
+static std::string site_name_attribute_suffix(const NativeHistoryName &name) {
+    return name.site_label == "player fortress" ? "堡" :
+        site_name_attribute_suffix(name.site_label, name.site_type);
 }
 
 bool Overlay::load_site_name_imagery() {
@@ -142,22 +154,38 @@ bool Overlay::load_site_name_imagery() {
     return !site_name_imagery_.empty();
 }
 
-std::optional<std::string> Overlay::localize_site_name(const NativeHistoryName &name) const {
-    if (name.site_id < 0 || !name.has_name || !name.first_name.empty() ||
+std::optional<std::string> Overlay::localize_site_name(const NativeHistoryName &name,
+        std::string_view suffix) const {
+    if (!name.has_name || !name.first_name.empty() ||
             !name.nickname.empty()) return std::nullopt;
-    std::array<EnglishCharacterNames::EntityWord, 7> words;
-    for (size_t slot = 0; slot < words.size(); ++slot) {
-        const auto &word = name.words[slot];
-        if (word.id.empty()) continue;
-        if (!word.has_form || word.english_form.empty()) return std::nullopt;
-        words[slot] = {word.english_form, word.part_of_speech};
-    }
+    NativeHistoryName visible = name;
     if (name.words[2].id.empty() && name.words[3].id.empty() && name.words[5].id.empty())
-        words[4] = {};
-    // Share the name lexicon, grammatical relations and Mandarin scoring.
-    // Keep the formatter's front/title/ownership groups in entity mode;
-    // a complete multi-group site name is not a single personal surname.
-    return english_character_names_.entity_name(words);
+        visible.words[4] = {};
+    // Site/local-government provenance is supplied by the caller, including
+    // the embark editor before either object exists. Share the river
+    // compositor's WORD/POS choices and compound fallback with the same
+    // group order and the caller's type suffix.
+    auto result = localize_river_name(visible, RiverNames::InputKind::SiteSlots).display(suffix);
+    return result.empty() ? std::nullopt : std::optional<std::string>(std::move(result));
+}
+
+std::optional<std::string> Overlay::translate_site_government_name(
+        const NativeHistoryName &name,
+        const NativeSiteGovernmentContext *government_context) const {
+    if (!name.has_name) return std::nullopt;
+    NativeHistoryName resolved = name;
+    // Historical snapshots can carry WORD/POS without the English surface.
+    // Recover only that exact form, preserving the game's absent-form flags.
+    for (auto &word : resolved.words) {
+        if (word.id.empty() || !word.has_form || !word.english_form.empty() ||
+                word.part_of_speech < 0 || word.part_of_speech > 8) continue;
+        const auto found = history_english_name_forms_.find(word.id);
+        if (found != history_english_name_forms_.end())
+            word.english_form = found->second[static_cast<size_t>(word.part_of_speech)];
+    }
+    const auto english = reconstruct_site_english_name(resolved);
+    return english ? translate_english_site_name(*english, &resolved,
+        site_government_name_suffix(name, government_context)) : std::nullopt;
 }
 
 bool Overlay::load_site_name_decisions() {
@@ -321,8 +349,7 @@ std::optional<std::string> Overlay::translate_saved_name(
     }
     // Keep the native-language spelling and the English place name as two
     // separately translated fields. The former is phonetic; the latter
-    // uses the existing English place-name grammar, never character-name
-    // senses or the native-spelling fallback of the official site resolver.
+    // uses the shared river-name grammar when native WORD/POS is available.
     // Parse this before world lookup so loaded and offline saves retain the
     // same pair instead of losing the English name on either path.
     if (const auto pair = split_generated_name_identity(source.original)) {
@@ -400,26 +427,26 @@ std::string Overlay::transliterate_english_name(std::string_view english,
 }
 
 std::optional<std::string> Overlay::translate_english_site_name(
-        std::string_view english, const NativeHistoryName *identity) const {
+        std::string_view english, const NativeHistoryName *identity,
+        std::string_view suffix) const {
     english = trim_view(english);
     if (english.empty()) return std::nullopt;
     if (english.size() >= 2 && english.front() == '"' && english.back() == '"')
         english = trim_view(english.substr(1, english.size() - 2));
     if (english.empty()) return std::nullopt;
-    if (contains_cjk_utf8(english)) return native_text_to_utf8(english);
-    // Exact field identity supplies the original WORD/POS boundaries. If
-    // those slots cannot form a natural name, use the English phonetic fallback;
-    // a text-only retry must not discard its grammatical evidence.
-    if (identity && identity->site_id >= 0) {
+    if (contains_cjk_utf8(english)) return native_text_to_utf8(english) + std::string(suffix);
+    // Exact field identity supplies the original WORD/POS boundaries. The
+    // settlement editor also owns those slots before a world_site exists.
+    if (identity) {
         const auto captured = reconstruct_site_english_name(*identity);
         if (captured && lower(native_text_to_utf8(*captured)) ==
                 lower(native_text_to_utf8(english))) {
-            if (auto localized = localize_site_name(*identity)) return localized;
-            return transliterate_english_name(english, identity);
+            if (auto localized = localize_site_name(*identity, suffix)) return localized;
         }
     }
-    if (auto localized = english_character_names_.entity_name(english)) return localized;
-    return transliterate_english_name(english);
+    // As with river fields, missing native input cannot justify guessing
+    // compound boundaries or falling back to a different naming algorithm.
+    return native_text_to_utf8(english) + std::string(suffix);
 }
 
 std::string Overlay::site_name_core(const NativeHistoryName &name) const {
@@ -433,10 +460,9 @@ std::optional<std::string> Overlay::translate_site_name(const NativeHistoryName 
     // True site provenance is mandatory. Site/Monument/Dungeon name templates
     // also appear on independent organizations, structures and geography.
     if (name.site_id < 0 || !name.has_name) return std::nullopt;
-    std::string core = site_name_core(name);
-    if (core.empty()) return std::nullopt;
-    core += site_name_attribute_suffix(name.site_label, name.site_type);
-    return core;
+    const auto english = reconstruct_site_english_name(name);
+    return english ? translate_english_site_name(*english, &name, site_name_attribute_suffix(name))
+        : std::nullopt;
 }
 
 std::optional<std::string> Overlay::translate_site_display(
@@ -452,9 +478,8 @@ std::optional<std::string> Overlay::translate_site_display(
         const std::string native = same(pair->native_name, name.native_name)
             ? site_name_full_transliteration(name)
             : transliterate_site_spelling(pair->native_name);
-        auto english = translate_english_site_name(pair->gloss, &name);
+        auto english = translate_english_site_name(pair->gloss, &name, site_name_attribute_suffix(name));
         if (native.empty() || !english) return std::nullopt;
-        *english += site_name_attribute_suffix(name.site_label, name.site_type);
         return native + "，“" + *english + "”";
     }
     // Field identity establishes the language. A native spelling must never
@@ -467,9 +492,8 @@ std::optional<std::string> Overlay::translate_site_display(
     const bool quoted = source.size() >= 2 && source.front() == '"' && source.back() == '"';
     const auto text = quoted ? trim_view(source.substr(1, source.size() - 2)) : source;
     if (english && same(text, *english)) {
-        auto localized = translate_english_site_name(text, &name);
+        auto localized = translate_english_site_name(text, &name, site_name_attribute_suffix(name));
         if (!localized) return std::nullopt;
-        *localized += site_name_attribute_suffix(name.site_label, name.site_type);
         return quoted ? "“" + *localized + "”" : *localized;
     }
     if (contains_cjk_utf8(source)) return native_text_to_utf8(source);
@@ -486,10 +510,10 @@ std::vector<std::string> Overlay::site_name_search_aliases(const NativeHistoryNa
     const std::string original = native_text_to_utf8(name.native_name);
     append(original);
     if (!original.empty())
-        append(original + site_name_attribute_suffix(name.site_label, name.site_type));
+        append(original + site_name_attribute_suffix(name));
     const std::string phonetic = site_name_full_transliteration(name);
     append(phonetic);
-    if (!phonetic.empty()) append(phonetic + site_name_attribute_suffix(name.site_label, name.site_type));
+    if (!phonetic.empty()) append(phonetic + site_name_attribute_suffix(name));
     append(site_name_core(name));
     if (const auto full = translate_site_name(name)) append(*full);
     if (const auto english = reconstruct_site_english_name(name)) {

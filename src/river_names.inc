@@ -5,7 +5,8 @@ bool Overlay::load_river_names() {
     return river_names_.load(runtime::data_path(), english_character_names_);
 }
 
-RiverNames::Result Overlay::localize_river_name(const NativeHistoryName &name) const {
+RiverNames::Result Overlay::localize_river_name(const NativeHistoryName &name,
+        RiverNames::InputKind kind) const {
     return river_names_.semantic(name, english_character_names_,
         [&](const NativeHistoryWord &word) -> std::string {
             const int pos = word.part_of_speech;
@@ -31,7 +32,7 @@ RiverNames::Result Overlay::localize_river_name(const NativeHistoryName &name) c
             token.roots = {{left.english_form, left.part_of_speech},
                 {right.english_form, right.part_of_speech}};
             return english_name_transliterator_.name(token.spelling, {token});
-        });
+        }, kind);
 }
 
 std::string Overlay::translate_river_text(std::string_view source, RiverSize category) const {

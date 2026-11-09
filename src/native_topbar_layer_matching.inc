@@ -62,8 +62,9 @@ std::vector<Match> Overlay::find_native_topbar_matches(int only_y,
     std::array<std::string, 2> names{};
     if (have_site) {
         names[0] = site_name_full_transliteration(site);
-        if (auto place = translate_english_site_name(english, &site))
-            names[1] = *place + site_name_attribute_suffix(site.site_label, site.site_type);
+        if (auto place = translate_english_site_name(english, &site,
+                site_name_attribute_suffix(site)))
+            names[1] = *place;
     }
     std::array<size_t, 3> date_fields{};
     date_fields.fill(SIZE_MAX);

@@ -87,7 +87,8 @@ struct NativeHistoryName {
     int16_t parent_word_pos = -1;
     // Only a resolved world_site may populate this provenance. EntitySite
     // language_name types are also used by non-site objects and prove no
-    // location kind. The formatter label retains the native classification.
+    // location kind. The label retains the native classification unless the
+    // current player's site is explicitly marked as "player fortress".
     int32_t site_id = -1;
     int32_t site_type = -1;
     int32_t site_subtype = -1;

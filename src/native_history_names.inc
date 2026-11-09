@@ -615,6 +615,23 @@ static bool capture_native_history_site_name_context(uintptr_t base, uintptr_t s
     name.site_type = type->second.front();
     name.site_subtype = subtype->second.front();
     name.site_label = label->second;
+    // The player's chosen site keeps the fortress suffix independently of
+    // its native outpost/hamlet/city classification. Only the current site's
+    // real owner may establish that distinction.
+#ifdef _WIN32
+    uintptr_t fortress_site = 0;
+    if (native_history_copy(native_reference_address(base, 0x239a1f0), fortress_site) &&
+            fortress_site == site)
+        name.site_label = "player fortress";
+#else
+    const uintptr_t plotinfo = native_reference_address(base,
+        native_history_layout::plotinfo_rva);
+    int32_t fortress_site_id = -1;
+    if (plotinfo && native_history_copy(native_history_object_field(
+            plotinfo, "plotinfost", 0x2444, sizeof(fortress_site_id)), fortress_site_id) &&
+            fortress_site_id == id)
+        name.site_label = "player fortress";
+#endif
     name.native_name = std::move(original);
     return true;
 }

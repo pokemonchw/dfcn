@@ -255,6 +255,11 @@ std::optional<std::string> Overlay::translate_history_name(
     const bool site_government = !character &&
         (name.entity_type == 1 || (government_role &&
             name.entity_type >= 1 && name.entity_type <= 10));
+    // Generated local governments share the settlement WORD-slot grammar.
+    // Keep the entity's owned context so its parent polity supplies the
+    // local-government suffix, while literal name fields retain their rules.
+    if (site_government && name.first_name.empty() && name.nickname.empty())
+        return translate_site_government_name(name, government_context);
     const bool polity = !character && !site_government && (name.entity_type == 0 ||
         (name.entity_type < 0 && name.type == 2));
     if (character) {

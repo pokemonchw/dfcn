@@ -302,6 +302,7 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
     std::array<int, 3> columns{gps_->dimx, gps_->dimx, gps_->dimx};
     int heading_y = -1;
     bool settlement_preview = false;
+    bool government_preview = false;
     for (size_t y = 0; y < context.size(); ++y) {
         const auto fields = fields_in(context[y], static_cast<int>(y));
         size_t table_begin = fields.size();
@@ -336,6 +337,7 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
                 if (heading && field.y >= heading_y) {
                     heading_y = field.y;
                     settlement_preview = field.source == "Name your settlement";
+                    government_preview = field.source == "Name your group";
                 }
             } else if (field.y < signature.first_slot_y &&
                        field.x > signature.front_x &&
@@ -395,6 +397,12 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
             caption.x, caption.x + static_cast<int>(caption.source.size()),
             false);
     }
+    const auto place_name = settlement_preview || government_preview
+        ? capture_native_place_editor_name(government_preview ? 1 : 0) : std::nullopt;
+    NativeHistoryName unresolved_government;
+    unresolved_government.entity_type = 1;
+    const std::string place_suffix = government_preview
+        ? site_government_name_suffix(place_name ? *place_name : unresolved_government) : "堡";
     for (const Field &preview : previews) {
         // Preview lines immediately follow the heading. A search box, even
         // if moved above the first slot by a theme, is not a generated name.
@@ -403,14 +411,17 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
         const bool quoted = preview.source.size() >= 2 &&
             preview.source.front() == '"' && preview.source.back() == '"';
         std::optional<std::string> target;
-        if (settlement_preview) {
-            // The editor establishes a place-name field before a world_site
-            // exists. Use whole-name localization and its English phonetic
-            // fallback, while keeping the native spelling independent. No
-            // site classification is available here to supply a type suffix.
-            target = quoted ? translate_procedural_fragment(preview.source,
-                false, false, {}, ProceduralFragmentContext::english_site_name) :
-                std::optional<std::string>(transliterate_site_spelling(preview.source));
+        if (settlement_preview || government_preview) {
+            // Both embark names use the settlement WORD-slot grammar before
+            // their objects exist. The group takes its suffix from the chosen
+            // parent civilization; the native spelling stays phonetic.
+            if (quoted) {
+                target = translate_english_site_name(preview.source,
+                    place_name ? &*place_name : nullptr, place_suffix);
+                if (target) *target = "“" + *target + "”";
+            } else {
+                target = transliterate_site_spelling(preview.source);
+            }
         } else {
             target = quoted ? translate_procedural_fragment(preview.source) :
                 translate_procedural_fragment(preview.source, true);
@@ -474,19 +485,21 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
 }
 
 #ifdef _WIN32
-void Overlay::append_native_settlement_name_previews(std::vector<std::string> &rows,
+void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> &owned_regions) const {
     // name_creator_interfacest::render does not draw an enclosing frame in
-    // settlement context. Its three addst producers establish these fields
+    // settlement/group contexts. Its addst producers establish these fields
     // independently of a nearby panel or the word-table reader's scratch rows.
     // Use the existing caption capture; no extra native hook is needed.
     const uintptr_t base = native_history_profile_base();
     if (!base) return;
-    const uintptr_t heading_caller = native_reference_address(base, 0x1fc995);
+    const uintptr_t settlement_heading_caller = native_reference_address(base, 0x1fc995);
+    const uintptr_t government_heading_caller = native_reference_address(base, 0x1fc9d8);
     const uintptr_t native_caller = native_reference_address(base, 0x1fcd29);
     const uintptr_t english_caller = native_reference_address(base, 0x1fcde4);
-    if (!heading_caller || !native_caller || !english_caller) return;
+    if (!settlement_heading_caller || !government_heading_caller ||
+            !native_caller || !english_caller) return;
     const auto draws = captured_native_drawn_text_view();
     const auto current = [&](const NativeDrawnTextRow &draw) {
         if (draw.draw_grid != gps_->screen || draw.top_layer ||
@@ -512,8 +525,16 @@ void Overlay::append_native_settlement_name_previews(std::vector<std::string> &r
         return true;
     };
     for (const auto &heading : draws) {
-        if (heading.native_caller != heading_caller ||
-                heading.source != "Name your settlement" || !current(heading)) continue;
+        const bool government = heading.source == "Name your group";
+        if (heading.native_caller != (government
+                ? government_heading_caller : settlement_heading_caller) ||
+                (!government && heading.source != "Name your settlement") ||
+                !current(heading)) continue;
+        const auto place_name = capture_native_place_editor_name(government ? 1 : 0);
+        NativeHistoryName unresolved_government;
+        unresolved_government.entity_type = 1;
+        const std::string suffix = government
+            ? site_government_name_suffix(place_name ? *place_name : unresolved_government) : "堡";
         for (const auto &draw : draws) {
             const bool english = draw.native_caller == english_caller;
             if ((!english && draw.native_caller != native_caller) ||
@@ -522,10 +543,11 @@ void Overlay::append_native_settlement_name_previews(std::vector<std::string> &r
             if (raw_layer && raw_layer != draw.draw_grid) continue;
             if (english && (draw.source.size() < 2 ||
                     draw.source.front() != '"' || draw.source.back() != '"')) continue;
-            const auto target = english ? translate_procedural_fragment(draw.source,
-                false, false, {}, ProceduralFragmentContext::english_site_name) :
+            auto target = english ? translate_english_site_name(draw.source,
+                place_name ? &*place_name : nullptr, suffix) :
                 std::optional<std::string>(transliterate_site_spelling(draw.source));
             if (!target || target->empty()) continue;
+            if (english) *target = "“" + *target + "”";
             const int length = static_cast<int>(draw.source.size());
             owned_regions.push_back({draw.x, draw.y, length, 1});
             std::fill_n(rows[draw.y].begin() + draw.x, length, ' ');

@@ -40,8 +40,8 @@ void Overlay::append_fortress_site_name(std::vector<std::string> &rows,
                     english.replace(15, 3, "...");
                 }
                 const std::array<std::string, 2> sources{name.native_name, english};
-                auto place = translate_english_site_name(full_english, &name);
-                if (place) *place += site_name_attribute_suffix(name.site_label, name.site_type);
+                auto place = translate_english_site_name(full_english, &name,
+                    site_name_attribute_suffix(name));
                 const std::array<std::string, 2> targets{
                     site_name_full_transliteration(name), place.value_or(std::string{})};
                 for (size_t field = 0; field < sources.size(); ++field) {

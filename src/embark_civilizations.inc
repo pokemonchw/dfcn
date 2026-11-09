@@ -229,10 +229,8 @@ void Overlay::append_embark_civilization_rows(std::vector<std::string> &rows,
             // the same whole-name grammar and fallback as history references,
             // before general dictionary or procedural word matching.
             if (original) {
-                target = translate_english_site_name(source, site_name);
-                if (target && site_name)
-                    *target += site_name_attribute_suffix(site_name->site_label,
-                        site_name->site_type);
+                target = translate_english_site_name(source, site_name,
+                    site_name ? site_name_attribute_suffix(*site_name) : std::string{});
             }
         } else if (!memory_source_only || original) {
             const bool civilization_name = rule == kEmbarkCivilizationNameRule && !site_gloss;

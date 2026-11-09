@@ -107,6 +107,7 @@ static std::vector<NativeHistoryUnboundDraw> captured_native_history_unbound_dra
 static std::optional<NativeActivityDetailDocument> native_activity_detail_document(
     const std::unordered_set<uintptr_t> &visible_words);
 static uintptr_t native_history_profile_base();
+static std::optional<NativeHistoryName> capture_native_place_editor_name(int32_t expected_context);
 static bool refresh_native_journal_event_sources(const graphicst *graphics);
 static bool refresh_native_journal_artifact_sources(const graphicst *graphics);
 static bool native_history_copy_bytes(uintptr_t address, void *destination, size_t size);
@@ -4140,8 +4141,11 @@ private:
         bool polity_role = false, bool government_role = false,
         const NativeSiteGovernmentContext *government_context = nullptr) const;
     std::optional<std::string> translate_site_name(const NativeHistoryName &name) const;
+    std::optional<std::string> translate_site_government_name(const NativeHistoryName &name,
+        const NativeSiteGovernmentContext *government_context = nullptr) const;
     std::optional<std::string> translate_english_site_name(
-        std::string_view english, const NativeHistoryName *identity = nullptr) const;
+        std::string_view english, const NativeHistoryName *identity = nullptr,
+        std::string_view suffix = {}) const;
     std::string transliterate_english_name(std::string_view english,
         const NativeHistoryName *identity = nullptr) const;
     std::string native_language_word_display(std::string_view original) const;
@@ -4150,14 +4154,16 @@ private:
     std::optional<std::string> translate_site_display(
         const NativeHistoryName &name, std::string_view source) const;
     std::string site_name_core(const NativeHistoryName &name) const;
-    std::optional<std::string> localize_site_name(const NativeHistoryName &name) const;
+    std::optional<std::string> localize_site_name(const NativeHistoryName &name,
+        std::string_view suffix = {}) const;
     std::string site_name_full_transliteration(const NativeHistoryName &name) const;
     std::vector<std::string> site_name_search_aliases(const NativeHistoryName &name) const;
     std::string translate_river_name(const RiverNameIdentity &identity,
         RiverDisplayField field, std::string_view source) const;
     std::string translate_river_text(std::string_view source,
         RiverSize category = RiverSize::Unknown) const;
-    RiverNames::Result localize_river_name(const NativeHistoryName &name) const;
+    RiverNames::Result localize_river_name(const NativeHistoryName &name,
+        RiverNames::InputKind kind = RiverNames::InputKind::NativeSlots) const;
     std::vector<std::string> river_name_search_aliases(const RiverNameIdentity &identity) const;
     void append_river_name_matches(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
@@ -4248,6 +4254,7 @@ private:
         std::string_view source) const;
     std::optional<std::string> translate_racial_hill_type(std::string_view source) const;
     std::optional<std::string> translate_world_site_type(std::string_view source) const;
+    std::optional<std::string> translate_world_site_controller(std::string_view type) const;
     std::optional<std::string> translate_skill_name(
         std::string_view source, bool require_title = false) const;
     std::optional<std::string> translate_skill_rating(std::string_view source) const;
@@ -4946,7 +4953,7 @@ private:
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> *owned_regions = nullptr) const;
 #ifdef _WIN32
-    void append_native_settlement_name_previews(std::vector<std::string> &rows,
+    void append_native_place_name_previews(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> &owned_regions) const;
 #endif
@@ -9480,32 +9487,77 @@ std::optional<std::string> Overlay::translate_compositional(const std::string &s
 
 #include "creature_descriptors.inc"
 
+static bool world_site_hill_kind(std::string_view noun) {
+    return noun == "hill" || noun == "hills" || noun == "hillock" || noun == "hillocks";
+}
+
+static const std::unordered_map<std::string, std::string>::value_type *
+world_site_type_alias(std::string_view folded,
+        const std::unordered_map<std::string, std::string> &aliases) {
+    // Native leaves such as forest retreat and mysterious lair are complete
+    // kinds. Their leading words never become a purported species prefix.
+    const std::unordered_map<std::string, std::string>::value_type *selected = nullptr;
+    for (const auto &entry : aliases) {
+        const auto &kind = entry.first;
+        if (kind.empty() || (selected && kind.size() <= selected->first.size())) continue;
+        if (folded == kind || (folded.size() > kind.size() &&
+                folded.ends_with(kind) && folded[folded.size() - kind.size() - 1] == ' '))
+            selected = &entry;
+    }
+    return selected;
+}
+
+static std::optional<std::string> world_site_race_translation(std::string_view value) {
+    // The native civilization's NAME adjective is one complete RAW field,
+    // including multiword species. Never split its modifiers or translate
+    // arbitrary prose/name words as a race.
+    const auto adjective = creature_name_race_adjective.find(value);
+    auto target = adjective != creature_name_race_adjective.end()
+        ? std::optional<std::string>(std::string(adjective->second))
+        : RULESETS.translate_static_creature_name(cp437_to_utf8(value));
+    if (!target || target->empty() || std::any_of(target->begin(), target->end(),
+            [](unsigned char ch) { return (ch >= 'A' && ch <= 'Z') ||
+                (ch >= 'a' && ch <= 'z'); })) return std::nullopt;
+    return target;
+}
+
 std::optional<std::string> Overlay::translate_racial_hill_type(
         std::string_view source) const {
     source = trim_view(source);
     const size_t at = source.rfind(' ');
     if (at == std::string_view::npos) return std::nullopt;
     const std::string noun = lower(std::string(source.substr(at + 1)));
-    if (noun != "hill" && noun != "hills" &&
-        noun != "hillock" && noun != "hillocks") return std::nullopt;
+    if (!world_site_hill_kind(noun)) return std::nullopt;
 
     // Only a complete RAW species or an established race adjective licenses
     // the settlement sense. Ordinary adjectives, abandoned/ruined labels and
     // generated terrain names keep the default noun from the name tables.
     const std::string race = lower(normalize_utterance(source.substr(0, at)));
-    if (!creature_name_race_adjective.contains(race) &&
-        !RULESETS.translate_static_creature_name(cp437_to_utf8(race)))
-        return std::nullopt;
-    const auto adjective = creature_name_race_adjective.find(race);
-    const auto race_target = adjective != creature_name_race_adjective.end()
-        ? std::optional<std::string>(std::string(adjective->second))
-        : RULESETS.translate_static_creature_name(cp437_to_utf8(race));
+    const auto race_target = world_site_race_translation(race);
     const auto noun_target = legends_terms_ci_.find("world site racial type: hillock");
-    if (!race_target || race_target->empty() || noun_target == legends_terms_ci_.end() ||
-            std::any_of(race_target->begin(), race_target->end(), [](unsigned char ch) {
-                return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
-            })) return std::nullopt;
+    if (!race_target || noun_target == legends_terms_ci_.end()) return std::nullopt;
     return *race_target + noun_target->second;
+}
+
+std::optional<std::string> Overlay::translate_world_site_controller(
+        std::string_view type) const {
+    const std::string folded = lower(normalize_utterance(type));
+    std::string_view kind;
+    const size_t last_space = folded.rfind(' ');
+    if (last_space != std::string::npos &&
+            world_site_hill_kind(std::string_view(folded).substr(last_space + 1))) {
+        kind = std::string_view(folded).substr(last_space + 1);
+    } else if (const auto alias = world_site_type_alias(folded, world_site_type_aliases_)) {
+        kind = alias->first;
+    }
+    if (kind.empty() || folded.size() <= kind.size()) return std::nullopt;
+    const auto race = std::string_view(folded).substr(0, folded.size() - kind.size() - 1);
+    if (auto target = world_site_race_translation(race)) return target;
+    // Dark is a site modifier only for fortress/pits. A complete RAW race
+    // beginning with dark gets the first lookup above, before this modifier.
+    if ((kind == "fortress" || kind == "pits") && race.starts_with("dark "))
+        return world_site_race_translation(race.substr(5));
+    return std::nullopt;
 }
 
 std::optional<std::string> Overlay::translate_world_site_type(
@@ -9537,48 +9589,28 @@ std::optional<std::string> Overlay::translate_world_site_type(
     }
     // PE 0x10cbe50 emits 24 fixed leaves. Prefer the longest complete suffix
     // so mysterious lair and forest retreat never split into generic nouns.
-    const std::string *noun = nullptr, *noun_alias = nullptr;
-    for (const auto &[kind, alias] : world_site_type_aliases_) {
-        if (kind.empty() || (noun && kind.size() <= noun->size())) continue;
-        if (folded == kind || (folded.size() > kind.size() &&
-                folded.ends_with(kind) && folded[folded.size() - kind.size() - 1] == ' ')) {
-            noun = &kind;
-            noun_alias = &alias;
-        }
-    }
-    if (!noun) return std::nullopt;
+    const auto alias = world_site_type_alias(folded, world_site_type_aliases_);
+    if (!alias) return std::nullopt;
+    const auto &noun = alias->first;
     if (auto target = reviewed(normalized)) return target;
     // Resolve the alias through the existing complete caption dictionary.
     // The extracted table establishes grammar, never a second Chinese glossary.
-    const auto noun_target = reviewed(*noun_alias);
+    const auto noun_target = reviewed(alias->second);
     if (!noun_target) return std::nullopt;
-    std::string race = folded.size() == noun->size() ? std::string{}
-        : folded.substr(0, folded.size() - noun->size() - 1);
+    std::string race = folded.size() == noun.size() ? std::string{}
+        : folded.substr(0, folded.size() - noun.size() - 1);
     if (race.empty()) return *noun_target;
-    const auto race_translation = [](std::string_view value) -> std::optional<std::string> {
-        // The native civilization's NAME adjective is one complete RAW
-        // field, including multiword species. Never translate its words as
-        // independent modifiers or fall back to a phonetic generated name.
-        const auto adjective = creature_name_race_adjective.find(value);
-        auto target = adjective != creature_name_race_adjective.end()
-            ? std::optional<std::string>(std::string(adjective->second))
-            : RULESETS.translate_static_creature_name(cp437_to_utf8(value));
-        if (!target || target->empty() || std::any_of(target->begin(), target->end(),
-                [](unsigned char ch) { return (ch >= 'A' && ch <= 'Z') ||
-                    (ch >= 'a' && ch <= 'z'); })) return std::nullopt;
-        return target;
-    };
-    if (const auto race_target = race_translation(race))
+    if (const auto race_target = world_site_race_translation(race))
         return *race_target + *noun_target;
     // PE 0x10cbe10 contributes dark only for the DarkFortress site kind,
     // whose leaves are fortress/pits. A RAW adjective itself may start with
     // dark, so the complete species lookup above always gets first choice.
-    if ((*noun != "fortress" && *noun != "pits") ||
+    if ((noun != "fortress" && noun != "pits") ||
             (race != "dark" && !race.starts_with("dark "))) return std::nullopt;
     const auto modifier = legends_terms_ci_.find("world site modifier: dark");
     if (modifier == legends_terms_ci_.end()) return std::nullopt;
     if (race == "dark") return modifier->second + *noun_target;
-    const auto race_target = race_translation(std::string_view(race).substr(5));
+    const auto race_target = world_site_race_translation(std::string_view(race).substr(5));
     return race_target ? std::optional<std::string>(modifier->second + *race_target + *noun_target)
                        : std::nullopt;
 }
@@ -19771,7 +19803,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     append_name_editor_matches(screen_rows, name_editor_matches, only_y,
         screen_override, &name_editor_regions);
 #ifdef _WIN32
-    append_native_settlement_name_previews(screen_rows, name_editor_matches,
+    append_native_place_name_previews(screen_rows, name_editor_matches,
         only_y, screen_override, name_editor_regions);
 #endif
 

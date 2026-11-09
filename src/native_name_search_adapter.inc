@@ -15,6 +15,52 @@ static uintptr_t native_name_search_field(uintptr_t creator, size_t coordinate,
     return native_history_object_field(creator, "name_creator_interfacest", coordinate, width);
 }
 
+static std::optional<NativeHistoryName> capture_native_place_editor_name(
+        int32_t expected_context) {
+    if (expected_context != 0 && expected_context != 1) return std::nullopt;
+#ifdef _WIN32
+    const uintptr_t base = native_history_profile_base();
+    // name_creator_interfacest::render receives game.main_interface.name_creator
+    // at reference RVA 0x18a2cf8 (render caller 0x627fb3). Edition bindings
+    // relocate the owner; its members use the shared generated native schema.
+    const uintptr_t creator = native_reference_address(base, 0x18a2cf8);
+    uint8_t open = 0;
+    int32_t context = -1;
+    uintptr_t name_address = 0;
+    if (!base || !creator ||
+            !native_history_copy(native_name_search_field(creator, 0), open) || open != 1 ||
+            !native_history_copy(native_name_search_field(creator, 4, 4), context) ||
+            context != expected_context ||
+            !native_history_copy(native_name_search_field(creator, 0x10, 8), name_address) ||
+            !name_address) return std::nullopt;
+    NativeHistoryName name;
+    if (!capture_native_history_name(base, name_address, name, nullptr, true) ||
+            !name.has_name) return std::nullopt;
+    if (context == 1) { // EMBARK_GROUP_NAME owns the future local government.
+        name.entity_type = 1;
+        name.entity_id = -1;
+        name.entity_name_current = false;
+        // The embark caller (reference 0x1064086..0x10640aa) resolves the
+        // selected civilization and passes it as namer. The candidate group
+        // name belongs to setupdwarfgame; named_entity is still null here.
+        uintptr_t parent = 0;
+        int32_t parent_id = -1;
+        if (native_history_copy(native_name_search_field(creator, 0x8, 8), parent) &&
+                parent && native_history_copy(native_history_object_field(parent,
+                    "historical_entity", 4, sizeof(parent_id)), parent_id) &&
+                parent_id >= 0 && native_history_find_subject(base,
+                    NativeHistoryObjectKind::Entity, parent_id) == parent) {
+            const auto head = capture_native_history_entity_parent_word(base, parent_id, parent);
+            name.parent_word_id = head.id;
+            name.parent_word_pos = head.part_of_speech;
+        }
+    }
+    return name;
+#else
+    return std::nullopt;
+#endif
+}
+
 static uintptr_t native_name_search_owner(const NativeString *query) {
     const uintptr_t offset = native_name_search_field(1, 0x180, sizeof(NativeString));
     const uintptr_t address = reinterpret_cast<uintptr_t>(query);

@@ -95,6 +95,7 @@ bool Overlay::capture_current_fortress_site_name(NativeHistoryName &name,
     if (identity.id != id) return false;
 #endif
     name = std::move(identity.name);
+    name.site_label = "player fortress";
     english = std::move(identity.english);
     return true;
 }
@@ -319,10 +320,8 @@ std::optional<std::string> Overlay::translate_site_reference(
     if (identity->english.empty() ||
             site_reference_key(source) != site_reference_key(identity->english))
         return std::nullopt;
-    auto translated = translate_english_site_name(identity->english, &identity->name);
-    if (translated)
-        *translated += site_name_attribute_suffix(identity->name.site_label, identity->name.site_type);
-    return translated;
+    return translate_english_site_name(identity->english, &identity->name,
+        site_name_attribute_suffix(identity->name));
 }
 
 std::optional<std::string> Overlay::translate_book_site_subject(std::string_view source) const {
