@@ -25,9 +25,68 @@ static void bind_native_drawn_text_frame(const graphicst &graphics) {
         const auto *grid = row.top_layer ? graphics.screen_top : graphics.screen;
         if (!grid || !row.draw_grid || row.draw_grid == grid ||
                 row.draw_dimx != graphics.dimx || row.draw_dimy != graphics.dimy ||
-                row.x < 0 || row.x >= graphics.dimx || row.y < 0 ||
-                row.y >= graphics.dimy || row.source.empty() ||
-                row.source.size() > static_cast<size_t>(graphics.dimx - row.x)) return;
+                row.y < 0 || row.y >= graphics.dimy || row.source.empty()) return;
+        // A save's independently drawn status can replace the middle of a
+        // long header name. Its actual string field, later status draw and
+        // every surviving visible byte prove the retained source together.
+        // Bound this exception by the original writer's clip; an overlong
+        // name must never make the ordinary full-source walk read off-grid.
+        const auto saved_name_current = [&]() {
+            if (!row.address || row.source.size() > 4096) return false;
+            int left = std::max(0, row.x);
+            int right = static_cast<int>(std::clamp<int64_t>(
+                int64_t(row.x) + static_cast<int64_t>(row.source.size()), 0, graphics.dimx));
+            if (row.draw_clip) {
+                const auto &clip = *row.draw_clip;
+                if (row.y < clip.y || row.y >= int64_t(clip.y) + clip.h) return false;
+                left = std::max(left, clip.x);
+                right = static_cast<int>(std::clamp<int64_t>(int64_t(clip.x) + clip.w, 0, right));
+            }
+            if (left >= right) return false;
+            return std::any_of(draws.begin(), draws.end(), [&](const auto &state) {
+                if (!is_save_list_state(state.source) || state.top_layer != row.top_layer ||
+                        !state.draw_grid || (state.draw_grid != row.draw_grid &&
+                            state.draw_grid != grid) ||
+                        state.draw_dimx != row.draw_dimx || state.draw_dimy != row.draw_dimy ||
+                        state.draw_epoch != row.draw_epoch || state.y != row.y ||
+                        state.sequence <= row.sequence || state.x <= row.x ||
+                        state.x < 0 || state.x >= graphics.dimx ||
+                        state.source.size() > static_cast<size_t>(graphics.dimx - state.x))
+                    return false;
+                const int state_end = state.x + static_cast<int>(state.source.size());
+                if (state.x >= right || state_end <= left || (state.draw_clip &&
+                        (state.x < state.draw_clip->x || state.y < state.draw_clip->y ||
+                         state_end > int64_t(state.draw_clip->x) + state.draw_clip->w ||
+                         state.y >= int64_t(state.draw_clip->y) + state.draw_clip->h)))
+                    return false;
+                const auto complete = row.complete_source.empty()
+                    ? std::string_view(row.source) : std::string_view(row.complete_source);
+                if (!capture_native_save_name_source(row.address, complete)) return false;
+                for (size_t byte = 0; byte < state.source.size(); ++byte) {
+                    const size_t tile = (static_cast<size_t>(state.x) + byte) * graphics.dimy + row.y;
+                    if (grid[tile * 8] != static_cast<unsigned char>(state.source[byte])) return false;
+                }
+                bool visible_name = false;
+                for (int x = left; x < right; ++x) {
+                    if (x >= state.x && x < state_end) continue;
+                    const size_t tile = static_cast<size_t>(x) * graphics.dimy + row.y;
+                    const auto expected = static_cast<unsigned char>(row.source[
+                        static_cast<size_t>(int64_t(x) - row.x)]);
+                    const auto ch = grid[tile * 8];
+                    if ((ch ? ch : static_cast<unsigned char>(' ')) != expected) return false;
+                    if (expected != ' ') visible_name = true;
+                }
+                return visible_name;
+            });
+        };
+        if (row.x < 0 || row.x >= graphics.dimx ||
+                row.source.size() > static_cast<size_t>(graphics.dimx - row.x)) {
+            if (saved_name_current()) {
+                row.draw_grid = grid;
+                changed = true;
+            }
+            return;
+        }
         // Native display rotates its buffers independently of retained addst
         // records. Bind ordinary records only while their ENTIRE source
         // remains at the same coordinates on the same logical plane. Never read
@@ -43,6 +102,7 @@ static void bind_native_drawn_text_frame(const graphicst &graphics) {
                 break;
             }
         }
+        if (!current) current = saved_name_current();
         if (!current) {
             if (!journal_base || std::find(journal_title_callers.begin(),
                     journal_title_callers.end(), row.native_caller) ==

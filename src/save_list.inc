@@ -298,7 +298,8 @@ void Overlay::append_save_list_captions(std::vector<std::string> &rows,
     // to addst. Its field address identifies this saved name independently
     // of folder text, list order and equal names in another world.
     for (const bool top_layer : {false, true}) {
-        for (const auto &draw : captured_native_drawn_text_view(top_layer)) {
+        const auto draws = captured_native_drawn_text_view(top_layer);
+        for (const auto &draw : draws) {
             if (!draw.address || draw.source.empty() || draw.y < 0 ||
                     draw.y >= gps_->dimy || draw.draw_dimx != gps_->dimx ||
                     draw.draw_dimy != gps_->dimy ||
@@ -315,11 +316,97 @@ void Overlay::append_save_list_captions(std::vector<std::string> &rows,
             if (left >= right) continue;
             const auto visible = std::string_view(draw.source).substr(
                 static_cast<size_t>(left - draw.x), static_cast<size_t>(right - left));
-            if (std::string_view(rows[draw.y]).substr(left, visible.size()) != visible) continue;
             const auto complete = draw.complete_source.empty()
                 ? std::string_view(draw.source) : std::string_view(draw.complete_source);
             const auto saved = capture_native_save_name_source(draw.address, complete);
             if (!saved) continue;
+            // The title renderer does not clip long names to the card. It
+            // paints the right-aligned state later, over the name's middle.
+            // Recover only this address-proven name and that independent
+            // draw; matching a state spelling inside a name is insufficient.
+            const auto recover_card_name = [&]() {
+                if (saved->authored || left != draw.x ||
+                        !std::string_view(saved->original).starts_with(draw.source)) return false;
+                for (const auto &state : draws) {
+                    if (!is_save_list_state(state.source) || state.y != draw.y ||
+                            state.x <= left || state.x >= gps_->dimx ||
+                            state.draw_grid != draw.draw_grid ||
+                            state.draw_dimx != draw.draw_dimx || state.draw_dimy != draw.draw_dimy ||
+                            state.draw_epoch != draw.draw_epoch || state.sequence <= draw.sequence ||
+                            state.source.size() > static_cast<size_t>(gps_->dimx - state.x)) continue;
+                    const int state_end = state.x + static_cast<int>(state.source.size());
+                    if (state.draw_clip && (state.x < state.draw_clip->x ||
+                            state.y < state.draw_clip->y ||
+                            state_end > int64_t(state.draw_clip->x) + state.draw_clip->w ||
+                            state.y >= int64_t(state.draw_clip->y) + state.draw_clip->h)) continue;
+                    if (std::string_view(rows[state.y]).substr(state.x, state.source.size()) !=
+                            state.source) continue;
+                    const auto box = native_button_text_rect(*gps_, state.x, state_end, state.y, true);
+                    if (!box || left < box->x || left >= box->x + box->w) continue;
+                    const auto state_target = exact_literal_translation(state.source);
+                    auto target = translate_saved_name(*saved);
+                    if (!state_target || state_target->empty() || !target || target->empty()) continue;
+                    std::string source = draw.source;
+                    // fort_name is followed by the mode without relocating
+                    // the native cursor. Include its visible suffix in the
+                    // same source ownership even when it is outside the card.
+                    std::string_view mode;
+                    switch (saved->game_type) {
+                    case 0: case 8: mode = "Fortress"; break;
+                    case 1: mode = "Adventurer"; break;
+                    case 3: mode = "Reclaim Fortress"; break;
+                    case 10: mode = "Fortress Testing"; break;
+                    }
+                    if (source == saved->original && !mode.empty()) {
+                        const auto translated = legends_terms_.find("Save list mode: " + std::string(mode));
+                        if (translated == legends_terms_.end() || translated->second.empty()) continue;
+                        source += ", " + std::string(mode);
+                        *target += "，" + translated->second;
+                    }
+                    int source_end = static_cast<int>(std::min<int64_t>(gps_->dimx,
+                        int64_t(left) + static_cast<int64_t>(source.size())));
+                    if (draw.draw_clip) source_end = std::min(source_end,
+                        draw.draw_clip->x + draw.draw_clip->w);
+                    bool intact = true;
+                    for (int x = left; x < source_end; ++x) {
+                        if (x >= state.x && x < state_end) continue;
+                        bool layer = false;
+                        const auto *cell = cell_at(x, draw.y, &layer);
+                        const auto expected = static_cast<unsigned char>(source[x - left]);
+                        if (!cell || layer != top_layer ||
+                                (cell[0] ? cell[0] : ' ') != expected ||
+                                static_cast<unsigned char>(rows[draw.y][x]) != expected) {
+                            intact = false;
+                            break;
+                        }
+                    }
+                    const int first_end = std::min(source_end, state.x);
+                    if (!intact || first_end <= left) continue;
+                    const auto expose = [&](int first, int last, std::string text, bool tail) {
+                        if (first >= last) return;
+                        const std::string ink = source.substr(first - left, last - first);
+                        std::fill_n(rows[draw.y].begin() + first, last - first, ' ');
+                        if (only_y >= 0 && only_y != draw.y) return;
+                        Match span{first, draw.y, last - first, kSaveListCaptionRule,
+                            std::move(text), ink};
+                        span.layout_foreground_rgb = draw.foreground_rgb;
+                        span.native_save_card = *box;
+                        // The suffix clears only surviving native ink. It
+                        // must never become another translated field/column.
+                        span.native_split_duplicate = tail;
+                        matches.push_back(std::move(span));
+                    };
+                    expose(left, first_end, std::move(*target), false);
+                    expose(std::max(left, state_end), source_end, {}, true);
+                    claim(state.x, state.y, state.source, *state_target);
+                    if (only_y < 0 || only_y == state.y)
+                        matches.back().layout_foreground_rgb = state.foreground_rgb;
+                    return true;
+                }
+                return false;
+            };
+            if (recover_card_name()) continue;
+            if (std::string_view(rows[draw.y]).substr(left, visible.size()) != visible) continue;
             if (auto target = translate_saved_name(*saved)) {
                 std::string source(visible);
                 // The title renderer draws fort_name, ", ", then its native
@@ -538,7 +625,11 @@ void Overlay::append_save_list_captions(std::vector<std::string> &rows,
     }
     for (const CaptionCard &entry : cards) {
         const SDL_Rect &card = entry.box;
-        bool save_record = false;
+        bool save_record = std::any_of(matches.begin(), matches.end(), [&](const Match &match) {
+            return is_save_list_state(match.source) && match.x >= card.x &&
+                match.x + match.length <= card.x + card.w &&
+                match.y >= card.y && match.y < card.y + card.h;
+        });
         for (int y = card.y; y < card.y + card.h; ++y) {
             const int right = y == entry.folder_y ? entry.folder_x : card.x + card.w;
             const auto source = card_text(rows[y], y, card, entry.skin, right);
@@ -671,6 +762,19 @@ bool Overlay::layout_save_list(SDL_Renderer *renderer) {
         bool save_record = false;
         for (size_t i = 0; i < matches.size(); ++i) {
             const Match &part = matches[i];
+            if (part.native_save_card && part.native_split_duplicate) {
+                const SDL_Rect &owner = *part.native_save_card;
+                if (owner.x != box->x || owner.y != box->y ||
+                        owner.w != box->w || owner.h != box->h) continue;
+                // A recovered name's tail can cross the card boundary.
+                // Cover its in-card ink, retaining the full span solely for
+                // suppression; it is not part of the right-hand status.
+                if (part.y >= box->y && part.y < box->y + box->h)
+                    for (int x = std::max(box->x, part.x);
+                            x < std::min(right, part.x + part.length); ++x)
+                        covered[(part.y - box->y) * box->w + x - box->x] = 1;
+                continue;
+            }
             if (part.y < box->y || part.y >= box->y + box->h ||
                 part.x >= right || part.x + part.length <= box->x) continue;
             if (part.x < box->x || part.x + part.length > right ||

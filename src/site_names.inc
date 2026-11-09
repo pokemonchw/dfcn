@@ -347,19 +347,33 @@ std::optional<std::string> Overlay::translate_saved_name(
     case 0: case 3: case 8: case 10: break;
     default: return std::nullopt;
     }
-    // Keep the native-language spelling and the English place name as two
-    // separately translated fields. The former is phonetic; the latter
-    // uses the shared river-name grammar when native WORD/POS is available.
-    // Parse this before world lookup so loaded and offline saves retain the
-    // same pair instead of losing the English name on either path.
+    // Both live and saved names supply the original WORD/POS slots to the
+    // same site translator. Fortress mode fixes the type suffix to 堡.
     if (const auto pair = split_generated_name_identity(source.original)) {
-        // Exact native/English identity may supply the same official English
-        // translation only when the header proves this is the loaded world.
-        if (native_save_world_is_current(source))
-            if (auto translated = translate_site_reference(source.original)) return translated;
-        const auto english = translate_english_site_name(pair->gloss);
-        return transliterate_site_spelling(pair->native_name) + "，“" +
-            english.value_or(native_text_to_utf8(pair->gloss)) + "”";
+        std::optional<NativeHistoryName> identity;
+        NativeHistoryName fortress;
+        std::string fortress_english;
+        const auto same = [](std::string_view left, std::string_view right) {
+            return lower_native_name(native_text_to_utf8(trim_view(left))) ==
+                lower_native_name(native_text_to_utf8(trim_view(right)));
+        };
+        // Only the header's own world can supply a live place identity.
+        // Other saves read their owned name records from the saved world.
+        if (native_save_world_is_current(source)) {
+            if (capture_current_fortress_site_name(fortress, fortress_english) &&
+                    same(pair->native_name, fortress.native_name) &&
+                    same(pair->gloss, fortress_english))
+                identity = std::move(fortress);
+            else identity = resolve_site_reference_name(source.original);
+        }
+        if (!identity) identity = read_saved_fortress_name(source);
+        const auto english = translate_english_site_name(
+            pair->gloss, identity ? &*identity : nullptr, "堡");
+        const auto native = identity && identity->site_id >= 0
+            ? site_name_full_transliteration(*identity)
+            : transliterate_site_spelling(pair->native_name);
+        return native + "，“" + english.value_or(
+            native_text_to_utf8(pair->gloss) + "堡") + "”";
     }
     // A header without an English name retains only its original spelling.
     // It supplies neither WORD/POS nor a site subtype, so do not infer a

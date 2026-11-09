@@ -711,6 +711,9 @@ struct Match {
     // Animal picker records retain their complete name/count/sex field and
     // shared columns through native half-font and generic page layout.
     bool native_animal_picker_row = false;
+    // A save name may spill out of its card or be covered by its status.
+    // Its surviving source spans still belong to this one native card.
+    std::optional<SDL_Rect> native_save_card{};
     // A roster field retains the column proved when its source was claimed.
     // Later page layout must not rediscover it from a changing native grid.
     std::optional<std::pair<int, int>> native_fortress_creature_field{};
@@ -1158,6 +1161,7 @@ struct NativeToolbarTooltip {
 };
 struct NativeSaveNameSource {
     std::string original;
+    fs::path full_path;
     bool authored = false;
     int16_t game_type = -1;
     uint32_t world_id1 = 0, world_id2 = 0;
@@ -1165,6 +1169,7 @@ struct NativeSaveNameSource {
 static std::optional<NativeSaveNameSource> capture_native_save_name_source(
     uintptr_t source, std::string_view complete);
 static bool native_save_world_is_current(const NativeSaveNameSource &source);
+static bool is_save_list_state(std::string_view source);
 static std::optional<NativeToolbarTooltip> g_native_toolbar_tooltip;
 static constexpr std::array<std::string_view, 3> embark_introduction_templates = {{
     "You have arrived. After a journey from the Mountainhomes into the forbidding wilderness beyond, your harsh trek has finally ended. Your party of seven is to make an outpost for the glory of all of {s}.",
@@ -4156,6 +4161,8 @@ private:
     std::string site_name_core(const NativeHistoryName &name) const;
     std::optional<std::string> localize_site_name(const NativeHistoryName &name,
         std::string_view suffix = {}) const;
+    std::optional<NativeHistoryName> read_saved_fortress_name(
+        const NativeSaveNameSource &source) const;
     std::string site_name_full_transliteration(const NativeHistoryName &name) const;
     std::vector<std::string> site_name_search_aliases(const NativeHistoryName &name) const;
     std::string translate_river_name(const RiverNameIdentity &identity,
@@ -44578,6 +44585,7 @@ static void native_settings_menu_release();
 #include "site_references.inc"
 #include "adventure_home_translation.inc"
 #include "native_save_names.inc"
+#include "saved_fortress_name.inc"
 #include "native_graphics_toggle.inc"
 
 } // namespace dfcn
