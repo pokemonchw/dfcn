@@ -1,0 +1,229 @@
+《矮人要塞》53.16：食物腐烂、储存区、木桶、猫与害虫
+日期：2026-10-31
+
+结论范围
+
+本记录基于当前磁盘上的 Steam Windows 53.16 可执行文件、同版原始定义、
+DFHack 结构资料及公开历史研究。进行了静态反汇编、Ghidra 反编译和分支核对；
+没有运行游戏内时间实验，没有读取运行日志、进程或存档，也没有操作游戏窗口。
+未修改游戏文件、汉化运行代码或配置，未编译部署游戏插件。
+以下说明原版代码路径，不代表已在当前存档中观察到每一种结果。
+
+目标文件：D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+格式：Windows x64 PE，首选基址 0x140000000
+映像标识：PE:6a70a6d9:02711000
+SHA256：205770918fd54c96cbbcf89223ebd449e2e113c7c873ed81177c4511a3450db7
+原始定义版本：data/vanilla/vanilla_creatures/info.txt，DISPLAYED_VERSION 53.16。
+
+反编译材料：D:\workspace\dfcn\data\extracted\food-decay-2026-10-31
+本记录的函数名均为研究命名，VA 是上述 Steam 映像首选地址，并非运行时绝对地址。
+
+一、直接回答
+
+1. 自然腐烂与害虫偷吃是不同机制。
+   自然腐烂操作 rot_timer 和 rotten 标志；害虫进食扣掉食物堆叠数量。
+   猫减少害虫造成的损失，不改变食物自然腐烂计时。
+
+2. 对尚未腐烂的普通易腐食物，储存区中的散放食物已有防腐条件，无须先装桶。
+   主分支检查食物当前位置的地格 pile 标志，并重置腐烂计时。
+
+3. 本机 53.16 中，尚未腐烂的食物真正装进桶后也有防腐条件；即使桶在库外。
+   原因是 in_inventory/HELD 标志直接重置计时，没有附带“桶必须在储存区”条件。
+   容器放在旁边、空桶、等候搬运入桶都不等于食物已经在容器里。
+
+4. 本机 53.16 的未处理鱼 FISH_RAW 同样受储存区保护。
+   “未处理鱼无论放在哪里都会腐烂”的常见表述，与这里的明确类型分支不符。
+   未处理鱼仍须加工才能供矮人正常食用，但加工需求不能当成防腐例外。
+
+5. 上述保护都以尚未 rotten 为前提。把已腐烂食物搬进桶或储存区不会恢复新鲜。
+
+6. 木桶也能降低害虫接触里面食物的概率，但不能保证完全防虫。
+   没有猫不会额外加快自然腐烂；有猫也不能阻止库外散放肉类自己的腐烂计时。
+
+二、不同食物的实际分类
+
+以下“自然腐烂”专指本机正常物品腐烂路径，不涵盖燃烧、烹饪消耗、动物进食等。
+
+物品类别                         自然腐烂路径             害虫进食路径
+肉 MEAT                          会                       可吃
+已处理鱼 FISH                    会                       可吃
+未处理鱼 FISH_RAW                会，入库/入容器可保护     可吃
+奶酪 CHEESE                      会                       可吃
+蛋 EGG                           会（默认易腐蛋材质）      按材料 EDIBLE_VERMIN
+做好的饭菜 FOOD                  会                       可吃
+整株收获植物 PLANT               会（默认易腐植物材质）    按材料 EDIBLE_VERMIN
+水果、叶子等 PLANT_GROWTH        本路径不把它标为 rotten   按材料 EDIBLE_VERMIN
+脂肪、炼制油脂等 GLOB            本路径不把它标为 rotten   该类型返回不可吃
+种子 SEEDS                       materialRots 恒为 false  可吃
+面粉等 POWDER_MISC               materialRots 恒为 false  按材料 EDIBLE_VERMIN
+酒类 DRINK                       materialRots 恒为 false  该类型返回不可吃
+牛奶等 LIQUID_MISC               materialRots 恒为 false  该类型返回不可吃
+
+PLANT 和 PLANT_GROWTH 必须区分：例如整株收获的作物与采下的水果/叶子不是同一类。
+“新鲜”“生的”“熟的”等日常叫法不能代替游戏物品类型。
+
+GLOB/PLANT_GROWTH 的结论不是凭 Wiki，也不是只看 raw 是否包含 ROTS：
+它们可以有 ROTS 材料和 rot_timer，却在最终腐烂函数的类型跳表中落入默认分支。
+默认分支重置计时并重新分类，不设置 rotten、不请求删除。
+GLOB 当前实际注册进腐烂列表；历史“GLOB 没入列表”的解释不适用于这份程序。
+
+普通肉、鱼、奶酪、蛋、饭菜等在这条代码中共用阈值，没有各自的“肉三天、熟食七天”表。
+主循环每 100 个要塞年刻调用一次更新，计数达到 200 时触发一阶段腐烂处理。
+通常首次设置 rotten 并重置计时，再经过另一阶段才删除。生鱼的后续移除还会生成
+相应残余物。这里的 200 是更新计数，不是 200 个渲染帧，也不是 200 天。
+持续处于保护条件的完好食物每次先归零、再加一，因此不会积累到阈值。
+
+三、储存区与木桶的代码依据
+
+腐烂更新：VA 0x140ababb0，item_decay_update.c。
+普通要塞调用点：0x1408b69a2，decay_caller.asm。
+调用前对 cur_year_tick（0x142387fc4）取模 100。
+
+主循环遍历 world+0x14290 的物品列表，跳过 removed 和 materialRots=false。
+定位物品时会沿容器/持有单位引用获取实际位置。
+
+在 flags.rotten 尚未设置时，符合任意相关条件即可 setRotTimer(0)：
+- helper 0x140c738a0 返回 true，并且所在格 designation.pile 为真；
+- flags.hostile（原始名 PRESERVED）；
+- flags.in_inventory（原始名 HELD，包含容器内物品）；
+- flags.in_job（原始名 TAGGED）；
+- 若干家具/展示建筑持有条件。
+之后还有特定单位库存模式的保护，不是只支持食品桶。
+
+本题关键分支：
+item_decay_update.c 的 !rotten 块中，检查 flags & 8 后直接清零计时。
+此分支不再检查 pile，也不查询木桶材质。
+
+stockpile_preservation_eligibility.c（0x140c738a0）明确包含：
+MEAT=0x30、FISH=0x31、FISH_RAW=0x32、SEEDS=0x35、PLANT=0x36、
+PLANT_GROWTH=0x38、CHEESE=0x47、FOOD=0x48、EGG=0x58。
+普通分支要求 !dead_dwarf && !rotten，不检查鱼是否已经加工。
+生鱼 getType 的机器码直接返回 0x32；计时器 getter/setter/increment 都实际访问 +0xbc。
+
+0x14007dc40（tile_designation_flags.c）从地图块+0x2a0读取 designation。
+pile 是 bit3，和调用者的 &8 对应；subterranean 是 bit15，对应后续瘴气判断。
+这里不是把库存区建筑编号、建筑占用标志或别的位域误读成 pile。
+
+最终处理：VA 0x140c73a80，rot_removal_eligibility.c。
+该函数先重置计时并暂时解除物品分类，再根据物品类型设置 rotten 或返回删除请求。
+机器码跳表：0x140c74b68 类型映射，0x140c74b58 分支地址表。
+PLANT_GROWTH=0x38 和 GLOB=0x4b 都跳向默认收尾 0x140c74b23。
+rot-switch.tsv 保留当前映像的实际跳表映射。
+
+四、害虫、桶的穿透与猫
+
+害虫收集可吃物品：0x140a462c0，vermin_collect_edible.c/.asm。
+实际进食：0x140a464c0，vermin_consume_item.c/.asm。
+材料修正：0x1414d1d80，container_material_weakness.c/.asm。
+调用它们的世界事件更新函数：0x140ab6840，item_update_main.c。
+
+进食链选择可接触的可食物品，普通食品调用 addStackSize(-1)。
+堆叠数量减至零才移除物品；这条路径不递增 rot_timer，也不设置 rotten。
+种子因此可以“不自然腐烂”但仍会被老鼠吃掉。
+
+食物散放时可直接进入候选。若目标是食品容器或袋子，且有内容引用：
+- 害虫 caste.penetratepower 必须大于 0；
+- 读取容器材料修正；
+- 随机通过后才递归进入容器内部，嵌套容器会再次走这套逻辑。
+
+随机条件可写为：
+  P = PENETRATEPOWER
+  W = 材料修正（木/皮=5，织物=10，普通其他材料=0）
+  R 约均匀分布于 0..max(100-W,0)
+  P>0 且 R<=P 才进入容器
+
+本机普通老鼠 RAT 的穿透力为 2，因此一次已经进入该容器判定的木桶穿透成功率约 3/96，
+即 3.125%。普通其他材料容器约 3/101。数字仅为条件概率；外层仍有随机门控、
+害虫可见性、位置等条件，不能写成“每天有3.125%的食物被吃掉”。
+桶的防虫效果主要来自新增一次穿透门槛，不能把材质小幅差别夸大为完全免疫。
+
+猫的本机 raw：
+data/vanilla/vanilla_creatures/objects/creature_domestic.txt:125 起 CAT。
+134 HUNTS_VERMIN；135 RETURNS_VERMIN_KILLS_TO_OWNER；136 ADOPTS_OWNER。
+猫的作用是捕杀害虫，降低偷吃机会，不给食物添加停止自然腐烂的属性。
+猫会产生单独的害虫残骸；这与仓库食物腐烂是另一件事。
+不能泛称所有猫杀的害虫都会产生瘴气：当前代码明确排除 VERMIN_MICRO 的该瘴气路径。
+
+原始定义还区分 VERMIN_EATER 和 VERMIN_ROTTER。
+例如苍蝇具有 VERMIN_ROTTER；当前 raw 说明它出现在腐肉和垃圾附近。
+已检查的世界事件分支将此类害虫与可腐物品/残余物关联，不能按 ROTTER 字面推断
+“苍蝇给新鲜食物加速腐烂”。本次确认的进食行为是扣数量；自然腐烂循环没有按
+有没有猫、周围害虫数量来给 rot_timer 乘系数。
+
+五、公开资料对照与边界
+
+DFHack 结构源码（字段和虚函数命名的一手维护资料）：
+https://github.com/DFHack/df-structures/blob/master/df.item.xml
+https://github.com/DFHack/df-structures/blob/master/df.creature.xml
+在线 master 会变化；本次还对照项目内记录为 53.16 的固定副本。
+结构列表注释不能代替当前 PE 的真实注册代码和最终处理分支。
+
+历史原始研究：
+https://dwarffortressbugtracker.com/view.php?id=3160
+该报告记录旧版脂肪不腐烂，2013 年分析归因于 GLOB 未进腐烂分组，后续确认至0.43.05。
+本机仍得到不自然腐烂的结果，但当前原因是末端没有处理 GLOB，不能照抄旧解释。
+
+百科对照（只作为待核实说法，不作为当前机器码结论的依据）：
+https://dwarffortresswiki.org/index.php/Rot
+https://dwarffortresswiki.org/index.php/23a:Food
+现行条目与旧条目对桶的说明不同，现行条目另有未处理鱼例外。
+本次两处结论以本机 53.16 的 !rotten、in_inventory、pile 和 FISH_RAW 分支为准。
+
+反编译限制：
+Ghidra 输出中的函数名、变量名、返回类型及部分参数是推断，并非官方源码。
+vermin_consume_item.c 中传给收集函数的首参数显示为 0，是反编译参数推断错误；
+汇编 0x140a464cf 保存 RCX，0x140a464ea 调用前 RCX 未被改写，实际传入害虫对象。
+材料修正函数若在 C 中省略参数，同样以调用点的寄存器传值和 .asm 为准。
+这类显示问题不影响已从机器码核实的减量、材料修正和穿透比较。
+
+没有通过启动游戏、自动操作窗口或模拟测试来声称实机验证。
+若游戏映像或模组改变，应重新以相应物品类型、材料和代码为准；本记录不外推到所有版本。
+
+六、后续问题：苍蝇如何出现，为什么猫不抓苍蝇
+
+继续对同一 Steam 53.16 映像进行静态分析，结论如下。
+
+猫确实不抓普通苍蝇，原因是目标资格过滤，不是储存区或寻路问题。
+本机 FLY 在 creature_insects.txt:13 带 VERMIN_MICRO。
+animal_vermin_hunt_ai（0x140a3a2e0）在 0x140a3b53f 判断猎手的 HUNTS_VERMIN；
+其同格目标（0x140a3b7c8）和附近目标（0x140a3b8ae）均调用 0x140a45470。
+vermin_hunt_eligible 的 0x140a454db 检查目标 caste 的 VERMIN_MICRO；命中便返回 false。
+即使猫与苍蝇在同一格，苍蝇也被跳过。该目标过滤还排除土栖害虫和 NOMEAT。
+所以前文“猫减少害虫”应理解为猫能够捕猎的那部分害虫，不能用于苍蝇。
+
+苍蝇有两类出现途径，不能只用“附近有腐肉”概括：
+
+1. 地表普通害虫生成。FLY 同时有 VERMIN_GROUNDER，原始生态为 NOT_FREEZING、ANY_POOL，
+   UBIQUITOUS，FREQUENCY:100，没有四季禁用标签。世界事件更新的 Grounder 分支
+   （item_update_main.c:428 起）按地图大小限制现有事件数，随机取有 light 标志的地表位置，
+   再筛当地种群、GROUNDER、环境/种姓条件；此分支不要求附近存在食物或腐烂物品。
+   生态标签不是“每个非冰冻格无条件生成”，仍受当地种群和代码筛选控制。
+
+2. 腐食害虫生成。FLY 有 VERMIN_ROTTER。程序先统计暴露的可腐物品 E：
+   materialRots=true；不在容器库存或建筑内，也没有 removed/construction/encased/on_fire；
+   排除储存区中受保护的完好食品及完好 PRESERVED 物品。
+   此统计不要求 rotten，也不读取腐烂计时。所以库外的新鲜易腐食物也可能计入，
+   尸体、残骸等也不会仅因位于垃圾储存区就自动被排除。
+   地表来源的 Rotter 事件数 N<30 且 2*N<E 时才尝试生成，之后仍须有合格当地物种种群。
+   E 按物品对象计数；N 是事件/群数，不是“苍蝇个体最多30只”。
+
+储存区里出现苍蝇的关键细节：
+生成门槛的计数和生成位置的选择是两次独立筛选。
+在 0x140ab6d60..0x140ab6dd6，程序重新从可腐物品列表随机选位置，只筛材质和基本旗标；
+虽然调用食品资格函数，其返回值被丢弃，没有再次检查 pile 或 rotten。
+因此别处的暴露可腐物/腐物让门槛满足后，选位置可以落到储存区内完好、散放的食品上。
+地下特征的对应 Rotter 分支也重复了这个设计。
+spawn_vermin_at_location（0x1414c6320）随后直接使用选定坐标，没有再作储存区排除。
+
+微小害虫按群创建：HAS_ANY_VERMIN_MICRO 时，一个事件的 amount 保存一批个体数量；
+visible 初值仍为 true。不能把“猫不抓”解释为苍蝇在程序中不可见。
+已经出现的害虫有自己的移动、显示和消退计时，原处没有腐物后也不会立即全部删除。
+
+因此，仓库内有苍蝇并不证明库存食物已经腐烂，也不证明储存区防腐失效。
+苍蝇 raw 没有 VERMIN_EATER，不能套用老鼠的扣食物数量路径。
+本次未发现它给食物腐烂计时加速；其 VERMIN_HATEABLE 与让矮人厌恶的行为相关。
+
+新增实际反编译证据：
+animal_vermin_hunt_ai.c/.asm、vermin_hunt_eligible.c/.asm、
+spawn_vermin_at_location.c/.asm、vermin_population_eligibility.c/.asm。
+仍未操作游戏、读取存档、运行实机时间实验或修改游戏机制。

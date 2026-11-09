@@ -10,8 +10,8 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[h2]DFCN v53.16-20261028.2[/h2]\n[list]\n[*]修复工坊任务分类缺少译文时分类名称消失的问题，保留完整名称。\n[*]工坊分类菜单支持直接使用汉化扩展提供的分类译名。\n[*]补充植物与种子、布匹与皮革、容器、武器与护甲、食物与饮品、金属与合金、宝石与玻璃、工具与陷阱等工坊分类菜单译文。\n[*]新增 Mcnuggy's Mythical Beasts 3.2 简体中文汉化扩展，覆盖生物与巨型变种、幼体与成长阶段、介绍与偏好、半人马职业、身体部位、材料与乳制品、曼德拉草、能力及战斗文本。\n[/list]\n",
-  "release_tag": "v53.16-20261028.2",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261028.2",
+  "changelog": "[h2]DFCN v53.16-20261031[/h2]\n[list]\n[*]修正戒指物品名称误译为“环”的问题。\n[*]修复使者归来时外交报告及相关历史内容漏译的问题。\n[*]修正烧木窑中木炭、灰烬和木材的名称翻译。\n[*]统一雕像和小塑像在物品标题、库存与操作选项中的译名，避免被误识别为书名。\n[*]修正艺术图像描述中材质与作者的对应关系，消除重复的“制作”表述。\n[/list]\n",
+  "release_tag": "v53.16-20261031",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261031",
   "github_url": "https://github.com/pokemonchw/dfcn"
 }
