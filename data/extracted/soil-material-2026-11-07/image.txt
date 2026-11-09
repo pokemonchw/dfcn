@@ -1,0 +1,3 @@
+path=/D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+sha256=374061a3a32cec6c345cc4502d55e048e19489cd3abfe137b88be7ac8a818398
+language=x86:LE:64:default
