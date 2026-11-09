@@ -20077,6 +20077,7 @@ I'm going to {e} in search of work and maybe something to drink as well!	我正�
 It has {s} and it moves its will in accordance with the truth of things.	它长有{s1}，它的意志遵循万物的真理。	ht
 Knowledge can be useful, but it can also be pointless or even dangerous.	知识可以有用，也可能毫无意义，甚至带来危险。	hPD
 Like others in his culture, he strongly values tranquility and quiet, is	与其文化中的其他人一样，他十分重视宁静与安详，	l
+Newer compatible version of mod detected: {c} (save uses {c}, not found)	检测到模组有兼容的新版本：{c1}（存档使用 {c2}，未找到该版本）	hPt
 Overview sentence: I was misinformed about a room during tax collection.	收税时，有人把房间的情况报错了。	l
 Overview sentence: If I thought about it more, I guess I'd be apathetic.	再多想想，我大概也会无动于衷吧。	l
 Praise {p} for ignoring your hubris. Infinite {r}! Let another day pass.	赞美{p1}，宽恕了你的狂妄。无穷的{r1}！再等一天。	hPt
@@ -26517,6 +26518,7 @@ It was created by an unknown deity and is of a part with {r}.	它由一位不知
 Maximum interface percentage (not counting minimap/elevation)	最大界面百分比 (不包括小地图/高程)	w
 Mods install automatically when chosen during world creation.	在创建世界时选中的模组会自动安装。	l
 Native artifact claim without action: {p} by {a} in the wilds	在荒野中，{p1}，由{a1}	ht
+Newer compatible version of mod detected: {c} (save uses {c})	检测到模组有兼容的新版本：{c1}（存档使用 {c2}）	hPt
 Overview sentence: A criminal could not be properly punished.	有个罪犯没能受到应有的惩罚。	l
 Overview sentence: I guess that could have given me a fright.	我想，那本来可能会吓我一跳。	l
 Overview sentence: I had a nightmare about my deceased child.	做了个噩梦，梦见了死去的孩子。	l
@@ -59955,6 +59957,7 @@ Native history office: sacred vulgarities	神圣粗俗	h
 Native history office: sacred whitenesses	神圣白	h
 Native history office: sacred worshippers	神圣信徒	h
 Native history office: sewer commissioner	下水道专员	h
+Newer compatible version of mod detected:	检测到模组有兼容的新版本：	hP
 No charge attack: target is on the ground	无法冲锋攻击：目标正倒在地上。	hP
 No charge attack: you are on a projectile	无法冲锋攻击：你在飞行物上。	hP
 Now we will have to build our own future.	现在我们得创造自己的未来。	hPD
@@ -146077,6 +146080,7 @@ Dodge Preference	闪避偏好	wli
 Dodge projectile	躲避投射物	w
 Don't show again	不再显示	hq
 Don't show again	不再显示	w
+Don't update any	全部不更新	hP
 Done customizing	完成自定义	w
 Doubts About {b}	对{b}的疑问	hbti
 Dwarven fortress	矮人要塞
@@ -160390,6 +160394,7 @@ Attack caught	攻击被卡住	w
 Attempted {e}	未遂的{e1}	htEi
 Automate kiln	黏土窑自动加工	wi
 Average focus	专注力一般	wil
+Back to title	返回主菜单	hP
 Bash down {s}	撞倒{s1}	hPt
 Basic options	基本选项	w
 Be practical.	务实一些。	hP
@@ -165113,6 +165118,7 @@ Disconnected	断开的	w
 Disdains law	轻视法律	w
 Domesticated	已驯化
 Don't repeat	不要重复	w
+Don't update	不更新	hP
 Done editing	完成编辑	w
 Eldest child	最年长的孩子	w
 Elite Bowman	精英弓手	wi
@@ -173625,6 +173631,7 @@ Uneasiness	不安	w
 Ungrateful	不知感恩	w
 Unmark all	取消全选	hP
 Until dawn	直到黎明	hP
+Update all	全部更新	hP
 Upper body	上半身	w
 Useful {b}	实用{b}	hbti
 Values law	看重法律	w
@@ -182154,6 +182161,7 @@ Umshad	乌姆夏德	wi
 Umstiz	乌姆斯蒂兹	wi
 Undyed	未染色	wi
 Uneasy	不安	w
+Update	更新	hP
 Upward	上行	wi
 Urr\x8Bth	乌利斯	wi
 Urthaz	乌尔萨斯	wi
@@ -184173,6 +184181,7 @@ board	木板	wi
 boars	猪	wi
 boats	船	wi
 boils	疖	wi
+bolts	弩矢	wi
 bones	骨头	wi
 books	书	wi
 boots	长靴	wi
@@ -185513,6 +185522,7 @@ body	身体	h
 body	身体	wi
 bogs	沼泽	wi
 boil	疖	wi
+bolt	弩矢	wi
 bone	骨	wi
 book	书	wi
 boot	长靴	wi
@@ -186430,13 +186440,3 @@ of	所属	h
 .	。	hq
 :	：	h
 ;	；	h
-
-# Save-loading mod compatibility prompt; maintained in ui-messages.tsv.
-Newer compatible version of mod detected: {c} (save uses {c}, not found)	检测到模组有兼容的新版本：{c1}（存档使用 {c2}，未找到该版本）	hPt
-Newer compatible version of mod detected: {c} (save uses {c})	检测到模组有兼容的新版本：{c1}（存档使用 {c2}）	hPt
-Newer compatible version of mod detected:	检测到模组有兼容的新版本：	hP
-Update	更新	hP
-Update all	全部更新	hP
-Don't update	不更新	hP
-Don't update any	全部不更新	hP
-Back to title	返回主菜单	hP
