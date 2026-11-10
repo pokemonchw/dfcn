@@ -5,12 +5,14 @@
 # Lua source evidence: data/extracted/dfhack-overlay-toggles/plugin-render-branches.txt
 # Options with the same caption/label and different colors share one text row.
 # Source: installed hack/lua/plugins/autofarm.lua:39-68 [autofarm.farm_controls]
-# TextButton retains the complete configure caption even when its viewport clips it.
+# Keep both the complete caption and the TextButton's clipped caption geometry.
+# Width 18 minus two brackets and the 8-cell key-plus-separator leaves 8 cells.
 DFHack GUI Overlay control: autofarm is|enabled|I|1|-1|1	自动种植|已启用	l
 DFHack GUI Overlay control: autofarm is|disabled|I|1|-1|1	自动种植|已停用	l
 DFHack GUI Overlay control: this farm is|managed by autofarm|I|1|-1|1	农田管理：|自动托管	l
 DFHack GUI Overlay control: this farm is|managed manually|I|1|-1|1	农田管理：|手动管理	l
 DFHack GUI Overlay control: configure||I|0|-1|1	配置|	l
+DFHack GUI Overlay control: configure||I|0|8|1	配置|	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/buildingplan/filterselection.lua:78-88 [QualityAndMaterialsPage]
 DFHack GUI Overlay control: Sort by:|available|I|1|-1|1	排序依据：|可用数量	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/buildingplan/filterselection.lua:78-88 [QualityAndMaterialsPage]
