@@ -3,7 +3,7 @@ Byayoi 同人社区：https://byayoi.org/
 GitHub：https://github.com/pokemonchw/dfcn
 Releases：https://github.com/pokemonchw/dfcn/releases
 
-当前工坊版本：53.17-20261110.2（2026-11-10）。完整更新日志见本目录 CHANGELOG.txt。
+当前工坊版本：53.17-20261110.3（2026-11-10）。完整更新日志见本目录 CHANGELOG.txt。
 适用：Windows x64，Dwarf Fortress Steam 53.17 / 53.16 与官网免费版 53.16。
 运行文件位于 DFCN/。Shift+F6 可临时停用或恢复扩展数据；Shift+F5 再次开启时重新读取核心与数据。
 首次订阅后运行 install.bat 自动安装引导；无需在创建世界时启用本工坊项目。
@@ -124,7 +124,7 @@ Shift+F8：在简体中文与台湾正体中文之间切换，同步刷新字体
 language=zh-Hans 为简体中文（默认）；language=zh-Hant 为台湾正体中文，使用随包提供的离线 OpenCC 转为台湾字形及常用词汇。
 修改此项可保留默认语言选择；同时接受 zh-CN、zh-TW、zh-Hans-CN、zh-Hant-TW。自定义小队名称和用户输入保持原样。
 
-Windows 同时安装 DFHack 53.16-r2 / r3 时，可按 Shift+F11 独立暂停或恢复 DFHack 工具。
+Windows 同时安装 DFHack 53.16-r2 / r3、53.17-r1 时，可按 Shift+F11 独立暂停或恢复 DFHack 工具。
 插件配置和状态会保留；关闭时已经打开的 DFHack 界面会关闭，此前对游戏或存档执行的修改不会回滚。
 汉化覆盖 DFHack 帮助、控制面板、常用弹窗及本地命令输出，可执行命令、快捷键和导出内容保留原文。
 

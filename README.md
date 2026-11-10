@@ -28,7 +28,7 @@ Windows 与 Linux 共用汉化数据载入优化：TOML 规则图按节点及引
 
 汉化启动时优先读取游戏根目录的 `dfcn_config.ini`；文件不存在时，从订阅目录的 `DFCN/dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖。订阅目录中的 `config.ini` 保留为默认模板，复制失败时作为回退配置。手动安装、路径示例与卸载方法见 [安装说明](workshop/content/INSTALL.txt)。
 
-**GitHub Release：**从 [v53.17-20261110.2](https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110.2) 下载 `DFCN-Windows-x64-minimal.zip`，解压后将全部内容按原有目录结构复制到游戏根目录，包括 `dfhooks.dll`、`dfhooks_dfcn.ini` 和整个 `dfcn` 文件夹。汉化设置同样使用游戏根目录的 `dfcn_config.ini`，首次启动时由 `dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖；复制失败时读取默认模板。完整变化见 Release 更新日志。
+**GitHub Release：**从 [v53.17-20261110.3](https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110.3) 下载 `DFCN-Windows-x64-minimal.zip`，解压后将全部内容按原有目录结构复制到游戏根目录，包括 `dfhooks.dll`、`dfhooks_dfcn.ini` 和整个 `dfcn` 文件夹。汉化设置同样使用游戏根目录的 `dfcn_config.ini`，首次启动时由 `dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖；复制失败时读取默认模板。完整变化见 Release 更新日志。
 
 Windows 汉化核心与翻译数据按汉化模块所在目录定位，支持将运行文件保留在工坊目录；用户配置统一使用游戏根目录的 `dfcn_config.ini`。游戏中按 **Shift+F10** 开启或关闭汉化，保留当前核心与数据；按 **Shift+F5** 关闭再开启汉化时，重新加载核心与数据。数据仅在启动、**Shift+F5** 重新开启或 **Ctrl+Shift+F10** 显式刷新时加载，不自动检查文件变化。安装仅添加汉化自身文件，不改写磁盘上的游戏本体、RAW 或存档；取消订阅不会删除已复制的入口文件和 `dfcn_config.ini`，卸载时需手动移除自己安装的汉化文件。
 
@@ -38,7 +38,7 @@ Windows 本版提供 **Shift+F6**：扩展默认启用，首次按下停用全�
 
 **地形蓝图导出**直接读取整张本地地图，不需要 DFHack。从地图原点 X=0、Y=0 开始覆盖完整宽高，遍历所有 Z 层，导出其中有已揭示地形的全部楼层，不受镜头位置、缩放或当前显示楼层影响；未揭示格子单独标记，整层未知时省略。文件为 `dfcn/blueprints/terrain-日期-时间.dfplan.json`，同名时自动追加序号，可由 `/home/lulika/workspace/byayoi/tools/dfbluepaint` 的导入功能载入。保留墙、地板、楼梯、斜坡、水、岩浆、植被等地形和原始 X/Y/Z 坐标；导出的是地形，不包含建筑、物品或单位。全部楼层存入同一个文件，使用无损连续格编码 `cellsRle` 缩减重复数据。dfbluepaint 同步支持该编码、超过 24 层及完整 int16 Z 坐标，地图宽高上限扩大为 32767 格，并兼容原有 `cells` 数组格式；文件上限为 256 MB，超出时报告失败，不裁切地图或截断楼层。
 
-Windows 同时安装 **DFHack 53.16-r2 / r3** 时，可按 **Shift+F11** 关闭 DFHack，再按一次恢复。开关独立于汉化：关闭时暂停插件更新、界面 hook、热键、命令与 Lua 定时回调，保留驻留核心、插件配置、存档数据和世界卸载清理。已打开的 DFHack 界面会关闭；已执行的游戏或存档修改不会回滚。
+Windows 同时安装 **DFHack 53.16-r2 / r3、53.17-r1** 时，可按 **Shift+F11** 关闭 DFHack，再按一次恢复。开关独立于汉化：关闭时暂停插件更新、界面 hook、热键、命令与 Lua 定时回调，保留驻留核心、插件配置、存档数据和世界卸载清理。已打开的 DFHack 界面会关闭；已执行的游戏或存档修改不会回滚。
 
 已支持汉化搜索的界面可使用中文、英文、拼音全拼与首字母，并提供输入容错和物品类别匹配。需要近义匹配时，可订阅[独立离线语义搜索模型](https://steamcommunity.com/sharedfiles/filedetails/?id=3823451988)。核心在启动时自动识别模型，无需联网或在世界模组列表中启用；未安装模型时，普通文字、拼音与容错搜索仍可使用。
 
@@ -90,8 +90,8 @@ Linux 宿主打包已有的 Windows 交叉编译产物时，使用固定 Python 
 Windows 工坊包和六个公开扩展 ZIP，不编译或生成数据。
 工坊发布工具 `tools/publish-workshop.py` 支持 Linux 已安装的 Steamworks 库及现有登录会话。
 
-当前 Windows 发布版本为 **v53.17-20261110.2**，变化见
-[更新日志](docs/releases/v53.17-20261110.2.md)。
+当前 Windows 发布版本为 **v53.17-20261110.3**，变化见
+[更新日志](docs/releases/v53.17-20261110.3.md)。
 
 ## Linux 交叉编译 Windows x64
 

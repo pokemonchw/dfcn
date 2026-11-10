@@ -10,8 +10,8 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[h2]DFCN v53.17-20261110.2[/h2]\n[list]\n[*]修复冒险模式绑架传闻对话漏译，按实际句式匹配时间、人物、地点与绑架者，保留动态信息。\n[*]补齐要塞模式与冒险模式音频设置中的“界面音量”标签翻译，保留音量百分比，并将标签纳入音频设置的左对齐布局。\n[*]修复 Dwarf Fortress 53.17 公告设置页的原生控件绑定遗漏，同时补齐旧地址缓存所需的控件覆盖。\n[/list]\n",
-  "release_tag": "v53.17-20261110.2",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110.2",
+  "changelog": "[h2]DFCN v53.17-20261110.3[/h2]\n[list]\n[*]修正工坊工作人员页面两种工作策略的翻译匹配和左对齐显示。\n[*]适配 DFHack 53.17-r1，修复升级后 Shift+F11 开关失效及松键事件丢失后无法再次切换的问题；加载器开关不可用时，由独立常驻模块接管快捷键、菜单与状态查询。\n[*]补齐 autofarm 农田控件、自动托管面板、作物与生长物列表、排序与库存阈值设置、输入弹窗、帮助和命令输出汉化，保留动态数量、快捷键与排序方向。\n[*]补齐 DFHack 53.17-r1 的界面文字捕获与 Lua 输出接口绑定，按完整控件文本处理裁切内容，避免配置按钮与较长标签相互误匹配。\n[/list]\n逐次提交分析：[url=https://github.com/pokemonchw/dfcn/blob/main/docs/releases/v53.17-20261110.3.md]完整更新日志[/url]\n",
+  "release_tag": "v53.17-20261110.3",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110.3",
   "github_url": "https://github.com/pokemonchw/dfcn"
 }
