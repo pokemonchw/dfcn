@@ -5101,6 +5101,8 @@ private:
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
     void append_embark_site_resources(NativeTextCard &card,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
+    void append_embark_resource_fields(std::vector<std::string> &rows,
+        std::vector<Match> &matches, int only_y, const unsigned char *screen_override) const;
     void append_embark_finder_fields(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y,
         const unsigned char *screen_override) const;
@@ -18910,6 +18912,9 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
 #include "adventure_quest_sidebar.inc"
 
     append_worldgen_parameter_labels(screen_rows, result, only_y);
+    // Resource writers own short material names even when no complete
+    // ecological card is available to the later whole-panel compositor.
+    append_embark_resource_fields(screen_rows, result, only_y, screen_override);
     // The trade controls and totals are independent native fields. Claim
     // them before paragraph/item readers or generic word translations.
     append_fortress_caravan_picker_fields(screen_rows, result, only_y, screen_override != nullptr);
@@ -28472,7 +28477,7 @@ void Overlay::normalize_native_split_text() {
         // The modal's widget snapshot already owns its full/half glyph
         // writers and baseline; grid text cannot reinterpret them.
         if (match.rule == kNativeSettingsAnnouncementRule) continue;
-        // The decompiled combat, portrait, trade, relation and embark finder
+        // The decompiled combat, portrait, trade, relation and embark field
         // renderers use ordinary addst, retaining old half-font flags without
         // drawing halves. Relation names and labels are separate full rows.
         if (match.rule == kAdventureCombatFieldRule ||
@@ -28482,6 +28487,7 @@ void Overlay::normalize_native_split_text() {
                 match.rule == kConversationPortraitRule ||
                 match.rule == kConversationToneRule ||
                 match.rule == kCharacterRelationRowRule ||
+                match.rule == kEmbarkSiteResourceRule ||
                 match.rule == kEmbarkFinderFieldRule) continue;
         // Tooltip wrapping owns its physical source rows and output lines.
         // Flags retained from a covered picture caption cannot turn those

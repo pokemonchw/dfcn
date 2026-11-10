@@ -25,6 +25,10 @@
 // identified by the CMP and object LEA in a unique 320-byte renderer context.
 // The seven zero-count HUD writers retain unique addst return contexts.
 // HUD panel open bytes are corroborated by multiple independent RIP owners.
+// Metal resource rows retain the material +0x260 name, capitalization and
+// addst argument sequence in all three lists, including each wrap branch.
+// Bind those consumed returns explicitly; their repeated local bodies cannot
+// independently distinguish the world-generation and travel-map writers.
 inline constexpr Range kSteam5317Ranges[] = {
     {0xb9d10, 0xb9d11, 0xbb340},
     {0xc3e3e, 0xc3e3f, 0xc546e},
@@ -237,10 +241,16 @@ inline constexpr Range kSteam5317Ranges[] = {
     {0xd3e8d0, 0xd3e8d5, 0xd565c0},
     {0xd4379c, 0xd437d4, 0xd5b48c},
     {0xdf8a80, 0xdf8a85, 0xe10770},
+    {0xdff32f, 0xdff330, 0xe1701f},
+    {0xdff3f5, 0xdff3f6, 0xe170e5},
     {0xe0317a, 0xe0317b, 0xe1ae6a},
     {0xe037d9, 0xe037da, 0xe1b4c9},
     {0xe03fdb, 0xe03fdc, 0xe1bccb},
     {0x1046410, 0x1046415, 0x105e2f0},
+    {0x104aed4, 0x104aed5, 0x1062db4},
+    {0x104af98, 0x104af99, 0x1062e78},
+    {0x104eac5, 0x104eac6, 0x10669a5},
+    {0x104eb8d, 0x104eb8e, 0x1066a6d},
     {0x1051aac, 0x1051ab1, 0x106998c},
     {0x1051ead, 0x1051eb2, 0x1069d8d},
     {0x105275e, 0x1052763, 0x106a63e},

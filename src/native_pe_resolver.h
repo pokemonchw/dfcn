@@ -293,8 +293,10 @@ public:
         if (!GetProcessTimes(GetCurrentProcess(), &birth, &exit, &kernel, &user)) return;
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
         const auto digest = hex_digest(seed);
-        // Bump this revision when discovery rules or the snapshot format change.
-        name_ = L"Local\\DFCN.NativeAddresses.3." + std::to_wstring(GetCurrentProcessId()) + L"." +
+        // Revision 4 includes the reviewed 53.17 metal resource returns.
+        // An earlier core may have cached their unresolved result, which
+        // must not survive this binding repair when the seed is unchanged.
+        name_ = L"Local\\DFCN.NativeAddresses.4." + std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
             std::wstring(digest.begin(), digest.end());

@@ -1,3 +1,66 @@
+// These native writers draw one metal at a time and wrap to a second row.
+// Their field ownership does not depend on the ecological card being captured:
+// a standalone Lead must not fall through to action or generated-name readers.
+void Overlay::append_embark_resource_fields(std::vector<std::string> &rows,
+        std::vector<Match> &matches, int only_y,
+        const unsigned char *screen_override) const {
+#ifdef _WIN32
+    const auto base = native_history_profile_base();
+    if (!base) return;
+    // 53.16 world-generation and both travel-map resource lists. Edition
+    // relocation also covers the official classic image's matching writers.
+    const std::array<uintptr_t, 6> writers = {
+        native_reference_address(base, 0xdff32f),
+        native_reference_address(base, 0xdff3f5),
+        native_reference_address(base, 0x104eac5),
+        native_reference_address(base, 0x104eb8d),
+        native_reference_address(base, 0x104aed4),
+        native_reference_address(base, 0x104af98),
+    };
+    for (const bool top : {false, true}) {
+        const auto *grid = top ? gps_->screen_top : gps_->screen;
+        if (!grid || (screen_override && screen_override != grid)) continue;
+        for (const auto &draw : captured_native_drawn_text_view(top)) {
+            if (!draw.native_caller ||
+                    std::find(writers.begin(), writers.end(), draw.native_caller) == writers.end() ||
+                    draw.draw_grid != grid || draw.draw_dimx != gps_->dimx ||
+                    draw.draw_dimy != gps_->dimy || draw.x < 0 || draw.y < 0 ||
+                    draw.x >= gps_->dimx || draw.y >= gps_->dimy || draw.source.empty() ||
+                    draw.source.size() > static_cast<size_t>(gps_->dimx - draw.x)) continue;
+            const int end = draw.x + static_cast<int>(draw.source.size());
+            if (draw.draw_clip && (draw.x < draw.draw_clip->x || draw.y < draw.draw_clip->y ||
+                    end > draw.draw_clip->x + draw.draw_clip->w ||
+                    draw.y >= draw.draw_clip->y + draw.draw_clip->h)) continue;
+            if (rows[draw.y].compare(draw.x, draw.source.size(), draw.source) != 0) continue;
+            bool intact = true;
+            for (int x = draw.x; intact && x < end; ++x) {
+                bool layer = false;
+                const auto *cell = cell_at(x, draw.y, &layer);
+                const size_t tile = static_cast<size_t>(x) * gps_->dimy + draw.y;
+                const auto expected = static_cast<unsigned char>(draw.source[x - draw.x]);
+                intact = cell && layer == top && cell[0] == expected &&
+                    grid[tile * 8] == expected;
+            }
+            if (!intact) continue;
+            const auto target = exact_literal_translation("Embark site resource: " + draw.source);
+            if (!target || target->empty()) continue;
+            std::fill(rows[draw.y].begin() + draw.x, rows[draw.y].begin() + end, ' ');
+            if (only_y >= 0 && only_y != draw.y) continue;
+            Match match{draw.x, draw.y, end - draw.x,
+                kEmbarkSiteResourceRule, *target, draw.source};
+            match.layout_x = draw.x;
+            match.layout_y = draw.y;
+            match.layout_length = end - draw.x;
+            match.layout_clip_right = end;
+            match.layout_left = true;
+            match.layout_fixed_baseline = true;
+            match.layout_foreground_rgb = draw.foreground_rgb;
+            matches.push_back(std::move(match));
+        }
+    }
+#endif
+}
+
 // Reclaim news belongs to the same live records as the selection list.
 // The original draw uses three-row confirmation controls, with the caption
 // in the middle (53.16 ELF: 0x1f458de..0x1f45aeb). Reserve that whole band,
