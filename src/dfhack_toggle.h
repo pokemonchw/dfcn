@@ -238,7 +238,7 @@ class Toggle {
         suspended_core_ = reinterpret_cast<SuspendedFn>(symbol(module_, "?isSuspended@Core@DFHack@@QEAA_NXZ"));
         if (!readable(core_slot_, sizeof(void *)) || !console_ || !plugin_manager_ || !suspended_core_ ||
             !registry_.bind(module_) || !chain_bind()) return false;
-        // Whole, non-relative instruction prefixes shared by 53.16-r2/r3.
+        // Whole, non-relative instruction prefixes shared by 53.16-r2/r3 and 53.17-r1.
         // Reject differing instructions before modifying native callbacks.
         static constexpr unsigned char apply_prefix[] =
             {0x48,0x89,0x5c,0x24,0x08,0x55,0x56,0x57,0x41,0x54,0x41,0x55,0x41,0x56};
@@ -250,8 +250,6 @@ class Toggle {
             {0x48,0x89,0x5c,0x24,0x08,0x48,0x89,0x74,0x24,0x10,0x57,0x48,0x83,0xec,0x20};
         static constexpr unsigned char command_prefix[] =
             {0x40,0x55,0x53,0x56,0x57,0x41,0x54,0x41,0x55,0x41,0x56,0x41,0x57,0x48,0x8d,0x6c,0x24,0xa8};
-        static constexpr unsigned char console_shutdown_prefix[] =
-            {0x48,0x89,0x5c,0x24,0x08,0x57,0x48,0x83,0xec,0x20,0x48,0x8b,0x79,0x20};
         static constexpr char command_symbol[] =
             "?runCommand@Core@DFHack@@QEAA?AW4command_result@2@AEAVcolor_ostream@2@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEAV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@6@_N@Z";
         return apply_.prepare(reinterpret_cast<void *>(registry_.apply_function()),
@@ -263,9 +261,7 @@ class Toggle {
             update_.prepare(symbol(module_, "?onUpdate@Core@DFHack@@AEAAXAEAVcolor_ostream@2@@Z"),
                    reinterpret_cast<void *>(&on_update_callback), update_prefix) &&
             command_.prepare(symbol(module_, command_symbol),
-                   reinterpret_cast<void *>(&command_callback), command_prefix) && prepare_lifecycle() &&
-            console_shutdown_.prepare(symbol(module_, "?shutdown@Console@DFHack@@QEAA_NXZ"),
-                   reinterpret_cast<void *>(&console_shutdown_callback), console_shutdown_prefix);
+                   reinterpret_cast<void *>(&command_callback), command_prefix) && prepare_lifecycle();
     }
 
     bool prepare_lifecycle() {
@@ -550,6 +546,8 @@ class Toggle {
 #endif
 
 public:
+    bool ready() const noexcept { return ready_; }
+
     bool disabled() const noexcept {
         return off_.load(std::memory_order_acquire);
     }
@@ -614,11 +612,20 @@ public:
         }
 #ifdef _WIN32
         if (!console_exit_.initialize(module_, report_)) return;
-        if (!console_shutdown_.write(true)) {
-            console_shutdown_.write(false);
-            console_exit_.detach();
-            report("ERROR", "DFHack console shutdown hook installation failed");
-            return;
+        if (console_exit_.needs_shutdown_hook()) {
+            // Only the older console needs our pre-shutdown cancellation.
+            // Newer native wakeups must run before joining the reader; their
+            // shutdown entry need not share the old detour's instructions.
+            static constexpr unsigned char console_shutdown_prefix[] =
+                {0x48,0x89,0x5c,0x24,0x08,0x57,0x48,0x83,0xec,0x20,0x48,0x8b,0x79,0x20};
+            if (!console_shutdown_.prepare(symbol(module_, "?shutdown@Console@DFHack@@QEAA_NXZ"),
+                    reinterpret_cast<void *>(&console_shutdown_callback), console_shutdown_prefix) ||
+                    !console_shutdown_.write(true)) {
+                console_shutdown_.write(false);
+                console_exit_.detach();
+                report("ERROR", "DFHack console shutdown hook installation failed");
+                return;
+            }
         }
 #endif
         for (auto *hook : {&apply_, &remove_, &destroy_, &update_, &command_, &plugin_state_, &lua_state_, &load_scripts_}) {
@@ -672,6 +679,9 @@ public:
             return true;
         }
         if (event.type != SDL_KEYDOWN || event.key.keysym.sym != SDLK_F11) return false;
+        // Another dfhooks callback can consume the release. A new physical
+        // press must recover the latch, while held-key repeats stay consumed.
+        if (!event.key.repeat) f11_consumed_ = false;
         if (f11_consumed_) return true;
         const auto mods = static_cast<SDL_Keymod>(event.key.keysym.mod);
         if (!(mods & KMOD_SHIFT) || (mods & (KMOD_CTRL | KMOD_ALT | KMOD_GUI))) return false;

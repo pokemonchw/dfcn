@@ -13,6 +13,7 @@ static bool request_native_dfhack_toggle() {
         return false;
 
 #ifdef _WIN32
+    if (dfhack::switch_client::toggle()) return true;
     const auto resident = GetModuleHandleW(L"dfhooks_dfcn.dll");
     if (!resident) return false;
     const auto toggle = reinterpret_cast<ToggleFn>(GetProcAddress(resident,

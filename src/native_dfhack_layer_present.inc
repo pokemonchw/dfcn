@@ -4,6 +4,8 @@
 static graphicst *native_dfhack_display_inputs_select(graphicst *inputs) noexcept;
 
 static bool native_dfhack_switch_disabled() noexcept {
+    if (const auto *api = dfhack::switch_client::active_api.load(std::memory_order_acquire))
+        return api->disabled() != 0;
     using Query = int (*)() noexcept;
     // The resident loader is already mapped before it initializes this core.
     // A standalone core or an older loader keeps its existing display behavior.

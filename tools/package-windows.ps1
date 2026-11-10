@@ -38,7 +38,7 @@ $archiveStream = $null
 $entryCount = 0
 
 function Add-RuntimeFile([string] $source, [string] $entryName) {
-    if ($entryName -in @('dfcn/dfcn_core.dll', 'dfcn/dfhooks_dfcn.dll', 'dfcn/dfcn_mouse_coordinates.dll')) {
+    if ($entryName -in @('dfcn/dfcn_core.dll', 'dfcn/dfhooks_dfcn.dll', 'dfcn/dfcn_dfhack_switch.dll', 'dfcn/dfcn_mouse_coordinates.dll')) {
         $strippedPath = Join-Path $script:binaryStagingRoot ([IO.Path]::GetFileName($source))
         Write-StrippedWindowsLibrary $source $strippedPath
         $source = $strippedPath
@@ -79,7 +79,7 @@ try {
     # The shipped configuration explicitly selects font.otf. Keep that font and
     # its license mandatory instead of selecting an unrelated local font first.
     foreach ($name in @(
-        'dfcn_core.dll', 'dfhooks_dfcn.dll', 'dfcn_mouse_coordinates.dll', 'data/runtime/config.ini',
+        'dfcn_core.dll', 'dfhooks_dfcn.dll', 'dfcn_dfhack_switch.dll', 'dfcn_mouse_coordinates.dll', 'data/runtime/config.ini',
         'data/runtime/font.otf', 'data/runtime/font.LICENSE.txt',
         'data/runtime/native-addresses/pe-seed.bin',
         'data/runtime/translations.tsv', 'data/runtime/name-editor.tsv',

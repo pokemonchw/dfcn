@@ -297,6 +297,7 @@ NATIVE_ABIS = {
     "win32": {
         "core": "dfcn_core.dll",
         "loader": "dfhooks_dfcn.dll",
+        "dfhack_switch": "dfcn_dfhack_switch.dll",
         "mouse_coordinates": "dfcn_mouse_coordinates.dll",
         "map_preview": "dfcn_map_preview.dll",
         "riding": "dfcn_riding.dll",
@@ -513,8 +514,8 @@ def generate_data(env: dict[str, str], *, pe_reference: Path | None = None,
         run([sys.executable, "-B", "tools/build_creature_vocabulary.py"], env)
 
 
-def loader_inputs() -> list[Path]:
-    pending = [ROOT / "src/loader.cpp", SCRIPT]
+def module_inputs(source: str) -> list[Path]:
+    pending = [ROOT / "src" / source, SCRIPT]
     seen = set()
     while pending:
         path = pending.pop().resolve()
@@ -831,7 +832,7 @@ def build_windows_cross(args: argparse.Namespace) -> int:
         print(f"Windows DLL deployment: {ROOT}", flush=True)
     output.mkdir(parents=True, exist_ok=True)
     # Each invocation has a private source snapshot and staging directory.
-    # Serialize publication of the pair for builds targeting the same output.
+    # Serialize publication of the modules for builds targeting the same output.
     import fcntl
     with (output / ".build.lock").open("a+b") as lock:
         try:
@@ -850,6 +851,7 @@ def build_windows_cross(args: argparse.Namespace) -> int:
             shutil.copyfile(ROOT / pinyin, snapshot / pinyin)
             core_candidate = staging / abi["core"]
             loader_candidate = staging / abi["loader"]
+            switch_candidate = staging / abi["dfhack_switch"]
             mouse_candidate = staging / abi["mouse_coordinates"]
             preview_candidate = staging / abi["map_preview"]
             riding_candidate = staging / abi["riding"]
@@ -864,6 +866,9 @@ def build_windows_cross(args: argparse.Namespace) -> int:
             print("Cross-compiling the Windows loader...", flush=True)
             run([*compiler, *compile_flags, "-o", str(loader_candidate), "src/loader.cpp",
                  *link_flags], env, cwd=snapshot)
+            print("Cross-compiling the Windows DFHack switch helper...", flush=True)
+            run([*compiler, *compile_flags, "-o", str(switch_candidate), "src/dfhack_switch.cpp",
+                 *link_flags], env, cwd=snapshot)
             print("Cross-compiling the independent mouse coordinates mod...", flush=True)
             run([*compiler, *compile_flags, "-o", str(mouse_candidate),
                  "src/mods/mouse_coordinates.cpp", *link_flags], env, cwd=snapshot)
@@ -874,13 +879,15 @@ def build_windows_cross(args: argparse.Namespace) -> int:
             run([*compiler, *compile_flags, "-o", str(riding_candidate),
                  "src/mods/riding.cpp", *link_flags], env, cwd=snapshot)
             # Leave the previous outputs untouched if any compiler fails.
-            for candidate in (core_candidate, loader_candidate, mouse_candidate, preview_candidate, riding_candidate):
+            for candidate in (core_candidate, loader_candidate, switch_candidate,
+                              mouse_candidate, preview_candidate, riding_candidate):
                 os.replace(candidate, output / candidate.name)
         if args.deploy_project:
             # Native publish() only accepts inputs in native destination
             # directories. Keep the cross-build outputs, then stage the copy
             # in ROOT so the normal atomic replacement can own publication.
-            for name in (abi["mouse_coordinates"], abi["riding"], abi["core"], abi["loader"]):
+            for name in (abi["mouse_coordinates"], abi["riding"], abi["dfhack_switch"],
+                         abi["core"], abi["loader"]):
                 destination = ROOT / name
                 staged = destination.with_name(name + ".publish")
                 print(f"Publishing {destination}", flush=True)
@@ -891,10 +898,12 @@ def build_windows_cross(args: argparse.Namespace) -> int:
                     remove_file(staged)
         package_map_preview(output / abi["map_preview"])
     print(f"Windows cross-build completed:\n{output / abi['core']}\n{output / abi['loader']}\n"
+          f"{output / abi['dfhack_switch']}\n"
           f"{output / abi['mouse_coordinates']}\n{output / abi['map_preview']}\n{output / abi['riding']}",
           flush=True)
     if args.deploy_project:
         print(f"Windows DLLs deployed:\n{ROOT / abi['core']}\n{ROOT / abi['loader']}\n"
+              f"{ROOT / abi['dfhack_switch']}\n"
               f"{ROOT / abi['mouse_coordinates']}\n{ROOT / abi['riding']}",
               flush=True)
     return 0
@@ -928,6 +937,8 @@ def main() -> int:
                                                       for directory in native_game_directories()]
     core_candidate = core.with_name(core.stem + ".candidate" + core.suffix)
     loader_candidate = loader.with_name(loader.stem + ".candidate" + loader.suffix)
+    switch_mod = ROOT / abi["dfhack_switch"] if "dfhack_switch" in abi else None
+    switch_candidate = switch_mod.with_name(switch_mod.stem + ".candidate" + switch_mod.suffix) if switch_mod else None
     mouse_mod = ROOT / abi["mouse_coordinates"] if "mouse_coordinates" in abi else None
     mouse_candidate = mouse_mod.with_name(mouse_mod.stem + ".candidate" + mouse_mod.suffix) if mouse_mod else None
     preview_mod = ROOT / abi["map_preview"] if "map_preview" in abi else None
@@ -936,6 +947,8 @@ def main() -> int:
     riding_candidate = riding_mod.with_name(riding_mod.stem + ".candidate" + riding_mod.suffix) if riding_mod else None
     staging = [core_candidate, loader_candidate,
                *(path.with_name(path.name + ".publish") for path in (core, loader, *game_loaders))]
+    if switch_candidate:
+        staging.extend([switch_candidate, switch_mod.with_name(switch_mod.name + ".publish")])
     if mouse_candidate:
         staging.append(mouse_candidate)
     if preview_candidate:
@@ -951,7 +964,8 @@ def main() -> int:
                        for name in ("dfhooks.dll", "dfhooks_dfcn.ini"))
     pending_replacements: set[Path] = set()
     if args.clean:
-        for path in [*staging, core, loader, *game_loaders, *([preview_mod] if preview_mod else [])]:
+        for path in [*staging, core, loader, *game_loaders,
+                     *([switch_mod] if switch_mod else []), *([preview_mod] if preview_mod else [])]:
             remove_file(path)
         print("Build outputs removed.")
         return 0
@@ -1058,7 +1072,10 @@ def main() -> int:
         configured_build = bool(args.toolchain_root or args.sdl_root or any(
             env.get(name) for name in ("CXX", "CPPFLAGS", "CXXFLAGS", "LDFLAGS", "LDLIBS", "PKG_CONFIG", "PKG_CONFIG_PATH")))
         rebuild_core = configured_build or needs_update([core], core_inputs)
-        rebuild_loader = args.rebuild_loader or configured_build or needs_update([loader, *game_loaders], loader_inputs())
+        rebuild_loader = args.rebuild_loader or configured_build or needs_update(
+            [loader, *game_loaders], module_inputs("loader.cpp"))
+        rebuild_switch = switch_mod and (configured_build or needs_update(
+            [switch_mod], module_inputs("dfhack_switch.cpp")))
         rebuild_mouse = mouse_mod and (configured_build or needs_update([mouse_mod],
             [SCRIPT, ROOT / "src/mods/mouse_coordinates.cpp", ROOT / "src/mouse_coordinates_api.h"]))
         rebuild_preview = preview_mod and (configured_build or needs_update([preview_mod],
@@ -1067,7 +1084,7 @@ def main() -> int:
             [SCRIPT, ROOT / "src/mods/riding.cpp", ROOT / "src/mods/riding_render.inc",
              ROOT / "src/mods/riding_mechanics.inc", ROOT / "src/mods/riding_flight.inc",
              ROOT / "src/riding_api.h"]))
-        if rebuild_core or rebuild_loader or rebuild_mouse or rebuild_preview or rebuild_riding:
+        if rebuild_core or rebuild_loader or rebuild_switch or rebuild_mouse or rebuild_preview or rebuild_riding:
             # Both core translation units and the loader must see the same
             # shared headers even when this checkout is edited during a long
             # compile. Copy once; relative includes and the Linux export map
@@ -1093,6 +1110,10 @@ def main() -> int:
                     print("Building the resident loader...", flush=True)
                     run([*compiler, *compile_flags, "-o", str(loader_candidate), "src/loader.cpp",
                          *link_flags], env, cwd=snapshot)
+                if rebuild_switch:
+                    print("Building the Windows DFHack switch helper...", flush=True)
+                    run([*compiler, *compile_flags, "-o", str(switch_candidate), "src/dfhack_switch.cpp",
+                         *link_flags], env, cwd=snapshot)
                 if rebuild_mouse:
                     print("Building the independent mouse coordinates mod...", flush=True)
                     run([*compiler, *compile_flags, "-o", str(mouse_candidate),
@@ -1110,6 +1131,15 @@ def main() -> int:
         for directory in native_game_directories():
             deploy_translation_extensions(directory)
         package_translation_extensions()
+        if switch_mod:
+            for directory in edition_destinations():
+                directory.mkdir(parents=True, exist_ok=True)
+                destination = directory / switch_mod.name
+                staging.append(destination.with_name(destination.name + ".publish"))
+                publish_ready(switch_candidate if rebuild_switch else switch_mod,
+                              destination, keep_candidate=True)
+            if rebuild_switch:
+                publish_ready(switch_candidate, switch_mod)
         if mouse_mod:
             for directory in edition_destinations():
                 directory.mkdir(parents=True, exist_ok=True)
@@ -1150,6 +1180,8 @@ def main() -> int:
             print("Core and resident loader deployed to the configured game directories.")
         elif rebuild_core:
             print("Core deployed to the configured game directories.")
+        elif rebuild_switch:
+            print("DFHack switch helper deployed to the configured game directories.")
         else:
             print("Build outputs are current.")
         if sys.platform == "win32":

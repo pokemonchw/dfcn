@@ -549,7 +549,7 @@ static bool native_dfhack_bind_lua_output(HMODULE module) {
     // rewriting function pointers or the owned source path.
     if (g_native_dfhack_lua_output_bound.load(std::memory_order_acquire)) return true;
     const auto lua = GetModuleHandleW(L"lua53.dll");
-    const auto loader = GetModuleHandleW(L"dfhooks_dfcn.dll");
+    const auto loader = dfhack::switch_client::command_owner();
     if (!lua || !loader) return false;
     NativeDfhackLuaOutputApi api;
     api.gettop = reinterpret_cast<decltype(api.gettop)>(GetProcAddress(lua,
@@ -574,10 +574,8 @@ static bool native_dfhack_bind_lua_output(HMODULE module) {
         "?lua_getinfo@@YAHPEAUlua_State@@PEBDPEAUlua_Debug@@@Z"));
     api.getlocal = reinterpret_cast<decltype(api.getlocal)>(GetProcAddress(lua,
         "?lua_getlocal@@YAPEBDPEAUlua_State@@PEBUlua_Debug@@H@Z"));
-    api.query = reinterpret_cast<DfcnQueryDfhackCommandContextV1>(GetProcAddress(loader,
-        "dfcn_get_dfhack_command_context_v1"));
-    api.query_v2 = reinterpret_cast<DfcnQueryDfhackCommandContextV2>(GetProcAddress(loader,
-        "dfcn_get_dfhack_command_context_v2"));
+    api.query = &dfhack::switch_client::query_command_context;
+    api.query_v2 = &dfhack::switch_client::query_command_context_v2;
     if (!api.gettop || !api.settop || !api.checkstack || !api.type || !api.tolstring ||
             !api.isinteger || !api.tointegerx || !api.tocfunction || !api.getstack ||
             !api.getinfo || !api.getlocal || !api.query) return false;
@@ -836,7 +834,7 @@ static bool install_native_dfhack_lua_output_hook() {
 #ifdef _WIN32
     const auto module = GetModuleHandleW(L"dfhack.dll");
     if (!module) return true;
-    const auto loader = GetModuleHandleW(L"dfhooks_dfcn.dll");
+    const auto loader = dfhack::switch_client::command_owner();
     if (!loader || !GetProcAddress(loader, "dfcn_get_dfhack_command_context_v1")) return true;
 #else
     void *module = dlsym(RTLD_DEFAULT, "_ZN6DFHack3Lua9GetOutputEP9lua_State");

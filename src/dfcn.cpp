@@ -75,6 +75,7 @@
 #include "core_api.h"
 #include "riding_api.h"
 #include "runtime_paths.h"
+#include "dfhack_switch_client.h"
 #include "search_semantic_model.h"
 #include "translation_extensions.h"
 #include "english_character_names.h"
@@ -44602,6 +44603,9 @@ DFCN_EXPORT void dfhooks_init() {
         return;
     }
     dfcn::g_native_process_exiting.store(false, std::memory_order_release);
+#ifdef _WIN32
+    (void)dfcn::dfhack::switch_client::initialize();
+#endif
     dfcn::reset_native_dfhack_render_lifecycle();
     dfcn::reset_native_dfhack_console_lifecycle();
     dfcn::g_native_hook_thread = std::this_thread::get_id();
@@ -44646,6 +44650,9 @@ DFCN_EXPORT void dfhooks_sdl_loop() {}
 
 DFCN_EXPORT bool dfhooks_sdl_event(void *raw_event) {
     if (!raw_event || !dfcn::g_plugin_active.load()) return false;
+#ifdef _WIN32
+    if (dfcn::dfhack::switch_client::event(raw_event)) return true;
+#endif
     const SDL_Event *event = static_cast<const SDL_Event *>(raw_event);
     dfcn::InputDeliveryTiming input_timing(*event);
     if (event->type == SDL_RENDER_DEVICE_RESET || event->type == SDL_RENDER_TARGETS_RESET) {
