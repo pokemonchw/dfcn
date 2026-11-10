@@ -3,12 +3,12 @@
 DFCN 是 Byayoi 同人社区的《Dwarf Fortress（矮人要塞）》汉化作品，结合社区译文与本地修订，翻译游戏界面、人物信息、物品描述和传说故事，支持简体中文与台湾正体中文。
 
 [b]适配 Windows x64 的 Dwarf Fortress Steam 53.17 / 53.16 与官网免费版 53.16。[/b]
-当前版本：[b]53.17-20261110[/b]（2026-11-10）。
+当前版本：[b]53.17-20261110.2[/b]（2026-11-10）。
 游戏内按 [b]Shift+F1[/b] 打开汉化设置菜单，可切换中英文、繁简体、四族语言原文／音译，开关已安装的 DFHack，或重新载入汉化。
 更新内容见改动说明与订阅目录中的 CHANGELOG.txt。
 
 [url=https://github.com/pokemonchw/dfcn]GitHub 项目主页[/url]
-[url=https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110]Windows 汉化下载[/url]
+[url=https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110.2]Windows 汉化下载[/url]
 [url=https://byayoi.org/]Byayoi 同人社区[/url]
 
 [h1]Windows 工坊安装[/h1]
