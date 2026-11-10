@@ -9771,9 +9771,11 @@ Work details	劳动分组	wi
 # The Kitchen tab reuses Cooking; the workshop remains Kitchen.
 Labor tab: Work details	分组	wi
 Labor tab: Standing orders	规则	wi
-# The workshop Workers page draws this policy with a lowercase initial.
-# Keep the shared character-page caption available in either capitalization.
-Will do available tasks anywhere	完成可执行的所有工作	wi
+# The workshop Workers page draws these policies with a lowercase initial.
+# Keep the shared character-page captions available in either capitalization.
+# Both are left-aligned status lines beneath the worker's identity.
+Will do available tasks anywhere	完成可执行的所有工作	wil
+Will only do assigned tasks	只做分配的工作	wil
 # Complete system labor captions. The Work details editor renders these as
 # single fields; substrings must not leave suffixes or become generated names.
 Working Wood	木材加工	wi
