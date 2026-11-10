@@ -135,6 +135,8 @@ void Overlay::layout_settings_panels(SDL_Renderer *renderer) {
             match.source.starts_with("Music Volume (Fortress):") ||
             match.source.starts_with("Ambience Volume (Fortress):") ||
             match.source.starts_with("Sound Effects Volume (Fortress):") ||
+            match.source.starts_with("UI Volume (Fortress):") ||
+            match.source.starts_with("UI Volume (Adventure):") ||
             match.source.starts_with("Average Seconds Between Tracks/Interludes")) {
             ++audio_page_anchor_count;
         }
@@ -191,6 +193,8 @@ void Overlay::layout_settings_panels(SDL_Renderer *renderer) {
                 match.source.starts_with("Music Volume (Fortress):") ||
                 match.source.starts_with("Ambience Volume (Fortress):") ||
                 match.source.starts_with("Sound Effects Volume (Fortress):") ||
+                match.source.starts_with("UI Volume (Fortress):") ||
+                match.source.starts_with("UI Volume (Adventure):") ||
                 match.source.starts_with("Average Seconds Between Tracks/Interludes")) {
                 ++base_audio;
             }
@@ -429,10 +433,12 @@ void Overlay::layout_settings_panels(SDL_Renderer *renderer) {
                 source.starts_with("Music Volume (Fortress):") ||
                 source.starts_with("Ambience Volume (Fortress):") ||
                 source.starts_with("Sound Effects Volume (Fortress):") ||
+                source.starts_with("UI Volume (Fortress):") ||
                 source.starts_with("Average Seconds Between Tracks/Interludes (Fortress):") ||
                 source.starts_with("Music Volume (Adventure):") ||
                 source.starts_with("Ambience Volume (Adventure):") ||
                 source.starts_with("Sound Effects Volume (Adventure):") ||
+                source.starts_with("UI Volume (Adventure):") ||
                 source.starts_with("Average Seconds Between Tracks/Interludes (Adventure):");
         };
         std::vector<size_t> audio_captions;
