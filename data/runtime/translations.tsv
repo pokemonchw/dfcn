@@ -75450,6 +75450,8 @@ Set details for the assigned location.	设置所指定地点的详细信息。	h
 Show improvement quality in item names	在物品名称中显示改进品质	w
 Snow-covered maple twigs, maple leaves	覆雪的枫树细枝、枫叶	wl
 Sound Effects Volume (Adventure): {d}%	音效音量(冒险):{d}%	wt
+UI Volume (Adventure): {d}%	界面音量(冒险):{d}%	wt
+UI Volume (Fortress): {d}%	界面音量(要塞):{d}%	wt
 Spread rumor of the destruction of {i}	传播{i1}被毁的传闻	hPt
 Spread rumor of your possession of {i}	传播你持有{i1}的传闻	hPt
 Spread rumor of {e}'s march toward {e}	传播{e1}向{e2}进军的传闻	hPt
