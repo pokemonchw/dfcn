@@ -194,6 +194,17 @@ inline uint32_t ui_settings_tail_shift(const Image &image) {
 
 #include "native_pe_5317_bindings.inc"
 
+// The frozen seed predates the settings widget reader's type() wrapper, so
+// its indirect RVA arguments are absent from the catalog. These are identity
+// anchors only: resolve each primary vtable by its exact MSVC RTTI name.
+inline constexpr std::pair<uint32_t, const char *> kSettingsWidgetTypes[] = {
+    {0x15eefd0, ".?AVtabs@widgets@@"},
+    {0x1785978, ".?AVmultifilter@widgets@@"},
+    {0x1785bd0, ".?AVtable@widgets@@"},
+    {0x1785ca8, ".?AVbetter_button@widgets@@"},
+    {0x1785d60, ".?AVindiv_filter@multifilter@widgets@@"},
+};
+
 inline void adapt_required(Catalog &catalog, uint32_t settings_shift) {
     if (settings_shift != 8) return;
     // Profiles with explicit 53.17 opcodes consume their actual instruction
@@ -205,6 +216,14 @@ inline void adapt_required(Catalog &catalog, uint32_t settings_shift) {
         if (reference == 0x8b9daf && length == 101) length = 63;
         if (reference == 0x8b9e3a && length == 95) length = 35;
         if (reference == 0x8b9e99 && length == 65) length = 11;
+    }
+    // Apply to cached coverage too. A complete old cache can otherwise omit
+    // every settings owner while still preventing a fresh address scan.
+    for (const auto &[reference, name] : kSettingsWidgetTypes) {
+        (void)name;
+        if (std::none_of(catalog.required.begin(), catalog.required.end(),
+                [reference](const auto &span) { return span.first == reference; }))
+            catalog.required.emplace_back(reference, 1);
     }
 }
 
@@ -218,8 +237,13 @@ inline State scan(const Image &image, const Catalog &catalog) {
         fields.push_back({0x023cd7e8, 0x023cd7f8, 0x023cd7ec});
         fields.push_back({0x023cd7f8, 0x023d10d4, 0x023cd7f8 + shift});
     }
-    const std::vector<Range> reviewed_ranges = shift
+    std::vector<Range> reviewed_ranges = shift
         ? std::vector<Range>(std::begin(kSteam5317Ranges), std::end(kSteam5317Ranges)) : std::vector<Range>{};
+    if (shift) for (const auto &[reference, name] : kSettingsWidgetTypes) {
+        const auto candidates = image.find_vtables(name);
+        if (candidates.size() == 1)
+            reviewed_ranges.push_back({reference, reference + 1, candidates.front()});
+    }
     const std::vector<Byte> reviewed_bytes = shift
         ? std::vector<Byte>(std::begin(kSteam5317Bytes), std::end(kSteam5317Bytes)) : std::vector<Byte>{};
     auto result = address_runtime::scan(image, catalog, {
