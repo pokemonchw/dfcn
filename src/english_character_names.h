@@ -251,11 +251,25 @@ public:
             if (present(0) && present(1)) front = entity_phrase_join(front, part(1));
             if (front.empty()) return std::nullopt;
         }
+        const bool paired_adjectives = present(2) && present(3) &&
+            words[2].part_of_speech == 2 && words[3].part_of_speech == 2;
         bool has_title = false;
         for (std::size_t slot = 6; slot-- > 2;) {
+            if (paired_adjectives && slot == 2) continue;
             if (!present(slot)) continue;
             auto current = part(slot);
             if (current.empty()) return std::nullopt;
+            if (paired_adjectives && slot == 3) {
+                // The two native ADJ slots are coordinated modifiers, not
+                // additional roots to fold independently into the name head.
+                std::vector<Part> paired;
+                for (const auto &first : part(2)) for (const auto &second : current)
+                    append_entity_part(paired, entity_composed(second, first, second,
+                        first.text + "与" + second.text,
+                        first.english + ' ' + second.english, first.score + second.score));
+                if (paired.empty()) return std::nullopt;
+                current = std::move(paired);
+            }
             title = has_title ? entity_phrase_join(current, title) : std::move(current);
             has_title = true;
             if (title.empty()) return std::nullopt;

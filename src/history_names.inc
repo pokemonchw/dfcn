@@ -671,11 +671,18 @@ std::optional<std::string> Overlay::translate_history_name(
         const bool adjective_prefix =
             (glosses[2].empty() || (roles[2] & kNameFrontAdjective)) &&
             (glosses[3].empty() || (roles[3] & kNameFrontAdjective));
+        std::string modifiers = glosses[2];
+        if ((polity || site_government || name.entity_type >= 0 ||
+                name.type == 6 || name.type == 19) &&
+                !glosses[2].empty() && !glosses[3].empty() &&
+                name.words[2].part_of_speech == 2 && name.words[3].part_of_speech == 2)
+            modifiers += "与";
+        modifiers += glosses[3];
         if (noun_compound && adjective_prefix) {
             title = render_procedural_hyphenated_title(
-                glosses[2] + glosses[3], glosses[4], glosses[5]);
+                modifiers, glosses[4], glosses[5]);
         } else {
-            for (size_t slot = 2; slot <= 5; ++slot) title += glosses[slot];
+            title = modifiers + glosses[4] + glosses[5];
         }
     }
     if (!glosses[6].empty()) {

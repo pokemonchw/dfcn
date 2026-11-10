@@ -95,7 +95,7 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
     const auto adjective_group = [&]() {
         std::string result;
         for (size_t slot : {size_t(2), size_t(3)}) if (present(slot)) {
-            if (!result.empty()) result += "、";
+            if (!result.empty()) result += "与";
             if (site && name.words[slot].part_of_speech != 2) {
                 // A modifier slot does not turn the selected noun/verb into
                 // an ADJ sense. Preserve its complete native-POS meaning.
