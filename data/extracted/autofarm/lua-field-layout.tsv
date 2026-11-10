@@ -1,0 +1,42 @@
+owner	field	geometry_or_production	value_provenance
+FarmControlsOverlay	root	default x=-43 y=13; w50 h2; viewscreen dwarfmode/ViewSheets/BUILDING/FarmPlot	selected building FarmPlot
+FarmControlsOverlay	autofarm_enabled	t0 l0; Cycle inline gap1 width unspecified; Ctrl+A	isEnabled()
+FarmControlsOverlay	farm_managed	t1 l0; Cycle inline gap1 width unspecified; Ctrl+M	not autofarm_isFarmExcluded(selected.id)
+FarmControlsOverlay	configure	t0 r0 w18 h1; TextButton inner HotkeyLabel l1 r1; Ctrl+S	static caption configure
+FarmCoverOverlay	root	default x=-40 y=16; w57 h22; medium frame	plugin enabled and selected farm managed and fully built
+FarmCoverOverlay	managed title	t1 l2	static LIGHTGREEN
+FarmCoverOverlay	now_planting	t2 l2	Now planting prefix then current-season plant raw name or fallow/unknown LIGHTCYAN
+FarmCoverOverlay	instructions	t3 l2 r2	WrappedLabel full prose before width-dependent wrapping
+FarmCoverOverlay	fallow_note	t6 l2 r2	WrappedLabel full text conditional on four seasonal plant IDs all negative
+FarmCoverOverlay	configure autofarm	b4 l2 r2 h1	TextButton Ctrl+S
+FarmCoverOverlay	manage this farm manually	b3 l2 r2 h1	TextButton Ctrl+M
+Autofarm	Window	w62 h25 resizable; frame_inset t1	Autofarm frame title
+Autofarm	sort	l1 t0 w31	Shift+S plus six options
+Autofarm	hide_stocked	t0 r0 w33	Ctrl+H plus On/Off
+Autofarm	list_panel	t2 l0 r0 b6; INTERIOR frame	child headers and list
+Autofarm	sort_name	t0 l0 w5	Name no arrow when another column active; otherwise arrow token
+Autofarm	sort_stock	t0 r14 w6	Stock no arrow when another column active; otherwise arrow token
+Autofarm	sort_threshold	t0 r3 w9	Threshold uses9 bytes so10th arrow byte can clip
+Autofarm	disabled_warning	t3 h1 auto_width	visible only when not plugin.isEnabled()
+Autofarm	list	t2 b0	visible only when plugin.isEnabled(); each row data has idx/name/stock/threshold and optional growth
+Autofarm	footer	l1 r1 b0 h5	excluded count; help; enabled toggle; three actions
+Autofarm	excluded_farms	t0 l0	count then farm(s) excluded from autofarm management
+Autofarm	footer help	t1 l0	three tokens with Enter LIGHTGREEN
+Autofarm	enable_toggle	t3 l0 w27	Ctrl+E Autofarm is Enabled/Disabled
+Autofarm	set_all	t3 l29 auto_width	Ctrl+A Set all
+Autofarm	default_threshold	t4 l0 auto_width	Ctrl+D Set default threshold (currently %d)
+Autofarm	reset_selected	t2 r0 auto_width	Ctrl+R Reset selected to default
+make_row_text	name	width=row_width-24; pad_char space	plant.name or two spaces plus growth.name
+make_row_text	stock	preceded by2 spaces; width6; rjustify; pad_char space	last_counts[plant.index] or growth_counts[plant.index][growth.id] or0
+make_row_text	threshold	preceded by2 spaces; width11; rjustify; pad_char space	per-plant threshold or default; per-growth threshold or plant threshold
+make_row_text	annotation	appended to threshold before right justification	(def)=default plant threshold; (pool)=growth counted in parent pooled stock threshold
+stockpile_growths	growth selection	deduplicate growth.id; matinfo.decode(growth).material.flags.STOCKPILE_PLANT_GROWTH	growth.name and growth.id
+Autofarm.refresh	plant selection	SEED flag and not TREE flag	current world raw plants
+Autofarm.refresh	below threshold	plant hidden if stock>=threshold; growth with own threshold uses its own count; pooled growth uses plant stock/threshold	hide_stocked Toggle value
+Autofarm.refresh	sort	groups sorted by first visible row; growths sorted only inside own plant group	name comparator locale raw bytes; stock/threshold comparator falls back to name
+prompt_for_new_threshold	target	tonumber then reject negative then math.floor	plant idx or growth ID determines setter
+prompt_for_all_thresholds	target	tonumber then reject negative then math.floor	writes each SEED non-TREE plant override; does not set growth overrides
+prompt_for_default_threshold	target	tonumber then reject negative then math.floor	writes plugin default threshold
+reset_selected_threshold	target	no selected row returns; growth removes growth override; otherwise removes plant override	selected row data
+dialogs.showInputPrompt	InputBox	gui.dialogs.lua:294-305	generic dialog renders title/text plus unmodified editable input
+dialogs.showMessage	MessageBox	gui.dialogs.lua:121-130	generic message dialog renders title/text

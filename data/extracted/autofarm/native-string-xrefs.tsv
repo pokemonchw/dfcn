@@ -1,0 +1,69 @@
+instruction_rva	function_rva	function_end_rva	string_rva	source_text	instruction
+0x10cc	0x1060	0x14bb	0x68798	autofarm_setDefaultThreshold	1800010cc:\t48 8d 15 c5 76 06 00 \tlea    rdx,[rip+0x676c5]        # 0x180068798
+0x1106	0x1060	0x14bb	0x687b8	autofarm_setThreshold	180001106:\t48 8d 35 ab 76 06 00 \tlea    rsi,[rip+0x676ab]        # 0x1800687b8
+0x11a0	0x1060	0x14bb	0x687d0	autofarm_removeThreshold	1800011a0:\t48 8d 35 29 76 06 00 \tlea    rsi,[rip+0x67629]        # 0x1800687d0
+0x1233	0x1060	0x14bb	0x687f0	autofarm_setGrowthThreshold	180001233:\t48 8d 35 b6 75 06 00 \tlea    rsi,[rip+0x675b6]        # 0x1800687f0
+0x12cd	0x1060	0x14bb	0x68810	autofarm_removeGrowthThreshold	1800012cd:\t48 8d 35 3c 75 06 00 \tlea    rsi,[rip+0x6753c]        # 0x180068810
+0x1367	0x1060	0x14bb	0x68830	autofarm_isFarmExcluded	180001367:\t48 8d 35 c2 74 06 00 \tlea    rsi,[rip+0x674c2]        # 0x180068830
+0x1401	0x1060	0x14bb	0x68848	autofarm_setFarmExcluded	180001401:\t48 8d 35 40 74 06 00 \tlea    rsi,[rip+0x67440]        # 0x180068848
+0x1569	0x1540	0x15fc	0x6876c	world	180001569:\t8b 05 fd 71 06 00    \tmov    eax,DWORD PTR [rip+0x671fd]        # 0x18006876c
+0x1573	0x1540	0x15fc	0x68770	d	180001573:\t0f b6 05 f6 71 06 00 \tmovzx  eax,BYTE PTR [rip+0x671f6]        # 0x180068770
+0x1727	0x16d0	0x18c6	0x68bf0	default_threshold	180001727:\t4c 8d 05 c2 74 06 00 \tlea    r8,[rip+0x674c2]        # 0x180068bf0
+0x1748	0x16d0	0x18c6	0x68c08	thresholds	180001748:\t4c 8d 05 b9 74 06 00 \tlea    r8,[rip+0x674b9]        # 0x180068c08
+0x176d	0x16d0	0x18c6	0x68c18	growth_thresholds	18000176d:\t4c 8d 05 a4 74 06 00 \tlea    r8,[rip+0x674a4]        # 0x180068c18
+0x1792	0x16d0	0x18c6	0x68c30	last_counts	180001792:\t4c 8d 05 97 74 06 00 \tlea    r8,[rip+0x67497]        # 0x180068c30
+0x17b7	0x16d0	0x18c6	0x68c40	growth_counts	1800017b7:\t4c 8d 05 82 74 06 00 \tlea    r8,[rip+0x67482]        # 0x180068c40
+0x189a	0x16d0	0x18c6	0x68c50	excluded_farms	18000189a:\t4c 8d 05 af 73 06 00 \tlea    r8,[rip+0x673af]        # 0x180068c50
+0xff20			0x68900	bad array new length	18000ff20:\t48 8d 05 d9 89 05 00 \tlea    rax,[rip+0x589d9]        # 0x180068900
+0x17a14	0x17a10	0x17a21	0x68930	map/set too long	180017a14:\t48 8d 0d 15 0f 05 00 \tlea    rcx,[rip+0x50f15]        # 0x180068930
+0x18064	0x18060	0x18071	0x68918	string too long	180018064:\t48 8d 0d ad 08 05 00 \tlea    rcx,[rip+0x508ad]        # 0x180068918
+0x18940	0x18940	0x18979	0x68bc8	Cannot run {} without a loaded fort.\n	180018940:\t48 8d 05 81 02 05 00 \tlea    rax,[rip+0x50281]        # 0x180068bc8
+0x1a9e5	0x1a960	0x1aceb	0x68948	autofarm/excluded_farm/	18001a9e5:\t0f 10 05 5c df 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4df5c]        # 0x180068948
+0x1a9ef	0x1a960	0x1aceb	0x68958	d_farm/	18001a9ef:\t8b 05 63 df 04 00    \tmov    eax,DWORD PTR [rip+0x4df63]        # 0x180068958
+0x1a9f8	0x1a960	0x1aceb	0x6895c	rm/	18001a9f8:\t0f b7 05 5d df 04 00 \tmovzx  eax,WORD PTR [rip+0x4df5d]        # 0x18006895c
+0x1aa03	0x1a960	0x1aceb	0x6895e	/	18001aa03:\t0f b6 05 54 df 04 00 \tmovzx  eax,BYTE PTR [rip+0x4df54]        # 0x18006895e
+0x1bf56	0x1bee0	0x1c151	0x68948	autofarm/excluded_farm/	18001bf56:\t48 8d 35 eb c9 04 00 \tlea    rsi,[rip+0x4c9eb]        # 0x180068948
+0x1bfc0	0x1bee0	0x1c151	0x68948	autofarm/excluded_farm/	18001bfc0:\t48 8d 35 81 c9 04 00 \tlea    rsi,[rip+0x4c981]        # 0x180068948
+0x1c453	0x1c380	0x1d240	0x689f0	autofarm/enabled	18001c453:\t0f 10 05 96 c5 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4c596]        # 0x1800689f0
+0x1c54f	0x1c380	0x1d240	0x689f0	autofarm/enabled	18001c54f:\t0f 10 05 9a c4 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4c49a]        # 0x1800689f0
+0x1c62f	0x1c380	0x1d240	0x68a08	autofarm/default_threshold	18001c62f:\t0f 10 05 d2 c3 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4c3d2]        # 0x180068a08
+0x1c639	0x1c380	0x1d240	0x68a18	_threshold	18001c639:\tf2 0f 10 05 d7 c3 04 \tmovsd  xmm0,QWORD PTR [rip+0x4c3d7]        # 0x180068a18
+0x1c646	0x1c380	0x1d240	0x68a20	ld	18001c646:\t0f b7 0d d3 c3 04 00 \tmovzx  ecx,WORD PTR [rip+0x4c3d3]        # 0x180068a20
+0x1c730	0x1c380	0x1d240	0x68a08	autofarm/default_threshold	18001c730:\t0f 10 05 d1 c2 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4c2d1]        # 0x180068a08
+0x1c73a	0x1c380	0x1d240	0x68a18	_threshold	18001c73a:\tf2 0f 10 05 d6 c2 04 \tmovsd  xmm0,QWORD PTR [rip+0x4c2d6]        # 0x180068a18
+0x1c747	0x1c380	0x1d240	0x68a20	ld	18001c747:\t0f b7 0d d2 c2 04 00 \tmovzx  ecx,WORD PTR [rip+0x4c2d2]        # 0x180068a20
+0x1c824	0x1c380	0x1d240	0x68a28	autofarm/threshold/	18001c824:\t0f 10 05 fd c1 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4c1fd]        # 0x180068a28
+0x1c82e	0x1c380	0x1d240	0x68a38	ld/	18001c82e:\t0f b7 0d 03 c2 04 00 \tmovzx  ecx,WORD PTR [rip+0x4c203]        # 0x180068a38
+0x1c839	0x1c380	0x1d240	0x68a3a	/	18001c839:\t0f b6 0d fa c1 04 00 \tmovzx  ecx,BYTE PTR [rip+0x4c1fa]        # 0x180068a3a
+0x1cc89	0x1c380	0x1d240	0x68a40	threshold for unknown plant {} in saved configuration ignored\n	18001cc89:\t48 8d 05 b0 bd 04 00 \tlea    rax,[rip+0x4bdb0]        # 0x180068a40
+0x1cd83	0x1c380	0x1d240	0x68a80	threshold of {} for plant {} in saved configuration loaded\n	18001cd83:\t48 8d 0d f6 bc 04 00 \tlea    rcx,[rip+0x4bcf6]        # 0x180068a80
+0x1cf14	0x1c380	0x1d240	0x68ac0	threshold of {} for growth {} in saved configuration loaded\n	18001cf14:\t48 8d 0d a5 bb 04 00 \tlea    rcx,[rip+0x4bba5]        # 0x180068ac0
+0x1cf75	0x1c380	0x1d240	0x68b00	threshold for unknown growth {} in saved configuration ignored\n	18001cf75:\t48 8d 0d 84 bb 04 00 \tlea    rcx,[rip+0x4bb84]        # 0x180068b00
+0x1e1e9	0x1e140	0x1e903	0x68a28	autofarm/threshold/	18001e1e9:\t0f 10 05 38 a8 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4a838]        # 0x180068a28
+0x1e1f3	0x1e140	0x1e903	0x68a38	ld/	18001e1f3:\t0f b7 0d 3e a8 04 00 \tmovzx  ecx,WORD PTR [rip+0x4a83e]        # 0x180068a38
+0x1e1fe	0x1e140	0x1e903	0x68a3a	/	18001e1fe:\t0f b6 0d 35 a8 04 00 \tmovzx  ecx,BYTE PTR [rip+0x4a835]        # 0x180068a3a
+0x1e34c	0x1e140	0x1e903	0x68a28	autofarm/threshold/	18001e34c:\t0f 10 05 d5 a6 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4a6d5]        # 0x180068a28
+0x1e357	0x1e140	0x1e903	0x68a38	ld/	18001e357:\t0f b7 0d da a6 04 00 \tmovzx  ecx,WORD PTR [rip+0x4a6da]        # 0x180068a38
+0x1e363	0x1e140	0x1e903	0x68a3a	/	18001e363:\t0f b6 05 d0 a6 04 00 \tmovzx  eax,BYTE PTR [rip+0x4a6d0]        # 0x180068a3a
+0x1e66f	0x1e140	0x1e903	0x68a28	autofarm/threshold/	18001e66f:\t0f 10 05 b2 a3 04 00 \tmovups xmm0,XMMWORD PTR [rip+0x4a3b2]        # 0x180068a28
+0x1e67a	0x1e140	0x1e903	0x68a38	ld/	18001e67a:\t0f b7 0d b7 a3 04 00 \tmovzx  ecx,WORD PTR [rip+0x4a3b7]        # 0x180068a38
+0x1e686	0x1e140	0x1e903	0x68a3a	/	18001e686:\t0f b6 05 ad a3 04 00 \tmovzx  eax,BYTE PTR [rip+0x4a3ad]        # 0x180068a3a
+0x1f072	0x1eab0	0x1f4b5	0x68ba0	Cannot find plant or growth with id 	18001f072:\t48 8d 15 27 9b 04 00 \tlea    rdx,[rip+0x49b27]        # 0x180068ba0
+0x1f5c3	0x1f4c0	0x1f73e	0x68960	autofarm: changing farm #{} from {} to {}\n	18001f5c3:\t48 8d 05 96 93 04 00 \tlea    rax,[rip+0x49396]        # 0x180068960
+0x1f7b8	0x1f740	0x1f9ea	0x68948	autofarm/excluded_farm/	18001f7b8:\t48 8d 35 89 91 04 00 \tlea    rsi,[rip+0x49189]        # 0x180068948
+0x1f822	0x1f740	0x1f9ea	0x68948	autofarm/excluded_farm/	18001f822:\t48 8d 35 1f 91 04 00 \tlea    rsi,[rip+0x4911f]        # 0x180068948
+0x207bc	0x1f9f0	0x20b33	0x68960	autofarm: changing farm #{} from {} to {}\n	1800207bc:\t48 8d 05 9d 81 04 00 \tlea    rax,[rip+0x4819d]        # 0x180068960
+0x20be4	0x20bc0	0x2110a	0x689a8	Autofarm is 	180020be4:\t48 8d 15 bd 7d 04 00 \tlea    rdx,[rip+0x47dbd]        # 0x1800689a8
+0x20bfa	0x20bc0	0x2110a	0x68990	Active.	180020bfa:\t48 8d 0d 8f 7d 04 00 \tlea    rcx,[rip+0x47d8f]        # 0x180068990
+0x20c01	0x20bc0	0x2110a	0x68998	Stopped.	180020c01:\t48 8d 15 90 7d 04 00 \tlea    rdx,[rip+0x47d90]        # 0x180068998
+0x20c6f	0x20bc0	0x2110a	0x689c8	 limit 	180020c6f:\t48 8d 15 52 7d 04 00 \tlea    rdx,[rip+0x47d52]        # 0x1800689c8
+0x20ce8	0x20bc0	0x2110a	0x689b8	 current 	180020ce8:\t48 8d 15 c9 7c 04 00 \tlea    rdx,[rip+0x47cc9]        # 0x1800689b8
+0x20de9	0x20bc0	0x2110a	0x689c8	 limit 	180020de9:\t48 8d 15 d8 7b 04 00 \tlea    rdx,[rip+0x47bd8]        # 0x1800689c8
+0x20e5c	0x20bc0	0x2110a	0x689d0	 current 0	180020e5c:\t48 8d 15 6d 7b 04 00 \tlea    rdx,[rip+0x47b6d]        # 0x1800689d0
+0x20f54	0x20bc0	0x2110a	0x689c8	 limit 	180020f54:\t48 8d 15 6d 7a 04 00 \tlea    rdx,[rip+0x47a6d]        # 0x1800689c8
+0x20f72	0x20bc0	0x2110a	0x689b8	 current 	180020f72:\t48 8d 15 3f 7a 04 00 \tlea    rdx,[rip+0x47a3f]        # 0x1800689b8
+0x210c1	0x20bc0	0x2110a	0x689e0	Default: 	1800210c1:\t48 8d 15 18 79 04 00 \tlea    rdx,[rip+0x47918]        # 0x1800689e0
+0x212e4			0x688b8	Unknown exception	1800212e4:\t48 8d 05 cd 75 04 00 \tlea    rax,[rip+0x475cd]        # 0x1800688b8
+0x2135f	0x21300	0x21398	0x68b70	Cannot enable {} without a loaded fort.\n	18002135f:\t48 8d 05 0a 78 04 00 \tlea    rax,[rip+0x4780a]        # 0x180068b70
+0x213d6	0x213a0	0x214aa	0x68b40	Automatically manage farm crop selection.	1800213d6:\t4c 8d 05 63 77 04 00 \tlea    r8,[rip+0x47763]        # 0x180068b40
+0x213dd	0x213a0	0x214aa	0x68760	autofarm	1800213dd:\t48 8d 15 7c 73 04 00 \tlea    rdx,[rip+0x4737c]        # 0x180068760

@@ -1,0 +1,21 @@
+export_name	rva	prefix_32
+?lua_gettop@@YAHPEAUlua_State@@@Z	0x1d20	48 8b 41 20 48 8b 51 10 48 2b 10 48 8d 42 f0 48 c1 f8 04 c3 cc cc cc cc cc cc cc cc cc cc cc cc
+?lua_settop@@YAXPEAUlua_State@@H@Z	0x3000	48 89 5c 24 08 48 89 74 24 10 57 48 83 ec 20 48 8b 41 20 48 8b d9 48 8b 49 f8 48 63 fa 48 8b 30
+?lua_checkstack@@YAHPEAUlua_State@@H@Z	0x14d0	48 89 5c 24 08 48 89 74 24 18 89 54 24 10 57 48 83 ec 20 48 8b 71 20 48 8b f9 48 8b 49 f8 ff 15
+?lua_type@@YAHPEAUlua_State@@H@Z	0x3560	48 83 ec 28 e8 47 dd ff ff 48 8d 0d e8 12 03 00 48 3b c1 74 0b 8b 40 08 83 e0 0f 48 83 c4 28 c3
+?lua_isinteger@@YAHPEAUlua_State@@H@Z	0x1ed0	48 83 ec 28 e8 d7 f3 ff ff 33 c9 83 78 08 13 0f 94 c1 8b c1 48 83 c4 28 c3 cc cc cc cc cc cc cc
+?lua_tointegerx@@YA_JPEAUlua_State@@HPEAH@Z	0x3310	40 53 48 83 ec 20 49 8b d8 e8 92 df ff ff 83 78 08 13 75 0a 48 8b 00 b9 01 00 00 00 eb 1f 45 33
+?lua_tolstring@@YAPEBDPEAUlua_State@@HPEA_K@Z	0x3360	48 89 5c 24 08 48 89 6c 24 10 48 89 74 24 18 57 48 83 ec 20 49 8b d8 8b ea 48 8b f9 e8 2f df ff
+?lua_tocfunction@@YAP6AHPEAUlua_State@@@Z0H@Z	0x32d0	48 83 ec 28 e8 d7 df ff ff 8b 48 08 83 f9 16 75 08 48 8b 00 48 83 c4 28 c3 83 f9 66 75 0c 48 8b
+?lua_getstack@@YAHPEAUlua_State@@HPEAUlua_Debug@@@Z	0xd420	48 89 5c 24 08 48 89 74 24 10 57 48 83 ec 20 49 8b f0 8b da 48 8b f9 85 d2 79 12 33 c0 48 8b 5c
+?lua_getinfo@@YAHPEAUlua_State@@PEBDPEAUlua_Debug@@@Z	0xd160	48 89 5c 24 08 48 89 6c 24 10 48 89 74 24 18 57 41 56 41 57 48 83 ec 40 48 8b d9 4d 8b f8 48 8b
+?lua_getlocal@@YAPEBDPEAUlua_State@@PEBUlua_Debug@@H@Z	0xd300	40 56 57 41 56 41 57 48 83 ec 28 48 89 5c 24 58 48 8d 79 f8 48 89 6c 24 60 48 8b d9 48 8b 0f 4c
+?lua_pushstring@@YAPEBDPEAUlua_State@@PEBD@Z	0x2610	48 89 5c 24 08 57 48 83 ec 20 48 8b d9 48 8b fa 48 8b 49 f8 ff 15 d6 f9 02 00 48 85 ff 75 09 48
+?lua_rawget@@YAHPEAUlua_State@@H@Z	0x27f0	48 89 5c 24 08 48 89 74 24 10 57 48 83 ec 20 48 8b f1 8b da 48 8b 49 f8 ff 15 f2 f7 02 00 48 8b
+?lua_rawgeti@@YAHPEAUlua_State@@H_J@Z	0x2860	48 89 5c 24 08 48 89 6c 24 10 48 89 74 24 18 57 48 83 ec 20 48 8b e9 49 8b f0 48 8b 49 f8 8b da
+?lua_rawlen@@YA_KPEAUlua_State@@H@Z	0x2960	48 83 ec 28 e8 47 e9 ff ff 8b 50 08 83 e2 3f 83 ea 04 74 3a 83 ea 01 74 29 83 ea 02 74 18 83 fa
+?lua_getmetatable@@YAHPEAUlua_State@@H@Z	0x1be0	48 89 5c 24 08 48 89 74 24 10 57 48 83 ec 20 48 8b f9 8b da 48 8b 49 f8 33 f6 ff 15 00 04 03 00
+?lua_topointer@@YAPEBXPEAUlua_State@@H@Z	0x3470	48 83 ec 28 e8 37 de ff ff 8b 48 08 83 e1 3f 83 c1 fe 83 f9 24 77 34 4c 8d 05 72 cb ff ff 48 63
+?lua_rawequal@@YAHPEAUlua_State@@HH@Z	0x27a0	48 83 ec 28 45 8b d0 4c 8b c9 e8 01 eb ff ff 41 8b d2 49 8b c9 4c 8b d8 e8 f3 ea ff ff 48 8d 0d
+?lua_toboolean@@YAHPEAUlua_State@@H@Z	0x32a0	48 83 ec 28 e8 07 e0 ff ff 8b 48 08 85 c9 74 14 83 f9 01 75 05 83 38 00 74 0a b8 01 00 00 00 48
+?lua_getupvalue@@YAPEBDPEAUlua_State@@HH@Z	0x1d40	48 89 5c 24 08 48 89 74 24 10 57 48 83 ec 20 48 8b f1 49 63 f8 48 8b 49 f8 8b da ff 15 9f 02 03

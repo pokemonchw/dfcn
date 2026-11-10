@@ -1,0 +1,30 @@
+role	entry_rva	producer_or_api	observed_native_behavior
+plugin-version	0x216f0	plugin_version getter	Returns 53.17-r1
+plugin-abi	0x216b0	plugin_abi_version getter	Returns ABI 2
+plugin-command-registration	0x213a0	plugin_init	Registers autofarm command at 0x18630 and summary Automatically manage farm crop selection.
+console-command	0x18630	autofarm	Requires a loaded fortress; accepts runonce, enable, disable, default N, threshold N IDENTIFIER..., status or empty args; unknown usage returns command_result 2
+console-status	0x20bc0	status renderer	Autofarm is Active./Stopped.; plant IDs or PLANT:GROWTH IDs followed by limit N current N; Default: N
+threshold-command	0x1eab0	threshold N PLANT[:GROWTH]...	Uppercases identifiers, splits colon, resolves plant/growth; unknown identifiers produce Cannot find plant or growth with id IDENTIFIER
+persistent-load	0x1c380	plugin_load_site_data helper	Loads enable/default/plant/growth thresholds; emits separate known/unknown plant/growth diagnostic formats
+persistent-save	0x1e140	configuration save	Stores enabled/default/plant/growth threshold fields in PersistentSiteData; RAW IDs remain machine identifiers
+threshold-init	0xfa50	autofarm state constructor	Default threshold is 50; sets season indexes and empty threshold/count maps
+lua-data	0x16d0	autofarm_getData	Returns default_threshold, thresholds, growth_thresholds, last_counts, growth_counts, excluded_farms
+lua-data-growth-map	0x1ddd0	growth_thresholds and growth_counts formatter	Nested Lua maps indexed by numeric plant ID and original growth string ID; values are integers
+lua-default-setter	0x18af0	autofarm_setDefaultThreshold	Updates integer default and persists configuration
+lua-plant-setter	0x18b80	autofarm_setThreshold	Updates numeric plant-ID threshold and persists configuration
+lua-plant-remover	0x18a50	autofarm_removeThreshold	Removes numeric plant-ID override and persists configuration
+lua-growth-setter	0x18b20	autofarm_setGrowthThreshold	Calls 0x1e950 to set numeric plant-ID plus growth-string-ID threshold and persists configuration
+lua-growth-remover	0x18990	autofarm_removeGrowthThreshold	Removes plant-ID plus growth-string-ID override and persists configuration
+lua-exclusion-query	0x18980	autofarm_isFarmExcluded	Calls 0x1bee0; reads autofarm/excluded_farm/BUILDING_ID persistence record
+lua-exclusion-setter	0x18b10	autofarm_setFarmExcluded	Calls 0x1f740; changes PersistentSiteData exclusion for numeric building ID
+lua-exclusions-list	0x1a960	excluded_farms supplier	Returns numeric farm IDs from persisted exclusion entries
+cycle	0x1d470	autofarm work cycle	Finds usable crops, refreshes plant/growth counts, finds completed farms not explicitly excluded, computes each farm biome set, assigns crops
+seed-supplier	0x1a1e0	usable-crop supplier	Reads SEEDS vector, rejects item_flags mask 0x6e8524, totals available seed stacks; checks seed-plant and not-tree flags, seasons through maturation, and matching biome flags
+stock-growth	0x12840	PLANT_GROWTH contribution	Named usable growth products always contribute to their own growth_counts; with an explicit growth threshold they are excluded from the pooled last_counts, otherwise they also contribute to pooled stock
+farm-biomes	0x1acf0	farm biome supplier	Walks every actual farm tile; resolves each surface region biome and subterranean biome alternatives; returns biome set
+farm-assignment	0x1f9f0	assignment planner	Uses seed eligibility, biome compatibility, plant pooled threshold OR any explicit growth threshold shortage; native change message identifies farm ID and old/new RAW IDs
+farm-write-assignment	0x1f4c0	per-season crop setter	Writes caller-selected plant ID to farm array at +0x148+season*2; -1 means fallow; emits native change diagnostic when the assignment changes
+plugin-enable	0x21300	plugin_enable	Requires loaded fortress; updates enabled flag and persists configuration
+plugin-update	0x21500	plugin_onupdate	Triggers cycle when world frame counter minus prior cycle counter is greater than 0x34
+plugin-site-load	0x214b0	plugin_load_site_data	Resets previous cycle frame counter then loads saved configuration
+plugin-state-change	0x214e0	plugin_onstatechange	Clears enabled flag on state event 1

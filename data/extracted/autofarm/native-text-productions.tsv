@@ -1,0 +1,14 @@
+producer_rva	source_text	catalog_prefix	arguments
+0x213a0	Automatically manage farm crop selection.	DFHack help: 	Complete native plugin summary
+0x20bc0	Autofarm is Active.	DFHack output: 	Enabled branch
+0x20bc0	Autofarm is Stopped.	DFHack output: 	Disabled branch
+0x20bc0	{s} limit {d} current {d}	DFHack output: 	First field is original plant RAW ID or original PLANT:GROWTH RAW ID; numeric limit and stock
+0x20bc0	Default: {d}	DFHack output: 	Default integer threshold
+0x18630	Cannot run {s} without a loaded fort.	DFHack output: 	Plugin command name autofarm
+0x21300	Cannot enable {s} without a loaded fort.	DFHack output: 	Plugin command name autofarm
+0x1eab0	Cannot find plant or growth with id {s}	DFHack output: 	Original uppercased command identifier
+0x1f4c0 / 0x1f9f0	autofarm: changing farm #{d} from {s} to {s}	DFHack output: 	Farm numeric ID and old/new plant RAW IDs
+0x1c380	threshold for unknown plant {s} in saved configuration ignored	DFHack output: 	Saved original plant RAW ID
+0x1c380	threshold of {d} for plant {s} in saved configuration loaded	DFHack output: 	Integer threshold and original plant RAW ID
+0x1c380	threshold for unknown growth {s} in saved configuration ignored	DFHack output: 	Saved original PLANT:GROWTH ID
+0x1c380	threshold of {d} for growth {s} in saved configuration loaded	DFHack output: 	Integer threshold and original PLANT:GROWTH ID

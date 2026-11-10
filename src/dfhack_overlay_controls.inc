@@ -22,6 +22,7 @@
                         text.option_name || text.role == NativeDfhackOverlayTextRole::Material ||
                         text.role == NativeDfhackOverlayTextRole::Category ||
                         text.role == NativeDfhackOverlayTextRole::Item ||
+                        text.role == NativeDfhackOverlayTextRole::Plant ||
                         text.role == NativeDfhackOverlayTextRole::ArtifactName ||
                         text.role == NativeDfhackOverlayTextRole::WrittenWorkHeading) && text.y == y &&
                     x < text.x + static_cast<int>(text.visible.size()) &&
@@ -34,6 +35,7 @@
                     text.role == NativeDfhackOverlayTextRole::Material ||
                     text.role == NativeDfhackOverlayTextRole::Category ||
                     text.role == NativeDfhackOverlayTextRole::Item ||
+                    text.role == NativeDfhackOverlayTextRole::Plant ||
                     text.role == NativeDfhackOverlayTextRole::ArtifactName ||
                     text.role == NativeDfhackOverlayTextRole::WrittenWorkHeading || text.quick_filter_label)
                 dfhack_auxiliary_regions.push_back({text.x, text.y, static_cast<int>(text.visible.size()), 1});
@@ -309,6 +311,7 @@
                         text.role == NativeDfhackOverlayTextRole::Material ||
                         text.role == NativeDfhackOverlayTextRole::Category ||
                         text.role == NativeDfhackOverlayTextRole::Item ||
+                        text.role == NativeDfhackOverlayTextRole::Plant ||
                         text.role == NativeDfhackOverlayTextRole::ArtifactName ||
                         text.role == NativeDfhackOverlayTextRole::WrittenWorkHeading || text.quick_filter_label ||
                         (text.option_name && (!control.caption.empty() || control.option != "*"))) continue;
@@ -454,6 +457,23 @@
                     const int caption_end = caption_x + static_cast<int>(caption.size());
                     const int option_end = option_x + option->length;
                     if (caption_end > gps_->dimx || option_end > gps_->dimx) continue;
+                    if (!caption.empty() && control.option.empty()) {
+                        // A caption-only action owns its complete field.
+                        // "configure" must not consume the prefix of
+                        // "configure autofarm", even across a blank cell.
+                        // Another keyed action may share the same row.
+                        int after = caption_end;
+                        while (after < gps_->dimx && row[after] == ' ') ++after;
+                        if (after < gps_->dimx && row[after] != ']' &&
+                                !is_cp437_box_drawing_byte(static_cast<unsigned char>(row[after]))) {
+                            const size_t separator = row.find(": ", static_cast<size_t>(after));
+                            if (separator == std::string::npos || separator <= static_cast<size_t>(after))
+                                continue;
+                            std::string next_key = row.substr(after, separator - after);
+                            std::replace(next_key.begin(), next_key.end(), '-', '+');
+                            if (!is_keybinding_code(next_key)) continue;
+                        }
+                    }
                     const int first_end = control.below ? caption_end : std::max(caption_end, option_end);
                     int painted_option_x = option_x;
                     while (painted_option_x < option_end &&

@@ -1,0 +1,51 @@
+{
+  "image": "/home/lulika/.local/share/Steam/steamapps/common/DFHack/hack/plugins/autofarm.plug.dll",
+  "sha256": "e99e0477c36a405573c483f3c3abf19ae4003938403946a05cb03352e66edf80",
+  "image_base": "0x180000000",
+  "file_size": 532992,
+  "sections": [
+    {
+      "name": ".text",
+      "rva": "0x1000",
+      "virtual_size": "0x66cdf",
+      "file_offset": "0x400",
+      "raw_size": "0x66e00"
+    },
+    {
+      "name": ".rdata",
+      "rva": "0x68000",
+      "virtual_size": "0x14d78",
+      "file_offset": "0x67200",
+      "raw_size": "0x14e00"
+    },
+    {
+      "name": ".data",
+      "rva": "0x7d000",
+      "virtual_size": "0xe20",
+      "file_offset": "0x7c000",
+      "raw_size": "0x800"
+    },
+    {
+      "name": ".pdata",
+      "rva": "0x7e000",
+      "virtual_size": "0x54e4",
+      "file_offset": "0x7c800",
+      "raw_size": "0x5600"
+    },
+    {
+      "name": ".rsrc",
+      "rva": "0x84000",
+      "virtual_size": "0x1e0",
+      "file_offset": "0x81e00",
+      "raw_size": "0x200"
+    },
+    {
+      "name": ".reloc",
+      "rva": "0x85000",
+      "virtual_size": "0x1dc",
+      "file_offset": "0x82000",
+      "raw_size": "0x200"
+    }
+  ],
+  "extraction": "PE export/unwind/literal records and GNU objdump x86-64 disassembly; no game execution"
+}

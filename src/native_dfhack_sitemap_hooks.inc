@@ -19,7 +19,7 @@ struct NativeDfhackSitemapLuaApi {
     std::string label_source, cycle_source, overlay_source, asyncexport_source, prioritize_source;
     std::string filterselection_source, planner_source, mechanisms_source, itemselection_source;
     std::string wrapped_source, control_panel_source, movegoods_source, spectate_source;
-    std::string autotraining_source;
+    std::string autotraining_source, autofarm_source;
 };
 static NativeDfhackSitemapLuaApi g_native_dfhack_sitemap_lua_api;
 static std::atomic_bool g_native_dfhack_sitemap_lua_bound{false};
@@ -198,6 +198,7 @@ static uint64_t native_dfhack_text_capture_key(const graphicst *gps) {
         string(text.full); string(text.visible);
         scalar(static_cast<unsigned char>(text.role));
         scalar(text.option_dynamic); scalar(text.option_name); scalar(text.option_idx);
+        scalar(text.plant_growth);
         scalar(text.widget_id);
         string(text.overlay_name); string(text.view_id); string(text.caption);
         string(text.material_source); string(text.material_category); scalar(text.material_offset);
@@ -363,7 +364,8 @@ static std::vector<NativeDfhackOverlayText> native_dfhack_overlay_texts(
             ++current_length;
         }
         const bool scrollbar_clipped = (text.overlay.role == NativeDfhackOverlayTextRole::Material ||
-            text.overlay.role == NativeDfhackOverlayTextRole::Item) &&
+            text.overlay.role == NativeDfhackOverlayTextRole::Item ||
+            text.overlay.role == NativeDfhackOverlayTextRole::Plant) &&
             current_length > 0 && text.visible.size() - current_length <= 2;
         if (current || scrollbar_clipped) {
             auto overlay = text.overlay;
@@ -991,7 +993,7 @@ static std::optional<NativeDfhackOverlayText> native_dfhack_overlay_label_text(
     return result;
 }
 
-static std::optional<NativeDfhackOverlayText> native_dfhack_buildingplan_list_text(
+static std::optional<NativeDfhackOverlayText> native_dfhack_typed_list_text(
         NativeDfhackLuaState *state, std::string_view painted_full) {
     const auto &api = g_native_dfhack_sitemap_lua_api;
     const auto &stack = api.stack;
@@ -1044,6 +1046,8 @@ static std::optional<NativeDfhackOverlayText> native_dfhack_buildingplan_list_te
     };
     bool material_list = false, category_list = false, material_page = false, filter_screen = false;
     bool item_list = false, item_page = false, item_screen = false;
+    const bool autofarm_list = string_field(widget, "view_id") == "list";
+    bool autofarm_window = false;
     int parent = widget;
     for (int depth = 0; depth < 16; ++depth) {
         const auto view_id = string_field(parent, "view_id");
@@ -1055,6 +1059,9 @@ static std::optional<NativeDfhackOverlayText> native_dfhack_buildingplan_list_te
         }
         item_page = item_page ||
             native_dfhack_overlay_class_method(state, parent, "init", api.itemselection_source, 83);
+        autofarm_window = autofarm_window ||
+            (native_dfhack_overlay_class_method(state, parent, "init", api.autofarm_source, 60) &&
+             native_dfhack_overlay_class_method(state, parent, "refresh", api.autofarm_source, 244));
         item_screen = item_screen ||
             (string_field(parent, "focus_path") ==
                 "dwarfmode/Building/Placement/dfhack/lua/buildingplan/itemselection" &&
@@ -1076,6 +1083,36 @@ static std::optional<NativeDfhackOverlayText> native_dfhack_buildingplan_list_te
         if (!native_dfhack_sitemap_raw_field(state, parent, "parent_view") ||
                 stack.type(state, -1) != 5) break;
         parent = stack.gettop(state);
+    }
+    if (autofarm_list && autofarm_window) {
+        if (key_draw) return std::nullopt;
+        stack.settop(state, row);
+        if (!native_dfhack_sitemap_raw_field(state, row, "data") || stack.type(state, -1) != 5)
+            return std::nullopt;
+        const int data = stack.gettop(state);
+        const std::string name = string_field(data, "name");
+        const bool growth = !string_field(data, "growth").empty();
+        if (name.empty() || !native_dfhack_sitemap_raw_field(state, data, "idx") ||
+                !stack.isinteger(state, -1)) return std::nullopt;
+        int valid = 0;
+        if (stack.tointegerx(state, -1, &valid) < 0 || !valid) return std::nullopt;
+        stack.settop(state, row);
+        if (!native_dfhack_overlay_local(state, render, "token") || stack.type(state, -1) != 5)
+            return std::nullopt;
+        const std::string full = growth ? "  " + name : name;
+        // make_row_text owns three independent columns. Only its first
+        // token contains the plant/growth name; width may already have
+        // shortened render_text's local text before Painter sees it.
+        if (string_field(stack.gettop(state), "text") != full ||
+                !full.starts_with(painted_full)) return std::nullopt;
+        NativeDfhackOverlayText result;
+        result.full = full;
+        result.widget_id = reinterpret_cast<uintptr_t>(api.topointer(state, widget));
+        result.overlay_name = "autofarm.settings";
+        result.view_id = "list";
+        result.role = NativeDfhackOverlayTextRole::Plant;
+        result.plant_growth = growth;
+        return result;
     }
     if (item_list && item_page && item_screen) {
         NativeDfhackOverlayText result;
@@ -1424,7 +1461,7 @@ static void capture_native_dfhack_sitemap_text(NativeDfhackLuaState *state) noex
         if (profiled_painter && !control_panel && !overlay)
             overlay = native_dfhack_overlay_label_text(state, std::string_view(full, full_length));
         if (profiled_painter && !control_panel && !overlay)
-            overlay = native_dfhack_buildingplan_list_text(state, std::string_view(full, full_length));
+            overlay = native_dfhack_typed_list_text(state, std::string_view(full, full_length));
         bool owned = control_panel.has_value() || overlay.has_value();
         NativeDfhackChoiceTextOwner owner = NativeDfhackChoiceTextOwner::Sitemap;
         if (owned) owner = NativeDfhackChoiceTextOwner::OverlayLabel;
@@ -1581,7 +1618,7 @@ static bool bind_native_dfhack_sitemap_lua(HMODULE module) {
             !stack.getstack || !stack.getinfo || !stack.getlocal || !api.pushstring ||
             !api.rawget || !api.rawgeti || !api.rawlen || !api.getmetatable || !api.topointer ||
             !api.rawequal || !api.toboolean || !api.getupvalue) return false;
-    // Bind the native C function through its immutable r2/r3 LuaApi.cpp
+    // Bind the native C function through its immutable LuaApi.cpp
     // registration, not the script-replaceable dfhack.screen Lua table.
     const auto *base = reinterpret_cast<const unsigned char *>(module);
     constexpr std::array<const char *, 3> names{"readMapPortTile", "paintString", "fillRect"};
@@ -1592,6 +1629,7 @@ static bool bind_native_dfhack_sitemap_lua(HMODULE module) {
     constexpr Registration registrations[]{
         {0xa61a50, {0x4078b0, 0x407960, 0x407ad0}}, // 53.16-r2
         {0xa62ad0, {0x407b90, 0x407c40, 0x407db0}}, // 53.16-r3
+        {0xb96a90, {0x426be0, 0x426c90, 0x426e00}}, // 53.17-r1
     };
     const unsigned char *paint = nullptr;
     for (const auto &registration : registrations) {
@@ -1642,6 +1680,7 @@ static bool bind_native_dfhack_sitemap_lua(HMODULE module) {
     api.itemselection_source = key(hack / L"lua" / L"plugins" / L"buildingplan" / L"itemselection.lua");
     api.spectate_source = key(hack / L"lua" / L"plugins" / L"spectate.lua");
     api.autotraining_source = key(hack / L"scripts" / L"gui" / L"autotraining.lua");
+    api.autofarm_source = key(hack / L"scripts" / L"gui" / L"autofarm.lua");
     g_native_dfhack_sitemap_lua_api = std::move(api);
     g_native_dfhack_sitemap_lua_bound.store(true, std::memory_order_release);
     return true;

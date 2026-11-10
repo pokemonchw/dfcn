@@ -1,0 +1,11 @@
+producer	entry_rva	operand_offset	instruction_end_offset	target_rva	meaning
+paintString.security_cookie	0x426c90	21	25	0x1434540	IMAGE_LOAD_CONFIG_DIRECTORY64.SecurityCookie
+println.security_cookie	0x3c19c0	13	17	0x1434540	IMAGE_LOAD_CONFIG_DIRECTORY64.SecurityCookie
+println.inlined_GetOutput.DFHACK_OSTREAM_TOKEN address	0x3c19ea	3	7	0x14d1800	DFHACK_OSTREAM_TOKEN address
+GetOutput.DFHACK_OSTREAM_TOKEN address	0x4036f0	13	17	0x14d1800	DFHACK_OSTREAM_TOKEN address
+println.inlined_GetOutput.lua_rawgetp IAT slot	0x3c19ea	17	21	0xb81e58	lua_rawgetp IAT slot
+GetOutput.lua_rawgetp IAT slot	0x4036f0	27	31	0xb81e58	lua_rawgetp IAT slot
+println.inlined_GetOutput.lua_touserdata IAT slot	0x3c19ea	31	35	0xb81df8	lua_touserdata IAT slot
+GetOutput.lua_touserdata IAT slot	0x4036f0	41	45	0xb81df8	lua_touserdata IAT slot
+println.inlined_GetOutput.lua_settop IAT slot	0x3c19ea	48	52	0xb82070	lua_settop IAT slot
+GetOutput.lua_settop IAT slot	0x4036f0	58	62	0xb82070	lua_settop IAT slot

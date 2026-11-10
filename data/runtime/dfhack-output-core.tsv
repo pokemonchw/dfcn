@@ -379,11 +379,16 @@ DFHack output: Done. {d} items quickdumped.	完成。已快速搬运 {d} 件物�
 DFHack output: Item is already marked for destroy.	物品已经标记为销毁。	l
 DFHack output: Choosing not to destroy buildings, constructions and artifacts.	不会销毁建筑、构筑物和神器。	l
 DFHack output: Choosing not to destroy items in unit inventory.	不会销毁单位携带的物品。	l
-DFHack output: Autofarm is Active.	Autofarm 正在运行。	l
-DFHack output: Autofarm is Stopped.	Autofarm 已停止。	l
+DFHack output: Autofarm is Active.	自动种植正在运行。	l
+DFHack output: Autofarm is Stopped.	自动种植已停止。	l
 DFHack output: {s} limit {d} current {d}	{s}，上限 {d}，当前 {d}	l
 DFHack output: Default: {d}	默认值：{d}	l
 DFHack output: Cannot find plant with id {s}	找不到 ID 为 {s} 的植物。	l
+# Installed autofarm.plug.dll command helper and persistence loader:
+# data/extracted/autofarm/native-ghidra-decompiled.c, RVAs 0x1eab0 and 0x1c380.
+DFHack output: Cannot find plant or growth with id {s}	找不到 ID 为 {s} 的植物或生长物。	l
+DFHack output: threshold of {d} for growth {s} in saved configuration loaded	已载入保存配置中生长物 {s1} 的阈值 {d1}	l
+DFHack output: threshold for unknown growth {s} in saved configuration ignored	已忽略保存配置中未知生长物 {s1} 的阈值	l
 DFHack output: autogems: failed to read autogems.json	autogems：读取 autogems.json 失败。	l
 DFHack output: autogems: failed to read autogems.json: {s}	autogems：读取 autogems.json 失败：{s}	l
 DFHack output: autogems: illegal item at position {d} in blacklist	autogems：黑名单的第 {d} 项无效。	l
@@ -2646,3 +2651,71 @@ DFHack GUI Overlay suspension reason: Would collapse machinery	会导致机械�
 DFHack GUI Overlay suspension reason: External reason	其他原因	l
 DFHack GUI Overlay suspension reason: not suspended by suspendmanager	未由施工暂停管理器暂停	l
 DFHack GUI Overlay suspension reason: suspendmanager disabled	施工暂停管理器已停用	l
+# Installed hack/scripts/gui/autofarm.lua: GUI Window, table and threshold dialogs.
+DFHack GUI Autofarm settings: Autofarm	自动种植	l
+DFHack GUI Autofarm settings: Sort by:	排序依据：	l
+DFHack GUI Autofarm settings: Name	名称	l
+DFHack GUI Autofarm settings: Stock	库存	l
+DFHack GUI Autofarm settings: Threshold	目标库存	l
+DFHack GUI Autofarm settings: Show below threshold:	仅显示未达目标项：	l
+DFHack GUI Autofarm settings: On	开启	l
+DFHack GUI Autofarm settings: Off	关闭	l
+DFHack GUI Autofarm settings: Please enable autofarm to change settings	启用自动种植后可更改设置	l
+DFHack GUI Autofarm settings: {d} farm(s) excluded from autofarm management	{d1} 块农田不受自动种植管理	l
+DFHack GUI Autofarm settings: Double click on a row or hit Enter to set the threshold.	双击一行或按 Enter 设置目标库存。	l
+DFHack GUI Autofarm settings: Autofarm is	自动种植	l
+DFHack GUI Autofarm settings: Enabled	已启用	l
+DFHack GUI Autofarm settings: Disabled	已停用	l
+DFHack GUI Autofarm settings: Set all	统一设置	l
+DFHack GUI Autofarm settings: Set default threshold (currently {d})	默认目标库存（当前 {d1}）	l
+DFHack GUI Autofarm settings: Reset selected to default	所选项恢复默认	l
+DFHack GUI Autofarm settings: (def)	默认	l
+DFHack GUI Autofarm settings: (pool)	共享	l
+DFHack GUI Autofarm settings: Set threshold	设置目标库存	l
+DFHack GUI Autofarm settings: Set all thresholds	统一设置目标库存	l
+DFHack GUI Autofarm settings: Set default threshold	设置默认目标库存	l
+DFHack GUI Autofarm settings: Enter desired threshold for {s}:	请输入{s1}的目标库存：	l
+DFHack GUI Autofarm settings: Enter desired threshold for all crop types	请输入所有作物的目标库存	l
+DFHack GUI Autofarm settings: Enter desired default threshold for crops	请输入作物的默认目标库存	l
+DFHack GUI Autofarm settings: Invalid Number	数字无效	l
+DFHack GUI Autofarm settings: This is not a number: {s}	这不是数字：{s1}	l
+DFHack GUI Autofarm settings: Negative numbers make no sense!	不能使用负数！	l
+DFHack GUI Autofarm settings: Ok	确定	l
+# Installed plugins/autofarm.lua:106-166; complete FarmCoverOverlay authored fields.
+DFHack GUI Autofarm overlay: This farm is managed by autofarm	此农田由自动种植托管	l
+DFHack GUI Autofarm overlay: Now planting:	当前种植：	l
+DFHack GUI Autofarm overlay: ?	待定	l
+DFHack GUI Autofarm overlay: fallow	休耕	l
+DFHack GUI Autofarm overlay: unknown	未知	l
+DFHack GUI Autofarm overlay: Crops are chosen automatically based on your configured stock thresholds. Manual crop selection will be overridden.	将根据设定的库存阈值自动选择作物，手动选择的作物会被覆盖。	l
+DFHack GUI Autofarm overlay: All seasons are fallow: no plantable seeds available, or all crops are above their thresholds.	所有季节均休耕：没有可种植的种子，或所有作物的库存均已达到阈值。	l
+DFHack GUI Autofarm overlay: configure autofarm	配置自动种植	l
+DFHack GUI Autofarm overlay: manage this farm manually	手动管理此农田	l
+# Installed DFHack 53.17-r1 autofarm and gui/autofarm help text.
+# Sources: hack/docs/docs/tools/autofarm.txt and hack/docs/docs/tools/gui/autofarm.txt.
+# Existing native summary "Automatically manage farm crop selection." is already covered
+# by dfhack-help-command-overrides.tsv:196; registry pig-tail description is covered at :157.
+DFHack help: Tags: fort | auto | plants	标签：要塞 | 自动化 | 植物	l
+DFHack help: Farms that span multiple biomes are handled correctly: any crop that can grow in any of the biomes covered by the farm's tiles may be assigned to that farm.	跨越多个生态群系的农田也能正确处理：只要作物能在农田任一地格所属的生态群系中生长，就可以分配到这块农田。	l
+DFHack help: Individual farm plots can be excluded from autofarm management via the controls that appear on the farm plot information sheet. That sheet also provides a shortcut to gui/autofarm, a convenient UI for setting crop thresholds and enabling or disabling autofarm.	可以通过农田信息面板上的控件，将单块农田排除在自动种植管理之外。该面板还提供 gui/autofarm 的入口，可在此图形界面中设置作物阈值，并启用或停用自动种植。	l
+DFHack help: Some plants produce usable growth items (such as fruits, leaves, or bulbs) when processed or gathered. These products normally count toward the plant's threshold together with the plant items themselves, but you can also assign a threshold to a specific growth product with the "<plant>:<growth>" syntax. A plant is grown while either its pooled stock or any of its assigned growth products is below the corresponding threshold.	有些植物在加工或采集时会产出可用的生长物，例如果实、叶子或鳞茎。这些产物通常与植物本身一起计入该植物的库存阈值；也可以用 "<plant>:<growth>" 语法，为指定生长物单独设置阈值。只要合并库存或任一单独设置阈值的生长物库存低于对应阈值，就会继续种植该植物。	l
+DFHack help: "autofarm threshold 30 BUSH_QUARRY:LEAVES" Keep at least 30 Quarry Bush Leaves in stock, growing Quarry Bushes until you have enough of them to process	"autofarm threshold 30 BUSH_QUARRY:LEAVES" 保持至少 30 片矿场灌木叶的库存，并持续种植矿场灌木，直到有足够数量供加工使用。	l
+DFHack help: Keep at least 30 Quarry Bush Leaves in stock, growing Quarry Bushes until you have enough of them to process	保持至少 30 片矿场灌木叶的库存，并持续种植矿场灌木，直到有足够数量供加工使用。	l
+# Correct existing plant-name mistranslations in the same documented example.
+DFHack help: "autofarm threshold 150 MUSHROOM_HELMET_PLUMP GRASS_TAIL_PIG" Set the threshold for Plump Helmets and Pig Tails to 150	"autofarm threshold 150 MUSHROOM_HELMET_PLUMP GRASS_TAIL_PIG" 将肉盔菇和猪尾草的阈值设为 150。	l
+DFHack help: Set the threshold for Plump Helmets and Pig Tails to 150	将肉盔菇和猪尾草的阈值设为 150。	l
+DFHack help: Command: "gui/autofarm"	命令："gui/autofarm"	l
+DFHack help: Manage autofarm crop thresholds.	管理自动种植的作物库存阈值。	l
+DFHack help: This is the configuration interface for the autofarm plugin. It lists all farmable crops along with their current stock counts and their assigned thresholds, and allows you to set individual thresholds, reset them to the default, set the default threshold, or set the threshold for all crops at once. Autofarm itself can also be enabled or disabled from this interface.	这是 autofarm 插件的配置界面。界面列出所有可种植作物，以及各自的当前库存和设定阈值。可以为单种作物设置阈值、恢复默认阈值、修改默认阈值，或一次为所有作物设置阈值；也可以在此启用或停用自动种植。	l
+DFHack help: Crops that produce usable growth items (such as fruits, leaves, or bulbs) list those products indented beneath the crop. A growth product counts toward its crop's pooled threshold unless you assign it a threshold of its own, in which case the crop is grown until both the pool and that product's stock meet their thresholds.	对于能产出可用生长物的作物，例如果实、叶子或鳞茎，这些产物会缩进列在作物下方。生长物默认计入所属作物的合并库存阈值；如果为其单独设置阈值，则会持续种植，直到合并库存和该生长物库存都达到各自的阈值。	l
+DFHack help: The bottom of the window shows how many farm plots are currently excluded from autofarm management. Individual farm plots can be excluded (or re-included) via the controls that appear on the farm plot information sheet.	窗口底部显示当前有多少块农田未纳入自动种植管理。可以通过农田信息面板上的控件，将单块农田排除或重新纳入管理。	l
+# GUI startup qerror sources: hack/scripts/gui/autofarm.lua:440,444.
+DFHack output: autofarm requires a fort map to be loaded	自动种植需要先载入要塞地图。	l
+DFHack output: this GUI requires a newer version of the autofarm plugin	此界面需要更新版本的 autofarm 插件。	l
+# Registered autofarm controls and their descriptions in gui/control-panel.
+DFHack GUI Control tool: gui/autofarm	自动种植设置（gui/autofarm）	l
+DFHack GUI Control tool: autofarm.farm_controls	农田自动种植控件（autofarm.farm_controls）	l
+DFHack GUI Control tool: autofarm.farm_cover	自动托管农田面板（autofarm.farm_cover）	l
+DFHack help: Adds autofarm controls to the farm plot info sheet.	在农田信息面板中添加自动种植控件。	l
+DFHack help: Covers the crop list of farm plots managed by autofarm.	在自动托管农田的作物列表上显示管理面板。	l
+DFHack output: sort_noop should not be called	不应调用 sort_noop 排序占位函数。	l

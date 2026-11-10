@@ -30,7 +30,8 @@ static std::vector<NativeDfhackNotificationText> native_dfhack_notification_text
     const graphicst *gps);
 enum class NativeDfhackOverlayTextRole : unsigned char {
     Text, Option, Key, Material, Category, Item,
-    SpectateName, SpectateJob, SpectateActivity, SpectateLiteral, ArtifactName, WrittenWorkHeading
+    SpectateName, SpectateJob, SpectateActivity, SpectateLiteral, ArtifactName, WrittenWorkHeading,
+    Plant
 };
 struct NativeDfhackOverlayText {
     int x = 0, y = 0, full_x = 0, visible_offset = 0;
@@ -40,6 +41,7 @@ struct NativeDfhackOverlayText {
     NativeDfhackOverlayTextRole role = NativeDfhackOverlayTextRole::Text;
     // These describe the actual selected options entry, never its spelling.
     bool option_dynamic = false, option_name = false;
+    bool plant_growth = false;
     int option_idx = 0;
     uintptr_t widget_id = 0;
     std::string overlay_name, view_id, caption;

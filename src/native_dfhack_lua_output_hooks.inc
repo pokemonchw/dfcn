@@ -592,6 +592,7 @@ static bool native_dfhack_bind_lua_output(HMODULE module) {
     constexpr Registration registrations[]{
         {0xa5f820, {0x3a91f0, 0x3a9300, 0x3a9430, 0x3a94d0, 0x3a9590}}, // 53.16-r2
         {0xa60890, {0x3a9200, 0x3a9310, 0x3a9440, 0x3a94e0, 0x3a95a0}}, // 53.16-r3
+        {0xb94000, {0x3c18b0, 0x3c19c0, 0x3c1af0, 0x3c1b90, 0x3c1c50}}, // 53.17-r1
     };
     const unsigned char *println = nullptr;
     for (const auto &registration : registrations) {

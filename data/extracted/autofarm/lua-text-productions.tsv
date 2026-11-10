@@ -1,0 +1,38 @@
+source	lines	owner	field	text_or_format	branch_or_value
+hack/lua/plugins/autofarm.lua	28	FarmControlsOverlay	desc	Adds autofarm controls to the farm plot info sheet.	control-panel overlay description
+hack/lua/plugins/autofarm.lua	42-45	FarmControlsOverlay	autofarm_enabled	autofarm is|enabled|disabled	plugin enabled boolean; Ctrl+A
+hack/lua/plugins/autofarm.lua	50-54	FarmControlsOverlay	farm_managed	this farm is|managed by autofarm|managed manually	not autofarm_isFarmExcluded(farm.id); disabled while plugin off; Ctrl+M
+hack/lua/plugins/autofarm.lua	62-65	FarmControlsOverlay	TextButton	configure	Ctrl+S; button width18; inner HotkeyLabel width16; default key consumes8 so caption viewport8
+hack/lua/plugins/autofarm.lua	84-86	get_crop_name	crop	fallow|raw.name|unknown	negative or absent plant_id; valid raw; missing raw
+hack/lua/plugins/autofarm.lua	91	FarmCoverOverlay	desc	Covers the crop list of farm plots managed by autofarm.	control-panel overlay description
+hack/lua/plugins/autofarm.lua	99-102	FarmCoverOverlay	visible		plugin on and farm managed and farm fully built
+hack/lua/plugins/autofarm.lua	110	FarmCoverOverlay	Label	This farm is managed by autofarm	LIGHTGREEN
+hack/lua/plugins/autofarm.lua	114-116	FarmCoverOverlay	now_planting	Now planting: ?	initial placeholder replaced by render
+hack/lua/plugins/autofarm.lua	120-122	FarmCoverOverlay	WrappedLabel	Crops are chosen automatically based on your configured stock thresholds. Manual crop selection will be overridden.	full prose before width-dependent wrapping
+hack/lua/plugins/autofarm.lua	129-133	FarmCoverOverlay	TextButton	configure autofarm	Ctrl+S; opens gui/autofarm
+hack/lua/plugins/autofarm.lua	135-141	FarmCoverOverlay	TextButton	manage this farm manually	Ctrl+M; excludes selected farm
+hack/lua/plugins/autofarm.lua	150-153	FarmCoverOverlay	now_planting	Now planting: {crop}	caption and LIGHTCYAN crop are separate Label tokens
+hack/lua/plugins/autofarm.lua	162-164	FarmCoverOverlay	fallow_note	All seasons are fallow: no plantable seeds available, or all crops are above their thresholds.	YELLOW; all four seasonal plant_id negative; otherwise empty
+hack/scripts/gui/autofarm.lua	13	Autofarm	frame_title	Autofarm	Window default62x25; resizable
+hack/scripts/gui/autofarm.lua	65-73	Autofarm	sort	Sort by:|Name\x1F|Name\x1E|Stock\x1F|Stock\x1E|Threshold\x1F|Threshold\x1E	Shift+S; retain original sort arrow bytes
+hack/scripts/gui/autofarm.lua	78-83	Autofarm	hide_stocked	Show below threshold:|On|Off	Ctrl+H; default ToggleHotkeyLabel options
+hack/scripts/gui/autofarm.lua	90-100	Autofarm	sort_name	Name|Name\x1F|Name\x1E	no key; option_gap0; width5
+hack/scripts/gui/autofarm.lua	102-111	Autofarm	sort_stock	Stock|Stock\x1F|Stock\x1E	no key; option_gap0; width6; right14
+hack/scripts/gui/autofarm.lua	113-122	Autofarm	sort_threshold	Threshold|Threshold\x1F|Threshold\x1E	no key; option_gap0; width9; right3; arrow may be clipped
+hack/scripts/gui/autofarm.lua	124-130	Autofarm	disabled_warning	Please enable autofarm to change settings	YELLOW; visible only while plugin off
+hack/scripts/gui/autofarm.lua	151-153	Autofarm	footer help	Double click on a row or hit {key} to set the threshold.	key=Enter LIGHTGREEN; three separate Label tokens
+hack/scripts/gui/autofarm.lua	159-162	Autofarm	enable_toggle	Autofarm is|Enabled|Disabled	Ctrl+E; green/red independent option token
+hack/scripts/gui/autofarm.lua	168-173	Autofarm	HotkeyLabel	Set all	Ctrl+A
+hack/scripts/gui/autofarm.lua	175-180;258-259	Autofarm	default_threshold	Set default threshold (currently %d)	Ctrl+D; data.default_threshold
+hack/scripts/gui/autofarm.lua	182-187	Autofarm	HotkeyLabel	Reset selected to default	Ctrl+R; removes plant or growth override according to choice.data.growth
+hack/scripts/gui/autofarm.lua	260-261	Autofarm	excluded_farms	%d farm(s) excluded from autofarm management	count=#data.excluded_farms
+hack/scripts/gui/autofarm.lua	217-222;275-281	make_row_text	plant row	plant.name|stock|threshold (def)	default annotation only when no per-plant override; numbers right-justified
+hack/scripts/gui/autofarm.lua	229-238;300-309	make_row_text	growth row	  growth.name|gstock|threshold (pool)	stockpile growth only; pool annotation when no growth override; two-space indentation
+hack/scripts/gui/autofarm.lua	341-344	check_number	error dialog	Invalid Number|This is not a number: {text}	tonumber(text) failed; preserve user-entered text as payload
+hack/scripts/gui/autofarm.lua	346-348	check_number	error dialog	Invalid Number|Negative numbers make no sense!	negative target
+hack/scripts/gui/autofarm.lua	353-358	prompt_for_new_threshold	input dialog	Set threshold|Enter desired threshold for %s:	choice.data.name is plant or growth name; initial edit text is current numeric threshold
+hack/scripts/gui/autofarm.lua	374-379	prompt_for_all_thresholds	input dialog	Set all thresholds|Enter desired threshold for all crop types	initial edit text empty; updates all SEED non-TREE plant thresholds
+hack/scripts/gui/autofarm.lua	394-400	prompt_for_default_threshold	input dialog	Set default threshold|Enter desired default threshold for crops	initial edit text is data.default_threshold
+hack/scripts/gui/autofarm.lua	439-440	entry	qerror	autofarm requires a fort map to be loaded	no loaded fort map
+hack/scripts/gui/autofarm.lua	443-444	entry	qerror	this GUI requires a newer version of the autofarm plugin	missing plugin.autofarm_getData
+hack/scripts/gui/autofarm.lua	19-21	sort_noop	internal error	sort_noop should not be called	marker function never called by intended GUI flow

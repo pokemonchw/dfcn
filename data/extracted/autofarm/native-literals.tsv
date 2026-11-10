@@ -1,0 +1,44 @@
+rva	va	source_text
+0x68760	0x180068760	autofarm
+0x6876c	0x18006876c	world
+0x68778	0x180068778	plotinfo
+0x68784	0x180068784	cycle
+0x68790	0x180068790	control
+0x68798	0x180068798	autofarm_setDefaultThreshold
+0x687b8	0x1800687b8	autofarm_setThreshold
+0x687d0	0x1800687d0	autofarm_removeThreshold
+0x687f0	0x1800687f0	autofarm_setGrowthThreshold
+0x68810	0x180068810	autofarm_removeGrowthThreshold
+0x68830	0x180068830	autofarm_isFarmExcluded
+0x68848	0x180068848	autofarm_setFarmExcluded
+0x68888	0x180068888	autofarm_getData
+0x688b8	0x1800688b8	Unknown exception
+0x68900	0x180068900	bad array new length
+0x68918	0x180068918	string too long
+0x68930	0x180068930	map/set too long
+0x68948	0x180068948	autofarm/excluded_farm/
+0x68960	0x180068960	autofarm: changing farm #{} from {} to {}\n
+0x68990	0x180068990	Active.
+0x68998	0x180068998	Stopped.
+0x689a8	0x1800689a8	Autofarm is 
+0x689b8	0x1800689b8	 current 
+0x689c8	0x1800689c8	 limit 
+0x689d0	0x1800689d0	 current 0
+0x689e0	0x1800689e0	Default: 
+0x689f0	0x1800689f0	autofarm/enabled
+0x68a08	0x180068a08	autofarm/default_threshold
+0x68a28	0x180068a28	autofarm/threshold/
+0x68a40	0x180068a40	threshold for unknown plant {} in saved configuration ignored\n
+0x68a80	0x180068a80	threshold of {} for plant {} in saved configuration loaded\n
+0x68ac0	0x180068ac0	threshold of {} for growth {} in saved configuration loaded\n
+0x68b00	0x180068b00	threshold for unknown growth {} in saved configuration ignored\n
+0x68b40	0x180068b40	Automatically manage farm crop selection.
+0x68b70	0x180068b70	Cannot enable {} without a loaded fort.\n
+0x68ba0	0x180068ba0	Cannot find plant or growth with id 
+0x68bc8	0x180068bc8	Cannot run {} without a loaded fort.\n
+0x68bf0	0x180068bf0	default_threshold
+0x68c08	0x180068c08	thresholds
+0x68c18	0x180068c18	growth_thresholds
+0x68c30	0x180068c30	last_counts
+0x68c40	0x180068c40	growth_counts
+0x68c50	0x180068c50	excluded_farms
