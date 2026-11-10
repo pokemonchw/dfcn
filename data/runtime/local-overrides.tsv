@@ -1,4 +1,8 @@
 # Local high-priority fixes; data-only edits do not require a rebuild.
+# Complete audio slider captions keep the mode and percentage in one label.
+UI Volume (Fortress): {d}%	界面音量(要塞):{d}%	wt
+UI Volume (Adventure): {d}%	界面音量(冒险):{d}%	wt
+
 # Item nouns must take precedence over the procedural-name fallback gloss.
 anvil	锻砧	wi
 anvils	锻砧	wi
