@@ -75,10 +75,11 @@ rumor-army	of {s} led by {s}	（隶属{s1}，由{s2}率领）	$name,rumor-person
 rumor-army	of {s}	（隶属{s1}）	$name	0x140683453..0x1406834c6
 rumor-army	led by {s}	（由{s1}率领）	rumor-person	0x140683479..0x1406834c6
 rumor-event	I heard that there was an incident.	听说出事了。		0x14068357a
-rumor-event	I heard that {s}, {s} was kidnapped.	听说{s1}，{s2}被人绑走了。	rumor-time,rumor-person	0x1406835c1..0x140683902
-rumor-event	I heard that {s}, {s} was kidnapped from {s}.	听说{s1}，{s2}在{s3}被人绑走了。	rumor-time,rumor-person,$travel-site	0x1406835c1..0x140683902
-rumor-event	I heard that {s}, {s} was kidnapped by {s}.	听说{s1}，{s2}被{s3}绑走了。	rumor-time,rumor-person,rumor-person	0x1406835c1..0x140683902
-rumor-event	I heard that {s}, {s} was kidnapped from {s} by {s}.	听说{s1}，{s4}从{s3}绑走了{s2}。	rumor-time,rumor-person,$travel-site,rumor-person	0x1406835c1..0x140683902
+# Rumor type 1 starts with capitalized elapsed time. The preceding "I heard that " belongs to type 2 and jumps past this branch.
+rumor-event	{s}, {s} was kidnapped.	{s1}，{s2}被人绑走了。	rumor-time,rumor-person	Steam PE:6aea05a1:02734000 RVA 0x69cbe9..0x69cef2; retained reference 0x1406835f9..0x140683902; rumor type 1
+rumor-event	{s}, {s} was kidnapped from {s}.	{s1}，{s2}在{s3}被人绑走了。	rumor-time,rumor-person,$travel-site	Steam PE:6aea05a1:02734000 RVA 0x69cbe9..0x69cef2; retained reference 0x1406835f9..0x140683902; rumor type 1
+rumor-event	{s}, {s} was kidnapped by {s}.	{s1}，{s2}被{s3}绑走了。	rumor-time,rumor-person,rumor-person	Steam PE:6aea05a1:02734000 RVA 0x69cbe9..0x69cef2; retained reference 0x1406835f9..0x140683902; rumor type 1
+rumor-event	{s}, {s} was kidnapped from {s} by {s}.	{s1}，{s4}从{s3}绑走了{s2}。	rumor-time,rumor-person,$travel-site,rumor-person	Steam PE:6aea05a1:02734000 RVA 0x69cbe9..0x69cef2; retained reference 0x1406835f9..0x140683902; rumor type 1
 rumor-event	I hear that {s} was destroyed.	听说{s1}被毁掉了。	$book	0x140683959..0x140683a1d
 rumor-event	I hear that {s} is in {s} in {s}.	听说{s1}在{s2}的{s3}里。	$book,$name,$travel-site	0x140683a2d..0x140683bc2
 rumor-event	I hear that {s} is in {s}.	听说{s1}在{s2}。	$book,$travel-site	0x140683a2d..0x140683e18
