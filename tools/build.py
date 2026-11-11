@@ -216,6 +216,7 @@ def deploy_runtime_data(directory: Path) -> None:
                  "site-name-decisions.tsv", "site-name-imagery.tsv",
                  "river-name-imagery.tsv", "river-name-constructions.tsv",
                  "river-name-generics.tsv", "river-name-decisions.tsv",
+                 "volcano-name-heads.tsv",
                  "civilization-name-terms.tsv",
                  "site-government-parent-suffixes.tsv", "site-government-name-terms.tsv",
                  "site-government-independent-suffixes.tsv",

@@ -88,6 +88,7 @@ NativeAnnouncementLogTranslator Overlay::make_native_announcement_log_translator
     ANNOUNCEMENT_COPY_RESOURCE(procedural_name_meanings_);
     ANNOUNCEMENT_COPY_RESOURCE(procedural_word_meanings_);
     ANNOUNCEMENT_COPY_RESOURCE(procedural_word_senses_);
+    ANNOUNCEMENT_COPY_RESOURCE(volcano_names_);
     ANNOUNCEMENT_COPY_RESOURCE(site_name_decisions_);
     ANNOUNCEMENT_COPY_RESOURCE(site_name_imagery_);
     ANNOUNCEMENT_COPY_RESOURCE(civilization_name_terms_);

@@ -1,0 +1,10 @@
+image	role	start_va	code_end_va	unwind_end_va
+PE:6aea05a1:02734000	category-dispatch	0x140aac2a0	0x140aac2f5	0x140aac2f5
+PE:6aea05a1:02734000	name-generate	0x140aac300	0x140aada6c	0x140aadacb
+PE:6aea05a1:02734000	word-tables	0x140d44930	0x140d4ba98	0x140d4bba8
+PE:6aea05a1:02734000	build-selector	0x140d4eb70	0x140d4eea5	0x140d4eea5
+PE:6aea05a1:02734000	fill-word-slots	0x140d4d220	0x140d4dbc4	0x140d4d28a
+PE:6aea05a1:02734000	select-word	0x140d4dbd0	0x140d4dd33	0x140d4dd33
+PE:6aea05a1:02734000	peak-volcano-create	0x140f67700	0x140f6d7b0	0x140f6d7b0
+PE:6aea05a1:02734000	english-format	0x140aae180	0x140aae942	0x140aae942
+PE:6aea05a1:02734000	embark-panel	0x140826d20	0x1408320dc	0x1408320dc

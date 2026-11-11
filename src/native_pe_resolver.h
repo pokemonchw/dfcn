@@ -315,9 +315,10 @@ public:
         if (!GetProcessTimes(GetCurrentProcess(), &birth, &exit, &kernel, &user)) return;
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
         const auto digest = hex_digest(seed);
-        // Revision 6 includes the corrected Classic 53.17 reference bytes.
-        // Discard prior scan failures cached for the same process and seed.
-        name_ = L"Local\\DFCN.NativeAddresses.6." + std::to_wstring(GetCurrentProcessId()) + L"." +
+        // Revision 7 includes the four volcano draw bindings. Their required
+        // seed spans are unchanged by the supplement fix, so the previous
+        // process snapshot can still contain an incomplete address result.
+        name_ = L"Local\\DFCN.NativeAddresses.7." + std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
             std::wstring(digest.begin(), digest.end());

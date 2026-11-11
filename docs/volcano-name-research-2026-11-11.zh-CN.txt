@@ -1,0 +1,286 @@
+火山名称完整构词机制：当前安装 Windows 游戏的静态反编译研究
+日期：2026-11-11 至 2026-11-12
+
+结论
+
+火山名称是“专用中心词池 + 通用修饰词池 + 固定语法 + 伪随机选取”。
+原版只有 11 个中心词 WORD、19 个可用中心名词词形；修饰部分则从全部
+2196 个语言 WORD 按词性和位置筛选。它有明确主题和结构，仍然包含随机选择。
+不能把它解释为整串无规则随机，也不能认为名称描述了该火山的实际形状。
+
+本次实际读取并反编译：
+D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe
+PE32+ x86-64；ImageBase=0x140000000；PE:6aea05a1:02734000。
+SHA256=3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16。
+这是当前 Steam 映像，未把旧版 PE/ELF 地址当作当前地址。
+
+证据目录：data/extracted/volcano-name-generation/
+pe-*.asm 为当前磁盘程序的实际反汇编，pe-*.c 为本次 Ghidra 实际输出。
+函数用途标签是研究命名；C 类型、局部变量、未知外部函数签名仍属反编译推断。
+例如创建函数 C 的命名调用未显示第5实参，category 必须以汇编中的
+[rsp+0x20] 写入为准；类别分派函数自身的 C 则恢复了第5实参。
+正文地址统一用 RVA；汇编、C 标题和 pe-functions.tsv 使用 VA。
+
+一、完整调用链与“火山”身份
+
+世界地貌创建函数 0xf67700 中：
+  普通山峰调用点 0xf69f8d：category=36，type=19，language=-1。
+  火山调用点     0xf6b099：category=38，type=19，language=-1。
+
+名称类别 category=38（Volcano）决定主题选词器；名称类型 type=19
+（MountainPeak / PEAK）决定组合语法。两者不是同一个枚举。
+因此火山使用山峰式名称语法，但中心词池不是 NAME_PEAK。
+
+0xaac2a0 按 category 取：
+  A = language_raws + 0x48   + category * 0x120
+  B = language_raws + 0x4cc8 + category * 0x120
+再调用 0xaac300，传入 name、language、type、A、B。
+type=19 经字节重映射与跳表进入 0xaad227。
+Ghidra 的压缩 case 2 不是原始 type=2；原始映射见 pe-switches.tsv:21。
+
+火山生成返回后，创建函数立即写入坐标和海拔，设置 peak.flags[0]
+（is_volcano），追加到 world_data.mountain_peaks。没有外层名称查重或
+根据名字重抽；选址候选删除保证的是位置不重复，不是名称不重复。
+
+0xf6af02 的 volcanism >= 100 条件负责火山选址。命名调用没有传入坐标、
+海拔、形状、善恶、野蛮度或邻近文明；海拔和坐标在命名之后才写入对象。
+这些世界生成步骤可以影响共享随机状态，但没有据此按词义挑名字的步骤。
+
+当前选址信息面板 0x826d20 中：
+  0x829343 查到对应山峰对象；0x829377 调 0xaae180 格式化英文名称；
+  0x829385 查询对象 +0x80 的 bit 0；置位后添加 “Volcano: ” 标签。
+“火山：”是界面标签，不是名称中的一个 WORD，也不是每个名称必有的后缀。
+
+二、中心名词 N 的全部原版候选
+
+0xd44930 初始化默认选词器。category=38 的 0xd4959a 分支只把
+NAME_VOLCANO 加入 A 的包含列表；B 的包含列表与排除列表均为空。
+0xd4eb70 将空的包含集合解释为全部 WORD，并调用 0xd4d220 分配词形池。
+
+当前原版 data/vanilla/vanilla_languages/objects/language_SYM.txt:2862
+定义 NAME_VOLCANO，之后 11 项如下。中文为词义说明，不代表改动译文。
+
+WORD       中心名词允许词形       词义
+ASH        ash                    灰烬
+BLAZE      blaze / blazes         烈焰
+CINDER     cinder / cinders       余烬、灰烬
+FIRE       fire / fires           火
+FLAME      flame / flames         火焰
+HEARTH     hearth                 炉膛、炉床
+RAGE       rage / rages           狂怒
+VOLCANO    volcano                火山
+TORCH      torch / torches        火炬
+FOUNTAIN   fountain / fountains   喷泉
+FURNACE    furnace / furnaces     熔炉、火炉
+
+共 11 个 WORD、19 个 (WORD, POS) 候选项。ASH、HEARTH、VOLCANO 没有
+THE_NOUN_PLUR 标志，所以 ashes、hearths、volcanos 不进入中心名词池。
+原词有复数形式不等于它获准在所有名称位置使用。
+
+抽签单位是 (WORD索引, 词性) 数组项。初抽时有两个词形的 WORD 获得约
+两个单项的机会，不是先让 11 个 WORD 各占 1/11，再决定单复数。
+后续拒绝重抽还会改变最终分布，不能把这个初抽比例当成最终统计。
+
+三、修饰部分可以用哪些词
+
+B 从全部当前原版 2196 个 WORD 开始，按位置资格分池；并非 NAME_PEAK
+的 30 个词，也不是 NAME_VOLCANO 的 11 个词。身体、器物、战争、情感、
+宗教和抽象概念均可进入，只要满足该位置的词形条件。
+
+实际使用的池：
+  N：A 的池 2，19 项。
+     THE_NOUN_SING / THE_NOUN_PLUR，词性 0 / 1。
+  A1、A2：B 的池 3，849 项。
+     ADJ 词形非空即获准，词性 2；不另要求 THE_ADJ 标志。
+  H：B 的池 4，1228 项。
+     THE_COMPOUND_NOUN_SING / NOUN_PLUR / ADJ / PREFIX，词性 0/1/2/3。
+  Q：B 的池 5，2658 项。
+     OF_NOUN_SING / OF_NOUN_PLUR，词性 0/1；
+     现在分词/动名词形式非空时，也以 VerbGerund（8）进入。
+
+完整候选已逐项保存为 raw-selector-pools.tsv，包含 WORD 索引、POS、
+英文词形、准入依据及当前原始文件行号；raw-selector-counts.tsv 汇总计数。
+上述数量是当前原版静态资源数量，不是截图所属存档的已加载内存统计。
+模组增删 WORD、修改位置标记或覆盖 SYMBOL 会改变词池。
+
+四、七槽结构中，火山只使用其中五槽
+
+名称以 language_name 保存 WORD 索引与相应 POS，不是先造英文字符串。
+当前 PE 的 words 位于 +0x40，每项 int32；POS 位于 +0x5c，每项 int16。
+
+槽 0 F   FrontCompound    火山分支不使用
+槽 1 R   RearCompound     火山分支不使用
+槽 2 A1  FirstAdjective   第一形容词
+槽 3 A2  SecondAdjective  第二形容词
+槽 4 H   HyphenCompound   连字符修饰
+槽 5 N   TheX             中心名词
+槽 6 Q   OfX              of 补语
+
+未使用的 WORD 槽为 -1。正常火山名最多使用五个 WORD。
+这与河名的 F+R、F+R 加称号等分支不同；火山不会在这里随机得到单独
+连写复合名，也不会得到“连写复合名 + the + 称号”。
+
+五、全部正常构式及其生成次序
+
+下列是对 0xaad227 分支的语义伪代码，不是官方源码，也不用于逐随机数复刻：
+
+  N = pick(A, 2)
+  mode = random(3)
+  if random(50) != 0:
+      mode = random(2)
+
+  if mode == 0:
+      Q = pick(B, 5)
+  if mode == 1:
+      A1 = pick(B, 3)
+  if mode == 2:
+      Q = pick(B, 5)
+      A1 = pick(B, 3)
+
+  if A1 exists and random(100) == 0:
+      A2 = pick(B, 3)
+  if random(100) == 0:
+      H = pick(B, 4)
+
+初抽三种模式的近似概率：
+  仅 Q       149/300，约 49.67%
+  仅 A1      149/300，约 49.67%
+  A1 与 Q      1/150，约 0.67%
+已有 A1 时约 1% 增加 A2；另有约 1% 增加 H。
+这里的概率是正常词池下、拒绝重抽之前的值；整数随机缩放也存在微小偏差。
+
+全部 10 种结构为：
+  1  The N of Q
+  2  The H-N of Q
+  3  The A1 N
+  4  The A1 H-N
+  5  The A1 A2 N
+  6  The A1 A2 H-N
+  7  The A1 N of Q
+  8  The A1 H-N of Q
+  9  The A1 A2 N of Q
+  10 The A1 A2 H-N of Q
+
+概括外形是 The [A1 [A2]] [H-]N [of Q]，但这些括号不能当成独立开关：
+必须至少有 A1 或 Q；有 A2 必有 A1。因此单独 The N、The H-N 不属于
+正常火山生成分支。“The Finger-Ash”虽能被通用译名器处理，却不是此处
+可直接生成的完整火山名，不能因中文同形而把它当作截图的等价正常候选。
+
+一个 WORD 本身可以含空格或连字符；上面每个符号代表结构槽，不保证只
+对应一个英文单词。字符数量也不是 WORD 槽数量。
+
+六、排序、冲突、重抽和异常退化
+
+0xaac300 在每轮后执行：
+  1. 两个形容词按 ADJ_DIST 数值降序排列，大值在前；相等时保持抽取次序。
+     WORD 与 POS 同步交换。
+  2. N 与 Q 不能同时是复数名词 POS=1；否则整轮重抽。
+  3. 任意已使用槽不得重复同一个 WORD 索引；词性不同也算重复。
+     不同 WORD 的英文拼写相同不因此被拒绝。
+  4. 最多生成 100 轮；全部冲突时返回第 100 轮，不是继续无限抽到合法，
+     也不是返回空名。
+
+因此 “The Cinders of Fingers” 会因 N、Q 双复数被拒绝；
+“The Cinder of Fingers” 则没有这个冲突。
+这些是游戏原有的构词约束，本次没有新增运行逻辑或检查项。
+
+异常资源的两层退化必须区分：
+  • 包含 SYMBOL 解析后的 WORD 集合为空：0xd4eb70 回到全体 WORD。
+    所以模组移除 NAME_VOLCANO 时，不能保证 N 仍限于上述 11 个 WORD。
+  • 某位置池最终没有候选：0xd4dbd0 随机取全体 WORD 与九种 POS，
+    同时输出原有 “Impoverished Word Selector” 提示。随机 POS 可能没有
+    对应英文词形，渲染便可能缺成分。
+10 种完整结构描述的是原版正常非空词池；不将异常缺词形产物另称为正常模板。
+
+七、语言、英文排版与随机性
+
+language=-1 时，生成器从 translations 前部收集最多 20 个未标记
+generated 的翻译表，随机选一个；没有候选时回落索引 0。
+不是固定矮人语，也不是按附近文明选择语言。首次选定后，冲突重抽保留
+该语言。当前原版有 DWARF、ELF、GOBLIN、HUMAN 四套既有语言词根。
+
+英文显示按 WORD/POS 获取英语 forms；原语显示按同一 WORD 索引获取
+所选语言的词根。因此英文是结构化词义的表现，不是对随机原语声音猜词源。
+0xaae180 的英文顺序固定为 A1、A2、H-N、of Q，添加冠词、空格、连字符
+及大小写处理；“The”和“of”均不是随机抽到的 WORD。
+
+取随机数的当前入口是 0xece790。词池索引按类似以下的整数式缩放：
+  (random_value % 2147483647) / (2147483647 / count + 1)
+count <= 1 时索引为 0。每次模式选择、选词、重抽都消耗随机状态。
+知道名称或坐标不足以恢复唯一种子；本次未追踪整个世界生成随机种子的
+初始化和所有前序消耗，不声称给出了由世界种子逐字复刻名称的完整程序。
+
+八、截图“手指之灰烬”说明什么
+
+当前中文词义表将 ASH 和 CINDER 的名词都译为“灰烬”，FINGER 译为“手指”。
+FINGER 只以 fingers（复数，OF_NOUN_PLUR）进入 Q；没有 OF_NOUN_SING。
+ASH 可做中心词的形式只有 ash；CINDER 可用 cinder/cinders，但若 Q 是
+fingers，cinders 会触发双复数冲突重抽。
+
+最直接、符合正常构式的解释有：
+  The Ash of Fingers
+  The Cinder of Fingers
+二者均为 N + of + Q，由当前通用译名路径变成 Q之N，即“手指之灰烬”。
+这些是由截图、词库和代码支持的候选，不是读取该存档对象后确认的原名。
+中文译文会合并词义并省略单复数，不能据此唯一断定 WORD 身份。
+截图若使用不同模组或经历原文截断，候选边界还会不同。
+
+FINGER 确实也列在 NAME_PEAK 中，但它在这里获准作为补语的原因是
+B 使用全部 WORD，并非火山从“山峰池 + 火山池”各抽一个词。
+“手指”不表示游戏发现火山真的形似手指；“灰烬”也不证明它有某种活动状态。
+
+当前汉化代码的相关入口：
+  src/dfcn.cpp:12473，Volcano/Mountain 标签后调用通用 translate_name。
+  src/dfcn.cpp:12046，of 结构按 tail + 之 + head 组合。
+  src/dfcn.cpp:599，通用名词连字符也可产生“之”，但不改变上述生成模板约束。
+  data/runtime/procedural-word-senses.tsv:29、186、370，ASH/CINDER/FINGER。
+本次不修改这些翻译规则；研究结论可以为之后单独设计火山译名提供依据。
+
+九、证据索引与方法
+
+本次函数：
+  0xf67700  地貌创建，含普通山峰与火山命名调用
+  0xaac2a0  默认类别分派
+  0xaac300  完整名称结构生成器
+  0xd44930  默认类别主题列表
+  0xd4eb70  包含/排除集合与两套选择器
+  0xd4d220  WORD 的词性与位置分池
+  0xd4dbd0  抽取 WORD/POS 与空池退化
+  0xaae180  名称格式化
+  0x826d20  当前选址面板，火山标签与名称显示
+
+重点行号：
+  pe-peak-volcano-create.asm:3439，火山调用实参与后续对象登记。
+  pe-name-generate.c:319，type19 的完整构词分支。
+  pe-name-generate.c:771，形容词排序、双复数和重复 WORD 拒绝。
+  pe-name-generate.c:886，100轮上限的返回路径。
+  pe-word-tables.c:1629，NAME_VOLCANO 仅加入 A。
+  pe-build-selector.c:47、91，空包含集回到全 WORD。
+  pe-fill-word-slots.c:174，各位置和词形准入。
+  pe-select-word.c:18，空池退化；:39，正常按数组项抽取。
+  raw-selector-pools.tsv:40，中心词的19个候选；:13453，Q 的 fingers。
+
+使用现有固定 Python 路径执行静态提取脚本；用现有 w64devkit 的 objdump
+读取映像；Ghidra 12.1.4 与 JDK 25.0.4.1+1 导入当前 PE，-noanalysis，
+由 source-tools/DecompileVolcanoNames.java 定向恢复函数和名称/类别跳表，
+decompileFunction 输出 C，-deleteProject 不保留临时分析工程。
+fill-word-slots 跨多个 unwind 片段，代码范围采用 0xd4d220–0xd4dbc4；
+名称与类别跳表不计入函数代码。具体范围见 pe-functions.tsv。
+source-tools 保存研究提取方法，不接入汉化构建或运行流程。
+source-files.tsv 保存当前程序和语言原始文件的路径、字节数与 SHA256。
+headless 使用独立 application.settingsdir/application.cachedir，避免本机
+既有 OSGi 缓存初始化错误；最终九个函数均已实际导出 C。
+
+上游只用于结构名称和公开实现的旁证，不替代本次游戏程序反编译：
+  https://github.com/DFHack/df-structures/blob/master/df.language.xml
+  https://github.com/DFHack/dfhack/blob/develop/library/modules/Translation.cpp
+  https://docs.dfhack.org/en/stable/docs/dev/Lua%20API.html
+本地 df.region.xml 提供 mountain_peak / is_volcano 字段含义。
+
+范围与状态
+
+本次完成当前原版火山命名路径的主题选词、槽位、全部正常构式、模式概率、
+词性资格、排序、重抽、语言选择、显示和资源异常退化分析。
+没有修改汉化运行代码或词表，没有编译部署，没有新增或运行测试，
+没有读取运行日志，没有操作游戏窗口或进程，没有观察截图之外的实机结果。
+未把推导候选说成该存档的已确认原名，也未把静态原版词池等同于所有模组。

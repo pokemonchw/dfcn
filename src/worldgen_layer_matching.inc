@@ -35,7 +35,7 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
     const auto field_clip = [&](const NativeTextCardRow &row) {
         return pixels(field_bounds(row.x, row.y, static_cast<int>(row.source.size())));
     };
-    enum class Geography { None, Region, Landform, RiverLabel, River, SiteName, SiteGloss };
+    enum class Geography { None, Region, Landform, RiverLabel, River, Volcano, SiteName, SiteGloss };
     uintptr_t region_return = 0, landform_return = 0, river_return = 0, site_return = 0;
     std::array<uintptr_t, 5> river_label_returns{};
     std::array<uintptr_t, 3> site_gloss_returns{};
@@ -64,6 +64,7 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
         Geography geography = Geography::None;
         std::shared_ptr<const NativeHistoryName> site_name;
         std::shared_ptr<const NativeRiverNameFact> river_name;
+        std::shared_ptr<const NativeVolcanoNameFact> volcano_name;
     };
     const auto complete_text = [](const NativeTextCardRow &row) {
         return trim_view(row.complete_source.empty() ? row.source : row.complete_source);
@@ -135,7 +136,11 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
                 continue;
             }
         }
-        const auto geography = draw.river_name ? Geography::River :
+        const auto complete = complete_text(row);
+        const bool volcano_label = !draw.editable_text && complete.starts_with("Volcano:") &&
+            (complete.size() == 8 || complete[8] == ' ');
+        const auto geography = draw.volcano_name || volcano_label ? Geography::Volcano :
+            draw.river_name ? Geography::River :
             draw.native_caller && draw.native_caller == region_return
             ? Geography::Region : draw.native_caller && draw.native_caller == landform_return
             ? Geography::Landform : draw.native_caller && draw.native_caller == river_return
@@ -145,7 +150,23 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
             ? Geography::SiteName : draw.native_caller && std::find(site_gloss_returns.begin(),
                 site_gloss_returns.end(), draw.native_caller) != site_gloss_returns.end()
             ? Geography::SiteGloss : Geography::None;
-        fields[draw.y].push_back({std::move(row), draw.editable_text, geography, draw.site_name, draw.river_name});
+        Field field{std::move(row), draw.editable_text, geography,
+            draw.site_name, draw.river_name, draw.volcano_name};
+        auto &row_fields = fields[draw.y];
+        if (geography == Geography::Volcano) {
+            // A typed caption owns the complete name when another retained
+            // write has the same visible bytes but only its shortened text.
+            const auto same = std::find_if(row_fields.begin(), row_fields.end(),
+                [&](const Field &other) {
+                    return other.geography == Geography::Volcano &&
+                        other.row.x == field.row.x && other.row.source == field.row.source;
+                });
+            if (same != row_fields.end()) {
+                if (field.volcano_name || !same->volcano_name) *same = std::move(field);
+                continue;
+            }
+        }
+        row_fields.push_back(std::move(field));
     }
     if (mod_list) append_mod_list_details(*mod_list, context, mod_fields, true);
     // Native labels, names and counters may be emitted by several addst
@@ -489,6 +510,18 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
                 "\"" + std::string(trim_view(source)) + "\"") : std::nullopt;
         }
         if (kind == Geography::RiverLabel) return exact_literal_translation(source);
+        if (kind == Geography::Volcano) {
+            // The typed field retains the unabridged caption even when the
+            // native panel only displays a shortened name or a clipped row.
+            if (field.volcano_name) source = trim_view(field.volcano_name->complete_source);
+            constexpr std::string_view label = "Volcano:";
+            const bool labelled = source.starts_with(label) &&
+                (source.size() == label.size() || source[label.size()] == ' ');
+            if (labelled) source = trim_view(source.substr(label.size()));
+            auto name = translate_volcano_text(source,
+                field.volcano_name ? &field.volcano_name->name : nullptr);
+            return labelled ? "火山：" + name : name;
+        }
         if (kind == Geography::River) {
             for (std::string_view prefix : {"Major River:", "Minor River:", "River:", "Stream:", "Brook:"}) {
                 if (!source.starts_with(prefix)) continue;

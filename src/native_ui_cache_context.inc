@@ -330,6 +330,9 @@ public:
             value(id.size); value(id.terrain); value(id.finalized);
             text(id.generic_style); value(river.field); text(river.complete_source);
         });
+        optional(input.volcano_name, [&](const auto &volcano) {
+            name(volcano.name); text(volcano.complete_source);
+        });
         value(input.native_caller); value(input.adventure_crafting_role);
         value(input.adventure_inventory_role); value(input.adventure_barter_field);
         optional(input.work_order_shop_caption, [&](const auto &caption) {

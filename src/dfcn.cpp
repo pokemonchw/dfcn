@@ -81,6 +81,7 @@
 #include "english_character_names.h"
 #include "english_name_transliteration.h"
 #include "river_names.h"
+#include "volcano_names.h"
 #include "chinese_conversion.h"
 
 namespace fs = std::filesystem;
@@ -2272,6 +2273,14 @@ struct NativeWorldSiteEntityFact {
 static thread_local const NativeWorldSiteEntityFact *g_native_world_site_entity_fact = nullptr;
 static thread_local const NativeHistoryName *g_native_site_name_fact = nullptr;
 static thread_local const NativeRiverNameFact *g_native_river_name_fact = nullptr;
+static thread_local const NativeVolcanoNameFact *g_native_volcano_name_fact = nullptr;
+class NativeVolcanoNameFactScope {
+    const NativeVolcanoNameFact *previous_;
+public:
+    explicit NativeVolcanoNameFactScope(const NativeVolcanoNameFact *fact)
+        : previous_(g_native_volcano_name_fact) { g_native_volcano_name_fact = fact; }
+    ~NativeVolcanoNameFactScope() { g_native_volcano_name_fact = previous_; }
+};
 class NativeRiverNameFactScope {
     const NativeRiverNameFact *previous_;
 public:
@@ -2439,6 +2448,7 @@ struct NativeDrawnTextRow {
     std::shared_ptr<const NativeWorldSiteEntityFact> world_site_entity_fact{};
     std::shared_ptr<NativeHistoryName> site_name{};
     std::shared_ptr<const NativeRiverNameFact> river_name{};
+    std::shared_ptr<const NativeVolcanoNameFact> volcano_name{};
     // The actual addst return address identifies document-specific row writers.
     uintptr_t native_caller = 0;
     std::optional<NativeJusticeOrganizationCaption> justice_organization{};
@@ -3035,6 +3045,11 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         if (!character && g_native_river_name_fact) {
             row.river_name = std::make_shared<const NativeRiverNameFact>(*g_native_river_name_fact);
             row.complete_source = g_native_river_name_fact->complete_source;
+            row.caption_source = true;
+        }
+        if (!character && g_native_volcano_name_fact) {
+            row.volcano_name = std::make_shared<const NativeVolcanoNameFact>(*g_native_volcano_name_fact);
+            row.complete_source = g_native_volcano_name_fact->complete_source;
             row.caption_source = true;
         }
         row.native_caller = native_caller;
@@ -4175,6 +4190,11 @@ private:
     std::vector<std::string> river_name_search_aliases(const RiverNameIdentity &identity) const;
     void append_river_name_matches(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
+    std::optional<std::string> localize_volcano_name(const NativeHistoryName &name) const;
+    std::string translate_volcano_text(std::string_view source,
+        const NativeHistoryName *identity = nullptr) const;
+    void append_volcano_name_matches(std::vector<std::string> &rows,
+        std::vector<Match> &matches, int only_y) const;
     std::optional<NativeHistoryName> resolve_site_reference_name(std::string_view source) const;
     std::optional<std::string> translate_site_reference(
         std::string_view source, bool english_field = false) const;
@@ -4387,6 +4407,7 @@ private:
     std::unordered_map<std::string, SiteNameImagery> site_name_imagery_;
     fs::file_time_type site_name_imagery_mtime_{};
     RiverNames river_names_;
+    VolcanoNames volcano_names_;
     uint64_t river_names_revision_ = 0;
     mutable std::string river_name_cache_world_;
     struct RiverNameCacheEntry {
@@ -7542,6 +7563,9 @@ bool Overlay::load_procedural_terms() {
         log_line("ERROR", "Cannot load site name imagery relations");
     if (!load_river_names())
         log_line("ERROR", "Cannot load river naming resources: " + river_names_.error());
+    if (!volcano_names_.load(runtime::data_path()))
+        log_line("ERROR", "Cannot load volcano naming resources: " + volcano_names_.error());
+    volcano_names_.set_forms(history_english_name_forms_);
     std::string path = runtime::utf8(runtime::data_path() / "procedural-terms.tsv");
     std::ifstream input(fs::u8path(path), std::ios::binary);
     if (!input) {
@@ -10496,6 +10520,8 @@ static std::optional<std::string> reconstruct_site_english_name(
 #include "history_names.inc"
 #include "site_names.inc"
 #include "river_names.inc"
+#include "volcano_names.inc"
+#include "volcano_name_matching.inc"
 #include "civilization_name_terms.inc"
 #include "site_government_name_terms.inc"
 
@@ -12471,14 +12497,13 @@ std::optional<std::string> Overlay::translate_procedural_fragment(
         }
     }
 
-    static constexpr std::array<std::pair<std::string_view, std::string_view>, 2>
-        map_features = {{
-        {"Volcano: ", "火山："}, {"Mountain: ", "山峰："},
-    }};
-    for (const auto &[prefix, translated_prefix] : map_features) {
-        if (!screen_text.starts_with(prefix) || screen_text.size() <= prefix.size()) continue;
-        const std::string name = translate_name(screen_text.substr(prefix.size()));
-        if (!name.empty()) return std::string(translated_prefix) + name;
+    if (screen_text.starts_with("Volcano: ")) {
+        const auto name = translate_volcano_text(std::string_view(screen_text).substr(9));
+        if (!name.empty()) return "火山：" + name;
+    }
+    if (screen_text.starts_with("Mountain: ")) {
+        const auto name = translate_name(screen_text.substr(10));
+        if (!name.empty()) return "山峰：" + name;
     }
 
     // Generated map/site details also contain quoted compound names, bare
@@ -19317,6 +19342,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     const auto civilization_trade_rows = civilization_details
         ? capture_world_civilization_trade_rows(*civilization_details) : std::vector<NativeTextCard>{};
     append_river_name_matches(screen_rows, result, only_y);
+    append_volcano_name_matches(screen_rows, result, only_y);
     if (embark_site) {
         append_embark_site_headings(*embark_site, screen_rows, result, only_y);
         append_adventure_travel_status_paragraphs(*embark_site, screen_rows, result, only_y);

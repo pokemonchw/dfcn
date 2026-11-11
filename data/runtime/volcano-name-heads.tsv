@@ -1,0 +1,14 @@
+# Only the N slot of an identified volcano selects these name suffixes.
+# Singular and plural forms of the same WORD share one suffix.
+word_id	suffix
+ASH	灰烬山
+BLAZE	烈焰山
+CINDER	余烬山
+FIRE	地火山
+FLAME	火焰山
+HEARTH	炉火山
+RAGE	怒火山
+VOLCANO	火山
+TORCH	炬火山
+FOUNTAIN	熔泉山
+FURNACE	熔炉山

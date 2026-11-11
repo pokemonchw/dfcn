@@ -1,0 +1,291 @@
+火山中心词派生词缀方案：现实命名资料与中文构词设计
+日期：2026-11-12
+状态：已按用户确认的方案接入火山专用词表与命名路径。
+
+设计结论
+
+把游戏的 11 个中心 WORD 转换为 11 个稳定的中文“意象词干＋山”词尾，
+再把原名的形容词、复合修饰和属格补语接到词尾之前。
+中心词决定词尾；其余原始成分决定专名。两者都保留，不另外随机抽中文名字。
+
+推荐首选表：
+  ASH      灰烬 → 灰烬山
+  BLAZE    烈焰 → 烈焰山
+  CINDER   余烬 → 余烬山
+  FIRE     地火 → 地火山
+  FLAME    火焰 → 火焰山
+  HEARTH   炉火 → 炉火山
+  RAGE     怒火 → 怒火山
+  VOLCANO  火山 → 火山
+  TORCH    炬火 → 炬火山
+  FOUNTAIN 熔泉 → 熔泉山
+  FURNACE  熔炉 → 熔炉山
+
+这些是本项目拟定的命名词尾，不是现实地理学已有的 11 类火山通名。
+“词缀”在此指可以稳定接在专名后的命名成分；更严格说是具有词缀作用的
+复合词尾，不宣称它们都是汉语词典登记的语法后缀。
+
+一、现实资料覆盖范围
+
+本次检索了中国、日本、夏威夷、阿拉斯加、墨西哥、留尼汪和冰岛等地区
+的机构资料，也参照 Smithsonian GVP 的全球名称管理说明。
+下面覆盖不同地区可核实的主要命名来源与构式；不是逐座考证地球上全部
+火山、所有历史别名和全部地方语言词源，也不宣称存在穷尽所有文化的分类。
+
+必须区分三件事：
+  1. 历史命名来源：某地为何得到这个名字。
+  2. 名称的语言结构：如颜色＋山，人物名＋地形通名，器物借喻。
+  3. 科学目录的标准名：从多个传统、地物名和别名中确定检索名称。
+第三件事不是第一件事；名录收录“笔架山”也不自动证明其最早得名故事。
+
+GVP 明确指出一个火山可能包含多个锥体、火口、穹丘和热区，也可能有
+不同语言的多个名称。其主名参考国家机构、科学文献、惯用名、地理特征，
+还可采用火山区名与坐标。不能从这套目录规则推出“所有火山都以火命名”。[R1]
+
+二、现实命名方式及可借鉴的部分
+
+1. 外形、尺度、颜色和地表景观
+   Mauna Loa 意为“长山”；USGS 将其与横向延展的山体联系。[R2]
+   Mauna Kea 意为“白山”，并另有原住民宗教传统中的名称。[R3]
+   Trident 因三个显著山峰得名；名称将整体外形联系到三叉戟。[R4]
+   可借鉴：明确的意象＋山体通名，简短而稳定。
+   不照搬：DF 原名有“手指”不等于当前模型真的具有手指形山脊。
+
+2. 活动、烟气、热与喷发印象
+   日本焼岳在国交省多语资料中释为“燃烧的山”。[R5]
+   墨西哥国家公园将 Popocatépetl 释为“冒烟的山”。[R6]
+   可借鉴：火、焰、烟、喷涌等意象容易与火山相联系。
+   不照搬：不能把名字里的冷、静、白全部强改成热、怒、赤。
+
+3. 器物借喻
+   中国乌兰哈达实际有北炼丹炉、中炼丹炉、南炼丹炉等火山名。[R7]
+   留尼汪官方旅游资料明确解释 Fournaise 为 furnace，并用炉的形象
+   描述 Piton de la Fournaise。[R8]
+   可借鉴：炉体、炉火、火炬、喷泉作为火山的文学意象完全可以形成地名。
+   不照搬：“炼丹”会加入原词没有的文化内容，不作为 FURNACE 默认译法。
+   R7 证明名称实际存在，不足以独立证明其最初命名年代与历史故事。
+
+4. 人体、动物和人格化意象
+   国家公园将 Iztaccíhuatl 释为“白色女人”，并联系到覆白纱卧女的外观。[R6]
+   五大连池的火山名中有卧虎山、笔架山等；资料确认其名称与火山身份，
+   并未逐条给出历史词源。[R9]
+   可借鉴：身体和器物意象可以进入地名；不必把所有这类词删成山水字。
+   对 RAGE 可采用汉语现成的“怒火”隐喻，不编造火山中居住着某个神。
+
+5. 神话、信仰与文化记忆
+   Haleakalā 在 NPS 的名称介绍中为“太阳之家”，与 Māui 的故事相关。[R10]
+   Surtsey 的申遗资料解释为火巨人 Surt 的岛，使用人名属格与岛的组合。[R11]
+   可借鉴：原名已经有宗教或神话成分时，允许完整保留。
+   不照搬：不能仅因中心是 FIRE，就凭空加入火神、地狱、祭坛等意象。
+
+6. 人物纪念
+   USGS 记录 Mount St. Helens 为纪念持有 St. Helens 男爵头衔的人物而命名，
+   同时记载原住民名称与烟的意义。[R12]
+   可借鉴：火山名也可有人名，并非都在描述地质活动。
+   不照搬：DF 的普通 WORD 不应被无依据地人格化成某位历史人物。
+
+7. 邻近地名、聚落或既有名称的移用
+   GVP 的历史照片说明 Parícutin 取名自附近同名村落。[R13]
+   可借鉴：已有专名可以整体保留，外加地貌词。
+   不照搬：DF 当前名称结构未提供真实聚落关联时，不能因邻近而借名。
+
+8. 新旧、事件和新生地貌
+   AVO 明确记载 Novarupta 由 Griggs 在 1916 年命名，含义为“新喷发”。[R14]
+   可借鉴：原始修饰中已有“新、古、初”等意义时，可作稳定专名成分。
+   不照搬：名字不承担推断该火山实际年龄和最近喷发时间的功能。
+
+9. 方位、组内区分与科学目录名称
+   北/中/南炼丹炉展示方位在成套名称中的作用；GVP 同时使用地理名称、
+   火山系统或火口等特征名、以及特定情况下的区域加坐标。[R1][R7]
+   可借鉴：通名与具体地物身份分开；有来源的方位可保留。
+   不照搬：没有原始方向、数量或对象结构时，不添加北、三峰、群山等内容。
+
+从这些资料可归纳出几种语言结构：
+  描写词＋地形通名；器物/人体/动物名移用于山体；
+  所属者＋地形/意象中心；专名＋通名；方位/新旧限定＋既有名称；
+  保留传统语言的专名；目录中的组合名与坐标名。
+这是对上述材料的设计归纳，不是某个机构公布的统一命名法。
+
+三、中心词如何再造为词尾
+
+词义保留优先级：先保留中心 WORD 的主要意象，再做最少的火山语境转换，
+最后赋予山名的位置与读法。没有依据时不添加地质类型、喷发状态或传说。
+
+ASH → 灰烬山
+  重点保留灰质、残灰的词汇意象。“灰山”容易只剩颜色；“灰焰”又容易
+  被理解成灰色火焰，因此采用完整的灰烬词干。它不表示所有火山灰都是
+  燃料燃烧的灰，也不把词义直接当作实际沉积物分类。
+
+BLAZE → 烈焰山
+  保留火势强烈的语义。“烈”在这里区别于普通 FLAME，不由翻译器随机省去。
+
+CINDER → 余烬山
+  保留碎烬、残烬的意象，与 ASH 固定区分。中文灰烬与余烬并非两个精确
+  不重叠的地质粒级；本表是词义呈现约定，不是粒径或温度判定。
+
+FIRE → 地火山
+  一般火意象在已知火山语境中转成“大地之火”。“地”是本方案添加的
+  语境成分，不能冒称 FIRE 字面含有 ground。这样也与 VOLCANO 的火山区分。
+
+FLAME → 火焰山
+  保留火舌、焰光的意象，不额外增加 BLAZE 的猛烈程度。
+
+HEARTH → 炉火山
+  以炉床所承载的火体现 hearth 的围护、容纳和火源意象。
+  这是从炉床向炉中之火的转喻；与 FURNACE 的整个熔炼炉体保持区别。
+  不把所有 hearth 强行解释为冶炼设备。
+
+RAGE → 怒火山
+  采用现成的“怒火”隐喻，把情绪转成有火性联想的中心意象。
+  保留怒，不把它替换成普通赤色或热，也不附会真实喷发强度。
+
+VOLCANO → 火山
+  本身已是完整通名，无须制造“火山山”或另加不明词义。
+
+TORCH → 炬火山
+  保留炬这一器物核心，以炬火表达火炬之火，形成可后接的三字词尾。
+  不统一并入火焰山，也不推断整座山一定细长如火炬。
+
+FOUNTAIN → 熔泉山
+  保留泉涌、喷涌的意象，将介质在火山语境下转为熔质。
+  “熔泉”是本方案造词，不是现实火山通名或喷发分类；不声称当前对象
+  真的存在某种熔岩喷泉。不能直接写成温泉山，因为会引入水热泉的断言。
+
+FURNACE → 熔炉山
+  保留高热炉体的意象，采用火山如熔炉的比喻，与 HEARTH 的炉火相区别。
+  不擅加炼钢、炼金、炼丹等生产目的。
+
+这里统一采用“山”。“峰、岳、岭、锥、口”不作为为了增加花样而随机
+替换的词尾；峰口锥等还可能让人以为对象形态发生了变化。
+中心词相同就有相同的词尾，不因界面、显示空间或某次随机数换一个译名。
+
+四、火山识别与名称自然度的取舍
+
+火、焰、熔、烬、炉、炬共同提供火山意象；“山”让词尾成为地名。
+但任何文学地名都不能单凭字面百分之百证明其地质身份。
+例如新疆官方资料将吐鲁番火焰山描述为红色砂岩构成的山体；“火焰山”
+这一名称本身并不是火山地质类别的充分条件。[R15]
+
+因此推荐：
+  游戏明确的 Volcano 对象采用本表词尾；有“火山：”标签的地方照常显示。
+  在单独介绍对象类别的句子中，可用“名为……的火山”，与名字本身分开。
+  若产品要求在任何孤立字符串里都写明类别，则需要保留显式“火山”通名，
+  接受更长的名称；不能宣传“烬山”三个字就能完成严格分类。
+
+本方案首先满足“保留意象、形成稳定词尾、有火山联想”。严格对象类型
+继续由真实 Volcano 身份承载；不能反过来凭名称里有火、焰就认定为火山。
+
+五、与游戏全部构式如何衔接
+
+依据前一份反编译研究，火山使用 A1、A2、H、N、Q 五个槽；中心 N 来自
+NAME_VOLCANO。将 N 映射成 T(N)，不再使用一张英文字符串到中文的盲替换表。
+
+按用户后续明确要求：只要原构式有 of Q，就必须保留 Q 后的“之”。
+名词和动名词补语采用同一规则，不再因补语简单或追求短名而省略。
+截图原文 The Ash of Fingers 按此规则译为“手指之灰烬山”；
+The Cinder of Fingers 则为“手指之余烬山”。
+
+全部 10 种构式由同一份结构定义供原生词槽与英文解析使用：
+  1  The N of Q            → Q之T(N)
+  2  The H-N of Q          → Q之HT(N)
+  3  The A1 N              → A1T(N)
+  4  The A1 H-N            → A1HT(N)
+  5  The A1 A2 N           → A1A2T(N)
+  6  The A1 A2 H-N         → A1A2HT(N)
+  7  The A1 N of Q         → Q之A1T(N)
+  8  The A1 H-N of Q       → Q之A1HT(N)
+  9  The A1 A2 N of Q      → Q之A1A2T(N)
+  10 The A1 A2 H-N of Q    → Q之A1A2HT(N)
+
+上述 A1/A2/H/Q 表示对应词槽的中文词形；T(N) 表示中心 WORD 的火山词尾。
+参照河流的结构化组合方式，先组成 H-N 名词结构，再把独立形容词 A1/A2
+按原槽顺序置于其前，最后以 Q之 修饰整个短语。即使 H 的词性是形容词，
+它仍是 H-N 内部修饰，不能混入 A1/A2；也不能把 N 的颜色改成修饰 Q。
+至少存在 A1 或 Q，存在 A2 时必须存在 A1；The N、The H-N 不列作正常构式。
+保留既有紧凑地名风格和完整词义，不为短名丢掉第二形容词或 H，
+也不擅加“五、千、断、骨”等原名没有的意义。
+
+数和同义词
+   中心名词的英文复数采用同一词尾；中文不强制逐词表现普通名词复数。
+   不把 fires 自动译成火山群，也不把 fingers 自动译成五指。
+   11 个中心词之间维持本表区别，不因两个当前旧译相同就合并 WORD。
+
+例子的性质
+   本文中文组合是构词说明，不是执行翻译器所得的结果、测试样例或实机记录。
+   中心词只能改善名称尾部；其余 2196 个 WORD 的人体、动作、抽象意义
+   仍需要各自合适的中文词形，不能承诺换掉 N 就让所有组合都像历史地名。
+
+六、实现方式
+
+运行词表为 data/runtime/volcano-name-heads.tsv，按中心 WORD 保存上述词尾。
+src/volcano_names.h 与 src/volcano_names.inc 负责槽位组合和英文构式解析。
+只在明确的火山对象或 Volcano: 字段中调用，不改变全局普通词义。
+
+Windows 的世界生成、落地选择和旅行绘制路径直接传入实际山峰对象；
+读取对象 flags 的 is_volcano 标记后，复制 language_name 的七个 WORD/POS。
+src/native_volcano_names.inc 不以 MountainPeak 名称类型或英文火意象推断类别。
+绘制事实携带完整名称，src/volcano_name_matching.inc 和世界生成字段使用它，
+避免显示宽度截断后丢失中心词或其修饰成分。
+
+只有英文文本时，使用当前 raw 的 WORD/POS 词形枚举完整构式；无法可靠确定
+槽位时保留名称原文和“火山：”标签，不根据字符串出现 fire/ash 直接替换。
+未知模组中心词在已有真实槽位时保留词义（缺少译义则保留英文词形），
+另加明确的火山通名，不随意套入最像的原版中心。
+带自定义 first_name/nickname 的对象保留名称原文。
+
+这些实现说明不代表已经观察到游戏内最终显示效果。
+
+七、来源
+
+[R1] Smithsonian Global Volcanism Program, Volcano Naming Policies
+https://volcano.si.edu/faq/gvp_volcano_naming.cfm
+
+[R2] USGS, Frequently Asked Questions about Mauna Loa Volcano
+https://www.usgs.gov/volcanoes/mauna-loa/frequently-asked-questions-about-mauna-loa-volcano
+
+[R3] USGS, Mauna Kea
+https://www.usgs.gov/mauna-kea
+
+[R4] Alaska Volcano Observatory, Trident, Name Origin
+https://avo.alaska.edu/volcano/trident
+
+[R5] Japan Tourism Agency / MLIT, Mt. Yakedake
+https://www.mlit.go.jp/tagengo-db/en/R2-00717.html
+
+[R6] CONANP, Parque Nacional Izta-Popo, German-language introduction
+https://conanp.gob.mx/conanp/dominios/iztapopo/deutsch_version.php
+
+[R7] 吉林长白山火山国家野外科学观测研究站，内蒙乌兰哈达火山区
+https://nors-cbs.volcano.ac.cn/website/education/cnh/id/9.html
+
+[R8] Île de La Réunion Tourisme, Volcanic eruptions: the ultimate show on Reunion Island
+https://en.reunion.fr/discover/volcanic-eruptions-explosive-stuff/
+
+[R9] 中国科学院地理科学与资源研究所，五大连池火山群
+https://igsnrr.cas.cn/cbkx/kpyd/zgdl/cndm/202009/t20200910_5692331.html
+
+[R10] US National Park Service, Haleakalā - Hawaiian Pronunciation
+https://www.nps.gov/media/video/view.htm?id=E57D458C-ADED-4EB6-8D00-EF5A0BB5025B
+
+[R11] Surtsey World Heritage Nomination Report, “Surtsey — island of Surt”
+https://ust.is/library/Skrar/2008/Surtsey_Nomination_Report_2007_72dpi.pdf
+
+[R12] USGS, What is the origin of the name Mount St. Helens?
+https://www.usgs.gov/faqs/where-did-name-mount-st-helens-come
+
+[R13] Smithsonian GVP, Volcano Photo Collection, GVP-03756
+https://volcano.si.edu/gallery/ShowImage.cfm?photo=GVP-03756
+
+[R14] Alaska Volcano Observatory, Novarupta, Name Origin
+https://avo.alaska.edu/volcano/Novarupta
+
+[R15] 新疆维吾尔自治区人民政府，火焰山
+https://www.xinjiang.gov.cn/xinjiang/tsxj/201111/06af0af108c84bbbbf799667115a855c.shtml
+
+机制依据：
+docs/volcano-name-research-2026-11-11.zh-CN.txt
+data/extracted/volcano-name-generation/pe-name-generate.c
+data/extracted/volcano-name-generation/raw-selector-pools.tsv
+
+以上网络资料访问日期为 2026-11-12。历史来源的文字只在本方案需要的
+词源或名称层面使用，不据其旧版地理数据推断当前喷发状态或旅行条件。
