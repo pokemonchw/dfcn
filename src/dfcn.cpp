@@ -10292,6 +10292,9 @@ std::optional<std::string> Overlay::translate_world_landform_heading(std::string
         // parsing, which preserves an unbound `of` complement as a site name.
         const auto term = procedural_terms_.find("continent");
         if (term != procedural_terms_.end()) gloss = term->second;
+    } else if (noun == "island" || noun == "islands") {
+        const auto term = procedural_terms_.find("island");
+        if (term != procedural_terms_.end()) gloss = term->second;
     }
     if (!gloss) return std::nullopt;
     auto target = translate_procedural_fragment(name, false, false, {noun, *gloss},

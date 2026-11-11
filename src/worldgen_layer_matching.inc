@@ -39,6 +39,8 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
     uintptr_t region_return = 0, landform_return = 0, river_return = 0, site_return = 0;
     std::array<uintptr_t, 5> river_label_returns{};
     std::array<uintptr_t, 3> site_gloss_returns{};
+    std::array<uintptr_t, 14> resource_returns{};
+    std::array<uintptr_t, 2> metal_returns{};
 #ifdef _WIN32
     // These addst writers render the hovered region and its containing
     // landmass on rows 1/2. Bind meaning to their native source, not spelling
@@ -57,10 +59,33 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
     site_return = native_reference_address(base, 0xdfde74);
     site_gloss_returns = {native_reference_address(base, 0xdfdece),
         native_reference_address(base, 0xdfdef4), native_reference_address(base, 0xdfdf21)};
+    // The resource branch writes Clay and Sand as independent colored
+    // fields, followed by soil, aquifers, metals and flux. These callers
+    // establish their material meaning before controls or generic words.
+    resource_returns = {
+        native_reference_address(base, 0xdfe7cf),
+        native_reference_address(base, 0xdfee0a),
+        native_reference_address(base, 0xdfee46),
+        native_reference_address(base, 0xdfeed4),
+        native_reference_address(base, 0xdfef0b),
+        native_reference_address(base, 0xdfefa6),
+        native_reference_address(base, 0xdfefe5),
+        native_reference_address(base, 0xdff024),
+        native_reference_address(base, 0xdff060),
+        native_reference_address(base, 0xdff09c),
+        native_reference_address(base, 0xdff121),
+        native_reference_address(base, 0xdff160),
+        native_reference_address(base, 0xdff1db),
+        native_reference_address(base, 0xdff4c3),
+    };
+    metal_returns = {native_reference_address(base, 0xdff32f),
+        native_reference_address(base, 0xdff3f5)};
 #endif
     struct Field {
         NativeTextCardRow row;
         bool editable = false;
+        bool resource = false;
+        bool metal = false;
         Geography geography = Geography::None;
         std::shared_ptr<const NativeHistoryName> site_name;
         std::shared_ptr<const NativeRiverNameFact> river_name;
@@ -150,7 +175,11 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
             ? Geography::SiteName : draw.native_caller && std::find(site_gloss_returns.begin(),
                 site_gloss_returns.end(), draw.native_caller) != site_gloss_returns.end()
             ? Geography::SiteGloss : Geography::None;
-        Field field{std::move(row), draw.editable_text, geography,
+        const bool metal = draw.native_caller && std::find(metal_returns.begin(),
+            metal_returns.end(), draw.native_caller) != metal_returns.end();
+        const bool resource = metal || (draw.native_caller && std::find(resource_returns.begin(),
+            resource_returns.end(), draw.native_caller) != resource_returns.end());
+        Field field{std::move(row), draw.editable_text, resource, metal, geography,
             draw.site_name, draw.river_name, draw.volcano_name};
         auto &row_fields = fields[draw.y];
         if (geography == Geography::Volcano) {
@@ -183,6 +212,7 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
                 ((joined.back().geography == Geography::RiverLabel && field.geography == Geography::River) ||
                  (joined.back().geography == Geography::SiteGloss && field.geography == Geography::SiteGloss));
             if (joined.empty() || field.editable || joined.back().editable ||
+                    field.resource || joined.back().resource ||
                     (!name_parts && (field.geography != Geography::None ||
                         joined.back().geography != Geography::None)) ||
                     field.row.x > joined.back().row.x +
@@ -261,7 +291,7 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
             reserved_fields.emplace(y, row.x);
             continue;
         }
-        if (field.geography != Geography::None) continue;
+        if (field.resource || field.geography != Geography::None) continue;
         const auto button = settings ? native_intro_button_text_rect(*gps_, row.x,
             row.x + static_cast<int>(row.source.size()), y, *settings, true) : std::nullopt;
         if (!button) continue;
@@ -539,6 +569,7 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
         return std::nullopt;
     };
     NativeTextCard summary;
+    std::vector<NativeTextCard> metal_cards;
     summary.interior = {left, 0, right - left,
         heading_y < 0 ? panel_bottom : std::min(panel_bottom, heading_y + 1)};
     for (const auto &[y, rows] : fields) for (const auto &field : rows) {
@@ -551,8 +582,10 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
         const bool summary_row = inside_panel(row) && row.x == left && (heading_y < 0 || y <= heading_y);
         const bool identity = summary_row && (source.starts_with("Creating ") ||
             source.find(", year ") != std::string::npos);
-        if (identity || geography) {
-            const auto target = geography ? translate_geography(field, source)
+        if (identity || geography || field.resource) {
+            const auto target = field.resource
+                ? exact_literal_translation("Embark site resource: " + source)
+                : geography ? translate_geography(field, source)
                 : source.starts_with("Creating ") ? translate_worldgen_creation(source)
                 : translate_procedural_fragment(source);
             if (target && !target->empty()) {
@@ -572,10 +605,32 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
             const int field_right = bounds.x + bounds.w;
             NativeTextCard field_card{{row.x, y,
                 field_right - row.x, 1}, {row}};
-            if (field_card.interior.w > 0)
+            if (field.metal && field_card.interior.w > 0) {
+                // Translate each metal in its resource scope, then compose
+                // the native list once. English word widths must not leave
+                // gaps between Chinese names; Clay/Sand keep their columns.
+                if (metal_cards.empty() || metal_cards.back().interior.y != y ||
+                        metal_cards.back().interior.x + metal_cards.back().interior.w != field_right ||
+                        row.x > metal_cards.back().rows.front().x +
+                            static_cast<int>(metal_cards.back().rows.front().source.size()) + 2) {
+                    metal_cards.push_back(std::move(field_card));
+                } else {
+                    auto &line = metal_cards.back().rows.front();
+                    const size_t offset = static_cast<size_t>(row.x - line.x);
+                    const size_t end = std::max(line.source.size(), offset + row.source.size());
+                    line.source.resize(end, ' ');
+                    line.foregrounds.resize(end, row.foregrounds.front());
+                    line.source.replace(offset, row.source.size(), row.source);
+                    std::copy(row.foregrounds.begin(), row.foregrounds.end(),
+                        line.foregrounds.begin() + offset);
+                    line.complete_source.clear();
+                }
+            } else if (field_card.interior.w > 0)
                 compose_native_text_rows(field_card, result, -1, kWorldgenSummaryRule);
         }
     }
+    for (const auto &card : metal_cards)
+        compose_native_text_rows(card, result, -1, kWorldgenSummaryRule);
     compose_native_text_rows(summary, result, -1, kWorldgenSummaryRule);
     result.insert(result.end(), std::make_move_iterator(mod_fields.begin()),
         std::make_move_iterator(mod_fields.end()));

@@ -32,6 +32,9 @@
 // addst argument sequence in all three lists, including each wrap branch.
 // Bind those consumed returns explicitly; their repeated local bodies cannot
 // independently distinguish the world-generation and travel-map writers.
+// World-generation resources retain their literal operands, local string
+// slots and addst ABI: ice, clay/sand depths, soil, aquifers and flux stone.
+// Bind their individual returns after matching those producers in 53.17.
 // The accepted-petition list keeps its six addst sources at rbp+0x3550
 // through rbp+0x3610: guild request/recipient/date, then faith equivalents.
 // Bind their returns separately from the skin/iterator calls so the private
@@ -256,8 +259,22 @@ inline constexpr Range kSteam5317Ranges[] = {
     {0xd4379c, 0xd437d4, 0xd5b48c},
     {0xdf8a80, 0xdf8a85, 0xe10770},
     {0xdfe6d6, 0xdfe6db, 0xe163c6},
+    {0xdfe7cf, 0xdfe7d0, 0xe164bf},
+    {0xdfee0a, 0xdfee0b, 0xe16afa},
+    {0xdfee46, 0xdfee47, 0xe16b36},
+    {0xdfeed4, 0xdfeed5, 0xe16bc4},
+    {0xdfef0b, 0xdfef0c, 0xe16bfb},
+    {0xdfefa6, 0xdfefa7, 0xe16c96},
+    {0xdfefe5, 0xdfefe6, 0xe16cd5},
+    {0xdff024, 0xdff025, 0xe16d14},
+    {0xdff060, 0xdff061, 0xe16d50},
+    {0xdff09c, 0xdff09d, 0xe16d8c},
+    {0xdff121, 0xdff122, 0xe16e11},
+    {0xdff160, 0xdff161, 0xe16e50},
+    {0xdff1db, 0xdff1dc, 0xe16ecb},
     {0xdff32f, 0xdff330, 0xe1701f},
     {0xdff3f5, 0xdff3f6, 0xe170e5},
+    {0xdff4c3, 0xdff4c4, 0xe171b3},
     {0xe0317a, 0xe0317b, 0xe1ae6a},
     {0xe037d9, 0xe037da, 0xe1b4c9},
     {0xe03fdb, 0xe03fdc, 0xe1bccb},
