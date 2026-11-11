@@ -726,3 +726,14 @@ DFHack GUI Buildingplan mechanism: No magma safe mechanisms available	没有可�
 DFHack GUI Overlay control: |Any mechanism|I|0|-1|0	|任意机件	l
 DFHack GUI Overlay control: |Fire safe mechanism|I|0|-1|0	|防火机件	l
 DFHack GUI Overlay control: |Magma safe mechanism|I|0|-1|0	|岩浆安全机件	l
+
+# Source: plugins/zone.lua:1236-1241,1283-1300 [RetireLocationOverlay].
+# MessageBox keeps its hard-line paragraphs; occupation and zone counts use numeric templates.
+DFHack GUI Overlay control: Retire location||I|0|-1|1	撤销场所|	l
+DFHack GUI Title: Location in use	场所正在使用中	l
+DFHack output: Cannot retire location! Please:	无法撤销场所！请先：	l
+DFHack output: - unassign {d} location occupation(s)	- 解除该场所的 {d1} 项职务指派	l
+DFHack output: - detach this location from {d} zone(s)	- 解除该场所与 {d1} 个区域的关联	l
+DFHack output: and try again	然后重试	l
+DFHack GUI Title: Confirm retire location	确认撤销场所	l
+DFHack GUI Confirmation prompt: Are you sure you want to retire this location? You won't be able to use it again.	确定要撤销此场所吗？撤销后将无法再次使用。	l
