@@ -3,7 +3,7 @@ Byayoi 同人社区：https://byayoi.org/
 GitHub：https://github.com/pokemonchw/dfcn
 Releases：https://github.com/pokemonchw/dfcn/releases
 
-当前工坊版本：53.17-20261110.3（2026-11-10）。完整更新日志见本目录 CHANGELOG.txt。
+当前工坊版本：53.17-20261111（2026-11-11）。完整更新日志见本目录 CHANGELOG.txt。
 适用：Windows x64，Dwarf Fortress Steam 53.17 / 53.16 与官网免费版 53.16。
 运行文件位于 DFCN/。Shift+F6 可临时停用或恢复扩展数据；Shift+F5 再次开启时重新读取核心与数据。
 首次订阅后运行 install.bat 自动安装引导；无需在创建世界时启用本工坊项目。

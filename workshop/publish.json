@@ -10,8 +10,8 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[h2]DFCN v53.17-20261110.3[/h2]\n[list]\n[*]修正工坊工作人员页面两种工作策略的翻译匹配和左对齐显示。\n[*]适配 DFHack 53.17-r1，修复升级后 Shift+F11 开关失效及松键事件丢失后无法再次切换的问题；加载器开关不可用时，由独立常驻模块接管快捷键、菜单与状态查询。\n[*]补齐 autofarm 农田控件、自动托管面板、作物与生长物列表、排序与库存阈值设置、输入弹窗、帮助和命令输出汉化，保留动态数量、快捷键与排序方向。\n[*]补齐 DFHack 53.17-r1 的界面文字捕获与 Lua 输出接口绑定，按完整控件文本处理裁切内容，避免配置按钮与较长标签相互误匹配。\n[/list]\n逐次提交分析：[url=https://github.com/pokemonchw/dfcn/blob/main/docs/releases/v53.17-20261110.3.md]完整更新日志[/url]\n",
-  "release_tag": "v53.17-20261110.3",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261110.3",
+  "changelog": "[h2]DFCN v53.17-20261111[/h2]\n[list]\n[*]调整地名、河流名和势力名的双形容词译法，统一使用“与”连接，使名称表达更自然。\n[*]修复世界生成和旅行地图资源列表中锡、铅等金属名称的漏译与误匹配，并修正换行后的显示。\n[*]修复 53.17 中汉化核心重新载入后，旧地址缓存导致金属资源翻译仍未生效的问题。\n[*]修复 53.17“已批准申请”列表的汉化回退，恢复行会与宗教申请的内容、组织名称和日期翻译。\n[/list]\n",
+  "release_tag": "v53.17-20261111",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261111",
   "github_url": "https://github.com/pokemonchw/dfcn"
 }
