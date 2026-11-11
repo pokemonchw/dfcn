@@ -17,11 +17,16 @@ std::vector<Match> Overlay::find_native_petitions_matches(int only_y,
     if (!base) return result;
     enum class Field { None, Request, Guild, Faith, Date };
     const auto field_of = [&](uintptr_t caller) {
-        for (const auto &[offset, field] : std::array<std::pair<uintptr_t, Field>, 6>{{
-                {0x3f9bb7, Field::Request}, {0x3f9cf0, Field::Guild},
-                {0x3f9ef3, Field::Date}, {0x3fa04d, Field::Request},
-                {0x3fa13e, Field::Faith}, {0x3fa341, Field::Date}}})
-            if (caller == native_reference_address(base, offset)) return field;
+        // Keep each consumed return explicit so the address catalog includes
+        // it even when the producer's surrounding function changes edition.
+        for (const auto &[address, field] : std::array<std::pair<uintptr_t, Field>, 6>{{
+                {native_reference_address(base, 0x3f9bb7), Field::Request},
+                {native_reference_address(base, 0x3f9cf0), Field::Guild},
+                {native_reference_address(base, 0x3f9ef3), Field::Date},
+                {native_reference_address(base, 0x3fa04d), Field::Request},
+                {native_reference_address(base, 0x3fa13e), Field::Faith},
+                {native_reference_address(base, 0x3fa341), Field::Date}}})
+            if (address && caller == address) return field;
         return Field::None;
     };
     const auto translate_field = [&](std::string_view source, Field field)

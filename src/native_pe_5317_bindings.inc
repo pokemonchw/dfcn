@@ -29,6 +29,10 @@
 // addst argument sequence in all three lists, including each wrap branch.
 // Bind those consumed returns explicitly; their repeated local bodies cannot
 // independently distinguish the world-generation and travel-map writers.
+// The accepted-petition list keeps its six addst sources at rbp+0x3550
+// through rbp+0x3610: guild request/recipient/date, then faith equivalents.
+// Bind their returns separately from the skin/iterator calls so the private
+// layer retains each complete field's identity after the renderer moves.
 inline constexpr Range kSteam5317Ranges[] = {
     {0xb9d10, 0xb9d11, 0xbb340},
     {0xc3e3e, 0xc3e3f, 0xc546e},
@@ -173,6 +177,12 @@ inline constexpr Range kSteam5317Ranges[] = {
     {0x3f97b5, 0x3f97bc, 0x402e25},
     {0x3f987c, 0x3f9881, 0x402eec},
     {0x3f9992, 0x3f9997, 0x403002},
+    {0x3f9bb7, 0x3f9bb8, 0x403227},
+    {0x3f9cf0, 0x3f9cf1, 0x403360},
+    {0x3f9ef3, 0x3f9ef4, 0x403563},
+    {0x3fa04d, 0x3fa04e, 0x4036bd},
+    {0x3fa13e, 0x3fa13f, 0x4037ae},
+    {0x3fa341, 0x3fa342, 0x4039b1},
     {0x3fa389, 0x3fa38e, 0x4039f9},
     {0x4775dc, 0x4775dd, 0x48156c},
     {0x4776af, 0x4776b0, 0x48163f},
