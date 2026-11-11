@@ -4,7 +4,7 @@
 static bool resolve_native_rich_profile(NativeRichProfile &profile) {
     const auto *base = reinterpret_cast<const unsigned char *>(GetModuleHandleW(nullptr));
     if (!base || !native_pe_supported()) return false;
-    const bool steam_5317 = native_pe_steam_5317();
+    const bool version_5317 = native_pe_5317();
     static constexpr uintptr_t wrap_rva = 0x00858550;
     static constexpr uintptr_t draw_rva = 0x00ad9790;
     static constexpr std::array<unsigned char, 16> wrap_entry{{
@@ -76,13 +76,13 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         // 53.17's character mouse handler retains its sheet in RDI rather
         // than R13. These are complete instructions from that profile;
         // the field offsets and the native box/source ownership are unchanged.
-        {0x1b2b77, steam_5317
+        {0x1b2b77, version_5317
             ? std::vector<unsigned char>{0x39,0x9f,0x7c,0x1c,0x00,0x00}
             : std::vector<unsigned char>(health_tab.begin(), health_tab.end())},
-        {0x1b2ba9, steam_5317
+        {0x1b2ba9, version_5317
             ? std::vector<unsigned char>{0x48,0x8d,0x8f,0x88,0x1c,0x00,0x00}
             : std::vector<unsigned char>(health_sources.begin(), health_sources.end())},
-        {0x1b791f, steam_5317
+        {0x1b791f, version_5317
             ? std::vector<unsigned char>{0x48,0x8d,0x8f,0x90,0x1a,0x00,0x00}
             : std::vector<unsigned char>(personality_sources.begin(), personality_sources.end())},
         {0x17f2a0, {personality_draw_boxes.begin(), personality_draw_boxes.end()}},
@@ -121,7 +121,7 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         if (address == 0x16ca53 || address == 0x17f070 || thought_render)
             argument = {0x4c,0x8b,0x84,0x24,0x68,0xb2,0x00,0x00};
         else if (address == 0x1b2c87 || address == 0x1b79c7 || thought_mouse)
-            argument = steam_5317
+            argument = version_5317
                 ? std::vector<unsigned char>{0x4c,0x8b,0xc7}  // R8 = RDI.
                 : std::vector<unsigned char>{0x4d,0x8b,0xc5}; // R8 = R13.
         else if (address == 0x8dafe5)
@@ -149,7 +149,7 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         // The three explicit 53.17 opcode signatures above already use its
         // register allocation. Relocate their reference coordinates without
         // applying the old profile's byte substitutions a second time.
-        const bool native_mouse_signature = steam_5317 &&
+        const bool native_mouse_signature = version_5317 &&
             (signature.address == 0x1b2b77 || signature.address == 0x1b2ba9 ||
                 signature.address == 0x1b791f);
         if (!native_mouse_signature &&

@@ -2,6 +2,7 @@
 #include "core_module.h"
 #include "runtime_paths.h"
 #include "dfhack_toggle.h"
+#include "classic_audio_guard.h"
 #include <SDL2/SDL.h>
 #include <atomic>
 #include <chrono>
@@ -52,6 +53,7 @@ bool initialized = false;
 bool f5_consumed = false;
 bool f10_consumed = false;
 dfcn::dfhack::Toggle dfhack_toggle;
+dfcn::audio::ClassicBankGuard classic_audio_guard;
 std::uint64_t generation = 0;
 // Keep source data across failed initialization / partial hook-removal retries.
 // Cleared as soon as a new core takes ownership; never stores executable code.
@@ -275,6 +277,7 @@ DFCN_EXPORT void dfhooks_init() {
     if (initialized) return;
     if (!dfcn::module::acquire_guard(log)) return;
     initialized = true;
+    classic_audio_guard.initialize(log);
     try {
         log("INFO", "Resident hot-reload loader initialized");
         dfhack_toggle.initialize(log);
@@ -287,6 +290,7 @@ DFCN_EXPORT void dfhooks_init() {
 DFCN_EXPORT void dfhooks_shutdown() {
     if (!initialized) return;
     initialized = false;
+    classic_audio_guard.shutdown();
     cancel_reload_request();
     f5_consumed = false;
     f10_consumed = false;

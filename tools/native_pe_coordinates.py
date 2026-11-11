@@ -70,6 +70,7 @@ _EXCLUDED = {
     'native_pe_binding.h',    # Relocation interface and image metadata, not owners.
     'native_pe_resolver.h',   # Runtime seed/cache parsing uses numeric metadata.
     'native_pe_5317_bindings.inc',  # Reviewed migration pairs, not reference consumers.
+    'native_pe_classic_5317_bindings.inc',  # Edition-specific 53.17 migration pairs.
     'native_pe_image.h',      # PE directory fields and SHA256, not game resources.
 }
 

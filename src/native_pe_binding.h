@@ -10,12 +10,16 @@ inline unsigned native_pe_edition() {
     return state.complete ? state.edition : 0u;
 }
 inline bool native_pe_supported() { return native_pe_edition() != 0; }
-inline bool native_pe_classic() { return native_pe_edition() == 2; }
+inline bool native_pe_classic() {
+    const auto edition = native_pe_edition();
+    return edition == 2 || edition == 4;
+}
 inline bool native_pe_relocated() { return native_pe_supported() && native_pe_edition() != 1; }
-inline bool native_pe_steam_5317() {
+inline bool native_pe_5317() {
     const auto &state = pe_runtime::state();
     return state.complete && state.ui_settings_tail_shift == 8;
 }
+inline bool native_pe_classic_5317() { return native_pe_edition() == 4; }
 inline size_t native_pe_init_field_offset(size_t reference) {
     const auto &state = pe_runtime::state();
     // Two inserted volume fields split media into a +4 span and a +8

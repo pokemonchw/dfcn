@@ -1029,7 +1029,27 @@ def main() -> int:
                     raise RuntimeError(f"Required native disassembler is missing: {objdump}")
                 generate_pe_seed(pe_sources["reference"], pe_sources["classic"], objdump,
                                  output, seed_output)
-        elif sys.platform == "linux" and sources.get("classic"):
+        if pe_sources and pe_timestamps == {"reference": 0x6aea05a1, "classic": 0x6aea11a5}:
+            # Keep feature profiles in their frozen 53.16 coordinates. The
+            # reviewed 53.17 Steam changes need a separate Classic mapping;
+            # only this normal build publishes the compiled edition table.
+            from build_pe_5317_bindings import generate as generate_pe_5317_bindings
+            output = ROOT / "src/native_pe_classic_5317_bindings.inc"
+            inputs = [ROOT / "tools/build_pe_5317_bindings.py",
+                      ROOT / "tools/build_pe_image_bindings.py",
+                      ROOT / "tools/pe_instruction_match.py",
+                      ROOT / "tools/native_pe_seed_refinement.py",
+                      ROOT / "src/native_pe_5317_bindings.inc",
+                      ROOT / "src/native_map_layer_render.inc",
+                      RUNTIME / "native-addresses/pe-seed.bin",
+                      pe_sources["reference"], pe_sources["classic"]]
+            if needs_update([output], inputs):
+                objdump = Path(compiler[0]).with_name("objdump.exe")
+                if not objdump.is_file():
+                    raise RuntimeError(f"Required native disassembler is missing: {objdump}")
+                generate_pe_5317_bindings(pe_sources["reference"], pe_sources["classic"],
+                                          objdump, output)
+        if sys.platform == "linux" and sources.get("classic"):
             from build_native_image_bindings import (
                 Image, binding_sources, generate as generate_elf_bindings,
             )
