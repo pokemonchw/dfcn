@@ -173,7 +173,7 @@ void Overlay::render_native_announcement_layer(SDL_Renderer *renderer, bool repo
                 match.layout_clip_right = tab->second;
             }
         }
-        layout_multiline_matches();
+        if (!layout_embark_introduction(renderer)) layout_multiline_matches();
         prepared_matches_.insert(prepared_matches_.end(),
             std::make_move_iterator(paragraphs.begin()), std::make_move_iterator(paragraphs.end()));
         std::erase_if(prepared_matches_, [&](const Match &match) { return !owned(match); });

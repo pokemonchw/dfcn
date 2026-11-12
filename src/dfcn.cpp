@@ -19117,6 +19117,9 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     // Custom personality labels can lose their last byte to the adjacent
     // rating slot. Claim the native fields before generic words or prose.
     append_adventure_personality_matches(screen_rows, result, only_y, screen_override);
+    // The arrival popup also exists in announcement history. Reserve its
+    // complete colored document before any announcement reader masks it.
+    append_embark_introduction_matches(screen_rows, result, only_y, screen_override != nullptr);
 #include "adventure_divine_popup.inc"
 #include "adventure_announcements.inc"
 #include "adventure_reading_rows.inc"
@@ -19128,10 +19131,6 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     const bool native_legends_body = native_history_legends_page();
     if (native_legends_body)
         append_legends_detail_matches(screen_rows, result, only_y, screen_override);
-    // The arrival modal is also retained as an announcement. Its dedicated
-    // reader must claim the complete prose before generic announcement
-    // recovery can reinterpret its title as a speaker and its body as a work.
-    append_embark_introduction_matches(screen_rows, result, only_y, screen_override != nullptr);
     append_native_message_paragraphs(screen_rows, result, untranslated_help_rows,
         only_y, screen_override, true);
     // The queue includes addchar directions and labels wider than its frame.
@@ -43488,7 +43487,7 @@ std::shared_ptr<NativeTooltipPage> Overlay::prepare_frame_layout(SDL_Renderer *r
         layout_calendar_headers(renderer);
         layout_fortress_header(renderer);
         layout_fortress_date(renderer);
-        layout_multiline_matches();
+        if (!layout_embark_introduction(renderer)) layout_multiline_matches();
     } else if (!layout_save_list(renderer)) {
         if (!layout_pause_menu(renderer) &&
             !layout_embark_introduction(renderer) &&

@@ -11,7 +11,11 @@
             std::fill_n(rows[y].begin() + body.x, body.w, ' ');
     };
     {
-        if (const auto popup = native_announcement_popup(); popup && popup->width <= gps_->dimx) {
+        const bool embark_owned = std::any_of(result.begin(), result.end(), [](const Match &match) {
+            return match.rule == kEmbarkIntroductionRule;
+        });
+        if (const auto popup = embark_owned ? std::optional<NativeAnnouncementPopup>{}
+                : native_announcement_popup(); popup && popup->width <= gps_->dimx) {
             const auto &words = popup->words;
             // Graphical map tiles can cover a popup glyph in the completed
             // composite without changing the popup's native word bytes.

@@ -23,6 +23,15 @@
         // read must keep the live markup popup's prior ownership; otherwise
         // its help fragments produce a second, differently inset paragraph.
         if (!NativeHelpForegroundScope::active) mask_announcement_popup(help_rows);
+        // The dedicated arrival reader already owns these native runs. This
+        // raw-grid recovery must not recreate the same modal as a flat help
+        // paragraph after the announcement reader has yielded ownership.
+        for (const Match &match : result) {
+            if (match.rule != kEmbarkIntroductionRule || match.length <= 0 ||
+                    match.y < 0 || match.y >= gps_->dimy || match.x < 0 ||
+                    match.x + match.length > gps_->dimx) continue;
+            std::fill_n(help_rows[match.y].begin() + match.x, match.length, ' ');
+        }
         const auto claim_source = [&](int x, int y, int length) {
             std::fill_n(help_rows[y].begin() + x, length, ' ');
             std::fill_n(screen_rows[y].begin() + x, length, ' ');

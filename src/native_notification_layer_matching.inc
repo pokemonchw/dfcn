@@ -24,6 +24,7 @@ std::vector<Match> Overlay::find_native_notification_matches() const {
     // These existing readers use the live popup's markup or each alert's
     // complete parent, not a historical opening-word match. They retain the
     // original address proofs, palettes, repeat counts and visible viewport.
+    append_embark_introduction_matches(screen_rows, result, only_y, false);
 #include "adventure_divine_popup.inc"
 #include "adventure_announcements.inc"
 #include "adventure_reading_rows.inc"
