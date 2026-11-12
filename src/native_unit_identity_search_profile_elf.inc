@@ -176,8 +176,23 @@ static bool install_native_unit_identity_hooks() {
         {0x76d81b,0x24f90,reinterpret_cast<const void *>(&capture_native_unit_reference_capitalization),{}},
         {0x76e32f,0x24f90,reinterpret_cast<const void *>(&capture_native_unit_reference_capitalization),{}},
     };
-    if (!native_reference_calls(names,0x400000) ||
-        !hooks.names.install(hooks.base,names,"Native unit identity name source")) return false;
+    if (!native_reference_calls(names,0x400000)) return false;
+    if (const uintptr_t header = native_elf_5317_address(0x13f992c)) {
+        // 53.17 draws the selected unit's English gloss here, followed by
+        // independent quote stores and addst at 0x13f9a97. The relocated
+        // 53.16 sites above belong to assignment/relation rows in this image.
+        // RAX owns the unit, RDI is unit.name (+8), and ECX is fixed false.
+        // Supply that owner in RCX; the wrapper restores the native bool.
+        std::erase_if(names, [](const NativeCall &call) {
+            return call.wrapper == reinterpret_cast<const void *>(
+                &capture_native_unit_header_english_name);
+        });
+        names.push_back({header - hooks.base,
+            reinterpret_cast<uintptr_t>(hooks.english_name) - hooks.base,
+            reinterpret_cast<const void *>(&capture_native_unit_header_english_name),
+            {0x48,0x89,0xc1}});
+    }
+    if (!hooks.names.install(hooks.base,names,"Native unit identity name source")) return false;
     struct Observation { uintptr_t rva; std::vector<unsigned char> prefix; NativeInlineObserveFn callback; };
     const Observation observations[]{
         {0x76805d,{0x48,0x8b,0xbc,0x24,0xc0,0,0,0,0x4c,0x39,0xef},&observe_native_unit_reference_name},
