@@ -126,70 +126,12 @@ static bool native_map_hover_layer_hook_active() {
     return g_native_map_hover_producer_hooks.active();
 }
 #else
-static std::array<NativeInlineObserverHook, 3> g_native_map_hover_elf_hooks;
-template<bool Attached>
-static void native_map_hover_begin_elf(const NativeInlineRegisters *registers) noexcept {
-    NativeInputCallbackScope callback;
-    try {
-        TranslationStateScope translation;
-        if (native_arena_map_screen()) {
-            for (const uintptr_t panel : {0x2731fa8, 0x2731f10, 0x2731d60}) {
-                uint8_t open = 0;
-                if (native_history_copy(native_elf_5317_address(panel), open) && open) return;
-            }
-        }
-        const auto *gps = native_graphics();
-        int left = static_cast<int32_t>(registers->r14), bottom = -1;
-        if (!gps || gps->dimx <= 0 || gps->dimy <= 0) return;
-        if constexpr (Attached) {
-            if (!native_history_copy(registers->rbp - 0x1a8, left)) return;
-            bottom = static_cast<int32_t>(registers->r15);
-        } else if (!native_history_copy(registers->rbp - 0x1b0, bottom)) return;
-        const int64_t native_top = int64_t(static_cast<int32_t>(registers->rdx)) - 2;
-        const int64_t x0 = std::max({int64_t(left), int64_t{0}, int64_t(gps->clipx[0])});
-        const int64_t x1 = std::min({int64_t(static_cast<int32_t>(registers->r13)),
-            int64_t(gps->dimx - 1), int64_t(gps->clipx[1])});
-        const int64_t y0 = std::max({native_top, int64_t{0}, int64_t(gps->clipy[0])});
-        const int64_t y1 = std::min({int64_t(bottom), int64_t(gps->dimy - 1), int64_t(gps->clipy[1])});
-        if (x0 <= x1 && y0 <= y1)
-            native_map_hover_begin_draw({static_cast<int>(x0), static_cast<int>(y0),
-                static_cast<int>(x1-x0+1), static_cast<int>(y1-y0+1)});
-    } catch (...) {}
-}
-static void native_map_hover_end_elf(const NativeInlineRegisters *) noexcept {
-    NativeInputCallbackScope callback;
-    try { native_map_hover_end_draw(); } catch (...) {}
-}
-static bool install_native_map_hover_layer_hook() {
-    if (!native_elf_5317_address(0x169d61a)) return true;
-    // Linux places both retained look lists above their native lower anchor;
-    // use its actual count-derived bounds rather than PE's upper-row formula.
-    const bool installed = g_native_map_hover_elf_hooks[0].install(reinterpret_cast<unsigned char *>(
-            native_elf_5317_address(0x169d61a)), {0x89,0x95,0x20,0xfe,0xff,0xff},
-            native_map_hover_begin_elf<false>, "Native ELF map hover begin") &&
-        g_native_map_hover_elf_hooks[1].install(reinterpret_cast<unsigned char *>(
-            native_elf_5317_address(0x16ab6ed)), {0x44,0x8d,0x72,0xfe,0x89,0x95,0x50,0xfe,0xff,0xff},
-            native_map_hover_begin_elf<true>, "Native ELF attached map hover begin") &&
-        g_native_map_hover_elf_hooks[2].install(reinterpret_cast<unsigned char *>(
-            native_elf_5317_address(0x16918db)), {0xc7,0x85,0x30,0xfe,0xff,0xff,0xff,0xff,0xff,0xff},
-            native_map_hover_end_elf, "Native ELF map hover end");
-    if (!installed) for (auto &hook : g_native_map_hover_elf_hooks) hook.uninstall("Native ELF map hover restore");
-    return installed;
-}
-static void uninstall_native_map_hover_layer_hook() {
-    native_map_hover_restore_output();
-    for (auto &hook : g_native_map_hover_elf_hooks) hook.uninstall("Native ELF map hover restore");
-    if (std::none_of(g_native_map_hover_elf_hooks.begin(), g_native_map_hover_elf_hooks.end(),
-            [](const auto &hook) { return hook.active(); })) {
-        g_native_map_hover_target.release(); native_map_hover_begin_frame();
-        g_native_map_hover_layer = {}; g_native_map_hover_text = {};
-        release_native_map_hover_language_resources();
-    }
-}
-static bool native_map_hover_layer_hook_active() {
-    return std::any_of(g_native_map_hover_elf_hooks.begin(), g_native_map_hover_elf_hooks.end(),
-        [](const auto &hook) { return hook.active(); });
-}
+// The retained ELF hover branches at 169d61a/16ab6ed are announcement
+// alerts. Their ownership belongs to native_caption_hooks.inc, where the
+// complete report and unit-summary translator can consume their sources.
+static bool install_native_map_hover_layer_hook() { return true; }
+static void uninstall_native_map_hover_layer_hook() { g_native_map_hover_target.release(); }
+static bool native_map_hover_layer_hook_active() { return false; }
 #endif
 
 static void native_map_hover_present_layer(SDL_Renderer *renderer,

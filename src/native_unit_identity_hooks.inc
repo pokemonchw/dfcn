@@ -638,7 +638,8 @@ static std::optional<std::string> finish_native_unit_reference_call(
 static bool capture_native_announcement_unit_reference(uintptr_t unit,
         std::string &source, NativeUnitIdentity &identity) {
     const auto &hooks = g_native_unit_identity_hooks;
-    if (!unit || !hooks.entries[5].installed || !hooks.entries[5].original || !hooks.destroy)
+    if (!unit || !hooks.entries[5].installed || !hooks.entries[5].original ||
+            !NativeSearchString::supported(hooks.destroy))
         return false;
     NativeInputCallbackScope callback;
     NativeSearchString output(hooks.destroy);
@@ -814,7 +815,8 @@ static std::optional<NativeAnnouncementLogSpeechHeader> native_announcement_log_
         return std::nullopt;
 
     const auto &hooks = g_native_unit_identity_hooks;
-    if (!hooks.entries[6].installed || !hooks.entries[6].original || !hooks.destroy)
+    if (!hooks.entries[6].installed || !hooks.entries[6].original ||
+            !NativeSearchString::supported(hooks.destroy))
         return std::nullopt;
     NativeInputCallbackScope callback;
     NativeSearchString output(hooks.destroy);
@@ -983,7 +985,7 @@ static std::optional<NativeUnitIdentitySource> recover_native_map_hover_unit_ide
     const auto &hooks = g_native_unit_identity_hooks;
     if (unit_id < 0 || expected.empty() || expected.size() > 65536 ||
             !hooks.entries[4].installed || !hooks.entries[4].original ||
-            !hooks.destroy) return std::nullopt;
+            !NativeSearchString::supported(hooks.destroy)) return std::nullopt;
     try {
         uintptr_t unit = 0;
         if (!native_history_material_find_id(native_history_global(0x23e50b0),
@@ -1030,7 +1032,7 @@ static std::optional<NativeUnitIdentitySource> recover_native_map_hover_unit_ide
 static std::optional<std::string> native_fortress_alert_unit_name(uintptr_t unit) {
     const auto &hooks = g_native_unit_identity_hooks;
     if (!unit || !hooks.entries[5].installed || !hooks.entries[5].original ||
-            !hooks.capitalize || !hooks.destroy) return std::nullopt;
+            !hooks.capitalize || !NativeSearchString::supported(hooks.destroy)) return std::nullopt;
     NativeInputCallbackScope callback;
     NativeSearchString output(hooks.destroy);
     NativeUnitIdentityCall call;

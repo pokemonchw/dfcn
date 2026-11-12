@@ -170,6 +170,7 @@ struct NativeCaptionHooks {
 static NativeCaptionHooks g_native_caption_hooks;
 #ifndef _WIN32
 static NativeCallHook g_native_main_caption_calls;
+static std::array<NativeInlineObserverHook, 3> g_native_announcement_hover_elf_hooks;
 #endif
 static NativeImportHook g_native_caption_widget_hook;
 static NativeCaptionWidgetBinding g_native_caption_widget_binding;
@@ -297,6 +298,61 @@ static size_t capture_native_announcement_page_rows(const void *paragraph) {
     }
     return rows;
 }
+
+#ifndef _WIN32
+// ELF inlines the row count in both alert hover producers. These are report
+// notifications, not ui_look_list cards: retain their alert owner and complete
+// report/unit sources in the same private layer used by the PE callbacks.
+template<bool Button>
+static void capture_native_announcement_hover_begin_elf(
+        const NativeInlineRegisters *registers) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        const auto *gps = native_graphics();
+        int left = static_cast<int32_t>(registers->r14), bottom = -1;
+        if (!gps) return;
+        if constexpr (Button) {
+            if (!native_history_copy(registers->rbp - 0x1a8, left)) return;
+            bottom = static_cast<int32_t>(registers->r15);
+        } else if (!native_history_copy(registers->rbp - 0x1b0, bottom)) return;
+        const int64_t top = int64_t(static_cast<int32_t>(registers->rdx)) - 2;
+        const auto bounds = native_notification_visible_bounds(*gps, left, top,
+            static_cast<int32_t>(registers->r13), bottom);
+        const uintptr_t box = native_fortress_alert_address(native_history_profile_base(),
+            Button ? 0x18ace80 : 0x18ace30, Button ? 0x2701e28 : 0x2701dd8);
+        const auto kind = native_fortress_alert_hover_source_kind(box);
+        const auto generation = native_fortress_alert_hover_wrap_generation(box);
+        if (!bounds || kind == NativeFortressAlertSourceKind::None ||
+                !native_notification_begin_draw(*bounds)) return;
+        g_native_notification_source_kind = kind;
+        g_native_notification_source_owner = box;
+        g_native_notification_source_wrap_generation = generation;
+    } catch (...) {}
+}
+
+static void capture_native_announcement_hover_end_elf(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try { native_notification_end_draw(); } catch (...) {}
+}
+
+static bool install_native_announcement_hover_elf() {
+    if (!native_elf_5317_address(0x169d61a)) return true;
+    // Both begins precede the first inline background store. Their shared
+    // exit follows the entire header/body loop, including native clipping.
+    return g_native_announcement_hover_elf_hooks[0].install(
+            reinterpret_cast<unsigned char *>(native_elf_5317_address(0x169d61a)),
+            {0x89,0x95,0x20,0xfe,0xff,0xff},
+            capture_native_announcement_hover_begin_elf<false>, "Native ELF alert hover begin") &&
+        g_native_announcement_hover_elf_hooks[1].install(
+            reinterpret_cast<unsigned char *>(native_elf_5317_address(0x16ab6ed)),
+            {0x44,0x8d,0x72,0xfe,0x89,0x95,0x50,0xfe,0xff,0xff},
+            capture_native_announcement_hover_begin_elf<true>, "Native ELF alert button hover begin") &&
+        g_native_announcement_hover_elf_hooks[2].install(
+            reinterpret_cast<unsigned char *>(native_elf_5317_address(0x16918db)),
+            {0xc7,0x85,0x30,0xfe,0xff,0xff,0xff,0xff,0xff,0xff},
+            capture_native_announcement_hover_end_elf, "Native ELF alert hover end");
+}
+#endif
 
 static void capture_native_help_cell(graphicst *gps) {
     try {
@@ -4344,7 +4400,10 @@ static void append_native_caption_calls(std::vector<NativeCall> &calls,
 static bool native_caption_hooks_active() {
 #ifndef _WIN32
     if (g_native_main_caption_calls.active() || g_native_geography_english_hook.active() ||
-            g_native_multiline_wrap_entry.active()) return true;
+            g_native_multiline_wrap_entry.active() ||
+            std::any_of(g_native_announcement_hover_elf_hooks.begin(),
+                g_native_announcement_hover_elf_hooks.end(),
+                [](const auto &hook) { return hook.active(); })) return true;
 #endif
     return g_native_help_top_tile_hook.active() || g_native_help_tile_hook.active() ||
         g_native_legacy_tooltip_hook.active() || g_native_tooltip_container_hook.active() ||
@@ -4484,6 +4543,7 @@ static bool install_native_caption_hooks() {
 #else
     if (!append_native_site_name_draw_calls(profile.main_calls)) return false;
     if (!append_native_river_name_calls(profile.main_calls)) return false;
+    if (!install_native_announcement_hover_elf()) return false;
     if (!g_native_multiline_wrap_entry.installed) {
         auto *wrap = static_cast<unsigned char *>(dlsym(RTLD_DEFAULT,
             "_Z15separate_stringRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSt6vectorIS4_SaIS4_EEi"));
@@ -4701,6 +4761,8 @@ static bool install_native_caption_hooks() {
 static bool uninstall_native_caption_hooks() {
     reset_native_announcement_notification_capture();
 #ifndef _WIN32
+    for (auto &hook : g_native_announcement_hover_elf_hooks)
+        if (!hook.uninstall("Native ELF alert hover restore")) return false;
     if (!g_native_multiline_wrap_entry.uninstall("Native ELF report paragraph wrapping restore")) return false;
     if (!g_native_geography_english_hook.uninstall("Native geography name source restore")) return false;
     if (!g_native_main_caption_calls.uninstall("Native page and roster caption restore")) return false;

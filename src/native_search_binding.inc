@@ -161,6 +161,9 @@ using NativeSearchDestroyFn = void (*)(NativeString *);
 struct NativeSearchString {
     NativeString value = native_empty_string();
     NativeSearchDestroyFn destroy = nullptr;
+    static bool supported(NativeSearchDestroyFn fn) noexcept {
+        return fn || !std::is_trivially_destructible_v<NativeString>;
+    }
     explicit NativeSearchString(NativeSearchDestroyFn fn) : destroy(fn) {}
     NativeSearchString(const NativeSearchString &) = delete;
     NativeSearchString &operator=(const NativeSearchString &) = delete;
