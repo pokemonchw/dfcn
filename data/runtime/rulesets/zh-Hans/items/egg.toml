@@ -5,6 +5,11 @@ base = "items::egg"
 "{^0}{^1}{main}" = "{^0}{^1}{main}"
 
 [[rulesets]]
+name = "with_number"
+[rulesets.rules]
+"{::items::egg}{::items::$number}" = "{::items::egg}{::items::$number}"
+
+[[rulesets]]
 name = "^0"
 optional = true
 [rulesets.rules]

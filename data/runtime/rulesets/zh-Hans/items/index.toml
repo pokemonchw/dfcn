@@ -2,6 +2,8 @@ base = "items"
 
 [[rulesets]]
 [rulesets.rules]
+# Fertility follows the complete egg caption, including quantity and marks.
+"{%item_designation:egg::with_number} (Fertile)" = "{%item_designation:egg::with_number}（已受精）"
 "{%item_designation:with_number}" = "{%item_designation:with_number}"
 # A knapped rock can start with quality glyphs belonging only to sharp.
 # Let that typed production consume its own glyphs before the whole-item
