@@ -32,6 +32,7 @@ PE_READONLY_LITERAL_ANCHORS = {
 # only the extent requested by their owner; a short class must not inherit
 # another widget's larger virtual interface merely because both have RTTI.
 PE_VTABLE_CONSUMED_SLOTS = {
+    0x15eefd0: 4,
     0x15eef60: 4,
     0x1618aa0: 4,
     0x162dc10: 4,

@@ -5,6 +5,11 @@ static NativeInfoCapturedText g_native_reports_text;
 static const unsigned char *g_native_reports_background_grid = nullptr;
 static const graphicst *g_native_reports_background_graphics = nullptr;
 static SDL_Rect g_native_reports_panel{};
+struct NativeReportsTab {
+    int x, y;
+    std::string source;
+};
+static std::vector<NativeReportsTab> g_native_reports_tabs;
 
 static bool native_reports_background_view(const graphicst *graphics) noexcept {
     return graphics && g_native_reports_layer.ready && !g_native_info_foreground &&
@@ -49,6 +54,7 @@ static bool native_reports_background_copy_hidden(SDL_Renderer *renderer,
 }
 
 static void native_reports_begin_frame() {
+    g_native_reports_tabs.clear();
     g_native_reports_layer.ready = false;
     g_native_reports_layer.frames.clear();
     g_native_reports_layer.native_renderer = nullptr;

@@ -18787,6 +18787,26 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     screen_rows.reserve(static_cast<size_t>(gps_->dimy));
     for (int row_y = 0; row_y < gps_->dimy; ++row_y)
         screen_rows.push_back(read_row(row_y));
+    if (g_native_reports_layer.ready &&
+            gps_->screen == g_native_reports_layer.foreground.graphics()->screen) {
+        for (const auto &tab : g_native_reports_tabs) {
+            const int length = static_cast<int>(tab.source.size());
+            if ((only_y >= 0 && only_y != tab.y) || tab.y < 0 || tab.y >= gps_->dimy ||
+                    tab.x < 1 || length <= 0 || tab.x + length >= gps_->dimx) continue;
+            // The tabs renderer owns this exact string and allocation. Reserve
+            // each draw before paragraph inference can combine neighbouring
+            // captions into a dynamic message such as Combat {n}.
+            if (const auto target = exact_literal_translation(tab.source)) {
+                Match match{tab.x, tab.y, length, -1, *target, tab.source};
+                match.layout_x = tab.x - 1;
+                match.layout_length = length + 2;
+                match.layout_clip_right = tab.x + length + 1;
+                match.layout_prepared = true;
+                result.push_back(std::move(match));
+            }
+            std::fill_n(screen_rows[tab.y].begin() + tab.x, length, ' ');
+        }
+    }
     append_native_arena_tree_rows(screen_rows, result, only_y, screen_override);
     // Windows sends the retained hover document directly to its private
     // tooltip layer. The parent page owns the list choices and biography;

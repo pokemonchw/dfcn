@@ -6,6 +6,46 @@ static NativeEntryHook g_native_reports_draw_hook;
 static uintptr_t g_native_reports_owner = 0;
 static uintptr_t g_native_reports_vtable = 0;
 using NativeReportsDrawFn = void (*)(void *, uint32_t);
+static NativeEntryHook g_native_reports_tabs_hook;
+
+static void native_reports_tabs_draw(void *tabs, uint32_t tick) {
+    NativeInputCallbackScope callback;
+    const auto original = reinterpret_cast<NativeReportsDrawFn>(g_native_reports_tabs_hook.original);
+    if (!original) return;
+    callback.call_native([&] { original(tabs, tick); });
+    if (!tabs || !g_native_reports_write_graphics ||
+            !native_ui_classic().value_or(false)) return;
+    // Steam 53.17 tabs::render (RVA 0x1430f30), identified by RTTI:
+    // +180 labels (32-byte strings), +198 row index pairs (inclusive).
+    // It starts at rect.x1/rect.y1, draws at x+2/y+1, advances by
+    // label.size()+4, and subtracts two from y for each following row.
+    // Capture that producer's allocations, without interpreting screen text.
+    try {
+        const auto owner = reinterpret_cast<uintptr_t>(tabs);
+        std::array<int32_t, 4> rect{};
+        std::array<uintptr_t, 3> labels{}, rows{};
+        if (!native_history_copy(owner + 0x10, rect) ||
+                !native_history_copy(owner + 0x180, labels) ||
+                !native_history_copy(owner + 0x198, rows) ||
+                labels[1] < labels[0] || rows[1] < rows[0] ||
+                (labels[1] - labels[0]) % 32 || (rows[1] - rows[0]) % 16 ||
+                labels[1] - labels[0] > 32000 || rows[1] - rows[0] > 16000) return;
+        const auto count = (labels[1] - labels[0]) / 32;
+        int y = rect[1] + 1;
+        for (uintptr_t at = rows[0]; at < rows[1]; at += 16, y -= 2) {
+            std::array<uint64_t, 2> range{};
+            if (!native_history_copy(at, range) || range[0] > range[1] || range[1] >= count) return;
+            int x = rect[0] + 2;
+            for (uint64_t index = range[0]; index <= range[1]; ++index) {
+                std::string_view source;
+                if (!native_string_view(reinterpret_cast<const NativeString *>(
+                        labels[0] + index * 32), &source, 4096)) return;
+                g_native_reports_tabs.push_back({x, y, std::string(source)});
+                x += static_cast<int>(source.size()) + 4;
+            }
+        }
+    } catch (...) {}
+}
 
 static void native_reports_draw(void *reports, uint32_t tick) {
     NativeInputCallbackScope callback;
@@ -90,6 +130,15 @@ static bool install_native_reports_layer_hook() {
     if (!table || !owner || !native_history_copy(table + 3 * sizeof(void *), draw_address) ||
             !draw_address) return false;
     auto *draw = reinterpret_cast<unsigned char *>(draw_address);
+    const auto tabs_table = native_reference_address(base, 0x15eefd0);
+    uintptr_t tabs_draw = 0;
+    if (!tabs_table || !native_history_copy(tabs_table + 3 * sizeof(void *), tabs_draw) ||
+            !tabs_draw) return false;
+    const std::vector<unsigned char> tabs_prefix{0x4c,0x8b,0xdc,0x55,0x53,0x49,0x8d,0x6b,0xb8};
+    if (!g_native_reports_tabs_hook.prepare(reinterpret_cast<unsigned char *>(tabs_draw),
+            tabs_prefix, reinterpret_cast<const void *>(&native_reports_tabs_draw), {},
+            "Native Reports tab allocations") ||
+            !g_native_reports_tabs_hook.install("Native Reports tab allocations")) return false;
     // Both PE editions begin with complete position-independent instructions:
     // PUSH RBX; SUB RSP,0x20. RCX is widget_stack*, EDX is the render tick;
     // the body consumes no incoming stack arguments.
@@ -114,6 +163,7 @@ static bool install_native_reports_layer_hook() {
 }
 
 static void uninstall_native_reports_layer_hook() {
+    g_native_reports_tabs_hook.uninstall("Native Reports tab allocations restore");
     g_native_reports_draw_hook.uninstall("Native fortress Reports draw entry restore");
     if (!g_native_reports_draw_hook.active()) {
         g_native_reports_owner = g_native_reports_vtable = 0;
