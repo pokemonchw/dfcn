@@ -1,0 +1,27 @@
+family	current_PE_RVA	branch	production	translation_route
+base-thread	c90026..c9044e	THREAD=57; material or profile color present	The thread is COLOR[, QUALITYcolored][ with DYES][ by MAKER].	item-description-translations.tsv; translate_item_color_pattern; translate_item_dye_materials
+base-material	c9051a..c90967	SKIN_TANNED=55; material or profile color present	The material is COLOR[, QUALITYcolored][ with DYES][ by MAKER].	shared color and dye captures
+base-pattern	c8fcd9..c90021; c9044e..c9051a	undyed base material; valid first pattern color	The material is COLOR.	shared color capture
+thread-improvement	cc4f60..cc599c	material=-1 AND profile color=-1	no text	native branch retained
+thread-improvement	cc4f60..cc599c	otherwise	The thread is COLOR[, QUALITYcolored] with DYES[ by MAKER].	shared color and dye captures
+object-improvement	cc59a0..cc63dc	material=-1 AND profile color=-1	no text	native branch retained
+object-improvement	cc59a0..cc63dc	otherwise	The object is COLOR[, QUALITYcolored] with DYES[ by MAKER].	shared color and dye captures
+color	c90035..c90097; cc4ff6..cc5054	profile index overrides material dye color; absent index	gray	color namespace
+color	c90035..c90097; cc4ff6..cc5054	valid index	colors[index].NAME at +50; vector 2519538	whole color before compound-name leaves; no material/name fallback
+quality	c90097..c90116; cc5054..cc50f2	0	no comma and no colored	bare-color production
+quality	c90097..c90116; cc5054..cc50f2	1..5	well- / finely / superbly / exceptionally / masterfully + colored	five existing quality productions
+dyes	cc50f2..cc557b	constituent vector empty	direct material SOLID state	material namespace
+dyes	cc50f2..cc557b	constituent vector nonempty	unique type/index pairs; POWDER states; one leaf or a mixture of list	translate_item_dye_materials
+dye-list	cc50f2..cc557b	two or more distinct pairs	commas and final and; preserve native order	complete material leaves before list separators
+base-dyes	c90116..c9044e; c9061c..c90967	single or mixed	POWDER state for both paths	material namespace
+maker	cc5850..cc595c; cc6290..cc639c	masterwork and resolvable figure	 by [optional HF link]MAKER[/link]	actor capture; authored nicknames preserved
+dye-output	c90a7b..c90b01	dye material	When used as a dye, it produces COLOR.	shared color capture
+wear	c90e2d..c90fb0	wear 1	This object is showing some wear.	existing condition predicate; independent sentence boundary
+wear	c90e2d..c90fb0	wear 2/3; soft material	This object is threadbare. / This object is in tatters.	existing condition predicates; independent sentence boundary
+wear	c90e2d..c90fb0	wear 2/3; hard material	This object is heavily worn. / This object is mangled.	existing condition predicates; independent sentence boundary
+contaminants	c90fb0..c91106	can-be-contaminated; item type not 73/75; nonempty vector	one independent sentence per contaminant	predicate-based boundary from native subject
+contaminants	c91026..c910e6	amount < 100	It is spattered with MATERIAL.	existing spattered predicate and complete material
+contaminants	c91026..c910e6	amount >= 100	It is coated with MATERIAL.	existing coated predicate and complete material
+contaminant-material	14eab90..14eafe9	material state from contaminant +8	owner possessive + optional material prefix + state name	material namespace and owner grammar; not a water special case
+material	14eab90..14eafe9	lookup fails	unknown material	existing materials namespace literal
+material-color	1475520..1475642	plant; creature/figure; inorganic; invalid	plant/creature material +4e0; inorganic +688; invalid=-1	color lookup retains independent type and index

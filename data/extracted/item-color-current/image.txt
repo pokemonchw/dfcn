@@ -1,0 +1,3 @@
+Windows x64 PE:6aea05a1:02734000
+D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe
+sha256=3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16

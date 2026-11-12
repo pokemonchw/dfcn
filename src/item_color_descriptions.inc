@@ -1,7 +1,9 @@
-// PE 53.16 item color producers CAD270..CADCAC and CADCB0..CAE6EC
+// PE 53.17 item color producers CC4F60..CC599C and CC59A0..CC63DC
+// (53.16: CAD270..CADCAC and CADCB0..CAE6EC). Current decompilation:
+// data/extracted/item-color-current, including base-item and material branches.
 // select a descriptor COLOR, not a material, at colors[descriptor] + 0x50.
-// The vector at 24F70B8 is descriptor_handler.colors; the distinct pattern
-// vector at 24F70E8 is used by cloth only to select its first base color.
+// The vector at 2519538 is descriptor_handler.colors; the distinct pattern
+// vector at 2519568 is used by cloth only to select its first base color.
 // Keep this type separate from ordinary nouns: pearl, bronze, ivory, amber,
 // cardinal and the other shared spellings retain their color senses here.
 std::optional<std::string> Overlay::translate_item_color_pattern(
@@ -10,7 +12,20 @@ std::optional<std::string> Overlay::translate_item_color_pattern(
         item_description_translation_complete(color)) return color;
     auto color = RULESETS.translate_color(lower(native_text_to_utf8(
         normalize_utterance(source))));
-    return item_description_translation_complete(color) ? color : std::nullopt;
+    if (item_description_translation_complete(color)) return color;
+    // Stored descriptor NAMEs can join complete colors with a hyphen.
+    // Try the whole name first (blue-gray is itself a RAW color), then
+    // resolve both complete leaves in the color namespace only.
+    const std::string name = lower(native_text_to_utf8(normalize_utterance(source)));
+    for (size_t at = name.find('-'); at != std::string::npos;
+            at = name.find('-', at + 1)) {
+        const auto first = RULESETS.translate_color(name.substr(0, at));
+        const auto second = RULESETS.translate_color(name.substr(at + 1));
+        if (item_description_translation_complete(first) &&
+                item_description_translation_complete(second))
+            return *first + "与" + *second + "的混合色";
+    }
+    return std::nullopt;
 }
 
 std::optional<std::string> Overlay::translate_item_dye_materials(

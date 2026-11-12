@@ -643,6 +643,20 @@ std::optional<std::string> Overlay::translate_item_description_term(
 
 bool Overlay::item_description_sentence_start(std::string_view source) const {
     source = trim_view(source);
+    // The native item writer emits each condition/contaminant as its own
+    // sentence. A failed earlier color/material must not swallow it merely
+    // because the sentence table represents its subject as generic It {e}.
+    for (std::string_view subject : {"It ", "This object ", "The object ", "The item "}) {
+        if (!source.starts_with(subject)) continue;
+        const auto predicate = source.substr(subject.size());
+        for (int index : item_description_predicate_rules_) {
+            const auto &rule = rules_[static_cast<size_t>(index)];
+            const std::string_view opening = rule.template_kinds.empty()
+                ? std::string_view(rule.source) : std::string_view(rule.template_literals.front());
+            if (opening.size() <= 4) continue;
+            if (template_literal_at(predicate, 0, opening, rule.case_insensitive)) return true;
+        }
+    }
     // cc5d50's written-work clauses are independent of the item noun and
     // book title. Their fixed openings prove the preceding sentence's end
     // even when a new material or style cannot yet be translated.
