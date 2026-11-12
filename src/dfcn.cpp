@@ -12930,6 +12930,11 @@ std::optional<std::string> Overlay::translate_ui_catalog_capture(
         if (!name.empty()) return "“" + native_text_to_utf8(name) + "”";
         return std::nullopt;
     }
+    // Announcement actor fields contain native unit captions. An authored
+    // animal name is allowed between the parsed caste/status wrappers even
+    // when its literal Latin bytes are absent from the translation glossary.
+    if (rule.ui_message && rule.template_kinds[index] == 'n')
+        if (auto creature = translate_creature_label(source, nullptr, true)) return creature;
     auto translated = translate_ui_message_capture(source, rule.template_kinds[index] == 'n');
     // A cancelled job names one native unit. Its comma-delimited profession
     // may be player-authored, so the actor remains valid when that role has
