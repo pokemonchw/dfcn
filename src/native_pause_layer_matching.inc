@@ -51,8 +51,8 @@ std::vector<Match> Overlay::find_native_pause_matches() const {
     };
     for (const auto &input : native_text_input_regions(*gps_, screen_rows, nullptr))
         reserve_input(input.x, input.y, input.w);
-#ifdef _WIN32
     const auto base = native_history_profile_base();
+#ifdef _WIN32
     // The renderer copies state+0xa8 or state+0x80 and appends its underscore
     // cursor before these exact addst calls. Spelling never identifies input.
     for (const auto &draw : draws) {
@@ -117,7 +117,6 @@ std::vector<Match> Overlay::find_native_pause_matches() const {
         }
     }
 
-#ifdef _WIN32
     // The six ended-game branches are stored as one complete native vector,
     // not as the fixed confirmation rows below. Its renderer centers a
     // one-row body and draws every longer body at frame_left + 2, advancing
@@ -147,8 +146,11 @@ std::vector<Match> Overlay::find_native_pause_matches() const {
             return body.mode == entry.mode && body.title == entry.title && complete == entry.source;
         });
         const uintptr_t caller = body.rows.size() == 1
-            ? native_reference_address(base, 0x1e19b6)
-            : native_reference_address(base, 0x1e1a58);
+#ifdef _WIN32
+            ? native_reference_address(base, 0x1e19b6) : native_reference_address(base, 0x1e1a58);
+#else
+            ? native_elf_5317_address(0x1427a62) : native_elf_5317_address(0x1427c11);
+#endif
         std::vector<Match> rows;
         std::vector<Match> mates;
         const NativeDrawnTextRow *previous = nullptr;
@@ -236,7 +238,7 @@ std::vector<Match> Overlay::find_native_pause_matches() const {
             }
         }
     }
-#endif
+
 
     // Complete native sentence branches from pause-menu-sources.tsv. The
     // renderer emits two or three separate rows; catalog ownership joins

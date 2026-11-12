@@ -9,7 +9,6 @@ static std::atomic<NativeDfhackSetTileFn *> g_native_dfhack_set_tile_slot{nullpt
 static std::atomic<NativeDfhackReadTileFn> g_native_dfhack_original_get_tile{nullptr};
 static std::atomic<NativeDfhackReadTileFn *> g_native_dfhack_get_tile_slot{nullptr};
 
-#ifdef _WIN32
 enum class NativeDfhackDrawApi : size_t {
     Tile, String, Fill, Clear, Border, MapPort, PenArray, ReadTile, ReadMapPort, Count
 };
@@ -18,7 +17,6 @@ static std::array<NativeEntryHook, static_cast<size_t>(NativeDfhackDrawApi::Coun
 static NativeEntryHook &native_dfhack_draw_entry(NativeDfhackDrawApi api) {
     return g_native_dfhack_draw_entries[static_cast<size_t>(api)];
 }
-#endif
 
 // Every DFHack drawing boundary selects its own private output buffers.
 // Nested API/base calls share the outer selection without copying any cells.
@@ -26,12 +24,8 @@ static bool native_dfhack_capture_hook_active() {
     if (native_dfhack_render_layers_active()) return true;
     if (g_native_dfhack_set_tile_slot.load(std::memory_order_acquire) ||
             g_native_dfhack_get_tile_slot.load(std::memory_order_acquire)) return true;
-#ifdef _WIN32
     return std::any_of(g_native_dfhack_draw_entries.begin(), g_native_dfhack_draw_entries.end(),
         [](const auto &hook) { return hook.active(); });
-#else
-    return false;
-#endif
 }
 
 static bool native_dfhack_set_tile_capture(const void *pen, int x, int y,
@@ -78,17 +72,12 @@ struct NativeDfhackTileReadScope {
 };
 
 class NativeDfhackCharacterTileReadScope {
-#ifdef _WIN32
     std::unique_lock<std::recursive_mutex> translation_;
     std::optional<NativeUiGridBinding> binding_;
-#endif
 public:
     NativeDfhackCharacterTileReadScope(int x, int y, bool map)
-#ifdef _WIN32
         : translation_(translation_state_mutex, std::defer_lock)
-#endif
     {
-#ifdef _WIN32
         // Screen's UI branch ignores the viewport member-field argument.
         // Keep map reads native, including their existing Classic behavior.
         if (map || !translation_.try_lock()) return;
@@ -110,7 +99,6 @@ public:
         // Expose its original cells so DFHack can find anchors such as the
         // Overview tab. Its own reader still resolves pens and both planes.
         binding_.emplace(gps, *source);
-#endif
     }
 };
 
@@ -131,7 +119,6 @@ static void *native_dfhack_get_tile_capture(void *result, int x, int y,
     return callback.call_native([&] { return original(result, x, y, map, member_field); });
 }
 
-#ifdef _WIN32
 static bool native_dfhack_paint_tile_capture(const void *pen, int x, int y,
         bool map, uintptr_t member_field) {
     NativeInputCallbackScope callback;
@@ -287,6 +274,7 @@ static void *native_dfhack_read_map_port_capture(void *result, int x, int y, uin
     NativeDfhackNativeLayerScope native(false);
     return callback.call_native([&] { return original(result, x, y, member_field); });
 }
+#ifdef _WIN32
 static bool prepare_native_dfhack_draw_entries(HMODULE module) {
     struct Profile {
         NativeDfhackDrawApi api;
@@ -361,6 +349,25 @@ static bool prepare_native_dfhack_draw_entries(HMODULE module) {
         if (!hook.install(label)) return false;
     return true;
 }
+#else
+static bool prepare_native_dfhack_draw_entries(void *module) {
+    struct Profile { NativeDfhackDrawApi api; const char *symbol; const void *wrapper; };
+    const Profile profiles[]{
+        {NativeDfhackDrawApi::Tile, "_ZN6DFHack6Screen9paintTileERKNS0_3PenEiibMN2df18graphic_viewportstEPi", reinterpret_cast<const void *>(&native_dfhack_paint_tile_capture)},
+        {NativeDfhackDrawApi::String, "_ZN6DFHack6Screen11paintStringERKNS0_3PenEiiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb", reinterpret_cast<const void *>(&native_dfhack_paint_string_capture)},
+        {NativeDfhackDrawApi::Fill, "_ZN6DFHack6Screen8fillRectERKNS0_3PenEiiiib", reinterpret_cast<const void *>(&native_dfhack_fill_rect_capture)},
+        {NativeDfhackDrawApi::Clear, "_ZN6DFHack6Screen5clearEv", reinterpret_cast<const void *>(&native_dfhack_clear_capture)},
+        {NativeDfhackDrawApi::Border, "_ZN6DFHack6Screen10drawBorderERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE", reinterpret_cast<const void *>(&native_dfhack_draw_border_capture)},
+        {NativeDfhackDrawApi::MapPort, "_ZN6DFHack6Screen16paintMapPortTileERKNS0_3PenEiiMN2df18graphic_map_portstEPi", reinterpret_cast<const void *>(&native_dfhack_map_port_capture)},
+        {NativeDfhackDrawApi::PenArray, "_ZN6DFHack6Screen8PenArray4drawEjjjjjj", reinterpret_cast<const void *>(&native_dfhack_pen_array_capture)},
+        {NativeDfhackDrawApi::ReadTile, "_ZN6DFHack6Screen8readTileEiibMN2df18graphic_viewportstEPi", reinterpret_cast<const void *>(&native_dfhack_read_tile_capture)},
+        {NativeDfhackDrawApi::ReadMapPort, "_ZN6DFHack6Screen15readMapPortTileEiiMN2df18graphic_map_portstEPi", reinterpret_cast<const void *>(&native_dfhack_read_map_port_capture)}
+    };
+    for (const auto &profile : profiles)
+        if (!native_dfhack_elf_entry(native_dfhack_draw_entry(profile.api), module, profile.symbol,
+                profile.wrapper, "DFHack ELF private drawing layer")) return false;
+    return true;
+}
 #endif
 
 static NativeDfhackSetTileFn *native_dfhack_find_set_tile_slot(bool &available) {
@@ -401,6 +408,8 @@ static bool install_native_dfhack_capture_hook() {
     if (!available) return true;
 #ifdef _WIN32
     if (!prepare_native_dfhack_draw_entries(GetModuleHandleW(L"dfhack.dll"))) return false;
+#else
+    if (!prepare_native_dfhack_draw_entries(native_dfhack_elf_module())) return false;
 #endif
     if (!g_native_dfhack_get_tile_slot.load(std::memory_order_acquire)) {
         auto *read_slot = native_dfhack_find_get_tile_slot();
@@ -464,7 +473,6 @@ static void uninstall_native_dfhack_capture_hook() {
         }
         g_native_dfhack_set_tile_slot.store(nullptr, std::memory_order_release);
     }
-#ifdef _WIN32
     // Restore entries first, retaining trampolines while a callback can still
     // be inside native drawing or its private pointer scope destructor.
     constexpr const char *label = "DFHack private drawing layer";
@@ -472,7 +480,6 @@ static void uninstall_native_dfhack_capture_hook() {
         if (it->installed && !write_native_code_patches(it->patches, false, label, &it->installed)) continue;
         if (native_callbacks_idle()) it->uninstall(label);
     }
-#endif
     if (!native_dfhack_capture_hook_active() && native_callbacks_idle()) {
         clear_native_dfhack_layers();
     }

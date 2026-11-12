@@ -1,9 +1,22 @@
 // squads_interfacest is a legacy component. Redirect the whole native draw
 // before its frame, controls, list records and child pages write to gps.
 static NativeUiLayerTarget g_native_squads_target;
-#ifdef _WIN32
 static NativeEntryHook g_native_squads_draw_hook;
 static NativeCallHook g_native_squads_member_cursor_hook;
+#ifndef _WIN32
+static NativeInlineObserverHook g_native_squads_member_elf_hook;
+static void native_squads_member_elf(const NativeInlineRegisters *r) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        if (!r || !g_native_squads_write_graphics) return;
+        int32_t x = 0, y = 0;
+        if (!native_history_copy(r->rbp - 0x178, x) || !native_history_copy(r->rbp - 0x118, y)) return;
+        const auto &panel = g_native_squads_panel;
+        if (x < panel.x || x + 4 > panel.x + panel.w || y < panel.y || y + 3 > panel.y + panel.h) return;
+        for (int row = 0; row < 3; ++row) g_native_squads_member_columns.push_back({x, y + row, 4, 1});
+    } catch (...) {}
+}
+#endif
 static uintptr_t g_native_squads_owner = 0;
 using NativeSquadsDrawFn = void (*)(void *, uint32_t, int32_t, int32_t);
 using NativeSquadsCursorFn = void (*)(graphicst *, int32_t, int32_t);
@@ -51,8 +64,14 @@ static void native_squads_draw(void *squads, uint32_t tick, int32_t screen_left,
         gps->screen && gps->screen_top && gps->dimx > 0 && gps->dimx <= 1000 &&
         gps->dimy > 0 && gps->dimy <= 1000;
     int32_t schedule_id = -1;
-    if (isolate) std::memcpy(&schedule_id, static_cast<unsigned char *>(squads) + 0xb4,
-        sizeof(schedule_id));
+    if (isolate) {
+#ifdef _WIN32
+        std::memcpy(&schedule_id, static_cast<unsigned char *>(squads) + 0xb4, sizeof(schedule_id));
+#else
+        isolate = native_history_copy(native_history_object_member(reinterpret_cast<uintptr_t>(squads),
+            "squads_interfacest", "editing_squad_schedule_id", 4), schedule_id);
+#endif
+    }
     const int left = gps ? static_cast<int>(std::clamp<int64_t>(
         int64_t(screen_right) - (schedule_id == -1 ? 27 : 47), 0, gps->dimx)) : 0;
     const int right = gps ? std::min(screen_right, gps->dimx - 1) : -1;
@@ -60,8 +79,13 @@ static void native_squads_draw(void *squads, uint32_t tick, int32_t screen_left,
     int grid_y = gps ? gps->dimy : 0;
     // Both native PE editions keep init.display.grid_y at +0x18. The
     // producer's opaque sidebar starts at row 18 and includes grid_y - 4.
-    if (settings) std::memcpy(&grid_y,
-        reinterpret_cast<const unsigned char *>(settings) + 0x18, sizeof(grid_y));
+    if (settings) {
+#ifdef _WIN32
+        std::memcpy(&grid_y, reinterpret_cast<const unsigned char *>(settings) + 0x18, sizeof(grid_y));
+#else
+        grid_y = settings->display.grid_y;
+#endif
+    }
     const int bottom = gps ? std::min(gps->dimy - 1, grid_y - 4) : -1;
     isolate = isolate && left <= right && bottom >= 18;
     const SDL_Rect panel{left, 18, right - left + 1, bottom - 17};
@@ -112,6 +136,7 @@ static void native_squads_draw(void *squads, uint32_t tick, int32_t screen_left,
 }
 
 static bool install_native_squads_layer_hook() {
+#ifdef _WIN32
     if (g_native_squads_draw_hook.installed &&
             g_native_squads_member_cursor_hook.installed) return true;
     if (g_native_squads_draw_hook.active() || g_native_squads_member_cursor_hook.active()) {
@@ -162,11 +187,40 @@ static bool install_native_squads_layer_hook() {
                 "Native Squads member column source")) return false;
     if (!g_native_squads_draw_hook.install(label)) return false;
     guard.committed = true;
+#else
+    if (g_native_squads_draw_hook.installed) return true;
+    if (!native_elf_5317_address(0x16e09c0)) return true;
+    const auto owner = native_history_named_global("gamest", "main_interface.squads.open", 1);
+    auto *draw = reinterpret_cast<unsigned char *>(native_elf_5317_address(0x16e09c0));
+    const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x55};
+    constexpr const char *label = "Native ELF Squads component draw entry";
+    if (!owner || !draw || !g_native_squads_draw_hook.prepare(draw, prefix,
+            reinterpret_cast<const void *>(&native_squads_draw), {}, label)) return false;
+    g_native_squads_owner = owner;
+    g_native_squads_footer_callers = {native_elf_5317_address(0x16e879e),
+        native_elf_5317_address(0x16e8806), native_elf_5317_address(0x16e8867),
+        native_elf_5317_address(0x16e88c3)};
+    g_native_squads_member_name_caller = native_elf_5317_address(0x16e43a6);
+    g_native_squads_member_order_caller = native_elf_5317_address(0x16e44bf);
+    g_native_squads_equipment_callers = {native_elf_5317_address(0x16d4ae3),
+        native_elf_5317_address(0x16d573c), native_elf_5317_address(0x16e044c),
+        native_elf_5317_address(0x16df8cc)};
+    if (!g_native_squads_member_elf_hook.install(reinterpret_cast<unsigned char *>(
+            native_elf_5317_address(0x16e4504)), {0x8b,0x85,0xe8,0xfe,0xff,0xff},
+            native_squads_member_elf, "Native ELF Squads member column") ||
+            !g_native_squads_draw_hook.install(label)) {
+        uninstall_native_squads_layer_hook(); return false;
+    }
+#endif
     log_line("INFO", "Redirected the complete Squads sidebar and its child pages to a private output layer");
     return true;
 }
 
 static void uninstall_native_squads_layer_hook() {
+#ifndef _WIN32
+    g_native_squads_member_elf_hook.uninstall("Native ELF Squads member column restore");
+    if (g_native_squads_member_elf_hook.active()) return;
+#endif
     g_native_squads_draw_hook.uninstall("Native fortress Squads draw entry restore");
     g_native_squads_member_cursor_hook.uninstall("Native Squads member column source restore");
     if (!g_native_squads_draw_hook.active() && !g_native_squads_member_cursor_hook.active()) {
@@ -182,15 +236,12 @@ static void uninstall_native_squads_layer_hook() {
     }
 }
 static bool native_squads_layer_hook_active() {
-    return g_native_squads_draw_hook.active() || g_native_squads_member_cursor_hook.active();
-}
-#else
-// No PE address is used as an ELF binding. Preserve the existing Linux path
-// until this component's native producer has an established ELF owner.
-static bool install_native_squads_layer_hook() { return true; }
-static void uninstall_native_squads_layer_hook() { g_native_squads_target.release(); }
-static bool native_squads_layer_hook_active() { return false; }
+    return g_native_squads_draw_hook.active() || g_native_squads_member_cursor_hook.active()
+#ifndef _WIN32
+        || g_native_squads_member_elf_hook.active()
 #endif
+        ;
+}
 
 static void native_squads_present_layer(SDL_Renderer *renderer,
         void (*draw_squads)(SDL_Renderer *)) {

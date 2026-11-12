@@ -1,7 +1,6 @@
 // Capture the native Escape renderer at its complete entry. Its save,
 // timeline, confirmation and ordinary action branches share this owner.
 static NativeUiLayerTarget g_native_pause_target;
-#ifdef _WIN32
 static NativeEntryHook g_native_pause_draw_hook;
 static uintptr_t g_native_pause_owner = 0;
 using NativePauseDrawFn = void (*)(void *, uint32_t, int32_t, int32_t);
@@ -221,6 +220,7 @@ static void native_pause_draw(void *menu, uint32_t tick, int32_t screen_left,
 static bool install_native_pause_layer_hook() {
     if (g_native_pause_draw_hook.installed) return true;
     constexpr const char *label = "Native Escape menu complete draw entry";
+#ifdef _WIN32
     const auto base = native_history_profile_base();
     const auto owner = native_reference_address(base, 0x18a72a0);
     auto *draw = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x1ddd50));
@@ -231,6 +231,14 @@ static bool install_native_pause_layer_hook() {
     if (!owner || !draw || !native_reference_bytes(0x1ddd50, prefix) ||
             !g_native_pause_draw_hook.prepare(draw, prefix,
                 reinterpret_cast<const void *>(&native_pause_draw), {}, label)) return false;
+#else
+    if (!native_elf_5317_address(0x1420aa0)) return true;
+    const auto owner = native_history_named_global("gamest", "main_interface.options.open", 1);
+    auto *draw = reinterpret_cast<unsigned char *>(native_elf_5317_address(0x1420aa0));
+    const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
+    if (!owner || !draw || !g_native_pause_draw_hook.prepare(draw, prefix,
+            reinterpret_cast<const void *>(&native_pause_draw), {}, label)) return false;
+#endif
     g_native_pause_owner = owner;
     return g_native_pause_draw_hook.install(label);
 }
@@ -246,15 +254,6 @@ static void uninstall_native_pause_layer_hook() {
     }
 }
 static bool native_pause_layer_hook_active() { return g_native_pause_draw_hook.active(); }
-#else
-// These PE bindings have no corresponding established ELF owner.
-static bool install_native_pause_layer_hook() { return true; }
-static void uninstall_native_pause_layer_hook() {
-    g_native_pause_target.release();
-    native_pause_begin_frame();
-}
-static bool native_pause_layer_hook_active() { return false; }
-#endif
 
 static void native_pause_present_layer(SDL_Renderer *renderer,
         void (*draw_pause)(SDL_Renderer *)) {

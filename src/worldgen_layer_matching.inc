@@ -41,46 +41,43 @@ std::vector<Match> Overlay::find_native_worldgen_matches() const {
     std::array<uintptr_t, 3> site_gloss_returns{};
     std::array<uintptr_t, 14> resource_returns{};
     std::array<uintptr_t, 2> metal_returns{};
-#ifdef _WIN32
     // These addst writers render the hovered region and its containing
     // landmass on rows 1/2. Bind meaning to their native source, not spelling
     // or a panel's position beside the progress/parameter controls.
-    const auto base = native_history_profile_base();
-    region_return = native_reference_address(base, 0xdfc756);
-    landform_return = native_reference_address(base, 0xdfc7c6);
+    region_return = native_ui_semantic_address(0xdfc756);
+    landform_return = native_ui_semantic_address(0xdfc7c6);
     // The river label is a separate writer. This common name writer follows
     // all five river-size labels and may receive an abbreviated native name.
-    river_return = native_reference_address(base, 0xdfe5dd);
-    river_label_returns = {native_reference_address(base, 0xdfe3a2),
-        native_reference_address(base, 0xdfe3fd), native_reference_address(base, 0xdfe44c),
-        native_reference_address(base, 0xdfe4af), native_reference_address(base, 0xdfe4f2)};
+    river_return = native_ui_semantic_address(0xdfe5dd);
+    river_label_returns = {native_ui_semantic_address(0xdfe3a2),
+        native_ui_semantic_address(0xdfe3fd), native_ui_semantic_address(0xdfe44c),
+        native_ui_semantic_address(0xdfe4af), native_ui_semantic_address(0xdfe4f2)};
     // The site loop draws its native name, then quotes around EnglishName.
     // Its following type/species description remains an independent field.
-    site_return = native_reference_address(base, 0xdfde74);
-    site_gloss_returns = {native_reference_address(base, 0xdfdece),
-        native_reference_address(base, 0xdfdef4), native_reference_address(base, 0xdfdf21)};
+    site_return = native_ui_semantic_address(0xdfde74);
+    site_gloss_returns = {native_ui_semantic_address(0xdfdece),
+        native_ui_semantic_address(0xdfdef4), native_ui_semantic_address(0xdfdf21)};
     // The resource branch writes Clay and Sand as independent colored
     // fields, followed by soil, aquifers, metals and flux. These callers
     // establish their material meaning before controls or generic words.
     resource_returns = {
-        native_reference_address(base, 0xdfe7cf),
-        native_reference_address(base, 0xdfee0a),
-        native_reference_address(base, 0xdfee46),
-        native_reference_address(base, 0xdfeed4),
-        native_reference_address(base, 0xdfef0b),
-        native_reference_address(base, 0xdfefa6),
-        native_reference_address(base, 0xdfefe5),
-        native_reference_address(base, 0xdff024),
-        native_reference_address(base, 0xdff060),
-        native_reference_address(base, 0xdff09c),
-        native_reference_address(base, 0xdff121),
-        native_reference_address(base, 0xdff160),
-        native_reference_address(base, 0xdff1db),
-        native_reference_address(base, 0xdff4c3),
+        native_ui_semantic_address(0xdfe7cf),
+        native_ui_semantic_address(0xdfee0a),
+        native_ui_semantic_address(0xdfee46),
+        native_ui_semantic_address(0xdfeed4),
+        native_ui_semantic_address(0xdfef0b),
+        native_ui_semantic_address(0xdfefa6),
+        native_ui_semantic_address(0xdfefe5),
+        native_ui_semantic_address(0xdff024),
+        native_ui_semantic_address(0xdff060),
+        native_ui_semantic_address(0xdff09c),
+        native_ui_semantic_address(0xdff121),
+        native_ui_semantic_address(0xdff160),
+        native_ui_semantic_address(0xdff1db),
+        native_ui_semantic_address(0xdff4c3),
     };
-    metal_returns = {native_reference_address(base, 0xdff32f),
-        native_reference_address(base, 0xdff3f5)};
-#endif
+    metal_returns = {native_ui_semantic_address(0xdff32f),
+        native_ui_semantic_address(0xdff3f5)};
     struct Field {
         NativeTextCardRow row;
         bool editable = false;

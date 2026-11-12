@@ -104,7 +104,6 @@ static bool join_native_conversation_strings(const unsigned char *entry,
     return true;
 }
 
-#ifdef _WIN32
 static std::optional<std::string> capture_native_conversation_artifact_name(
         const unsigned char *entry) {
     // SPREAD_RUMOR: both PE dispatchers use choice+8 as entity_event*.
@@ -166,7 +165,6 @@ static bool capture_native_existing_conversation_collection(
     return remember_native_conversation_collection_source(
         source.substr(event + 1), circumstance[1]);
 }
-#endif
 
 static bool capture_native_conversation_choices(void *raw_entries, size_t count) {
     const auto invalid = [] {
@@ -193,11 +191,9 @@ static bool capture_native_conversation_choices(void *raw_entries, size_t count)
             !join_native_conversation_strings(entry, layout.keywords, 256, ' ', keywords)) return invalid();
         total_bytes += caption.size() + keywords.size();
         if (total_bytes > (1u << 22)) return invalid();
-#ifdef _WIN32
         collection_changed |= capture_native_existing_conversation_collection(entry, caption);
         if (const auto artifact = capture_native_conversation_artifact_name(entry))
             artifact_names.emplace_back(keywords, *artifact);
-#endif
         choices.emplace_back(std::move(caption), std::move(keywords));
     }
     // Equal displayed text can acquire a different typed collection binding.

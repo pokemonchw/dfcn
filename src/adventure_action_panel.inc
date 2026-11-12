@@ -6,7 +6,6 @@
 void Overlay::append_adventure_action_panel_matches(
         std::vector<std::string> &rows, std::vector<Match> &matches,
         int only_y, const unsigned char *screen_override) const {
-#ifdef _WIN32
     const auto base = native_history_profile_base();
     if (!base) return;
     struct Writer {
@@ -32,10 +31,12 @@ void Overlay::append_adventure_action_panel_matches(
         {0xaffc0e, "and more"},
     };
     const auto address = [base](uintptr_t rva) {
-        return native_reference_address(base, rva);
+        return native_ui_semantic_address(rva);
     };
-    const uintptr_t first_writer = address(0xafef6f);
-    const uintptr_t last_writer = address(0xaffc0e);
+    uintptr_t first_writer = UINTPTR_MAX, last_writer = 0;
+    for (const auto &writer : writers) if (const auto at = address(writer.rva)) {
+        first_writer = std::min(first_writer, at); last_writer = std::max(last_writer, at);
+    }
     if (!first_writer || !last_writer) return;
     const auto direction_target = [&](std::string_view source) -> std::optional<std::string> {
         std::string_view bearing = source;
@@ -170,7 +171,6 @@ void Overlay::append_adventure_action_panel_matches(
             }
         }
     }
-#endif
 }
 
 void Overlay::layout_adventure_action_panel(SDL_Renderer *renderer) {

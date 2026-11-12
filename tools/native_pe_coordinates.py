@@ -495,7 +495,13 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
     pairs = _pairs(tokens)
     constants, byte_arrays = {}, {}
 
-    origin = 0x400000 if elf and ('search_profile' in name or name == 'native_history_event_profiles_elf.inc') else 0
+    # Search bindings store RVAs regardless of their source filename. Their
+    # signature bytes and NativeCall records share the ELF search origin.
+    search_coordinates = 'search_profile' in name or any(
+        token == 'NativeSearchBinding' and tokens[index + 1:index + 2] == ['<']
+        for index, token in enumerate(tokens)
+    )
+    origin = 0x400000 if elf and (search_coordinates or name == 'native_history_event_profiles_elf.inc') else 0
 
     def add(rva, width=1, bias=None):
         if rva is not None and 0 < rva < 0x10000000 and width and width > 0:
@@ -561,6 +567,10 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
     }
     if elf:
         apis.update({'native_reference_va': 0, 'native_elf_history_address': 0})
+    else:
+        # Shared UI roles retain PE reference coordinates at their consumers.
+        # Linux binds those roles separately to its current native producers.
+        apis['native_ui_semantic_address'] = 0
 
     scalar_arrays = _scalar_arrays(tokens, pairs, constants) if not elf else []
     range_variables = _range_variables(tokens, pairs, constants, scalar_arrays) if not elf else []
@@ -698,7 +708,7 @@ def _file_coordinates(name: str, tokens: list[str], required: dict[int, int], el
         if elf and name == 'native_history_profile_elf.inc' and len(parts) == 2 and values[1] is not None:
             add(first, 5)  # ItemCall {absolute call address, semantic role}.
         # The selected search ABI has scalar arrays of native resource labels.
-        if ('search_profile' in name or name == 'native_caption_profile.inc') and len(values) >= 2 and all(v is not None and (v == 0 or v >= 0x10000) for v in values):
+        if (search_coordinates or name == 'native_caption_profile.inc') and len(values) >= 2 and all(v is not None and (v == 0 or v >= 0x10000) for v in values):
             for value in values:
                 add(value)
 

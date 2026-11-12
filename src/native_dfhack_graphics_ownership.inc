@@ -2,7 +2,6 @@
 // DFHack's simulation-thread update. Acquire the private-output lock BEFORE
 // either routine reads graphicst's pointers. Locking viewport::resize itself
 // would be too late: its caller may already have retained a private viewport.
-#ifdef _WIN32
 #include "native_dfhack_display_inputs.inc"
 
 static NativeEntryHook g_native_dfhack_graphics_resize_entry;
@@ -24,7 +23,7 @@ class NativeDfhackDisplayOwnershipScope {
     graphicst *inputs_ = nullptr;
     // Only a reentrant display needs a private header. Keeping this inline
     // consumed about 250 KiB of the Windows render stack on every display.
-    std::unique_ptr<graphicst> nested_inputs_;
+    std::unique_ptr<std::array<unsigned char, sizeof(graphicst)>> nested_inputs_;
     int16_t initial_force_full_display_ = 0;
     std::optional<NativeDfhackLayerRendererGrid> renderer_grid_;
     bool committed_ = false;
@@ -32,8 +31,8 @@ public:
     explicit NativeDfhackDisplayOwnershipScope(void *renderer) : previous_(active_),
             previous_view_(g_native_graphics_read_view) {
         if (!native_dfhack_display_inputs_active()) return;
-        if (previous_) nested_inputs_.reset(new (std::nothrow) graphicst);
-        inputs_ = previous_ ? nested_inputs_.get() : native_dfhack_display_inputs_snapshot();
+        if (previous_) nested_inputs_.reset(new (std::nothrow) std::array<unsigned char, sizeof(graphicst)>);
+        inputs_ = previous_ ? reinterpret_cast<graphicst *>(nested_inputs_.get()) : native_dfhack_display_inputs_snapshot();
         if (!inputs_) return;
         const auto *preceding = previous_ ? previous_->inputs_ :
             g_native_dfhack_render_read_ready ? inputs_ : nullptr;
@@ -203,6 +202,7 @@ static void native_dfhack_graphics_release(void *renderer) {
 
 static bool install_native_dfhack_graphics_ownership() {
     constexpr const char *label = "Native graphics buffer ownership";
+#ifdef _WIN32
     const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
     if (!base || !native_pe_supported()) return false;
     if (!install_native_dfhack_display_inputs()) return false;
@@ -237,6 +237,33 @@ static bool install_native_dfhack_graphics_ownership() {
                 reinterpret_cast<unsigned char *>(address), prefixes[i], wrappers[i], {}, label)) ||
                 !entry->install(label)) return false;
     }
+#else
+    if (!native_elf_5317_address(0x13d14b0) || !install_native_dfhack_display_inputs()) return false;
+    const char *names[]{"_ZN8renderer12gps_allocateEiiiiii", "_ZN9graphicst17reshape_viewportsEi",
+        "_ZN16renderer_2d_baseD2Ev", "_ZN8renderer7displayEv"};
+    NativeEntryHook *entries[]{&g_native_dfhack_graphics_resize_entry, &g_native_dfhack_graphics_zoom_entry,
+        &g_native_dfhack_graphics_release_entry, &g_native_dfhack_graphics_display_entry};
+    const void *wrappers[]{reinterpret_cast<const void *>(&native_dfhack_graphics_resize),
+        reinterpret_cast<const void *>(&native_dfhack_graphics_zoom),
+        reinterpret_cast<const void *>(&native_dfhack_graphics_release),
+        reinterpret_cast<const void *>(&native_dfhack_graphics_display)};
+    for (size_t i = 0; i < 4; ++i) {
+        if (entries[i]->installed) continue;
+        auto *address = static_cast<unsigned char *>(dlsym(RTLD_DEFAULT, names[i]));
+        std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
+        std::vector<NativeRelativeFixup> fixups;
+        if (i == 1) prefix.back() = 0x55;
+        if (i == 2) {
+            prefix = {0xf3,0x0f,0x1e,0xfa,0x48,0x8b,0x05,0,0,0,0};
+            int32_t relative = 0;
+            if (!address || !native_history_copy(reinterpret_cast<uintptr_t>(address + 7), relative)) return false;
+            std::memcpy(prefix.data() + 7, &relative, 4);
+            fixups.push_back({7,11,reinterpret_cast<uintptr_t>(address + 11 + relative)});
+        }
+        if (!address || (!entries[i]->original && !entries[i]->prepare(address, prefix, wrappers[i], fixups, label)) ||
+                !entries[i]->install(label)) return false;
+    }
+#endif
     g_native_dfhack_graphics_ownership_ready.store(true, std::memory_order_release);
     return true;
 }
@@ -266,10 +293,3 @@ static void uninstall_native_dfhack_graphics_ownership() {
     if (!g_native_dfhack_graphics_display_entry.active())
         uninstall_native_dfhack_display_inputs();
 }
-#else
-static graphicst *native_dfhack_render_read_graphics() { return nullptr; }
-static graphicst *native_dfhack_display_inputs_select(graphicst *) noexcept { return nullptr; }
-static bool install_native_dfhack_graphics_ownership() { return true; }
-static bool native_dfhack_graphics_ownership_active() { return false; }
-static void uninstall_native_dfhack_graphics_ownership() {}
-#endif

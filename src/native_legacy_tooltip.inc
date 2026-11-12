@@ -1,7 +1,20 @@
 // DF 53.16 native toolbars: redirect before their inline background clear,
 // then collect only the paragraph/key calls belonging to this native card.
 // A partial border or an item picture over the card is not its identity.
-static NativeCallHook g_native_legacy_tooltip_hook;
+struct NativeLegacyTooltipHooks : NativeCallHook {
+#ifndef _WIN32
+    NativeInlineObserverHook workshop_begin, workshop_end;
+    bool active() const {
+        return NativeCallHook::active() || workshop_begin.active() || workshop_end.active();
+    }
+    bool uninstall(const char *label) {
+        const bool end = workshop_end.uninstall(label);
+        const bool begin = workshop_begin.uninstall(label);
+        return NativeCallHook::uninstall(label) && begin && end;
+    }
+#endif
+};
+static NativeLegacyTooltipHooks g_native_legacy_tooltip_hook;
 static uintptr_t g_native_legacy_tooltip_base = 0;
 struct NativeLegacyTooltipState {
     std::optional<NativeTooltipWidgetFrame> frame;
@@ -186,7 +199,7 @@ static bool capture_native_adventure_toolbar_start(const void *paragraph,
 static int32_t capture_native_legacy_tooltip_start(const void *paragraph) {
     NativeInputCallbackScope callback;
     const auto base = g_native_legacy_tooltip_base;
-    const int32_t left = *reinterpret_cast<const int32_t *>(base + 0x26fe364);
+    const int32_t left = *reinterpret_cast<const int32_t *>(base + native_reference_va(0x26fe364));
     try {
         auto &state = native_legacy_tooltip_state();
         if (state.frame && state.frame->isolated)
@@ -196,8 +209,8 @@ static int32_t capture_native_legacy_tooltip_start(const void *paragraph) {
         state.has_keys = false;
         auto *gps = native_graphics();
         const size_t count = native_paragraph_row_count(paragraph);
-        const bool keys = *reinterpret_cast<const int64_t *>(base + 0x26fe350) != 0;
-        const int bottom = *reinterpret_cast<const int32_t *>(base + 0x26fe368);
+        const bool keys = *reinterpret_cast<const int64_t *>(base + native_reference_va(0x26fe350)) != 0;
+        const int bottom = *reinterpret_cast<const int32_t *>(base + native_reference_va(0x26fe368));
         if (paragraph && gps && gps->screen && gps->dimx > 0 && gps->dimx <= 1000 &&
                 gps->dimy > 0 && gps->dimy <= 1000 &&
                 count <= 1000 && (count > 0 || keys)) {
@@ -251,13 +264,14 @@ static void capture_native_legacy_tooltip_row(graphicst *gps, const NativeString
         caller == native_pe_address(g_native_legacy_tooltip_base, 0x8182e0) + 5 ||
         caller == native_pe_address(g_native_legacy_tooltip_base, 0x185d67) + 5;
 #else
-    const bool body_row = caller == g_native_legacy_tooltip_base + 0x16919e9 + 5;
+    const bool body_row = caller == g_native_legacy_tooltip_base + native_reference_va(0x16919e9) + 5 ||
+        caller == native_elf_5317_address(0x13dad00);
 #endif
     const auto original = reinterpret_cast<NativeCaptionDrawFn>(g_native_legacy_tooltip_base +
 #ifdef _WIN32
         native_pe_rva(0xad9960));
 #else
-        0x425170);
+        native_reference_va(0x425170));
 #endif
     capture_native_legacy_tooltip_text(gps, [&] {
         const auto draw = [&] {
@@ -287,7 +301,7 @@ static void capture_native_legacy_tooltip_key(void *view, long token, NativeJust
 #ifdef _WIN32
         native_pe_rva(0xc394b0));
 #else
-        0x424620);
+        native_reference_va(0x424620));
 #endif
     capture_native_legacy_tooltip_text(native_graphics(), [&] {
         callback.call_native([&] { original(view, token, just); });
@@ -362,8 +376,24 @@ static bool install_native_legacy_tooltip(uintptr_t base) {
         {0x1687e83, 0x424620, reinterpret_cast<const void *>(&capture_native_legacy_tooltip_key)}
 #endif
     };
-#ifdef _WIN32
     if (!native_reference_calls(calls, 0)) return false;
+#ifndef _WIN32
+    if (const auto body = native_elf_5317_address(0x13dacfb))
+        calls.push_back({body - base, native_elf_5317_address(0x4264e0) - base,
+            reinterpret_cast<const void *>(&capture_native_legacy_tooltip_row)});
 #endif
-    return g_native_legacy_tooltip_hook.install(base, calls, "Native legacy toolbar tooltip capture");
+    auto &hooks = g_native_legacy_tooltip_hook;
+    if (!hooks.install(base, calls, "Native legacy toolbar tooltip capture")) return false;
+#ifndef _WIN32
+    if (const auto begin = native_elf_5317_address(0x13da9a3)) {
+        if (!hooks.workshop_begin.install(reinterpret_cast<unsigned char *>(begin),
+                {0x48,0x89,0xda,0x8b,0x8d,0x68,0xfd,0xff,0xff},
+                &observe_native_workshop_tooltip_begin, "Native ELF workshop preview begin") ||
+                !hooks.workshop_end.install(reinterpret_cast<unsigned char *>(
+                    native_elf_5317_address(0x13db6b6)),
+                    {0x48,0x8b,0xbd,0xd0,0xfe,0xff,0xff},
+                    &observe_native_workshop_tooltip_end, "Native ELF workshop preview end")) return false;
+    }
+#endif
+    return true;
 }

@@ -30,12 +30,7 @@ static bool native_character_foreground_view(const graphicst *graphics) noexcept
 }
 
 static bool native_character_translation_active(const graphicst *graphics) noexcept {
-#ifndef _WIN32
-    // The ELF character entry retains its existing page path.
-    return graphics != nullptr;
-#else
     return native_character_foreground_view(graphics);
-#endif
 }
 
 static std::optional<int32_t> native_character_sub_tab(const graphicst *graphics) noexcept {

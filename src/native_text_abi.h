@@ -150,8 +150,8 @@ struct NativeCharacterLayout {
 static constexpr NativeCharacterLayout native_character_layout{0x1c7c, 0x1c88, 0x1ca0, 0x1a90, 0x1aa8, 4,
     {{{0x17f8, 0x1810}, {0x1a50, 0x1a68}}}};
 #else
-static constexpr NativeCharacterLayout native_character_layout{0x1c8c, 0x1c98, 0x1cb0, 0x1aa0, 0x1ab8, 4,
-    {{{0x1800, 0x1818}, {0x1a60, 0x1a78}}}};
+static const NativeCharacterLayout &native_character_layout_data();
+static const NativeCharacterLayout &native_character_layout = native_character_layout_data();
 #endif
 
 static bool native_character_description_active(const void *sheet, bool health) {

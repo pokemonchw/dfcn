@@ -106,11 +106,57 @@ static void capture_native_adventure_hover_truncation(NativeString *source) {
     try { finish_native_adventure_hover(); } catch (...) {}
 }
 
+#ifndef _WIN32
+static NativeInlineObserverHook g_native_adventure_hover_begin_elf_hook, g_native_adventure_hover_end_elf_hook;
+static void native_adventure_hover_begin_elf(const NativeInlineRegisters *r) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        finish_native_adventure_hover();
+        if (!r) return;
+        const auto screen = native_current_viewscreen();
+        if (!native_history_object_is(screen, "viewscreen_setupadventurest")) return;
+        bool owned = false;
+        for (const auto member : {"tooltip_phys_att_box.text", "tooltip_ment_att_box.text", "tooltip_skill_box.text"})
+            owned = owned || native_history_object_member(screen, "viewscreen_setupadventurest", member, 24) == r->r13;
+        NativeBorrowedVector<uintptr_t> rows;
+        auto *gps = native_graphics();
+        int32_t left = 0, top = 0;
+        const int32_t right = static_cast<int32_t>(r->r12), bottom = static_cast<int32_t>(r->r15);
+        if (!owned || !gps || !native_history_read_vector(r->r13, rows) || !rows.size() || rows.size() > 4096 ||
+                !native_history_copy(r->rbp - 0x3e0, left) || !native_history_copy(r->rbp - 0x3f0, top) ||
+                left > right || top >= bottom) return;
+        NativeTooltipWidgetFrame frame;
+        frame.bounds = {left, top, right - left + 1, bottom - top + 1};
+        if (!native_tooltip_valid_bounds(*gps, frame.bounds)) return;
+        frame.dimx = gps->dimx; frame.dimy = gps->dimy;
+        frame.epoch = g_embark_item_capture_epoch.load(std::memory_order_acquire);
+        frame.rows.assign(frame.bounds.h, std::string(frame.bounds.w, ' '));
+        auto &state = native_adventure_hover_state();
+        state.previous = g_native_tooltip_write; state.frame = std::move(frame);
+        if (!native_tooltip_begin_draw(*state.frame)) { state.frame.reset(); state.previous = nullptr; return; }
+        g_native_tooltip_write = &*state.frame;
+    } catch (...) {}
+}
+static void native_adventure_hover_end_elf(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try { finish_native_adventure_hover(); } catch (...) {}
+}
+#endif
+
 static bool native_adventure_hover_hook_active() {
-    return g_native_adventure_hover_hook.code.active();
+    return g_native_adventure_hover_hook.code.active()
+#ifndef _WIN32
+        || g_native_adventure_hover_begin_elf_hook.active() || g_native_adventure_hover_end_elf_hook.active()
+#endif
+        ;
 }
 
 static bool uninstall_native_adventure_hover_hook() {
+#ifndef _WIN32
+    g_native_adventure_hover_begin_elf_hook.uninstall("Native ELF attribute hover begin restore");
+    g_native_adventure_hover_end_elf_hook.uninstall("Native ELF attribute hover end restore");
+    if (g_native_adventure_hover_begin_elf_hook.active() || g_native_adventure_hover_end_elf_hook.active()) return false;
+#endif
     // A remaining relay must keep its native target, including after a
     // partially completed install or a failed restore/release operation.
     if (!g_native_adventure_hover_hook.code.uninstall("Character hover capture restore"))
@@ -124,10 +170,15 @@ static bool uninstall_native_adventure_hover_hook() {
 
 static bool install_native_adventure_hover_hook() {
 #ifndef _WIN32
-    // The retained ELF location identifies only the start of an inline
-    // writer. Without a verified end, it cannot safely redirect that writer;
-    // the Tooltip widget and toolbar producers retain their native adapters.
-    return true;
+    if (!native_elf_5317_address(0x112dbf8)) return true;
+    if (g_native_adventure_hover_begin_elf_hook.install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(0x112dbf8)), {0x44,0x39,0xbd,0x10,0xfc,0xff,0xff},
+            native_adventure_hover_begin_elf, "Native ELF attribute hover begin") &&
+            g_native_adventure_hover_end_elf_hook.install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(0x111acf7)), {0x48,0x8b,0x85,0x60,0xfc,0xff,0xff},
+            native_adventure_hover_end_elf, "Native ELF attribute hover end")) return true;
+    uninstall_native_adventure_hover_hook();
+    return false;
 #else
     auto &hook = g_native_adventure_hover_hook;
     if (hook.code.installed) return true;

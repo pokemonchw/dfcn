@@ -104,7 +104,8 @@ inline Catalog read_catalog(Reader &reader) {
         pattern.reference = reader.number(); pattern.flags = reader.number(); pattern.owner = reader.number();
         pattern.raw = reader.blob(); pattern.mask = reader.blob();
         if (!pattern.reference || pattern.raw.empty() || pattern.raw.size() != pattern.mask.size() ||
-            pattern.raw.size() > UINT32_MAX - pattern.reference || (pattern.flags != 1 && pattern.flags != 4))
+            pattern.raw.size() > UINT32_MAX - pattern.reference ||
+            (pattern.flags != 1 && pattern.flags != 3 && pattern.flags != 4 && pattern.flags != 17 && pattern.flags != 25))
             throw std::runtime_error("Invalid ELF scan pattern");
         for (auto byte : pattern.mask) if (byte > 1) throw std::runtime_error("Invalid ELF operand mask");
         pattern.fixups.resize(reader.count(100000));
@@ -203,18 +204,35 @@ inline void validate_image(const Image &image, const Module &module) {
     }
 }
 
-inline State discover(const Image &image, const Catalog &catalog) {
+inline State discover(const Image &image, const Catalog &catalog,
+        const std::vector<Range> &reviewed = {}, const std::vector<Byte> &bytes = {}) {
     for (const auto &entry : catalog.imports) if (entry.library == "object") {
         const auto *symbol = image.symbol(entry.symbol);
         if (!symbol || symbol->type != STT_OBJECT || symbol->size != entry.extent)
             throw std::runtime_error("Native ELF object ABI changed: " + entry.symbol);
     }
+    auto anchors = reviewed;
     for (const auto &contract : catalog.contracts) {
         const auto *symbol = image.symbol(contract.name);
         if (!symbol || symbol->type != contract.type || symbol->size != contract.size)
             throw std::runtime_error("Native g_src ABI changed: " + contract.name);
+        if (contract.type == STT_FUNC) anchors.push_back({contract.reference, contract.reference + 1, symbol->address});
     }
-    return address_runtime::scan(image, catalog, catalog.layouts, true);
+    auto remaining = catalog;
+    for (;;) {
+        try { return address_runtime::scan(image, remaining, catalog.layouts, true, {}, anchors, bytes); }
+        catch (const address_runtime::PatternConflicts &conflicts) {
+            // A later symbolic/global anchor can disprove a formerly unique
+            // local match. Rebuild the entire graph without that candidate;
+            // none of its ranges, operands or inferred globals survive.
+            const auto previous = remaining.patterns.size();
+            std::erase_if(remaining.patterns, [&](const auto &pattern) {
+                return std::find(conflicts.rejected.begin(), conflicts.rejected.end(),
+                    std::pair{pattern.reference, static_cast<uint32_t>(pattern.raw.size())}) != conflicts.rejected.end();
+            });
+            if (remaining.patterns.size() == previous) throw;
+        }
+    }
 }
 
 inline void write_number(std::ostream &stream, uint32_t number) { stream.write(reinterpret_cast<const char *>(&number), 4); }
@@ -425,7 +443,7 @@ inline RuntimeState prepare() {
         Reader seed(runtime::data_path() / "native-addresses/elf-seed.bin");
         const auto seed_digest = sha256(seed.bytes().data(), seed.bytes().size());
         ProcessCache process_cache(result, seed_digest);
-        if (process_cache.load(result)) return result;
+        if (process_cache.load(result) && result.complete) return result;
         // Use the same seed snapshot for the process identity and discovery.
         seed.magic("DFCNEL01");
         if (seed.count(2) != 2) throw std::runtime_error("Missing executable/library ELF startup evidence");
@@ -439,6 +457,24 @@ inline RuntimeState prepare() {
         };
         const Image main_image(result.executable.path), library_image(result.library.path);
         validate_image(main_image, result.executable); validate_image(library_image, result.library);
+        try {
+            Reader edition(runtime::data_path() / "native-addresses/elf-current.bin", true);
+            edition.magic("DFCNLA01");
+            for (const auto &expected : {main_image.digest, library_image.digest, seed_digest}) {
+                std::array<unsigned char, 32> actual{};
+                edition.read(actual.data(), actual.size());
+                if (actual != expected) throw std::runtime_error("Packaged ELF edition identity differs");
+            }
+            auto main = read_state(edition, main_image, main_catalog);
+            auto library = read_state(edition, library_image, library_catalog);
+            edition.finish();
+            if (!main.complete || !library.complete) throw std::runtime_error("Incomplete packaged ELF edition");
+            result.main_addresses = std::move(main); result.library_addresses = std::move(library);
+            result.complete = true;
+            result.message = "Native ELF edition bindings: main=" + result.executable.build + " g_src=" + result.library.build;
+            retain();
+            return result;
+        } catch (const std::exception &) { /* Another edition uses its own cache/discovery. */ }
         const auto key = hex_digest(main_image.digest) + "-" + hex_digest(library_image.digest) + "-" + hex_digest(seed_digest);
         const auto cache = runtime::data_path() / "native-addresses/cache" / ("elf-" + key + ".bin");
         try {

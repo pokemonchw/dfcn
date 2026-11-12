@@ -1,7 +1,6 @@
 // The actor supplier retains complete names but clips the title and the
 // association body strings to the native card width. Bind the overlay's
 // complete source to the exact native string owner without altering the card.
-#ifdef _WIN32
 using NativeJusticeActorSupplyFn = void (*)(void *);
 
 struct NativeJusticeActorCapturedSource {
@@ -17,6 +16,9 @@ struct NativeJusticeActorCaptureProfile {
 };
 
 static NativeCallHook g_native_justice_actor_capture_hook;
+#ifndef _WIN32
+static NativeEntryHook g_native_justice_actor_supply_entry;
+#endif
 static NativeJusticeActorSupplyFn g_native_justice_actor_supply = nullptr;
 static uintptr_t g_native_justice_actor_capture_base = 0;
 static std::mutex g_native_justice_actor_capture_mutex;
@@ -200,27 +202,41 @@ static std::optional<std::string> native_justice_actor_source(uintptr_t address,
         std::optional<bool> *sabotage_person) {
     if (sabotage_person) sabotage_person->reset();
     const uintptr_t base = g_native_justice_actor_capture_base;
-    if (!base || !address ||
-            (native_caller != native_reference_address(base, 0x4786c7) &&
-             native_caller != native_reference_address(base, 0x4788f1))) return std::nullopt;
+#ifdef _WIN32
+    const auto title_return = native_reference_address(base, 0x4786c7);
+    const auto body_return = native_reference_address(base, 0x4788f1);
+#else
+    const auto title_return = native_elf_5317_address(0x174cd53);
+    const auto body_return = native_elf_5317_address(0x174ceca);
+#endif
+    if (!base || !address || (native_caller != title_return && native_caller != body_return))
+        return std::nullopt;
     std::lock_guard<std::mutex> lock(g_native_justice_actor_capture_mutex);
     const auto found = g_native_justice_actor_sources.find(address);
     if (found == g_native_justice_actor_sources.end() || found->second.visible != displayed)
         return std::nullopt;
     const auto &source = found->second;
-    const bool title = native_caller == native_reference_address(base, 0x4786c7);
+    const bool title = native_caller == title_return;
     if (title != (address == source.actor + 0x58)) return std::nullopt;
     if (sabotage_person) *sabotage_person = source.sabotage_person;
     return source.complete;
 }
 
 static bool native_justice_actor_capture_hook_active() {
-    return g_native_justice_actor_capture_hook.active();
+    return g_native_justice_actor_capture_hook.active()
+#ifndef _WIN32
+        || g_native_justice_actor_supply_entry.active()
+#endif
+        ;
 }
 
 static void uninstall_native_justice_actor_capture_hook() {
     if (!native_callbacks_idle() ||
             !g_native_justice_actor_capture_hook.uninstall("Native justice actor sources")) return;
+#ifndef _WIN32
+    g_native_justice_actor_supply_entry.uninstall("Native ELF justice actor supplier restore");
+    if (g_native_justice_actor_supply_entry.active()) return;
+#endif
     g_native_justice_actor_supply = nullptr;
     g_native_justice_actor_capture_base = 0;
     std::lock_guard<std::mutex> lock(g_native_justice_actor_capture_mutex);
@@ -229,12 +245,17 @@ static void uninstall_native_justice_actor_capture_hook() {
 }
 
 static bool install_native_justice_actor_capture_hook() {
+#ifdef _WIN32
     if (g_native_justice_actor_capture_hook.installed) return true;
+#else
+    if (g_native_justice_actor_supply_entry.installed) return true;
+#endif
     if (native_justice_actor_capture_hook_active()) {
         uninstall_native_justice_actor_capture_hook();
         if (native_justice_actor_capture_hook_active()) return false;
     }
     const uintptr_t base = native_history_profile_base();
+#ifdef _WIN32
     const NativeSearchBinding<NativeJusticeActorCaptureProfile> bindings[]{
         {{
             {0xd1840, {0x48,0x89,0x5c,0x24,0x10,0x48,0x89,0x74,0x24,0x18,
@@ -260,14 +281,18 @@ static bool install_native_justice_actor_capture_hook() {
         return false;
     }
     return true;
-}
 #else
-static std::optional<std::string> native_justice_actor_source(uintptr_t,
-        std::string_view, uintptr_t, std::optional<bool> *sabotage_person) {
-    if (sabotage_person) sabotage_person->reset();
-    return std::nullopt;
-}
-static bool native_justice_actor_capture_hook_active() { return false; }
-static void uninstall_native_justice_actor_capture_hook() {}
-static bool install_native_justice_actor_capture_hook() { return true; }
+    auto *supply = reinterpret_cast<unsigned char *>(native_elf_5317_address(0x17cce20));
+    if (!supply) return true;
+    if (!g_native_justice_actor_supply_entry.prepare(supply,
+            {0xf3,0x0f,0x1e,0xfa,0x41,0x57},
+            reinterpret_cast<const void *>(&capture_native_justice_actor_card), {},
+            "Native ELF justice actor supplier")) return false;
+    g_native_justice_actor_supply = reinterpret_cast<NativeJusticeActorSupplyFn>(
+        g_native_justice_actor_supply_entry.original);
+    g_native_justice_actor_capture_base = base;
+    if (g_native_justice_actor_supply_entry.install("Native ELF justice actor supplier")) return true;
+    uninstall_native_justice_actor_capture_hook();
+    return false;
 #endif
+}

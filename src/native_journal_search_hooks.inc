@@ -70,51 +70,58 @@ static bool install_native_journal_search_hook() {
 #ifdef _WIN32
     if (!resolve_native_journal_search_profile_pe(profile)) return false;
 #else
+    // This binding belongs to the installed 53.17 ELF. The old filter was
+    // absent from the retained 53.16 instruction seed, so relocating its RVA
+    // cannot establish the call sites or their live register arguments.
     const uintptr_t base = native_history_profile_base();
-    // Reference ELF bcc6789: owner+2a8 is the input, stack+70 its working
-    // query. The relay has pushed its return address, hence RSI = RSP+78.
-    // Every callback receives an explicit complete display source before
-    // simplify_string destroys spelling. For events this is summary+68;
-    // list_name+28 is only an index. The remaining branches copy the full
-    // list_name: people/sites/groups/regions/artifacts +08, bestiary +10,
-    // agreements +20, intrigue actors/organizations +18, plots +00.
-    // Plots also search organization_name+70 with its own name grammar.
-    const NativeSearchBinding<NativeJournalSearchProfile> bindings[]{
-        {{
-            {0x13d92b0, {0xf3,0x0f,0x1e,0xfa,0x41,0x57,0x41,0x56,0x41,0x55,
-                0x41,0x54,0x49,0x89,0xfc,0x55,0x53,0x48,0x81,0xec,0xe8,0,0,0}},
-            {0x13d92c8, {0x48,0x8b,0xb7,0xa8,0x02,0,0,0x48,0x8b,0x97,0xb0,0x02,0,0}},
-            {0x13d9312, {0x48,0x89,0xef,0xe8,0x26,0xc6,0xc4,0xfe,
-                0x66,0x41,0x83,0xbc,0x24,0x76,0x02,0,0,0x08}},
-            {0x13da72c, {0x48,0x8b,0x4c,0x24,0x08,0x48,0x8b,0x50,0x30,
-                0x48,0x89,0x8c,0x24,0xb0,0,0,0,0x48,0x8b,0x70,0x28}},
-            {0x13da6a0, {0x49,0x8d,0xbc,0x24,0x98,0x05,0,0}},
-            {0x13da720, {0x48,0x8b,0x4c,0x24,0x18,0x4c,0x89,0xf7,0x48,0x8b,0x04,0x08}},
-            {0x13e0018, {0x48,0x8d,0xbd,0xa8,0x02,0,0,0x48,0x89,0xd9,
-                0xba,0x0f,0,0,0,0xbe,0x14,0,0,0,0xe8,0xbf,0x49,0xc4,0xfe}}
-        }, {0, reinterpret_cast<NativeSearchFoldFn>(native_reference_address(base, 0x25940)), {
-            {0x13d9315, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_query)},
-            // R12 is the owner. Stack+18 holds the byte offset of the
-            // candidate in owner+598; account for the relay return address.
-            {0x13da74c, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Event>),
-                {0x48,0x8d,0x74,0x24,0x78,
-                 0x49,0x8b,0x94,0x24,0x98,0x05,0,0,
-                 0x48,0x8b,0x4c,0x24,0x20,
-                 0x48,0x8b,0x14,0x0a,0x48,0x83,0xc2,0x68}},
-            {0x13da317, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Agreement>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13da987, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Person>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13d9c57, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Site>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13d9eb7, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Group>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13da0c7, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Region>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13da527, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Creature>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13d9757, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Artifact>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13d99d4, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Actor>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13daf54, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Organization>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13d940b, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Plot>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
-            {0x13d943f, 0x25940, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::PlotOrganization>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}}
-        }}}
+    const uintptr_t fold = native_elf_5317_address(0x426d50);
+    if (!base || !fold) {
+        report_native_patch_error("ERROR", "Adventure journal search", "unsupported native filter image");
+        return false;
+    }
+    const auto signature = [](uintptr_t va, const std::vector<unsigned char> &expected) {
+        const uintptr_t address = native_elf_5317_address(va);
+        std::vector<unsigned char> observed(expected.size());
+        return address && native_history_copy_bytes(address, observed.data(), observed.size()) &&
+            observed == expected;
     };
-    if (!resolve_native_search_binding(bindings, profile, "Adventure journal search")) return false;
+    // R12 owns filter_str at +2a8 and the event vector at +598. The working
+    // query is RSP+70; the relay return address makes its callback RSI=RSP+78.
+    if (!signature(0x17e6b60, {0xf3,0x0f,0x1e,0xfa,0x41,0x57,0x41,0x56,0x41,0x55,
+                0x41,0x54,0x49,0x89,0xfc,0x55,0x53,0x48,0x81,0xec,0xe8,0,0,0}) ||
+            !signature(0x17e6b78, {0x48,0x8b,0xb7,0xa8,0x02,0,0,0x48,0x8b,0x97,0xb0,0x02,0,0}) ||
+            !signature(0x17e6bc2, {0x48,0x89,0xef,0xe8,0x86,0x01,0xc4,0xfe,
+                0x66,0x41,0x83,0xbc,0x24,0x76,0x02,0,0,0x08}) ||
+            !signature(0x17e7fdc, {0x48,0x8b,0x4c,0x24,0x08,0x48,0x8b,0x50,0x30,
+                0x48,0x89,0x8c,0x24,0xb0,0,0,0,0x48,0x8b,0x70,0x28}) ||
+            !signature(0x17e7f50, {0x49,0x8d,0xbc,0x24,0x98,0x05,0,0}) ||
+            !signature(0x17e7fd0, {0x48,0x8b,0x4c,0x24,0x18,0x4c,0x89,0xf7,0x48,0x8b,0x04,0x08})) {
+        report_native_patch_error("ERROR", "Adventure journal search", "native filter signature differs");
+        return false;
+    }
+    profile.base = base;
+    profile.fold = reinterpret_cast<NativeSearchFoldFn>(fold);
+    profile.calls = {
+        {native_elf_5317_address(0x17e6bc5) - base, fold - base,
+            reinterpret_cast<const void *>(&capture_native_journal_search_query)},
+        // Event summary+68 supplies the complete display text, rather than
+        // the index at list_name+28. Other tabs retain their full list name.
+        {native_elf_5317_address(0x17e7ffc) - base, fold - base,
+            reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Event>),
+            {0x48,0x8d,0x74,0x24,0x78,0x49,0x8b,0x94,0x24,0x98,0x05,0,0,
+             0x48,0x8b,0x4c,0x24,0x20,0x48,0x8b,0x14,0x0a,0x48,0x83,0xc2,0x68}},
+        {native_elf_5317_address(0x17e7bc7) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Agreement>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e8237) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Person>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e7507) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Site>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e7767) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Group>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e7977) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Region>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e7dd7) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Creature>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e7007) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Artifact>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e7284) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Actor>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e8804) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Organization>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e6cbb) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::Plot>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+        {native_elf_5317_address(0x17e6cef) - base, fold - base, reinterpret_cast<const void *>(&capture_native_journal_search_term<JournalSearchKind::PlotOrganization>), {0x48,0x8d,0x74,0x24,0x78,0x48,0x89,0xfa}},
+    };
 #endif
     g_native_journal_search_fold = profile.fold;
     if (!g_native_journal_search_hook.install(profile.base, profile.calls,

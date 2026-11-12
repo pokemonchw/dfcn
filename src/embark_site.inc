@@ -4,18 +4,15 @@
 void Overlay::append_embark_resource_fields(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y,
         const unsigned char *screen_override) const {
-#ifdef _WIN32
-    const auto base = native_history_profile_base();
-    if (!base) return;
     // 53.16 world-generation and both travel-map resource lists. Edition
     // relocation also covers the official classic image's matching writers.
     const std::array<uintptr_t, 6> writers = {
-        native_reference_address(base, 0xdff32f),
-        native_reference_address(base, 0xdff3f5),
-        native_reference_address(base, 0x104eac5),
-        native_reference_address(base, 0x104eb8d),
-        native_reference_address(base, 0x104aed4),
-        native_reference_address(base, 0x104af98),
+        native_ui_semantic_address(0xdff32f),
+        native_ui_semantic_address(0xdff3f5),
+        native_ui_semantic_address(0x104eac5),
+        native_ui_semantic_address(0x104eb8d),
+        native_ui_semantic_address(0x104aed4),
+        native_ui_semantic_address(0x104af98),
     };
     for (const bool top : {false, true}) {
         const auto *grid = top ? gps_->screen_top : gps_->screen;
@@ -58,7 +55,6 @@ void Overlay::append_embark_resource_fields(std::vector<std::string> &rows,
             matches.push_back(std::move(match));
         }
     }
-#endif
 }
 
 // Reclaim news belongs to the same live records as the selection list.

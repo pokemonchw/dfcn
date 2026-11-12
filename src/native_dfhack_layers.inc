@@ -579,29 +579,26 @@ static std::atomic<int16_t> g_native_dfhack_render_force{0};
 // Publish the restored native header before entering that writer so display
 // never falls back to the preceding frame's swapped screen/viewport pointers.
 // This short handoff is independent of the private writer and translation locks.
-#ifdef _WIN32
 static std::mutex g_native_dfhack_display_source_mutex;
-static graphicst g_native_dfhack_display_source{};
+alignas(graphicst) static std::array<unsigned char, sizeof(graphicst)> g_native_dfhack_display_source{};
 static bool g_native_dfhack_display_source_ready = false;
 
 static void native_dfhack_publish_display_source(const graphicst &graphics) noexcept {
     std::lock_guard<std::mutex> lock(g_native_dfhack_display_source_mutex);
-    std::memcpy(&g_native_dfhack_display_source, &graphics, sizeof(graphicst));
+    std::memcpy(g_native_dfhack_display_source.data(), &graphics, sizeof(graphicst));
     g_native_dfhack_display_source_ready = true;
 }
 static bool native_dfhack_copy_display_source(graphicst &graphics) noexcept {
     std::lock_guard<std::mutex> lock(g_native_dfhack_display_source_mutex);
     if (!g_native_dfhack_display_source_ready) return false;
-    std::memcpy(&graphics, &g_native_dfhack_display_source, sizeof(graphicst));
+    std::memcpy(&graphics, g_native_dfhack_display_source.data(), sizeof(graphicst));
     return true;
 }
 static void native_dfhack_invalidate_display_source() noexcept {
     std::lock_guard<std::mutex> lock(g_native_dfhack_display_source_mutex);
     g_native_dfhack_display_source_ready = false;
 }
-#else
-static void native_dfhack_publish_display_source(const graphicst &) noexcept {}
-#endif
+
 static uint64_t g_native_dfhack_layer_retired = 0;
 static bool g_native_dfhack_layer_staging_pending = false;
 static bool g_native_dfhack_layer_commit_pending = false;
@@ -700,11 +697,9 @@ static void native_dfhack_notify_commit() noexcept {
     if (g_native_dfhack_layer_notification_pending.exchange(false, std::memory_order_acq_rel))
         native_dfhack_layer_committed();
 }
-#ifdef _WIN32
 // Native buffer ownership must be serialized before the real graphicst can
 // borrow private output pointers across a DFHack update or render callback.
 static std::atomic_bool g_native_dfhack_graphics_ownership_ready{false};
-#endif
 
 static void native_dfhack_layer_record_artwork_tile(const graphicst *gps,
         const void *pen, int x, int y) noexcept {
@@ -901,9 +896,7 @@ public:
             if (g_native_process_exiting.load(std::memory_order_acquire)) return;
             native_read_.emplace();
             native_dfhack_retire_writer_storage();
-#ifdef _WIN32
             if (!g_native_dfhack_graphics_ownership_ready.load(std::memory_order_acquire)) return;
-#endif
             slot_ = native_dfhack_graphics_slot();
             if (!slot_) return;
             native_ = native_graphics_owner();

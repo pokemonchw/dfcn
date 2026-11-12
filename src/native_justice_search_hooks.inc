@@ -9,9 +9,9 @@ struct NativeJusticeSearchProfile {
 static void capture_native_justice_search_query(NativeString *);
 template<JournalSearchKind Kind>
 static void capture_native_justice_search_term(NativeString *, const NativeString *);
-#ifdef _WIN32
 template<JournalSearchKind Kind>
 static void capture_native_justice_plot_search_term(NativeString *, const NativeString *, uintptr_t);
+#ifdef _WIN32
 #include "native_justice_search_profile_pe.inc"
 #else
 #include "native_justice_search_profile_elf.inc"
@@ -35,7 +35,6 @@ static void capture_native_justice_search_term(NativeString *term,
         });
 }
 
-#ifdef _WIN32
 template<JournalSearchKind Kind>
 static std::optional<NativeJusticePlotCaption> native_justice_search_plot_caption(
         uintptr_t plot, std::string_view copied) {
@@ -51,11 +50,11 @@ static std::optional<NativeJusticePlotCaption> native_justice_search_plot_captio
         // +70 is the producer's shortened personal-name string. The same
         // native relationship recovery used by its draw owns the full name
         // and the exact language_name identity for translated searches.
-        return native_justice_plot_caption(native_reference_address(base, 0x4776fa),
+        return native_justice_plot_caption(native_ui_semantic_address(0x4776fa),
             source_address, current);
     } else {
         if (auto caption = native_justice_plot_caption(
-                native_reference_address(base, 0x477471), plot + 0x40, current))
+                native_ui_semantic_address(0x477471), plot + 0x40, current))
             return caption;
         // A query can run before the renderer's first lazy +00 -> +40 copy.
         // The verified source is +00 in this filter; its agreement still
@@ -97,7 +96,6 @@ static void capture_native_justice_plot_search_term(NativeString *term,
                 : g_overlay.translated_journal_search_matches(source, needle, Kind);
         });
 }
-#endif
 
 static bool native_justice_search_hook_active() {
     return g_native_justice_search_hook.active();

@@ -259,9 +259,7 @@ void Overlay::append_character_work_detail_rows(std::vector<std::string> &rows,
 #else
     const uintptr_t base = native_history_profile_base();
     if (!base) return;
-    const uintptr_t details_address = native_history_object_member(
-        native_reference_address(base, native_history_layout::plotinfo_rva),
-        "plotinfost", "labor_info.work_details", 24);
+    const uintptr_t details_address = native_history_named_global("plotinfost", "labor_info.work_details", 24);
 #endif
     std::array<uintptr_t, 3> details{};
     if (!details_address || !native_history_copy_bytes(details_address,

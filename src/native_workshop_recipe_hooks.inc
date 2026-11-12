@@ -3,10 +3,8 @@
 // and matching remain in the shared workshop tooltip compositor.
 using NativeWorkshopRecipeStringFn = void (*)(NativeString *);
 static void capture_native_workshop_recipe_paragraph(void *,const NativeString *,int);
-#ifdef _WIN32
 static void capture_native_workshop_product_paragraph(
     void *, const NativeString *, int, const void *);
-#endif
 struct NativeWorkshopRecipeProfile {
     uintptr_t base = 0;
     uintptr_t begin_site = 0, begin_target = 0;
@@ -61,7 +59,6 @@ static void clear_native_workshop_requirements() {
     native_workshop_recipe_thread_state().pending.clear();
 }
 
-#ifdef _WIN32
 static std::optional<NativeJobItemCaption> capture_native_workshop_job_item(
         const void *job_item, std::string_view source) {
     const uintptr_t object = reinterpret_cast<uintptr_t>(job_item);
@@ -69,8 +66,10 @@ static std::optional<NativeJobItemCaption> capture_native_workshop_job_item(
     NativeJobItemCaption caption;
     caption.owner = object;
     caption.source.assign(source);
-    // Both product and reagent loops retain the exact job_req_elementst in
-    // RSI while formatting its description. This is the object copied at
+    // The PE loops retain the exact job_req_elementst in RSI; ELF retains
+    // its pointer in the current R13 vector entry. Both copy these same
+    // scalar fields and 32-byte strings while formatting the description.
+    // This is the object copied at
     // 8c31c1..8c32e2 / 8c3573..8c36a6, not a reconstructed job-type recipe.
     if (!native_history_copy(object, caption.item_type) ||
             !native_history_copy(object + 2, caption.item_subtype) ||
@@ -97,7 +96,6 @@ static std::optional<NativeJobItemCaption> capture_native_workshop_job_item(
     }
     return caption;
 }
-#endif
 
 static void remember_native_workshop_recipe_field(const void *paragraph,
         int width, std::string source, size_t first_line,
@@ -159,11 +157,7 @@ static void capture_native_workshop_requirement_begin(NativeString *source,
         if (pending.size() >= 32 || !native_string_view(source, &text, 65536) ||
             text.empty() || text.find('\0') != std::string_view::npos) return;
         std::optional<NativeJobItemCaption> caption;
-#ifdef _WIN32
         caption = capture_native_workshop_job_item(job_item, text);
-#else
-        (void)job_item;
-#endif
         pending.push_back({source, paragraph, first_line, std::string(text),
             std::move(caption)});
     } catch (...) {
@@ -213,7 +207,6 @@ static void capture_native_workshop_recipe_paragraph(void *paragraph,
     try { capture_appended_native_paragraph(paragraph,width,std::move(complete),first,true); } catch (...) {}
 }
 
-#ifdef _WIN32
 static void capture_native_workshop_product_paragraph(void *paragraph,
         const NativeString *source, int width, const void *job_item) {
     NativeInputCallbackScope callback;
@@ -247,7 +240,6 @@ static void capture_native_workshop_product_paragraph(void *paragraph,
             std::move(complete), first, std::move(caption));
     } catch (...) {}
 }
-#endif
 
 static bool uninstall_native_workshop_recipe_hooks() {
     auto &hook = g_native_workshop_recipe_hooks;
@@ -281,7 +273,7 @@ static bool install_native_workshop_recipe_hooks() {
         if (!g_real_native_paragraph || profile.paragraph_width <= 0) return false;
         hook.paragraph_width = profile.paragraph_width;
         for (auto &call : profile.paragraph_calls)
-            call.wrapper = reinterpret_cast<const void *>(&capture_native_workshop_recipe_paragraph);
+            if (!call.wrapper) call.wrapper = reinterpret_cast<const void *>(&capture_native_workshop_recipe_paragraph);
         if (!profile.paragraph_calls.empty() &&
                 !hook.code.install(profile.base,profile.paragraph_calls,"Workshop recipe paragraph source")) return false;
         guard.committed = true;

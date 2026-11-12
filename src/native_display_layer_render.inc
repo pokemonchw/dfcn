@@ -1,6 +1,6 @@
 // display_interfacest owns the native assignment picker, including its inline
 // frame stores, category counts, search field and concrete-item checkboxes.
-// Its PE render ABI is (display, tick, screen_left, screen_right).
+// Its render ABI is (display, tick, screen_left, screen_right).
 static NativeEntryHook g_native_display_draw_hook;
 static NativeCallHook g_native_display_item_calls;
 static NativeUiLayerTarget g_native_display_target;
@@ -22,7 +22,6 @@ static std::optional<NativeTradeItemCaption> capture_native_display_item_caption
     } catch (...) { return std::nullopt; }
 }
 
-#ifdef _WIN32
 using NativeDisplayDrawFn = void (*)(void *, uint32_t, int32_t, int32_t);
 
 static void native_display_draw(void *display, uint32_t tick, int32_t screen_left,
@@ -46,8 +45,12 @@ static void native_display_draw(void *display, uint32_t tick, int32_t screen_lef
     const int right = gps ? static_cast<int>(std::clamp<int64_t>(
         int64_t(screen_right) - 28, -1, gps->dimx - 1)) : -1;
     int grid_y = gps ? gps->dimy : 0;
+#ifdef _WIN32
     if (settings) std::memcpy(&grid_y,
         reinterpret_cast<const unsigned char *>(settings) + 0x18, sizeof(grid_y));
+#else
+    if (settings) grid_y = settings->display.grid_y;
+#endif
     const int bottom = gps ? std::min(gps->dimy - 1, grid_y - 4) : -1;
     isolate = isolate && left <= right && bottom >= 4;
     if (isolate) {
@@ -71,15 +74,27 @@ static void native_display_draw(void *display, uint32_t tick, int32_t screen_lef
     // Unlike Stocks, the display component has assignment identity at +10;
     // its filtered type vector/current type are consequently at +40/+58.
     std::array<uintptr_t, 2> types{};
-    std::memcpy(types.data(), static_cast<unsigned char *>(display) + 0x40, sizeof(types));
+#ifdef _WIN32
+    const auto type_list = reinterpret_cast<uintptr_t>(display) + 0x40;
+    const auto current_type = reinterpret_cast<uintptr_t>(display) + 0x58;
+    const auto item_height = reinterpret_cast<uintptr_t>(display) + 0x170;
+#else
+    const auto type_list = native_history_named_global("gamest",
+        "main_interface.assign_display_item.filtered_type_list", 24);
+    const auto current_type = native_history_named_global("gamest",
+        "main_interface.assign_display_item.current_type", 2);
+    const auto item_height = native_history_named_global("gamest",
+        "main_interface.assign_display_item.i_height", 4);
+#endif
+    if (type_list) std::memcpy(types.data(), reinterpret_cast<const void *>(type_list), sizeof(types));
     const size_t count = types[1] >= types[0] ? (types[1] - types[0]) / sizeof(int16_t) : 0;
     const int split = left + (right - left + 1) / 3;
     const int category_rows = std::max(0, (grid_y - 11) / 3);
-    std::memcpy(&g_native_display_current_type,
-        static_cast<unsigned char *>(display) + 0x58, sizeof(g_native_display_current_type));
+    if (current_type) std::memcpy(&g_native_display_current_type,
+        reinterpret_cast<const void *>(current_type), sizeof(g_native_display_current_type));
     g_native_display_category_right = split - (count > static_cast<size_t>(category_rows) ? 4 : 2);
     int32_t item_rows = 0;
-    std::memcpy(&item_rows, static_cast<unsigned char *>(display) + 0x170, sizeof(item_rows));
+    if (item_height) std::memcpy(&item_rows, reinterpret_cast<const void *>(item_height), sizeof(item_rows));
     g_native_display_content_right = right - (item_rows > category_rows * 3 - 3 ? 4 : 2);
     layer.native_renderer = g_native_help_layer.native_renderer;
     layer.renderer = g_native_help_layer.renderer;
@@ -101,18 +116,17 @@ static void native_display_draw(void *display, uint32_t tick, int32_t screen_lef
     layer.ready = true;
     NativeUiReadScope::invalidate_reads();
 }
-#endif
 
 static void uninstall_native_display_layer_hook();
 
 static bool install_native_display_layer_hook() {
-#ifdef _WIN32
     if (g_native_display_draw_hook.installed && g_native_display_item_calls.installed) return true;
     if (g_native_display_draw_hook.active() || g_native_display_item_calls.active()) {
         uninstall_native_display_layer_hook();
         if (g_native_display_draw_hook.active() || g_native_display_item_calls.active()) return false;
     }
     constexpr const char *label = "Native display assignment component draw entry";
+#ifdef _WIN32
     const auto base = native_history_profile_base();
     auto *draw = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x382d60));
     const auto owner = native_reference_address(base, 0x18a2ac8);
@@ -142,8 +156,27 @@ static bool install_native_display_layer_hook() {
     std::vector<NativeCall> item_calls{
         {0x383fd3, 0xc65450, reinterpret_cast<const void *>(&capture_native_trade_item_name)},
     };
+    if (!native_reference_calls(item_calls, 0)) return false;
+#else
+    if (!native_elf_5317_address(0xd7c190)) return true;
+    const auto base = elf_runtime::state().executable.bias;
+    auto *draw = reinterpret_cast<unsigned char *>(native_elf_5317_address(0xd7c190));
+    const auto owner = native_history_named_global("gamest",
+        "main_interface.assign_display_item.open", 1);
+    const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x55};
+    // Native addst returns: category, grouped item, concrete item, search,
+    // and the empty category's count. Their SysV sources precede clipping.
+    const std::array<uintptr_t, 5> caller_sites{
+        0xd7d129, 0xd7e6b3, 0xd7e19c, 0xd7c8ae, 0xd7d2f4};
+    std::array<uintptr_t, 5> callers{};
+    for (size_t i = 0; i < caller_sites.size(); ++i)
+        callers[i] = native_elf_5317_address(caller_sites[i]) + 5;
+    const std::vector<NativeCall> item_calls{
+        {native_elf_5317_address(0xd7e168) - base, native_elf_5317_address(0xe70480) - base,
+            reinterpret_cast<const void *>(&capture_native_trade_item_name)},
+    };
+#endif
     if (!owner || !draw || !g_native_trade_item_name ||
-            !native_reference_calls(item_calls, 0) ||
             !g_native_display_draw_hook.prepare(draw, prefix,
                 reinterpret_cast<const void *>(&native_display_draw), {}, label)) return false;
     g_native_display_owner = owner;
@@ -158,7 +191,6 @@ static bool install_native_display_layer_hook() {
         return false;
     }
     log_line("INFO", "Redirected the entire display assignment picker to its private output layer");
-#endif
     return true;
 }
 

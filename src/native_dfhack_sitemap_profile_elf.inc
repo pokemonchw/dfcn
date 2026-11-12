@@ -19,13 +19,16 @@ static bool bind_native_dfhack_sitemap_lua(void *entry_pointer) {
     const auto *base = static_cast<const unsigned char *>(image.dli_fbase);
     constexpr std::array<const char *, 3> names{"readMapPortTile", "paintString", "fillRect"};
     constexpr std::array<uintptr_t, 3> functions{0x5f3530,0x5f46e0,0x5f3f80};
-    if (!native_dfhack_lua_registration_elf(base, 0xc10aa0, names, functions)) return false;
+    constexpr std::array<uintptr_t, 3> current_functions{0x7f9b00,0x7facb0,0x7fa550};
+    const bool current = native_dfhack_lua_registration_elf(base, 0x1059f40, names, current_functions);
+    if (!current && !native_dfhack_lua_registration_elf(base, 0xc10aa0, names, functions)) return false;
+    const uintptr_t paint_string = current ? 0x7facb0 : 0x5f46e0;
     constexpr std::array<unsigned char, 8> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57,0x31,0xc9};
     NativePatchPages executable;
-    if (!collect_native_patch_pages(executable, reinterpret_cast<uintptr_t>(base + 0x5f46e0),
+    if (!collect_native_patch_pages(executable, reinterpret_cast<uintptr_t>(base + paint_string),
             prefix.size(), native_patch_page_size(), true, "DFHack complete text producer") ||
-            std::memcmp(base + 0x5f46e0, prefix.data(), prefix.size())) return false;
-    api.paint_string = reinterpret_cast<NativeDfhackLuaCFunction>(const_cast<unsigned char *>(base + 0x5f46e0));
+            std::memcmp(base + paint_string, prefix.data(), prefix.size())) return false;
+    api.paint_string = reinterpret_cast<NativeDfhackLuaCFunction>(const_cast<unsigned char *>(base + paint_string));
     const auto hack = std::filesystem::absolute(image.dli_fname).parent_path();
     const auto key = [](const std::filesystem::path &path) {
         return native_dfhack_lua_source_key(path.generic_string());

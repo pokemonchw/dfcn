@@ -71,4 +71,12 @@ static bool resolve_native_paragraph_binding(NativeParagraphBinding &binding) {
     }
     return true;
 }
+static bool resolve_native_paragraph_vector_binding(NativeParagraphBinding &binding) {
+    constexpr const char *symbol = "_ZN17curses_text_boxst13add_paragraphER12stringvectsti";
+    binding.entry = reinterpret_cast<unsigned char *>(dlsym(RTLD_DEFAULT, symbol));
+    const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
+    if (!binding.entry || std::memcmp(binding.entry, prefix.data(), prefix.size())) return false;
+    binding.prefix = prefix;
+    return true;
+}
 #endif

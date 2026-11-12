@@ -3,12 +3,22 @@
 // its complete personal name remains in the associated native catalogs.
 static std::optional<NativeJusticePlotCaption> native_justice_plot_caption(
         uintptr_t caller, uintptr_t address, std::string_view displayed) {
-#ifdef _WIN32
     const uintptr_t base = native_history_profile_base();
     if (!base || !caller || !address || displayed.empty() || displayed.size() > 65536)
         return std::nullopt;
     const auto called_from = [&](uintptr_t reference_return) {
+#ifdef _WIN32
         return caller == native_reference_address(base, reference_return);
+#else
+        uintptr_t current = 0;
+        switch (reference_return) {
+        case 0x477471: current = 0x174d443; break;
+        case 0x4776af: current = 0x174d80b; break;
+        case 0x4776fa: current = 0x174d83c; break;
+        case 0x4775dc: current = 0x174d4d7; break;
+        }
+        return current && caller == native_elf_5317_address(current);
+#endif
     };
     const bool title = called_from(0x477471);
     const bool organization_label = called_from(0x4776af);
@@ -64,9 +74,17 @@ static std::optional<NativeJusticePlotCaption> native_justice_plot_caption(
             return std::nullopt;
         // Info is a static object, not a pointer global. Its justice member
         // starts at +a10; edition binding maps the static object's own RVA.
+#ifdef _WIN32
         const uintptr_t info = native_reference_address(base, 0x18a61c0);
         if (!info || info > UINTPTR_MAX - 0xa10 - 0x360) return std::nullopt;
         const uintptr_t owner = info + 0xa10;
+        const uintptr_t organizations_address = owner + 0x2e8, actors_address = owner + 0x2d0;
+#else
+        const uintptr_t organizations_address = native_history_named_global("gamest",
+            "main_interface.info.justice.base_organization_entry", 24);
+        const uintptr_t actors_address = native_history_named_global("gamest",
+            "main_interface.info.justice.base_actor_entry", 24);
+#endif
         const auto matching_actor = [&](uintptr_t actor) {
             uintptr_t figure = 0;
             int32_t figure_id = -1;
@@ -88,7 +106,7 @@ static std::optional<NativeJusticePlotCaption> native_justice_plot_caption(
             return true;
         };
         NativeBorrowedVector<uintptr_t> organizations;
-        if (native_history_read_vector(owner + 0x2e8, organizations) &&
+        if (native_history_read_vector(organizations_address, organizations) &&
                 organizations.size() <= 65536) {
             for (size_t index = 0; index < organizations.size(); ++index) {
                 const uintptr_t organization = native_history_vector_at(organizations, index);
@@ -101,7 +119,7 @@ static std::optional<NativeJusticePlotCaption> native_justice_plot_caption(
         // The native producer fills a still-empty plot+70 from the complete
         // actor name when an organization name was not populated.
         NativeBorrowedVector<uintptr_t> actors;
-        if (native_history_read_vector(owner + 0x2d0, actors) && actors.size() <= 65536) {
+        if (native_history_read_vector(actors_address, actors) && actors.size() <= 65536) {
             for (size_t index = 0; index < actors.size(); ++index) {
                 const uintptr_t actor = native_history_vector_at(actors, index);
                 if (actor && actor <= UINTPTR_MAX - 0xf8 && recover(actor, actor + 0x18))
@@ -111,6 +129,5 @@ static std::optional<NativeJusticePlotCaption> native_justice_plot_caption(
     } catch (...) {
         // Optional source recovery must never unwind through the native drawer.
     }
-#endif
     return std::nullopt;
 }

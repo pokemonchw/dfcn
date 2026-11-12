@@ -11,7 +11,8 @@ static std::optional<NativeAdventureQuestTitle> native_adventure_quest_original_
 #else
     // The map Tasks strip and the adventure journal both pass the actual
     // agreement_entryst::p_list_name. Their retained title lives in list_name.
-    if (caller != native_reference_address(base, 0x1830373) &&
+    const auto hud_title = native_elf_5317_address(0x1c5acd3);
+    if (caller != (hud_title ? hud_title : native_reference_address(base, 0x1830373)) &&
             caller != native_reference_address(base, 0x17cfed3)) return std::nullopt;
 #endif
     std::string current, full;

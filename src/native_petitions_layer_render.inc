@@ -91,9 +91,58 @@ static bool native_petitions_layer_hook_active() {
     return g_native_petitions_producer_hooks.active();
 }
 #else
-static bool install_native_petitions_layer_hook() { return true; }
-static void uninstall_native_petitions_layer_hook() { g_native_petitions_target.release(); }
-static bool native_petitions_layer_hook_active() { return false; }
+static NativeInlineObserverHook g_native_petitions_begin_hook, g_native_petitions_end_hook;
+static void native_petitions_begin_elf(const NativeInlineRegisters *registers) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        TranslationStateScope translation;
+        int32_t left = 0, top = 0, bottom = -1;
+        const int right = static_cast<int32_t>(registers->r15);
+        if (!native_history_copy(registers->rbp - 0x1e8, left) ||
+                !native_history_copy(registers->rbp - 0x1e0, top) ||
+                !native_history_copy(registers->rbp - 0x1c8, bottom)) return;
+        const auto *gps = native_graphics();
+        if (!gps) return;
+        left = std::max({left, 0, static_cast<int>(gps->clipx[0])});
+        top = std::max({top, 0, static_cast<int>(gps->clipy[0])});
+        const int end_x = std::min({right, gps->dimx - 1, static_cast<int>(gps->clipx[1])});
+        bottom = std::min({bottom, gps->dimy - 1, static_cast<int>(gps->clipy[1])});
+        if (left > end_x || top > bottom || !native_petitions_begin_draw()) return;
+        // The reviewed inline native loop fills this whole rectangle.
+        native_petitions_submit_skin_cell(left, top);
+        native_petitions_submit_skin_cell(end_x, bottom);
+    } catch (...) {}
+}
+static void native_petitions_end_elf(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try { native_petitions_end_draw(); } catch (...) {}
+}
+static bool install_native_petitions_layer_hook() {
+    const auto begin = native_elf_5317_address(0x16908f2);
+    if (!begin) return true;
+    const auto end = native_elf_5317_address(0x1690fe9);
+    if (g_native_petitions_begin_hook.install(reinterpret_cast<unsigned char *>(begin),
+            {0x8b,0x85,0x38,0xfe,0xff,0xff}, native_petitions_begin_elf,
+            "Native ELF construction petitions begin") &&
+            g_native_petitions_end_hook.install(reinterpret_cast<unsigned char *>(end),
+            {0x80,0x3d,0x60,0xfc,0x09,0x01,0}, native_petitions_end_elf,
+            "Native ELF construction petitions end", {{2,7,native_elf_5317_address(0x2730c50)}})) return true;
+    g_native_petitions_begin_hook.uninstall("Native ELF construction petitions begin restore");
+    g_native_petitions_end_hook.uninstall("Native ELF construction petitions end restore");
+    return false;
+}
+static void uninstall_native_petitions_layer_hook() {
+    native_petitions_restore_output();
+    g_native_petitions_begin_hook.uninstall("Native ELF construction petitions begin restore");
+    g_native_petitions_end_hook.uninstall("Native ELF construction petitions end restore");
+    if (!g_native_petitions_begin_hook.active() && !g_native_petitions_end_hook.active()) {
+        g_native_petitions_target.release(); native_petitions_begin_frame();
+        g_native_petitions_layer = {}; g_native_petitions_text = {};
+    }
+}
+static bool native_petitions_layer_hook_active() {
+    return g_native_petitions_begin_hook.active() || g_native_petitions_end_hook.active();
+}
 #endif
 
 static void native_petitions_present_layer(SDL_Renderer *renderer,

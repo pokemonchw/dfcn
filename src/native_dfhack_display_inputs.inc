@@ -496,12 +496,5 @@ static graphicst *native_dfhack_display_inputs_selected() noexcept {
         g_native_dfhack_display_inputs.selected : nullptr;
 }
 #else
-static bool install_native_dfhack_display_inputs() { return true; }
-static void uninstall_native_dfhack_display_inputs() {}
-static bool native_dfhack_display_inputs_active() noexcept { return false; }
-static graphicst *native_dfhack_display_inputs_snapshot() noexcept { return nullptr; }
-static void native_dfhack_display_inputs_enable(bool) noexcept {}
-static graphicst *native_dfhack_display_inputs_select(graphicst *) noexcept { return nullptr; }
-static graphicst *native_dfhack_display_inputs_selected() noexcept { return nullptr; }
+#include "native_dfhack_display_inputs_elf.inc"
 #endif
-

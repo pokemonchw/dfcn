@@ -30,7 +30,6 @@
             };
             struct Record { SDL_Rect identity, witness; };
             std::vector<Record> records;
-#ifdef _WIN32
             // The callback at PE 46eb60 creates a Text in a container on the
             // unit row. Follow that live owner, including all child links;
             // the name and witness rectangles leave the actual checkbox gap.
@@ -44,7 +43,7 @@
                 uintptr_t vtable = 0;
                 uint8_t flags = 0;
                 if (!base || !address || !native_history_copy(address, vtable) ||
-                        vtable != native_pe_address(base, reference) ||
+                        vtable != native_ui_semantic_address(reference) ||
                         !native_history_copy(address + 0xa0, flags) || (flags & 3) != 3 ||
                         !native_history_copy(address + 8, widget.parent) ||
                         !native_history_copy_bytes(address + 0x10, widget.rect.data(), sizeof(widget.rect)))
@@ -56,9 +55,14 @@
                     (widget.rect[3] >= widget.rect[1] ||
                      (reference == 0x162eaf8 && widget.rect[3] == widget.rect[1] - 1));
             };
+#ifdef _WIN32
+            constexpr size_t children_offset = 0x160, options_offset = 0x2c0;
+#else
+            constexpr size_t children_offset = 0x180, options_offset = 0x2b8;
+#endif
             const auto children = [](const Widget &parent, std::vector<uintptr_t> &members) {
                 std::array<uintptr_t, 3> range{};
-                if (!native_history_copy_bytes(parent.address + 0x160, range.data(), sizeof(range)) ||
+                if (!native_history_copy_bytes(parent.address + children_offset, range.data(), sizeof(range)) ||
                         !range[0] || range[0] > range[1] || range[1] > range[2] ||
                         (range[1] - range[0]) % 16 || (range[2] - range[0]) % 16 ||
                         range[1] - range[0] > 8192 * 16) return false;
@@ -89,7 +93,7 @@
                         !read_widget(scroll.parent, 0x1785bd0, table) || !contains(table, scroll) ||
                         !read_widget(table.parent, 0x17868d0, list) || !contains(list, table)) continue;
                 std::array<uintptr_t, 3> options{};
-                if (!native_history_copy_bytes(list.address + 0x2c0, options.data(), sizeof(options)) ||
+                if (!native_history_copy_bytes(list.address + options_offset, options.data(), sizeof(options)) ||
                         !options[0] || options[0] > options[1] || options[1] > options[2]) continue;
                 const auto option_bytes = options[1] - options[0];
                 std::array<int32_t, 4> values{};
@@ -130,7 +134,6 @@
                             return seen.identity.y == record.identity.y;
                         })) records.push_back(record);
             }
-#endif
             for (const auto &record : records) {
                 const auto &identity_box = record.identity, &witness_box = record.witness;
                 const int middle = identity_box.y + 1;

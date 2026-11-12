@@ -119,6 +119,9 @@ static bool native_history_copy_string(uintptr_t address, std::string &value);
 static std::optional<std::string> native_book_title_ascii_original(std::string_view source);
 static uintptr_t native_history_object_member(uintptr_t object, std::string_view type,
     std::string_view member, size_t width);
+static uintptr_t native_history_object_field(uintptr_t, std::string_view, size_t, size_t);
+static uintptr_t native_history_named_global(std::string_view type, std::string_view member, size_t width);
+static size_t native_history_filter_entry_size();
 static uintptr_t native_reference_va(uintptr_t address);
 static uintptr_t native_reference_address(uintptr_t base, uintptr_t offset);
 static std::optional<NativeJusticeOrganizationCaption>
@@ -132,7 +135,6 @@ static bool capture_native_history_age_title(std::string_view base_title,
 static uint64_t native_history_entity_parent_revision(uint64_t draw_epoch);
 static uint64_t native_identity_translation_context();
 static bool native_history_worldgen_page();
-#ifdef _WIN32
 // renderer::display consumes one completed native page. Resolve its screen
 // chain once for that draw, instead of repeating guarded reads per glyph.
 // Calls outside the verified display boundary retain the live lookup.
@@ -150,7 +152,6 @@ static bool native_display_worldgen_page() {
     return g_native_display_worldgen_page
         ? *g_native_display_worldgen_page : native_history_worldgen_page();
 }
-#endif
 static NativeModDetails native_mod_details(bool background_owner = false,
     const graphicst *graphics = nullptr);
 static std::optional<std::string> native_main_menu_copyright();
@@ -159,6 +160,14 @@ static bool native_map_mixed_view(const graphicst *graphics) noexcept;
 static bool native_map_artwork_grid(const unsigned char *screen) noexcept;
 static bool native_gameplay_map_screen(bool include_world = false);
 static bool native_world_map_screen();
+#ifndef _WIN32
+static uintptr_t native_elf_5317_address(uintptr_t address);
+#endif
+static uintptr_t native_ui_semantic_address(uintptr_t reference);
+#ifndef _WIN32
+static bool native_conversation_portrait_caller(uintptr_t caller, size_t kind);
+static bool native_conversation_tone_odds(uintptr_t caller);
+#endif
 static bool native_arena_map_screen();
 static std::vector<SDL_Rect> native_text_input_regions(const graphicst &gps,
     const std::vector<std::string> &rows, const unsigned char *screen_override);
@@ -4981,11 +4990,9 @@ private:
     bool append_name_editor_matches(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> *owned_regions = nullptr) const;
-#ifdef _WIN32
     void append_native_place_name_previews(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> &owned_regions) const;
-#endif
     bool layout_name_editor(SDL_Renderer *renderer);
     void append_embark_introduction_matches(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, bool raw_layer = false) const;
@@ -19844,10 +19851,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     // for immediate glyph suppression, not just the final overlay pass.
     append_name_editor_matches(screen_rows, name_editor_matches, only_y,
         screen_override, &name_editor_regions);
-#ifdef _WIN32
     append_native_place_name_previews(screen_rows, name_editor_matches,
         only_y, screen_override, name_editor_regions);
-#endif
 
     context_detail.checkpoint(RenderTimingStage::Tooltips);
     append_fortress_economy_matches(screen_rows, result, only_y, screen_override != nullptr);
@@ -44442,10 +44447,8 @@ static void native_worldgen_present_layer(SDL_Renderer *renderer,
 
 static graphicst *native_dfhack_display_inputs_select(graphicst *) noexcept;
 static graphicst *native_dfhack_render_read_graphics();
-#ifdef _WIN32
 static bool native_dfhack_display_inputs_active() noexcept;
 static void bind_native_worldgen_display_frame(const graphicst *graphics);
-#endif
 extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
     if (g_native_process_exiting.load(std::memory_order_acquire)) {
         if (g_real_present) g_real_present(renderer);
@@ -44456,12 +44459,10 @@ extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
     // until the completed composite has been submitted to SDL. Native
     // Present does not access translation state and may wait for the GPU.
     SlowBoundaryTiming boundary("present boundary");
-#ifdef _WIN32
     if (native_dfhack_display_inputs_active() && !native_dfhack_render_read_graphics()) {
         if (g_real_present) g_real_present(renderer);
         return;
     }
-#endif
     {
         TranslationStateScope translation;
         struct GraphicsReadScope {
@@ -44481,11 +44482,9 @@ extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
                 g_native_graphics_read_view = previous_view;
             }
         } graphics;
-#ifdef _WIN32
         // A producer can publish another buffer between display and Present.
         // Rebind under this composite's lock before deciding which page to draw.
         bind_native_worldgen_display_frame(native_graphics());
-#endif
         apply_pending_arena_translated_search();
         boundary.checkpoint("arena_search");
         g_overlay.render(renderer);

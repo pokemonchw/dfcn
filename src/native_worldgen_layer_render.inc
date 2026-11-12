@@ -2,7 +2,6 @@
 // editors, controls and chronicle, before the viewscreen's first store. The
 // graphical map keeps its native map-port output beneath this UI layer.
 static NativeUiLayerTarget g_native_worldgen_target;
-#ifdef _WIN32
 static NativeEntryHook g_native_worldgen_draw_hook;
 static NativeEntryHook g_native_worldgen_history_clear_hook;
 static uintptr_t g_native_worldgen_vtable = 0;
@@ -15,7 +14,10 @@ static NativeWorldgenViewportFn g_native_worldgen_viewport = nullptr;
 // double buffer. Bind only at the raw display/Present boundary, where the
 // pinned header and the published viewscreen owner identify the same page.
 static void bind_native_worldgen_display_frame(const graphicst *graphics) {
-    if (!graphics || graphics != native_dfhack_render_read_graphics() ||
+    if (!graphics ||
+#ifdef _WIN32
+            graphics != native_dfhack_render_read_graphics() ||
+#endif
             graphics != g_native_graphics_read_view || !graphics->screen ||
             !native_worldgen_has_frame() || g_drawing_overlay ||
             native_private_ui_write_active(graphics) ||
@@ -177,6 +179,7 @@ static bool install_native_worldgen_layer_hook() {
             g_native_worldgen_history_clear_hook.installed) return true;
     constexpr const char *label = "Native world generation complete draw entry";
     const auto base = native_history_profile_base();
+#ifdef _WIN32
     const auto table = native_reference_address(base, 0x1721480);
     auto *draw = reinterpret_cast<unsigned char *>(
         native_reference_address(base, 0xdf8a80));
@@ -192,10 +195,19 @@ static bool install_native_worldgen_layer_hook() {
     // PUSH RSI; SUB RSP,0x20 are complete position-independent instructions.
     // The same richbox ABI is already bound by native_history_profile.
     std::vector<unsigned char> clear_prefix{0x40,0x56,0x48,0x83,0xec,0x20};
-    if (!table || !draw || !viewport || !clear || !g_native_history_box ||
-            !native_reference_bytes(0xdf8a80, prefix) ||
+    if (!native_reference_bytes(0xdf8a80, prefix) ||
             !native_reference_bytes(0x41f640, viewport_prefix) ||
-            !native_reference_bytes(0xe37d0, clear_prefix) ||
+            !native_reference_bytes(0xe37d0, clear_prefix)) return false;
+#else
+    if (!native_elf_5317_address(0x1e0bcd0)) return true;
+    const auto table = native_reference_address(base, 0x2085088);
+    auto *draw = reinterpret_cast<unsigned char *>(native_elf_5317_address(0x1e0bcd0));
+    const auto viewport = native_elf_5317_address(0x16674a0);
+    auto *clear = reinterpret_cast<unsigned char *>(native_elf_5317_address(0x8292b0));
+    std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
+    std::vector<unsigned char> clear_prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x55};
+#endif
+    if (!table || !draw || !viewport || !clear || !g_native_history_box ||
             !g_native_worldgen_draw_hook.prepare(draw, prefix,
                 reinterpret_cast<const void *>(&native_worldgen_draw), {}, label) ||
             !g_native_worldgen_history_clear_hook.prepare(clear, clear_prefix,
@@ -204,8 +216,13 @@ static bool install_native_worldgen_layer_hook() {
         return false;
     g_native_worldgen_vtable = table;
     g_native_worldgen_viewport = reinterpret_cast<NativeWorldgenViewportFn>(viewport);
+#ifdef _WIN32
     g_native_worldgen_edit_returns = {native_reference_address(base, 0xe0317a),
         native_reference_address(base, 0xe037d9), native_reference_address(base, 0xe03fdb)};
+#else
+    g_native_worldgen_edit_returns = {native_elf_5317_address(0x1e10466),
+        native_elf_5317_address(0x1e119d8), native_elf_5317_address(0x1e16595)};
+#endif
     if (std::any_of(g_native_worldgen_edit_returns.begin(),
             g_native_worldgen_edit_returns.end(), [](uintptr_t address) { return !address; }))
         return false;
@@ -237,15 +254,6 @@ static bool native_worldgen_layer_hook_active() {
     return g_native_worldgen_draw_hook.active() ||
         g_native_worldgen_history_clear_hook.active();
 }
-#else
-// No corresponding ELF producer binding has been established for this page.
-static bool install_native_worldgen_layer_hook() { return true; }
-static void uninstall_native_worldgen_layer_hook() {
-    g_native_worldgen_target.release();
-    native_worldgen_begin_frame();
-}
-static bool native_worldgen_layer_hook_active() { return false; }
-#endif
 
 static void native_worldgen_present_layer(SDL_Renderer *renderer,
         void (*draw_worldgen)(SDL_Renderer *)) {

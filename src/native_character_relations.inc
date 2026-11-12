@@ -104,39 +104,70 @@ static void remember_native_character_relation_identity(NativeString *output,
 // determine whether the relationship has a name above it.
 static void capture_native_character_relation_row(NativeDrawnTextRow &row,
         const graphicst *graphics, const NativeString *source, uintptr_t caller) {
-#ifdef _WIN32
     try {
         const auto &hook = g_native_character_relations_hook;
         const uintptr_t owner = reinterpret_cast<uintptr_t>(source);
         if (!hook.base || !hook.code.active() ||
+#ifdef _WIN32
                 caller != native_reference_address(hook.base, 0x176dc5) ||
                 !graphics || !source || row.top_layer || owner < 0x3a00 ||
+#else
+                caller != native_elf_5317_address(0x13fa3da) ||
+                !graphics || !source || row.top_layer || owner > UINTPTR_MAX - 0xf0 ||
+#endif
                 graphics->dimx <= 0 || graphics->dimx > 1000 ||
                 graphics->dimy <= 0 || graphics->dimy > 1000) return;
+        uintptr_t sheet = 0;
+        size_t index = 0, capacity = 0;
+        int column_right = -1;
+#ifdef _WIN32
         // The source is the renderer's [rsp+3a00] string. These slots are
         // read from that same frame, not from our callback's current stack.
         const uintptr_t frame = owner - 0x3a00;
         if (frame > UINTPTR_MAX - 0xb268) return;
-        int32_t left = -1, right = -1, top = -1, index = -1;
-        uintptr_t sheet = 0;
+        int32_t left = -1, right = -1, top = -1, native_index = -1;
         if (!native_history_copy(frame + 0x2c8, left) ||
                 !native_history_copy(frame + 0x548, right) ||
                 !native_history_copy(frame + 0x16c, top) ||
-                !native_history_copy(frame + 0x140, index) ||
+                !native_history_copy(frame + 0x140, native_index) ||
                 !native_history_copy(frame + 0xb260, sheet) ||
                 left < 0 || left >= graphics->dimx || right <= left ||
                 right >= graphics->dimx || right - left <= 16 ||
-                top < 0 || top >= graphics->dimy - 2 || index < 0 ||
-                graphics->screenx != left + 7 || graphics->screeny != top + 1 ||
-                !sheet || sheet > UINTPTR_MAX - 0x18b8) return;
+                top < 0 || top >= graphics->dimy - 2 || native_index < 0 ||
+                graphics->screenx != left + 7 || graphics->screeny != top + 1) return;
+        index = static_cast<size_t>(native_index);
+        capacity = static_cast<size_t>(right - left - 16);
+        column_right = right - 9;
+#else
+        // The ELF producer keeps this copied name at rbp-f0 and its
+        // precise resize allocation at rbp-300. Its parallel-vector index
+        // is stored as a two-byte stride at rbp-2b0.
+        const uintptr_t frame = owner + 0xf0;
+        int32_t left = -1, top = -1, allocated = -1;
+        uintptr_t doubled_index = 0;
+        if (frame < 0x300 || !native_history_copy(frame - 0x278, left) ||
+                !native_history_copy(frame - 0x280, top) ||
+                !native_history_copy(frame - 0x300, allocated) ||
+                !native_history_copy(frame - 0x288, sheet) ||
+                !native_history_copy(frame - 0x2b0, doubled_index) ||
+                (doubled_index & 1) || doubled_index / 2 >= 65536 ||
+                left < 0 || left >= graphics->dimx - 9 ||
+                top < 0 || top >= graphics->dimy - 2 || allocated <= 0 ||
+                allocated > graphics->dimx - left - 9 ||
+                graphics->screenx != left + 9 || graphics->screeny != top + 1) return;
+        index = static_cast<size_t>(doubled_index / 2);
+        capacity = static_cast<size_t>(allocated);
+        column_right = left + 9 + allocated;
+#endif
+        if (!sheet || sheet > UINTPTR_MAX - 0x18b8) return;
         int32_t object_type = -1, page = -1;
         NativeBorrowedVector<uintptr_t> names;
         if (!native_history_copy(sheet + 8, object_type) || object_type != 0 ||
                 !native_history_copy(sheet + 0xc0, page) || page != 6 ||
                 !native_history_read_vector(native_character_sheet_field(
                     sheet, 0x1840, "rel_name"), names) || names.size() > 65536 ||
-                static_cast<size_t>(index) >= names.size()) return;
-        const uintptr_t cached = native_history_vector_at(names, static_cast<size_t>(index));
+                index >= names.size()) return;
+        const uintptr_t cached = native_history_vector_at(names, index);
         std::string_view complete, submitted;
         if (!cached || !native_string_view(reinterpret_cast<const NativeString *>(cached),
                     &complete, 65536) || !native_string_view(source, &submitted, 4096) ||
@@ -145,7 +176,6 @@ static void capture_native_character_relation_row(NativeDrawnTextRow &row,
         // Native 176cde compares length with R-L-15, then retains R-L-16
         // bytes and replaces the last three with dots. Prove both the full
         // and shortened forms against this row's cached string.
-        const size_t capacity = static_cast<size_t>(right - left - 16);
         std::string expected(complete);
         if (expected.size() > capacity) {
             expected.resize(capacity);
@@ -153,9 +183,8 @@ static void capture_native_character_relation_row(NativeDrawnTextRow &row,
         }
         if (submitted != expected) return;
         row.complete_source.assign(complete);
-        // The name starts at L+7, so its exclusive allocated edge is R-9.
-        // This keeps the two native action buttons outside the text column.
-        row.character_relation_right = right - 9;
+        // Keep the native action buttons outside the actual name allocation.
+        row.character_relation_right = column_right;
         row.caption_source = true;
         if (complete.empty() || row.unit_identity_target) return;
         if (const auto identity = native_unit_identity_source_binding(complete, owner)) {
@@ -200,12 +229,6 @@ static void capture_native_character_relation_row(NativeDrawnTextRow &row,
     } catch (...) {
         // The original draw and any already proven geometry remain intact.
     }
-#else
-    (void)row;
-    (void)graphics;
-    (void)source;
-    (void)caller;
-#endif
 }
 
 static NativeString *capture_native_character_relation_identity(NativeString *output,

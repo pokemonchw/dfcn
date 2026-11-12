@@ -4,14 +4,13 @@
 void Overlay::append_world_spoils_items(std::vector<std::string> &rows,
         std::vector<Match> &matches, std::vector<Match> &untranslated,
         int only_y, const unsigned char *screen_override) const {
-#ifdef _WIN32
     if (!gps_) return;
     const uintptr_t base = native_history_profile_base();
     if (!base) return;
     // PE 53.16 world render: get_number + item description at a82c10, or
     // get_number + creature description at aa3bd0, then one complete draw.
-    const uintptr_t item_writer = native_pe_address(base, 0x1d0957);
-    const uintptr_t animal_writer = native_pe_address(base, 0x1d0a6c);
+    const uintptr_t item_writer = native_ui_semantic_address(0x1d0957);
+    const uintptr_t animal_writer = native_ui_semantic_address(0x1d0a6c);
     const std::array batches{captured_native_drawn_text_view(false),
         captured_native_drawn_text_view(true)};
     const NativePanelBorders borders(*gps_);
@@ -113,9 +112,4 @@ void Overlay::append_world_spoils_items(std::vector<std::string> &rows,
             if (split) append(primary_y + 1, true);
         } else append(draw.y, false);
     }
-#else
-    // This source binding is only established for the supported PE images.
-    // ELF captions retain their existing route until its callers are known.
-    (void)rows; (void)matches; (void)untranslated; (void)only_y; (void)screen_override;
-#endif
 }

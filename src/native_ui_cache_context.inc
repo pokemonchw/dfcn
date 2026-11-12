@@ -572,7 +572,6 @@ public:
         optional(input.index_intro, [&](const auto &box) { rect(box); });
     }
     void adventure_background_snapshot(uintptr_t screen) {
-#ifdef _WIN32
         const auto screen_field = [&](std::string_view member, size_t width) {
             return native_history_object_member(screen, "viewscreen_setupadventurest", member, width);
         };
@@ -603,10 +602,6 @@ public:
         // The hover card owns its source arrays and semantic snapshot in the
         // tooltip layer. Page caching has no dependency on its native writes,
         // covered background or anchored artwork elsewhere on the screen.
-#else
-        (void)screen;
-        complete = false;
-#endif
     }
     bool adventure_background(uintptr_t screen) {
         auto *snapshot = g_native_adventure_background_read;
@@ -809,12 +804,10 @@ public:
             for (const auto &source : g_native_overview_event_sources)
                 if (!source.source.empty() || source.document) { complete = false; return; }
         }
-#ifdef _WIN32
         {
             std::lock_guard<std::mutex> lock(g_native_justice_actor_capture_mutex);
             if (!g_native_justice_actor_sources.empty()) { complete = false; return; }
         }
-#endif
         const uint64_t epoch = g_embark_item_capture_epoch.load(std::memory_order_acquire);
         {
             std::lock_guard<std::mutex> lock(g_origin_caption_mutex);

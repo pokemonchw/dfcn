@@ -13,11 +13,21 @@ static NativeJournalArtifactField native_journal_artifact_field(uintptr_t caller
         if (caller == native_reference_address(base, 0xc8787))
             return NativeJournalArtifactField::Body;
     }
+#else
+    if (caller == native_elf_5317_address(0x17dcb04)) return NativeJournalArtifactField::Title;
+    if (caller == native_elf_5317_address(0x17dcc0a)) return NativeJournalArtifactField::Counter;
+    if (caller == native_elf_5317_address(0x17dfb74)) return NativeJournalArtifactField::Body;
 #endif
     return NativeJournalArtifactField::None;
 }
 
+static uintptr_t native_journal_artifact_screen_field(uintptr_t screen, size_t offset, size_t width) {
 #ifdef _WIN32
+    return offset <= UINTPTR_MAX - screen ? screen + offset : 0;
+#else
+    return native_history_object_field(screen, "viewscreen_adventure_logst", offset, width);
+#endif
+}
 static std::optional<NativeJournalArtifactCardSource> native_journal_artifact_card_source(
         size_t one_based_index, size_t total) {
     if (!one_based_index || one_based_index > total || total > 65536) return std::nullopt;
@@ -29,11 +39,17 @@ static std::optional<NativeJournalArtifactCardSource> native_journal_artifact_ca
     int32_t selected = -1, scroll = 0;
     if (!base || !screen || screen > UINTPTR_MAX - 0x5c0 ||
             !native_history_copy(screen, vtable) ||
-            vtable != native_reference_address(base, 0x15eb450) ||
-            !native_history_copy(screen + 0x256, mode) || mode != 7 ||
-            !native_history_read_vector(screen + 0x5a8, entries) || entries.size() != total ||
-            !native_history_copy(screen + 0x250, selected) ||
-            !native_history_copy(screen + 0x274, scroll)) return std::nullopt;
+            vtable != native_reference_address(base,
+#ifdef _WIN32
+                0x15eb450
+#else
+                0x20817e0
+#endif
+            ) ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x256, 2), mode) || mode != 7 ||
+            !native_history_read_vector(native_journal_artifact_screen_field(screen, 0x5a8, 24), entries) || entries.size() != total ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x250, 4), selected) ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x274, 4), scroll)) return std::nullopt;
     const uintptr_t entry = native_history_vector_at(entries, one_based_index - 1);
     NativeJournalArtifactCardSource source;
     std::vector<uintptr_t> addresses;
@@ -54,16 +70,16 @@ static std::optional<NativeJournalArtifactCardSource> native_journal_artifact_ca
     // The caller owns no native memory. Reject a selection change, rebuilt
     // vector or replaced card before returning the owned text snapshot.
     if (native_current_viewscreen() != screen ||
-            !native_history_copy(screen + 0x256, current_mode) || current_mode != mode ||
-            !native_history_read_vector(screen + 0x5a8, current) ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x256, 2), current_mode) || current_mode != mode ||
+            !native_history_read_vector(native_journal_artifact_screen_field(screen, 0x5a8, 24), current) ||
             current.begin != entries.begin || current.end != entries.end ||
             current.capacity != entries.capacity ||
             native_history_vector_at(current, one_based_index - 1) != entry ||
             !native_history_read_vector(entry + 0x68, current_body) ||
             current_body.begin != body.begin || current_body.end != body.end ||
             current_body.capacity != body.capacity ||
-            !native_history_copy(screen + 0x250, current_selected) || current_selected != selected ||
-            !native_history_copy(screen + 0x274, current_scroll) || current_scroll != scroll ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x250, 4), current_selected) || current_selected != selected ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x274, 4), current_scroll) || current_scroll != scroll ||
             !native_history_copy_string(entry + 0x08, current_title) || current_title != source.title ||
             !native_history_copy_string(entry + 0x48, current_displayed) ||
             current_displayed != source.displayed) return std::nullopt;
@@ -135,17 +151,23 @@ static bool refresh_native_journal_artifact_sources(const graphicst *graphics) {
     int16_t mode = -1;
     if (!base || !screen || screen > UINTPTR_MAX - 0x5c0 ||
             !native_history_copy(screen, vtable) ||
-            vtable != native_reference_address(base, 0x15eb450) ||
-            !native_history_copy(screen + 0x256, mode)) return false;
+            vtable != native_reference_address(base,
+#ifdef _WIN32
+                0x15eb450
+#else
+                0x20817e0
+#endif
+            ) ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x256, 2), mode)) return false;
     if (mode != 7) {
         retain_native_journal_artifact_draw_sources(graphics);
         return false;
     }
     NativeBorrowedVector<uintptr_t> entries;
     int32_t scroll = 0, selected = -1;
-    if (!native_history_read_vector(screen + 0x5a8, entries) || entries.size() > 65536 ||
-            !native_history_copy(screen + 0x2c8, scroll) ||
-            !native_history_copy(screen + 0x250, selected)) return true;
+    if (!native_history_read_vector(native_journal_artifact_screen_field(screen, 0x5a8, 24), entries) || entries.size() > 65536 ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x2c8, 4), scroll) ||
+            !native_history_copy(native_journal_artifact_screen_field(screen, 0x250, 4), selected)) return true;
     // c8520..c88da selects this bounded slice of entry pointers. +274 is
     // the selected card's paragraph scroll, independently of list +2c8.
     const size_t count = static_cast<size_t>(std::max(0, (graphics->dimy - 6) / 5));
@@ -159,8 +181,3 @@ static bool refresh_native_journal_artifact_sources(const graphicst *graphics) {
         retain_native_journal_artifact(native_history_vector_at(entries, static_cast<size_t>(selected)));
     return true;
 }
-#else
-static std::optional<NativeJournalArtifactCardSource> native_journal_artifact_card_source(
-        size_t, size_t) { return std::nullopt; }
-static bool refresh_native_journal_artifact_sources(const graphicst *) { return false; }
-#endif

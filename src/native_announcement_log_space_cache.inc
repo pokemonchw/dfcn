@@ -3,7 +3,6 @@
 // graphical panel fills therefore share this path with masked text spaces.
 // No copied render target, owned GPU texture or borrowed texture survives a run.
 class NativeAnnouncementLogSpaceCache {
-#ifdef _WIN32
     // df.g_src.enabler.xml defines texture_fullid as texpos, six float color
     // components and uint32 flags. PE 8dcdb0/8dcf60 return a four-byte valid
     // prefix followed by that exact 32-byte descriptor (two MOVUPS stores).
@@ -13,7 +12,15 @@ class NativeAnnouncementLogSpaceCache {
         uint32_t flags = 0;
     };
     struct DescribedTile { uint32_t valid = 0; TextureId image; };
+#ifdef _WIN32
     using DescribeFn = DescribedTile *(*)(void *, DescribedTile *, int, int);
+    static constexpr size_t raster_offset = 0x168;
+#else
+    // SysV returns Either<texture_fullid,int32_t> through an implicit first
+    // result argument, ahead of this; let the native return ABI supply it.
+    using DescribeFn = DescribedTile (*)(void *, int, int);
+    static constexpr size_t raster_offset = 0x160;
+#endif
     using TextureFn = SDL_Texture *(*)(void *, const TextureId *);
     using GeometryFn = int (SDLCALL *)(SDL_Renderer *, SDL_Texture *,
         const SDL_Vertex *, int, const int *, int);
@@ -27,6 +34,7 @@ class NativeAnnouncementLogSpaceCache {
         static const Binding resolved = [] {
             Binding result;
             try {
+#ifdef _WIN32
                 const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
                 const auto sdl = GetModuleHandleW(L"SDL2.dll");
                 result.geometry = sdl ? reinterpret_cast<GeometryFn>(
@@ -55,6 +63,17 @@ class NativeAnnouncementLogSpaceCache {
                 result.texture = reinterpret_cast<TextureFn>(native_pe_address(executable, 0x8dd100));
                 result.base_draw = native_pe_address(executable, 0x8ddc20);
                 result.top_draw = native_pe_address(executable, 0x8ddfe0);
+#else
+                if (!native_elf_5317_address(0x13d14b0)) return Binding{};
+                const auto symbol = [](const char *name) { return dlsym(RTLD_DEFAULT, name); };
+                result.geometry = reinterpret_cast<GeometryFn>(symbol("SDL_RenderGeometry"));
+                result.base = reinterpret_cast<DescribeFn>(symbol("_ZN8renderer15screen_to_texidEii"));
+                result.top = reinterpret_cast<DescribeFn>(symbol("_ZN8renderer19screen_top_to_texidEii"));
+                result.texture = reinterpret_cast<TextureFn>(symbol("_ZN16renderer_2d_base17tile_cache_lookupER14texture_fullid"));
+                result.base_draw = reinterpret_cast<uintptr_t>(symbol("_ZN16renderer_2d_base11update_tileEii"));
+                result.top_draw = reinterpret_cast<uintptr_t>(symbol("_ZN16renderer_2d_base15update_top_tileEii"));
+                if (!result.geometry) return Binding{};
+#endif
                 if (!result.base || !result.top || !result.texture ||
                         !result.base_draw || !result.top_draw) return Binding{};
                 return result;
@@ -66,7 +85,6 @@ class NativeAnnouncementLogSpaceCache {
     std::array<int32_t, 4> raster_{};
     std::vector<SDL_Vertex> vertices_;
     std::vector<int> indices_;
-#endif
     bool ready_ = false;
     static bool repeat_tile(const NativeUiLayerGrid::Plane &plane, size_t at,
             uint64_t cell, NativeUiLayerGrid::Texture primary, uint32_t flags) noexcept {
@@ -80,18 +98,15 @@ class NativeAnnouncementLogSpaceCache {
 public:
     void clear() noexcept {
         ready_ = false;
-#ifdef _WIN32
         binding_ = {}; raster_ = {};
         vertices_.clear(); indices_.clear();
-#endif
     }
     bool prepare(SDL_Renderer *renderer, void *native_renderer, const graphicst &gps) noexcept {
         clear();
-#ifdef _WIN32
         binding_ = binding();
         if (!renderer || !native_renderer || !binding_.geometry || gps.dimx <= 0 ||
                 gps.dimy <= 0 || !native_font_metrics_detail::copy_native_font_memory(
-                    reinterpret_cast<uintptr_t>(native_renderer) + 0x168,
+                    reinterpret_cast<uintptr_t>(native_renderer) + raster_offset,
                     raster_.data(), sizeof(raster_)) ||
                 raster_[0] <= 0 || raster_[1] <= 0) return false;
         // Use precisely the geometry consumed by update_tile, including its
@@ -100,16 +115,12 @@ public:
         std::memcpy(&methods, native_renderer, sizeof(methods));
         ready_ = methods && reinterpret_cast<uintptr_t>(methods[0]) == binding_.base_draw &&
             reinterpret_cast<uintptr_t>(methods[2]) == binding_.top_draw;
-#else
-        (void)renderer; (void)native_renderer; (void)gps;
-#endif
         return ready_;
     }
     int paint(SDL_Renderer *renderer, void *native_renderer,
             const graphicst &gps, const NativeUiLayerGrid::Plane &plane,
             const SDL_Rect &panel, int x, int y, int frame_right,
             void (*draw)(void *, int, int), bool top = false) noexcept {
-#ifdef _WIN32
         // Base update_tile has additional last-row/column edge painting.
         // Lower and anchored pictures also retain their complete native path.
         // An ordinary primary texture (including flagged/recolored glyphs)
@@ -142,7 +153,11 @@ public:
         } catch (...) { return x; }
         DescribedTile tile;
         const auto describe = top ? binding_.top : binding_.base;
+#ifdef _WIN32
         describe(native_renderer, &tile, x, y);
+#else
+        tile = describe(native_renderer, x, y);
+#endif
         if (!(tile.valid & 0xff)) return x;
         // Native describe selects the exact primary/font atlas and colors,
         // including all source flag semantics. Original callers then replace
@@ -181,11 +196,6 @@ public:
             return x;
         }
         return end;
-#else
-        (void)renderer; (void)native_renderer; (void)gps; (void)plane;
-        (void)panel; (void)y; (void)frame_right; (void)draw; (void)top;
-        return x;
-#endif
     }
 };
 static NativeAnnouncementLogSpaceCache g_native_announcement_log_space_cache;

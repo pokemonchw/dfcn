@@ -1,14 +1,13 @@
 // Included inside find_matches before complete UI messages and word rules.
 // RAW gaits share their glossary between the live HUD and movement modal.
 // Each native writer owns its complete field before personal-name inference.
-#ifdef _WIN32
     {
         // AF1190's HUD uses the rider or mount, chooses WALK/SWIM/FLY/CRAWL/
         // CLIMB, and draws either the RAW gait, fixed Climb, or fallback Move
         // through this one addst call. The numeric and direction branches use
         // separate calls. See data/extracted/adventure-movement-hud.
         const auto base = native_history_profile_base();
-        const uintptr_t writer = native_reference_address(base, 0xafab97);
+        const uintptr_t writer = native_ui_semantic_address(0xafab97);
         const std::array batches{captured_native_drawn_text_view(),
             captured_native_drawn_text_view(true)};
         for (const auto &batch : batches) for (const auto &draw : batch) {
@@ -78,7 +77,6 @@
             }
         }
     }
-#endif
 // Native headings and the closed frame own the modal's fields, including
 // immediate glyph suppression on either screen layer.
     {

@@ -52,8 +52,44 @@ static std::optional<NativeArenaTreeCaption> capture_native_arena_tree_caption(
         return std::nullopt;
     return caption;
 #else
-    (void)caller;
-    (void)source;
-    return std::nullopt;
+    const bool selected = caller == native_elf_5317_address(0x14bc3d4);
+    const bool listed = caller == native_elf_5317_address(0x14bd001);
+    if ((!selected && !listed) || source < 0xb0) return std::nullopt;
+    // 53.17's renderer uses source=rsp+90 for the heading and rsp+b0
+    // for a row. Its actual picker remains at rsp+28 in both branches.
+    const uintptr_t frame = source - (selected ? 0x90 : 0xb0);
+    uintptr_t picker = 0, plant = 0;
+    uint8_t open = 0;
+    if (!native_history_copy(frame + 0x28, picker) ||
+            picker != native_elf_5317_address(0x2731f10) ||
+            !native_history_copy(picker, open) || open != 1) return std::nullopt;
+    int32_t left = -1, width = -1;
+    NativeArenaTreeCaption caption;
+    if (selected) {
+        if (!native_history_copy(native_history_object_member(picker,
+                "create_tree_interfacest", "selected_tree"), plant) ||
+                !native_history_copy(frame + 0x40, left)) return std::nullopt;
+        left += 8;
+        width = 34;
+    } else {
+        uintptr_t offset = 0;
+        NativeBorrowedVector<uintptr_t> plants;
+        if (!native_history_copy(frame + 0x20, offset) || offset % sizeof(uintptr_t) ||
+                !native_history_read_vector(native_history_object_member(picker,
+                    "create_tree_interfacest", "tree_types_filtered"), plants) ||
+                !plants.valid(65536) || offset / sizeof(uintptr_t) >= plants.size() ||
+                !native_history_copy(frame + 0x30, left) ||
+                !native_history_copy(frame + 0x40, width)) return std::nullopt;
+        plant = native_history_vector_at(plants, offset / sizeof(uintptr_t));
+    }
+    if (!plant || left < 0 || left > 1000 || width <= 0 || width > 1000 ||
+            !native_history_copy_string(native_history_object_member(plant,
+                "plant_raw", "name", sizeof(NativeString)), caption.name) ||
+            caption.name.empty() || caption.name.size() > 65536 ||
+            caption.name.find_first_of("\r\n") != std::string::npos) return std::nullopt;
+    caption.picker = picker;
+    caption.plant = plant;
+    caption.right = left + width;
+    return caption;
 #endif
 }

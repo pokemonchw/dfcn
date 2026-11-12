@@ -39,7 +39,7 @@ static bool resolve_native_adventure_hover_profile(NativeAdventureHoverProfile &
     profile.destroy = reinterpret_cast<NativeAdventureHoverDestroyFn>(
         base + profile.destroy_target);
 #else
-    // No complete inline write interval has been retained for this ABI.
+    // The 53.17 ELF installer binds the complete inline interval directly.
 #endif
     return true;
 }

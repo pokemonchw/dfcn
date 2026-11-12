@@ -46,13 +46,14 @@ class Generator:
         last = next(i for i, child in enumerate(children) if child.get('name') == 'labor_info')
         for child in children[last + 1:]:
             plotinfo.remove(child)
-        # The legacy stocks renderer exposes only its retained filter prefix.
-        stocks = self.types['stocks_interfacest']
-        children = list(stocks)
-        last = next(i for i, child in enumerate(children)
-                    if child.get('name') == 'entering_item_filter')
-        for child in children[last + 1:]:
-            stocks.remove(child)
+        # Name creation belongs to the game interface, whose preceding members
+        # must retain their complete layouts when computing that owner.
+        for name, final in (('options_interfacest', 'scrolling_popup'), ('main_interface', 'options'), ('gamest', 'main_interface')):
+            node = self.types[name]
+            children = list(node)
+            last = next(i for i, child in enumerate(children) if child.get('name') == final)
+            for child in children[last + 1:]:
+                node.remove(child)
         # Workshop identity consumes only the RAW token and complete name.
         # Later graphics, requirements and tooltip data are not borrowed.
         building = self.types['building_def']
@@ -249,7 +250,7 @@ class Generator:
         if len(events) != 133:
             raise ValueError('The pinned source must describe all 133 native event types')
         world = self.named('world')
-        roots = {'world_data', 'world_region', 'world_site', 'world_river', 'region_map_entry',
+        roots = {'world_data', 'world_region', 'world_site', 'world_river', 'world_mountain_peak', 'region_map_entry',
                  'historical_figure', 'historical_entity',
                  'historical_figure_info', 'interaction_profilest', 'creature_raw', 'caste_raw',
                  'identity', 'artifact_record', 'item', 'item_toolst', 'itemdef_toolst', 'itemdef_instrumentst',
@@ -278,6 +279,12 @@ class Generator:
                  'performance_menu_choicest', 'view_sheets_interfacest',
                  'widget_unit_list', 'widget_unit_name', 'widget_unit_portrait',
                  'widget_container', 'widget_text', 'widget_text_truncated',
+                 'widget_tabs', 'widget_scroll_rows', 'widget_table', 'widget_better_button',
+                 'widget_filter', 'multifilter', 'filter_entry', 'main_interface_settings',
+                 'work_orders_conditions_interfacest', 'work_orders_interfacest',
+                 'manager_order', 'manager_order_condition_item', 'create_tree_interfacest',
+                 'job', 'building', 'poetic_form', 'musical_form', 'dance_form', 'written_content',
+                 'gamest', 'world_region_details', 'd_init', 'widget',
                  'plotinfost', 'report',
                  'adv_announcementst',
                  'name_creator_interfacest', 'language_word', 'language_translation', 'language_name'}
@@ -388,6 +395,12 @@ class Generator:
                 # by the owning runtime adapter, not through the main image.
                 addresses.append(int(node.get('value'), 0) - anchor
                                  if node is not None and not node.get('base') else 0)
+            if name in {'widget', 'widget_tabs', 'widget_scroll_rows', 'widget_table',
+                        'widget_better_button', 'widget_filter', 'multifilter', 'building'}:
+                # These snapshots name their field layout explicitly. Their
+                # Linux type identity is the exported g_src vtable, including
+                # the executable's COPY relocation, resolved with dlsym.
+                addresses[1] = 0
             slots = f'{ident(name)}_slots, std::size({ident(name)}_slots)' if self.virtuals(name) else 'nullptr, 0'
             parent = self.types[name].get('inherits-from', '')
             lines.append(f'    {{"{name}", "{parent}", DFCN_NATIVE_BINDING(0x{addresses[0]:x}, 0x{addresses[1]:x}), {ident(name)}_fields.data(), std::size({ident(name)}_fields), {slots}}},')

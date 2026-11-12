@@ -72,8 +72,47 @@ static std::optional<NativeWorkshopTaskCaption> capture_native_workshop_task_cap
     caption.complete_source.assign(complete);
     return caption;
 #else
-    (void)caller;
-    (void)source;
-    return std::nullopt;
+    if (caller != native_elf_5317_address(0x13dd3a1) || !source || source > UINTPTR_MAX - 0x130)
+        return std::nullopt;
+    // The 53.17 building sheet passes its string at rbp-130. The sheet,
+    // building and exact job iterator remain in this live renderer frame.
+    const uintptr_t frame = source + 0x130;
+    if (frame < 0x2a8) return std::nullopt;
+    uintptr_t sheet = 0, building = 0, iterator = 0, job = 0;
+    int32_t x = -1, top = -1, right = -1, id = -1, active = -1, sub_tab = -1;
+    uint8_t open = 0;
+    if (!native_history_copy(frame - 0x288, sheet) || sheet != native_character_sheet_owner() ||
+            !native_history_copy(sheet, open) || open != 1 ||
+            !native_history_copy(native_history_object_member(sheet, "view_sheets_interfacest", "active_sheet", 4), active) || active != 2 ||
+            !native_history_copy(native_history_object_member(sheet, "view_sheets_interfacest", "active_sub_tab", 4), sub_tab) || sub_tab != 0 ||
+            !native_history_copy(native_history_object_member(sheet, "view_sheets_interfacest", "active_id", 4), id) || id < 0 ||
+            !native_history_copy(frame - 0x270, building) || !building ||
+            !native_history_copy(frame - 0x290, iterator) || !iterator ||
+            !native_history_copy(frame - 0x2a8, x) ||
+            !native_history_copy(frame - 0x298, top) ||
+            !native_history_copy(frame - 0x280, right) ||
+            x < 0 || x > 1000 || top < 0 || top > 997 || right > 1000 || right - 23 <= x)
+        return std::nullopt;
+    uintptr_t actual = 0;
+    NativeBorrowedVector<uintptr_t> jobs;
+    if (!native_history_find_structure_id(native_history_global(0x23edf10), 0x50, id, actual) || actual != building ||
+            !native_history_read_vector(native_history_object_member(building, "building", "jobs", 24), jobs) ||
+            !jobs.valid(65536) || iterator < reinterpret_cast<uintptr_t>(jobs.begin) ||
+            iterator >= reinterpret_cast<uintptr_t>(jobs.end) ||
+            (iterator - reinterpret_cast<uintptr_t>(jobs.begin)) % sizeof(uintptr_t) ||
+            !native_history_copy(iterator, job) || !job) return std::nullopt;
+    NativeHistoryPageString output;
+    NativeHistoryCallbackScope callback;
+    reinterpret_cast<void (*)(void *, NativeString *)>(native_elf_5317_address(0x1cdd0c0))(
+        reinterpret_cast<void *>(job), &output.value);
+    std::string_view complete;
+    if (!native_string_view(&output.value, &complete, 65536) || complete.empty() ||
+            complete.find_first_of("\r\n") != std::string_view::npos) return std::nullopt;
+    NativeWorkshopTaskCaption caption;
+    caption.building = building;
+    caption.job = job;
+    caption.box = {x, top, right - 23 - x, 3};
+    caption.complete_source.assign(complete);
+    return caption;
 #endif
 }

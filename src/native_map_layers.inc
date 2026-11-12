@@ -23,9 +23,7 @@ struct NativeMapDisplaySource {
     std::array<const void *, 8> lower_viewport{};
 };
 static NativeMapDisplaySource g_native_map_display_source;
-#ifdef _WIN32
 static void bind_native_map_display_frame(const graphicst *graphics) noexcept;
-#endif
 
 static bool native_map_background_view(const graphicst *graphics) noexcept {
     return graphics && g_native_map_layer.ready &&

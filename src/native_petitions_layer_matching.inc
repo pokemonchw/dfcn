@@ -12,7 +12,6 @@ std::vector<Match> Overlay::find_native_petitions_matches(int only_y,
             (only_y >= 0 && (only_y <= panel.y || only_y >= panel.y + panel.h - 1)) ||
             (screen_override && screen_override != gps_->screen &&
                 screen_override != gps_->screen_top)) return result;
-#ifdef _WIN32
     const auto base = native_history_profile_base();
     if (!base) return result;
     enum class Field { None, Request, Guild, Faith, Date };
@@ -20,12 +19,12 @@ std::vector<Match> Overlay::find_native_petitions_matches(int only_y,
         // Keep each consumed return explicit so the address catalog includes
         // it even when the producer's surrounding function changes edition.
         for (const auto &[address, field] : std::array<std::pair<uintptr_t, Field>, 6>{{
-                {native_reference_address(base, 0x3f9bb7), Field::Request},
-                {native_reference_address(base, 0x3f9cf0), Field::Guild},
-                {native_reference_address(base, 0x3f9ef3), Field::Date},
-                {native_reference_address(base, 0x3fa04d), Field::Request},
-                {native_reference_address(base, 0x3fa13e), Field::Faith},
-                {native_reference_address(base, 0x3fa341), Field::Date}}})
+                {native_ui_semantic_address(0x3f9bb7), Field::Request},
+                {native_ui_semantic_address(0x3f9cf0), Field::Guild},
+                {native_ui_semantic_address(0x3f9ef3), Field::Date},
+                {native_ui_semantic_address(0x3fa04d), Field::Request},
+                {native_ui_semantic_address(0x3fa13e), Field::Faith},
+                {native_ui_semantic_address(0x3fa341), Field::Date}}})
             if (address && caller == address) return field;
         return Field::None;
     };
@@ -131,6 +130,5 @@ std::vector<Match> Overlay::find_native_petitions_matches(int only_y,
             result.push_back(std::move(match));
         }
     }
-#endif
     return result;
 }

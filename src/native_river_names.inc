@@ -139,19 +139,13 @@ static bool append_native_river_name_calls(std::vector<NativeCall> &calls) {
     };
     if (!native_reference_calls(river_calls, 0)) return false;
 #else
-    // ELF 53.16: travel, worldgen hover, detailed embark, coarse embark.
-    // Each formatter's RDI is the object returned by c558d0(world,x,y,&segment).
-    const std::vector<NativeCall> river_calls{
-        {0x125fee0, 0x12c58d0, reinterpret_cast<const void *>(&capture_native_river_english)},
-        {0x125ff13, 0x425170, reinterpret_cast<const void *>(&capture_native_river_name_draw)},
-        {0x1deca5a, 0x12c58d0, reinterpret_cast<const void *>(&capture_native_river_english)},
-        {0x1deca91, 0x425170, reinterpret_cast<const void *>(&capture_native_river_name_draw)},
-        {0x1f4d4f0, 0x12c58d0, reinterpret_cast<const void *>(&capture_native_river_english)},
-        {0x1f4d525, 0x425170, reinterpret_cast<const void *>(&capture_native_river_name_draw)},
-        {0x1f4ea2d, 0x12c58d0, reinterpret_cast<const void *>(&capture_native_river_english)},
-        {0x1f4ea62, 0x425170, reinterpret_cast<const void *>(&capture_native_river_name_draw)},
-    };
+    // ELF captures the formatter's real river/peak object once, then carries
+    // its owned identity to the existing addst interception on every page.
+    (void)calls;
+    return true;
 #endif
+#ifdef _WIN32
     calls.insert(calls.end(), river_calls.begin(), river_calls.end());
     return true;
+#endif
 }

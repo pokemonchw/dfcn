@@ -67,7 +67,50 @@ capture_native_work_order_condition_caption(uintptr_t caller, uintptr_t source) 
     }
     if (!condition || condition > UINTPTR_MAX - 0x94)
         return std::nullopt;
-
+#else
+    const uintptr_t base = native_history_profile_base();
+    const bool alternate_source = caller == native_elf_5317_address(0xd8e7c4);
+    const bool stored = caller == native_elf_5317_address(0xd8fe25);
+    const bool editing = caller == native_elf_5317_address(0xd8c705);
+    if ((!alternate_source && !stored && !editing) || !base || !source) return std::nullopt;
+    const uintptr_t frame = source + (alternate_source ? 0x250 : 0x230);
+    if (frame < 0x290 || frame < source) return std::nullopt;
+    uintptr_t condition_interface = 0, condition = 0, order = 0;
+    uint8_t open = 0;
+    if (!native_history_copy(frame - 0x290, condition_interface) ||
+            condition_interface != native_history_named_global("gamest",
+                "main_interface.info.work_orders.conditions.open", 1) ||
+            !native_history_copy(condition_interface, open) || open != 1 ||
+            !native_history_copy(frame - 0x278, condition) || !condition ||
+            !native_history_copy(native_history_object_member(condition_interface,
+                "work_orders_conditions_interfacest", "wq"), order) || !order) return std::nullopt;
+    bool owned = false;
+    {
+        std::array<uintptr_t, 3> values{};
+        constexpr size_t stride = sizeof(native_history_layout::f_manager_order_condition_item);
+        const auto vector = native_history_object_member(condition_interface,
+            "work_orders_conditions_interfacest", "suggested_item_condition", 24);
+        if (native_history_copy_bytes(vector, values.data(), sizeof(values)) &&
+                values[0] <= condition && condition < values[1] && values[1] <= values[2] &&
+                values[1] - values[0] <= 65536 * stride &&
+                (condition - values[0]) % stride == 0) owned = true;
+    }
+    if (!owned) {
+        NativeBorrowedVector<uintptr_t> conditions;
+        if (native_history_read_vector(native_history_object_member(order,
+                "manager_order", "item_conditions", 24), conditions) && conditions.valid(65536)) {
+            for (size_t i = 0; i < conditions.size(); ++i)
+                if (native_history_vector_at(conditions, i) == condition) { owned = true; break; }
+        }
+        if (editing) {
+            uintptr_t current = 0;
+            if (!native_history_copy(native_history_object_member(condition_interface,
+                    "work_orders_conditions_interfacest", "change_wqc"), current) || current != condition)
+                owned = false;
+        }
+    }
+    if (!owned) return std::nullopt;
+#endif
     NativeWorkOrderConditionCaption caption;
     caption.owner = condition;
     if (!native_history_copy(condition + 0x8, caption.item_type) ||
@@ -99,9 +142,4 @@ capture_native_work_order_condition_caption(uintptr_t caller, uintptr_t source) 
             return std::nullopt;
     }
     return caption;
-#else
-    (void)caller;
-    (void)source;
-    return std::nullopt;
-#endif
 }

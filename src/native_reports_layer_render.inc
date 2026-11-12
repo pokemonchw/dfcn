@@ -2,7 +2,6 @@
 // including the current tab tree or the report detail pushed onto that stack.
 // Other widget_stack instances retain their ordinary output grid.
 static NativeUiLayerTarget g_native_reports_target;
-#ifdef _WIN32
 static NativeEntryHook g_native_reports_draw_hook;
 static uintptr_t g_native_reports_owner = 0;
 static uintptr_t g_native_reports_vtable = 0;
@@ -79,6 +78,8 @@ static void native_reports_draw(void *reports, uint32_t tick) {
 static bool install_native_reports_layer_hook() {
     if (g_native_reports_draw_hook.installed) return true;
     constexpr const char *label = "Native fortress Reports component draw entry";
+
+#ifdef _WIN32
     const auto base = native_history_profile_base();
     // symbols.xml binds the complete widgets::widget_stack vtable. Its render
     // slot resolves Steam RVA 0x1415450 or Classic RVA 0x14103c0 through the
@@ -95,6 +96,16 @@ static bool install_native_reports_layer_hook() {
     const std::vector<unsigned char> prefix{0x40,0x53,0x48,0x83,0xec,0x20};
     if (!g_native_reports_draw_hook.prepare(draw, prefix,
             reinterpret_cast<const void *>(&native_reports_draw), {}, label)) return false;
+#else
+    if (!native_elf_5317_address(0x272c328)) return true;
+    const auto table_symbol = reinterpret_cast<uintptr_t>(dlsym(RTLD_DEFAULT, "_ZTVN7widgets12widget_stackE"));
+    const auto table = table_symbol ? table_symbol + 2 * sizeof(void *) : 0;
+    const auto owner = native_elf_5317_address(0x272c328);
+    auto *draw = reinterpret_cast<unsigned char *>(dlsym(RTLD_DEFAULT, "_ZN7widgets12widget_stack6renderEj"));
+    const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x48,0x8b,0x87,0x88,0x01,0,0};
+    if (!table || !owner || !draw || !g_native_reports_draw_hook.prepare(draw, prefix,
+            reinterpret_cast<const void *>(&native_reports_draw), {}, label)) return false;
+#endif
     g_native_reports_owner = owner;
     g_native_reports_vtable = table;
     if (!g_native_reports_draw_hook.install(label)) return false;
@@ -113,13 +124,6 @@ static void uninstall_native_reports_layer_hook() {
     }
 }
 static bool native_reports_layer_hook_active() { return g_native_reports_draw_hook.active(); }
-#else
-// The PE owner is not an ELF coordinate. Keep unsupported native bindings
-// inert until that platform's announcement stack ownership is established.
-static bool install_native_reports_layer_hook() { return true; }
-static void uninstall_native_reports_layer_hook() { g_native_reports_target.release(); }
-static bool native_reports_layer_hook_active() { return false; }
-#endif
 
 static void native_reports_present_layer(SDL_Renderer *renderer,
         void (*draw_reports)(SDL_Renderer *)) {

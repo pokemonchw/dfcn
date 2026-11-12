@@ -245,6 +245,9 @@ def deploy_runtime_data(directory: Path) -> None:
         install(runtime / name, (ROOT / "third_party" / name).read_bytes())
     name = "native-addresses/pe-seed.bin" if sys.platform == "win32" else "native-addresses/elf-seed.bin"
     install(runtime / name, (RUNTIME / name).read_bytes())
+    if sys.platform == "linux" and (RUNTIME / "native-addresses/elf-current.bin").is_file():
+        name = "native-addresses/elf-current.bin"
+        install(runtime / name, (RUNTIME / name).read_bytes())
     for source in sorted((RUNTIME / "rulesets").rglob("*.toml")):
         install(runtime / source.relative_to(RUNTIME), source.read_bytes())
     for source in sorted((RUNTIME / "opencc").rglob("*")):
@@ -450,7 +453,7 @@ def retain_pe_reference_resources() -> None:
 
 
 def generate_data(env: dict[str, str], *, pe_reference: Path | None = None,
-                  preserve_pe_profiles: bool = False) -> None:
+                  preserve_pe_profiles: bool = False, preserve_elf_profiles: bool = False) -> None:
     layout_inputs = [ROOT / "tools/build_history_layouts.py",
                      *file_inputs(UPSTREAM / "df-structures", {".xml"})]
     if needs_update([ROOT / "src/native_history_layouts.inc"], layout_inputs):
@@ -461,11 +464,11 @@ def generate_data(env: dict[str, str], *, pe_reference: Path | None = None,
     if sys.platform == "win32":
         history_inputs.append(EXTRACTED / "native-history-event-layouts.tsv")
         history_output = ROOT / "src/native_history_event_profiles.inc"
-    if preserve_pe_profiles:
+    if preserve_pe_profiles or preserve_elf_profiles:
         if not history_output.is_file():
             raise RuntimeError(f"The fixed Steam 53.16 reference is unavailable and the existing "
                                f"history event profile is missing: {history_output}")
-        print("Using existing Windows history event profiles from the fixed 53.16 reference.", flush=True)
+        print("Using existing history event profiles from the fixed 53.16 reference.", flush=True)
     elif needs_update([history_output], history_inputs):
         run([sys.executable, "-B", "tools/build_history_event_profiles.py",
              "--exe", str(history_image)], env)
@@ -1001,8 +1004,13 @@ def main() -> int:
         pe_timestamps = {name: pe_image_timestamp(pe_sources[name])
                          for name in ("reference", "classic")} if pe_sources else {}
         pe_generation_ready = pe_timestamps == {"reference": 0x6a70a6d9, "classic": 0x6a70b91c}
+        elf_generation_ready = True
+        if sys.platform == "linux":
+            from build_native_image_bindings import Image as ElfImage
+            elf_generation_ready = ElfImage(sources["reference"]).build == "bcc6789e6fb477b785a2b02be80b8b1b054ff88c"
         generate_data(env, pe_reference=pe_sources.get("reference"),
-                      preserve_pe_profiles=bool(pe_sources) and pe_timestamps["reference"] != 0x6a70a6d9)
+                      preserve_pe_profiles=bool(pe_sources) and pe_timestamps["reference"] != 0x6a70a6d9,
+                      preserve_elf_profiles=not elf_generation_ready)
         if pe_sources and not pe_generation_ready:
             retain_pe_reference_resources()
             from native_pe_seed_refinement import refine as refine_pe_seed
@@ -1050,7 +1058,7 @@ def main() -> int:
                     raise RuntimeError(f"Required native disassembler is missing: {objdump}")
                 generate_pe_5317_bindings(pe_sources["reference"], pe_sources["classic"],
                                           objdump, output)
-        if sys.platform == "linux" and sources.get("classic"):
+        if sys.platform == "linux" and elf_generation_ready and sources.get("classic"):
             from build_native_image_bindings import (
                 Image, binding_sources, generate as generate_elf_bindings,
             )
@@ -1061,7 +1069,7 @@ def main() -> int:
             if needs_update([output], inputs):
                 generate_elf_bindings(Image(sources["reference"]), Image(sources["classic"]),
                                       UPSTREAM / "df-structures/symbols.xml", output)
-        if sys.platform == "linux":
+        if sys.platform == "linux" and elf_generation_ready:
             from build_elf_runtime_seed import generate as generate_elf_seed
             from native_elf_coordinates import sources as elf_binding_sources
             seed_output = RUNTIME / "native-addresses/elf-seed.bin"
@@ -1073,6 +1081,9 @@ def main() -> int:
                            UPSTREAM / "df-structures/symbols.xml", *elf_binding_sources(ROOT)]
             if needs_update([seed_output], seed_inputs):
                 generate_elf_seed(sources["reference"], seed_output)
+        if sys.platform == "linux" and not elf_generation_ready:
+            from native_elf_seed_refinement import refine as refine_elf_seed
+            refine_elf_seed(ROOT, RUNTIME / "native-addresses/elf-seed.bin")
         compile_flags = ["-std=c++20", *split_arguments(env.get("CXXFLAGS", "-O2")),
                          "-Wall", "-Wextra", "-Wpedantic", *abi["compile"],
                          "-Icompat", "-Isrc", "-Ithird_party/tomlplusplus/include",
@@ -1081,6 +1092,15 @@ def main() -> int:
                          *dependency_includes, *split_arguments(env.get("CPPFLAGS", ""))]
         link_flags = ["-shared", *split_arguments(env.get("LDFLAGS", "")),
                       *dependency_libraries, *abi["link"], *split_arguments(env.get("LDLIBS", ""))]
+        if sys.platform == "linux" and not elf_generation_ready:
+            # The normal build publishes the current edition's addresses from
+            # disk evidence before compiling/deploying its reloadable core.
+            with tempfile.TemporaryDirectory(prefix=".dfcn-elf-bindings-", dir=ROOT) as temporary:
+                generator = Path(temporary) / "elf-bindings"
+                run([*compiler, "-std=c++20", "-O2", "-Isrc", "tools/build_elf_bindings.cpp",
+                     "-o", str(generator), "-ldl"], env)
+                from native_elf_seed_refinement import generate_current
+                generate_current(generator, sources["reference"], RUNTIME / "native-addresses/elf-current.bin", env)
         if "-static" in [*compile_flags, *link_flags]:
             raise RuntimeError("Global static linking is unsupported; SDL2 must remain dynamically linked.")
         core_inputs = [SCRIPT, *file_inputs(ROOT / "src", {".cpp", ".h", ".inc", ".exports"}),

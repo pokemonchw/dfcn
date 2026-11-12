@@ -129,7 +129,6 @@ static void capture_native_announcement_log(uint64_t owner, uint64_t second,
     try { native_announcement_log_prepare_visible(); } catch (...) {}
     g_native_announcement_log_source_context_valid = false;
     try {
-#ifdef _WIN32
         // Freeze the native atlas/display selections once with this producer
         // submission. Repeated Present must not resnapshot nine font tables.
         g_native_announcement_log_fonts.emplace(true, true);
@@ -141,19 +140,21 @@ static void capture_native_announcement_log(uint64_t owner, uint64_t second,
             std::array<int32_t, 4> raster{};
             uint8_t zoom = 0;
             int32_t factor = 0;
+#ifdef _WIN32
+            constexpr uintptr_t raster_offset = 0x168, zoom_offset = 0x180, factor_offset = 0x184;
+#else
+            constexpr uintptr_t raster_offset = 0x160, zoom_offset = 0x178, factor_offset = 0x17c;
+#endif
             if (native_font_metrics_detail::copy_native_font_memory(
-                        native + 0x168, raster.data(), sizeof(raster)) &&
-                    native_font_metrics_detail::copy_native_font_value(native + 0x180, zoom) &&
-                    native_font_metrics_detail::copy_native_font_value(native + 0x184, factor)) {
+                        native + raster_offset, raster.data(), sizeof(raster)) &&
+                    native_font_metrics_detail::copy_native_font_value(native + zoom_offset, zoom) &&
+                    native_font_metrics_detail::copy_native_font_value(native + factor_offset, factor)) {
                 auto &resources = g_native_announcement_log_resources;
                 resources.append(reinterpret_cast<const char *>(raster.data()), sizeof(raster));
                 resources.append(reinterpret_cast<const char *>(&zoom), sizeof(zoom));
                 resources.append(reinterpret_cast<const char *>(&factor), sizeof(factor));
             } else g_native_announcement_log_resources_valid = false;
         }
-#else
-        g_native_announcement_log_resources_valid = true;
-#endif
         g_native_announcement_log_source_context = native_announcement_log_source_key();
         g_native_announcement_log_source_context_valid = g_native_announcement_log_resources_valid;
     } catch (...) { g_native_announcement_log_source_context.clear(); }

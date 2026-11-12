@@ -224,18 +224,17 @@ void Overlay::append_adventure_combat_fields(std::vector<std::string> &screen_ro
         std::vector<int> colors;
     };
     std::vector<CursorField> cursor_fields;
-#ifdef _WIN32
     if (const auto base = native_history_profile_base()) {
         struct Writer {
             uintptr_t prefix, suffix;
             std::string_view before, after;
         };
         const Writer writers[]{
-            {native_reference_address(base, 0x8812b0), native_reference_address(base, 0x881323),
+            {native_ui_semantic_address(0x8812b0), native_ui_semantic_address(0x881323),
                 "Click a target or move the cursor and press ", "."},
-            {native_reference_address(base, 0x8813ea), 0,
+            {native_ui_semantic_address(0x8813ea), 0,
                 "Delay warning: Ammo will be loaded/nocked before firing.", {}},
-            {native_reference_address(base, 0x88148f), native_reference_address(base, 0x881531),
+            {native_ui_semantic_address(0x88148f), native_ui_semantic_address(0x881531),
                 "You can prepare in advance with ", " or from the inventory menu."},
         };
         const auto current_draw = [&](const NativeDrawnTextRow &draw,
@@ -331,7 +330,6 @@ void Overlay::append_adventure_combat_fields(std::vector<std::string> &screen_ro
             }
         }
     }
-#endif
     struct PictureRow {
         int name_x, y, right;
         char kind;

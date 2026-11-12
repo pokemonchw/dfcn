@@ -484,7 +484,6 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
     return true;
 }
 
-#ifdef _WIN32
 void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> &owned_regions) const {
@@ -494,10 +493,10 @@ void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
     // Use the existing caption capture; no extra native hook is needed.
     const uintptr_t base = native_history_profile_base();
     if (!base) return;
-    const uintptr_t settlement_heading_caller = native_reference_address(base, 0x1fc995);
-    const uintptr_t government_heading_caller = native_reference_address(base, 0x1fc9d8);
-    const uintptr_t native_caller = native_reference_address(base, 0x1fcd29);
-    const uintptr_t english_caller = native_reference_address(base, 0x1fcde4);
+    const uintptr_t settlement_heading_caller = native_ui_semantic_address(0x1fc995);
+    const uintptr_t government_heading_caller = native_ui_semantic_address(0x1fc9d8);
+    const uintptr_t native_caller = native_ui_semantic_address(0x1fcd29);
+    const uintptr_t english_caller = native_ui_semantic_address(0x1fcde4);
     if (!settlement_heading_caller || !government_heading_caller ||
             !native_caller || !english_caller) return;
     const auto draws = captured_native_drawn_text_view();
@@ -577,7 +576,6 @@ void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
         }
     }
 }
-#endif
 
 bool Overlay::layout_name_editor(SDL_Renderer *renderer) {
     if (!gps_ || !face_ || !renderer || gps_->tile_pixel_x <= 0 ||

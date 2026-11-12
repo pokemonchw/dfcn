@@ -22,6 +22,7 @@ static bool native_history_site_type(uintptr_t site, NativeHistoryEventData &out
 static bool native_history_war_selection(uintptr_t collection, int32_t &category,
     int32_t &index, int32_t &count);
 #include "native_history_names.inc"
+#include "native_ui_semantics_elf.inc"
 #include "native_workshop_names.inc"
 #include "native_world_artifact_cache.inc"
 #include "native_announcement_history.inc"
@@ -97,6 +98,7 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_adventure_hover_hooks.inc"
 #include "native_announcement_hooks.inc"
 #include "native_dfhack_profile_pe.inc"
+#include "native_dfhack_elf.inc"
 #include "native_dfhack_layer_present.inc"
 #include "native_ui_cache_context.inc"
 #include "native_help_layer_render.inc"

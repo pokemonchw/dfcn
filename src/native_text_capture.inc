@@ -128,7 +128,6 @@ static void dfcn_capture_native_paragraph(void *box, const NativeString *source,
     } catch (...) {}
 }
 
-#ifdef _WIN32
 // The background religion tooltip submits its first sentence through the
 // vector overload, which wraps directly instead of calling add_paragraph's
 // single-string overload. Native pieces share one buffer without separators;
@@ -169,7 +168,6 @@ static void dfcn_capture_native_paragraph_vector(void *box, const void *source, 
         capture_appended_native_paragraph(box, width, std::move(complete), before);
     } catch (...) {}
 }
-#endif
 
 // Complete documents, aggregation, scroll padding and draw identity share one
 // implementation on every host. Native adapters only expose game-owned rows.
@@ -278,8 +276,70 @@ static void capture_native_reading_box(
     remember_native_knowledge_document(owner, std::move(document));
 }
 
+static void capture_native_character_wrap(
+    NativeKnowledgeTextBox *box, const NativeString *source, const void *sheet,
+    bool health, bool thoughts, bool grow_rows);
+#ifndef _WIN32
+static uintptr_t native_character_sheet_owner();
+
+struct NativeCharacterWrapOwner {
+    const void *sheet = nullptr;
+    bool health = false, thoughts = false, grow = true;
+};
+
+static NativeCharacterWrapOwner native_character_wrap_owner(
+        const NativeKnowledgeTextBox *box, const NativeString *source, const char *row = nullptr) {
+    const uintptr_t sheet = native_character_sheet_owner();
+    uint8_t open = 0;
+    int32_t type = -1, page = -1;
+    if (!sheet || !native_history_copy(sheet, open) || open != 1 ||
+            !native_history_copy(native_history_object_member(sheet, "view_sheets_interfacest", "active_sheet", 4), type) || type != 0 ||
+            !native_history_copy(native_history_object_member(sheet, "view_sheets_interfacest", "active_sub_tab", 4), page)) return {};
+    struct Part { size_t sources, boxes; bool health, thoughts; };
+    const auto &layout = native_character_layout;
+    const Part parts[]{
+        {layout.health_sources, layout.health_boxes, true, false},
+        {layout.personality_sources, layout.personality_boxes, false, false},
+        {layout.thought_vectors[0].first, layout.thought_vectors[0].second, false, true},
+        {layout.thought_vectors[1].first, layout.thought_vectors[1].second, false, true}};
+    for (const auto &part : parts) {
+        NativeBorrowedVector<uintptr_t> sources, boxes;
+        if (part.sources == SIZE_MAX || part.boxes == SIZE_MAX ||
+                !native_history_copy(sheet + part.sources, sources) || !sources.valid(16384) ||
+                !native_history_copy(sheet + part.boxes, boxes) || !boxes.valid(16384) ||
+                sources.size() != boxes.size()) continue;
+        for (size_t i = 0; i < boxes.size(); ++i) {
+            uintptr_t candidate_box = 0, candidate_source = 0;
+            if (!native_history_copy(reinterpret_cast<uintptr_t>(boxes.begin + i), candidate_box) ||
+                    !native_history_copy(reinterpret_cast<uintptr_t>(sources.begin + i), candidate_source)) return {};
+            bool owned = candidate_box == reinterpret_cast<uintptr_t>(box) &&
+                candidate_source == reinterpret_cast<uintptr_t>(source);
+            if (row && candidate_box) {
+                NativeBorrowedVector<uintptr_t> rows;
+                if (native_history_copy(candidate_box, rows) && rows.valid(16384)) {
+                    for (size_t j = 0; j < rows.size(); ++j) {
+                        uintptr_t address = 0;
+                        if (native_history_copy(reinterpret_cast<uintptr_t>(rows.begin + j), address) &&
+                                address == reinterpret_cast<uintptr_t>(row)) { owned = true; break; }
+                    }
+                }
+            }
+            if (owned) return {reinterpret_cast<const void *>(sheet), part.health, part.thoughts,
+                !(part.thoughts && page == 0)};
+        }
+    }
+    return {};
+}
+#endif
+
 static void dfcn_capture_native_knowledge_wrap(
         NativeKnowledgeTextBox *box, const NativeString *source) {
+#ifndef _WIN32
+    if (const auto owner = native_character_wrap_owner(box, source); owner.sheet) {
+        capture_native_character_wrap(box, source, owner.sheet, owner.health, owner.thoughts, owner.grow);
+        return;
+    }
+#endif
     NativeWrapTiming timing("knowledge", box, source);
     {
         auto native_timing = timing.phase(NativeWrapTiming::Stage::Native);
@@ -737,6 +797,28 @@ static void dfcn_capture_native_overview_thoughts_wrap(
 
 static void dfcn_capture_native_knowledge_draw(
         graphicst *graphics, const char *text, const char *colors) {
+#ifndef _WIN32
+    if (graphics && text) {
+        bool classified = false;
+        {
+            std::lock_guard<std::mutex> lock(g_native_knowledge_mutex);
+            const auto row = g_native_knowledge_row_owners.find(reinterpret_cast<uintptr_t>(text));
+            if (row != g_native_knowledge_row_owners.end()) {
+                const auto document = g_native_knowledge_documents.find(row->second.first);
+                classified = document != g_native_knowledge_documents.end() &&
+                    (document->second->health || document->second->personality || document->second->thoughts);
+            }
+        }
+        if (!classified) {
+            if (const auto owner = native_character_wrap_owner(nullptr, nullptr, text); owner.sheet) {
+                NativeWrapTiming timing("character-draw", nullptr, nullptr,
+                    !owner.health && !owner.thoughts, owner.health, owner.thoughts);
+                capture_native_character_document(nullptr, nullptr, owner.sheet, owner.health,
+                    owner.thoughts, timing, text, false);
+            }
+        }
+    }
+#endif
     // The story preview retains its colored rows across core replacement.
     // Recover their selected event before the shared writer publishes them.
     if (graphics && text) prepare_native_performance_story_document(text);

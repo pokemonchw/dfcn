@@ -64,6 +64,24 @@ static bool resolve_native_workshop_recipe_profile(NativeWorkshopRecipeProfile &
     profile.begin_arguments = {0x4c,0x89,0xea,0x49,0x89,0xf0}; // mov rdx,r13; mov r8,rsi
     profile.end_arguments = {0x4c,0x89,0xea,0x4c,0x8d,0x45,0x18}; // + lea r8,[rbp+18]
 #else
+    const auto current_product = native_elf_5317_address(0x13809ac);
+    if (current_product) {
+        // Both 53.17 loops keep their live job item in *R13. SysV's fourth
+        // argument is RCX; paragraph/source/width already occupy RDI/RSI/RDX.
+        profile.base = elf_runtime::state().executable.bias;
+        profile.paragraph_width = 29;
+        profile.shared_paragraphs = true;
+        profile.paragraph_calls = {
+            {current_product - profile.base, native_elf_5317_address(0x424b20) - profile.base,
+                reinterpret_cast<const void *>(&capture_native_workshop_product_paragraph),
+                {0x49,0x8b,0x4d,0x00}},
+            {native_elf_5317_address(0x1380f24) - profile.base,
+                native_elf_5317_address(0x424b20) - profile.base,
+                reinterpret_cast<const void *>(&capture_native_workshop_product_paragraph),
+                {0x49,0x8b,0x4d,0x00}},
+        };
+        return true;
+    }
     // ELF job tooltip 1377940 submits products at 1377ddc and requirements
     // at 1378354 through add_paragraph (PLT 423910), both at width 29 after
     // capitalization. The shared hook owns the complete source and appended

@@ -121,9 +121,56 @@ static bool native_topbar_layer_hook_active() {
     return g_native_topbar_producer_hooks.active();
 }
 #else
-static bool install_native_topbar_layer_hook() { return true; }
-static void uninstall_native_topbar_layer_hook() { g_native_topbar_target.release(); }
-static bool native_topbar_layer_hook_active() { return false; }
+static NativeInlineObserverHook g_native_topbar_begin_hook, g_native_topbar_end_hook;
+static void native_topbar_begin_elf(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        TranslationStateScope translation;
+        auto *gps = native_graphics();
+        using Bounds = void (*)(int32_t *, int32_t *);
+        static const auto bounds = reinterpret_cast<Bounds>(dlsym(RTLD_DEFAULT, "_Z23get_main_interface_dimsRiS_"));
+        if (!gps || !bounds || gps->dimx <= 0 || gps->dimy <= 0) return;
+        int32_t left = 0, right = -1;
+        bounds(&left, &right);
+        left = std::max({0, left + 16, static_cast<int>(gps->clipx[0])});
+        right = std::min({gps->dimx - 1, right - 37, static_cast<int>(gps->clipx[1])});
+        const int top = std::max(0, static_cast<int>(gps->clipy[0]));
+        const int bottom = std::min({3, gps->dimy - 1, static_cast<int>(gps->clipy[1])});
+        if (left <= right && top <= bottom)
+            native_topbar_begin_draw({left, top, right - left + 1, bottom - top + 1});
+    } catch (...) {}
+}
+static void native_topbar_end_elf(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try { native_topbar_end_draw(); } catch (...) {}
+}
+static bool install_native_topbar_layer_hook() {
+    if (!native_elf_5317_address(0x168cf10)) return true;
+    // Native frame initialization through the common right-sidebar successor.
+    if (g_native_topbar_begin_hook.install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(0x168cf10)),
+            {0xc7,0x85,0x58,0xfe,0xff,0xff,0,0,0,0}, native_topbar_begin_elf,
+            "Native ELF top bar begin") &&
+            g_native_topbar_end_hook.install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(0x168e625)),
+            {0x89,0x85,0x18,0xfe,0xff,0xff}, native_topbar_end_elf,
+            "Native ELF top bar end")) return true;
+    g_native_topbar_begin_hook.uninstall("Native ELF top bar begin restore");
+    g_native_topbar_end_hook.uninstall("Native ELF top bar end restore");
+    return false;
+}
+static void uninstall_native_topbar_layer_hook() {
+    native_topbar_restore_output();
+    g_native_topbar_begin_hook.uninstall("Native ELF top bar begin restore");
+    g_native_topbar_end_hook.uninstall("Native ELF top bar end restore");
+    if (!g_native_topbar_begin_hook.active() && !g_native_topbar_end_hook.active()) {
+        g_native_topbar_target.release(); native_topbar_begin_frame();
+        g_native_topbar_layer = {}; g_native_topbar_text = {};
+    }
+}
+static bool native_topbar_layer_hook_active() {
+    return g_native_topbar_begin_hook.active() || g_native_topbar_end_hook.active();
+}
 #endif
 
 static void native_topbar_present_layer(SDL_Renderer *renderer,

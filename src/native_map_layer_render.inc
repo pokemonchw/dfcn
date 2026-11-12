@@ -5,7 +5,6 @@
 static NativeUiLayerGrid g_native_ui_input;
 static NativeEntryHook g_native_map_ui_draw_hook;
 
-#ifdef _WIN32
 static NativeUiLayerTarget g_native_map_target;
 static NativeUiLayerTarget g_native_map_glyph_target;
 static NativeEntryHook g_native_map_clear_hook;
@@ -195,14 +194,11 @@ static void native_map_clear(void *renderer) {
     const auto clear = [&] { callback.call_native([&] { original(renderer); }); };
     if (!NativeMapGpuFrame::clear_native_target(renderer, clear)) clear();
 }
-#endif
 
 static void native_map_ui_draw(void *renderer) {
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
-#ifdef _WIN32
     NativeMapGpuFrame::before_ui(renderer);
-#endif
     const auto original = reinterpret_cast<void (*)(void *)>(g_native_map_ui_draw_hook.original);
     if (!original) return;
     if (g_native_process_exiting.load(std::memory_order_acquire) || g_native_ui_input_masked) {
@@ -226,30 +222,13 @@ static void native_map_ui_draw(void *renderer) {
     // overlay readers; the game's producer arrays are never modified here.
     auto *input = g_native_ui_input.graphics();
     {
-#ifdef _WIN32
         NativeDfhackLayerRendererGrid grid(renderer, *input);
-#else
-        // ELF painters read the real gps as well as renderer's array slots.
-        // Pin the unmasked header for callbacks, then borrow only the output
-        // bindings under Linux's existing translation lock. Native texture
-        // caches and command queues retain their real owner throughout.
-        NativeUiTextReadView source_read(g_overlay, source, true, false);
-        auto *owner = native_graphics_owner();
-        NativeUiGridBinding grid(owner, *input, renderer);
-#endif
         struct InputScope {
             bool previous = g_native_ui_input_masked;
             InputScope() { g_native_ui_input_masked = true; }
             ~InputScope() { g_native_ui_input_masked = previous; }
         } masked;
         callback.call_native([&] { original(renderer); });
-#ifndef _WIN32
-        // Output binding restoration must not discard native scheduling
-        // updates made during this raster pass.
-        input->refresh_buffer_val = owner->refresh_buffer_val;
-        input->force_full_display_count = owner->force_full_display_count;
-        input->last_display_background = owner->last_display_background;
-#endif
     }
     source->refresh_buffer_val = input->refresh_buffer_val;
     source->force_full_display_count = input->force_full_display_count;
@@ -288,6 +267,10 @@ static bool install_native_map_layer_hook() {
     // Complete ELF prologue instructions, with no relative operands. Hook
     // the function entry so direct and virtual update_all calls share it.
     const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57,0x41,0x56};
+    auto *clear = static_cast<unsigned char *>(dlsym(RTLD_DEFAULT, "_ZN16renderer_2d_base20do_blank_screen_fillEv"));
+    if (!g_native_map_clear_hook.installed && (!clear || !g_native_map_clear_hook.prepare(clear,
+            {0xf3,0x0f,0x1e,0xfa,0x53}, reinterpret_cast<const void *>(&native_map_clear), {}, label) ||
+            !g_native_map_clear_hook.install(label))) return false;
     return entry && g_native_map_ui_draw_hook.prepare(entry, prefix,
         reinterpret_cast<const void *>(&native_map_ui_draw), {}, label) &&
         g_native_map_ui_draw_hook.install(label);
@@ -297,7 +280,6 @@ static bool install_native_map_layer_hook() {
 static void uninstall_native_map_layer_hook() {
     uninstall_native_map_producer_hook();
     g_native_map_ui_draw_hook.uninstall("Native map/interface raster restore");
-#ifdef _WIN32
     g_native_map_clear_hook.uninstall("Native map clear ownership restore");
     if (!g_native_map_ui_draw_hook.active() && !g_native_map_clear_hook.active() &&
             !native_map_producer_hook_active()) {
@@ -308,14 +290,9 @@ static void uninstall_native_map_layer_hook() {
         g_native_map_layer = {};
         native_map_begin_frame();
     }
-#else
-    if (!g_native_map_ui_draw_hook.active()) g_native_ui_input = {};
-#endif
 }
 static bool native_map_layer_hook_active() {
     return native_map_producer_hook_active() || g_native_map_ui_draw_hook.active()
-#ifdef _WIN32
         || g_native_map_clear_hook.active()
-#endif
         ;
 }

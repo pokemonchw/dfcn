@@ -24,6 +24,12 @@ struct Pattern {
 };
 struct Vtable { uint32_t reference; std::string name; std::vector<uint32_t> slots; };
 struct Import { uint32_t reference; std::string library, symbol; uint32_t extent = 8; };
+struct PatternConflicts : std::runtime_error {
+    std::vector<std::pair<uint32_t, uint32_t>> rejected;
+    explicit PatternConflicts(std::vector<std::pair<uint32_t, uint32_t>> values)
+        : std::runtime_error("Native instruction candidates conflict with established operand identities"),
+          rejected(std::move(values)) {}
+};
 inline uint32_t resolve(const std::vector<Range> &ranges, uint32_t reference) {
     auto found = std::upper_bound(ranges.begin(), ranges.end(), reference,
         [](uint32_t value, const Range &range) { return value < range.begin; });
@@ -64,6 +70,16 @@ inline bool complete_spans(State &state, const Catalog &catalog) {
 class Bindings {
     std::map<uint32_t, Range> ranges_;
 public:
+    bool compatible(uint32_t begin, uint32_t length, uint32_t native) const {
+        auto at = ranges_.upper_bound(begin);
+        if (at != ranges_.begin()) --at;
+        for (; at != ranges_.end() && uint64_t(at->second.begin) < uint64_t(begin) + length; ++at) {
+            const auto &range = at->second;
+            if (range.end > begin && int64_t(range.native) - range.begin != int64_t(native) - begin)
+                return false;
+        }
+        return true;
+    }
     uint32_t lookup(uint32_t reference) const {
         auto found = ranges_.upper_bound(reference);
         if (found == ranges_.begin()) return 0;
@@ -275,6 +291,8 @@ inline State scan(const Image &image, const Catalog &catalog,
                 if (hinted != hints.end() && !hinted->second.empty() && !hinted->second.count(address)) continue;
                 const auto established = bindings.lookup(pattern.reference);
                 if (established && established != address) continue;
+                if ((pattern.flags & 16) && !bindings.compatible(pattern.reference,
+                        static_cast<uint32_t>(pattern.raw.size()), address)) continue;
                 bool valid = true;
                 for (const auto &fixup : pattern.fixups) {
                     const auto target = operand_target(image, pattern, address, fixup);
@@ -314,8 +332,27 @@ inline State scan(const Image &image, const Catalog &catalog,
             }
         }
         for (const auto &[reference, evidence] : data_evidence) {
-            if (evidence.size() != 1) throw std::runtime_error("Conflicting global address evidence");
-            const auto &[target, owners] = *evidence.begin();
+            // A lone owner does not establish a global. In particular, a
+            // changed constructor can repeat an unchanged initialization
+            // block for a different member. Apply the two-owner rule before
+            // allowing that tentative observation to contradict a binding.
+            const auto qualified = std::count_if(evidence.begin(), evidence.end(),
+                [](const auto &entry) { return entry.second.size() >= 2; });
+            if (!qualified) continue;
+            if (qualified != 1) {
+                std::string message = "Conflicting global address evidence at " + std::to_string(reference) + ":";
+                for (const auto &[candidate, sources] : evidence) {
+                    message += " " + std::to_string(candidate) + "(" + std::to_string(sources.size()) + ") owners:";
+                    size_t count = 0;
+                    for (const auto owner : sources) {
+                        message += " " + std::to_string(owner);
+                        if (++count == 4) break;
+                    }
+                }
+                throw std::runtime_error(message);
+            }
+            const auto &[target, owners] = *std::find_if(evidence.begin(), evidence.end(),
+                [](const auto &entry) { return entry.second.size() >= 2; });
             for (const auto &[object, extent] : global_layouts) if (reference >= object && reference - object < extent) {
                 const auto base = bindings.lookup(object);
                 if (base && uint64_t(base) + field_offset(object, reference) != target)
@@ -340,14 +377,18 @@ inline State scan(const Image &image, const Catalog &catalog,
 
     // Revisit every admitted operand after the graph closes: a later anchor
     // must not silently contradict an earlier unique byte match.
+    std::vector<std::pair<uint32_t, uint32_t>> rejected;
     for (size_t index = 0; index < selected.size(); ++index) if (selected[index]) {
         const auto &pattern = catalog.patterns[index];
         for (const auto &fixup : pattern.fixups) {
             const auto expected = bindings.lookup(fixup.target);
-            if (expected && expected != operand_target(image, pattern, selected[index], fixup))
-                throw std::runtime_error("Native operand graph disagrees with an established address");
+            if (expected && expected != operand_target(image, pattern, selected[index], fixup)) {
+                rejected.emplace_back(pattern.reference, static_cast<uint32_t>(pattern.raw.size()));
+                break;
+            }
         }
     }
+    if (!rejected.empty()) throw PatternConflicts(std::move(rejected));
     state.ranges = bindings.export_ranges();
     for (const auto &[reference, byte] : changes) { (void)reference; state.bytes.push_back(byte); }
     complete_spans(state, catalog);

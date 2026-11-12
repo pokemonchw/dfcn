@@ -2,10 +2,10 @@
 // These are the actual addst returns in the selected-unit header, retained
 // with both PE images in data/extracted/character-header-status/. Ownership
 // does not depend on a quoted name, a closed frame, or the spelling of a name.
-#ifdef _WIN32
     const uintptr_t header_base = native_history_profile_base();
     if (header_base) {
         enum class HeaderField { None, Status, Pet, Creator, Office, Job, Arena };
+#ifdef _WIN32
         const uintptr_t status_first = native_reference_address(header_base, 0x15c2f2);
         const uintptr_t status_last = native_reference_address(header_base, 0x15d246);
         const uintptr_t pet_prefix = native_reference_address(header_base, 0x15d2db);
@@ -16,6 +16,34 @@
         const uintptr_t job = native_reference_address(header_base, 0x15d6b6);
         const uintptr_t independent = native_reference_address(header_base, 0x15bc81);
         const uintptr_t arena_team = native_reference_address(header_base, 0x15bebb);
+#else
+        const uintptr_t pet_prefix = native_elf_5317_address(0x13f80f2);
+        const uintptr_t pet_name = native_elf_5317_address(0x13f816e);
+        const uintptr_t creator_prefix = native_elf_5317_address(0x13f8047);
+        const uintptr_t creator_name = native_elf_5317_address(0x13f80ba);
+        const uintptr_t office = native_elf_5317_address(0x13f800f);
+        const uintptr_t job = native_elf_5317_address(0x13f7c50);
+        const uintptr_t independent = native_elf_5317_address(0x13f9801);
+        const uintptr_t arena_team = native_elf_5317_address(0x13f76e4);
+        // GCC splits the header's status switch into noncontiguous blocks.
+        // Only the actual status addst returns are classified as statuses.
+        static const std::array status_callers{
+            native_elf_5317_address(0x13f7826), native_elf_5317_address(0x13f7902), native_elf_5317_address(0x13f797d),
+            native_elf_5317_address(0x13f7a07), native_elf_5317_address(0x13f7aa1), native_elf_5317_address(0x13f7b92),
+            native_elf_5317_address(0x13f7cb1), native_elf_5317_address(0x13f7d07), native_elf_5317_address(0x13f7d3c),
+            native_elf_5317_address(0x13f7dcb), native_elf_5317_address(0x13f7e03), native_elf_5317_address(0x13f7e3b),
+            native_elf_5317_address(0x13f7e89), native_elf_5317_address(0x13f7f02), native_elf_5317_address(0x13f81e6),
+            native_elf_5317_address(0x13f8214), native_elf_5317_address(0x13f824c), native_elf_5317_address(0x13f827a),
+            native_elf_5317_address(0x13f82a8), native_elf_5317_address(0x13f82d6), native_elf_5317_address(0x13f830e),
+            native_elf_5317_address(0x13f833c), native_elf_5317_address(0x13f8393), native_elf_5317_address(0x13f83c1),
+            native_elf_5317_address(0x13f83ef), native_elf_5317_address(0x13f8427), native_elf_5317_address(0x13f8458),
+            native_elf_5317_address(0x13f84c1), native_elf_5317_address(0x13f8503), native_elf_5317_address(0x13f852d),
+            native_elf_5317_address(0x13f8554), native_elf_5317_address(0x13f8582), native_elf_5317_address(0x13f85a9),
+            native_elf_5317_address(0x13f85f8), native_elf_5317_address(0x13f8626), native_elf_5317_address(0x13f8654),
+            native_elf_5317_address(0x13f8682), native_elf_5317_address(0x13f86b0), native_elf_5317_address(0x13f86de),
+            native_elf_5317_address(0x13f870c),
+        };
+#endif
         const auto kind = [&](const NativeDrawnTextRow &draw) {
             const uintptr_t caller = draw.native_caller;
             if (!caller) return HeaderField::None;
@@ -23,8 +51,13 @@
             // strange-mood and emotional-overload status writers. The two
             // corrupt-enum fallbacks already submit a complete signed number;
             // grief instead submits three adjacent strings on this same row.
+#ifdef _WIN32
             if (status_first && status_last && caller >= status_first && caller <= status_last)
                 return HeaderField::Status;
+#else
+            if (std::find(status_callers.begin(), status_callers.end(), caller) != status_callers.end())
+                return HeaderField::Status;
+#endif
             if (caller == pet_prefix || caller == pet_name) return HeaderField::Pet;
             if (caller == creator_prefix || caller == creator_name) return HeaderField::Creator;
             if (caller == office) return HeaderField::Office;
@@ -192,4 +225,3 @@
             }
         }
     }
-#endif

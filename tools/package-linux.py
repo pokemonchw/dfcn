@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNTIME_FILES = (
     "libdfcn_core.so", "libdfhooks.so", "LICENSE", "data/runtime/config.ini",
     "data/runtime/native-addresses/elf-seed.bin",
+    "data/runtime/native-addresses/elf-current.bin",
     "data/runtime/translations.tsv", "data/runtime/name-editor.tsv",
     "data/runtime/instrument-translations.tsv", "data/runtime/adventure-target-translations.tsv",
     "data/runtime/adventure-crafting-translations.tsv",
@@ -59,9 +60,9 @@ LICENSE_FILES = (
     "data/runtime/english-pronunciation/MFA-LICENSE.txt",
     "third_party/opencc/LICENSE", "third_party/opencc/SOURCE",
 )
-INSTALLATION = """DFCN Linux x64 / Dwarf Fortress 53.16
+INSTALLATION = """DFCN Linux x64 / Dwarf Fortress Steam 53.17
 
-此包同时提供 Steam 版与官网免费版的地址绑定，由核心自动选择。
+此包包含本机 Steam 53.17 的完整地址资料，并保留 53.16 参考绑定。
 未知版本自动扫描原生 ELF 地址，完整解析后缓存；ABI 不兼容时保留失败原因。
 将 libdfhooks.so 和整个 dfcn 文件夹解压到包含 dwarfort 的游戏根目录。
 保留游戏原有文件、RAW、存档和设置。无需 DFHack。
@@ -69,7 +70,7 @@ INSTALLATION = """DFCN Linux x64 / Dwarf Fortress 53.16
 这是使用维护者当前 Linux 原生环境构建的运行包，依赖系统的 SDL2、
 FreeType、Fontconfig、C++ 运行库及 glibc；不包含这些系统依赖。
 未内置字体时，Fontconfig 选择系统已安装的中文无衬线字体。
-汉化配置位于 dfcn/data/runtime/config.ini。
+汉化配置优先读取游戏根目录的 dfcn_config.ini；首次使用从 dfcn/data/runtime/config.ini 创建。
 语义搜索需要单独安装 DFCN Semantic Search Model mod；模型不包含在本运行包内。
 运行包不包含游戏程序、源码、本机路径配置或生成工具。
 """

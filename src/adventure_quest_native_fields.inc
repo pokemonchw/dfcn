@@ -1,4 +1,4 @@
-// PE task-card writers, from the complete Ghidra renderer and its original
+// Shared task-card fields, bound to each platform's native renderer and its original
 // addst return sites in data/extracted/adventure-quest-sidebar. Each field
 // owns its role independently of the title, border, and adjacent English.
 // Native body/title x is frame_left+2; the east edge is x+28. Bearing x is
@@ -11,26 +11,26 @@
         };
         const auto base = native_history_profile_base();
         const QuestWriter writers[] = {
-            {native_reference_address(base, 0xaf628f), QuestField::Title, 1},
-            {native_reference_address(base, 0xaf645f), QuestField::Literal, 2},
-            {native_reference_address(base, 0xaf64db), QuestField::Artifact, 3},
-            {native_reference_address(base, 0xaf6533), QuestField::Literal, 4},
-            {native_reference_address(base, 0xaf65b5), QuestField::Group, 5},
-            {native_reference_address(base, 0xaf6dc2), QuestField::Literal, 2},
-            {native_reference_address(base, 0xaf6e4a), QuestField::Actor, 3},
-            {native_reference_address(base, 0xaf6eab), QuestField::Literal, 4},
-            {native_reference_address(base, 0xaf7822), QuestField::Literal, 2},
-            {native_reference_address(base, 0xaf7872), QuestField::Person, 2},
-            {native_reference_address(base, 0xaf78ca), QuestField::Literal, 3},
-            {native_reference_address(base, 0xaf7922), QuestField::Literal, 4},
-            {native_reference_address(base, 0xaf79a4), QuestField::Artifact, 5},
-            {native_reference_address(base, 0xaf8338), QuestField::Person, 2},
-            {native_reference_address(base, 0xaf8383), QuestField::Literal, 3},
-            {native_reference_address(base, 0xaf83db), QuestField::Literal, 4},
-            {native_reference_address(base, 0xaf845d), QuestField::Group, 5},
-            {native_reference_address(base, 0xaf9591), QuestField::Literal, 3},
-            {native_reference_address(base, 0xaf9600), QuestField::Literal, 4},
-            {native_reference_address(base, 0xaf9654), QuestField::Literal, 4},
+            {native_ui_semantic_address(0xaf628f), QuestField::Title, 1},
+            {native_ui_semantic_address(0xaf645f), QuestField::Literal, 2},
+            {native_ui_semantic_address(0xaf64db), QuestField::Artifact, 3},
+            {native_ui_semantic_address(0xaf6533), QuestField::Literal, 4},
+            {native_ui_semantic_address(0xaf65b5), QuestField::Group, 5},
+            {native_ui_semantic_address(0xaf6dc2), QuestField::Literal, 2},
+            {native_ui_semantic_address(0xaf6e4a), QuestField::Actor, 3},
+            {native_ui_semantic_address(0xaf6eab), QuestField::Literal, 4},
+            {native_ui_semantic_address(0xaf7822), QuestField::Literal, 2},
+            {native_ui_semantic_address(0xaf7872), QuestField::Person, 2},
+            {native_ui_semantic_address(0xaf78ca), QuestField::Literal, 3},
+            {native_ui_semantic_address(0xaf7922), QuestField::Literal, 4},
+            {native_ui_semantic_address(0xaf79a4), QuestField::Artifact, 5},
+            {native_ui_semantic_address(0xaf8338), QuestField::Person, 2},
+            {native_ui_semantic_address(0xaf8383), QuestField::Literal, 3},
+            {native_ui_semantic_address(0xaf83db), QuestField::Literal, 4},
+            {native_ui_semantic_address(0xaf845d), QuestField::Group, 5},
+            {native_ui_semantic_address(0xaf9591), QuestField::Literal, 3},
+            {native_ui_semantic_address(0xaf9600), QuestField::Literal, 4},
+            {native_ui_semantic_address(0xaf9654), QuestField::Literal, 4},
         };
         const uintptr_t bearing_writers[] = {
 #include "adventure_quest_bearing_sites.inc"

@@ -180,22 +180,10 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         return false;
     }
     const uintptr_t wrap_va = steam ? 0x115dd20 : 0x115d580;
-    const std::vector<uintptr_t> signatures = steam ? std::vector<uintptr_t>{
-        0x136fa91, 0x136fab8, 0x136faf8, 0x136fe5d, 0x1370277, 0x13702c7,
-        0x13bb2cf, 0x13bbee8, 0x13bc5f1, 0x13be596, 0x13be9ca, 0x13c04c3,
-        0x13e461f, 0x13e779a, 0x13eef27, 0x13ef0d5, 0x13f43a6, 0x13f589c, 0x13fdaad,
-    } : std::vector<uintptr_t>{
-        0x117f456, 0x118015f, 0x118031e, 0x11804d1, 0x11806bd, 0x1180732, 0x11807ba,
-        0x118091a, 0x1180aa4, 0x1180ba5, 0x1180c1b, 0x1180d7b, 0x1180f42, 0x1180fbf,
-        0x118104d, 0x11810ca, 0x136ec71, 0x136ec98, 0x136ecd8, 0x136f03d, 0x136f457,
-        0x136f4a7, 0x13ba4af, 0x13bb0c8, 0x13bb7d1, 0x13bd776, 0x13bdbaa, 0x13bf6a3,
-        0x13e37ff, 0x13e697a, 0x13ee107, 0x13ee2b5, 0x13f3586, 0x13f4a7c, 0x13fcc8d,
-    };
     profile.base = module.base;
     const uintptr_t native_wrap = elf_runtime::automatic() ? native_reference_va(wrap_va) : wrap_va;
     if (!native_wrap) return false;
     auto *entry = reinterpret_cast<unsigned char *>(module.base + native_wrap);
-    for (uintptr_t address : signatures) profile.call_signatures.push_back({address,wrap_va});
     // The Steam wrapper's entry bytes are read from its validated live image,
     // never guessed from another distribution. Relocate only complete PUSH
     // register instructions, which have no PC-relative address or branch.
@@ -227,72 +215,11 @@ static bool resolve_native_rich_profile(NativeRichProfile &profile) {
         log_line("ERROR", "Cannot resolve complete rich-text draw import");
         return false;
     }
-    enum SheetArgument { R14, R15, RenderFrame, SavedR14 };
-    const std::array<std::vector<unsigned char>, 4> sheet_arguments{{
-        {0x4c, 0x89, 0xf2}, // RDX = R14.
-        {0x4c, 0x89, 0xfa}, // RDX = R15.
-        {0x48, 0x8b, 0x95, 0x78, 0xfd, 0xff, 0xff}, // RDX = [RBP-0x288].
-        {0x48, 0x8b, 0x54, 0x24, 0x38}, // RDX = caller [RSP+0x30], plus CALL return address.
-    }};
-    // Bind the live sheet at EACH call, not once per enclosing handler.
-    // Recent-thought rewrap saves R14 at caller [RSP+0x30], then reuses R14D
-    // for a screen coordinate. Passing R14 at 0x136fe5d caused the 2026-09-18
-    // crash: sheet=0x54, vector header read at 0x1854. The saved sheet in the
-    // crash dump owns exactly the current source/box pair. The relay tail-
-    // jumps without changing RSP, so its slot is [RSP+0x38], not +0x30.
-    // Require the native spill, reuse and restore instructions before hooking.
-    profile.signatures.push_back({steam ? 0x136eaccu : 0x136dcacu,
-        {0x4c, 0x89, 0x74, 0x24, 0x30, 0x45, 0x89, 0xe6}});
-    profile.signatures.push_back({steam ? 0x136eaf3u : 0x136dcd3u,
-        {0x4c, 0x8b, 0x74, 0x24, 0x30}});
-    struct CharacterCallBinding {
-        uintptr_t steam, classic;
-        NativeRichCallKind kind;
-        SheetArgument sheet;
-    };
-    const std::array<CharacterCallBinding, 18> character_calls{{
-        {0x136fa91, 0x136ec71, NativeRichCallKind::Health, R14},
-        {0x136fab8, 0x136ec98, NativeRichCallKind::Personality, R14},
-        {0x13bb2cf, 0x13ba4af, NativeRichCallKind::Health, R15},
-        {0x13be596, 0x13bd776, NativeRichCallKind::Personality, R15},
-        {0x13e461f, 0x13e37ff, NativeRichCallKind::Health, RenderFrame},
-        {0x13e779a, 0x13e697a, NativeRichCallKind::Personality, RenderFrame},
-        {0x136faf8, 0x136ecd8, NativeRichCallKind::Thoughts, R14},
-        {0x136fe5d, 0x136f03d, NativeRichCallKind::Thoughts, SavedR14},
-        {0x1370277, 0x136f457, NativeRichCallKind::Thoughts, R14},
-        {0x13702c7, 0x136f4a7, NativeRichCallKind::Thoughts, R14},
-        {0x13bbee8, 0x13bb0c8, NativeRichCallKind::Thoughts, R15},
-        {0x13bc5f1, 0x13bb7d1, NativeRichCallKind::Thoughts, R15},
-        {0x13be9ca, 0x13bdbaa, NativeRichCallKind::Thoughts, R15},
-        {0x13c04c3, 0x13bf6a3, NativeRichCallKind::Thoughts, R15},
-        {0x13eef27, 0x13ee107, NativeRichCallKind::Thoughts, RenderFrame},
-        {0x13ef0d5, 0x13ee2b5, NativeRichCallKind::Thoughts, RenderFrame},
-        {0x13f43a6, 0x13f3586, NativeRichCallKind::Thoughts, RenderFrame},
-        {0x13f589c, 0x13f4a7c, NativeRichCallKind::Thoughts, RenderFrame},
-    }};
     profile.wrap = reinterpret_cast<NativeKnowledgeWrapFn>(entry);
     profile.draw = reinterpret_cast<NativeKnowledgeDrawFn>(draw);
     profile.draw_slot = draw_search.slot;
-    for (const auto &call : character_calls)
-        profile.calls.push_back({steam ? call.steam : call.classic, wrap_va,
-            call.kind, sheet_arguments[call.sheet]});
-    if (elf_runtime::automatic()) {
-        for (auto &signature : profile.signatures) {
-            if (!native_reference_bytes(signature.address, signature.bytes)) return false;
-            signature.address = native_reference_va(signature.address);
-            if (!signature.address) return false;
-        }
-        for (auto &signature : profile.call_signatures) {
-            signature.address = native_reference_va(signature.address);
-            signature.target = native_reference_va(signature.target);
-            if (!signature.address || !signature.target) return false;
-        }
-        for (auto &call : profile.calls) {
-            call.address = native_reference_va(call.address);
-            call.target = native_reference_va(call.target);
-            if (!call.address || !call.target) return false;
-        }
-    }
+    // The generic wrap/draw boundaries recover the actual sheet from its
+    // source/box vectors. Caller registers and spill offsets are not an ABI.
     return true;
 }
 #endif

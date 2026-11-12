@@ -16,6 +16,9 @@ using NativeConversationEventFn = void (*)(void *, NativeString *,
     int32_t, int32_t, int32_t, bool);
 
 static NativeCallHook g_native_overview_event_hooks;
+#ifndef _WIN32
+static NativeEntryHook g_native_conversation_event_entry;
+#endif
 static NativeOverviewEventFn g_native_overview_event_original = nullptr;
 static NativeConversationEventFn g_native_conversation_event_original = nullptr;
 
@@ -153,12 +156,19 @@ static void capture_native_conversation_event(void *unit, NativeString *output,
 }
 
 static bool native_overview_event_hooks_active() {
-    return g_native_overview_event_hooks.active();
+    return g_native_overview_event_hooks.active()
+#ifndef _WIN32
+        || g_native_conversation_event_entry.active()
+#endif
+        ;
 }
 
 static void uninstall_native_overview_event_hooks() {
     if (!native_callbacks_idle()) return;
     if (!g_native_overview_event_hooks.uninstall("Native overview event source restore")) return;
+#ifndef _WIN32
+    if (!g_native_conversation_event_entry.uninstall("Native conversation event source restore")) return;
+#endif
     g_native_overview_event_original = nullptr;
     g_native_conversation_event_original = nullptr;
     std::lock_guard<std::mutex> lock(g_native_overview_event_mutex);
@@ -209,18 +219,25 @@ static bool install_native_overview_event_hooks() {
     if (!base) return false;
     g_native_overview_event_original = reinterpret_cast<NativeOverviewEventFn>(
         elf_runtime::state().executable.bias + native_reference_va(0x101b7f0));
-    g_native_conversation_event_original = reinterpret_cast<NativeConversationEventFn>(
+    auto *conversation = reinterpret_cast<unsigned char *>(
         elf_runtime::state().executable.bias + native_reference_va(0x1e30100));
+    std::array<unsigned char, 6> prefix{};
+    if (!conversation || !native_history_copy_bytes(reinterpret_cast<uintptr_t>(conversation), prefix.data(), prefix.size()) ||
+            std::memcmp(prefix.data(), "\xf3\x0f\x1e\xfa", 4)) return false;
+    const size_t prefix_size = prefix[4] >= 0x50 && prefix[4] <= 0x57 ? 5 :
+        prefix[4] == 0x41 && prefix[5] >= 0x50 && prefix[5] <= 0x57 ? 6 : 0;
+    if (!prefix_size || !g_native_conversation_event_entry.prepare(conversation,
+            {prefix.begin(), prefix.begin() + prefix_size},
+            reinterpret_cast<const void *>(&capture_native_conversation_event), {},
+            "Native conversation event source")) return false;
+    g_native_conversation_event_original = reinterpret_cast<NativeConversationEventFn>(
+        g_native_conversation_event_entry.original);
     std::vector<NativeCall> calls{
         {0x13a8681,0x101b7f0,reinterpret_cast<const void *>(&capture_native_overview_event)},
-        {0xffd099,0x1e30100,reinterpret_cast<const void *>(&capture_native_conversation_event)},
-        {0xfff2f6,0x1e30100,reinterpret_cast<const void *>(&capture_native_conversation_event)},
-        {0x1000459,0x1e30100,reinterpret_cast<const void *>(&capture_native_conversation_event)},
-        {0x1002ea9,0x1e30100,reinterpret_cast<const void *>(&capture_native_conversation_event)},
-        {0x10058f9,0x1e30100,reinterpret_cast<const void *>(&capture_native_conversation_event)},
     };
     if (!native_reference_calls(calls,0) ||
-            !g_native_overview_event_hooks.install(elf_runtime::state().executable.bias,calls,"Native overview event source")) {
+            !g_native_overview_event_hooks.install(elf_runtime::state().executable.bias,calls,"Native overview event source") ||
+            !g_native_conversation_event_entry.install("Native conversation event source")) {
         uninstall_native_overview_event_hooks();
         return false;
     }

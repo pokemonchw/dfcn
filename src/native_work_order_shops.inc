@@ -74,8 +74,57 @@ static std::optional<NativeWorkOrderShopCaption> capture_native_work_order_shop_
     caption.complete_source.assign(complete);
     return caption;
 #else
-    (void)caller;
-    (void)source;
-    return std::nullopt;
+    using Kind = NativeWorkOrderShopCaption::Kind;
+    struct Site { uintptr_t address; Kind kind; size_t source_offset; };
+    const Site sites[]{
+        {native_elf_5317_address(0xd9719c), Kind::Unlimited, 0xf0},
+        {native_elf_5317_address(0xd95d95), Kind::Limit, 0x110},
+        {native_elf_5317_address(0xd98045), Kind::Explanation, 0xf0},
+        {native_elf_5317_address(0xd96476), Kind::ColorWarning, 0xf0},
+        {native_elf_5317_address(0xd959d9), Kind::Building, 0xf0},
+    };
+    const auto site = std::find_if(std::begin(sites), std::end(sites),
+        [&](const Site &entry) { return entry.address && entry.address == caller; });
+    if (site == std::end(sites)) return std::nullopt;
+    const uintptr_t frame = source + site->source_offset;
+    if (frame < 0x1cc || frame < source) return std::nullopt;
+    int32_t column = -1;
+    uintptr_t order = 0;
+    NativeWorkOrderShopCaption caption;
+    caption.kind = site->kind;
+    if (!native_history_copy(frame - 0x1cc, column) || column < 0 || column > 1000 ||
+            !native_history_copy(frame - 0x190, order) || !order ||
+            !native_history_copy_string(source, caption.complete_source) ||
+            caption.complete_source.empty() || caption.complete_source.size() > 65536) return std::nullopt;
+    caption.right = column + 20;
+    if (caption.kind == Kind::Limit && caption.complete_source.ends_with(" shop(s) max"))
+        caption.kind = Kind::Editing;
+    if (caption.kind != Kind::Building) return caption;
+    caption.authored = true;
+    uintptr_t building = 0;
+    int32_t id = -1;
+    if (!native_history_copy(native_history_object_member(order, "manager_order", "workshop_id", 4), id) ||
+            !native_history_find_structure_id(native_history_global(0x23edf10), 0x50, id, building) || !building)
+        return caption;
+    std::string authored;
+    if (!native_history_copy_string(native_history_object_member(building, "building", "name", 32), authored))
+        return caption;
+    if (!authored.empty()) {
+        caption.complete_source = std::move(authored);
+        return caption;
+    }
+    uintptr_t table = 0, getter = 0;
+    const auto &image = elf_runtime::state().executable;
+    if (!native_history_copy(building, table) || !native_history_copy(table + 0x188, getter) ||
+            getter < image.bias + 0x400000 || getter >= image.bias + 0x2200000) return caption;
+    NativeHistoryPageString output;
+    NativeHistoryCallbackScope callback;
+    reinterpret_cast<void (*)(void *, NativeString *)>(getter)(reinterpret_cast<void *>(building), &output.value);
+    std::string_view complete;
+    if (native_string_view(&output.value, &complete, 65536) && !complete.empty()) {
+        caption.authored = false;
+        caption.complete_source.assign(complete);
+    }
+    return caption;
 #endif
 }

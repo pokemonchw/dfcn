@@ -11,8 +11,8 @@ static bool resolve_native_justice_search_profile(NativeJusticeSearchProfile &pr
         }, {0, reinterpret_cast<NativeSearchFoldFn>(native_reference_address(base, 0x25940)), {
             {0x132360b, 0x25940, reinterpret_cast<const void *>(&capture_native_justice_search_query)},
             {0x13237b7, 0x25940, reinterpret_cast<const void *>(&capture_native_justice_search_term<JournalSearchKind::Organization>), {0x48,0x8d,0x74,0x24,0x58}},
-            {0x1323a54, 0x25940, reinterpret_cast<const void *>(&capture_native_justice_search_term<JournalSearchKind::Plot>), {0x48,0x8d,0x74,0x24,0x58}},
-            {0x1323a8c, 0x25940, reinterpret_cast<const void *>(&capture_native_justice_search_term<JournalSearchKind::PlotOrganization>), {0x48,0x8d,0x74,0x24,0x58}},
+            {0x1323a54, 0x25940, reinterpret_cast<const void *>(&capture_native_justice_plot_search_term<JournalSearchKind::Plot>), {0x48,0x8d,0x74,0x24,0x58,0x49,0x8b,0x97,0x68,0x03,0x00,0x00,0x48,0x8b,0x14,0x1a}},
+            {0x1323a8c, 0x25940, reinterpret_cast<const void *>(&capture_native_justice_plot_search_term<JournalSearchKind::PlotOrganization>), {0x48,0x8d,0x74,0x24,0x58,0x49,0x8b,0x97,0x68,0x03,0x00,0x00,0x48,0x8b,0x14,0x1a}},
             {0x1323ea7, 0x25940, reinterpret_cast<const void *>(&capture_native_justice_search_term<JournalSearchKind::Actor>), {0x48,0x8d,0x74,0x24,0x58}},
         }}}
     };

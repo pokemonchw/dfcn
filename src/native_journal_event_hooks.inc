@@ -1,11 +1,6 @@
 // PE Events and People cache every 58-column paragraph while unselected
 // cards draw only three rows. Keep the actual cached row/string addresses,
 // including complete paragraphs whose construction no longer repeats.
-#ifdef _WIN32
-using NativeJournalEventBuildFn = void (*)(void *);
-static NativeJournalEventBuildFn g_native_journal_event_build = nullptr;
-static NativeCallHook g_native_journal_event_calls;
-
 static bool native_journal_event_rows(uintptr_t owner,
         std::vector<std::string> &rows, std::vector<uintptr_t> &addresses) {
     NativeBorrowedVector<uintptr_t> native_rows;
@@ -47,6 +42,11 @@ static bool native_journal_event_interval_captured(uintptr_t owner, int width,
     }
     return false;
 }
+
+#ifdef _WIN32
+using NativeJournalEventBuildFn = void (*)(void *);
+static NativeJournalEventBuildFn g_native_journal_event_build = nullptr;
+static NativeCallHook g_native_journal_event_calls;
 
 static void retain_native_journal_card_paragraphs(uintptr_t owner) {
     std::vector<std::string> rows;

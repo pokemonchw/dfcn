@@ -6,9 +6,9 @@ DFCN 是 **Byayoi 同人社区**的《Dwarf Fortress（矮人要塞）》汉化�
 
 社区官网：[byayoi.org](https://byayoi.org/)
 
-项目在游戏渲染阶段捕获英文文本，通过词表与语法规则生成中文，再进行字形测量、换行和覆盖绘制，不修改游戏 RAW 或存档。提供 Windows 与 Linux 原生适配；Windows 支持 Steam 53.17 / 53.16 与官网免费版 53.17 / 53.16，Linux 适配 53.16。
+项目在游戏渲染阶段捕获英文文本，通过词表与语法规则生成中文，再进行字形测量、换行和覆盖绘制，不修改游戏 RAW 或存档。提供 Windows 与 Linux 原生适配；Windows 支持 Steam 53.17 / 53.16 与官网免费版 53.17 / 53.16，Linux 当前源码与本机部署适配 Steam 53.17，保留 53.16 参考绑定。
 
-Windows 本版的显示语言由配置中的 BCP 47 标签 `language` 控制：默认 `zh-Hans` 为简体中文，`zh-Hant` 将全部译文通过离线 OpenCC 转为台湾正体及常用词汇，也接受 `zh-CN` / `zh-TW`、`zh-Hans-CN` / `zh-Hant-TW`。自定义小队名称保持原样。配置模板位于 `data/runtime/config.ini`，已安装游戏优先读取游戏根目录的 `dfcn_config.ini`。
+当前源码的显示语言由配置中的 BCP 47 标签 `language` 控制：默认 `zh-Hans` 为简体中文，`zh-Hant` 将全部译文通过离线 OpenCC 转为台湾正体及常用词汇，也接受 `zh-CN` / `zh-TW`、`zh-Hans-CN` / `zh-Hant-TW`。自定义小队名称保持原样。配置模板位于 `data/runtime/config.ini`，已安装游戏优先读取游戏根目录的 `dfcn_config.ini`。
 
 **Shift+F8** 在简体与台湾正体之间切换，并刷新字体与译文排版；左右 Shift 均可，长按不重复触发。语言选择在本次运行及核心重载后保留，不改写配置文件，也不改变汉化显示开关。
 
@@ -58,7 +58,13 @@ Windows 同时安装 **DFHack 53.16-r2 / r3、53.17-r1** 时，可按 **Shift+F1
 
 Linux 已发布核心同样使用 **Shift+F10** 切换汉化并保留核心与数据；**Shift+F5** 关闭再开启时重新读取核心与数据；**Ctrl+Shift+F10** 显式刷新数据。卸载时移除自己安装的 `libdfhooks.so` 和 `dfcn` 汉化目录；无需删除游戏或存档。
 
-Linux 源码已实现 **Shift+F6**、**Shift+F8** 和游戏根目录 `dfcn_config.ini` 配置，当前 Linux 发布包尚未包含这些功能及本版 Windows 的后续修复。
+Linux 当前源码和本机部署已按 **Steam 53.17** 同步原生适配，包含 Windows 共用的译文、搜索、繁简切换、配置与排版逻辑，以及人物、小队、报告、暂停菜单、世界生成、选址文明、请愿、地图悬停和工具栏的独立绘制层。工单条件、指定工坊、建筑任务、演出描述、地点、司法卡片和冒险日志使用 Linux 的实际对象布局及原生调用入口；自定义小队别名保持原样。
+
+冒险模式的动作队列、移动与追踪提示、战斗提示、对话状态和语气、任务卡片及方位字段已接入 Linux 原生绘制。人物分组、房间和地点名称预览、展示物品、请愿列表、资源和贡品字段、工坊配方预览与中文搜索共用 Windows 的语义和排版处理；用户自定义小队名称保持原样。
+
+DFHack 独立绘制层已补入 Linux 53.17-r1 绑定，覆盖原生界面与 Lua 绘制、文本和图块读写、私有图形缓冲区及 SDL 合成；同时更新 Lua 输出和 DFHack 开关的版本绑定。本机未安装 Linux DFHack，尚未观察该部分的游戏内运行效果。
+
+正常 Linux 构建通过 `build-deploy.sh` 读取本机游戏文件，生成并部署核心、驻留加载器及配套地址资料。`data/runtime/native-addresses/elf-current.bin` 保存本机 53.17 游戏及共享库的完整指纹绑定，运行时同时核对游戏文件和 `elf-seed.bin` 指纹后使用。该源码更新不代表上面的历史 Linux Release 已更新；旧发布包仍为 53.16。
 
 ## Mod 汉化数据扩展
 

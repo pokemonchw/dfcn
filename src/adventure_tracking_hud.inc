@@ -4,10 +4,9 @@
 void Overlay::append_adventure_tracking_hud_matches(
         std::vector<std::string> &rows, std::vector<Match> &matches,
         int only_y, const unsigned char *screen_override) const {
-#ifdef _WIN32
     const auto base = native_history_profile_base();
     if (!base) return;
-    const auto address = [base](uintptr_t rva) { return native_pe_address(base, rva); };
+    const auto address = [base](uintptr_t rva) { return native_ui_semantic_address(rva); };
     const auto append = [&](int x, int y, std::string_view source,
                             const std::string &target, int width, int rule) {
         if (x < 0 || y < 0 || y >= gps_->dimy || source.empty() ||
@@ -137,5 +136,4 @@ void Overlay::append_adventure_tracking_hud_matches(
                     4, kAdventureCompassRule);
         }
     }
-#endif
 }

@@ -1,7 +1,6 @@
 // setupadventure paints its retained Home/Beliefs card inline. Enter at the
 // second row-count call, before any background/border cell, and leave at the
 // first following world lookup. Neither boundary depends on visible glyphs.
-#ifdef _WIN32
 using NativeAdventureBackgroundCountFn = size_t (*)(const void *);
 using NativeAdventureBackgroundSiteFn = uintptr_t (*)(const void *, int32_t);
 
@@ -103,13 +102,53 @@ static uintptr_t capture_native_adventure_background_end(const void *world,
     const auto original = g_native_adventure_background_hook.site;
     return callback.call_native([&] { return original(world, site_id); });
 }
+
+#ifndef _WIN32
+static NativeInlineObserverHook g_native_adventure_background_begin_elf_hook, g_native_adventure_background_end_elf_hook;
+static void native_adventure_background_begin_elf(const NativeInlineRegisters *r) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        finish_native_adventure_background_tooltip();
+        if (!r) return;
+        auto *gps = native_graphics();
+        uintptr_t owner = 0;
+        int32_t left = 0, bottom = 0;
+        const int32_t right = static_cast<int32_t>(r->r14), top = static_cast<int32_t>(r->r15);
+        if (!gps || !native_history_copy(r->rbp - 0x3a0, owner) ||
+                !native_history_copy(r->rbp - 0x3b0, left) ||
+                !native_history_copy(r->rbp - 0x3b8, bottom) || right - left != 31 || top >= bottom) return;
+        NativeBorrowedVector<uintptr_t> rows;
+        const auto document = native_history_object_member(owner, "setup_character_info", "background_desc.text", 24);
+        if (!document || !native_history_read_vector(document, rows) || !rows.size() || rows.size() > 4096) return;
+        NativeTooltipWidgetFrame frame;
+        frame.bounds = {left, top, 32, bottom - top + 1};
+        if (!native_tooltip_valid_bounds(*gps, frame.bounds)) return;
+        frame.dimx = gps->dimx; frame.dimy = gps->dimy;
+        frame.epoch = g_embark_item_capture_epoch.load(std::memory_order_acquire);
+        frame.rows.assign(frame.bounds.h, std::string(32, ' '));
+        frame.adventure_background = true;
+        frame.adventure_belief = native_adventure_belief_cache();
+        if (!frame.adventure_belief) frame.adventure_home = native_adventure_home_cache();
+        const auto owns = [&](const auto &cache) { return cache && cache->owner == owner && cache->rows.size() == rows.size(); };
+        if (!owns(frame.adventure_belief)) frame.adventure_belief.reset();
+        if (!owns(frame.adventure_home)) frame.adventure_home.reset();
+        auto &state = native_adventure_background_tooltip_state();
+        state.previous = g_native_tooltip_write; state.frame = std::move(frame);
+        if (!native_tooltip_begin_draw(*state.frame)) { state.frame.reset(); state.previous = nullptr; return; }
+        g_native_tooltip_write = &*state.frame;
+    } catch (...) {}
+}
+static void native_adventure_background_end_elf(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try { finish_native_adventure_background_tooltip(); } catch (...) {}
+}
 #endif
 
 static bool native_adventure_background_tooltip_active() {
 #ifdef _WIN32
     return g_native_adventure_background_hook.code.active();
 #else
-    return false;
+    return g_native_adventure_background_begin_elf_hook.active() || g_native_adventure_background_end_elf_hook.active();
 #endif
 }
 
@@ -120,6 +159,11 @@ static bool uninstall_native_adventure_background_tooltip() {
     finish_native_adventure_background_tooltip();
     hook.count = nullptr;
     hook.site = nullptr;
+#else
+    g_native_adventure_background_begin_elf_hook.uninstall("Native ELF background card begin restore");
+    g_native_adventure_background_end_elf_hook.uninstall("Native ELF background card end restore");
+    if (g_native_adventure_background_begin_elf_hook.active() || g_native_adventure_background_end_elf_hook.active()) return false;
+    finish_native_adventure_background_tooltip();
 #endif
     return true;
 }
@@ -127,7 +171,16 @@ static bool uninstall_native_adventure_background_tooltip() {
 static bool install_native_adventure_background_tooltip(uintptr_t base) {
 #ifndef _WIN32
     (void)base;
-    return true;
+    if (!native_elf_5317_address(0x11228a6)) return true;
+    if (g_native_adventure_background_begin_elf_hook.install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(0x11228a6)), {0x49,0x63,0xc7,0x45,0x89,0xfc},
+            native_adventure_background_begin_elf, "Native ELF background card begin") &&
+            g_native_adventure_background_end_elf_hook.install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(0x1122be3)), {0x48,0x8b,0x0d,0xce,0xf8,0x72,0x01},
+            native_adventure_background_end_elf, "Native ELF background card end",
+            {{3,7,native_elf_5317_address(0x28524b8)}})) return true;
+    uninstall_native_adventure_background_tooltip();
+    return false;
 #else
     auto &hook = g_native_adventure_background_hook;
     if (hook.code.installed) return true;

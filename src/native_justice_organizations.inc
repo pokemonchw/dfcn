@@ -4,7 +4,6 @@
 static std::optional<std::string> native_justice_organization_person_target(
         uintptr_t actor, std::string_view expected,
         std::optional<std::string> &initials_target) {
-#ifdef _WIN32
     uintptr_t name = 0;
     const auto &hooks = g_native_unit_identity_hooks;
     if (!actor || expected.empty() || !native_history_copy(actor + 0x10, name))
@@ -56,9 +55,6 @@ static std::optional<std::string> native_justice_organization_person_target(
         remember_native_unit_identity(actor + 0x18, expected, *target, 0, true);
     }
     return target;
-#else
-    return std::nullopt;
-#endif
 }
 
 static std::optional<std::string> native_justice_organization_person_target(
@@ -70,12 +66,26 @@ static std::optional<std::string> native_justice_organization_person_target(
 static std::optional<NativeJusticeOrganizationCaption>
 capture_native_justice_organization_caption(
         uintptr_t caller, uintptr_t source_address, int x, int y) {
-#ifdef _WIN32
     const uintptr_t base = native_history_profile_base();
     if (!base || !caller || !source_address || x < 0 || x > 1000 || y < 0 || y > 1000)
         return std::nullopt;
     const auto called_from = [&](uintptr_t reference_return) {
+#ifdef _WIN32
         return caller == native_reference_address(base, reference_return);
+#else
+        uintptr_t current = 0;
+        switch (reference_return) {
+        case 0x477a80: current = 0x174ddea; break;
+        case 0x478073: current = 0x174f3bb; break;
+        case 0x4780f0: current = 0x174f3d7; break;
+        case 0x478171: current = 0x174f3f3; break;
+        case 0x47822f: current = 0x174ebb5; break;
+        case 0x478284: current = 0x174ebf0; break;
+        case 0x47831b: current = 0x174f0b3; break;
+        case 0x478390: current = 0x174f15c; break;
+        }
+        return current && caller == native_elf_5317_address(current);
+#endif
     };
     NativeJusticeOrganizationCaption caption;
     uintptr_t actor = 0;
@@ -143,6 +153,5 @@ capture_native_justice_organization_caption(
     } catch (...) {
         // Optional owned evidence never unwinds across the native drawer.
     }
-#endif
     return std::nullopt;
 }

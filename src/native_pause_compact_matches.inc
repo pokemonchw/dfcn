@@ -1,10 +1,34 @@
-#ifdef _WIN32
 if (native_pause_compact_view(gps_)) {
     // The owner, mode 5 and action IDs 14/15 identify this menu. Return
     // addresses identify its fields; current_span compares source bytes
     // only to prove that a captured draw still owns its suppression span.
     const auto &menu = *g_native_pause_compact_menu;
     const auto base = native_history_profile_base();
+    const auto site = [&](uintptr_t coordinate) -> uintptr_t {
+#ifdef _WIN32
+        return native_reference_address(base, coordinate);
+#else
+        switch (coordinate) {
+        case 0x1e1efd: return native_elf_5317_address(0x142713b);
+        case 0x1e2838: return native_elf_5317_address(0x1429431);
+        case 0x1e2862: return native_elf_5317_address(0x1429212);
+        case 0x1e2899: return native_elf_5317_address(0x1429259);
+        case 0x1e28d7: return native_elf_5317_address(0x1429289);
+        case 0x1e290e: return native_elf_5317_address(0x14292c7);
+        case 0x1e2aa3: return native_elf_5317_address(0x1429471);
+        case 0x1e2acd: return native_elf_5317_address(0x1428bfd);
+        case 0x1e2b04: return native_elf_5317_address(0x1428c49);
+        case 0x1e2b42: return native_elf_5317_address(0x1428c79);
+        case 0x1e2b79: return native_elf_5317_address(0x1428cb7);
+        case 0x1e3008: return native_elf_5317_address(0x142967b);
+        case 0x1e302e: return native_elf_5317_address(0x142976f);
+        case 0x1e3065: return native_elf_5317_address(0x14296b7);
+        case 0x1e30a3: return native_elf_5317_address(0x14296e7);
+        case 0x1e30da: return native_elf_5317_address(0x1429722);
+        default: return 0;
+        }
+#endif
+    };
     const int tile_w = gps_->tile_pixel_x, tile_h = gps_->tile_pixel_y;
     if (!base || tile_w <= 0 || tile_h <= 0) return result;
     const int origin_x = (gps_->screen_pixel_x - gps_->dimx * tile_w) / 2;
@@ -35,7 +59,7 @@ if (native_pause_compact_view(gps_)) {
         }
         return nullptr;
     };
-    const auto action_caller = native_reference_address(base, 0x1e1efd);
+    const auto action_caller = site(0x1e1efd);
     constexpr std::array<std::string_view, 2> action_keys{{
         "Return to title menu", "Continue"}};
     for (size_t index = 0; index < menu.buttons.size(); ++index) {
@@ -59,18 +83,18 @@ if (native_pause_compact_view(gps_)) {
         int row;
     };
     const std::array<MusicCalls, 6> music{{
-        {native_reference_address(base, 0x1e2838), native_reference_address(base, 0x1e2899),
-            native_reference_address(base, 0x1e28d7), native_reference_address(base, 0x1e290e), 0, 0},
-        {native_reference_address(base, 0x1e2862), native_reference_address(base, 0x1e2899),
-            native_reference_address(base, 0x1e28d7), native_reference_address(base, 0x1e290e), 1, 0},
-        {native_reference_address(base, 0x1e2aa3), native_reference_address(base, 0x1e2b04),
-            native_reference_address(base, 0x1e2b42), native_reference_address(base, 0x1e2b79), 2, 1},
-        {native_reference_address(base, 0x1e2acd), native_reference_address(base, 0x1e2b04),
-            native_reference_address(base, 0x1e2b42), native_reference_address(base, 0x1e2b79), 3, 1},
-        {native_reference_address(base, 0x1e3008), native_reference_address(base, 0x1e3065),
-            native_reference_address(base, 0x1e30a3), native_reference_address(base, 0x1e30da), 4, 0},
-        {native_reference_address(base, 0x1e302e), native_reference_address(base, 0x1e3065),
-            native_reference_address(base, 0x1e30a3), native_reference_address(base, 0x1e30da), 0, 0},
+        {site(0x1e2838), site(0x1e2899),
+            site(0x1e28d7), site(0x1e290e), 0, 0},
+        {site(0x1e2862), site(0x1e2899),
+            site(0x1e28d7), site(0x1e290e), 1, 0},
+        {site(0x1e2aa3), site(0x1e2b04),
+            site(0x1e2b42), site(0x1e2b79), 2, 1},
+        {site(0x1e2acd), site(0x1e2b04),
+            site(0x1e2b42), site(0x1e2b79), 3, 1},
+        {site(0x1e3008), site(0x1e3065),
+            site(0x1e30a3), site(0x1e30da), 4, 0},
+        {site(0x1e302e), site(0x1e3065),
+            site(0x1e30a3), site(0x1e30da), 0, 0},
     }};
     for (const auto &calls : music) {
         const int y = menu.soundtrack.y + calls.row;
@@ -119,4 +143,3 @@ if (native_pause_compact_view(gps_)) {
     }
     return result;
 }
-#endif

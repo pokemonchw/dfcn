@@ -1,8 +1,8 @@
 // Every native UI layer shares the frame producer and tile painters. Only
 // the help component's own draw/bounds bindings are platform-specific.
 static NativeEntryHook g_native_help_frame_hook;
-#ifdef _WIN32
 static NativeEntryHook g_native_help_producer_hook;
+#ifdef _WIN32
 static void *g_native_help_frame_renderer = nullptr;
 #endif
 using NativeHelpDrawFn = void (*)(void *);
@@ -153,16 +153,9 @@ static void native_help_begin_frame(void *renderer) {
     g_native_help_frame_renderer = renderer;
 #else
     native_help_reset_frame(renderer);
-    try { native_announcement_log_preheat(4, false); }
-    catch (...) {}
-    native_map_preview_refresh();
-    native_settings_menu_prepare();
-    native_mouse_coordinates_prepare();
-    native_map_preview_prepare();
 #endif
 }
 
-#ifdef _WIN32
 static void native_help_produce_frame() {
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
@@ -172,7 +165,9 @@ static void native_help_produce_frame() {
     // thread. Reset and rebuild the layers under one lock, so Present sees
     // either the previous completed output or this complete frame, including
     // an empty frame when the native component closes.
+#ifdef _WIN32
     native_help_reset_frame(g_native_help_frame_renderer);
+#endif
     {
         // A hover's native early return can submit fewer body rows than its
         // initial count. Finish its output and release its retained translation
@@ -180,6 +175,7 @@ static void native_help_produce_frame() {
         struct FinishNotifications {
             ~FinishNotifications() {
                 native_petition_end_draw();
+                native_embark_civilization_end_draw();
                 native_designation_end_draw();
                 native_map_hover_end_draw();
                 native_topbar_end_draw();
@@ -200,14 +196,10 @@ static void native_help_produce_frame() {
     native_mouse_coordinates_prepare();
     native_map_preview_prepare();
 }
-#endif
 
 static bool install_native_help_layer_hook() {
     if (g_native_help_draw_hook.installed && g_native_help_frame_hook.installed &&
-            g_native_help_bounds_hook.installed
-#ifdef _WIN32
-            && g_native_help_producer_hook.installed
-#endif
+            g_native_help_bounds_hook.installed && g_native_help_producer_hook.installed
             ) return true;
     constexpr const char *label = "Native help component draw entry";
     const auto base = native_history_profile_base();
@@ -242,15 +234,21 @@ static bool install_native_help_layer_hook() {
             !g_native_help_draw_hook.prepare(draw, prefix,
                 reinterpret_cast<const void *>(&native_help_draw), {}, label)) return false;
     auto *frame = static_cast<unsigned char *>(dlsym(RTLD_DEFAULT, "_ZN8renderer11swap_arraysEv"));
-    const std::vector<unsigned char> frame_prefix{
-        0xf3,0x0f,0x1e,0xfa,0x48,0x8b,0x15,0x0d,0xcf,0x0b,0x00};
-    if (!frame) return false;
+    std::vector<unsigned char> frame_prefix(11);
+    constexpr std::array<unsigned char, 7> frame_opcode{0xf3,0x0f,0x1e,0xfa,0x48,0x8b,0x15};
+    if (!frame || !native_history_copy_bytes(reinterpret_cast<uintptr_t>(frame),
+            frame_prefix.data(), frame_prefix.size()) ||
+            !std::equal(frame_opcode.begin(), frame_opcode.end(), frame_prefix.begin())) return false;
     int32_t relative = 0;
     std::memcpy(&relative, frame_prefix.data() + 7, sizeof(relative));
     const std::vector<NativeRelativeFixup> fixups{{7, 11,
         reinterpret_cast<uintptr_t>(frame + 11) + relative}};
     if (!g_native_help_frame_hook.prepare(frame, frame_prefix,
             reinterpret_cast<const void *>(&native_help_begin_frame), fixups, label)) return false;
+    auto *producer = static_cast<unsigned char *>(dlsym(RTLD_DEFAULT, "_Z13render_thingsv"));
+    const std::vector<unsigned char> producer_prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
+    if (!producer || !g_native_help_producer_hook.prepare(producer, producer_prefix,
+            reinterpret_cast<const void *>(&native_help_produce_frame), {}, label)) return false;
     std::vector<NativeCall> calls{{0x1021752, 0x100ae50,
         reinterpret_cast<const void *>(&capture_native_help_draw_bounds)}};
     constexpr uintptr_t origin = 0x400000;
@@ -258,9 +256,7 @@ static bool install_native_help_layer_hook() {
     g_native_help_bounds = reinterpret_cast<NativeHelpBoundsFn>(bounds);
     if (!native_reference_calls(calls, origin) ||
             !g_native_help_bounds_hook.install(base, calls, label) ||
-#ifdef _WIN32
             !g_native_help_producer_hook.install(label) ||
-#endif
             !g_native_help_frame_hook.install(label) ||
             !g_native_help_draw_hook.install(label)) return false;
     log_line("INFO", "Redirected native tutorial/help drawing to its private output layer");
@@ -537,6 +533,11 @@ static void native_ui_paint_grid(NativeUiLayerStorage &layer, SDL_Renderer *rend
             }
     }
     const auto paint_tiles = [&] {
+#ifndef _WIN32
+    // ELF raster consumers use the SDL-owned selected gps header. Select
+    // this private layer alongside the renderer's own array bindings.
+    NativeDfhackLayerRendererGrid inputs(layer.native_renderer, *gps);
+#endif
     NativeUiGridBinding grid(native_graphics(), *gps, layer.native_renderer);
     void **methods = nullptr;
     std::memcpy(&methods, layer.native_renderer, sizeof(methods));
@@ -685,14 +686,10 @@ static void uninstall_native_help_layer_hook() {
     g_native_help_draw_hook.uninstall("Native help draw entry restore");
     g_native_help_bounds_hook.uninstall("Native help layout call restore");
     g_native_help_frame_hook.uninstall("Native UI frame producer restore");
-#ifdef _WIN32
     g_native_help_producer_hook.uninstall("Native UI complete frame producer restore");
-#endif
     if (!g_native_help_frame_hook.active() && !g_native_help_draw_hook.active() &&
             !g_native_help_bounds_hook.active()
-#ifdef _WIN32
             && !g_native_help_producer_hook.active()
-#endif
             ) {
         g_native_help_bounds = nullptr;
         g_native_help_target.release();
@@ -705,8 +702,6 @@ static void uninstall_native_help_layer_hook() {
 static bool native_help_layer_hook_active() {
     return g_native_help_frame_hook.active() || g_native_help_draw_hook.active() ||
         g_native_help_bounds_hook.active()
-#ifdef _WIN32
         || g_native_help_producer_hook.active()
-#endif
         ;
 }

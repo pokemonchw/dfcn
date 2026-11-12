@@ -134,11 +134,64 @@ static bool native_embark_civilization_layer_hook_active() {
         g_native_embark_civilization_owner_hook.active();
 }
 #else
-static bool install_native_embark_civilization_layer_hook() { return true; }
-static void uninstall_native_embark_civilization_layer_hook() {
-    g_native_embark_civilization_target.release();
+static std::array<NativeInlineObserverHook, 3> g_native_embark_civilization_elf_hooks;
+static void native_embark_civilization_begin_elf(const NativeInlineRegisters *r) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        if (r) native_embark_civilization_begin_draw({static_cast<int32_t>(r->rax), 0, 38, 41});
+    } catch (...) {}
 }
-static bool native_embark_civilization_layer_hook_active() { return false; }
+static void native_embark_civilization_box_elf(const NativeInlineRegisters *r) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        if (!r || !g_native_embark_civilization_output) return;
+        int32_t right = 0, top = 0;
+        if (!native_history_copy(r->stack() + 0x50, right) ||
+                !native_history_copy(r->stack() + 0x30, top)) return;
+        const SDL_Rect box{right - 3, top, 4, 3};
+        const auto &panel = g_native_embark_civilization_panel;
+        auto &boxes = g_native_embark_civilization_boxes;
+        if (box.x >= panel.x && box.y >= panel.y && box.x + box.w <= panel.x + panel.w &&
+                box.y + box.h <= panel.y + panel.h &&
+                std::none_of(boxes.begin(), boxes.end(), [&](const auto &other) { return other.y == box.y; }))
+            boxes.push_back(box);
+    } catch (...) {}
+}
+static void native_embark_civilization_end_elf(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try { native_embark_civilization_end_draw(); } catch (...) {}
+}
+static bool install_native_embark_civilization_layer_hook() {
+    if (!native_elf_5317_address(0x1f6f232)) return true;
+    constexpr std::array<uintptr_t, 3> sites{0x1f6f232, 0x1f6f700, 0x1f6f9fd};
+    const std::array<std::vector<unsigned char>, 3> prefixes{{
+        {0x89,0x04,0x24,0x48,0x98}, {0x48,0x8b,0x44,0x24,0x28}, {0x48,0x8b,0x44,0x24,0x28}}};
+    const std::array<NativeInlineObserveFn, 3> callbacks{native_embark_civilization_begin_elf,
+        native_embark_civilization_box_elf, native_embark_civilization_end_elf};
+    for (size_t index = 0; index < sites.size(); ++index) {
+        if (g_native_embark_civilization_elf_hooks[index].install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(sites[index])), prefixes[index], callbacks[index],
+                "Native ELF embark civilization producer")) continue;
+        for (auto &hook : g_native_embark_civilization_elf_hooks)
+            hook.uninstall("Native ELF embark civilization restore");
+        return false;
+    }
+    return true;
+}
+static void uninstall_native_embark_civilization_layer_hook() {
+    native_embark_civilization_restore_output();
+    for (auto &hook : g_native_embark_civilization_elf_hooks)
+        hook.uninstall("Native ELF embark civilization restore");
+    if (std::none_of(g_native_embark_civilization_elf_hooks.begin(), g_native_embark_civilization_elf_hooks.end(),
+            [](const auto &hook) { return hook.active(); })) {
+        g_native_embark_civilization_target.release(); native_embark_civilization_begin_frame();
+        g_native_embark_civilization_layer = {}; g_native_embark_civilization_text = {};
+    }
+}
+static bool native_embark_civilization_layer_hook_active() {
+    return std::any_of(g_native_embark_civilization_elf_hooks.begin(), g_native_embark_civilization_elf_hooks.end(),
+        [](const auto &hook) { return hook.active(); });
+}
 #endif
 
 static void native_embark_civilization_present_layer(SDL_Renderer *renderer,

@@ -16,7 +16,6 @@ static void native_character_paint_grid(NativeUiLayerStorage &layer,
     native_ui_paint_grid(layer, renderer, matches, panel);
 }
 
-#ifdef _WIN32
 static NativeEntryHook g_native_character_draw_hook;
 using NativeCharacterDrawFn = void (*)(void *, uint32_t, int32_t, int32_t);
 
@@ -28,10 +27,16 @@ static bool native_character_frames(const void *sheet, const graphicst &gps,
     // The normal native entry loads init.display.grid_y at +0x18. Its
     // prepare-carefully branch also reads grid_x +0x14 and width +0x3c.
     if (settings) {
+#ifdef _WIN32
         const uintptr_t init = reinterpret_cast<uintptr_t>(settings);
         if (!native_history_copy(init + 0x14, grid_x) ||
                 !native_history_copy(init + 0x18, grid_y) ||
                 !native_history_copy(init + 0x3c, width_percent)) return false;
+#else
+        grid_x = settings->display.grid_x;
+        grid_y = settings->display.grid_y;
+        width_percent = settings->display.max_interface_percentage;
+#endif
     }
     int64_t left = int64_t(screen_right) - 97;
     int64_t right = int64_t(screen_right) - 37;
@@ -139,12 +144,16 @@ static void native_character_draw(void *sheet, uint32_t tick, int32_t screen_lef
         callback.call_native([&] { original(sheet, tick, screen_left, screen_right); });
         layer.foreground.graphics()->top_in_use = gps->top_in_use;
     }
+    layer.native_renderer = g_native_help_layer.native_renderer;
+    layer.renderer = g_native_help_layer.renderer;
     layer.ready = true;
     NativeUiReadScope::invalidate_reads();
 }
 
 static bool install_native_character_layer_hook() {
     if (g_native_character_draw_hook.installed) return true;
+    constexpr const char *label = "Native character sheet component draw entry";
+#ifdef _WIN32
     const auto base = native_history_profile_base();
     auto *draw = reinterpret_cast<unsigned char *>(native_reference_address(base, 0x14ef90));
     const auto owner = native_reference_address(base, 0x18a4330);
@@ -152,10 +161,17 @@ static bool install_native_character_layer_hook() {
     // Its first complete MOV stores incoming R9D in shadow space. The
     // trampoline preserves all four arguments without a relative fixup.
     std::vector<unsigned char> prefix{0x44,0x89,0x4c,0x24,0x20};
-    constexpr const char *label = "Native character sheet component draw entry";
     if (!draw || !owner || !native_reference_bytes(0x14ef90, prefix) ||
             !g_native_character_draw_hook.prepare(draw, prefix,
                 reinterpret_cast<const void *>(&native_character_draw), {}, label)) return false;
+#else
+    if (!native_elf_5317_address(0x13d14b0)) return true;
+    const auto owner = native_character_sheet_owner();
+    auto *draw = reinterpret_cast<unsigned char *>(native_elf_5317_address(0x13d14b0));
+    const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x55};
+    if (!owner || !draw || !g_native_character_draw_hook.prepare(draw, prefix,
+            reinterpret_cast<const void *>(&native_character_draw), {}, label)) return false;
+#endif
     g_native_character_owner = owner;
     if (!g_native_character_draw_hook.install(label)) return false;
     log_line("INFO", "Redirected the memory-selected character sheet to its private output layer");
@@ -175,11 +191,6 @@ static void uninstall_native_character_layer_hook() {
     }
 }
 static bool native_character_layer_hook_active() { return g_native_character_draw_hook.active(); }
-#else
-static bool install_native_character_layer_hook() { return true; }
-static void uninstall_native_character_layer_hook() { g_native_character_target.release(); }
-static bool native_character_layer_hook_active() { return false; }
-#endif
 
 static void native_character_present_layer(SDL_Renderer *renderer,
         void (*draw_character)(SDL_Renderer *)) {

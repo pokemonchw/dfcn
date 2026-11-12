@@ -45,16 +45,20 @@ std::vector<NativeTextCard> Overlay::capture_character_group_rows() const {
         }
         return row;
     };
-#ifdef _WIN32
     if (native_character_foreground_view(gps_)) {
         // These are the three addst returns in the complete native Groups
         // arm. Its private producer already owns the pane and each field;
         // neither a closed bottom edge nor a nonempty role is required.
+#ifdef _WIN32
         const uintptr_t base = native_history_profile_base();
         const std::array<uintptr_t, 3> callers{
             native_reference_address(base, 0x1794ba),
             native_reference_address(base, 0x17986a),
             native_reference_address(base, 0x17ab4c)};
+#else
+        const std::array<uintptr_t, 3> callers{native_elf_5317_address(0x140c82c),
+            native_elf_5317_address(0x140cbcb), native_elf_5317_address(0x140c8d6)};
+#endif
         const std::array draws{captured_native_drawn_text_view(false),
             captured_native_drawn_text_view(true)};
         std::array<std::vector<const NativeDrawnTextRow *>, 3> fields;
@@ -146,7 +150,6 @@ std::vector<NativeTextCard> Overlay::capture_character_group_rows() const {
         }
         if (!cards.empty()) return cards;
     }
-#endif
     for (int tabs_y = bounds.y; tabs_y < bounds.y + bounds.h; ++tabs_y) {
         const auto tabs = character_information_tab_fields(read_row(tabs_y));
         if (tabs.empty() || !character_social_tab_selected(tabs_y, "Groups")) continue;

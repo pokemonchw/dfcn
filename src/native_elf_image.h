@@ -253,6 +253,15 @@ public:
             for (const auto &s : sections) if (!(s.flags & PF_X))
                 for (uint32_t p = s.begin; uint64_t(p) + 24 <= uint64_t(s.begin) + s.raw_size; p += 8) {
                     if (pointer(p)) continue;
+                    bool has_code = false, invalid = false;
+                    for (uint32_t slot = 0; slot < 4; ++slot) {
+                        const auto method = pointer(p + 16 + slot * 8);
+                        if (!method) continue; // Unresolved external virtual method.
+                        const auto *code = method <= UINT32_MAX ? section(uint32_t(method)) : nullptr;
+                        if (!code || !(code->flags & PF_X)) { invalid = true; break; }
+                        has_code = true;
+                    }
+                    if (invalid || !has_code) continue;
                     const auto target = pointer(p + 8);
                     if (target > UINT32_MAX) continue;
                     const auto at = types.find(uint32_t(target));

@@ -1,9 +1,8 @@
 // DFHack writes only to its private output buffers. Native parent rendering
 // temporarily restores the game's output pointers. Registered links use DFHack's
 // own constructor and chain maintenance; no registry field is overwritten.
-#ifdef _WIN32
 using NativeDfhackRenderMethod = void (*)(void *, uint32_t);
-using NativeDfhackRenderLinkCtor = void *(*)(void *, const void *, int, void *, void *, int, const char *);
+using NativeDfhackRenderLinkCtor = void (*)(void *, const void *, int, void *, void *, int, const char *);
 using NativeDfhackRenderLinkDtor = void (*)(void *);
 using NativeDfhackRenderIdentity = const void *(*)(void *);
 using NativeDfhackRenderIdentityName = const char *(*)(const void *);
@@ -14,7 +13,7 @@ using NativeDfhackRenderSuspended = bool (*)(void *);
 using NativeDfhackRenderUpdate = void (*)(void *, void *);
 
 struct NativeDfhackRenderApi {
-    HMODULE module = nullptr;
+    void *module = nullptr;
     void **core = nullptr;
     NativeDfhackRenderLinkCtor construct = nullptr;
     NativeDfhackRenderLinkDtor destroy = nullptr;
@@ -92,17 +91,26 @@ static bool native_dfhack_render_capture_ui_write(const graphicst *gps,
 }
 // Context and executable relay have process lifetime. Clearing helper lets
 // queued native entries pass through without entering an unloaded core.
+#ifdef _WIN32
+using NativeDfhackRenderShift = int32_t;
+#else
+using NativeDfhackRenderShift = intptr_t;
+#endif
 struct alignas(8) NativeDfhackRenderLinkContext {
     uintptr_t helper = 0;
     uint32_t active = 0, reserved = 0;
     uintptr_t chain = 0;
-    int32_t this_shift = 0;
+    NativeDfhackRenderShift this_shift = 0;
+#ifdef _WIN32
     uint32_t padding = 0;
+#endif
     // Native remove() clears chain_mptr. A queued process-lifetime relay
     // therefore needs a separate target that native chain maintenance ignores.
     uintptr_t resident_chain = 0;
-    int32_t resident_shift = 0;
+    NativeDfhackRenderShift resident_shift = 0;
+#ifdef _WIN32
     uint32_t resident_padding = 0;
+#endif
     const void *host = nullptr;
     void *object = nullptr;
     void *relay = nullptr;
@@ -113,7 +121,7 @@ struct alignas(8) NativeDfhackRenderLinkContext {
     uintptr_t classified_chain = 0;
     bool classified_native = false;
     uintptr_t refreshed_chain = 0;
-    int32_t refreshed_shift = 0;
+    NativeDfhackRenderShift refreshed_shift = 0;
     void *refreshed_next = nullptr, *refreshed_previous = nullptr;
     unsigned char refreshed_applied = 0;
 };
@@ -147,10 +155,16 @@ static void native_dfhack_render_remember_link(NativeDfhackRenderLinkContext &li
 }
 
 static bool native_dfhack_render_game_method(uintptr_t address) noexcept {
+#ifdef _WIN32
     HMODULE module = nullptr;
     return address && GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
         GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
         reinterpret_cast<LPCWSTR>(address), &module) && module == GetModuleHandleW(nullptr);
+#else
+    const auto &image = elf_runtime::state().executable;
+    return address && std::any_of(image.loads.begin(), image.loads.end(),
+        [&](const auto &range) { return address >= range.first && address < range.second; });
+#endif
 }
 
 static void native_dfhack_render_custom_callback(void *screen, uint32_t tick) {
@@ -184,8 +198,12 @@ static bool native_dfhack_render_ensure_custom(void *screen) {
             !native_history_copy(reinterpret_cast<uintptr_t>(table + 3), method) || !method) return false;
     // The exported Lua method already has a complete entry hook. C++ custom
     // viewscreens need their full override, not the resize-only base method.
-    if (method == reinterpret_cast<void *>(GetProcAddress(api.module,
+#ifdef _WIN32
+    if (method == reinterpret_cast<void *>(GetProcAddress(static_cast<HMODULE>(api.module),
             "?render@dfhack_lua_viewscreen@DFHack@@UEAAXI@Z"))) return true;
+#else
+    if (method == dlsym(api.module, "_ZN6DFHack21dfhack_lua_viewscreen6renderEj")) return true;
+#endif
     const auto known = std::find_if(g_native_dfhack_render_custom_hooks.begin(),
         g_native_dfhack_render_custom_hooks.end(), [&](const auto &hook) { return hook.slot == table + 3; });
     if (known != g_native_dfhack_render_custom_hooks.end()) {
@@ -244,19 +262,24 @@ static void native_dfhack_render_link_callback(void *screen, uint32_t tick,
 
 static bool native_dfhack_prepare_render_link_relay(NativeDfhackRenderLinkContext *context) {
     constexpr const char *label = "DFHack render-layer native relay";
+#ifdef _WIN32
     using AddFunctionTable = BOOLEAN (WINAPI *)(PRUNTIME_FUNCTION, DWORD, DWORD64);
     const auto kernel = GetModuleHandleW(L"kernel32.dll");
     const auto register_table = kernel ? reinterpret_cast<AddFunctionTable>(
         GetProcAddress(kernel, "RtlAddFunctionTable")) : nullptr;
     if (!register_table) return false;
+#endif
     std::vector<unsigned char> code;
     code.reserve(128);
     NativeRelayRange range;
+#ifdef _WIN32
     range.include(reinterpret_cast<uintptr_t>(g_native_dfhack_render_api.module));
+#else
+    range.include(reinterpret_cast<uintptr_t>(g_native_dfhack_render_api.construct));
+#endif
     size_t allocation = 0;
     auto *memory = static_cast<unsigned char *>(allocate_native_relay(range, 0x228, &allocation, label));
     if (!memory) return false;
-    bool registered = false;
     const auto emit = [&](std::initializer_list<unsigned char> bytes) { code.insert(code.end(), bytes); };
     const auto load_context = [&] {
         emit({0x49,0xba});
@@ -264,6 +287,7 @@ static bool native_dfhack_prepare_render_link_relay(NativeDfhackRenderLinkContex
         const auto *bytes = reinterpret_cast<const unsigned char *>(&pointer);
         code.insert(code.end(), bytes, bytes + sizeof(pointer));
     };
+#ifdef _WIN32
     emit({0xf3,0x0f,0x1e,0xfa,0x48,0x83,0xec,0x48});
     emit({0x48,0x89,0x4c,0x24,0x20,0x48,0x89,0x54,0x24,0x28});
     load_context();
@@ -278,15 +302,33 @@ static bool native_dfhack_prepare_render_link_relay(NativeDfhackRenderLinkContex
     code[finished] = static_cast<unsigned char>(code.size() - finished - 1);
     load_context();
     emit({0xf0,0x41,0xff,0x4a,0x08,0x48,0x83,0xc4,0x48,0xc3});
+#else
+    emit({0xf3,0x0f,0x1e,0xfa,0x48,0x83,0xec,0x08});
+    load_context();
+    emit({0xf0,0x41,0xff,0x42,0x08,0x49,0x8b,0x02,0x48,0x85,0xc0,0x74,0x00});
+    const size_t no_helper = code.size() - 1;
+    emit({0x4c,0x89,0xd2,0xff,0xd0,0xeb,0x00}); // context in RDX
+    const size_t finished = code.size() - 1;
+    code[no_helper] = static_cast<unsigned char>(code.size() - no_helper - 1);
+    emit({0x49,0x8b,0x42,0x28,0x48,0x01,0xc7,0x49,0x8b,0x42,0x20,0xff,0xd0});
+    code[finished] = static_cast<unsigned char>(code.size() - finished - 1);
+    load_context();
+    emit({0xf0,0x41,0xff,0x4a,0x08,0x48,0x83,0xc4,0x08,0xc3});
+#endif
     std::copy(code.begin(), code.end(), memory);
+#ifdef _WIN32
     auto *table = reinterpret_cast<PRUNTIME_FUNCTION>(memory + 0x200);
     *table = RUNTIME_FUNCTION{};
     table->EndAddress = static_cast<DWORD>(code.size());
     table->UnwindData = 0x220;
     constexpr std::array<unsigned char, 8> unwind{1,8,1,0,8,0x82,0,0};
     std::copy(unwind.begin(), unwind.end(), memory + 0x220);
-    registered = seal_native_relay(memory, allocation, label) &&
+    const bool registered = seal_native_relay(memory, allocation, label) &&
         register_table(table, 1, reinterpret_cast<DWORD64>(memory));
+#else
+    const bool registered = native_dfhack_register_elf_relay(memory,
+        code.size(), code.size() - 1, allocation, label);
+#endif
     if (!registered) { void *relay = memory; release_native_relay(relay, allocation, label); return false; }
     context->relay = memory;
     return true;
@@ -320,14 +362,30 @@ static bool native_dfhack_render_ensure_host(const void *host, bool foreign_cont
             continue;
         }
         g_native_dfhack_render_links.reserve(g_native_dfhack_render_links.size() + 1);
+#ifdef _WIN32
         auto *link = static_cast<NativeDfhackRenderLinkContext *>(HeapAlloc(
             GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(NativeDfhackRenderLinkContext)));
+#else
+        auto *link = static_cast<NativeDfhackRenderLinkContext *>(std::calloc(1, sizeof(NativeDfhackRenderLinkContext)));
+#endif
         if (!link) return false;
         link->host = host;
         link->bottom = bottom;
         link->foreign_content = foreign_content;
-        if (!native_dfhack_prepare_render_link_relay(link)) { HeapFree(GetProcessHeap(), 0, link); return false; }
+        if (!native_dfhack_prepare_render_link_relay(link)) {
+#ifdef _WIN32
+            HeapFree(GetProcessHeap(), 0, link);
+#else
+            std::free(link);
+#endif
+            return false;
+        }
+#ifdef _WIN32
         link->object = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, 0x70);
+#else
+        // The two libstdc++ tree headers extend this native base to b0.
+        link->object = std::calloc(1, 0xb0);
+#endif
         if (!link->object) return false;
         api.construct(link->object, host, 3, link->relay, &link->chain,
             bottom ? INT_MIN : INT_MAX, bottom ? "dfcn native render segment" : "dfcn DFHack render layer");
@@ -541,7 +599,11 @@ static void native_dfhack_render_retire_links() noexcept {
             api.registry.remove_function()(link->object);
             if (api.registry.applied(link->object) || std::atomic_ref<uint32_t>(link->active).load(std::memory_order_seq_cst)) continue;
             api.destroy(link->object);
+#ifdef _WIN32
             HeapFree(GetProcessHeap(), 0, link->object);
+#else
+            std::free(link->object);
+#endif
             link->object = nullptr;
             g_native_dfhack_render_objects_live.fetch_sub(1, std::memory_order_release);
         }
@@ -631,11 +693,15 @@ static bool install_native_dfhack_render_layers() {
     // interpose links in DFHack's own suspension context. Present retries must
     // not turn private capture back on before that retirement finishes.
     if (g_native_dfhack_render_retiring.load(std::memory_order_acquire)) return true;
+#ifdef _WIN32
     const auto module = GetModuleHandleW(L"dfhack.dll");
+#else
+    const auto module = native_dfhack_elf_module();
+#endif
     bool success = false;
     struct PublishEntries {
         bool &success;
-        HMODULE module;
+        void *module;
         ~PublishEntries() {
             g_native_dfhack_render_entries_live.store(g_native_dfhack_render_update_entry.active() ||
                 g_native_dfhack_render_lua_entry.active() ||
@@ -656,6 +722,7 @@ static bool install_native_dfhack_render_layers() {
     constexpr const char *label = "DFHack private rendering layer";
     if (!api.module) {
         api.module = module;
+#ifdef _WIN32
         api.core = reinterpret_cast<void **>(GetProcAddress(module, "?active_instance@Core@DFHack@@0PEAV12@EA"));
         api.construct = reinterpret_cast<NativeDfhackRenderLinkCtor>(GetProcAddress(module,
             "??0VMethodInterposeLinkBase@DFHack@@QEAA@PEBVvirtual_identity@1@HPEAX1HPEBD@Z"));
@@ -673,6 +740,26 @@ static bool install_native_dfhack_render_layers() {
             "?is_instance@dfhack_viewscreen@DFHack@@SA_NPEAUviewscreen@df@@@Z"));
         api.suspended = reinterpret_cast<NativeDfhackRenderSuspended>(GetProcAddress(module,
             "?isSuspended@Core@DFHack@@QEAA_NXZ"));
+#else
+        api.core = reinterpret_cast<void **>(dlsym(module, "_ZN6DFHack4Core15active_instanceE"));
+        api.construct = reinterpret_cast<NativeDfhackRenderLinkCtor>(dlsym(module, "_ZN6DFHack24VMethodInterposeLinkBaseC1EPKNS_16virtual_identityEiPvS4_iPKc"));
+        api.destroy = reinterpret_cast<NativeDfhackRenderLinkDtor>(dlsym(module, "_ZN6DFHack24VMethodInterposeLinkBaseD1Ev"));
+        api.identity = reinterpret_cast<NativeDfhackRenderIdentity>(dlsym(module, "_ZN6DFHack16virtual_identity3getEPNS_13virtual_classE"));
+        api.name = [](const void *host) -> const char * {
+            const char *name = nullptr;
+            if (host) native_history_copy(reinterpret_cast<uintptr_t>(host) + 0x18, name);
+            return name;
+        };
+        api.table = [](const void *host) -> void * {
+            using Method = void *(*)(const void *, int);
+            const auto get = reinterpret_cast<Method>(dlsym(g_native_dfhack_render_api.module,
+                "_ZNK6DFHack16virtual_identity15get_vmethod_ptrEi"));
+            return host && get ? get(host, 3) : nullptr;
+        };
+        api.screen = reinterpret_cast<NativeDfhackRenderScreen>(dlsym(module, "_ZN6DFHack3Gui16getCurViewscreenEb"));
+        api.foreign_screen = reinterpret_cast<NativeDfhackRenderScreenPredicate>(dlsym(module, "_ZN6DFHack17dfhack_viewscreen11is_instanceEPN2df10viewscreenE"));
+        api.suspended = reinterpret_cast<NativeDfhackRenderSuspended>(dlsym(module, "_ZN6DFHack4Core11isSuspendedEv"));
+#endif
         if (!api.core || !api.construct || !api.destroy || !api.identity || !api.name ||
                 !api.table || !api.screen || !api.foreign_screen || !api.suspended || !api.registry.bind(module)) {
             api.module = nullptr;
@@ -680,6 +767,7 @@ static bool install_native_dfhack_render_layers() {
             return false;
         }
     }
+#ifdef _WIN32
     if (!g_native_dfhack_render_update_entry.original && !g_native_dfhack_render_update_entry.prepare(
             reinterpret_cast<unsigned char *>(GetProcAddress(module,
                 "?doUpdate@Core@DFHack@@AEAAXAEAVcolor_ostream@2@@Z")),
@@ -702,6 +790,17 @@ static bool install_native_dfhack_render_layers() {
         if (!g_native_dfhack_render_thread_entry.prepare(entry, prefix,
                 reinterpret_cast<const void *>(&native_dfhack_render_thread_callback), fixups, label)) return false;
     }
+#else
+    if (!native_dfhack_elf_entry(g_native_dfhack_render_update_entry, module,
+            "_ZN6DFHack4Core8doUpdateERNS_13color_ostreamE",
+            reinterpret_cast<const void *>(&native_dfhack_render_update_callback), label) ||
+            !native_dfhack_elf_entry(g_native_dfhack_render_lua_entry, module,
+            "_ZN6DFHack21dfhack_lua_viewscreen6renderEj",
+            reinterpret_cast<const void *>(&native_dfhack_render_lua_callback), label) ||
+            !native_dfhack_elf_entry(g_native_dfhack_render_thread_entry, module,
+            "_ZN6DFHack24runRenderThreadCallbacksEv",
+            reinterpret_cast<const void *>(&native_dfhack_render_thread_callback), label)) return false;
+#endif
     if (!g_native_dfhack_render_update_entry.install(label) || !g_native_dfhack_render_lua_entry.install(label) ||
             !g_native_dfhack_render_thread_entry.install(label)) return false;
     g_native_dfhack_render_registry_revision.fetch_add(1, std::memory_order_release);
@@ -766,12 +865,3 @@ static void uninstall_native_dfhack_render_layers() {
 }
 
 static bool native_dfhack_render_native_scan_blocked(const graphicst *) noexcept { return false; }
-#else
-static bool install_native_dfhack_render_layers() { return true; }
-static void reset_native_dfhack_render_lifecycle() {}
-static void uninstall_native_dfhack_render_layers() {}
-static bool native_dfhack_render_layers_active() { return false; }
-static bool native_dfhack_render_native_scan_blocked(const graphicst *) noexcept { return false; }
-static bool native_dfhack_render_frame_capturing(const graphicst *) noexcept { return false; }
-static bool native_dfhack_render_capture_ui_write(const graphicst *, int, int, bool = true) noexcept { return false; }
-#endif

@@ -118,7 +118,8 @@ bool prepare_lifecycle() {
     if (!elf_memory(native_event + 0xe7, 11, true) ||
             std::memcmp(native_event + 0xe7, call_prefix, sizeof(call_prefix))) return false;
     auto *lua = native_event + 0xe7 + 11 + read<int32_t>(native_event + 0xe7, 7);
-    if (lua != static_cast<unsigned char *>(image.dli_fbase) + 0x5e0140) return false;
+    if (lua != static_cast<unsigned char *>(image.dli_fbase) + 0x5e0140 &&
+            lua != static_cast<unsigned char *>(image.dli_fbase) + 0x7e6990) return false;
     constexpr unsigned char lua_prefix[]{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
     constexpr unsigned char scripts_prefix[]{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
     constexpr unsigned char plugin_prefix[]{0xf3,0x0f,0x1e,0xfa,0x41,0x57};

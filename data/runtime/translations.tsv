@@ -4454,7 +4454,6 @@ Announcement combat journal-event-title [journal-event-object,journal-event-plac
 Announcement combat quest-sentence [conversation-conflict-entity]: Speaking as a representative of {s}, it is important that be returned.	我代表{s1}郑重说明，必须归还这件神器。	l
 Announcement combat rumor-event [$name,$name]: I hear that a group calling itself {s} founded after a long journey from the lands of {s}.	听说一个自称{s1}的势力从{s2}的领地长途跋涉而来，建立了未具名地点。	l
 Announcement combat rumor-event [rumor-owner,$name,$name]: refused an offer of peace from {s} regarding the conflict between {s} and {s}.	未具名者拒绝了{s1}为平息{s2}和{s3}的冲突而提出的议和。	l
-Announcement combat rumor-event [rumor-time,rumor-person,$travel-site,rumor-person]: {s}, {s} was kidnapped from {s} by {s}.	{s1}，{s4}从{s3}绑走了{s2}。	l
 Announcement combat spoken-sentence []: I wish I could tell you where to begin your search. Until then, you are free to do as you please.	我也希望能告诉你从哪里开始寻找。在那之前，你可以自由行动。	l
 DFHack GUI Sitemap: Click on a name or hit Enter to zoom to the selected target. Shift-click or Shift-Enter to zoom and follow unit/item.	点击名称或按下 Enter，定位至选中的目标。按住 Shift 点击，或按下 Shift-Enter，定位并跟随生物或物品。	l
 DFHack help: "--mode <mode>" Mode can be "add" or "set", depending on whether you want to add to the existing experience/level or set it.	"--mode <mode>" 模式可以是 "add" 或 "set"，具体取决于您是否要添加到现有的 experience/level 或设置它。	l
@@ -6142,6 +6141,7 @@ Announcement combat negotiation-sentence []: The task was made much easier by th
 Announcement combat rumor-event [rumor-person,$name,$name]: informed {s} that tribute would no longer be offered {s} to {s}.	未具名者告知{s1}，{s2}将不再向{s3}进贡。	l
 Announcement combat rumor-event [rumor-person,$name,$name]: {s} informed that tribute would no longer be offered {s} to {s}.	{s1}告知未具名者，{s2}将不再向{s3}进贡。	l
 Announcement combat rumor-event [rumor-person,rumor-owner,$name,$name]: {s} agreed to {s} demand of tribute from {s} to {s}.	{s1}答应了{s2}要求，让{s3}向{s4}进贡。	l
+Announcement combat rumor-event [rumor-time,rumor-person,$travel-site,rumor-person]: {s}, {s} was kidnapped from {s} by {s}.	{s1}，{s4}从{s3}绑走了{s2}。	l
 Announcement combat sentence [diplomacy-group]: {s} is not at war with us, and there is no hard feeling between our peoples.	{s1}没有与我们交战，双方百姓也没什么芥蒂。	l
 Announcement combat speech-journey-purpose [dialogue-family,dialogue-query-person]: to move into my new home with my {s} {s}	，与我的{s1}{s2}搬入我们的新家	l
 Announcement combat spoken-sentence [$travel-site]: The village {s} is the only other settlement to utilize the market here.	只有{s1}这座村庄也来这里赶集。	l
@@ -6569,7 +6569,6 @@ Announcement combat merchant-hawk-origin [merchant-genuine-item,merchant-advert-
 Announcement combat negotiation-response []: attempted to put their opposite at ease as well but did not ultimately agree	也试着让对方放松下来，但最终仍未同意	l
 Announcement combat rumor-event []: A bandit gang calling itself has been harassing people right here on the streets of !	有伙土匪自称未具名势力，就在未具名地点这里的街上骚扰百姓！	l
 Announcement combat rumor-event [rumor-person,rumor-owner,$name,$name]: {s} refused {s} offer of tribute from {s} to {s}.	{s1}拒绝了{s2}进贡提议：由{s3}向{s4}纳贡。	l
-Announcement combat rumor-event [rumor-time,rumor-person,$travel-site]: {s}, {s} was kidnapped from {s} by .	{s1}，未具名者从{s3}绑走了{s2}。	l
 Announcement combat spoken-sentence [$kinship]: It pains me all the more, for the foul villain is my own {s}, now cursed.	更让我痛心的是，这个恶徒竟是我的{s1}，如今已遭到诅咒。	l
 Announcement combat spoken-sentence []: I don't understand how somebody can become so obsessed by what somebody else has.	我不明白，一个人怎么会如此执着于别人拥有的东西。	l
 Announcement combat spoken-sentence [diplomacy-group]: {s} is our ally, and there is no hard feeling between our peoples.	{s1}是我们的盟友，双方百姓也没什么芥蒂。	l
@@ -6709,8 +6708,6 @@ Announcement combat dialogue-judgement [dialogue-judgement-person,dialogue-judge
 Announcement combat journal-person [$journal-office,$memory-entity]: This person is one of the {s} of {s} alongside you.	此人与你同为{s2}的{s1}。	l
 Announcement combat memory-performance-core [memory-person,memory-performance-past,memory-performance-work]: {s} {s} {s}	{s1}{s2}{s3}	l
 Announcement combat negotiation-response []: joined in the discussion of history and past griefs and agreed on the issue	一起谈起了往事与旧日伤痛，并就此达成了一致	l
-Announcement combat rumor-event [rumor-time,$travel-site,rumor-person]: {s}, was kidnapped from {s} by {s}.	{s1}，{s3}从{s2}绑走了未具名者。	l
-Announcement combat rumor-event [rumor-time,rumor-person,rumor-person]: {s}, {s} was kidnapped from by {s}.	{s1}，{s3}从未具名地点绑走了{s2}。	l
 Announcement combat sentence [$kinship]: It pains me all the more, for the foul villain was once my own {s}, now cursed.	更让我痛心的是，这个恶徒曾是我的{s1}，如今已遭到诅咒。	l
 Announcement combat sentence [$travel-site,$number]: {s} trades directly with no fewer than {s} other major settlements.	与{s1}直接做买卖的其他主要定居点，少说也有{s2}座。	l
 Announcement combat sentence [actor,unit,$person]: {s} miss {s} badly, blocked by the divine intervention of mighty {s}!	{s1}远远偏离了{s2}，攻击被强大的{s3}以神力阻止了！	l
@@ -7139,7 +7136,6 @@ Announcement combat merchant-hawk-origin [merchant-genuine-item,merchant-advert-
 Announcement combat negotiation-recipient [$historical-actor,$office,$name,$name]: {s}, {s} of {s}, representing {s},	代表{s4}的{s3}{s2}{s1}	l
 Announcement combat rumor-event []: Something truly horrifying has vomited itself forth from the depths of the world.	有个骇人至极的东西从世界深处喷涌而出。	l
 Announcement combat rumor-event [rumor-person,$travel-site]: I hear that there is an insurrection against {s} in {s}.	听说{s2}发生了反抗{s1}的叛乱。	l
-Announcement combat rumor-event [rumor-time,rumor-person,$travel-site]: {s}, {s} was kidnapped from {s}.	{s1}，{s2}在{s3}被人绑走了。	l
 Announcement combat rumor-flight [$travel-site,rumor-army]: from {s} just before an army {s} descended upon the place	了{s1}，随后一支军队{s2}便袭击了那里	l
 Announcement combat sentence [$travel-site]: The village {s} is the only other settlement to utilize the market here.	只有{s1}这座村庄也来这里赶集。	l
 Announcement combat sentence [diplomacy-group]: {s} accepts our tribute, and there is friendship between our peoples.	{s1}接受我们的贡品，双方百姓也相处和睦。	l
@@ -7442,7 +7438,6 @@ Announcement combat merchant-hawk-origin [merchant-genuine-item,merchant-advert-
 Announcement combat rumor-bandit-subject [conversation-conflict-entity]: A bandit gang calling itself {s}, led by ,	一伙自称{s1}、由未具名者率领的土匪	l
 Announcement combat rumor-event [$travel-site]: A bandit gang calling itself has been harassing people over in {s}.	有伙土匪自称未具名势力，一直在{s1}那边骚扰百姓。	l
 Announcement combat rumor-event []: A great monster from the underground is said to have emerged from the darkness.	据说，一只地下巨怪已经从黑暗中现身。	l
-Announcement combat rumor-event [rumor-time,rumor-person,rumor-person]: {s}, {s} was kidnapped by {s}.	{s1}，{s2}被{s3}绑走了。	l
 Announcement combat sentence [diplomacy-group]: {s} accepts our tribute, but there is ill-will between our peoples.	{s1}接受我们的贡品，可双方百姓却互有敌意。	l
 Announcement combat sentence [speech-service-person]: I have no master, but {s} sometimes has need for my services.	我没有主人，但{s1}有时需要我效劳。	l
 Announcement combat sentence [unit,owned-object,owned-object]: {s} struggle in vain against the grip of {s} on {s}.	{s1}试图挣脱{s2}对{s3}的抓握，却徒劳无功。	l
@@ -8659,6 +8654,7 @@ Announcement combat quest-sentence [quest-destination]: Any should be brought to
 Announcement combat rumor-event []: A small but organized military order have been causing us much hardship.	一个军事修会人数不多，却组织严密，害得我们吃尽苦头。	l
 Announcement combat rumor-event [rumor-person,$travel-site]: I hear that {s} crushed an insurrection in {s}.	听说{s1}镇压了{s2}的叛乱。	l
 Announcement combat rumor-event [rumor-person,$travel-site]: I hear that {s} lost {s} after an insurrection.	听说{s1}在一场叛乱后失去了{s2}。	l
+Announcement combat rumor-event [rumor-time,rumor-person,$travel-site]: {s}, {s} was kidnapped from {s} by .	{s1}，未具名者从{s3}绑走了{s2}。	l
 Announcement combat sentence [$kinship]: It pains me all the more, for the foul villain was once my own {s}.	更让我痛心的是，这个恶徒曾是我的{s1}。	l
 Announcement combat speech-journey-reward [speech-journey-purpose]: {s} and maybe something to drink as well	{s1}，也许还能找点酒喝	l
 Announcement combat spoken-sentence [$number,$creature,$name]: I have taken down {s} {s} while stalking {s}.	我在{s3}潜行猎杀过{s1}只{s2}。	l
@@ -8820,6 +8816,8 @@ Announcement combat rumor-event [$name,$name]: informed that tribute would no lo
 Announcement combat rumor-event [$name,rumor-flight]: I hear that refugees calling themselves {s} fled {s}.	听说有群难民自称{s1}，逃离{s2}。	l
 Announcement combat rumor-event []: A terror most foul from the evil depths nigh the underworld plagues us.	有个极其凶恶的东西在祸害我们，它来自靠近地下世界的邪恶深渊。	l
 Announcement combat rumor-event [rumor-owner,$name,$name]: agreed to {s} demand of tribute from {s} to {s}.	未具名者答应了{s1}要求，让{s2}向{s3}进贡。	l
+Announcement combat rumor-event [rumor-time,$travel-site,rumor-person]: {s}, was kidnapped from {s} by {s}.	{s1}，{s3}从{s2}绑走了未具名者。	l
+Announcement combat rumor-event [rumor-time,rumor-person,rumor-person]: {s}, {s} was kidnapped from by {s}.	{s1}，{s3}从未具名地点绑走了{s2}。	l
 Announcement combat sentence [$name]: Join me and we can shake off the yoke of {s} from this place forever!	加入我，我们就能让这里永远摆脱{s1}的枷锁！	l
 Announcement combat sentence [diplomacy-group]: {s} is our ally, but there is ill-will between our peoples.	{s1}是我们的盟友，可双方百姓却互有敌意。	l
 Announcement combat site-rumor-event [$name,$travel-site]: {s} was overthrown after an insurrection in {s}.	{s1}在{s2}的一场叛乱后被推翻了。	l
@@ -9358,8 +9356,7 @@ Announcement combat memory-sentence [$name]: The agreement to establish a guildh
 Announcement combat merchant-hawk-origin [merchant-hawk-item,merchant-advert-origin]: {s} clear from {s}	远从{s2}运来的{s1}	l
 Announcement combat negotiation-sentence []: The proposal was wildly successful beyond any expectations.	这项提案获得了远超所有人预期的巨大成功。	l
 Announcement combat rumor-event [rumor-owner,$name,$name]: refused {s} offer of tribute from {s} to {s}.	未具名者拒绝了{s1}进贡提议：由{s2}向{s3}纳贡。	l
-Announcement combat rumor-event [rumor-time,$travel-site]: {s}, was kidnapped from {s} by .	{s1}，未具名者从{s2}绑走了未具名者。	l
-Announcement combat rumor-event [rumor-time,rumor-person]: {s}, {s} was kidnapped from by .	{s1}，未具名者从未具名地点绑走了{s2}。	l
+Announcement combat rumor-event [rumor-time,rumor-person,$travel-site]: {s}, {s} was kidnapped from {s}.	{s1}，{s2}在{s3}被人绑走了。	l
 Announcement combat sentence [speech-place,speech-journey-purpose]: I'm returning to my home in {s} {s}.	我正返回{s1}的家{s2}。	l
 Announcement combat sentence [speech-place,speech-place,$book]: I'm traveling to {s} in {s} to view {s}.	我正在前往{s2}的{s1}瞻仰{s3}。	l
 Announcement combat sentence [speech-sphere]: There is also the natural issue of their oneness with {s}.	他们与{s1}融为一体，这当然也是个问题。	l
@@ -9537,7 +9534,6 @@ Announcement combat negotiation-sentence [$historical-actor,negotiation-opening]
 Announcement combat negotiation-sentence [negotiation-speaker,negotiation-recipient]: {s} met with {s}.	{s1}与{s2}会面了。	l
 Announcement combat rumor-event [$term,$travel-site]: They have a {s} called {s} somewhere around here.	他们在这附近的某处有一座名为{s2}的{s1}。	l
 Announcement combat rumor-event [$travel-site,rumor-person]: I hear that {s} has been conquered by {s}.	听说{s1}已经被{s2}征服了。	l
-Announcement combat rumor-event [rumor-time,rumor-person]: {s}, was kidnapped from by {s}.	{s1}，{s2}从未具名地点绑走了未具名者。	l
 Announcement combat sentence []: I would give anything to be away from here. I can't stand the boredom!	只要能离开这里，什么代价我都愿意付。我实在受不了这么无聊的日子了！	l
 Announcement combat sentence [speech-place,speech-journey-reward]: I'm returning to my home in {s} {s}!	我正返回{s1}的家{s2}！	l
 Announcement combat sentence [unit,owned-object,owned-object]: {s} loosen the choke hold of {s} on {s}.	{s1}松开了{s2}对{s3}的勒颈控制。	l
@@ -9739,6 +9735,7 @@ Announcement combat negotiation-response []: negotiated with discernment in turn
 Announcement combat rumor-event [$term,$travel-site]: There are foul goings-on over at the {s} of {s}.	{s2}的{s1}那里有人在干见不得人的勾当。	l
 Announcement combat rumor-event [$term,conversation-conflict-place]: They have a {s} somewhere in {s}.	他们在{s2}的某处有一座{s1}。	l
 Announcement combat rumor-event [rumor-person,$travel-site,$name]: {s} claimed {s} in the name of {s}.	{s1}以{s3}的名义取得了{s2}。	l
+Announcement combat rumor-event [rumor-time,rumor-person,rumor-person]: {s}, {s} was kidnapped by {s}.	{s1}，{s2}被{s3}绑走了。	l
 Announcement combat rumor-flight [$travel-site]: from {s} just before an army descended upon the place	了{s1}，随后一支军队便袭击了那里	l
 Announcement combat sentence [$kinship]: It pains me all the more, for the foul villain is my own {s}.	更让我痛心的是，这个恶徒竟是我的{s1}。	l
 Announcement combat sentence [rumor-time,dialogue-battle,conversation-conflict-place]: {s} {s} in {s}.	{s1}，在{s3}，{s2}。	l
@@ -9968,7 +9965,6 @@ Announcement combat negotiation-response []: made several jokes of their own and
 Announcement combat rumor-event [$name]: I hear that a group from {s} left to found a new settlement.	听说一群来自{s1}的人出发去建立新的定居点了。	l
 Announcement combat rumor-event []: An organized military order have brought terror to our doorsteps.	一个组织严密的军事修会欺上门来，闹得人心惶惶。	l
 Announcement combat rumor-event [rumor-person]: I hear that there is an insurrection against {s} in .	听说未具名地点发生了反抗{s1}的叛乱。	l
-Announcement combat rumor-event [rumor-time,rumor-person]: {s}, {s} was kidnapped from .	{s1}，{s2}在未具名地点被人绑走了。	l
 Announcement combat sentence [$number,$creature,$name]: I have taken down {s} {s} while stalking {s}.	我在{s3}潜行猎杀过{s1}只{s2}。	l
 Announcement combat sentence [speech-office]: I would be honored to serve as a {s}. Will you have me?	能担任{s1}将是我的荣幸。你愿意接纳我吗？	l
 Announcement combat sentence [speech-person,threat-possessive]: [{s} pauses to regain {s} composure.]	【{s1}稍作停顿，{s2}正努力恢复镇定。】	l
@@ -10182,7 +10178,6 @@ Announcement combat rumor-event [$name]: I hear that a group from {s} left to re
 Announcement combat rumor-event [$travel-site]: I hear that there is an insurrection against in {s}.	听说{s1}发生了反抗未具名者的叛乱。	l
 Announcement combat rumor-event []: A bandit gang calling itself has been harassing people over in .	有伙土匪自称未具名势力，一直在未具名地点那边骚扰百姓。	l
 Announcement combat rumor-event []: You might win fame by putting down a wild beast of great renown.	若能杀死一头声名远扬的野兽，你或许也能闯出名声。	l
-Announcement combat rumor-event [rumor-time,$travel-site]: {s}, was kidnapped from {s}.	{s1}，未具名者在{s2}被人绑走了。	l
 Announcement combat rumor-flight [rumor-army]: from just before an army {s} descended upon the place	了未具名地点，随后一支军队{s1}便袭击了那里	l
 Announcement combat sentence [$number]: There are {s} other villages which utilize the market there.	还有{s1}座村庄去那里赶集。	l
 Announcement combat sentence []: It is I that would lead you, but I have no need of your protection.	该由我来带领你才对，但我不需要你的保护。	l
@@ -10391,7 +10386,6 @@ Announcement combat negotiation-response []: flattered their opposite in turn an
 Announcement combat negotiation-response []: negotiated with flattery in turn but was outmaneuvered	也用奉承话谈判，却被对方胜过一筹	l
 Announcement combat negotiation-sentence [$historical-actor,negotiation-opening]: {s} began to {s}.	{s1}开始{s2}。	l
 Announcement combat rumor-bandit-subject [rumor-person]: A bandit gang calling itself , led by {s},	一伙未具名、由{s1}率领的土匪	l
-Announcement combat rumor-event [rumor-time,rumor-person]: {s}, {s} was kidnapped by .	{s1}，{s2}被未具名者绑走了。	l
 Announcement combat sentence [$number]: There are no fewer than {s} other groups vying for control.	至少还有{s1}个其他势力在争夺控制权。	l
 Announcement combat sentence [$unit,$unit]: {s} looks surprised by the ferocity of {s}'s onslaught!	{s1}看起来被{s2}的凶猛攻势惊到了！	l
 Announcement combat sentence []: I will agree to travel with you if you lead me to glory and death.	只要能带我赢得荣耀、迎接死亡，我就跟你走。	l
@@ -10657,7 +10651,6 @@ Announcement combat merchant-hawk-origin [merchant-hawk-item,merchant-advert-ori
 Announcement combat negotiation-response []: negotiated persuasively in turn but was outmaneuvered	也凭说服力谈判，却被对方胜过一筹	l
 Announcement combat negotiation-response []: negotiated with empathy in turn but was outmaneuvered	也体谅对方的处境，展开谈判，却被对方胜过一筹	l
 Announcement combat rumor-event []: A ferocious unnatural beast has become the bane of our people.	一头凶猛的异兽成了我们族人的大患。	l
-Announcement combat rumor-event [rumor-time,rumor-person]: {s}, was kidnapped by {s}.	{s1}，未具名者被{s2}绑走了。	l
 Announcement combat rumor-event [speech-person]: Seek this place if you wish to confront {s} the .	想对付{s1}，就去找这个地方。	l
 Announcement combat sentence [boast-victim,boast-slain-clause]: I am the extinguisher of {s}, {s}!	终结{s1}生命的正是我，{s2}！	l
 Announcement combat sentence [unit,owned-object,owned-object]: {s} adjusts the grip of {s} on {s}.	{s1}调整了{s2}对{s3}的抓握。	l
@@ -11434,7 +11427,6 @@ Announcement combat rumor-event [$term,$travel-site]: They have a {s} called {s}
 Announcement combat rumor-event []: It is time to send our cursed enemy back to the underworld.	该把那个该死的敌人送回地下世界了。	l
 Announcement combat rumor-event [rumor-identity]: Seek this place if you wish to confront {s} .	想对付{s1}，就去找这个地方。	l
 Announcement combat rumor-event [rumor-person]: I hear that {s} waited out an insurrection in .	听说{s1}在未具名地点按兵不动，一直等到叛乱平息。	l
-Announcement combat rumor-event [rumor-time,rumor-person]: {s}, {s} was kidnapped.	{s1}，{s2}被人绑走了。	l
 Announcement combat rumor-flight [rumor-army]: just before an army {s} descended upon the place	了那里，随后一支军队{s1}便袭击了那里	l
 Announcement combat sentence [$travel-site,$travel-site]: The people of {s} go to {s} to trade.	{s1}的人会去{s2}做买卖。	l
 Announcement combat sentence [$unit]: {s} collapses and falls to the ground from over-exertion.	{s1}因过度劳累而瘫倒在地。	l
@@ -12624,6 +12616,8 @@ Announcement combat rumor-event [$travel-site]: I hear that lost {s} after an in
 Announcement combat rumor-event []: Malicious outlaws have brought terror to our doorsteps.	凶恶的亡命之徒欺上门来，闹得人心惶惶。	l
 Announcement combat rumor-event []: We have been under siege by an ancient force of nature.	一股古老的自然之力一直在围攻我们。	l
 Announcement combat rumor-event [rumor-person]: I hear that {s} lost after an insurrection.	听说{s1}在一场叛乱后失去了未具名地点。	l
+Announcement combat rumor-event [rumor-time,$travel-site]: {s}, was kidnapped from {s} by .	{s1}，未具名者从{s2}绑走了未具名者。	l
+Announcement combat rumor-event [rumor-time,rumor-person]: {s}, {s} was kidnapped from by .	{s1}，未具名者从未具名地点绑走了{s2}。	l
 Announcement combat sentence [$unit]: You are surprised by the ferocity of {s}'s onslaught!	你被{s1}的凶猛攻势惊到了！	l
 Announcement combat sentence []: Would you like to join ? The troupe could use your talent.	你愿意加入剧团吗？剧团需要你的才华。	l
 Announcement combat sentence []: is well-traveled and would probably have that information.	未具名者走过不少地方，应该知道这方面的消息。	l
@@ -12961,6 +12955,7 @@ Announcement combat rumor-event [$name,rumor-flight]: We banded up as {s} and es
 Announcement combat rumor-event []: A great beast threatens to bring ruin upon our people.	有头巨兽威胁着我们的族人，可能把我们全毁了。	l
 Announcement combat rumor-event []: Particular outlaws have been causing us much hardship.	有些亡命之徒害得我们吃尽苦头。	l
 Announcement combat rumor-event [rumor-person,rumor-position]: {s} became {s}, replacing .	{s1}取代未具名者，成为了{s2}。	l
+Announcement combat rumor-event [rumor-time,rumor-person]: {s}, was kidnapped from by {s}.	{s1}，{s2}从未具名地点绑走了未具名者。	l
 Announcement combat sentence [$name,description-building]: Search first in {s}, {s} there.	先在那里的{s2}{s1}找找。	l
 Announcement combat sentence []: I have no master, but sometimes has need for my services.	我没有主人，但未具名者有时需要我效劳。	l
 Announcement combat sentence []: You have discovered an expansive cavern deep underground.	你发现了地底深处的一片广阔洞穴。	l
@@ -13585,6 +13580,7 @@ Announcement combat negotiation-response []: negotiated with empathy and had the
 Announcement combat negotiation-response []: negotiated with humor but was outmaneuvered	以幽默的方式谈判，却被对方胜过一筹	l
 Announcement combat quest-sentence []: Any should be brought to , or given to one of us.	发现任何这类遗存，都应将其送至指定地点，或交给我们中的一员。	l
 Announcement combat rumor-event [$travel-site,$name]: We reclaimed {s} on behalf of {s}.	我们代表{s2}收复了{s1}。	l
+Announcement combat rumor-event [rumor-time,rumor-person]: {s}, {s} was kidnapped from .	{s1}，{s2}在未具名地点被人绑走了。	l
 Announcement combat sentence [$item,merchant-address]: Might I interest you in {s}, {s}?	{s2}，我能让你对{s1}感兴趣吗？	l
 Announcement combat sentence [$travel-site,trade-places]: {s} engages in trade with {s}.	{s1}同{s2}有贸易往来。	l
 Announcement combat sentence [dialogue-family-indef,speech-person]: I had {s} named {s}.	我曾有{s1}，名叫{s2}。	l
@@ -13901,7 +13897,7 @@ Announcement combat quest-sentence [quest-holder,quest-object]: {s} wants {s} re
 Announcement combat quest-sentence [quest-object]: I desire that {s} be returned to me.	我希望能把{s1}归还给我。	l
 Announcement combat rumor-event [$travel-site]: I hear that {s} has been conquered by .	听说{s1}已经被未具名者征服了。	l
 Announcement combat rumor-event []: Our people have been pestered by skulking villains.	一伙鬼鬼祟祟的恶徒一直在骚扰我们的族人。	l
-Announcement combat rumor-event [rumor-time]: {s}, was kidnapped from by .	{s1}，未具名者从未具名地点绑走了未具名者。	l
+Announcement combat rumor-event [rumor-time,$travel-site]: {s}, was kidnapped from {s}.	{s1}，未具名者在{s2}被人绑走了。	l
 Announcement combat sentence [$name,$name]: I'm in charge of {s} now. Make way for {s}!	现在由我掌管{s1}。给{s2}让路！	l
 Announcement combat sentence [$term,speech-person,$name]: Make way for {s} {s} and {s}!	给{s1}{s2}和{s3}让路！	l
 Announcement combat sentence []: I've always wanted to travel the world. Let us be off!	我一直想周游世界。我们出发吧！	l
@@ -14227,6 +14223,7 @@ Announcement combat rumor-event [$term]: There are foul goings-on over at the {s
 Announcement combat rumor-event [$term]: They have a {s} called somewhere around here.	他们在这附近的某处有一座未具名的{s1}。	l
 Announcement combat rumor-event []: Terrible monstrosities live deep under the ground.	可怕的怪物栖息在地下深处。	l
 Announcement combat rumor-event [rumor-person]: I hear that has been conquered by {s}.	听说未具名地点已经被{s1}征服了。	l
+Announcement combat rumor-event [rumor-time,rumor-person]: {s}, {s} was kidnapped by .	{s1}，{s2}被未具名者绑走了。	l
 Announcement combat rumor-event [speech-person]: Seek this place if you hunt {s} the .	想猎杀{s1}，就去找这个地方。	l
 Announcement combat rumor-flight []: from just before an army descended upon the place	了未具名地点，随后一支军队便袭击了那里	l
 Announcement combat rumor-identity-descriptor [$creature,rumor-identity-role]: {s} {s}	{s1}{s2}	l
@@ -14578,6 +14575,7 @@ Announcement combat rumor-event []: I hear that there is an insurrection against
 Announcement combat rumor-event []: Our people have been tormented by a fearsome foe.	我们的族人饱受一个可怕敌人的折磨。	l
 Announcement combat rumor-event [rumor-person,$name]: {s} claimed in the name of {s}.	{s1}以{s2}的名义取得了未具名地点。	l
 Announcement combat rumor-event [rumor-person]: This place has been conquered by {s}.	这个地方已经被{s1}征服了。	l
+Announcement combat rumor-event [rumor-time,rumor-person]: {s}, was kidnapped by {s}.	{s1}，未具名者被{s2}绑走了。	l
 Announcement combat sentence [$item,merchant-address]: Splendid {s} right there, {s}.	{s2}，就那里的出色的{s1}。	l
 Announcement combat sentence [$item,merchant-town]: {s} was tanned right here in {s}.	{s1}就是在{s2}鞣制的。	l
 Announcement combat sentence [$unit]: {s} vomits and bits of it get stuck in the web.	{s1}呕吐了，一些呕吐物粘在了网上。	l
@@ -14949,7 +14947,6 @@ Announcement combat quest-sentence [quest-holder]: Last I heard, it was held by 
 Announcement combat rumor-bandit-subject []: A bandit gang calling itself , led by ,	一伙自称未具名势力、由未具名者率领的土匪	l
 Announcement combat rumor-event [$book,$travel-site]: I hear that {s} is not in {s}.	听说{s1}不在{s2}。	l
 Announcement combat rumor-event []: A lurking pest has come up from the underground.	一只潜伏在地下的害兽钻出来了。	l
-Announcement combat rumor-event [rumor-time]: {s}, was kidnapped from .	{s1}，未具名者在未具名地点被人绑走了。	l
 Announcement combat sentence [$item,merchant-town]: {s} were made right here in {s}.	{s1}就是在{s2}制作的。	l
 Announcement combat sentence [$term,$term,speech-person]: I am a {s} of the {s} {s}.	我是{s2}{s3}的{s1}。	l
 Announcement combat sentence [shot,equipment]: {s} but the shot is blocked with {s}!	{s1}，但射来的攻击被{s2}挡住了！	l
@@ -15686,7 +15683,7 @@ Announcement combat rumor-event []: A marauding warband is threatening our peopl
 Announcement combat rumor-event []: The forces of darkness have descended upon us.	黑暗势力已经杀到我们这里了。	l
 Announcement combat rumor-event [rumor-identity]: Seek this place if you hunt {s}.	想猎杀{s1}，就去找这个地方。	l
 Announcement combat rumor-event [rumor-person]: I hear {s} has a real mean streak.	听说{s1}骨子里就很刻薄。	l
-Announcement combat rumor-event [rumor-time]: {s}, was kidnapped by .	{s1}，未具名者被未具名者绑走了。	l
+Announcement combat rumor-event [rumor-time,rumor-person]: {s}, {s} was kidnapped.	{s1}，{s2}被人绑走了。	l
 Announcement combat sentence [$item,merchant-address]: Great {s} right there, {s}.	{s2}，就那里的很棒的{s1}。	l
 Announcement combat sentence [$item,merchant-town]: {s} was cut right here in {s}.	{s1}就是在{s2}切割的。	l
 Announcement combat sentence []: Excitement! Adventure! I am thrilled to join you.	刺激！冒险！能跟你们一起去，真让人兴奋！	l
@@ -17257,7 +17254,6 @@ Announcement combat rumor-event [$term]: They have a {s} called somewhere in .	�
 Announcement combat rumor-event []: Sometimes animals just get out of control.	动物有时候就是会失控。	l
 Announcement combat rumor-event [rumor-identity]: This insidious evil is {s} .	这个阴险的恶徒就是{s1}。	l
 Announcement combat rumor-event [rumor-person,rumor-position]: {s} became {s}.	{s1}成为了{s2}。	l
-Announcement combat rumor-event [rumor-time]: {s}, was kidnapped.	{s1}，未具名者被人绑走了。	l
 Announcement combat sentence [$creature,$creature]: So, the {s} and the {s}...	话说，那个{s1}和那个{s2}……	l
 Announcement combat sentence []: There is also the issue of their godlessness.	还有，他们不信神，这也是个问题。	l
 Announcement combat sentence []: Thief! Protect the hoard from skulking filth!	小偷！保护财宝，别让鬼祟的败类得手！	l
@@ -18998,6 +18994,7 @@ Announcement combat quest-sentence [quest-holder]: {s} wants returned to .	{s1}�
 Announcement combat quest-sentence [quest-object]: wants {s} returned to .	有人希望能归还{s1}（目的地未记载）。	l
 Announcement combat reference-population [$creature]: animated {s} corpses	复活的{s1}尸体	l
 Announcement combat rumor-event [$travel-site]: We had to pull out of {s}.	我们不得不撤出{s1}。	l
+Announcement combat rumor-event [rumor-time]: {s}, was kidnapped from by .	{s1}，未具名者从未具名地点绑走了未具名者。	l
 Announcement combat rumor-event [speech-person]: The creature is {s} the .	这只生物就是{s1}。	l
 Announcement combat sentence [$distance]: There are guards patrolling {s}.	有卫兵在{s1}巡逻。	l
 Announcement combat sentence [$item,merchant-address]: Excellent {s}, {s}.	{s2}，上等的{s1}。	l
@@ -20374,6 +20371,7 @@ Announcement combat rumor-event [$term]: They have a {s} somewhere in .	他们�
 Announcement combat rumor-event []: I hear that has been conquered by .	听说未具名地点已经被未具名者征服了。	l
 Announcement combat rumor-event []: I heard that there was an incident.	听说出事了。	l
 Announcement combat rumor-event [rumor-identity]: The creature is {s} .	这只生物就是{s1}。	l
+Announcement combat rumor-event [rumor-time]: {s}, was kidnapped from .	{s1}，未具名者在未具名地点被人绑走了。	l
 Announcement combat rumor-identity [rumor-identity-descriptor]: the {s}	{s1}	l
 Announcement combat sentence [$book,$item]: I am searching for {s} {s}.	我正在寻找{s1}{s2}。	l
 Announcement combat sentence [$item,merchant-address]: Decent {s}, {s}.	{s2}，不错的{s1}。	l
@@ -21461,6 +21459,7 @@ Announcement combat negotiation-opening []: flatter their counterpart	奉承对�
 Announcement combat negotiation-paragraph [negotiation-sentence]: {s}	{s1}	l
 Announcement combat quest-sentence []: Last I heard, it was held by .	我最后听说，它由身份未记载的人保管。	l
 Announcement combat rumor-event []: Seek this place if you hunt the .	想猎杀这只身份不明的生物，就去找这个地方。	l
+Announcement combat rumor-event [rumor-time]: {s}, was kidnapped by .	{s1}，未具名者被未具名者绑走了。	l
 Announcement combat sentence [$item,merchant-address]: Good {s}, {s}.	{s2}，优质的{s1}。	l
 Announcement combat sentence [$term,$name]: Make way for {s} and {s}!	给{s1}未具名者和{s2}让路！	l
 Announcement combat sentence [$term]: {s} destroyed by battering ram.	{s1}被攻城锤摧毁了。	l
@@ -23682,6 +23681,7 @@ Announcement combat read-announcement [$read-item]: You read {s}.	你阅读了{s
 Announcement combat reference-kind [reference-building-type]: {s}	{s1}	l
 Announcement combat rumor-event []: Seek this place if you hunt .	想猎杀这只身份不明的生物，就去找这个地方。	l
 Announcement combat rumor-event []: The army of is marching here!	一支所属方未具名的军队正向这里进军！	l
+Announcement combat rumor-event [rumor-time]: {s}, was kidnapped.	{s1}，未具名者被人绑走了。	l
 Announcement combat sentence [$name,$name]: {s} has occupied {s}.	{s1}占领了{s2}。	l
 Announcement combat sentence [$name]: Search first in {s}, there.	先在那里的{s1}找找。	l
 Announcement combat sentence [$unit,memory-person]: {s} pets {s}.	{s1}摸了摸{s2}。	l
@@ -75450,8 +75450,6 @@ Set details for the assigned location.	设置所指定地点的详细信息。	h
 Show improvement quality in item names	在物品名称中显示改进品质	w
 Snow-covered maple twigs, maple leaves	覆雪的枫树细枝、枫叶	wl
 Sound Effects Volume (Adventure): {d}%	音效音量(冒险):{d}%	wt
-UI Volume (Adventure): {d}%	界面音量(冒险):{d}%	wt
-UI Volume (Fortress): {d}%	界面音量(要塞):{d}%	wt
 Spread rumor of the destruction of {i}	传播{i1}被毁的传闻	hPt
 Spread rumor of your possession of {i}	传播你持有{i1}的传闻	hPt
 Spread rumor of {e}'s march toward {e}	传播{e1}向{e2}进军的传闻	hPt
@@ -116805,6 +116803,7 @@ Travel building: Tower Tree	高塔树	wi
 Travel building: Tree House	树屋	wi
 Travel building: {p} shrine	{p1}神龛	ht
 Tropical Moist Brdlf Forest	热带湿润阔叶林
+UI Volume (Adventure): {d}%	界面音量(冒险):{d}%	wt
 Unable to complete building	无法完成建筑	w
 Uniform name: Flex Crossbow	灵活十字弩	l
 Unit lists: Recenter on job	单位列表：定位到工作	w
@@ -119170,6 +119169,7 @@ Travel building: Mead Hall	蜂蜜酒厅	wi
 Travel building: Warehouse	仓库	wi
 Tropical Coniferous Forest	热带针叶林
 Tropical Moist Brdlf Forst	热带湿润阔叶林
+UI Volume (Fortress): {d}%	界面音量(要塞):{d}%	wt
 Uniform worn over clothing	制式服装穿在衣物外	w
 Unit nickname: the younger	年少者	l
 Unit profession: extractor	提取工	li

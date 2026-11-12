@@ -9,6 +9,9 @@
 #include <string>
 #include <string_view>
 #include <utility>
+#ifndef _WIN32
+#include "enabler.h"
+#endif
 
 namespace dfcn {
 namespace native_font_metrics_detail {
@@ -20,7 +23,6 @@ struct EnglishInkRows {
 
 constexpr std::string_view ink_capitals = "AHIMNX";
 
-#ifdef _WIN32
 // renderer_2d_base's texture descriptors (53.16 PE 0x8dce4e and
 // 0x8dcffe) select BASIC_TEXT first, otherwise the current fullscreen font.
 // The normal table is also the source of the TOP/BOTTOM textures: their
@@ -45,9 +47,14 @@ struct NativeFontSource {
 
 inline bool copy_native_font_memory(uintptr_t address, void *destination, size_t size) {
     if (!address || size > UINTPTR_MAX - address) return false;
+#ifdef _WIN32
     SIZE_T copied = 0;
     return ReadProcessMemory(GetCurrentProcess(), reinterpret_cast<const void *>(address),
         destination, size, &copied) && copied == size;
+#else
+    iovec local{destination, size}, remote{reinterpret_cast<void *>(address), size};
+    return process_vm_readv(getpid(), &local, 1, &remote, 1, 0) == static_cast<ssize_t>(size);
+#endif
 }
 
 template<typename T>
@@ -56,6 +63,7 @@ inline bool copy_native_font_value(uintptr_t address, T &value) {
 }
 
 inline std::optional<NativeFontSource> current_native_font_source() {
+#ifdef _WIN32
     static const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
     const uintptr_t enabler = native_pe_address(executable, 0x02390290);
     const uintptr_t settings = native_pe_address(executable, 0x023cd770);
@@ -75,7 +83,20 @@ inline std::optional<NativeFontSource> current_native_font_source() {
     NativeFontSource result;
     result.table = settings + native_pe_init_field_offset(
         (flags & 0x4) ? 0xd8 : (fullscreen & 0x1) ? 0x8d8 : 0x4d8);
-    std::array<int32_t, 256> textures{};
+#else
+    auto *enabler = static_cast<enablerst *>(dlsym(RTLD_DEFAULT, "enabler"));
+    const auto *settings = native_ui_settings_source();
+    struct RawSurfaces { uintptr_t begin = 0, end = 0, capacity = 0; } raws;
+    if (!enabler || !settings || !copy_native_font_value(
+            reinterpret_cast<uintptr_t>(&enabler->textures), raws) ||
+            !raws.begin || raws.end < raws.begin || raws.capacity < raws.end ||
+            (raws.end - raws.begin) % sizeof(SDL_Surface *) ||
+            (raws.end - raws.begin) / sizeof(SDL_Surface *) > (1u << 24)) return std::nullopt;
+    NativeFontSource result;
+    result.table = reinterpret_cast<uintptr_t>((enabler->flag & 4) ? settings->font.basic_font_texpos
+        : (enabler->get_fullscreen() & 1) ? settings->font.large_font_texpos : settings->font.small_font_texpos);
+#endif
+    std::array<std::remove_pointer_t<decltype(graphicst::screentexpos)>, 256> textures{};
     if (!copy_native_font_memory(result.table, textures.data(), sizeof(textures)))
         return std::nullopt;
     const size_t count = (raws.end - raws.begin) / sizeof(SDL_Surface *);
@@ -143,15 +164,12 @@ inline EnglishInkRows load_native_english_ink_rows(const NativeFontSource &sourc
     }
     return any_ink ? result : EnglishInkRows{};
 }
-#endif
 
 struct EnglishInkCache {
     bool refreshed = false;
     uint64_t revision = 0;
     EnglishInkRows rows;
-#ifdef _WIN32
     std::optional<NativeFontSource> source;
-#endif
 };
 
 inline EnglishInkCache &english_ink_cache() {
@@ -266,13 +284,11 @@ inline EnglishInkRows load_english_ink_rows() {
 // byte was cleared. Take the atlas IDs once before painting a private UI
 // frame so both representations can be withheld before any glyph draw.
 class NativeBitmapFontTextures {
-#ifdef _WIN32
-    std::array<std::array<int32_t, 256>, 9> tables_{};
+    std::array<std::array<std::remove_pointer_t<decltype(graphicst::screentexpos)>, 256>, 9> tables_{};
     std::array<uintptr_t, 3> resource_pool_{};
     uint8_t fullscreen_ = 0, basic_text_ = 0, graphics_ = 0;
     int32_t filter_mode_ = 0;
     bool native_context_ready_ = false;
-#endif
 public:
     explicit NativeBitmapFontTextures(bool needed, bool capture_native_context = false) noexcept {
 #ifdef _WIN32
@@ -322,22 +338,34 @@ public:
         basic_text_ = static_cast<uint8_t>(enabler_flags & 0x4);
         graphics_ = display_flag_count > 0 ? display & 0x1 : 0;
 #else
-        (void)needed; (void)capture_native_context;
+        if (!needed) return;
+        const auto *settings = native_ui_settings_source();
+        auto *enabler = static_cast<enablerst *>(dlsym(RTLD_DEFAULT, "enabler"));
+        if (!settings || !enabler) return;
+        const long *atlases[]{settings->font.basic_font_texpos, settings->font.small_font_texpos,
+            settings->font.large_font_texpos, settings->font.basic_font_texpos_top,
+            settings->font.small_font_texpos_top, settings->font.large_font_texpos_top,
+            settings->font.basic_font_texpos_bot, settings->font.small_font_texpos_bot,
+            settings->font.large_font_texpos_bot};
+        native_context_ready_ = capture_native_context;
+        for (size_t i = 0; i < tables_.size(); ++i)
+            if (!native_font_metrics_detail::copy_native_font_memory(reinterpret_cast<uintptr_t>(atlases[i]),
+                    tables_[i].data(), sizeof(tables_[i]))) native_context_ready_ = false;
+        fullscreen_ = enabler->get_fullscreen() & 1;
+        basic_text_ = enabler->flag & 4;
+        graphics_ = native_ui_classic().value_or(true) ? 0 : 1;
+        filter_mode_ = static_cast<int32_t>(settings->display.filter_mode);
+        if (!native_font_metrics_detail::copy_native_font_value(
+                reinterpret_cast<uintptr_t>(&enabler->textures), resource_pool_)) native_context_ready_ = false;
 #endif
     }
     bool contains(int32_t texture, unsigned char character) const noexcept {
-#ifdef _WIN32
         if (texture <= 0 || !character || character == ' ') return false;
         for (const auto &table : tables_)
             if (table[character] == texture) return true;
-#else
-        (void)texture;
-        (void)character;
-#endif
         return false;
     }
     bool append_native_context(std::string &key) const {
-#ifdef _WIN32
         if (!native_context_ready_) return false;
         key.append(reinterpret_cast<const char *>(tables_.data()), sizeof(tables_));
         key.append(reinterpret_cast<const char *>(resource_pool_.data()), sizeof(resource_pool_));
@@ -349,10 +377,6 @@ public:
         // performed. An in-place edit retaining every ID and pool allocation
         // must invalidate the overlay's native render generation separately.
         return true;
-#else
-        (void)key;
-        return false;
-#endif
     }
 };
 
@@ -368,14 +392,19 @@ inline std::optional<int> native_hover_center_background_rgb(const graphicst &gp
         const auto &color = gps.uccolor[(centre >> 11) & 7];
         return (color[0] << 16) | (color[1] << 8) | color[2];
     }
-#ifdef _WIN32
     using native_font_metrics_detail::copy_native_font_memory;
     using native_font_metrics_detail::copy_native_font_value;
+#ifdef _WIN32
     const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
     const uintptr_t enabler = native_pe_address(executable, 0x02390290);
+    const uintptr_t raw_pool = enabler ? enabler + 0x348 : 0;
+#else
+    auto *enabler = static_cast<enablerst *>(dlsym(RTLD_DEFAULT, "enabler"));
+    const uintptr_t raw_pool = enabler ? reinterpret_cast<uintptr_t>(&enabler->textures) : 0;
+#endif
     struct RawSurfaces { uintptr_t begin = 0, end = 0, capacity = 0; } raws;
     if (!enabler || centre <= 0 ||
-            !copy_native_font_value(enabler + 0x348, raws) || !raws.begin ||
+            !copy_native_font_value(raw_pool, raws) || !raws.begin ||
             raws.end < raws.begin || raws.capacity < raws.end ||
             (raws.end - raws.begin) % sizeof(SDL_Surface *) ||
             (raws.end - raws.begin) / sizeof(SDL_Surface *) > (1u << 24) ||
@@ -424,17 +453,13 @@ inline std::optional<int> native_hover_center_background_rgb(const graphicst &gp
             std::memcmp(&format, &current_format, sizeof(format)) != 0)
         return std::nullopt;
     return background;
-#else
-    return std::nullopt;
-#endif
 }
 
-// PE update_anchor_tile (8dd7c0) paints after every ordinary/lower tile.
+// Native update_anchor_tile (8dd7c0) paints after every ordinary/lower tile.
 // Its destination uses native renderer pitch/origin and the raw surface's
 // dimensions, so an origin outside a text card can still overlap its body.
 inline std::optional<SDL_Rect> native_anchored_tile_draw_bounds(const graphicst &gps,
         const void *renderer, int x, int y, bool top_layer) {
-#ifdef _WIN32
     using native_font_metrics_detail::copy_native_font_value;
     const auto *textures = top_layer ? gps.screentexpos_top_anchored : gps.screentexpos_anchored;
     const auto *offset_x = top_layer ? gps.screentexpos_top_anchored_x : gps.screentexpos_anchored_x;
@@ -446,18 +471,26 @@ inline std::optional<SDL_Rect> native_anchored_tile_draw_bounds(const graphicst 
     // renderer+158/15c are the native scale denominators; +168/16c
     // are the interface tile pitch and +170/174 its pixel origin.
     std::array<int32_t, 8> geometry{};
+#ifdef _WIN32
     const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
     const auto enabler = native_pe_address(executable, 0x02390290);
+    const uintptr_t raw_pool = enabler ? enabler + 0x348 : 0;
+    constexpr uintptr_t geometry_offset = 0x158;
+#else
+    auto *enabler = static_cast<enablerst *>(dlsym(RTLD_DEFAULT, "enabler"));
+    const uintptr_t raw_pool = enabler ? reinterpret_cast<uintptr_t>(&enabler->textures) : 0;
+    constexpr uintptr_t geometry_offset = 0x150;
+#endif
     struct RawSurfaces { uintptr_t begin = 0, end = 0, capacity = 0; } raws;
     SDL_Surface *address = nullptr;
     SDL_Surface surface{};
     if (texture <= 0 || !enabler ||
-            !copy_native_font_value(reinterpret_cast<uintptr_t>(renderer) + 0x158, geometry) ||
+            !copy_native_font_value(reinterpret_cast<uintptr_t>(renderer) + geometry_offset, geometry) ||
             geometry[0] <= 0 || geometry[1] <= 0 || geometry[4] != gps.tile_pixel_x ||
             geometry[5] != gps.tile_pixel_y || geometry[4] <= 0 || geometry[5] <= 0 ||
             geometry[6] != (gps.screen_pixel_x - gps.dimx * gps.tile_pixel_x) / 2 ||
             geometry[7] != (gps.screen_pixel_y - gps.dimy * gps.tile_pixel_y) / 2 ||
-            !copy_native_font_value(enabler + 0x348, raws) || !raws.begin ||
+            !copy_native_font_value(raw_pool, raws) || !raws.begin ||
             raws.end < raws.begin || raws.capacity < raws.end ||
             (raws.end - raws.begin) % sizeof(SDL_Surface *) ||
             (raws.end - raws.begin) / sizeof(SDL_Surface *) > (1u << 24) ||
@@ -479,10 +512,10 @@ inline std::optional<SDL_Rect> native_anchored_tile_draw_bounds(const graphicst 
     SDL_Surface current{};
     RawSurfaces current_raws;
     std::array<int32_t, 8> current_geometry{};
-    if (!copy_native_font_value(enabler + 0x348, current_raws) ||
+    if (!copy_native_font_value(raw_pool, current_raws) ||
             current_raws.begin != raws.begin || current_raws.end != raws.end ||
             current_raws.capacity != raws.capacity ||
-            !copy_native_font_value(reinterpret_cast<uintptr_t>(renderer) + 0x158, current_geometry) ||
+            !copy_native_font_value(reinterpret_cast<uintptr_t>(renderer) + geometry_offset, current_geometry) ||
             current_geometry != geometry ||
             !copy_native_font_value(raws.begin + static_cast<size_t>(texture) * sizeof(address),
                 current_address) || current_address != address ||
@@ -490,10 +523,6 @@ inline std::optional<SDL_Rect> native_anchored_tile_draw_bounds(const graphicst 
             current.w != surface.w || current.h != surface.h) return std::nullopt;
     return SDL_Rect{static_cast<int>(left), static_cast<int>(top),
         static_cast<int>(width), static_cast<int>(height)};
-#else
-    (void)gps; (void)renderer; (void)x; (void)y; (void)top_layer;
-    return std::nullopt;
-#endif
 }
 
 // Called at native text-layout/render entry, not for every glyph. Re-read the
@@ -502,7 +531,6 @@ inline std::optional<SDL_Rect> native_anchored_tile_draw_bounds(const graphicst 
 inline void refresh_native_font_metrics() {
     using namespace native_font_metrics_detail;
     auto &cache = english_ink_cache();
-#ifdef _WIN32
     const auto source = current_native_font_source();
     if (!cache.refreshed || cache.source != source ||
             (source && cache.rows.cell_height <= 0)) {
@@ -515,12 +543,6 @@ inline void refresh_native_font_metrics() {
         cache.rows = std::move(rows);
         ++cache.revision;
     }
-#else
-    if (!cache.refreshed) {
-        cache.rows = load_english_ink_rows();
-        ++cache.revision;
-    }
-#endif
     cache.refreshed = true;
 }
 

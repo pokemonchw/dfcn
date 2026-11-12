@@ -61,6 +61,13 @@ void Overlay::append_character_room_fields(const std::vector<std::string> &conte
     const uintptr_t needs_writer = native_reference_address(base, 0x171337);
     const uintptr_t required_grade_writer = native_reference_address(base, 0x171360);
     const uintptr_t empty_writer = native_reference_address(base, 0x170529);
+#else
+    const uintptr_t name_writer = native_elf_5317_address(0x140a7e5);
+    const uintptr_t grade_writer = native_elf_5317_address(0x140a066);
+    const uintptr_t needs_writer = native_elf_5317_address(0x140a16c);
+    const uintptr_t required_grade_writer = native_elf_5317_address(0x140a19f);
+    const uintptr_t empty_writer = native_elf_5317_address(0x140a86d);
+#endif
     if (!name_writer || !grade_writer || !needs_writer ||
             !required_grade_writer || !empty_writer) { fallback(); return; }
     const std::array batches{captured_native_drawn_text_view(false),
@@ -205,9 +212,6 @@ void Overlay::append_character_room_fields(const std::vector<std::string> &conte
         } else append(draw.y, false);
     }
     if (!captured_fields) fallback();
-#else
-    fallback();
-#endif
 }
 
 // Room field capture only needs the native character tab band. Layout must

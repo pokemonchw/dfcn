@@ -439,11 +439,8 @@ static bool uninstall_native_announcement_log_speech_hook() {
     return replaced && wrapper;
 }
 static bool install_native_announcement_log_speech_hook() {
-    if (g_native_announcement_log_speech_entry.installed
-#ifdef _WIN32
-            && g_native_announcement_log_speech_replace_entry.installed
-#endif
-        ) return true;
+    if (g_native_announcement_log_speech_entry.installed &&
+            g_native_announcement_log_speech_replace_entry.installed) return true;
     if (native_announcement_log_speech_hook_active() && !uninstall_native_announcement_log_speech_hook()) return false;
     unsigned char *entry = nullptr;
     std::vector<unsigned char> prefix;
@@ -474,8 +471,17 @@ static bool install_native_announcement_log_speech_hook() {
     prefix = {0xf3,0x0f,0x1e,0xfa,0x55};
     if (!address || std::memcmp(reinterpret_cast<const void *>(address), prefix.data(), prefix.size()) != 0) return false;
     entry = reinterpret_cast<unsigned char *>(address);
-    // The retained ELF source proves the wrapper ABI. No unretained token
-    // replacement prefix is invented; token-bearing rows remain incomplete.
+    auto *replace = static_cast<unsigned char *>(dlsym(RTLD_DEFAULT,
+        "_Z20replace_token_stringRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_icS5_c"));
+    const std::vector<unsigned char> replacement{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
+    if (!replace || !g_native_announcement_log_speech_replace_entry.prepare(replace, replacement,
+            reinterpret_cast<const void *>(&capture_native_announcement_log_speech_replace), {},
+            "Native speech token fields")) return false;
+    g_real_native_announcement_log_speech_replace = reinterpret_cast<NativeAnnouncementLogSpeechReplaceFn>(
+        g_native_announcement_log_speech_replace_entry.original);
+    if (!g_native_announcement_log_speech_replace_entry.install("Native speech token fields")) {
+        uninstall_native_announcement_log_speech_hook(); return false;
+    }
 #endif
     if (!g_native_announcement_log_speech_entry.prepare(entry, prefix,
             reinterpret_cast<const void *>(&capture_native_announcement_log_speech), {}, "Native speech production")) {

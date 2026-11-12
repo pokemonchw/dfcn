@@ -16,7 +16,6 @@ const std::array<std::string_view, 3> portrait_labels{
 const auto portrait_draws = captured_native_drawn_text_view();
 const auto portrait_top_draws = captured_native_drawn_text_view(true);
 std::vector<ConversationPortraitPanel> portrait_panels;
-#ifdef _WIN32
 // Direct addst return intervals extracted from both configured PE images.
 // Resolve them once for the current native edition, including every mood
 // selector, rather than identifying individual states by their spelling.
@@ -28,8 +27,8 @@ if (const auto base = native_history_profile_base()) {
     }};
     for (size_t kind = 0; kind < ranges.size(); ++kind)
         portrait_native_ranges[kind] = {
-            native_reference_address(base, ranges[kind].first),
-            native_reference_address(base, ranges[kind].second)};
+            native_ui_semantic_address(ranges[kind].first),
+            native_ui_semantic_address(ranges[kind].second)};
 }
 for (const auto *draws : {&portrait_draws, &portrait_top_draws})
     for (const auto &draw : *draws)
@@ -45,14 +44,12 @@ for (const auto *draws : {&portrait_draws, &portrait_top_draws})
             if (std::find(starts.begin(), starts.end(), position) == starts.end())
                 starts.push_back(position);
         }
-#endif
 // The decompiled renderer writes each label, state and separator through
 // addst at its current cursor. Those calls own the field even when a later
 // graphical pass replaces the surrounding frame. A frame-wide text scan
 // otherwise drops that ownership and sends individual states to UI words.
 const auto portrait_native_field = [&](int y, int left, std::string_view label)
         -> std::optional<std::pair<ConversationPortraitField, SDL_Rect>> {
-#ifdef _WIN32
     const size_t kind = label == "Toward you:" ? 0 : label == "Relationship:" ? 1 : 2;
     const auto [first, last] = portrait_native_ranges[kind];
     if (!first || !last) return std::nullopt;
@@ -67,8 +64,13 @@ const auto portrait_native_field = [&](int y, int left, std::string_view label)
                 (screen_override && screen_override != header->draw_grid)) continue;
         std::vector<const NativeDrawnTextRow *> parts;
         for (const auto &draw : *draws)
-            if (draw.y == y && draw.x >= left && draw.native_caller >= first &&
-                    draw.native_caller <= last && draw.sequence >= header->sequence &&
+            if (draw.y == y && draw.x >= left &&
+#ifdef _WIN32
+                    draw.native_caller >= first && draw.native_caller <= last &&
+#else
+                    native_conversation_portrait_caller(draw.native_caller, kind) &&
+#endif
+                    draw.sequence >= header->sequence &&
                     draw.draw_epoch == header->draw_epoch && draw.draw_grid == header->draw_grid &&
                     draw.draw_dimx == gps_->dimx && draw.draw_dimy == gps_->dimy)
                 parts.push_back(&draw);
@@ -149,7 +151,6 @@ const auto portrait_native_field = [&](int y, int left, std::string_view label)
             bounds.w * tw, bounds.h * th};
         return std::pair{std::move(field), bounds};
     }
-#endif
     return std::nullopt;
 };
 const auto portrait_field = [&](int y, int left, const SDL_Rect &panel)
@@ -245,11 +246,9 @@ const auto portrait_attitude_translation = [&](std::string_view source)
 for (int y = 0; y < gps_->dimy; ++y) {
     for (const auto label : portrait_labels) {
         std::vector<int> starts;
-#ifdef _WIN32
         const size_t kind = label == "Toward you:" ? 0 : label == "Relationship:" ? 1 : 2;
         for (const auto &[x, row] : portrait_native_starts[kind])
             if (row == y) starts.push_back(x);
-#endif
         // Hosts without this PE profile keep the closed-panel reader.
         // Captured native headers do not depend on composite text visibility.
         const size_t found = context[y].find(label);

@@ -1,7 +1,6 @@
 // The isolated map producer leaves only interface writers in the main grid.
 // Default dwarfmode is still shared by several modal components, so its
 // native mode and open-state checks precede the restricted HUD reader.
-#ifdef _WIN32
 static bool native_fortress_map_hud_page();
 
 static thread_local const bool *g_native_fortress_hud_display = nullptr;
@@ -14,10 +13,8 @@ public:
     NativeFortressMapHudDisplayScope(const NativeFortressMapHudDisplayScope &) = delete;
     NativeFortressMapHudDisplayScope &operator=(const NativeFortressMapHudDisplayScope &) = delete;
 };
-#endif
 
 static bool native_fortress_map_hud_view(const graphicst *graphics) {
-#ifdef _WIN32
     if (!native_map_background_view(graphics) ||
             native_info_background_view(graphics) || NativeUiReadScope::active ||
             NativeTooltipPageScope::active || NativeHelpForegroundScope::active ||
@@ -26,10 +23,6 @@ static bool native_fortress_map_hud_view(const graphicst *graphics) {
     // translation lock. Private grid/read scopes keep their live identity.
     return g_native_fortress_hud_display ? *g_native_fortress_hud_display
         : native_fortress_map_hud_page();
-#else
-    // Only the reviewed PE modal coordinates are available here.
-    return false;
-#endif
 }
 
 // Return false without publishing partial matches whenever this draw contains
@@ -113,19 +106,17 @@ bool Overlay::find_fortress_map_matches(int only_y,
     }
     append_native_map_hover_phrases(rows, matches, -1, NativeMapHoverKind::Terrain);
 
-#ifdef _WIN32
     // ALERT has one fixed producer. A zero Food/Drink/Seeds/Meat/Fish/Plant/
     // Other count writes None instead of digits at these seven HUD calls.
     // Claim only those current native draws, never an unrelated None caption.
-    const auto base = native_history_profile_base();
-    const auto alert_return = native_reference_address(base, 0x3d72a7);
+    const auto alert_return = native_ui_semantic_address(0x3d72a7);
     constexpr uintptr_t zero_coordinates[]{
         0x3f3a6b, 0x3f3b63, 0x3f3c5b, 0x3f3d52,
         0x3f3e49, 0x3f3f41, 0x3f4039
     };
     std::array<uintptr_t, std::size(zero_coordinates)> zero_returns{};
     for (size_t i = 0; i < zero_returns.size(); ++i)
-        zero_returns[i] = native_reference_address(base, zero_coordinates[i]);
+        zero_returns[i] = native_ui_semantic_address(zero_coordinates[i]);
     const auto alert_target = exact_literal_translation("Alert");
     const auto zero_target = exact_literal_translation("None");
     const auto owned_literal = [&](const NativeDrawnTextRow &draw) {
@@ -183,7 +174,6 @@ bool Overlay::find_fortress_map_matches(int only_y,
             }
         }
     }
-#endif
 
     std::vector<std::string> hud_rows(gps_->dimy, std::string(gps_->dimx, ' '));
     if (!isolated_topbar)

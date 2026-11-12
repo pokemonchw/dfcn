@@ -1,47 +1,26 @@
-// The building-sheet chooser paints its own left-hand preview. Categories,
-// ordinary jobs and RAW reactions share this writer, but never pass through
-// the toolbar or widgets::Tooltip painters. Own the selected paragraph before
-// its background and border can enter the management component's word matcher.
-#ifdef _WIN32
-static size_t capture_native_workshop_tooltip_rows(const void *paragraph,
-        uintptr_t native_stack) {
-    NativeInputCallbackScope callback;
-    const auto original = reinterpret_cast<NativeAnnouncementRowsFn>(
-        native_pe_address(g_native_legacy_tooltip_base, 0x6ee50));
-    const size_t count = callback.call_native([&] { return original(paragraph); });
+// The building-sheet chooser owns a fixed 31-column preview, including
+// categories, ordinary jobs and RAW reactions, before its first grid store.
+static void begin_native_workshop_tooltip(const void *paragraph, size_t count,
+        int32_t right, int32_t top, int32_t available_left) {
     try {
         auto &state = native_legacy_tooltip_state();
-        if (state.frame && state.frame->isolated)
-            native_tooltip_end_draw(*state.frame);
+        if (state.frame && state.frame->isolated) native_tooltip_end_draw(*state.frame);
         state.frame.reset();
         state.remaining_body_rows = 0;
         state.has_keys = false;
-
-        // Both PE editions retain these stack locals. The complete chooser
-        // arm is 1843ab..185da6 (Classic 18433b..185d36); its second count
-        // call has already set right=sheet_left-2, top=viewport_top, and the
-        // available left limit=viewport_left+4. The native branch draws only
-        // when at least 31 columns remain, then fixes left=right-30.
-        int32_t right = 0, top = 0, available_left = 0;
         auto *gps = native_graphics();
         if (!paragraph || !gps || !gps->screen || !count || count > 1000 ||
-                native_stack > UINTPTR_MAX - 0x1108 ||
-                !native_history_copy(native_stack + 0x1100, right) ||
-                !native_history_copy(native_stack + 0x1104, top) ||
-                !native_history_copy(native_stack + 0xdf0, available_left) ||
                 int64_t(right) - available_left + 1 < 31 ||
-                right < std::numeric_limits<int>::min() + 30)
-            return count;
-
+                right < std::numeric_limits<int>::min() + 30) return;
         NativeTooltipWidgetFrame frame;
         frame.bounds = {right - 30, top, 31, static_cast<int>(count) + 2};
-        if (!native_tooltip_valid_bounds(*gps, frame.bounds)) return count;
+        if (!native_tooltip_valid_bounds(*gps, frame.bounds)) return;
         frame.dimx = gps->dimx;
         frame.dimy = gps->dimy;
         frame.epoch = g_embark_item_capture_epoch.load(std::memory_order_acquire);
         frame.rows.assign(static_cast<size_t>(frame.bounds.h), std::string(31, ' '));
         frame.body_source = native_legacy_tooltip_body_source(paragraph, count);
-        if (frame.body_source.empty()) return count;
+        if (frame.body_source.empty()) return;
         frame.workshop_recipe = true;
         // Snapshot field boundaries before begin_draw swaps out the parent
         // component's paragraph captures. Cached native previews do not run
@@ -72,6 +51,47 @@ static size_t capture_native_workshop_tooltip_rows(const void *paragraph,
         state.remaining_body_rows = count;
         if (native_tooltip_begin_draw(frame)) state.frame = std::move(frame);
     } catch (...) {}
+}
+
+#ifdef _WIN32
+static size_t capture_native_workshop_tooltip_rows(const void *paragraph,
+        uintptr_t native_stack) {
+    NativeInputCallbackScope callback;
+    const auto original = reinterpret_cast<NativeAnnouncementRowsFn>(
+        native_pe_address(g_native_legacy_tooltip_base, 0x6ee50));
+    const size_t count = callback.call_native([&] { return original(paragraph); });
+    int32_t right = 0, top = 0, available_left = 0;
+    if (native_stack <= UINTPTR_MAX - 0x1108 &&
+            native_history_copy(native_stack + 0x1100, right) &&
+            native_history_copy(native_stack + 0x1104, top) &&
+            native_history_copy(native_stack + 0xdf0, available_left))
+        begin_native_workshop_tooltip(paragraph, count, right, top, available_left);
     return count;
+}
+#else
+static void observe_native_workshop_tooltip_begin(const NativeInlineRegisters *registers) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        int32_t sheet_left = 0, top = 0, viewport_left = 0;
+        if (!registers || registers->rbp < 0x328 ||
+                !native_history_copy(registers->rbp - 0x278, sheet_left) ||
+                !native_history_copy(registers->rbp - 0x298, top) ||
+                !native_history_copy(registers->rbp - 0x328, viewport_left) ||
+                sheet_left < 32 || sheet_left > 1000 || viewport_left < 0 || viewport_left > 1000)
+            return;
+        const auto paragraph = reinterpret_cast<const void *>(native_elf_5317_address(0x272b0e0));
+        begin_native_workshop_tooltip(paragraph, native_paragraph_row_count(paragraph),
+            sheet_left - 2, top, viewport_left + 4);
+    } catch (...) {}
+}
+static void observe_native_workshop_tooltip_end(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        auto &state = native_legacy_tooltip_state();
+        if (!state.frame || !state.frame->workshop_recipe) return;
+        if (state.frame->isolated) native_tooltip_end_draw(*state.frame);
+        state.frame.reset();
+        state.remaining_body_rows = 0;
+    } catch (...) {}
 }
 #endif

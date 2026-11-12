@@ -10,7 +10,6 @@
         for (int y = body.y; y < body.y + body.h; ++y)
             std::fill_n(rows[y].begin() + body.x, body.w, ' ');
     };
-#ifdef _WIN32
     {
         if (const auto popup = native_announcement_popup(); popup && popup->width <= gps_->dimx) {
             const auto &words = popup->words;
@@ -197,4 +196,3 @@
             }
         }
     }
-#endif

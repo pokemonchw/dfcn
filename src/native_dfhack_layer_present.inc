@@ -1,18 +1,23 @@
 // DFHack owns this target and its logical buffers. Native rendering and native
 // translation finish before this layer is composed; no game pixels are read.
-#ifdef _WIN32
 static graphicst *native_dfhack_display_inputs_select(graphicst *inputs) noexcept;
 
 static bool native_dfhack_switch_disabled() noexcept {
+#ifdef _WIN32
     if (const auto *api = dfhack::switch_client::active_api.load(std::memory_order_acquire))
         return api->disabled() != 0;
+#endif
     using Query = int (*)() noexcept;
     // The resident loader is already mapped before it initializes this core.
     // A standalone core or an older loader keeps its existing display behavior.
     static const auto query = []() -> Query {
+#ifdef _WIN32
         const auto loader = GetModuleHandleW(L"dfhooks_dfcn.dll");
         return loader ? reinterpret_cast<Query>(GetProcAddress(loader,
             "dfcn_is_dfhack_disabled_v1")) : nullptr;
+#else
+        return reinterpret_cast<Query>(dlsym(RTLD_DEFAULT, "dfcn_is_dfhack_disabled_v1"));
+#endif
     }();
     return query && query() != 0;
 }
@@ -158,6 +163,11 @@ struct NativeDfhackLayerRendererGrid {
     graphicst *previous_read_view = nullptr;
     std::array<void *, 14> previous{};
     unsigned char previous_viewport_zoom = 0;
+#ifdef _WIN32
+    static constexpr size_t zoom_offset = 0x180;
+#else
+    static constexpr size_t zoom_offset = 0x178;
+#endif
     bool restore_viewport_zoom = true;
 
     NativeDfhackLayerRendererGrid(void *current, graphicst &gps,
@@ -183,14 +193,14 @@ struct NativeDfhackLayerRendererGrid {
         std::memcpy(previous.data(), fields, sizeof(previous));
         // Native viewport tile drawing sets this flag and ends by clearing
         // it. Keep the game's entry value around the private render passes.
-        previous_viewport_zoom = *(static_cast<unsigned char *>(renderer) + 0x180);
+        previous_viewport_zoom = *(static_cast<unsigned char *>(renderer) + zoom_offset);
         std::memcpy(fields, private_grid.data(), sizeof(private_grid));
     }
     ~NativeDfhackLayerRendererGrid() noexcept {
         std::memcpy(static_cast<unsigned char *>(renderer) + sizeof(void *),
             previous.data(), sizeof(previous));
         if (restore_viewport_zoom)
-            *(static_cast<unsigned char *>(renderer) + 0x180) = previous_viewport_zoom;
+            *(static_cast<unsigned char *>(renderer) + zoom_offset) = previous_viewport_zoom;
         native_dfhack_display_inputs_select(previous_inputs);
         g_native_graphics_read_view = previous_read_view;
     }
@@ -209,6 +219,7 @@ struct NativeDfhackLayerNativeRenderer {
 
     static NativeDfhackLayerNativeRenderer current() noexcept {
         NativeDfhackLayerNativeRenderer result;
+#ifdef _WIN32
         if (!native_pe_supported()) return result;
         const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
         const auto enabler = native_pe_address(executable, 0x02390290);
@@ -216,6 +227,15 @@ struct NativeDfhackLayerNativeRenderer {
                 !result.object || !native_history_copy(
                     reinterpret_cast<uintptr_t>(result.object), result.methods) ||
                 !result.methods) return {};
+#else
+        auto *enabler = static_cast<enablerst *>(dlsym(RTLD_DEFAULT, "enabler"));
+        if (!enabler) return result;
+        result.sdl = enabler->main_renderer();
+        // The help producer retains the same native renderer object. The
+        // exported SDL getter alone does not expose its private grid fields.
+        result.object = g_native_help_layer.native_renderer;
+        if (!result.object || !native_history_copy(reinterpret_cast<uintptr_t>(result.object), result.methods)) return {};
+#endif
         using RendererGetter = SDL_Renderer *(*)(void *);
         const auto getter = reinterpret_cast<RendererGetter>(result.methods[19]);
         if (getter) result.sdl = getter(result.object);
@@ -413,6 +433,7 @@ static std::atomic<uintptr_t> g_native_dfhack_render_callback_queue{0};
 
 static void native_dfhack_bind_render_callbacks_probe() noexcept {
     g_native_dfhack_render_callback_queue.store(0, std::memory_order_release);
+#ifdef _WIN32
     const auto module = GetModuleHandleW(L"dfhack.dll");
     if (!module) return;
     const auto run = reinterpret_cast<uintptr_t>(GetProcAddress(module,
@@ -446,6 +467,27 @@ static void native_dfhack_bind_render_callbacks_probe() noexcept {
     if (first < region_first || first - region_first > region.RegionSize ||
             region.RegionSize - (first - region_first) < sizeof(uintptr_t) * 3) return;
     g_native_dfhack_render_callback_queue.store(first, std::memory_order_release);
+#else
+    auto *module = native_dfhack_elf_module();
+    if (!module) return;
+    const auto run = reinterpret_cast<uintptr_t>(dlsym(module, "_ZN6DFHack24runRenderThreadCallbacksEv"));
+    const auto enqueue = reinterpret_cast<uintptr_t>(dlsym(module, "_ZN6DFHack17runOnRenderThreadESt8functionIFvvEE"));
+    const auto operand = [](uintptr_t at, std::initializer_list<unsigned char> prefix, size_t size) {
+        std::array<unsigned char, 8> bytes{};
+        if (!native_history_copy_bytes(at, bytes.data(), size) ||
+                !std::equal(prefix.begin(), prefix.end(), bytes.begin())) return uintptr_t{0};
+        int32_t relative = 0;
+        std::memcpy(&relative, bytes.data() + prefix.size(), 4);
+        return static_cast<uintptr_t>(static_cast<intptr_t>(at + size) + relative);
+    };
+    const auto first = operand(run + 0x40, {0x66,0x0f,0x6f,0x0d}, 8);
+    const auto capacity = operand(run + 0x48, {0x48,0x8b,0x15}, 7);
+    const auto last = operand(enqueue + 0x25, {0x48,0x8b,0x35}, 7);
+    if (first && first % alignof(uintptr_t) == 0 && last == first + 8 &&
+            capacity == first + 16 &&
+            operand(enqueue + 0x2c, {0x48,0x3b,0x35}, 7) == capacity)
+        g_native_dfhack_render_callback_queue.store(first, std::memory_order_release);
+#endif
 }
 
 static bool native_dfhack_render_callbacks_pending() noexcept {
@@ -455,7 +497,11 @@ static bool native_dfhack_render_callbacks_pending() noexcept {
     const auto [first, last, capacity] = queue;
     if (first > last || last > capacity || (!first && (last || capacity)) ||
             (first && first % alignof(uintptr_t)) ||
+#ifdef _WIN32
             (last - first) % 0x40 || (capacity - first) % 0x40) return true;
+#else
+            (last - first) % 0x20 || (capacity - first) % 0x20) return true;
+#endif
     // The copy is a guarded read of the header, never callback storage.
     // An enqueue after observing empty is consumed by the next guarded frame.
     return first != last;
@@ -528,6 +574,7 @@ static int SDLCALL native_dfhack_gpu_geometry_raw(SDL_Renderer *renderer, SDL_Te
 static bool native_dfhack_install_sdl_export(NativeEntryHook &hook,
         const char *name, const void *wrapper, const char *label) {
     if (!hook.original) {
+#ifdef _WIN32
         const auto module = GetModuleHandleW(L"SDL2.dll");
         auto *entry = module ? reinterpret_cast<unsigned char *>(
             GetProcAddress(module, name)) : nullptr;
@@ -551,6 +598,20 @@ static bool native_dfhack_install_sdl_export(NativeEntryHook &hook,
         // initialize or replace that table after our export hook is installed.
         if (!hook.prepare(entry, std::vector<unsigned char>(actual.begin(), actual.end()),
                 wrapper, fixups, label)) return false;
+#else
+        auto *entry = static_cast<unsigned char *>(dlsym(RTLD_DEFAULT, name));
+        std::array<unsigned char, 10> bytes{};
+        if (!entry || !native_history_copy(reinterpret_cast<uintptr_t>(entry), bytes)) return false;
+        const bool cet = !std::memcmp(bytes.data(), "\xf3\x0f\x1e\xfa", 4);
+        const size_t at = cet ? 4 : 0;
+        if (bytes[at] != 0xff || bytes[at + 1] != 0x25) return false;
+        const size_t length = at + 6;
+        int32_t relative = 0;
+        std::memcpy(&relative, bytes.data() + at + 2, 4);
+        const std::vector<NativeRelativeFixup> fixups{{at + 2, length,
+            reinterpret_cast<uintptr_t>(entry + length + relative)}};
+        if (!hook.prepare(entry, {bytes.begin(), bytes.begin() + length}, wrapper, fixups, label)) return false;
+#endif
     }
     return hook.install(label);
 }
@@ -654,7 +715,7 @@ struct NativeDfhackLayerPaintContext {
     void *native_renderer;
     graphicst *graphics;
     void **methods;
-    std::array<const int32_t *, 9> font_tables{};
+    std::array<const NativeDfhackLayerTexture *, 9> font_tables{};
     int tile_width = 0, tile_height = 0, origin_x = 0, origin_y = 0;
 
     NativeDfhackLayerPaintContext(SDL_Renderer *sdl, void *native,
@@ -662,10 +723,16 @@ struct NativeDfhackLayerPaintContext {
         : renderer(sdl), bound_target(SDL_GetRenderTarget(sdl)),
           native_renderer(native), graphics(gps), methods(vtable) {
         const auto *object = static_cast<const unsigned char *>(native);
-        std::memcpy(&tile_width, object + 0x168, sizeof(tile_width));
-        std::memcpy(&tile_height, object + 0x16c, sizeof(tile_height));
-        std::memcpy(&origin_x, object + 0x170, sizeof(origin_x));
-        std::memcpy(&origin_y, object + 0x174, sizeof(origin_y));
+#ifdef _WIN32
+        constexpr size_t raster = 0x168;
+#else
+        constexpr size_t raster = 0x160;
+#endif
+        std::memcpy(&tile_width, object + raster, sizeof(tile_width));
+        std::memcpy(&tile_height, object + raster + 4, sizeof(tile_height));
+        std::memcpy(&origin_x, object + raster + 8, sizeof(origin_x));
+        std::memcpy(&origin_y, object + raster + 12, sizeof(origin_y));
+#ifdef _WIN32
         const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
         const auto settings = native_pe_address(executable, 0x023cd770);
         // Texture IDs are shared immutable atlas references, not screen data.
@@ -678,9 +745,17 @@ struct NativeDfhackLayerPaintContext {
             for (size_t i = 0; i < offsets.size(); ++i)
                 font_tables[i] = reinterpret_cast<const int32_t *>(
                     settings + native_pe_init_field_offset(offsets[i]));
+#else
+        if (const auto *settings = native_ui_settings_source())
+            font_tables = {settings->font.basic_font_texpos, settings->font.small_font_texpos,
+                settings->font.large_font_texpos, settings->font.basic_font_texpos_top,
+                settings->font.small_font_texpos_top, settings->font.large_font_texpos_top,
+                settings->font.basic_font_texpos_bot, settings->font.small_font_texpos_bot,
+                settings->font.large_font_texpos_bot};
+#endif
         active = this;
     }
-    bool character_texture(int32_t texture, unsigned char character) const noexcept {
+    bool character_texture(NativeDfhackLayerTexture texture, unsigned char character) const noexcept {
         if (texture <= 0) return false;
         for (const auto *table : font_tables) {
             if (!table) continue;
@@ -795,7 +870,12 @@ static bool native_dfhack_layer_has_content(SDL_Renderer *renderer,
 
 static void native_dfhack_present_layer(SDL_Renderer *renderer,
         void (*translate)(SDL_Renderer *, const NativeDfhackTranslatedFrame &)) {
-    if (!renderer || !native_pe_supported()) return;
+    if (!renderer) return;
+#ifdef _WIN32
+    if (!native_pe_supported()) return;
+#else
+    if (!native_elf_5317_address(0x13d14b0)) return;
+#endif
     if (!g_native_dfhack_graphics_ownership_ready.load(std::memory_order_acquire)) return;
     const bool disabled = native_dfhack_switch_disabled();
     static bool hidden = false;
@@ -958,20 +1038,3 @@ static void release_native_dfhack_layer_target() noexcept {
     g_native_dfhack_gpu_page_revision = 0;
     g_native_dfhack_gpu_revision = 0;
 }
-#else
-class NativeDfhackLayerGpuScope {
-public:
-    explicit NativeDfhackLayerGpuScope(bool = true) noexcept {}
-    bool valid() const noexcept { return false; }
-};
-static void native_dfhack_gpu_suspend() noexcept {}
-static void native_dfhack_gpu_resume() noexcept {}
-static bool native_dfhack_gpu_translation_content_active() noexcept { return false; }
-static bool install_native_dfhack_gpu_target_hook() { return true; }
-static void uninstall_native_dfhack_gpu_target_hook() {}
-static bool native_dfhack_gpu_target_hook_active() noexcept { return false; }
-static bool native_dfhack_render_callbacks_pending() noexcept { return true; }
-static void native_dfhack_present_layer(SDL_Renderer *,
-    void (*)(SDL_Renderer *, const NativeDfhackTranslatedFrame &)) {}
-static void release_native_dfhack_layer_target() noexcept {}
-#endif

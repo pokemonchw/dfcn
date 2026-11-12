@@ -22,7 +22,8 @@ def sources(root):
         visited.add(path)
         text = _windows_source(path.read_text(encoding='utf-8-sig'),
                                {'__linux__', '__GNUC__', '__x86_64__'}, keep_includes=True)
-        pending.extend(directory / name for name in re.findall(r'#\s*include\s*"([^"/]+)"', text))
+        pending.extend(directory / name for name in re.findall(r'#\s*include\s*"([^"/]+)"', text)
+                       if not name.endswith('_pe.inc'))
     return [p for p in sorted(visited) if p.suffix in ('.h', '.inc', '.cpp')
             and p.name not in EXCLUDED and 'build_bindings' not in p.stem]
 
@@ -36,6 +37,9 @@ def collect(root):
                 value = int(match[1], 0)
                 if value >= 0x10000:
                     required[value + 0x400000] = max(required.get(value + 0x400000, 0), 1)
+            continue
+        if path.name == 'native_adventure_introduction.inc':
+            # This owner's fixed UTF-16 MessageBox patch belongs to PE only.
             continue
         if path.name == 'native_caption_profile.inc':
             # Only the reference column is seed evidence. Classic has its

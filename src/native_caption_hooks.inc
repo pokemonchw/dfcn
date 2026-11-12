@@ -11,9 +11,7 @@ using NativeCaptionBuildFn = void (*)(void *);
 using NativeCaptionFlagDrawFn = void (*)(graphicst *, const NativeString *, NativeJustification, int, uint32_t);
 using NativeCaptionWidgetRenderFn = void (*)(void *, uint32_t);
 using NativeCaptionWidgetArrangeFn = void (*)(void *);
-#ifdef _WIN32
 using NativeCaptionMultilineWrapFn = void (*)(const NativeString *, void *, int);
-#endif
 static void capture_native_roster_shorten(NativeString *,int);
 static void capture_native_clipped_resize(NativeString *,size_t,char);
 static void capture_native_map_track_shorten(NativeString *,int);
@@ -178,8 +176,9 @@ static NativeCaptionWidgetBinding g_native_caption_widget_binding;
 static NativeImportHook g_native_multiline_widget_hook;
 static NativeImportHook g_native_multiline_arrange_hook;
 static NativeMultilineWidgetBinding g_native_multiline_widget_binding;
-#ifdef _WIN32
 static NativeCaptionMultilineWrapFn g_native_multiline_wrap = nullptr;
+#ifndef _WIN32
+static NativeEntryHook g_native_multiline_wrap_entry;
 #endif
 static NativeImportHook g_native_textbox_widget_hook;
 static NativeTextboxWidgetBinding g_native_textbox_widget_binding;
@@ -632,7 +631,12 @@ static std::optional<SDL_Rect> native_location_picker_draw_box(
                     column_end > x + 3 && column_end <= graphics->dimx)
                 right = std::min(right, column_end - 3);
 #else
-            (void)caller;
+            const uintptr_t address = reinterpret_cast<uintptr_t>(source);
+            int32_t columns = 0;
+            if (caller == native_reference_address(native_history_profile_base(), 0x96d796) &&
+                    address >= 0xdc && native_history_copy(address - 0xdc, columns) &&
+                    columns > 2 && columns <= graphics->dimx)
+                right = std::min(right, x + columns - 2);
 #endif
         }
         if (x >= left && right > x) return SDL_Rect{x, y, right - x, 1};
@@ -738,8 +742,17 @@ static int capture_native_uniform_member_right(uintptr_t caller, uintptr_t sourc
             anchor <= 0x41 || anchor > 1000 || anchor - 0x41 <= x) return -1;
     return anchor - 0x41;
 #else
-    (void)caller; (void)source; (void)x;
-    return -1;
+    if (!source || source > UINTPTR_MAX - 0x80 ||
+            caller != native_elf_5317_address(0x16d82df)) return -1;
+    // The ELF roster retains its formatted name at rbp-80. The producer
+    // stores the scrollbar-adjusted name allocation (less one cell) at
+    // rbp-1cc before either the live-unit or historical-figure branch.
+    const uintptr_t frame = source + 0x80;
+    int32_t width = 0, name_x = -1;
+    if (frame < 0x1cc || !native_history_copy(frame - 0x1cc, width) ||
+            !native_history_copy(frame - 0x150, name_x) || name_x != x ||
+            x < 0 || width <= 0 || width > 1000 - x) return -1;
+    return x + width;
 #endif
 }
 
@@ -765,8 +778,18 @@ static int capture_native_squad_list_right(uintptr_t caller, uintptr_t source, i
             text_x != x || x < 0 || anchor <= x + 1 || anchor > 1000) return -1;
     return anchor - 1;
 #else
-    (void)caller; (void)source; (void)x;
-    return -1;
+    uintptr_t frame = 0;
+    if (caller == native_elf_5317_address(0x16e7703)) frame = source + 0xa0;
+    else if (caller == native_elf_5317_address(0x16e7889)) frame = source + 0x80;
+    else if (caller == native_elf_5317_address(0x16e794f)) frame = source + 0x60;
+    if (!source || frame <= source || frame < 0x194) return -1;
+    // The native list subtracts text X from its scrollbar-adjusted anchor,
+    // then retains width-1 at rbp-194 for all three captions in this row.
+    int32_t width = 0, anchor = 0;
+    if (!native_history_copy(frame - 0x194, width) ||
+            !native_history_copy(frame - 0x118, anchor) || width <= 0 || width > 1000 ||
+            x < 0 || anchor - width - 1 != x || anchor > 1000) return -1;
+    return anchor - 1;
 #endif
 }
 
@@ -792,7 +815,16 @@ static NativeAdventureCraftingRole native_adventure_crafting_role(
             mode >= 1 && mode <= 3 ? NativeAdventureCraftingRole::Item :
             NativeAdventureCraftingRole::None;
 #else
-        return site.role;
+        // SysV keeps the caption at rsp+e0 and the crafting owner at
+        // rsp+20 in this producer, before either temporary is destroyed.
+        uintptr_t state = 0;
+        int32_t mode = -1;
+        if (source >= 0xc0 && native_history_copy(source - 0xc0, state) &&
+                state && state <= UINTPTR_MAX - 4)
+            native_history_copy(state + 4, mode);
+        return mode == 0 ? NativeAdventureCraftingRole::Caption :
+            mode >= 1 && mode <= 3 ? NativeAdventureCraftingRole::Item :
+            NativeAdventureCraftingRole::None;
 #endif
     }
     return NativeAdventureCraftingRole::None;
@@ -1021,7 +1053,6 @@ static int32_t native_multiline_wrap_rows(std::string_view source, size_t width)
     return std::max<int32_t>(1, rows);
 }
 
-#ifdef _WIN32
 // ede70 creates a generic container with precisely controls/body/Date.
 // Read those actual owners and complete strings; a matching visible fragment
 // cannot identify a report or grant ownership of neighbouring widgets.
@@ -1032,10 +1063,19 @@ static bool arrange_native_report_multiline(void *widget,
     const uintptr_t current = reinterpret_cast<uintptr_t>(widget);
     if (!base) return false;
     struct ReportTables { uintptr_t base, parent, controls, text; };
+#ifdef _WIN32
     static const ReportTables tables{base,
         native_pe_address(base, 0x15eb4a8), native_pe_address(base, 0x15f6fc0),
         native_pe_address(base, 0x15f6ee8)};
-    if (base != tables.base) return false;
+#else
+    static const auto table_address = [](const char *name) {
+        const auto symbol = reinterpret_cast<uintptr_t>(dlsym(RTLD_DEFAULT, name));
+        return symbol ? symbol + 2 * sizeof(void *) : 0;
+    };
+    static const ReportTables tables{base, table_address("_ZTVN7widgets9containerE"),
+        table_address("_ZTVN7widgets17columns_containerE"), table_address("_ZTVN7widgets14text_multilineE")};
+#endif
+    if (base != tables.base || !tables.parent || !tables.controls || !tables.text) return false;
     // The original arrange has just used this live widget and its parent.
     // Their owning shared_ptr vector keeps all three children alive during
     // this callback. Copy these owned fields directly; report construction
@@ -1050,7 +1090,13 @@ static bool arrange_native_report_multiline(void *widget,
     read(parent, parent_table);
     if (parent_table != tables.parent) return false;
     std::array<uintptr_t, 3> vector{};
+#ifdef _WIN32
     read(parent + 0x160, vector);
+#else
+    const auto children = native_history_object_member(parent, "widget_container", "children", sizeof(vector));
+    if (!children) return false;
+    read(children, vector);
+#endif
     if (!vector[0] ||
             vector[1] < vector[0] || vector[1] - vector[0] != 3 * 16 ||
             vector[2] < vector[1]) return false;
@@ -1136,8 +1182,6 @@ static bool arrange_native_report_multiline(void *widget,
     callback.call_native([&] { binding.base_arrange(reinterpret_cast<void *>(date)); });
     return true;
 }
-#endif
-
 static void arrange_native_multiline_widget(void *widget) {
     NativeInputCallbackScope callback;
     const auto original = reinterpret_cast<NativeCaptionWidgetArrangeFn>(
@@ -1148,9 +1192,7 @@ static void arrange_native_multiline_widget(void *widget) {
     try {
         const auto &binding = g_native_multiline_widget_binding;
         if (!widget || !binding.base_arrange || !binding.minimum_height) return;
-#ifdef _WIN32
         if (arrange_native_report_multiline(widget, callback)) return;
-#endif
         if (!g_overlay.translation_enabled()) return;
         auto *bytes = static_cast<unsigned char *>(widget);
         std::array<int32_t, 4> rect{};
@@ -1166,16 +1208,12 @@ static void arrange_native_multiline_widget(void *widget) {
                 &source, 262144)) return;
         std::string normalized;
         if (source.find_first_of("\r\n") != std::string_view::npos) {
-#ifdef _WIN32
             // Both PE wrappers append newline prefixes, then wrap the entire
             // original string again from offset zero. The report render call
             // below instead supplies one copied paragraph to that same wrapper.
             if (!native_multiline_announcement_source(source)) return;
             normalized = native_multiline_single_wrap_source(source);
             source = normalized;
-#else
-            return;
-#endif
         }
         if (source.size() <= static_cast<size_t>(width)) return;
 
@@ -1210,7 +1248,6 @@ struct NativeMultilineCapture {
 // NativeImportHook/NativeInputCallbackScope protect the callback lifetime.
 static thread_local NativeMultilineCapture *g_native_multiline_capture = nullptr;
 
-#ifdef _WIN32
 static void wrap_native_multiline_announcement(const NativeString *source, void *unused, int width) {
     NativeInputCallbackScope callback;
     if (!g_native_multiline_wrap) return;
@@ -1223,6 +1260,7 @@ static void wrap_native_multiline_announcement(const NativeString *source, void 
                 text.find_first_of("\r\n") != std::string_view::npos &&
                 native_multiline_announcement_source(text)) {
             normalized = native_multiline_single_wrap_source(text);
+#ifdef _WIN32
             borrowed.size = normalized.size();
             if (normalized.size() <= 15) {
                 std::memcpy(borrowed.storage.small, normalized.c_str(), normalized.size() + 1);
@@ -1230,6 +1268,9 @@ static void wrap_native_multiline_announcement(const NativeString *source, void 
                 borrowed.storage.heap = normalized.data();
                 borrowed.capacity = normalized.size();
             }
+#else
+            borrowed.assign(normalized);
+#endif
             g_native_multiline_capture->single_wrap = true;
             // The native wrapper only reads this string and copies its rows.
             // Its input borrows our buffer; no game-owned string is changed,
@@ -1239,7 +1280,6 @@ static void wrap_native_multiline_announcement(const NativeString *source, void 
     } catch (...) {}
     callback.call_native([&] { g_native_multiline_wrap(source, unused, width); });
 }
-#endif
 
 static void capture_native_multiline_row(graphicst *graphics, const NativeString *source) {
     auto *capture = g_native_multiline_capture;
@@ -2139,7 +2179,6 @@ static void remember_native_clipped_resize(NativeString *source, size_t width, c
     }
 }
 
-#ifdef _WIN32
 static void capitalize_native_character_group_role(std::string &text) {
     // 52d650 changes the first eligible byte, skipping bracket controls and
     // the same leading spaces/quotes. Preserve its CP437 case pairs too.
@@ -2187,8 +2226,8 @@ static bool remember_native_character_group_resize(NativeString *source,
     // The following native stores replace the final three bytes iff the
     // retained length exceeds three; smaller lengths stay plain prefixes.
     // These exact return addresses cover both supported PE editions.
-    if (!base || (caller != native_reference_address(base, 0x179439) &&
-            caller != native_reference_address(base, 0x17aabe))) return false;
+    if (!base || (caller != native_ui_semantic_address(0x179439) &&
+            caller != native_ui_semantic_address(0x17aabe))) return false;
     auto &state = native_character_clipped_pending();
     if (state.busy) return true;
     struct CaptureScope {
@@ -2207,7 +2246,7 @@ static bool remember_native_character_group_resize(NativeString *source,
                 text.find('\0') == std::string_view::npos) {
             PendingNativeField pending;
             capture_native_field_resize(pending, source, width);
-            if (caller == native_reference_address(base, 0x17aabe)) {
+            if (caller == native_ui_semantic_address(0x17aabe)) {
                 // Role capitalization follows the dot stores at 17ab2d;
                 // entity-name capitalization already preceded its resize.
                 capitalize_native_character_group_role(pending.visible);
@@ -2221,7 +2260,6 @@ static bool remember_native_character_group_resize(NativeString *source,
     } catch (...) {}
     return true;
 }
-#endif
 
 static void capture_native_clipped_resize(NativeString *source, size_t width, char fill) {
     if (g_native_announcement_log_write_graphics &&
@@ -2235,13 +2273,13 @@ static void capture_native_clipped_resize(NativeString *source, size_t width, ch
     bool zone_plain_prefix = width > 0 && width <= 3 &&
         g_native_petitions_write_graphics &&
         native_graphics() == g_native_petitions_write_graphics;
-#ifdef _WIN32
     const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
     if (remember_native_character_group_resize(source, width, fill, caller)) {
         if (g_native_clipped_caption_hooks.resize)
             g_native_clipped_caption_hooks.resize(source, width, fill);
         return;
     }
+#ifdef _WIN32
     if (width > 0 && width <= 3) {
         const auto base = native_history_profile_base();
         // The Places zone/location column and workshop chooser title only
@@ -2589,8 +2627,15 @@ static bool native_character_header_activity_source(const NativeString *source,
         native_history_copy(owner + 0x38, parent_return) &&
         parent_return == binding.parent_return;
 #else
-    (void)source; (void)caller;
-    return false;
+    if (caller == native_elf_5317_address(0x13f7c50)) return true;
+    if (caller != native_elf_5317_address(0xb761b4) || !source) return false;
+    // The shared activity wrapper owns its text at rbp-50. Its saved return
+    // is rbp+8; accept only the character header's invocation of that wrapper.
+    const auto address = reinterpret_cast<uintptr_t>(source);
+    uintptr_t parent = 0;
+    return address <= UINTPTR_MAX - 0x58 &&
+        native_history_copy(address + 0x58, parent) &&
+        parent == native_elf_5317_address(0x13f7c1e);
 #endif
 }
 
@@ -2969,6 +3014,12 @@ static void capture_native_announcement_log_caption(graphicst *graphics,
 
 #include "native_topbar_caption_capture.inc"
 
+struct NativeGeographyNameFact {
+    std::optional<NativeRiverNameFact> river;
+    std::optional<NativeVolcanoNameFact> volcano;
+};
+static NativeGeographyNameFact take_native_geography_name_fact(const NativeString *source);
+
 template<typename Draw>
 static void capture_native_limited_caption_draw(graphicst *graphics, const NativeString *source,
         NativeJustification just, int width, Draw &&draw, bool top_layer = false,
@@ -2983,6 +3034,9 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
         NativeTravelBuildingField travel_building_field = NativeTravelBuildingField::None,
         uintptr_t native_caller = 0,
         std::optional<std::array<long, 4>> capture_clip = std::nullopt) {
+    auto geography = take_native_geography_name_fact(source);
+    NativeRiverNameFactScope river_scope(geography.river ? &*geography.river : g_native_river_name_fact);
+    NativeVolcanoNameFactScope volcano_scope(geography.volcano ? &*geography.volcano : g_native_volcano_name_fact);
     if (graphics && graphics == g_native_notification_write_graphics) {
         capture_native_notification_caption(graphics, source, width, top_layer,
             native_caller, std::forward<Draw>(draw));
@@ -3733,6 +3787,7 @@ static void capture_native_world_site_entity_fact(graphicst *graphics,
 #include "native_site_name_draws.inc"
 #include "native_river_names.inc"
 #include "native_volcano_names.inc"
+#include "native_geography_names_elf.inc"
 
 static void capture_native_clipped_draw(graphicst *graphics, const NativeString *source,
         NativeJustification just, int width) {
@@ -4288,7 +4343,8 @@ static void append_native_caption_calls(std::vector<NativeCall> &calls,
 
 static bool native_caption_hooks_active() {
 #ifndef _WIN32
-    if (g_native_main_caption_calls.active()) return true;
+    if (g_native_main_caption_calls.active() || g_native_geography_english_hook.active() ||
+            g_native_multiline_wrap_entry.active()) return true;
 #endif
     return g_native_help_top_tile_hook.active() || g_native_help_tile_hook.active() ||
         g_native_legacy_tooltip_hook.active() || g_native_tooltip_container_hook.active() ||
@@ -4428,6 +4484,17 @@ static bool install_native_caption_hooks() {
 #else
     if (!append_native_site_name_draw_calls(profile.main_calls)) return false;
     if (!append_native_river_name_calls(profile.main_calls)) return false;
+    if (!g_native_multiline_wrap_entry.installed) {
+        auto *wrap = static_cast<unsigned char *>(dlsym(RTLD_DEFAULT,
+            "_Z15separate_stringRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSt6vectorIS4_SaIS4_EEi"));
+        const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x57};
+        if (!wrap || !g_native_multiline_wrap_entry.prepare(wrap, prefix,
+                reinterpret_cast<const void *>(&wrap_native_multiline_announcement), {},
+                "Native ELF report paragraph wrapping")) return false;
+        g_native_multiline_wrap = reinterpret_cast<NativeCaptionMultilineWrapFn>(g_native_multiline_wrap_entry.original);
+        if (!g_native_multiline_wrap_entry.install("Native ELF report paragraph wrapping")) return false;
+    }
+    if (!install_native_geography_name_hook()) return false;
     std::vector<NativeCall> entity_fact_calls{
         {0x143c4a2,0x425170,reinterpret_cast<const void *>(&capture_native_world_site_entity_fact<
             NativeWorldSiteEntityFactKind::SiteGovernment>),{0x48,0x89,0xda}},
@@ -4634,6 +4701,8 @@ static bool install_native_caption_hooks() {
 static bool uninstall_native_caption_hooks() {
     reset_native_announcement_notification_capture();
 #ifndef _WIN32
+    if (!g_native_multiline_wrap_entry.uninstall("Native ELF report paragraph wrapping restore")) return false;
+    if (!g_native_geography_english_hook.uninstall("Native geography name source restore")) return false;
     if (!g_native_main_caption_calls.uninstall("Native page and roster caption restore")) return false;
 #endif
     if (!g_native_help_top_tile_hook.uninstall("Native classic help artwork restore")) return false;
@@ -4663,9 +4732,7 @@ static bool uninstall_native_caption_hooks() {
     g_native_caption_widget_hook = {};
     g_native_caption_widget_binding = {};
     if (!g_native_caption_hooks.code.uninstall("Complete native caption restore")) return false;
-#ifdef _WIN32
     g_native_multiline_wrap = nullptr;
-#endif
     g_native_announcement_popup_draw = nullptr;
     g_native_announcement_page_rows = nullptr;
     g_native_announcement_page_binding = {};

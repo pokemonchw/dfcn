@@ -14,7 +14,6 @@ static void native_map_begin_frame() {
     NativeUiReadScope::invalidate_reads();
 }
 
-#ifdef _WIN32
 static NativeEntryHook g_native_map_producer_hook;
 using NativeMapProducerFn = void (*)(void *, int32_t, void *);
 static graphicst *native_dfhack_render_read_graphics();
@@ -81,6 +80,7 @@ static void bind_native_map_display_frame(const graphicst *graphics) noexcept {
     // path; dimensions alone cannot establish their native owner.
     if (has_map) g_native_map_background_grid = graphics->screen;
 }
+
 
 static void native_map_clear_empty_ui_cells(graphicst &gps) {
     const size_t count = static_cast<size_t>(gps.dimx) * gps.dimy;
@@ -164,6 +164,8 @@ static void native_map_producer(void *map, int32_t tick, void *context) {
     g_native_map_mixed_grid = nullptr;
     g_native_map_classic = native_ui_classic().value_or(false);
     capture_native_map_display_source(*gps);
+    layer.native_renderer = g_native_help_layer.native_renderer;
+    layer.renderer = g_native_help_layer.renderer;
     layer.ready = true;
     NativeUiReadScope::invalidate_reads();
 }
@@ -171,6 +173,7 @@ static void native_map_producer(void *map, int32_t tick, void *context) {
 static bool install_native_map_producer_hook() {
     if (g_native_map_producer_hook.installed) return true;
     constexpr const char *label = "Native map producer private output";
+#ifdef _WIN32
     const auto base = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
     if (!base || !native_pe_supported()) return false;
     // Reference RVA e9afe0 (classic e95f50) calls both the terrain pass and
@@ -182,6 +185,17 @@ static bool install_native_map_producer_hook() {
             !g_native_map_producer_hook.prepare(entry, prefix,
             reinterpret_cast<const void *>(&native_map_producer), {}, label) ||
             !g_native_map_producer_hook.install(label)) return false;
+#else
+    if (!native_elf_5317_address(0x1eda650)) return true;
+    auto *entry = reinterpret_cast<unsigned char *>(native_elf_5317_address(0x1eda650));
+    // CET followed by the complete main_viewport null guard. Preserve its
+    // RIP-relative operand while the trampoline retains the native early exit.
+    const std::vector<unsigned char> prefix{0xf3,0x0f,0x1e,0xfa,0x48,0x83,0x3d,0x1c,0x6c,0x5e,0,0};
+    if (!entry || !g_native_map_producer_hook.prepare(entry, prefix,
+            reinterpret_cast<const void *>(&native_map_producer),
+            {{7,12,native_elf_5317_address(0x24c1278)}}, label) ||
+            !g_native_map_producer_hook.install(label)) return false;
+#endif
     log_line("INFO", "Redirected native map glyph generation to its independent output layer");
     return true;
 }
@@ -191,7 +205,7 @@ static void uninstall_native_map_producer_hook() {
     if (!g_native_map_producer_hook.active()) native_map_begin_frame();
 }
 static bool native_map_producer_hook_active() { return g_native_map_producer_hook.active(); }
-#else
+#ifndef _WIN32
 static void native_map_restore_missing_outputs() {
     if (g_native_process_exiting.load(std::memory_order_acquire)) return;
     auto *gps = native_graphics_owner();
@@ -257,7 +271,4 @@ static void native_map_restore_missing_outputs() {
     }
 }
 
-static bool install_native_map_producer_hook() { return true; }
-static void uninstall_native_map_producer_hook() {}
-static bool native_map_producer_hook_active() { return false; }
 #endif

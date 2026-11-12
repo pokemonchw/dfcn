@@ -47,13 +47,16 @@ static bool native_dfhack_bind_lua_output(void *entry_pointer) {
     // Official 53.16-r2 immutable dfhack_funcs registration.
     constexpr std::array<const char *, 5> names{"print", "println", "printerr", "color", "is_interactive"};
     constexpr std::array<uintptr_t, 5> functions{0x5e0e10,0x5e10a0,0x5e0b20,0x5dd2b0,0x5dd330};
-    if (!native_dfhack_lua_registration_elf(base, 0xc106a0, names, functions)) return false;
+    constexpr std::array<uintptr_t, 5> current_functions{0x7e73e0,0x7e7670,0x7e70f0,0x7e3a00,0x7e3a80};
+    const bool current = native_dfhack_lua_registration_elf(base, 0x1059b40, names, current_functions);
+    if (!current && !native_dfhack_lua_registration_elf(base, 0xc106a0, names, functions)) return false;
+    const uintptr_t println = current ? 0x7e7670 : 0x5e10a0;
     constexpr std::array<unsigned char, 11> prefix{0xf3,0x0f,0x1e,0xfa,0x41,0x56,0x41,0x55,0x41,0x54,0x55};
     NativePatchPages executable;
-    if (!collect_native_patch_pages(executable, reinterpret_cast<uintptr_t>(base + 0x5e10a0),
+    if (!collect_native_patch_pages(executable, reinterpret_cast<uintptr_t>(base + println),
             prefix.size(), native_patch_page_size(), true, "DFHack Lua println producer") ||
-            std::memcmp(base + 0x5e10a0, prefix.data(), prefix.size())) return false;
-    api.println = reinterpret_cast<NativeDfhackLuaCFunction>(const_cast<unsigned char *>(base + 0x5e10a0));
+            std::memcmp(base + println, prefix.data(), prefix.size())) return false;
+    api.println = reinterpret_cast<NativeDfhackLuaCFunction>(const_cast<unsigned char *>(base + println));
     const auto scripts = std::filesystem::absolute(image.dli_fname).parent_path() / "scripts";
     const auto key = [](const std::filesystem::path &path) {
         return native_dfhack_lua_source_key(path.generic_string());

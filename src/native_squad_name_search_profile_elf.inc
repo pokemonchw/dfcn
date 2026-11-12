@@ -5,7 +5,7 @@ struct NativeSquadNameElfHooks {
     NativeEntryHook copy;
     std::mutex fields_mutex;
     uint64_t fields_epoch = UINT64_MAX;
-    std::vector<uintptr_t> alias_fields;
+    std::vector<uintptr_t> alias_fields, name_fields;
 };
 static NativeSquadNameElfHooks g_native_squad_name_elf_hooks;
 
@@ -16,27 +16,43 @@ static bool native_squad_alias_field(const NativeString *source, std::string &al
     const auto epoch = g_embark_item_capture_epoch.load(std::memory_order_acquire);
     std::lock_guard<std::mutex> lock(hooks.fields_mutex);
     if (hooks.fields_epoch != epoch) {
-        hooks.alias_fields.clear();
+        hooks.alias_fields.clear(); hooks.name_fields.clear();
         NativeBorrowedVector<uintptr_t> squads;
         if (!native_history_read_vector(native_history_global(0x24e37c0), squads) ||
                 squads.size() > 65536) return false;
         for (size_t i = 0; i < squads.size(); ++i) {
             const uintptr_t squad = native_history_vector_at(squads, i);
             if (squad && squad <= UINTPTR_MAX - native_history_layout::squad_alias_offset)
-                hooks.alias_fields.push_back(squad + native_history_layout::squad_alias_offset);
+                { hooks.alias_fields.push_back(squad + native_history_layout::squad_alias_offset);
+                  hooks.name_fields.push_back(squad + 8); }
         }
         std::sort(hooks.alias_fields.begin(), hooks.alias_fields.end());
+        std::sort(hooks.name_fields.begin(), hooks.name_fields.end());
         hooks.fields_epoch = epoch;
     }
     return std::binary_search(hooks.alias_fields.begin(), hooks.alias_fields.end(), address) &&
         native_history_copy_string(address, alias) && !alias.empty();
 }
 
+static bool native_squad_generated_field(uintptr_t name) {
+    // Refresh both typed indexes through the same native squad vector. The
+    // name's owner, rather than its spelling, establishes generated origin.
+    std::string unused;
+    native_squad_alias_field(reinterpret_cast<const NativeString *>(name), unused);
+    auto &hooks = g_native_squad_name_elf_hooks;
+    std::lock_guard<std::mutex> lock(hooks.fields_mutex);
+    return std::binary_search(hooks.name_fields.begin(), hooks.name_fields.end(), name);
+}
+
 static void capture_native_squad_alias_assign(NativeString *output, const NativeString *source) {
     NativeInputCallbackScope callback;
     std::string alias;
     bool authored = false;
+    std::shared_ptr<const NativeHistoryName> generated;
     try {
+        std::string_view before;
+        if (native_string_view(source, &before, 65536))
+            generated = native_squad_generated_source_name(before, reinterpret_cast<uintptr_t>(source));
         forget_native_squad_alias(reinterpret_cast<uintptr_t>(output));
         if (g_overlay.translation_enabled()) authored = native_squad_alias_field(source, alias);
     } catch (...) {}
@@ -47,6 +63,8 @@ static void capture_native_squad_alias_assign(NativeString *output, const Native
         std::string_view copied;
         if (authored && native_string_view(output, &copied, 65536) && copied == alias)
             remember_native_squad_alias(reinterpret_cast<uintptr_t>(output), alias);
+        else if (generated && native_string_view(output, &copied, 65536))
+            remember_native_squad_generated(reinterpret_cast<uintptr_t>(output), copied, *generated);
     } catch (...) {}
 }
 
@@ -57,7 +75,7 @@ static void uninstall_native_squad_name_hooks() {
     auto &hooks = g_native_squad_name_elf_hooks;
     if (!hooks.copy.uninstall("Native authored squad name")) return;
     std::lock_guard<std::mutex> lock(hooks.fields_mutex);
-    hooks.alias_fields.clear();
+    hooks.alias_fields.clear(); hooks.name_fields.clear();
     hooks.fields_epoch = UINT64_MAX;
     clear_native_squad_aliases();
 }

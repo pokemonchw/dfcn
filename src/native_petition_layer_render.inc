@@ -69,9 +69,45 @@ static bool native_petition_layer_hook_active() {
     return g_native_petition_producer_hooks.active();
 }
 #else
-static bool install_native_petition_layer_hook() { return true; }
-static void uninstall_native_petition_layer_hook() { g_native_petition_target.release(); }
-static bool native_petition_layer_hook_active() { return false; }
+static NativeInlineObserverHook g_native_petition_begin_hook, g_native_petition_end_hook;
+static void native_petition_begin_elf(const NativeInlineRegisters *registers) noexcept {
+    NativeInputCallbackScope callback;
+    try {
+        int32_t left = 0;
+        if (registers && native_history_copy(registers->rbp - 0x1d0, left))
+            native_petition_begin_draw({left, 3, 61, 18});
+    } catch (...) {}
+}
+static void native_petition_end_elf(const NativeInlineRegisters *) noexcept {
+    NativeInputCallbackScope callback;
+    try { native_petition_end_draw(); } catch (...) {}
+}
+static bool install_native_petition_layer_hook() {
+    if (!native_elf_5317_address(0x169c6cb)) return true;
+    if (g_native_petition_begin_hook.install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(0x169c6cb)),
+            {0x8b,0x9d,0x30,0xfe,0xff,0xff}, native_petition_begin_elf,
+            "Native ELF accepted petition begin") &&
+            g_native_petition_end_hook.install(reinterpret_cast<unsigned char *>(
+                native_elf_5317_address(0x16908b6)),
+            {0x80,0x3d,0x63,0xbe,0x09,0x01,0}, native_petition_end_elf,
+            "Native ELF accepted petition end", {{2,7,native_elf_5317_address(0x272c720)}})) return true;
+    g_native_petition_begin_hook.uninstall("Native ELF accepted petition begin restore");
+    g_native_petition_end_hook.uninstall("Native ELF accepted petition end restore");
+    return false;
+}
+static void uninstall_native_petition_layer_hook() {
+    native_petition_restore_output();
+    g_native_petition_begin_hook.uninstall("Native ELF accepted petition begin restore");
+    g_native_petition_end_hook.uninstall("Native ELF accepted petition end restore");
+    if (!g_native_petition_begin_hook.active() && !g_native_petition_end_hook.active()) {
+        g_native_petition_target.release(); native_petition_begin_frame();
+        g_native_petition_layer = {}; g_native_petition_text = {};
+    }
+}
+static bool native_petition_layer_hook_active() {
+    return g_native_petition_begin_hook.active() || g_native_petition_end_hook.active();
+}
 #endif
 
 static void native_petition_present_layer(SDL_Renderer *renderer,

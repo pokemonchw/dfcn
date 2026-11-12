@@ -93,6 +93,55 @@ static uintptr_t native_history_object_member(uintptr_t object, std::string_view
     return 0;
 }
 
+static size_t native_history_filter_entry_size() {
+#ifdef _WIN32
+    return 0x50;
+#else
+    return sizeof(native_history_layout::f_filter_entry);
+#endif
+}
+
+static uintptr_t native_history_named_global(std::string_view type, std::string_view member, size_t width) {
+    const uintptr_t rva = type == "plotinfost" ? native_history_layout::plotinfo_rva :
+        type == "d_init" ? native_history_layout::d_init_rva :
+        type == "gamest" ? native_history_layout::game_rva : 0;
+    const uintptr_t base = native_history_profile_base();
+    return base && rva ? native_history_object_member(native_reference_address(base, rva), type, member, width) : 0;
+}
+
+#ifndef _WIN32
+// Addresses here are reviewed against the installed 53.17 ELF. They are
+// current-image coordinates, never inputs to the retained 53.16 resolver.
+static uintptr_t native_elf_5317_address(uintptr_t address) {
+    const auto &image = elf_runtime::state().executable;
+    if (image.build != "f9d13d46a8b7e2e8b70c380127decf53c43581bd" ||
+            address > UINTPTR_MAX - image.bias) return 0;
+    const uintptr_t absolute = image.bias + address;
+    return std::any_of(image.loads.begin(), image.loads.end(), [&](const auto &range) {
+        return absolute >= range.first && absolute < range.second;
+    }) ? absolute : 0;
+}
+
+static const NativeCharacterLayout &native_character_layout_data() {
+    static const auto offset = [](std::string_view member, size_t width = 24) {
+        const auto address = native_history_object_member(1, "view_sheets_interfacest", member, width);
+        return address ? address - 1 : SIZE_MAX;
+    };
+    static const NativeCharacterLayout result{offset("unit_health_active_tab", 4),
+        offset("unit_health_raw_str"), offset("unit_health_box"),
+        offset("personality_raw_str"), offset("personality_box"), 4,
+        {{{offset("raw_thought_str"), offset("thought_box")},
+          {offset("thoughts_raw_memory_str"), offset("thoughts_memory_box")}}}};
+    return result;
+}
+
+static uintptr_t native_character_sheet_owner() {
+    return native_history_object_member(
+        native_reference_address(native_history_profile_base(), native_history_layout::game_rva),
+        "gamest", "main_interface.view_sheets.open", 1);
+}
+#endif
+
 static size_t native_history_virtual_slot(uintptr_t object, size_t coordinate) {
     const auto *layout = native_history_dynamic_layout(object);
     if (!layout || coordinate % sizeof(uintptr_t) || coordinate / sizeof(uintptr_t) >= layout->slot_count)

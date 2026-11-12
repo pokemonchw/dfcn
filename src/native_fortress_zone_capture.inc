@@ -243,8 +243,160 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
     // must not replace the generated name that this particular draw chose.
     return caption;
 #else
-    (void)caller;
-    (void)source;
-    return std::nullopt;
+    using Kind = NativeFortressZoneCaption::Kind;
+    if (!source || !caller) return std::nullopt;
+    const auto at = [&](uintptr_t address) { return caller == native_elf_5317_address(address); };
+    const bool detail_name = at(0x16b69a5), detail_description = at(0x16b6bf4);
+    const bool type = at(0xda1454), authored_type = at(0xda2142);
+    const bool related = at(0xda1585);
+    const bool location_name = at(0xda09dd), location_description = at(0xda1b0e);
+    const bool assigned = at(0xda2073) || at(0xda2d5c);
+    const bool counts = at(0xda0e7c), imprisoned = at(0xda16b9);
+    if (!type && !authored_type && !related && !location_name && !location_description &&
+            !assigned && !counts && !imprisoned && !detail_name && !detail_description) return std::nullopt;
+    const uintptr_t base = native_history_profile_base();
+    const auto building_is_live = [&](uintptr_t building) {
+        uintptr_t actual = 0;
+        int32_t id = -1;
+        return building && native_history_copy(building + 0x50, id) && id >= 0 &&
+            native_history_find_structure_id(native_history_global(0x23edf10), 0x50, id, actual) && actual == building;
+    };
+    NativeFortressZoneCaption caption;
+    if (detail_name || detail_description) {
+        // The selected-zone renderer keeps the building at rbp-1a8 and
+        // submits its location field from rbp-a0 before native shortening.
+        uintptr_t building = 0, location = 0;
+        int32_t site_id = -1, location_id = -1;
+        if (source < 0x108 || !native_history_copy(source - 0x108, building) ||
+                !building_is_live(building) ||
+                !native_history_copy(building + 0x114, site_id) || site_id < 0 ||
+                !native_history_copy(building + 0x118, location_id) || location_id < 0) return std::nullopt;
+        const auto site = native_history_find_subject(base, NativeHistoryObjectKind::Site, site_id);
+        if (!site || !native_history_find_structure_id(native_history_object_member(site,
+                "world_site", "buildings", 24), 8, location_id, location) || !location) return std::nullopt;
+        const auto *layout = native_history_dynamic_layout(location);
+        if (!layout) return std::nullopt;
+        for (const auto &profile : kNativeHistoryStructureProfiles) {
+            if (std::string_view(layout->name) != profile.name) continue;
+            if (detail_description && profile.type != 11) return std::nullopt;
+            caption.kind = detail_name ? Kind::LocationName : Kind::LocationDescription;
+            caption.detail = true;
+            if (detail_name) {
+                NativeHistoryName name;
+                if (capture_native_history_name(base, native_history_object_field(location, {},
+                        profile.name_offset), name) && name.has_name)
+                    caption.location_name = std::make_shared<const NativeHistoryName>(std::move(name));
+            }
+            return caption;
+        }
+        return std::nullopt;
+    }
+
+    if (authored_type) {
+        return source >= 0xd0 && building_is_live(source - 0xd0)
+            ? std::optional<NativeFortressZoneCaption>(caption) : std::nullopt;
+    }
+    if (source > UINTPTR_MAX - 0x80) return std::nullopt;
+    const uintptr_t frame = source + 0x80; // native row string at rbp-80
+    if (frame < 0x1e8) return std::nullopt;
+    if (assigned || counts || imprisoned) {
+        std::string complete;
+        if (!native_history_copy_string(source, complete)) return std::nullopt;
+        caption.authored = false;
+        caption.kind = assigned ? Kind::Assigned : imprisoned ? Kind::Imprisoned :
+            complete.ends_with("% occupied") ? Kind::Occupancy :
+            complete.find("patient") != std::string::npos ? Kind::Patients : Kind::Present;
+        int32_t width = -1;
+        if (native_history_copy(frame - 0x1e8, width) && width >= 0 && width <= 1000)
+            caption.line_offset = (width < 40 ? 1 : 0) + (counts ? 1 : 0);
+        return caption;
+    }
+    if (location_name || location_description) {
+        caption.authored = false;
+        caption.kind = location_name ? Kind::LocationName : Kind::LocationDescription;
+        uintptr_t location = 0;
+        if (native_history_copy(frame - 0x178, location) && location_name) {
+            const auto *layout = native_history_dynamic_layout(location);
+            if (layout) for (const auto &profile : kNativeHistoryStructureProfiles) {
+                if (std::string_view(layout->name) != profile.name) continue;
+                NativeHistoryName name;
+                if (capture_native_history_name(base, native_history_object_field(location, {}, profile.name_offset), name) && name.has_name)
+                    caption.location_name = std::make_shared<const NativeHistoryName>(std::move(name));
+                break;
+            }
+        }
+        return caption;
+    }
+    uintptr_t building = 0;
+    if (!native_history_copy(frame - 0x1b0, building) || !building_is_live(building)) return std::nullopt;
+    if (type) {
+        std::string authored;
+        if (native_history_copy_string(building + 0xd0, authored)) caption.authored = !authored.empty();
+        return caption;
+    }
+    caption.authored = false;
+    int32_t site_id = -1, location_id = -1, unit_id = -1;
+    if (!native_history_copy(building + 0x114, site_id) || !native_history_copy(building + 0x118, location_id))
+        return std::nullopt;
+    if (site_id >= 0 && location_id >= 0) {
+        caption.kind = Kind::Location;
+        const auto site = native_history_find_subject(base, NativeHistoryObjectKind::Site, site_id);
+        uintptr_t location = 0;
+        if (site && native_history_find_structure_id(native_history_object_member(site, "world_site", "buildings", 24),
+                8, location_id, location) && location) {
+            const auto *layout = native_history_dynamic_layout(location);
+            if (layout) for (const auto &profile : kNativeHistoryStructureProfiles) {
+                if (std::string_view(layout->name) != profile.name) continue;
+                NativeHistoryName name;
+                if (capture_native_history_name(base, native_history_object_field(location, {}, profile.name_offset), name) && name.has_name)
+                    caption.location_name = std::make_shared<const NativeHistoryName>(std::move(name));
+                break;
+            }
+        }
+        return caption;
+    }
+    if (!native_history_copy(building + 0x1a0, unit_id)) return std::nullopt;
+    if (unit_id >= 0) {
+        caption.kind = Kind::Unit;
+        uintptr_t unit = 0;
+        const auto id_field = native_history_object_field(1, "unit", 0x130, 4);
+        if (!id_field || !native_history_find_structure_id(native_history_global(0x23e50b0),
+                id_field - 1, unit_id, unit) || unit) return caption;
+        NativeBorrowedVector<uintptr_t> figures;
+        if (!native_history_read_vector(native_history_global(0x24f9d18), figures)) return caption;
+        for (size_t index = figures.size(); index > 0; --index) {
+            const auto figure = native_history_vector_at(figures, index - 1);
+            int32_t owner_id = -1;
+            if (!figure || !native_history_copy(native_history_object_member(figure,
+                    "historical_figure", "unit_id", 4), owner_id) || owner_id != unit_id) continue;
+            NativeUnitIdentity identity;
+            const auto name = native_history_object_field(figure, "historical_figure", 0x38);
+            if (capture_native_history_name(base, name, identity.name) && identity.name.has_name &&
+                    native_history_copy_string(source, identity.native_name)) {
+                identity.native_name_words_valid = capture_native_unit_identity_name_words(
+                    name, identity.name, identity.native_name_words);
+                identity.id = unit_id; identity.form = NativeUnitIdentityForm::NameOnly;
+                identity.english_name = true;
+                caption.unit_identity = std::make_shared<const NativeUnitIdentity>(std::move(identity));
+            }
+            break;
+        }
+        return caption;
+    }
+    NativeBorrowedVector<uintptr_t> assignments;
+    if (unit_id != -1 || !native_history_read_vector(building + 0x1a8, assignments) || !assignments.valid(65536))
+        return std::nullopt;
+    if (assignments.size() >= 2) { caption.kind = Kind::SquadCount; return caption; }
+    if (assignments.size() != 1) return std::nullopt;
+    int32_t squad_id = -1;
+    uintptr_t squad = 0;
+    if (!native_history_copy(native_history_vector_at(assignments, 0), squad_id) || squad_id < 0 ||
+            !native_history_find_structure_id(native_history_global(0x24e37c0), 0, squad_id, squad) || !squad)
+        return std::nullopt;
+    caption.kind = Kind::Squad;
+    NativeHistoryName name;
+    if (capture_native_history_name(base, squad + 8, name))
+        caption.squad_name = std::make_shared<const NativeHistoryName>(std::move(name));
+    return caption;
 #endif
 }

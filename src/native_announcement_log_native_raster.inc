@@ -156,15 +156,20 @@ public:
     template <typename Painter>
     bool paint(NativeUiLayerStorage &layer, SDL_Renderer *renderer,
             const NativeBitmapFontTextures &fonts, Painter &&painter) {
-#ifdef _WIN32
         try {
             if (!renderer || !layer.native_renderer ||
                     !g_native_announcement_log_raster_destination ||
                     SDL_GetRenderTarget(renderer) != g_native_announcement_log_raster_destination)
                 return false;
             std::array<int32_t, 4> raster{};
+#ifdef _WIN32
+            constexpr size_t raster_offset = 0x168, zoom_offset = 0x180;
+#else
+            if (!native_elf_5317_address(0x13d14b0)) return false;
+            constexpr size_t raster_offset = 0x160, zoom_offset = 0x178;
+#endif
             if (!native_font_metrics_detail::copy_native_font_memory(
-                    reinterpret_cast<uintptr_t>(layer.native_renderer) + 0x168,
+                    reinterpret_cast<uintptr_t>(layer.native_renderer) + raster_offset,
                     raster.data(), sizeof(raster)) || raster[0] <= 0 || raster[1] <= 0)
                 return false;
             // Texture getter 8dd2f9/8dd40c also selects resampling from these
@@ -173,9 +178,9 @@ public:
             int32_t viewport_zoom_factor = 0;
             const auto native = reinterpret_cast<uintptr_t>(layer.native_renderer);
             if (!native_font_metrics_detail::copy_native_font_value(
-                    native + 0x180, viewport_zoom) ||
+                    native + zoom_offset, viewport_zoom) ||
                     !native_font_metrics_detail::copy_native_font_value(
-                    native + 0x184, viewport_zoom_factor)) return false;
+                    native + zoom_offset + 4, viewport_zoom_factor)) return false;
             int width = 0, height = 0;
             if (auto *destination = SDL_GetRenderTarget(renderer))
                 SDL_QueryTexture(destination, nullptr, nullptr, &width, &height);
@@ -249,13 +254,19 @@ public:
                 // Its private snapshot instead retains unchanged edge ink.
                 void **methods = nullptr;
                 std::memcpy(&methods, layer.native_renderer, sizeof(methods));
-                const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
                 // These exact native ordinary painters have one-cell
                 // destinations away from the last row/column. A replacement
                 // renderer keeps the conservative complete repaint path.
+#ifdef _WIN32
+                const auto executable = reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
                 const bool cell_local_painter = methods && native_pe_supported() &&
                     reinterpret_cast<uintptr_t>(methods[0]) == native_pe_address(executable, 0x8ddc20) &&
                     reinterpret_cast<uintptr_t>(methods[2]) == native_pe_address(executable, 0x8ddfe0);
+#else
+                const bool cell_local_painter = methods &&
+                    methods[0] == dlsym(RTLD_DEFAULT, "_ZN16renderer_2d_base11update_tileEii") &&
+                    methods[2] == dlsym(RTLD_DEFAULT, "_ZN16renderer_2d_base15update_top_tileEii");
+#endif
                 dirty = changed_interior_rows(layer, cell_local_painter);
                 if (dirty && dirty->empty()) return composite();
             }
@@ -322,10 +333,6 @@ public:
             target_.frame_cache.invalidate();
             return false;
         }
-#else
-        (void)layer; (void)renderer; (void)fonts; (void)painter;
-        return false;
-#endif
     }
 };
 static NativeAnnouncementLogNativeRaster g_native_announcement_log_native_raster;

@@ -5,7 +5,6 @@
 // data/extracted/adventure-performance-menu/*renderer* and *870260.asm.
 static uintptr_t native_performance_form_subject(uintptr_t base, uintptr_t perform,
         int32_t type, int32_t id) {
-#ifdef _WIN32
     if (!base || !perform || id < 0) return 0;
     uintptr_t vector = 0;
     const char *indexed = nullptr;
@@ -62,17 +61,10 @@ static uintptr_t native_performance_form_subject(uintptr_t base, uintptr_t perfo
     }
     uintptr_t subject = 0;
     return vector && native_history_find_structure_id(vector, 0, id, subject) ? subject : 0;
-#else
-    // The retained ELF source establishes the story path, but not all of these
-    // content/form producer ABIs. Do not execute a PE address on that host.
-    (void)base; (void)perform; (void)type; (void)id;
-    return 0;
-#endif
 }
 
 static bool recover_native_performance_form_source(uintptr_t base, uintptr_t subject,
         int32_t type, NativeString *source) {
-#ifdef _WIN32
     if (!base || !subject || !source) return false;
     std::string_view prefix;
     if (!native_string_view(source, &prefix, kNativeHistorySourceLimit) ||
@@ -99,10 +91,18 @@ static bool recover_native_performance_form_source(uintptr_t base, uintptr_t sub
     }
     // Literal addresses are intentional: the normal PE binding generator
     // resolves each complete helper entry independently for Steam/classic.
+#ifdef _WIN32
     const auto poetic = reinterpret_cast<FormFn>(native_pe_address(base, 0xe76400));
     const auto musical = reinterpret_cast<FormFn>(native_pe_address(base, 0xdd5ce0));
     const auto dance = reinterpret_cast<FormFn>(native_pe_address(base, 0x4ea820));
     const auto content = reinterpret_cast<ContentFn>(native_pe_address(base, 0xcc5d50));
+#else
+    // 53.17 perform renderer 1186d80's actual form and work producers.
+    const auto poetic = reinterpret_cast<FormFn>(native_elf_5317_address(0x1e8fdd0));
+    const auto musical = reinterpret_cast<FormFn>(native_elf_5317_address(0x1dea170));
+    const auto dance = reinterpret_cast<FormFn>(native_elf_5317_address(0x18daf20));
+    const auto content = reinterpret_cast<ContentFn>(native_elf_5317_address(0xe77b80));
+#endif
     const auto form_producer = [&](int32_t kind) -> FormFn {
         return kind == 0 ? poetic : kind == 1 ? musical : kind == 2 ? dance : nullptr;
     };
@@ -186,7 +186,11 @@ static bool recover_native_performance_form_source(uintptr_t base, uintptr_t sub
                 0xe0, author_id, author)) return false;
         if (author) {
             const auto figure_name = reinterpret_cast<FigureNameObjectFn>(
+#ifdef _WIN32
                 native_pe_address(base, 0xc0f660));
+#else
+                native_elf_5317_address(0x9b0370));
+#endif
             const auto original_name = reinterpret_cast<OriginalNameFn>(
                 native_history_page_address(NativeHistoryPageSymbol::OriginalName));
             if (!figure_name || !original_name) return false;
@@ -221,8 +225,4 @@ static bool recover_native_performance_form_source(uintptr_t base, uintptr_t sub
         return append_form(form, kind);
     }
     return true;
-#else
-    (void)base; (void)subject; (void)type; (void)source;
-    return false;
-#endif
 }

@@ -21,7 +21,8 @@ struct NativeInlineObserverHook {
     }
 
     bool install(unsigned char *site, std::vector<unsigned char> prefix,
-            NativeInlineObserveFn callback, const char *label) {
+            NativeInlineObserveFn callback, const char *label,
+            const std::vector<NativeRelativeFixup> &fixups = {}) {
         if (!callback) return false;
         if (!context) {
             auto owned = std::make_unique<NativeInlineObserverContext>();
@@ -29,7 +30,7 @@ struct NativeInlineObserverHook {
             range.include(reinterpret_cast<uintptr_t>(site));
             observer = allocate_native_relay(range, 0x400, &observer_size, label);
             if (!observer) return false;
-            if (!entry.prepare(site, prefix, observer, {}, label)) {
+            if (!entry.prepare(site, prefix, observer, fixups, label)) {
                 release_native_relay(observer, observer_size, label);
                 return false;
             }

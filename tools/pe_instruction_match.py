@@ -98,8 +98,22 @@ def _instruction_key(image, row):
         offset, width = displacement
         mask.update(range(offset, offset + width))
         assembly = branch[1] + 'code_address'
+        target = address + len(raw) + int.from_bytes(raw[offset:offset + width], 'little', signed=True)
+        identity = getattr(image, 'canonical_calls', {}).get(target)
+        if identity is not None:
+            assembly += f':{identity:x}'
 
     memory = _memory_displacement(raw) if '[' in assembly else None
+    if getattr(image, 'frame_operands', False):
+        frame = re.search(r'\[(?:rsp|rbp)([+-])0x([0-9a-f]+)\]', assembly)
+        if frame:
+            value = int(frame[2], 16) * (1 if frame[1] == '+' else -1)
+            width = 4 if memory else 1
+            encoded = (value & ((1 << (width * 8)) - 1)).to_bytes(width, 'little')
+            position = memory[0] if memory else raw.find(encoded, _opcode_start(raw) + 2)
+            if position >= 0 and raw[position:position + width] == encoded:
+                mask.update(range(position, position + width))
+                assembly = assembly[:frame.start()] + '[frame_slot]' + assembly[frame.end():]
     if memory:
         offset, rip = memory
         encoded = int.from_bytes(raw[offset:offset + 4], 'little', signed=True)
@@ -112,7 +126,10 @@ def _instruction_key(image, row):
                     printed -= 1 << 64
                 if printed is None or printed == encoded:
                     mask.update(range(offset, offset + 4))
-                    assembly = assembly[:operand.start()] + '[rip+data_address]' + assembly[operand.end():]
+                    target = address + len(raw) + encoded
+                    identity = getattr(image, 'canonical_calls', {}).get(target)
+                    label = 'data_address' + (f':{identity:x}' if identity is not None else '')
+                    assembly = assembly[:operand.start()] + '[rip+' + label + ']' + assembly[operand.end():]
         else:
             operand = re.search(r'\[([^\]]+)\]', assembly)
             if operand and len(_REGISTER.findall(operand[1])) >= 2:
@@ -128,6 +145,19 @@ def _instruction_key(image, row):
     # Opcode, register, size, stack/structure offsets and ordinary immediate
     # bytes stay in the key, even if the textual disassembler omits a detail.
     normalized = bytes(0 if index in mask else value for index, value in enumerate(raw))
+    # GCC's non-PIE ELF code also uses MOV reg, absolute-address immediates.
+    # Only the ELF adapter's decoded, section-backed address set admits them;
+    # ordinary constants and structure displacements remain exact operands.
+    absolute = re.fullmatch(r'mov(?:abs)?\s+([a-z0-9]+),0x([0-9a-f]+)', assembly)
+    if absolute and int(absolute[2], 16) in getattr(image, 'absolute_targets', ()):
+        opcode = _opcode_start(raw)
+        width = len(raw) - opcode - 1
+        if opcode < len(raw) and 0xb8 <= raw[opcode] <= 0xbf and width in (4, 8):
+            mask.update(range(opcode + 1, len(raw)))
+            identity = getattr(image, 'canonical_calls', {}).get(int(absolute[2], 16))
+            label = 'image_address' + (f':{identity:x}' if identity is not None else '')
+            assembly = f'mov {absolute[1]},{label}'
+            normalized = bytes(0 if index in mask else value for index, value in enumerate(raw))
     return (len(raw), assembly, normalized, tuple(sorted(mask)))
 
 

@@ -36,13 +36,12 @@ static std::optional<FortressUnitChooser> fortress_appointment_chooser(
                 if (field.start >= panel->x && field.end <= right &&
                         lower(field.text) == "leave vacant") { vacant_y = y; break; }
         bool native_appointment = false;
-#ifdef _WIN32
         // Both a unit name and Leave Vacant use this same native list writer.
         // Leave Vacant is the first scrollable entry, not a fixed page heading.
         const uintptr_t base = native_history_profile_base();
-        const uintptr_t name_writer = native_reference_address(base, 0x426807);
-        const uintptr_t skill_writer = native_reference_address(base, 0x426a12);
-        const uintptr_t empty_skill_writer = native_reference_address(base, 0x426adf);
+        const uintptr_t name_writer = native_ui_semantic_address(0x426807);
+        const uintptr_t skill_writer = native_ui_semantic_address(0x426a12);
+        const uintptr_t empty_skill_writer = native_ui_semantic_address(0x426adf);
         const std::array batches{captured_native_drawn_text_view(false),
             captured_native_drawn_text_view(true)};
         for (const auto &batch : batches) {
@@ -60,7 +59,6 @@ static std::optional<FortressUnitChooser> fortress_appointment_chooser(
                 });
             if (native_appointment) break;
         }
-#endif
         if (!native_appointment && vacant_y < 0) continue;
         const int list_top = native_appointment ? tabs_y + 1 : vacant_y + 1;
         std::vector<SDL_Rect> records;

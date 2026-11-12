@@ -19,6 +19,10 @@ static int native_topbar_site_row(uintptr_t caller) {
     constexpr uintptr_t writers[]{0x3f3051, 0x3f3139, 0x3f3202};
     for (int row = 0; row < 3; ++row)
         if (base && caller == native_reference_address(base, writers[row])) return row;
+#else
+    constexpr uintptr_t writers[]{0x168d544, 0x168d5f0, 0x168d68e};
+    for (int row = 0; row < 3; ++row)
+        if (caller && caller == native_elf_5317_address(writers[row])) return row;
 #endif
     return -1;
 }

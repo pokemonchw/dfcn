@@ -40,23 +40,41 @@ struct NativeSettingsFrame {
 
 static NativeSettingsFrame g_native_settings_frame;
 
-#ifdef _WIN32
 namespace native_settings_source {
+
+static uintptr_t field(uintptr_t object, std::string_view type, size_t legacy, size_t width = 1) {
+    return native_history_object_field(object, type, legacy, width);
+}
 
 // Both configured 53.16 PE editions have these MSVC widget field layouts.
 // The existing image binding translates every vtable/global RVA separately.
 // Constructor: 234ad0, announcement row builder: 235e60.
 static bool type(uintptr_t widget, uintptr_t reference_vtable) {
     uintptr_t vtable = 0;
+#ifdef _WIN32
     return widget && native_history_copy(widget, vtable) &&
         vtable == native_reference_address(native_history_profile_base(), reference_vtable);
+#else
+    const char *symbol = nullptr;
+    switch (reference_vtable) {
+    case 0x15eefd0: symbol = "_ZTVN7widgets4tabsE"; break;
+    case 0x15eef08: symbol = "_ZTVN7widgets11scroll_rowsE"; break;
+    case 0x1785978: symbol = "_ZTVN7widgets11multifilterE"; break;
+    case 0x1785d60: symbol = "_ZTVN7widgets11multifilter12indiv_filterE"; break;
+    case 0x1785bd0: symbol = "_ZTVN7widgets5tableE"; break;
+    case 0x1785ca8: symbol = "_ZTVN7widgets13better_buttonE"; break;
+    default: return false;
+    }
+    const auto table = reinterpret_cast<uintptr_t>(dlsym(RTLD_DEFAULT, symbol));
+    return table && native_history_copy(widget, vtable) && vtable == table + 2 * sizeof(uintptr_t);
+#endif
 }
 
 static bool rect(uintptr_t widget, SDL_Rect &result, bool visible = true) {
     std::array<int32_t, 4> bounds{};
     uint8_t flags = 0;
-    if (!widget || !native_history_copy(widget + 0x10, bounds) ||
-            !native_history_copy(widget + 0xa0, flags) ||
+    if (!widget || !native_history_copy(field(widget, "widget", 0x10, sizeof(int32_t)), bounds) ||
+            !native_history_copy(field(widget, "widget", 0xa0), flags) ||
             (visible && (flags & 3) != 3) ||
             bounds[0] < -4096 || bounds[1] < -4096 ||
             bounds[2] > 4096 || bounds[3] > 4096 ||
@@ -82,7 +100,9 @@ static bool vector(uintptr_t address, size_t stride, size_t maximum,
 static bool children(uintptr_t widget, std::vector<uintptr_t> &result,
         size_t maximum = 1024, size_t offset = 0x160) {
     std::vector<uintptr_t> records;
-    if (!vector(widget + offset, 16, maximum, records)) return false;
+    const auto address = offset == 0x150 ? field(widget, "multifilter", offset, 24)
+        : field(widget, "widget_container", offset, 24);
+    if (!vector(address, 16, maximum, records)) return false;
     result.clear();
     result.reserve(records.size());
     for (uintptr_t address : records) {
@@ -105,10 +125,10 @@ static bool text(uintptr_t widget, NativeSettingsTextKind kind,
     std::array<int16_t, 2> colors{};
     uint8_t bright = 0;
     if (!rect(widget, box) || !intersects(box, clip) ||
-            !native_history_copy_string(widget + 0x150, shown) ||
+            !native_history_copy_string(field(widget, "widget_text", 0x150, 32), shown) ||
             shown.empty() || shown.size() > 1024 ||
-            !native_history_copy(widget + 0x170, colors) ||
-            !native_history_copy(widget + 0x174, bright)) return false;
+            !native_history_copy(field(widget, "widget_text", 0x170, sizeof(int16_t)), colors) ||
+            !native_history_copy(field(widget, "widget_text", 0x174), bright)) return false;
     out.kind = kind;
     out.widget = widget;
     out.rect = box;
@@ -129,8 +149,8 @@ static void tabs(uintptr_t widget, const SDL_Rect &clip, NativeSettingsFrame &fr
     SDL_Rect box{};
     std::vector<uintptr_t> labels, rows;
     if (!type(widget, 0x15eefd0) || !rect(widget, box) ||
-            !vector(widget + 0x180, 32, sources.size(), labels) ||
-            !vector(widget + 0x198, 16, sources.size(), rows)) return;
+            !vector(field(widget, "widget_tabs", 0x180, 24), 32, sources.size(), labels) ||
+            !vector(field(widget, "widget_tabs", 0x198, 24), 16, sources.size(), rows)) return;
     const bool graphical = !native_ui_classic().value_or(false);
     int y = box.y;
     for (uintptr_t row : rows) {
@@ -173,11 +193,13 @@ static void filters(uintptr_t widget, const SDL_Rect &clip, NativeSettingsFrame 
         const uintptr_t filter = groups[group];
         if (!type(filter, 0x1785d60)) continue;
         int32_t selected = -1;
-        if (!native_history_copy(filter + 0x1b8, selected)) continue;
+        if (!native_history_copy(field(filter, "widget_filter", 0x1b8, 4), selected)) continue;
         (group == 0 ? frame.filter_category : frame.filter_flag) = selected;
         std::vector<uintptr_t> options;
-        if (!vector(filter + 0x1a0, 0x50, group == 0 ? 4 : 8, options)) continue;
-        options.insert(options.begin(), filter + 0x150); // all_filter
+        const size_t entry_size = native_history_filter_entry_size();
+        if (!vector(field(filter, "widget_filter", 0x1a0, 24), entry_size,
+                group == 0 ? 4 : 8, options)) continue;
+        options.insert(options.begin(), field(filter, "widget_filter", 0x150, 16));
         for (size_t index = 0; index < options.size(); ++index) {
             uintptr_t label = 0;
             NativeSettingsText item;
@@ -200,12 +222,12 @@ static void table(uintptr_t widget, const SDL_Rect &clip, NativeSettingsFrame &f
     uintptr_t header = 0, entries = 0;
     std::vector<uintptr_t> columns, rows;
     SDL_Rect viewport{}, name_column{};
-    if (!native_history_copy(widget + 0x178, header) ||
-            !native_history_copy(widget + 0x188, entries) ||
+    if (!native_history_copy(field(widget, "widget_table", 0x178, 8), header) ||
+            !native_history_copy(field(widget, "widget_table", 0x188, 8), entries) ||
             !type(entries, 0x15eef08) || !rect(entries, viewport) ||
             !children(header, columns, 9) || columns.size() != 9 ||
             !rect(columns[0], name_column) || !children(entries, rows, 1024)) return;
-    native_history_copy(entries + 0x180, frame.scroll);
+    native_history_copy(field(entries, "widget_scroll_rows", 0x180, 4), frame.scroll);
     static constexpr std::array<std::string_view, 9> headings = {
         "Name", "Popup", "Pause", "Recenter", "Adv", "Fort", "Report", "Report (Active)", "Alert"};
     for (size_t index = 0; index < columns.size(); ++index) {
@@ -231,9 +253,13 @@ static void table(uintptr_t widget, const SDL_Rect &clip, NativeSettingsFrame &f
         }
         frame.texts.push_back(std::move(item));
     }
-    const uintptr_t flags = native_reference_address(native_history_profile_base(), 0x2390ca0);
+    const uintptr_t flags = native_history_named_global("d_init", "announcements.flags", sizeof(uint32_t));
+#ifdef _WIN32
     const uintptr_t truth_type = native_reference_address(native_history_profile_base(), 0x1615fe8);
     if (!flags || !truth_type) return;
+#else
+    if (!flags) return;
+#endif
     for (uintptr_t row : rows) {
         SDL_Rect row_box{};
         std::vector<uintptr_t> cells;
@@ -248,10 +274,29 @@ static void table(uintptr_t widget, const SDL_Rect &clip, NativeSettingsFrame &f
             std::array<uint32_t, 2> identity{};
             uint32_t state = 0;
             SDL_Rect box{};
-            if (!type(button, 0x1785ca8) || !rect(button, box) ||
+            if (!type(button, 0x1785ca8) || !rect(button, box)) {
+                complete = false;
+                break;
+            }
+#ifdef _WIN32
+            if (
                     !native_history_copy(button + 0x248, predicate) ||
                     !native_history_copy(predicate, predicate_type) || predicate_type != truth_type ||
-                    !native_history_copy(predicate + 8, identity) ||
+                    !native_history_copy(predicate + 8, identity)) {
+                complete = false;
+                break;
+            }
+#else
+            // libstdc++ keeps this trivial two-int lambda in std::function's
+            // inline storage. The table/row/button chain establishes its owner.
+            predicate = native_history_object_member(button, "widget_better_button", "check_truth", 32);
+            if (!native_history_copy(predicate, identity) ||
+                    !native_history_copy(predicate + 24, predicate_type) || !predicate_type) {
+                complete = false;
+                break;
+            }
+#endif
+            if (
                     identity[0] >= 4096 || identity[1] != (uint32_t(1) << column) ||
                     !native_history_copy(flags + identity[0] * 4, state) ||
                     (event >= 0 && event != static_cast<int32_t>(identity[0]))) {
@@ -289,11 +334,9 @@ static void table(uintptr_t widget, const SDL_Rect &clip, NativeSettingsFrame &f
 }
 
 } // namespace native_settings_source
-#endif
 
 static void native_settings_capture(void *settings) {
     NativeSettingsFrame frame;
-#ifdef _WIN32
     const auto *graphics = native_graphics();
     frame.settings = reinterpret_cast<uintptr_t>(settings);
     uint8_t open = 0;
@@ -336,9 +379,6 @@ static void native_settings_capture(void *settings) {
     } catch (...) {
         frame.texts.clear();
     }
-#else
-    (void)settings;
-#endif
     // Keep active/page even if an individual widget snapshot was unavailable:
     // the owning page must never silently fall back to screen-text inference.
     g_native_settings_frame = std::move(frame);

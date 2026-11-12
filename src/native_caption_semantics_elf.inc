@@ -4,6 +4,32 @@
 static bool resolve_native_caption_semantics_elf(NativeCaptionProfile &profile) {
     const uintptr_t base = native_history_profile_base();
     if (!base) return false;
+    if (native_elf_5317_address(0x15c9a70)) {
+        // The ELF crafting renderer shares one caption draw across modes
+        // 0..3, but owns separate reagent, category-description and Needs
+        // fields. These are actual addst returns in the installed 53.17.
+        profile.adventure_crafting_fields = {
+            {native_elf_5317_address(0x15ca92d), NativeAdventureCraftingRole::Caption},
+            {native_elf_5317_address(0x15ca46c), NativeAdventureCraftingRole::ReagentPrompt},
+            {native_elf_5317_address(0x15cb3c6), NativeAdventureCraftingRole::Description},
+            {native_elf_5317_address(0x15cb11f), NativeAdventureCraftingRole::Needs},
+        };
+        for (const uintptr_t site : {0x15c9ef9, 0x15c9fd7, 0x15cb1ca, 0x15cb2db,
+                0x15cb526, 0x15cb5b3, 0x15cb70e, 0x15cb795, 0x15cb80c, 0x15cb937})
+            profile.adventure_crafting_fields.push_back({native_elf_5317_address(site),
+                NativeAdventureCraftingRole::Message});
+        // Crafting and Groups use the ordinary libstdc++ resize ABI.
+        // Preserve each complete source before native ellipsis stores or
+        // the plain category-description/Needs cut.
+        for (const uintptr_t site : {0x15caf0d, 0x15cb109, 0x15cb66f,
+                0x140c9f2, 0x140cdc0, 0x1c6151e}) {
+            const auto call = native_elf_5317_address(site);
+            const auto *bytes = reinterpret_cast<const unsigned char *>(call);
+            profile.inline_resizes.push_back({call - profile.base,
+                std::vector<unsigned char>(bytes, bytes + 5), {0x31,0xd2},
+                site == 0x15caf0d, {}, site == 0x15cb109 || site == 0x15cb66f});
+        }
+    }
     profile.info_titles.sites = {
         {native_reference_address(base,0xfc8a25),NativeInfoTitleKind::Item},
         {native_reference_address(base,0xfce851),NativeInfoTitleKind::Item},
@@ -57,7 +83,7 @@ static bool resolve_native_caption_semantics_elf(NativeCaptionProfile &profile) 
         // The HUD's complete rank switch, and both Nobles column modes.
         // Each position draw reads LAND_NAME (+258), otherwise NAME[0]
         // (+98), then capitalizes; the compact mode shortens to 22 bytes.
-        {native_reference_address(base,0x168128e),NativeCivilizationField::FortressRank},
+        {native_reference_address(base,0x128128e),NativeCivilizationField::FortressRank},
         {native_reference_address(base,0x16e2be7),NativeCivilizationField::FortressPositionLabel},
         {native_reference_address(base,0x16e379f),NativeCivilizationField::FortressPositionLabel},
     });

@@ -3,31 +3,36 @@
 // the actual addst fields instead of sending them through dialogue grammar.
 // Both PE editions, all option/odds branches and the rating/title suppliers
 // are retained in data/extracted/adventure-conversation-tone.
-#ifdef _WIN32
 if (const auto tone_base = native_history_profile_base()) {
-    const auto cancel_writer = native_reference_address(tone_base, 0x86b70f);
-    const auto prompt_writer = native_reference_address(tone_base, 0x86b766);
-    const auto intimidate_writer = native_reference_address(tone_base, 0x86b9ed);
-    const auto intimidator_writer = native_reference_address(tone_base, 0x86ba97);
-    const auto persuade_writer = native_reference_address(tone_base, 0x86be23);
-    const auto persuader_writer = native_reference_address(tone_base, 0x86becd);
-    const auto intimidate_odds_first = native_reference_address(tone_base, 0x86bbf2);
-    const auto intimidate_odds_last = native_reference_address(tone_base, 0x86bdcf);
-    const auto persuade_odds_first = native_reference_address(tone_base, 0x86c028);
-    const auto persuade_odds_last = native_reference_address(tone_base, 0x86c205);
+    const auto cancel_writer = native_ui_semantic_address(0x86b70f);
+    const auto prompt_writer = native_ui_semantic_address(0x86b766);
+    const auto intimidate_writer = native_ui_semantic_address(0x86b9ed);
+    const auto intimidator_writer = native_ui_semantic_address(0x86ba97);
+    const auto persuade_writer = native_ui_semantic_address(0x86be23);
+    const auto persuader_writer = native_ui_semantic_address(0x86becd);
+#ifdef _WIN32
+    const auto intimidate_odds_first = native_ui_semantic_address(0x86bbf2);
+    const auto intimidate_odds_last = native_ui_semantic_address(0x86bdcf);
+    const auto persuade_odds_first = native_ui_semantic_address(0x86c028);
+    const auto persuade_odds_last = native_ui_semantic_address(0x86c205);
+#endif
     for (const auto *draws : {&portrait_draws, &portrait_top_draws}) {
         for (const auto &draw : *draws) {
             const auto caller = draw.native_caller;
             if (!caller) continue;
             const bool prompt = caller == prompt_writer;
-            const bool cancel = caller == cancel_writer;
+            const bool cancel = caller == cancel_writer && draw.source == "Cancel";
             const bool action = caller == intimidate_writer || caller == persuade_writer;
             const bool skill = caller == intimidator_writer || caller == persuader_writer;
+#ifdef _WIN32
             const bool odds =
                 (intimidate_odds_first && intimidate_odds_last &&
                     caller >= intimidate_odds_first && caller <= intimidate_odds_last) ||
                 (persuade_odds_first && persuade_odds_last &&
                     caller >= persuade_odds_first && caller <= persuade_odds_last);
+#else
+            const bool odds = native_conversation_tone_odds(caller);
+#endif
             if ((!prompt && !cancel && !action && !skill && !odds) ||
                     draw.source.empty() || draw.x < 0 || draw.x >= gps_->dimx ||
                     draw.y < 0 || draw.y >= gps_->dimy ||
@@ -116,4 +121,3 @@ if (const auto tone_base = native_history_profile_base()) {
         }
     }
 }
-#endif
