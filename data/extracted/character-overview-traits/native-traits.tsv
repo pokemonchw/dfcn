@@ -1,0 +1,409 @@
+edition	image	family_id	family	direction	enum_id	token	dispatch_rva	table_rva	branch_rva	literal_va	source
+reference	PE:6aea05a1:02734000	0	physical	high	0	STRENGTH	0x162232	0x1a0310	0x162234	0x14161a520	Strong
+reference	PE:6aea05a1:02734000	0	physical	high	1	AGILITY	0x162232	0x1a0310	0x162277	0x14161a518	Agile
+reference	PE:6aea05a1:02734000	0	physical	high	2	TOUGHNESS	0x162232	0x1a0310	0x1622ba	0x14161a510	Tough
+reference	PE:6aea05a1:02734000	0	physical	high	3	ENDURANCE	0x162232	0x1a0310	0x1622fd	0x14161a500	High stamina
+reference	PE:6aea05a1:02734000	0	physical	high	4	RECUPERATION	0x162232	0x1a0310	0x16233d	0x14161a4e8	Recovers quickly
+reference	PE:6aea05a1:02734000	0	physical	high	5	DISEASE_RESISTANCE	0x162232	0x1a0310	0x16237d	0x14161a4d0	Resists sickness
+reference	PE:6aea05a1:02734000	1	physical	low	0	STRENGTH	0x16240d	0x1a0328	0x16240f	0x14161a4c4	Weak
+reference	PE:6aea05a1:02734000	1	physical	low	1	AGILITY	0x16240d	0x1a0328	0x162452	0x14161a4bc	Clumsy
+reference	PE:6aea05a1:02734000	1	physical	low	2	TOUGHNESS	0x16240d	0x1a0328	0x162495	0x14161a4b4	Frail
+reference	PE:6aea05a1:02734000	1	physical	low	3	ENDURANCE	0x16240d	0x1a0328	0x1624d8	0x14161a4a8	Low stamina
+reference	PE:6aea05a1:02734000	1	physical	low	4	RECUPERATION	0x16240d	0x1a0328	0x162518	0x14161a498	Recovers slowly
+reference	PE:6aea05a1:02734000	1	physical	low	5	DISEASE_RESISTANCE	0x16240d	0x1a0328	0x162558	0x14161a670	Sickly
+reference	PE:6aea05a1:02734000	2	mental	high	0	ANALYTICAL_ABILITY	0x1625e8	0x1a0340	0x1625ea	0x14161a658	Good analytical ability
+reference	PE:6aea05a1:02734000	2	mental	high	1	FOCUS	0x1625e8	0x1a0340	0x16262d	0x14161a648	Good focus
+reference	PE:6aea05a1:02734000	2	mental	high	2	WILLPOWER	0x1625e8	0x1a0340	0x162670	0x14161a638	High willpower
+reference	PE:6aea05a1:02734000	2	mental	high	3	CREATIVITY	0x1625e8	0x1a0340	0x1626b3	0x14161a628	Creative
+reference	PE:6aea05a1:02734000	2	mental	high	4	INTUITION	0x1625e8	0x1a0340	0x1626f6	0x14161a618	Good intuition
+reference	PE:6aea05a1:02734000	2	mental	high	5	PATIENCE	0x1625e8	0x1a0340	0x162739	0x14161a610	Patient
+reference	PE:6aea05a1:02734000	2	mental	high	6	MEMORY	0x1625e8	0x1a0340	0x16277c	0x14161a600	Good memory
+reference	PE:6aea05a1:02734000	2	mental	high	7	LINGUISTIC_ABILITY	0x1625e8	0x1a0340	0x1627bf	0x14161a5e8	Good with language
+reference	PE:6aea05a1:02734000	2	mental	high	8	SPATIAL_SENSE	0x1625e8	0x1a0340	0x162802	0x14161a5d0	Good spatial sense
+reference	PE:6aea05a1:02734000	2	mental	high	9	MUSICALITY	0x1625e8	0x1a0340	0x162845	0x14161a5c8	Musical
+reference	PE:6aea05a1:02734000	2	mental	high	10	KINESTHETIC_SENSE	0x1625e8	0x1a0340	0x162888	0x14161a5b0	High kinesthetic sense
+reference	PE:6aea05a1:02734000	2	mental	high	11	EMPATHY	0x1625e8	0x1a0340	0x1628c8	0x14161a598	Developed empathy
+reference	PE:6aea05a1:02734000	2	mental	high	12	SOCIAL_AWARENESS	0x1625e8	0x1a0340	0x162908	0x14161a580	High social awareness
+reference	PE:6aea05a1:02734000	3	mental	low	0	ANALYTICAL_ABILITY	0x162998	0x1a0374	0x16299a	0x14161a568	Poor analytical ability
+reference	PE:6aea05a1:02734000	3	mental	low	1	FOCUS	0x162998	0x1a0374	0x1629dd	0x14161a558	Poor focus
+reference	PE:6aea05a1:02734000	3	mental	low	2	WILLPOWER	0x162998	0x1a0374	0x162a20	0x14161a778	Low willpower
+reference	PE:6aea05a1:02734000	3	mental	low	3	CREATIVITY	0x162998	0x1a0374	0x162a63	0x14161a768	Not creative
+reference	PE:6aea05a1:02734000	3	mental	low	4	INTUITION	0x162998	0x1a0374	0x162aa6	0x14161a758	Poor intuition
+reference	PE:6aea05a1:02734000	3	mental	low	5	PATIENCE	0x162998	0x1a0374	0x162ae9	0x14161a748	Impatient
+reference	PE:6aea05a1:02734000	3	mental	low	6	MEMORY	0x162998	0x1a0374	0x162b2c	0x14161a738	Poor memory
+reference	PE:6aea05a1:02734000	3	mental	low	7	LINGUISTIC_ABILITY	0x162998	0x1a0374	0x162b6f	0x14161a728	Bad with words
+reference	PE:6aea05a1:02734000	3	mental	low	8	SPATIAL_SENSE	0x162998	0x1a0374	0x162bb2	0x14161a710	Poor spatial sense
+reference	PE:6aea05a1:02734000	3	mental	low	9	MUSICALITY	0x162998	0x1a0374	0x162bf5	0x14161a700	Not musical
+reference	PE:6aea05a1:02734000	3	mental	low	10	KINESTHETIC_SENSE	0x162998	0x1a0374	0x162c38	0x14161a6e8	Poor kinesthetic sense
+reference	PE:6aea05a1:02734000	3	mental	low	11	EMPATHY	0x162998	0x1a0374	0x162c78	0x14161a6d8	Poor empathy
+reference	PE:6aea05a1:02734000	3	mental	low	12	SOCIAL_AWARENESS	0x162998	0x1a0374	0x162cb8	0x14161a6c0	Poor social awareness
+reference	PE:6aea05a1:02734000	4	facet	high	0	LOVE_PROPENSITY	0x162d48	0x1a03a8	0x162d4a	0x14161a6b0	Quick to love
+reference	PE:6aea05a1:02734000	4	facet	high	1	HATE_PROPENSITY	0x162d48	0x1a03a8	0x162d8d	0x14161a6a8	Hateful
+reference	PE:6aea05a1:02734000	4	facet	high	2	ENVY_PROPENSITY	0x162d48	0x1a03a8	0x162dd0	0x14161a6a0	Envious
+reference	PE:6aea05a1:02734000	4	facet	high	3	CHEER_PROPENSITY	0x162d48	0x1a03a8	0x162e13	0x14161a690	Cheerful
+reference	PE:6aea05a1:02734000	4	facet	high	4	DEPRESSION_PROPENSITY	0x162d48	0x1a03a8	0x162e56	0x14161a678	Depression-prone
+reference	PE:6aea05a1:02734000	4	facet	high	5	ANGER_PROPENSITY	0x162d48	0x1a03a8	0x162e99	0x14161a850	Anger-prone
+reference	PE:6aea05a1:02734000	4	facet	high	6	ANXIETY_PROPENSITY	0x162d48	0x1a03a8	0x162edc	0x14161a848	Anxious
+reference	PE:6aea05a1:02734000	4	facet	high	7	LUST_PROPENSITY	0x162d48	0x1a03a8	0x162f1f	0x14161a840	Lustful
+reference	PE:6aea05a1:02734000	4	facet	high	8	STRESS_VULNERABILITY	0x162d48	0x1a03a8	0x162f62	0x14161a830	Easily stressed
+reference	PE:6aea05a1:02734000	4	facet	high	9	GREED	0x162d48	0x1a03a8	0x162fa5	0x14161a824	Greedy
+reference	PE:6aea05a1:02734000	4	facet	high	10	IMMODERATION	0x162d48	0x1a03a8	0x162fe8	0x14161a818	Intemperate
+reference	PE:6aea05a1:02734000	4	facet	high	11	VIOLENT	0x162d48	0x1a03a8	0x16302b	0x14161a810	Brawler
+reference	PE:6aea05a1:02734000	4	facet	high	12	PERSEVERANCE	0x162d48	0x1a03a8	0x16306e	0x14161a800	Stubborn
+reference	PE:6aea05a1:02734000	4	facet	high	13	WASTEFULNESS	0x162d48	0x1a03a8	0x1630b1	0x14161a7f0	Wasteful
+reference	PE:6aea05a1:02734000	4	facet	high	14	DISCORD	0x162d48	0x1a03a8	0x1630f4	0x14161a7d8	Prone to discord
+reference	PE:6aea05a1:02734000	4	facet	high	15	FRIENDLINESS	0x162d48	0x1a03a8	0x163137	0x14161a7c8	Flatterer
+reference	PE:6aea05a1:02734000	4	facet	high	16	POLITENESS	0x162d48	0x1a03a8	0x16317a	0x14161a7c0	Polite
+reference	PE:6aea05a1:02734000	4	facet	high	17	DISDAIN_ADVICE	0x162d48	0x1a03a8	0x1631bd	0x14161a7b0	Disdains advice
+reference	PE:6aea05a1:02734000	4	facet	high	18	BRAVERY	0x162d48	0x1a03a8	0x163200	0x14161a7a0	Fearless
+reference	PE:6aea05a1:02734000	4	facet	high	19	CONFIDENCE	0x162d48	0x1a03a8	0x163243	0x14161a790	Overconfident
+reference	PE:6aea05a1:02734000	4	facet	high	20	VANITY	0x162d48	0x1a03a8	0x163286	0x14161a788	Vain
+reference	PE:6aea05a1:02734000	4	facet	high	21	AMBITION	0x162d48	0x1a03a8	0x1632c9	0x14161a920	Ambitious
+reference	PE:6aea05a1:02734000	4	facet	high	22	GRATITUDE	0x162d48	0x1a03a8	0x16330c	0x14161a910	Gracious
+reference	PE:6aea05a1:02734000	4	facet	high	23	IMMODESTY	0x162d48	0x1a03a8	0x16334f	0x14161a900	Extravagant
+reference	PE:6aea05a1:02734000	4	facet	high	24	HUMOR	0x162d48	0x1a03a8	0x163392	0x14161a8f4	Zany
+reference	PE:6aea05a1:02734000	4	facet	high	25	VENGEFUL	0x162d48	0x1a03a8	0x1633d5	0x14161a8e8	Vengeful
+reference	PE:6aea05a1:02734000	4	facet	high	26	PRIDE	0x162d48	0x1a03a8	0x163418	0x14161a8e0	Proud
+reference	PE:6aea05a1:02734000	4	facet	high	27	CRUELTY	0x162d48	0x1a03a8	0x16345b	0x14161a8d8	Cruel
+reference	PE:6aea05a1:02734000	4	facet	high	28	SINGLEMINDED	0x162d48	0x1a03a8	0x16349e	0x14161a8c8	Single-minded
+reference	PE:6aea05a1:02734000	4	facet	high	29	HOPEFUL	0x162d48	0x1a03a8	0x1634e1	0x14161a8c0	Hopeful
+reference	PE:6aea05a1:02734000	4	facet	high	30	CURIOUS	0x162d48	0x1a03a8	0x163524	0x14161a8b8	Curious
+reference	PE:6aea05a1:02734000	4	facet	high	31	BASHFUL	0x162d48	0x1a03a8	0x163567	0x14161a8b0	Bashful
+reference	PE:6aea05a1:02734000	4	facet	high	32	PRIVACY	0x162d48	0x1a03a8	0x1635aa	0x14161a8a8	Private
+reference	PE:6aea05a1:02734000	4	facet	high	33	PERFECTIONIST	0x162d48	0x1a03a8	0x1635ed	0x14161a898	Perfectionist
+reference	PE:6aea05a1:02734000	4	facet	high	34	CLOSEMINDED	0x162d48	0x1a03a8	0x163630	0x14161a888	Obstinate
+reference	PE:6aea05a1:02734000	4	facet	high	35	TOLERANT	0x162d48	0x1a03a8	0x163673	0x14161a878	Tolerant
+reference	PE:6aea05a1:02734000	4	facet	high	36	EMOTIONALLY_OBSESSIVE	0x162d48	0x1a03a8	0x1636b6	0x14161a860	Emotional obsessive
+reference	PE:6aea05a1:02734000	4	facet	high	37	SWAYED_BY_EMOTIONS	0x162d48	0x1a03a8	0x1636f9	0x14161aa28	Swayed by emotions
+reference	PE:6aea05a1:02734000	4	facet	high	38	ALTRUISM	0x162d48	0x1a03a8	0x16373c	0x14161aa18	Altruistic
+reference	PE:6aea05a1:02734000	4	facet	high	39	DUTIFULNESS	0x162d48	0x1a03a8	0x16377f	0x14161aa10	Dutiful
+reference	PE:6aea05a1:02734000	4	facet	high	40	THOUGHTLESSNESS	0x162d48	0x1a03a8	0x1637c2	0x14161aa00	Thoughtless
+reference	PE:6aea05a1:02734000	4	facet	high	41	ORDERLINESS	0x162d48	0x1a03a8	0x163805	0x14161a9f8	Orderly
+reference	PE:6aea05a1:02734000	4	facet	high	42	TRUST	0x162d48	0x1a03a8	0x163848	0x14161a9e8	Trusting
+reference	PE:6aea05a1:02734000	4	facet	high	43	GREGARIOUSNESS	0x162d48	0x1a03a8	0x16388b	0x14161a9d8	Gregarious
+reference	PE:6aea05a1:02734000	4	facet	high	44	ASSERTIVENESS	0x162d48	0x1a03a8	0x1638ce	0x14161a9c8	Overbearing
+reference	PE:6aea05a1:02734000	4	facet	high	45	ACTIVITY_LEVEL	0x162d48	0x1a03a8	0x163911	0x14161a9b8	Frenetic
+reference	PE:6aea05a1:02734000	4	facet	high	46	EXCITEMENT_SEEKING	0x162d48	0x1a03a8	0x163954	0x14161a9a8	Thrill-seeker
+reference	PE:6aea05a1:02734000	4	facet	high	47	IMAGINATION	0x162d48	0x1a03a8	0x163997	0x14161a990	Flights of fancy
+reference	PE:6aea05a1:02734000	4	facet	high	48	ABSTRACT_INCLINED	0x162d48	0x1a03a8	0x1639d7	0x14161a978	Inclined to abstract
+reference	PE:6aea05a1:02734000	4	facet	high	49	ART_INCLINED	0x162d48	0x1a03a8	0x163a17	0x14161a960	Artistically inclined
+reference	PE:6aea05a1:02734000	5	facet	low	0	LOVE_PROPENSITY	0x163aa7	0x1a0470	0x163aa9	0x14161a950	Slow to love
+reference	PE:6aea05a1:02734000	5	facet	low	1	HATE_PROPENSITY	0x163aa7	0x1a0470	0x163aec	0x14161a940	Slow to hate
+reference	PE:6aea05a1:02734000	5	facet	low	2	ENVY_PROPENSITY	0x163aa7	0x1a0470	0x163b2f	0x14161a930	Not envious
+reference	PE:6aea05a1:02734000	5	facet	low	3	CHEER_PROPENSITY	0x163aa7	0x1a0470	0x163b72	0x14161ab38	Cheerless
+reference	PE:6aea05a1:02734000	5	facet	low	4	DEPRESSION_PROPENSITY	0x163aa7	0x1a0470	0x163bb5	0x14161ab20	Not easily depressed
+reference	PE:6aea05a1:02734000	5	facet	low	5	ANGER_PROPENSITY	0x163aa7	0x1a0470	0x163bf8	0x14161ab10	Slow to anger
+reference	PE:6aea05a1:02734000	5	facet	low	6	ANXIETY_PROPENSITY	0x163aa7	0x1a0470	0x163c3b	0x14161ab00	Not anxious
+reference	PE:6aea05a1:02734000	5	facet	low	7	LUST_PROPENSITY	0x163aa7	0x1a0470	0x163c7e	0x14161aaf0	Not lustful
+reference	PE:6aea05a1:02734000	5	facet	low	8	STRESS_VULNERABILITY	0x163aa7	0x1a0470	0x163cc1	0x14161aae0	Resilient
+reference	PE:6aea05a1:02734000	5	facet	low	9	GREED	0x163aa7	0x1a0470	0x163d04	0x14161aad0	Not greedy
+reference	PE:6aea05a1:02734000	5	facet	low	10	IMMODERATION	0x163aa7	0x1a0470	0x163d47	0x14161aac0	Temperate
+reference	PE:6aea05a1:02734000	5	facet	low	11	VIOLENT	0x163aa7	0x1a0470	0x163d8a	0x14161aab0	Avoid fights
+reference	PE:6aea05a1:02734000	5	facet	low	12	PERSEVERANCE	0x163aa7	0x1a0470	0x163dcd	0x14161aa98	Quick to give up
+reference	PE:6aea05a1:02734000	5	facet	low	13	WASTEFULNESS	0x163aa7	0x1a0470	0x163e10	0x14161aa88	Not wasteful
+reference	PE:6aea05a1:02734000	5	facet	low	14	DISCORD	0x163aa7	0x1a0470	0x163e53	0x14161aa78	Seeks harmony
+reference	PE:6aea05a1:02734000	5	facet	low	15	FRIENDLINESS	0x163aa7	0x1a0470	0x163e96	0x14161aa68	Quarreler
+reference	PE:6aea05a1:02734000	5	facet	low	16	POLITENESS	0x163aa7	0x1a0470	0x163ed9	0x14161aa60	Rude
+reference	PE:6aea05a1:02734000	5	facet	low	17	DISDAIN_ADVICE	0x163aa7	0x1a0470	0x163f1c	0x14161aa48	Overreliant on advice
+reference	PE:6aea05a1:02734000	5	facet	low	18	BRAVERY	0x163aa7	0x1a0470	0x163f5f	0x14161aa40	Fearful
+reference	PE:6aea05a1:02734000	5	facet	low	19	CONFIDENCE	0x163aa7	0x1a0470	0x163fa2	0x14161ac38	Pusillanimous
+reference	PE:6aea05a1:02734000	5	facet	low	20	VANITY	0x163aa7	0x1a0470	0x163fe5	0x14161ac28	Not vain
+reference	PE:6aea05a1:02734000	5	facet	low	21	AMBITION	0x163aa7	0x1a0470	0x164028	0x14161ac18	Not ambitious
+reference	PE:6aea05a1:02734000	5	facet	low	22	GRATITUDE	0x163aa7	0x1a0470	0x16406b	0x14161ac08	Ungrateful
+reference	PE:6aea05a1:02734000	5	facet	low	23	IMMODESTY	0x163aa7	0x1a0470	0x1640ae	0x14161ac00	Austere
+reference	PE:6aea05a1:02734000	5	facet	low	24	HUMOR	0x163aa7	0x1a0470	0x1640f1	0x14161abf0	Humorless
+reference	PE:6aea05a1:02734000	5	facet	low	25	VENGEFUL	0x163aa7	0x1a0470	0x164134	0x14161abe0	Not vengeful
+reference	PE:6aea05a1:02734000	5	facet	low	26	PRIDE	0x163aa7	0x1a0470	0x164177	0x14161abd0	Low self esteem
+reference	PE:6aea05a1:02734000	5	facet	low	27	CRUELTY	0x163aa7	0x1a0470	0x1641ba	0x14161abc0	Merciful
+reference	PE:6aea05a1:02734000	5	facet	low	28	SINGLEMINDED	0x163aa7	0x1a0470	0x1641fd	0x14161abb0	Scatterbrained
+reference	PE:6aea05a1:02734000	5	facet	low	29	HOPEFUL	0x163aa7	0x1a0470	0x164240	0x14161ab98	Quick to despair
+reference	PE:6aea05a1:02734000	5	facet	low	30	CURIOUS	0x163aa7	0x1a0470	0x164283	0x14161ab88	Incurious
+reference	PE:6aea05a1:02734000	5	facet	low	31	BASHFUL	0x163aa7	0x1a0470	0x1642c6	0x14161ab78	Shameless
+reference	PE:6aea05a1:02734000	5	facet	low	32	PRIVACY	0x163aa7	0x1a0470	0x164309	0x14161ab68	Overshares
+reference	PE:6aea05a1:02734000	5	facet	low	33	PERFECTIONIST	0x163aa7	0x1a0470	0x16434c	0x14161ab58	Inattentive
+reference	PE:6aea05a1:02734000	5	facet	low	34	CLOSEMINDED	0x163aa7	0x1a0470	0x16438f	0x14161ab48	Acquiescing
+reference	PE:6aea05a1:02734000	5	facet	low	35	TOLERANT	0x163aa7	0x1a0470	0x1643d2	0x14161ad60	Intolerant
+reference	PE:6aea05a1:02734000	5	facet	low	36	EMOTIONALLY_OBSESSIVE	0x163aa7	0x1a0470	0x164415	0x14161ad48	Emotionally distant
+reference	PE:6aea05a1:02734000	5	facet	low	37	SWAYED_BY_EMOTIONS	0x163aa7	0x1a0470	0x164458	0x14161ad30	Unswayed by emotions
+reference	PE:6aea05a1:02734000	5	facet	low	38	ALTRUISM	0x163aa7	0x1a0470	0x16449b	0x14161ad20	Not altruistic
+reference	PE:6aea05a1:02734000	5	facet	low	39	DUTIFULNESS	0x163aa7	0x1a0470	0x1644de	0x14161ad10	Not dutiful
+reference	PE:6aea05a1:02734000	5	facet	low	40	THOUGHTLESSNESS	0x163aa7	0x1a0470	0x164521	0x14161ad00	Overcautious
+reference	PE:6aea05a1:02734000	5	facet	low	41	ORDERLINESS	0x163aa7	0x1a0470	0x164564	0x14161acf4	Sloppy
+reference	PE:6aea05a1:02734000	5	facet	low	42	TRUST	0x163aa7	0x1a0470	0x1645a7	0x14161ace8	Distrustful
+reference	PE:6aea05a1:02734000	5	facet	low	43	GREGARIOUSNESS	0x163aa7	0x1a0470	0x1645ea	0x14161acdc	Loner
+reference	PE:6aea05a1:02734000	5	facet	low	44	ASSERTIVENESS	0x163aa7	0x1a0470	0x16462d	0x14161acd0	Unassertive
+reference	PE:6aea05a1:02734000	5	facet	low	45	ACTIVITY_LEVEL	0x163aa7	0x1a0470	0x164670	0x14161acc0	Leisurely
+reference	PE:6aea05a1:02734000	5	facet	low	46	EXCITEMENT_SEEKING	0x163aa7	0x1a0470	0x1646b3	0x14161aca8	Avoids excitement
+reference	PE:6aea05a1:02734000	5	facet	low	47	IMAGINATION	0x163aa7	0x1a0470	0x1646f6	0x14161ac98	Fact-oriented
+reference	PE:6aea05a1:02734000	5	facet	low	48	ABSTRACT_INCLINED	0x163aa7	0x1a0470	0x164736	0x14161ac78	Not inclined to abstract
+reference	PE:6aea05a1:02734000	5	facet	low	49	ART_INCLINED	0x163aa7	0x1a0470	0x164776	0x14161ac58	Not inclined to create art
+reference	PE:6aea05a1:02734000	6	value	high	0	LAW	0x164806	0x1a0538	0x164808	0x14161ac48	Values law
+reference	PE:6aea05a1:02734000	6	value	high	1	LOYALTY	0x164806	0x1a0538	0x16484b	0x14161ae98	Values loyalty
+reference	PE:6aea05a1:02734000	6	value	high	2	FAMILY	0x164806	0x1a0538	0x16488e	0x14161ae88	Values family
+reference	PE:6aea05a1:02734000	6	value	high	3	FRIENDSHIP	0x164806	0x1a0538	0x1648d1	0x14161ae70	Values friendship
+reference	PE:6aea05a1:02734000	6	value	high	4	POWER	0x164806	0x1a0538	0x164914	0x14161ae60	Values power
+reference	PE:6aea05a1:02734000	6	value	high	5	TRUTH	0x164806	0x1a0538	0x164957	0x14161ae50	Values truth
+reference	PE:6aea05a1:02734000	6	value	high	6	CUNNING	0x164806	0x1a0538	0x16499a	0x14161ae40	Values cunning
+reference	PE:6aea05a1:02734000	6	value	high	7	ELOQUENCE	0x164806	0x1a0538	0x1649dd	0x14161ae28	Values eloquence
+reference	PE:6aea05a1:02734000	6	value	high	8	FAIRNESS	0x164806	0x1a0538	0x164a20	0x14161ae18	Values fairness
+reference	PE:6aea05a1:02734000	6	value	high	9	DECORUM	0x164806	0x1a0538	0x164a63	0x14161ae08	Values decorum
+reference	PE:6aea05a1:02734000	6	value	high	10	TRADITION	0x164806	0x1a0538	0x164aa6	0x14161adf0	Values tradition
+reference	PE:6aea05a1:02734000	6	value	high	11	ARTWORK	0x164806	0x1a0538	0x164ae9	0x14161ade0	Values artwork
+reference	PE:6aea05a1:02734000	6	value	high	12	COOPERATION	0x164806	0x1a0538	0x164b2c	0x14161adc8	Values cooperation
+reference	PE:6aea05a1:02734000	6	value	high	13	INDEPENDENCE	0x164806	0x1a0538	0x164b6f	0x14161adb0	Values independence
+reference	PE:6aea05a1:02734000	6	value	high	14	STOICISM	0x164806	0x1a0538	0x164bb2	0x14161ada0	Values stoicism
+reference	PE:6aea05a1:02734000	6	value	high	15	INTROSPECTION	0x164806	0x1a0538	0x164bf5	0x14161ad88	Values introspection
+reference	PE:6aea05a1:02734000	6	value	high	16	SELF_CONTROL	0x164806	0x1a0538	0x164c38	0x14161ad70	Values self-control
+reference	PE:6aea05a1:02734000	6	value	high	17	TRANQUILITY	0x164806	0x1a0538	0x164c7b	0x14161afe0	Values tranquility
+reference	PE:6aea05a1:02734000	6	value	high	18	HARMONY	0x164806	0x1a0538	0x164cbe	0x14161afd0	Values harmony
+reference	PE:6aea05a1:02734000	6	value	high	19	MERRIMENT	0x164806	0x1a0538	0x164d01	0x14161afb8	Values merriment
+reference	PE:6aea05a1:02734000	6	value	high	20	CRAFTSMANSHIP	0x164806	0x1a0538	0x164d44	0x14161afa0	Values craftwork
+reference	PE:6aea05a1:02734000	6	value	high	21	MARTIAL_PROWESS	0x164806	0x1a0538	0x164d87	0x14161af88	Values martial prowess
+reference	PE:6aea05a1:02734000	6	value	high	22	SKILL	0x164806	0x1a0538	0x164dca	0x14161af78	Values skill
+reference	PE:6aea05a1:02734000	6	value	high	23	HARD_WORK	0x164806	0x1a0538	0x164e0d	0x14161af60	Values hard work
+reference	PE:6aea05a1:02734000	6	value	high	24	SACRIFICE	0x164806	0x1a0538	0x164e50	0x14161af48	Values sacrifice
+reference	PE:6aea05a1:02734000	6	value	high	25	COMPETITION	0x164806	0x1a0538	0x164e93	0x14161af30	Values competition
+reference	PE:6aea05a1:02734000	6	value	high	26	PERSEVERANCE	0x164806	0x1a0538	0x164ed6	0x14161af18	Values perseverance
+reference	PE:6aea05a1:02734000	6	value	high	27	LEISURE_TIME	0x164806	0x1a0538	0x164f19	0x14161af00	Values leisure time
+reference	PE:6aea05a1:02734000	6	value	high	28	COMMERCE	0x164806	0x1a0538	0x164f5c	0x14161aef0	Values commerce
+reference	PE:6aea05a1:02734000	6	value	high	29	ROMANCE	0x164806	0x1a0538	0x164f9f	0x14161aee0	Values romance
+reference	PE:6aea05a1:02734000	6	value	high	30	NATURE	0x164806	0x1a0538	0x164fe2	0x14161aed0	Values nature
+reference	PE:6aea05a1:02734000	6	value	high	31	PEACE	0x164806	0x1a0538	0x165022	0x14161aec0	Values peace
+reference	PE:6aea05a1:02734000	6	value	high	32	KNOWLEDGE	0x164806	0x1a0538	0x165062	0x14161aea8	Values knowledge
+reference	PE:6aea05a1:02734000	7	value	low	0	LAW	0x1650f2	0x1a05bc	0x1650f4	0x14161b148	Disdains law
+reference	PE:6aea05a1:02734000	7	value	low	1	LOYALTY	0x1650f2	0x1a05bc	0x165137	0x14161b130	Disdains loyalty
+reference	PE:6aea05a1:02734000	7	value	low	2	FAMILY	0x1650f2	0x1a05bc	0x16517a	0x14161b120	Disdains family
+reference	PE:6aea05a1:02734000	7	value	low	3	FRIENDSHIP	0x1650f2	0x1a05bc	0x1651bd	0x14161b108	Disdains friendship
+reference	PE:6aea05a1:02734000	7	value	low	4	POWER	0x1650f2	0x1a05bc	0x165200	0x14161b0f8	Disdains power
+reference	PE:6aea05a1:02734000	7	value	low	5	TRUTH	0x1650f2	0x1a05bc	0x165243	0x14161b0e8	Disdains truth
+reference	PE:6aea05a1:02734000	7	value	low	6	CUNNING	0x1650f2	0x1a05bc	0x165286	0x14161b0d0	Disdains cunning
+reference	PE:6aea05a1:02734000	7	value	low	7	ELOQUENCE	0x1650f2	0x1a05bc	0x1652c9	0x14161b0b8	Disdains eloquence
+reference	PE:6aea05a1:02734000	7	value	low	8	FAIRNESS	0x1650f2	0x1a05bc	0x16530c	0x14161b0a0	Disdains fairness
+reference	PE:6aea05a1:02734000	7	value	low	9	DECORUM	0x1650f2	0x1a05bc	0x16534f	0x14161b088	Disdains decorum
+reference	PE:6aea05a1:02734000	7	value	low	10	TRADITION	0x1650f2	0x1a05bc	0x165392	0x14161b070	Disdains tradition
+reference	PE:6aea05a1:02734000	7	value	low	11	ARTWORK	0x1650f2	0x1a05bc	0x1653d5	0x14161b058	Disdains artwork
+reference	PE:6aea05a1:02734000	7	value	low	12	COOPERATION	0x1650f2	0x1a05bc	0x165418	0x14161b040	Disdains cooperation
+reference	PE:6aea05a1:02734000	7	value	low	13	INDEPENDENCE	0x1650f2	0x1a05bc	0x16545b	0x14161b028	Disdains independence
+reference	PE:6aea05a1:02734000	7	value	low	14	STOICISM	0x1650f2	0x1a05bc	0x16549e	0x14161b010	Disdains stoicism
+reference	PE:6aea05a1:02734000	7	value	low	15	INTROSPECTION	0x1650f2	0x1a05bc	0x1654e1	0x14161aff8	Disdains introspection
+reference	PE:6aea05a1:02734000	7	value	low	16	SELF_CONTROL	0x1650f2	0x1a05bc	0x165524	0x14161b2b0	Disdains self-control
+reference	PE:6aea05a1:02734000	7	value	low	17	TRANQUILITY	0x1650f2	0x1a05bc	0x165567	0x14161b298	Disdains tranquility
+reference	PE:6aea05a1:02734000	7	value	low	18	HARMONY	0x1650f2	0x1a05bc	0x1655aa	0x14161b280	Disdains harmony
+reference	PE:6aea05a1:02734000	7	value	low	19	MERRIMENT	0x1650f2	0x1a05bc	0x1655ed	0x14161b268	Disdains merriment
+reference	PE:6aea05a1:02734000	7	value	low	20	CRAFTSMANSHIP	0x1650f2	0x1a05bc	0x165630	0x14161b250	Disdains craftwork
+reference	PE:6aea05a1:02734000	7	value	low	21	MARTIAL_PROWESS	0x1650f2	0x1a05bc	0x165673	0x14161b230	Disdains martial prowess
+reference	PE:6aea05a1:02734000	7	value	low	22	SKILL	0x1650f2	0x1a05bc	0x1656b6	0x14161b220	Disdains skill
+reference	PE:6aea05a1:02734000	7	value	low	23	HARD_WORK	0x1650f2	0x1a05bc	0x1656f9	0x14161b208	Disdains hard work
+reference	PE:6aea05a1:02734000	7	value	low	24	SACRIFICE	0x1650f2	0x1a05bc	0x16573c	0x14161b1f0	Disdains sacrifice
+reference	PE:6aea05a1:02734000	7	value	low	25	COMPETITION	0x1650f2	0x1a05bc	0x16577f	0x14161b1d8	Disdains competition
+reference	PE:6aea05a1:02734000	7	value	low	26	PERSEVERANCE	0x1650f2	0x1a05bc	0x1657c2	0x14161b1c0	Disdains perseverance
+reference	PE:6aea05a1:02734000	7	value	low	27	LEISURE_TIME	0x1650f2	0x1a05bc	0x165805	0x14161b1a8	Disdains leisure time
+reference	PE:6aea05a1:02734000	7	value	low	28	COMMERCE	0x1650f2	0x1a05bc	0x165848	0x14161b190	Disdains commerce
+reference	PE:6aea05a1:02734000	7	value	low	29	ROMANCE	0x1650f2	0x1a05bc	0x16588b	0x14161b178	Disdains romance
+reference	PE:6aea05a1:02734000	7	value	low	30	NATURE	0x1650f2	0x1a05bc	0x1658ce	0x14161b168	Disdains nature
+reference	PE:6aea05a1:02734000	7	value	low	31	PEACE	0x1650f2	0x1a05bc	0x16590e	0x14161b158	Disdains peace
+reference	PE:6aea05a1:02734000	7	value	low	32	KNOWLEDGE	0x1650f2	0x1a05bc	0x16594e	0x14161b398	Disdains knowledge
+classic	PE:6aea11a5:0272d000	0	physical	high	0	STRENGTH	0x1621c2	0x1a02a0	0x1621c4	0x1416153bc	Strong
+classic	PE:6aea11a5:0272d000	0	physical	high	1	AGILITY	0x1621c2	0x1a02a0	0x162207	0x141615540	Agile
+classic	PE:6aea11a5:0272d000	0	physical	high	2	TOUGHNESS	0x1621c2	0x1a02a0	0x16224a	0x141615538	Tough
+classic	PE:6aea11a5:0272d000	0	physical	high	3	ENDURANCE	0x1621c2	0x1a02a0	0x16228d	0x141615528	High stamina
+classic	PE:6aea11a5:0272d000	0	physical	high	4	RECUPERATION	0x1621c2	0x1a02a0	0x1622cd	0x141615510	Recovers quickly
+classic	PE:6aea11a5:0272d000	0	physical	high	5	DISEASE_RESISTANCE	0x1621c2	0x1a02a0	0x16230d	0x1416154f8	Resists sickness
+classic	PE:6aea11a5:0272d000	1	physical	low	0	STRENGTH	0x16239d	0x1a02b8	0x16239f	0x1416154ec	Weak
+classic	PE:6aea11a5:0272d000	1	physical	low	1	AGILITY	0x16239d	0x1a02b8	0x1623e2	0x1416154e4	Clumsy
+classic	PE:6aea11a5:0272d000	1	physical	low	2	TOUGHNESS	0x16239d	0x1a02b8	0x162425	0x1416154dc	Frail
+classic	PE:6aea11a5:0272d000	1	physical	low	3	ENDURANCE	0x16239d	0x1a02b8	0x162468	0x1416154d0	Low stamina
+classic	PE:6aea11a5:0272d000	1	physical	low	4	RECUPERATION	0x16239d	0x1a02b8	0x1624a8	0x1416154c0	Recovers slowly
+classic	PE:6aea11a5:0272d000	1	physical	low	5	DISEASE_RESISTANCE	0x16239d	0x1a02b8	0x1624e8	0x1416154b8	Sickly
+classic	PE:6aea11a5:0272d000	2	mental	high	0	ANALYTICAL_ABILITY	0x162578	0x1a02d0	0x16257a	0x1416154a0	Good analytical ability
+classic	PE:6aea11a5:0272d000	2	mental	high	1	FOCUS	0x162578	0x1a02d0	0x1625bd	0x141615490	Good focus
+classic	PE:6aea11a5:0272d000	2	mental	high	2	WILLPOWER	0x162578	0x1a02d0	0x162600	0x141615480	High willpower
+classic	PE:6aea11a5:0272d000	2	mental	high	3	CREATIVITY	0x162578	0x1a02d0	0x162643	0x141615470	Creative
+classic	PE:6aea11a5:0272d000	2	mental	high	4	INTUITION	0x162578	0x1a02d0	0x162686	0x141615460	Good intuition
+classic	PE:6aea11a5:0272d000	2	mental	high	5	PATIENCE	0x162578	0x1a02d0	0x1626c9	0x141615660	Patient
+classic	PE:6aea11a5:0272d000	2	mental	high	6	MEMORY	0x162578	0x1a02d0	0x16270c	0x141615650	Good memory
+classic	PE:6aea11a5:0272d000	2	mental	high	7	LINGUISTIC_ABILITY	0x162578	0x1a02d0	0x16274f	0x141615638	Good with language
+classic	PE:6aea11a5:0272d000	2	mental	high	8	SPATIAL_SENSE	0x162578	0x1a02d0	0x162792	0x141615620	Good spatial sense
+classic	PE:6aea11a5:0272d000	2	mental	high	9	MUSICALITY	0x162578	0x1a02d0	0x1627d5	0x141615618	Musical
+classic	PE:6aea11a5:0272d000	2	mental	high	10	KINESTHETIC_SENSE	0x162578	0x1a02d0	0x162818	0x141615600	High kinesthetic sense
+classic	PE:6aea11a5:0272d000	2	mental	high	11	EMPATHY	0x162578	0x1a02d0	0x162858	0x1416155e8	Developed empathy
+classic	PE:6aea11a5:0272d000	2	mental	high	12	SOCIAL_AWARENESS	0x162578	0x1a02d0	0x162898	0x1416155d0	High social awareness
+classic	PE:6aea11a5:0272d000	3	mental	low	0	ANALYTICAL_ABILITY	0x162928	0x1a0304	0x16292a	0x1416155b8	Poor analytical ability
+classic	PE:6aea11a5:0272d000	3	mental	low	1	FOCUS	0x162928	0x1a0304	0x16296d	0x1416155a8	Poor focus
+classic	PE:6aea11a5:0272d000	3	mental	low	2	WILLPOWER	0x162928	0x1a0304	0x1629b0	0x141615598	Low willpower
+classic	PE:6aea11a5:0272d000	3	mental	low	3	CREATIVITY	0x162928	0x1a0304	0x1629f3	0x141615588	Not creative
+classic	PE:6aea11a5:0272d000	3	mental	low	4	INTUITION	0x162928	0x1a0304	0x162a36	0x141615578	Poor intuition
+classic	PE:6aea11a5:0272d000	3	mental	low	5	PATIENCE	0x162928	0x1a0304	0x162a79	0x141615568	Impatient
+classic	PE:6aea11a5:0272d000	3	mental	low	6	MEMORY	0x162928	0x1a0304	0x162abc	0x141615558	Poor memory
+classic	PE:6aea11a5:0272d000	3	mental	low	7	LINGUISTIC_ABILITY	0x162928	0x1a0304	0x162aff	0x141615548	Bad with words
+classic	PE:6aea11a5:0272d000	3	mental	low	8	SPATIAL_SENSE	0x162928	0x1a0304	0x162b42	0x141615748	Poor spatial sense
+classic	PE:6aea11a5:0272d000	3	mental	low	9	MUSICALITY	0x162928	0x1a0304	0x162b85	0x141615738	Not musical
+classic	PE:6aea11a5:0272d000	3	mental	low	10	KINESTHETIC_SENSE	0x162928	0x1a0304	0x162bc8	0x141615720	Poor kinesthetic sense
+classic	PE:6aea11a5:0272d000	3	mental	low	11	EMPATHY	0x162928	0x1a0304	0x162c08	0x141615710	Poor empathy
+classic	PE:6aea11a5:0272d000	3	mental	low	12	SOCIAL_AWARENESS	0x162928	0x1a0304	0x162c48	0x1416156f8	Poor social awareness
+classic	PE:6aea11a5:0272d000	4	facet	high	0	LOVE_PROPENSITY	0x162cd8	0x1a0338	0x162cda	0x1416156e8	Quick to love
+classic	PE:6aea11a5:0272d000	4	facet	high	1	HATE_PROPENSITY	0x162cd8	0x1a0338	0x162d1d	0x1416156e0	Hateful
+classic	PE:6aea11a5:0272d000	4	facet	high	2	ENVY_PROPENSITY	0x162cd8	0x1a0338	0x162d60	0x1416156d8	Envious
+classic	PE:6aea11a5:0272d000	4	facet	high	3	CHEER_PROPENSITY	0x162cd8	0x1a0338	0x162da3	0x1416156c8	Cheerful
+classic	PE:6aea11a5:0272d000	4	facet	high	4	DEPRESSION_PROPENSITY	0x162cd8	0x1a0338	0x162de6	0x1416156b0	Depression-prone
+classic	PE:6aea11a5:0272d000	4	facet	high	5	ANGER_PROPENSITY	0x162cd8	0x1a0338	0x162e29	0x1416156a0	Anger-prone
+classic	PE:6aea11a5:0272d000	4	facet	high	6	ANXIETY_PROPENSITY	0x162cd8	0x1a0338	0x162e6c	0x141615698	Anxious
+classic	PE:6aea11a5:0272d000	4	facet	high	7	LUST_PROPENSITY	0x162cd8	0x1a0338	0x162eaf	0x141615690	Lustful
+classic	PE:6aea11a5:0272d000	4	facet	high	8	STRESS_VULNERABILITY	0x162cd8	0x1a0338	0x162ef2	0x141615680	Easily stressed
+classic	PE:6aea11a5:0272d000	4	facet	high	9	GREED	0x162cd8	0x1a0338	0x162f35	0x141615674	Greedy
+classic	PE:6aea11a5:0272d000	4	facet	high	10	IMMODERATION	0x162cd8	0x1a0338	0x162f78	0x141615668	Intemperate
+classic	PE:6aea11a5:0272d000	4	facet	high	11	VIOLENT	0x162cd8	0x1a0338	0x162fbb	0x141615838	Brawler
+classic	PE:6aea11a5:0272d000	4	facet	high	12	PERSEVERANCE	0x162cd8	0x1a0338	0x162ffe	0x141615828	Stubborn
+classic	PE:6aea11a5:0272d000	4	facet	high	13	WASTEFULNESS	0x162cd8	0x1a0338	0x163041	0x141615818	Wasteful
+classic	PE:6aea11a5:0272d000	4	facet	high	14	DISCORD	0x162cd8	0x1a0338	0x163084	0x141615800	Prone to discord
+classic	PE:6aea11a5:0272d000	4	facet	high	15	FRIENDLINESS	0x162cd8	0x1a0338	0x1630c7	0x1416157f0	Flatterer
+classic	PE:6aea11a5:0272d000	4	facet	high	16	POLITENESS	0x162cd8	0x1a0338	0x16310a	0x1416157e8	Polite
+classic	PE:6aea11a5:0272d000	4	facet	high	17	DISDAIN_ADVICE	0x162cd8	0x1a0338	0x16314d	0x1416157d8	Disdains advice
+classic	PE:6aea11a5:0272d000	4	facet	high	18	BRAVERY	0x162cd8	0x1a0338	0x163190	0x1416157c8	Fearless
+classic	PE:6aea11a5:0272d000	4	facet	high	19	CONFIDENCE	0x162cd8	0x1a0338	0x1631d3	0x1416157b8	Overconfident
+classic	PE:6aea11a5:0272d000	4	facet	high	20	VANITY	0x162cd8	0x1a0338	0x163216	0x1416157ac	Vain
+classic	PE:6aea11a5:0272d000	4	facet	high	21	AMBITION	0x162cd8	0x1a0338	0x163259	0x1416157a0	Ambitious
+classic	PE:6aea11a5:0272d000	4	facet	high	22	GRATITUDE	0x162cd8	0x1a0338	0x16329c	0x141615790	Gracious
+classic	PE:6aea11a5:0272d000	4	facet	high	23	IMMODESTY	0x162cd8	0x1a0338	0x1632df	0x141615780	Extravagant
+classic	PE:6aea11a5:0272d000	4	facet	high	24	HUMOR	0x162cd8	0x1a0338	0x163322	0x141615774	Zany
+classic	PE:6aea11a5:0272d000	4	facet	high	25	VENGEFUL	0x162cd8	0x1a0338	0x163365	0x141615768	Vengeful
+classic	PE:6aea11a5:0272d000	4	facet	high	26	PRIDE	0x162cd8	0x1a0338	0x1633a8	0x14161575c	Proud
+classic	PE:6aea11a5:0272d000	4	facet	high	27	CRUELTY	0x162cd8	0x1a0338	0x1633eb	0x141615910	Cruel
+classic	PE:6aea11a5:0272d000	4	facet	high	28	SINGLEMINDED	0x162cd8	0x1a0338	0x16342e	0x141615900	Single-minded
+classic	PE:6aea11a5:0272d000	4	facet	high	29	HOPEFUL	0x162cd8	0x1a0338	0x163471	0x1416158f8	Hopeful
+classic	PE:6aea11a5:0272d000	4	facet	high	30	CURIOUS	0x162cd8	0x1a0338	0x1634b4	0x1416158f0	Curious
+classic	PE:6aea11a5:0272d000	4	facet	high	31	BASHFUL	0x162cd8	0x1a0338	0x1634f7	0x1416158e8	Bashful
+classic	PE:6aea11a5:0272d000	4	facet	high	32	PRIVACY	0x162cd8	0x1a0338	0x16353a	0x1416158e0	Private
+classic	PE:6aea11a5:0272d000	4	facet	high	33	PERFECTIONIST	0x162cd8	0x1a0338	0x16357d	0x1416158d0	Perfectionist
+classic	PE:6aea11a5:0272d000	4	facet	high	34	CLOSEMINDED	0x162cd8	0x1a0338	0x1635c0	0x1416158c0	Obstinate
+classic	PE:6aea11a5:0272d000	4	facet	high	35	TOLERANT	0x162cd8	0x1a0338	0x163603	0x1416158b0	Tolerant
+classic	PE:6aea11a5:0272d000	4	facet	high	36	EMOTIONALLY_OBSESSIVE	0x162cd8	0x1a0338	0x163646	0x141615898	Emotional obsessive
+classic	PE:6aea11a5:0272d000	4	facet	high	37	SWAYED_BY_EMOTIONS	0x162cd8	0x1a0338	0x163689	0x141615880	Swayed by emotions
+classic	PE:6aea11a5:0272d000	4	facet	high	38	ALTRUISM	0x162cd8	0x1a0338	0x1636cc	0x141615870	Altruistic
+classic	PE:6aea11a5:0272d000	4	facet	high	39	DUTIFULNESS	0x162cd8	0x1a0338	0x16370f	0x141615868	Dutiful
+classic	PE:6aea11a5:0272d000	4	facet	high	40	THOUGHTLESSNESS	0x162cd8	0x1a0338	0x163752	0x141615858	Thoughtless
+classic	PE:6aea11a5:0272d000	4	facet	high	41	ORDERLINESS	0x162cd8	0x1a0338	0x163795	0x141615850	Orderly
+classic	PE:6aea11a5:0272d000	4	facet	high	42	TRUST	0x162cd8	0x1a0338	0x1637d8	0x141615840	Trusting
+classic	PE:6aea11a5:0272d000	4	facet	high	43	GREGARIOUSNESS	0x162cd8	0x1a0338	0x16381b	0x141615a28	Gregarious
+classic	PE:6aea11a5:0272d000	4	facet	high	44	ASSERTIVENESS	0x162cd8	0x1a0338	0x16385e	0x141615a18	Overbearing
+classic	PE:6aea11a5:0272d000	4	facet	high	45	ACTIVITY_LEVEL	0x162cd8	0x1a0338	0x1638a1	0x141615a08	Frenetic
+classic	PE:6aea11a5:0272d000	4	facet	high	46	EXCITEMENT_SEEKING	0x162cd8	0x1a0338	0x1638e4	0x1416159f8	Thrill-seeker
+classic	PE:6aea11a5:0272d000	4	facet	high	47	IMAGINATION	0x162cd8	0x1a0338	0x163927	0x1416159e0	Flights of fancy
+classic	PE:6aea11a5:0272d000	4	facet	high	48	ABSTRACT_INCLINED	0x162cd8	0x1a0338	0x163967	0x1416159c8	Inclined to abstract
+classic	PE:6aea11a5:0272d000	4	facet	high	49	ART_INCLINED	0x162cd8	0x1a0338	0x1639a7	0x1416159b0	Artistically inclined
+classic	PE:6aea11a5:0272d000	5	facet	low	0	LOVE_PROPENSITY	0x163a37	0x1a0400	0x163a39	0x1416159a0	Slow to love
+classic	PE:6aea11a5:0272d000	5	facet	low	1	HATE_PROPENSITY	0x163a37	0x1a0400	0x163a7c	0x141615990	Slow to hate
+classic	PE:6aea11a5:0272d000	5	facet	low	2	ENVY_PROPENSITY	0x163a37	0x1a0400	0x163abf	0x141615980	Not envious
+classic	PE:6aea11a5:0272d000	5	facet	low	3	CHEER_PROPENSITY	0x163a37	0x1a0400	0x163b02	0x141615970	Cheerless
+classic	PE:6aea11a5:0272d000	5	facet	low	4	DEPRESSION_PROPENSITY	0x163a37	0x1a0400	0x163b45	0x141615958	Not easily depressed
+classic	PE:6aea11a5:0272d000	5	facet	low	5	ANGER_PROPENSITY	0x163a37	0x1a0400	0x163b88	0x141615948	Slow to anger
+classic	PE:6aea11a5:0272d000	5	facet	low	6	ANXIETY_PROPENSITY	0x163a37	0x1a0400	0x163bcb	0x141615938	Not anxious
+classic	PE:6aea11a5:0272d000	5	facet	low	7	LUST_PROPENSITY	0x163a37	0x1a0400	0x163c0e	0x141615928	Not lustful
+classic	PE:6aea11a5:0272d000	5	facet	low	8	STRESS_VULNERABILITY	0x163a37	0x1a0400	0x163c51	0x141615918	Resilient
+classic	PE:6aea11a5:0272d000	5	facet	low	9	GREED	0x163a37	0x1a0400	0x163c94	0x141615b20	Not greedy
+classic	PE:6aea11a5:0272d000	5	facet	low	10	IMMODERATION	0x163a37	0x1a0400	0x163cd7	0x141615b10	Temperate
+classic	PE:6aea11a5:0272d000	5	facet	low	11	VIOLENT	0x163a37	0x1a0400	0x163d1a	0x141615b00	Avoid fights
+classic	PE:6aea11a5:0272d000	5	facet	low	12	PERSEVERANCE	0x163a37	0x1a0400	0x163d5d	0x141615ae8	Quick to give up
+classic	PE:6aea11a5:0272d000	5	facet	low	13	WASTEFULNESS	0x163a37	0x1a0400	0x163da0	0x141615ad8	Not wasteful
+classic	PE:6aea11a5:0272d000	5	facet	low	14	DISCORD	0x163a37	0x1a0400	0x163de3	0x141615ac8	Seeks harmony
+classic	PE:6aea11a5:0272d000	5	facet	low	15	FRIENDLINESS	0x163a37	0x1a0400	0x163e26	0x141615ab8	Quarreler
+classic	PE:6aea11a5:0272d000	5	facet	low	16	POLITENESS	0x163a37	0x1a0400	0x163e69	0x141615ab0	Rude
+classic	PE:6aea11a5:0272d000	5	facet	low	17	DISDAIN_ADVICE	0x163a37	0x1a0400	0x163eac	0x141615a98	Overreliant on advice
+classic	PE:6aea11a5:0272d000	5	facet	low	18	BRAVERY	0x163a37	0x1a0400	0x163eef	0x141615a90	Fearful
+classic	PE:6aea11a5:0272d000	5	facet	low	19	CONFIDENCE	0x163a37	0x1a0400	0x163f32	0x141615a80	Pusillanimous
+classic	PE:6aea11a5:0272d000	5	facet	low	20	VANITY	0x163a37	0x1a0400	0x163f75	0x141615a70	Not vain
+classic	PE:6aea11a5:0272d000	5	facet	low	21	AMBITION	0x163a37	0x1a0400	0x163fb8	0x141615a60	Not ambitious
+classic	PE:6aea11a5:0272d000	5	facet	low	22	GRATITUDE	0x163a37	0x1a0400	0x163ffb	0x141615a50	Ungrateful
+classic	PE:6aea11a5:0272d000	5	facet	low	23	IMMODESTY	0x163a37	0x1a0400	0x16403e	0x141615a48	Austere
+classic	PE:6aea11a5:0272d000	5	facet	low	24	HUMOR	0x163a37	0x1a0400	0x164081	0x141615a38	Humorless
+classic	PE:6aea11a5:0272d000	5	facet	low	25	VENGEFUL	0x163a37	0x1a0400	0x1640c4	0x141615c38	Not vengeful
+classic	PE:6aea11a5:0272d000	5	facet	low	26	PRIDE	0x163a37	0x1a0400	0x164107	0x141615c28	Low self esteem
+classic	PE:6aea11a5:0272d000	5	facet	low	27	CRUELTY	0x163a37	0x1a0400	0x16414a	0x141615c18	Merciful
+classic	PE:6aea11a5:0272d000	5	facet	low	28	SINGLEMINDED	0x163a37	0x1a0400	0x16418d	0x141615c08	Scatterbrained
+classic	PE:6aea11a5:0272d000	5	facet	low	29	HOPEFUL	0x163a37	0x1a0400	0x1641d0	0x141615bf0	Quick to despair
+classic	PE:6aea11a5:0272d000	5	facet	low	30	CURIOUS	0x163a37	0x1a0400	0x164213	0x141615be0	Incurious
+classic	PE:6aea11a5:0272d000	5	facet	low	31	BASHFUL	0x163a37	0x1a0400	0x164256	0x141615bd0	Shameless
+classic	PE:6aea11a5:0272d000	5	facet	low	32	PRIVACY	0x163a37	0x1a0400	0x164299	0x141615bc0	Overshares
+classic	PE:6aea11a5:0272d000	5	facet	low	33	PERFECTIONIST	0x163a37	0x1a0400	0x1642dc	0x141615bb0	Inattentive
+classic	PE:6aea11a5:0272d000	5	facet	low	34	CLOSEMINDED	0x163a37	0x1a0400	0x16431f	0x141615ba0	Acquiescing
+classic	PE:6aea11a5:0272d000	5	facet	low	35	TOLERANT	0x163a37	0x1a0400	0x164362	0x141615b90	Intolerant
+classic	PE:6aea11a5:0272d000	5	facet	low	36	EMOTIONALLY_OBSESSIVE	0x163a37	0x1a0400	0x1643a5	0x141615b78	Emotionally distant
+classic	PE:6aea11a5:0272d000	5	facet	low	37	SWAYED_BY_EMOTIONS	0x163a37	0x1a0400	0x1643e8	0x141615b60	Unswayed by emotions
+classic	PE:6aea11a5:0272d000	5	facet	low	38	ALTRUISM	0x163a37	0x1a0400	0x16442b	0x141615b50	Not altruistic
+classic	PE:6aea11a5:0272d000	5	facet	low	39	DUTIFULNESS	0x163a37	0x1a0400	0x16446e	0x141615b40	Not dutiful
+classic	PE:6aea11a5:0272d000	5	facet	low	40	THOUGHTLESSNESS	0x163a37	0x1a0400	0x1644b1	0x141615b30	Overcautious
+classic	PE:6aea11a5:0272d000	5	facet	low	41	ORDERLINESS	0x163a37	0x1a0400	0x1644f4	0x141615d5c	Sloppy
+classic	PE:6aea11a5:0272d000	5	facet	low	42	TRUST	0x163a37	0x1a0400	0x164537	0x141615d50	Distrustful
+classic	PE:6aea11a5:0272d000	5	facet	low	43	GREGARIOUSNESS	0x163a37	0x1a0400	0x16457a	0x141615d44	Loner
+classic	PE:6aea11a5:0272d000	5	facet	low	44	ASSERTIVENESS	0x163a37	0x1a0400	0x1645bd	0x141615d38	Unassertive
+classic	PE:6aea11a5:0272d000	5	facet	low	45	ACTIVITY_LEVEL	0x163a37	0x1a0400	0x164600	0x141615d28	Leisurely
+classic	PE:6aea11a5:0272d000	5	facet	low	46	EXCITEMENT_SEEKING	0x163a37	0x1a0400	0x164643	0x141615d10	Avoids excitement
+classic	PE:6aea11a5:0272d000	5	facet	low	47	IMAGINATION	0x163a37	0x1a0400	0x164686	0x141615d00	Fact-oriented
+classic	PE:6aea11a5:0272d000	5	facet	low	48	ABSTRACT_INCLINED	0x163a37	0x1a0400	0x1646c6	0x141615ce0	Not inclined to abstract
+classic	PE:6aea11a5:0272d000	5	facet	low	49	ART_INCLINED	0x163a37	0x1a0400	0x164706	0x141615cc0	Not inclined to create art
+classic	PE:6aea11a5:0272d000	6	value	high	0	LAW	0x164796	0x1a04c8	0x164798	0x141615cb0	Values law
+classic	PE:6aea11a5:0272d000	6	value	high	1	LOYALTY	0x164796	0x1a04c8	0x1647db	0x141615ca0	Values loyalty
+classic	PE:6aea11a5:0272d000	6	value	high	2	FAMILY	0x164796	0x1a04c8	0x16481e	0x141615c90	Values family
+classic	PE:6aea11a5:0272d000	6	value	high	3	FRIENDSHIP	0x164796	0x1a04c8	0x164861	0x141615c78	Values friendship
+classic	PE:6aea11a5:0272d000	6	value	high	4	POWER	0x164796	0x1a04c8	0x1648a4	0x141615c68	Values power
+classic	PE:6aea11a5:0272d000	6	value	high	5	TRUTH	0x164796	0x1a04c8	0x1648e7	0x141615c58	Values truth
+classic	PE:6aea11a5:0272d000	6	value	high	6	CUNNING	0x164796	0x1a04c8	0x16492a	0x141615c48	Values cunning
+classic	PE:6aea11a5:0272d000	6	value	high	7	ELOQUENCE	0x164796	0x1a04c8	0x16496d	0x141615ea0	Values eloquence
+classic	PE:6aea11a5:0272d000	6	value	high	8	FAIRNESS	0x164796	0x1a04c8	0x1649b0	0x141615e90	Values fairness
+classic	PE:6aea11a5:0272d000	6	value	high	9	DECORUM	0x164796	0x1a04c8	0x1649f3	0x141615e80	Values decorum
+classic	PE:6aea11a5:0272d000	6	value	high	10	TRADITION	0x164796	0x1a04c8	0x164a36	0x141615e68	Values tradition
+classic	PE:6aea11a5:0272d000	6	value	high	11	ARTWORK	0x164796	0x1a04c8	0x164a79	0x141615e58	Values artwork
+classic	PE:6aea11a5:0272d000	6	value	high	12	COOPERATION	0x164796	0x1a04c8	0x164abc	0x141615e40	Values cooperation
+classic	PE:6aea11a5:0272d000	6	value	high	13	INDEPENDENCE	0x164796	0x1a04c8	0x164aff	0x141615e28	Values independence
+classic	PE:6aea11a5:0272d000	6	value	high	14	STOICISM	0x164796	0x1a04c8	0x164b42	0x141615e18	Values stoicism
+classic	PE:6aea11a5:0272d000	6	value	high	15	INTROSPECTION	0x164796	0x1a04c8	0x164b85	0x141615e00	Values introspection
+classic	PE:6aea11a5:0272d000	6	value	high	16	SELF_CONTROL	0x164796	0x1a04c8	0x164bc8	0x141615de8	Values self-control
+classic	PE:6aea11a5:0272d000	6	value	high	17	TRANQUILITY	0x164796	0x1a04c8	0x164c0b	0x141615dd0	Values tranquility
+classic	PE:6aea11a5:0272d000	6	value	high	18	HARMONY	0x164796	0x1a04c8	0x164c4e	0x141615dc0	Values harmony
+classic	PE:6aea11a5:0272d000	6	value	high	19	MERRIMENT	0x164796	0x1a04c8	0x164c91	0x141615da8	Values merriment
+classic	PE:6aea11a5:0272d000	6	value	high	20	CRAFTSMANSHIP	0x164796	0x1a04c8	0x164cd4	0x141615d90	Values craftwork
+classic	PE:6aea11a5:0272d000	6	value	high	21	MARTIAL_PROWESS	0x164796	0x1a04c8	0x164d17	0x141615d78	Values martial prowess
+classic	PE:6aea11a5:0272d000	6	value	high	22	SKILL	0x164796	0x1a04c8	0x164d5a	0x141615d68	Values skill
+classic	PE:6aea11a5:0272d000	6	value	high	23	HARD_WORK	0x164796	0x1a04c8	0x164d9d	0x141615fe0	Values hard work
+classic	PE:6aea11a5:0272d000	6	value	high	24	SACRIFICE	0x164796	0x1a04c8	0x164de0	0x141615fc8	Values sacrifice
+classic	PE:6aea11a5:0272d000	6	value	high	25	COMPETITION	0x164796	0x1a04c8	0x164e23	0x141615fb0	Values competition
+classic	PE:6aea11a5:0272d000	6	value	high	26	PERSEVERANCE	0x164796	0x1a04c8	0x164e66	0x141615f98	Values perseverance
+classic	PE:6aea11a5:0272d000	6	value	high	27	LEISURE_TIME	0x164796	0x1a04c8	0x164ea9	0x141615f80	Values leisure time
+classic	PE:6aea11a5:0272d000	6	value	high	28	COMMERCE	0x164796	0x1a04c8	0x164eec	0x141615f70	Values commerce
+classic	PE:6aea11a5:0272d000	6	value	high	29	ROMANCE	0x164796	0x1a04c8	0x164f2f	0x141615f60	Values romance
+classic	PE:6aea11a5:0272d000	6	value	high	30	NATURE	0x164796	0x1a04c8	0x164f72	0x141615f50	Values nature
+classic	PE:6aea11a5:0272d000	6	value	high	31	PEACE	0x164796	0x1a04c8	0x164fb2	0x141615f40	Values peace
+classic	PE:6aea11a5:0272d000	6	value	high	32	KNOWLEDGE	0x164796	0x1a04c8	0x164ff2	0x141615f28	Values knowledge
+classic	PE:6aea11a5:0272d000	7	value	low	0	LAW	0x165082	0x1a054c	0x165084	0x141615f18	Disdains law
+classic	PE:6aea11a5:0272d000	7	value	low	1	LOYALTY	0x165082	0x1a054c	0x1650c7	0x141615f00	Disdains loyalty
+classic	PE:6aea11a5:0272d000	7	value	low	2	FAMILY	0x165082	0x1a054c	0x16510a	0x141615ef0	Disdains family
+classic	PE:6aea11a5:0272d000	7	value	low	3	FRIENDSHIP	0x165082	0x1a054c	0x16514d	0x141615ed8	Disdains friendship
+classic	PE:6aea11a5:0272d000	7	value	low	4	POWER	0x165082	0x1a054c	0x165190	0x141615ec8	Disdains power
+classic	PE:6aea11a5:0272d000	7	value	low	5	TRUTH	0x165082	0x1a054c	0x1651d3	0x141615eb8	Disdains truth
+classic	PE:6aea11a5:0272d000	7	value	low	6	CUNNING	0x165082	0x1a054c	0x165216	0x141616168	Disdains cunning
+classic	PE:6aea11a5:0272d000	7	value	low	7	ELOQUENCE	0x165082	0x1a054c	0x165259	0x141616150	Disdains eloquence
+classic	PE:6aea11a5:0272d000	7	value	low	8	FAIRNESS	0x165082	0x1a054c	0x16529c	0x141616138	Disdains fairness
+classic	PE:6aea11a5:0272d000	7	value	low	9	DECORUM	0x165082	0x1a054c	0x1652df	0x141616120	Disdains decorum
+classic	PE:6aea11a5:0272d000	7	value	low	10	TRADITION	0x165082	0x1a054c	0x165322	0x141616108	Disdains tradition
+classic	PE:6aea11a5:0272d000	7	value	low	11	ARTWORK	0x165082	0x1a054c	0x165365	0x1416160f0	Disdains artwork
+classic	PE:6aea11a5:0272d000	7	value	low	12	COOPERATION	0x165082	0x1a054c	0x1653a8	0x1416160d8	Disdains cooperation
+classic	PE:6aea11a5:0272d000	7	value	low	13	INDEPENDENCE	0x165082	0x1a054c	0x1653eb	0x1416160c0	Disdains independence
+classic	PE:6aea11a5:0272d000	7	value	low	14	STOICISM	0x165082	0x1a054c	0x16542e	0x1416160a8	Disdains stoicism
+classic	PE:6aea11a5:0272d000	7	value	low	15	INTROSPECTION	0x165082	0x1a054c	0x165471	0x141616090	Disdains introspection
+classic	PE:6aea11a5:0272d000	7	value	low	16	SELF_CONTROL	0x165082	0x1a054c	0x1654b4	0x141616078	Disdains self-control
+classic	PE:6aea11a5:0272d000	7	value	low	17	TRANQUILITY	0x165082	0x1a054c	0x1654f7	0x141616060	Disdains tranquility
+classic	PE:6aea11a5:0272d000	7	value	low	18	HARMONY	0x165082	0x1a054c	0x16553a	0x141616048	Disdains harmony
+classic	PE:6aea11a5:0272d000	7	value	low	19	MERRIMENT	0x165082	0x1a054c	0x16557d	0x141616030	Disdains merriment
+classic	PE:6aea11a5:0272d000	7	value	low	20	CRAFTSMANSHIP	0x165082	0x1a054c	0x1655c0	0x141616018	Disdains craftwork
+classic	PE:6aea11a5:0272d000	7	value	low	21	MARTIAL_PROWESS	0x165082	0x1a054c	0x165603	0x141615ff8	Disdains martial prowess
+classic	PE:6aea11a5:0272d000	7	value	low	22	SKILL	0x165082	0x1a054c	0x165646	0x1416162a0	Disdains skill
+classic	PE:6aea11a5:0272d000	7	value	low	23	HARD_WORK	0x165082	0x1a054c	0x165689	0x141616288	Disdains hard work
+classic	PE:6aea11a5:0272d000	7	value	low	24	SACRIFICE	0x165082	0x1a054c	0x1656cc	0x141616270	Disdains sacrifice
+classic	PE:6aea11a5:0272d000	7	value	low	25	COMPETITION	0x165082	0x1a054c	0x16570f	0x141616258	Disdains competition
+classic	PE:6aea11a5:0272d000	7	value	low	26	PERSEVERANCE	0x165082	0x1a054c	0x165752	0x141616240	Disdains perseverance
+classic	PE:6aea11a5:0272d000	7	value	low	27	LEISURE_TIME	0x165082	0x1a054c	0x165795	0x141616228	Disdains leisure time
+classic	PE:6aea11a5:0272d000	7	value	low	28	COMMERCE	0x165082	0x1a054c	0x1657d8	0x141616210	Disdains commerce
+classic	PE:6aea11a5:0272d000	7	value	low	29	ROMANCE	0x165082	0x1a054c	0x16581b	0x1416161f8	Disdains romance
+classic	PE:6aea11a5:0272d000	7	value	low	30	NATURE	0x165082	0x1a054c	0x16585e	0x1416161e8	Disdains nature
+classic	PE:6aea11a5:0272d000	7	value	low	31	PEACE	0x165082	0x1a054c	0x16589e	0x1416161d8	Disdains peace
+classic	PE:6aea11a5:0272d000	7	value	low	32	KNOWLEDGE	0x165082	0x1a054c	0x1658de	0x1416161c0	Disdains knowledge

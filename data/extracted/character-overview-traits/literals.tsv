@@ -1,0 +1,409 @@
+edition	instruction_rva	operand	kind	source
+reference	0x162234	0x14161a520	cstring	Strong
+reference	0x162277	0x14161a518	cstring	Agile
+reference	0x1622ba	0x14161a510	cstring	Tough
+reference	0x1622fd	0x14161a500	cstring	High stamina
+reference	0x16233d	0x14161a4e8	cstring	Recovers quickly
+reference	0x16237d	0x14161a4d0	cstring	Resists sickness
+reference	0x16240f	0x14161a4c4	cstring	Weak
+reference	0x162452	0x14161a4bc	cstring	Clumsy
+reference	0x162495	0x14161a4b4	cstring	Frail
+reference	0x1624d8	0x14161a4a8	cstring	Low stamina
+reference	0x162518	0x14161a498	cstring	Recovers slowly
+reference	0x162558	0x14161a670	cstring	Sickly
+reference	0x1625ea	0x14161a658	cstring	Good analytical ability
+reference	0x16262d	0x14161a648	cstring	Good focus
+reference	0x162670	0x14161a638	cstring	High willpower
+reference	0x1626b3	0x14161a628	cstring	Creative
+reference	0x1626f6	0x14161a618	cstring	Good intuition
+reference	0x162739	0x14161a610	cstring	Patient
+reference	0x16277c	0x14161a600	cstring	Good memory
+reference	0x1627bf	0x14161a5e8	cstring	Good with language
+reference	0x162802	0x14161a5d0	cstring	Good spatial sense
+reference	0x162845	0x14161a5c8	cstring	Musical
+reference	0x162888	0x14161a5b0	cstring	High kinesthetic sense
+reference	0x1628c8	0x14161a598	cstring	Developed empathy
+reference	0x162908	0x14161a580	cstring	High social awareness
+reference	0x16299a	0x14161a568	cstring	Poor analytical ability
+reference	0x1629dd	0x14161a558	cstring	Poor focus
+reference	0x162a20	0x14161a778	cstring	Low willpower
+reference	0x162a63	0x14161a768	cstring	Not creative
+reference	0x162aa6	0x14161a758	cstring	Poor intuition
+reference	0x162ae9	0x14161a748	cstring	Impatient
+reference	0x162b2c	0x14161a738	cstring	Poor memory
+reference	0x162b6f	0x14161a728	cstring	Bad with words
+reference	0x162bb2	0x14161a710	cstring	Poor spatial sense
+reference	0x162bf5	0x14161a700	cstring	Not musical
+reference	0x162c38	0x14161a6e8	cstring	Poor kinesthetic sense
+reference	0x162c78	0x14161a6d8	cstring	Poor empathy
+reference	0x162cb8	0x14161a6c0	cstring	Poor social awareness
+reference	0x162d4a	0x14161a6b0	cstring	Quick to love
+reference	0x162d8d	0x14161a6a8	cstring	Hateful
+reference	0x162dd0	0x14161a6a0	cstring	Envious
+reference	0x162e13	0x14161a690	cstring	Cheerful
+reference	0x162e56	0x14161a678	cstring	Depression-prone
+reference	0x162e99	0x14161a850	cstring	Anger-prone
+reference	0x162edc	0x14161a848	cstring	Anxious
+reference	0x162f1f	0x14161a840	cstring	Lustful
+reference	0x162f62	0x14161a830	cstring	Easily stressed
+reference	0x162fa5	0x14161a824	cstring	Greedy
+reference	0x162fe8	0x14161a818	cstring	Intemperate
+reference	0x16302b	0x14161a810	cstring	Brawler
+reference	0x16306e	0x14161a800	cstring	Stubborn
+reference	0x1630b1	0x14161a7f0	cstring	Wasteful
+reference	0x1630f4	0x14161a7d8	cstring	Prone to discord
+reference	0x163137	0x14161a7c8	cstring	Flatterer
+reference	0x16317a	0x14161a7c0	cstring	Polite
+reference	0x1631bd	0x14161a7b0	cstring	Disdains advice
+reference	0x163200	0x14161a7a0	cstring	Fearless
+reference	0x163243	0x14161a790	cstring	Overconfident
+reference	0x163286	0x14161a788	cstring	Vain
+reference	0x1632c9	0x14161a920	cstring	Ambitious
+reference	0x16330c	0x14161a910	cstring	Gracious
+reference	0x16334f	0x14161a900	cstring	Extravagant
+reference	0x163392	0x14161a8f4	cstring	Zany
+reference	0x1633d5	0x14161a8e8	cstring	Vengeful
+reference	0x163418	0x14161a8e0	cstring	Proud
+reference	0x16345b	0x14161a8d8	cstring	Cruel
+reference	0x16349e	0x14161a8c8	cstring	Single-minded
+reference	0x1634e1	0x14161a8c0	cstring	Hopeful
+reference	0x163524	0x14161a8b8	cstring	Curious
+reference	0x163567	0x14161a8b0	cstring	Bashful
+reference	0x1635aa	0x14161a8a8	cstring	Private
+reference	0x1635ed	0x14161a898	cstring	Perfectionist
+reference	0x163630	0x14161a888	cstring	Obstinate
+reference	0x163673	0x14161a878	cstring	Tolerant
+reference	0x1636b6	0x14161a860	cstring	Emotional obsessive
+reference	0x1636f9	0x14161aa28	cstring	Swayed by emotions
+reference	0x16373c	0x14161aa18	cstring	Altruistic
+reference	0x16377f	0x14161aa10	cstring	Dutiful
+reference	0x1637c2	0x14161aa00	cstring	Thoughtless
+reference	0x163805	0x14161a9f8	cstring	Orderly
+reference	0x163848	0x14161a9e8	cstring	Trusting
+reference	0x16388b	0x14161a9d8	cstring	Gregarious
+reference	0x1638ce	0x14161a9c8	cstring	Overbearing
+reference	0x163911	0x14161a9b8	cstring	Frenetic
+reference	0x163954	0x14161a9a8	cstring	Thrill-seeker
+reference	0x163997	0x14161a990	cstring	Flights of fancy
+reference	0x1639d7	0x14161a978	cstring	Inclined to abstract
+reference	0x163a17	0x14161a960	cstring	Artistically inclined
+reference	0x163aa9	0x14161a950	cstring	Slow to love
+reference	0x163aec	0x14161a940	cstring	Slow to hate
+reference	0x163b2f	0x14161a930	cstring	Not envious
+reference	0x163b72	0x14161ab38	cstring	Cheerless
+reference	0x163bb5	0x14161ab20	cstring	Not easily depressed
+reference	0x163bf8	0x14161ab10	cstring	Slow to anger
+reference	0x163c3b	0x14161ab00	cstring	Not anxious
+reference	0x163c7e	0x14161aaf0	cstring	Not lustful
+reference	0x163cc1	0x14161aae0	cstring	Resilient
+reference	0x163d04	0x14161aad0	cstring	Not greedy
+reference	0x163d47	0x14161aac0	cstring	Temperate
+reference	0x163d8a	0x14161aab0	cstring	Avoid fights
+reference	0x163dcd	0x14161aa98	cstring	Quick to give up
+reference	0x163e10	0x14161aa88	cstring	Not wasteful
+reference	0x163e53	0x14161aa78	cstring	Seeks harmony
+reference	0x163e96	0x14161aa68	cstring	Quarreler
+reference	0x163ed9	0x14161aa60	cstring	Rude
+reference	0x163f1c	0x14161aa48	cstring	Overreliant on advice
+reference	0x163f5f	0x14161aa40	cstring	Fearful
+reference	0x163fa2	0x14161ac38	cstring	Pusillanimous
+reference	0x163fe5	0x14161ac28	cstring	Not vain
+reference	0x164028	0x14161ac18	cstring	Not ambitious
+reference	0x16406b	0x14161ac08	cstring	Ungrateful
+reference	0x1640ae	0x14161ac00	cstring	Austere
+reference	0x1640f1	0x14161abf0	cstring	Humorless
+reference	0x164134	0x14161abe0	cstring	Not vengeful
+reference	0x164177	0x14161abd0	cstring	Low self esteem
+reference	0x1641ba	0x14161abc0	cstring	Merciful
+reference	0x1641fd	0x14161abb0	cstring	Scatterbrained
+reference	0x164240	0x14161ab98	cstring	Quick to despair
+reference	0x164283	0x14161ab88	cstring	Incurious
+reference	0x1642c6	0x14161ab78	cstring	Shameless
+reference	0x164309	0x14161ab68	cstring	Overshares
+reference	0x16434c	0x14161ab58	cstring	Inattentive
+reference	0x16438f	0x14161ab48	cstring	Acquiescing
+reference	0x1643d2	0x14161ad60	cstring	Intolerant
+reference	0x164415	0x14161ad48	cstring	Emotionally distant
+reference	0x164458	0x14161ad30	cstring	Unswayed by emotions
+reference	0x16449b	0x14161ad20	cstring	Not altruistic
+reference	0x1644de	0x14161ad10	cstring	Not dutiful
+reference	0x164521	0x14161ad00	cstring	Overcautious
+reference	0x164564	0x14161acf4	cstring	Sloppy
+reference	0x1645a7	0x14161ace8	cstring	Distrustful
+reference	0x1645ea	0x14161acdc	cstring	Loner
+reference	0x16462d	0x14161acd0	cstring	Unassertive
+reference	0x164670	0x14161acc0	cstring	Leisurely
+reference	0x1646b3	0x14161aca8	cstring	Avoids excitement
+reference	0x1646f6	0x14161ac98	cstring	Fact-oriented
+reference	0x164736	0x14161ac78	cstring	Not inclined to abstract
+reference	0x164776	0x14161ac58	cstring	Not inclined to create art
+reference	0x164808	0x14161ac48	cstring	Values law
+reference	0x16484b	0x14161ae98	cstring	Values loyalty
+reference	0x16488e	0x14161ae88	cstring	Values family
+reference	0x1648d1	0x14161ae70	cstring	Values friendship
+reference	0x164914	0x14161ae60	cstring	Values power
+reference	0x164957	0x14161ae50	cstring	Values truth
+reference	0x16499a	0x14161ae40	cstring	Values cunning
+reference	0x1649dd	0x14161ae28	cstring	Values eloquence
+reference	0x164a20	0x14161ae18	cstring	Values fairness
+reference	0x164a63	0x14161ae08	cstring	Values decorum
+reference	0x164aa6	0x14161adf0	cstring	Values tradition
+reference	0x164ae9	0x14161ade0	cstring	Values artwork
+reference	0x164b2c	0x14161adc8	cstring	Values cooperation
+reference	0x164b6f	0x14161adb0	cstring	Values independence
+reference	0x164bb2	0x14161ada0	cstring	Values stoicism
+reference	0x164bf5	0x14161ad88	cstring	Values introspection
+reference	0x164c38	0x14161ad70	cstring	Values self-control
+reference	0x164c7b	0x14161afe0	cstring	Values tranquility
+reference	0x164cbe	0x14161afd0	cstring	Values harmony
+reference	0x164d01	0x14161afb8	cstring	Values merriment
+reference	0x164d44	0x14161afa0	cstring	Values craftwork
+reference	0x164d87	0x14161af88	cstring	Values martial prowess
+reference	0x164dca	0x14161af78	cstring	Values skill
+reference	0x164e0d	0x14161af60	cstring	Values hard work
+reference	0x164e50	0x14161af48	cstring	Values sacrifice
+reference	0x164e93	0x14161af30	cstring	Values competition
+reference	0x164ed6	0x14161af18	cstring	Values perseverance
+reference	0x164f19	0x14161af00	cstring	Values leisure time
+reference	0x164f5c	0x14161aef0	cstring	Values commerce
+reference	0x164f9f	0x14161aee0	cstring	Values romance
+reference	0x164fe2	0x14161aed0	cstring	Values nature
+reference	0x165022	0x14161aec0	cstring	Values peace
+reference	0x165062	0x14161aea8	cstring	Values knowledge
+reference	0x1650f4	0x14161b148	cstring	Disdains law
+reference	0x165137	0x14161b130	cstring	Disdains loyalty
+reference	0x16517a	0x14161b120	cstring	Disdains family
+reference	0x1651bd	0x14161b108	cstring	Disdains friendship
+reference	0x165200	0x14161b0f8	cstring	Disdains power
+reference	0x165243	0x14161b0e8	cstring	Disdains truth
+reference	0x165286	0x14161b0d0	cstring	Disdains cunning
+reference	0x1652c9	0x14161b0b8	cstring	Disdains eloquence
+reference	0x16530c	0x14161b0a0	cstring	Disdains fairness
+reference	0x16534f	0x14161b088	cstring	Disdains decorum
+reference	0x165392	0x14161b070	cstring	Disdains tradition
+reference	0x1653d5	0x14161b058	cstring	Disdains artwork
+reference	0x165418	0x14161b040	cstring	Disdains cooperation
+reference	0x16545b	0x14161b028	cstring	Disdains independence
+reference	0x16549e	0x14161b010	cstring	Disdains stoicism
+reference	0x1654e1	0x14161aff8	cstring	Disdains introspection
+reference	0x165524	0x14161b2b0	cstring	Disdains self-control
+reference	0x165567	0x14161b298	cstring	Disdains tranquility
+reference	0x1655aa	0x14161b280	cstring	Disdains harmony
+reference	0x1655ed	0x14161b268	cstring	Disdains merriment
+reference	0x165630	0x14161b250	cstring	Disdains craftwork
+reference	0x165673	0x14161b230	cstring	Disdains martial prowess
+reference	0x1656b6	0x14161b220	cstring	Disdains skill
+reference	0x1656f9	0x14161b208	cstring	Disdains hard work
+reference	0x16573c	0x14161b1f0	cstring	Disdains sacrifice
+reference	0x16577f	0x14161b1d8	cstring	Disdains competition
+reference	0x1657c2	0x14161b1c0	cstring	Disdains perseverance
+reference	0x165805	0x14161b1a8	cstring	Disdains leisure time
+reference	0x165848	0x14161b190	cstring	Disdains commerce
+reference	0x16588b	0x14161b178	cstring	Disdains romance
+reference	0x1658ce	0x14161b168	cstring	Disdains nature
+reference	0x16590e	0x14161b158	cstring	Disdains peace
+reference	0x16594e	0x14161b398	cstring	Disdains knowledge
+classic	0x1621c4	0x1416153bc	cstring	Strong
+classic	0x162207	0x141615540	cstring	Agile
+classic	0x16224a	0x141615538	cstring	Tough
+classic	0x16228d	0x141615528	cstring	High stamina
+classic	0x1622cd	0x141615510	cstring	Recovers quickly
+classic	0x16230d	0x1416154f8	cstring	Resists sickness
+classic	0x16239f	0x1416154ec	cstring	Weak
+classic	0x1623e2	0x1416154e4	cstring	Clumsy
+classic	0x162425	0x1416154dc	cstring	Frail
+classic	0x162468	0x1416154d0	cstring	Low stamina
+classic	0x1624a8	0x1416154c0	cstring	Recovers slowly
+classic	0x1624e8	0x1416154b8	cstring	Sickly
+classic	0x16257a	0x1416154a0	cstring	Good analytical ability
+classic	0x1625bd	0x141615490	cstring	Good focus
+classic	0x162600	0x141615480	cstring	High willpower
+classic	0x162643	0x141615470	cstring	Creative
+classic	0x162686	0x141615460	cstring	Good intuition
+classic	0x1626c9	0x141615660	cstring	Patient
+classic	0x16270c	0x141615650	cstring	Good memory
+classic	0x16274f	0x141615638	cstring	Good with language
+classic	0x162792	0x141615620	cstring	Good spatial sense
+classic	0x1627d5	0x141615618	cstring	Musical
+classic	0x162818	0x141615600	cstring	High kinesthetic sense
+classic	0x162858	0x1416155e8	cstring	Developed empathy
+classic	0x162898	0x1416155d0	cstring	High social awareness
+classic	0x16292a	0x1416155b8	cstring	Poor analytical ability
+classic	0x16296d	0x1416155a8	cstring	Poor focus
+classic	0x1629b0	0x141615598	cstring	Low willpower
+classic	0x1629f3	0x141615588	cstring	Not creative
+classic	0x162a36	0x141615578	cstring	Poor intuition
+classic	0x162a79	0x141615568	cstring	Impatient
+classic	0x162abc	0x141615558	cstring	Poor memory
+classic	0x162aff	0x141615548	cstring	Bad with words
+classic	0x162b42	0x141615748	cstring	Poor spatial sense
+classic	0x162b85	0x141615738	cstring	Not musical
+classic	0x162bc8	0x141615720	cstring	Poor kinesthetic sense
+classic	0x162c08	0x141615710	cstring	Poor empathy
+classic	0x162c48	0x1416156f8	cstring	Poor social awareness
+classic	0x162cda	0x1416156e8	cstring	Quick to love
+classic	0x162d1d	0x1416156e0	cstring	Hateful
+classic	0x162d60	0x1416156d8	cstring	Envious
+classic	0x162da3	0x1416156c8	cstring	Cheerful
+classic	0x162de6	0x1416156b0	cstring	Depression-prone
+classic	0x162e29	0x1416156a0	cstring	Anger-prone
+classic	0x162e6c	0x141615698	cstring	Anxious
+classic	0x162eaf	0x141615690	cstring	Lustful
+classic	0x162ef2	0x141615680	cstring	Easily stressed
+classic	0x162f35	0x141615674	cstring	Greedy
+classic	0x162f78	0x141615668	cstring	Intemperate
+classic	0x162fbb	0x141615838	cstring	Brawler
+classic	0x162ffe	0x141615828	cstring	Stubborn
+classic	0x163041	0x141615818	cstring	Wasteful
+classic	0x163084	0x141615800	cstring	Prone to discord
+classic	0x1630c7	0x1416157f0	cstring	Flatterer
+classic	0x16310a	0x1416157e8	cstring	Polite
+classic	0x16314d	0x1416157d8	cstring	Disdains advice
+classic	0x163190	0x1416157c8	cstring	Fearless
+classic	0x1631d3	0x1416157b8	cstring	Overconfident
+classic	0x163216	0x1416157ac	cstring	Vain
+classic	0x163259	0x1416157a0	cstring	Ambitious
+classic	0x16329c	0x141615790	cstring	Gracious
+classic	0x1632df	0x141615780	cstring	Extravagant
+classic	0x163322	0x141615774	cstring	Zany
+classic	0x163365	0x141615768	cstring	Vengeful
+classic	0x1633a8	0x14161575c	cstring	Proud
+classic	0x1633eb	0x141615910	cstring	Cruel
+classic	0x16342e	0x141615900	cstring	Single-minded
+classic	0x163471	0x1416158f8	cstring	Hopeful
+classic	0x1634b4	0x1416158f0	cstring	Curious
+classic	0x1634f7	0x1416158e8	cstring	Bashful
+classic	0x16353a	0x1416158e0	cstring	Private
+classic	0x16357d	0x1416158d0	cstring	Perfectionist
+classic	0x1635c0	0x1416158c0	cstring	Obstinate
+classic	0x163603	0x1416158b0	cstring	Tolerant
+classic	0x163646	0x141615898	cstring	Emotional obsessive
+classic	0x163689	0x141615880	cstring	Swayed by emotions
+classic	0x1636cc	0x141615870	cstring	Altruistic
+classic	0x16370f	0x141615868	cstring	Dutiful
+classic	0x163752	0x141615858	cstring	Thoughtless
+classic	0x163795	0x141615850	cstring	Orderly
+classic	0x1637d8	0x141615840	cstring	Trusting
+classic	0x16381b	0x141615a28	cstring	Gregarious
+classic	0x16385e	0x141615a18	cstring	Overbearing
+classic	0x1638a1	0x141615a08	cstring	Frenetic
+classic	0x1638e4	0x1416159f8	cstring	Thrill-seeker
+classic	0x163927	0x1416159e0	cstring	Flights of fancy
+classic	0x163967	0x1416159c8	cstring	Inclined to abstract
+classic	0x1639a7	0x1416159b0	cstring	Artistically inclined
+classic	0x163a39	0x1416159a0	cstring	Slow to love
+classic	0x163a7c	0x141615990	cstring	Slow to hate
+classic	0x163abf	0x141615980	cstring	Not envious
+classic	0x163b02	0x141615970	cstring	Cheerless
+classic	0x163b45	0x141615958	cstring	Not easily depressed
+classic	0x163b88	0x141615948	cstring	Slow to anger
+classic	0x163bcb	0x141615938	cstring	Not anxious
+classic	0x163c0e	0x141615928	cstring	Not lustful
+classic	0x163c51	0x141615918	cstring	Resilient
+classic	0x163c94	0x141615b20	cstring	Not greedy
+classic	0x163cd7	0x141615b10	cstring	Temperate
+classic	0x163d1a	0x141615b00	cstring	Avoid fights
+classic	0x163d5d	0x141615ae8	cstring	Quick to give up
+classic	0x163da0	0x141615ad8	cstring	Not wasteful
+classic	0x163de3	0x141615ac8	cstring	Seeks harmony
+classic	0x163e26	0x141615ab8	cstring	Quarreler
+classic	0x163e69	0x141615ab0	cstring	Rude
+classic	0x163eac	0x141615a98	cstring	Overreliant on advice
+classic	0x163eef	0x141615a90	cstring	Fearful
+classic	0x163f32	0x141615a80	cstring	Pusillanimous
+classic	0x163f75	0x141615a70	cstring	Not vain
+classic	0x163fb8	0x141615a60	cstring	Not ambitious
+classic	0x163ffb	0x141615a50	cstring	Ungrateful
+classic	0x16403e	0x141615a48	cstring	Austere
+classic	0x164081	0x141615a38	cstring	Humorless
+classic	0x1640c4	0x141615c38	cstring	Not vengeful
+classic	0x164107	0x141615c28	cstring	Low self esteem
+classic	0x16414a	0x141615c18	cstring	Merciful
+classic	0x16418d	0x141615c08	cstring	Scatterbrained
+classic	0x1641d0	0x141615bf0	cstring	Quick to despair
+classic	0x164213	0x141615be0	cstring	Incurious
+classic	0x164256	0x141615bd0	cstring	Shameless
+classic	0x164299	0x141615bc0	cstring	Overshares
+classic	0x1642dc	0x141615bb0	cstring	Inattentive
+classic	0x16431f	0x141615ba0	cstring	Acquiescing
+classic	0x164362	0x141615b90	cstring	Intolerant
+classic	0x1643a5	0x141615b78	cstring	Emotionally distant
+classic	0x1643e8	0x141615b60	cstring	Unswayed by emotions
+classic	0x16442b	0x141615b50	cstring	Not altruistic
+classic	0x16446e	0x141615b40	cstring	Not dutiful
+classic	0x1644b1	0x141615b30	cstring	Overcautious
+classic	0x1644f4	0x141615d5c	cstring	Sloppy
+classic	0x164537	0x141615d50	cstring	Distrustful
+classic	0x16457a	0x141615d44	cstring	Loner
+classic	0x1645bd	0x141615d38	cstring	Unassertive
+classic	0x164600	0x141615d28	cstring	Leisurely
+classic	0x164643	0x141615d10	cstring	Avoids excitement
+classic	0x164686	0x141615d00	cstring	Fact-oriented
+classic	0x1646c6	0x141615ce0	cstring	Not inclined to abstract
+classic	0x164706	0x141615cc0	cstring	Not inclined to create art
+classic	0x164798	0x141615cb0	cstring	Values law
+classic	0x1647db	0x141615ca0	cstring	Values loyalty
+classic	0x16481e	0x141615c90	cstring	Values family
+classic	0x164861	0x141615c78	cstring	Values friendship
+classic	0x1648a4	0x141615c68	cstring	Values power
+classic	0x1648e7	0x141615c58	cstring	Values truth
+classic	0x16492a	0x141615c48	cstring	Values cunning
+classic	0x16496d	0x141615ea0	cstring	Values eloquence
+classic	0x1649b0	0x141615e90	cstring	Values fairness
+classic	0x1649f3	0x141615e80	cstring	Values decorum
+classic	0x164a36	0x141615e68	cstring	Values tradition
+classic	0x164a79	0x141615e58	cstring	Values artwork
+classic	0x164abc	0x141615e40	cstring	Values cooperation
+classic	0x164aff	0x141615e28	cstring	Values independence
+classic	0x164b42	0x141615e18	cstring	Values stoicism
+classic	0x164b85	0x141615e00	cstring	Values introspection
+classic	0x164bc8	0x141615de8	cstring	Values self-control
+classic	0x164c0b	0x141615dd0	cstring	Values tranquility
+classic	0x164c4e	0x141615dc0	cstring	Values harmony
+classic	0x164c91	0x141615da8	cstring	Values merriment
+classic	0x164cd4	0x141615d90	cstring	Values craftwork
+classic	0x164d17	0x141615d78	cstring	Values martial prowess
+classic	0x164d5a	0x141615d68	cstring	Values skill
+classic	0x164d9d	0x141615fe0	cstring	Values hard work
+classic	0x164de0	0x141615fc8	cstring	Values sacrifice
+classic	0x164e23	0x141615fb0	cstring	Values competition
+classic	0x164e66	0x141615f98	cstring	Values perseverance
+classic	0x164ea9	0x141615f80	cstring	Values leisure time
+classic	0x164eec	0x141615f70	cstring	Values commerce
+classic	0x164f2f	0x141615f60	cstring	Values romance
+classic	0x164f72	0x141615f50	cstring	Values nature
+classic	0x164fb2	0x141615f40	cstring	Values peace
+classic	0x164ff2	0x141615f28	cstring	Values knowledge
+classic	0x165084	0x141615f18	cstring	Disdains law
+classic	0x1650c7	0x141615f00	cstring	Disdains loyalty
+classic	0x16510a	0x141615ef0	cstring	Disdains family
+classic	0x16514d	0x141615ed8	cstring	Disdains friendship
+classic	0x165190	0x141615ec8	cstring	Disdains power
+classic	0x1651d3	0x141615eb8	cstring	Disdains truth
+classic	0x165216	0x141616168	cstring	Disdains cunning
+classic	0x165259	0x141616150	cstring	Disdains eloquence
+classic	0x16529c	0x141616138	cstring	Disdains fairness
+classic	0x1652df	0x141616120	cstring	Disdains decorum
+classic	0x165322	0x141616108	cstring	Disdains tradition
+classic	0x165365	0x1416160f0	cstring	Disdains artwork
+classic	0x1653a8	0x1416160d8	cstring	Disdains cooperation
+classic	0x1653eb	0x1416160c0	cstring	Disdains independence
+classic	0x16542e	0x1416160a8	cstring	Disdains stoicism
+classic	0x165471	0x141616090	cstring	Disdains introspection
+classic	0x1654b4	0x141616078	cstring	Disdains self-control
+classic	0x1654f7	0x141616060	cstring	Disdains tranquility
+classic	0x16553a	0x141616048	cstring	Disdains harmony
+classic	0x16557d	0x141616030	cstring	Disdains merriment
+classic	0x1655c0	0x141616018	cstring	Disdains craftwork
+classic	0x165603	0x141615ff8	cstring	Disdains martial prowess
+classic	0x165646	0x1416162a0	cstring	Disdains skill
+classic	0x165689	0x141616288	cstring	Disdains hard work
+classic	0x1656cc	0x141616270	cstring	Disdains sacrifice
+classic	0x16570f	0x141616258	cstring	Disdains competition
+classic	0x165752	0x141616240	cstring	Disdains perseverance
+classic	0x165795	0x141616228	cstring	Disdains leisure time
+classic	0x1657d8	0x141616210	cstring	Disdains commerce
+classic	0x16581b	0x1416161f8	cstring	Disdains romance
+classic	0x16585e	0x1416161e8	cstring	Disdains nature
+classic	0x16589e	0x1416161d8	cstring	Disdains peace
+classic	0x1658de	0x1416161c0	cstring	Disdains knowledge

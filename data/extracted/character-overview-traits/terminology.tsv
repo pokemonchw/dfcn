@@ -1,0 +1,103 @@
+family	token	high_source	high_translation	low_source	low_translation	meaning	wiki_source
+physical	STRENGTH	Strong	力量强劲	Weak	力量薄弱	力量，与体格韧性、耐力分开。	https://dwarffortresswiki.org/index.php/Attribute#Strength
+physical	AGILITY	Agile	身手敏捷	Clumsy	动作笨拙	身体动作的敏捷程度。	https://dwarffortresswiki.org/index.php/Attribute#Agility
+physical	TOUGHNESS	Tough	体格强韧	Frail	体格脆弱	身体的强韧程度，不是物体的坚固或心理抗压能力。	https://dwarffortresswiki.org/index.php/Attribute#Toughness
+physical	ENDURANCE	High stamina	耐力充沛	Low stamina	耐力不足	身体耐力，不是性格上的活跃程度。	https://dwarffortresswiki.org/index.php/Attribute#Endurance
+physical	RECUPERATION	Recovers quickly	伤口愈合快	Recovers slowly	伤口愈合慢	伤势恢复能力，不是疲劳恢复或当前健康状态。	https://dwarffortresswiki.org/index.php/Attribute#Recuperation
+physical	DISEASE_RESISTANCE	Resists sickness	抗病力强	Sickly	容易生病	抗病能力；低值表示易患病，不表示此刻已经生病。	https://dwarffortresswiki.org/index.php/Attribute#Disease_resistance
+mental	ANALYTICAL_ABILITY	Good analytical ability	分析力强	Poor analytical ability	分析力弱	分析和理解问题的能力。	https://dwarffortresswiki.org/index.php/Attribute#Analytical_ability
+mental	FOCUS	Good focus	专注力强	Poor focus	专注力弱	集中注意力的能力，与专心于一件事的性格倾向分开。	https://dwarffortresswiki.org/index.php/Attribute#Focus
+mental	WILLPOWER	High willpower	意志坚定	Low willpower	意志薄弱	意志力，与毅力价值观分开。	https://dwarffortresswiki.org/index.php/Attribute#Willpower
+mental	CREATIVITY	Creative	富有创造力	Not creative	创造力不足	创造能力，与喜欢幻想的性格倾向分开。	https://dwarffortresswiki.org/index.php/Attribute#Creativity
+mental	INTUITION	Good intuition	直觉敏锐	Poor intuition	直觉迟钝	直觉判断能力。	https://dwarffortresswiki.org/index.php/Attribute#Intuition
+mental	PATIENCE	Patient	有耐心	Impatient	缺乏耐心	耐心；Patient 在这里不是医疗身份“病患”。	https://dwarffortresswiki.org/index.php/Attribute#Patience
+mental	MEMORY	Good memory	记忆力好	Poor memory	记忆力差	记忆能力；概述合并多个等级，不能断言过目不忘。	https://dwarffortresswiki.org/index.php/Attribute#Memory
+mental	LINGUISTIC_ABILITY	Good with language	语言能力强	Bad with words	语言能力弱	理解和运用语言文字的能力，不只指口头辩才。	https://dwarffortresswiki.org/index.php/Attribute#Linguistic_ability
+mental	SPATIAL_SENSE	Good spatial sense	空间感强	Poor spatial sense	空间感弱	对空间关系的感知能力。	https://dwarffortresswiki.org/index.php/Attribute#Spatial_sense
+mental	MUSICALITY	Musical	乐感好	Not musical	乐感差	音乐感知能力，不是音乐作品类别或是否喜欢音乐。	https://dwarffortresswiki.org/index.php/Attribute#Musicality
+mental	KINESTHETIC_SENSE	High kinesthetic sense	身体感知敏锐	Poor kinesthetic sense	身体感知迟钝	对自身身体位置和运动的感知能力，与敏捷分开。	https://dwarffortresswiki.org/index.php/Attribute#Kinesthetic_sense
+mental	EMPATHY	Developed empathy	善解他人情绪	Poor empathy	难解他人情绪	辨识理解他人的情绪，不等同于仁慈或乐于助人。	https://dwarffortresswiki.org/index.php/Attribute#Empathy
+mental	SOCIAL_AWARENESS	High social awareness	善察人际关系	Poor social awareness	不谙人际关系	理解人际关系的能力，不是合群程度或社会地位。	https://dwarffortresswiki.org/index.php/Attribute#Social_awareness
+facet	LOVE_PROPENSITY	Quick to love	容易动情	Slow to love	不易动情	形成爱意与好感的倾向，不是对爱情价值的评价。	https://dwarffortresswiki.org/index.php/Personality_facet#LOVE_PROPENSITY
+facet	HATE_PROPENSITY	Hateful	容易生恨	Slow to hate	不易生恨	产生憎恨与负面感情的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#HATE_PROPENSITY
+facet	ENVY_PROPENSITY	Envious	容易嫉妒	Not envious	很少嫉妒	对他人境遇和所有物产生嫉妒的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#ENVY_PROPENSITY
+facet	CHEER_PROPENSITY	Cheerful	心情开朗	Cheerless	少有欢愉	感到快乐的倾向，与对未来抱有希望分开。	https://dwarffortresswiki.org/index.php/Personality_facet#CHEER_PROPENSITY
+facet	DEPRESSION_PROPENSITY	Depression-prone	容易消沉	Not easily depressed	不易消沉	陷入悲伤消沉的倾向，不是当前情绪或医学诊断。	https://dwarffortresswiki.org/index.php/Personality_facet#DEPRESSION_PROPENSITY
+facet	ANGER_PROPENSITY	Anger-prone	容易动怒	Slow to anger	不易动怒	产生愤怒的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#ANGER_PROPENSITY
+facet	ANXIETY_PROPENSITY	Anxious	容易焦虑	Not anxious	少有焦虑	紧张焦虑的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#ANXIETY_PROPENSITY
+facet	LUST_PROPENSITY	Lustful	性欲旺盛	Not lustful	性欲淡薄	性欲，不能泛化为所有欲望。	https://dwarffortresswiki.org/index.php/Personality_facet#LUST_PROPENSITY
+facet	STRESS_VULNERABILITY	Easily stressed	不耐压力	Resilient	抗压能力强	心理上承受压力的倾向，不是身体强韧程度。	https://dwarffortresswiki.org/index.php/Personality_facet#STRESS_VULNERABILITY
+facet	GREED	Greedy	贪恋财物	Not greedy	淡泊财物	对物质财富的渴望。	https://dwarffortresswiki.org/index.php/Personality_facet#GREED
+facet	IMMODERATION	Intemperate	容易放纵	Temperate	懂得节制	对渴求和冲动的实际节制倾向，与自律价值观分开。	https://dwarffortresswiki.org/index.php/Personality_facet#IMMODERATION
+facet	VIOLENT	Brawler	喜欢斗殴	Avoid fights	回避打斗	对身体冲突的偏好，不直接断言军事作战能力。	https://dwarffortresswiki.org/index.php/Personality_facet#VIOLENT
+facet	PERSEVERANCE	Stubborn	执着不放	Quick to give up	容易放弃	遇到困难后坚持行动的倾向，不是固守观点。	https://dwarffortresswiki.org/index.php/Personality_facet#PERSEVERANCE
+facet	WASTEFULNESS	Wasteful	做事浪费	Not wasteful	做事节省	完成工作时耗费资源、时间和精力的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#WASTEFULNESS
+facet	DISCORD	Prone to discord	喜欢纷争	Seeks harmony	追求和睦	对日常纷争的态度。	https://dwarffortresswiki.org/index.php/Personality_facet#DISCORD
+facet	FRIENDLINESS	Flatterer	爱说好话	Quarreler	好与人争吵	对人友好并说好话或好争吵的倾向，不是奉承技能职业名。	https://dwarffortresswiki.org/index.php/Personality_facet#FRIENDLINESS
+facet	POLITENESS	Polite	彬彬有礼	Rude	粗鲁无礼	言行中的礼貌程度，与礼仪价值观分开。	https://dwarffortresswiki.org/index.php/Personality_facet#POLITENESS
+facet	DISDAIN_ADVICE	Disdains advice	不听劝告	Overreliant on advice	依赖他人建议	做决定时拒绝或依赖他人的建议。	https://dwarffortresswiki.org/index.php/Personality_facet#DISDAIN_ADVICE
+facet	BRAVERY	Fearless	无惧危险	Fearful	畏惧危险	面对危险的胆量，与相信自身能力分开。	https://dwarffortresswiki.org/index.php/Personality_facet#BRAVERY
+facet	CONFIDENCE	Overconfident	过于自信	Pusillanimous	缺乏自信	对自身能力的信心，不是对危险的恐惧。	https://dwarffortresswiki.org/index.php/Personality_facet#CONFIDENCE
+facet	VANITY	Vain	自我欣赏	Not vain	不慕虚荣	对自身外貌、才华和成就的自我欣赏程度。	https://dwarffortresswiki.org/index.php/Personality_facet#VANITY
+facet	AMBITION	Ambitious	雄心勃勃	Not ambitious	缺乏进取心	改善自身境遇和追求成功的驱动力。	https://dwarffortresswiki.org/index.php/Personality_facet#AMBITION
+facet	GRATITUDE	Gracious	知恩图报	Ungrateful	不知感恩	接受帮助后感恩和回报的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#GRATITUDE
+facet	IMMODESTY	Extravagant	打扮张扬	Austere	装束朴素	外在装束和展示方式，与贪财或生活节省分开。	https://dwarffortresswiki.org/index.php/Personality_facet#IMMODESTY
+facet	HUMOR	Zany	爱开玩笑	Humorless	缺乏幽默感	感受和欣赏幽默的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#HUMOR
+facet	VENGEFUL	Vengeful	报复心强	Not vengeful	不记仇	对过往委屈记恨并寻求报复的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#VENGEFUL
+facet	PRIDE	Proud	自视甚高	Low self esteem	自我评价低	对自身重要性和价值的评价。	https://dwarffortresswiki.org/index.php/Personality_facet#PRIDE
+facet	CRUELTY	Cruel	冷酷无情	Merciful	心怀仁慈	是否愿意仁慈相待，不是理解他人情绪的能力。	https://dwarffortresswiki.org/index.php/Personality_facet#CRUELTY
+facet	SINGLEMINDED	Single-minded	一心一意	Scatterbrained	心思散漫	是否将注意力持续放在单一事务上，与心智专注能力分开。	https://dwarffortresswiki.org/index.php/Personality_facet#SINGLEMINDED
+facet	HOPEFUL	Hopeful	满怀希望	Quick to despair	容易绝望	对未来结果的乐观或悲观预期。	https://dwarffortresswiki.org/index.php/Personality_facet#HOPEFUL
+facet	CURIOUS	Curious	好奇心强	Incurious	缺乏好奇心	主动探求信息的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#CURIOUS
+facet	BASHFUL	Bashful	容易害羞	Shameless	不惧他人眼光	在意他人评价的程度，低值不等同于道德败坏。	https://dwarffortresswiki.org/index.php/Personality_facet#BASHFUL
+facet	PRIVACY	Private	不愿谈私事	Overshares	爱说私事	是否愿意透露个人经历和隐私。	https://dwarffortresswiki.org/index.php/Personality_facet#PRIVACY
+facet	PERFECTIONIST	Perfectionist	追求完美	Inattentive	不重细节	做事时对细节和完善程度的要求。	https://dwarffortresswiki.org/index.php/Personality_facet#PERFECTIONIST
+facet	CLOSEMINDED	Obstinate	固执己见	Acquiescing	容易改变主意	是否愿意改变已有观点，与遇事坚持不懈分开。	https://dwarffortresswiki.org/index.php/Personality_facet#CLOSEMINDED
+facet	TOLERANT	Tolerant	包容差异	Intolerant	难容差异	对外貌、文化和生活方式差异的容忍程度。	https://dwarffortresswiki.org/index.php/Personality_facet#TOLERANT
+facet	EMOTIONALLY_OBSESSIVE	Emotional obsessive	感情执着	Emotionally distant	不易依恋	与他人形成深厚情感依恋的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#EMOTIONALLY_OBSESSIVE
+facet	SWAYED_BY_EMOTIONS	Swayed by emotions	易被情感打动	Unswayed by emotions	不易被情感打动	是否受他人情绪或情感诉求影响，不是自身情绪起伏。	https://dwarffortresswiki.org/index.php/Personality_facet#SWAYED_BY_EMOTIONS
+facet	ALTRUISM	Altruistic	乐于助人	Not altruistic	不愿助人	帮助他人的意愿，与是否能理解对方情绪分开。	https://dwarffortresswiki.org/index.php/Personality_facet#ALTRUISM
+facet	DUTIFULNESS	Dutiful	责任心强	Not dutiful	不愿承担义务	对职责、承诺和义务的约束感。	https://dwarffortresswiki.org/index.php/Personality_facet#DUTIFULNESS
+facet	THOUGHTLESSNESS	Thoughtless	行事欠思量	Overcautious	过于瞻前顾后	行动前考虑的多少，与智力或创造力分开。	https://dwarffortresswiki.org/index.php/Personality_facet#THOUGHTLESSNESS
+facet	ORDERLINESS	Orderly	爱好整洁	Sloppy	杂乱无章	个人生活和物品的整洁有序程度。	https://dwarffortresswiki.org/index.php/Personality_facet#ORDERLINESS
+facet	TRUST	Trusting	容易信任他人	Distrustful	不信任他人	信任他人的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#TRUST
+facet	GREGARIOUSNESS	Gregarious	喜欢交往	Loner	喜欢独处	偏好他人陪伴还是独处，不代表社交能力。	https://dwarffortresswiki.org/index.php/Personality_facet#GREGARIOUSNESS
+facet	ASSERTIVENESS	Overbearing	说话强势	Unassertive	不愿表达主见	交谈时主张自身观点的倾向。	https://dwarffortresswiki.org/index.php/Personality_facet#ASSERTIVENESS
+facet	ACTIVITY_LEVEL	Frenetic	活跃好动	Leisurely	悠闲从容	生活节奏与活动倾向，不是身体耐力。	https://dwarffortresswiki.org/index.php/Personality_facet#ACTIVITY_LEVEL
+facet	EXCITEMENT_SEEKING	Thrill-seeker	追求刺激	Avoids excitement	回避刺激	是否寻求兴奋和刺激的情境。	https://dwarffortresswiki.org/index.php/Personality_facet#EXCITEMENT_SEEKING
+facet	IMAGINATION	Flights of fancy	爱幻想	Fact-oriented	注重现实	沉浸想象或立足现实的倾向，不是创造能力。	https://dwarffortresswiki.org/index.php/Personality_facet#IMAGINATION
+facet	ABSTRACT_INCLINED	Inclined to abstract	偏爱抽象思考	Not inclined to abstract	偏爱实际问题	喜欢抽象概念还是具体实际问题。	https://dwarffortresswiki.org/index.php/Personality_facet#ABSTRACT_INCLINED
+facet	ART_INCLINED	Artistically inclined	易被美打动	Not inclined to create art	不易被美打动	对艺术和自然美的审美感受，与创造能力及艺术价值观分开。	https://dwarffortresswiki.org/index.php/Personality_facet#ART_INCLINED
+value	LAW	Values law	尊重法律	Disdains law	轻视法律	对法律的价值判断。	https://dwarffortresswiki.org/index.php/Personality_value#LAW
+value	LOYALTY	Values loyalty	重视忠诚	Disdains loyalty	轻视忠诚	对忠诚的价值判断。	https://dwarffortresswiki.org/index.php/Personality_value#LOYALTY
+value	FAMILY	Values family	珍视家庭	Disdains family	轻视家庭	对家庭的价值判断。	https://dwarffortresswiki.org/index.php/Personality_value#FAMILY
+value	FRIENDSHIP	Values friendship	珍视友情	Disdains friendship	轻视友情	对友谊的价值判断，不直接表示朋友多少或是否合群。	https://dwarffortresswiki.org/index.php/Personality_value#FRIENDSHIP
+value	POWER	Values power	崇尚权势	Disdains power	鄙视权势	对支配他人的权力的价值判断。	https://dwarffortresswiki.org/index.php/Personality_value#POWER
+value	TRUTH	Values truth	看重诚实	Disdains truth	轻视诚实	对诚实和实话的评价，不是抽象真理知识。	https://dwarffortresswiki.org/index.php/Personality_value#TRUTH
+value	CUNNING	Values cunning	崇尚谋略	Disdains cunning	鄙视谋略	对谋划、机谋及巧诈手段的评价。	https://dwarffortresswiki.org/index.php/Personality_value#CUNNING
+value	ELOQUENCE	Values eloquence	看重口才	Disdains eloquence	轻视口才	对善于言辞的评价，不代表自身语言能力。	https://dwarffortresswiki.org/index.php/Personality_value#ELOQUENCE
+value	FAIRNESS	Values fairness	看重公平	Disdains fairness	轻视公平	对公平相待和公平竞争的评价。	https://dwarffortresswiki.org/index.php/Personality_value#FAIRNESS
+value	DECORUM	Values decorum	重视礼仪	Disdains decorum	轻视礼仪	对得体言行和尊严的评价。	https://dwarffortresswiki.org/index.php/Personality_value#DECORUM
+value	TRADITION	Values tradition	尊重传统	Disdains tradition	轻视传统	对延续传统的评价。	https://dwarffortresswiki.org/index.php/Personality_value#TRADITION
+value	ARTWORK	Values artwork	重视艺术	Disdains artwork	轻视艺术	对艺术创作和鉴赏价值的评价，不代表自身审美感受。	https://dwarffortresswiki.org/index.php/Personality_value#ARTWORK
+value	COOPERATION	Values cooperation	重视合作	Disdains cooperation	轻视合作	对共同合作的评价。	https://dwarffortresswiki.org/index.php/Personality_value#COOPERATION
+value	INDEPENDENCE	Values independence	崇尚独立	Disdains independence	轻视独立	对自由和独立的评价。	https://dwarffortresswiki.org/index.php/Personality_value#INDEPENDENCE
+value	STOICISM	Values stoicism	崇尚隐忍	Disdains stoicism	反感隐忍	对藏起情绪、不发牢骚的评价，与抑制冲动的自律分开。	https://dwarffortresswiki.org/index.php/Personality_value#STOICISM
+value	INTROSPECTION	Values introspection	重视自省	Disdains introspection	轻视自省	对反思自身的评价。	https://dwarffortresswiki.org/index.php/Personality_value#INTROSPECTION
+value	SELF_CONTROL	Values self-control	崇尚自律	Disdains self-control	轻视自律	对抑制冲动和自我约束的评价。	https://dwarffortresswiki.org/index.php/Personality_value#SELF_CONTROL
+value	TRANQUILITY	Values tranquility	珍爱宁静	Disdains tranquility	厌恶宁静	对安静平稳生活的评价。	https://dwarffortresswiki.org/index.php/Personality_value#TRANQUILITY
+value	HARMONY	Values harmony	看重和睦	Disdains harmony	轻视和睦	对社会和睦有序、少有纷争的评价。	https://dwarffortresswiki.org/index.php/Personality_value#HARMONY
+value	MERRIMENT	Values merriment	喜爱欢庆	Disdains merriment	厌恶欢庆	对欢庆、聚会和共同玩乐的评价。	https://dwarffortresswiki.org/index.php/Personality_value#MERRIMENT
+value	CRAFTSMANSHIP	Values craftwork	崇尚工艺	Disdains craftwork	轻视工艺	对精良工艺、工匠和作品的评价。	https://dwarffortresswiki.org/index.php/Personality_value#CRAFTSMANSHIP
+value	MARTIAL_PROWESS	Values martial prowess	崇尚武艺	Disdains martial prowess	轻视武艺	对战斗技艺的评价，不代表自身武艺高低。	https://dwarffortresswiki.org/index.php/Personality_value#MARTIAL_PROWESS
+value	SKILL	Values skill	崇尚技艺	Disdains skill	轻视技艺	对花时间精进并掌握技艺的评价。	https://dwarffortresswiki.org/index.php/Personality_value#SKILL
+value	HARD_WORK	Values hard work	崇尚勤劳	Disdains hard work	轻视勤劳	对努力劳作的评价。	https://dwarffortresswiki.org/index.php/Personality_value#HARD_WORK
+value	SACRIFICE	Values sacrifice	崇尚奉献	Disdains sacrifice	轻视奉献	对为他人牺牲自身利益的评价，不只指献出生命。	https://dwarffortresswiki.org/index.php/Personality_value#SACRIFICE
+value	COMPETITION	Values competition	崇尚竞争	Disdains competition	厌恶竞争	对竞争价值的评价。	https://dwarffortresswiki.org/index.php/Personality_value#COMPETITION
+value	PERSEVERANCE	Values perseverance	看重毅力	Disdains perseverance	轻视毅力	对逆境中坚持的评价，不代表自身是否执着或体格强韧。	https://dwarffortresswiki.org/index.php/Personality_value#PERSEVERANCE
+value	LEISURE_TIME	Values leisure time	珍惜闲暇	Disdains leisure time	鄙视闲暇	对休闲时间的评价，不等同于生活节奏快慢。	https://dwarffortresswiki.org/index.php/Personality_value#LEISURE_TIME
+value	COMMERCE	Values commerce	看重经商	Disdains commerce	鄙视经商	对商业贸易及从业者的评价。	https://dwarffortresswiki.org/index.php/Personality_value#COMMERCE
+value	ROMANCE	Values romance	珍视爱情	Disdains romance	排斥爱情	对恋爱关系的评价，不是爱幻想或泛指浪漫情调。	https://dwarffortresswiki.org/index.php/Personality_value#ROMANCE
+value	NATURE	Values nature	珍视自然	Disdains nature	厌恶自然	对动植物和自然世界的评价。	https://dwarffortresswiki.org/index.php/Personality_value#NATURE
+value	PEACE	Values peace	崇尚和平	Disdains peace	轻视和平	对和平相对于战争的评价。	https://dwarffortresswiki.org/index.php/Personality_value#PEACE
+value	KNOWLEDGE	Values knowledge	崇尚知识	Disdains knowledge	轻视知识	对追求和保存知识的评价。	https://dwarffortresswiki.org/index.php/Personality_value#KNOWLEDGE

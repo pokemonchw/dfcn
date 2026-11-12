@@ -1,0 +1,61 @@
+生物概述短词条：53.17 原始来源与译义
+整理日期：2026-11-13
+
+范围
+本目录完整提取截图所在“概述”右上特征列表的所有原生分支。
+8 个类别：身体属性高/低各 6 项、心智属性高/低各 13 项、性格倾向高/低
+各 50 项、价值观高/低各 33 项，共 204 种英文标签。两份游戏分别提取，
+native-traits.tsv 保留 408 个分支及其枚举值、跳转表和字符串地址。
+这里的 high/low 仅表示对应字段的两端，不能一律解释为优点/缺点。
+本目录不声称覆盖生物百科、健康状态、需求、外貌或人格页的长段描述。
+
+游戏原始来源
+由 data/runtime/native-pe-images.json 读取实际安装文件，离线读取 PE。
+Steam 映像：PE:6aea05a1:02734000，角色渲染器 RVA 0x150630，
+词条循环 RVA 0x162037..0x165991。
+官网版映像：PE:6aea11a5:0272d000，角色渲染器 RVA 0x1505c0，
+词条循环 RVA 0x161fc7..0x165921。
+regions.tsv 保留各自文件路径、SHA-256、父函数及区域边界。
+输入数组以 +0xc4 选择类别，以 +0xdc 选择该类别的枚举，以 +0x10c 取数量。
+switches.tsv 包含颜色选择、类别选择和全部八张文本选择表。
+枚举名称来自项目已有的 df.d_basics.xml；文本及分支地址直接读取当前 PE，
+不从已有中文词表反推英文。脚本明确限定当前两个映像的身份。
+
+反编译
+tools/extract_character_overview_traits.py 只读取原始映像、反汇编指令和数据表。
+tools/DecompileCharacterOverviewTraits.java 用本机 Ghidra 12.1.4 产生两份 C 文件。
+它们是父渲染器内部区域的实际反编译结果，不是手写的等价伪代码，也不是
+独立原生函数：栈上输入由父函数提供。两处跳往后续渲染区域的条件退出在
+Ghidra 分析数据库中设为 RETURN，以限定 C 视图；游戏文件字节没有改写。
+原始分支仍完整保存在 ASM 和 calls.tsv。跳转表的原始 selector 在 TSV 中，
+不要将 Ghidra 为合并目的重新编号的 case 当作游戏枚举。
+
+词义依据
+2026-11-13 查阅 Dwarf Fortress Wiki 以下三篇，网页正文以公开的 action=raw
+入口读取；逐项结合当前原生枚举、短标签与 Wiki 所列详细描述解释含义。
+https://dwarffortresswiki.org/index.php/Attribute
+https://dwarffortresswiki.org/index.php/Personality_facet
+https://dwarffortresswiki.org/index.php/Personality_value
+terminology.tsv 的 102 行分别记录每个概念的两端英文、两端中文、语义说明
+和对应 Wiki 锚点。这是词条来源与翻译资料，不是游戏显示效果记录。
+
+取词原则
+概述短标签合并多个详细等级，不能凭 Good memory 断言“过目不忘”。
+Tough 对应身体 TOUGHNESS，不能译作物体“坚固的”或心理“坚强”。
+Not creative 对应创造能力，不应与 IMAGINATION 的爱幻想混同。
+Sickly 指抗病能力低，以“容易生病”表达，不判定当前已经生病。
+Patient 指耐心；Musical 指乐感；Flatterer 指对人友好、爱说好话的性格。
+EMPATHY 指理解他人情绪，CRUELTY 指是否仁慈，ALTRUISM 指助人意愿，
+SWAYED_BY_EMOTIONS 指是否受他人情感诉求影响，分别处理。
+PERSEVERANCE 性格指行动上不愿放弃；CLOSEMINDED 指观点上固执己见；
+PERSEVERANCE 价值观则评价坚持不懈的价值，不能合并为同一个标签。
+STOICISM 指隐藏情绪、不抱怨；SELF_CONTROL 指约束冲动，分别表达。
+ART_INCLINED 的详细描述讨论审美感受，不能仅按短标签理解为创作技艺。
+Values/Disdains 表达价值判断，不说明该生物本身是否具有相应能力。
+
+生效数据
+使用现有 Character overview: 专用词条解析，更新 data/runtime/local-overrides.tsv
+和 data/runtime/translations.tsv；已有 Musical、Flatterer 项原位保留，其余
+202 项作为完整概述专用词条写入。医疗、职业等页面使用的普通同名词不变。
+当前 Steam 与配置启用的官网版安装中的 translations.tsv 也已包含这些词条。
+本任务未运行翻译生成器、编译或 DLL 部署；未操作游戏窗口，未观察游戏内最终显示。

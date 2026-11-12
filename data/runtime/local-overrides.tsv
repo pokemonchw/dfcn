@@ -7370,7 +7370,7 @@ Fortress activity: suffix /Resting	／休息中	li
 Fortress activity: suffix !	！	li
 # Attribute/status wording belongs to the person, not adjective fragments.
 # No official position means no public office held, not a missing office room.
-Character overview: Musical	有乐感	l
+Character overview: Musical	乐感好	l
 Character overview: Healthy	健康	l
 Character overview: Spouse	伴侣	l
 Character overview: Lover	爱人	l
@@ -13100,3 +13100,210 @@ DFHack GUI Autofish settings: Fish: {d} ({d} prepared, {d} raw)	鱼数：{d1}（
 DFHack GUI Autofish settings: Currently fishing.	当前捕鱼。	l
 DFHack GUI Autofish settings: Currently not fishing.	当前暂停捕鱼。	l
 DFHack GUI Autofish settings: not	暂停	l
+
+# Character Overview traits, all 204 native branches from the 53.17 PE switches.
+# Meanings: data/extracted/character-overview-traits/terminology.tsv.
+# Scoped labels use the existing overview resolver; general homonyms retain their other senses.
+# Flatterer and Musical are kept at their existing scoped entries.
+Character overview: Strong	力量强劲	li
+Character overview: Weak	力量薄弱	li
+Character overview: Agile	身手敏捷	li
+Character overview: Clumsy	动作笨拙	li
+Character overview: Tough	体格强韧	li
+Character overview: Frail	体格脆弱	li
+Character overview: High stamina	耐力充沛	li
+Character overview: Low stamina	耐力不足	li
+Character overview: Recovers quickly	伤口愈合快	li
+Character overview: Recovers slowly	伤口愈合慢	li
+Character overview: Resists sickness	抗病力强	li
+Character overview: Sickly	容易生病	li
+Character overview: Good analytical ability	分析力强	li
+Character overview: Poor analytical ability	分析力弱	li
+Character overview: Good focus	专注力强	li
+Character overview: Poor focus	专注力弱	li
+Character overview: High willpower	意志坚定	li
+Character overview: Low willpower	意志薄弱	li
+Character overview: Creative	富有创造力	li
+Character overview: Not creative	创造力不足	li
+Character overview: Good intuition	直觉敏锐	li
+Character overview: Poor intuition	直觉迟钝	li
+Character overview: Patient	有耐心	li
+Character overview: Impatient	缺乏耐心	li
+Character overview: Good memory	记忆力好	li
+Character overview: Poor memory	记忆力差	li
+Character overview: Good with language	语言能力强	li
+Character overview: Bad with words	语言能力弱	li
+Character overview: Good spatial sense	空间感强	li
+Character overview: Poor spatial sense	空间感弱	li
+Character overview: Not musical	乐感差	li
+Character overview: High kinesthetic sense	身体感知敏锐	li
+Character overview: Poor kinesthetic sense	身体感知迟钝	li
+Character overview: Developed empathy	善解他人情绪	li
+Character overview: Poor empathy	难解他人情绪	li
+Character overview: High social awareness	善察人际关系	li
+Character overview: Poor social awareness	不谙人际关系	li
+Character overview: Quick to love	容易动情	li
+Character overview: Slow to love	不易动情	li
+Character overview: Hateful	容易生恨	li
+Character overview: Slow to hate	不易生恨	li
+Character overview: Envious	容易嫉妒	li
+Character overview: Not envious	很少嫉妒	li
+Character overview: Cheerful	心情开朗	li
+Character overview: Cheerless	少有欢愉	li
+Character overview: Depression-prone	容易消沉	li
+Character overview: Not easily depressed	不易消沉	li
+Character overview: Anger-prone	容易动怒	li
+Character overview: Slow to anger	不易动怒	li
+Character overview: Anxious	容易焦虑	li
+Character overview: Not anxious	少有焦虑	li
+Character overview: Lustful	性欲旺盛	li
+Character overview: Not lustful	性欲淡薄	li
+Character overview: Easily stressed	不耐压力	li
+Character overview: Resilient	抗压能力强	li
+Character overview: Greedy	贪恋财物	li
+Character overview: Not greedy	淡泊财物	li
+Character overview: Intemperate	容易放纵	li
+Character overview: Temperate	懂得节制	li
+Character overview: Brawler	喜欢斗殴	li
+Character overview: Avoid fights	回避打斗	li
+Character overview: Stubborn	执着不放	li
+Character overview: Quick to give up	容易放弃	li
+Character overview: Wasteful	做事浪费	li
+Character overview: Not wasteful	做事节省	li
+Character overview: Prone to discord	喜欢纷争	li
+Character overview: Seeks harmony	追求和睦	li
+Character overview: Quarreler	好与人争吵	li
+Character overview: Polite	彬彬有礼	li
+Character overview: Rude	粗鲁无礼	li
+Character overview: Disdains advice	不听劝告	li
+Character overview: Overreliant on advice	依赖他人建议	li
+Character overview: Fearless	无惧危险	li
+Character overview: Fearful	畏惧危险	li
+Character overview: Overconfident	过于自信	li
+Character overview: Pusillanimous	缺乏自信	li
+Character overview: Vain	自我欣赏	li
+Character overview: Not vain	不慕虚荣	li
+Character overview: Ambitious	雄心勃勃	li
+Character overview: Not ambitious	缺乏进取心	li
+Character overview: Gracious	知恩图报	li
+Character overview: Ungrateful	不知感恩	li
+Character overview: Extravagant	打扮张扬	li
+Character overview: Austere	装束朴素	li
+Character overview: Zany	爱开玩笑	li
+Character overview: Humorless	缺乏幽默感	li
+Character overview: Vengeful	报复心强	li
+Character overview: Not vengeful	不记仇	li
+Character overview: Proud	自视甚高	li
+Character overview: Low self esteem	自我评价低	li
+Character overview: Cruel	冷酷无情	li
+Character overview: Merciful	心怀仁慈	li
+Character overview: Single-minded	一心一意	li
+Character overview: Scatterbrained	心思散漫	li
+Character overview: Hopeful	满怀希望	li
+Character overview: Quick to despair	容易绝望	li
+Character overview: Curious	好奇心强	li
+Character overview: Incurious	缺乏好奇心	li
+Character overview: Bashful	容易害羞	li
+Character overview: Shameless	不惧他人眼光	li
+Character overview: Private	不愿谈私事	li
+Character overview: Overshares	爱说私事	li
+Character overview: Perfectionist	追求完美	li
+Character overview: Inattentive	不重细节	li
+Character overview: Obstinate	固执己见	li
+Character overview: Acquiescing	容易改变主意	li
+Character overview: Tolerant	包容差异	li
+Character overview: Intolerant	难容差异	li
+Character overview: Emotional obsessive	感情执着	li
+Character overview: Emotionally distant	不易依恋	li
+Character overview: Swayed by emotions	易被情感打动	li
+Character overview: Unswayed by emotions	不易被情感打动	li
+Character overview: Altruistic	乐于助人	li
+Character overview: Not altruistic	不愿助人	li
+Character overview: Dutiful	责任心强	li
+Character overview: Not dutiful	不愿承担义务	li
+Character overview: Thoughtless	行事欠思量	li
+Character overview: Overcautious	过于瞻前顾后	li
+Character overview: Orderly	爱好整洁	li
+Character overview: Sloppy	杂乱无章	li
+Character overview: Trusting	容易信任他人	li
+Character overview: Distrustful	不信任他人	li
+Character overview: Gregarious	喜欢交往	li
+Character overview: Loner	喜欢独处	li
+Character overview: Overbearing	说话强势	li
+Character overview: Unassertive	不愿表达主见	li
+Character overview: Frenetic	活跃好动	li
+Character overview: Leisurely	悠闲从容	li
+Character overview: Thrill-seeker	追求刺激	li
+Character overview: Avoids excitement	回避刺激	li
+Character overview: Flights of fancy	爱幻想	li
+Character overview: Fact-oriented	注重现实	li
+Character overview: Inclined to abstract	偏爱抽象思考	li
+Character overview: Not inclined to abstract	偏爱实际问题	li
+Character overview: Artistically inclined	易被美打动	li
+Character overview: Not inclined to create art	不易被美打动	li
+Character overview: Values law	尊重法律	li
+Character overview: Disdains law	轻视法律	li
+Character overview: Values loyalty	重视忠诚	li
+Character overview: Disdains loyalty	轻视忠诚	li
+Character overview: Values family	珍视家庭	li
+Character overview: Disdains family	轻视家庭	li
+Character overview: Values friendship	珍视友情	li
+Character overview: Disdains friendship	轻视友情	li
+Character overview: Values power	崇尚权势	li
+Character overview: Disdains power	鄙视权势	li
+Character overview: Values truth	看重诚实	li
+Character overview: Disdains truth	轻视诚实	li
+Character overview: Values cunning	崇尚谋略	li
+Character overview: Disdains cunning	鄙视谋略	li
+Character overview: Values eloquence	看重口才	li
+Character overview: Disdains eloquence	轻视口才	li
+Character overview: Values fairness	看重公平	li
+Character overview: Disdains fairness	轻视公平	li
+Character overview: Values decorum	重视礼仪	li
+Character overview: Disdains decorum	轻视礼仪	li
+Character overview: Values tradition	尊重传统	li
+Character overview: Disdains tradition	轻视传统	li
+Character overview: Values artwork	重视艺术	li
+Character overview: Disdains artwork	轻视艺术	li
+Character overview: Values cooperation	重视合作	li
+Character overview: Disdains cooperation	轻视合作	li
+Character overview: Values independence	崇尚独立	li
+Character overview: Disdains independence	轻视独立	li
+Character overview: Values stoicism	崇尚隐忍	li
+Character overview: Disdains stoicism	反感隐忍	li
+Character overview: Values introspection	重视自省	li
+Character overview: Disdains introspection	轻视自省	li
+Character overview: Values self-control	崇尚自律	li
+Character overview: Disdains self-control	轻视自律	li
+Character overview: Values tranquility	珍爱宁静	li
+Character overview: Disdains tranquility	厌恶宁静	li
+Character overview: Values harmony	看重和睦	li
+Character overview: Disdains harmony	轻视和睦	li
+Character overview: Values merriment	喜爱欢庆	li
+Character overview: Disdains merriment	厌恶欢庆	li
+Character overview: Values craftwork	崇尚工艺	li
+Character overview: Disdains craftwork	轻视工艺	li
+Character overview: Values martial prowess	崇尚武艺	li
+Character overview: Disdains martial prowess	轻视武艺	li
+Character overview: Values skill	崇尚技艺	li
+Character overview: Disdains skill	轻视技艺	li
+Character overview: Values hard work	崇尚勤劳	li
+Character overview: Disdains hard work	轻视勤劳	li
+Character overview: Values sacrifice	崇尚奉献	li
+Character overview: Disdains sacrifice	轻视奉献	li
+Character overview: Values competition	崇尚竞争	li
+Character overview: Disdains competition	厌恶竞争	li
+Character overview: Values perseverance	看重毅力	li
+Character overview: Disdains perseverance	轻视毅力	li
+Character overview: Values leisure time	珍惜闲暇	li
+Character overview: Disdains leisure time	鄙视闲暇	li
+Character overview: Values commerce	看重经商	li
+Character overview: Disdains commerce	鄙视经商	li
+Character overview: Values romance	珍视爱情	li
+Character overview: Disdains romance	排斥爱情	li
+Character overview: Values nature	珍视自然	li
+Character overview: Disdains nature	厌恶自然	li
+Character overview: Values peace	崇尚和平	li
+Character overview: Disdains peace	轻视和平	li
+Character overview: Values knowledge	崇尚知识	li
+Character overview: Disdains knowledge	轻视知识	li
