@@ -1172,7 +1172,6 @@ struct NativeToolbarTooltip {
 };
 struct NativeSaveNameSource {
     std::string original;
-    fs::path full_path;
     bool authored = false;
     int16_t game_type = -1;
     uint32_t world_id1 = 0, world_id2 = 0;
@@ -4186,8 +4185,8 @@ private:
     std::string site_name_core(const NativeHistoryName &name) const;
     std::optional<std::string> localize_site_name(const NativeHistoryName &name,
         std::string_view suffix = {}) const;
-    std::optional<NativeHistoryName> read_saved_fortress_name(
-        const NativeSaveNameSource &source) const;
+    std::optional<std::string> localize_site_text(std::string_view english,
+        std::string_view suffix) const;
     std::string site_name_full_transliteration(const NativeHistoryName &name) const;
     std::vector<std::string> site_name_search_aliases(const NativeHistoryName &name) const;
     std::string translate_river_name(const RiverNameIdentity &identity,
@@ -4442,6 +4441,8 @@ private:
     // These forms only reconstruct the game's English history references.
     // Chinese character-name selection always receives the resulting text.
     std::unordered_map<std::string, std::array<std::string, 9>> history_english_name_forms_;
+    std::unordered_map<std::string, std::vector<NativeHistoryWord>> site_english_forms_;
+    mutable std::unordered_map<std::string, std::optional<std::string>> site_text_cache_;
     EnglishCharacterNames english_character_names_;
     EnglishNameTransliterator english_name_transliterator_;
     // The editor offers all raw forms, including those disallowed in a
@@ -7343,6 +7344,8 @@ bool Overlay::load_procedural_name_grammar() {
     procedural_word_meanings_.clear();
     name_editor_word_forms_.clear();
     history_english_name_forms_.clear();
+    site_english_forms_.clear();
+    site_text_cache_.clear();
     std::string path =
         "data/vanilla/vanilla_languages/objects/language_words.txt";
     std::ifstream input(path, std::ios::binary);
@@ -7525,6 +7528,12 @@ bool Overlay::load_procedural_name_grammar() {
                 mark_form(index, kNameVerb);
         }
     }
+
+    for (const auto &[id, variants] : history_english_name_forms_)
+        for (size_t pos = 0; pos < variants.size(); ++pos)
+            if (!variants[pos].empty())
+                site_english_forms_[variants[pos]].push_back(
+                    NativeHistoryWord{id, static_cast<int16_t>(pos), true, variants[pos]});
 
     size_t stale_senses = 0;
     for (const auto &[sense_key, gloss] : procedural_word_senses_) {
@@ -44620,7 +44629,6 @@ static void native_settings_menu_release();
 #include "site_references.inc"
 #include "adventure_home_translation.inc"
 #include "native_save_names.inc"
-#include "saved_fortress_name.inc"
 #include "native_graphics_toggle.inc"
 
 } // namespace dfcn

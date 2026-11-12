@@ -1,32 +1,6 @@
 // Save cards contain native fortress/adventurer names and authored save
 // titles. A current string field's address proves which one was drawn;
 // matching a spelling elsewhere in the list does not establish ownership.
-static bool capture_native_save_path(uintptr_t address, fs::path &path) {
-    if (!address) return false;
-#ifdef _WIN32
-    // MSVC filesystem::path owns a UTF-16 basic_string, independently of
-    // the CP437/UTF-8 strings used for game captions.
-    std::array<unsigned char, 32> storage{};
-    if (!native_history_copy_bytes(address, storage.data(), storage.size())) return false;
-    size_t size = 0, capacity = 0;
-    std::memcpy(&size, storage.data() + 16, sizeof(size));
-    std::memcpy(&capacity, storage.data() + 24, sizeof(capacity));
-    if (!size || size > 32767 || capacity < size) return false;
-    uintptr_t data = address;
-    if (capacity >= 8) std::memcpy(&data, storage.data(), sizeof(data));
-    std::wstring text(size, L'\0');
-    if (!data || !native_history_copy_bytes(data, text.data(), size * sizeof(wchar_t)) ||
-            text.find(L'\0') != std::wstring::npos) return false;
-    path = fs::path(text);
-#else
-    std::string text;
-    if (!native_history_copy_string(address, text) || text.empty() ||
-            text.find('\0') != std::string::npos) return false;
-    path = fs::path(text);
-#endif
-    return true;
-}
-
 static std::optional<NativeSaveNameSource> capture_native_save_name_source(
         uintptr_t source, std::string_view complete) {
     if (!source || complete.empty() || complete.size() > 4096) return std::nullopt;
@@ -54,9 +28,6 @@ static std::optional<NativeSaveNameSource> capture_native_save_name_source(
                 !native_history_copy(field(0xf0, sizeof(result.world_id1)), result.world_id1) ||
                 !native_history_copy(field(0xf4, sizeof(result.world_id2)), result.world_id2))
             return std::nullopt;
-        // The title reader stores the directory here; it appends world.sav
-        // only to its temporary file path when reading this header.
-        capture_native_save_path(field(0x190, 32), result.full_path);
         return result;
     }
     return std::nullopt;
