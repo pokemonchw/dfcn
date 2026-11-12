@@ -209,12 +209,14 @@ inline uint32_t ui_settings_tail_shift(const Image &image) {
 #include "native_pe_5317_bindings.inc"
 #include "native_pe_classic_5317_bindings.inc"
 
-// The frozen seed predates the settings widget reader's type() wrapper, so
-// its indirect RVA arguments are absent from the catalog. These are identity
-// anchors only: resolve each primary vtable by its exact MSVC RTTI name.
-inline constexpr std::pair<uint32_t, const char *> kSettingsWidgetTypes[] = {
+// The frozen seed predates the settings widget reader and the expanded
+// history type bindings. Resolve their primary vtables by exact MSVC RTTI
+// identity when the seed has no instruction or vtable evidence for them.
+inline constexpr std::pair<uint32_t, const char *> kSupplementalVtableTypes[] = {
     {0x15eefd0, ".?AVtabs@widgets@@"},
+    {0x165c4c8, ".?AVbuildingst@@"},
     {0x1785978, ".?AVmultifilter@widgets@@"},
+    {0x1785a30, ".?AVfilter@widgets@@"},
     {0x1785bd0, ".?AVtable@widgets@@"},
     {0x1785ca8, ".?AVbetter_button@widgets@@"},
     {0x1785d60, ".?AVindiv_filter@multifilter@widgets@@"},
@@ -234,7 +236,7 @@ inline void adapt_required(Catalog &catalog, uint32_t settings_shift) {
     }
     // Apply to cached coverage too. A complete old cache can otherwise omit
     // every settings owner while still preventing a fresh address scan.
-    for (const auto &[reference, name] : kSettingsWidgetTypes) {
+    for (const auto &[reference, name] : kSupplementalVtableTypes) {
         (void)name;
         if (std::none_of(catalog.required.begin(), catalog.required.end(),
                 [reference](const auto &span) { return span.first == reference; }))
@@ -262,7 +264,7 @@ inline State scan(const Image &image, const Catalog &catalog) {
         reviewed_ranges.assign(std::begin(kClassic5317Ranges), std::end(kClassic5317Ranges));
         reviewed_bytes.assign(std::begin(kClassic5317Bytes), std::end(kClassic5317Bytes));
     }
-    if (shift) for (const auto &[reference, name] : kSettingsWidgetTypes) {
+    if (shift) for (const auto &[reference, name] : kSupplementalVtableTypes) {
         const auto candidates = image.find_vtables(name);
         if (candidates.size() == 1)
             reviewed_ranges.push_back({reference, reference + 1, candidates.front()});
@@ -315,10 +317,10 @@ public:
         if (!GetProcessTimes(GetCurrentProcess(), &birth, &exit, &kernel, &user)) return;
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
         const auto digest = hex_digest(seed);
-        // Revision 7 includes the four volcano draw bindings. Their required
-        // seed spans are unchanged by the supplement fix, so the previous
-        // process snapshot can still contain an incomplete address result.
-        name_ = L"Local\\DFCN.NativeAddresses.7." + std::to_wstring(GetCurrentProcessId()) + L"." +
+        // Revision 8 adds the building/filter RTTI anchors required by the
+        // expanded history bindings. The seed bytes did not change, so an
+        // earlier process snapshot can still retain their unresolved result.
+        name_ = L"Local\\DFCN.NativeAddresses.8." + std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
             std::wstring(digest.begin(), digest.end());

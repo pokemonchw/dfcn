@@ -743,7 +743,7 @@ struct NativeDfhackLayerPaintContext {
         }};
         if (settings)
             for (size_t i = 0; i < offsets.size(); ++i)
-                font_tables[i] = reinterpret_cast<const int32_t *>(
+                font_tables[i] = reinterpret_cast<const NativeDfhackLayerTexture *>(
                     settings + native_pe_init_field_offset(offsets[i]));
 #else
         if (const auto *settings = native_ui_settings_source())
