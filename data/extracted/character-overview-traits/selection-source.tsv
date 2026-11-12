@@ -1,0 +1,2 @@
+image	path	sha256	function_rva	code_end_rva	unwind_end_rva	trait_arm_rva	trait_arm_end_rva
+PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	0x1a3360	0x1a70e0	0x1a721e	0x1a3ae9	0x1a4d18
