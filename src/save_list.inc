@@ -97,9 +97,15 @@ std::vector<Match> Overlay::layout_save_confirmation(SDL_Renderer *renderer) {
         const bool overlaps = match.x < right && match.x + match.length > panel->x &&
             match.y >= panel->y && match.y < bottom;
         if (!overlaps) continue;
-        if (!inside(match) || match.native_help_source_only || match.legends_flow) return {};
+        // Native save headings can exceed the frame before translation. They
+        // still belong to this dialog; retain the full source for suppression
+        // and constrain the translated field to the panel below.
+        const bool overflowing_title = match.x >= panel->x &&
+            source_top(match) < question_top;
+        if ((!inside(match) && !overflowing_title) ||
+                match.native_help_source_only || match.legends_flow) return {};
         owned.push_back(i);
-        for (int x = match.x; x < match.x + match.length; ++x)
+        for (int x = match.x; x < std::min(right, match.x + match.length); ++x)
             coverage[(match.y - panel->y) * panel->w + x - panel->x] = 1;
         if (match.native_split_duplicate) continue;
         if (std::any_of(buttons.begin(), buttons.end(),
@@ -273,6 +279,9 @@ std::vector<Match> Overlay::layout_save_confirmation(SDL_Renderer *renderer) {
         match.layout_left = !field.centered;
         match.layout_prepared = true;
         match.layout_line_height_pixels = tile_h;
+        match.layout_clip_right = text_right;
+        match.layout_ellipsize = std::find(title.begin(), title.end(), field.index) !=
+            title.end();
         if (field.index == matches.size()) result.push_back(std::move(match));
         else result[static_cast<size_t>(std::find(owned.begin(), owned.end(), field.index) -
             owned.begin())] = std::move(match);
