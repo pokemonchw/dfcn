@@ -10,8 +10,8 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[h2]DFCN v53.17-20261113[/h2]\n[list]\n[*]校订生物概述中的身体能力、心理能力、性格与价值观特征译文，明确区分易混淆的词义。\n[*]修复 ASCII 模式报告页标签被相邻文字误合并翻译的问题，按各标签的原生位置与边界显示中文。\n[/list]\n",
-  "release_tag": "v53.17-20261113",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261113",
+  "changelog": "[h2]DFCN v53.17-20261113.2[/h2]\n[list]\n[*]修正诗歌、音乐和舞蹈形式描述中的起源名称，使文明、组织及表演团体名称与其他界面的译名一致。\n[*]优化工单搜索，分批准备并复用搜索索引，减少打开列表和连续输入时重复处理译文带来的等待。\n[*]完善工单搜索结果刷新，在索引准备期间输入关键词也会自动补全结果；保留中文、英文、拼音、容错、物品类别及可选语义匹配，并继续按材质、尺寸等条件筛选。\n[/list]\n",
+  "release_tag": "v53.17-20261113.2",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261113.2",
   "github_url": "https://github.com/pokemonchw/dfcn"
 }
