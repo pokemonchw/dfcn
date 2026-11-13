@@ -104,12 +104,14 @@ Windows 工坊包和六个公开扩展 ZIP，不编译或生成数据。
 显式构建 Windows DLL 时使用根目录 `build-windows-cross.sh`。它使用 Linux 上运行的
 MinGW-w64 编译器，输出 `build/windows-x64/dfcn_core.dll`、
 `build/windows-x64/dfhooks_dfcn.dll` 和独立鼠标坐标模块
-`build/windows-x64/dfcn_mouse_coordinates.dll`，默认不向游戏目录部署。日常本机构建继续使用
-`build-deploy.sh` / `build-deploy.ps1`。
+`build/windows-x64/dfcn_mouse_coordinates.dll`，编译成功后默认原子部署 Windows DLL
+到当前项目根目录。当前 Windows 游戏的 `dfcn` 符号链接指向此目录，直接使用这些 DLL。
+构建入口按实际游戏映像和宿主系统选择；Linux 游戏使用 `build-deploy.sh`，
+Windows 宿主上的 Windows 游戏使用 `build-deploy.ps1`。
 
-需要同时把这些 Windows DLL 部署到当前项目根目录时，执行
-`build-windows-cross.sh --deploy-project`。构建目录仍保留同一次编译的产物，
-已有词表、规则和其他运行数据原地使用；此选项不会写入 Linux `.so` 或游戏引导文件。
+直接执行 `build-windows-cross.sh` 即可完成编译和部署，仍兼容显式传入
+`--deploy-project`。构建目录保留同一次编译的产物，已有词表、规则和其他运行数据
+原地使用；部署不会写入 Linux `.so` 或游戏引导文件。
 
 依赖为现有 Codex Python runtime、Linux 版 MinGW-w64 POSIX 线程工具链
 （固定使用 `$HOME/.local/share/dfcn-toolchains/mingw-w64-16.2.0/usr/bin/x86_64-w64-mingw32-g++`，

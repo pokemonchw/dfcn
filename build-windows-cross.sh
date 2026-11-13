@@ -1,5 +1,5 @@
 #!/bin/bash
-# Explicit Linux -> Windows x64 build; --deploy-project installs DLLs in the checkout.
+# Explicit Linux -> Windows x64 build and deployment to the checkout.
 set -euo pipefail
 
 if [[ "$OSTYPE" != linux* ]]; then
@@ -21,4 +21,6 @@ unset GCC_EXEC_PREFIX COMPILER_PATH LIBRARY_PATH CPATH C_INCLUDE_PATH CPLUS_INCL
 unset PYTHONHOME PYTHONPATH
 export PYTHONDONTWRITEBYTECODE=1
 
-exec "$python" -B -u "$project_root/tools/build.py" --windows-cross "$@"
+# The game's dfcn symlink reads DLLs from the checkout, not build/windows-x64.
+# Always publish there so invoking this entry point also updates the game.
+exec "$python" -B -u "$project_root/tools/build.py" --windows-cross --deploy-project "$@"
