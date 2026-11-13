@@ -728,7 +728,13 @@ TranslationResult Overlay::translate_dance_form_paragraph_result(
                 const auto reference = raw_reference.empty()
                     ? exact_literal_translation(provenance->kind == 2
                         ? "Art form: unspecified creator" : "Art form: unspecified origin")
-                    : translate_reference(raw_reference);
+                    : provenance->kind == 2
+                        ? translate_reference(raw_reference)
+                        // Native origins name an entity; performance origins
+                        // specifically name type 8. Its owned WORD/POS and
+                        // entity kind select the existing naming rules.
+                        : translate_entity_reference(raw_reference, false, false,
+                            provenance->kind == 1 ? 8 : -1);
                 if (!reference) return std::nullopt;
                 result += raw_reference.empty()
                     ? std::string(provenance->kind == 2 ? "，创作者" : "，来源") + *reference

@@ -2084,7 +2084,10 @@ std::optional<std::string> Overlay::translate_poetic_form_description_unit(
         provenance = value.empty()
             ? exact_literal_translation(creator_origin ?
                 "Art form: unspecified creator" : "Art form: unspecified origin")
-            : translate_generated_reference(value);
+            : creator_origin
+                ? translate_generated_reference(value)
+                : translate_entity_reference(value, false, false,
+                    performance_origin ? 8 : -1);
         if (!provenance) return std::nullopt;
     }
 
