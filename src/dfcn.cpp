@@ -3747,6 +3747,7 @@ enum class JournalSearchKind {
 struct NativeModListLayout;
 struct CivilizationReferenceCache;
 struct NativeUiLayerGrid;
+static std::string item_translation_cache_prefix();
 
 static std::string compact_translated_search_text(std::string_view text) {
     std::string compact;
@@ -3908,6 +3909,11 @@ public:
                                         std::string_view query, bool activity) const;
     SearchMatchRank translated_workshop_search_rank(std::string_view source,
                                                     std::string_view query) const;
+    uint64_t work_order_search_catalog_generation(uintptr_t world) const;
+    std::shared_ptr<WorkOrderSearchEntry> find_work_order_search_entry(
+        std::string_view source) const;
+    std::shared_ptr<WorkOrderSearchEntry> prepare_work_order_search_entry(
+        std::string_view source) const;
     std::optional<std::string> translate_native_unit_identity(
         const NativeUnitIdentity &identity) const;
     std::optional<std::string> translate_native_animation_label(
@@ -4532,6 +4538,13 @@ private:
     mutable size_t legends_search_translation_bytes_ = 0;
     mutable std::unordered_map<std::string, std::optional<std::string>> search_translation_cache_;
     mutable size_t search_translation_bytes_ = 0;
+    // A fortress's finite order catalog must not compete with arbitrary UI
+    // captions in the bounded general-purpose text/translation caches.
+    mutable std::unordered_map<std::string, std::shared_ptr<WorkOrderSearchEntry>,
+        SearchTextHash, std::equal_to<>> work_order_search_catalog_;
+    mutable uintptr_t work_order_search_world_ = 0;
+    mutable uint64_t work_order_search_rules_revision_ = UINT64_MAX;
+    mutable uint64_t work_order_search_catalog_generation_ = 1;
     std::optional<std::string> translated_unit_search_target(
         std::string_view source, bool activity) const;
     template <typename Translate>
@@ -4563,6 +4576,8 @@ private:
     };
     mutable std::unordered_map<std::string, std::optional<NativeNameWord>> native_compound_cache_;
     void clear_legends_search_cache() const {
+        work_order_search_catalog_.clear();
+        ++work_order_search_catalog_generation_;
         legends_search_translation_cache_.clear();
         legends_search_translation_bytes_ = 0;
         search_translation_cache_.clear();
@@ -9095,14 +9110,25 @@ bool Overlay::translated_unit_search_matches(std::string_view source,
 std::optional<std::string> Overlay::translated_unit_search_target(
         std::string_view source, bool activity) const {
     return memoize_search_translation(activity ? 'j' : 'u', source, [&] {
+        // Instrument, task and fallback grammar share one candidate's closed
+        // subproblems instead of starting a fresh parser session at each call.
+        TranslationWorkScope work;
         const std::string original(source);
         // Keep original case/accents: the native name grammar needs both to
         // distinguish personal names from ordinary words. This is the same
         // complete name/profession grammar used by resident/assignment rows.
         const bool authored_name = !activity && contains_cjk_utf8(original);
         std::optional<std::string> translated;
-        if (activity) translated = translate_fortress_activity(original);
-        else translated = translate_unit_identity(original, true);
+        if (activity) {
+            // The visible chooser already resolved these complete captions.
+            // Reuse only a strict result from the same rules/world context;
+            // a partial display result must not become a search translation.
+            const auto key = item_translation_cache_prefix() + "activity:" + original;
+            if (const auto cached = fortress_activity_display_cache_.find(key);
+                    cached != fortress_activity_display_cache_.end())
+                translated = cached->second.strict_target();
+            if (!translated) translated = translate_fortress_activity(original);
+        } else translated = translate_unit_identity(original, true);
         if (!translated && !activity && !authored_name)
             translated = translate_procedural_fragment(original);
         if (!translated && !activity)
@@ -9136,19 +9162,49 @@ std::optional<std::string> Overlay::translated_unit_search_target(
     }, true);
 }
 
+uint64_t Overlay::work_order_search_catalog_generation(uintptr_t world) const {
+    TranslationStateScope state;
+    const auto revision = RULESETS.resource_revision();
+    if (work_order_search_world_ != world || work_order_search_rules_revision_ != revision) {
+        work_order_search_catalog_.clear();
+        work_order_search_world_ = world;
+        work_order_search_rules_revision_ = revision;
+        ++work_order_search_catalog_generation_;
+    }
+    return work_order_search_catalog_generation_;
+}
+
+std::shared_ptr<WorkOrderSearchEntry> Overlay::prepare_work_order_search_entry(
+        std::string_view source) const {
+    TranslationStateScope state;
+    if (!config_.enabled || source.empty() || source.size() > 65536) return {};
+    if (const auto found = work_order_search_catalog_.find(source);
+            found != work_order_search_catalog_.end()) return found->second;
+    // Resolve a caption once per catalog, independently of unrelated unit,
+    // announcement and per-frame identity publications. The native master
+    // list and owned caption spelling determine the candidate's validity.
+    auto entry = std::make_shared<WorkOrderSearchEntry>(native_text_to_utf8(source),
+        translated_unit_search_target(source, true));
+    if (translation_work_exhausted()) return {};
+    work_order_search_catalog_.emplace(std::string(source), entry);
+    return entry;
+}
+
+std::shared_ptr<WorkOrderSearchEntry> Overlay::find_work_order_search_entry(
+        std::string_view source) const {
+    TranslationStateScope state;
+    const auto found = work_order_search_catalog_.find(source);
+    return found == work_order_search_catalog_.end() ? nullptr : found->second;
+}
+
 SearchMatchRank Overlay::translated_workshop_search_rank(
         std::string_view source, std::string_view query) const {
     TranslationStateScope translation_scope;
     if (!config_.enabled || source.empty() || source.size() > 65536)
         return SearchMatchRank::Related;
     const auto &prepared = translated_search_query(query);
-    auto rank = PreparedSearchText(native_text_to_utf8(source)).rank(prepared);
-    // Evaluate both captions even when an approximate English hit already
-    // admitted this row. The displayed Chinese phrase may be an exact hit.
-    if (rank != SearchMatchRank::Exact)
-        if (const auto translated = translated_unit_search_target(source, true))
-            rank = std::min(rank, PreparedSearchText(*translated).rank(prepared));
-    return rank;
+    const auto entry = prepare_work_order_search_entry(source);
+    return entry ? entry->rank(prepared) : SearchMatchRank::Related;
 }
 
 static bool translation_complete_with_native_nicknames(
@@ -44437,6 +44493,7 @@ bool g_copy_hook_active = false;
 
 static void apply_pending_arena_translated_search();
 static void apply_pending_name_editor_search();
+static void prepare_native_work_order_search_catalog();
 static void native_dfhack_present_layer(SDL_Renderer *renderer,
     void (*draw_translation)(SDL_Renderer *, const NativeDfhackTranslatedFrame &));
 static void native_help_present_layers(SDL_Renderer *renderer,
@@ -44519,6 +44576,7 @@ extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
         // Rebind under this composite's lock before deciding which page to draw.
         bind_native_worldgen_display_frame(native_graphics());
         apply_pending_arena_translated_search();
+        prepare_native_work_order_search_catalog();
         boundary.checkpoint("arena_search");
         g_overlay.render(renderer);
         if (native_worldgen_main_view(native_graphics())) {

@@ -377,6 +377,31 @@ struct PreparedSearchText {
             (pinyin ? sizeof(PinyinSearchIndex) + pinyin->bytes() : 0) +
             (similarity ? sizeof(SearchSimilarityIndex) + similarity->bytes() : 0);
     }
+    // A finite native catalog owns these query-independent fields for its
+    // lifetime. Prepare them before filtering, without the general text
+    // cache's byte-budget eviction/rebuild path.
+    void prepare_catalog_index() {
+        const auto &taxonomy = search_item_taxonomy();
+        item_concepts = taxonomy.recognize(semantic_source);
+        item_revision = taxonomy.revision;
+        item_concepts_prepared = true;
+        if (!ascii && !pinyin)
+            pinyin = std::make_unique<PinyinSearchIndex>(make_search_pinyin_index(normalized));
+        if (!similarity) {
+            similarity = std::make_unique<SearchSimilarityIndex>();
+            similarity->add(normalized);
+            if (pinyin && pinyin->has_pinyin) {
+                similarity->add(pinyin->full);
+                similarity->add(pinyin->initials);
+            }
+        }
+        if (const auto *model = search_semantic_model(); model && !similarity->ann) {
+            auto tree = std::make_unique<SearchAnnTree>();
+            tree->add(*model, semantic_source, true);
+            tree->finish();
+            similarity->ann = std::move(tree);
+        }
+    }
     bool matches(const PinyinSearchQuery &query) {
         const auto &taxonomy = search_item_taxonomy();
         if (item_revision != taxonomy.revision) {
@@ -444,6 +469,15 @@ struct PreparedSearchText {
     }
     bool compute_similarity_match(const PinyinSearchQuery &query) {
         if (literal.empty() || query.phonetic.empty()) return false;
+        // The first keystroke usually permits no edits. Exact/pinyin matching
+        // has already run; without a semantic model only the ordered Chinese
+        // compound channel remains. Avoid constructing unused pronunciation
+        // and fuzzy indexes for every offscreen candidate on that cold scan.
+        if (!similarity && !query.similarity.edits) {
+            if (search_ordered_compound_matches(search_codepoints(normalized),
+                    query.similarity)) return true;
+            if (!query.similarity.semantic_index()) return false;
+        }
         if (!similarity) {
             auto index = std::make_unique<SearchSimilarityIndex>();
             index->add(normalized);
@@ -462,6 +496,35 @@ struct PreparedSearchText {
             (pinyin->multiple_readings || query.mixed) &&
             (fuzzy_search_pinyin_readings(*pinyin, query, false) ||
              fuzzy_search_pinyin_readings(*pinyin, query, true));
+    }
+};
+
+struct WorkOrderSearchEntry {
+    std::vector<PreparedSearchText> fields;
+
+    WorkOrderSearchEntry(std::string_view source, const std::optional<std::string> &target) {
+        fields.reserve(target && *target != source ? 2 : 1);
+        fields.emplace_back(source);
+        if (target && *target != source) fields.emplace_back(*target);
+        for (auto &field : fields) field.prepare_catalog_index();
+    }
+    bool matches(const PinyinSearchQuery &query, bool native_match) {
+        const auto &taxonomy = search_item_taxonomy();
+        const auto &intent = query.items(taxonomy);
+        const auto typed = taxonomy.match(fields.front().item_concepts, intent);
+        // Match the same complete item identity before accepting native
+        // substring hits. A material/size qualifier still constrains both
+        // bilingual captions rather than being dropped after an item hit.
+        if (typed && (!*typed || intent.qualifier.empty())) return *typed;
+        if (native_match) return true;
+        for (auto &field : fields)
+            if (field.matches(query)) return true;
+        return false;
+    }
+    SearchMatchRank rank(const PinyinSearchQuery &query) {
+        auto result = SearchMatchRank::Related;
+        for (auto &field : fields) result = std::min(result, field.rank(query));
+        return result;
     }
 };
 

@@ -622,8 +622,12 @@ struct SearchItemTaxonomy {
 };
 
 static const SearchItemTaxonomy &search_item_taxonomy() {
+    TranslationStateScope state;
     struct Cache { std::unique_ptr<SearchItemTaxonomy> taxonomy; };
-    auto &cache = reloadable_thread_state<Cache, struct SearchItemTaxonomyTag>();
+    // Native input and SDL preparation share one immutable vocabulary. A
+    // private translator still owns its own domain and resource revision.
+    static const unsigned char tag = 0;
+    auto &cache = domain_cache<Cache>(&tag);
     const auto revision = RULESETS.resource_revision();
     if (!cache.taxonomy || cache.taxonomy->revision != revision)
         cache.taxonomy = std::make_unique<SearchItemTaxonomy>(revision);

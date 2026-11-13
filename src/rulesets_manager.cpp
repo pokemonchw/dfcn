@@ -1847,11 +1847,11 @@ namespace Hooks {
                     index.unrestricted.push_back(ordinal);
                     continue;
                 }
-                unsigned char initial = static_cast<unsigned char>(source.front().value.front());
                 // Use exactly the ASCII case folding of ci_char_equal.
-                // UTF-8 bytes and punctuation remain distinct.
-                if (initial >= 'A' && initial <= 'Z') initial |= 0x20;
-                index.literal_starts[initial].push_back(ordinal);
+                // UTF-8 bytes and punctuation remain distinct, even if the
+                // bounded byte prefix ends inside a multibyte character.
+                index.literal_starts[RulePrefixIndex::literal_prefix(
+                    source.front().value)].push_back(ordinal);
             }
             // A dynamic owner can add spellings absent from the literal
             // table. Nullable, mixed and large vocabularies retain their
@@ -2111,11 +2111,30 @@ namespace Hooks {
         const RulePrefixIndex* prefix_index = prefix_it == rule_prefix_indexes_.end()
             ? nullptr : &prefix_it->second;
         const std::vector<size_t>* literal_rules = nullptr;
+        std::vector<size_t> merged_literals;
         if (prefix_index && !text.empty()) {
-            unsigned char initial = static_cast<unsigned char>(text.front());
-            if (initial >= 'A' && initial <= 'Z') initial |= 0x20;
-            const auto found = prefix_index->literal_starts.find(initial);
-            if (found != prefix_index->literal_starts.end()) literal_rules = &found->second;
+            const auto prefix = RulePrefixIndex::literal_prefix(text);
+            std::array<const std::vector<size_t>*, RulePrefixIndex::maximum_prefix_bytes> buckets{};
+            size_t count = 0;
+            for (size_t length = 1; length <= prefix.size(); ++length) {
+                const auto found = prefix_index->literal_starts.find(
+                    std::string_view(prefix).substr(0, length));
+                if (found != prefix_index->literal_starts.end())
+                    buckets[count++] = &found->second;
+            }
+            if (count == 1) literal_rules = buckets[0];
+            else if (count > 1) {
+                size_t size = 0;
+                for (size_t i = 0; i < count; ++i) size += buckets[i]->size();
+                merged_literals.reserve(size);
+                for (size_t i = 0; i < count; ++i)
+                    merged_literals.insert(merged_literals.end(),
+                        buckets[i]->begin(), buckets[i]->end());
+                // Prefix lengths do not define precedence. Restore source
+                // ordinals before merging with unrestricted reference rules.
+                std::sort(merged_literals.begin(), merged_literals.end());
+                literal_rules = &merged_literals;
+            }
         }
         size_t unrestricted_at = 0, literal_at = 0, linear_at = 0;
         // Merge original ordinals so prefix pruning cannot change equal-weight

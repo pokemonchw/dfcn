@@ -463,10 +463,18 @@ namespace Hooks {
         using RuleSets = std::unordered_map<std::string, RuleSet>;
 
         struct RulePrefixIndex {
-            // Each list retains source-rule order. Merge the matching byte
-            // with the unrestricted rules at lookup, without duplicating
-            // reference/empty-prefix rules into every possible byte bucket.
-            std::unordered_map<unsigned char, std::vector<size_t>> literal_starts;
+            // Bound lookup work independently of vocabulary size. Short
+            // literals keep their complete prefix so they can still match
+            // before a longer one. Full literal matching remains authoritative.
+            static constexpr size_t maximum_prefix_bytes = 8;
+            static std::string literal_prefix(std::string_view text) {
+                std::string prefix(text.substr(0, maximum_prefix_bytes));
+                for (char &byte : prefix)
+                    if (byte >= 'A' && byte <= 'Z') byte += 'a' - 'A';
+                return prefix;
+            }
+            std::unordered_map<std::string, std::vector<size_t>,
+                TransparentHash, TransparentEqual> literal_starts;
             std::vector<size_t> unrestricted;
         };
 
