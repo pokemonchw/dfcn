@@ -71,6 +71,7 @@ static void capture_native_trade_item_draw(graphicst *graphics, const NativeStri
     int x = -1, y = -1, dimx = 0, dimy = 0;
     NativeInfoTitleKind title_kind = NativeInfoTitleKind::None;
     int caption_right = -1;
+    int trade_name_right = -1;
     try {
         // Consume the binding at this exact item-name draw, even if it is
         // clipped away. A later string at the same stack address starts with
@@ -95,6 +96,22 @@ static void capture_native_trade_item_draw(graphicst *graphics, const NativeStri
             clip = {graphics->clipx[0], graphics->clipx[1],
                 graphics->clipy[0], graphics->clipy[1]};
 #ifdef _WIN32
+            // Both depot panes draw the name at RBP+e0, then overwrite its
+            // tail with Value/Weight at pane_right-25. Retain only the name
+            // field's allocated cells so display-buffer rebinding can compare
+            // its entire visible source, without expecting the covered tail.
+            // The complete item name stays in the owned typed caption.
+            const auto base = native_history_profile_base();
+            const auto merchant_draw = native_pe_address(base, 0x386c66);
+            const auto fortress_draw = native_pe_address(base, 0x387be2);
+            const size_t pane_right_offset = merchant_draw && caller == merchant_draw + 5
+                ? 0x16c // RSP+74 == RBP-8c
+                : fortress_draw && caller == fortress_draw + 5 ? 0x14c : 0; // RBP-6c
+            int32_t pane_right = 0;
+            if (pane_right_offset && pending.string_owner >= pane_right_offset &&
+                    native_history_copy(pending.string_owner - pane_right_offset, pane_right) &&
+                    pane_right > x + 25 && pane_right <= dimx)
+                trade_name_right = std::min<int>(pane_right - 25, clip[1] + 1);
             // Building contents have their own native item-name field. Keep
             // that ownership when this wrapper replaces addst's capture;
             // otherwise only the later picture-skin reader can recover it.
@@ -132,12 +149,16 @@ static void capture_native_trade_item_draw(graphicst *graphics, const NativeStri
                     graphics->clipy[0], graphics->clipy[1]} ||
                 y < clip[2] || y > clip[3] || x > clip[1] ||
                 int64_t(x) + static_cast<int64_t>(shortened.size()) <= clip[0]) return;
-        // Keep the string DF actually supplied, including bytes covered by
-        // the value/weight columns later in the same row. The trade consumer
-        // proves only its allocated visible span against the retained grid.
-        // Its typed snapshot supplies the complete identity independently.
+        // The native call and cursor keep their original full width. Caption
+        // ownership ends before the independently drawn metric column; hidden
+        // name bytes must not make the same retained item alternate between
+        // its complete translation and a truncated English fallback.
+        std::string_view visible = shortened;
+        if (trade_name_right > x)
+            visible = visible.substr(0, std::min(visible.size(),
+                static_cast<size_t>(trade_name_right - x)));
         const std::string complete = pending.caption.source;
-        remember_native_drawn_text_row(x, y, shortened, pending.string_owner, graphics,
+        remember_native_drawn_text_row(x, y, visible, pending.string_owner, graphics,
             false, complete, title_kind, false, caption_right,
             NativeCivilizationField::None, false, -1, clip, pending.epoch, {},
             NativeLocationPickerField::None, std::nullopt, std::nullopt,

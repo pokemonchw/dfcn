@@ -330,10 +330,10 @@ public:
         if (!GetProcessTimes(GetCurrentProcess(), &birth, &exit, &kernel, &user)) return;
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
         const auto digest = hex_digest(seed);
-        // Revision 9 adds the search descriptor RTTI anchors. The seed bytes
-        // need not change, so the previous process snapshot may still retain
-        // the incomplete result from before those anchors were available.
-        name_ = L"Local\\DFCN.NativeAddresses.9." + std::to_wstring(GetCurrentProcessId()) + L"." +
+        // Revision 10 adds the civilization/agreement return bindings. The
+        // seed bytes need not change, so an earlier process snapshot can
+        // otherwise retain the failed resolution of those same resources.
+        name_ = L"Local\\DFCN.NativeAddresses.10." + std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
             std::wstring(digest.begin(), digest.end());
