@@ -83,6 +83,23 @@ static bool native_world_map_screen() {
     return screen && native_history_object_is(screen, "viewscreen_worldst");
 }
 
+static std::pair<uintptr_t, uintptr_t> native_world_civilization_owner() {
+    const uintptr_t screen = native_current_viewscreen();
+    int32_t mode = -1;
+    uintptr_t entity = 0;
+    // The world renderer's civilization branch is view_mode == 1. Its
+    // detail producers use last_hover_ent and the associated relnem/relag
+    // vectors. Read that object identity while each NativeString is alive;
+    // text content and screen borders never establish this panel's owner.
+    if (!screen || !native_history_object_is(screen, "viewscreen_worldst") ||
+            !native_history_copy(native_history_object_member(screen,
+                "viewscreen_worldst", "view_mode"), mode) || mode != 1 ||
+            !native_history_copy(native_history_object_member(screen,
+                "viewscreen_worldst", "last_hover_ent"), entity) || !entity)
+        return {};
+    return {screen, entity};
+}
+
 static std::optional<std::vector<std::string>> native_world_site_rumor_lines(bool expanded_only) {
     const uintptr_t screen = native_current_viewscreen();
     if (!screen || !native_history_object_is(screen, "viewscreen_worldst"))

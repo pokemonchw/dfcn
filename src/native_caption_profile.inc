@@ -107,7 +107,7 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
     // Civilization detail draws prefix, entity and value separately, with
     // addchar supplying the colon. These verified addst return addresses
     // identify the fields without accepting unrelated text under the panel.
-    // Keep unverified executable profiles empty for the geometric fallback.
+    // Unsupported profiles leave ownership empty; do not infer it from text.
     profile.civilization_fields = {
         {native_pe_address(profile.base, 0x1c4d01), NativeCivilizationField::TradePrefix}, // Exports to
         {native_pe_address(profile.base, 0x1c4d37), NativeCivilizationField::TradeEntity},
@@ -129,6 +129,30 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
         {native_pe_address(profile.base, 0x1c52cd), NativeCivilizationField::TradeValue},  // Amount
         {native_pe_address(profile.base, 0x1c5f6f), NativeCivilizationField::OfficialName},
         {native_pe_address(profile.base, 0x1c6025), NativeCivilizationField::OfficialPosition},
+        {native_pe_address(profile.base, 0x1c5346), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c5395), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c542d), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c5485), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c54bf), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c54f6), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c552d), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c5567), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c569d), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c5742), NativeCivilizationField::AgreementQuota},
+        {native_pe_address(profile.base, 0x1c5787), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c57f3), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c5835), NativeCivilizationField::AgreementEntity},
+        {native_pe_address(profile.base, 0x1c58bf), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c5901), NativeCivilizationField::AgreementEntity},
+        {native_pe_address(profile.base, 0x1c5987), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c59c8), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c5a30), NativeCivilizationField::AgreementPending},
+        {native_pe_address(profile.base, 0x1c5b2f), NativeCivilizationField::AgreementCommodity},
+        {native_pe_address(profile.base, 0x1c5b93), NativeCivilizationField::AgreementPrice},
+        {native_pe_address(profile.base, 0x1c5d28), NativeCivilizationField::AgreementCommodity},
+        {native_pe_address(profile.base, 0x1c5d90), NativeCivilizationField::AgreementPrice},
+        {native_pe_address(profile.base, 0x1c5e64), NativeCivilizationField::DetailText},
+        {native_pe_address(profile.base, 0x1c6182), NativeCivilizationField::DetailText},
         // The fortress HUD draws the complete native rank below its site
         // names. Retain this producer meaning before the restricted HUD
         // matcher considers the ordinary counter/date captions.

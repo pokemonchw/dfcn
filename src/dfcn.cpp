@@ -162,6 +162,7 @@ static bool native_map_mixed_view(const graphicst *graphics) noexcept;
 static bool native_map_artwork_grid(const unsigned char *screen) noexcept;
 static bool native_gameplay_map_screen(bool include_world = false);
 static bool native_world_map_screen();
+static std::pair<uintptr_t, uintptr_t> native_world_civilization_owner();
 #ifndef _WIN32
 static uintptr_t native_elf_5317_address(uintptr_t address);
 #endif
@@ -1104,6 +1105,14 @@ struct NativeMapHoverContext {
     NativeMapHoverFragment fragment = NativeMapHoverFragment::Complete;
 };
 
+struct NativeCivilizationTradeRow {
+    std::string label;
+    size_t value_at = 0, value_length = 0;
+};
+struct NativeCivilizationOfficialRow {
+    std::string name, position;
+    size_t position_at = 0;
+};
 struct NativeTextCardRow {
     int x = 0, y = 0;
     std::string source;
@@ -1116,6 +1125,12 @@ struct NativeTextCardRow {
     bool civilization_official = false;
     NativeMapHoverContext map_hover{};
     std::optional<std::string> unit_identity_target{};
+    // The fixed value column may overwrite the entity name and its colon.
+    // Keep the original heading separate from the surviving screen bytes.
+    std::optional<NativeCivilizationTradeRow> civilization_trade{};
+    std::optional<NativeCivilizationOfficialRow> civilization_official_source{};
+    std::optional<std::string> civilization_commodity{};
+    size_t civilization_price_at = SIZE_MAX, civilization_pending_at = SIZE_MAX;
 };
 struct NativeTextCard {
     SDL_Rect interior{};
@@ -2172,7 +2187,8 @@ static bool is_native_noble_symbol_field(NativeInfoTitleKind kind) {
 
 enum class NativeCivilizationField {
     None, TradePrefix, TradeEntity, TradeValue, OfficialName, OfficialPosition,
-    FortressRank, FortressPositionLabel
+    FortressRank, FortressPositionLabel, DetailText, AgreementEntity,
+    AgreementQuota, AgreementPrice, AgreementCommodity, AgreementPending
 };
 
 enum class NativeLocationPickerField {
@@ -2422,6 +2438,7 @@ struct NativeDrawnTextRow {
     bool info_title_authored = false;
     int info_title_right = -1; // exclusive native draw clip boundary
     NativeCivilizationField civilization_field = NativeCivilizationField::None;
+    std::pair<uintptr_t, uintptr_t> civilization_owner{};
     // The chooser's species and civilization draws share a temporary string.
     // Freeze the actual entity before that string is reused or clipped.
     std::shared_ptr<const NativeHistoryName> caravan_entity_name{};
@@ -2928,6 +2945,10 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         capture_native_arena_tree_caption(native_caller, address);
     auto caravan_entity_name = character ? std::shared_ptr<const NativeHistoryName>{} :
         capture_native_caravan_entity_name(native_caller, address);
+    const auto civilization_owner = civilization_field != NativeCivilizationField::None &&
+            civilization_field != NativeCivilizationField::FortressRank &&
+            civilization_field != NativeCivilizationField::FortressPositionLabel
+        ? native_world_civilization_owner() : std::pair<uintptr_t, uintptr_t>{};
     // Identity translation acquires TranslationStateScope before any native
     // registry mutex. Freeze organization evidence in that same lock order.
     auto justice_organization = top_layer || character ? std::nullopt :
@@ -3042,6 +3063,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         row.info_title_authored = info_title_authored;
         row.info_title_right = info_title_right;
         row.civilization_field = civilization_field;
+        row.civilization_owner = civilization_owner;
         row.caravan_entity_name = std::move(caravan_entity_name);
         if (row.caravan_entity_name) row.caption_source = true;
         row.location_picker_field = location_picker_field;
@@ -5118,15 +5140,13 @@ private:
         int only_y, const unsigned char *screen_override) const;
     void append_world_mission_members(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
-    std::optional<NativeTextCard> capture_native_world_civilization_details() const;
-    std::optional<NativeTextCard> capture_world_civilization_details(
-        const NativeTextCard *civilizations) const;
+    std::optional<NativeTextCard> capture_world_civilization_details() const;
     void append_world_civilization_officials(const NativeTextCard &details,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
     void append_world_civilization_trade_summary(const NativeTextCard &details,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
-    std::vector<NativeTextCard> capture_world_civilization_trade_rows(
-        const NativeTextCard &details) const;
+    void append_world_civilization_messages(const NativeTextCard &details,
+        std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
     void layout_world_site_card(SDL_Renderer *renderer);
     bool append_world_artifact_rows(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
@@ -19462,9 +19482,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         world_site_actions.clear();
     }
     const auto civilization_details = local_fortress_hud || fortress_gameplay ? std::optional<NativeTextCard>{}
-        : capture_world_civilization_details(world_site ? &*world_site : nullptr);
-    const auto civilization_trade_rows = civilization_details
-        ? capture_world_civilization_trade_rows(*civilization_details) : std::vector<NativeTextCard>{};
+        : capture_world_civilization_details();
     append_river_name_matches(screen_rows, result, only_y);
     append_volcano_name_matches(screen_rows, result, only_y);
     if (embark_site) {
@@ -19479,6 +19497,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     }
     if (civilization_details) {
         append_world_civilization_trade_summary(*civilization_details, screen_rows, result, only_y);
+        append_world_civilization_messages(*civilization_details, screen_rows, result, only_y);
         append_world_civilization_officials(*civilization_details, screen_rows, result, only_y);
     }
     for (const auto &action : world_site_actions)
@@ -19651,8 +19670,6 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         if (world_site) compose_native_text_rows(*world_site, result, only_y, kWorldSiteRowRule);
         if (world_mission_summary) compose_native_text_rows(
             *world_mission_summary, result, only_y, kWorldSiteRowRule);
-        for (const auto &column : civilization_trade_rows)
-            compose_native_text_rows(column, result, only_y, kWorldSiteRowRule);
         for (const auto &action : world_site_actions)
             compose_native_text_rows(action, result, only_y, kWorldSiteRowRule, false, true);
         for (const auto &choice : workshop_choices)

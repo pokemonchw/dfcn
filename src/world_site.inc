@@ -1778,200 +1778,147 @@ void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
     }
 }
 
-static size_t world_civilization_trade_label_end(std::string_view source) {
-    for (const std::string_view prefix : {"Imports from ", "Exports to ", "Offerings from "}) {
-        if (!source.starts_with(prefix)) continue;
-        const size_t colon = source.find(':', prefix.size());
-        if (colon != std::string_view::npos && colon > prefix.size()) return colon + 1;
-    }
-    return 0;
-}
-
-// Native addst call sites identify these fields before any generic card or
-// border recognition. Require their actual current bytes and common row/
-// column origins; the source binding never authorizes unrelated grid cells.
-std::optional<NativeTextCard> Overlay::capture_native_world_civilization_details() const {
+// Identify the panel through viewscreen_worldst memory. Every field below
+// is an owned NativeString snapshot from its native detail draw; cursor and
+// clip supply geometry only. No rendered text or border scan is involved.
+std::optional<NativeTextCard> Overlay::capture_world_civilization_details() const {
+    const auto owner = native_world_civilization_owner();
+    if (!owner.first || !owner.second) return std::nullopt;
     const std::array batches{captured_native_drawn_text_snapshot(false),
         captured_native_drawn_text_snapshot(true)};
-    const auto visible = [&](const NativeDrawnTextRow &draw, int right) {
-        if (draw.x < 0 || draw.y < 0 || draw.y >= gps_->dimy || draw.x >= right ||
-                right > gps_->dimx || draw.source.empty()) return false;
-        const size_t count = std::min(draw.source.size(), static_cast<size_t>(right - draw.x));
-        for (size_t i = 0; i < count; ++i) {
-            bool top = false;
-            const auto *cell = cell_at(draw.x + static_cast<int>(i), draw.y, &top);
-            const unsigned char ch = cell && cell[0] ? cell[0] : ' ';
-            if (!cell || ch != static_cast<unsigned char>(draw.source[i]) ||
-                    (ch != ' ' && top != draw.top_layer)) return false;
-        }
-        return true;
+    const auto complete = [](const NativeDrawnTextRow &draw) -> const std::string & {
+        return draw.complete_source.empty() ? draw.source : draw.complete_source;
     };
-    const auto read = [&](int x, int y, int right) {
-        NativeTextCardRow row;
-        row.x = x;
-        row.y = y;
-        for (int column = x; column < right; ++column) {
-            bool top = false;
-            const auto *cell = cell_at(column, y, &top);
-            row.source += cell && cell[0] ? static_cast<char>(cell[0]) : ' ';
-            row.foregrounds.push_back(cell ? (cell[1] << 16) | (cell[2] << 8) | cell[3] : 0xffffff);
-        }
-        return row;
+    const auto right_edge = [&](const NativeDrawnTextRow &draw) {
+        return draw.draw_clip ? std::min(gps_->dimx, draw.draw_clip->x + draw.draw_clip->w)
+            : gps_->dimx;
     };
-    for (const auto &draws_snapshot : batches) {
-        const auto &draws = *draws_snapshot;
-        struct Heading {
-            const NativeDrawnTextRow *prefix;
-            int value_x;
-            NativeTextCardRow row;
-        };
-        std::vector<Heading> headings;
-        for (const auto &prefix : draws) {
-            if (prefix.civilization_field != NativeCivilizationField::TradePrefix ||
-                    (prefix.source != "Imports from " && prefix.source != "Exports to " &&
-                     prefix.source != "Offerings from ") || !visible(prefix, gps_->dimx)) continue;
-            const int entity_x = prefix.x + static_cast<int>(prefix.source.size());
-            const auto entity = std::find_if(draws.begin(), draws.end(), [&](const auto &draw) {
-                return draw.civilization_field == NativeCivilizationField::TradeEntity &&
-                    draw.x == entity_x && draw.y == prefix.y && visible(draw, gps_->dimx);
-            });
-            if (entity == draws.end()) continue;
-            const int colon = entity->x + static_cast<int>(entity->source.size());
-            if (colon >= gps_->dimx) continue;
-            bool top = false;
-            const auto *cell = cell_at(colon, prefix.y, &top);
-            if (!cell || cell[0] != ':' || top != prefix.top_layer) continue;
-            const auto value = std::find_if(draws.begin(), draws.end(), [&](const auto &draw) {
-                return draw.civilization_field == NativeCivilizationField::TradeValue &&
-                    draw.y == prefix.y && draw.x > colon && visible(draw, gps_->dimx);
-            });
-            if (value == draws.end() || value->source.size() > static_cast<size_t>(gps_->dimx - value->x))
-                continue;
-            int right = value->x + static_cast<int>(value->source.size());
-            // Numeric totals append the currency glyph with addchar, just
-            // as the heading appends its colon outside the addst captures.
-            const auto *currency = right < gps_->dimx ? cell_at(right, prefix.y, &top) : nullptr;
-            if (currency && top == value->top_layer && currency[0] == 0x0f) ++right;
-            auto row = read(prefix.x, prefix.y, right);
-            const size_t gap = static_cast<size_t>(colon + 1 - prefix.x);
-            if (std::any_of(row.source.begin() + gap,
-                    row.source.begin() + (value->x - prefix.x), [](char ch) { return ch != ' '; })) continue;
-            headings.push_back({&prefix, value->x, std::move(row)});
+    const auto owned = [&](const NativeDrawnTextRow &draw) {
+        return draw.civilization_owner == owner && draw.draw_dimx == gps_->dimx &&
+            draw.draw_dimy == gps_->dimy && draw.x >= 0 && draw.y >= 0 &&
+            draw.y < gps_->dimy && draw.x < right_edge(draw) && !draw.source.empty();
+    };
+    const auto write = [&](NativeTextCardRow &row, const NativeDrawnTextRow &draw,
+                           std::string_view text, int right) {
+        if (draw.x < row.x || right <= draw.x) return;
+        const size_t at = static_cast<size_t>(draw.x - row.x);
+        const size_t length = std::min(text.size(), static_cast<size_t>(right - draw.x));
+        if (row.source.size() < at + length) {
+            row.source.resize(at + length, ' ');
+            row.foregrounds.resize(at + length, draw.foreground_rgb);
         }
+        row.source.replace(at, length, text.substr(0, length));
+        std::fill_n(row.foregrounds.begin() + at, length, draw.foreground_rgb);
+    };
+    for (const auto &snapshot : batches) {
+        const auto &draws = *snapshot;
         NativeTextCard card;
         int left = gps_->dimx, right = 0;
-        int officials_after = -1;
-        for (const auto &trade : headings) {
-            if (trade.prefix->source == "Offerings from ") continue;
-            const auto offerings = std::find_if(headings.begin(), headings.end(), [&](const auto &heading) {
-                return heading.prefix->source == "Offerings from " &&
-                    heading.prefix->x == trade.prefix->x && heading.value_x == trade.value_x &&
-                    heading.prefix->y > trade.prefix->y;
+        for (const auto &prefix : draws) {
+            if (!owned(prefix) || prefix.civilization_field != NativeCivilizationField::TradePrefix)
+                continue;
+            const int entity_x = prefix.x + static_cast<int>(prefix.source.size());
+            const auto entity = std::find_if(draws.begin(), draws.end(), [&](const auto &draw) {
+                return owned(draw) && draw.civilization_field == NativeCivilizationField::TradeEntity &&
+                    draw.y == prefix.y && draw.x == entity_x && draw.sequence > prefix.sequence;
             });
-            if (offerings == headings.end()) continue;
-            card.rows = {trade.row, offerings->row};
-            left = trade.row.x;
-            officials_after = offerings->row.y;
-            right = std::max(trade.row.x + static_cast<int>(trade.row.source.size()),
-                offerings->row.x + static_cast<int>(offerings->row.source.size()));
-            break;
+            if (entity == draws.end()) continue;
+            const auto value = std::find_if(draws.begin(), draws.end(), [&](const auto &draw) {
+                return owned(draw) && draw.civilization_field == NativeCivilizationField::TradeValue &&
+                    draw.y == prefix.y && draw.x > entity_x && draw.sequence > entity->sequence;
+            });
+            if (value == draws.end()) continue;
+            const int clip_right = std::min({right_edge(prefix), right_edge(*entity), right_edge(*value)});
+            if (value->x + static_cast<int>(value->source.size()) > clip_right) continue;
+            NativeTextCardRow row;
+            row.x = prefix.x;
+            row.y = prefix.y;
+            // The colon is the native addchar immediately after TradeEntity.
+            // Reapply the later value draw to model its exact overwritten span,
+            // but translate the complete original label from native memory.
+            write(row, prefix, prefix.source + entity->source + ':', clip_right);
+            write(row, *value, value->source, clip_right);
+            row.civilization_trade = NativeCivilizationTradeRow{
+                complete(prefix) + complete(*entity) + ':',
+                static_cast<size_t>(value->x - prefix.x), value->source.size()};
+            left = std::min(left, row.x);
+            right = std::max(right, row.x + static_cast<int>(row.source.size()));
+            card.rows.push_back(std::move(row));
         }
-        // Selecting the player's own civilization jumps from PE 1c4aaf
-        // straight to the official loop at 1c5e77. It never draws trade
-        // headings. The typed name/position draws identify this table on
-        // their own, including names overwritten by the next column.
         for (const auto &name : draws) {
-            if (name.civilization_field != NativeCivilizationField::OfficialName ||
-                    name.y <= officials_after) continue;
+            if (!owned(name) || name.civilization_field != NativeCivilizationField::OfficialName)
+                continue;
             const auto position = std::find_if(draws.begin(), draws.end(), [&](const auto &draw) {
-                return draw.civilization_field == NativeCivilizationField::OfficialPosition &&
-                    draw.y == name.y && draw.x > name.x && visible(draw, gps_->dimx);
+                return owned(draw) && draw.civilization_field == NativeCivilizationField::OfficialPosition &&
+                    draw.y == name.y && draw.x > name.x && draw.sequence > name.sequence;
             });
-            if (position == draws.end() || !visible(name, position->x) ||
-                    position->source.size() > static_cast<size_t>(gps_->dimx - position->x)) continue;
+            if (position == draws.end()) continue;
             const std::pair columns{name.x, position->x};
             if (card.civilization_official_columns && *card.civilization_official_columns != columns)
                 continue;
             card.civilization_official_columns = columns;
-            card.rows.push_back(read(name.x, name.y,
-                position->x + static_cast<int>(position->source.size())));
-            card.rows.back().civilization_official = true;
+            const int row_right = std::min({right_edge(name), right_edge(*position),
+                position->x + position->x - name.x});
+            NativeTextCardRow row;
+            row.x = name.x;
+            row.y = name.y;
+            write(row, name, name.source, row_right);
+            write(row, *position, position->source, row_right);
+            row.civilization_official = true;
+            row.civilization_official_source = NativeCivilizationOfficialRow{
+                complete(name), complete(*position), static_cast<size_t>(position->x - name.x)};
             left = std::min(left, name.x);
-            // Native PE 1c5f6f advances one name-column width, and
-            // 1c5fbf..1c5fcb bounds the office to that same 25 cells.
-            // Use the actual two draw origins, not screenshot positions.
-            right = std::max(right, std::min(gps_->dimx, position->x + position->x - name.x));
+            right = std::max(right, row_right);
+            card.rows.push_back(std::move(row));
+        }
+        // Agreement text, year, commodity and percentage elements are also
+        // native strings. Join only draws from this same owner and row. The
+        // three punctuation suffixes are explicit addchar calls in the producer.
+        for (const auto &draw : draws) {
+            if (!owned(draw)) continue;
+            const auto kind = draw.civilization_field;
+            if (kind != NativeCivilizationField::DetailText &&
+                    kind != NativeCivilizationField::AgreementEntity &&
+                    kind != NativeCivilizationField::AgreementQuota &&
+                    kind != NativeCivilizationField::AgreementPrice &&
+                    kind != NativeCivilizationField::AgreementCommodity &&
+                    kind != NativeCivilizationField::AgreementPending) continue;
+            std::string source = draw.source;
+            if (kind == NativeCivilizationField::AgreementEntity) source += ')';
+            if (kind == NativeCivilizationField::AgreementQuota) source += '/';
+            if (kind == NativeCivilizationField::AgreementPrice) source += '%';
+            auto row = std::find_if(card.rows.begin(), card.rows.end(),
+                [&](const auto &record) { return record.y == draw.y; });
+            if (row == card.rows.end()) {
+                card.rows.push_back({draw.x, draw.y, {}, {}});
+                row = std::prev(card.rows.end());
+            }
+            write(*row, draw, source, right_edge(draw));
+            std::string original = complete(draw);
+            if (kind == NativeCivilizationField::AgreementEntity) original += ')';
+            if (kind == NativeCivilizationField::AgreementQuota) original += '/';
+            if (kind == NativeCivilizationField::AgreementPrice) original += '%';
+            const size_t at = static_cast<size_t>(draw.x - row->x);
+            if (row->complete_source.size() < at + original.size())
+                row->complete_source.resize(at + original.size(), ' ');
+            row->complete_source.replace(at, original.size(), original);
+            if (kind == NativeCivilizationField::AgreementCommodity)
+                row->civilization_commodity = complete(draw);
+            if (kind == NativeCivilizationField::AgreementPrice)
+                row->civilization_price_at = static_cast<size_t>(draw.x - row->x);
+            if (kind == NativeCivilizationField::AgreementPending)
+                row->civilization_pending_at = static_cast<size_t>(draw.x - row->x);
+            left = std::min(left, row->x);
+            right = std::max(right, row->x + static_cast<int>(row->source.size()));
         }
         if (card.rows.empty()) continue;
         std::sort(card.rows.begin(), card.rows.end(), [](const auto &a, const auto &b) { return a.y < b.y; });
         card.interior = {left, card.rows.front().y, right - left,
             card.rows.back().y - card.rows.front().y + 1};
-        // Keep the existing agreement-commodity layout when its generic
-        // frame is readable. Its absence must not discard the directly
-        // bound trade/official fields above.
-        const NativePanelBorders borders(*gps_);
-        const auto &anchor = card.rows.front();
-        if (const auto panel = native_panel_interior(borders, *gps_, anchor.x,
-                anchor.x + static_cast<int>(anchor.source.size()), anchor.y)) {
-            if (const auto body = capture_panel_text_card(*panel)) {
-                for (const auto &row : body->rows)
-                    if (std::none_of(card.rows.begin(), card.rows.end(),
-                            [&](const auto &known) { return known.y == row.y; }))
-                        card.rows.push_back(row);
-                std::sort(card.rows.begin(), card.rows.end(),
-                    [](const auto &a, const auto &b) { return a.y < b.y; });
-            }
-        }
         return card;
     }
     return std::nullopt;
 }
-
-// The detail popup owns its text independently of the scrollable list.
-// It can remain visible when navigation or list records do not enter the
-// generic site-card path. The current world viewscreen and both native
-// trade headings identify this closed, read-only frame without borrowing
-// the neighbouring button's translation or its rectangle.
-std::optional<NativeTextCard> Overlay::capture_world_civilization_details(
-        const NativeTextCard *civilizations) const {
-    if (auto native = capture_native_world_civilization_details()) return native;
-    const bool list_context = civilizations && std::any_of(
-        civilizations->rows.begin(), civilizations->rows.end(),
-        [](const auto &row) { return row.source.find(", \"") != std::string::npos; });
-    if (!native_world_map_screen() && !list_context) return std::nullopt;
-    const NativePanelBorders borders(*gps_);
-    std::set<std::tuple<int, int, int, int>> visited;
-    for (int y = 0; y < gps_->dimy; ++y) {
-        std::string context(gps_->dimx, ' ');
-        for (int x = 0; x < gps_->dimx; ++x) {
-            bool top = false;
-            const auto *cell = cell_at(x, y, &top);
-            if (cell && cell[0]) context[x] = cell[0];
-        }
-        for (const auto &field : split_text_fields(context)) {
-            const size_t end = world_civilization_trade_label_end(field.text);
-            if (!end) continue;
-            const auto panel = native_panel_interior(borders, *gps_,
-                field.start, field.start + static_cast<int>(end), y);
-            if (!panel || !visited.emplace(panel->x, panel->y, panel->w, panel->h).second)
-                continue;
-            auto card = capture_panel_text_card(*panel);
-            if (!card) continue;
-            bool trade = false, offerings = false;
-            for (const auto &row : card->rows) {
-                const size_t label_end = world_civilization_trade_label_end(row.source);
-                if (row.x != field.start || !label_end || label_end >= row.source.size() ||
-                        row.source[label_end] != ' ' ||
-                        row.source.find_first_not_of(' ', label_end) == std::string::npos) continue;
-                if (row.source.starts_with("Offerings from ")) offerings = true;
-                else trade = true;
-            }
-            if (trade && offerings) return card;
-        }
-    }
-    return std::nullopt;
-}
-
 // Totals and diplomatic assessments share the same two-column summary.
 // Claim the entire value (including multiword assessments) before ordinary
 // word rules can translate and centre its pieces at unrelated positions.
@@ -1979,19 +1926,21 @@ void Overlay::append_world_civilization_trade_summary(const NativeTextCard &deta
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const {
     struct SummaryRow {
         const NativeTextCardRow *row;
-        size_t label_end, value_at;
+        size_t label_end, value_at, value_end;
+        std::string_view complete_label;
     };
     std::vector<SummaryRow> summary;
     const auto &panel = details.interior;
     int left = panel.x + panel.w, middle = left;
     for (const auto &row : details.rows) {
-        const size_t end = world_civilization_trade_label_end(row.source);
-        if (!end || end >= row.source.size() || row.source[end] != ' ') continue;
-        const size_t value = row.source.find_first_not_of(' ', end);
-        if (value == std::string::npos) continue;
-        summary.push_back({&row, end, value});
-        left = std::min(left, row.x);
-        middle = std::min(middle, row.x + static_cast<int>(value));
+        if (row.civilization_trade) {
+            const auto &trade = *row.civilization_trade;
+            summary.push_back({&row, trade.value_at, trade.value_at,
+                trade.value_at + trade.value_length, trade.label});
+            left = std::min(left, row.x);
+            middle = std::min(middle, row.x + static_cast<int>(trade.value_at));
+            continue;
+        }
     }
     if (summary.empty() || middle <= left) return;
     // Use the live value column, not the width of a translated label
@@ -2003,8 +1952,12 @@ void Overlay::append_world_civilization_trade_summary(const NativeTextCard &deta
         const auto append = [&](size_t begin, size_t end, int column_left,
                                 int column_right, bool value) {
             const std::string source = row.source.substr(begin, end - begin);
-            const std::vector<int> colors(row.foregrounds.begin() + begin,
+            const std::string translation_source = !value && !record.complete_label.empty()
+                ? std::string(record.complete_label) : source;
+            std::vector<int> colors(row.foregrounds.begin() + begin,
                 row.foregrounds.begin() + end);
+            if (!value && !record.complete_label.empty())
+                colors.assign(translation_source.size(), row.foregrounds.front());
             std::vector<int> translated_colors;
             std::optional<std::string> target;
             if (value) {
@@ -2017,13 +1970,13 @@ void Overlay::append_world_civilization_trade_summary(const NativeTextCard &deta
                         [](unsigned char ch) { return (ch >= 'a' && ch <= 'z') ||
                             (ch >= 'A' && ch <= 'Z'); })) target = native_text_to_utf8(source);
             } else {
-                target = translate_help_paragraph(source, colors, translated_colors, true);
+                target = translate_help_paragraph(translation_source, colors, translated_colors, true);
             }
             Match match{row.x + static_cast<int>(begin), row.y,
                 static_cast<int>(source.size()), kWorldSiteRowRule,
-                target ? *target : native_text_to_utf8(source), source};
+                target ? *target : native_text_to_utf8(translation_source), source};
             match.native_hover_untranslated = !target;
-            if (!target) match.native_help_review_source = source;
+            if (!target) match.native_help_review_source = translation_source;
             match.layout_x = column_left;
             match.layout_y = row.y;
             match.layout_length = column_right - column_left;
@@ -2042,146 +1995,80 @@ void Overlay::append_world_civilization_trade_summary(const NativeTextCard &deta
             if (only_y < 0 || only_y == row.y) matches.push_back(std::move(match));
         };
         append(0, record.label_end, left, middle - 1, false);
-        append(record.value_at, row.source.size(), middle, right, true);
+        append(record.value_at, record.value_end, middle, right, true);
+        if (record.value_end < row.source.size()) {
+            const int x = row.x + static_cast<int>(record.value_end);
+            const std::string tail = row.source.substr(record.value_end);
+            Match hidden{x, row.y, static_cast<int>(tail.size()), kWorldSiteRowRule, {}, tail};
+            hidden.native_split_duplicate = true;
+            std::erase_if(matches, [&](const Match &other) {
+                return other.y == row.y && other.x < x + hidden.length && x < other.x + other.length;
+            });
+            std::fill_n(rows[row.y].begin() + x, tail.size(), ' ');
+            if (only_y < 0 || only_y == row.y) matches.push_back(std::move(hidden));
+        }
     }
 }
 
-// Trade agreements occupy the read-only sibling of the civilization list.
-// Each commodity is one left-aligned field beside a native percentage, not
-// an English-width centring box. Retain ordinary item translation and join
-// its runs only after matching; never include the price in the name field.
-std::vector<NativeTextCard> Overlay::capture_world_civilization_trade_rows(
-        const NativeTextCard &details) const {
-    const auto heading = [](std::string_view source) {
-        source = trim_view(source);
-        for (const std::string_view prefix : {"Trade Agreement (Exports to ",
-                "Requests (Imports from "})
-            if (source.starts_with(prefix) && source.ends_with(')') &&
-                    source.size() > prefix.size() + 1) return true;
-        return false;
-    };
-    const auto &panel = details.interior;
-    const int right = panel.x + panel.w;
-    std::vector<NativeTextCard> columns;
-    NativeTextCard commodities;
-    const auto flush = [&]() {
-        if (!commodities.rows.empty()) columns.push_back(std::move(commodities));
-        commodities = {};
-        commodities.interior = {right, panel.y, 0, panel.h};
-    };
-    flush();
-    bool agreement = false;
+// Translate agreement elements from their native strings as well. Their
+// producer types, not heading words or a trailing percent sign, identify
+// the commodity, price and pending-status columns.
+void Overlay::append_world_civilization_messages(const NativeTextCard &details,
+        std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const {
+    const int right = details.interior.x + details.interior.w;
     for (const auto &row : details.rows) {
-        if (heading(row.source)) {
-            flush();
-            agreement = true;
-            continue;
+        if (row.civilization_trade || row.civilization_official_source || row.source.empty()) continue;
+        const auto append = [&](size_t begin, size_t end, std::string_view original,
+                                int column_right, bool commodity, bool numeric) {
+            if (begin >= end || end > row.source.size()) return;
+            const int x = row.x + static_cast<int>(begin);
+            const std::string source = row.source.substr(begin, end - begin);
+            const std::string complete(trim_view(original));
+            std::vector<int> colors(complete.size(), row.foregrounds[begin]);
+            std::vector<int> translated_colors;
+            auto target = numeric ? std::optional<std::string>(native_text_to_utf8(complete))
+                : commodity ? translate_legends_item(complete)
+                : translate_help_paragraph(complete, colors, translated_colors, true);
+            if (!target && !commodity) target = exact_literal_translation(complete);
+            Match match{x, row.y, static_cast<int>(source.size()), kWorldSiteRowRule,
+                target ? *target : native_text_to_utf8(complete), source};
+            match.native_hover_untranslated = !target;
+            if (!target) match.native_help_review_source = complete;
+            match.layout_x = x;
+            match.layout_y = row.y;
+            match.layout_length = column_right - x;
+            match.layout_clip_right = column_right;
+            match.layout_left = true;
+            match.layout_ellipsize = true;
+            match.layout_prepared = true;
+            match.layout_line_height_pixels = gps_->tile_pixel_y;
+            match.layout_foreground_rgb = row.foregrounds[begin];
+            match.layout_glyph_foreground_rgb = std::move(translated_colors);
+            std::erase_if(matches, [&](const Match &other) {
+                return other.y == row.y && other.x < x + match.length && x < other.x + other.length;
+            });
+            std::fill_n(rows[row.y].begin() + x, source.size(), ' ');
+            if (only_y < 0 || only_y == row.y) matches.push_back(std::move(match));
+        };
+        if (row.civilization_commodity && row.civilization_price_at < row.source.size()) {
+            const size_t price = row.civilization_price_at;
+            append(0, price, *row.civilization_commodity, row.x + static_cast<int>(price) - 1, true, false);
+            append(price, row.source.size(), std::string_view(row.source).substr(price), right, false, true);
+        } else if (row.civilization_pending_at < row.source.size()) {
+            const size_t pending = row.civilization_pending_at;
+            append(0, pending, std::string_view(row.source).substr(0, pending),
+                row.x + static_cast<int>(pending) - 1, false, false);
+            append(pending, row.source.size(), std::string_view(row.source).substr(pending), right, false, false);
+        } else {
+            append(0, row.source.size(), row.complete_source.empty() ? row.source : row.complete_source,
+                right, row.civilization_commodity.has_value(), false);
         }
-        if (!agreement) continue;
-        // The year has its own native indent. Give its existing
-        // numeric template that complete row instead of centring
-        // the shorter Chinese date inside the English sentence.
-        constexpr std::string_view year_prefix = "Agreed in year ";
-        const std::string_view source(row.source);
-        if (source.starts_with(year_prefix) && source.size() > year_prefix.size() &&
-                std::all_of(source.begin() + year_prefix.size(), source.end(),
-                    [](char ch) { return ch >= '0' && ch <= '9'; })) {
-            NativeTextCard date;
-            date.interior = {row.x, row.y, right - row.x, 1};
-            date.rows.push_back(row);
-            columns.push_back(std::move(date));
-            continue;
-        }
-        // Read the final percentage from its actual native column.
-        // A space before its digits separates even a long item name;
-        // office/name rows below the agreements never qualify.
-        size_t price = source.size();
-        if (!source.empty() && source.back() == '%') {
-            price = source.size() - 1;
-            while (price > 0 && source[price - 1] >= '0' && source[price - 1] <= '9')
-                --price;
-        }
-        if (price == 0 || price + 1 >= source.size() || source[price - 1] != ' ') {
-            flush();
-            agreement = false;
-            continue;
-        }
-        const auto item = trim_view(source.substr(0, price));
-        if (item.empty()) continue;
-        const int item_x = row.x + static_cast<int>(item.data() - source.data());
-        const int price_x = row.x + static_cast<int>(price);
-        const int column_right = commodities.rows.empty() ? price_x - 1
-            : std::min(commodities.interior.x + commodities.interior.w, price_x - 1);
-        commodities.interior.x = std::min(commodities.interior.x, item_x);
-        commodities.interior.w = column_right - commodities.interior.x;
-        const size_t offset = static_cast<size_t>(item_x - row.x);
-        commodities.rows.push_back({item_x, row.y, std::string(item),
-            std::vector<int>(row.foregrounds.begin() + offset,
-                row.foregrounds.begin() + offset + item.size())});
     }
-    flush();
-    return columns;
 }
-
-// The selected civilization has a SECOND, read-only frame beside the entity
-// list. Its final section is a two-column holder/office table, not prose and
-// not the appointment controls on the Nobles page. Native Linux 53.16 draws
-// names at 0x1434030 and offices at 0x14340ab; the latter clips the COMPLETE
-// office/territory/profession string to 25 cells via the shared resize hook.
+// Names and positions belong to the memory-identified civilization panel.
+// Their original NativeStrings survive clipping in the typed row metadata.
 void Overlay::append_world_civilization_officials(const NativeTextCard &details,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const {
-    // The independent detail capture proves this trade/official frame.
-    // Neither another card nor translation coverage establishes ownership.
-    const auto captures_snapshot = captured_clipped_caption_snapshot();
-    const auto &captures = *captures_snapshot;
-    const std::array draws{captured_native_drawn_text_snapshot(false),
-        captured_native_drawn_text_snapshot(true)};
-    const auto complete_source = [&](int x, int y, std::string_view visible, int right) {
-        bool top = false;
-        cell_at(x, y, &top);
-        const auto *flags = top ? gps_->screentexpos_top_flag : gps_->screentexpos_flag;
-        constexpr uint32_t halves = (1u << 3) | (1u << 4);
-        const uint32_t half = flags ? flags[static_cast<size_t>(x) * gps_->dimy + y] & halves : 0;
-        const int mate = half == (1u << 3) ? y + 1 : half == (1u << 4) ? y - 1 : -1;
-        const auto same_draw_row = [&](int draw_y) {
-            if (draw_y == y) return true;
-            if (draw_y != mate || mate < 0 || mate >= gps_->dimy) return false;
-            bool mate_top = false;
-            const auto *cell = cell_at(x, mate, &mate_top);
-            const uint32_t mate_half = flags && cell && mate_top == top
-                ? flags[static_cast<size_t>(x) * gps_->dimy + mate] & halves : 0;
-            if (mate_half != (half == (1u << 3) ? (1u << 4) : (1u << 3))) return false;
-            for (size_t at = 0; at < visible.size(); ++at) {
-                bool other_top = false;
-                const auto *other = cell_at(x + static_cast<int>(at), mate, &other_top);
-                if (!other || other_top != top ||
-                    (other[0] ? other[0] : ' ') != static_cast<unsigned char>(visible[at]))
-                    return false;
-            }
-            return true;
-        };
-        // The following office draw can overwrite the end of a long name.
-        // Match only the physical column; retain the formatter's full source
-        // for translation without consuming any cells in the other column.
-        const auto agrees = [&](std::string_view drawn) {
-            return trim_view(drawn.substr(0, static_cast<size_t>(right - x))) == visible;
-        };
-        std::string complete(visible);
-        for (const auto &capture : captures)
-            if (capture.x == x && same_draw_row(capture.y) && agrees(capture.visible)) {
-                complete = capture.complete;
-                break;
-            }
-        // Draw records retain pre-shortening text across cached frames after
-        // the clipping registry's epoch has expired.
-        for (const auto &draw : *draws[top ? 1 : 0])
-            if (draw.x == x && same_draw_row(draw.y) && agrees(draw.source)) {
-                if (!draw.complete_source.empty()) complete = draw.complete_source;
-                else if (complete == visible) complete = draw.source;
-                break;
-            }
-        return complete;
-    };
     const auto translated = [](const std::optional<std::string> &text) {
         return text && !text->empty() && std::none_of(text->begin(), text->end(),
             [](unsigned char ch) { return (ch >= 'A' && ch <= 'Z') ||
@@ -2232,140 +2119,48 @@ void Overlay::append_world_civilization_officials(const NativeTextCard &details,
         }
         return dfcn::TranslationResult{};
     };
-    const auto office = [&](std::string_view source) -> std::optional<std::string> {
-        const auto result = office_result(source);
-        // A bare field still needs vocabulary evidence to anchor a table.
-        // Native columns and an explicit office/profession slash already
-        // prove ownership independently of this translation coverage.
-        if (result.usable() && std::any_of(result.fragments.begin(), result.fragments.end(),
-                [](const auto &fragment) { return fragment.status == dfcn::TranslationStatus::Translated &&
-                    fragment.kind == "office-component"; })) return result.target;
-        return std::nullopt;
-    };
-    const auto &panel = details.interior;
-    const int right = panel.x + panel.w;
-    for (const auto &line : details.rows) {
-        const int y = line.y;
-        auto fields = split_text_fields(line.source);
-        for (auto &field : fields) { field.start += line.x; field.end += line.x; }
-        if (details.civilization_official_columns) {
-            const auto [left, middle] = *details.civilization_official_columns;
-            if (line.x != left || middle <= left ||
-                    !line.civilization_official ||
-                    line.source.size() <= static_cast<size_t>(middle - left)) continue;
-            const auto name = trim_view(std::string_view(line.source).substr(0, middle - left));
-            const auto position = trim_view(std::string_view(line.source).substr(middle - left));
-            if (name.empty() || position.empty()) continue;
-            fields = {{left, left + static_cast<int>(name.size()), std::string(name)},
-                {middle, middle + static_cast<int>(position.size()), std::string(position)}};
-        }
-        for (size_t i = 1; i < fields.size(); ++i) {
-            const auto &holder = fields[i - 1], &position = fields[i];
-            // Within this proven detail frame, the holder column and native
-            // office/profession pair anchor the table. Bare positions retain
-            // the stricter personal-name and reviewed-office proof.
-            const std::string name = complete_source(
-                holder.start, y, holder.text, position.start);
-            const auto person = translate_unit_identity(name);
-            const std::string position_source = complete_source(
-                position.start, y, position.text, right);
-            const size_t slash = position_source.find('/');
-            const bool compound_office = slash != std::string::npos &&
-                !trim_view(std::string_view(position_source).substr(0, slash)).empty() &&
-                !trim_view(std::string_view(position_source).substr(slash + 1)).empty();
-            // A native office/profession pair identifies the typed field even
-            // when a modded term is unknown. Translation coverage must not
-            // send the entire table back to fragmented English-span layout.
-            if (!details.civilization_official_columns && !compound_office &&
-                    (!translation_complete_with_native_nicknames(person, name) ||
-                    !office(position_source))) continue;
-            const int left = holder.start, middle = position.start;
-            const auto append = [&](const NativeTextCardRow &row, const LogicalTextField &field,
-                                    int column_left, int column_right, bool is_office) {
-                const int x = row.x + field.start;
-                const std::string source = complete_source(x, row.y, field.text, column_right);
-                auto result = is_office ? office_result(source) : dfcn::TranslationResult{};
-                auto target = is_office ? (result.usable() ? std::optional<std::string>(result.target) : std::nullopt)
-                    : translate_legends_name(source, true);
-                if (!is_office && !translation_complete_with_native_nicknames(target, source)) target.reset();
-                if (!is_office && target) result = dfcn::TranslationResult::translated(source,
-                    *target, "official-holder");
-                if (!result.usable()) result = preserve_native_translation(source,
-                    is_office ? "world-office" : "official-holder");
-                result.owner = "native-world-official-table";
-                Match match{x, row.y, field.end - field.start, kWorldSiteRowRule,
-                    target ? *target : cp437_to_utf8(source), field.text};
-                match.translation_result = std::make_shared<const dfcn::TranslationResult>(std::move(result));
-                match.native_hover_untranslated = !target;
-                if (!target) match.native_help_review_source = source;
-                match.layout_x = column_left;
-                match.layout_y = row.y;
-                match.layout_length = column_right - column_left;
-                match.layout_clip_right = column_right;
-                match.layout_left = true;
-                match.layout_foreground_rgb = row.foregrounds[field.start];
-                match.layout_prepared = true;
-                match.layout_line_height_pixels = gps_->tile_pixel_y;
-                std::erase_if(matches, [&](const Match &other) {
-                    return other.y == match.y && other.x < match.x + match.length &&
-                        match.x < other.x + other.length;
-                });
-                std::fill_n(rows[row.y].begin() + x, field.text.size(), ' ');
-                if (only_y < 0 || only_y == row.y) matches.push_back(std::move(match));
-            };
-            // The table is one contiguous section of this shared frame.
-            // Agreement prose above it can cross the same column boundary;
-            // splitting the whole card would claim that sentence as a name
-            // and an office before the complete UI message matcher sees it.
-            const auto table_row = [&](const NativeTextCardRow &row) {
-                if (details.civilization_official_columns && !row.civilization_official) return false;
-                if (row.x != left || row.x + static_cast<int>(row.source.size()) <= middle)
-                    return false;
-                const int boundary = middle - row.x;
-                return row.source[boundary] != ' ' &&
-                    !trim_view(std::string_view(row.source).substr(0, boundary)).empty() &&
-                    !trim_view(std::string_view(row.source).substr(boundary)).empty();
-            };
-            const auto anchor = std::find_if(details.rows.begin(), details.rows.end(),
-                [&](const NativeTextCardRow &row) { return row.y == y && table_row(row); });
-            if (anchor == details.rows.end()) continue;
-            size_t first_record = static_cast<size_t>(anchor - details.rows.begin());
-            size_t after_record = first_record + 1;
-            while (first_record > 0 &&
-                    (details.civilization_official_columns ||
-                     details.rows[first_record - 1].y + 1 == details.rows[first_record].y) &&
-                    table_row(details.rows[first_record - 1])) --first_record;
-            while (after_record < details.rows.size() &&
-                    (details.civilization_official_columns ||
-                     details.rows[after_record - 1].y + 1 == details.rows[after_record].y) &&
-                    table_row(details.rows[after_record])) ++after_record;
-            // Geometry still owns every record inside the section, including
-            // unknown names, names touching the office column and nicknames
-            // with multiple spaces. Half-font rows keep their physical y.
-            int records = 0;
-            for (size_t record = first_record; record < after_record; ++record) {
-                const auto &row = details.rows[record];
-                const int boundary = middle - row.x;
-                const auto name_field = trim_view(std::string_view(row.source).substr(0, boundary));
-                const auto office_field = trim_view(std::string_view(row.source).substr(boundary));
-                append(row, {0, static_cast<int>(name_field.size()), std::string(name_field)},
-                    left, middle, false);
-                append(row, {boundary, boundary + static_cast<int>(office_field.size()),
-                    std::string(office_field)}, middle, right, true);
-                ++records;
-            }
-            static bool logged = false;
-            if (records > 0 && !logged) {
-                log_line("INFO", "World map civilization official table captured: records=" +
-                    std::to_string(records) + "; columns=" + std::to_string(left) + "," +
-                    std::to_string(middle) + "," + std::to_string(right));
-                logged = true;
-            }
-            return;
-        }
+    const int right = details.interior.x + details.interior.w;
+    for (const auto &row : details.rows) {
+        if (!row.civilization_official_source) continue;
+        const auto &official = *row.civilization_official_source;
+        const size_t boundary = official.position_at;
+        if (!boundary || boundary >= row.source.size()) continue;
+        const auto append = [&](size_t begin, size_t end, std::string_view source,
+                                int column_right, bool is_office) {
+            const int x = row.x + static_cast<int>(begin);
+            const std::string visible = row.source.substr(begin, end - begin);
+            auto result = is_office ? office_result(source) : dfcn::TranslationResult{};
+            auto target = is_office ? (result.usable() ? std::optional<std::string>(result.target) : std::nullopt)
+                : translate_legends_name(source, true);
+            if (!is_office && !translation_complete_with_native_nicknames(target, source)) target.reset();
+            if (!is_office && target) result = dfcn::TranslationResult::translated(source,
+                *target, "official-holder");
+            if (!result.usable()) result = preserve_native_translation(source,
+                is_office ? "world-office" : "official-holder");
+            result.owner = "native-world-official-table";
+            Match match{x, row.y, static_cast<int>(visible.size()), kWorldSiteRowRule,
+                target ? *target : native_text_to_utf8(source), visible};
+            match.translation_result = std::make_shared<const dfcn::TranslationResult>(std::move(result));
+            match.native_hover_untranslated = !target;
+            if (!target) match.native_help_review_source = source;
+            match.layout_x = x;
+            match.layout_y = row.y;
+            match.layout_length = column_right - x;
+            match.layout_clip_right = column_right;
+            match.layout_left = true;
+            match.layout_foreground_rgb = row.foregrounds[begin];
+            match.layout_prepared = true;
+            match.layout_line_height_pixels = gps_->tile_pixel_y;
+            std::erase_if(matches, [&](const Match &other) {
+                return other.y == row.y && other.x < x + match.length && x < other.x + other.length;
+            });
+            std::fill_n(rows[row.y].begin() + x, visible.size(), ' ');
+            if (only_y < 0 || only_y == row.y) matches.push_back(std::move(match));
+        };
+        append(0, boundary, official.name, row.x + static_cast<int>(boundary), false);
+        append(boundary, row.source.size(), official.position, right, true);
     }
 }
-
 void Overlay::layout_world_site_card(SDL_Renderer *renderer) {
     if (!gps_ || !face_ || !renderer || gps_->tile_pixel_x <= 0 || gps_->tile_pixel_y <= 0) return;
     const auto settings = native_ui_settings();

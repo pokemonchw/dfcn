@@ -306,6 +306,7 @@ public:
         value(input.squad_list_right);
         value(input.info_title_kind); value(input.info_title_authored);
         value(input.info_title_right); value(input.civilization_field);
+        address(input.civilization_owner.first); address(input.civilization_owner.second);
         value(input.character_relation_right);
         optional(input.caravan_entity_name, [&](const auto &entity) { name(entity); });
         value(input.location_picker_field);
