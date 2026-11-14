@@ -105,9 +105,10 @@ static void capture_native_squad_generated_abbreviate(NativeString *source) {
     callback.call_native([&] { g_native_squad_name_hooks.abbreviate(source); });
     try {
         std::string_view after;
-        // Nobles removes the article before its ordinary resize/ellipsis
-        // path. Carry the captured language_name through that actual change
-        // so the draw can resolve it from its current, complete native text.
+        // Nobles and disband confirmation remove the article before their
+        // ordinary resize/ellipsis path. Carry the captured language_name
+        // through that actual change so the draw can resolve it from its
+        // current, complete native text.
         if (name && native_string_view(source, &after, 65536))
             remember_native_squad_generated(reinterpret_cast<uintptr_t>(source), after, *name);
     } catch (...) {}
@@ -405,10 +406,14 @@ static bool install_native_squad_name_hooks() {
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
         {0x4419a7, 0xa946e0, // Disband confirmation, actual squad.name branch.
             reinterpret_cast<const void *>(&capture_native_squad_confirmation_generated)},
+        {0x4419f3, 0xede350, // Generated confirmation name's article removal.
+            reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x441b4e, 0x6f5a0,
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
         {0x441b66, 0xa946e0, // Compact disband list, actual squad.name branch.
             reinterpret_cast<const void *>(&capture_native_squad_confirmation_generated)},
+        {0x441bb2, 0xede350, // Compact generated name's article removal.
+            reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x4423aa, 0x6f5a0, // Selected squad detail, rbp+130.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
         {0x443f2f, 0x6f5a0, // Member sidebar's squad heading, rbp+d0.
