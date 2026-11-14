@@ -1,0 +1,7 @@
+role	reference_anchor	current_anchor	owner_start	owner_end	ranges
+work_order_filter	0x3c3211	0x3cc2f1	0x3cc280	0x3cc2cb	1403cc280-1403cc2cb;1403cc2cb-1403cc39d;1403cc39d-1403cc3d5
+workshop_filter	0x1a8747	0x1a9df7	0x1a9da0	0x1aa4a0	1401a9da0-1401aa4a0
+stockpile_filter	0x3bc43e	0x3c551e	0x3c54e0	0x3c552f	1403c54e0-1403c552f;1403c552f-1403c55da;1403c55da-1403c562d
+job_caption	0xd032b0	0xd1afa0	0xd1afa0	0xd1ffc4	140d1afa0-140d1ffc4
+item_requirement_noun	0xa82c10	0xa9c6b0	0xa9c6b0	0xaa1d9c	140a9c6b0-140aa1d9c
+work_order_population	0x376608	0x37f5a8	0x37f330	0x37f60f	14037f330-14037f60f;14037f60f-1403802ae;1403802ae-1403806a0;1403806a0-14038098a

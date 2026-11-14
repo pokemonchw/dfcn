@@ -1,0 +1,614 @@
+function	c_line	virtual_address	literal
+item_requirement_noun	144	0x1416ec2cc	grown 
+item_requirement_noun	159	0x1416597e8	metal
+item_requirement_noun	180	0x1416f0390	 wafers
+item_requirement_noun	185	0x1416f0398	 bars
+item_requirement_noun	189	0x1416f03a0	charcoal
+item_requirement_noun	192	0x1416f0348	coke
+item_requirement_noun	194	0x1416f0350	refined coal
+item_requirement_noun	200	0x1416f0360	bars
+item_requirement_noun	246	0x14161cef8	cut gems
+item_requirement_noun	249	0x1416f0368	cut green glass gems
+item_requirement_noun	252	0x1416f0308	cut clear glass gems
+item_requirement_noun	255	0x1416f0320	cut crystal glass gems
+item_requirement_noun	259	0x1416f0338	gems
+item_requirement_noun	305	0x1416f0340	blocks
+item_requirement_noun	308	0x1416f0340	blocks
+item_requirement_noun	316	0x14161cf38	rough gems
+item_requirement_noun	319	0x1416f0400	raw green glass
+item_requirement_noun	322	0x1416f0410	raw clear glass
+item_requirement_noun	325	0x1416f03b0	raw crystal glass
+item_requirement_noun	329	0x14161cf38	rough gems
+item_requirement_noun	334	0x1416ecb08	rough 
+item_requirement_noun	344	0x1416f03e0	stone boulders
+item_requirement_noun	354	0x1416f0380	boulders
+item_requirement_noun	370	0x14169c7a4	logs
+item_requirement_noun	411	0x1416f02d8	portal
+item_requirement_noun	413	0x1416f02e0	door
+item_requirement_noun	430	0x1416f02e8	floodgate
+item_requirement_noun	446	0x14164bc40	bed
+item_requirement_noun	461	0x14164bc30	chair
+item_requirement_noun	466	0x1416f0914	throne
+item_requirement_noun	491	0x1416f0974	chain
+item_requirement_noun	505	0x1416f0274	rope
+item_requirement_noun	532	0x1416f0994	flask
+item_requirement_noun	535	0x1416f098c	vial
+item_requirement_noun	551	0x1416f0980	waterskin
+item_requirement_noun	557	0x1416f091c	goblet
+item_requirement_noun	571	0x1416f096c	cup
+item_requirement_noun	576	0x1416f0970	mug
+item_requirement_noun	613	0x1416f0948	musical instrument
+item_requirement_noun	649	0x1416eaffc	toy
+item_requirement_noun	665	0x1416f0924	window
+item_requirement_noun	692	0x1416f0930	terrarium
+item_requirement_noun	694	0x1416f093c	cage
+item_requirement_noun	711	0x1416f08f4	barrel
+item_requirement_noun	727	0x1416f08fc	bucket
+item_requirement_noun	743	0x1416f0908	animal trap
+item_requirement_noun	759	0x14164bc44	table
+item_requirement_noun	774	0x1416f025c	casket
+item_requirement_noun	787	0x1416f0268	sarcophag
+item_requirement_noun	796	0x14164bc38	coffin
+item_requirement_noun	812	0x1416f0e14	statue
+item_requirement_noun	816	0x1416f0898	rotten 
+item_requirement_noun	819	0x1416f0be8	corpse
+item_requirement_noun	843	0x1416eb054	weapon
+item_requirement_noun	901	0x1416f0aa0	suits of 
+item_requirement_noun	903	0x1416eb05c	armor
+item_requirement_noun	954	0x1416f0a94	chain 
+item_requirement_noun	960	0x1416f0a68	footwear
+item_requirement_noun	984	0x1416eafe4	shield
+item_requirement_noun	986	0x1416f0a58	/buckler
+item_requirement_noun	990	0x1416f0a58	/buckler
+item_requirement_noun	1031	0x1416f0a78	headwear
+item_requirement_noun	1072	0x141656244	right 
+item_requirement_noun	1076	0x1416561e0	left 
+item_requirement_noun	1080	0x1416f0a48	handwear
+item_requirement_noun	1085	0x1416f0a94	chain 
+item_requirement_noun	1111	0x1416f02d0	box
+item_requirement_noun	1114	0x1416f02ac	boxe
+item_requirement_noun	1119	0x1416f02a4	coffer
+item_requirement_noun	1123	0x141657c28	chest
+item_requirement_noun	1137	0x1416f02d0	box
+item_requirement_noun	1159	0x1416f02b4	bag
+item_requirement_noun	1175	0x1416f02cc	bin
+item_requirement_noun	1191	0x141657c00	armor stand
+item_requirement_noun	1207	0x141657c10	weapon rack
+item_requirement_noun	1223	0x141657c20	cabinet
+item_requirement_noun	1239	0x1416f0888	figurine
+item_requirement_noun	1255	0x1416f0758	amulet
+item_requirement_noun	1271	0x1416f0738	scepter
+item_requirement_noun	1303	0x1416f0728	ammunition
+item_requirement_noun	1327	0x1416f0740	crown
+item_requirement_noun	1342	0x1416f06c8	ring
+item_requirement_noun	1358	0x1416f06d0	earring
+item_requirement_noun	1374	0x1416f06d8	bracelet
+item_requirement_noun	1379	0x141666420	large 
+item_requirement_noun	1383	0x1416f06e8	perfect 
+item_requirement_noun	1423	0x1416f06f8	green glass 
+item_requirement_noun	1426	0x1416f0708	clear glass 
+item_requirement_noun	1439	0x1416f06c0	 gem
+item_requirement_noun	1461	0x1416f0718	crystal glass 
+item_requirement_noun	1464	0x1416316ac	gem
+item_requirement_noun	1511	0x1416f0750	anvil
+item_requirement_noun	1515	0x1416f0898	rotten 
+item_requirement_noun	1524	0x1416f0bb8	wooden body part
+item_requirement_noun	1530	0x1416f0b68	strand body part
+item_requirement_noun	1532	0x1416a0ac0	body part
+item_requirement_noun	1537	0x1416f0b58	yarn body part
+item_requirement_noun	1549	0x1416f0bd0	soap body part
+item_requirement_noun	1553	0x1416f0ba0	leather body part
+item_requirement_noun	1557	0x1416f0b90	silk body part
+item_requirement_noun	1561	0x1416f0bf8	plant part
+item_requirement_noun	1574	0x14163167c	tooth
+item_requirement_noun	1577	0x1416f0bf0	teeth
+item_requirement_noun	1581	0x1416f0b80	Rotten 
+item_requirement_noun	1584	0x14169ebd0	remains
+item_requirement_noun	1645	0x1416f0898	rotten 
+item_requirement_noun	1648	0x1416f0ad8	preserved 
+item_requirement_noun	1651	0x1416f0a8c	meat
+item_requirement_noun	1656	0x1416f0a8c	meat
+item_requirement_noun	1680	0x1416f0a84	 chop
+item_requirement_noun	1683	0x1416f0ae4	 chops
+item_requirement_noun	1687	0x1416f0898	rotten 
+item_requirement_noun	1690	0x1416c19a0	fish
+item_requirement_noun	1736	0x1416f0898	rotten 
+item_requirement_noun	1738	0x1416f0b50	raw 
+item_requirement_noun	1800	0x1416c19a0	fish
+item_requirement_noun	1804	0x1416f0af0	live 
+item_requirement_noun	1811	0x1416f0af8	small live animal
+item_requirement_noun	1815	0x1416f0b0c	tame 
+item_requirement_noun	1818	0x1416f0ab0	small tame animal
+item_requirement_noun	1839	0x1416f0b88	seeds
+item_requirement_noun	1844	0x1416f0b18	withered 
+item_requirement_noun	1859	0x1416f08e8	tanned hide
+item_requirement_noun	1875	0x1416f0b18	withered 
+item_requirement_noun	1889	0x1416f0b40	leaf or fruit
+item_requirement_noun	1892	0x1416f0b28	leaves and fruit
+item_requirement_noun	1924	0x1416f08d0	web
+item_requirement_noun	1937	0x1416f08d8	strands
+item_requirement_noun	1943	0x14163164c	thread
+item_requirement_noun	1966	0x1416f08b0	totem
+item_requirement_noun	2036	0x1416f09f8	legwear
+item_requirement_noun	2060	0x1416f02b8	backpack
+item_requirement_noun	2084	0x1416f0254	quiver
+item_requirement_noun	2099	0x1416f07c8	catapult parts
+item_requirement_noun	2114	0x1416f07b0	ballista parts
+item_requirement_noun	2149	0x1416f0778	siege ammo
+item_requirement_noun	2165	0x1416f0760	ballista arrow head
+item_requirement_noun	2180	0x1416f07f0	mechanisms
+item_requirement_noun	2224	0x1416f07a0	trap component
+item_requirement_noun	2228	0x1416f0898	rotten 
+item_requirement_noun	2235	0x1416706c0	drink
+item_requirement_noun	2239	0x1416f0898	rotten 
+item_requirement_noun	2263	0x1416f0818	 dye mix
+item_requirement_noun	2268	0x1416f0824	powder
+item_requirement_noun	2280	0x1416f0898	rotten 
+item_requirement_noun	2287	0x1416f07c0	cheese
+item_requirement_noun	2291	0x1416f0ac8	prepared meal
+item_requirement_noun	2298	0x1416f0898	rotten 
+item_requirement_noun	2401	0x1416f08a0	filthy 
+item_requirement_noun	2404	0x1416f08a8	sticky 
+item_requirement_noun	2407	0x1416f0860	vomitous 
+item_requirement_noun	2410	0x1416f086c	slimy 
+item_requirement_noun	2413	0x1416dab38	stagnant 
+item_requirement_noun	2416	0x1416f0874	dirty 
+item_requirement_noun	2419	0x1416f087c	gooey 
+item_requirement_noun	2422	0x1416f0830	purulent 
+item_requirement_noun	2425	0x1416f0840	ichorous 
+item_requirement_noun	2428	0x1416f0850	bloody 
+item_requirement_noun	2436	0x1416c6750	liquid
+item_requirement_noun	2473	0x1416f0858	 paste
+item_requirement_noun	2523	0x1416f07fc	glob
+item_requirement_noun	2572	0x1416f0808	 laced with 
+item_requirement_noun	2620	0x1416f0748	coin
+item_requirement_noun	2627	0x1416a5df4	small 
+item_requirement_noun	2673	0x1416a5df4	small 
+item_requirement_noun	2676	0x1416f03c4	rock
+item_requirement_noun	2679	0x1416f03d0	small rock
+item_requirement_noun	2705	0x1416f0784	tube
+item_requirement_noun	2709	0x1416f0790	pipe section
+item_requirement_noun	2725	0x1416f02f8	hatch cover
+item_requirement_noun	2741	0x1416f02c4	grate
+item_requirement_noun	2757	0x1416f0e00	quern
+item_requirement_noun	2773	0x1416f0e08	millstone
+item_requirement_noun	2789	0x1416f0294	splint
+item_requirement_noun	2804	0x1416f029c	crutch
+item_requirement_noun	2820	0x1416f0df0	traction bench
+item_requirement_noun	2832	0x1416f0280	limb/body 
+item_requirement_noun	2834	0x1416f028c	cast
+item_requirement_noun	2863	0x1416f028c	cast
+item_requirement_noun	2869	0x1416f0280	limb/body 
+item_requirement_noun	2870	0x1416f028c	cast
+item_requirement_noun	2896	0x1416f0960	unglazed 
+item_requirement_noun	2941	0x1416eaf24	tool
+item_requirement_noun	2986	0x1416f0d98	memorial
+item_requirement_noun	2989	0x1416f0be0	slab
+item_requirement_noun	2992	0x1416f0da8	food imports sign
+item_requirement_noun	2995	0x1416f0dc0	clothing imports sign
+item_requirement_noun	2998	0x1416f0dd8	general imports sign
+item_requirement_noun	3001	0x1416f0d30	cloth shop sign
+item_requirement_noun	3004	0x1416f0d40	leather shop sign
+item_requirement_noun	3007	0x1416f0d58	woven clothing shop sign
+item_requirement_noun	3010	0x1416f0d78	leather clothing shop sign
+item_requirement_noun	3013	0x1416f0cd0	bone carver's shop sign
+item_requirement_noun	3016	0x1416f0ce8	gem cutter's shop sign
+item_requirement_noun	3019	0x1416f0d00	weaponsmith's shop sign
+item_requirement_noun	3022	0x1416f0d18	bowyer's shop sign
+item_requirement_noun	3025	0x1416f0c70	blacksmith's shop sign
+item_requirement_noun	3028	0x1416f0c88	armorsmith's shop sign
+item_requirement_noun	3031	0x1416f0ca0	metal craft shop sign
+item_requirement_noun	3034	0x1416f0cb8	leather goods shop sign
+item_requirement_noun	3037	0x1416f0c08	carpenter's shop sign
+item_requirement_noun	3040	0x1416f0c20	stone furniture shop sign
+item_requirement_noun	3043	0x1416f0c40	metal furniture shop sign
+item_requirement_noun	3046	0x1416f0c60	tavern sign
+item_requirement_noun	3051	0x1416f0be0	slab
+item_requirement_noun	3055	0x1416f0898	rotten 
+item_requirement_noun	3105	0x1416f0aec	egg
+item_requirement_noun	3119	0x1416f08b8	-bound 
+item_requirement_noun	3124	0x1416f08c0	codices
+item_requirement_noun	3126	0x1416f08c8	codex
+item_requirement_noun	3174	0x1416f08e0	sheet
+item_requirement_noun	3189	0x1416f03f0	branch
+item_requirement_noun	3210	0x1416f07d8	bolt thrower parts
+item_requirement_noun	3225	0x141618d48	item
+job_caption	101	0x141725e20	Carve fortification
+job_caption	105	0x141725e68	Smooth wall
+job_caption	109	0x141725e58	Smooth floor
+job_caption	113	0x141725e88	Detail wall
+job_caption	117	0x141725e78	Detail floor
+job_caption	121	0x1416c13e4	Dig
+job_caption	125	0x141725ec0	Carve upward staircase
+job_caption	129	0x141725f08	Carve downward staircase
+job_caption	133	0x141725ef0	Carve up/down staircase
+job_caption	137	0x141725f38	Carve ramp
+job_caption	141	0x141725f28	Dig channel
+job_caption	145	0x141725f58	Fell tree
+job_caption	149	0x141725f48	Gather plants
+job_caption	153	0x141725ed8	Remove construction
+job_caption	157	0x141725d78	Collect webs
+job_caption	161	0x141725f68	Bring item to depot
+job_caption	165	0x141725f80	Bring item to shop
+job_caption	169	0x1416bf818	Eat
+job_caption	173	0x141725fa8	Get provisions
+job_caption	178	0x14164bb30	Drink
+job_caption	183	0x141725fc0	Fill waterskin
+job_caption	187	0x141725fb8	Sleep
+job_caption	191	0x1417258f8	Collect sand
+job_caption	195	0x14161dd1c	Fish
+job_caption	199	0x141726014	Hunt
+job_caption	203	0x141726088	Hunt for small creature
+job_caption	207	0x141725fd8	Kidnap
+job_caption	211	0x141726038	Beat criminal
+job_caption	215	0x141726000	Starting fist fight
+job_caption	219	0x141726078	Collect taxes
+job_caption	223	0x1417260b0	Guard tax collector
+job_caption	227	0x141725a20	Catch live land animal
+job_caption	231	0x141725a38	Catch live fish
+job_caption	235	0x1417260a0	Return kill
+job_caption	239	0x1417263e8	Store owned item
+job_caption	242	0x141726428	Place item in tomb
+job_caption	246	0x141726410	Store item in stockpile
+job_caption	250	0x141726458	Store item in bag
+job_caption	254	0x1417264d8	Store item in location
+job_caption	258	0x1417264b0	Store weapon
+job_caption	262	0x1417264a0	Store armor
+job_caption	266	0x141726440	Store item in barrel
+job_caption	270	0x141726488	Store item in bin
+job_caption	274	0x1417263c8	Seek artifact
+job_caption	278	0x141726400	Seek infant
+job_caption	283	0x1417263d8	Go shopping
+job_caption	287	0x1416c10f8	Clean
+job_caption	291	0x1416c161c	Rest
+job_caption	295	0x141726500	Pickup equipment
+job_caption	298	0x1417264f0	Dump item
+job_caption	314	0x1416bef38	Strange mood
+job_caption	318	0x1417259c0	Construct building
+job_caption	322	0x141657b40	Make 
+job_caption	342	0x1417260d8	 Portal
+job_caption	347	0x1416ea7a4	 door
+job_caption	351	0x141657b40	Make 
+job_caption	361	0x1417260c8	 floodgate
+job_caption	365	0x1417262d4	Make
+job_caption	374	0x141726338	 bed
+job_caption	378	0x141657b40	Make 
+job_caption	389	0x1417261b0	 throne
+job_caption	392	0x141726198	 chair
+job_caption	396	0x141657b40	Make 
+job_caption	409	0x1417261a0	 coffin
+job_caption	412	0x141726180	 sarcophagus
+job_caption	416	0x141726190	 casket
+job_caption	420	0x141657b40	Make 
+job_caption	430	0x14172610c	 table
+job_caption	434	0x141657b40	Make 
+job_caption	454	0x141726168	 box
+job_caption	460	0x141726160	 coffer
+job_caption	463	0x141726178	 chest
+job_caption	467	0x141657b40	Make 
+job_caption	477	0x141726170	 bag
+job_caption	481	0x141657b40	Make 
+job_caption	491	0x141726144	 bin
+job_caption	495	0x141657b40	Make 
+job_caption	505	0x141726150	 armor stand
+job_caption	509	0x141657b40	Make 
+job_caption	519	0x141726128	 weapon rack
+job_caption	523	0x141657b40	Make 
+job_caption	533	0x141726138	 cabinet
+job_caption	537	0x141657b40	Make 
+job_caption	547	0x141726350	 statue
+job_caption	551	0x141657b40	Make 
+job_caption	567	0x141725940	four 
+job_caption	578	0x141725970	 blocks
+job_caption	582	0x141725960	Make raw 
+job_caption	585	0x141657b40	Make 
+job_caption	595	0x141703998	 crafts
+job_caption	599	0x14172582c	Mint 
+job_caption	609	0x141725824	 coins
+job_caption	614	0x141725838	Cut gems
+job_caption	618	0x141725844	Cut 
+job_caption	633	0x141725844	Cut 
+job_caption	638	0x141725858	Cut raw glass into gems
+job_caption	642	0x1417258c8	Encrust 
+job_caption	644	0x1417258b8	finished goods
+job_caption	647	0x1417258e8	furniture
+job_caption	650	0x1416eafbc	ammo
+job_caption	654	0x14161cef8	cut gems
+job_caption	658	0x1417258c8	Encrust 
+job_caption	660	0x1417258b8	finished goods
+job_caption	663	0x1417258e8	furniture
+job_caption	666	0x1416eafbc	ammo
+job_caption	670	0x1417258d8	cut glass
+job_caption	674	0x141725a08	Destroy building
+job_caption	677	0x141725c8c	Smelt 
+job_caption	687	0x141725c84	 ore
+job_caption	691	0x141725cb0	Melt a metal object
+job_caption	695	0x141725c98	Extract metal strands
+job_caption	699	0x141725de0	Plant seeds
+job_caption	703	0x141725df0	Harvest plants
+job_caption	707	0x14172637c	Train 
+job_caption	718	0x141726370	 to hunt
+job_caption	726	0x141726398	hunting animal
+job_caption	730	0x14172637c	Train 
+job_caption	741	0x141726388	 for war
+job_caption	749	0x1417263b8	war animal
+job_caption	757	0x141657b40	Make 
+job_caption	768	0x1417261a8	Forge 
+job_caption	785	0x1417261a8	Forge 
+job_caption	795	0x141726340	 anvil
+job_caption	799	0x1417262d4	Make
+job_caption	812	0x141726300	 catapult parts
+job_caption	816	0x1417262d4	Make
+job_caption	829	0x141726328	 ballista parts
+job_caption	837	0x141657b40	Make 
+job_caption	848	0x1417261a8	Forge 
+job_caption	855	0x1416a5df4	small 
+job_caption	858	0x141666420	large 
+job_caption	878	0x141657b40	Make 
+job_caption	889	0x1417261a8	Forge 
+job_caption	896	0x1416a5df4	small 
+job_caption	899	0x141666420	large 
+job_caption	919	0x141657b40	Make 
+job_caption	930	0x1417261a8	Forge 
+job_caption	937	0x1416a5df4	small 
+job_caption	940	0x141666420	large 
+job_caption	956	0x141725898	Stud with 
+job_caption	959	0x1417259f0	Butcher an animal
+job_caption	963	0x141725a50	Prepare a raw fish
+job_caption	968	0x141725a48	Mill 
+job_caption	976	0x141725a78	Mill plants
+job_caption	980	0x1417262b0	Bait trap with 
+job_caption	982	0x1416316ac	gem
+job_caption	985	0x1416f0a8c	meat
+job_caption	988	0x1416c19a0	fish
+job_caption	992	0x141725a84	Milk 
+job_caption	1012	0x141725ac0	Make cheese
+job_caption	1017	0x141725a68	Process 
+job_caption	1025	0x141725a90	Process plants
+job_caption	1031	0x141725850	Polish 
+job_caption	1034	0x141725888	Polish stones
+job_caption	1039	0x141725a68	Process 
+job_caption	1044	0x141725ab8	 (vial)
+job_caption	1048	0x141725ae0	Process plants (vial)
+job_caption	1053	0x141725a68	Process 
+job_caption	1058	0x141725ad0	 (barrel)
+job_caption	1062	0x141725b08	Process plants (barrel)
+job_caption	1067	0x141725b68	Prepare easy meal
+job_caption	1070	0x141725b50	Prepare fine meal
+job_caption	1073	0x141725b90	Prepare lavish meal
+job_caption	1082	0x141725d88	Weave yarn into cloth
+job_caption	1084	0x141725dc8	Weave thread into cloth
+job_caption	1088	0x141725da0	Weave thread into silk
+job_caption	1101	0x141725d60	Weave metal cloth
+job_caption	1104	0x141725db8	 (dyed only)
+job_caption	1112	0x141657b40	Make 
+job_caption	1123	0x1417261a8	Forge 
+job_caption	1126	0x1417261c8	pair of 
+job_caption	1131	0x1416a5df4	small 
+job_caption	1134	0x141666420	large 
+job_caption	1154	0x141657b40	Make 
+job_caption	1165	0x1417261a8	Forge 
+job_caption	1168	0x1417261c8	pair of 
+job_caption	1173	0x1416a5df4	small 
+job_caption	1176	0x141666420	large 
+job_caption	1201	0x141657b40	Make 
+job_caption	1212	0x1417261a8	Forge 
+job_caption	1233	0x141657b40	Make 
+job_caption	1244	0x1417261a8	Forge 
+job_caption	1266	0x1417261e0	 terrarium
+job_caption	1271	0x1417261d4	 cage
+job_caption	1279	0x141657b40	Make 
+job_caption	1290	0x1417261a8	Forge 
+job_caption	1305	0x1417261f4	 chain
+job_caption	1308	0x1417261ec	 rope
+job_caption	1312	0x1417261f4	 chain
+job_caption	1321	0x141657b40	Make 
+job_caption	1332	0x1417261a8	Forge 
+job_caption	1335	0x14172620c	three 
+job_caption	1356	0x14172621c	 vials
+job_caption	1360	0x1417039f8	 flasks
+job_caption	1363	0x141726200	 waterskins
+job_caption	1371	0x141657b40	Make 
+job_caption	1382	0x1417261a8	Forge 
+job_caption	1385	0x14172620c	three 
+job_caption	1397	0x141726234	 mugs
+job_caption	1400	0x141726228	 goblets
+job_caption	1404	0x141726214	 cups
+job_caption	1412	0x141657b40	Make 
+job_caption	1423	0x1417261a8	Forge 
+job_caption	1435	0x141726250	 toy
+job_caption	1443	0x141657b40	Make 
+job_caption	1454	0x1417261a8	Forge 
+job_caption	1466	0x141726240	 animal trap
+job_caption	1474	0x141657b40	Make 
+job_caption	1485	0x1417261a8	Forge 
+job_caption	1497	0x141726260	 barrel
+job_caption	1505	0x141657b40	Make 
+job_caption	1516	0x1417261a8	Forge 
+job_caption	1528	0x1416db260	 bucket
+job_caption	1532	0x141657b40	Make 
+job_caption	1542	0x141726268	 window
+job_caption	1546	0x1417261b8	Make totem
+job_caption	1554	0x141657b40	Make 
+job_caption	1565	0x1417261a8	Forge 
+job_caption	1570	0x1417262e0	twenty-five 
+job_caption	1574	0x1417262c0	five 
+job_caption	1592	0x1417258a8	Decorate with 
+job_caption	1605	0x141657b40	Make 
+job_caption	1615	0x141726288	 backpack
+job_caption	1619	0x141657b40	Make 
+job_caption	1629	0x141726280	 quiver
+job_caption	1637	0x141657b40	Make 
+job_caption	1648	0x1417261a8	Forge 
+job_caption	1660	0x141726298	 ballista arrow head
+job_caption	1664	0x1417262c8	Assemble 
+job_caption	1679	0x141726518	Load catapult
+job_caption	1683	0x141726550	Load ballista
+job_caption	1687	0x141726570	Fire catapult
+job_caption	1691	0x141726560	Fire ballista
+job_caption	1695	0x1417262d4	Make
+job_caption	1706	0x1417262f0	 mechanisms
+job_caption	1714	0x141657b40	Make 
+job_caption	1725	0x1417261a8	Forge 
+job_caption	1751	0x1417265b8	Load cage trap
+job_caption	1755	0x1417265a8	Load stone trap
+job_caption	1759	0x1417265c8	Load weapon trap
+job_caption	1762	0x141726528	Clean trap
+job_caption	1766	0x1417258c8	Encrust 
+job_caption	1768	0x1417258b8	finished goods
+job_caption	1771	0x1417258e8	furniture
+job_caption	1774	0x1416eafbc	ammo
+job_caption	1778	0x141725908	polished stones
+job_caption	1782	0x141725e38	Link a building to trigger
+job_caption	1786	0x141725e00	Pull the lever
+job_caption	1793	0x141725b80	Extract from 
+job_caption	1801	0x141725bc0	Extract from plants
+job_caption	1805	0x141725ba8	Extract from raw fish
+job_caption	1809	0x141725be0	Extract from land animal
+job_caption	1813	0x1417257a0	Tame a small animal
+job_caption	1817	0x1417257b4	Tame 
+job_caption	1844	0x141725754	Chain 
+job_caption	1855	0x141725780	Put in chains
+job_caption	1859	0x141725790	Unchain
+job_caption	1879	0x141725c00	Unchain pet
+job_caption	1883	0x141725c20	Release 
+job_caption	1903	0x141725c58	Release pet
+job_caption	1907	0x141725c40	Release small creature
+job_caption	1911	0x141725578	Handle small creature
+job_caption	1915	0x141725bd8	Handle 
+job_caption	1935	0x1417255a0	Cage 
+job_caption	1955	0x141725670	Cage small animal
+job_caption	1959	0x141725590	Recover wounded
+job_caption	1963	0x1417255c0	Diagnose patient
+job_caption	1966	0x1417255a8	Immobilize break
+job_caption	1969	0x141725608	Dress wound
+job_caption	1973	0x1417255f8	Clean patient
+job_caption	1977	0x1416c5d70	Surgery
+job_caption	1981	0x141725624	Suture
+job_caption	1985	0x141725618	Set bone
+job_caption	1989	0x141725648	Place in traction
+job_caption	1993	0x1417256b0	Drain aquarium
+job_caption	1997	0x1417256f0	Fill aquarium
+job_caption	2001	0x1417256e0	Fill pond
+job_caption	2006	0x141725710	Give water
+job_caption	2011	0x141725700	Give food
+job_caption	2015	0x141725568	Recover pet
+job_caption	2019	0x141725660	Pit/pond 
+job_caption	2039	0x141725698	Pit/pond small animal
+job_caption	2043	0x141725770	Slaughter 
+job_caption	2063	0x1417263a8	Make charcoal
+job_caption	2067	0x141725c78	Make ash
+job_caption	2071	0x141725af8	Make lye
+job_caption	2075	0x141725b38	Make potash from lye
+job_caption	2079	0x141725e10	Fertilize field
+job_caption	2083	0x141725b20	Make potash from ash
+job_caption	2088	0x141725cf0	Dye thread
+job_caption	2092	0x1416315c4	Tint 
+job_caption	2094	0x141725cd8	 thread 
+job_caption	2097	0x141725cc8	Dye thread 
+job_caption	2108	0x141725d00	Dye cloth
+job_caption	2112	0x141725d10	Dye cloth 
+job_caption	2116	0x1416315c4	Tint 
+job_caption	2118	0x141725ce8	 cloth 
+job_caption	2122	0x1416315f0	 using 
+job_caption	2124	0x1416315e8	 dye
+job_caption	2127	0x141725d54	Sew 
+job_caption	2137	0x141725d4c	 image
+job_caption	2145	0x141657b40	Make 
+job_caption	2156	0x1417261a8	Forge 
+job_caption	2178	0x141726258	 tube
+job_caption	2183	0x141726270	 pipe section
+job_caption	2187	0x141726580	Operate pump
+job_caption	2191	0x141725740	Manage work orders
+job_caption	2195	0x141725720	Update stockpile records
+job_caption	2199	0x141725760	Trade at depot
+job_caption	2203	0x141657b40	Make 
+job_caption	2213	0x1417260e8	 hatch cover
+job_caption	2217	0x141657b40	Make 
+job_caption	2227	0x1417260e0	 grate
+job_caption	2231	0x141725e98	Remove stairs/ramps
+job_caption	2235	0x141657b40	Make 
+job_caption	2245	0x141726364	 quern
+job_caption	2249	0x141657b40	Make 
+job_caption	2259	0x141726358	 millstone
+job_caption	2263	0x141657b40	Make 
+job_caption	2273	0x141726120	 splint
+job_caption	2277	0x141657b40	Make 
+job_caption	2287	0x141726118	 crutch
+job_caption	2291	0x1417260f8	Make traction bench
+job_caption	2295	0x141725f98	Clean self
+job_caption	2299	0x1417255d8	Bring crutch
+job_caption	2303	0x1417255e8	Apply cast
+job_caption	2340	0x141725c68	Reaction
+job_caption	2344	0x141657b40	Make 
+job_caption	2354	0x141726348	 slab
+job_caption	2387	0x141725870	 (engrave memorial)
+job_caption	2400	0x1416df300	Engrave memorial slab
+job_caption	2404	0x141725aac	Shear 
+job_caption	2424	0x141725aa0	Spin thread
+job_caption	2428	0x141725688	Pen/pasture 
+job_caption	2447	0x141725c10	a large animal
+job_caption	2451	0x1417256c0	Pen/pasture small animal
+job_caption	2459	0x141657b40	Make 
+job_caption	2470	0x1417261a8	Forge 
+job_caption	2571	0x1416eaf24	tool
+job_caption	2575	0x141725930	Collect clay
+job_caption	2579	0x141725918	Install colony in hive
+job_caption	2583	0x141725948	Collect hive products
+job_caption	2587	0x14161b640	Cause trouble
+job_caption	2592	0x141725fd0	No job
+job_caption	2596	0x141725fe0	Report crime
+job_caption	2600	0x141726048	Execute criminal
+job_caption	2605	0x14172637c	Train 
+job_caption	2625	0x141725eb0	Carve track
+job_caption	2629	0x141726060	Push track vehicle
+job_caption	2633	0x141726020	Place track vehicle
+job_caption	2637	0x141726470	Store item in vehicle
+job_caption	2641	0x141725798	Geld 
+job_caption	2660	0x1416c189c	animal
+job_caption	2664	0x141657b40	Make 
+job_caption	2674	0x1417257c8	 figurine
+job_caption	2678	0x141657b40	Make 
+job_caption	2688	0x1417257c0	 amulet
+job_caption	2692	0x141657b40	Make 
+job_caption	2702	0x1417257e0	 scepter
+job_caption	2706	0x141657b40	Make 
+job_caption	2716	0x1417257d4	 crown
+job_caption	2720	0x141657b40	Make 
+job_caption	2730	0x1417257fc	 ring
+job_caption	2734	0x141657b40	Make 
+job_caption	2744	0x1417257f0	 earring
+job_caption	2748	0x141657b40	Make 
+job_caption	2758	0x141725818	 bracelet
+job_caption	2762	0x141725808	Make large 
+job_caption	2772	0x1416f06c0	 gem
+job_caption	2776	0x141725630	Put item on display
+job_caption	2780	0x141725c30	Interrogate 
+job_caption	2798	0x14168e058	subject
+job_caption	2802	0x141725ff0	No activity
+job_caption	2806	0x1417264c0	Store squad equipment
+job_caption	2810	0x14163171c	Mix 
+job_caption	2816	0x141725d3c	dye
+job_caption	2818	0x1416315f0	 using 
+job_caption	2831	0x1416315c4	Tint 
+job_caption	2833	0x141725d30	 leather 
+job_caption	2836	0x141725d20	Dye leather 
+job_caption	2840	0x141725d40	Dye leather
+job_caption	2844	0x1417262d4	Make
+job_caption	2857	0x141726310	 bolt thrower parts
+job_caption	2861	0x141726538	Load bolt thrower
+job_caption	2865	0x141726590	Fire bolt thrower
+work_order_population	541	0x141645ea0	All tasks
+workshop_filter	261	0x14161e934	Fuel
+workshop_filter	297	0x14161e928	Cleaning
+workshop_filter	330	0x14161eb18	Making armor
+workshop_filter	358	0x14161eb08	Making weapons
+workshop_filter	386	0x14161e968	Making projectiles
+workshop_filter	414	0x14161eaf8	Making anvils
+workshop_filter	444	0x14161e950	Making furniture
+workshop_filter	517	0x14161e940	Building
+workshop_filter	540	0x14161e968	Making projectiles
+workshop_filter	565	0x14161e950	Making furniture
+workshop_filter	592	0x14161e940	Building
+workshop_filter	778	0x14161e950	Making furniture
+workshop_filter	805	0x14161e940	Building

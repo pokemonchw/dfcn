@@ -10,6 +10,8 @@ group	equipment	equipment|gear|装备
 kinds	equipment	weapon|armor|helm|pants|gloves|shoes|shield|ammo|backpack|quiver
 group	furniture	furniture|家具
 kinds	furniture	door|floodgate|bed|chair|window|cage|barrel|table|coffin|box|armorstand|weaponrack|cabinet|bin|hatch_cover|grate|quern|millstone|traction_bench|slab|statue|bookcase|displaycase|pedestal|altar
+group	cabinets	cabinet|cabinets|cupboard|cupboards|wardrobe|wardrobes|柜|柜子|橱柜|衣柜|衣橱
+kinds	cabinets	cabinet
 group	crafts	craft|crafts|handicraft|handicrafts|工艺品|手工艺品
 kinds	crafts	figurine|amulet|scepter|crown|ring|earring|bracelet|gem|totem
 group	jewelry	jewelry|jewellery|ornament|ornaments|首饰|饰品
