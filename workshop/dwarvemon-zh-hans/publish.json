@@ -10,12 +10,12 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[list]\n[*]将物品 Crown、Crowns 的译名统一为“头冠”，修正骨制等材料物品仍显示“王冠”的不一致。\n[*]将 Persistence Crown 同步修正为“坚持头冠”。\n[/list]\n",
+  "changelog": "[h2]Dwarvemon 简体中文汉化 2.22-zh-Hans.15（2026-11-14）[/h2]\n[list]\n[*]修复“巢穴”材料干扰巢箱等复合物品名称翻译的问题。\n[*]修复材料规则引起的全局漏译。\n[*]补齐复数形式“巢穴球”的翻译。\n[/list]\n",
   "github_url": "https://github.com/pokemonchw/dfcn",
   "required_items": [
     3811193379,
     2898307461
   ],
-  "release_tag": "v53.16-20261028",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.16-20261028"
+  "release_tag": "v53.17-20261114.2",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261114.2"
 }
