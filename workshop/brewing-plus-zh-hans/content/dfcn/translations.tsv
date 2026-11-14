@@ -294,8 +294,8 @@ boiling pomegranate mash	沸腾的石榴酿醪	l
 boiling pomegranate wine	沸腾的石榴果酒	l
 boiling potato mash	沸腾的马铃薯酿醪	l
 boiling potato wine	沸腾的马铃薯果酒	l
-boiling prickle berry mash	沸腾的刺浆果酿醪	l
-boiling prickle berry wine	沸腾的刺浆果果酒	l
+boiling prickle berry mash	沸腾的刺莓酿醪	l
+boiling prickle berry wine	沸腾的刺莓果酒	l
 boiling purple amaranth beer	沸腾的紫苋啤酒	l
 boiling purple amaranth mash	沸腾的紫苋酿醪	l
 boiling purple amaranth whiskey	沸腾的紫苋威士忌	l
@@ -540,7 +540,7 @@ Distill plum wine into brandy	将李果酒蒸馏为白兰地	l
 Distill plump helmet wine into brandy	将肉盔菇果酒蒸馏为白兰地	l
 Distill pomegranate wine into brandy	将石榴果酒蒸馏为白兰地	l
 Distill potato wine into vodka	将马铃薯果酒蒸馏为伏特加	l
-Distill prickle berry wine into brandy	将刺浆果果酒蒸馏为白兰地	l
+Distill prickle berry wine into brandy	将刺莓果酒蒸馏为白兰地	l
 Distill purple amaranth beer into whiskey	将紫苋啤酒蒸馏为威士忌	l
 Distill quinoa beer into whiskey	将藜麦啤酒蒸馏为威士忌	l
 Distill radish wine into brandy	将萝卜果酒蒸馏为白兰地	l
@@ -786,8 +786,8 @@ frozen pomegranate mash	结冻的石榴酿醪	l
 frozen pomegranate wine	结冻的石榴果酒	l
 frozen potato mash	结冻的马铃薯酿醪	l
 frozen potato wine	结冻的马铃薯果酒	l
-frozen prickle berry mash	结冻的刺浆果酿醪	l
-frozen prickle berry wine	结冻的刺浆果果酒	l
+frozen prickle berry mash	结冻的刺莓酿醪	l
+frozen prickle berry wine	结冻的刺莓果酒	l
 frozen purple amaranth beer	结冻的紫苋啤酒	l
 frozen purple amaranth mash	结冻的紫苋酿醪	l
 frozen purple amaranth whiskey	结冻的紫苋威士忌	l
@@ -968,7 +968,7 @@ mango tree	芒果树	l
 mango wine	芒果果酒	l
 mango wood	芒果木材	l
 Mash plump helmets for wine	将肉盔菇捣成酿醪以酿造果酒	l
-Mash prickle berries for wine	将刺浆果捣成酿醪以酿造果酒	l
+Mash prickle berries for wine	将刺莓捣成酿醪以酿造果酒	l
 Mash strawberries for wine	将草莓捣成酿醪以酿造果酒	l
 mead	蜜酒	l
 melted bumblebee wax	熔化的熊蜂蜡	l
@@ -1235,11 +1235,11 @@ Prepare two-grain wheat for beer	准备二粒小麦以酿造啤酒	l
 Prepare valley herbs for wine	准备谷地草以酿造果酒	l
 Prepare vine whip for whip wine	准备鞭藤以酿造鞭藤果酒	l
 Prepare white millet for beer	准备白黍以酿造啤酒	l
-prickle berry	刺浆果	l
-prickle berry mash	刺浆果酿醪	l
-prickle berry seed	刺浆果种子	l
-prickle berry seeds	刺浆果种子	l
-prickle berry wine	刺浆果果酒	l
+prickle berry	刺莓	l
+prickle berry mash	刺莓酿醪	l
+prickle berry seed	刺莓种子	l
+prickle berry seeds	刺莓种子	l
+prickle berry wine	刺莓果酒	l
 purple amaranth	紫苋	l
 purple amaranth beer	紫苋啤酒	l
 purple amaranth flour	紫苋粉	l
@@ -1527,7 +1527,7 @@ plum trees	李树	l
 plump helmets	肉盔菇	l
 pomegranate trees	石榴树	l
 potato plants	马铃薯植株	l
-prickle berries	刺浆果	l
+prickle berries	刺莓	l
 purple amaranths	紫苋	l
 radish plants	萝卜植株	l
 rambutan trees	红毛丹树	l
