@@ -434,6 +434,12 @@ std::optional<std::string> Overlay::translate_item_description_term(
             if (!predicate)
                 if (auto target = exact_literal_translation(value);
                     item_description_translation_complete(target)) return target;
+            // Artwork, inventory and generic description fields share this
+            // noun resolver. Keep a complete RAW juvenile name intact through
+            // article/status wrappers before anatomy/material decomposition.
+            if (!predicate)
+                if (auto creature = translate_creature_label(value, nullptr, false, true))
+                    return creature;
             // Native descriptions retain the same trailing item counts as
             // captions. Peel them off before noun/material decomposition:
             // `(material) <#count>` is not one parenthesized material field.

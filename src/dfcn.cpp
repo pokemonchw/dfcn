@@ -4308,9 +4308,10 @@ private:
     TranslationResult translate_item_dye_materials_display(std::string_view source) const;
     std::optional<std::string> translate_item_craftsmanship(std::string_view source) const;
     std::optional<std::string> translate_creature_descriptor(
-        std::string_view source, bool require_species = true) const;
+        std::string_view source, bool require_species = true, bool static_only = false) const;
     std::optional<std::string> translate_creature_label(std::string_view source,
-        bool *shortened = nullptr, bool authored_name_slot = false) const;
+        bool *shortened = nullptr, bool authored_name_slot = false,
+        bool static_only = false) const;
     std::optional<std::string> translate_creature_reference(std::string_view source) const;
     std::optional<std::string> translate_unit_profession(std::string_view source,
         bool typed = false) const;
@@ -9398,6 +9399,10 @@ std::optional<std::string> Overlay::translate_corpsepiece_item_name(
     const auto body = [&](auto &&self, std::string_view value) -> std::optional<std::string> {
         value = trim_view(value);
         if (value.empty() || value.ends_with("...")) return std::nullopt;
+        // A complete RAW label is a living creature noun, even if its last
+        // word is also anatomy. Leave it to the shared creature resolver;
+        // a true component still has an additional part/possessive suffix.
+        if (translate_creature_label(value, nullptr, false, true)) return std::nullopt;
         // ELF e67280 appends [amount] after the body noun; e68020 wraps the
         // complete designation. Counts and marks may therefore nest in either
         // order. Strip only their shared, digit-validated native productions.
@@ -9532,7 +9537,12 @@ std::optional<std::string> Overlay::translate_compositional(const std::string &s
     try {
     TranslationWorkFrame work_frame("compositional phrase", screen_text);
     if (!utf8.empty()) {
-        if (is_manufacturing_activity_caption(screen_text)) {
+        // Complete RAW labels own their juvenile nouns before item/anatomy
+        // parsing. This finite lookup also consumes the label's normal
+        // article/status/sex/number wrappers without inventing a species.
+        if (auto creature = translate_creature_label(screen_text, nullptr, false, true)) {
+            translated = std::move(creature);
+        } else if (is_manufacturing_activity_caption(screen_text)) {
             // Stone-use captions can concatenate many complete manufacturing
             // actions. Each following action owns its comma boundary; commas
             // inside an object name remain part of that same action.
@@ -9758,11 +9768,21 @@ static std::string take_unit_sex_suffix(std::string_view &source) {
 }
 
 std::optional<std::string> Overlay::translate_creature_label(
-        std::string_view source, bool *shortened, bool authored_name_slot) const {
+        std::string_view source, bool *shortened, bool authored_name_slot,
+        bool static_only) const {
     if (shortened) *shortened = false;
-    if (const auto identity = native_unit_identity_source_target(source)) return identity;
+    if (!static_only)
+        if (const auto identity = native_unit_identity_source_target(source)) return identity;
     source = trim_view(source);
     if (source.empty()) return std::nullopt;
+    // Articles describe a whole unit in prose and tooltips. They are not
+    // part of its RAW name and must not redirect a calf to anatomy parsing.
+    for (const std::string_view article : {"a ", "an ", "the "}) {
+        if (source.size() <= article.size() ||
+                lower(std::string(source.substr(0, article.size()))) != article) continue;
+        source = trim_view(source.substr(article.size()));
+        break;
+    }
     std::string prefix, suffix, sex;
     const std::string folded = lower(std::string(source));
     // Unit state is an outer label, not part of the species/material or an
@@ -9800,7 +9820,7 @@ std::optional<std::string> Overlay::translate_creature_label(
     // capture, a typed unit slot can still own a literal name between the
     // separately parsed state/sex fields. A mixed UTF-8 name also needs this
     // composition in the grid path; it must not discard translated wrappers.
-    auto creature = translate_creature_descriptor(source, true);
+    auto creature = translate_creature_descriptor(source, true, static_only);
     // Report summaries distinguish unnamed animals with a decimal suffix
     // (e.g. Alligator 4). The number belongs to the unit label, not to the
     // species vocabulary or a generated personal name. Require the entire
@@ -9811,7 +9831,8 @@ std::optional<std::string> Overlay::translate_creature_label(
             const auto number = source.substr(number_at + 1);
             if (!number.empty() && std::all_of(number.begin(), number.end(),
                     [](unsigned char ch) { return ch >= '0' && ch <= '9'; })) {
-                if (auto caste = translate_creature_descriptor(source.substr(0, number_at), true))
+                if (auto caste = translate_creature_descriptor(
+                        source.substr(0, number_at), true, static_only))
                     creature = *caste + " " + std::string(number);
             }
         }
@@ -9824,7 +9845,7 @@ std::optional<std::string> Overlay::translate_creature_label(
     if (!creature && (!prefix.empty() || !sex.empty() || !suffix.empty())) {
         if (const auto expanded = RULESETS.expand_shortened_creature_name(
                 cp437_to_utf8(lower(std::string(source))))) {
-            creature = translate_creature_descriptor(*expanded, true);
+            creature = translate_creature_descriptor(*expanded, true, static_only);
             if (creature && shortened) *shortened = true;
         }
     }
@@ -9832,7 +9853,7 @@ std::optional<std::string> Overlay::translate_creature_label(
     // A remaining comma may separate a person's name and occupation. Let
     // the identity parser translate those fields instead of preserving both
     // as one authored animal name after removing their shared sex suffix.
-    if (source.find(',') == std::string_view::npos &&
+    if (!static_only && source.find(',') == std::string_view::npos &&
             (authored_name_slot || contains_cjk_utf8(source)) &&
             (!prefix.empty() || !sex.empty() || !suffix.empty()))
         return prefix + native_text_to_utf8(source) + sex + suffix;
@@ -9840,6 +9861,10 @@ std::optional<std::string> Overlay::translate_creature_label(
 }
 
 std::optional<std::string> Overlay::translate_creature_reference(std::string_view source) const {
+    // A known complete RAW label is unambiguous even when its final word
+    // also names a material or body part. Generated owners still use the
+    // outer-structure disambiguation below.
+    if (auto known = translate_creature_label(source, nullptr, false, true)) return known;
     bool shortened = false;
     const auto creature = translate_creature_label(source, &shortened);
     if (!creature) return std::nullopt;
@@ -13923,6 +13948,10 @@ std::optional<std::string> Overlay::translate_ui_message_capture(
     // bindings, complete personal/role forms and literal labels above retain
     // their usual handling; the enclosing grammar owns every other field.
     if (unit_label) return std::nullopt;
+    // Generic fields are shared by announcements, tooltips and menu prose.
+    // Recognize the same complete RAW juvenile label as the unit panels
+    // before any item/material parser can split off calf, cub, pup or fry.
+    if (auto creature = translate_creature_label(source, nullptr, false, true)) return creature;
     // e68020 passes written titles unchanged to every item action, including
     // a title's own question mark and an optional copy/designation wrapper.
     // Only complete native book productions establish this interpretation;

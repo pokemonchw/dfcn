@@ -85,6 +85,9 @@ std::optional<std::string> Overlay::translate_written_item_caption(
 std::optional<std::string> Overlay::translate_item_caption_grammar(
         std::string_view source) const {
     if (!config_.compositional_rules) return std::nullopt;
+    // Shared noun callers also supply living animals. A complete RAW child
+    // name must win before corpse-piece grammar splits its juvenile suffix.
+    if (auto creature = translate_creature_label(source, nullptr, false, true)) return creature;
     // Body owners are complete typed fields, including authored spellings.
     // Resolve them before equipment/material recursion enters the generic
     // item namespace and obscures the independently known anatomy suffix.

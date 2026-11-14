@@ -57,7 +57,7 @@ static std::optional<std::string> translate_raw_use_tagged_name(
 }
 
 std::optional<std::string> Overlay::translate_creature_descriptor(
-        std::string_view source, bool require_species) const {
+        std::string_view source, bool require_species, bool static_only) const {
     std::string normalized;
     std::istringstream words{std::string(source)};
     for (std::string word; words >> word;) {
@@ -66,7 +66,9 @@ std::optional<std::string> Overlay::translate_creature_descriptor(
     }
     if (normalized.empty()) return std::nullopt;
     if (auto tagged = translate_raw_use_tagged_name(normalized,
-            [&](std::string_view name) { return translate_creature_descriptor(name, true); }))
+            [&](std::string_view name) {
+                return translate_creature_descriptor(name, true, static_only);
+            }))
         return tagged;
     auto complete = [](const std::optional<std::string> &value) {
         // These lookups and grammars resolve the entire source field. Their
@@ -122,7 +124,7 @@ std::optional<std::string> Overlay::translate_creature_descriptor(
         const auto purpose = RULESETS.compose_bound_rule(
             "::creatures::caste::name::purpose", std::string(training));
         const auto animal = translate_creature_descriptor(
-            std::string_view(normalized).substr(training.size()), true);
+            std::string_view(normalized).substr(training.size()), true, static_only);
         return purpose && animal
             ? std::optional<std::string>(*purpose + *animal) : std::nullopt;
     }
@@ -157,7 +159,7 @@ std::optional<std::string> Overlay::translate_creature_descriptor(
         // following a status prefix. The remaining text has NO leading status
         // prefix, so this call cannot recurse through the same prefix chain.
         if (auto known = require_species ? species(normalized) : literal(normalized)) return known;
-        const auto base = translate_creature_descriptor(remaining, true);
+        const auto base = translate_creature_descriptor(remaining, true, static_only);
         return base ? std::optional<std::string>(status_target + *base) : std::nullopt;
     }
 
@@ -171,9 +173,14 @@ std::optional<std::string> Overlay::translate_creature_descriptor(
         if (!folded_status.starts_with(sex)) continue;
         if (auto known = species(normalized)) return known;
         const auto base = translate_creature_descriptor(
-            std::string_view(normalized).substr(sex.size()), true);
+            std::string_view(normalized).substr(sex.size()), true, static_only);
         return base ? std::optional<std::string>(*base + std::string(marker)) : std::nullopt;
     }
+
+    // Untyped captions may prefer a complete known RAW name over item or
+    // anatomy homonyms. They must not use generated owners/profiles or
+    // personal-name fallback as evidence that an arbitrary noun is a unit.
+    if (static_only) return species(normalized);
 
     // Installed RAW names may contain punctuation (e.g. Mr. Rime). Their
     // complete identity, including the training/status wrappers above, is

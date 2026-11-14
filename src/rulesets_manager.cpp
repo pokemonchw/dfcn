@@ -570,6 +570,10 @@ namespace Hooks {
     std::optional<std::string> RulesetsManager::translate(const std::string& text) const {
         dfcn::TranslationStateScope translation_scope;
         return scoped_rule_translation([&]() -> std::optional<std::string> {
+            // A literal RAW species/caste/juvenile name is already a complete
+            // identity. Root item/anatomy alternatives cannot redefine its
+            // final word (e.g. deinotherium calf) as a separate body part.
+            if (auto creature = translate_static_creature_name(text)) return creature;
             // Use the same owner/child/tissue parser in health and inventory as
             // in Legends, including names with more than one owning body part.
             if (text.find(',') != std::string::npos)
@@ -2393,6 +2397,14 @@ namespace Hooks {
                 // span. Retain shorter alternatives for the enclosing grammar,
                 // but do not let an older literal sense win on equal length.
                 if (resolved_external_lengths.contains(matched.size())) continue;
+
+                // This rule splits a creature label from an anatomical part.
+                // If their entire span is itself a RAW juvenile/caste name,
+                // that split is not a body component. Reject it here as well
+                // as in caption callers, so nested prose and detached DFHack
+                // parsers cannot turn a complete calf name into a leg.
+                if (identifier == "::items::corpsepiece::named" &&
+                        static_creature_names_.contains(creature_lookup_key(matched))) continue;
 
                 // Resolve the usual grammar first, then retain the actual
                 // matched bytes, including case and accents. The identity
