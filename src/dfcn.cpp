@@ -5290,6 +5290,9 @@ private:
     void append_mod_list_details(const NativeModListLayout &layout,
         std::vector<std::string> &rows, std::vector<Match> &matches,
         bool captured_only = false) const;
+    std::vector<SDL_Rect> capture_load_game_mod_dialog(
+        std::vector<std::string> &rows, std::vector<Match> &matches,
+        const unsigned char *screen_override) const;
     void layout_resting_place_details(SDL_Renderer *renderer);
     void layout_fortress_building_status(SDL_Renderer *renderer);
     void layout_fortress_farm_plot(SDL_Renderer *renderer);
@@ -18383,6 +18386,7 @@ static bool help_background_covered(const Match &match, int x, int y) {
 }
 
 #include "mod_list.inc"
+#include "load_game_mod_dialog.inc"
 
 void Overlay::append_dfhack_notification_banners(
         const std::vector<std::string> &dfhack_context_rows,
@@ -19016,6 +19020,9 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         }
     }
     const auto mod_workshop_names = preserve_mod_workshop_names(screen_rows);
+    std::vector<Match> load_game_mod_matches;
+    const auto load_game_mod_fields = capture_load_game_mod_dialog(
+        screen_rows, load_game_mod_matches, screen_override);
     // The stockpile interface and its native caption writers own these
     // fields before the generic task chooser can consume their shared skins.
     if (!local_fortress_hud)
@@ -19791,6 +19798,17 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
             for (Match &field : mod_details_matches)
                 if (only_y < 0 || only_y == field.y) result.push_back(std::move(field));
         }
+        // The load dialog's authored name/version field and literal controls
+        // retain ownership after raw caption and whole-paragraph recovery.
+        std::erase_if(result, [&](const Match &match) {
+            return std::any_of(load_game_mod_fields.begin(), load_game_mod_fields.end(),
+                [&](const SDL_Rect &field) {
+                    return match.y == field.y && match.x < field.x + field.w &&
+                        field.x < match.x + match.length;
+                });
+        });
+        for (Match &field : load_game_mod_matches)
+            if (only_y < 0 || only_y == field.y) result.push_back(std::move(field));
         // Native caption recovery can bypass the reserved rows. Mod workshop
         // names retain their original glyphs even after whole-row composition.
         std::erase_if(result, [&](const Match &match) {

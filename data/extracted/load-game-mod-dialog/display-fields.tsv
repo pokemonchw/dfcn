@@ -1,0 +1,25 @@
+owner	branch	text_or_field	source	translation_behavior
+mod-load-dialog	index < 0 or index >= saved mod count	no dialog	entry guards at reference RVA 0x7e0491..0x7e04b3	no text produced
+mod-load-dialog	state+0xc != 0	Newer compatible version of mod detected:	reference RVA 0x7e06ae; classic RVA 0x7ddd0e	complete heading
+mod-load-dialog	state+0xc == 0 and state+0xd == 0	no dialog	reference RVA 0x7e0ed8	no text produced
+mod-load-dialog	state+0xd != 0 and state+0x10 != 0	Failed to find compatible mod:	reference RVA 0x7e1076; classic RVA 0x7de6d6	complete heading
+mod-load-dialog	state+0xd != 0 and state+0x10 == 0	Failed to install mod:	reference RVA 0x7e10c4; classic RVA 0x7de724	complete heading
+mod-load-dialog	all visible branches	saved display name	saved header mod_names[index]; reference RVA 0x7e0710/0x7e1124	preserve authored name, including Chinese, spaces and English words
+mod-load-dialog	error branches	saved displayed version	saved header mod_displayed_versions[index]; reference RVA 0x7e116e	preserve version verbatim
+mod-load-dialog	update branch, candidate != null	candidate displayed version	state+0x18 -> mod_headerst+0x68; reference RVA 0x7e076b	preserve version verbatim
+mod-load-dialog	update branch, candidate != null	 (save uses 	reference RVA 0x7e07ac	translate this separate draw, not text inside a name or version
+mod-load-dialog	update branch, candidate != null	saved displayed version	reference RVA 0x7e07c9	preserve version verbatim
+mod-load-dialog	update branch, exact saved version == null	, not found	reference RVA 0x7e0821	translate optional suffix
+mod-load-dialog	update branch, candidate != null	)	reference RVA 0x7e088a	close translated version explanation
+mod-load-dialog	update branch, candidate == null	name only	reference RVA 0x7e0750..0x7e0757	preserve name; no version explanation emitted
+mod-load-dialog	update branch	Update; Update all; Don't update; Don't update any; Back to title	reference RVA 0x7e09b7/0x7e0aec/0x7e0c2a/0x7e0d5c/0x7e0ec4	translate every native button; input regions unchanged
+mod-load-dialog	error branches	Back to title	reference RVA 0x7e1293	translate native button; error and mod metadata remain visible
+mod-choice-input	update/update-all	install candidate, or retain installation error	complete native input owner reference RVA 0x7e0000..0x7e044c	translation never changes native error state
+mod-choice-input	don't-update/don't-update-any with exact saved version present	reuse exact saved version; installation may still fail	complete native input owner reference RVA 0x7e0000..0x7e044c	translation never changes version selection
+mod-choice-input	exact saved version absent	decline-update buttons have no input action; update and back remain available	state+0x20 == null branch in native input owner	all five labels remain translated without changing availability
+mod-choice-input	back or leave-screen input	return to title	new-game-mod-step and saved-game-mod-step	translation never changes native navigation
+new-game-load-renderer/raw-processing	stage 1	Loading object files... + saved mod display name	complete renderer; source and switch selectors in pe-strings.tsv and pe-switches.tsv	translate status, preserve appended authored name
+load-game-renderer/raw-processing	graphics stage	Preparing graphics... + saved mod display name	complete renderer; source and switch selectors in pe-strings.tsv and pe-switches.tsv	translate status, preserve appended authored name
+new-game-load-renderer/load-game-renderer	all progress selectors	literal status or blank default	all selector aliases, fallthroughs, literal loads and complete C bodies retained	complete status literals in runtime catalog
+new-game-load-state-machine	failed stage	Error / Worldgen has been aborted due to an error.	Warning Modal's Warning Text Scroll content	translate visible title and message; widget IDs stay internal
+saved-game-load-state-machine	failed stage	Error / Game load has been aborted due to an error.	Warning Modal's Warning Text Scroll content	translate visible title and message; widget IDs stay internal

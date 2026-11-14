@@ -25057,6 +25057,7 @@ It has {s} and its movements sound like the rattling of chains.	它长有{s1}，
 It never appears to be perturbed or surprised by any happening.	无论发生何事，它似乎都不会感到困扰或惊讶。	h
 It returns surrounding light with a new vibrance and intensity.	它将周围的光反射得更加鲜亮强烈。	h
 It started at {p} and returned there after following its route.	从{p1}出发，沿游行路线行进后返回起点。	ht
+Load game mod dialog: Newer compatible version of mod detected:	发现兼容的模组新版本：	l
 Monitor their thoughts to identify problems that you can solve.	留意居民的想法，找出可以解决的问题。	hq
 Native history intrigue concession {a} response {a} during {e}.	在{e1}期间，虽然{a1}，但{a2}。	ht
 Native history intrigue concession {a} response {a} within {p}.	在{p1}，虽然{a1}，但{a2}。	ht
@@ -35703,6 +35704,7 @@ Leave this menu and recenter on the task's building.	离开此菜单，并将视
 Leave this menu and recenter on the task's building.	离开这个菜单,重新定位到任务的建筑上.	w
 Leave this menu and view this place's sheet or menu.	离开此菜单，并查看此地点的详情页或菜单。	hj
 Leave this menu and view this place's sheet or menu.	离开该菜单并查看该地区的列表或菜单.	w
+Load game mod dialog: Failed to find compatible mod:	找不到兼容的模组：	l
 Native history collection title of {p} in the wilds.	在荒野中，{p1}争夺事件。	htEi
 Native history intrigue concession {a} response {a}.	虽然{a1}，但{a2}。	ht
 Native history office: most exalted responsibilities	至尊责任	h
@@ -48492,6 +48494,7 @@ Leave this menu and recenter on this object.	离开此菜单，并将视图重�
 Leave this menu and recenter on this object.	离开该菜单并重定位至该物体.	w
 Left click to choose corners of a rectangle.	点击鼠标左键选择矩形的角点。	hj
 Left click to choose corners of a rectangle.	左击选择矩形的一个边角.	w
+Load game mod dialog: Failed to install mod:	模组安装失败：	l
 Monster Rampage of {n} in in {p} during {e}.	在{e1}期间，{n1}在{p1}的怪物肆虐事件。	htEi
 Monster Rampage of {n} in in {p} within {p}.	在{p2}，{n1}在{p1}的怪物肆虐事件。	htEi
 Native Legends centered on divine aspect {s}	，围绕其{s1}神性展开	ht
@@ -50844,6 +50847,7 @@ Fortress activity: Update stockpile records	更新库存记录	li
 Fortress activity: Wait for Combat Training	等待战斗训练	li
 Fortress activity: suffix (no patrol route)	（没有巡逻路线）	li
 Fortress schedule editor: Minimum number of	执行新命令	l
+Game load has been aborted due to an error.	发生错误，游戏加载已中止。	hP
 Give a sermon concerning a cosmic principle	发表关于宇宙原理的布道	hP
 Greetings. I am {p}, and I have chosen you.	你好。我是{p1}，我已选中了你。	hqt
 Guide {s} immediately always (at most 100%)	立即引导矿车向{s1}行驶（不限装载量，至多100%）	hPt
@@ -55859,6 +55863,7 @@ Workshop recipe: state parchment-producing	可制作兽皮纸	l
 World artifact claim: Claimed by local {n}	当地的{n}宣称拥有	ht
 World artifact: Last known to be traveling	最后得知正在旅行中	h
 World civilization trade status: Vengeance	复仇	l
+Worldgen has been aborted due to an error.	发生错误，世界生成已中止。	hP
 Written on the item is a {s} entitled {b}.	物品上写有{s1}《{b1}》。	ht
 You are considered part of the opposition.	你被视为反对者的一员。	hPD
 You are in the middle of the story of {v}.	你正在讲述这个故事：{v1}。	hPt
@@ -62004,7 +62009,7 @@ It was one of the only ones of its kind.	它是同类中仅有的少数个体之
 Justice intelligence tab: Interrogations	审讯记录	l
 Justice plot: Attempted Espionage in {d}	间谍活动未遂（第{d}年）	l
 Let there be peace throughout the world.	愿世界处处安宁。	hPD
-Loading world and continuing active game	加载世界并继续可用游戏	w
+Loading world and continuing active game	正在加载世界并继续当前游戏	w
 Minimum Number of High-Elevation Squares	高海拔方格最少数量
 Minimum Number of High-Volcanism Squares	高火山活动度方格最少数量
 Monster Rampage of {n} in in {p} at {p}.	在{p2}，{n1}在{p1}的怪物肆虐事件。	htEi
@@ -65051,6 +65056,7 @@ Preference reason: webbed hands and feet	有蹼的手和脚	l
 Preference reason: witch like appearance	巫婆般的外表	l
 Really quit?  The character will live on	确定要结束吗？这个角色的事迹	w
 Really quit?  The fort will be saved but	确定要放弃吗？要塞将会保存，	w
+Rebuilding more temporary information...	正在重建其余临时信息……	w
 Recenter on the announcement's location.	将视图重新居中到公告发生地点。	hj
 Refuse to make peace between {e} and {e}	拒绝让{e1}与{e2}停战	hPt
 Remove the current worker from the task.	移除执行此任务的当前工人。	hj
@@ -72139,6 +72145,7 @@ Labor -> Standing orders -> Petitions.	劳动 → 劳动规则 → 申请。	hP
 Labor caption: Feed Patients/Prisoners	喂食病患和囚犯	wi
 Labor caption: Small Animal Dissection	小动物解剖	wi
 Labor caption: Wall/Floor Construction	墙壁与地板建造	wi
+Load game mod dialog: Don't update any	全部不更新	l
 Make the sacrifice regardless of fear.	即使恐惧，也要做出牺牲。	hP
 Mineral Scarcity (Low = More minerals)	矿物稀缺度（数值越低，矿物越多）
 Minimum Initial Grassland Region Count	初始草原区域最少数量
@@ -83568,7 +83575,7 @@ Justice report: Interrogation Report	审讯报告	l
 Land holder trade trigger {d} (mods)	封地贵族出口财富阈值 {d}（模组）	wt
 Legendary preserver of the knowledge	传奇博学大师	w
 Let us stop this pointless fighting!	让我们停止这场毫无意义的争斗！	hPD
-Loading active historical figures...	载入活跃的历史人物......	w
+Loading active historical figures...	正在加载活跃历史人物……	w
 Locations can be created from zones.	可通过区域创建地点。	hP
 Minecart rollers can vary in length.	矿车滚轴可设置不同长度。	hP
 Minimum Final Grassland Region Count	最终草原区域最少数量
@@ -88944,7 +88951,8 @@ Justice plot organization: Nameless	无名者	l
 Justice plot: Start War between and	挑起战争	l
 Key hold milliseconds before repeat	按键保持毫秒数前重复	w
 Let's entertain the world together!	让我们一起为世界带来欢乐！	hPD
-Loading local animal populations...	加载当地动物种群......	w
+Load game mod dialog: Back to title	返回主菜单	l
+Loading local animal populations...	正在加载当地动物种群……	w
 Minimum Initial Desert Region Count	初始沙漠区域最少数量
 Minimum Initial Desert Square Count	初始沙漠方格最少数量
 Minimum Initial Forest Region Count	初始森林区域最少数量
@@ -92020,7 +92028,7 @@ Pressure plate: Range: {s1} to {s2}	范围：{s1}至{s2}	htl
 Quiet vocalization (heard recently)	微弱叫声（刚刚听到）	wl
 Rampage of {n} in in {p} during {e}	在{e1}期间，{n1}在{p1}的肆虐事件	htEi
 Rampage of {n} in in {p} within {p}	在{p2}，{n1}在{p1}的肆虐事件	htEi
-Rebuilding temporary information...	重建临时信息......	w
+Rebuilding temporary information...	正在重建临时信息……	w
 Refuse listener work as {s} for {e}	拒绝让对方为{e1}担任{s1}	hPt
 Requires an item with a sharp edge.	需要一件带利刃的物品。	w
 Salutations. It is good to see you.	向你致意。很高兴见到你。	hPD
@@ -94380,6 +94388,8 @@ Keep loaded but do not stand ready	保持装填状态但不派人操控	wi
 Keep world and return to main menu	保留世界并返回主菜单
 Land holder population trigger {d}	封地贵族人口阈值 {d}	wt
 Land holder production trigger {d}	封地贵族创造财富阈值 {d}	wt
+Load game mod dialog:  (save uses 	（存档使用 	l
+Load game mod dialog: Don't update	不更新	l
 Look to another for what you need.	向他人寻求你需要的东西。	hP
 Loud vocalization (heard recently)	响亮叫声（刚刚听到）	wl
 Make instrument piece (opens menu)	制作乐器部件（打开菜单）	wi
@@ -99296,6 +99306,7 @@ Embark finder: Clear find results	清除查找结果	w
 Embark site resource: Little soil	少量土壤
 Famous preserver of the knowledge	名声显赫的博学大师	w
 Fertilizer is not needed to farm.	[C:7:0:0]不[C:6:0:1]施肥[C:7:0:0]也可以种植。	hq
+Finalizing creature variations...	正在完成生物变体……	w
 Fortress activity: Attend Meeting	参加会面	li
 Fortress activity: Caged Prisoner	关在笼中的囚犯	li
 Fortress activity: Drain aquarium	排空水族箱	li
@@ -99360,6 +99371,7 @@ Justice sentence: days in prison.	监禁{d}日。	l
 Labor caption: Push/Haul Vehicles	推拉车辆	wi
 Labor caption: Recovering Wounded	救助伤员	wi
 Labor caption: Trade Good Hauling	搬运贸易货物	wi
+Load game mod dialog: , not found	，未找到该版本	l
 Megabeast attack period (seasons)	巨兽来袭间隔（季度）
 Minimum Final Desert Region Count	最终沙漠区域最少数量
 Minimum Final Forest Region Count	最终森林区域最少数量
@@ -103707,6 +103719,7 @@ Empty unimproved glazable statue	未上釉的可上釉的雕像	wi
 Enemy/merchant trade trigger {d}	敌人/商人出口财富阈值 {d}	wt
 Express your emotions (new menu)	表达你的情绪（新菜单）	hP
 Finalizing civ mats... ({d}/{d})	正在完成政权材料……（{d}/{d}）	wt
+Finalizing material templates...	正在完成材料模板……	w
 Finalizing uniforms... ({d}/{d})	正在完成制服……（{d}/{d}）	wt
 Follow your desire to reconcile.	遵从内心和解的愿望。	hP
 Fortress activity: Attend Parley	参加谈判	li
@@ -103738,6 +103751,7 @@ General work orders allowed: {d}	常规工单上限：{d}	wtl
 Gladiatory Games of in the wilds	在荒野中，角斗比赛	hEi
 Gladly. I will be your {s}, {s}.	我很乐意，{s2}。我会成为你的{s1}。	hPtD
 Go below hatch ({d} levels down)	前往活动盖板下方（下方{d1}层）	hPt
+Handling compatibility issues...	正在处理兼容性问题……	w
 Hang from {s} ({s} from {s}/Air)	悬挂于{s1}（{s2}，从{s3}／空气）	hPt
 He enjoys the company of others.	他喜欢与他人为伴。	l
 He was the only one of his kind.	他是同类中唯一的个体。	h
@@ -103795,7 +103809,8 @@ Labor caption: Furniture Hauling	搬运家具	wi
 Labor caption: Siege Engineering	制造攻城器械	wi
 Labor caption: Strand Extraction	缕丝提取	wi
 Last interlude: Toady Two - Dabu	上一首间奏：Toady Two — Dabu
-Loading civilized populations...	加载政权人口......	w
+Load game mod dialog: Update all	全部更新	l
+Loading civilized populations...	正在加载文明人口……	w
 Log world generation map rejects	记录世界生成地图拒绝	w
 Look out for a chance encounter.	留意一次偶然的相遇。	hP
 Make a change or forever remain.	做出改变，否则将永远停滞不前。	hP
@@ -107151,7 +107166,8 @@ Duel of {a} and {a} within {p}.	在{p1}，{a1}与{a2}的决斗。	htEi
 Embark site resource: Deep soil	深厚土层
 Embark site resource: Some soil	一些土壤
 Erase a portion of this burrow.	擦除此活动区的一部分。	hj
-Finalizing generated objects...	完成生成的对象......	w
+Finalizing body detail plans...	正在完成身体细节方案……	w
+Finalizing generated objects...	正在完成生成的对象……	w
 Fortification carving blueprint	城防垛口开凿蓝图	wo
 Fortress activity: Bring crutch	送来拐杖	li
 Fortress activity: Collect clay	收集黏土	li
@@ -107227,9 +107243,9 @@ Labor caption: Farming (Fields)	耕种	wi
 Labor caption: Plant Processing	植物加工	wi
 Legendary protector of the weak	传奇庇护者	w
 Let's continue onward together.	我们一起接着走吧。	hPD
-Loading fortress information...	加载堡垒信息......	w
-Loading tracking information...	加载跟踪信息......	w
-Loading world to start new game	加载世界来开始新游戏	w
+Loading fortress information...	正在加载要塞信息……	w
+Loading tracking information...	正在加载追踪信息……	w
+Loading world to start new game	正在加载世界以开始新游戏	w
 Mouse-context scrollbar page up	鼠标-上下文滚动条向上翻页	w
 Move keyboard cursor down, fast	将键盘光标向下移动,快速	w
 Move keyboard cursor left, fast	向左移动键盘光标,快速	w
@@ -110064,7 +110080,8 @@ Embark site resource: Platinum	铂
 Empty unimproved glazable item	未上釉的可上釉的工艺品	wi
 Exhort to finish current quest	敦促完成当前任务	hP
 Express outrage over dismissal	对被敷衍表示愤慨	hP
-Finalizing tissue templates...	完成组织模板...	w
+Failed to find compatible mod:	找不到兼容的模组：	hP
+Finalizing tissue templates...	正在完成组织模板……	w
 Fine. Let's drop the argument.	好吧。我们别争了。	hPD
 Finish setting hauling routes.	结束运输路线设置。	hj
 Forbid cages from sprung traps	禁用已触发陷阱中的笼子	wi
@@ -110161,8 +110178,8 @@ Labor caption: Lever Operation	操作控制杆	wi
 Labor caption: Plant Gathering	植物采集	wi
 Labor caption: Siege Operating	操作攻城器械	wi
 Labor caption: Stone Engraving	石刻	wi
-Loading cultural identities...	加载文化身份......	w
-Loading general information...	加载一般信息......	w
+Loading cultural identities...	正在加载文化身份……	w
+Loading general information...	正在加载常规信息……	w
 Loud grinding (heard recently)	响亮机械摩擦声（刚刚听到）	wl
 Loud movement (heard recently)	响亮移动声（刚刚听到）	wl
 Main Ceremony of in the wilds.	在荒野中，主要仪式。	hEi
@@ -110354,7 +110371,7 @@ She was the first of her kind.	她是同类中最早的个体。	h
 Some property was confiscated.	部分财产被没收。	h
 Sorry, I'm otherwise occupied.	抱歉，我正忙着别的事。	hPD
 Sort units by profession name.	按职业名称对单位排序。	hj
-Sorting creature variations...	正在整理生物变体……	l
+Sorting creature variations...	正在整理生物变体……	w
 Spread rumor of your abduction	传播你被绑架的传闻	hP
 Squad creation: Existing squad	{position}的小队	l
 State feelings of astonishment	表达惊讶	hP
@@ -113010,6 +113027,7 @@ Some property was confiscated	部分财产被没收	h
 Something has emptied a cage!	有什么东西清空了笼子！	hP
 Something has pulled a lever!	有什么东西拉动了拉杆！	hP
 Sort units by professionname.	按职业名称对单位进行排序.	w
+Sorting material templates...	正在整理材料模板……	w
 Spread rumor of {p}'s bribery	传播{p1}贿赂的传闻	hPt
 State feelings of aggravation	表达恼火	hP
 State feelings of ambivalence	表示没什么特别的感觉	hP
@@ -115314,7 +115332,8 @@ Labor caption: Stonecrafting	石艺	wi
 Labor caption: Water Hauling	运水	wi
 Labor caption: Working Stone	石材加工	wi
 Let the party venture forth!	让队伍踏上冒险之旅吧！	hq
-Loading world information...	加载世界信息......	w
+Load game mod dialog: Update	更新	l
+Loading world information...	正在加载世界信息……	w
 Looks to be snowing outside.	外面好像在下雪。	hPD
 Main Ceremony of during {e}.	在{e1}期间，主要仪式。	htEi
 Main Ceremony of within {p}.	在{p1}，主要仪式。	htEi
@@ -115491,6 +115510,7 @@ She lives a fast-paced life.	她过着快节奏的生活。	l
 Siege equipment (opens menu)	围攻装备（打开菜单）	wi
 Skill name: Critical Thinker	批判思考	li
 Some changes are inevitable.	有些变化不可避免。	hP
+Sorting body detail plans...	正在整理身体细节方案……	w
 Sorting world information...	整理世界信息...	w
 Squad creation: appointed by	由{position}任命	l
 State feelings of acceptance	表达接受	hP
@@ -117705,8 +117725,8 @@ Labor caption: Wood Hauling	搬运木材	wi
 Labor caption: Woodcrafting	木艺	wi
 Labor caption: Working Wood	木材加工	wi
 Lava/Magma at this location	此处有岩浆	wli
-Loading army controllers...	加载军队管制员......	w
-Loading coin information...	加载硬币信息......	w
+Loading army controllers...	正在加载军队控制信息……	w
+Loading coin information...	正在加载钱币信息……	w
 Loyalty should be rewarded.	忠诚应当得到奖赏。	hPD
 Main Ceremony in the wilds.	在荒野中，主要仪式。	hEi
 Main Ceremony of during {e}	在{e1}期间，主要仪式	htEi
@@ -117887,6 +117907,7 @@ Site Cap After Civ Creation	政权生成后的聚落上限
 Slaughter any marked animal	屠宰所有已标记的动物	wi
 Some migrants have arrived.	一些移民抵达了。	hP
 Sort units by stress level.	按压力程度对单位排序。	hj
+Sorting tissue templates...	正在整理组织模板……	w
 Spread rumor of {p}'s death	传播{p1}死亡的传闻	hPt
 Stagnant salt water [{d}/7]	咸死水 [{d}/7]	wtl
 Stand ready but do not fire	派人操控但不射击	hP
@@ -120104,6 +120125,7 @@ Examination of the Patient	病患检查	hi
 Express horror at the gift	对礼物表示惊恐	hP
 Extend room rental for {q}	续租客房，费用{q1}	hPt
 Extract adamantine strands	提取精金缕	wi
+Finalizing interactions...	正在完成交互……	w
 Finish placing stockpiles.	结束放置储物堆。	hj
 Finish placing structures.	结束放置建筑。	hj
 Finish setting dig orders.	结束挖掘命令设置。	hj
@@ -120127,7 +120149,7 @@ Fortress activity: Visitor	来访者	li
 Fortress activity: Worship	礼拜	li
 Fulfillment will be yours.	你将获得满足。	hP
 Gathering fruit and leaves	采集果实与叶片	wo
-Generating interactions...	生成互动......	w
+Generating interactions...	正在生成交互……	w
 Give an order based on {q}	根据{q1}下达命令	hPt
 Gladiatory Games of at {p}	在{p1}，角斗比赛	htEi
 Gladiatory Games of in {d}	{d1}年的角斗比赛	htEi
@@ -120197,8 +120219,8 @@ Labor caption: Woodworking	木材加工	wi
 Labor tab: Standing orders	规则	wi
 Linguistic Ability (minor)	语言能力（次要）	wi
 Link a building to trigger	将建筑连接到触发装置	wi
-Loading divination sets...	加载预言集	w
-Loading written content...	加载书面内容......	w
+Loading divination sets...	正在加载占卜数据……	w
+Loading written content...	正在加载书面内容……	w
 Look at the fog out there!	看看外面的浓雾！	hPD
 MEDIUM ELEVATION REJECTION	中等海拔不符合要求	hP
 Main Ceremony in the wilds	在荒野中，主要仪式	hEi
@@ -120311,8 +120333,9 @@ Preference reason: stripes	条纹	l
 Preference reason: surfing	冲浪	l
 Preference reason: wiskers	胡须	l
 Preference reason: zippers	拉链	l
+Preparing material data...	正在准备材料数据……	w
 Press honey from honeycomb	从蜜脾中压出蜂蜜	wi
-Processing interactions...	处理交互......	w
+Processing interactions...	正在处理交互……	w
 Procession of in the wilds	在荒野中，游行	hEi
 Purge in {p} in the wilds.	在荒野中，{p1}清洗事件。	htEi
 Quiet vocalization (heard)	微弱叫声（听到）	wl
@@ -122276,7 +122299,7 @@ Engravings start obscured	雕刻开始模糊	w
 Entombed and memorialized	已埋葬和铭记	wi
 Equipment/pet points: {d}	装备与宠物点数：{d}	wtl
 Experiencing mortal fear!	感到濒死般的恐惧！	hP
-Finalizing descriptors...	完成描述符...	w
+Finalizing descriptors...	正在完成描述词……	w
 Fortress activity: Burrow	活动区	li
 Fortress activity: Defend	保卫活动区	li
 Fortress activity: Kidnap	绑架	li
@@ -122346,7 +122369,7 @@ Labor caption: Other Jobs	其他劳动	wi
 Labor caption: Soap Maker	制皂	wi
 Lay quest to retrieve {i}	下达寻回{i1}的任务	hPt
 Legendary treasure hunter	传奇寻宝者	w
-Loading belief systems...	加载信仰系统......	w
+Loading belief systems...	正在加载信仰体系……	w
 Look ahead to the future.	着眼未来。	hP
 Loud vocalization (heard)	响亮叫声（听到）	wl
 Main Ceremony during {e}.	在{e1}期间，主要仪式。	htEi
@@ -124311,6 +124334,7 @@ Erase a portion of this 	擦除一部分此处的储物处。	w
 Export of {s} Prohibited	禁止出口{s}	wtlx
 Extract from land animal	提炼陆地动物	wi
 Finalizing civ mats... (	正在完成政权材料……（
+Finalizing inorganics...	正在完成无机物……	w
 Finalizing uniforms... (	正在完成制服……（
 Forbid other death items	禁用其他死者遗物	wi
 Forge weapons and armor 	在此锻造武器和盔甲，以及大多	w
@@ -124329,7 +124353,7 @@ Fortress activity: Serve	供应	li
 Fortress activity: Sleep	睡觉	li
 Fortress activity: Train	训练	li
 Fortress activity: Write	写作	li
-Generating inorganics...	生成无机物......	w
+Generating inorganics...	正在生成无机物……	w
 Give your opinion of {p}	说说你对{p1}的看法	hPt
 Gladiatory Games at {p}.	在{p1}，角斗比赛。	htEi
 Gladiatory Games in {d}.	{d1}年的角斗比赛。	htEi
@@ -124375,7 +124399,7 @@ Labor caption: Diagnosis	诊断	wi
 Labor caption: Mechanics	机械作业	wi
 Let's drop the argument.	我们别争了。	hPD
 Life is, in a word, {r}.	一言以蔽之，生命就是{r1}。	hPtD
-Loading announcements...	加载公告......	w
+Loading announcements...	正在加载公告……	w
 Looks like rain outside.	外面好像在下雨。	hPD
 Magma below the furnace 	熔炉下方的岩浆将为任务提供动	w
 Magma below the smelter 	熔炼炉下的岩浆将为任务提供动	w
@@ -124505,8 +124529,9 @@ Preference reason: voice	嗓音	l
 Preference reason: wheel	车轮	l
 Preference reason: whips	鞭子	l
 Preference reason: wings	翅膀	l
+Preparing game screen...	正在准备游戏界面……	w
 Process plants and work 	在此加工植物和照料牲畜。挤奶、	w
-Processing inorganics...	处理无机物......	w
+Processing inorganics...	正在处理无机物……	w
 Procession in the wilds.	在荒野中，游行。	hEi
 Procession of during {e}	在{e1}期间，游行	htEi
 Procession of within {p}	在{p1}，游行	htEi
@@ -124687,7 +124712,6 @@ This {s} player is good.	这位{s1}演奏者很好。	hPtD
 This {s} player is okay.	这位{s1}演奏者还可以。	hPtD
 Too Large For Vegetation	体型过大，植被无法遮蔽	hP
 Trade depot broker label	交易员：	l
-Broker:	交易员：	wl
 Travel building: Hillock	丘堡	wi
 Travel building: Library	图书馆	wi
 Tropical Dry Brdlf Forst	热带干燥阔叶林
@@ -126422,7 +126446,10 @@ Enraged at all enemies!	对所有敌人怒不可遏！	hP
 Entangled in hidden web	被隐藏的蛛网缠住	w
 Extend use of free room	延长免费客房的使用时间	hP
 Feed Patients/Prisoners	喂食病患和囚犯	wi
-Finalizing reactions...	完成反应...	w
+Finalizing buildings...	正在完成建筑……	w
+Finalizing creatures...	正在完成生物……	w
+Finalizing languages...	正在完成语言……	w
+Finalizing reactions...	正在完成反应……	w
 Finish removing mining 	结束清除挖掘等指令。	w
 Finish setting hauling 	结束设置运输路线。	w
 Finish setting traffic 	结束设置交通区域。	w
@@ -126442,8 +126469,8 @@ Fortress activity: Rest	休息	li
 Fortress activity: Sing	歌唱	li
 Fortress activity: Spar	比武训练	li
 Fortress activity: Tame	驯服	li
-Generating creatures...	生成生物......	w
-Generating reactions...	产生反应......	w
+Generating creatures...	正在生成生物……	w
+Generating reactions...	正在生成反应……	w
 Gladiatory Games at {p}	在{p1}，角斗比赛	htEi
 Gladiatory Games in {d}	{d1}年的角斗比赛	htEi
 Gladiatory Games in {p}	在{p1}，角斗比赛	htEi
@@ -126521,9 +126548,10 @@ Legendary loyal soldier	传奇的忠诚军人	w
 Legends figure: Unnamed	未命名的	l
 Let's not hurt anybody.	我们别伤害任何人。	hPD
 List available services	列出可提供的服务	hP
-Loading interactions...	加载互动......	w
-Loading object files...	加载对象文件...	w
-Loading world events...	加载世界事件......	w
+Load game mod dialog: )	）	l
+Loading interactions...	正在加载交互……	w
+Loading object files...	正在加载对象文件……	w
+Loading world events...	正在加载世界事件……	w
 Magma defaced engraving	岩浆毁坏雕刻	w
 Main Ceremony of at {p}	在{p1}，主要仪式	htEi
 Main Ceremony of in {d}	{d1}年的主要仪式	htEi
@@ -126649,9 +126677,9 @@ Preparing graphics...  	准备图形...... 	w
 Press liquid from fruit	从果实中压出液体	wi
 Press liquid from paste	从浆糊中压出液体	wi
 Process plants (barrel)	加工植物(圆桶)	wi
-Processing creatures...	处理生物......	w
-Processing languages...	处理语言......	w
-Processing reactions...	处理反应......	w
+Processing creatures...	正在处理生物……	w
+Processing languages...	正在处理语言……	w
+Processing reactions...	正在处理反应……	w
 Procession in the wilds	在荒野中，游行	hEi
 Profess total ignorance	声称完全不知情	hP
 Purge in {p} during {e}	在{e1}期间，{p1}清洗事件	htEi
@@ -126684,6 +126712,7 @@ Skill rating: Legendary	传奇	li
 Small Animal Dissection	小动物解剖	wi
 Smooth a rough wall to 	将粗糙的墙面打磨平整，让居民	w
 So, {p}... {p}, was it?	那么，{p1}……是叫{p2}，对吗？	hPtD
+Sorting interactions...	正在整理交互……	w
 Spread rumor of the {v}	传播{v1}的传闻	hPt
 Squad sidebar: At least	至少	l
 Start Your Day With {b}	以{b}开启一天	hbti
@@ -128572,9 +128601,10 @@ Diplomat bids farewell	外交官告别	w
 Disdains introspection	轻视自省	w
 Do not gather products	不要收集产品	wli
 Eighth eldest daughter	第八个女儿	w
+Failed to install mod:	模组安装失败：	hP
 Famous treasure hunter	名声显赫的宝物猎人	w
 Fertilize every season	每季施肥	wli
-Finalizing entities...	完成实体...	w
+Finalizing entities...	正在完成文明……	w
 Finished prehistory...	史前历史生成完毕……
 Follow your intuition.	跟随你的直觉。	hP
 Forbid used ammunition	禁用已用弹药	wi
@@ -128584,7 +128614,7 @@ Fortress activity: Eat	进食	li
 Fourth eldest daughter	第四个女儿	w
 Furnaces are used for 	熔炉用于冶炼、玻璃制造、陶器	w
 Furniture (opens menu)	家具（打开菜单）	wi
-Generating entities...	生成实体......	w
+Generating entities...	正在生成文明……	w
 Get {s} from {n} ({s})	从{n1}处拿取{s1}（{s2}）	hPt
 Get {s} from {s} ({s})	从{s2}处拿取{s1}（{s3}）	hPt
 Glaze clay/stone craft	为黏土/石质工艺品上釉	wi
@@ -128665,10 +128695,10 @@ Labor caption: Surgery	外科手术	wi
 Labor caption: Tanning	制革	wi
 Labor caption: Weaving	织布	wi
 Land's status elevated	领地地位提升	w
-Loading flow guides...	加载流量指南......	w
-Loading occupations...	装载职业......	w
-Loading projectiles...	装载射弹......	w
-Loading work quotas...	加载工作配额......	w
+Loading flow guides...	正在加载流体导向装置……	w
+Loading occupations...	正在加载职位……	w
+Loading projectiles...	正在加载飞行物……	w
+Loading work quotas...	正在加载工作配额……	w
 Long-term acquaintance	老朋友	w
 Low analytical ability	分析能力低	wil
 Low disease resistance	抗病能力低	wil
@@ -128756,7 +128786,7 @@ Pressure plate: Resets	可重复触发	l
 Pressure plate: Weight	重量	l
 Pressure plates, like 	压力板与杠杆类似，用于与机器、	w
 Process raw fish into 	在此将生鱼加工成可食用的食物。	w
-Processing entities...	处理实体......	w
+Processing entities...	正在处理文明……	w
 Procession during {e}.	在{e1}期间，游行。	htEi
 Procession within {p}.	在{p1}，游行。	htEi
 Pull out and drop item	拔出并丢下物品	w
@@ -128805,6 +128835,7 @@ Sleep/barracks at need	困倦时在军营睡觉	wP
 Sleep/barracks at will	随意在军营睡觉	wP
 Some dozens live there	那里住着数十人	al
 Somebody was expelled.	有人遭到驱逐。	h
+Sorting descriptors...	正在整理描述词……	w
 Stagnant water [{d}/7]	死水 [{d}/7]	wtl
 Stair mining blueprint	挖掘楼梯蓝图	wo
 State feelings of glee	表达欢喜	hP
@@ -130806,12 +130837,12 @@ Labor caption: Dyeing	染色	wi
 Labor caption: Mining	挖掘	wi
 Lead Audio Programmer	首席音频程序员	w
 Left click to choose 	左键点击以选择矩形的一角。	w
-Loading activities...	加载活动......	w
-Loading agreements...	装货协议......	w
-Loading formations...	装载编队......	w
-Loading identities...	加载身份......	w
-Loading image sets...	正在载入图形集...	w
-Loading parameters...	加载参数......	w
+Loading activities...	正在加载活动……	w
+Loading agreements...	正在加载协议……	w
+Loading formations...	正在加载阵形……	w
+Loading identities...	正在加载身份……	w
+Loading image sets...	正在加载图像集……	w
+Loading parameters...	正在加载参数……	w
 Look at those clouds!	看看那些云！	hPD
 Loud grinding (heard)	响亮机械摩擦声（听到）	wl
 Loud movement (heard)	响亮移动声（听到）	wl
@@ -130885,7 +130916,7 @@ Popup: Hold and climb	弹窗：抓握与攀爬	hq
 Popup: Hold and climb	弹窗：抓握与攀爬	w
 Popup: Sleep and rest	弹窗：睡眠与休息	hq
 Popup: Sleep and rest	弹窗：睡眠与休息	w
-Preparing graphics...	准备图形...	w
+Preparing graphics...	正在准备图像……	w
 Pressure plate: Depth	深度	l
 Pressure plate: Magma	岩浆	l
 Pressure plate: Water	水	l
@@ -130946,6 +130977,7 @@ Slam into an obstacle	撞上障碍物	w
 Soap Maker's Workshop	皂匠工坊	wi
 Somebody was expelled	有人遭到驱逐	h
 Sort units by skills.	按技能对单位排序。	hj
+Sorting inorganics...	正在整理无机物……	w
 Spatial Sense (minor)	空间感知（次要）	wi
 Spouse is not present	配偶不在此地	hP
 Start painting a new 	开始绘制新的储物处。选定地块	w
@@ -133052,6 +133084,7 @@ Embark finder: Begin	开始	w
 Exotic Clothing Shop	异域服装店	wi
 Famous loyal soldier	名声显赫的忠诚军人	w
 Feared as a murderer	令人恐惧的屠夫	w
+Finalizing plants...	正在完成植物……	w
 Find embark location	寻找开始地点	w
 Finish establishing 	结束划定活动区。	w
 Finish setting tree 	结束设置树木砍伐任务	w
@@ -133061,7 +133094,7 @@ Forbid trap cleaning	禁止清洁陷阱	wi
 Forbid trap rearming	禁止重装陷阱	wi
 Furniture/siege ammo	家具／攻城弹药	wi
 Gem mining blueprint	挖掘宝石蓝图	wo
-Generating plants...	生成植物......	w
+Generating plants...	正在生成植物……	w
 Give in to the Night	向黑夜屈服	w
 Gladiatory Games of.	角斗比赛。	hEi
 Glaze clay/stone jug	为黏土/石质壶上釉	wi
@@ -133103,12 +133136,12 @@ Justice case: Murder	谋杀	l
 Justice plot: A plot	一项阴谋	l
 Justice plot: Abduct	绑架	l
 Light combat (heard)	轻微战斗声（听到）	wl
-Loading adventure...	加载冒险......	w
-Loading art forms...	载入美术形式...	w
-Loading artifacts...	加载造物......	w
-Loading buildings...	装载建筑物......	w
-Loading incidents...	加载事件......	w
-Loading schedules...	正在加载时间表......	w
+Loading adventure...	正在加载冒险数据……	w
+Loading art forms...	正在加载艺术形式……	w
+Loading artifacts...	正在加载神器……	w
+Loading buildings...	正在加载建筑……	w
+Loading incidents...	正在加载事件记录……	w
+Loading schedules...	正在加载日程……	w
 Long live the cause!	我们的事业万岁！	hPD
 Long live the cause.	我们的事业万岁。	hPD
 Longland grass seeds	长岛草种子	wi
@@ -133181,8 +133214,8 @@ Placing good/evil...	正在生成善良与邪恶区域……
 Prepare choreography	编排舞蹈	hP
 Pressure plate: Cart	矿车	l
 Process plant to bag	用袋子进行甩籽	wi
-Processing plants...	处理项目......	w
-Processing sounds...	处理声音......	w
+Processing plants...	正在处理植物……	w
+Processing sounds...	正在处理音效……	w
 Procession of at {p}	在{p1}，游行	htEi
 Procession of in {d}	{d1}年的游行	htEi
 Procession of in {p}	在{p1}，游行	htEi
@@ -133248,6 +133281,10 @@ Skill rating: Master	大师	li
 Skill rating: Novice	初学	li
 Skill remaining: {d}	剩余技能点数：{d}	wtl
 Slaughter livestock 	在此屠宰牲畜以获取肉类、毛皮、	w
+Sorting buildings...	正在整理建筑……	w
+Sorting creatures...	正在整理生物……	w
+Sorting languages...	正在整理语言……	w
+Sorting reactions...	正在整理反应……	w
 Start a performance.	开始表演。
 State nuances of law	阐述法律的复杂之处	hP
 State your amusement	表示你觉得有趣	hP
@@ -135950,7 +135987,7 @@ Feared as a brigand	作为山贼而感到	w
 Feared as a monster	像妖魔一样令人恐惧	w
 Feared as a villain	像恶棍一样令人恐惧	w
 Finalizing art... (	正在完成艺术内容……（
-Finalizing items...	正在完成物品...	w
+Finalizing items...	正在完成物品……	w
 Finish setting dig 	结束挖掘设置	w
 Follow your desire.	追随你的愿望。	hP
 For the Love of {b}	为了对{b}的爱	hbti
@@ -135960,7 +135997,7 @@ Gained site control	取得地点控制权	w
 Gather any products	收集任意产品	w
 Gemstones and glass	宝石与玻璃	wi
 General familiarity	大致掌握	w
-Generating items...	生成项目......	w
+Generating items...	正在生成物品……	w
 Gladiatory Games of	角斗比赛	hEi
 Gremlin opened cage	小精怪打开笼子	w
 Guard tax collector	保护税务官	wi
@@ -135999,11 +136036,11 @@ LACK OF EDGE OCEANS	缺少边缘海洋	hP
 Land gains a status	领地获得地位	w
 Last interlude: {s}	上一首间奏：{s}	wtl
 Lead Sound Designer	首席声音设计师	w
-Loading entities...	加载实体......	w
-Loading machines...	装机......	w
-Loading mandates...	加载任务......	w
-Loading map data...	加载地图数据......	w
-Loading vehicles...	装车......	w
+Loading entities...	正在加载文明……	w
+Loading machines...	正在加载机械……	w
+Loading mandates...	正在加载指令……	w
+Loading map data...	正在加载地图数据……	w
+Loading vehicles...	正在加载载具……	w
 Lye-containing item	装有碱液的物品	wi
 Magma glass furnace	岩浆玻璃窑	wi
 Main: Announcements	主界面：公告	w
@@ -136090,8 +136127,8 @@ Popup: Work details	弹窗：劳动分组	hq
 Popup: Work details	弹窗：劳动分组	w
 Prepare lavish meal	准备奢侈食物	wi
 Pressure plate: Any	不限	l
-Processing items...	处理植物......	w
-Processing music...	处理音乐......	w
+Processing items...	正在处理物品……	w
+Processing music...	正在处理音乐……	w
 Pumps from the east	从东侧抽水	wl
 Pumps from the west	从西侧抽水	wl
 Purge in {p} at {p}	在{p2}，{p1}清洗事件	htEi
@@ -136178,6 +136215,7 @@ Skill rating: Great	卓越	li
 Skill status: Rusty	生疏	li
 Smoothing blueprint	打磨蓝图	wo
 Sort units by name.	按名称对单位排序。	hj
+Sorting entities...	正在整理文明……	w
 Specify a new image	指定新图像	w
 Spread rumor of {v}	传播{v1}的传闻	hPt
 Spring has arrived!	春季来临了！	hP
@@ -139389,8 +139427,8 @@ Left click to move	点击鼠标左键移动	hqO
 Legendary intruder	传奇侵略者	w
 Legendary murderer	传奇凶手	w
 Linguistic Ability	语言能力	wi
-Loading effects...	加载效果......	w
-Loading history...	载入历史...	w
+Loading effects...	正在加载效果……	w
+Loading history...	正在加载历史……	w
 MOUNTAIN REJECTION	山地不符合要求	hP
 Made Great Artwork	已经创作出好作品	w
 Maelstrom follower	漩涡追随者	w
@@ -143320,10 +143358,10 @@ Legendary fighter	传奇斗士	w
 Legendary monster	传奇怪物	w
 Legendary villain	传奇恶棍	w
 Load bolt thrower	装填弩箭投射器	wi
-Loading armies...	装载军队......	w
-Loading crimes...	载入罪行......	w
-Loading events...	加载活动......	w
-Loading squads...	加载小队......	w
+Loading armies...	正在加载军队……	w
+Loading crimes...	正在加载犯罪记录……	w
+Loading events...	正在加载事件……	w
+Loading squads...	正在加载小队……	w
 Lose hold of item	物品脱手	w
 Low spatial sense	空间感知低	wil
 Lower front teeth	下门牙	w
@@ -143390,7 +143428,7 @@ Praise the miners	赞美矿工	w
 Preaching (heard)	传道声（听到）	wl
 Prepare easy meal	准备简单食物	wi
 Prepare fine meal	准备精美食物	wi
-Preparing game...	准备游戏......	w
+Preparing game...	正在准备游戏……	w
 Principles of {b}	{b}原理	hbti
 Procession at {p}	在{p1}，游行	htEi
 Procession in {d}	{d1}年的游行	htEi
@@ -143453,7 +143491,8 @@ So true, so true.	说得太对了，太对了。	hPD
 Soap Maker's Shop	皂匠工坊	wi
 Some corrupt data	部分数据损坏	hP
 Somebody grows up	有人成年	w
-Sorting plants...	正在整理植物……
+Sorting plants...	正在整理植物……	w
+Sorting sounds...	正在整理音效……	w
 Spouse is elected	配偶担任民选职位	hP
 Stable Foundation	地基稳固	wl
 Stop and reflect.	停下来反思一下。	hPD
@@ -147702,8 +147741,8 @@ Legendary killer	传奇杀手	w
 Liaison's Office	联络官办公室	wli
 Liquid container	液体容器	wi
 Load weapon trap	装填武器陷阱	wi
-Loading items...	加载物品......	w
-Loading units...	装载单位......	w
+Loading items...	正在加载物品……	w
+Loading units...	正在加载单位……	w
 Loot other items	掠夺其他物品	wliP
 Lost in despair!	陷入了绝望！	hP
 Low recuperation	恢复能力低	wil
@@ -147846,7 +147885,8 @@ Sixth eldest son	第六个儿子	w
 Skill name: Liar	说谎	li
 Skill name: Pike	长枪	li
 Social Awareness	社交意识	wi
-Sorting items...	正在整理物品……
+Sorting items...	正在整理物品……	w
+Sorting music...	正在整理音乐……	w
 Stay the course.	坚持既定的道路。	hP
 Stop leading {n}	停止牵引{n1}	hPt
 Store owned item	存放私人物品	wi
@@ -152284,7 +152324,7 @@ Legendary thief	传奇盗贼	w
 Level Ice Floor	平整的冰地板	wi
 Lever Operation	操作控制杆	wi
 Load stone trap	装填落石陷阱	wi
-Loading jobs...	加载工作......	w
+Loading jobs...	正在加载工作……	w
 Low self esteem	自我评价很低	w
 Machines/fluids	机械/流体	w
 Made a campfire	生起了篝火	w
@@ -152414,6 +152454,7 @@ Siege equipment	围攻装备	wi
 Site government	地区政府	w
 Skill name: Axe	斧术	li
 Soap (Desired):	肥皂（期望数量）：	wl
+Sorting text...	正在整理文本……	w
 Specific person	特定人物	wi
 Specify leather	指定皮革	wli
 Standing orders	劳动规则	wi
@@ -166677,7 +166718,7 @@ Exhilaration	欢腾	w
 Extreme pain	极度疼痛
 Fall in Love	谈恋爱	w
 Fell in Love	已经恋爱	w
-Finishing...	正在完成保存……	w
+Finishing...	正在完成……	w
 First finger	食指	w
 Fish Cleaner	洗鱼工	wi
 Fisherdwarfs	捕鱼矮人	wi
@@ -181890,6 +181931,7 @@ Bowyery	制弓	wi
 Brawler	爱打架	w
 Brewers	酿造师	wi
 Brewing	酿造	wi
+Broker:	交易员：	wl
 Bukshon	博克雄	wi
 Bunsoth	本索斯	wi
 Burden:	负重：	wl
@@ -181958,7 +182000,7 @@ Ethzuth	埃斯索斯	wi
 Evening	晚间
 Excited	兴奋	w
 Extinct	已灭绝
-Failed!	失败!	w
+Failed!	加载失败！	w
 Famthut	法苏特	wi
 Farmers	农夫	wi
 Farming	农业	w
@@ -184969,6 +185011,7 @@ Erith	埃瑞索	wi
 Erlin	埃尔林	wi
 Ermis	埃米斯	wi
 Erong	埃隆	wi
+Error	错误	hP
 Ertal	埃尔塔	wi
 Erush	埃鲁石	wi
 Esdor	埃斯多尔	wi

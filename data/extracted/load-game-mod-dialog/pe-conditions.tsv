@@ -1,0 +1,1435 @@
+edition	role	instruction_rva	condition
+reference	new-game-load-state-machine	0x7d478f	cmp    eax,0x23
+reference	new-game-load-state-machine	0x7d47c2	cmp    rax,0x5
+reference	new-game-load-state-machine	0x7d47d3	cmp    QWORD PTR [rip+0x1e8c615],0xf        # 0x142660df0
+reference	new-game-load-state-machine	0x7d4814	cmp    r12,rbx
+reference	new-game-load-state-machine	0x7d4820	cmp    rbx,rcx
+reference	new-game-load-state-machine	0x7d482f	cmp    rbx,rax
+reference	new-game-load-state-machine	0x7d48e7	cmp    QWORD PTR [rsp+0x238],0xf
+reference	new-game-load-state-machine	0x7d4986	cmp    BYTE PTR [rsp+0x1d0],0x0
+reference	new-game-load-state-machine	0x7d49c7	cmp    BYTE PTR [rsp+0x1d0],0x0
+reference	new-game-load-state-machine	0x7d49f6	cmp    rdx,0xf
+reference	new-game-load-state-machine	0x7d4a0a	cmp    rdx,0x1000
+reference	new-game-load-state-machine	0x7d4a22	cmp    rax,0x1f
+reference	new-game-load-state-machine	0x7d4a58	cmp    rdx,0xf
+reference	new-game-load-state-machine	0x7d4a6c	cmp    rdx,0x1000
+reference	new-game-load-state-machine	0x7d4a84	cmp    rax,0x1f
+reference	new-game-load-state-machine	0x7d4a9e	cmp    QWORD PTR [rsi+0x238],0x0
+reference	new-game-load-state-machine	0x7d4ada	cmp    DWORD PTR [rsp+0x40],0x0
+reference	new-game-load-state-machine	0x7d4bbb	cmp    BYTE PTR [rip+0x1e983b9],0x0        # 0x14266cf7b
+reference	new-game-load-state-machine	0x7d4bda	cmp    DWORD PTR [rip+0x1e8c2a8],eax        # 0x142660e88
+reference	new-game-load-state-machine	0x7d4be2	cmp    BYTE PTR [rip+0x1e8c2a3],0x0        # 0x142660e8c
+reference	new-game-load-state-machine	0x7d4beb	cmp    BYTE PTR [rip+0x1e8c29b],0x0        # 0x142660e8d
+reference	new-game-load-state-machine	0x7d4c26	cmp    al,0x1
+reference	new-game-load-state-machine	0x7d4e57	cmp    DWORD PTR [rip+0x1e8c022],0x3a        # 0x142660e80
+reference	new-game-load-state-machine	0x7d4fe5	cmp    rbx,rax
+reference	new-game-load-state-machine	0x7d5138	cmp    rcx,rax
+reference	new-game-load-state-machine	0x7d517b	cmp    rdx,rax
+reference	new-game-load-state-machine	0x7d5210	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5250	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5287	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d52c0	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5300	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5341	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5382	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d53c0	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5400	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5441	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5480	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d54a8	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d54d0	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d54f8	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5520	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d5560	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d55a1	cmp    rbx,rdi
+reference	new-game-load-state-machine	0x7d566c	cmp    QWORD PTR [rbx+0xa0],0x0
+reference	new-game-load-state-machine	0x7d5683	test   rax,rax
+reference	new-game-load-state-machine	0x7d5709	cmp    rcx,r8
+reference	new-game-load-state-machine	0x7d57fe	test   rax,rax
+reference	new-game-load-state-machine	0x7d5844	test   r15,r15
+reference	new-game-load-state-machine	0x7d5852	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5868	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5888	test   rbx,rbx
+reference	new-game-load-state-machine	0x7d58a9	test   rcx,rcx
+reference	new-game-load-state-machine	0x7d593f	test   rcx,rcx
+reference	new-game-load-state-machine	0x7d594c	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5969	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5989	cmp    rdx,0xf
+reference	new-game-load-state-machine	0x7d599d	cmp    rdx,0x1000
+reference	new-game-load-state-machine	0x7d59b5	cmp    rax,0x1f
+reference	new-game-load-state-machine	0x7d5a50	cmp    rdx,0xf
+reference	new-game-load-state-machine	0x7d5a64	cmp    rdx,0x1000
+reference	new-game-load-state-machine	0x7d5a7c	cmp    rax,0x1f
+reference	new-game-load-state-machine	0x7d5afe	cmp    rdx,0xf
+reference	new-game-load-state-machine	0x7d5b12	cmp    rdx,0x1000
+reference	new-game-load-state-machine	0x7d5b2a	cmp    rax,0x1f
+reference	new-game-load-state-machine	0x7d5b4e	test   rbx,rbx
+reference	new-game-load-state-machine	0x7d5b5b	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5b70	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5b84	test   rbx,rbx
+reference	new-game-load-state-machine	0x7d5b91	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5ba6	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5bd8	test   rcx,rcx
+reference	new-game-load-state-machine	0x7d5be5	cmp    eax,0x1
+reference	new-game-load-state-machine	0x7d5bfd	cmp    r14d,0x1
+reference	saved-game-load-state-machine	0x7d5d45	cmp    eax,0x33
+reference	saved-game-load-state-machine	0x7d5dd2	cmp    rax,0x5
+reference	saved-game-load-state-machine	0x7d5de3	cmp    QWORD PTR [rip+0x1e8b005],0xf        # 0x142660df0
+reference	saved-game-load-state-machine	0x7d5e21	cmp    r14,rbx
+reference	saved-game-load-state-machine	0x7d5e2d	cmp    rbx,rcx
+reference	saved-game-load-state-machine	0x7d5e3c	cmp    rbx,rax
+reference	saved-game-load-state-machine	0x7d5ef1	cmp    QWORD PTR [rsp+0xb8],0xf
+reference	saved-game-load-state-machine	0x7d5f8d	cmp    BYTE PTR [rsp+0x140],0x0
+reference	saved-game-load-state-machine	0x7d5fcc	cmp    BYTE PTR [rsp+0x140],0x0
+reference	saved-game-load-state-machine	0x7d6010	test   bl,bl
+reference	saved-game-load-state-machine	0x7d602d	cmp    QWORD PTR [r13+0x240],0x0
+reference	saved-game-load-state-machine	0x7d6069	cmp    DWORD PTR [rsp+0x40],0x0
+reference	saved-game-load-state-machine	0x7d607a	cmp    r8d,DWORD PTR [rip+0x19916cf]        # 0x142167750
+reference	saved-game-load-state-machine	0x7d60cd	cmp    DWORD PTR [r13+0x680],0x814
+reference	saved-game-load-state-machine	0x7d63bf	cmp    BYTE PTR [rip+0x1e96bb5],0x0        # 0x14266cf7b
+reference	saved-game-load-state-machine	0x7d63de	cmp    DWORD PTR [rip+0x1e8aaa4],eax        # 0x142660e88
+reference	saved-game-load-state-machine	0x7d63e6	cmp    BYTE PTR [rip+0x1e8aa9f],0x0        # 0x142660e8c
+reference	saved-game-load-state-machine	0x7d63ef	cmp    BYTE PTR [rip+0x1e8aa97],0x0        # 0x142660e8d
+reference	saved-game-load-state-machine	0x7d642a	cmp    al,0x1
+reference	saved-game-load-state-machine	0x7d66a5	cmp    DWORD PTR [rip+0x1e8a7d4],0x3a        # 0x142660e80
+reference	saved-game-load-state-machine	0x7d6a08	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d6a47	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d6a90	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d6ad2	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d6d98	cmp    eax,0xa
+reference	saved-game-load-state-machine	0x7d6dca	test   al,al
+reference	saved-game-load-state-machine	0x7d6e0b	cmp    DWORD PTR [rip+0x10e7426],0x1        # 0x1418be238
+reference	saved-game-load-state-machine	0x7d6e70	test   rax,rax
+reference	saved-game-load-state-machine	0x7d6e75	cmp    QWORD PTR [rip+0x1c30713],0x0        # 0x142407590
+reference	saved-game-load-state-machine	0x7d6e89	test   rcx,rcx
+reference	saved-game-load-state-machine	0x7d6e9c	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d6eab	cmp    DWORD PTR [rdx],0xffffffff
+reference	saved-game-load-state-machine	0x7d6ebf	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d6ef4	cmp    DWORD PTR [rax+0x60],0x0
+reference	saved-game-load-state-machine	0x7d6efe	test   BYTE PTR [rax],0x1
+reference	saved-game-load-state-machine	0x7d6f58	cmp    rdi,rax
+reference	saved-game-load-state-machine	0x7d6f65	test   DWORD PTR [rdi+0x110],0x200
+reference	saved-game-load-state-machine	0x7d6f80	cmp    rax,QWORD PTR [rip+0x1c305e9]        # 0x142407570
+reference	saved-game-load-state-machine	0x7d6fb1	cmp    WORD PTR [rdi+0xa0],0x68
+reference	saved-game-load-state-machine	0x7d6fca	cmp    rax,QWORD PTR [rip+0x1c305b7]        # 0x142407588
+reference	saved-game-load-state-machine	0x7d7018	cmp    rcx,rax
+reference	saved-game-load-state-machine	0x7d702c	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d7048	test   eax,eax
+reference	saved-game-load-state-machine	0x7d7078	cmp    DWORD PTR [rbx+0x1c],r9d
+reference	saved-game-load-state-machine	0x7d708d	cmp    edx,eax
+reference	saved-game-load-state-machine	0x7d7094	test   rbx,rbx
+reference	saved-game-load-state-machine	0x7d70da	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d710c	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d7128	test   eax,eax
+reference	saved-game-load-state-machine	0x7d7158	cmp    DWORD PTR [rbx+0x1c],r9d
+reference	saved-game-load-state-machine	0x7d716d	cmp    edx,eax
+reference	saved-game-load-state-machine	0x7d7174	test   rbx,rbx
+reference	saved-game-load-state-machine	0x7d71ba	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d7209	test   ebx,ebx
+reference	saved-game-load-state-machine	0x7d7226	test   r8w,r8w
+reference	saved-game-load-state-machine	0x7d722c	cmp    r8d,DWORD PTR [rip+0x1d33329]        # 0x14250a55c
+reference	saved-game-load-state-machine	0x7d7235	test   dx,dx
+reference	saved-game-load-state-machine	0x7d723a	cmp    edx,DWORD PTR [rip+0x1d33320]        # 0x14250a560
+reference	saved-game-load-state-machine	0x7d7242	test   r9w,r9w
+reference	saved-game-load-state-machine	0x7d7248	cmp    r9d,DWORD PTR [rip+0x1d33315]        # 0x14250a564
+reference	saved-game-load-state-machine	0x7d7261	test   rcx,rcx
+reference	saved-game-load-state-machine	0x7d727a	test   rcx,rcx
+reference	saved-game-load-state-machine	0x7d7293	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d72ea	test   rax,rax
+reference	saved-game-load-state-machine	0x7d7331	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d7352	test   r14d,r14d
+reference	saved-game-load-state-machine	0x7d737a	test   edi,edi
+reference	saved-game-load-state-machine	0x7d7397	test   eax,eax
+reference	saved-game-load-state-machine	0x7d739b	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d73bf	cmp    DWORD PTR [r10+0x130],r9d
+reference	saved-game-load-state-machine	0x7d73d5	cmp    ecx,eax
+reference	saved-game-load-state-machine	0x7d73dc	test   r10,r10
+reference	saved-game-load-state-machine	0x7d73e3	test   BYTE PTR [rsi+0x90],0x2
+reference	saved-game-load-state-machine	0x7d7438	cmp    rbx,rax
+reference	saved-game-load-state-machine	0x7d7464	cmp    eax,0x1e
+reference	saved-game-load-state-machine	0x7d747e	cmp    edx,0xffffffff
+reference	saved-game-load-state-machine	0x7d749d	test   rax,rax
+reference	saved-game-load-state-machine	0x7d74bc	cmp    rcx,rdx
+reference	saved-game-load-state-machine	0x7d74c1	cmp    QWORD PTR [rcx],rbx
+reference	saved-game-load-state-machine	0x7d74ca	cmp    rcx,rdx
+reference	saved-game-load-state-machine	0x7d74da	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d74fe	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d751d	test   eax,eax
+reference	saved-game-load-state-machine	0x7d753f	cmp    DWORD PTR [rdi+0x130],r9d
+reference	saved-game-load-state-machine	0x7d7555	cmp    ecx,eax
+reference	saved-game-load-state-machine	0x7d755c	test   rdi,rdi
+reference	saved-game-load-state-machine	0x7d756d	test   al,al
+reference	saved-game-load-state-machine	0x7d7587	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d7590	cmp    QWORD PTR [rax],rbx
+reference	saved-game-load-state-machine	0x7d7599	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d75a9	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d75f1	cmp    rcx,rax
+reference	saved-game-load-state-machine	0x7d75fa	test   DWORD PTR [rcx+0x10],0x20000
+reference	saved-game-load-state-machine	0x7d7632	cmp    rcx,rax
+reference	saved-game-load-state-machine	0x7d763b	test   DWORD PTR [rcx+0x10],0x20000
+reference	saved-game-load-state-machine	0x7d7668	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d7670	cmp    DWORD PTR [rcx],0x0
+reference	saved-game-load-state-machine	0x7d7748	cmp    DWORD PTR [rip+0x10e6ae9],0x0        # 0x1418be238
+reference	saved-game-load-state-machine	0x7d7764	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d7773	cmp    r8,QWORD PTR [rdx+0x13d8]
+reference	saved-game-load-state-machine	0x7d7797	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d77a7	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d77c3	test   eax,eax
+reference	saved-game-load-state-machine	0x7d77e8	cmp    DWORD PTR [r10+0x130],r9d
+reference	saved-game-load-state-machine	0x7d7800	cmp    edx,eax
+reference	saved-game-load-state-machine	0x7d7807	test   r10,r10
+reference	saved-game-load-state-machine	0x7d7817	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d7838	cmp    edx,0xffffffff
+reference	saved-game-load-state-machine	0x7d7849	test   rax,rax
+reference	saved-game-load-state-machine	0x7d785d	test   rax,rax
+reference	saved-game-load-state-machine	0x7d786d	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d78b1	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d78cc	test   r14d,r14d
+reference	saved-game-load-state-machine	0x7d78e3	test   rsi,rsi
+reference	saved-game-load-state-machine	0x7d78f9	test   r10d,r10d
+reference	saved-game-load-state-machine	0x7d790b	cmp    r10d,0x40
+reference	saved-game-load-state-machine	0x7d7922	cmp    esi,DWORD PTR [rcx+0x1c]
+reference	saved-game-load-state-machine	0x7d792f	cmp    r10d,0x40
+reference	saved-game-load-state-machine	0x7d7939	cmp    eax,0xffffffff
+reference	saved-game-load-state-machine	0x7d7944	cmp    rcx,rdx
+reference	saved-game-load-state-machine	0x7d7954	cmp    esi,DWORD PTR [rax+0x1c]
+reference	saved-game-load-state-machine	0x7d795f	cmp    rcx,rdx
+reference	saved-game-load-state-machine	0x7d796a	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d7a51	cmp    QWORD PTR [rsp+0xb8],0xf
+reference	saved-game-load-state-machine	0x7d7ac2	cmp    rdx,0xf
+reference	saved-game-load-state-machine	0x7d7ad6	cmp    rdx,0x1000
+reference	saved-game-load-state-machine	0x7d7aee	cmp    rax,0x1f
+reference	saved-game-load-state-machine	0x7d7b6f	cmp    eax,0xa
+reference	saved-game-load-state-machine	0x7d7bba	cmp    DWORD PTR [rip+0x10e6673],0x4        # 0x1418be234
+reference	saved-game-load-state-machine	0x7d7bd7	test   al,0x4
+reference	saved-game-load-state-machine	0x7d7c2a	cmp    DWORD PTR [rip+0x10e6603],0x5        # 0x1418be234
+reference	saved-game-load-state-machine	0x7d7c81	cmp    rsi,r14
+reference	saved-game-load-state-machine	0x7d7c8d	test   BYTE PTR [r13+0x114],0x40
+reference	saved-game-load-state-machine	0x7d7cb0	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d7cc5	cmp    eax,0x3
+reference	saved-game-load-state-machine	0x7d7cd7	test   rax,rax
+reference	saved-game-load-state-machine	0x7d7ce0	cmp    DWORD PTR [r15+0x8],0xffffffff
+reference	saved-game-load-state-machine	0x7d7d08	test   rax,rax
+reference	saved-game-load-state-machine	0x7d7d15	cmp    DWORD PTR [rax+0xdc],ecx
+reference	saved-game-load-state-machine	0x7d7dd0	test   rax,rax
+reference	saved-game-load-state-machine	0x7d7dfa	test   al,al
+reference	saved-game-load-state-machine	0x7d7e21	test   al,al
+reference	saved-game-load-state-machine	0x7d7e4e	test   al,al
+reference	saved-game-load-state-machine	0x7d7e73	test   al,al
+reference	saved-game-load-state-machine	0x7d7e9a	test   al,al
+reference	saved-game-load-state-machine	0x7d7ec9	cmp    DWORD PTR [r13+0x680],0xdd6
+reference	saved-game-load-state-machine	0x7d7ee8	cmp    rdx,r8
+reference	saved-game-load-state-machine	0x7d7f03	test   DWORD PTR [r10+0x110],0x1000000
+reference	saved-game-load-state-machine	0x7d7f23	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d7f33	cmp    DWORD PTR [r9+0x3dc],edi
+reference	saved-game-load-state-machine	0x7d7f3c	cmp    WORD PTR [r9+0x3e0],0x1
+reference	saved-game-load-state-machine	0x7d7f52	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d7f57	test   r11b,r11b
+reference	saved-game-load-state-machine	0x7d7f67	test   bl,bl
+reference	saved-game-load-state-machine	0x7d7f7a	cmp    rdx,r8
+reference	saved-game-load-state-machine	0x7d7f7f	cmp    DWORD PTR [r13+0x680],0xdca
+reference	saved-game-load-state-machine	0x7d7fa0	cmp    rsi,r14
+reference	saved-game-load-state-machine	0x7d7fb0	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d7fc9	cmp    DWORD PTR [r13+0x680],0xdc8
+reference	saved-game-load-state-machine	0x7d7ff0	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d800b	cmp    al,0x30
+reference	saved-game-load-state-machine	0x7d8051	cmp    r15d,0x6
+reference	saved-game-load-state-machine	0x7d80ab	cmp    r15d,0x6
+reference	saved-game-load-state-machine	0x7d80c1	cmp    WORD PTR [rsi+0x14a],0x0
+reference	saved-game-load-state-machine	0x7d80e2	cmp    DWORD PTR [r13+0x680],0x7fb
+reference	saved-game-load-state-machine	0x7d81a0	cmp    rsi,r14
+reference	saved-game-load-state-machine	0x7d81ba	test   rax,rax
+reference	saved-game-load-state-machine	0x7d81c3	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d81ef	cmp    DWORD PTR [r15],r9d
+reference	saved-game-load-state-machine	0x7d8201	cmp    ecx,eax
+reference	saved-game-load-state-machine	0x7d8208	test   r15,r15
+reference	saved-game-load-state-machine	0x7d822a	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d8232	test   r12,r12
+reference	saved-game-load-state-machine	0x7d8275	cmp    rax,QWORD PTR [r12+0xd8]
+reference	saved-game-load-state-machine	0x7d82c4	test   r12d,r12d
+reference	saved-game-load-state-machine	0x7d8350	cmp    QWORD PTR [rbx+0x18],0xf
+reference	saved-game-load-state-machine	0x7d835a	cmp    r8,0x8
+reference	saved-game-load-state-machine	0x7d8370	test   eax,eax
+reference	saved-game-load-state-machine	0x7d852e	cmp    QWORD PTR [rbx+0x18],0xf
+reference	saved-game-load-state-machine	0x7d8538	cmp    r8,0x12
+reference	saved-game-load-state-machine	0x7d8553	test   eax,eax
+reference	saved-game-load-state-machine	0x7d8560	cmp    ebx,0xc
+reference	saved-game-load-state-machine	0x7d8598	test   BYTE PTR [r15],0x1
+reference	saved-game-load-state-machine	0x7d859e	cmp    ebx,0x2
+reference	saved-game-load-state-machine	0x7d85a6	cmp    eax,0x2
+reference	saved-game-load-state-machine	0x7d85b1	cmp    ebx,0x2
+reference	saved-game-load-state-machine	0x7d85bd	cmp    eax,0x2
+reference	saved-game-load-state-machine	0x7d8693	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d86ff	cmp    QWORD PTR [rcx+0x18],0xf
+reference	saved-game-load-state-machine	0x7d8709	cmp    r8,0x11
+reference	saved-game-load-state-machine	0x7d871f	test   eax,eax
+reference	saved-game-load-state-machine	0x7d872b	cmp    edi,0xc
+reference	saved-game-load-state-machine	0x7d8809	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d886d	cmp    QWORD PTR [rcx+0x18],0xf
+reference	saved-game-load-state-machine	0x7d8877	cmp    r8,0x5
+reference	saved-game-load-state-machine	0x7d888d	test   eax,eax
+reference	saved-game-load-state-machine	0x7d8ad6	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d8b0b	cmp    WORD PTR [r9],0x0
+reference	saved-game-load-state-machine	0x7d8b19	cmp    DWORD PTR [rdx+r8*4],0xffffffff
+reference	saved-game-load-state-machine	0x7d8b33	test   r11b,r11b
+reference	saved-game-load-state-machine	0x7d8b44	cmp    DWORD PTR [rip+0x10e56ed],0x0        # 0x1418be238
+reference	saved-game-load-state-machine	0x7d8b76	cmp    eax,r12d
+reference	saved-game-load-state-machine	0x7d8b85	cmp    eax,r15d
+reference	saved-game-load-state-machine	0x7d8b94	cmp    ecx,r11d
+reference	saved-game-load-state-machine	0x7d8b9d	test   di,di
+reference	saved-game-load-state-machine	0x7d8ba9	cmp    eax,r12d
+reference	saved-game-load-state-machine	0x7d8bb2	test   bx,bx
+reference	saved-game-load-state-machine	0x7d8bbe	cmp    eax,r15d
+reference	saved-game-load-state-machine	0x7d8bc7	test   si,si
+reference	saved-game-load-state-machine	0x7d8bd0	cmp    ecx,r11d
+reference	saved-game-load-state-machine	0x7d8be7	test   r10,r10
+reference	saved-game-load-state-machine	0x7d8c08	test   rdx,rdx
+reference	saved-game-load-state-machine	0x7d8c47	test   r14b,0x8
+reference	saved-game-load-state-machine	0x7d8c60	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d8c73	test   r8d,0x2010202
+reference	saved-game-load-state-machine	0x7d8c83	test   edx,0x180000
+reference	saved-game-load-state-machine	0x7d8c8b	bt     r8d,0xf
+reference	saved-game-load-state-machine	0x7d8c9d	test   dl,0x1
+reference	saved-game-load-state-machine	0x7d8cb1	cmp    edx,0x1
+reference	saved-game-load-state-machine	0x7d8ccd	cmp    edx,0x1
+reference	saved-game-load-state-machine	0x7d8cd4	cmp    r8w,di
+reference	saved-game-load-state-machine	0x7d8cda	cmp    WORD PTR [r9+0xaa],bx
+reference	saved-game-load-state-machine	0x7d8ce4	cmp    WORD PTR [r9+0xac],si
+reference	saved-game-load-state-machine	0x7d8cfe	cmp    eax,r12d
+reference	saved-game-load-state-machine	0x7d8d06	cmp    eax,r15d
+reference	saved-game-load-state-machine	0x7d8d0e	cmp    eax,r11d
+reference	saved-game-load-state-machine	0x7d8d21	test   r10,r10
+reference	saved-game-load-state-machine	0x7d8d9c	test   r14b,0x10
+reference	saved-game-load-state-machine	0x7d8db4	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d8dc7	test   r8d,0x2010202
+reference	saved-game-load-state-machine	0x7d8dd7	test   edx,0x180000
+reference	saved-game-load-state-machine	0x7d8ddf	bt     r8d,0xf
+reference	saved-game-load-state-machine	0x7d8df1	test   dl,0x1
+reference	saved-game-load-state-machine	0x7d8e05	cmp    edx,0x1
+reference	saved-game-load-state-machine	0x7d8e21	cmp    edx,0x1
+reference	saved-game-load-state-machine	0x7d8e28	cmp    r8w,di
+reference	saved-game-load-state-machine	0x7d8e2e	cmp    WORD PTR [r9+0xaa],bx
+reference	saved-game-load-state-machine	0x7d8e38	cmp    WORD PTR [r9+0xac],si
+reference	saved-game-load-state-machine	0x7d8e52	cmp    eax,r12d
+reference	saved-game-load-state-machine	0x7d8e5a	cmp    eax,r15d
+reference	saved-game-load-state-machine	0x7d8e62	cmp    eax,r11d
+reference	saved-game-load-state-machine	0x7d8e75	test   r10,r10
+reference	saved-game-load-state-machine	0x7d8e92	test   rdx,rdx
+reference	saved-game-load-state-machine	0x7d8f27	test   rax,rax
+reference	saved-game-load-state-machine	0x7d8f63	test   rax,rax
+reference	saved-game-load-state-machine	0x7d8f85	test   eax,eax
+reference	saved-game-load-state-machine	0x7d8f89	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d8faf	cmp    DWORD PTR [r10+0x130],r9d
+reference	saved-game-load-state-machine	0x7d8fc5	cmp    ecx,eax
+reference	saved-game-load-state-machine	0x7d8fcc	test   r10,r10
+reference	saved-game-load-state-machine	0x7d8fd8	test   rdx,rdx
+reference	saved-game-load-state-machine	0x7d8ff7	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d9026	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d904b	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d9065	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d906d	test   BYTE PTR [rdx+0x10],0x1
+reference	saved-game-load-state-machine	0x7d90b6	test   ebx,ebx
+reference	saved-game-load-state-machine	0x7d9146	test   r14d,r14d
+reference	saved-game-load-state-machine	0x7d9171	test   edi,edi
+reference	saved-game-load-state-machine	0x7d9194	test   rax,rax
+reference	saved-game-load-state-machine	0x7d9199	cmp    DWORD PTR [rax+0x1f0],0xffffffff
+reference	saved-game-load-state-machine	0x7d91a2	cmp    DWORD PTR [rax+0x1f4],0xffffffff
+reference	saved-game-load-state-machine	0x7d926e	cmp    QWORD PTR [rsp+0xb8],0xf
+reference	saved-game-load-state-machine	0x7d929e	cmp    rdx,0xf
+reference	saved-game-load-state-machine	0x7d92b2	cmp    rdx,0x1000
+reference	saved-game-load-state-machine	0x7d92ca	cmp    rax,0x1f
+reference	saved-game-load-state-machine	0x7d9309	cmp    DWORD PTR [rip+0x10e4f28],0x0        # 0x1418be238
+reference	saved-game-load-state-machine	0x7d9330	cmp    r15,r12
+reference	saved-game-load-state-machine	0x7d9344	cmp    rsi,r14
+reference	saved-game-load-state-machine	0x7d9370	cmp    rbx,rdi
+reference	saved-game-load-state-machine	0x7d937f	cmp    r9d,0xffffffff
+reference	saved-game-load-state-machine	0x7d9397	test   rax,rax
+reference	saved-game-load-state-machine	0x7d93bf	cmp    DWORD PTR [r13+0x50],r9d
+reference	saved-game-load-state-machine	0x7d93d2	cmp    ecx,eax
+reference	saved-game-load-state-machine	0x7d93db	test   r13,r13
+reference	saved-game-load-state-machine	0x7d93ed	cmp    eax,0x1d
+reference	saved-game-load-state-machine	0x7d93fd	cmp    rdx,QWORD PTR [rcx+0x10]
+reference	saved-game-load-state-machine	0x7d94b0	cmp    r15w,cx
+reference	saved-game-load-state-machine	0x7d94c2	cmp    si,ax
+reference	saved-game-load-state-machine	0x7d94ea	test   rdi,rdi
+reference	saved-game-load-state-machine	0x7d951e	cmp    eax,r10d
+reference	saved-game-load-state-machine	0x7d9536	cmp    eax,ecx
+reference	saved-game-load-state-machine	0x7d954e	cmp    eax,r9d
+reference	saved-game-load-state-machine	0x7d9557	cmp    r14w,r8w
+reference	saved-game-load-state-machine	0x7d9561	cmp    eax,r10d
+reference	saved-game-load-state-machine	0x7d9577	cmp    eax,r15d
+reference	saved-game-load-state-machine	0x7d9583	cmp    si,r12w
+reference	saved-game-load-state-machine	0x7d9589	cmp    eax,ecx
+reference	saved-game-load-state-machine	0x7d95d1	test   ecx,ecx
+reference	saved-game-load-state-machine	0x7d95ed	cmp    r9,rcx
+reference	saved-game-load-state-machine	0x7d9613	cmp    rcx,rdx
+reference	saved-game-load-state-machine	0x7d9622	test   ecx,ecx
+reference	saved-game-load-state-machine	0x7d963e	cmp    r8,rcx
+reference	saved-game-load-state-machine	0x7d9677	cmp    rdx,r8
+reference	saved-game-load-state-machine	0x7d969c	test   edx,edx
+reference	saved-game-load-state-machine	0x7d96b5	cmp    rdx,rcx
+reference	saved-game-load-state-machine	0x7d96ee	cmp    rdx,r8
+reference	saved-game-load-state-machine	0x7d9710	test   edx,edx
+reference	saved-game-load-state-machine	0x7d9729	cmp    rdx,rcx
+reference	saved-game-load-state-machine	0x7d9762	cmp    rdx,r8
+reference	saved-game-load-state-machine	0x7d9784	test   edx,edx
+reference	saved-game-load-state-machine	0x7d979d	cmp    rdx,rcx
+reference	saved-game-load-state-machine	0x7d97d6	cmp    rcx,rdx
+reference	saved-game-load-state-machine	0x7d97e3	cmp    eax,r15d
+reference	saved-game-load-state-machine	0x7d9811	cmp    eax,r9d
+reference	saved-game-load-state-machine	0x7d981c	test   r11b,r11b
+reference	saved-game-load-state-machine	0x7d98d7	cmp    QWORD PTR [rsp+0xd8],0xf
+reference	saved-game-load-state-machine	0x7d9907	cmp    rdx,0xf
+reference	saved-game-load-state-machine	0x7d991b	cmp    rdx,0x1000
+reference	saved-game-load-state-machine	0x7d9933	cmp    rax,0x1f
+reference	saved-game-load-state-machine	0x7d999d	cmp    QWORD PTR [rsp+0xd8],0xf
+reference	saved-game-load-state-machine	0x7d99cd	cmp    rdx,0xf
+reference	saved-game-load-state-machine	0x7d99e1	cmp    rdx,0x1000
+reference	saved-game-load-state-machine	0x7d99f9	cmp    rax,0x1f
+reference	saved-game-load-state-machine	0x7d9a21	cmp    rdx,0xf
+reference	saved-game-load-state-machine	0x7d9a35	cmp    rdx,0x1000
+reference	saved-game-load-state-machine	0x7d9a4d	cmp    rax,0x1f
+reference	saved-game-load-state-machine	0x7d9ab5	cmp    DWORD PTR [r12+0x680],0xdcf
+reference	saved-game-load-state-machine	0x7d9ae5	test   esi,esi
+reference	saved-game-load-state-machine	0x7d9af4	test   ebx,ebx
+reference	saved-game-load-state-machine	0x7d9b04	test   ebx,ebx
+reference	saved-game-load-state-machine	0x7d9b10	test   r12w,r12w
+reference	saved-game-load-state-machine	0x7d9b1a	cmp    edi,esi
+reference	saved-game-load-state-machine	0x7d9b22	test   r15w,r15w
+reference	saved-game-load-state-machine	0x7d9b2c	cmp    r9d,ebx
+reference	saved-game-load-state-machine	0x7d9b35	test   r8w,r8w
+reference	saved-game-load-state-machine	0x7d9b3f	cmp    r10d,r14d
+reference	saved-game-load-state-machine	0x7d9b58	test   r11,r11
+reference	saved-game-load-state-machine	0x7d9b79	test   rdx,rdx
+reference	saved-game-load-state-machine	0x7d9baf	test   DWORD PTR [rdx+rcx*4+0x6a0],0x10000000
+reference	saved-game-load-state-machine	0x7d9bc0	cmp    edi,esi
+reference	saved-game-load-state-machine	0x7d9bc8	cmp    r9d,ebx
+reference	saved-game-load-state-machine	0x7d9bd1	cmp    r10d,r14d
+reference	saved-game-load-state-machine	0x7d9be6	test   r11,r11
+reference	saved-game-load-state-machine	0x7d9c5d	cmp    r10d,ebx
+reference	saved-game-load-state-machine	0x7d9c70	cmp    r9d,ebx
+reference	saved-game-load-state-machine	0x7d9c81	cmp    edi,esi
+reference	saved-game-load-state-machine	0x7d9c97	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d9ca3	cmp    DWORD PTR [r13+0x0],0x1
+reference	saved-game-load-state-machine	0x7d9cc1	cmp    r12d,edx
+reference	saved-game-load-state-machine	0x7d9cde	cmp    r10d,edx
+reference	saved-game-load-state-machine	0x7d9cf5	test   r15w,r15w
+reference	saved-game-load-state-machine	0x7d9cff	cmp    r12d,esi
+reference	saved-game-load-state-machine	0x7d9d08	test   di,di
+reference	saved-game-load-state-machine	0x7d9d11	cmp    r10d,ebx
+reference	saved-game-load-state-machine	0x7d9d1a	test   r8w,r8w
+reference	saved-game-load-state-machine	0x7d9d24	cmp    r8d,r14d
+reference	saved-game-load-state-machine	0x7d9d3e	test   r11,r11
+reference	saved-game-load-state-machine	0x7d9d57	test   r9,r9
+reference	saved-game-load-state-machine	0x7d9dc6	cmp    r10d,edx
+reference	saved-game-load-state-machine	0x7d9dde	cmp    r12d,edx
+reference	saved-game-load-state-machine	0x7d9deb	cmp    rax,rcx
+reference	saved-game-load-state-machine	0x7d9e66	test   rbx,rbx
+reference	new-game-load-renderer	0x7da3e0	cmp    DWORD PTR [rip+0x1c15811],0x0        # 0x1423efbf8
+reference	new-game-load-renderer	0x7da3f0	test   BYTE PTR [rax],0x1
+reference	new-game-load-renderer	0x7da440	cmp    DWORD PTR [rip+0x1e92695],0xffffffff        # 0x14266cadc
+reference	new-game-load-renderer	0x7da45a	test   r14d,r14d
+reference	new-game-load-renderer	0x7da466	cmp    esi,ebx
+reference	new-game-load-renderer	0x7da47d	test   edi,edi
+reference	new-game-load-renderer	0x7da481	cmp    r11d,esi
+reference	new-game-load-renderer	0x7da495	cmp    r11d,ebx
+reference	new-game-load-renderer	0x7da4aa	cmp    edi,r14d
+reference	new-game-load-renderer	0x7da4af	cmp    r11d,esi
+reference	new-game-load-renderer	0x7da4c3	cmp    r11d,ebx
+reference	new-game-load-renderer	0x7da4d8	cmp    r11d,esi
+reference	new-game-load-renderer	0x7da4e5	cmp    r11d,ebx
+reference	new-game-load-renderer	0x7da505	cmp    r11d,ebx
+reference	new-game-load-renderer	0x7da510	cmp    edi,r14d
+reference	new-game-load-renderer	0x7da55e	test   r9d,r9d
+reference	new-game-load-renderer	0x7da573	cmp    eax,r15d
+reference	new-game-load-renderer	0x7da57d	cmp    ecx,r12d
+reference	new-game-load-renderer	0x7da59f	cmp    r15d,edi
+reference	new-game-load-renderer	0x7da5be	cmp    r11d,r12d
+reference	new-game-load-renderer	0x7da5c3	cmp    r11d,r15d
+reference	new-game-load-renderer	0x7da5da	cmp    r11d,edi
+reference	new-game-load-renderer	0x7da5ef	cmp    r11d,r15d
+reference	new-game-load-renderer	0x7da5fc	cmp    r11d,edi
+reference	new-game-load-renderer	0x7da61f	cmp    r11d,edi
+reference	new-game-load-renderer	0x7da6dc	cmp    eax,0x23
+reference	new-game-load-renderer	0x7da753	cmp    rdx,0xf
+reference	new-game-load-renderer	0x7da763	cmp    rdx,0x1000
+reference	new-game-load-renderer	0x7da77b	cmp    rax,0x1f
+reference	new-game-load-renderer	0x7da7bc	cmp    eax,0x39
+reference	new-game-load-renderer	0x7da7da	test   eax,eax
+reference	new-game-load-renderer	0x7da7f0	cmp    rax,rcx
+reference	new-game-load-renderer	0x7db0d7	test   ecx,ecx
+reference	new-game-load-renderer	0x7db0ed	cmp    ecx,eax
+reference	new-game-load-renderer	0x7db180	cmp    BYTE PTR [rip+0x1e85d05],0x0        # 0x142660e8c
+reference	new-game-load-renderer	0x7db189	cmp    BYTE PTR [rip+0x1e85cfd],0x0        # 0x142660e8d
+reference	new-game-load-renderer	0x7dbc29	cmp    rdx,0xf
+reference	new-game-load-renderer	0x7dbc3d	cmp    rdx,0x1000
+reference	new-game-load-renderer	0x7dbc59	cmp    rax,0x1f
+reference	load-game-renderer	0x7dbe2e	test   r8d,r8d
+reference	load-game-renderer	0x7dbe33	test   BYTE PTR [rdx],0x1
+reference	load-game-renderer	0x7dbe5e	test   r8d,r8d
+reference	load-game-renderer	0x7dbe63	test   BYTE PTR [rdx],0x1
+reference	load-game-renderer	0x7dbe70	cmp    eax,0xa
+reference	load-game-renderer	0x7dbed8	cmp    DWORD PTR [rip+0x1e90bfd],0xffffffff        # 0x14266cadc
+reference	load-game-renderer	0x7dbef2	test   r14d,r14d
+reference	load-game-renderer	0x7dbf03	cmp    esi,ebx
+reference	load-game-renderer	0x7dbf1d	test   edi,edi
+reference	load-game-renderer	0x7dbf21	cmp    r11d,esi
+reference	load-game-renderer	0x7dbf35	cmp    r11d,ebx
+reference	load-game-renderer	0x7dbf4a	cmp    edi,r14d
+reference	load-game-renderer	0x7dbf4f	cmp    r11d,esi
+reference	load-game-renderer	0x7dbf63	cmp    r11d,ebx
+reference	load-game-renderer	0x7dbf78	cmp    r11d,esi
+reference	load-game-renderer	0x7dbf85	cmp    r11d,ebx
+reference	load-game-renderer	0x7dbfa5	cmp    r11d,ebx
+reference	load-game-renderer	0x7dbfb0	cmp    edi,r14d
+reference	load-game-renderer	0x7dc00e	cmp    eax,r15d
+reference	load-game-renderer	0x7dc018	cmp    ecx,r12d
+reference	load-game-renderer	0x7dc03a	cmp    r15d,edi
+reference	load-game-renderer	0x7dc04e	cmp    r11d,r12d
+reference	load-game-renderer	0x7dc053	cmp    r11d,r15d
+reference	load-game-renderer	0x7dc06a	cmp    r11d,edi
+reference	load-game-renderer	0x7dc07f	cmp    r11d,r15d
+reference	load-game-renderer	0x7dc08c	cmp    r11d,edi
+reference	load-game-renderer	0x7dc0af	cmp    r11d,edi
+reference	load-game-renderer	0x7dc12f	cmp    rdx,0xf
+reference	load-game-renderer	0x7dc13f	cmp    rdx,0x1000
+reference	load-game-renderer	0x7dc157	cmp    rax,0x1f
+reference	load-game-renderer	0x7dc188	cmp    eax,0x32
+reference	load-game-renderer	0x7dc1ff	cmp    rdx,0xf
+reference	load-game-renderer	0x7dc210	cmp    rdx,0x1000
+reference	load-game-renderer	0x7dc22b	cmp    rax,0x1f
+reference	load-game-renderer	0x7dc247	cmp    eax,0x39
+reference	load-game-renderer	0x7dc265	test   eax,eax
+reference	load-game-renderer	0x7dc27b	cmp    rax,rcx
+reference	load-game-renderer	0x7dcb62	test   ecx,ecx
+reference	load-game-renderer	0x7dcb78	cmp    ecx,eax
+reference	load-game-renderer	0x7dcc0b	cmp    BYTE PTR [rip+0x1e8427a],0x0        # 0x142660e8c
+reference	load-game-renderer	0x7dcc14	cmp    BYTE PTR [rip+0x1e84272],0x0        # 0x142660e8d
+reference	load-game-renderer	0x7dd529	cmp    rdx,0xf
+reference	load-game-renderer	0x7dd53d	cmp    rdx,0x1000
+reference	load-game-renderer	0x7dd559	cmp    rax,0x1f
+reference	new-game-mod-step	0x7ddb47	cmp    DWORD PTR [rbx+0x2e0],0x1
+reference	new-game-mod-step	0x7ddb54	cmp    BYTE PTR [rip+0x1e83331],0x0        # 0x142660e8c
+reference	new-game-mod-step	0x7ddb5d	cmp    BYTE PTR [rip+0x1e83329],0x0        # 0x142660e8d
+reference	new-game-mod-step	0x7ddb8b	test   al,al
+reference	saved-game-mod-step	0x7ddc27	cmp    DWORD PTR [rbx+0x198],0x1
+reference	saved-game-mod-step	0x7ddc34	cmp    BYTE PTR [rip+0x1e83251],0x0        # 0x142660e8c
+reference	saved-game-mod-step	0x7ddc3d	cmp    BYTE PTR [rip+0x1e83249],0x0        # 0x142660e8d
+reference	saved-game-mod-step	0x7ddc6b	test   al,al
+reference	resolve-compatible-mod	0x7dfc87	test   ecx,ecx
+reference	resolve-compatible-mod	0x7dfc9e	cmp    ecx,eax
+reference	resolve-compatible-mod	0x7dfce0	cmp    rbx,rdi
+reference	resolve-compatible-mod	0x7dfcf0	cmp    QWORD PTR [rbp-0x11],0xf
+reference	resolve-compatible-mod	0x7dfcfe	cmp    QWORD PTR [rcx+0x18],0xf
+reference	resolve-compatible-mod	0x7dfd08	cmp    r8,r12
+reference	resolve-compatible-mod	0x7dfd12	test   eax,eax
+reference	resolve-compatible-mod	0x7dfd16	cmp    DWORD PTR [r14+0x60],r15d
+reference	resolve-compatible-mod	0x7dfd24	test   rcx,rcx
+reference	resolve-compatible-mod	0x7dfd2d	cmp    DWORD PTR [rcx+0x60],eax
+reference	resolve-compatible-mod	0x7dfd32	cmp    DWORD PTR [r14+0x88],r15d
+reference	resolve-compatible-mod	0x7dfd49	test   rdx,rdx
+reference	resolve-compatible-mod	0x7dfd4e	cmp    QWORD PTR [rsi+0x18],rdx
+reference	resolve-compatible-mod	0x7dfd54	test   BYTE PTR [rdx+0x158],0x5
+reference	resolve-compatible-mod	0x7dfd62	cmp    eax,0x2
+reference	resolve-compatible-mod	0x7dfd7f	test   rax,rax
+reference	resolve-compatible-mod	0x7dfd8f	test   r8b,0x4
+reference	resolve-compatible-mod	0x7dfdd3	test   cl,0x1
+reference	resolve-compatible-mod	0x7dfddc	test   r8b,0x1
+reference	resolve-compatible-mod	0x7dfdee	cmp    eax,0x2
+reference	resolve-compatible-mod	0x7dfe55	cmp    QWORD PTR [rdx+0x18],0xf
+reference	resolve-compatible-mod	0x7dfea8	cmp    QWORD PTR [rbp-0x31],0xf
+reference	resolve-compatible-mod	0x7dff44	cmp    rcx,rdx
+reference	resolve-compatible-mod	0x7dff4d	cmp    QWORD PTR [rdx+0x18],0xf
+reference	resolve-compatible-mod	0x7dff73	cmp    rcx,rdx
+reference	resolve-compatible-mod	0x7dff7c	cmp    QWORD PTR [rdx+0x18],0xf
+reference	resolve-compatible-mod	0x7dff96	test   cl,0x2
+reference	resolve-compatible-mod	0x7dff9b	test   rdx,rdx
+reference	resolve-compatible-mod	0x7dffa0	test   BYTE PTR [rdx+0x158],0x5
+reference	resolve-compatible-mod	0x7dffae	cmp    eax,0x2
+reference	mod-choice-input	0x7e003a	cmp    BYTE PTR [rip+0x1bd2a14],0x0        # 0x1423b2a55
+reference	mod-choice-input	0x7e0051	cmp    BYTE PTR [rcx+0xc],0x0
+reference	mod-choice-input	0x7e0098	cmp    BYTE PTR [rip+0x1bd29b6],0x0        # 0x1423b2a55
+reference	mod-choice-input	0x7e00a5	cmp    BYTE PTR [rip+0x1bd29a0],0x0        # 0x1423b2a4c
+reference	mod-choice-input	0x7e00b2	cmp    r10d,eax
+reference	mod-choice-input	0x7e00b7	cmp    r10d,r13d
+reference	mod-choice-input	0x7e00bc	cmp    r11d,edx
+reference	mod-choice-input	0x7e00c1	cmp    r11d,ecx
+reference	mod-choice-input	0x7e00c6	cmp    r10d,r9d
+reference	mod-choice-input	0x7e00cf	cmp    r10d,r8d
+reference	mod-choice-input	0x7e00d8	cmp    r11d,edx
+reference	mod-choice-input	0x7e00e1	cmp    r11d,ecx
+reference	mod-choice-input	0x7e00f5	cmp    r10d,r9d
+reference	mod-choice-input	0x7e00fa	cmp    r10d,r8d
+reference	mod-choice-input	0x7e00ff	cmp    r11d,ecx
+reference	mod-choice-input	0x7e010c	test   rdx,rdx
+reference	mod-choice-input	0x7e0115	test   BYTE PTR [rdx+0x158],0x1
+reference	mod-choice-input	0x7e0127	cmp    eax,0x2
+reference	mod-choice-input	0x7e0182	cmp    QWORD PTR [rdx+0x18],0xf
+reference	mod-choice-input	0x7e01d5	cmp    QWORD PTR [rbp-0x30],0xf
+reference	mod-choice-input	0x7e022b	cmp    rdx,0xf
+reference	mod-choice-input	0x7e023b	cmp    rdx,0x1000
+reference	mod-choice-input	0x7e0253	cmp    rax,0x1f
+reference	mod-choice-input	0x7e02a6	cmp    rcx,rdx
+reference	mod-choice-input	0x7e02af	cmp    QWORD PTR [rdx+0x18],0xf
+reference	mod-choice-input	0x7e02d5	cmp    rcx,rdx
+reference	mod-choice-input	0x7e02de	cmp    QWORD PTR [rdx+0x18],0xf
+reference	mod-choice-input	0x7e031b	cmp    QWORD PTR [rbx+0x20],0x0
+reference	mod-choice-input	0x7e0322	cmp    r10d,r12d
+reference	mod-choice-input	0x7e032c	cmp    r10d,eax
+reference	mod-choice-input	0x7e0331	cmp    r11d,edx
+reference	mod-choice-input	0x7e0336	cmp    r11d,ecx
+reference	mod-choice-input	0x7e0346	cmp    r10d,r15d
+reference	mod-choice-input	0x7e034b	cmp    r10d,r14d
+reference	mod-choice-input	0x7e0352	cmp    r10d,r15d
+reference	mod-choice-input	0x7e0357	cmp    r10d,r14d
+reference	mod-choice-input	0x7e035c	cmp    r11d,edx
+reference	mod-choice-input	0x7e0361	cmp    r11d,ecx
+reference	mod-choice-input	0x7e0379	test   BYTE PTR [rdx+0x158],0x5
+reference	mod-choice-input	0x7e038b	cmp    eax,0x2
+reference	mod-choice-input	0x7e03a0	cmp    r10d,DWORD PTR [rbp-0x50]
+reference	mod-choice-input	0x7e03aa	cmp    r10d,DWORD PTR [rbp-0x60]
+reference	mod-choice-input	0x7e03b4	cmp    r11d,edx
+reference	mod-choice-input	0x7e03bd	cmp    r11d,ecx
+reference	mod-choice-input	0x7e03d8	cmp    BYTE PTR [rcx+0xd],0x0
+reference	mod-choice-input	0x7e03f0	cmp    BYTE PTR [rip+0x1bd265e],0x0        # 0x1423b2a55
+reference	mod-choice-input	0x7e03fd	cmp    BYTE PTR [rip+0x1bd2648],0x0        # 0x1423b2a4c
+reference	mod-choice-input	0x7e040a	cmp    r10d,eax
+reference	mod-choice-input	0x7e0416	cmp    r10d,eax
+reference	mod-choice-input	0x7e0425	cmp    r11d,eax
+reference	mod-choice-input	0x7e0431	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0495	test   r10d,r10d
+reference	mod-load-dialog	0x7e04b0	cmp    r10d,eax
+reference	mod-load-dialog	0x7e04e7	cmp    BYTE PTR [rsi+0xc],0x0
+reference	mod-load-dialog	0x7e055d	cmp    eax,r13d
+reference	mod-load-dialog	0x7e0573	cmp    edi,ebx
+reference	mod-load-dialog	0x7e058d	cmp    esi,r14d
+reference	mod-load-dialog	0x7e0592	cmp    r11d,edi
+reference	mod-load-dialog	0x7e05a6	cmp    r11d,ebx
+reference	mod-load-dialog	0x7e05bb	cmp    esi,r13d
+reference	mod-load-dialog	0x7e05c0	cmp    r11d,edi
+reference	mod-load-dialog	0x7e05d4	cmp    r11d,ebx
+reference	mod-load-dialog	0x7e05e9	cmp    r11d,edi
+reference	mod-load-dialog	0x7e05f6	cmp    r11d,ebx
+reference	mod-load-dialog	0x7e0616	cmp    r11d,ebx
+reference	mod-load-dialog	0x7e0621	cmp    esi,r13d
+reference	mod-load-dialog	0x7e06b8	cmp    rdx,0xf
+reference	mod-load-dialog	0x7e06c8	cmp    rdx,0x1000
+reference	mod-load-dialog	0x7e06e0	cmp    rax,0x1f
+reference	mod-load-dialog	0x7e0754	test   rdx,rdx
+reference	mod-load-dialog	0x7e07ce	cmp    QWORD PTR [rsi+0x20],0x0
+reference	mod-load-dialog	0x7e082b	cmp    rdx,0xf
+reference	mod-load-dialog	0x7e083b	cmp    rdx,0x1000
+reference	mod-load-dialog	0x7e0853	cmp    rax,0x1f
+reference	mod-load-dialog	0x7e08a3	cmp    r13d,edi
+reference	mod-load-dialog	0x7e08b3	cmp    r15d,r14d
+reference	mod-load-dialog	0x7e08cd	cmp    ebx,r13d
+reference	mod-load-dialog	0x7e08d2	cmp    r11d,r15d
+reference	mod-load-dialog	0x7e08e6	cmp    r11d,r14d
+reference	mod-load-dialog	0x7e08fb	cmp    ebx,edi
+reference	mod-load-dialog	0x7e08ff	cmp    r11d,r15d
+reference	mod-load-dialog	0x7e0913	cmp    r11d,r14d
+reference	mod-load-dialog	0x7e0928	cmp    r11d,r15d
+reference	mod-load-dialog	0x7e0935	cmp    r11d,r14d
+reference	mod-load-dialog	0x7e0955	cmp    r11d,r14d
+reference	mod-load-dialog	0x7e0960	cmp    ebx,edi
+reference	mod-load-dialog	0x7e09c9	cmp    r13d,edi
+reference	mod-load-dialog	0x7e09e3	cmp    eax,r12d
+reference	mod-load-dialog	0x7e09fd	cmp    ebx,r13d
+reference	mod-load-dialog	0x7e0a02	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0a16	cmp    r11d,r12d
+reference	mod-load-dialog	0x7e0a2b	cmp    ebx,edi
+reference	mod-load-dialog	0x7e0a2f	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0a43	cmp    r11d,r12d
+reference	mod-load-dialog	0x7e0a58	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0a65	cmp    r11d,r12d
+reference	mod-load-dialog	0x7e0a85	cmp    r11d,r12d
+reference	mod-load-dialog	0x7e0a93	cmp    ebx,edi
+reference	mod-load-dialog	0x7e0afb	cmp    QWORD PTR [rsi+0x20],0x0
+reference	mod-load-dialog	0x7e0b09	cmp    r13d,edi
+reference	mod-load-dialog	0x7e0b23	cmp    eax,esi
+reference	mod-load-dialog	0x7e0b3d	cmp    ebx,r13d
+reference	mod-load-dialog	0x7e0b42	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0b56	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0b6b	cmp    ebx,edi
+reference	mod-load-dialog	0x7e0b6f	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0b83	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0b98	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0ba5	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0bc5	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0bd3	cmp    ebx,edi
+reference	mod-load-dialog	0x7e0c3c	cmp    r13d,edi
+reference	mod-load-dialog	0x7e0c53	cmp    eax,esi
+reference	mod-load-dialog	0x7e0c6d	cmp    ebx,r13d
+reference	mod-load-dialog	0x7e0c72	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0c86	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0c9b	cmp    ebx,edi
+reference	mod-load-dialog	0x7e0c9f	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0cb3	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0cc8	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0cd5	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0cf5	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0d03	cmp    ebx,edi
+reference	mod-load-dialog	0x7e0d66	cmp    rdx,0xf
+reference	mod-load-dialog	0x7e0d76	cmp    rdx,0x1000
+reference	mod-load-dialog	0x7e0d8e	cmp    rax,0x1f
+reference	mod-load-dialog	0x7e0da0	cmp    r13d,edi
+reference	mod-load-dialog	0x7e0db3	cmp    eax,esi
+reference	mod-load-dialog	0x7e0dcd	cmp    ebx,r13d
+reference	mod-load-dialog	0x7e0dd2	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0de6	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0dfb	cmp    ebx,edi
+reference	mod-load-dialog	0x7e0dff	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0e13	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0e28	cmp    r11d,eax
+reference	mod-load-dialog	0x7e0e35	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0e55	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0e63	cmp    ebx,edi
+reference	mod-load-dialog	0x7e0ed8	cmp    BYTE PTR [rsi+0xd],0x0
+reference	mod-load-dialog	0x7e0f23	cmp    r12d,r13d
+reference	mod-load-dialog	0x7e0f33	cmp    esi,ebx
+reference	mod-load-dialog	0x7e0f4e	cmp    r14d,r12d
+reference	mod-load-dialog	0x7e0f53	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0f67	cmp    r11d,ebx
+reference	mod-load-dialog	0x7e0f7c	cmp    r14d,r13d
+reference	mod-load-dialog	0x7e0f81	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0f95	cmp    r11d,ebx
+reference	mod-load-dialog	0x7e0faa	cmp    r11d,esi
+reference	mod-load-dialog	0x7e0fb7	cmp    r11d,ebx
+reference	mod-load-dialog	0x7e0fd7	cmp    r11d,ebx
+reference	mod-load-dialog	0x7e0fe3	cmp    r14d,r13d
+reference	mod-load-dialog	0x7e101a	cmp    DWORD PTR [rax+0x10],0x0
+reference	mod-load-dialog	0x7e10ce	cmp    rdx,0xf
+reference	mod-load-dialog	0x7e10db	cmp    rdx,0x1000
+reference	mod-load-dialog	0x7e10f6	cmp    rax,0x1f
+reference	mod-load-dialog	0x7e117b	cmp    ecx,esi
+reference	mod-load-dialog	0x7e1186	cmp    r15d,edi
+reference	mod-load-dialog	0x7e119d	cmp    ebx,ecx
+reference	mod-load-dialog	0x7e11a1	cmp    r11d,r15d
+reference	mod-load-dialog	0x7e11b5	cmp    r11d,edi
+reference	mod-load-dialog	0x7e11ca	cmp    ebx,esi
+reference	mod-load-dialog	0x7e11ce	cmp    r11d,r15d
+reference	mod-load-dialog	0x7e11e2	cmp    r11d,edi
+reference	mod-load-dialog	0x7e11f7	cmp    r11d,r15d
+reference	mod-load-dialog	0x7e1204	cmp    r11d,edi
+reference	mod-load-dialog	0x7e1224	cmp    r11d,edi
+reference	mod-load-dialog	0x7e1232	cmp    ebx,esi
+reference	mod-load-dialog	0x7e129d	cmp    rdx,0xf
+reference	mod-load-dialog	0x7e12ad	cmp    rdx,0x1000
+reference	mod-load-dialog	0x7e12c5	cmp    rax,0x1f
+classic	new-game-load-state-machine	0x7d1def	cmp    eax,0x23
+classic	new-game-load-state-machine	0x7d1e22	cmp    rax,0x5
+classic	new-game-load-state-machine	0x7d1e33	cmp    QWORD PTR [rip+0x1e88eb5],0xf        # 0x14265acf0
+classic	new-game-load-state-machine	0x7d1e74	cmp    r12,rbx
+classic	new-game-load-state-machine	0x7d1e80	cmp    rbx,rcx
+classic	new-game-load-state-machine	0x7d1e8f	cmp    rbx,rax
+classic	new-game-load-state-machine	0x7d1f47	cmp    QWORD PTR [rsp+0x238],0xf
+classic	new-game-load-state-machine	0x7d1fe6	cmp    BYTE PTR [rsp+0x1d0],0x0
+classic	new-game-load-state-machine	0x7d2027	cmp    BYTE PTR [rsp+0x1d0],0x0
+classic	new-game-load-state-machine	0x7d2056	cmp    rdx,0xf
+classic	new-game-load-state-machine	0x7d206a	cmp    rdx,0x1000
+classic	new-game-load-state-machine	0x7d2082	cmp    rax,0x1f
+classic	new-game-load-state-machine	0x7d20b8	cmp    rdx,0xf
+classic	new-game-load-state-machine	0x7d20cc	cmp    rdx,0x1000
+classic	new-game-load-state-machine	0x7d20e4	cmp    rax,0x1f
+classic	new-game-load-state-machine	0x7d20fe	cmp    QWORD PTR [rsi+0x238],0x0
+classic	new-game-load-state-machine	0x7d213a	cmp    DWORD PTR [rsp+0x40],0x0
+classic	new-game-load-state-machine	0x7d221b	cmp    BYTE PTR [rip+0x1e94c59],0x0        # 0x142666e7b
+classic	new-game-load-state-machine	0x7d223a	cmp    DWORD PTR [rip+0x1e88b48],eax        # 0x14265ad88
+classic	new-game-load-state-machine	0x7d2242	cmp    BYTE PTR [rip+0x1e88b43],0x0        # 0x14265ad8c
+classic	new-game-load-state-machine	0x7d224b	cmp    BYTE PTR [rip+0x1e88b3b],0x0        # 0x14265ad8d
+classic	new-game-load-state-machine	0x7d2286	cmp    al,0x1
+classic	new-game-load-state-machine	0x7d24b7	cmp    DWORD PTR [rip+0x1e888c2],0x3a        # 0x14265ad80
+classic	new-game-load-state-machine	0x7d2645	cmp    rbx,rax
+classic	new-game-load-state-machine	0x7d2798	cmp    rcx,rax
+classic	new-game-load-state-machine	0x7d27db	cmp    rdx,rax
+classic	new-game-load-state-machine	0x7d2870	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d28b0	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d28e7	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2920	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2960	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d29a1	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d29e2	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2a20	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2a60	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2aa1	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2ae0	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2b08	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2b30	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2b58	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2b80	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2bc0	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2c01	cmp    rbx,rdi
+classic	new-game-load-state-machine	0x7d2ccc	cmp    QWORD PTR [rbx+0xa0],0x0
+classic	new-game-load-state-machine	0x7d2ce3	test   rax,rax
+classic	new-game-load-state-machine	0x7d2d69	cmp    rcx,r8
+classic	new-game-load-state-machine	0x7d2e5e	test   rax,rax
+classic	new-game-load-state-machine	0x7d2ea4	test   r15,r15
+classic	new-game-load-state-machine	0x7d2eb2	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d2ec8	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d2ee8	test   rbx,rbx
+classic	new-game-load-state-machine	0x7d2f09	test   rcx,rcx
+classic	new-game-load-state-machine	0x7d2f9f	test   rcx,rcx
+classic	new-game-load-state-machine	0x7d2fac	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d2fc9	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d2fe9	cmp    rdx,0xf
+classic	new-game-load-state-machine	0x7d2ffd	cmp    rdx,0x1000
+classic	new-game-load-state-machine	0x7d3015	cmp    rax,0x1f
+classic	new-game-load-state-machine	0x7d30b0	cmp    rdx,0xf
+classic	new-game-load-state-machine	0x7d30c4	cmp    rdx,0x1000
+classic	new-game-load-state-machine	0x7d30dc	cmp    rax,0x1f
+classic	new-game-load-state-machine	0x7d315e	cmp    rdx,0xf
+classic	new-game-load-state-machine	0x7d3172	cmp    rdx,0x1000
+classic	new-game-load-state-machine	0x7d318a	cmp    rax,0x1f
+classic	new-game-load-state-machine	0x7d31ae	test   rbx,rbx
+classic	new-game-load-state-machine	0x7d31bb	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d31d0	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d31e4	test   rbx,rbx
+classic	new-game-load-state-machine	0x7d31f1	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d3206	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d3238	test   rcx,rcx
+classic	new-game-load-state-machine	0x7d3245	cmp    eax,0x1
+classic	new-game-load-state-machine	0x7d325d	cmp    r14d,0x1
+classic	saved-game-load-state-machine	0x7d33a5	cmp    eax,0x33
+classic	saved-game-load-state-machine	0x7d3432	cmp    rax,0x5
+classic	saved-game-load-state-machine	0x7d3443	cmp    QWORD PTR [rip+0x1e878a5],0xf        # 0x14265acf0
+classic	saved-game-load-state-machine	0x7d3481	cmp    r14,rbx
+classic	saved-game-load-state-machine	0x7d348d	cmp    rbx,rcx
+classic	saved-game-load-state-machine	0x7d349c	cmp    rbx,rax
+classic	saved-game-load-state-machine	0x7d3551	cmp    QWORD PTR [rsp+0xb8],0xf
+classic	saved-game-load-state-machine	0x7d35ed	cmp    BYTE PTR [rsp+0x140],0x0
+classic	saved-game-load-state-machine	0x7d362c	cmp    BYTE PTR [rsp+0x140],0x0
+classic	saved-game-load-state-machine	0x7d3670	test   bl,bl
+classic	saved-game-load-state-machine	0x7d368d	cmp    QWORD PTR [r13+0x240],0x0
+classic	saved-game-load-state-machine	0x7d36c9	cmp    DWORD PTR [rsp+0x40],0x0
+classic	saved-game-load-state-machine	0x7d36da	cmp    r8d,DWORD PTR [rip+0x198e3cf]        # 0x142161ab0
+classic	saved-game-load-state-machine	0x7d372d	cmp    DWORD PTR [r13+0x680],0x814
+classic	saved-game-load-state-machine	0x7d3a1f	cmp    BYTE PTR [rip+0x1e93455],0x0        # 0x142666e7b
+classic	saved-game-load-state-machine	0x7d3a3e	cmp    DWORD PTR [rip+0x1e87344],eax        # 0x14265ad88
+classic	saved-game-load-state-machine	0x7d3a46	cmp    BYTE PTR [rip+0x1e8733f],0x0        # 0x14265ad8c
+classic	saved-game-load-state-machine	0x7d3a4f	cmp    BYTE PTR [rip+0x1e87337],0x0        # 0x14265ad8d
+classic	saved-game-load-state-machine	0x7d3a8a	cmp    al,0x1
+classic	saved-game-load-state-machine	0x7d3d05	cmp    DWORD PTR [rip+0x1e87074],0x3a        # 0x14265ad80
+classic	saved-game-load-state-machine	0x7d4068	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d40a7	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d40f0	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d4132	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d43f8	cmp    eax,0xa
+classic	saved-game-load-state-machine	0x7d442a	test   al,al
+classic	saved-game-load-state-machine	0x7d446b	cmp    DWORD PTR [rip+0x10e3daa],0x1        # 0x1418b821c
+classic	saved-game-load-state-machine	0x7d44d0	test   rax,rax
+classic	saved-game-load-state-machine	0x7d44d5	cmp    QWORD PTR [rip+0x1c2cfb3],0x0        # 0x142401490
+classic	saved-game-load-state-machine	0x7d44e9	test   rcx,rcx
+classic	saved-game-load-state-machine	0x7d44fc	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d450b	cmp    DWORD PTR [rdx],0xffffffff
+classic	saved-game-load-state-machine	0x7d451f	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d4554	cmp    DWORD PTR [rax+0x60],0x0
+classic	saved-game-load-state-machine	0x7d455e	test   BYTE PTR [rax],0x1
+classic	saved-game-load-state-machine	0x7d45b8	cmp    rdi,rax
+classic	saved-game-load-state-machine	0x7d45c5	test   DWORD PTR [rdi+0x110],0x200
+classic	saved-game-load-state-machine	0x7d45e0	cmp    rax,QWORD PTR [rip+0x1c2ce89]        # 0x142401470
+classic	saved-game-load-state-machine	0x7d4611	cmp    WORD PTR [rdi+0xa0],0x68
+classic	saved-game-load-state-machine	0x7d462a	cmp    rax,QWORD PTR [rip+0x1c2ce57]        # 0x142401488
+classic	saved-game-load-state-machine	0x7d4678	cmp    rcx,rax
+classic	saved-game-load-state-machine	0x7d468c	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d46a8	test   eax,eax
+classic	saved-game-load-state-machine	0x7d46d8	cmp    DWORD PTR [rbx+0x1c],r9d
+classic	saved-game-load-state-machine	0x7d46ed	cmp    edx,eax
+classic	saved-game-load-state-machine	0x7d46f4	test   rbx,rbx
+classic	saved-game-load-state-machine	0x7d473a	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d476c	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d4788	test   eax,eax
+classic	saved-game-load-state-machine	0x7d47b8	cmp    DWORD PTR [rbx+0x1c],r9d
+classic	saved-game-load-state-machine	0x7d47cd	cmp    edx,eax
+classic	saved-game-load-state-machine	0x7d47d4	test   rbx,rbx
+classic	saved-game-load-state-machine	0x7d481a	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d4869	test   ebx,ebx
+classic	saved-game-load-state-machine	0x7d4886	test   r8w,r8w
+classic	saved-game-load-state-machine	0x7d488c	cmp    r8d,DWORD PTR [rip+0x1d2fbc9]        # 0x14250445c
+classic	saved-game-load-state-machine	0x7d4895	test   dx,dx
+classic	saved-game-load-state-machine	0x7d489a	cmp    edx,DWORD PTR [rip+0x1d2fbc0]        # 0x142504460
+classic	saved-game-load-state-machine	0x7d48a2	test   r9w,r9w
+classic	saved-game-load-state-machine	0x7d48a8	cmp    r9d,DWORD PTR [rip+0x1d2fbb5]        # 0x142504464
+classic	saved-game-load-state-machine	0x7d48c1	test   rcx,rcx
+classic	saved-game-load-state-machine	0x7d48da	test   rcx,rcx
+classic	saved-game-load-state-machine	0x7d48f3	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d494a	test   rax,rax
+classic	saved-game-load-state-machine	0x7d4991	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d49b2	test   r14d,r14d
+classic	saved-game-load-state-machine	0x7d49da	test   edi,edi
+classic	saved-game-load-state-machine	0x7d49f7	test   eax,eax
+classic	saved-game-load-state-machine	0x7d49fb	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d4a1f	cmp    DWORD PTR [r10+0x130],r9d
+classic	saved-game-load-state-machine	0x7d4a35	cmp    ecx,eax
+classic	saved-game-load-state-machine	0x7d4a3c	test   r10,r10
+classic	saved-game-load-state-machine	0x7d4a43	test   BYTE PTR [rsi+0x90],0x2
+classic	saved-game-load-state-machine	0x7d4a98	cmp    rbx,rax
+classic	saved-game-load-state-machine	0x7d4ac4	cmp    eax,0x1e
+classic	saved-game-load-state-machine	0x7d4ade	cmp    edx,0xffffffff
+classic	saved-game-load-state-machine	0x7d4afd	test   rax,rax
+classic	saved-game-load-state-machine	0x7d4b1c	cmp    rcx,rdx
+classic	saved-game-load-state-machine	0x7d4b21	cmp    QWORD PTR [rcx],rbx
+classic	saved-game-load-state-machine	0x7d4b2a	cmp    rcx,rdx
+classic	saved-game-load-state-machine	0x7d4b3a	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d4b5e	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d4b7d	test   eax,eax
+classic	saved-game-load-state-machine	0x7d4b9f	cmp    DWORD PTR [rdi+0x130],r9d
+classic	saved-game-load-state-machine	0x7d4bb5	cmp    ecx,eax
+classic	saved-game-load-state-machine	0x7d4bbc	test   rdi,rdi
+classic	saved-game-load-state-machine	0x7d4bcd	test   al,al
+classic	saved-game-load-state-machine	0x7d4be7	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d4bf0	cmp    QWORD PTR [rax],rbx
+classic	saved-game-load-state-machine	0x7d4bf9	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d4c09	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d4c51	cmp    rcx,rax
+classic	saved-game-load-state-machine	0x7d4c5a	test   DWORD PTR [rcx+0x10],0x20000
+classic	saved-game-load-state-machine	0x7d4c92	cmp    rcx,rax
+classic	saved-game-load-state-machine	0x7d4c9b	test   DWORD PTR [rcx+0x10],0x20000
+classic	saved-game-load-state-machine	0x7d4cc8	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d4cd0	cmp    DWORD PTR [rcx],0x0
+classic	saved-game-load-state-machine	0x7d4da8	cmp    DWORD PTR [rip+0x10e346d],0x0        # 0x1418b821c
+classic	saved-game-load-state-machine	0x7d4dc4	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d4dd3	cmp    r8,QWORD PTR [rdx+0x13d8]
+classic	saved-game-load-state-machine	0x7d4df7	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d4e07	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d4e23	test   eax,eax
+classic	saved-game-load-state-machine	0x7d4e48	cmp    DWORD PTR [r10+0x130],r9d
+classic	saved-game-load-state-machine	0x7d4e60	cmp    edx,eax
+classic	saved-game-load-state-machine	0x7d4e67	test   r10,r10
+classic	saved-game-load-state-machine	0x7d4e77	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d4e98	cmp    edx,0xffffffff
+classic	saved-game-load-state-machine	0x7d4ea9	test   rax,rax
+classic	saved-game-load-state-machine	0x7d4ebd	test   rax,rax
+classic	saved-game-load-state-machine	0x7d4ecd	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d4f11	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d4f2c	test   r14d,r14d
+classic	saved-game-load-state-machine	0x7d4f43	test   rsi,rsi
+classic	saved-game-load-state-machine	0x7d4f59	test   r10d,r10d
+classic	saved-game-load-state-machine	0x7d4f6b	cmp    r10d,0x40
+classic	saved-game-load-state-machine	0x7d4f82	cmp    esi,DWORD PTR [rcx+0x1c]
+classic	saved-game-load-state-machine	0x7d4f8f	cmp    r10d,0x40
+classic	saved-game-load-state-machine	0x7d4f99	cmp    eax,0xffffffff
+classic	saved-game-load-state-machine	0x7d4fa4	cmp    rcx,rdx
+classic	saved-game-load-state-machine	0x7d4fb4	cmp    esi,DWORD PTR [rax+0x1c]
+classic	saved-game-load-state-machine	0x7d4fbf	cmp    rcx,rdx
+classic	saved-game-load-state-machine	0x7d4fca	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d50b1	cmp    QWORD PTR [rsp+0xb8],0xf
+classic	saved-game-load-state-machine	0x7d5122	cmp    rdx,0xf
+classic	saved-game-load-state-machine	0x7d5136	cmp    rdx,0x1000
+classic	saved-game-load-state-machine	0x7d514e	cmp    rax,0x1f
+classic	saved-game-load-state-machine	0x7d51cf	cmp    eax,0xa
+classic	saved-game-load-state-machine	0x7d521a	cmp    DWORD PTR [rip+0x10e2ff7],0x4        # 0x1418b8218
+classic	saved-game-load-state-machine	0x7d5237	test   al,0x4
+classic	saved-game-load-state-machine	0x7d528a	cmp    DWORD PTR [rip+0x10e2f87],0x5        # 0x1418b8218
+classic	saved-game-load-state-machine	0x7d52e1	cmp    rsi,r14
+classic	saved-game-load-state-machine	0x7d52ed	test   BYTE PTR [r13+0x114],0x40
+classic	saved-game-load-state-machine	0x7d5310	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d5325	cmp    eax,0x3
+classic	saved-game-load-state-machine	0x7d5337	test   rax,rax
+classic	saved-game-load-state-machine	0x7d5340	cmp    DWORD PTR [r15+0x8],0xffffffff
+classic	saved-game-load-state-machine	0x7d5368	test   rax,rax
+classic	saved-game-load-state-machine	0x7d5375	cmp    DWORD PTR [rax+0xdc],ecx
+classic	saved-game-load-state-machine	0x7d5430	test   rax,rax
+classic	saved-game-load-state-machine	0x7d545a	test   al,al
+classic	saved-game-load-state-machine	0x7d5481	test   al,al
+classic	saved-game-load-state-machine	0x7d54ae	test   al,al
+classic	saved-game-load-state-machine	0x7d54d3	test   al,al
+classic	saved-game-load-state-machine	0x7d54fa	test   al,al
+classic	saved-game-load-state-machine	0x7d5529	cmp    DWORD PTR [r13+0x680],0xdd6
+classic	saved-game-load-state-machine	0x7d5548	cmp    rdx,r8
+classic	saved-game-load-state-machine	0x7d5563	test   DWORD PTR [r10+0x110],0x1000000
+classic	saved-game-load-state-machine	0x7d5583	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d5593	cmp    DWORD PTR [r9+0x3dc],edi
+classic	saved-game-load-state-machine	0x7d559c	cmp    WORD PTR [r9+0x3e0],0x1
+classic	saved-game-load-state-machine	0x7d55b2	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d55b7	test   r11b,r11b
+classic	saved-game-load-state-machine	0x7d55c7	test   bl,bl
+classic	saved-game-load-state-machine	0x7d55da	cmp    rdx,r8
+classic	saved-game-load-state-machine	0x7d55df	cmp    DWORD PTR [r13+0x680],0xdca
+classic	saved-game-load-state-machine	0x7d5600	cmp    rsi,r14
+classic	saved-game-load-state-machine	0x7d5610	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d5629	cmp    DWORD PTR [r13+0x680],0xdc8
+classic	saved-game-load-state-machine	0x7d5650	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d566b	cmp    al,0x30
+classic	saved-game-load-state-machine	0x7d56b1	cmp    r15d,0x6
+classic	saved-game-load-state-machine	0x7d570b	cmp    r15d,0x6
+classic	saved-game-load-state-machine	0x7d5721	cmp    WORD PTR [rsi+0x14a],0x0
+classic	saved-game-load-state-machine	0x7d5742	cmp    DWORD PTR [r13+0x680],0x7fb
+classic	saved-game-load-state-machine	0x7d5800	cmp    rsi,r14
+classic	saved-game-load-state-machine	0x7d581a	test   rax,rax
+classic	saved-game-load-state-machine	0x7d5823	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d584f	cmp    DWORD PTR [r15],r9d
+classic	saved-game-load-state-machine	0x7d5861	cmp    ecx,eax
+classic	saved-game-load-state-machine	0x7d5868	test   r15,r15
+classic	saved-game-load-state-machine	0x7d588a	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d5892	test   r12,r12
+classic	saved-game-load-state-machine	0x7d58d5	cmp    rax,QWORD PTR [r12+0xd8]
+classic	saved-game-load-state-machine	0x7d5924	test   r12d,r12d
+classic	saved-game-load-state-machine	0x7d59b0	cmp    QWORD PTR [rbx+0x18],0xf
+classic	saved-game-load-state-machine	0x7d59ba	cmp    r8,0x8
+classic	saved-game-load-state-machine	0x7d59d0	test   eax,eax
+classic	saved-game-load-state-machine	0x7d5b8e	cmp    QWORD PTR [rbx+0x18],0xf
+classic	saved-game-load-state-machine	0x7d5b98	cmp    r8,0x12
+classic	saved-game-load-state-machine	0x7d5bb3	test   eax,eax
+classic	saved-game-load-state-machine	0x7d5bc0	cmp    ebx,0xc
+classic	saved-game-load-state-machine	0x7d5bf8	test   BYTE PTR [r15],0x1
+classic	saved-game-load-state-machine	0x7d5bfe	cmp    ebx,0x2
+classic	saved-game-load-state-machine	0x7d5c06	cmp    eax,0x2
+classic	saved-game-load-state-machine	0x7d5c11	cmp    ebx,0x2
+classic	saved-game-load-state-machine	0x7d5c1d	cmp    eax,0x2
+classic	saved-game-load-state-machine	0x7d5cf3	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d5d5f	cmp    QWORD PTR [rcx+0x18],0xf
+classic	saved-game-load-state-machine	0x7d5d69	cmp    r8,0x11
+classic	saved-game-load-state-machine	0x7d5d7f	test   eax,eax
+classic	saved-game-load-state-machine	0x7d5d8b	cmp    edi,0xc
+classic	saved-game-load-state-machine	0x7d5e69	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d5ecd	cmp    QWORD PTR [rcx+0x18],0xf
+classic	saved-game-load-state-machine	0x7d5ed7	cmp    r8,0x5
+classic	saved-game-load-state-machine	0x7d5eed	test   eax,eax
+classic	saved-game-load-state-machine	0x7d6136	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d616b	cmp    WORD PTR [r9],0x0
+classic	saved-game-load-state-machine	0x7d6179	cmp    DWORD PTR [rdx+r8*4],0xffffffff
+classic	saved-game-load-state-machine	0x7d6193	test   r11b,r11b
+classic	saved-game-load-state-machine	0x7d61a4	cmp    DWORD PTR [rip+0x10e2071],0x0        # 0x1418b821c
+classic	saved-game-load-state-machine	0x7d61d6	cmp    eax,r12d
+classic	saved-game-load-state-machine	0x7d61e5	cmp    eax,r15d
+classic	saved-game-load-state-machine	0x7d61f4	cmp    ecx,r11d
+classic	saved-game-load-state-machine	0x7d61fd	test   di,di
+classic	saved-game-load-state-machine	0x7d6209	cmp    eax,r12d
+classic	saved-game-load-state-machine	0x7d6212	test   bx,bx
+classic	saved-game-load-state-machine	0x7d621e	cmp    eax,r15d
+classic	saved-game-load-state-machine	0x7d6227	test   si,si
+classic	saved-game-load-state-machine	0x7d6230	cmp    ecx,r11d
+classic	saved-game-load-state-machine	0x7d6247	test   r10,r10
+classic	saved-game-load-state-machine	0x7d6268	test   rdx,rdx
+classic	saved-game-load-state-machine	0x7d62a7	test   r14b,0x8
+classic	saved-game-load-state-machine	0x7d62c0	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d62d3	test   r8d,0x2010202
+classic	saved-game-load-state-machine	0x7d62e3	test   edx,0x180000
+classic	saved-game-load-state-machine	0x7d62eb	bt     r8d,0xf
+classic	saved-game-load-state-machine	0x7d62fd	test   dl,0x1
+classic	saved-game-load-state-machine	0x7d6311	cmp    edx,0x1
+classic	saved-game-load-state-machine	0x7d632d	cmp    edx,0x1
+classic	saved-game-load-state-machine	0x7d6334	cmp    r8w,di
+classic	saved-game-load-state-machine	0x7d633a	cmp    WORD PTR [r9+0xaa],bx
+classic	saved-game-load-state-machine	0x7d6344	cmp    WORD PTR [r9+0xac],si
+classic	saved-game-load-state-machine	0x7d635e	cmp    eax,r12d
+classic	saved-game-load-state-machine	0x7d6366	cmp    eax,r15d
+classic	saved-game-load-state-machine	0x7d636e	cmp    eax,r11d
+classic	saved-game-load-state-machine	0x7d6381	test   r10,r10
+classic	saved-game-load-state-machine	0x7d63fc	test   r14b,0x10
+classic	saved-game-load-state-machine	0x7d6414	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d6427	test   r8d,0x2010202
+classic	saved-game-load-state-machine	0x7d6437	test   edx,0x180000
+classic	saved-game-load-state-machine	0x7d643f	bt     r8d,0xf
+classic	saved-game-load-state-machine	0x7d6451	test   dl,0x1
+classic	saved-game-load-state-machine	0x7d6465	cmp    edx,0x1
+classic	saved-game-load-state-machine	0x7d6481	cmp    edx,0x1
+classic	saved-game-load-state-machine	0x7d6488	cmp    r8w,di
+classic	saved-game-load-state-machine	0x7d648e	cmp    WORD PTR [r9+0xaa],bx
+classic	saved-game-load-state-machine	0x7d6498	cmp    WORD PTR [r9+0xac],si
+classic	saved-game-load-state-machine	0x7d64b2	cmp    eax,r12d
+classic	saved-game-load-state-machine	0x7d64ba	cmp    eax,r15d
+classic	saved-game-load-state-machine	0x7d64c2	cmp    eax,r11d
+classic	saved-game-load-state-machine	0x7d64d5	test   r10,r10
+classic	saved-game-load-state-machine	0x7d64f2	test   rdx,rdx
+classic	saved-game-load-state-machine	0x7d6587	test   rax,rax
+classic	saved-game-load-state-machine	0x7d65c3	test   rax,rax
+classic	saved-game-load-state-machine	0x7d65e5	test   eax,eax
+classic	saved-game-load-state-machine	0x7d65e9	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d660f	cmp    DWORD PTR [r10+0x130],r9d
+classic	saved-game-load-state-machine	0x7d6625	cmp    ecx,eax
+classic	saved-game-load-state-machine	0x7d662c	test   r10,r10
+classic	saved-game-load-state-machine	0x7d6638	test   rdx,rdx
+classic	saved-game-load-state-machine	0x7d6657	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d6686	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d66ab	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d66c5	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d66cd	test   BYTE PTR [rdx+0x10],0x1
+classic	saved-game-load-state-machine	0x7d6716	test   ebx,ebx
+classic	saved-game-load-state-machine	0x7d67a6	test   r14d,r14d
+classic	saved-game-load-state-machine	0x7d67d1	test   edi,edi
+classic	saved-game-load-state-machine	0x7d67f4	test   rax,rax
+classic	saved-game-load-state-machine	0x7d67f9	cmp    DWORD PTR [rax+0x1f0],0xffffffff
+classic	saved-game-load-state-machine	0x7d6802	cmp    DWORD PTR [rax+0x1f4],0xffffffff
+classic	saved-game-load-state-machine	0x7d68ce	cmp    QWORD PTR [rsp+0xb8],0xf
+classic	saved-game-load-state-machine	0x7d68fe	cmp    rdx,0xf
+classic	saved-game-load-state-machine	0x7d6912	cmp    rdx,0x1000
+classic	saved-game-load-state-machine	0x7d692a	cmp    rax,0x1f
+classic	saved-game-load-state-machine	0x7d6969	cmp    DWORD PTR [rip+0x10e18ac],0x0        # 0x1418b821c
+classic	saved-game-load-state-machine	0x7d6990	cmp    r15,r12
+classic	saved-game-load-state-machine	0x7d69a4	cmp    rsi,r14
+classic	saved-game-load-state-machine	0x7d69d0	cmp    rbx,rdi
+classic	saved-game-load-state-machine	0x7d69df	cmp    r9d,0xffffffff
+classic	saved-game-load-state-machine	0x7d69f7	test   rax,rax
+classic	saved-game-load-state-machine	0x7d6a1f	cmp    DWORD PTR [r13+0x50],r9d
+classic	saved-game-load-state-machine	0x7d6a32	cmp    ecx,eax
+classic	saved-game-load-state-machine	0x7d6a3b	test   r13,r13
+classic	saved-game-load-state-machine	0x7d6a4d	cmp    eax,0x1d
+classic	saved-game-load-state-machine	0x7d6a5d	cmp    rdx,QWORD PTR [rcx+0x10]
+classic	saved-game-load-state-machine	0x7d6b10	cmp    r15w,cx
+classic	saved-game-load-state-machine	0x7d6b22	cmp    si,ax
+classic	saved-game-load-state-machine	0x7d6b4a	test   rdi,rdi
+classic	saved-game-load-state-machine	0x7d6b7e	cmp    eax,r10d
+classic	saved-game-load-state-machine	0x7d6b96	cmp    eax,ecx
+classic	saved-game-load-state-machine	0x7d6bae	cmp    eax,r9d
+classic	saved-game-load-state-machine	0x7d6bb7	cmp    r14w,r8w
+classic	saved-game-load-state-machine	0x7d6bc1	cmp    eax,r10d
+classic	saved-game-load-state-machine	0x7d6bd7	cmp    eax,r15d
+classic	saved-game-load-state-machine	0x7d6be3	cmp    si,r12w
+classic	saved-game-load-state-machine	0x7d6be9	cmp    eax,ecx
+classic	saved-game-load-state-machine	0x7d6c31	test   ecx,ecx
+classic	saved-game-load-state-machine	0x7d6c4d	cmp    r9,rcx
+classic	saved-game-load-state-machine	0x7d6c73	cmp    rcx,rdx
+classic	saved-game-load-state-machine	0x7d6c82	test   ecx,ecx
+classic	saved-game-load-state-machine	0x7d6c9e	cmp    r8,rcx
+classic	saved-game-load-state-machine	0x7d6cd7	cmp    rdx,r8
+classic	saved-game-load-state-machine	0x7d6cfc	test   edx,edx
+classic	saved-game-load-state-machine	0x7d6d15	cmp    rdx,rcx
+classic	saved-game-load-state-machine	0x7d6d4e	cmp    rdx,r8
+classic	saved-game-load-state-machine	0x7d6d70	test   edx,edx
+classic	saved-game-load-state-machine	0x7d6d89	cmp    rdx,rcx
+classic	saved-game-load-state-machine	0x7d6dc2	cmp    rdx,r8
+classic	saved-game-load-state-machine	0x7d6de4	test   edx,edx
+classic	saved-game-load-state-machine	0x7d6dfd	cmp    rdx,rcx
+classic	saved-game-load-state-machine	0x7d6e36	cmp    rcx,rdx
+classic	saved-game-load-state-machine	0x7d6e43	cmp    eax,r15d
+classic	saved-game-load-state-machine	0x7d6e71	cmp    eax,r9d
+classic	saved-game-load-state-machine	0x7d6e7c	test   r11b,r11b
+classic	saved-game-load-state-machine	0x7d6f37	cmp    QWORD PTR [rsp+0xd8],0xf
+classic	saved-game-load-state-machine	0x7d6f67	cmp    rdx,0xf
+classic	saved-game-load-state-machine	0x7d6f7b	cmp    rdx,0x1000
+classic	saved-game-load-state-machine	0x7d6f93	cmp    rax,0x1f
+classic	saved-game-load-state-machine	0x7d6ffd	cmp    QWORD PTR [rsp+0xd8],0xf
+classic	saved-game-load-state-machine	0x7d702d	cmp    rdx,0xf
+classic	saved-game-load-state-machine	0x7d7041	cmp    rdx,0x1000
+classic	saved-game-load-state-machine	0x7d7059	cmp    rax,0x1f
+classic	saved-game-load-state-machine	0x7d7081	cmp    rdx,0xf
+classic	saved-game-load-state-machine	0x7d7095	cmp    rdx,0x1000
+classic	saved-game-load-state-machine	0x7d70ad	cmp    rax,0x1f
+classic	saved-game-load-state-machine	0x7d7115	cmp    DWORD PTR [r12+0x680],0xdcf
+classic	saved-game-load-state-machine	0x7d7145	test   esi,esi
+classic	saved-game-load-state-machine	0x7d7154	test   ebx,ebx
+classic	saved-game-load-state-machine	0x7d7164	test   ebx,ebx
+classic	saved-game-load-state-machine	0x7d7170	test   r12w,r12w
+classic	saved-game-load-state-machine	0x7d717a	cmp    edi,esi
+classic	saved-game-load-state-machine	0x7d7182	test   r15w,r15w
+classic	saved-game-load-state-machine	0x7d718c	cmp    r9d,ebx
+classic	saved-game-load-state-machine	0x7d7195	test   r8w,r8w
+classic	saved-game-load-state-machine	0x7d719f	cmp    r10d,r14d
+classic	saved-game-load-state-machine	0x7d71b8	test   r11,r11
+classic	saved-game-load-state-machine	0x7d71d9	test   rdx,rdx
+classic	saved-game-load-state-machine	0x7d720f	test   DWORD PTR [rdx+rcx*4+0x6a0],0x10000000
+classic	saved-game-load-state-machine	0x7d7220	cmp    edi,esi
+classic	saved-game-load-state-machine	0x7d7228	cmp    r9d,ebx
+classic	saved-game-load-state-machine	0x7d7231	cmp    r10d,r14d
+classic	saved-game-load-state-machine	0x7d7246	test   r11,r11
+classic	saved-game-load-state-machine	0x7d72bd	cmp    r10d,ebx
+classic	saved-game-load-state-machine	0x7d72d0	cmp    r9d,ebx
+classic	saved-game-load-state-machine	0x7d72e1	cmp    edi,esi
+classic	saved-game-load-state-machine	0x7d72f7	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d7303	cmp    DWORD PTR [r13+0x0],0x1
+classic	saved-game-load-state-machine	0x7d7321	cmp    r12d,edx
+classic	saved-game-load-state-machine	0x7d733e	cmp    r10d,edx
+classic	saved-game-load-state-machine	0x7d7355	test   r15w,r15w
+classic	saved-game-load-state-machine	0x7d735f	cmp    r12d,esi
+classic	saved-game-load-state-machine	0x7d7368	test   di,di
+classic	saved-game-load-state-machine	0x7d7371	cmp    r10d,ebx
+classic	saved-game-load-state-machine	0x7d737a	test   r8w,r8w
+classic	saved-game-load-state-machine	0x7d7384	cmp    r8d,r14d
+classic	saved-game-load-state-machine	0x7d739e	test   r11,r11
+classic	saved-game-load-state-machine	0x7d73b7	test   r9,r9
+classic	saved-game-load-state-machine	0x7d7426	cmp    r10d,edx
+classic	saved-game-load-state-machine	0x7d743e	cmp    r12d,edx
+classic	saved-game-load-state-machine	0x7d744b	cmp    rax,rcx
+classic	saved-game-load-state-machine	0x7d74c6	test   rbx,rbx
+classic	new-game-load-renderer	0x7d7a40	cmp    DWORD PTR [rip+0x1c120b1],0x0        # 0x1423e9af8
+classic	new-game-load-renderer	0x7d7a50	test   BYTE PTR [rax],0x1
+classic	new-game-load-renderer	0x7d7aa0	cmp    DWORD PTR [rip+0x1e8ef35],0xffffffff        # 0x1426669dc
+classic	new-game-load-renderer	0x7d7aba	test   r14d,r14d
+classic	new-game-load-renderer	0x7d7ac6	cmp    esi,ebx
+classic	new-game-load-renderer	0x7d7add	test   edi,edi
+classic	new-game-load-renderer	0x7d7ae1	cmp    r11d,esi
+classic	new-game-load-renderer	0x7d7af5	cmp    r11d,ebx
+classic	new-game-load-renderer	0x7d7b0a	cmp    edi,r14d
+classic	new-game-load-renderer	0x7d7b0f	cmp    r11d,esi
+classic	new-game-load-renderer	0x7d7b23	cmp    r11d,ebx
+classic	new-game-load-renderer	0x7d7b38	cmp    r11d,esi
+classic	new-game-load-renderer	0x7d7b45	cmp    r11d,ebx
+classic	new-game-load-renderer	0x7d7b65	cmp    r11d,ebx
+classic	new-game-load-renderer	0x7d7b70	cmp    edi,r14d
+classic	new-game-load-renderer	0x7d7bbe	test   r9d,r9d
+classic	new-game-load-renderer	0x7d7bd3	cmp    eax,r15d
+classic	new-game-load-renderer	0x7d7bdd	cmp    ecx,r12d
+classic	new-game-load-renderer	0x7d7bff	cmp    r15d,edi
+classic	new-game-load-renderer	0x7d7c1e	cmp    r11d,r12d
+classic	new-game-load-renderer	0x7d7c23	cmp    r11d,r15d
+classic	new-game-load-renderer	0x7d7c3a	cmp    r11d,edi
+classic	new-game-load-renderer	0x7d7c4f	cmp    r11d,r15d
+classic	new-game-load-renderer	0x7d7c5c	cmp    r11d,edi
+classic	new-game-load-renderer	0x7d7c7f	cmp    r11d,edi
+classic	new-game-load-renderer	0x7d7d3c	cmp    eax,0x23
+classic	new-game-load-renderer	0x7d7db3	cmp    rdx,0xf
+classic	new-game-load-renderer	0x7d7dc3	cmp    rdx,0x1000
+classic	new-game-load-renderer	0x7d7ddb	cmp    rax,0x1f
+classic	new-game-load-renderer	0x7d7e1c	cmp    eax,0x39
+classic	new-game-load-renderer	0x7d7e3a	test   eax,eax
+classic	new-game-load-renderer	0x7d7e50	cmp    rax,rcx
+classic	new-game-load-renderer	0x7d8737	test   ecx,ecx
+classic	new-game-load-renderer	0x7d874d	cmp    ecx,eax
+classic	new-game-load-renderer	0x7d87e0	cmp    BYTE PTR [rip+0x1e825a5],0x0        # 0x14265ad8c
+classic	new-game-load-renderer	0x7d87e9	cmp    BYTE PTR [rip+0x1e8259d],0x0        # 0x14265ad8d
+classic	new-game-load-renderer	0x7d9289	cmp    rdx,0xf
+classic	new-game-load-renderer	0x7d929d	cmp    rdx,0x1000
+classic	new-game-load-renderer	0x7d92b9	cmp    rax,0x1f
+classic	load-game-renderer	0x7d948e	test   r8d,r8d
+classic	load-game-renderer	0x7d9493	test   BYTE PTR [rdx],0x1
+classic	load-game-renderer	0x7d94be	test   r8d,r8d
+classic	load-game-renderer	0x7d94c3	test   BYTE PTR [rdx],0x1
+classic	load-game-renderer	0x7d94d0	cmp    eax,0xa
+classic	load-game-renderer	0x7d9538	cmp    DWORD PTR [rip+0x1e8d49d],0xffffffff        # 0x1426669dc
+classic	load-game-renderer	0x7d9552	test   r14d,r14d
+classic	load-game-renderer	0x7d9563	cmp    esi,ebx
+classic	load-game-renderer	0x7d957d	test   edi,edi
+classic	load-game-renderer	0x7d9581	cmp    r11d,esi
+classic	load-game-renderer	0x7d9595	cmp    r11d,ebx
+classic	load-game-renderer	0x7d95aa	cmp    edi,r14d
+classic	load-game-renderer	0x7d95af	cmp    r11d,esi
+classic	load-game-renderer	0x7d95c3	cmp    r11d,ebx
+classic	load-game-renderer	0x7d95d8	cmp    r11d,esi
+classic	load-game-renderer	0x7d95e5	cmp    r11d,ebx
+classic	load-game-renderer	0x7d9605	cmp    r11d,ebx
+classic	load-game-renderer	0x7d9610	cmp    edi,r14d
+classic	load-game-renderer	0x7d966e	cmp    eax,r15d
+classic	load-game-renderer	0x7d9678	cmp    ecx,r12d
+classic	load-game-renderer	0x7d969a	cmp    r15d,edi
+classic	load-game-renderer	0x7d96ae	cmp    r11d,r12d
+classic	load-game-renderer	0x7d96b3	cmp    r11d,r15d
+classic	load-game-renderer	0x7d96ca	cmp    r11d,edi
+classic	load-game-renderer	0x7d96df	cmp    r11d,r15d
+classic	load-game-renderer	0x7d96ec	cmp    r11d,edi
+classic	load-game-renderer	0x7d970f	cmp    r11d,edi
+classic	load-game-renderer	0x7d978f	cmp    rdx,0xf
+classic	load-game-renderer	0x7d979f	cmp    rdx,0x1000
+classic	load-game-renderer	0x7d97b7	cmp    rax,0x1f
+classic	load-game-renderer	0x7d97e8	cmp    eax,0x32
+classic	load-game-renderer	0x7d985f	cmp    rdx,0xf
+classic	load-game-renderer	0x7d9870	cmp    rdx,0x1000
+classic	load-game-renderer	0x7d988b	cmp    rax,0x1f
+classic	load-game-renderer	0x7d98a7	cmp    eax,0x39
+classic	load-game-renderer	0x7d98c5	test   eax,eax
+classic	load-game-renderer	0x7d98db	cmp    rax,rcx
+classic	load-game-renderer	0x7da1c2	test   ecx,ecx
+classic	load-game-renderer	0x7da1d8	cmp    ecx,eax
+classic	load-game-renderer	0x7da26b	cmp    BYTE PTR [rip+0x1e80b1a],0x0        # 0x14265ad8c
+classic	load-game-renderer	0x7da274	cmp    BYTE PTR [rip+0x1e80b12],0x0        # 0x14265ad8d
+classic	load-game-renderer	0x7dab89	cmp    rdx,0xf
+classic	load-game-renderer	0x7dab9d	cmp    rdx,0x1000
+classic	load-game-renderer	0x7dabb9	cmp    rax,0x1f
+classic	new-game-mod-step	0x7db1a7	cmp    DWORD PTR [rbx+0x2e0],0x1
+classic	new-game-mod-step	0x7db1b4	cmp    BYTE PTR [rip+0x1e7fbd1],0x0        # 0x14265ad8c
+classic	new-game-mod-step	0x7db1bd	cmp    BYTE PTR [rip+0x1e7fbc9],0x0        # 0x14265ad8d
+classic	new-game-mod-step	0x7db1eb	test   al,al
+classic	saved-game-mod-step	0x7db287	cmp    DWORD PTR [rbx+0x198],0x1
+classic	saved-game-mod-step	0x7db294	cmp    BYTE PTR [rip+0x1e7faf1],0x0        # 0x14265ad8c
+classic	saved-game-mod-step	0x7db29d	cmp    BYTE PTR [rip+0x1e7fae9],0x0        # 0x14265ad8d
+classic	saved-game-mod-step	0x7db2cb	test   al,al
+classic	resolve-compatible-mod	0x7dd2e7	test   ecx,ecx
+classic	resolve-compatible-mod	0x7dd2fe	cmp    ecx,eax
+classic	resolve-compatible-mod	0x7dd340	cmp    rbx,rdi
+classic	resolve-compatible-mod	0x7dd350	cmp    QWORD PTR [rbp-0x11],0xf
+classic	resolve-compatible-mod	0x7dd35e	cmp    QWORD PTR [rcx+0x18],0xf
+classic	resolve-compatible-mod	0x7dd368	cmp    r8,r12
+classic	resolve-compatible-mod	0x7dd372	test   eax,eax
+classic	resolve-compatible-mod	0x7dd376	cmp    DWORD PTR [r14+0x60],r15d
+classic	resolve-compatible-mod	0x7dd384	test   rcx,rcx
+classic	resolve-compatible-mod	0x7dd38d	cmp    DWORD PTR [rcx+0x60],eax
+classic	resolve-compatible-mod	0x7dd392	cmp    DWORD PTR [r14+0x88],r15d
+classic	resolve-compatible-mod	0x7dd3a9	test   rdx,rdx
+classic	resolve-compatible-mod	0x7dd3ae	cmp    QWORD PTR [rsi+0x18],rdx
+classic	resolve-compatible-mod	0x7dd3b4	test   BYTE PTR [rdx+0x158],0x5
+classic	resolve-compatible-mod	0x7dd3c2	cmp    eax,0x2
+classic	resolve-compatible-mod	0x7dd3df	test   rax,rax
+classic	resolve-compatible-mod	0x7dd3ef	test   r8b,0x4
+classic	resolve-compatible-mod	0x7dd433	test   cl,0x1
+classic	resolve-compatible-mod	0x7dd43c	test   r8b,0x1
+classic	resolve-compatible-mod	0x7dd44e	cmp    eax,0x2
+classic	resolve-compatible-mod	0x7dd4b5	cmp    QWORD PTR [rdx+0x18],0xf
+classic	resolve-compatible-mod	0x7dd508	cmp    QWORD PTR [rbp-0x31],0xf
+classic	resolve-compatible-mod	0x7dd5a4	cmp    rcx,rdx
+classic	resolve-compatible-mod	0x7dd5ad	cmp    QWORD PTR [rdx+0x18],0xf
+classic	resolve-compatible-mod	0x7dd5d3	cmp    rcx,rdx
+classic	resolve-compatible-mod	0x7dd5dc	cmp    QWORD PTR [rdx+0x18],0xf
+classic	resolve-compatible-mod	0x7dd5f6	test   cl,0x2
+classic	resolve-compatible-mod	0x7dd5fb	test   rdx,rdx
+classic	resolve-compatible-mod	0x7dd600	test   BYTE PTR [rdx+0x158],0x5
+classic	resolve-compatible-mod	0x7dd60e	cmp    eax,0x2
+classic	mod-choice-input	0x7dd69a	cmp    BYTE PTR [rip+0x1bcf2b4],0x0        # 0x1423ac955
+classic	mod-choice-input	0x7dd6b1	cmp    BYTE PTR [rcx+0xc],0x0
+classic	mod-choice-input	0x7dd6f8	cmp    BYTE PTR [rip+0x1bcf256],0x0        # 0x1423ac955
+classic	mod-choice-input	0x7dd705	cmp    BYTE PTR [rip+0x1bcf240],0x0        # 0x1423ac94c
+classic	mod-choice-input	0x7dd712	cmp    r10d,eax
+classic	mod-choice-input	0x7dd717	cmp    r10d,r13d
+classic	mod-choice-input	0x7dd71c	cmp    r11d,edx
+classic	mod-choice-input	0x7dd721	cmp    r11d,ecx
+classic	mod-choice-input	0x7dd726	cmp    r10d,r9d
+classic	mod-choice-input	0x7dd72f	cmp    r10d,r8d
+classic	mod-choice-input	0x7dd738	cmp    r11d,edx
+classic	mod-choice-input	0x7dd741	cmp    r11d,ecx
+classic	mod-choice-input	0x7dd755	cmp    r10d,r9d
+classic	mod-choice-input	0x7dd75a	cmp    r10d,r8d
+classic	mod-choice-input	0x7dd75f	cmp    r11d,ecx
+classic	mod-choice-input	0x7dd76c	test   rdx,rdx
+classic	mod-choice-input	0x7dd775	test   BYTE PTR [rdx+0x158],0x1
+classic	mod-choice-input	0x7dd787	cmp    eax,0x2
+classic	mod-choice-input	0x7dd7e2	cmp    QWORD PTR [rdx+0x18],0xf
+classic	mod-choice-input	0x7dd835	cmp    QWORD PTR [rbp-0x30],0xf
+classic	mod-choice-input	0x7dd88b	cmp    rdx,0xf
+classic	mod-choice-input	0x7dd89b	cmp    rdx,0x1000
+classic	mod-choice-input	0x7dd8b3	cmp    rax,0x1f
+classic	mod-choice-input	0x7dd906	cmp    rcx,rdx
+classic	mod-choice-input	0x7dd90f	cmp    QWORD PTR [rdx+0x18],0xf
+classic	mod-choice-input	0x7dd935	cmp    rcx,rdx
+classic	mod-choice-input	0x7dd93e	cmp    QWORD PTR [rdx+0x18],0xf
+classic	mod-choice-input	0x7dd97b	cmp    QWORD PTR [rbx+0x20],0x0
+classic	mod-choice-input	0x7dd982	cmp    r10d,r12d
+classic	mod-choice-input	0x7dd98c	cmp    r10d,eax
+classic	mod-choice-input	0x7dd991	cmp    r11d,edx
+classic	mod-choice-input	0x7dd996	cmp    r11d,ecx
+classic	mod-choice-input	0x7dd9a6	cmp    r10d,r15d
+classic	mod-choice-input	0x7dd9ab	cmp    r10d,r14d
+classic	mod-choice-input	0x7dd9b2	cmp    r10d,r15d
+classic	mod-choice-input	0x7dd9b7	cmp    r10d,r14d
+classic	mod-choice-input	0x7dd9bc	cmp    r11d,edx
+classic	mod-choice-input	0x7dd9c1	cmp    r11d,ecx
+classic	mod-choice-input	0x7dd9d9	test   BYTE PTR [rdx+0x158],0x5
+classic	mod-choice-input	0x7dd9eb	cmp    eax,0x2
+classic	mod-choice-input	0x7dda00	cmp    r10d,DWORD PTR [rbp-0x50]
+classic	mod-choice-input	0x7dda0a	cmp    r10d,DWORD PTR [rbp-0x60]
+classic	mod-choice-input	0x7dda14	cmp    r11d,edx
+classic	mod-choice-input	0x7dda1d	cmp    r11d,ecx
+classic	mod-choice-input	0x7dda38	cmp    BYTE PTR [rcx+0xd],0x0
+classic	mod-choice-input	0x7dda50	cmp    BYTE PTR [rip+0x1bceefe],0x0        # 0x1423ac955
+classic	mod-choice-input	0x7dda5d	cmp    BYTE PTR [rip+0x1bceee8],0x0        # 0x1423ac94c
+classic	mod-choice-input	0x7dda6a	cmp    r10d,eax
+classic	mod-choice-input	0x7dda76	cmp    r10d,eax
+classic	mod-choice-input	0x7dda85	cmp    r11d,eax
+classic	mod-choice-input	0x7dda91	cmp    r11d,eax
+classic	mod-load-dialog	0x7ddaf5	test   r10d,r10d
+classic	mod-load-dialog	0x7ddb10	cmp    r10d,eax
+classic	mod-load-dialog	0x7ddb47	cmp    BYTE PTR [rsi+0xc],0x0
+classic	mod-load-dialog	0x7ddbbd	cmp    eax,r13d
+classic	mod-load-dialog	0x7ddbd3	cmp    edi,ebx
+classic	mod-load-dialog	0x7ddbed	cmp    esi,r14d
+classic	mod-load-dialog	0x7ddbf2	cmp    r11d,edi
+classic	mod-load-dialog	0x7ddc06	cmp    r11d,ebx
+classic	mod-load-dialog	0x7ddc1b	cmp    esi,r13d
+classic	mod-load-dialog	0x7ddc20	cmp    r11d,edi
+classic	mod-load-dialog	0x7ddc34	cmp    r11d,ebx
+classic	mod-load-dialog	0x7ddc49	cmp    r11d,edi
+classic	mod-load-dialog	0x7ddc56	cmp    r11d,ebx
+classic	mod-load-dialog	0x7ddc76	cmp    r11d,ebx
+classic	mod-load-dialog	0x7ddc81	cmp    esi,r13d
+classic	mod-load-dialog	0x7ddd18	cmp    rdx,0xf
+classic	mod-load-dialog	0x7ddd28	cmp    rdx,0x1000
+classic	mod-load-dialog	0x7ddd40	cmp    rax,0x1f
+classic	mod-load-dialog	0x7dddb4	test   rdx,rdx
+classic	mod-load-dialog	0x7dde2e	cmp    QWORD PTR [rsi+0x20],0x0
+classic	mod-load-dialog	0x7dde8b	cmp    rdx,0xf
+classic	mod-load-dialog	0x7dde9b	cmp    rdx,0x1000
+classic	mod-load-dialog	0x7ddeb3	cmp    rax,0x1f
+classic	mod-load-dialog	0x7ddf03	cmp    r13d,edi
+classic	mod-load-dialog	0x7ddf13	cmp    r15d,r14d
+classic	mod-load-dialog	0x7ddf2d	cmp    ebx,r13d
+classic	mod-load-dialog	0x7ddf32	cmp    r11d,r15d
+classic	mod-load-dialog	0x7ddf46	cmp    r11d,r14d
+classic	mod-load-dialog	0x7ddf5b	cmp    ebx,edi
+classic	mod-load-dialog	0x7ddf5f	cmp    r11d,r15d
+classic	mod-load-dialog	0x7ddf73	cmp    r11d,r14d
+classic	mod-load-dialog	0x7ddf88	cmp    r11d,r15d
+classic	mod-load-dialog	0x7ddf95	cmp    r11d,r14d
+classic	mod-load-dialog	0x7ddfb5	cmp    r11d,r14d
+classic	mod-load-dialog	0x7ddfc0	cmp    ebx,edi
+classic	mod-load-dialog	0x7de029	cmp    r13d,edi
+classic	mod-load-dialog	0x7de043	cmp    eax,r12d
+classic	mod-load-dialog	0x7de05d	cmp    ebx,r13d
+classic	mod-load-dialog	0x7de062	cmp    r11d,eax
+classic	mod-load-dialog	0x7de076	cmp    r11d,r12d
+classic	mod-load-dialog	0x7de08b	cmp    ebx,edi
+classic	mod-load-dialog	0x7de08f	cmp    r11d,eax
+classic	mod-load-dialog	0x7de0a3	cmp    r11d,r12d
+classic	mod-load-dialog	0x7de0b8	cmp    r11d,eax
+classic	mod-load-dialog	0x7de0c5	cmp    r11d,r12d
+classic	mod-load-dialog	0x7de0e5	cmp    r11d,r12d
+classic	mod-load-dialog	0x7de0f3	cmp    ebx,edi
+classic	mod-load-dialog	0x7de15b	cmp    QWORD PTR [rsi+0x20],0x0
+classic	mod-load-dialog	0x7de169	cmp    r13d,edi
+classic	mod-load-dialog	0x7de183	cmp    eax,esi
+classic	mod-load-dialog	0x7de19d	cmp    ebx,r13d
+classic	mod-load-dialog	0x7de1a2	cmp    r11d,eax
+classic	mod-load-dialog	0x7de1b6	cmp    r11d,esi
+classic	mod-load-dialog	0x7de1cb	cmp    ebx,edi
+classic	mod-load-dialog	0x7de1cf	cmp    r11d,eax
+classic	mod-load-dialog	0x7de1e3	cmp    r11d,esi
+classic	mod-load-dialog	0x7de1f8	cmp    r11d,eax
+classic	mod-load-dialog	0x7de205	cmp    r11d,esi
+classic	mod-load-dialog	0x7de225	cmp    r11d,esi
+classic	mod-load-dialog	0x7de233	cmp    ebx,edi
+classic	mod-load-dialog	0x7de29c	cmp    r13d,edi
+classic	mod-load-dialog	0x7de2b3	cmp    eax,esi
+classic	mod-load-dialog	0x7de2cd	cmp    ebx,r13d
+classic	mod-load-dialog	0x7de2d2	cmp    r11d,eax
+classic	mod-load-dialog	0x7de2e6	cmp    r11d,esi
+classic	mod-load-dialog	0x7de2fb	cmp    ebx,edi
+classic	mod-load-dialog	0x7de2ff	cmp    r11d,eax
+classic	mod-load-dialog	0x7de313	cmp    r11d,esi
+classic	mod-load-dialog	0x7de328	cmp    r11d,eax
+classic	mod-load-dialog	0x7de335	cmp    r11d,esi
+classic	mod-load-dialog	0x7de355	cmp    r11d,esi
+classic	mod-load-dialog	0x7de363	cmp    ebx,edi
+classic	mod-load-dialog	0x7de3c6	cmp    rdx,0xf
+classic	mod-load-dialog	0x7de3d6	cmp    rdx,0x1000
+classic	mod-load-dialog	0x7de3ee	cmp    rax,0x1f
+classic	mod-load-dialog	0x7de400	cmp    r13d,edi
+classic	mod-load-dialog	0x7de413	cmp    eax,esi
+classic	mod-load-dialog	0x7de42d	cmp    ebx,r13d
+classic	mod-load-dialog	0x7de432	cmp    r11d,eax
+classic	mod-load-dialog	0x7de446	cmp    r11d,esi
+classic	mod-load-dialog	0x7de45b	cmp    ebx,edi
+classic	mod-load-dialog	0x7de45f	cmp    r11d,eax
+classic	mod-load-dialog	0x7de473	cmp    r11d,esi
+classic	mod-load-dialog	0x7de488	cmp    r11d,eax
+classic	mod-load-dialog	0x7de495	cmp    r11d,esi
+classic	mod-load-dialog	0x7de4b5	cmp    r11d,esi
+classic	mod-load-dialog	0x7de4c3	cmp    ebx,edi
+classic	mod-load-dialog	0x7de538	cmp    BYTE PTR [rsi+0xd],0x0
+classic	mod-load-dialog	0x7de583	cmp    r12d,r13d
+classic	mod-load-dialog	0x7de593	cmp    esi,ebx
+classic	mod-load-dialog	0x7de5ae	cmp    r14d,r12d
+classic	mod-load-dialog	0x7de5b3	cmp    r11d,esi
+classic	mod-load-dialog	0x7de5c7	cmp    r11d,ebx
+classic	mod-load-dialog	0x7de5dc	cmp    r14d,r13d
+classic	mod-load-dialog	0x7de5e1	cmp    r11d,esi
+classic	mod-load-dialog	0x7de5f5	cmp    r11d,ebx
+classic	mod-load-dialog	0x7de60a	cmp    r11d,esi
+classic	mod-load-dialog	0x7de617	cmp    r11d,ebx
+classic	mod-load-dialog	0x7de637	cmp    r11d,ebx
+classic	mod-load-dialog	0x7de643	cmp    r14d,r13d
+classic	mod-load-dialog	0x7de67a	cmp    DWORD PTR [rax+0x10],0x0
+classic	mod-load-dialog	0x7de72e	cmp    rdx,0xf
+classic	mod-load-dialog	0x7de73b	cmp    rdx,0x1000
+classic	mod-load-dialog	0x7de756	cmp    rax,0x1f
+classic	mod-load-dialog	0x7de7db	cmp    ecx,esi
+classic	mod-load-dialog	0x7de7e6	cmp    r15d,edi
+classic	mod-load-dialog	0x7de7fd	cmp    ebx,ecx
+classic	mod-load-dialog	0x7de801	cmp    r11d,r15d
+classic	mod-load-dialog	0x7de815	cmp    r11d,edi
+classic	mod-load-dialog	0x7de82a	cmp    ebx,esi
+classic	mod-load-dialog	0x7de82e	cmp    r11d,r15d
+classic	mod-load-dialog	0x7de842	cmp    r11d,edi
+classic	mod-load-dialog	0x7de857	cmp    r11d,r15d
+classic	mod-load-dialog	0x7de864	cmp    r11d,edi
+classic	mod-load-dialog	0x7de884	cmp    r11d,edi
+classic	mod-load-dialog	0x7de892	cmp    ebx,esi
+classic	mod-load-dialog	0x7de8fd	cmp    rdx,0xf
+classic	mod-load-dialog	0x7de90d	cmp    rdx,0x1000
+classic	mod-load-dialog	0x7de925	cmp    rax,0x1f

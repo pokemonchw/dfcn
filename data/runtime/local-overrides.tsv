@@ -1512,7 +1512,6 @@ Brook: Ringhandle	小溪：环柄
 Tropical Dry Brdlf Forest	热带干燥阔叶林	l
 Stream: The Saturnine Wrath	溪流：阴郁之怒	l
 Brook: Giftedcrypts	小溪：天赐墓穴
-Sorting plants...	正在整理植物……
 Stream: {s}	溪流：{s}	wt
 Brook: {s}	小溪：{s}	wt
 Stream:	溪流：	w
@@ -2379,7 +2378,6 @@ This event occurred on the	此事发生于	wl
 Artifact	造物	wi
 Artifacts	造物	wi
 Enable artifact moods	启用奇异心境	w
-Loading artifacts...	加载造物......	w
 Saving artifacts...	正在保存造物……	w
 Export XML	导出 XML
 Exporting!	正在导出！	w
@@ -4530,7 +4528,6 @@ Generate Mythical Materials	生成神话材料
 Allow Mythical Healing	允许神话治疗
 Allow Divination	允许占卜
 Allow Demonic Experiments	允许恶魔实验
-Sorting creature variations...	正在整理生物变体……	l
 The Forests of Heart	心之森林
 The Spotted Jungles	斑斓丛林
 
@@ -5172,7 +5169,6 @@ Abandoned houses	废弃房屋
 Abandoned shop	废弃商店
 Ruined house	房屋废墟
 Ruined houses	房屋废墟
-Sorting items...	正在整理物品……
 Last track: Dwarf Fortress - Dabu & Simon Swerwer	上一首曲目：Dwarf Fortress — Dabu & Simon Swerwer
 Last interlude: Toady Two - Dabu	上一首间奏：Toady Two — Dabu
 
@@ -6524,7 +6520,6 @@ These are the default Dwarf Fortress extinct	这些是《矮人要塞》的默�
 creatures.	生物。	wl
 These are the default Dwarf Fortress plants and fungi.	这些是《矮人要塞》的默认植物和真菌。	wl
 These are the default Dwarf Fortress civilizations.	这些是《矮人要塞》的默认政权。	wl
-Sorting creature bodies...	正在整理生物身体结构……	w
 Dwarvemon Entity Type	矮人宝可梦：按属性文明	w
 ENABLE ONE! Entities in Dwarvemon use certain types of	只能启用一个！Dwarvemon 中的实体仅包含特定类型的	wl
 Pokemon available.	可用宝可梦。	wl
@@ -11974,8 +11969,6 @@ Your adventure has come to an end.	你的冒险已告终。	w
 You settle in this location...	你在此地安顿下来……	w
 # All native save-stage captions, including the previously absent stages.
 Checking directory structure...	正在检查文件夹结构……	w
-Allocating space...	正在分配空间……	w
-Opening file...	正在打开文件……	w
 Saving game	正在保存游戏	w
 Saving tracking information...	正在保存追踪信息……	w
 Preliminary cleaning...	正在进行初步清理……	w
@@ -12022,8 +12015,6 @@ Saving mandates...	正在保存命令……	w
 Saving active historical figures...	正在保存活跃历史人物……	w
 Saving coin information...	正在保存钱币信息……	w
 Characterizing raw data...	正在整理原始数据……	w
-Closing file...	正在关闭文件……	w
-Finishing...	正在完成保存……	w
 # Help-menu title rows must remain ordinary captions, alongside the complete
 # help prose already in help-translations.tsv, rather than prose-only lookups.
 Fortress mode	要塞模式	w
@@ -15263,3 +15254,134 @@ Preference reason: yummy hearts	美味的菜心	l
 Preference reason: zen mode	达摩模式	l
 Preference reason: zippers	拉链	l
 Preference reason: コメント さくせいちゅう	说明编写中	l
+
+# Native load-game mod dialog; authored names and versions are separate fields.
+Load game mod dialog: Failed to find compatible mod:	找不到兼容的模组：	l
+Load game mod dialog: Failed to install mod:	模组安装失败：	l
+Load game mod dialog: Newer compatible version of mod detected:	发现兼容的模组新版本：	l
+Load game mod dialog:  (save uses 	（存档使用 	l
+Load game mod dialog: , not found	，未找到该版本	l
+Load game mod dialog: )	）	l
+Load game mod dialog: Update	更新	l
+Load game mod dialog: Update all	全部更新	l
+Load game mod dialog: Don't update	不更新	l
+Load game mod dialog: Don't update any	全部不更新	l
+Load game mod dialog: Back to title	返回主菜单	l
+
+# Complete new-game/saved-game loading branches from both configured PE images.
+Loading world to start new game	正在加载世界以开始新游戏	w
+Opening file...	正在打开文件……	w
+Loading object files...	正在加载对象文件……	w
+Sorting text...	正在整理文本……	w
+Sorting material templates...	正在整理材料模板……	w
+Sorting inorganics...	正在整理无机物……	w
+Sorting plants...	正在整理植物……	w
+Sorting tissue templates...	正在整理组织模板……	w
+Sorting items...	正在整理物品……	w
+Sorting buildings...	正在整理建筑……	w
+Sorting body detail plans...	正在整理身体细节方案……	w
+Sorting creature bodies...	正在整理生物身体结构……	w
+Sorting creature variations...	正在整理生物变体……	w
+Sorting creatures...	正在整理生物……	w
+Sorting entities...	正在整理文明……	w
+Sorting languages...	正在整理语言……	w
+Sorting descriptors...	正在整理描述词……	w
+Sorting reactions...	正在整理反应……	w
+Sorting interactions...	正在整理交互……	w
+Sorting music...	正在整理音乐……	w
+Sorting sounds...	正在整理音效……	w
+Processing languages...	正在处理语言……	w
+Processing inorganics...	正在处理无机物……	w
+Processing plants...	正在处理植物……	w
+Processing items...	正在处理物品……	w
+Processing creatures...	正在处理生物……	w
+Processing entities...	正在处理文明……	w
+Processing reactions...	正在处理反应……	w
+Processing interactions...	正在处理交互……	w
+Processing music...	正在处理音乐……	w
+Processing sounds...	正在处理音效……	w
+Finalizing languages...	正在完成语言……	w
+Finalizing descriptors...	正在完成描述词……	w
+Finalizing material templates...	正在完成材料模板……	w
+Finalizing inorganics...	正在完成无机物……	w
+Finalizing plants...	正在完成植物……	w
+Finalizing tissue templates...	正在完成组织模板……	w
+Finalizing items...	正在完成物品……	w
+Finalizing buildings...	正在完成建筑……	w
+Finalizing body detail plans...	正在完成身体细节方案……	w
+Finalizing creature variations...	正在完成生物变体……	w
+Finalizing creatures...	正在完成生物……	w
+Finalizing entities...	正在完成文明……	w
+Finalizing reactions...	正在完成反应……	w
+Finalizing interactions...	正在完成交互……	w
+Preparing material data...	正在准备材料数据……	w
+Generating inorganics...	正在生成无机物……	w
+Generating plants...	正在生成植物……	w
+Generating items...	正在生成物品……	w
+Generating creatures...	正在生成生物……	w
+Generating entities...	正在生成文明……	w
+Generating reactions...	正在生成反应……	w
+Generating interactions...	正在生成交互……	w
+Finalizing generated objects...	正在完成生成的对象……	w
+Preparing graphics...	正在准备图像……	w
+Finishing...	正在完成……	w
+Allocating space...	正在分配空间……	w
+Loading items...	正在加载物品……	w
+Loading buildings...	正在加载建筑……	w
+Loading entities...	正在加载文明……	w
+Loading coin information...	正在加载钱币信息……	w
+Loading map data...	正在加载地图数据……	w
+Loading civilized populations...	正在加载文明人口……	w
+Loading history...	正在加载历史……	w
+Loading parameters...	正在加载参数……	w
+Loading artifacts...	正在加载神器……	w
+Loading active historical figures...	正在加载活跃历史人物……	w
+Loading squads...	正在加载小队……	w
+Loading formations...	正在加载阵形……	w
+Loading activities...	正在加载活动……	w
+Loading interactions...	正在加载交互……	w
+Loading written content...	正在加载书面内容……	w
+Loading identities...	正在加载身份……	w
+Loading incidents...	正在加载事件记录……	w
+Loading crimes...	正在加载犯罪记录……	w
+Loading vehicles...	正在加载载具……	w
+Loading armies...	正在加载军队……	w
+Loading army controllers...	正在加载军队控制信息……	w
+Loading tracking information...	正在加载追踪信息……	w
+Loading cultural identities...	正在加载文化身份……	w
+Loading agreements...	正在加载协议……	w
+Loading art forms...	正在加载艺术形式……	w
+Loading occupations...	正在加载职位……	w
+Loading belief systems...	正在加载信仰体系……	w
+Loading image sets...	正在加载图像集……	w
+Loading divination sets...	正在加载占卜数据……	w
+Closing file...	正在关闭文件……	w
+Rebuilding temporary information...	正在重建临时信息……	w
+Preparing game...	正在准备游戏……	w
+Failed!	加载失败！	w
+Loading world and continuing active game	正在加载世界并继续当前游戏	w
+Loading units...	正在加载单位……	w
+Loading jobs...	正在加载工作……	w
+Loading schedules...	正在加载日程……	w
+Loading projectiles...	正在加载飞行物……	w
+Loading machines...	正在加载机械……	w
+Loading flow guides...	正在加载流体导向装置……	w
+Loading effects...	正在加载效果……	w
+Loading local animal populations...	正在加载当地动物种群……	w
+Loading events...	正在加载事件……	w
+Loading mandates...	正在加载指令……	w
+Loading work quotas...	正在加载工作配额……	w
+Loading world events...	正在加载世界事件……	w
+Loading announcements...	正在加载公告……	w
+Loading fortress information...	正在加载要塞信息……	w
+Loading world information...	正在加载世界信息……	w
+Loading adventure...	正在加载冒险数据……	w
+Loading general information...	正在加载常规信息……	w
+Rebuilding more temporary information...	正在重建其余临时信息……	w
+Preparing game screen...	正在准备游戏界面……	w
+Handling compatibility issues...	正在处理兼容性问题……	w
+Error	错误	hP
+Worldgen has been aborted due to an error.	发生错误，世界生成已中止。	hP
+Game load has been aborted due to an error.	发生错误，游戏加载已中止。	hP
+Failed to find compatible mod:	找不到兼容的模组：	hP
+Failed to install mod:	模组安装失败：	hP
