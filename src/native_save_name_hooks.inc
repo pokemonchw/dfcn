@@ -1,6 +1,6 @@
 // Observe native world-site serialization, not byte patterns or English words.
-// The list reuses its own file_compressorst to read the indexed record. Index
-// creation only accompanies a world load/save already requested by the game.
+// The list reuses its own file_compressorst. An index is an accelerator: on a
+// miss the native region reader supplies the site's record during list loading.
 #ifdef _WIN32
 namespace native_saved_sites {
 using Open = bool (*)(void *, const NativeString *, bool);
@@ -18,6 +18,9 @@ using RawWrite = void *(*)(void *, const void *, int64_t);
 using Seek = void *(*)(void *, int64_t, int32_t);
 using Fileno = int (*)(void *);
 using OsHandle = intptr_t (*)(int);
+using RegionConstructor = void *(*)(void *);
+using RegionDestructor = void (*)(void *);
+using ReadRegion = void (*)(void *, void *, int32_t, bool);
 static Open open = nullptr;
 static Header header = nullptr;
 static WriteHeader write_header = nullptr;
@@ -31,6 +34,9 @@ static Fixup fixup = nullptr;
 static Seek seek = nullptr;
 static Fileno game_fileno = nullptr;
 static OsHandle game_os_handle = nullptr;
+static RegionConstructor construct_region = nullptr;
+static RegionDestructor destroy_region = nullptr;
+static ReadRegion read_region = nullptr;
 static NativeCallHook hook;
 static NativeImportHook raw_read_hook, raw_write_hook;
 
@@ -72,6 +78,7 @@ struct Record {
 struct Observed {
     void *stream = nullptr;
     bool reading = false;
+    bool failed = false;
     int32_t version = 0;
     uint64_t position = 0, block = 0, size = 0;
     std::string header_key;
@@ -91,6 +98,7 @@ struct Pending {
     const void *header = nullptr;
     uint64_t size = 0;
     NativeSaveNameSource source;
+    std::shared_ptr<Observed> state;
 };
 static thread_local Pending pending;
 
@@ -297,6 +305,9 @@ static bool read_indexed_record(void *stream, uint64_t size, const Record &recor
     }
     return actual == record.bytes;
 }
+
+#include "native_save_name_reader.inc"
+
 static void *observe_read(void *input, void *output, int64_t count) {
     NativeInputCallbackScope callback;
     auto state = observed(static_cast<unsigned char *>(input) - 8);
@@ -310,6 +321,7 @@ static void *observe_read(void *input, void *output, int64_t count) {
                 output == field<void *>(state->stream, 0x138))
             state->block = state->position - 4;
         state->position += static_cast<uint64_t>(count);
+        if (state->position > state->size) state->failed = true;
     }
     return result;
 }
@@ -366,10 +378,11 @@ static void capture_read_site(void *site, void *stream, int32_t version) {
     auto record = state ? record_position(*state) : std::nullopt;
     callback.call_native([&] { read_site(site, stream, version); });
     try {
-        if (state && record && state->sites.size() < 131072 &&
-                capture_record(reinterpret_cast<uintptr_t>(site), *record))
+        if (state && record && capture_record(reinterpret_cast<uintptr_t>(site), *record)) {
+            if (state->sites.size() >= 131072) { state->failed = true; return; }
             state->sites.insert_or_assign(field<int32_t>(record->bytes.data(), 67), std::move(*record));
-    } catch (...) {}
+        }
+    } catch (...) { if (state) state->failed = true; }
 }
 static void capture_write_site(void *site, void *stream) {
     NativeInputCallbackScope callback;
@@ -431,23 +444,55 @@ static bool capture_list_open(void *stream, const NativeString *path, bool readi
     NativeInputCallbackScope callback;
     const bool result = callback.call_native([&] { return open(stream, path, reading); });
     pending = {};
-    if (result && reading) {
-        pending.stream = stream;
-        pending.size = file_size(stream);
-    }
+    try {
+        std::lock_guard lock(streams_mutex);
+        streams.erase(stream);
+        if (result && reading) {
+            pending.stream = stream;
+            pending.size = file_size(stream);
+            pending.state = std::make_shared<Observed>();
+            pending.state->stream = stream;
+            pending.state->reading = true;
+            pending.state->size = pending.size;
+            streams.emplace(stream, pending.state);
+        }
+    } catch (...) { pending = {}; }
     return result;
 }
 static bool capture_list_header(void *output, void *stream, int32_t version) {
     NativeInputCallbackScope callback;
+    struct ReleaseStream {
+        void *stream;
+        ~ReleaseStream() {
+            std::lock_guard lock(streams_mutex);
+            streams.erase(stream);
+        }
+    } release{stream};
     const bool result = callback.call_native([&] { return header(output, stream, version); });
     try {
-        if (!result || stream != pending.stream || !pending.size) return result;
+        if (!result || stream != pending.stream || !pending.size || !pending.state) return result;
         pending.header = output;
         const auto key = capture_header_key(output, version, pending.source);
         if (key.empty()) return result;
-        auto record = read_index(index_path(key, pending.size));
-        if (read_indexed_record(stream, pending.size, record))
-            pending.source.identity = std::make_shared<NativeHistoryName>(std::move(record.name));
+        auto &state = *pending.state;
+        const auto after_header = record_position(state);
+        state.version = version;
+        state.header_key = key;
+        state.source = pending.source;
+        try {
+            auto record = read_index(index_path(key, pending.size));
+            if (read_indexed_record(stream, pending.size, record)) {
+                pending.source.identity = std::make_shared<NativeHistoryName>(std::move(record.name));
+                return result;
+            }
+        } catch (...) {} // A missing cache must enter the native reader below.
+        if (after_header)
+            if (auto record = read_unindexed_site(state, *after_header)) {
+                pending.source.identity = std::make_shared<NativeHistoryName>(record->name);
+                // Persistence is optional; the current list already owns its
+                // result even if the index directory cannot be written.
+                try { publish(state, *record); } catch (...) {}
+            }
     } catch (...) { pending.source.identity.reset(); }
     return result;
 }
@@ -520,6 +565,9 @@ static bool install_native_save_name_hook() {
     close = reinterpret_cast<Close>(base + close_rva);
     close_output = reinterpret_cast<CloseOutput>(base + close_output_rva);
     fixup = reinterpret_cast<Fixup>(base + fixup_rva);
+    construct_region = reinterpret_cast<RegionConstructor>(base + (classic ? 0x7a58e0 : 0x7a80e0));
+    destroy_region = reinterpret_cast<RegionDestructor>(base + (classic ? 0x7a5c70 : 0x7a8470));
+    read_region = reinterpret_cast<ReadRegion>(base + (classic ? 0xf16b80 : 0xf1be30));
     raw_read_hook.slot = reinterpret_cast<void **>(base + (classic ? 0x15fb568 : 0x16005a8));
     raw_read_hook.replacement = reinterpret_cast<void *>(&observe_read);
     raw_write_hook.slot = reinterpret_cast<void **>(base + (classic ? 0x15fb560 : 0x16005a0));

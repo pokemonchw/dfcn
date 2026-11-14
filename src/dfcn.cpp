@@ -3973,6 +3973,7 @@ public:
     void clear_conversation_choices() { capture_conversation_choices({}); }
     int native_knowledge_required_rows(const std::string &source, int width,
         bool personality = false, bool health = false, bool thoughts = false) const;
+    bool capture_name_word_forms(NativeHistoryName &name) const;
 
 private:
     std::vector<Match> announcement_log_prepared_matches_;

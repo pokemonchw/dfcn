@@ -154,6 +154,20 @@ bool Overlay::load_site_name_imagery() {
     return !site_name_imagery_.empty();
 }
 
+bool Overlay::capture_name_word_forms(NativeHistoryName &name) const {
+    // Read the exact saved WORD/POS form. This annotates serialized slots;
+    // it neither infers their positions nor translates the resulting name.
+    for (auto &word : name.words) {
+        if (word.id.empty()) continue;
+        if (word.part_of_speech < 0 || word.part_of_speech > 8) return false;
+        const auto found = history_english_name_forms_.find(word.id);
+        if (found == history_english_name_forms_.end()) return false;
+        word.english_form = found->second[size_t(word.part_of_speech)];
+        word.has_form = !word.english_form.empty();
+    }
+    return true;
+}
+
 std::optional<std::string> Overlay::localize_site_name(const NativeHistoryName &name,
         std::string_view suffix) const {
     if (!name.has_name || !name.first_name.empty() ||
