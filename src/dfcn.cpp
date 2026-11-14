@@ -44016,6 +44016,7 @@ void Overlay::render(SDL_Renderer *renderer) {
         native_ui_toolbar_tooltip_.reset();
         return;
     }
+    (void)install_native_dfhack_texture_hook();
     (void)install_native_dfhack_render_layers();
     (void)install_native_dfhack_capture_hook();
     (void)install_native_dfhack_console_hook();

@@ -131,6 +131,7 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_dfhack_lua_output_hooks.inc"
 #include "native_dfhack_sitemap_hooks.inc"
 #include "native_dfhack_messagebox_hooks.inc"
+#include "native_dfhack_texture_hooks.inc"
 #include "native_dfhack_prompt_hooks.inc"
 #include "native_dfhack_stonesense_hooks.inc"
 #include "native_render_resources.inc"
@@ -213,6 +214,7 @@ static bool install_sdl_hooks() {
     }
     // DFHack may be loaded after this core. Present retries this optional
     // observer until its exported tile hook is available.
+    (void)install_native_dfhack_texture_hook();
     (void)install_native_dfhack_render_layers();
     (void)install_native_dfhack_capture_hook();
     (void)install_native_dfhack_console_hook();
@@ -256,6 +258,7 @@ static void uninstall_sdl_hooks() {
     uninstall_native_dfhack_stonesense_hook();
     uninstall_native_dfhack_prompt_hook();
     uninstall_native_dfhack_messagebox_hook();
+    uninstall_native_dfhack_texture_hook();
     uninstall_native_dfhack_console_hook();
     uninstall_native_dfhack_render_layers();
     uninstall_native_dfhack_capture_hook();
@@ -334,6 +337,7 @@ static bool native_hooks_detached() {
         !native_dfhack_lua_output_hook_active() &&
         !native_dfhack_sitemap_hook_active() &&
         !native_dfhack_messagebox_hook_active() &&
+        !native_dfhack_texture_hook_active() &&
         !native_dfhack_prompt_hook_active() &&
         !native_dfhack_stonesense_hook_active() &&
         !g_native_stone_use_guard.active() &&

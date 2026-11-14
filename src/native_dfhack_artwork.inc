@@ -92,6 +92,7 @@ struct NativeDfhackAutotrainingSquadText {
 static std::optional<NativeDfhackAutotrainingSquadText> lookup_native_dfhack_autotraining_squad_text(
     const graphicst *gps, int x, int y, std::string_view visible);
 static bool install_native_dfhack_messagebox_hook();
+static bool install_native_dfhack_texture_hook();
 static bool install_native_dfhack_prompt_hook();
 static bool install_native_dfhack_stonesense_hook();
 static bool native_dfhack_stonesense_hook_active();
