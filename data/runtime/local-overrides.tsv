@@ -3743,6 +3743,8 @@ Ammo	弹药	wi
 Cloth	布	wi
 Corpses	尸体	wi
 # Shared filled-container packing words; never whole material/content names.
+bin	储物箱	wi
+bins	储物箱	wi
 Storage container packing: barrel	桶装	wi
 Storage container packing: bag	袋装	wi
 Storage container packing: bin	箱装	wi
@@ -6396,7 +6398,7 @@ Category	类别	w
 Work orders are used to automate Tasks in Workshops.	工作命令用于自动安排工坊中的任务。	wl
 These work orders are set to complete a certain number of	这些工作命令会被设定为完成一定数量的	wl
 Tasks and can be given start conditions.	任务，也可以设置启动条件。	wl
-For instance, you can create an order to Make Wooden Bins	例如，你可以创建“制作木箱”命令，	wl
+For instance, you can create an order to Make Wooden Bins	例如，你可以创建“制作木制储物箱”命令，	wl
 if you are out of empty ones, to Brew Drinks if you are	在空箱耗尽时执行；也可以在饮料	wl
 running low, or to Make Five Statues every month.	不足时酿造饮料，或每月制作五座雕像。	wl
 You can limit work orders to a number of Workshops. You	你可以限定工作命令适用的工坊数量，也	wl
@@ -13323,7 +13325,7 @@ DFHack help: Restrict the materials used for automatically manufacturing clothin
 DFHack help: "autoclothing cloth "short skirt" 1" Ensures that every citizen will have a cloth short skirts available (as long as there is cloth available to make them out of).	"autoclothing cloth "短裙"1" 确保每个居民都有可用的布短裙（只要有布可以制作）。	l
 DFHack help: Fixes crafted items not wearing out over time (Bug 6003). With this tweak, items made from cloth and leather will gain a level of wear every 20 in-game years.	修复了制作的物品不会随着时间的推移而磨损的问题（错误 6003）。通过此调整，由布和皮革制成的物品将在游戏中每 20 年获得一定程度的磨损。	l
 Potash is the fertilizer of choice, and it can be created in the Ashery, using Ash from Wood burned in a Wood Furnace. A Water Source zone and a Bucket are also required.	[C:6:0:1]草碱[C:7:0:0]是合适的肥料。先在[C:6:0:0]烧木窑[C:7:0:0]中燃烧[C:6:0:1]木材[C:7:0:0]获得[C:6:0:1]灰烬[C:7:0:0]，再用[C:6:0:0]灰坊[C:7:0:0]制作草碱。这还需要一个[C:3:0:0]取水区[C:7:0:0]和一只[C:6:0:1]水桶[C:7:0:0]。	hq
-For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作树木储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。	hq
+For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作木制储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。	hq
 DFHack help: "gui/create-item --unrestricted --count 1" Create one item made of anything in the game. For example, you can create a bar of vomit, if you please.	"gui/create-item --unrestricted --count 1" 创建一件由游戏中任何东西制成的物品。例如，如果您愿意，您可以创建一个呕吐物条。	l
 A small, spineless, eel-like fish that lives on the bottom of the ocean. It can turn the water around its body into a cloud of slime to escape predators.	一种生活在海底的、小型、无刺、类似鳗鱼的鱼。 它可以把身体周围的水变成一团黏液，以逃离捕食者。	lP
 Any ability you possess that doesn't fit elsewhere will appear here. For instance, many creatures can spit or pet animals. Others can breathe fire.	你拥有但不属于其他分类的能力会显示在这里。例如，许多生物可以唾液或抚摸动物，有些还能喷火。	hq
@@ -13479,7 +13481,7 @@ addition of masterful cloth in {p}.	在{p1}，添加杰作级的布装饰。	htE
 and added masterful cloth to a {i}.	并为{i1}添加了杰作级的布装饰。	ht
 {a} added masterful cloth to a {i}.	{a1}为{i1}添加了杰作级的布装饰。	ht
 Fortress activity: Make wooden bed	制作树木床	li
-Fortress activity: Make wooden bin	制作树木储物箱	li
+Fortress activity: Make wooden bin	制作木制储物箱	li
 Native history office: first drink	第一份酒	h
 Native history office: first mucus	第一黏液	h
 Native history office: first vomit	第一呕吐物	h

@@ -203,7 +203,7 @@ You can also cause trouble if you'd like to raid your neighbors.	你也可以主
 Raids are created by clicking on any site not belonging to your civilization.	点击不属于你所在政权的地点，即可安排袭击。
 Work orders are used to automate Tasks in Workshops.	[C:7:0:0]工单用于自动安排[C:6:0:0]工坊[C:3:0:1]任务[C:7:0:0]。
 These work orders are set to complete a certain number of Tasks and can be given start conditions.	[C:7:0:0]可以设置订单完成一定数量的[C:3:0:1]任务[C:7:0:0]，并为其指定启动条件。
-For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作树木储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。
+For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作木制储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。
 You can limit work orders to a number of Workshops.	[C:7:0:0]你可以限制执行订单的[C:6:0:0]工坊[C:7:0:0]数量。
 You can also create work orders at specific Workshops from their building sheet.	[C:7:0:0]也可以从某座[C:6:0:0]工坊[C:7:0:0]的建筑信息面板中，创建仅由该工坊执行的订单。
 The system is reasonably powerful and you can eventually automate almost all of your production if you wish.	这套系统功能相当强大，只要愿意，最终几乎可以让所有生产自动进行。

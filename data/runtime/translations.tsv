@@ -2467,7 +2467,7 @@ DFHack help: This overlay is managed via the overlay framework. It can be contro
 DFHack help: This script allows the player to take direct control of any unit present in adventure mode whilst giving up control of their current player character.	该脚本允许玩家直接控制冒险模式中存在的任何单位，同时放弃对当前玩家角色的控制。	l
 DFHack help: You can load individual named plugins or all plugins at once. Note that plugins are disabled after loading/reloading until you explicitly enable them.	您可以加载单个命名插件或一次加载所有插件。请注意，插件在 loading/reloading 之后将被禁用，直到您明确启用它们。	l
 DFHack help: ogr2ogr -a_srs "EPSG:3857" -of Parquet regions.parquet -oo 'GEOM_POSSIBLE_NAMES=*wkt' -oo 'KEEP_GEOM_COLUMNS=NO' -oo 'AUTODETECT_TYPE=YES' regions.csv	ogr2ogr -a_srs "EPSG:3857" -of 镶木地板区域.镶木地板 -oo 'GEOM_POSSIBLE_NAMES=*wkt' -oo 'KEEP_GEOM_COLUMNS=NO' -oo 'AUTODETECT_TYPE=YES' regions.csv	l
-For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作树木储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。	hq
+For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作木制储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。	hq
 Make crossbows here from wood or bone. The metalsmith's forge can be used for metal crossbows and metal bolts, and the crafts workshop is used to make other bolts.	在这里用木材或骨头制作弩。金属弩和金属弩箭可在金属锻造坊制作，其他弩箭则在工艺品工坊制作。	hj
 and received the title of {s} after attaining sufficient skill with {s}, participating in {d} battles, slaying an enemy, and being a member for a year in the wilds	并在荒野中在{s2}方面达到足够的技艺水平、参加{d1}场战斗、杀死一名敌人及入会满一年后，获得了{s1}头衔	ht
 and received the title of {s} after attaining sufficient skill with {s}, participating in {d} battles, slaying {d} enemies, and {d} years of membership during {e}.	并在{e1}期间在{s2}方面达到足够的技艺水平、参加{d1}场战斗、杀死{d2}名敌人及拥有{d3}年会龄后，获得了{s1}头衔。	ht
@@ -30004,7 +30004,7 @@ DFHack hotkeys hint: Clean the map tile under the cursor.	清理光标所在的�
 Default attack is a strike without charging or wrestling.	默认使用普通打击，不冲锋或摔跤。	hj
 Don't serve anyone blindly. You'll only get into trouble.	不要盲目效忠任何人，那只会惹祸上身。	hPD
 First you need building materials, like Wood or Boulders.	[C:7:0:0]首先，你需要[C:6:0:1]木材[C:7:0:0]或[C:6:0:1]石材[C:7:0:0]等建筑材料。	hq
-For instance, you can create an order to Make Wooden Bins	例如，你可以创建“制作木箱”命令，	wl
+For instance, you can create an order to Make Wooden Bins	例如，你可以创建“制作木制储物箱”命令，	wl
 Gladly. May this new age of harmony last a thousand year.	乐意之至。愿这太平盛世延续千年。	hPD
 Go to the previous zone overlapping the tile you clicked.	切换到与所点击地格重叠的上一个区域。	hj
 Guide {s} immediately when at least {d}% of desired items	所需物品装载量不低于{d1}%时，立即引导矿车向{s1}行驶	hPt
@@ -109585,6 +109585,8 @@ State the value of tranquility	阐述宁静的价值	hP
 State the worthlessness of law	阐述法律毫无价值	hP
 Storage container packing: bag	袋装	wi
 Storage container packing: bin	箱装	wi
+bin	储物箱	wi
+bins	储物箱	wi
 Storage container packing: cup	杯装	wi
 Storage container packing: jug	壶装	wi
 Storage container packing: mug	杯装	wi
