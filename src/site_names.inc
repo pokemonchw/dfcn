@@ -311,54 +311,6 @@ std::string Overlay::site_name_full_transliteration(const NativeHistoryName &nam
     return transliterate_site_spelling(name.native_name);
 }
 
-// Annotate a serialized name with existing RAW forms, then compare both
-// displayed fields. WORD indices and POS have already been read from the
-// save; spelling never chooses or moves any of the seven slots.
-bool Overlay::match_saved_site_name(NativeHistoryName &name,
-        std::string_view language, std::string_view complete) const {
-    const auto pair = split_generated_name_identity(complete);
-    if (!pair || !name.has_name || name.type != 4 ||
-            !name.first_name.empty() || !name.nickname.empty()) return false;
-    for (auto &word : name.words) {
-        if (word.id.empty()) continue;
-        const auto found = history_english_name_forms_.find(word.id);
-        if (found == history_english_name_forms_.end() ||
-                word.part_of_speech < 0 || word.part_of_speech > 8) return false;
-        word.english_form = found->second[size_t(word.part_of_speech)];
-        word.has_form = !word.english_form.empty();
-    }
-    const auto english = reconstruct_site_english_name(name);
-    if (!english || lower_native_name(*english) !=
-            lower_native_name(std::string(pair->gloss))) return false;
-    const uint8_t mask = language == "DWARF" ? 1 : language == "ELF" ? 2 :
-        language == "GOBLIN" ? 4 : language == "HUMAN" ? 8 : 0;
-    if (!mask) return false;
-    std::array<std::string, 7> native;
-    for (const auto &[spelling, meanings] : native_name_word_languages_)
-        for (size_t slot = 0; slot < name.words.size(); ++slot) {
-            if (name.words[slot].id.empty()) continue;
-            for (const auto &[word, languages] : meanings)
-                if ((languages & mask) && word == name.words[slot].id) {
-                    if (!native[slot].empty() && native[slot] != spelling) return false;
-                    native[slot] = spelling;
-                }
-        }
-    for (size_t slot = 0; slot < native.size(); ++slot) {
-        if (!name.words[slot].id.empty() && native[slot].empty()) return false;
-    }
-    std::string spelling;
-    for (const auto &group : {native[0] + native[1],
-            native[2] + native[3] + native[4] + native[5], native[6]}) {
-        if (group.empty()) continue;
-        if (!spelling.empty()) spelling += ' ';
-        spelling += group;
-    }
-    if (lower_native_name(std::string(trim_view(spelling))) !=
-            lower_native_name(std::string(pair->native_name))) return false;
-    name.native_name = std::string(pair->native_name);
-    return true;
-}
-
 std::optional<std::string> Overlay::translate_saved_name(
         const NativeSaveNameSource &source) const {
     if (source.original.empty()) return std::nullopt;
@@ -414,13 +366,12 @@ std::optional<std::string> Overlay::translate_saved_name(
                 identity = std::move(fortress);
             else identity = resolve_site_reference_name(source.original);
         }
-        const auto english = translate_english_site_name(
-            pair->gloss, identity ? &*identity : nullptr, "堡");
+        const auto english = identity ? translate_english_site_name(
+            pair->gloss, &*identity, "堡") : std::nullopt;
         const auto native = identity && identity->site_id >= 0
             ? site_name_full_transliteration(*identity)
             : transliterate_site_spelling(pair->native_name);
-        return native + "，“" + english.value_or(
-            native_text_to_utf8(pair->gloss) + "堡") + "”";
+        return native + "，“" + english.value_or(native_text_to_utf8(pair->gloss)) + "”";
     }
     // A header without an English name retains only its original spelling.
     // It supplies neither WORD/POS nor a site subtype, so do not infer a
