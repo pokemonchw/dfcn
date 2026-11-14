@@ -204,6 +204,22 @@ Offerings from {e}:	来自{e}的赠礼：
 # Agreement headers use the same dynamic entity/place name as the totals.
 Trade Agreement (Exports to {e})	贸易协议（向{e}出口）
 Requests (Imports from {e})	商品需求（从{e}进口）
+# Civilization detail renderer and suppliers: see extracted/civilization-detail.
+# Years, pending status and quotas are owned native fields, not word rules.
+Agreed in year {d}	于第{d}年达成协议
+Pending	待生效
+Lumber limits	伐木限额
+Lumber limits {d}/{d}	伐木限额 {d1}/{d2}
+Something	某项事宜
+You accept their tribute every Spring.	你每年春季接受其贡赋。
+You accept their tribute every Summer.	你每年夏季接受其贡赋。
+You accept their tribute every Autumn.	你每年秋季接受其贡赋。
+You accept their tribute every Winter.	你每年冬季接受其贡赋。
+# The native default season branch emits no season, but still emits the period.
+You accept their tribute every .	你定期接受其贡赋。
+# These two lines are separate native draws; the complete paragraph remains below.
+You can look at trade information once you have	任命一名拥有估价技能的交易员后，
+a broker with appraisal skill.	即可查看贸易信息。
 # Siege mode descriptions and training notes share the native left margin.
 Fire at enemies	向敌人射击
 Practice fire	进行训练射击

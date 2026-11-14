@@ -1,0 +1,24 @@
+[
+  {
+    "edition": "reference",
+    "path": "D:\\program\\steam\\steamapps\\common\\Dwarf Fortress\\Dwarf Fortress.exe",
+    "format": "PE32+",
+    "image_base": "0x140000000",
+    "renderer": "0x1401c4550",
+    "detail_region": [
+      "0x1401c77f4",
+      "0x1401c8eff"
+    ]
+  },
+  {
+    "edition": "classic",
+    "path": "C:\\Users\\WIN11\\Downloads\\df_53_17_win\\Dwarf Fortress.exe",
+    "format": "PE32+",
+    "image_base": "0x140000000",
+    "renderer": "0x1401c44e0",
+    "detail_region": [
+      "0x1401c7784",
+      "0x1401c8e8f"
+    ]
+  }
+]

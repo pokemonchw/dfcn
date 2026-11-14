@@ -11584,9 +11584,9 @@ Forbidden	禁止通行	w
 # Engraving info header: native 0x1401a9e66/0x1401a9ec4 fallback title.
 Untitled	无题	w
 
-# World civilization agreements: complete logging quota and agreement year.
+# The civilization panel's whole rows (year, quota, pending and tribute)
+# belong to ui-messages.tsv. Keep the ordinary standalone label here.
 Lumber limits	伐木限额	w
-Agreed in year {d}	于第{d}年达成协议	wt
 
 # Native civilization trade summary values, Windows 0x1401c4c64..0x1401c52ce.
 # These hostile-civilization entries deliberately replace trade amounts;

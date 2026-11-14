@@ -42996,6 +42996,7 @@ You are hereby charged to retrieve {b} for {e}.	现命你为{e1}取回{b1}。	hP
 You are in the middle of improvised music, {e}.	你正在以{e1}的形式即兴演奏。	hPt
 You are in the middle of reciting the poem {b}.	你正在朗诵诗歌《{b1}》。	hPt
 You begin a sermon on the worthlessness of {s}.	你开始布道，宣讲{s1}毫无价值。	hPt
+You can look at trade information once you have	任命一名拥有估价技能的交易员后，	hP
 You can't fell trees because you can't breathe.	你无法呼吸，不能砍树。	hP
 You can't rest because you are dying of thirst.	你快渴死了，无法休息。	hP
 You could nearly pass for the voice of the {s}.	你发出的声音几乎能以假乱真，听起来就像{s1}。	hPt
@@ -75612,6 +75613,10 @@ World mission: Demand surrender at {p}	在{p}要求对方投降	ht
 World mission: Demand tribute from {p}	向{p}索取贡品	ht
 Wrestling Competition of in the wilds.	在荒野中，摔跤比赛。	hEi
 Written on the item is a entitled {b}.	物品上写有《{b1}》，作品类型未注明。	ht
+You accept their tribute every Autumn.	你每年秋季接受其贡赋。	hP
+You accept their tribute every Spring.	你每年春季接受其贡赋。	hP
+You accept their tribute every Summer.	你每年夏季接受其贡赋。	hP
+You accept their tribute every Winter.	你每年冬季接受其贡赋。	hP
 You and the {s} are indistinguishable!	你与{s1}的声音已让人无法分辨！	hPt
 You are thinking about this all wrong.	你对这件事的想法完全错了。	hPD
 You begin the musical composition {b}.	你开始演奏乐曲《{b1}》。	hPt
@@ -104570,6 +104575,7 @@ Wrestling Competition of in {p}.	在{p1}，摔跤比赛。	htEi
 Wrestling Competition within {p}	在{p1}，摔跤比赛	htEi
 X is making a submissive gesture	X正做出顺从的手势	wl
 X is prostrating itself before Y	X正匍匐在Y面前	wl
+You accept their tribute every .	你定期接受其贡赋。	hP
 You are a {s} in {s}, a {s}, and	你是一名{s}，身处{s}（{s}），并且	wtl
 You assume a submissive posture.	你摆出了投降姿态。	hP
 You begin improvised music, {e}.	你开始以{e1}的形式即兴演奏。	hPt
@@ -109769,6 +109775,7 @@ You're right. I need to relax.	你说得对。我需要放松一下。	hPD
 You've found a small creature.	你发现了一只小型生物。	hP
 Your strength has been broken.	你的力量已被摧毁。	hq
 Your strength has been broken.	你的力量已被击溃。	w
+a broker with appraisal skill.	即可查看贸易信息。	hP
 a ceremony held by {a} at {p}.	在{p1}，{a1}举办的仪式。	htEi
 a ceremony held by {a} in {d}.	{d1}年的{a1}举办的仪式。	htEi
 a ceremony held by {a} in {p}.	在{p1}，{a1}举办的仪式。	htEi
@@ -129503,6 +129510,7 @@ Loud grinding (heard)	响亮机械摩擦声（听到）	wl
 Loud movement (heard)	响亮移动声（听到）	wl
 Low kinesthetic sense	运动感知低	wil
 Lower left back teeth	左下臼齿	w
+Lumber limits {d}/{d}	伐木限额 {d1}/{d2}	hPt
 Main Ceremony at {p}.	在{p1}，主要仪式。	htEi
 Main Ceremony in {d}.	{d1}年的主要仪式。	htEi
 Main Ceremony in {p}.	在{p1}，主要仪式。	htEi
@@ -137822,7 +137830,7 @@ Age of {s} and {s}	{s1}与{s2}的时代	htEi
 Age of {s} at {p}.	在{p1}，{s1}时代。	htEi
 Age of {s} in {d}.	{d1}年的{s1}时代。	htEi
 Age of {s} in {p}.	在{p1}，{s1}时代。	htEi
-Agreed in year {d}	于第{d}年达成协议	wt
+Agreed in year {d}	于第{d1}年达成协议	hPt
 Air Race of at {p}	在{p1}，飞行竞赛	htEi
 Air Race of in {d}	{d1}年的飞行竞赛	htEi
 Air Race of in {p}	在{p1}，飞行竞赛	htEi
@@ -160775,6 +160783,7 @@ Low intuition	直觉低	wil
 Low toughness	韧性低	wil
 Low willpower	意志力弱	wil
 Loyal soldier	忠诚士兵	w
+Lumber limits	伐木限额	hP
 Lumber limits	伐木限额	w
 MEDIUM ISLAND	中等岛屿	w
 MEDIUM REGION	中等地区	w
@@ -177178,6 +177187,7 @@ Slate {d}	第{d}年 板岩月	wt
 Snatchers	绑架者	wi
 Socialize	社交	w
 Some soil	一些土壤	w
+Something	某项事宜	hP
 Status of	状态：	wi
 Stockpile	堆料区	wi
 Stone use	分配石材	wi
@@ -180774,6 +180784,7 @@ Passion	热血沸腾	w
 Patient	病患	w
 Peasant	平民	wi
 Peddler	小贩	wi
+Pending	待生效	hP
 Perform	表演	hq
 Pick up	拾取	w
 Pikeman	长枪手	wi

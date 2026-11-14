@@ -2016,6 +2016,25 @@ void Overlay::append_world_civilization_trade_summary(const NativeTextCard &deta
 void Overlay::append_world_civilization_messages(const NativeTextCard &details,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const {
     const int right = details.interior.x + details.interior.w;
+    const auto translate_commodity = [&](std::string_view source) -> std::optional<std::string> {
+        TranslationWorkScope work;
+        try {
+            // Both native agreement producers supply complete commodity names.
+            // Use the goods grammar before the historical-item prose guard:
+            // plant-growth lists contain commas, and material Crafts are a
+            // trade category rather than a particular finished-item type.
+            if (config_.compositional_rules) {
+                std::vector<size_t> origins;
+                const auto target = RULESETS.translate_with_origins(
+                    lower(native_text_to_utf8(source)), "::fortress::trade_requests", origins);
+                if (target && item_display_target_valid(*target)) return target;
+            }
+            return translate_legends_item(source);
+        } catch (const TranslationWorkLimit &) {
+            if (!work.owns_budget()) throw;
+            return std::nullopt;
+        }
+    };
     for (const auto &row : details.rows) {
         if (row.civilization_trade || row.civilization_official_source || row.source.empty()) continue;
         const auto append = [&](size_t begin, size_t end, std::string_view original,
@@ -2027,7 +2046,7 @@ void Overlay::append_world_civilization_messages(const NativeTextCard &details,
             std::vector<int> colors(complete.size(), row.foregrounds[begin]);
             std::vector<int> translated_colors;
             auto target = numeric ? std::optional<std::string>(native_text_to_utf8(complete))
-                : commodity ? translate_legends_item(complete)
+                : commodity ? translate_commodity(complete)
                 : translate_help_paragraph(complete, colors, translated_colors, true);
             if (!target && !commodity) target = exact_literal_translation(complete);
             Match match{x, row.y, static_cast<int>(source.size()), kWorldSiteRowRule,

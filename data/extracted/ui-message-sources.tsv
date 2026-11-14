@@ -50,6 +50,21 @@ world.civilization.trade	0x1433bbf+0x1433c04+0x1433c17	Offerings from {e}:
 # entity/place name and closing parenthesis complete each visible heading.
 world.civilization.trade-agreements	0x1602b88	Trade Agreement (Exports to {e})
 world.civilization.trade-agreements	0x1602ba8	Requests (Imports from {e})
+# Installed PE 53.17 renderer + six suppliers were extracted/decompiled for
+# both editions in civilization-detail/. These are native call-return VAs.
+# Prefix and year are joined from the same row before the UI-message matcher.
+world.civilization.agreement-year	0x1401c86f7+0x1401c8738	Agreed in year {d}
+world.civilization.agreement-pending	0x1401c87a0	Pending
+world.civilization.agreement-topic	0x140ae13f0+0x1401c840d	Lumber limits
+world.civilization.agreement-quota	0x1401c840d+0x1401c84b2+0x1401c84f7	Lumber limits {d}/{d}
+world.civilization.agreement-topic-default	0x140ae13f0+0x1401c840d	Something
+world.civilization.tribute-spring	0x1401c819d+0x1401c829d+0x1401c82d7	You accept their tribute every Spring.
+world.civilization.tribute-summer	0x1401c819d+0x1401c8266+0x1401c82d7	You accept their tribute every Summer.
+world.civilization.tribute-autumn	0x1401c819d+0x1401c822f+0x1401c82d7	You accept their tribute every Autumn.
+world.civilization.tribute-winter	0x1401c819d+0x1401c81f5+0x1401c82d7	You accept their tribute every Winter.
+world.civilization.tribute-default	0x1401c819d+0x1401c82d7	You accept their tribute every .
+world.civilization.broker-first-line	0x1401c80b6	You can look at trade information once you have
+world.civilization.broker-second-line	0x1401c8105	a broker with appraisal skill.
 # Adventure announcements: Windows PE literal file offsets; equipment items
 # use {i} captures (including articles); complete anatomical parts use {t}.
 # Shared social/knowledge constructors, not only the adventure input handlers.

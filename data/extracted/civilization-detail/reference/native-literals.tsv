@@ -1,0 +1,683 @@
+scope	instruction	address	kind	literal
+world-report-render	0x1401c4da6	0x14161f3f8	cstring	 days' travel
+world-report-render	0x1401c4db4	0x14161f408	cstring	More than a day's travel
+world-report-render	0x1401c4dc2	0x14161f428	cstring	A day's travel
+world-report-render	0x1401c4dd0	0x14161f438	cstring	Nearly a day's travel
+world-report-render	0x1401c4dde	0x14161f450	cstring	A half day's travel
+world-report-render	0x1401c4de9	0x14161f468	cstring	A short trip
+world-report-render	0x1401c4df2	0x14161f478	cstring	Inaccessible from your location
+world-report-render	0x1401c4e52	0x141608c3c	cstring	The 
+world-report-render	0x1401c4f8d	0x1416067b0	cstring	 of 
+world-report-render	0x1401c5099	0x14161f6e8	cstring	Your location
+world-report-render	0x1401c51c4	0x14161f6f8	cstring	Population: >10000
+world-report-render	0x1401c5209	0x14161f710	cstring	Population: ~10000
+world-report-render	0x1401c524e	0x14161f728	cstring	Population: ~7500
+world-report-render	0x1401c5293	0x14161f740	cstring	Population: ~6000
+world-report-render	0x1401c52d8	0x14161f758	cstring	Population: ~5000
+world-report-render	0x1401c531d	0x14161f770	cstring	Population: ~4000
+world-report-render	0x1401c5362	0x14161f788	cstring	Population: ~3000
+world-report-render	0x1401c53a7	0x14161f7a0	cstring	Population: ~2000
+world-report-render	0x1401c53ec	0x14161f7b8	cstring	Population: ~1000
+world-report-render	0x1401c5431	0x14161f7d0	cstring	Population: ~750
+world-report-render	0x1401c5476	0x14161f7e8	cstring	Population: ~600
+world-report-render	0x1401c54bb	0x14161f800	cstring	Population: ~500
+world-report-render	0x1401c5500	0x14161f818	cstring	Population: ~400
+world-report-render	0x1401c5545	0x14161f830	cstring	Population: ~300
+world-report-render	0x1401c558a	0x14161f848	cstring	Population: ~200
+world-report-render	0x1401c55cc	0x14161f5d0	cstring	Population: ~100
+world-report-render	0x1401c560e	0x14161f5e8	cstring	Population: ~75
+world-report-render	0x1401c5650	0x14161f5f8	cstring	Population: ~60
+world-report-render	0x1401c5692	0x14161f608	cstring	Population: ~50
+world-report-render	0x1401c56d4	0x14161f618	cstring	Population: ~40
+world-report-render	0x1401c5716	0x14161f628	cstring	Population: ~30
+world-report-render	0x1401c5758	0x14161f638	cstring	Population: ~20
+world-report-render	0x1401c5797	0x14161f648	cstring	Population: ~10
+world-report-render	0x1401c57d1	0x14161f658	cstring	Population: <10
+world-report-render	0x1401c5849	0x14161f680	cstring	Site government: 
+world-report-render	0x1401c591a	0x14161f668	cstring	No civilized population
+world-report-render	0x1401c59a0	0x14161f698	cstring	Civilization: 
+world-report-render	0x1401c5b1d	0x14161f6b8	cstring	They accept 
+world-report-render	0x1401c5b54	0x14161f6a8	cstring	They offer 
+world-report-render	0x1401c5bac	0x141618fa8	cstring	Winter
+world-report-render	0x1401c5be6	0x141618ddc	cstring	Autumn
+world-report-render	0x1401c5c1d	0x141618dd4	cstring	Summer
+world-report-render	0x1401c5c54	0x141618dcc	cstring	Spring
+world-report-render	0x1401c5c8e	0x14161f6c8	cstring	 tribute
+world-report-render	0x1401c5cfe	0x14161f6d8	cstring	Alliance
+world-report-render	0x1401c5d3d	0x141603c7c	cstring	Peace
+world-report-render	0x1401c5d7c	0x14161f9c8	cstring	War
+world-report-render	0x1401c5dbb	0x14161f9e0	cstring	They offer tribute
+world-report-render	0x1401c5dfa	0x14161f9f8	cstring	They accept tribute
+world-report-render	0x1401c5e36	0x14161fa10	cstring	Skirmishing
+world-report-render	0x1401c5e72	0x14161f9d0	cstring	No contact
+world-report-render	0x1401c5edc	0x14161fa20	cstring	Economically linked to you
+world-report-render	0x1401c6003	0x14161fa40	cstring	Prisoners
+world-report-render	0x1401c61de	0x14161fa50	cstring	Artifacts (Rumored)
+world-report-render	0x1401c63c4	0x14161fa68	cstring	Cannot raid your civilization
+world-report-render	0x1401c642e	0x14161fa88	cstring	Cannot make request without leader
+world-report-render	0x1401c649f	0x14161fab0	cstring	No workers available
+world-report-render	0x1401c64f5	0x14161fac8	cstring	Click to request workers
+world-report-render	0x1401c6555	0x14161fae8	cstring	Inaccessible mission location
+world-report-render	0x1401c65d0	0x14161fb08	cstring	Cannot order mission without leader
+world-report-render	0x1401c665f	0x14161fb30	cstring	Click to explore this site (creates new mission)
+world-report-render	0x1401c6699	0x14161fb68	cstring	Click to contact/raid this site (creates new mission)
+world-report-render	0x1401c66e9	0x14161fae8	cstring	Inaccessible mission location
+world-report-render	0x1401c6ebe	0x141604394	cstring	, 
+world-report-render	0x1401c6ed1	0x1416049cc	cstring	""""
+world-report-render	0x1401c6f0d	0x1416049cc	cstring	""""
+world-report-render	0x1401c6f20	0x141604394	cstring	, 
+world-report-render	0x1401c6f29	0x14161f860	cstring	Unnamed 
+world-report-render	0x1401c6f83	0x14161f870	cstring	 civilization
+world-report-render	0x1401c718d	0x14161f9c8	cstring	War
+world-report-render	0x1401c7205	0x14161f880	cstring	Offering tribute
+world-report-render	0x1401c725a	0x14161f898	cstring	Accepting tribute
+world-report-render	0x1401c72af	0x14161f6d8	cstring	Alliance
+world-report-render	0x1401c72ff	0x141603c7c	cstring	Peace
+world-report-render	0x1401c7371	0x14161f8b0	cstring	Your site government
+world-report-render	0x1401c7a44	0x14161f8c8	cstring	Exports to 
+world-report-render	0x1401c7ae4	0x14161f8d8	cstring	Petty Annoyance
+world-report-render	0x1401c7b55	0x14161f8c8	cstring	Exports to 
+world-report-render	0x1401c7bf5	0x14161f8e8	cstring	Terror
+world-report-render	0x1401c7c61	0x14161f8f0	cstring	Imports from 
+world-report-render	0x1401c7d06	0x14161b48c	cstring	None
+world-report-render	0x1401c7e3f	0x14161f900	cstring	Offerings from 
+world-report-render	0x1401c7f17	0x141612e18	cstring	Death
+world-report-render	0x1401c7f72	0x14161f910	cstring	Vengeance
+world-report-render	0x1401c7fcc	0x14161b48c	cstring	None
+world-report-render	0x1401c8089	0x14161f920	cstring	You can look at trade information once you have
+world-report-render	0x1401c80d8	0x14161f950	cstring	a broker with appraisal skill.
+world-report-render	0x1401c8170	0x14161f970	cstring	You accept their tribute every 
+world-report-render	0x1401c81c8	0x141618fa8	cstring	Winter
+world-report-render	0x1401c8202	0x141618ddc	cstring	Autumn
+world-report-render	0x1401c8239	0x141618dd4	cstring	Summer
+world-report-render	0x1401c8270	0x141618dcc	cstring	Spring
+world-report-render	0x1401c82aa	0x141603844	cstring	.
+world-report-render	0x1401c8536	0x14161f990	cstring	Trade Agreement (Exports to 
+world-report-render	0x1401c8602	0x14161f9b0	cstring	Requests (Imports from 
+world-report-render	0x1401c86ca	0x14161fd10	cstring	Agreed in year 
+world-report-render	0x1401c8773	0x14161fd20	cstring	Pending
+world-report-render	0x1401c8ba7	0x14161fd28	cstring	You have no agreements with this land.
+world-report-render	0x1401c8ec5	0x14161fd50	cstring	This land has no important leaders.
+world-report-render	0x1401c9266	0x14161e0c4	cstring	 at 
+world-report-render	0x1401c927e	0x14161fd78	cstring	Request workers from 
+world-report-render	0x1401c928a	0x1416095a0	cstring	Rescue 
+world-report-render	0x1401c92e1	0x14161fdf0	cstring	Recover 
+world-report-render	0x1401c933b	0x14161fd90	cstring	Explore 
+world-report-render	0x1401c9344	0x14161fda0	cstring	Pillage 
+world-report-render	0x1401c934d	0x14161fdb0	cstring	Demand tribute from 
+world-report-render	0x1401c9356	0x14161fdc8	cstring	Raze 
+world-report-render	0x1401c935f	0x14161fdd0	cstring	Take over 
+world-report-render	0x1401c9368	0x14161fddc	cstring	Seize 
+world-report-render	0x1401c9371	0x14161fde4	cstring	Raid 
+world-report-render	0x1401c9a43	0x14161fbb8	cstring	No commanders
+world-report-render	0x1401c9a95	0x14161fe10	cstring	no
+world-report-render	0x1401c9aa8	0x14161fbc8	cstring	 commander
+world-report-render	0x1401c9acb	0x14161fbc8	cstring	 commander
+world-report-render	0x1401c9ae3	0x1416044f0	cstring	s
+world-report-render	0x1401c9af6	0x14161fba0	cstring	 here
+world-report-render	0x1401c9b09	0x141604394	cstring	, 
+world-report-render	0x1401c9b21	0x14161fe10	cstring	no
+world-report-render	0x1401c9b34	0x14161fbc8	cstring	 commander
+world-report-render	0x1401c9b58	0x14161fbc8	cstring	 commander
+world-report-render	0x1401c9b71	0x1416044f0	cstring	s
+world-report-render	0x1401c9b84	0x14161fba8	cstring	 traveling
+world-report-render	0x1401c9d0f	0x14161fbf0	cstring	and more...
+world-report-render	0x1401c9eaf	0x14161fe00	cstring	No messengers
+world-report-render	0x1401c9efa	0x14161fe10	cstring	no
+world-report-render	0x1401c9f0d	0x14161fe18	cstring	 messenger
+world-report-render	0x1401c9f30	0x14161fe18	cstring	 messenger
+world-report-render	0x1401c9f48	0x1416044f0	cstring	s
+world-report-render	0x1401c9f5b	0x14161fba0	cstring	 here
+world-report-render	0x1401c9f6e	0x141604394	cstring	, 
+world-report-render	0x1401c9f86	0x14161fe10	cstring	no
+world-report-render	0x1401c9f99	0x14161fe18	cstring	 messenger
+world-report-render	0x1401c9fbd	0x14161fe18	cstring	 messenger
+world-report-render	0x1401c9fd6	0x1416044f0	cstring	s
+world-report-render	0x1401c9fe9	0x14161fba8	cstring	 traveling
+world-report-render	0x1401ca13c	0x14161fbd8	cstring	Messenger (unfilled)
+world-report-render	0x1401ca1b0	0x14161fbf0	cstring	and more...
+world-report-render	0x1401ca24a	0x14161fc28	cstring	This mission cannot be altered now.
+world-report-render	0x1401ca2af	0x14161fc00	cstring	Click for assignments and details
+world-report-render	0x1401ca483	0x141604394	cstring	, 
+world-report-render	0x1401ca603	0x14161f6e8	cstring	Your location
+world-report-render	0x1401ca714	0x14161f6f8	cstring	Population: >10000
+world-report-render	0x1401ca759	0x14161f710	cstring	Population: ~10000
+world-report-render	0x1401ca79e	0x14161f728	cstring	Population: ~7500
+world-report-render	0x1401ca7e3	0x14161f740	cstring	Population: ~6000
+world-report-render	0x1401ca828	0x14161f758	cstring	Population: ~5000
+world-report-render	0x1401ca86d	0x14161f770	cstring	Population: ~4000
+world-report-render	0x1401ca8b2	0x14161f788	cstring	Population: ~3000
+world-report-render	0x1401ca8f7	0x14161f7a0	cstring	Population: ~2000
+world-report-render	0x1401ca93c	0x14161f7b8	cstring	Population: ~1000
+world-report-render	0x1401ca981	0x14161f7d0	cstring	Population: ~750
+world-report-render	0x1401ca9c6	0x14161f7e8	cstring	Population: ~600
+world-report-render	0x1401caa0b	0x14161f800	cstring	Population: ~500
+world-report-render	0x1401caa50	0x14161f818	cstring	Population: ~400
+world-report-render	0x1401caa95	0x14161f830	cstring	Population: ~300
+world-report-render	0x1401caada	0x14161f848	cstring	Population: ~200
+world-report-render	0x1401cab1c	0x14161f5d0	cstring	Population: ~100
+world-report-render	0x1401cab5e	0x14161f5e8	cstring	Population: ~75
+world-report-render	0x1401caba0	0x14161f5f8	cstring	Population: ~60
+world-report-render	0x1401cabe2	0x14161f608	cstring	Population: ~50
+world-report-render	0x1401cac24	0x14161f618	cstring	Population: ~40
+world-report-render	0x1401cac66	0x14161f628	cstring	Population: ~30
+world-report-render	0x1401caca8	0x14161f638	cstring	Population: ~20
+world-report-render	0x1401cacea	0x14161f648	cstring	Population: ~10
+world-report-render	0x1401cad24	0x14161f658	cstring	Population: <10
+world-report-render	0x1401cad5e	0x14161f668	cstring	No civilized population
+world-report-render	0x1401cae5c	0x14161f6b8	cstring	They accept 
+world-report-render	0x1401cae93	0x14161f6a8	cstring	They offer 
+world-report-render	0x1401caeeb	0x141618fa8	cstring	Winter
+world-report-render	0x1401caf25	0x141618ddc	cstring	Autumn
+world-report-render	0x1401caf5c	0x141618dd4	cstring	Summer
+world-report-render	0x1401caf93	0x141618dcc	cstring	Spring
+world-report-render	0x1401cafcd	0x14161f6c8	cstring	 tribute
+world-report-render	0x1401cb037	0x14161f6d8	cstring	Alliance
+world-report-render	0x1401cb071	0x141603c7c	cstring	Peace
+world-report-render	0x1401cb0ab	0x14161f9c8	cstring	War
+world-report-render	0x1401cb0e5	0x14161f9e0	cstring	They offer tribute
+world-report-render	0x1401cb11f	0x14161f9f8	cstring	They accept tribute
+world-report-render	0x1401cb156	0x14161fa10	cstring	Skirmishing
+world-report-render	0x1401cb18d	0x14161f9d0	cstring	No contact
+world-report-render	0x1401cb27e	0x14161a44c	cstring	Cancel
+world-report-render	0x1401cb47f	0x14161f280	cstring	Diplomacy
+world-report-render	0x1401cb4b6	0x14161fc50	cstring	Request workers
+world-report-render	0x1401cb4ed	0x14161fc60	cstring	Attack
+world-report-render	0x1401cb57f	0x14161fc68	cstring	Belongs to your civilization
+world-report-render	0x1401cb5b9	0x14161fc88	cstring	Not under your control
+world-report-render	0x1401cb5f3	0x14161fca0	cstring	No civilized inhabitants
+world-report-render	0x1401cb62d	0x14161fcc0	cstring	No requestable workers
+world-report-render	0x1401cb667	0x14161fcd8	cstring	Inaccessible
+world-report-render	0x1401cb6a1	0x14161fce8	cstring	Need civilization military leader
+world-report-render	0x1401cb6db	0x141620018	cstring	Need military leader
+world-report-render	0x1401cb715	0x141620030	cstring	Need leader
+world-report-render	0x1401cb74f	0x141620040	cstring	Not trading
+world-report-render	0x1401cb789	0x141620050	cstring	Already trading
+world-report-render	0x1401cb7c3	0x141620060	cstring	Already at war
+world-report-render	0x1401cb7fd	0x141620070	cstring	Already have peace
+world-report-render	0x1401cb837	0x141620088	cstring	Already have alliance
+world-report-render	0x1401cb871	0x1416200a0	cstring	At war
+world-report-render	0x1401cb8ab	0x1416200a8	cstring	Cannot communicate
+world-report-render	0x1401cb8e2	0x1416200c0	cstring	Not in contact
+world-report-render	0x1401cb919	0x1416200d0	cstring	Too hostile
+world-report-render	0x1401cbb4b	0x14161e0c4	cstring	 at 
+world-report-render	0x1401cbb63	0x14161fd78	cstring	Request workers from 
+world-report-render	0x1401cbb6f	0x1416095a0	cstring	Rescue 
+world-report-render	0x1401cbbc1	0x14161fdf0	cstring	Recover 
+world-report-render	0x1401cbc1b	0x14161fd90	cstring	Explore 
+world-report-render	0x1401cbc24	0x14161fda0	cstring	Pillage 
+world-report-render	0x1401cbc2d	0x14161fdb0	cstring	Demand tribute from 
+world-report-render	0x1401cbc36	0x14161fdc8	cstring	Raze 
+world-report-render	0x1401cbc3f	0x14161fdd0	cstring	Take over 
+world-report-render	0x1401cbc48	0x14161fddc	cstring	Seize 
+world-report-render	0x1401cbc51	0x14161fde4	cstring	Raid 
+world-report-render	0x1401cbe17	0x14161fbb8	cstring	No commanders
+world-report-render	0x1401cbe62	0x14161fe10	cstring	no
+world-report-render	0x1401cbe75	0x14161fbc8	cstring	 commander
+world-report-render	0x1401cbe98	0x14161fbc8	cstring	 commander
+world-report-render	0x1401cbeb0	0x1416044f0	cstring	s
+world-report-render	0x1401cbec3	0x14161fba0	cstring	 here
+world-report-render	0x1401cbed6	0x141604394	cstring	, 
+world-report-render	0x1401cbeed	0x14161fe10	cstring	no
+world-report-render	0x1401cbf00	0x14161fbc8	cstring	 commander
+world-report-render	0x1401cbf23	0x14161fbc8	cstring	 commander
+world-report-render	0x1401cbf3b	0x1416044f0	cstring	s
+world-report-render	0x1401cbf4e	0x14161fba8	cstring	 traveling
+world-report-render	0x1401cc105	0x14161fe00	cstring	No messengers
+world-report-render	0x1401cc150	0x14161fe10	cstring	no
+world-report-render	0x1401cc163	0x14161fe18	cstring	 messenger
+world-report-render	0x1401cc186	0x14161fe18	cstring	 messenger
+world-report-render	0x1401cc19e	0x1416044f0	cstring	s
+world-report-render	0x1401cc1b1	0x14161fba0	cstring	 here
+world-report-render	0x1401cc1c4	0x141604394	cstring	, 
+world-report-render	0x1401cc1db	0x14161fe10	cstring	no
+world-report-render	0x1401cc1ee	0x14161fe18	cstring	 messenger
+world-report-render	0x1401cc211	0x14161fe18	cstring	 messenger
+world-report-render	0x1401cc229	0x1416044f0	cstring	s
+world-report-render	0x1401cc23c	0x14161fba8	cstring	 traveling
+world-report-render	0x1401cc33f	0x1416200dc	cstring	Remove
+world-report-render	0x1401cc64a	0x14161f230	cstring	Make peace
+world-report-render	0x1401cc684	0x1416200e8	cstring	Demander unconditional surrender
+world-report-render	0x1401cc6be	0x14161f240	cstring	Declare war
+world-report-render	0x1401cc6f8	0x14161f250	cstring	Seek alliance
+world-report-render	0x1401cc72f	0x14161f260	cstring	Make contact
+world-report-render	0x1401cc766	0x14161f270	cstring	Improve trade
+world-report-render	0x1401cc7ef	0x14161fc68	cstring	Belongs to your civilization
+world-report-render	0x1401cc829	0x14161fc88	cstring	Not under your control
+world-report-render	0x1401cc863	0x14161fca0	cstring	No civilized inhabitants
+world-report-render	0x1401cc89d	0x14161fcc0	cstring	No requestable workers
+world-report-render	0x1401cc8d7	0x14161fcd8	cstring	Inaccessible
+world-report-render	0x1401cc911	0x14161fce8	cstring	Need civilization military leader
+world-report-render	0x1401cc94b	0x141620018	cstring	Need military leader
+world-report-render	0x1401cc985	0x141620030	cstring	Need leader
+world-report-render	0x1401cc9bf	0x141620040	cstring	Not trading
+world-report-render	0x1401cc9f9	0x141620050	cstring	Already trading
+world-report-render	0x1401cca33	0x141620060	cstring	Already at war
+world-report-render	0x1401cca6d	0x141620070	cstring	Already have peace
+world-report-render	0x1401ccaa7	0x141620088	cstring	Already have alliance
+world-report-render	0x1401ccae1	0x1416200a0	cstring	At war
+world-report-render	0x1401ccb1b	0x1416200a8	cstring	Cannot communicate
+world-report-render	0x1401ccb52	0x1416200c0	cstring	Not in contact
+world-report-render	0x1401ccb89	0x1416200d0	cstring	Too hostile
+world-report-render	0x1401cd18e	0x1416039f0	cstring	 
+world-report-render	0x1401cd323	0x141620110	cstring	No notable skills
+world-report-render	0x1401cd38e	0x14161fab0	cstring	No workers available
+world-report-render	0x1401cd58b	0x141620128	cstring	Free captives belonging to your civilization
+world-report-render	0x1401cd759	0x141620158	cstring	Release other prisoners
+world-report-render	0x1401cd937	0x14161fe28	cstring	Take important treasures
+world-report-render	0x1401cdb09	0x14161fe48	cstring	Loot other items
+world-report-render	0x1401cdcd9	0x14161fe60	cstring	Steal livestock
+world-report-render	0x1401cdeb8	0x14161fe70	cstring	Raid (squads will try to avoid detection)
+world-report-render	0x1401ce086	0x14161fea0	cstring	Pillage (openly attack)
+world-report-render	0x1401ce264	0x14161feb8	cstring	Raze (openly attack and destroy site)
+world-report-render	0x1401ce439	0x14161fee0	cstring	Demand one-time tribute
+world-report-render	0x1401ce609	0x14161fef8	cstring	Demand ongoing tribute
+world-report-render	0x1401ce7ff	0x14161ff10	cstring	Conquer and occupy
+world-report-render	0x1401ce9f1	0x14161ff28	cstring	Demand surrender and occupy
+world-report-render	0x1401cebe9	0x141620128	cstring	Free captives belonging to your civilization
+world-report-render	0x1401cedbd	0x141620158	cstring	Release other prisoners
+world-report-render	0x1401cef8a	0x14161fe28	cstring	Take important treasures
+world-report-render	0x1401cf159	0x14161fe48	cstring	Loot other items
+world-report-render	0x1401cf329	0x14161fe60	cstring	Steal livestock
+world-report-render	0x1401cf394	0x14161ff48	cstring	WARNING:  If successful, your soldiers will join the
+world-report-render	0x1401cf3e3	0x14161ff80	cstring	occupation and not return.  Your new holdings will
+world-report-render	0x1401cf432	0x14161ffb8	cstring	be manageable from this screen.
+world-report-render	0x1401cf7d5	0x14161fbd8	cstring	Messenger (unfilled)
+world-report-render	0x1401cf8bf	0x14161ffd8	cstring	On this mission
+world-report-render	0x1401cf989	0x14161e0c4	cstring	 at 
+world-report-render	0x1401cfa3e	0x14161fd78	cstring	Request workers from 
+world-report-render	0x1401cfaf4	0x1416095a0	cstring	Rescue 
+world-report-render	0x1401cfbd8	0x14161fdf0	cstring	Recover 
+world-report-render	0x1401cfcc3	0x14161fd90	cstring	Explore 
+world-report-render	0x1401cfccc	0x14161fda0	cstring	Pillage 
+world-report-render	0x1401cfcd5	0x14161fdb0	cstring	Demand tribute from 
+world-report-render	0x1401cfcde	0x14161fdc8	cstring	Raze 
+world-report-render	0x1401cfce7	0x14161fdd0	cstring	Take over 
+world-report-render	0x1401cfcf0	0x14161fddc	cstring	Seize 
+world-report-render	0x1401cfcf9	0x14161fde4	cstring	Raid 
+world-report-render	0x1401cfdc5	0x14161ffe8	cstring	No specific orders
+world-report-render	0x1401cfe13	0x14161ffe8	cstring	No specific orders
+world-report-render	0x1401cffdf	0x141620000	cstring	No messengers available
+world-report-render	0x1401d048b	0x14161ffd8	cstring	On this mission
+world-report-render	0x1401d054b	0x14161e0c4	cstring	 at 
+world-report-render	0x1401d0600	0x14161fd78	cstring	Request workers from 
+world-report-render	0x1401d06b6	0x1416095a0	cstring	Rescue 
+world-report-render	0x1401d079a	0x14161fdf0	cstring	Recover 
+world-report-render	0x1401d0885	0x14161fd90	cstring	Explore 
+world-report-render	0x1401d088e	0x14161fda0	cstring	Pillage 
+world-report-render	0x1401d0897	0x14161fdb0	cstring	Demand tribute from 
+world-report-render	0x1401d08a0	0x14161fdc8	cstring	Raze 
+world-report-render	0x1401d08a9	0x14161fdd0	cstring	Take over 
+world-report-render	0x1401d08b2	0x14161fddc	cstring	Seize 
+world-report-render	0x1401d08bb	0x14161fde4	cstring	Raid 
+world-report-render	0x1401d0987	0x14161ffe8	cstring	No specific orders
+world-report-render	0x1401d0a9a	0x14161ffe8	cstring	No specific orders
+world-report-render	0x1401d0d0f	0x141620298	cstring	Done assigning
+world-report-render	0x1401d0d82	0x1416202a8	cstring	Choose a proposal.
+world-report-render	0x1401d0dbc	0x1416202c0	cstring	Assign messengers.
+world-report-render	0x1401d0e04	0x1416202a8	cstring	Choose a proposal.
+world-report-render	0x1401d0e47	0x1416202d8	cstring	Assign squads.
+world-report-render	0x1401d0eaa	0x141620280	cstring	No squads available
+world-report-render	0x1401d160a	0x14161f3f8	cstring	 days' travel
+world-report-render	0x1401d1618	0x14161f408	cstring	More than a day's travel
+world-report-render	0x1401d1626	0x14161f428	cstring	A day's travel
+world-report-render	0x1401d1634	0x14161f438	cstring	Nearly a day's travel
+world-report-render	0x1401d1642	0x14161f450	cstring	A half day's travel
+world-report-render	0x1401d164d	0x14161f468	cstring	A short trip
+world-report-render	0x1401d1656	0x14161f478	cstring	Inaccessible from your location
+world-report-render	0x1401d16b6	0x141608c3c	cstring	The 
+world-report-render	0x1401d17ed	0x1416067b0	cstring	 of 
+world-report-render	0x1401d18fc	0x14161f6e8	cstring	Your location
+world-report-render	0x1401d1a29	0x14161f6f8	cstring	Population: >10000
+world-report-render	0x1401d1a6e	0x14161f710	cstring	Population: ~10000
+world-report-render	0x1401d1ab3	0x14161f728	cstring	Population: ~7500
+world-report-render	0x1401d1af8	0x14161f740	cstring	Population: ~6000
+world-report-render	0x1401d1b3d	0x14161f758	cstring	Population: ~5000
+world-report-render	0x1401d1b82	0x14161f770	cstring	Population: ~4000
+world-report-render	0x1401d1bc7	0x14161f788	cstring	Population: ~3000
+world-report-render	0x1401d1c0c	0x14161f7a0	cstring	Population: ~2000
+world-report-render	0x1401d1c51	0x14161f7b8	cstring	Population: ~1000
+world-report-render	0x1401d1c96	0x14161f7d0	cstring	Population: ~750
+world-report-render	0x1401d1cdb	0x14161f7e8	cstring	Population: ~600
+world-report-render	0x1401d1d20	0x14161f800	cstring	Population: ~500
+world-report-render	0x1401d1d65	0x14161f818	cstring	Population: ~400
+world-report-render	0x1401d1daa	0x14161f830	cstring	Population: ~300
+world-report-render	0x1401d1def	0x14161f848	cstring	Population: ~200
+world-report-render	0x1401d1e31	0x14161f5d0	cstring	Population: ~100
+world-report-render	0x1401d1e73	0x14161f5e8	cstring	Population: ~75
+world-report-render	0x1401d1eb5	0x14161f5f8	cstring	Population: ~60
+world-report-render	0x1401d1ef7	0x14161f608	cstring	Population: ~50
+world-report-render	0x1401d1f39	0x14161f618	cstring	Population: ~40
+world-report-render	0x1401d1f7b	0x14161f628	cstring	Population: ~30
+world-report-render	0x1401d1fbd	0x14161f638	cstring	Population: ~20
+world-report-render	0x1401d1ffc	0x14161f648	cstring	Population: ~10
+world-report-render	0x1401d2036	0x14161f658	cstring	Population: <10
+world-report-render	0x1401d20ab	0x14161f680	cstring	Site government: 
+world-report-render	0x1401d2189	0x14161f668	cstring	No civilized population
+world-report-render	0x1401d2210	0x14161f698	cstring	Civilization: 
+world-report-render	0x1401d2397	0x14161f6b8	cstring	They accept 
+world-report-render	0x1401d23ce	0x14161f6a8	cstring	They offer 
+world-report-render	0x1401d2426	0x141618fa8	cstring	Winter
+world-report-render	0x1401d2460	0x141618ddc	cstring	Autumn
+world-report-render	0x1401d2497	0x141618dd4	cstring	Summer
+world-report-render	0x1401d24ce	0x141618dcc	cstring	Spring
+world-report-render	0x1401d2508	0x14161f6c8	cstring	 tribute
+world-report-render	0x1401d2577	0x14161f6d8	cstring	Alliance
+world-report-render	0x1401d25b6	0x141603c7c	cstring	Peace
+world-report-render	0x1401d25f5	0x14161f9c8	cstring	War
+world-report-render	0x1401d2634	0x14161f9e0	cstring	They offer tribute
+world-report-render	0x1401d2673	0x14161f9f8	cstring	They accept tribute
+world-report-render	0x1401d26af	0x14161fa10	cstring	Skirmishing
+world-report-render	0x1401d26eb	0x14161f9d0	cstring	No contact
+world-report-render	0x1401d2759	0x14161fa20	cstring	Economically linked to you
+world-report-render	0x1401d2912	0x1416202e8	cstring	Click to view all news and rumors
+world-report-render	0x1401d2bfe	0x1416078f4	cstring	st
+world-report-render	0x1401d2c07	0x1416078f8	cstring	nd
+world-report-render	0x1401d2c10	0x14160795c	cstring	rd
+world-report-render	0x1401d2c19	0x141607960	cstring	th
+world-report-render	0x1401d2c2c	0x1416039f0	cstring	 
+world-report-render	0x1401d2c6e	0x141604394	cstring	, 
+world-report-render	0x1401d359a	0x1416039f0	cstring	 
+world-report-render	0x1401d370d	0x1416039f0	cstring	 
+world-report-render	0x1401d3c7d	0x141620310	cstring	No reports available
+world-report-render	0x1401d4102	0x141620328	cstring	Last in 
+world-report-render	0x1401d41f0	0x141620328	cstring	Last in 
+world-report-render	0x1401d42de	0x141620328	cstring	Last in 
+world-report-render	0x1401d43c5	0x141620338	cstring	Last known to be traveling
+world-report-render	0x1401d43fc	0x141620358	cstring	Location unknown
+world-report-render	0x1401d4668	0x14161fb08	cstring	Cannot order mission without leader
+world-report-render	0x1401d46f2	0x141620370	cstring	Click to rescue (creates new mission)
+world-report-render	0x1401d474c	0x14161fae8	cstring	Inaccessible mission location
+world-report-render	0x1401d4c10	0x141620398	cstring	Last held by 
+world-report-render	0x1401d4d0c	0x141620328	cstring	Last in 
+world-report-render	0x1401d4df0	0x141620328	cstring	Last in 
+world-report-render	0x1401d4ed4	0x141620328	cstring	Last in 
+world-report-render	0x1401d4faa	0x141620358	cstring	Location unknown
+world-report-render	0x1401d52f3	0x1416203a8	cstring	Claimed by your local government
+world-report-render	0x1401d5363	0x1416203d0	cstring	Claimed by local 
+world-report-render	0x1401d5442	0x1416203e8	cstring	Claimed by local family
+world-report-render	0x1401d54b8	0x14161fb08	cstring	Cannot order mission without leader
+world-report-render	0x1401d5542	0x141620400	cstring	Click to recover (creates new mission)
+world-report-render	0x1401d559c	0x14161fae8	cstring	Inaccessible mission location
+world-report-render	0x1401d5654	0x141620170	cstring	Center on fort
+world-report-render	0x1401d58ea	0x141620180	cstring	Missions
+world-report-render	0x1401d5ab9	0x141620190	cstring	News and rumors
+world-report-render	0x1401d5c8b	0x1416201a0	cstring	Civilizations
+world-report-render	0x1401d5f01	0x1416201b0	cstring	Missing citizens
+world-report-render	0x1401d6171	0x1416074a0	cstring	Artifacts
+world-report-render	0x1401d642c	0x1416201c8	cstring	Reports
+world-report-render	0x1401d650b	0x1416201d0	cstring	Done
+trade-amount	0x140798f41	0x141630b00	cstring	?
+trade-amount	0x14079913b	0x14166972c	cstring	-
+agreement-topic	0x140ae1408	0x1416f1520	cstring	lumber limits
+agreement-topic	0x140ae1425	0x14168a700	cstring	something
+export-commodity	0x14092e26a	0x141608da4	cstring	's 
+export-commodity	0x14092e302	0x1416039f0	cstring	 
+export-commodity	0x14092e329	0x1417a9888	cstring	unknown material
+export-commodity	0x14092e362	0x1416e8fe0	cstring	 Crafts
+export-commodity	0x14092e4cc	0x141608da4	cstring	's 
+export-commodity	0x14092e564	0x1416039f0	cstring	 
+export-commodity	0x14092e58b	0x1417a9888	cstring	unknown material
+export-commodity	0x14092e5c4	0x1416e8fe8	cstring	 Logs
+export-commodity	0x14092e9b1	0x141604394	cstring	, 
+export-commodity	0x14092e9de	0x141604394	cstring	, 
+export-commodity	0x14092ecf2	0x1416039f0	cstring	 
+export-commodity	0x14092ed68	0x141721d68	cstring	Prepared Food
+export-commodity	0x14092edfa	0x141721d68	cstring	Prepared Food
+export-commodity	0x14092ee06	0x141721d70	cstring	 Food
+export-commodity	0x14092ee0f	0x141721d74	cstring	d
+export-commodity	0x14092eed9	0x1416039f0	cstring	 
+export-commodity	0x14092ef86	0x141721d68	cstring	Prepared Food
+export-commodity	0x14092ef92	0x141721d70	cstring	 Food
+export-commodity	0x14092ef9b	0x141721d74	cstring	d
+import-item	0x140a9c7c7	0x1416660ac	cstring	large
+import-item	0x140a9c7d0	0x1416660b0	cstring	e
+import-item	0x140a9c7d9	0x1416a5e90	cstring	small
+import-item	0x140a9c7e2	0x1416a5e94	cstring	l
+import-item	0x140a9c82c	0x1416ec2cc	cstring	grown 
+import-item	0x140a9c906	0x14169c7a4	cstring	logs
+import-item	0x140a9c978	0x1416f03f0	cstring	branch
+import-item	0x140a9c99d	0x1416f03f8	cstring	es
+import-item	0x140a9c9bd	0x14161cf38	cstring	rough gems
+import-item	0x140a9c9d6	0x1416f0400	cstring	raw green glass
+import-item	0x140a9c9ef	0x1416f0410	cstring	raw clear glass
+import-item	0x140a9ca08	0x1416f03b0	cstring	raw crystal glass
+import-item	0x140a9ca2a	0x14161cf38	cstring	rough gems
+import-item	0x140a9ca48	0x1416ecb08	cstring	rough 
+import-item	0x140a9cae7	0x1416a5df4	cstring	small 
+import-item	0x140a9cafe	0x1416a5df4	cstring	small 
+import-item	0x140a9cbde	0x1416f03c4	cstring	rock
+import-item	0x140a9cbfe	0x1416f03d0	cstring	small rock
+import-item	0x140a9cc57	0x1416f03e0	cstring	stone boulders
+import-item	0x140a9cc7d	0x1416f0380	cstring	boulders
+import-item	0x140a9cd5a	0x1416f0360	cstring	bars
+import-item	0x140a9cd73	0x1416f03a0	cstring	charcoal
+import-item	0x140a9cd89	0x1416f0348	cstring	coke
+import-item	0x140a9cd92	0x1416f0350	cstring	refined coal
+import-item	0x140a9cdab	0x1416597e8	cstring	metal
+import-item	0x140a9cdba	0x1416f0398	cstring	 bars
+import-item	0x140a9ce6a	0x1416f0390	cstring	 wafers
+import-item	0x140a9cf58	0x14161cef8	cstring	cut gems
+import-item	0x140a9cf71	0x1416f0368	cstring	cut green glass gems
+import-item	0x140a9cf8a	0x1416f0308	cstring	cut clear glass gems
+import-item	0x140a9cfa0	0x1416f0320	cstring	cut crystal glass gems
+import-item	0x140a9cfbb	0x1416f0338	cstring	gems
+import-item	0x140a9d0f8	0x1416f0340	cstring	blocks
+import-item	0x140a9d10f	0x1416f0340	cstring	blocks
+import-item	0x140a9d1bd	0x1416f02e0	cstring	door
+import-item	0x140a9d1c4	0x1416f02d8	cstring	portal
+import-item	0x140a9d23a	0x1416f02e8	cstring	floodgate
+import-item	0x140a9d2aa	0x1416f02f8	cstring	hatch cover
+import-item	0x140a9d31a	0x1416f02c4	cstring	grate
+import-item	0x140a9d38a	0x14164bc44	cstring	table
+import-item	0x140a9d3fa	0x141657c20	cstring	cabinet
+import-item	0x140a9d46a	0x141657c10	cstring	weapon rack
+import-item	0x140a9d4da	0x141657c00	cstring	armor stand
+import-item	0x140a9d54a	0x1416f02cc	cstring	bin
+import-item	0x140a9d5f1	0x1416f02d0	cstring	box
+import-item	0x140a9d60a	0x1416f02d4	cstring	e
+import-item	0x140a9d633	0x1416f02a4	cstring	coffer
+import-item	0x140a9d642	0x141657c28	cstring	chest
+import-item	0x140a9d663	0x1416f02ac	cstring	boxe
+import-item	0x140a9d678	0x1416044f0	cstring	s
+import-item	0x140a9d68c	0x1416f02d0	cstring	box
+import-item	0x140a9d704	0x1416f02b4	cstring	bag
+import-item	0x140a9d79f	0x1416f02b8	cstring	backpack
+import-item	0x140a9d85c	0x1416f028c	cstring	cast
+import-item	0x140a9d868	0x1416f0280	cstring	limb/body 
+import-item	0x140a9d877	0x1416f028c	cstring	cast
+import-item	0x140a9d8d7	0x1416f0280	cstring	limb/body 
+import-item	0x140a9d8e6	0x1416f028c	cstring	cast
+import-item	0x140a9d956	0x1416f0294	cstring	splint
+import-item	0x140a9d9c0	0x1416f029c	cstring	crutch
+import-item	0x140a9da5b	0x1416f0254	cstring	quiver
+import-item	0x140a9dada	0x1416f025c	cstring	casket
+import-item	0x140a9db25	0x1416f0268	cstring	sarcophag
+import-item	0x140a9db34	0x14165def0	cstring	us
+import-item	0x140a9db3b	0x1416e980c	cstring	i
+import-item	0x140a9db57	0x14164bc38	cstring	coffin
+import-item	0x140a9dc74	0x1416f0974	cstring	chain
+import-item	0x140a9dc88	0x1416f0274	cstring	rope
+import-item	0x140a9ddc8	0x1416f098c	cstring	vial
+import-item	0x140a9ddd9	0x1416f0994	cstring	flask
+import-item	0x140a9ddf0	0x1416f0980	cstring	waterskin
+import-item	0x140a9de99	0x1416f0948	cstring	musical instrument
+import-item	0x140a9df7b	0x1416f0960	cstring	unglazed 
+import-item	0x140a9e0e3	0x1416039f0	cstring	 
+import-item	0x140a9e0fd	0x1416eaf24	cstring	tool
+import-item	0x140a9e19d	0x1416eaffc	cstring	toy
+import-item	0x140a9e24d	0x1416f096c	cstring	cup
+import-item	0x140a9e281	0x1416f0970	cstring	mug
+import-item	0x140a9e29b	0x1416f091c	cstring	goblet
+import-item	0x140a9e30b	0x1416f0924	cstring	window
+import-item	0x140a9e3ba	0x1416f093c	cstring	cage
+import-item	0x140a9e3c1	0x1416f0930	cstring	terrarium
+import-item	0x140a9e435	0x1416f08f4	cstring	barrel
+import-item	0x140a9e4a5	0x1416f08fc	cstring	bucket
+import-item	0x140a9e515	0x1416f0908	cstring	animal trap
+import-item	0x140a9e591	0x14164bc30	cstring	chair
+import-item	0x140a9e5ab	0x1416f0914	cstring	throne
+import-item	0x140a9e661	0x1416f08d0	cstring	web
+import-item	0x140a9e6ac	0x1416f08d8	cstring	strands
+import-item	0x140a9e6df	0x141631664	cstring	yarn
+import-item	0x140a9e6f0	0x14163164c	cstring	thread
+import-item	0x140a9e765	0x141631654	cstring	cloth
+import-item	0x140a9e86f	0x1416f08e0	cstring	sheet
+import-item	0x140a9e892	0x1416f08e8	cstring	tanned hide
+import-item	0x140a9e8f5	0x1416f08b0	cstring	totem
+import-item	0x140a9e95e	0x1416f08b8	cstring	-bound 
+import-item	0x140a9e97a	0x1416f08c8	cstring	codex
+import-item	0x140a9e981	0x1416f08c0	cstring	codices
+import-item	0x140a9ea00	0x1416f0888	cstring	figurine
+import-item	0x140a9ea1e	0x1416f0898	cstring	rotten 
+import-item	0x140a9ea43	0x1416706c0	cstring	drink
+import-item	0x140a9ea86	0x1416f0898	cstring	rotten 
+import-item	0x140a9ec6b	0x1416f08a0	cstring	filthy 
+import-item	0x140a9ec84	0x1416f08a8	cstring	sticky 
+import-item	0x140a9eca3	0x1416f0860	cstring	vomitous 
+import-item	0x140a9ecbf	0x1416f086c	cstring	slimy 
+import-item	0x140a9ecd8	0x1416dab38	cstring	stagnant 
+import-item	0x140a9ecf4	0x1416f0874	cstring	dirty 
+import-item	0x140a9ed10	0x1416f087c	cstring	gooey 
+import-item	0x140a9ed29	0x1416f0830	cstring	purulent 
+import-item	0x140a9ed42	0x1416f0840	cstring	ichorous 
+import-item	0x140a9ed5b	0x1416f0850	cstring	bloody 
+import-item	0x140a9ed9a	0x1416c6750	cstring	liquid
+import-item	0x140a9eedc	0x1416f0858	cstring	 paste
+import-item	0x140a9ef31	0x1416f07fc	cstring	glob
+import-item	0x140a9f132	0x1416f0808	cstring	 laced with 
+import-item	0x140a9f1a6	0x141604394	cstring	, 
+import-item	0x140a9f1b6	0x14160438c	cstring	 and 
+import-item	0x140a9f21b	0x1416f0898	cstring	rotten 
+import-item	0x140a9f2b8	0x1416f0818	cstring	 dye mix
+import-item	0x140a9f2dc	0x1416f0824	cstring	powder
+import-item	0x140a9f336	0x1416f0898	cstring	rotten 
+import-item	0x140a9f358	0x1416f07c0	cstring	cheese
+import-item	0x140a9f3e0	0x1416f07c8	cstring	catapult parts
+import-item	0x140a9f458	0x1416f07d8	cstring	bolt thrower parts
+import-item	0x140a9f4d0	0x1416f07f0	cstring	mechanisms
+import-item	0x140a9f57f	0x1416f0784	cstring	tube
+import-item	0x140a9f599	0x1416f0790	cstring	pipe section
+import-item	0x140a9f637	0x1416f07a0	cstring	trap component
+import-item	0x140a9f668	0x1416039f0	cstring	 
+import-item	0x140a9f74a	0x1416f07b0	cstring	ballista parts
+import-item	0x140a9f7c2	0x1416f0750	cstring	anvil
+import-item	0x140a9f832	0x1416f0758	cstring	amulet
+import-item	0x140a9f8a2	0x1416f0760	cstring	ballista arrow head
+import-item	0x140a9f949	0x1416f0778	cstring	siege ammo
+import-item	0x140a9fa93	0x1416f0728	cstring	ammunition
+import-item	0x140a9fb0b	0x1416f0738	cstring	scepter
+import-item	0x140a9fb7b	0x1416f0740	cstring	crown
+import-item	0x140a9fbe5	0x1416f0748	cstring	coin
+import-item	0x140a9fc04	0x1416f06e8	cstring	perfect 
+import-item	0x140a9fc13	0x141666420	cstring	large 
+import-item	0x140a9fcfb	0x1416f06f8	cstring	green glass 
+import-item	0x140a9fd11	0x1416f0708	cstring	clear glass 
+import-item	0x140a9fd27	0x1416f0718	cstring	crystal glass 
+import-item	0x140a9fd43	0x1416316ac	cstring	gem
+import-item	0x140a9fdfb	0x1416f06c0	cstring	 gem
+import-item	0x140a9fed6	0x1416f06c8	cstring	ring
+import-item	0x140a9ff46	0x1416f06d0	cstring	earring
+import-item	0x140a9ffb6	0x1416f06d8	cstring	bracelet
+import-item	0x140aa0026	0x14164bc40	cstring	bed
+import-item	0x140aa0096	0x1416f0df0	cstring	traction bench
+import-item	0x140aa0106	0x1416f0e00	cstring	quern
+import-item	0x140aa0176	0x1416f0e08	cstring	millstone
+import-item	0x140aa01e6	0x1416f0e14	cstring	statue
+import-item	0x140aa02f2	0x1416f0d98	cstring	memorial
+import-item	0x140aa0306	0x1416f0da8	cstring	food imports sign
+import-item	0x140aa031a	0x1416f0dc0	cstring	clothing imports sign
+import-item	0x140aa032e	0x1416f0dd8	cstring	general imports sign
+import-item	0x140aa0342	0x1416f0d30	cstring	cloth shop sign
+import-item	0x140aa0356	0x1416f0d40	cstring	leather shop sign
+import-item	0x140aa036a	0x1416f0d58	cstring	woven clothing shop sign
+import-item	0x140aa037e	0x1416f0d78	cstring	leather clothing shop sign
+import-item	0x140aa0392	0x1416f0cd0	cstring	bone carver's shop sign
+import-item	0x140aa03a6	0x1416f0ce8	cstring	gem cutter's shop sign
+import-item	0x140aa03ba	0x1416f0d00	cstring	weaponsmith's shop sign
+import-item	0x140aa03ce	0x1416f0d18	cstring	bowyer's shop sign
+import-item	0x140aa03e2	0x1416f0c70	cstring	blacksmith's shop sign
+import-item	0x140aa03f6	0x1416f0c88	cstring	armorsmith's shop sign
+import-item	0x140aa040a	0x1416f0ca0	cstring	metal craft shop sign
+import-item	0x140aa041e	0x1416f0cb8	cstring	leather goods shop sign
+import-item	0x140aa0432	0x1416f0c08	cstring	carpenter's shop sign
+import-item	0x140aa0446	0x1416f0c20	cstring	stone furniture shop sign
+import-item	0x140aa045a	0x1416f0c40	cstring	metal furniture shop sign
+import-item	0x140aa046e	0x1416f0c60	cstring	tavern sign
+import-item	0x140aa0482	0x1416f0be0	cstring	slab
+import-item	0x140aa0496	0x1416f0be0	cstring	slab
+import-item	0x140aa04b4	0x1416f0898	cstring	rotten 
+import-item	0x140aa04c9	0x1416f0be8	cstring	corpse
+import-item	0x140aa04e7	0x1416f0898	cstring	rotten 
+import-item	0x140aa050b	0x14163167c	cstring	tooth
+import-item	0x140aa051c	0x1416f0bf0	cstring	teeth
+import-item	0x140aa0531	0x141631674	cstring	bone
+import-item	0x140aa0549	0x14163166c	cstring	shell
+import-item	0x140aa0561	0x1416f0bf8	cstring	plant part
+import-item	0x140aa0579	0x1416f0b90	cstring	silk body part
+import-item	0x140aa0591	0x1416f0ba0	cstring	leather body part
+import-item	0x140aa05a9	0x1416f0bb8	cstring	wooden body part
+import-item	0x140aa05c3	0x1416f0bd0	cstring	soap body part
+import-item	0x140aa05dd	0x141631694	cstring	horn
+import-item	0x140aa05f7	0x14163168c	cstring	pearl
+import-item	0x140aa0611	0x1416f0b58	cstring	yarn body part
+import-item	0x140aa0629	0x1416f0b68	cstring	strand body part
+import-item	0x140aa0632	0x1416a0ac0	cstring	body part
+import-item	0x140aa065b	0x1416f0b80	cstring	Rotten 
+import-item	0x140aa07c2	0x14169ebd0	cstring	remains
+import-item	0x140aa0821	0x1416f0b88	cstring	seeds
+import-item	0x140aa0892	0x1416f0b18	cstring	withered 
+import-item	0x140aa0906	0x1416f0b28	cstring	leaves and fruit
+import-item	0x140aa0917	0x1416f0b40	cstring	leaf or fruit
+import-item	0x140aa094a	0x1416f0b18	cstring	withered 
+import-item	0x140aa099d	0x141630b04	cstring	plant
+import-item	0x140aa09b6	0x1416044f0	cstring	s
+import-item	0x140aa09dc	0x1416f0898	cstring	rotten 
+import-item	0x140aa09f4	0x1416f0b50	cstring	raw 
+import-item	0x140aa0b75	0x141604394	cstring	, 
+import-item	0x140aa0b8b	0x141604394	cstring	, 
+import-item	0x140aa0ba4	0x1416c19a0	cstring	fish
+import-item	0x140aa0bca	0x1416f0898	cstring	rotten 
+import-item	0x140aa0cf1	0x1416039f0	cstring	 
+import-item	0x140aa0d06	0x1416f0aec	cstring	egg
+import-item	0x140aa0d2c	0x1416f0898	cstring	rotten 
+import-item	0x140aa0e2b	0x1416c19a0	cstring	fish
+import-item	0x140aa0e48	0x1416f0af0	cstring	live 
+import-item	0x140aa0e81	0x1416f0af8	cstring	small live animal
+import-item	0x140aa0e9b	0x1416f0b0c	cstring	tame 
+import-item	0x140aa0ea4	0x1416f0ab0	cstring	small tame animal
+import-item	0x140aa0ebb	0x1416f0ac8	cstring	prepared meal
+import-item	0x140aa0ed5	0x1416f0898	cstring	rotten 
+import-item	0x140aa0eea	0x1416f0ad8	cstring	preserved 
+import-item	0x140aa0fac	0x1416f0ae4	cstring	 chops
+import-item	0x140aa0fbd	0x1416f0a84	cstring	 chop
+import-item	0x140aa0ff6	0x1416f0a8c	cstring	meat
+import-item	0x140aa1010	0x1416f0a8c	cstring	meat
+import-item	0x140aa10a2	0x1416eb054	cstring	weapon
+import-item	0x140aa10db	0x1416039f0	cstring	 
+import-item	0x140aa1207	0x1416f0aa0	cstring	suits of 
+import-item	0x140aa1216	0x1416eb05c	cstring	armor
+import-item	0x140aa127c	0x1416039f0	cstring	 
+import-item	0x140aa1326	0x1416f0a94	cstring	chain 
+import-item	0x140aa1435	0x141656244	cstring	right 
+import-item	0x140aa1455	0x1416561e0	cstring	left 
+import-item	0x140aa149e	0x1416f0a94	cstring	chain 
+import-item	0x140aa14ff	0x1416039f0	cstring	 
+import-item	0x140aa1513	0x1416f0a48	cstring	handwear
+import-item	0x140aa15b7	0x1416eafe4	cstring	shield
+import-item	0x140aa15d6	0x1416f0a58	cstring	/buckler
+import-item	0x140aa15ea	0x1416f0a58	cstring	/buckler
+import-item	0x140aa1727	0x1416039f0	cstring	 
+import-item	0x140aa1757	0x1416f0a68	cstring	footwear
+import-item	0x140aa1848	0x1416f0a78	cstring	headwear
+import-item	0x140aa188c	0x1416039f0	cstring	 
+import-item	0x140aa1948	0x1416f09f8	cstring	legwear
+import-item	0x140aa19cc	0x1416039f0	cstring	 
+import-item	0x140aa1ae6	0x141618d48	cstring	item
+import-item	0x140aa1b17	0x141637c6c	cstring	 [
+import-item	0x140aa1b37	0x141619408	cstring	]
+official-position	0x140df5854	0x1416067ac	cstring	/
+native-name	0x140aadbdd	0x1416039f0	cstring	 
+native-name	0x140aadd53	0x1416039f0	cstring	 
+native-name	0x140aadfaf	0x1416039f0	cstring	 
+native-name	0x140aae0db	0x1416039f0	cstring	 

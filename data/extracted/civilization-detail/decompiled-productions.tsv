@@ -1,0 +1,47 @@
+branch	condition	output	translation_owner
+own-civilization	selected entity == own entity	trade/tribute/agreement section omitted; leaders still drawn	native renderer
+broker-unskilled	broker appraisal result < 1	You can look at trade information once you have | a broker with appraisal skill.	ui-messages.tsv, both individual native rows and the complete paragraph
+trade-heading	trading relations	Imports from {entity}:	ui-messages.tsv entity capture
+hostile-heading	nontrading relations	Exports to {entity}:	ui-messages.tsv entity capture
+offering-heading	all relations with appraisal	Offerings from {entity}:	ui-messages.tsv entity capture
+imports-empty	trading and import total == 0	None	World civilization trade status: None
+imports-amount	trading and import total != 0	appraised amount + CP437 currency glyph	trade-amount.c; native numeric field
+offerings-empty	trading and offering total == 0	None	World civilization trade status: None
+offerings-amount	trading and offering total != 0	appraised amount + CP437 currency glyph	trade-amount.c; native numeric field
+exports-thief	nontrading, entity flags SKULKING and ITEM_THIEF	Petty Annoyance	World civilization trade status: Petty Annoyance
+offerings-thief	nontrading, entity flags SKULKING and ITEM_THIEF	Death	World civilization trade status: Death
+exports-hostile	other nontrading entity	Terror	World civilization trade status: Terror
+offerings-hostile	other nontrading entity	Vengeance	World civilization trade status: Vengeance
+amount-unknown	appraisal argument < 0	? + currency glyph	preserved numeric/symbol field
+amount-exact	appraisal >= 15, or amount within appraisal threshold	integer + currency glyph	preserved numeric/symbol field
+amount-estimated	appraisal 0..14 above threshold	~ + optional minus + rounded integer + currency glyph	preserved numeric/symbol field
+amount-lower-bound	amount above high estimate threshold	optional minus + lower bound + currency glyph + ?	preserved numeric/symbol field
+tribute-spring	relation type == 3, season == 0	You accept their tribute every Spring.	ui-messages.tsv
+tribute-summer	relation type == 3, season == 1	You accept their tribute every Summer.	ui-messages.tsv
+tribute-autumn	relation type == 3, season == 2	You accept their tribute every Autumn.	ui-messages.tsv
+tribute-winter	relation type == 3, season == 3	You accept their tribute every Winter.	ui-messages.tsv
+tribute-default	relation type == 3, other season	You accept their tribute every .	ui-messages.tsv
+agreement-none	agreement list empty	You have no agreements with this land.	ui-messages.tsv
+agreement-topic	agreement type == 0, topic == 2	Lumber limits	ui-messages.tsv
+agreement-quota	agreement type == 0, topic == 2	Lumber limits {remaining}/{limit}; remaining > 0, == 0, < 0 use distinct colors	ui-messages.tsv typed integer captures; native counts
+agreement-topic-default	agreement type == 0, other topic	Something	ui-messages.tsv
+agreement-exports	agreement type == 4	Trade Agreement (Exports to {entity})	ui-messages.tsv entity capture
+agreement-imports	agreement type == 5	Requests (Imports from {entity})	ui-messages.tsv entity capture
+agreement-year	all agreement types with available row	Agreed in year {year}; prefix and integer are separate draws	ui-messages.tsv typed integer capture
+agreement-pending	parallel pending flag != 0	Pending; independent right column on year row	ui-messages.tsv
+agreement-active	pending flag == 0	no status text	native renderer
+exports-list	type == 4 and export table != null	107 category slots traversed; only prices != 128 displayed	export-commodity.c; native-switches.tsv retains every selector
+exports-item	category 0..63 except special producers	full native item caption from import-item supplier	fortress::trade_requests -> items/materials; existing item fallback
+exports-crafts	category == 3	optional historical name + 's + material prefix/state, or unknown material; suffix Crafts	fortress::trade_requests material item_qualifier + crafts
+exports-logs	category == 4	optional historical name + 's + material prefix/state, or unknown material; suffix Logs	shared item/material/log grammar
+exports-animal	category == 24	caste name, else creature name; optional comma and CP437 sex glyph	shared creature descriptor in historical item fallback
+exports-growth	category == 32 or 33, valid growth definition	item supplied by growth item/material fields	shared items, including comma-separated plant-growth captions
+exports-food	category == 34 or 35	optional ingredient item + food definition name; Prepared Food fallback	shared items/food grammar and full-token item fallback
+exports-other	category >= 64 or unresolved optional native resource	empty caption, numeric price can still be drawn	native renderer; no fabricated commodity
+imports-list	type == 5 and import table != null	all demand records; type, subtype, material type/index -> full item caption	import-item.c and native-switches.tsv retain all item branches; shared items grammar
+agreement-price	import/export row	(price * 100 >> 7) + percent glyph	preserved independent numeric column
+leaders-none	leader list empty	This land has no important leaders.	ui-messages.tsv
+leader-name	leader has named historical identity	complete native generated name	shared historical name translator
+leader-office	office exists	gendered office name, else neutral name; singular/plural selection; optional territory	shared profession/office/territory translation
+leader-profession	no office, or profession != standard office-only sentinel	profession alone or office/profession	shared profession translation; native slash retained
+clipping	any list reaches bottom bound	remaining native rows not emitted; long office displayed with ellipsis	complete captured native fields supply translation, existing geometry supplies clipping
