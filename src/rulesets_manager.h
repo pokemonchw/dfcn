@@ -129,10 +129,13 @@ namespace Hooks {
         struct SearchItemNoun {
             std::string kind, source, target;
             bool category = false;
+            std::string grammar;
         };
         // Whole item nouns from the loaded grammar, including extensions.
         // Material/prefix rules and arbitrary sentence fragments are excluded.
         std::vector<SearchItemNoun> search_item_nouns() const;
+        struct SearchLexicalSource { std::string grammar, source, target; };
+        std::vector<SearchLexicalSource> search_lexical_sources() const;
         std::vector<std::pair<std::string, std::string>> search_word_equivalents() const;
         // Bare cup/mug/goblet types; keep their complete material field separate.
         std::optional<std::string> translate_drinkware_type(const std::string& text) const;

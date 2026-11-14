@@ -21,6 +21,8 @@ static bool resolve_native_item_search_profile(NativeItemSearchProfile &profile)
         0x48,0x89,0x74,0x24,0x18,0x57,0x41,0x56,0x41,0x57,
         0x48,0x83,0xec,0x20}},
         }, {0, &native_search_byte_find, {
+            {0x103dd80, 0xa82c10,
+                reinterpret_cast<const void *>(&capture_search_abstract_caption)},
             {0x103ddf7, 0xe1990,
                 reinterpret_cast<const void *>(&capture_native_item_search_find),
                 {0x4c,0x8d,0x84,0x24,0x98,0,0,0}}

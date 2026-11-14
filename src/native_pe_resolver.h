@@ -210,7 +210,7 @@ inline uint32_t ui_settings_tail_shift(const Image &image) {
 #include "native_pe_classic_5317_bindings.inc"
 
 // The frozen seed predates the settings widget reader and the expanded
-// history type bindings. Resolve their primary vtables by exact MSVC RTTI
+// history/search type bindings. Resolve their primary vtables by exact MSVC RTTI
 // identity when the seed has no instruction or vtable evidence for them.
 inline constexpr std::pair<uint32_t, const char *> kSupplementalVtableTypes[] = {
     {0x15eefd0, ".?AVtabs@widgets@@"},
@@ -220,6 +220,19 @@ inline constexpr std::pair<uint32_t, const char *> kSupplementalVtableTypes[] = 
     {0x1785bd0, ".?AVtable@widgets@@"},
     {0x1785ca8, ".?AVbetter_button@widgets@@"},
     {0x1785d60, ".?AVindiv_filter@multifilter@widgets@@"},
+    // Search descriptor roots were added after the frozen seed's RTTI
+    // catalog. Their generated layouts consume these reference identities;
+    // resolve the actual edition's primary table from its complete type name.
+    {0x162e2f8, ".?AVbuild_req_choice_specst@@"},
+    {0x16534c8, ".?AVbuilding_furnacest@@"},
+    {0x165b070, ".?AVbuilding_workshopst@@"},
+    {0x16be558, ".?AVinterface_button_building_material_selectorst@@"},
+    {0x16be5e8, ".?AVbuild_req_choice_genst@@"},
+    {0x16be650, ".?AVinterface_button_building_category_selectorst@@"},
+    {0x16be770, ".?AVinterface_button_building_new_jobst@@"},
+    {0x1737470, ".?AVreaction_product_item_improvementst@@"},
+    {0x17374a0, ".?AVreaction_product_itemst@@"},
+    {0x17374d0, ".?AVreaction_reagent_itemst@@"},
 };
 
 inline void adapt_required(Catalog &catalog, uint32_t settings_shift) {
@@ -317,10 +330,10 @@ public:
         if (!GetProcessTimes(GetCurrentProcess(), &birth, &exit, &kernel, &user)) return;
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
         const auto digest = hex_digest(seed);
-        // Revision 8 adds the building/filter RTTI anchors required by the
-        // expanded history bindings. The seed bytes did not change, so an
-        // earlier process snapshot can still retain their unresolved result.
-        name_ = L"Local\\DFCN.NativeAddresses.8." + std::to_wstring(GetCurrentProcessId()) + L"." +
+        // Revision 9 adds the search descriptor RTTI anchors. The seed bytes
+        // need not change, so the previous process snapshot may still retain
+        // the incomplete result from before those anchors were available.
+        name_ = L"Local\\DFCN.NativeAddresses.9." + std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
             std::wstring(digest.begin(), digest.end());

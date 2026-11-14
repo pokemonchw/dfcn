@@ -344,7 +344,7 @@ bool Overlay::translated_adventure_action_matches(std::string_view source,
     TranslationStateScope translation_scope;
     if (!config_.enabled || source.empty() || source.size() > 65536) return false;
     if (translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
+    if (search_association_text(source,{},query,SearchCandidateKind::TextRecord,"conversation")) return true;
     if (native_choice) {
         // Equal captions can have different enums or native identities.
         // Retain the complete captured discriminator, including unnamed
@@ -360,7 +360,7 @@ bool Overlay::translated_adventure_action_matches(std::string_view source,
             std::vector<int> source_colors(source.size(), 0xffffff), target_colors;
             return translate_adventure_action_choice(source, source_colors, target_colors, native_choice);
         }, true);
-        return target && translated_search_text_matches(*target, query);
+        return target && search_association_text(source,*target,query,SearchCandidateKind::TextRecord,"conversation");
     }
     const auto target = memoize_search_translation('a', source, [&] {
         // Keep complete original spelling/case for the shared name grammar.
@@ -368,7 +368,7 @@ bool Overlay::translated_adventure_action_matches(std::string_view source,
         std::vector<int> source_colors(source.size(), 0xffffff), target_colors;
         return translate_adventure_action_choice(source, source_colors, target_colors);
     }, true);
-    return target && translated_search_text_matches(*target, query);
+    return target && search_association_text(source,*target,query,SearchCandidateKind::TextRecord,"conversation");
 }
 
 // Immutable vocabulary is shared by every keyword row until rules reload.
@@ -1119,9 +1119,9 @@ bool Overlay::translated_conversation_keywords_match(std::string_view keywords,
     TranslationStateScope translation_scope;
     if (!translation_enabled()) return false;
     if (translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(keywords), query)) return true;
+    if (search_association_text(keywords,{},query,SearchCandidateKind::TextRecord,"conversation")) return true;
     const auto translated = translate_conversation_keywords(keywords);
-    if (translated) return translated_search_text_matches(*translated, query);
+    if (translated) return search_association_text(keywords,*translated,query,SearchCandidateKind::TextRecord,"conversation");
     // Native ranking searches a deduplicated keyword vector. Two different
     // choice captions may legitimately own that same vector; Chinese search
     // must retain both proven meanings rather than let the ambiguity veto
@@ -1137,7 +1137,7 @@ bool Overlay::translated_conversation_keywords_match(std::string_view keywords,
     for (const auto &[caption, native_keywords] : *snapshot) {
         if (lower(normalize_utterance(native_keywords)) != source) continue;
         const auto target = translate_conversation_keywords(keywords, caption);
-        if (target && translated_search_text_matches(*target, query)) return true;
+        if (target && search_association_text(keywords,*target,query,SearchCandidateKind::TextRecord,"conversation")) return true;
     }
     return false;
 }

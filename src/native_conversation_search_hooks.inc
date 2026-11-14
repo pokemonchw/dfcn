@@ -47,20 +47,20 @@ static size_t match_native_choice_caption(const char *text, size_t length,
     // The relay borrows the complete display caption in the native zero-start
     // argument. Keep English/empty-query behavior and the caller's npos contract.
     const size_t result = native_search_byte_find(text, length, 0, query_text, query_length);
-    if (result != SIZE_MAX) return result;
     try {
         if (!g_overlay.translation_enabled() || !query_text ||
             query_length == 0 || query_length > 4096) return result;
         const std::string_view query(query_text, query_length);
+        SearchNativeHitScope native_hit(result!=SIZE_MAX);
         std::string_view source;
         if (native_string_view(caption, &source, 65536) && !source.empty()) {
             if constexpr (AdventureAction) {
                 const auto choice = capture_native_performance_choice(
                     reinterpret_cast<uintptr_t>(caption));
-                if (g_overlay.translated_adventure_action_matches(
-                        source, query, choice ? &*choice : nullptr)) return 0;
+                return g_overlay.translated_adventure_action_matches(
+                        source, query, choice ? &*choice : nullptr)?0:SIZE_MAX;
             } else {
-                if (g_overlay.translated_search_matches(source, query)) return 0;
+                return g_overlay.translated_search_matches(source, query)?0:SIZE_MAX;
             }
         }
     } catch (...) {

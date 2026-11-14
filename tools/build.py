@@ -239,7 +239,8 @@ def deploy_runtime_data(directory: Path) -> None:
                  "pinyin-data/pinyin.txt", "pinyin-data/SOURCE",
                  "phrase-pinyin-data/large_pinyin.txt",
                  "phrase-pinyin-data/LICENSE", "phrase-pinyin-data/SOURCE",
-                 "search-concepts.tsv"):
+                 "search-concepts.tsv", "search-lexemes.tsv", "search-relations.tsv",
+                 "search-predicates.toml", "search-native-bindings.tsv"):
         install(runtime / name, (RUNTIME / name).read_bytes())
     for name in ("dfhack-help.LICENSE", "lua-output.LICENSE", "pinyin-data/LICENSE"):
         install(runtime / name, (ROOT / "third_party" / name).read_bytes())
@@ -454,6 +455,8 @@ def retain_pe_reference_resources() -> None:
 
 def generate_data(env: dict[str, str], *, pe_reference: Path | None = None,
                   preserve_pe_profiles: bool = False, preserve_elf_profiles: bool = False) -> None:
+    from search_unicode_source import write_search_unicode_source
+    write_search_unicode_source(ROOT / "src/search_unicode_data.inc")
     layout_inputs = [ROOT / "tools/build_history_layouts.py",
                      *file_inputs(UPSTREAM / "df-structures", {".xml"})]
     if needs_update([ROOT / "src/native_history_layouts.inc"], layout_inputs):

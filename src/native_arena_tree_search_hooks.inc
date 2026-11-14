@@ -31,6 +31,7 @@ static void capture_native_arena_tree_search_term(NativeString *term,
 
 static void capture_native_arena_tree_search_query(NativeString *query) {
     fold_native_search_query(query, g_native_arena_tree_search_fold);
+    prepare_native_search_facts(query,false);
 }
 
 static size_t capture_native_arena_tree_search_find(const char *text, size_t length,
@@ -39,14 +40,15 @@ static size_t capture_native_arena_tree_search_find(const char *text, size_t len
     // The native caller uses a zero start position. Its relay supplies the
     // original plant name in that argument, retaining case and legacy accents.
     const size_t result = native_search_byte_find(text, length, 0, query_text, query_length);
-    if (result != SIZE_MAX) return result;
     try {
         if (!g_overlay.translation_enabled() || !query_text ||
             !query_length || query_length > 4096) return result;
         const std::string_view query(query_text, query_length);
+        SearchNativeHitScope native_hit(result!=SIZE_MAX);
+        refresh_native_search_world(false,false);
         std::string_view source;
-        if (native_string_view(original_name, &source, 65536) &&
-            g_overlay.translated_plant_search_matches(source, query)) return 0;
+        if (native_string_view(original_name, &source, 65536))
+            return g_overlay.translated_plant_search_matches(source, query)?0:SIZE_MAX;
     } catch (...) {
         // Translation/allocation failures must not cross the native game ABI.
     }

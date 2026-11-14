@@ -125,10 +125,9 @@ bool Overlay::translated_name_editor_search_matches(std::string_view word_id,
     TranslationStateScope translation_scope;
     if (native_part < 0 || native_part > 8) return false;
     if (translated_search_query(query).literal.empty()) return false;
-    const auto contains = [&](std::string_view text) {
-        return translated_search_text_matches(text, query);
-    };
-    if (contains(source) || (!native_word.empty() && contains(native_word))) return true;
+    SearchDescriptor descriptor;descriptor.kind=SearchCandidateKind::NamedEntity;descriptor.domain="names";
+    descriptor.original_caption=source;descriptor.lexical_labels.emplace_back(native_word);
+    descriptor.candidate_id.native_key=std::string(word_id)+":"+std::to_string(native_part);
     const auto part = native_part <= 1 ? ProceduralNamePartOfSpeech::noun :
         native_part == 2 ? ProceduralNamePartOfSpeech::adjective :
         native_part == 3 ? ProceduralNamePartOfSpeech::prefix : ProceduralNamePartOfSpeech::verb;
@@ -139,14 +138,14 @@ bool Overlay::translated_name_editor_search_matches(std::string_view word_id,
     if (const auto meaning = memoize_search_translation('N', key, [&] {
             return translate_name_editor_meaning(source, native_word, part, word_id);
         });
-        meaning && contains(*meaning)) return true;
+        meaning) descriptor.display_caption=*meaning;
     if (!native_word.empty()) {
         const auto phonetic = memoize_search_translation('n', native_word, [&] {
             return translate_procedural_fragment(std::string(native_word), true);
         });
-        if (phonetic && contains(*phonetic)) return true;
+        if (phonetic)descriptor.lexical_labels.push_back(*phonetic);
     }
-    return false;
+    return search_association_match(descriptor,query).accepted;
 }
 
 bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,

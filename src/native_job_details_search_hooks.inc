@@ -54,20 +54,23 @@ static size_t capture_native_job_details_search_find(const char *text,
     caption.term = nullptr;
     const size_t result = native_search_byte_find(text, length, 0,
                                                  query_text, query_length);
-    if (result != SIZE_MAX) return result;
     try {
         if (!complete || !g_overlay.translation_enabled() || !query_text ||
             query_length == 0 || query_length > 4096) return result;
         const std::string source(caption.source.data(), caption.length);
         const std::string_view query(query_text, query_length);
+        SearchNativeHitScope native_hit(result!=SIZE_MAX);
+        if constexpr (Kind != NativeJobDetailsSearchKind::Color)refresh_native_search_world(false,false);
         bool match = false;
-        if constexpr (Kind == NativeJobDetailsSearchKind::Creature)
+        if constexpr (Kind == NativeJobDetailsSearchKind::Creature) {
+            SearchDescriptor descriptor;descriptor.kind=SearchCandidateKind::ItemDefinition;descriptor.domain="creature.types";
+            descriptor.candidate_id.record=reinterpret_cast<uintptr_t>(term);SearchDescriptorScope scope(descriptor);
             match = g_overlay.translated_search_matches(source, query);
-        else if constexpr (Kind == NativeJobDetailsSearchKind::Color)
+        } else if constexpr (Kind == NativeJobDetailsSearchKind::Color)
             match = g_overlay.translated_color_search_matches(source, query);
         else
             match = g_overlay.translated_plant_search_matches(source, query);
-        if (match) return 0;
+        return match?0:SIZE_MAX;
     } catch (...) {}
     return result;
 }

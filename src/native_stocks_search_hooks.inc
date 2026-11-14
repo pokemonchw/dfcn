@@ -13,6 +13,7 @@ static NativeCallHook g_native_stocks_search_hook;
 static NativeSearchFoldFn g_native_stocks_search_fold = nullptr;
 
 static void capture_native_stocks_search_query(NativeString *query) {
+    prepare_native_search_facts(query);
     fold_native_search_query(query, g_native_stocks_search_fold);
 }
 
@@ -54,6 +55,8 @@ static bool install_native_stocks_search_hook() {
     }
     NativeStocksSearchProfile profile;
     if (!resolve_native_stocks_search_profile(profile)) return false;
+    append_native_search_caption_observers(profile.base, profile.calls,
+        reinterpret_cast<const void *>(&capture_native_stocks_search_term));
     g_native_stocks_search_fold = profile.fold;
     if (!g_native_stocks_search_hook.install(profile.base, profile.calls,
                                             "Native Stocks translated search")) {

@@ -52,11 +52,10 @@ bool Overlay::translated_kitchen_search_matches(std::string_view source,
         std::string_view query) const {
     TranslationStateScope translation_scope;
     if (source.empty() || translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
     const auto target = memoize_search_translation('k', source, [&] {
         return translate_kitchen_food_name(source);
     }, true);
-    return target && translated_search_text_matches(*target, query);
+    return search_association_text(source,target.value_or(""),query,SearchCandidateKind::ItemDefinition,"items");
 }
 
 static std::optional<FortressKitchenTable> fortress_kitchen_table(

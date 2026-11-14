@@ -1,0 +1,8 @@
+# Restricted expression language: true/false, eq, in, and, or, not.
+# These are definition capabilities in furniture mode, never instance contents.
+[bedroom_storage]
+expression = "and(eq(mode,capability),eq(place,bedroom))"
+[weapon_storage]
+expression = "and(eq(mode,capability),eq(place,barracks))"
+[book_storage]
+expression = "and(eq(mode,capability),eq(place,library))"

@@ -65,12 +65,10 @@ static uintptr_t g_native_task_picker_search_owner = 0;
 struct NativeWorkOrderSearchCatalog {
     uintptr_t world = 0;
     uint64_t generation = 0;
+    uint64_t list_generation = 0;
     NativeBorrowedVector<uintptr_t> master;
     size_t next = 0;
-    size_t published = 0;
-    std::chrono::steady_clock::time_point refreshed{};
     bool open = false;
-    bool refresh_when_ready = false;
 };
 static NativeWorkOrderSearchCatalog g_native_work_order_search_catalog;
 
@@ -107,11 +105,10 @@ static void prepare_native_work_order_search_catalog() {
         // Revisit their captions while retaining each unchanged text index.
         if (master.begin != catalog.master.begin || master.end != catalog.master.end ||
                 (open == 1 && !catalog.open)) {
+            static std::atomic<uint64_t> serial{1};catalog.list_generation=serial.fetch_add(1);
             catalog.master = master;
             catalog.next = 0;
-            catalog.published = 0;
-            catalog.refreshed = {};
-            catalog.refresh_when_ready = true;
+            refresh_native_search_world(true);
         }
         catalog.open = open == 1;
         {
@@ -134,28 +131,15 @@ static void prepare_native_work_order_search_catalog() {
                 if (native_history_copy_string(row + 0x50, source) && !source.empty() &&
                         source.size() <= 65536 && source.find('\0') == std::string::npos) {
                     if (!g_overlay.prepare_work_order_search_entry(source)) break;
+                    search_native_job(row,false,owner,catalog.list_generation);
                 }
                 ++catalog.next;
                 if (std::chrono::steady_clock::now() >= deadline) break;
             }
         }
-        const auto now = std::chrono::steady_clock::now();
-        if (catalog.refresh_when_ready && catalog.open && g_native_task_picker_search_refresh &&
-                (catalog.next == master.size() || (catalog.next > catalog.published &&
-                    now - catalog.refreshed >= std::chrono::milliseconds(50)))) {
-            const auto query_field = native_history_object_member(owner,
-                "create_work_order_interfacest", "job_filter", 32);
-            std::string query;
-            if (!native_history_copy_string(query_field, query)) return;
-            catalog.refresh_when_ready = catalog.next < master.size();
-            catalog.published = catalog.next;
-            catalog.refreshed = now;
-            // A query entered during preparation gets its complete native
-            // result automatically, without another keystroke or UI action.
-            if (!query.empty()) callback.call_native([&] {
-                g_native_task_picker_search_refresh(reinterpret_cast<void *>(owner));
-            });
-        }
+        // Foreground comparisons prepare missing entries synchronously.
+        // Warming an immutable entry cannot change their result and must not
+        // replay the native filter from the render loop.
     } catch (...) {
         // Keep preparation failures outside the game's input/render ABI.
     }
@@ -191,7 +175,7 @@ static void capture_native_workshop_search_finish(NativeString *query_string) {
             const auto rows = NativeBorrowedVector<const void *>::read(
                 g_native_workshop_search_results);
             if (rows.valid() && rows.size() > 1) {
-                struct RankedRow { const void *candidate; SearchMatchRank rank; };
+                struct RankedRow { const void *candidate; SearchMatchDecision decision; int32_t priority, alpha; bool grouped; };
                 std::vector<RankedRow> ranked;
                 ranked.reserve(rows.size());
                 for (size_t i = 0; i < rows.size(); ++i) {
@@ -200,12 +184,33 @@ static void capture_native_workshop_search_finish(NativeString *query_string) {
                     // read. No partial sort or newly admitted rows are published.
                     if (!native_workshop_search_caption(rows.begin[i],
                             g_real_native_workshop_search_destroy, source)) break;
-                    ranked.push_back({rows.begin[i],
-                        g_overlay.translated_workshop_search_rank(source, query)});
+                    const auto object = reinterpret_cast<uintptr_t>(rows.begin[i]);
+                    uintptr_t table = 0, method = 0;
+                    const auto slot = native_history_virtual_slot(object, 0x50);
+                    if (slot == SIZE_MAX || !native_history_copy(object, table) ||
+                        !native_history_copy(table + slot, method) || !method) break;
+                    const bool grouped = callback.call_native([&] { return reinterpret_cast<bool (*)(const void *)>(method)(rows.begin[i]); });
+                    int32_t priority = 0, alpha = 0;
+                    if (grouped && (!search_native_field(object, "interface_button_building_new_jobst", "list_priority", priority) ||
+                            !search_native_field(object, "interface_button_building_new_jobst", "alpha_order", alpha))) break;
+                    auto descriptor = search_native_job(object, true);
+                    descriptor.original_caption = native_text_to_utf8(source);
+                    descriptor.native_ordinal = i;
+                    const auto entry = g_overlay.prepare_work_order_search_entry(source);
+                    if (entry && entry->fields.size() > 1) descriptor.display_caption = entry->fields[1].semantic_source;
+                    ranked.push_back({rows.begin[i], search_association_match(std::move(descriptor), query), priority, alpha, grouped});
                 }
                 if (ranked.size() == rows.size()) {
-                    std::stable_sort(ranked.begin(), ranked.end(),
-                        [](const RankedRow &a, const RankedRow &b) { return a.rank < b.rank; });
+                    // Preserve native group, priority and alpha-order bands.
+                    // Only alphabetized jobs within one band can be ranked.
+                    for (size_t begin = 0; begin < ranked.size();) {
+                        size_t end = begin + 1;
+                        while (end < ranked.size() && ranked[end].grouped == ranked[begin].grouped &&
+                                ranked[end].priority == ranked[begin].priority && ranked[end].alpha == ranked[begin].alpha) ++end;
+                        if (ranked[begin].grouped) std::stable_sort(ranked.begin() + begin, ranked.begin() + end,
+                            [](const RankedRow &a, const RankedRow &b) { return a.decision.order() < b.decision.order(); });
+                        begin = end;
+                    }
                     for (size_t i = 0; i < ranked.size(); ++i)
                         rows.begin[i] = ranked[i].candidate;
                 }
@@ -238,15 +243,14 @@ static size_t match_native_workshop_search(const char *native_text,
         if (!g_overlay.translation_enabled() || !query_text ||
             query_length == 0 || query_length > 4096) return result;
         const std::string_view query(query_text, query_length);
+        SearchNativeHitScope native_hit(result!=SIZE_MAX);
+        refresh_native_search_world();
         // Native search keys are already lowercased; the display caption
         // retains the spelling required by generated instrument names and
         // scoped task grammar. It is available even for offscreen choices.
         std::string source;
         if (read_caption(source)) {
-            if (const auto typed = translated_search_item_decision(source, query))
-                return *typed ? 0 : SIZE_MAX;
-            if (result != SIZE_MAX) return result;
-            if (g_overlay.translated_unit_search_matches(source, query, true)) return 0;
+            return g_overlay.translated_unit_search_matches(source, query, true) ? 0 : SIZE_MAX;
         }
     } catch (...) {
         // Translation/allocation failures must not unwind through the game.
@@ -259,11 +263,19 @@ static size_t match_native_workshop_search(const char *native_text,
 static size_t capture_native_workshop_search_find(const char *native_text,
         size_t native_length, const void *candidate,
         const char *query_text, size_t query_length) {
-    return match_native_workshop_search(native_text, native_length, query_text,
-        query_length, [&](std::string &source) {
-            return native_workshop_search_caption(candidate,
-                g_real_native_workshop_search_destroy, source);
-        });
+    NativeInputCallbackScope callback;
+    try {
+        if(!g_overlay.translation_enabled() || !query_text || !query_length || query_length>4096)
+            return native_search_byte_find(native_text,native_length,0,query_text,query_length);
+        search_native_query_hint().assign(query_text,query_length);
+        auto descriptor = search_native_job(reinterpret_cast<uintptr_t>(candidate), true);
+        SearchDescriptorScope scope(descriptor);
+        return match_native_workshop_search(native_text, native_length, query_text,
+            query_length, [&](std::string &source) {
+                return native_workshop_search_caption(candidate,
+                    g_real_native_workshop_search_destroy, source);
+            });
+    } catch(...) { return native_search_byte_find(native_text,native_length,0,query_text,query_length); }
 }
 
 static size_t capture_native_task_picker_search_find(const char *native_text,
@@ -289,13 +301,17 @@ static size_t capture_native_task_picker_search_find(const char *native_text,
             catch (...) {} // The complete matcher below remains available.
         }
         const std::string_view query(query_text, query_length);
+        if(search_native_query_hint()!=query) {
+            search_native_query_hint()=query;refresh_native_search_world(true);
+        }
+        const auto descriptor = search_native_job(reinterpret_cast<uintptr_t>(caption) - 0x50,
+            false, g_native_task_picker_search_owner, g_native_work_order_search_catalog.list_generation);
+        SearchDescriptorScope descriptor_scope(descriptor);
+        SearchNativeHitScope native_hit(native_result!=SIZE_MAX);
         if (entry) return entry->matches(translated_search_query(query),
             native_result != SIZE_MAX) ? 0 : SIZE_MAX;
         // Preparation is an optimization, never a switch disabling the
         // original complete bilingual/pinyin/fuzzy/typed/semantic matcher.
-        if (const auto typed = translated_search_item_decision(source, query))
-            return *typed ? 0 : SIZE_MAX;
-        if (native_result != SIZE_MAX) return native_result;
         return g_overlay.translated_unit_search_matches(source, query, true) ? 0 : SIZE_MAX;
     } catch (...) {
         return native_result;

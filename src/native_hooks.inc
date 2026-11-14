@@ -55,6 +55,7 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_ime_adapter.inc"
 #include "native_input_hooks.inc"
 #include "native_search_binding.inc"
+#include "native_search_descriptors.inc"
 #include "native_arena_tree_search_hooks.inc"
 #include "name_editor_search.inc"
 #include "native_item_search_hooks.inc"

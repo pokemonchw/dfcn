@@ -117,13 +117,30 @@ namespace Hooks {
                         identifier.find("::default") != std::string::npos ||
                         (identifier.find("::singular") == std::string::npos &&
                          identifier.find("::plural") == std::string::npos &&
-                         (noun == kind || noun == kind + "s"))});
+                         (noun == kind || noun == kind + "s")), identifier});
                 }
             }
         }
         // A stable order also makes ambiguous aliases independent of hash order.
         std::sort(result.begin(), result.end(), [](const auto& a, const auto& b) {
             return std::tie(a.kind, a.source, a.target) < std::tie(b.kind, b.source, b.target);
+        });
+        return result;
+    }
+
+    std::vector<RulesetsManager::SearchLexicalSource> RulesetsManager::search_lexical_sources() const {
+        dfcn::TranslationStateScope scope;
+        std::vector<SearchLexicalSource> result;
+        for (const auto& [grammar, rules] : rulesets_)
+            if (grammar != "::materials::builtin" && !grammar.starts_with("::materials::builtin::"))
+                for (const auto& [source, target] : rules)
+                    if (source.size() == 1 && target.size() == 1 &&
+                            source.front().type == Type::Literal && target.front().type == Type::Literal &&
+                            !source.front().value.empty() && !target.front().value.empty() &&
+                            source.front().value.size()<=160 && target.front().value.size()<=160)
+                        result.push_back({grammar, source.front().value, target.front().value});
+        std::sort(result.begin(), result.end(), [](const auto& a, const auto& b) {
+            return std::tie(a.grammar, a.source, a.target) < std::tie(b.grammar, b.source, b.target);
         });
         return result;
     }
@@ -307,6 +324,12 @@ namespace Hooks {
         // Search graph/word alignment use the same published resource
         // revision, so data-only edits invalidate positive and negative hits.
         add(dfcn::runtime::data_path() / "search-concepts.tsv", false);
+        for (const auto* file : {"search-lexemes.tsv", "search-relations.tsv",
+                "search-predicates.toml", "search-native-bindings.tsv"})
+            add(dfcn::runtime::data_path() / file, false);
+        for (const auto* file : {"STCharacters.txt", "STPhrases.txt", "TWVariants.txt",
+                "TWPhrasesIT.txt", "TWPhrasesName.txt", "TWPhrasesOther.txt"})
+            add(dfcn::runtime::data_path() / "opencc" / file, false);
         add(dfcn::runtime::data_path() / "procedural-terms.tsv", false);
         std::error_code error;
         std::filesystem::recursive_directory_iterator it(dir, error), end;

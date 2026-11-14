@@ -89,16 +89,16 @@ static bool capture_native_symbol_search_match(const void *candidate,
                 &key, 65536)) return false;
         // Keep the native English/empty-query contract. Named records have
         // both native and translated-language English keys; neither is edited.
-        if (native_search_byte_find(key.data(), key.size(), 0, query.data(), query.size()) != SIZE_MAX)
-            return true;
+        bool native_hit=native_search_byte_find(key.data(), key.size(), 0, query.data(), query.size()) != SIZE_MAX;
         constexpr bool identity = Kind == SymbolCaptionKind::Figure || Kind == SymbolCaptionKind::Artifact;
         if constexpr (identity) {
             std::string_view second;
             if (native_string_view(reinterpret_cast<const NativeString *>(record + profile.second_key),
                     &second, 65536) && native_search_byte_find(second.data(), second.size(), 0,
-                        query.data(), query.size()) != SIZE_MAX) return true;
+                        query.data(), query.size()) != SIZE_MAX) native_hit=true;
         }
-        if (!g_overlay.translation_enabled() || query.empty()) return false;
+        if (!g_overlay.translation_enabled() || query.empty()) return native_hit;
+        SearchNativeHitScope native_scope(native_hit);
         std::string source;
         if constexpr (identity) {
             // Rebuild the exact display name from the native identity. The

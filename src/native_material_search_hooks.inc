@@ -88,15 +88,22 @@ static size_t match_native_material_search(const char *text, size_t length,
         bool condition = false) {
     NativeInputCallbackScope callback;
     const size_t result = native_search_byte_find(text, length, 0, query_text, query_length);
-    if (result != SIZE_MAX) return result;
     try {
         if (!g_overlay.translation_enabled() || !query_text ||
             query_length == 0 || query_length > 4096) return result;
         const std::string_view query(query_text, query_length);
+        if(!condition)refresh_native_search_world(false,true,true);
+        SearchNativeHitScope native_hit(result!=SIZE_MAX);
         std::string source;
-        if (read_caption(source) && (condition
+        SearchDescriptor descriptor;
+        descriptor.kind = condition ? SearchCandidateKind::PropertyChoice : SearchCandidateKind::MaterialChoice;
+        descriptor.domain = condition ? "properties" : "materials";
+        if (read_caption(source, descriptor)) {
+            SearchDescriptorScope scope(descriptor);
+            return (condition
                 ? g_overlay.translated_work_order_condition_search_matches(source, query)
-                : g_overlay.translated_material_search_matches(source, query))) return 0;
+                : g_overlay.translated_material_search_matches(source, query)) ? 0 : SIZE_MAX;
+        }
     } catch (...) {
         // No translation/allocation exception may unwind through native code.
     }
@@ -109,7 +116,7 @@ static size_t capture_native_material_search_find(const char *text, size_t lengt
     const bool complete = caption.term == term;
     caption.term = nullptr; // Borrowed native storage does not survive the comparison.
     return match_native_material_search(text, length, query_text, query_length,
-        [&](std::string &source) {
+        [&](std::string &source, SearchDescriptor &) {
             if (!complete) return false;
             source.assign(caption.source.data(), caption.length);
             return true;
@@ -120,8 +127,8 @@ static size_t capture_native_work_order_material_search_find(const char *text,
         size_t length, const void *candidate_slot,
         const char *query_text, size_t query_length) {
     return match_native_material_search(text, length, query_text, query_length,
-        [&](std::string &source) {
-            return native_work_order_material_caption(candidate_slot, source);
+        [&](std::string &source, SearchDescriptor &descriptor) {
+            return native_work_order_material_caption(candidate_slot, source, &descriptor);
         });
 }
 
@@ -129,7 +136,7 @@ static size_t capture_native_work_order_trait_search_find(const char *text,
         size_t length, const void *candidate_slot,
         const char *query_text, size_t query_length) {
     return match_native_material_search(text, length, query_text, query_length,
-        [&](std::string &source) {
+        [&](std::string &source, SearchDescriptor &) {
             return native_work_order_trait_caption(candidate_slot, source);
         }, true);
 }
@@ -138,8 +145,8 @@ static size_t capture_native_work_order_item_search_find(const char *text,
         size_t length, const void *candidate_slot,
         const char *query_text, size_t query_length) {
     return match_native_material_search(text, length, query_text, query_length,
-        [&](std::string &source) {
-            return native_work_order_item_caption(candidate_slot, source);
+        [&](std::string &source, SearchDescriptor &descriptor) {
+            return native_work_order_item_caption(candidate_slot, source, &descriptor);
         }, true);
 }
 

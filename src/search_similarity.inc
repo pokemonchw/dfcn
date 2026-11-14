@@ -19,20 +19,51 @@ static SearchCodepoints search_codepoints(std::string_view text) {
     return result;
 }
 
+struct SearchSemanticModelState {
+    std::filesystem::path path;
+    std::filesystem::file_time_type modified{};
+    uintmax_t size=0;
+    uint64_t generation=0,revision=UINT64_MAX;
+    std::chrono::steady_clock::time_point inspected{};
+    std::shared_ptr<search_semantic::Model> model;
+    bool attempted=false;
+};
+static SearchSemanticModelState &search_semantic_model_state(bool refresh=true) {
+    auto &state=reloadable_thread_state<SearchSemanticModelState,struct SearchSemanticModelTag>();
+    if(!refresh && state.generation)return state;
+    const auto now=std::chrono::steady_clock::now();const auto revision=RULESETS.resource_revision();
+    if(state.revision==revision && now-state.inspected<std::chrono::seconds(1))return state;
+    state.inspected=now;
+    // Extension discovery enumerates subscribed packages. It belongs to a
+    // resource change, never the once-per-second search metadata poll.
+    auto path=state.path;
+    if(state.revision!=revision || !state.generation)
+        try { path=extensions::discover().semantic_model; } catch(...) {}
+    state.revision=revision;
+    std::error_code error;
+    const auto modified=std::filesystem::last_write_time(path,error);
+    const auto size=error?0:std::filesystem::file_size(path,error);
+    if(state.path!=path || state.modified!=modified || state.size!=size || !state.generation){
+        state.path=path;state.modified=modified;state.size=size;state.model.reset();state.attempted=false;
+        ++state.generation;
+    }
+    return state;
+}
 static const search_semantic::Model *search_semantic_model() {
-    static const auto model = []() -> std::unique_ptr<search_semantic::Model> {
-        try {
-            const auto installed_mod = extensions::discover();
-            if (installed_mod.semantic_model.empty()) return {};
-            return std::make_unique<search_semantic::Model>(installed_mod.semantic_model);
-        } catch (const std::exception &error) {
-            // Semantic search is optional; never substitute character hashes
-            // for absent or invalid learned weights.
-            std::fprintf(stderr, "DFCN semantic search unavailable: %s\n", error.what());
-            return {};
-        }
-    }();
-    return model.get();
+    auto &state=search_semantic_model_state(false);
+    if(!state.attempted){
+        state.attempted=true;
+        try { if(!state.path.empty() && state.size){
+            static std::mutex mutex;
+            static std::map<std::pair<std::filesystem::path,std::filesystem::file_time_type>,std::weak_ptr<search_semantic::Model>> shared;
+            std::lock_guard<std::mutex> lock(mutex);
+            std::erase_if(shared,[](const auto &entry){return entry.second.expired();});
+            auto &entry=shared[{state.path,state.modified}];state.model=entry.lock();
+            if(!state.model){state.model=std::make_shared<search_semantic::Model>(state.path);entry=state.model;}
+        } }
+        catch(const std::exception &error){std::fprintf(stderr,"DFCN semantic search unavailable: %s\n",error.what());}
+    }
+    return state.model.get();
 }
 
 static float search_cosine_distance(const SearchVector &a, const SearchVector &b) {
@@ -47,8 +78,8 @@ static std::vector<std::string> search_semantic_query_words(std::string_view tex
 struct SearchSimilarityQuery {
     SearchCodepoints text;
     std::string semantic_source, phonetic;
-    mutable std::shared_ptr<SearchAnnTree> semantic;
-    mutable bool semantic_prepared = false;
+
+
     bool han = false;
     unsigned edits = 0;
     float maximum_cosine_distance = 0.26f;
@@ -61,11 +92,11 @@ struct SearchSimilarityQuery {
             static_cast<unsigned>(std::min<size_t>(3, std::max<size_t>(1, text.size() / 5)));
         semantic_source.assign(original);
         phonetic.assign(normalized);
-        semantic.reset();
-        semantic_prepared = false;
+
+
         maximum_cosine_distance = text.size() < 3 ? 0.22f : 0.28f;
     }
-    const SearchAnnTree *semantic_index() const;
+
 };
 
 struct SearchEditScratch {
@@ -301,6 +332,13 @@ struct SearchAnnTree {
         root = build(order, 0, order.size());
     }
     template<typename Accept>
+    void scan_matches(const SearchVector &query,float radius,Accept accept) const {
+        // Shared field prototypes are searched once per query. A contiguous
+        // scan avoids a comparison-sort tree build on the first keystroke and
+        // retains every point in the requested cosine radius.
+        for(const auto &point:points)if(search_cosine_distance(point.vector,query)<=radius)accept(point);
+    }
+    template<typename Accept>
     bool matches(const SearchVector &query, float maximum_cosine_distance, Accept accept,
             size_t visit_budget = 96) const {
         if (root < 0) return false;
@@ -336,8 +374,8 @@ struct SearchAnnTree {
         return false;
     }
     bool covered_by(const Point &query, const SearchAnnTree &candidate_tree,
-            const Point &candidate) const {
-        const auto *model = search_semantic_model();
+            const Point &candidate, const search_semantic::Model *selected=nullptr) const {
+        const auto *model = selected?selected:search_semantic_model();
         if (!model) return false;
         const size_t query_end = query.first_unit + query.unit_count;
         const size_t candidate_end = candidate.first_unit + candidate.unit_count;
@@ -386,165 +424,62 @@ struct SearchAnnTree {
         }
         return true;
     }
-    bool matches_query(const SearchAnnTree &query, float maximum_cosine_distance) const {
-        // Ambiguous initials retain every vocabulary reading. Search the
-        // larger tree from the smaller point set, while coverage always goes
-        // from a complete query meaning to one candidate span.
-        if (points.size() < query.points.size()) {
-            for (const auto &candidate : points)
-                if (query.matches(candidate.vector, maximum_cosine_distance,
-                        [&](const Point &meaning) {
-                            return query.covered_by(meaning, *this, candidate);
-                        })) return true;
-        } else {
-            for (const auto &meaning : query.points)
-                if (matches(meaning.vector, maximum_cosine_distance,
-                        [&](const Point &candidate) {
-                            return query.covered_by(meaning, *this, candidate);
-                        })) return true;
-        }
-        return false;
-    }
 };
 
-// Resolve pinyin to actual Chinese vocabulary before embedding it. Encoding
-// "mukuai" as an English word would lose the meaning of 木块. All readings
-// participate, with no exponential expansion of polyphonic combinations.
 struct SearchSemanticPronunciations {
-    std::array<std::vector<uint32_t>, 26> first_letters;
-    explicit SearchSemanticPronunciations(const search_semantic::Model &model) {
-        std::unordered_set<std::string> seen;
-        const auto &vocabulary = model.vocabulary();
-        for (uint32_t id = 2; id < vocabulary.size(); ++id) {
-            std::string_view word = vocabulary[id].text;
-            if (word.starts_with("\xe2\x96\x81")) word.remove_prefix(3);
-            const auto characters = search_codepoints(word);
-            if (characters.size() < 2 || characters.size() > 8 ||
-                    !std::all_of(characters.begin(), characters.end(), search_han)) continue;
-            const auto *entry = search_pinyin_readings(characters.front());
-            if (!entry || !seen.emplace(word).second) continue;
-            uint32_t letters = 0;
-            std::string_view readings(entry->readings);
-            while (!readings.empty()) {
-                if (readings.front() >= 'a' && readings.front() <= 'z')
-                    letters |= uint32_t{1} << (readings.front() - 'a');
-                const auto end = readings.find(' ');
-                if (end == std::string_view::npos) break;
-                readings.remove_prefix(end + 1);
+    static unsigned distance(std::string_view word,std::string_view query,bool initials,unsigned budget) {
+        std::vector<unsigned> previous(query.size()+1);std::iota(previous.begin(),previous.end(),0u);
+        const unsigned ceiling=budget+1;
+        for(size_t at=0;at<word.size();) {
+            const auto cp=decode_utf8_at(word,at);if(!cp)return UINT_MAX;
+            const auto literal=word.substr(at,cp->second);at+=cp->second;
+            const auto *entry=search_pinyin_readings(cp->first);
+            std::vector<unsigned> merged(query.size()+1,ceiling);
+            const auto consume=[&](std::string_view spelling) {
+                auto row=previous;
+                for(unsigned char ch:spelling) {
+                    unsigned diagonal=row[0];row[0]=std::min(ceiling,row[0]+1);
+                    for(size_t i=0;i<query.size();++i) {const auto above=row[i+1];
+                        row[i+1]=std::min({ceiling,row[i]+1,above+1,diagonal+unsigned(ch!=static_cast<unsigned char>(query[i]))});diagonal=above;}
+                }
+                for(size_t i=0;i<row.size();++i)merged[i]=std::min(merged[i],row[i]);
+            };
+            if(!entry)consume(literal);
+            else {
+                std::string_view choices(entry->readings);
+                while(!choices.empty()) {const auto end=choices.find(' ');consume(choices.substr(0,initials?1:end));
+                    if(end==std::string_view::npos)break;choices.remove_prefix(end+1);}
             }
-            for (unsigned letter = 0; letter < 26; ++letter)
-                if (letters & (uint32_t{1} << letter)) first_letters[letter].push_back(id);
+            if(std::all_of(merged.begin(),merged.end(),[&](auto cost){return cost>budget;}))return UINT_MAX;
+            previous=std::move(merged);
         }
+        return previous.back()<=budget?previous.back():UINT_MAX;
     }
     static bool matches(std::string_view word, std::string_view query, bool initials) {
         if (word.starts_with("\xe2\x96\x81")) word.remove_prefix(3);
-        uint64_t states = 1;
+        std::vector<bool> states(query.size()+1,false);states[0]=true;
         for (size_t at = 0; at < word.size();) {
             const auto cp = decode_utf8_at(word, at);
             if (!cp) return false;
             at += cp->second;
             const auto *entry = search_pinyin_readings(cp->first);
             if (!entry) return false;
-            uint64_t next = 0;
+            std::vector<bool> next(query.size()+1,false);
             std::string_view readings(entry->readings);
             while (!readings.empty()) {
                 const auto end = readings.find(' ');
                 const auto reading = initials ? readings.substr(0, 1) : readings.substr(0, end);
                 for (size_t position = 0; position + reading.size() <= query.size(); ++position)
-                    if ((states & (uint64_t{1} << position)) &&
+                    if (states[position] &&
                             query.substr(position, reading.size()) == reading)
-                        next |= uint64_t{1} << (position + reading.size());
+                        next[position+reading.size()]=true;
                 if (end == std::string_view::npos) break;
                 readings.remove_prefix(end + 1);
             }
-            if (!next) return false;
-            states = next;
+            if (std::none_of(next.begin(),next.end(),[](bool value){return value;})) return false;
+            states = std::move(next);
         }
-        return states & (uint64_t{1} << query.size());
+        return states.back();
     }
 };
 
-const SearchAnnTree *SearchSimilarityQuery::semantic_index() const {
-    if (semantic_prepared) return semantic.get();
-    semantic_prepared = true;
-    if (text.empty() || (!han && text.size() < 2)) return nullptr;
-    // Two-character fragments containing a grammatical particle are not a
-    // vocabulary concept. Bag-of-token semantics otherwise equates 金之/之金.
-    if (han && text.size() <= 2 && std::any_of(text.begin(), text.end(), [](uint32_t cp) {
-            return cp == 0x4e4b || cp == 0x7684 || cp == 0x4e0e || cp == 0x53ca;
-        })) return nullptr;
-    const auto *model = search_semantic_model();
-    if (!model) return nullptr;
-    auto tree = std::make_shared<SearchAnnTree>();
-    tree->add_query(*model, semantic_source, search_semantic_query_words(semantic_source));
-    if (!han && phonetic.size() >= 2 && phonetic.size() < 64 &&
-            std::all_of(phonetic.begin(), phonetic.end(),
-                [](char c) { return c >= 'a' && c <= 'z'; })) {
-        static const SearchSemanticPronunciations spellings(*model);
-        const auto &candidates = spellings.first_letters[phonetic.front() - 'a'];
-        std::vector<uint32_t> full, initials;
-        for (const uint32_t id : candidates) {
-            const auto &word = model->vocabulary()[id].text;
-            if (SearchSemanticPronunciations::matches(word, phonetic, false)) full.push_back(id);
-            else if (phonetic.size() <= 8 &&
-                    SearchSemanticPronunciations::matches(word, phonetic, true)) initials.push_back(id);
-        }
-        for (const uint32_t id : full.empty() ? initials : full) {
-            std::string_view word = model->vocabulary()[id].text;
-            if (word.starts_with("\xe2\x96\x81")) word.remove_prefix(3);
-            tree->add_query(*model, word, search_semantic_query_words(word));
-        }
-    }
-    tree->finish();
-    semantic = std::move(tree);
-    return semantic.get();
-}
-
-struct SearchSimilarityIndex {
-    struct Form {
-        SearchCodepoints text, alphabet;
-        explicit Form(SearchCodepoints value) : text(std::move(value)), alphabet(text) {
-            std::sort(alphabet.begin(), alphabet.end());
-            alphabet.erase(std::unique(alphabet.begin(), alphabet.end()), alphabet.end());
-        }
-        size_t missing(const SearchSimilarityQuery &query) const {
-            return std::count_if(query.text.begin(), query.text.end(), [&](uint32_t cp) {
-                return !std::binary_search(alphabet.begin(), alphabet.end(), cp);
-            });
-        }
-    };
-    std::vector<Form> forms;
-    std::unique_ptr<SearchAnnTree> ann;
-
-    void add(std::string_view text) {
-        auto form = search_codepoints(text);
-        if (form.empty() || std::any_of(forms.begin(), forms.end(),
-                [&](const Form &existing) { return existing.text == form; })) return;
-        forms.emplace_back(std::move(form));
-        ann.reset();
-    }
-    size_t bytes() const {
-        size_t size = forms.capacity() * sizeof(Form);
-        for (const auto &form : forms)
-            size += (form.text.capacity() + form.alphabet.capacity()) * sizeof(uint32_t);
-        return size + (ann ? sizeof(SearchAnnTree) + ann->bytes() : 0);
-    }
-    bool matches(const SearchSimilarityQuery &query, std::string_view semantic_source) {
-        for (const auto &form : forms) {
-            const size_t missing = form.missing(query);
-            // Absence from the entire caption is a lower bound on edits.
-            // Do this cheap rejection before a full distance matrix scan.
-            if (!missing && search_ordered_compound_matches(form.text, query)) return true;
-            if (missing <= query.edits && search_fuzzy_matches(form.text, query)) return true;
-        }
-        const auto *query_tree = query.semantic_index();
-        if (!query_tree || query_tree->points.empty()) return false;
-        if (!ann) {
-            auto tree = std::make_unique<SearchAnnTree>();
-            tree->add(*search_semantic_model(), semantic_source, true);
-            tree->finish();
-            ann = std::move(tree);
-        }
-        return ann->matches_query(*query_tree, query.maximum_cosine_distance);
-    }
-};

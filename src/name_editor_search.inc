@@ -92,8 +92,8 @@ static void apply_pending_name_editor_search() {
                     report_name_editor_search_error("cannot read a complete WORD/POS candidate");
                     return;
                 }
-                if (!state.native_matches.contains(candidate_key(source.words[i], source.parts[i])) &&
-                    !g_overlay.translated_name_editor_search_matches(id, english,
+                SearchNativeHitScope native_hit(state.native_matches.contains(candidate_key(source.words[i],source.parts[i])));
+                if (!g_overlay.translated_name_editor_search_matches(id, english,
                         native_word, source.parts[i], source.query)) continue;
                 words.push_back(source.words[i]);
                 parts.push_back(source.parts[i]);

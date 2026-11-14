@@ -91,11 +91,11 @@ bool Overlay::translated_journal_agreement_field_matches(std::string_view source
     TranslationStateScope translation_scope;
     if (!config_.enabled || source.empty() || source.size() > 65536 ||
             query.size() > 4096 || translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
     // Independent card fields use the same typed grammar as their display;
     // a person's name must not inherit an agreement title's interpretation.
     const auto target = translate_journal_agreement_field(source, kind);
-    return target && translated_search_text_matches(*target, query);
+    if(collect_search_text(source,target.value_or("")))return false;
+    return search_association_text(source,target.value_or(""),query,SearchCandidateKind::TextRecord,"journal");
 }
 
 bool Overlay::translated_journal_search_matches(std::string_view source,
@@ -106,7 +106,8 @@ bool Overlay::translated_journal_search_matches(std::string_view source,
         return false;
     if (translated_search_query(query).literal.empty()) return false;
     const auto matches = [&](std::string_view text) {
-        return translated_search_text_matches(text, query);
+        if(collect_search_text(source,text))return false;
+        return search_association_text(source,text,query,SearchCandidateKind::TextRecord,"journal");
     };
     if (matches(native_text_to_utf8(source))) return true;
     if (native_plot) {
@@ -151,12 +152,22 @@ bool Overlay::translated_legends_search_matches(std::string_view source,
     const auto site_title = kind == LegendsSearchKind::Site
         ? site_name ? translate_site_display(*site_name, source) : translate_legends_place(source)
         : std::nullopt;
+    std::vector<std::string> aliases;
     if (kind == LegendsSearchKind::Site) {
-        const auto aliases = site_name ? site_name_search_aliases(*site_name)
+        aliases = site_name ? site_name_search_aliases(*site_name)
             : site_reference_search_aliases(source);
-        for (const auto &alias : aliases)
-            if (translated_search_text_matches(alias, query)) return true;
     }
+    const auto matches=[&](const SearchDescriptor &captions) {
+        auto d=captions;if(const auto *active=search_active_descriptor()){d.candidate_id=active->candidate_id;d.kind=active->kind;}
+        d.lexical_labels=aliases;
+        if(search_text_collection()) {
+            collect_search_text(d.original_caption,d.display_caption);
+            for(const auto &field:d.text_fields)collect_search_text({},field);
+            for(const auto &alias:d.lexical_labels)collect_search_text({},alias);
+            return false;
+        }
+        return search_association_match(d,query).accepted;
+    };
 
     // Entity titles can keep the same native spelling when their current
     // parent changes. Bind the search entry to the resolved display name.
@@ -179,8 +190,9 @@ bool Overlay::translated_legends_search_matches(std::string_view source,
         // translated record exists, its original fields are prepared too.
         const std::string source_utf8 = native_text_to_utf8(source);
         const std::string description_utf8 = native_text_to_utf8(description);
-        if (translated_search_text_matches(source_utf8, query) ||
-                translated_search_text_matches(description_utf8, query)) return true;
+        SearchDescriptor native;native.kind=SearchCandidateKind::NamedEntity;native.domain="legends";
+        native.original_caption=source_utf8;if(!description_utf8.empty())native.text_fields.push_back(description_utf8);
+        if(matches(native))return true;
         std::optional<std::string> title = site_title ? site_title : entity_title;
         bool description_in_title = false;
         const bool written = kind == LegendsSearchKind::Artifact ||
@@ -252,28 +264,20 @@ bool Overlay::translated_legends_search_matches(std::string_view source,
             target.append(type.value_or(native_text_to_utf8(description)));
         }
         LegendsSearchEntry entry;
-        entry.fields.reserve(4);
-        if (!source_utf8.empty()) entry.fields.emplace_back(source_utf8);
-        if (!description_utf8.empty()) entry.fields.emplace_back(description_utf8);
+        entry.descriptor=std::move(native);
         const size_t boundary = target.find('\n');
-        entry.fields.emplace_back(std::string_view(target).substr(0, boundary));
+        entry.descriptor.display_caption=std::string_view(target).substr(0,boundary);
         if (boundary != std::string::npos)
-            entry.fields.emplace_back(std::string_view(target).substr(boundary + 1));
+            entry.descriptor.text_fields.emplace_back(std::string_view(target).substr(boundary + 1));
         constexpr size_t maximum_bytes = 128u * 1024u * 1024u;
         const size_t cost = sizeof(std::string) + key.capacity() + entry.bytes() + 4 * sizeof(void *);
         if (legends_search_translation_bytes_ + cost > maximum_bytes) {
-            for (auto &field : entry.fields)
-                if (field.matches(prepared_query)) return true;
-            return false;
+            return matches(entry.descriptor);
         }
         cached = legends_search_translation_cache_.emplace(std::move(key), std::move(entry)).first;
         legends_search_translation_bytes_ += cost;
     }
     // Search each field independently so literal, pinyin and initial keys
     // cannot join a title with its separate description.
-    constexpr size_t maximum_bytes = 128u * 1024u * 1024u;
-    for (auto &field : cached->second.fields)
-        if (match_prepared_search_text(field, prepared_query,
-                legends_search_translation_bytes_, maximum_bytes)) return true;
-    return false;
+    return matches(cached->second.descriptor);
 }

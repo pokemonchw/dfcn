@@ -43,12 +43,15 @@ static size_t capture_native_item_search_find(const char *native_text,
         if (!g_overlay.translation_enabled() || !query_text ||
             query_length == 0 || query_length > 4096) return native_result;
         const std::string_view query(query_text, query_length);
+        search_native_query_hint()=query;SearchNativeHitScope native_hit(native_result!=SIZE_MAX);
         std::string_view source;
         if (native_string_view(original_name, &source, 65536) && !source.empty()) {
-            if (const auto typed = translated_search_item_decision(source, query))
-                return *typed ? 0 : SIZE_MAX;
-            if (native_result != SIZE_MAX) return native_result;
-            if (g_overlay.translated_item_search_matches(source, query)) return 0;
+            auto descriptor = take_native_search_caption(reinterpret_cast<uintptr_t>(original_name), source);
+            std::unique_ptr<SearchDescriptorScope> scope;
+            if (descriptor) {
+                scope = std::make_unique<SearchDescriptorScope>(*descriptor);
+            }
+            return g_overlay.translated_item_search_matches(source, query) ? 0 : SIZE_MAX;
         }
     } catch (...) {
         // Translation/allocation failures must not escape through the game ABI.
@@ -78,6 +81,10 @@ static bool install_native_item_search_hook() {
     }
     NativeItemSearchProfile profile;
     if (!resolve_native_item_search_profile(profile)) return false;
+    // The PE original-name producer above has the same public item-caption
+    // ABI as all abstract item filters.
+    append_native_search_caption_observers(profile.base, profile.calls,
+        reinterpret_cast<const void *>(&capture_native_item_search_term));
     if (profile.calls.empty() || !profile.find) return false;
     g_real_native_item_search_find = profile.find;
     g_native_item_search_fold = profile.fold_offset

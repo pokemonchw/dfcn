@@ -135,24 +135,26 @@ static bool resolve_native_search_binding(
 // This is the byte substring contract used by the native filters (including
 // empty queries and npos). A single implementation avoids exposing compiler
 // specific argument orders to the shared translated-search callbacks.
-static size_t native_search_item_result(size_t result, const char *text, size_t length,
-        const char *query, size_t query_length) {
-    if (result != SIZE_MAX && text && query && query_length && g_overlay.translation_enabled()) {
-        try {
-            if (const auto typed = translated_search_item_decision(
-                    std::string_view(text, length), std::string_view(query, query_length));
-                    typed && !*typed) return SIZE_MAX;
-        } catch (...) {}
-    }
-    return result;
-}
-
+static void refresh_native_search_world(bool force=false,bool item_domain=true,bool force_materials=false);
+static std::optional<SearchDescriptor> take_native_search_caption(uintptr_t, std::string_view);
+static void clear_native_search_captions();
 static size_t native_search_byte_find(const char *text, size_t length, size_t start,
         const char *query, size_t query_length) {
+    if(query && query_length && query_length<=4096 && g_overlay.translation_enabled() && search_native_query_hint()!=std::string_view(query,query_length))
+        search_native_query_hint().assign(query,query_length);
     if ((!text && length) || (!query && query_length)) return SIZE_MAX;
     const size_t result = std::string_view(text ? text : "", length).find(
         std::string_view(query ? query : "", query_length), start);
-    return native_search_item_result(result, text, length, query, query_length);
+    return result;
+}
+static void prepare_native_search_facts(const NativeString *query,bool item_domain=true) {
+    NativeInputCallbackScope callback;
+    try {
+    std::string_view text;
+    if(g_overlay.translation_enabled() && native_string_view(query,&text,4096) && !text.empty()) {
+        search_native_query_hint()=text;refresh_native_search_world(false,item_domain);
+    }
+    } catch(...) {}
 }
 
 // POD native strings require the game's destructor; an owning NativeString
@@ -198,6 +200,10 @@ static bool native_search_display_term(const NativeString *term,
 static void fold_native_search_query(NativeString *text, NativeSearchFoldFn original) {
     NativeInputCallbackScope callback;
     try {
+        clear_native_search_captions();
+        static std::atomic<uint64_t> lists{1};search_native_list_generation()=lists.fetch_add(1);
+        std::string_view query;
+        search_native_query_hint()=native_string_view(text,&query,4096)?std::string(query):std::string{};
         native_search_term_spellings().clear();
         if (fold_native_unicode_search_query(text)) return;
     } catch (...) {}
@@ -253,9 +259,17 @@ static void prepare_native_inlined_search_term(NativeString *term,
             !native_string_view(query_string, &query, 4096) ||
             query.empty() || source.empty() ||
             !native_string_view(term, &text, 65536)) return;
-        const auto typed = translated_search_item_decision(source, query);
+        search_native_query_hint()=query;
+        auto descriptor = take_native_search_caption(reinterpret_cast<uintptr_t>(term), source);
+        std::unique_ptr<SearchDescriptorScope> descriptor_scope;
+        if (descriptor) {
+            descriptor->candidate_id.owner=reinterpret_cast<uintptr_t>(query_string);
+            descriptor_scope = std::make_unique<SearchDescriptorScope>(*descriptor);
+        }
         const bool native_match = text.find(query) != std::string_view::npos;
-        if (!typed && (native_match || !match(source, query))) return;
+        SearchNativeHitScope native_hit(native_match);
+        const bool accepted = match(source, query);
+        if (native_match == accepted) return;
         // Native assignment preserves the game's allocator/SSO ownership.
         // Only this filter's disposable key is changed, never its source.
         const auto assign = reinterpret_cast<void (*)(NativeString *, const char *)>(
@@ -263,7 +277,7 @@ static void prepare_native_inlined_search_term(NativeString *term,
         if (assign) {
             // An empty disposable key rejects a nonempty query. This also
             // removes the native substring hit weapon -> weapon rack.
-            const std::string committed(typed && !*typed ? std::string_view{} : query);
+            const std::string committed(accepted ? query : std::string_view{});
             assign(term, committed.c_str());
         }
     } catch (...) {}

@@ -1,0 +1,15 @@
+# subject	relation	object	domain	condition_id	version_scope	source
+item_type:CABINET	IS_A	category:cabinet-family	items		53	wiki:Storage
+definition:ITEM_TOOL_BOOKCASE	IS_A	category:cabinet-family	items		53	wiki:Furniture
+definition:ITEM_TOOL_DISPLAY_CASE	IS_A	category:cabinet-family	items		53	wiki:Furniture
+item_type:CABINET	STORES	category:clothing	items	bedroom_storage	53	wiki:Storage
+item_type:WEAPONRACK	STORES	item_type:WEAPON	items	weapon_storage	53	wiki:Weapon_rack
+item_type:BOX	IS_A	category:storage-container	items		53	wiki:Storage
+item_type:BIN	IS_A	category:storage-container	items		53	wiki:Storage
+item_type:BARREL	IS_A	category:storage-container	items		53	wiki:Storage
+definition:ITEM_TOOL_POT	IS_A	category:storage-container	items		53	item_tool.txt:FOOD_STORAGE
+definition:ITEM_TOOL_BOOKCASE	STORES	item_type:BOOK	items	book_storage	53	item_tool.txt:BOOKCASE
+definition:ITEM_TOOL_POT	HAS_CAPABILITY	purpose:food_storage	items		53	item_tool.txt:FOOD_STORAGE
+item_type:BARREL	STORES	item_type:DRINK	items		53	wiki:Storage
+definition:ITEM_TOOL_POT	STORES	item_type:DRINK	items		53	item_tool.txt:FOOD_STORAGE
+subtype:BAG	IS_A	category:storage-container	items		53	wiki:Storage

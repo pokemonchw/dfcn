@@ -96,9 +96,15 @@ bool Overlay::translated_stockpile_search_matches(std::string_view source,
     TranslationStateScope translation_scope;
     if (!config_.enabled) return false;
     if (source.empty() || translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
-    const auto result = translate_stockpile_setting_display(source, kind);
-    return result.usable() && translated_search_text_matches(result.target, query);
+    const auto target=memoize_search_translation('\x7f',std::to_string(static_cast<int>(kind))+":"+std::string(source),[&]() -> std::optional<std::string> {
+        const auto result=translate_stockpile_setting_display(source,kind);
+        return result.usable()?std::optional<std::string>(result.target):std::nullopt;
+    },true);
+    const bool material = kind == StockpileCaptionKind::Wood;
+    const bool item = kind == StockpileCaptionKind::ItemType;
+    return search_association_text(source, target.value_or(""), query,
+        material ? SearchCandidateKind::MaterialChoice : item ? SearchCandidateKind::ItemDefinition : SearchCandidateKind::PropertyChoice,
+        material ? "stockpile.material" : item ? "stockpile.type" : "properties");
 }
 
 struct NativeStockpileSettingsState {

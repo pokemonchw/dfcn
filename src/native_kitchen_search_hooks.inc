@@ -45,10 +45,10 @@ static NativeString *capture_native_kitchen_search_simplified(NativeString *outp
             if (g_overlay.translation_enabled() &&
                     !spelling.empty() &&
                     native_string_view(query, &needle, 4096) && !needle.empty() &&
-                    native_string_view(output, &folded, 65536) &&
-                    folded.find(needle) == std::string_view::npos &&
-                    g_overlay.translated_kitchen_search_matches(spelling, needle))
-                output->assign(needle);
+                    native_string_view(output, &folded, 65536)) {
+                const bool accepted=g_overlay.translated_kitchen_search_matches(spelling,needle);
+                if(accepted!=(folded.find(needle)!=std::string_view::npos))output->assign(accepted?needle:std::string_view{});
+            }
         }
     } catch (...) {}
     return result;
@@ -56,6 +56,7 @@ static NativeString *capture_native_kitchen_search_simplified(NativeString *outp
 #endif
 
 static void capture_native_kitchen_search_query_fold(NativeString *query) {
+    prepare_native_search_facts(query);
     fold_native_search_query(query, g_native_kitchen_search_fold);
 }
 
@@ -63,17 +64,17 @@ static size_t capture_native_kitchen_search_find(const char *text, size_t length
         const NativeString *caption, const char *query_text, size_t query_length) {
     NativeInputCallbackScope callback;
     const size_t result = native_search_byte_find(text, length, 0, query_text, query_length);
-    if (result != SIZE_MAX) return result;
     try {
         if (!g_overlay.translation_enabled() || !query_text ||
             query_length == 0 || query_length > 4096) return result;
+        SearchNativeHitScope native_hit(result!=SIZE_MAX);
         std::string_view source;
         if (!native_string_view(caption, &source, 65536) || source.empty() ||
             source.find('\0') != std::string_view::npos) return result;
         // Use the same food noun and RAW-use tag boundaries as the displayed
         // Kitchen field, including literal, pinyin and initials matching.
-        if (g_overlay.translated_kitchen_search_matches(source,
-                std::string_view(query_text, query_length))) return 0;
+        return g_overlay.translated_kitchen_search_matches(source,
+                std::string_view(query_text, query_length))?0:SIZE_MAX;
     } catch (...) {
         // Allocation/translation failures retain the original native result.
     }

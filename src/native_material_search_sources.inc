@@ -34,7 +34,8 @@ static bool native_work_order_candidate_index(const void *candidate_slot,
 }
 
 static bool native_work_order_item_caption(const void *candidate_slot,
-        std::string &source) {
+        std::string &source, SearchDescriptor *descriptor = nullptr) {
+    refresh_native_search_world();
     const auto &selector = g_native_work_order_material_source;
     const auto &layout = g_native_work_order_item_source;
     size_t index = 0, count = 0;
@@ -59,6 +60,15 @@ static bool native_work_order_item_caption(const void *candidate_slot,
     if (!native_string_view(&caption.value, &text, 65536) || text.empty() ||
         text.find('\0') != std::string_view::npos) return false;
     source.assign(text);
+    if (descriptor) {
+        descriptor->kind = SearchCandidateKind::ItemDefinition;
+        descriptor->domain = "stockpile.type";
+        descriptor->candidate_id.owner = selector.selector;
+        descriptor->candidate_id.record = reinterpret_cast<uintptr_t>(candidate_slot);
+        descriptor->native_ordinal = index;
+        const auto world = search_world_snapshot_storage();
+        if (world) static_cast<SearchObjectFacts &>(*descriptor) = search_native_tuple(type,subtype,-1,-1,*world,*search_concept_catalog());
+    }
     return true;
 }
 
@@ -66,7 +76,7 @@ static bool native_work_order_item_caption(const void *candidate_slot,
 // renderer. compare_master contains folded search/sort keys, not display
 // spelling. Nothing is retained by native pointer across queries or reloads.
 static bool native_work_order_material_caption(const void *candidate_slot,
-        std::string &source) {
+        std::string &source, SearchDescriptor *descriptor = nullptr) {
     const auto &layout = g_native_work_order_material_source;
     size_t index = 0, count = 0;
     if (!layout.caption || !layout.capitalize ||
@@ -99,5 +109,14 @@ static bool native_work_order_material_caption(const void *candidate_slot,
     if (!native_string_view(&caption.value, &text, 65536) || text.empty() ||
         text.find('\0') != std::string_view::npos) return false;
     source.assign(text);
+    if (descriptor) {
+        descriptor->kind = SearchCandidateKind::MaterialChoice;
+        descriptor->domain = "materials";
+        descriptor->candidate_id.owner = layout.selector;
+        descriptor->candidate_id.record = reinterpret_cast<uintptr_t>(candidate_slot);
+        descriptor->native_ordinal = index;
+        const auto world = search_world_snapshot_storage();
+        if (world) static_cast<SearchObjectFacts &>(*descriptor) = search_native_tuple(-1,-1,type,material_index,*world,*search_concept_catalog());
+    }
     return true;
 }

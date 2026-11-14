@@ -3407,6 +3407,25 @@ struct f_artifact_record {
     int32_t f_season_tick;
     int32_t f_temp_sort;
 };
+struct f_build_req_choicest {
+    virtual void native_vtable();
+    int32_t f_distance;
+    bool f_on;
+    std::string f_compstr;
+};
+struct f_build_req_choice_genst : f_build_req_choicest {
+    int16_t f_item_type;
+    int16_t f_item_subtype;
+    int16_t f_mat_type;
+    int32_t f_mat_index;
+    Vector f_candidates;
+    int32_t f_used_count;
+    bool f_expanded;
+};
+struct f_build_req_choice_specst : f_build_req_choicest {
+    uintptr_t f_candidate;
+    int32_t f_candidate_id;
+};
 struct f_building_f_room {
     uintptr_t f_extents;
     int32_t f_x;
@@ -3448,6 +3467,45 @@ struct f_building_def {
     std::string f_code;
     int32_t f_id;
     std::string f_name;
+};
+struct f_building_actual : f_building {
+    int16_t f_construction_stage;
+    Vector f_contained_items;
+    uintptr_t f_design;
+};
+struct f_stockpile_links {
+    Vector f_give_to_pile;
+    Vector f_take_from_pile;
+    Vector f_give_to_workshop;
+    Vector f_take_from_workshop;
+};
+struct f_workshop_profile {
+    Vector f_permitted_workers;
+    int32_t f_min_level;
+    int32_t f_max_level;
+    native_history_layout::f_stockpile_links f_links;
+    int32_t f_max_general_orders;
+    uint32_t f_flags;
+    std::array<bool, 94> f_blocked_labors;
+};
+struct f_building_furnacest : f_building_actual {
+    Vector f_melt_remainder;
+    uint16_t f_furnace_flag;
+    int16_t f_type;
+    native_history_layout::f_workshop_profile f_profile;
+    int32_t f_custom_type;
+    int32_t f_times_used;
+};
+struct f_machine_info {
+    int32_t f_machine_id;
+    uint32_t f_flags;
+};
+struct f_building_workshopst : f_building_actual {
+    int16_t f_type;
+    native_history_layout::f_workshop_profile f_profile;
+    native_history_layout::f_machine_info f_machine;
+    int32_t f_custom_type;
+    int32_t f_times_used;
 };
 struct f_caste_raw_f_misc {
     int16_t f_litter_size_max;
@@ -6320,6 +6378,14 @@ struct f_inorganic_raw {
     int16_t f_times_used_ocean;
     native_history_layout::f_material f_material;
 };
+struct f_instrument_piece {
+    std::string f_type;
+    std::string f_id;
+    int32_t f_index;
+    std::string f_name;
+    std::string f_name_plural;
+    uint32_t f_flags;
+};
 struct f_interaction_effect {
     virtual void native_vtable();
     int32_t f_index;
@@ -6518,6 +6584,66 @@ struct f_interaction_source_secretst : f_interaction_source {
     int32_t f_book_name_idx;
 };
 struct f_interaction_source_underground_specialst : f_interaction_source {
+};
+struct f_interface_button {
+    virtual void native_vtable();
+    long f_hotkey;
+    bool f_leave_button;
+    uint32_t f_flag;
+    std::string f_filter_str;
+    int32_t f_alpha_order;
+};
+struct f_interface_button_buildingst : f_interface_button {
+    uintptr_t f_bd;
+};
+struct f_interface_button_building_category_selectorst : f_interface_button_buildingst {
+    int32_t f_category;
+    int8_t f_prepare_interface;
+};
+struct f_interface_button_building_material_selectorst : f_interface_button_buildingst {
+    int16_t f_material;
+    int32_t f_matgloss;
+    uint32_t f_job_item_flag;
+    int8_t f_prepare_interface;
+};
+union f_job_spec_flags {
+    uint32_t f_whole;
+    uint32_t f_construct_building_flags;
+    uint32_t f_clean_patient_flags;
+    uint32_t f_clean_self_flags;
+    uint32_t f_place_track_vehicle_flags;
+    uint32_t f_gather_flags;
+    uint32_t f_drink_item_flags;
+    uint32_t f_interrogation_flags;
+    uint32_t f_weave_cloth_flags;
+    uint32_t f_link_building_to_trigger_flags;
+    uint32_t f_carve_track_flags;
+    uint32_t f_encrust_flags;
+};
+union f_job_spec_data {
+    int32_t f_hist_figure_id;
+    int32_t f_race;
+    int32_t f_improvement;
+    int32_t f_dye_object_desired_post_dye_color_index;
+};
+struct f_interface_button_building_new_jobst : f_interface_button_buildingst {
+    int16_t f_jobtype;
+    std::string f_mstring;
+    int16_t f_itemtype;
+    int16_t f_subtype;
+    int16_t f_material;
+    int32_t f_matgloss;
+    native_history_layout::f_job_spec_flags f_specflag;
+    native_history_layout::f_job_spec_data f_specdata;
+    uint32_t f_job_item_flag;
+    bool f_add_building_location;
+    bool f_show_help_instead;
+    int32_t f_art_specifier;
+    int32_t f_art_specifier_id1;
+    int32_t f_art_specifier_id2;
+    std::string f_objection;
+    std::string f_info;
+    int32_t f_list_priority;
 };
 struct f_massst {
     int32_t f_whole;
@@ -7766,26 +7892,6 @@ struct f_itemimprovement_threadst : f_itemimprovement {
 struct f_itemimprovement_writingst : f_itemimprovement {
     Vector f_contents;
 };
-union f_job_spec_flags {
-    uint32_t f_whole;
-    uint32_t f_construct_building_flags;
-    uint32_t f_clean_patient_flags;
-    uint32_t f_clean_self_flags;
-    uint32_t f_place_track_vehicle_flags;
-    uint32_t f_gather_flags;
-    uint32_t f_drink_item_flags;
-    uint32_t f_interrogation_flags;
-    uint32_t f_weave_cloth_flags;
-    uint32_t f_link_building_to_trigger_flags;
-    uint32_t f_carve_track_flags;
-    uint32_t f_encrust_flags;
-};
-union f_job_spec_data {
-    int32_t f_hist_figure_id;
-    int32_t f_race;
-    int32_t f_improvement;
-    int32_t f_dye_object_desired_post_dye_color_index;
-};
 struct f_job_reqst {
     Vector f_elements;
 };
@@ -7983,6 +8089,24 @@ struct f_manager_order_condition_item {
     int32_t f_reaction_id;
     int16_t f_has_tool_use;
     int32_t f_dye_color;
+};
+struct f_manager_order_template {
+    int16_t f_job_type;
+    std::string f_reaction_name;
+    int16_t f_item_type;
+    int16_t f_item_subtype;
+    int16_t f_mat_type;
+    int32_t f_mat_index;
+    native_history_layout::f_job_spec_flags f_specflag;
+    native_history_layout::f_job_spec_data f_specdata;
+    uint32_t f_material_category;
+    int32_t f_art_specifier;
+    int32_t f_art_specifier_id1;
+    int32_t f_art_specifier_id2;
+    int32_t f_match_value;
+    std::string f_name;
+    std::string f_compare_str;
+    bool f_on;
 };
 struct f_mod_headerst {
     std::string f_zip_filename;
@@ -8669,6 +8793,100 @@ struct f_poetic_form {
     int32_t f_preferred_perspective;
     uint32_t f_features;
     Vector f_perspectives;
+};
+struct f_reaction_f_building {
+    Vector f_token;
+    Vector f_temp_job_key;
+    Vector f_type;
+    Vector f_subtype;
+    Vector f_custom;
+    Vector f_hotkey;
+};
+struct f_reaction {
+    std::string f_code;
+    std::string f_name;
+    Flags f_flags;
+    Vector f_reagents;
+    Vector f_products;
+    int16_t f_skill;
+    int32_t f_max_multiplier;
+    native_history_layout::f_reaction_f_building f_building;
+    int32_t f_index;
+    int32_t f_source_hfid;
+    int32_t f_source_enid;
+    Vector f_raw_strings;
+    std::string f_category;
+    Vector f_descriptions;
+    int32_t f_rand_range;
+    int32_t f_skill_mult;
+    int32_t f_attr_gain;
+    int32_t f_exp_gain;
+};
+struct f_reaction_product {
+    virtual void native_vtable();
+    std::string f_product_token;
+    std::string f_product_to_container;
+};
+struct f_reaction_product_item_improvementst_f_get_material {
+    std::string f_reagent_code;
+    std::string f_product_code;
+};
+struct f_reaction_product_item_improvementst : f_reaction_product {
+    std::string f_target_reagent;
+    int32_t f_improvement_type;
+    int32_t f_improvement_specific_type;
+    int16_t f_mat_type;
+    int32_t f_mat_index;
+    int16_t f_probability;
+    Flags f_flags;
+    native_history_layout::f_reaction_product_item_improvementst_f_get_material f_get_material;
+    std::string f_part_token;
+    std::array<std::string, 3> f_material_str;
+};
+struct f_reaction_product_itemst_f_get_material {
+    std::string f_reagent_code;
+    std::string f_product_code;
+};
+struct f_reaction_product_itemst : f_reaction_product {
+    int16_t f_item_type;
+    int16_t f_item_subtype;
+    int16_t f_mat_type;
+    int32_t f_mat_index;
+    int16_t f_probability;
+    int16_t f_count;
+    int32_t f_product_dimension;
+    Flags f_flags;
+    native_history_layout::f_reaction_product_itemst_f_get_material f_get_material;
+    std::array<std::string, 2> f_item_str;
+    std::array<std::string, 3> f_material_str;
+};
+struct f_reaction_reagent {
+    virtual void native_vtable();
+    std::string f_code;
+    int32_t f_quantity;
+    int32_t f_flags;
+};
+struct f_reaction_reagent_itemst : f_reaction_reagent {
+    int16_t f_item_type;
+    int16_t f_item_subtype;
+    int16_t f_mat_type;
+    int16_t f_mat_index;
+    std::string f_reaction_class;
+    std::string f_has_material_reaction_product;
+    uint32_t f_flags1;
+    uint32_t f_flags2;
+    uint32_t f_flags3;
+    uint32_t f_flags4;
+    uint32_t f_flags5;
+    int32_t f_metal_ore;
+    int32_t f_min_dimension;
+    Vector f_contains;
+    int16_t f_has_tool_use;
+    int32_t f_dye_color;
+    std::array<std::string, 2> f_item_str;
+    std::array<std::string, 3> f_material_str;
+    std::string f_metal_ore_str;
+    Vector f_contains_str;
 };
 struct f_region_map_entry {
     int32_t f_path_map;
@@ -14566,6 +14784,25 @@ static constexpr std::array<Field, 31> f_artifact_record_fields = {{
     {0x120, DFCN_NATIVE_FIELD(f_artifact_record, f_season_tick, 0x120), 4, "season_tick"},
     {0x124, DFCN_NATIVE_FIELD(f_artifact_record, f_temp_sort, 0x124), 4, "temp_sort"},
 }};
+static constexpr std::array<Field, 10> f_build_req_choice_genst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_distance, 0x8), 4, "distance"},
+    {0xc, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_on, 0xc), 1, "on"},
+    {0x10, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_compstr, 0x10), 32, "compstr"},
+    {0x30, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_item_type, 0x30), 2, "item_type"},
+    {0x32, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_item_subtype, 0x32), 2, "item_subtype"},
+    {0x34, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_mat_type, 0x34), 2, "mat_type"},
+    {0x38, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_mat_index, 0x38), 4, "mat_index"},
+    {0x40, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_candidates, 0x40), 24, "candidates"},
+    {0x58, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_used_count, 0x58), 4, "used_count"},
+    {0x5c, DFCN_NATIVE_FIELD(f_build_req_choice_genst, f_expanded, 0x5c), 1, "expanded"},
+}};
+static constexpr std::array<Field, 5> f_build_req_choice_specst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_build_req_choice_specst, f_distance, 0x8), 4, "distance"},
+    {0xc, DFCN_NATIVE_FIELD(f_build_req_choice_specst, f_on, 0xc), 1, "on"},
+    {0x10, DFCN_NATIVE_FIELD(f_build_req_choice_specst, f_compstr, 0x10), 32, "compstr"},
+    {0x30, DFCN_NATIVE_FIELD(f_build_req_choice_specst, f_candidate, 0x30), 8, "candidate"},
+    {0x38, DFCN_NATIVE_FIELD(f_build_req_choice_specst, f_candidate_id, 0x38), 4, "candidate_id"},
+}};
 static constexpr std::array<Field, 30> f_building_fields = {{
     {0x8, DFCN_NATIVE_FIELD(f_building, f_x1, 0x8), 4, "x1"},
     {0xc, DFCN_NATIVE_FIELD(f_building, f_y1, 0xc), 4, "y1"},
@@ -14602,6 +14839,106 @@ static constexpr std::array<Field, 3> f_building_def_fields = {{
     {0x8, DFCN_NATIVE_FIELD(f_building_def, f_code, 0x8), 32, "code"},
     {0x28, DFCN_NATIVE_FIELD(f_building_def, f_id, 0x28), 4, "id"},
     {0x30, DFCN_NATIVE_FIELD(f_building_def, f_name, 0x30), 32, "name"},
+}};
+static constexpr std::array<Field, 48> f_building_furnacest_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_building_furnacest, f_x1, 0x8), 4, "x1"},
+    {0xc, DFCN_NATIVE_FIELD(f_building_furnacest, f_y1, 0xc), 4, "y1"},
+    {0x10, DFCN_NATIVE_FIELD(f_building_furnacest, f_centerx, 0x10), 4, "centerx"},
+    {0x14, DFCN_NATIVE_FIELD(f_building_furnacest, f_x2, 0x14), 4, "x2"},
+    {0x18, DFCN_NATIVE_FIELD(f_building_furnacest, f_y2, 0x18), 4, "y2"},
+    {0x1c, DFCN_NATIVE_FIELD(f_building_furnacest, f_centery, 0x1c), 4, "centery"},
+    {0x20, DFCN_NATIVE_FIELD(f_building_furnacest, f_z, 0x20), 4, "z"},
+    {0x24, DFCN_NATIVE_FIELD(f_building_furnacest, f_flags, 0x24), 4, "flags"},
+    {0x28, DFCN_NATIVE_FIELD(f_building_furnacest, f_mat_type, 0x28), 2, "mat_type"},
+    {0x2c, DFCN_NATIVE_FIELD(f_building_furnacest, f_mat_index, 0x2c), 4, "mat_index"},
+    {0x30, DFCN_NATIVE_FIELD(f_building_furnacest, f_room.f_extents, 0x30), 8, "room.extents"},
+    {0x38, DFCN_NATIVE_FIELD(f_building_furnacest, f_room.f_x, 0x38), 4, "room.x"},
+    {0x3c, DFCN_NATIVE_FIELD(f_building_furnacest, f_room.f_y, 0x3c), 4, "room.y"},
+    {0x40, DFCN_NATIVE_FIELD(f_building_furnacest, f_room.f_width, 0x40), 4, "room.width"},
+    {0x44, DFCN_NATIVE_FIELD(f_building_furnacest, f_room.f_height, 0x44), 4, "room.height"},
+    {0x48, DFCN_NATIVE_FIELD(f_building_furnacest, f_age, 0x48), 4, "age"},
+    {0x4c, DFCN_NATIVE_FIELD(f_building_furnacest, f_race, 0x4c), 2, "race"},
+    {0x50, DFCN_NATIVE_FIELD(f_building_furnacest, f_id, 0x50), 4, "id"},
+    {0x58, DFCN_NATIVE_FIELD(f_building_furnacest, f_jobs, 0x58), 24, "jobs"},
+    {0x70, DFCN_NATIVE_FIELD(f_building_furnacest, f_specific_refs, 0x70), 24, "specific_refs"},
+    {0x88, DFCN_NATIVE_FIELD(f_building_furnacest, f_general_refs, 0x88), 24, "general_refs"},
+    {0xa0, DFCN_NATIVE_FIELD(f_building_furnacest, f_relations, 0xa0), 24, "relations"},
+    {0xb8, DFCN_NATIVE_FIELD(f_building_furnacest, f_job_claim_suppress, 0xb8), 24, "job_claim_suppress"},
+    {0xd0, DFCN_NATIVE_FIELD(f_building_furnacest, f_name, 0xd0), 32, "name"},
+    {0xf0, DFCN_NATIVE_FIELD(f_building_furnacest, f_activities, 0xf0), 24, "activities"},
+    {0x108, DFCN_NATIVE_FIELD(f_building_furnacest, f_world_data_id, 0x108), 4, "world_data_id"},
+    {0x10c, DFCN_NATIVE_FIELD(f_building_furnacest, f_world_data_subid, 0x10c), 4, "world_data_subid"},
+    {0x110, DFCN_NATIVE_FIELD(f_building_furnacest, f_creation_bld_num, 0x110), 4, "creation_bld_num"},
+    {0x114, DFCN_NATIVE_FIELD(f_building_furnacest, f_site_id, 0x114), 4, "site_id"},
+    {0x118, DFCN_NATIVE_FIELD(f_building_furnacest, f_location_id, 0x118), 4, "location_id"},
+    {0x120, DFCN_NATIVE_FIELD(f_building_furnacest, f_construction_stage, 0x120), 2, "construction_stage"},
+    {0x128, DFCN_NATIVE_FIELD(f_building_furnacest, f_contained_items, 0x128), 24, "contained_items"},
+    {0x140, DFCN_NATIVE_FIELD(f_building_furnacest, f_design, 0x140), 8, "design"},
+    {0x148, DFCN_NATIVE_FIELD(f_building_furnacest, f_melt_remainder, 0x148), 24, "melt_remainder"},
+    {0x160, DFCN_NATIVE_FIELD(f_building_furnacest, f_furnace_flag, 0x160), 2, "furnace_flag"},
+    {0x162, DFCN_NATIVE_FIELD(f_building_furnacest, f_type, 0x162), 2, "type"},
+    {0x168, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_permitted_workers, 0x168), 24, "profile.permitted_workers"},
+    {0x180, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_min_level, 0x180), 4, "profile.min_level"},
+    {0x184, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_max_level, 0x184), 4, "profile.max_level"},
+    {0x188, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_links.f_give_to_pile, 0x188), 24, "profile.links.give_to_pile"},
+    {0x1a0, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_links.f_take_from_pile, 0x1a0), 24, "profile.links.take_from_pile"},
+    {0x1b8, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_links.f_give_to_workshop, 0x1b8), 24, "profile.links.give_to_workshop"},
+    {0x1d0, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_links.f_take_from_workshop, 0x1d0), 24, "profile.links.take_from_workshop"},
+    {0x1e8, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_max_general_orders, 0x1e8), 4, "profile.max_general_orders"},
+    {0x1ec, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_flags, 0x1ec), 4, "profile.flags"},
+    {0x1f0, DFCN_NATIVE_FIELD(f_building_furnacest, f_profile.f_blocked_labors, 0x1f0), 94, "profile.blocked_labors"},
+    {0x250, DFCN_NATIVE_FIELD(f_building_furnacest, f_custom_type, 0x250), 4, "custom_type"},
+    {0x254, DFCN_NATIVE_FIELD(f_building_furnacest, f_times_used, 0x254), 4, "times_used"},
+}};
+static constexpr std::array<Field, 48> f_building_workshopst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_building_workshopst, f_x1, 0x8), 4, "x1"},
+    {0xc, DFCN_NATIVE_FIELD(f_building_workshopst, f_y1, 0xc), 4, "y1"},
+    {0x10, DFCN_NATIVE_FIELD(f_building_workshopst, f_centerx, 0x10), 4, "centerx"},
+    {0x14, DFCN_NATIVE_FIELD(f_building_workshopst, f_x2, 0x14), 4, "x2"},
+    {0x18, DFCN_NATIVE_FIELD(f_building_workshopst, f_y2, 0x18), 4, "y2"},
+    {0x1c, DFCN_NATIVE_FIELD(f_building_workshopst, f_centery, 0x1c), 4, "centery"},
+    {0x20, DFCN_NATIVE_FIELD(f_building_workshopst, f_z, 0x20), 4, "z"},
+    {0x24, DFCN_NATIVE_FIELD(f_building_workshopst, f_flags, 0x24), 4, "flags"},
+    {0x28, DFCN_NATIVE_FIELD(f_building_workshopst, f_mat_type, 0x28), 2, "mat_type"},
+    {0x2c, DFCN_NATIVE_FIELD(f_building_workshopst, f_mat_index, 0x2c), 4, "mat_index"},
+    {0x30, DFCN_NATIVE_FIELD(f_building_workshopst, f_room.f_extents, 0x30), 8, "room.extents"},
+    {0x38, DFCN_NATIVE_FIELD(f_building_workshopst, f_room.f_x, 0x38), 4, "room.x"},
+    {0x3c, DFCN_NATIVE_FIELD(f_building_workshopst, f_room.f_y, 0x3c), 4, "room.y"},
+    {0x40, DFCN_NATIVE_FIELD(f_building_workshopst, f_room.f_width, 0x40), 4, "room.width"},
+    {0x44, DFCN_NATIVE_FIELD(f_building_workshopst, f_room.f_height, 0x44), 4, "room.height"},
+    {0x48, DFCN_NATIVE_FIELD(f_building_workshopst, f_age, 0x48), 4, "age"},
+    {0x4c, DFCN_NATIVE_FIELD(f_building_workshopst, f_race, 0x4c), 2, "race"},
+    {0x50, DFCN_NATIVE_FIELD(f_building_workshopst, f_id, 0x50), 4, "id"},
+    {0x58, DFCN_NATIVE_FIELD(f_building_workshopst, f_jobs, 0x58), 24, "jobs"},
+    {0x70, DFCN_NATIVE_FIELD(f_building_workshopst, f_specific_refs, 0x70), 24, "specific_refs"},
+    {0x88, DFCN_NATIVE_FIELD(f_building_workshopst, f_general_refs, 0x88), 24, "general_refs"},
+    {0xa0, DFCN_NATIVE_FIELD(f_building_workshopst, f_relations, 0xa0), 24, "relations"},
+    {0xb8, DFCN_NATIVE_FIELD(f_building_workshopst, f_job_claim_suppress, 0xb8), 24, "job_claim_suppress"},
+    {0xd0, DFCN_NATIVE_FIELD(f_building_workshopst, f_name, 0xd0), 32, "name"},
+    {0xf0, DFCN_NATIVE_FIELD(f_building_workshopst, f_activities, 0xf0), 24, "activities"},
+    {0x108, DFCN_NATIVE_FIELD(f_building_workshopst, f_world_data_id, 0x108), 4, "world_data_id"},
+    {0x10c, DFCN_NATIVE_FIELD(f_building_workshopst, f_world_data_subid, 0x10c), 4, "world_data_subid"},
+    {0x110, DFCN_NATIVE_FIELD(f_building_workshopst, f_creation_bld_num, 0x110), 4, "creation_bld_num"},
+    {0x114, DFCN_NATIVE_FIELD(f_building_workshopst, f_site_id, 0x114), 4, "site_id"},
+    {0x118, DFCN_NATIVE_FIELD(f_building_workshopst, f_location_id, 0x118), 4, "location_id"},
+    {0x120, DFCN_NATIVE_FIELD(f_building_workshopst, f_construction_stage, 0x120), 2, "construction_stage"},
+    {0x128, DFCN_NATIVE_FIELD(f_building_workshopst, f_contained_items, 0x128), 24, "contained_items"},
+    {0x140, DFCN_NATIVE_FIELD(f_building_workshopst, f_design, 0x140), 8, "design"},
+    {0x148, DFCN_NATIVE_FIELD(f_building_workshopst, f_type, 0x148), 2, "type"},
+    {0x150, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_permitted_workers, 0x150), 24, "profile.permitted_workers"},
+    {0x168, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_min_level, 0x168), 4, "profile.min_level"},
+    {0x16c, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_max_level, 0x16c), 4, "profile.max_level"},
+    {0x170, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_links.f_give_to_pile, 0x170), 24, "profile.links.give_to_pile"},
+    {0x188, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_links.f_take_from_pile, 0x188), 24, "profile.links.take_from_pile"},
+    {0x1a0, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_links.f_give_to_workshop, 0x1a0), 24, "profile.links.give_to_workshop"},
+    {0x1b8, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_links.f_take_from_workshop, 0x1b8), 24, "profile.links.take_from_workshop"},
+    {0x1d0, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_max_general_orders, 0x1d0), 4, "profile.max_general_orders"},
+    {0x1d4, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_flags, 0x1d4), 4, "profile.flags"},
+    {0x1d8, DFCN_NATIVE_FIELD(f_building_workshopst, f_profile.f_blocked_labors, 0x1d8), 94, "profile.blocked_labors"},
+    {0x238, DFCN_NATIVE_FIELD(f_building_workshopst, f_machine.f_machine_id, 0x238), 4, "machine.machine_id"},
+    {0x23c, DFCN_NATIVE_FIELD(f_building_workshopst, f_machine.f_flags, 0x23c), 4, "machine.flags"},
+    {0x240, DFCN_NATIVE_FIELD(f_building_workshopst, f_custom_type, 0x240), 4, "custom_type"},
+    {0x244, DFCN_NATIVE_FIELD(f_building_workshopst, f_times_used, 0x244), 4, "times_used"},
 }};
 static constexpr std::array<Field, 217> f_caste_raw_fields = {{
     {0x0, DFCN_NATIVE_FIELD(f_caste_raw, f_caste_id, 0x0), 32, "caste_id"},
@@ -17679,6 +18016,14 @@ static constexpr std::array<Field, 85> f_inorganic_raw_fields = {{
     {0x884, DFCN_NATIVE_FIELD(f_inorganic_raw, f_material.f_cheese_texpos2, 0x884), 4, "material.cheese_texpos2"},
     {0x888, DFCN_NATIVE_FIELD(f_inorganic_raw, f_material.f_texflag, 0x888), 4, "material.texflag"},
 }};
+static constexpr std::array<Field, 6> f_instrument_piece_fields = {{
+    {0x0, DFCN_NATIVE_FIELD(f_instrument_piece, f_type, 0x0), 32, "type"},
+    {0x20, DFCN_NATIVE_FIELD(f_instrument_piece, f_id, 0x20), 32, "id"},
+    {0x40, DFCN_NATIVE_FIELD(f_instrument_piece, f_index, 0x40), 4, "index"},
+    {0x48, DFCN_NATIVE_FIELD(f_instrument_piece, f_name, 0x48), 32, "name"},
+    {0x68, DFCN_NATIVE_FIELD(f_instrument_piece, f_name_plural, 0x68), 32, "name_plural"},
+    {0x88, DFCN_NATIVE_FIELD(f_instrument_piece, f_flags, 0x88), 4, "flags"},
+}};
 static constexpr std::array<Field, 8> f_interaction_effect_fields = {{
     {0x8, DFCN_NATIVE_FIELD(f_interaction_effect, f_index, 0x8), 4, "index"},
     {0x10, DFCN_NATIVE_FIELD(f_interaction_effect, f_targets, 0x10), 24, "targets"},
@@ -18064,6 +18409,67 @@ static constexpr std::array<Field, 8> f_interaction_source_underground_specialst
     {0x70, DFCN_NATIVE_FIELD(f_interaction_source_underground_specialst, f_trigger_string_second, 0x70), 32, "trigger_string_second"},
     {0x90, DFCN_NATIVE_FIELD(f_interaction_source_underground_specialst, f_trigger_string_third, 0x90), 32, "trigger_string_third"},
     {0xb0, DFCN_NATIVE_FIELD(f_interaction_source_underground_specialst, f_trigger_string, 0xb0), 32, "trigger_string"},
+}};
+static constexpr std::array<Field, 8> f_interface_button_building_category_selectorst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_interface_button_building_category_selectorst, f_hotkey, 0x8), 4, "hotkey"},
+    {0xc, DFCN_NATIVE_FIELD(f_interface_button_building_category_selectorst, f_leave_button, 0xc), 1, "leave_button"},
+    {0x10, DFCN_NATIVE_FIELD(f_interface_button_building_category_selectorst, f_flag, 0x10), 4, "flag"},
+    {0x18, DFCN_NATIVE_FIELD(f_interface_button_building_category_selectorst, f_filter_str, 0x18), 32, "filter_str"},
+    {0x38, DFCN_NATIVE_FIELD(f_interface_button_building_category_selectorst, f_alpha_order, 0x38), 4, "alpha_order"},
+    {0x40, DFCN_NATIVE_FIELD(f_interface_button_building_category_selectorst, f_bd, 0x40), 8, "bd"},
+    {0x48, DFCN_NATIVE_FIELD(f_interface_button_building_category_selectorst, f_category, 0x48), 4, "category"},
+    {0x4c, DFCN_NATIVE_FIELD(f_interface_button_building_category_selectorst, f_prepare_interface, 0x4c), 1, "prepare_interface"},
+}};
+static constexpr std::array<Field, 10> f_interface_button_building_material_selectorst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_hotkey, 0x8), 4, "hotkey"},
+    {0xc, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_leave_button, 0xc), 1, "leave_button"},
+    {0x10, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_flag, 0x10), 4, "flag"},
+    {0x18, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_filter_str, 0x18), 32, "filter_str"},
+    {0x38, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_alpha_order, 0x38), 4, "alpha_order"},
+    {0x40, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_bd, 0x40), 8, "bd"},
+    {0x48, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_material, 0x48), 2, "material"},
+    {0x4c, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_matgloss, 0x4c), 4, "matgloss"},
+    {0x50, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_job_item_flag, 0x50), 4, "job_item_flag"},
+    {0x54, DFCN_NATIVE_FIELD(f_interface_button_building_material_selectorst, f_prepare_interface, 0x54), 1, "prepare_interface"},
+}};
+static constexpr std::array<Field, 37> f_interface_button_building_new_jobst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_hotkey, 0x8), 4, "hotkey"},
+    {0xc, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_leave_button, 0xc), 1, "leave_button"},
+    {0x10, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_flag, 0x10), 4, "flag"},
+    {0x18, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_filter_str, 0x18), 32, "filter_str"},
+    {0x38, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_alpha_order, 0x38), 4, "alpha_order"},
+    {0x40, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_bd, 0x40), 8, "bd"},
+    {0x48, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_jobtype, 0x48), 2, "jobtype"},
+    {0x50, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_mstring, 0x50), 32, "mstring"},
+    {0x70, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_itemtype, 0x70), 2, "itemtype"},
+    {0x72, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_subtype, 0x72), 2, "subtype"},
+    {0x74, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_material, 0x74), 2, "material"},
+    {0x78, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_matgloss, 0x78), 4, "matgloss"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_whole, 0x7c), 4, "specflag.whole"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_construct_building_flags, 0x7c), 4, "specflag.construct_building_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_clean_patient_flags, 0x7c), 4, "specflag.clean_patient_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_clean_self_flags, 0x7c), 4, "specflag.clean_self_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_place_track_vehicle_flags, 0x7c), 4, "specflag.place_track_vehicle_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_gather_flags, 0x7c), 4, "specflag.gather_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_drink_item_flags, 0x7c), 4, "specflag.drink_item_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_interrogation_flags, 0x7c), 4, "specflag.interrogation_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_weave_cloth_flags, 0x7c), 4, "specflag.weave_cloth_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_link_building_to_trigger_flags, 0x7c), 4, "specflag.link_building_to_trigger_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_carve_track_flags, 0x7c), 4, "specflag.carve_track_flags"},
+    {0x7c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specflag.f_encrust_flags, 0x7c), 4, "specflag.encrust_flags"},
+    {0x80, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specdata.f_hist_figure_id, 0x80), 4, "specdata.hist_figure_id"},
+    {0x80, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specdata.f_race, 0x80), 4, "specdata.race"},
+    {0x80, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specdata.f_improvement, 0x80), 4, "specdata.improvement"},
+    {0x80, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_specdata.f_dye_object_desired_post_dye_color_index, 0x80), 4, "specdata.dye_object_desired_post_dye_color_index"},
+    {0x84, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_job_item_flag, 0x84), 4, "job_item_flag"},
+    {0x88, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_add_building_location, 0x88), 1, "add_building_location"},
+    {0x89, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_show_help_instead, 0x89), 1, "show_help_instead"},
+    {0x8c, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_art_specifier, 0x8c), 4, "art_specifier"},
+    {0x90, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_art_specifier_id1, 0x90), 4, "art_specifier_id1"},
+    {0x94, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_art_specifier_id2, 0x94), 4, "art_specifier_id2"},
+    {0x98, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_objection, 0x98), 32, "objection"},
+    {0xb8, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_info, 0xb8), 32, "info"},
+    {0xd8, DFCN_NATIVE_FIELD(f_interface_button_building_new_jobst, f_list_priority, 0xd8), 4, "list_priority"},
 }};
 static constexpr std::array<Field, 24> f_item_fields = {{
     {0x8, DFCN_NATIVE_FIELD(f_item, f_pos.f_x, 0x8), 2, "pos.x"},
@@ -23895,6 +24301,38 @@ static constexpr std::array<Field, 19> f_manager_order_condition_item_fields = {
     {0x8c, DFCN_NATIVE_FIELD(f_manager_order_condition_item, f_has_tool_use, 0x8c), 2, "has_tool_use"},
     {0x90, DFCN_NATIVE_FIELD(f_manager_order_condition_item, f_dye_color, 0x90), 4, "dye_color"},
 }};
+static constexpr std::array<Field, 30> f_manager_order_template_fields = {{
+    {0x0, DFCN_NATIVE_FIELD(f_manager_order_template, f_job_type, 0x0), 2, "job_type"},
+    {0x8, DFCN_NATIVE_FIELD(f_manager_order_template, f_reaction_name, 0x8), 32, "reaction_name"},
+    {0x28, DFCN_NATIVE_FIELD(f_manager_order_template, f_item_type, 0x28), 2, "item_type"},
+    {0x2a, DFCN_NATIVE_FIELD(f_manager_order_template, f_item_subtype, 0x2a), 2, "item_subtype"},
+    {0x2c, DFCN_NATIVE_FIELD(f_manager_order_template, f_mat_type, 0x2c), 2, "mat_type"},
+    {0x30, DFCN_NATIVE_FIELD(f_manager_order_template, f_mat_index, 0x30), 4, "mat_index"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_whole, 0x34), 4, "specflag.whole"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_construct_building_flags, 0x34), 4, "specflag.construct_building_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_clean_patient_flags, 0x34), 4, "specflag.clean_patient_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_clean_self_flags, 0x34), 4, "specflag.clean_self_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_place_track_vehicle_flags, 0x34), 4, "specflag.place_track_vehicle_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_gather_flags, 0x34), 4, "specflag.gather_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_drink_item_flags, 0x34), 4, "specflag.drink_item_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_interrogation_flags, 0x34), 4, "specflag.interrogation_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_weave_cloth_flags, 0x34), 4, "specflag.weave_cloth_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_link_building_to_trigger_flags, 0x34), 4, "specflag.link_building_to_trigger_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_carve_track_flags, 0x34), 4, "specflag.carve_track_flags"},
+    {0x34, DFCN_NATIVE_FIELD(f_manager_order_template, f_specflag.f_encrust_flags, 0x34), 4, "specflag.encrust_flags"},
+    {0x38, DFCN_NATIVE_FIELD(f_manager_order_template, f_specdata.f_hist_figure_id, 0x38), 4, "specdata.hist_figure_id"},
+    {0x38, DFCN_NATIVE_FIELD(f_manager_order_template, f_specdata.f_race, 0x38), 4, "specdata.race"},
+    {0x38, DFCN_NATIVE_FIELD(f_manager_order_template, f_specdata.f_improvement, 0x38), 4, "specdata.improvement"},
+    {0x38, DFCN_NATIVE_FIELD(f_manager_order_template, f_specdata.f_dye_object_desired_post_dye_color_index, 0x38), 4, "specdata.dye_object_desired_post_dye_color_index"},
+    {0x3c, DFCN_NATIVE_FIELD(f_manager_order_template, f_material_category, 0x3c), 4, "material_category"},
+    {0x40, DFCN_NATIVE_FIELD(f_manager_order_template, f_art_specifier, 0x40), 4, "art_specifier"},
+    {0x44, DFCN_NATIVE_FIELD(f_manager_order_template, f_art_specifier_id1, 0x44), 4, "art_specifier_id1"},
+    {0x48, DFCN_NATIVE_FIELD(f_manager_order_template, f_art_specifier_id2, 0x48), 4, "art_specifier_id2"},
+    {0x4c, DFCN_NATIVE_FIELD(f_manager_order_template, f_match_value, 0x4c), 4, "match_value"},
+    {0x50, DFCN_NATIVE_FIELD(f_manager_order_template, f_name, 0x50), 32, "name"},
+    {0x70, DFCN_NATIVE_FIELD(f_manager_order_template, f_compare_str, 0x70), 32, "compare_str"},
+    {0x90, DFCN_NATIVE_FIELD(f_manager_order_template, f_on, 0x90), 1, "on"},
+}};
 static constexpr std::array<Field, 64> f_material_fields = {{
     {0x0, DFCN_NATIVE_FIELD(f_material, f_id, 0x0), 32, "id"},
     {0x20, DFCN_NATIVE_FIELD(f_material, f_gem_name1, 0x20), 32, "gem_name1"},
@@ -24082,6 +24520,22 @@ static constexpr std::array<Field, 30> f_name_creator_interfacest_fields = {{
     {0x238, DFCN_NATIVE_FIELD(f_name_creator_interfacest, f_adv_naming_conv_tact, 0x238), 4, "adv_naming_conv_tact"},
     {0x240, DFCN_NATIVE_FIELD(f_name_creator_interfacest, f_named_unit, 0x240), 8, "named_unit"},
     {0x248, DFCN_NATIVE_FIELD(f_name_creator_interfacest, f_named_entity, 0x248), 8, "named_entity"},
+}};
+static constexpr std::array<Field, 14> f_object_loaderst_fields = {{
+    {0x0, DFCN_NATIVE_FIELD(f_object_loaderst, f_load_object_stage, 0x0), 4, "load_object_stage"},
+    {0x4, DFCN_NATIVE_FIELD(f_object_loaderst, f_load_object_stage_count, 0x4), 4, "load_object_stage_count"},
+    {0x8, DFCN_NATIVE_FIELD(f_object_loaderst, f_object_files, 0x8), 24, "object_files"},
+    {0x20, DFCN_NATIVE_FIELD(f_object_loaderst, f_object_file_index, 0x20), 4, "object_file_index"},
+    {0x24, DFCN_NATIVE_FIELD(f_object_loaderst, f_current_load_order_index, 0x24), 4, "current_load_order_index"},
+    {0x28, DFCN_NATIVE_FIELD(f_object_loaderst, f_current_load_order_graphics_index, 0x28), 4, "current_load_order_graphics_index"},
+    {0x30, DFCN_NATIVE_FIELD(f_object_loaderst, f_object_load_order_id, 0x30), 24, "object_load_order_id"},
+    {0x48, DFCN_NATIVE_FIELD(f_object_loaderst, f_object_load_order_numeric_version, 0x48), 24, "object_load_order_numeric_version"},
+    {0x60, DFCN_NATIVE_FIELD(f_object_loaderst, f_object_load_order_earliest_compat_numeric_version, 0x60), 24, "object_load_order_earliest_compat_numeric_version"},
+    {0x78, DFCN_NATIVE_FIELD(f_object_loaderst, f_object_load_order_src_dir, 0x78), 24, "object_load_order_src_dir"},
+    {0x90, DFCN_NATIVE_FIELD(f_object_loaderst, f_src_dir, 0x90), 32, "src_dir"},
+    {0xb0, DFCN_NATIVE_FIELD(f_object_loaderst, f_object_load_order_name, 0xb0), 24, "object_load_order_name"},
+    {0xc8, DFCN_NATIVE_FIELD(f_object_loaderst, f_object_load_order_displayed_version, 0xc8), 24, "object_load_order_displayed_version"},
+    {0xe0, DFCN_NATIVE_FIELD(f_object_loaderst, f_token_by_mod_id, 0xe0), 1472, "token_by_mod_id"},
 }};
 static constexpr std::array<Field, 7> f_performance_menu_choicest_fields = {{
     {0x0, DFCN_NATIVE_FIELD(f_performance_menu_choicest, f_type, 0x0), 4, "type"},
@@ -24581,6 +25035,87 @@ static constexpr std::array<Field, 25> f_poetic_form_fields = {{
     {0xe0, DFCN_NATIVE_FIELD(f_poetic_form, f_preferred_perspective, 0xe0), 4, "preferred_perspective"},
     {0xe4, DFCN_NATIVE_FIELD(f_poetic_form, f_features, 0xe4), 4, "features"},
     {0xe8, DFCN_NATIVE_FIELD(f_poetic_form, f_perspectives, 0xe8), 24, "perspectives"},
+}};
+static constexpr std::array<Field, 23> f_reaction_fields = {{
+    {0x0, DFCN_NATIVE_FIELD(f_reaction, f_code, 0x0), 32, "code"},
+    {0x20, DFCN_NATIVE_FIELD(f_reaction, f_name, 0x20), 32, "name"},
+    {0x40, DFCN_NATIVE_FIELD(f_reaction, f_flags, 0x40), 16, "flags"},
+    {0x50, DFCN_NATIVE_FIELD(f_reaction, f_reagents, 0x50), 24, "reagents"},
+    {0x68, DFCN_NATIVE_FIELD(f_reaction, f_products, 0x68), 24, "products"},
+    {0x80, DFCN_NATIVE_FIELD(f_reaction, f_skill, 0x80), 2, "skill"},
+    {0x84, DFCN_NATIVE_FIELD(f_reaction, f_max_multiplier, 0x84), 4, "max_multiplier"},
+    {0x88, DFCN_NATIVE_FIELD(f_reaction, f_building.f_token, 0x88), 24, "building.token"},
+    {0xa0, DFCN_NATIVE_FIELD(f_reaction, f_building.f_temp_job_key, 0xa0), 24, "building.temp_job_key"},
+    {0xb8, DFCN_NATIVE_FIELD(f_reaction, f_building.f_type, 0xb8), 24, "building.type"},
+    {0xd0, DFCN_NATIVE_FIELD(f_reaction, f_building.f_subtype, 0xd0), 24, "building.subtype"},
+    {0xe8, DFCN_NATIVE_FIELD(f_reaction, f_building.f_custom, 0xe8), 24, "building.custom"},
+    {0x100, DFCN_NATIVE_FIELD(f_reaction, f_building.f_hotkey, 0x100), 24, "building.hotkey"},
+    {0x118, DFCN_NATIVE_FIELD(f_reaction, f_index, 0x118), 4, "index"},
+    {0x11c, DFCN_NATIVE_FIELD(f_reaction, f_source_hfid, 0x11c), 4, "source_hfid"},
+    {0x120, DFCN_NATIVE_FIELD(f_reaction, f_source_enid, 0x120), 4, "source_enid"},
+    {0x128, DFCN_NATIVE_FIELD(f_reaction, f_raw_strings, 0x128), 24, "raw_strings"},
+    {0x140, DFCN_NATIVE_FIELD(f_reaction, f_category, 0x140), 32, "category"},
+    {0x160, DFCN_NATIVE_FIELD(f_reaction, f_descriptions, 0x160), 24, "descriptions"},
+    {0x178, DFCN_NATIVE_FIELD(f_reaction, f_rand_range, 0x178), 4, "rand_range"},
+    {0x17c, DFCN_NATIVE_FIELD(f_reaction, f_skill_mult, 0x17c), 4, "skill_mult"},
+    {0x180, DFCN_NATIVE_FIELD(f_reaction, f_attr_gain, 0x180), 4, "attr_gain"},
+    {0x184, DFCN_NATIVE_FIELD(f_reaction, f_exp_gain, 0x184), 4, "exp_gain"},
+}};
+static constexpr std::array<Field, 13> f_reaction_product_item_improvementst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_product_token, 0x8), 32, "product_token"},
+    {0x28, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_product_to_container, 0x28), 32, "product_to_container"},
+    {0x48, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_target_reagent, 0x48), 32, "target_reagent"},
+    {0x68, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_improvement_type, 0x68), 4, "improvement_type"},
+    {0x6c, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_improvement_specific_type, 0x6c), 4, "improvement_specific_type"},
+    {0x70, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_mat_type, 0x70), 2, "mat_type"},
+    {0x74, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_mat_index, 0x74), 4, "mat_index"},
+    {0x78, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_probability, 0x78), 2, "probability"},
+    {0x80, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_flags, 0x80), 16, "flags"},
+    {0x90, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_get_material.f_reagent_code, 0x90), 32, "get_material.reagent_code"},
+    {0xb0, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_get_material.f_product_code, 0xb0), 32, "get_material.product_code"},
+    {0xd0, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_part_token, 0xd0), 32, "part_token"},
+    {0xf0, DFCN_NATIVE_FIELD(f_reaction_product_item_improvementst, f_material_str, 0xf0), 96, "material_str"},
+}};
+static constexpr std::array<Field, 14> f_reaction_product_itemst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_product_token, 0x8), 32, "product_token"},
+    {0x28, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_product_to_container, 0x28), 32, "product_to_container"},
+    {0x48, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_item_type, 0x48), 2, "item_type"},
+    {0x4a, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_item_subtype, 0x4a), 2, "item_subtype"},
+    {0x4c, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_mat_type, 0x4c), 2, "mat_type"},
+    {0x50, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_mat_index, 0x50), 4, "mat_index"},
+    {0x54, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_probability, 0x54), 2, "probability"},
+    {0x56, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_count, 0x56), 2, "count"},
+    {0x58, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_product_dimension, 0x58), 4, "product_dimension"},
+    {0x60, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_flags, 0x60), 16, "flags"},
+    {0x70, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_get_material.f_reagent_code, 0x70), 32, "get_material.reagent_code"},
+    {0x90, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_get_material.f_product_code, 0x90), 32, "get_material.product_code"},
+    {0xb0, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_item_str, 0xb0), 64, "item_str"},
+    {0xf0, DFCN_NATIVE_FIELD(f_reaction_product_itemst, f_material_str, 0xf0), 96, "material_str"},
+}};
+static constexpr std::array<Field, 23> f_reaction_reagent_itemst_fields = {{
+    {0x8, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_code, 0x8), 32, "code"},
+    {0x28, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_quantity, 0x28), 4, "quantity"},
+    {0x2c, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_flags, 0x2c), 4, "flags"},
+    {0x30, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_item_type, 0x30), 2, "item_type"},
+    {0x32, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_item_subtype, 0x32), 2, "item_subtype"},
+    {0x34, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_mat_type, 0x34), 2, "mat_type"},
+    {0x36, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_mat_index, 0x36), 2, "mat_index"},
+    {0x38, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_reaction_class, 0x38), 32, "reaction_class"},
+    {0x58, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_has_material_reaction_product, 0x58), 32, "has_material_reaction_product"},
+    {0x78, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_flags1, 0x78), 4, "flags1"},
+    {0x7c, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_flags2, 0x7c), 4, "flags2"},
+    {0x80, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_flags3, 0x80), 4, "flags3"},
+    {0x84, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_flags4, 0x84), 4, "flags4"},
+    {0x88, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_flags5, 0x88), 4, "flags5"},
+    {0x8c, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_metal_ore, 0x8c), 4, "metal_ore"},
+    {0x90, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_min_dimension, 0x90), 4, "min_dimension"},
+    {0x98, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_contains, 0x98), 24, "contains"},
+    {0xb0, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_has_tool_use, 0xb0), 2, "has_tool_use"},
+    {0xb4, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_dye_color, 0xb4), 4, "dye_color"},
+    {0xb8, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_item_str, 0xb8), 64, "item_str"},
+    {0xf8, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_material_str, 0xf8), 96, "material_str"},
+    {0x158, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_metal_ore_str, 0x158), 32, "metal_ore_str"},
+    {0x178, DFCN_NATIVE_FIELD(f_reaction_reagent_itemst, f_contains_str, 0x178), 24, "contains_str"},
 }};
 static constexpr std::array<Field, 31> f_region_map_entry_fields = {{
     {0x0, DFCN_NATIVE_FIELD(f_region_map_entry, f_path_map, 0x0), 4, "path_map"},
@@ -27661,7 +28196,11 @@ static constexpr size_t f_art_image_element_treest_slots[] = {DFCN_NATIVE_BINDIN
 static constexpr size_t f_art_image_property_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48)};
 static constexpr size_t f_art_image_property_intransitive_verbst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48)};
 static constexpr size_t f_art_image_property_transitive_verbst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48)};
+static constexpr size_t f_build_req_choice_genst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 16), DFCN_NATIVE_BINDING(16, 24), DFCN_NATIVE_BINDING(24, 32), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48), DFCN_NATIVE_BINDING(48, 56), DFCN_NATIVE_BINDING(56, 64), DFCN_NATIVE_BINDING(64, 72), DFCN_NATIVE_BINDING(72, 80), DFCN_NATIVE_BINDING(80, 88), DFCN_NATIVE_BINDING(88, 96)};
+static constexpr size_t f_build_req_choice_specst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 16), DFCN_NATIVE_BINDING(16, 24), DFCN_NATIVE_BINDING(24, 32), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48), DFCN_NATIVE_BINDING(48, 56), DFCN_NATIVE_BINDING(56, 64), DFCN_NATIVE_BINDING(64, 72), DFCN_NATIVE_BINDING(72, 80), DFCN_NATIVE_BINDING(80, 88), DFCN_NATIVE_BINDING(88, 96)};
 static constexpr size_t f_building_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128), DFCN_NATIVE_BINDING(136, 136), DFCN_NATIVE_BINDING(144, 144), DFCN_NATIVE_BINDING(152, 152), DFCN_NATIVE_BINDING(160, 160), DFCN_NATIVE_BINDING(168, 168), DFCN_NATIVE_BINDING(176, 176), DFCN_NATIVE_BINDING(184, 184), DFCN_NATIVE_BINDING(192, 192), DFCN_NATIVE_BINDING(200, 200), DFCN_NATIVE_BINDING(208, 208), DFCN_NATIVE_BINDING(216, 216), DFCN_NATIVE_BINDING(224, 224), DFCN_NATIVE_BINDING(232, 232), DFCN_NATIVE_BINDING(240, 240), DFCN_NATIVE_BINDING(248, 248), DFCN_NATIVE_BINDING(256, 256), DFCN_NATIVE_BINDING(264, 264), DFCN_NATIVE_BINDING(272, 272), DFCN_NATIVE_BINDING(280, 280), DFCN_NATIVE_BINDING(288, 288), DFCN_NATIVE_BINDING(296, 296), DFCN_NATIVE_BINDING(304, 304), DFCN_NATIVE_BINDING(312, 312), DFCN_NATIVE_BINDING(320, 320), DFCN_NATIVE_BINDING(328, 328), DFCN_NATIVE_BINDING(336, 336), DFCN_NATIVE_BINDING(344, 344), DFCN_NATIVE_BINDING(352, 352), DFCN_NATIVE_BINDING(360, 360), DFCN_NATIVE_BINDING(368, 368), DFCN_NATIVE_BINDING(376, 376), DFCN_NATIVE_BINDING(384, 384), DFCN_NATIVE_BINDING(392, 392), DFCN_NATIVE_BINDING(400, 400), DFCN_NATIVE_BINDING(408, 408), DFCN_NATIVE_BINDING(416, 416), DFCN_NATIVE_BINDING(424, 424), DFCN_NATIVE_BINDING(432, 432), DFCN_NATIVE_BINDING(440, 440), DFCN_NATIVE_BINDING(448, 448), DFCN_NATIVE_BINDING(456, 456), DFCN_NATIVE_BINDING(464, 464), DFCN_NATIVE_BINDING(472, 472), DFCN_NATIVE_BINDING(480, 480), DFCN_NATIVE_BINDING(488, 488), DFCN_NATIVE_BINDING(496, 496), DFCN_NATIVE_BINDING(504, 504), DFCN_NATIVE_BINDING(512, 512), DFCN_NATIVE_BINDING(520, 520), DFCN_NATIVE_BINDING(528, 528), DFCN_NATIVE_BINDING(536, 536), DFCN_NATIVE_BINDING(544, 544), DFCN_NATIVE_BINDING(552, 552), DFCN_NATIVE_BINDING(560, 560), DFCN_NATIVE_BINDING(568, 568), DFCN_NATIVE_BINDING(576, 576), DFCN_NATIVE_BINDING(584, 584), DFCN_NATIVE_BINDING(592, 592), DFCN_NATIVE_BINDING(600, 600), DFCN_NATIVE_BINDING(608, 608), DFCN_NATIVE_BINDING(616, 616), DFCN_NATIVE_BINDING(624, 624), DFCN_NATIVE_BINDING(632, 632), DFCN_NATIVE_BINDING(640, 640), DFCN_NATIVE_BINDING(648, 648), DFCN_NATIVE_BINDING(656, 656), DFCN_NATIVE_BINDING(664, 664), DFCN_NATIVE_BINDING(672, 672), DFCN_NATIVE_BINDING(680, 680), DFCN_NATIVE_BINDING(688, 688), DFCN_NATIVE_BINDING(696, 696), DFCN_NATIVE_BINDING(704, 704)};
+static constexpr size_t f_building_furnacest_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128), DFCN_NATIVE_BINDING(136, 136), DFCN_NATIVE_BINDING(144, 144), DFCN_NATIVE_BINDING(152, 152), DFCN_NATIVE_BINDING(160, 160), DFCN_NATIVE_BINDING(168, 168), DFCN_NATIVE_BINDING(176, 176), DFCN_NATIVE_BINDING(184, 184), DFCN_NATIVE_BINDING(192, 192), DFCN_NATIVE_BINDING(200, 200), DFCN_NATIVE_BINDING(208, 208), DFCN_NATIVE_BINDING(216, 216), DFCN_NATIVE_BINDING(224, 224), DFCN_NATIVE_BINDING(232, 232), DFCN_NATIVE_BINDING(240, 240), DFCN_NATIVE_BINDING(248, 248), DFCN_NATIVE_BINDING(256, 256), DFCN_NATIVE_BINDING(264, 264), DFCN_NATIVE_BINDING(272, 272), DFCN_NATIVE_BINDING(280, 280), DFCN_NATIVE_BINDING(288, 288), DFCN_NATIVE_BINDING(296, 296), DFCN_NATIVE_BINDING(304, 304), DFCN_NATIVE_BINDING(312, 312), DFCN_NATIVE_BINDING(320, 320), DFCN_NATIVE_BINDING(328, 328), DFCN_NATIVE_BINDING(336, 336), DFCN_NATIVE_BINDING(344, 344), DFCN_NATIVE_BINDING(352, 352), DFCN_NATIVE_BINDING(360, 360), DFCN_NATIVE_BINDING(368, 368), DFCN_NATIVE_BINDING(376, 376), DFCN_NATIVE_BINDING(384, 384), DFCN_NATIVE_BINDING(392, 392), DFCN_NATIVE_BINDING(400, 400), DFCN_NATIVE_BINDING(408, 408), DFCN_NATIVE_BINDING(416, 416), DFCN_NATIVE_BINDING(424, 424), DFCN_NATIVE_BINDING(432, 432), DFCN_NATIVE_BINDING(440, 440), DFCN_NATIVE_BINDING(448, 448), DFCN_NATIVE_BINDING(456, 456), DFCN_NATIVE_BINDING(464, 464), DFCN_NATIVE_BINDING(472, 472), DFCN_NATIVE_BINDING(480, 480), DFCN_NATIVE_BINDING(488, 488), DFCN_NATIVE_BINDING(496, 496), DFCN_NATIVE_BINDING(504, 504), DFCN_NATIVE_BINDING(512, 512), DFCN_NATIVE_BINDING(520, 520), DFCN_NATIVE_BINDING(528, 528), DFCN_NATIVE_BINDING(536, 536), DFCN_NATIVE_BINDING(544, 544), DFCN_NATIVE_BINDING(552, 552), DFCN_NATIVE_BINDING(560, 560), DFCN_NATIVE_BINDING(568, 568), DFCN_NATIVE_BINDING(576, 576), DFCN_NATIVE_BINDING(584, 584), DFCN_NATIVE_BINDING(592, 592), DFCN_NATIVE_BINDING(600, 600), DFCN_NATIVE_BINDING(608, 608), DFCN_NATIVE_BINDING(616, 616), DFCN_NATIVE_BINDING(624, 624), DFCN_NATIVE_BINDING(632, 632), DFCN_NATIVE_BINDING(640, 640), DFCN_NATIVE_BINDING(648, 648), DFCN_NATIVE_BINDING(656, 656), DFCN_NATIVE_BINDING(664, 664), DFCN_NATIVE_BINDING(672, 672), DFCN_NATIVE_BINDING(680, 680), DFCN_NATIVE_BINDING(688, 688), DFCN_NATIVE_BINDING(696, 696), DFCN_NATIVE_BINDING(704, 704), DFCN_NATIVE_BINDING(712, 720), DFCN_NATIVE_BINDING(720, 728), DFCN_NATIVE_BINDING(728, 736)};
+static constexpr size_t f_building_workshopst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128), DFCN_NATIVE_BINDING(136, 136), DFCN_NATIVE_BINDING(144, 144), DFCN_NATIVE_BINDING(152, 152), DFCN_NATIVE_BINDING(160, 160), DFCN_NATIVE_BINDING(168, 168), DFCN_NATIVE_BINDING(176, 176), DFCN_NATIVE_BINDING(184, 184), DFCN_NATIVE_BINDING(192, 192), DFCN_NATIVE_BINDING(200, 200), DFCN_NATIVE_BINDING(208, 208), DFCN_NATIVE_BINDING(216, 216), DFCN_NATIVE_BINDING(224, 224), DFCN_NATIVE_BINDING(232, 232), DFCN_NATIVE_BINDING(240, 240), DFCN_NATIVE_BINDING(248, 248), DFCN_NATIVE_BINDING(256, 256), DFCN_NATIVE_BINDING(264, 264), DFCN_NATIVE_BINDING(272, 272), DFCN_NATIVE_BINDING(280, 280), DFCN_NATIVE_BINDING(288, 288), DFCN_NATIVE_BINDING(296, 296), DFCN_NATIVE_BINDING(304, 304), DFCN_NATIVE_BINDING(312, 312), DFCN_NATIVE_BINDING(320, 320), DFCN_NATIVE_BINDING(328, 328), DFCN_NATIVE_BINDING(336, 336), DFCN_NATIVE_BINDING(344, 344), DFCN_NATIVE_BINDING(352, 352), DFCN_NATIVE_BINDING(360, 360), DFCN_NATIVE_BINDING(368, 368), DFCN_NATIVE_BINDING(376, 376), DFCN_NATIVE_BINDING(384, 384), DFCN_NATIVE_BINDING(392, 392), DFCN_NATIVE_BINDING(400, 400), DFCN_NATIVE_BINDING(408, 408), DFCN_NATIVE_BINDING(416, 416), DFCN_NATIVE_BINDING(424, 424), DFCN_NATIVE_BINDING(432, 432), DFCN_NATIVE_BINDING(440, 440), DFCN_NATIVE_BINDING(448, 448), DFCN_NATIVE_BINDING(456, 456), DFCN_NATIVE_BINDING(464, 464), DFCN_NATIVE_BINDING(472, 472), DFCN_NATIVE_BINDING(480, 480), DFCN_NATIVE_BINDING(488, 488), DFCN_NATIVE_BINDING(496, 496), DFCN_NATIVE_BINDING(504, 504), DFCN_NATIVE_BINDING(512, 512), DFCN_NATIVE_BINDING(520, 520), DFCN_NATIVE_BINDING(528, 528), DFCN_NATIVE_BINDING(536, 536), DFCN_NATIVE_BINDING(544, 544), DFCN_NATIVE_BINDING(552, 552), DFCN_NATIVE_BINDING(560, 560), DFCN_NATIVE_BINDING(568, 568), DFCN_NATIVE_BINDING(576, 576), DFCN_NATIVE_BINDING(584, 584), DFCN_NATIVE_BINDING(592, 592), DFCN_NATIVE_BINDING(600, 600), DFCN_NATIVE_BINDING(608, 608), DFCN_NATIVE_BINDING(616, 616), DFCN_NATIVE_BINDING(624, 624), DFCN_NATIVE_BINDING(632, 632), DFCN_NATIVE_BINDING(640, 640), DFCN_NATIVE_BINDING(648, 648), DFCN_NATIVE_BINDING(656, 656), DFCN_NATIVE_BINDING(664, 664), DFCN_NATIVE_BINDING(672, 672), DFCN_NATIVE_BINDING(680, 680), DFCN_NATIVE_BINDING(688, 688), DFCN_NATIVE_BINDING(696, 696), DFCN_NATIVE_BINDING(704, 704), DFCN_NATIVE_BINDING(712, 720), DFCN_NATIVE_BINDING(720, 728), DFCN_NATIVE_BINDING(728, 736)};
 static constexpr size_t f_creature_interaction_effect_display_namest_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 32), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48), DFCN_NATIVE_BINDING(48, 56), DFCN_NATIVE_BINDING(56, 64), DFCN_NATIVE_BINDING(64, 72), DFCN_NATIVE_BINDING(72, 80), DFCN_NATIVE_BINDING(80, 88), DFCN_NATIVE_BINDING(88, 96), DFCN_NATIVE_BINDING(96, 104), DFCN_NATIVE_BINDING(104, 112), DFCN_NATIVE_BINDING(112, 120), DFCN_NATIVE_BINDING(120, 128), DFCN_NATIVE_BINDING(128, 136), DFCN_NATIVE_BINDING(136, 144), DFCN_NATIVE_BINDING(144, 152), DFCN_NATIVE_BINDING(152, 160), DFCN_NATIVE_BINDING(160, 168), DFCN_NATIVE_BINDING(168, 176), DFCN_NATIVE_BINDING(176, 184), DFCN_NATIVE_BINDING(184, 192)};
 static constexpr size_t f_general_ref_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 136), DFCN_NATIVE_BINDING(136, 144), DFCN_NATIVE_BINDING(144, 152), DFCN_NATIVE_BINDING(152, 160), DFCN_NATIVE_BINDING(160, 168)};
 static constexpr size_t f_general_ref_abstract_buildingst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 136), DFCN_NATIVE_BINDING(136, 144), DFCN_NATIVE_BINDING(144, 152), DFCN_NATIVE_BINDING(152, 160), DFCN_NATIVE_BINDING(160, 168)};
@@ -27779,6 +28318,9 @@ static constexpr size_t f_interaction_source_mythicalst_slots[] = {DFCN_NATIVE_B
 static constexpr size_t f_interaction_source_regionst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48), DFCN_NATIVE_BINDING(48, 56), DFCN_NATIVE_BINDING(56, 64)};
 static constexpr size_t f_interaction_source_secretst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48), DFCN_NATIVE_BINDING(48, 56), DFCN_NATIVE_BINDING(56, 64)};
 static constexpr size_t f_interaction_source_underground_specialst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48), DFCN_NATIVE_BINDING(48, 56), DFCN_NATIVE_BINDING(56, 64)};
+static constexpr size_t f_interface_button_building_category_selectorst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128)};
+static constexpr size_t f_interface_button_building_material_selectorst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128)};
+static constexpr size_t f_interface_button_building_new_jobst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128)};
 static constexpr size_t f_item_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128), DFCN_NATIVE_BINDING(136, 136), DFCN_NATIVE_BINDING(144, 144), DFCN_NATIVE_BINDING(152, 152), DFCN_NATIVE_BINDING(160, 160), DFCN_NATIVE_BINDING(168, 168), DFCN_NATIVE_BINDING(176, 176), DFCN_NATIVE_BINDING(184, 184), DFCN_NATIVE_BINDING(192, 192), DFCN_NATIVE_BINDING(200, 200), DFCN_NATIVE_BINDING(208, 208), DFCN_NATIVE_BINDING(216, 216), DFCN_NATIVE_BINDING(224, 224), DFCN_NATIVE_BINDING(232, 232), DFCN_NATIVE_BINDING(240, 240), DFCN_NATIVE_BINDING(248, 248), DFCN_NATIVE_BINDING(256, 256), DFCN_NATIVE_BINDING(264, 264), DFCN_NATIVE_BINDING(272, 272), DFCN_NATIVE_BINDING(280, 280), DFCN_NATIVE_BINDING(288, 288), DFCN_NATIVE_BINDING(296, 296), DFCN_NATIVE_BINDING(304, 304), DFCN_NATIVE_BINDING(312, 312), DFCN_NATIVE_BINDING(320, 320), DFCN_NATIVE_BINDING(328, 328), DFCN_NATIVE_BINDING(336, 336), DFCN_NATIVE_BINDING(344, 344), DFCN_NATIVE_BINDING(352, 352), DFCN_NATIVE_BINDING(360, 360), DFCN_NATIVE_BINDING(368, 368), DFCN_NATIVE_BINDING(376, 376), DFCN_NATIVE_BINDING(384, 384), DFCN_NATIVE_BINDING(392, 392), DFCN_NATIVE_BINDING(400, 400), DFCN_NATIVE_BINDING(408, 408), DFCN_NATIVE_BINDING(416, 416), DFCN_NATIVE_BINDING(424, 424), DFCN_NATIVE_BINDING(432, 432), DFCN_NATIVE_BINDING(440, 440), DFCN_NATIVE_BINDING(448, 448), DFCN_NATIVE_BINDING(456, 456), DFCN_NATIVE_BINDING(464, 464), DFCN_NATIVE_BINDING(472, 472), DFCN_NATIVE_BINDING(480, 480), DFCN_NATIVE_BINDING(488, 488), DFCN_NATIVE_BINDING(496, 496), DFCN_NATIVE_BINDING(504, 504), DFCN_NATIVE_BINDING(512, 512), DFCN_NATIVE_BINDING(520, 520), DFCN_NATIVE_BINDING(528, 528), DFCN_NATIVE_BINDING(536, 536), DFCN_NATIVE_BINDING(544, 544), DFCN_NATIVE_BINDING(552, 552), DFCN_NATIVE_BINDING(560, 560), DFCN_NATIVE_BINDING(568, 568), DFCN_NATIVE_BINDING(576, 576), DFCN_NATIVE_BINDING(584, 584), DFCN_NATIVE_BINDING(592, 592), DFCN_NATIVE_BINDING(600, 600), DFCN_NATIVE_BINDING(608, 608), DFCN_NATIVE_BINDING(616, 616), DFCN_NATIVE_BINDING(624, 624), DFCN_NATIVE_BINDING(632, 632), DFCN_NATIVE_BINDING(640, 640), DFCN_NATIVE_BINDING(648, 648), DFCN_NATIVE_BINDING(656, 656), DFCN_NATIVE_BINDING(664, 664), DFCN_NATIVE_BINDING(672, 672), DFCN_NATIVE_BINDING(680, 680), DFCN_NATIVE_BINDING(688, 688), DFCN_NATIVE_BINDING(696, 696), DFCN_NATIVE_BINDING(704, 704), DFCN_NATIVE_BINDING(712, 712), DFCN_NATIVE_BINDING(720, 720), DFCN_NATIVE_BINDING(728, 728), DFCN_NATIVE_BINDING(736, 736), DFCN_NATIVE_BINDING(744, 744), DFCN_NATIVE_BINDING(752, 752), DFCN_NATIVE_BINDING(760, 760), DFCN_NATIVE_BINDING(768, 768), DFCN_NATIVE_BINDING(776, 776), DFCN_NATIVE_BINDING(784, 784), DFCN_NATIVE_BINDING(792, 792), DFCN_NATIVE_BINDING(800, 800), DFCN_NATIVE_BINDING(808, 808), DFCN_NATIVE_BINDING(816, 816), DFCN_NATIVE_BINDING(824, 824), DFCN_NATIVE_BINDING(832, 832), DFCN_NATIVE_BINDING(840, 840), DFCN_NATIVE_BINDING(848, 848), DFCN_NATIVE_BINDING(856, 856), DFCN_NATIVE_BINDING(864, 864), DFCN_NATIVE_BINDING(872, 872), DFCN_NATIVE_BINDING(880, 880), DFCN_NATIVE_BINDING(888, 888), DFCN_NATIVE_BINDING(896, 896), DFCN_NATIVE_BINDING(904, 904), DFCN_NATIVE_BINDING(912, 912), DFCN_NATIVE_BINDING(920, 920), DFCN_NATIVE_BINDING(928, 928), DFCN_NATIVE_BINDING(936, 936), DFCN_NATIVE_BINDING(944, 944), DFCN_NATIVE_BINDING(952, 952), DFCN_NATIVE_BINDING(960, 960), DFCN_NATIVE_BINDING(968, 968), DFCN_NATIVE_BINDING(976, 976), DFCN_NATIVE_BINDING(984, 984), DFCN_NATIVE_BINDING(992, 992), DFCN_NATIVE_BINDING(1000, 1000), DFCN_NATIVE_BINDING(1008, 1008), DFCN_NATIVE_BINDING(1016, 1016), DFCN_NATIVE_BINDING(1024, 1024), DFCN_NATIVE_BINDING(1032, 1032), DFCN_NATIVE_BINDING(1040, 1040), DFCN_NATIVE_BINDING(1048, 1048), DFCN_NATIVE_BINDING(1056, 1056), DFCN_NATIVE_BINDING(1064, 1064), DFCN_NATIVE_BINDING(1072, 1072), DFCN_NATIVE_BINDING(1080, 1080), DFCN_NATIVE_BINDING(1088, 1088), DFCN_NATIVE_BINDING(1096, 1096), DFCN_NATIVE_BINDING(1104, 1104), DFCN_NATIVE_BINDING(1112, 1112), DFCN_NATIVE_BINDING(1120, 1120), DFCN_NATIVE_BINDING(1128, 1128), DFCN_NATIVE_BINDING(1136, 1136), DFCN_NATIVE_BINDING(1144, 1144), DFCN_NATIVE_BINDING(1152, 1152), DFCN_NATIVE_BINDING(1160, 1160), DFCN_NATIVE_BINDING(1168, 1168), DFCN_NATIVE_BINDING(1176, 1176), DFCN_NATIVE_BINDING(1184, 1184), DFCN_NATIVE_BINDING(1192, 1192), DFCN_NATIVE_BINDING(1200, 1200), DFCN_NATIVE_BINDING(1208, 1208), DFCN_NATIVE_BINDING(1216, 1216), DFCN_NATIVE_BINDING(1224, 1224), DFCN_NATIVE_BINDING(1232, 1232), DFCN_NATIVE_BINDING(1240, 1240), DFCN_NATIVE_BINDING(1248, 1248), DFCN_NATIVE_BINDING(1256, 1256), DFCN_NATIVE_BINDING(1264, 1264), DFCN_NATIVE_BINDING(1272, 1272), DFCN_NATIVE_BINDING(1280, 1280), DFCN_NATIVE_BINDING(1288, 1288), DFCN_NATIVE_BINDING(1296, 1296), DFCN_NATIVE_BINDING(1304, 1304), DFCN_NATIVE_BINDING(1312, 1312), DFCN_NATIVE_BINDING(1320, 1320), DFCN_NATIVE_BINDING(1328, 1328), DFCN_NATIVE_BINDING(1336, 1336), DFCN_NATIVE_BINDING(1344, 1344), DFCN_NATIVE_BINDING(1352, 1352), DFCN_NATIVE_BINDING(1360, 1360), DFCN_NATIVE_BINDING(1368, 1368), DFCN_NATIVE_BINDING(1376, 1376), DFCN_NATIVE_BINDING(1384, 1384), DFCN_NATIVE_BINDING(1392, 1392), DFCN_NATIVE_BINDING(1400, 1400), DFCN_NATIVE_BINDING(1408, 1408), DFCN_NATIVE_BINDING(1416, 1416), DFCN_NATIVE_BINDING(1424, 1424), DFCN_NATIVE_BINDING(1432, 1432), DFCN_NATIVE_BINDING(1440, 1440), DFCN_NATIVE_BINDING(1448, 1448), DFCN_NATIVE_BINDING(1456, 1456), DFCN_NATIVE_BINDING(1464, 1464), DFCN_NATIVE_BINDING(1472, 1472), DFCN_NATIVE_BINDING(1480, 1480), DFCN_NATIVE_BINDING(1488, 1488), DFCN_NATIVE_BINDING(1496, 1496), DFCN_NATIVE_BINDING(1504, 1504), DFCN_NATIVE_BINDING(1512, 1512), DFCN_NATIVE_BINDING(1520, 1520), DFCN_NATIVE_BINDING(1528, 1528), DFCN_NATIVE_BINDING(1536, 1536), DFCN_NATIVE_BINDING(1544, 1544), DFCN_NATIVE_BINDING(1552, 1552), DFCN_NATIVE_BINDING(1560, 1560), DFCN_NATIVE_BINDING(1568, 1568), DFCN_NATIVE_BINDING(1576, 1576), DFCN_NATIVE_BINDING(1584, 1584), DFCN_NATIVE_BINDING(1592, 1592), DFCN_NATIVE_BINDING(1600, 1600), DFCN_NATIVE_BINDING(1608, 1608), DFCN_NATIVE_BINDING(1616, 1616), DFCN_NATIVE_BINDING(1624, 1624), DFCN_NATIVE_BINDING(1632, 1632), DFCN_NATIVE_BINDING(1640, 1640), DFCN_NATIVE_BINDING(1648, 1648), DFCN_NATIVE_BINDING(1656, 1656), DFCN_NATIVE_BINDING(1664, 1664), DFCN_NATIVE_BINDING(1672, 1672), DFCN_NATIVE_BINDING(1680, 1680), DFCN_NATIVE_BINDING(1688, 1688), DFCN_NATIVE_BINDING(1696, 1696), DFCN_NATIVE_BINDING(1704, 1704), DFCN_NATIVE_BINDING(1712, 1712), DFCN_NATIVE_BINDING(1720, 1720), DFCN_NATIVE_BINDING(1728, 1728), DFCN_NATIVE_BINDING(1736, 1736), DFCN_NATIVE_BINDING(1744, 1744), DFCN_NATIVE_BINDING(1752, 1752), DFCN_NATIVE_BINDING(1760, 1760), DFCN_NATIVE_BINDING(1768, 1768), DFCN_NATIVE_BINDING(1776, 1776), DFCN_NATIVE_BINDING(1784, 1784), DFCN_NATIVE_BINDING(1792, 1792), DFCN_NATIVE_BINDING(1800, 1800), DFCN_NATIVE_BINDING(1808, 1808), DFCN_NATIVE_BINDING(1816, 1816), DFCN_NATIVE_BINDING(1824, 1824), DFCN_NATIVE_BINDING(1832, 1832), DFCN_NATIVE_BINDING(1840, 1840), DFCN_NATIVE_BINDING(1848, 1848), DFCN_NATIVE_BINDING(1856, 1856), DFCN_NATIVE_BINDING(1864, 1864), DFCN_NATIVE_BINDING(1872, 1872), DFCN_NATIVE_BINDING(1880, 1880), DFCN_NATIVE_BINDING(1888, 1888), DFCN_NATIVE_BINDING(1896, 1896), DFCN_NATIVE_BINDING(1904, 1904)};
 static constexpr size_t f_item_actual_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128), DFCN_NATIVE_BINDING(136, 136), DFCN_NATIVE_BINDING(144, 144), DFCN_NATIVE_BINDING(152, 152), DFCN_NATIVE_BINDING(160, 160), DFCN_NATIVE_BINDING(168, 168), DFCN_NATIVE_BINDING(176, 176), DFCN_NATIVE_BINDING(184, 184), DFCN_NATIVE_BINDING(192, 192), DFCN_NATIVE_BINDING(200, 200), DFCN_NATIVE_BINDING(208, 208), DFCN_NATIVE_BINDING(216, 216), DFCN_NATIVE_BINDING(224, 224), DFCN_NATIVE_BINDING(232, 232), DFCN_NATIVE_BINDING(240, 240), DFCN_NATIVE_BINDING(248, 248), DFCN_NATIVE_BINDING(256, 256), DFCN_NATIVE_BINDING(264, 264), DFCN_NATIVE_BINDING(272, 272), DFCN_NATIVE_BINDING(280, 280), DFCN_NATIVE_BINDING(288, 288), DFCN_NATIVE_BINDING(296, 296), DFCN_NATIVE_BINDING(304, 304), DFCN_NATIVE_BINDING(312, 312), DFCN_NATIVE_BINDING(320, 320), DFCN_NATIVE_BINDING(328, 328), DFCN_NATIVE_BINDING(336, 336), DFCN_NATIVE_BINDING(344, 344), DFCN_NATIVE_BINDING(352, 352), DFCN_NATIVE_BINDING(360, 360), DFCN_NATIVE_BINDING(368, 368), DFCN_NATIVE_BINDING(376, 376), DFCN_NATIVE_BINDING(384, 384), DFCN_NATIVE_BINDING(392, 392), DFCN_NATIVE_BINDING(400, 400), DFCN_NATIVE_BINDING(408, 408), DFCN_NATIVE_BINDING(416, 416), DFCN_NATIVE_BINDING(424, 424), DFCN_NATIVE_BINDING(432, 432), DFCN_NATIVE_BINDING(440, 440), DFCN_NATIVE_BINDING(448, 448), DFCN_NATIVE_BINDING(456, 456), DFCN_NATIVE_BINDING(464, 464), DFCN_NATIVE_BINDING(472, 472), DFCN_NATIVE_BINDING(480, 480), DFCN_NATIVE_BINDING(488, 488), DFCN_NATIVE_BINDING(496, 496), DFCN_NATIVE_BINDING(504, 504), DFCN_NATIVE_BINDING(512, 512), DFCN_NATIVE_BINDING(520, 520), DFCN_NATIVE_BINDING(528, 528), DFCN_NATIVE_BINDING(536, 536), DFCN_NATIVE_BINDING(544, 544), DFCN_NATIVE_BINDING(552, 552), DFCN_NATIVE_BINDING(560, 560), DFCN_NATIVE_BINDING(568, 568), DFCN_NATIVE_BINDING(576, 576), DFCN_NATIVE_BINDING(584, 584), DFCN_NATIVE_BINDING(592, 592), DFCN_NATIVE_BINDING(600, 600), DFCN_NATIVE_BINDING(608, 608), DFCN_NATIVE_BINDING(616, 616), DFCN_NATIVE_BINDING(624, 624), DFCN_NATIVE_BINDING(632, 632), DFCN_NATIVE_BINDING(640, 640), DFCN_NATIVE_BINDING(648, 648), DFCN_NATIVE_BINDING(656, 656), DFCN_NATIVE_BINDING(664, 664), DFCN_NATIVE_BINDING(672, 672), DFCN_NATIVE_BINDING(680, 680), DFCN_NATIVE_BINDING(688, 688), DFCN_NATIVE_BINDING(696, 696), DFCN_NATIVE_BINDING(704, 704), DFCN_NATIVE_BINDING(712, 712), DFCN_NATIVE_BINDING(720, 720), DFCN_NATIVE_BINDING(728, 728), DFCN_NATIVE_BINDING(736, 736), DFCN_NATIVE_BINDING(744, 744), DFCN_NATIVE_BINDING(752, 752), DFCN_NATIVE_BINDING(760, 760), DFCN_NATIVE_BINDING(768, 768), DFCN_NATIVE_BINDING(776, 776), DFCN_NATIVE_BINDING(784, 784), DFCN_NATIVE_BINDING(792, 792), DFCN_NATIVE_BINDING(800, 800), DFCN_NATIVE_BINDING(808, 808), DFCN_NATIVE_BINDING(816, 816), DFCN_NATIVE_BINDING(824, 824), DFCN_NATIVE_BINDING(832, 832), DFCN_NATIVE_BINDING(840, 840), DFCN_NATIVE_BINDING(848, 848), DFCN_NATIVE_BINDING(856, 856), DFCN_NATIVE_BINDING(864, 864), DFCN_NATIVE_BINDING(872, 872), DFCN_NATIVE_BINDING(880, 880), DFCN_NATIVE_BINDING(888, 888), DFCN_NATIVE_BINDING(896, 896), DFCN_NATIVE_BINDING(904, 904), DFCN_NATIVE_BINDING(912, 912), DFCN_NATIVE_BINDING(920, 920), DFCN_NATIVE_BINDING(928, 928), DFCN_NATIVE_BINDING(936, 936), DFCN_NATIVE_BINDING(944, 944), DFCN_NATIVE_BINDING(952, 952), DFCN_NATIVE_BINDING(960, 960), DFCN_NATIVE_BINDING(968, 968), DFCN_NATIVE_BINDING(976, 976), DFCN_NATIVE_BINDING(984, 984), DFCN_NATIVE_BINDING(992, 992), DFCN_NATIVE_BINDING(1000, 1000), DFCN_NATIVE_BINDING(1008, 1008), DFCN_NATIVE_BINDING(1016, 1016), DFCN_NATIVE_BINDING(1024, 1024), DFCN_NATIVE_BINDING(1032, 1032), DFCN_NATIVE_BINDING(1040, 1040), DFCN_NATIVE_BINDING(1048, 1048), DFCN_NATIVE_BINDING(1056, 1056), DFCN_NATIVE_BINDING(1064, 1064), DFCN_NATIVE_BINDING(1072, 1072), DFCN_NATIVE_BINDING(1080, 1080), DFCN_NATIVE_BINDING(1088, 1088), DFCN_NATIVE_BINDING(1096, 1096), DFCN_NATIVE_BINDING(1104, 1104), DFCN_NATIVE_BINDING(1112, 1112), DFCN_NATIVE_BINDING(1120, 1120), DFCN_NATIVE_BINDING(1128, 1128), DFCN_NATIVE_BINDING(1136, 1136), DFCN_NATIVE_BINDING(1144, 1144), DFCN_NATIVE_BINDING(1152, 1152), DFCN_NATIVE_BINDING(1160, 1160), DFCN_NATIVE_BINDING(1168, 1168), DFCN_NATIVE_BINDING(1176, 1176), DFCN_NATIVE_BINDING(1184, 1184), DFCN_NATIVE_BINDING(1192, 1192), DFCN_NATIVE_BINDING(1200, 1200), DFCN_NATIVE_BINDING(1208, 1208), DFCN_NATIVE_BINDING(1216, 1216), DFCN_NATIVE_BINDING(1224, 1224), DFCN_NATIVE_BINDING(1232, 1232), DFCN_NATIVE_BINDING(1240, 1240), DFCN_NATIVE_BINDING(1248, 1248), DFCN_NATIVE_BINDING(1256, 1256), DFCN_NATIVE_BINDING(1264, 1264), DFCN_NATIVE_BINDING(1272, 1272), DFCN_NATIVE_BINDING(1280, 1280), DFCN_NATIVE_BINDING(1288, 1288), DFCN_NATIVE_BINDING(1296, 1296), DFCN_NATIVE_BINDING(1304, 1304), DFCN_NATIVE_BINDING(1312, 1312), DFCN_NATIVE_BINDING(1320, 1320), DFCN_NATIVE_BINDING(1328, 1328), DFCN_NATIVE_BINDING(1336, 1336), DFCN_NATIVE_BINDING(1344, 1344), DFCN_NATIVE_BINDING(1352, 1352), DFCN_NATIVE_BINDING(1360, 1360), DFCN_NATIVE_BINDING(1368, 1368), DFCN_NATIVE_BINDING(1376, 1376), DFCN_NATIVE_BINDING(1384, 1384), DFCN_NATIVE_BINDING(1392, 1392), DFCN_NATIVE_BINDING(1400, 1400), DFCN_NATIVE_BINDING(1408, 1408), DFCN_NATIVE_BINDING(1416, 1416), DFCN_NATIVE_BINDING(1424, 1424), DFCN_NATIVE_BINDING(1432, 1432), DFCN_NATIVE_BINDING(1440, 1440), DFCN_NATIVE_BINDING(1448, 1448), DFCN_NATIVE_BINDING(1456, 1456), DFCN_NATIVE_BINDING(1464, 1464), DFCN_NATIVE_BINDING(1472, 1472), DFCN_NATIVE_BINDING(1480, 1480), DFCN_NATIVE_BINDING(1488, 1488), DFCN_NATIVE_BINDING(1496, 1496), DFCN_NATIVE_BINDING(1504, 1504), DFCN_NATIVE_BINDING(1512, 1512), DFCN_NATIVE_BINDING(1520, 1520), DFCN_NATIVE_BINDING(1528, 1528), DFCN_NATIVE_BINDING(1536, 1536), DFCN_NATIVE_BINDING(1544, 1544), DFCN_NATIVE_BINDING(1552, 1552), DFCN_NATIVE_BINDING(1560, 1560), DFCN_NATIVE_BINDING(1568, 1568), DFCN_NATIVE_BINDING(1576, 1576), DFCN_NATIVE_BINDING(1584, 1584), DFCN_NATIVE_BINDING(1592, 1592), DFCN_NATIVE_BINDING(1600, 1600), DFCN_NATIVE_BINDING(1608, 1608), DFCN_NATIVE_BINDING(1616, 1616), DFCN_NATIVE_BINDING(1624, 1624), DFCN_NATIVE_BINDING(1632, 1632), DFCN_NATIVE_BINDING(1640, 1640), DFCN_NATIVE_BINDING(1648, 1648), DFCN_NATIVE_BINDING(1656, 1656), DFCN_NATIVE_BINDING(1664, 1664), DFCN_NATIVE_BINDING(1672, 1672), DFCN_NATIVE_BINDING(1680, 1680), DFCN_NATIVE_BINDING(1688, 1688), DFCN_NATIVE_BINDING(1696, 1696), DFCN_NATIVE_BINDING(1704, 1704), DFCN_NATIVE_BINDING(1712, 1712), DFCN_NATIVE_BINDING(1720, 1720), DFCN_NATIVE_BINDING(1728, 1728), DFCN_NATIVE_BINDING(1736, 1736), DFCN_NATIVE_BINDING(1744, 1744), DFCN_NATIVE_BINDING(1752, 1752), DFCN_NATIVE_BINDING(1760, 1760), DFCN_NATIVE_BINDING(1768, 1768), DFCN_NATIVE_BINDING(1776, 1776), DFCN_NATIVE_BINDING(1784, 1784), DFCN_NATIVE_BINDING(1792, 1792), DFCN_NATIVE_BINDING(1800, 1800), DFCN_NATIVE_BINDING(1808, 1808), DFCN_NATIVE_BINDING(1816, 1816), DFCN_NATIVE_BINDING(1824, 1824), DFCN_NATIVE_BINDING(1832, 1832), DFCN_NATIVE_BINDING(1840, 1840), DFCN_NATIVE_BINDING(1848, 1848), DFCN_NATIVE_BINDING(1856, 1856), DFCN_NATIVE_BINDING(1864, 1864), DFCN_NATIVE_BINDING(1872, 1872), DFCN_NATIVE_BINDING(1880, 1880), DFCN_NATIVE_BINDING(1888, 1888), DFCN_NATIVE_BINDING(1896, 1896), DFCN_NATIVE_BINDING(1904, 1904)};
 static constexpr size_t f_item_ammost_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72), DFCN_NATIVE_BINDING(80, 80), DFCN_NATIVE_BINDING(88, 88), DFCN_NATIVE_BINDING(96, 96), DFCN_NATIVE_BINDING(104, 104), DFCN_NATIVE_BINDING(112, 112), DFCN_NATIVE_BINDING(120, 120), DFCN_NATIVE_BINDING(128, 128), DFCN_NATIVE_BINDING(136, 136), DFCN_NATIVE_BINDING(144, 144), DFCN_NATIVE_BINDING(152, 152), DFCN_NATIVE_BINDING(160, 160), DFCN_NATIVE_BINDING(168, 168), DFCN_NATIVE_BINDING(176, 176), DFCN_NATIVE_BINDING(184, 184), DFCN_NATIVE_BINDING(192, 192), DFCN_NATIVE_BINDING(200, 200), DFCN_NATIVE_BINDING(208, 208), DFCN_NATIVE_BINDING(216, 216), DFCN_NATIVE_BINDING(224, 224), DFCN_NATIVE_BINDING(232, 232), DFCN_NATIVE_BINDING(240, 240), DFCN_NATIVE_BINDING(248, 248), DFCN_NATIVE_BINDING(256, 256), DFCN_NATIVE_BINDING(264, 264), DFCN_NATIVE_BINDING(272, 272), DFCN_NATIVE_BINDING(280, 280), DFCN_NATIVE_BINDING(288, 288), DFCN_NATIVE_BINDING(296, 296), DFCN_NATIVE_BINDING(304, 304), DFCN_NATIVE_BINDING(312, 312), DFCN_NATIVE_BINDING(320, 320), DFCN_NATIVE_BINDING(328, 328), DFCN_NATIVE_BINDING(336, 336), DFCN_NATIVE_BINDING(344, 344), DFCN_NATIVE_BINDING(352, 352), DFCN_NATIVE_BINDING(360, 360), DFCN_NATIVE_BINDING(368, 368), DFCN_NATIVE_BINDING(376, 376), DFCN_NATIVE_BINDING(384, 384), DFCN_NATIVE_BINDING(392, 392), DFCN_NATIVE_BINDING(400, 400), DFCN_NATIVE_BINDING(408, 408), DFCN_NATIVE_BINDING(416, 416), DFCN_NATIVE_BINDING(424, 424), DFCN_NATIVE_BINDING(432, 432), DFCN_NATIVE_BINDING(440, 440), DFCN_NATIVE_BINDING(448, 448), DFCN_NATIVE_BINDING(456, 456), DFCN_NATIVE_BINDING(464, 464), DFCN_NATIVE_BINDING(472, 472), DFCN_NATIVE_BINDING(480, 480), DFCN_NATIVE_BINDING(488, 488), DFCN_NATIVE_BINDING(496, 496), DFCN_NATIVE_BINDING(504, 504), DFCN_NATIVE_BINDING(512, 512), DFCN_NATIVE_BINDING(520, 520), DFCN_NATIVE_BINDING(528, 528), DFCN_NATIVE_BINDING(536, 536), DFCN_NATIVE_BINDING(544, 544), DFCN_NATIVE_BINDING(552, 552), DFCN_NATIVE_BINDING(560, 560), DFCN_NATIVE_BINDING(568, 568), DFCN_NATIVE_BINDING(576, 576), DFCN_NATIVE_BINDING(584, 584), DFCN_NATIVE_BINDING(592, 592), DFCN_NATIVE_BINDING(600, 600), DFCN_NATIVE_BINDING(608, 608), DFCN_NATIVE_BINDING(616, 616), DFCN_NATIVE_BINDING(624, 624), DFCN_NATIVE_BINDING(632, 632), DFCN_NATIVE_BINDING(640, 640), DFCN_NATIVE_BINDING(648, 648), DFCN_NATIVE_BINDING(656, 656), DFCN_NATIVE_BINDING(664, 664), DFCN_NATIVE_BINDING(672, 672), DFCN_NATIVE_BINDING(680, 680), DFCN_NATIVE_BINDING(688, 688), DFCN_NATIVE_BINDING(696, 696), DFCN_NATIVE_BINDING(704, 704), DFCN_NATIVE_BINDING(712, 712), DFCN_NATIVE_BINDING(720, 720), DFCN_NATIVE_BINDING(728, 728), DFCN_NATIVE_BINDING(736, 736), DFCN_NATIVE_BINDING(744, 744), DFCN_NATIVE_BINDING(752, 752), DFCN_NATIVE_BINDING(760, 760), DFCN_NATIVE_BINDING(768, 768), DFCN_NATIVE_BINDING(776, 776), DFCN_NATIVE_BINDING(784, 784), DFCN_NATIVE_BINDING(792, 792), DFCN_NATIVE_BINDING(800, 800), DFCN_NATIVE_BINDING(808, 808), DFCN_NATIVE_BINDING(816, 816), DFCN_NATIVE_BINDING(824, 824), DFCN_NATIVE_BINDING(832, 832), DFCN_NATIVE_BINDING(840, 840), DFCN_NATIVE_BINDING(848, 848), DFCN_NATIVE_BINDING(856, 856), DFCN_NATIVE_BINDING(864, 864), DFCN_NATIVE_BINDING(872, 872), DFCN_NATIVE_BINDING(880, 880), DFCN_NATIVE_BINDING(888, 888), DFCN_NATIVE_BINDING(896, 896), DFCN_NATIVE_BINDING(904, 904), DFCN_NATIVE_BINDING(912, 912), DFCN_NATIVE_BINDING(920, 920), DFCN_NATIVE_BINDING(928, 928), DFCN_NATIVE_BINDING(936, 936), DFCN_NATIVE_BINDING(944, 944), DFCN_NATIVE_BINDING(952, 952), DFCN_NATIVE_BINDING(960, 960), DFCN_NATIVE_BINDING(968, 968), DFCN_NATIVE_BINDING(976, 976), DFCN_NATIVE_BINDING(984, 984), DFCN_NATIVE_BINDING(992, 992), DFCN_NATIVE_BINDING(1000, 1000), DFCN_NATIVE_BINDING(1008, 1008), DFCN_NATIVE_BINDING(1016, 1016), DFCN_NATIVE_BINDING(1024, 1024), DFCN_NATIVE_BINDING(1032, 1032), DFCN_NATIVE_BINDING(1040, 1040), DFCN_NATIVE_BINDING(1048, 1048), DFCN_NATIVE_BINDING(1056, 1056), DFCN_NATIVE_BINDING(1064, 1064), DFCN_NATIVE_BINDING(1072, 1072), DFCN_NATIVE_BINDING(1080, 1080), DFCN_NATIVE_BINDING(1088, 1088), DFCN_NATIVE_BINDING(1096, 1096), DFCN_NATIVE_BINDING(1104, 1104), DFCN_NATIVE_BINDING(1112, 1112), DFCN_NATIVE_BINDING(1120, 1120), DFCN_NATIVE_BINDING(1128, 1128), DFCN_NATIVE_BINDING(1136, 1136), DFCN_NATIVE_BINDING(1144, 1144), DFCN_NATIVE_BINDING(1152, 1152), DFCN_NATIVE_BINDING(1160, 1160), DFCN_NATIVE_BINDING(1168, 1168), DFCN_NATIVE_BINDING(1176, 1176), DFCN_NATIVE_BINDING(1184, 1184), DFCN_NATIVE_BINDING(1192, 1192), DFCN_NATIVE_BINDING(1200, 1200), DFCN_NATIVE_BINDING(1208, 1208), DFCN_NATIVE_BINDING(1216, 1216), DFCN_NATIVE_BINDING(1224, 1224), DFCN_NATIVE_BINDING(1232, 1232), DFCN_NATIVE_BINDING(1240, 1240), DFCN_NATIVE_BINDING(1248, 1248), DFCN_NATIVE_BINDING(1256, 1256), DFCN_NATIVE_BINDING(1264, 1264), DFCN_NATIVE_BINDING(1272, 1272), DFCN_NATIVE_BINDING(1280, 1280), DFCN_NATIVE_BINDING(1288, 1288), DFCN_NATIVE_BINDING(1296, 1296), DFCN_NATIVE_BINDING(1304, 1304), DFCN_NATIVE_BINDING(1312, 1312), DFCN_NATIVE_BINDING(1320, 1320), DFCN_NATIVE_BINDING(1328, 1328), DFCN_NATIVE_BINDING(1336, 1336), DFCN_NATIVE_BINDING(1344, 1344), DFCN_NATIVE_BINDING(1352, 1352), DFCN_NATIVE_BINDING(1360, 1360), DFCN_NATIVE_BINDING(1368, 1368), DFCN_NATIVE_BINDING(1376, 1376), DFCN_NATIVE_BINDING(1384, 1384), DFCN_NATIVE_BINDING(1392, 1392), DFCN_NATIVE_BINDING(1400, 1400), DFCN_NATIVE_BINDING(1408, 1408), DFCN_NATIVE_BINDING(1416, 1416), DFCN_NATIVE_BINDING(1424, 1424), DFCN_NATIVE_BINDING(1432, 1432), DFCN_NATIVE_BINDING(1440, 1440), DFCN_NATIVE_BINDING(1448, 1448), DFCN_NATIVE_BINDING(1456, 1456), DFCN_NATIVE_BINDING(1464, 1464), DFCN_NATIVE_BINDING(1472, 1472), DFCN_NATIVE_BINDING(1480, 1480), DFCN_NATIVE_BINDING(1488, 1488), DFCN_NATIVE_BINDING(1496, 1496), DFCN_NATIVE_BINDING(1504, 1504), DFCN_NATIVE_BINDING(1512, 1512), DFCN_NATIVE_BINDING(1520, 1520), DFCN_NATIVE_BINDING(1528, 1528), DFCN_NATIVE_BINDING(1536, 1536), DFCN_NATIVE_BINDING(1544, 1544), DFCN_NATIVE_BINDING(1552, 1552), DFCN_NATIVE_BINDING(1560, 1560), DFCN_NATIVE_BINDING(1568, 1568), DFCN_NATIVE_BINDING(1576, 1576), DFCN_NATIVE_BINDING(1584, 1584), DFCN_NATIVE_BINDING(1592, 1592), DFCN_NATIVE_BINDING(1600, 1600), DFCN_NATIVE_BINDING(1608, 1608), DFCN_NATIVE_BINDING(1616, 1616), DFCN_NATIVE_BINDING(1624, 1624), DFCN_NATIVE_BINDING(1632, 1632), DFCN_NATIVE_BINDING(1640, 1640), DFCN_NATIVE_BINDING(1648, 1648), DFCN_NATIVE_BINDING(1656, 1656), DFCN_NATIVE_BINDING(1664, 1664), DFCN_NATIVE_BINDING(1672, 1672), DFCN_NATIVE_BINDING(1680, 1680), DFCN_NATIVE_BINDING(1688, 1688), DFCN_NATIVE_BINDING(1696, 1696), DFCN_NATIVE_BINDING(1704, 1704), DFCN_NATIVE_BINDING(1712, 1712), DFCN_NATIVE_BINDING(1720, 1720), DFCN_NATIVE_BINDING(1728, 1728), DFCN_NATIVE_BINDING(1736, 1736), DFCN_NATIVE_BINDING(1744, 1744), DFCN_NATIVE_BINDING(1752, 1752), DFCN_NATIVE_BINDING(1760, 1760), DFCN_NATIVE_BINDING(1768, 1768), DFCN_NATIVE_BINDING(1776, 1776), DFCN_NATIVE_BINDING(1784, 1784), DFCN_NATIVE_BINDING(1792, 1792), DFCN_NATIVE_BINDING(1800, 1800), DFCN_NATIVE_BINDING(1808, 1808), DFCN_NATIVE_BINDING(1816, 1816), DFCN_NATIVE_BINDING(1824, 1824), DFCN_NATIVE_BINDING(1832, 1832), DFCN_NATIVE_BINDING(1840, 1840), DFCN_NATIVE_BINDING(1848, 1848), DFCN_NATIVE_BINDING(1856, 1856), DFCN_NATIVE_BINDING(1864, 1864), DFCN_NATIVE_BINDING(1872, 1872), DFCN_NATIVE_BINDING(1880, 1880), DFCN_NATIVE_BINDING(1888, 1888), DFCN_NATIVE_BINDING(1896, 1896), DFCN_NATIVE_BINDING(1904, 1904)};
@@ -27912,6 +28454,9 @@ static constexpr size_t f_itemimprovement_threadst_slots[] = {DFCN_NATIVE_BINDIN
 static constexpr size_t f_itemimprovement_writingst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 72), DFCN_NATIVE_BINDING(72, 80)};
 static constexpr size_t f_labor_work_details_interfacest_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56)};
 static constexpr size_t f_multifilter_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56)};
+static constexpr size_t f_reaction_product_item_improvementst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32)};
+static constexpr size_t f_reaction_product_itemst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32)};
+static constexpr size_t f_reaction_reagent_itemst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 32), DFCN_NATIVE_BINDING(32, 40), DFCN_NATIVE_BINDING(40, 48), DFCN_NATIVE_BINDING(48, 56), DFCN_NATIVE_BINDING(56, 64), DFCN_NATIVE_BINDING(64, 72)};
 static constexpr size_t f_unit_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32)};
 static constexpr size_t f_viewscreen_adventure_logst_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72)};
 static constexpr size_t f_viewscreen_choose_start_sitest_slots[] = {DFCN_NATIVE_BINDING(0, 0), DFCN_NATIVE_BINDING(8, 8), DFCN_NATIVE_BINDING(16, 16), DFCN_NATIVE_BINDING(24, 24), DFCN_NATIVE_BINDING(32, 32), DFCN_NATIVE_BINDING(40, 40), DFCN_NATIVE_BINDING(48, 48), DFCN_NATIVE_BINDING(56, 56), DFCN_NATIVE_BINDING(64, 64), DFCN_NATIVE_BINDING(72, 72)};
@@ -27992,8 +28537,12 @@ static constexpr Object objects[] = {
     {"art_image_property_intransitive_verbst", "art_image_property", DFCN_NATIVE_BINDING(0x15fdde8, 0x2038dd0), f_art_image_property_intransitive_verbst_fields.data(), std::size(f_art_image_property_intransitive_verbst_fields), f_art_image_property_intransitive_verbst_slots, std::size(f_art_image_property_intransitive_verbst_slots)},
     {"art_image_property_transitive_verbst", "art_image_property", DFCN_NATIVE_BINDING(0x15fddb0, 0x2038d88), f_art_image_property_transitive_verbst_fields.data(), std::size(f_art_image_property_transitive_verbst_fields), f_art_image_property_transitive_verbst_slots, std::size(f_art_image_property_transitive_verbst_slots)},
     {"artifact_record", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_artifact_record_fields.data(), std::size(f_artifact_record_fields), nullptr, 0},
+    {"build_req_choice_genst", "build_req_choicest", DFCN_NATIVE_BINDING(0x16be5e8, 0x2085120), f_build_req_choice_genst_fields.data(), std::size(f_build_req_choice_genst_fields), f_build_req_choice_genst_slots, std::size(f_build_req_choice_genst_slots)},
+    {"build_req_choice_specst", "build_req_choicest", DFCN_NATIVE_BINDING(0x162e2f8, 0x2085198), f_build_req_choice_specst_fields.data(), std::size(f_build_req_choice_specst_fields), f_build_req_choice_specst_slots, std::size(f_build_req_choice_specst_slots)},
     {"building", "", DFCN_NATIVE_BINDING(0x165c4c8, 0x0), f_building_fields.data(), std::size(f_building_fields), f_building_slots, std::size(f_building_slots)},
     {"building_def", "", DFCN_NATIVE_BINDING(0x165ddc8, 0x2042510), f_building_def_fields.data(), std::size(f_building_def_fields), nullptr, 0},
+    {"building_furnacest", "building_actual", DFCN_NATIVE_BINDING(0x16534c8, 0x2082600), f_building_furnacest_fields.data(), std::size(f_building_furnacest_fields), f_building_furnacest_slots, std::size(f_building_furnacest_slots)},
+    {"building_workshopst", "building_actual", DFCN_NATIVE_BINDING(0x165b070, 0x2082bf0), f_building_workshopst_fields.data(), std::size(f_building_workshopst_fields), f_building_workshopst_slots, std::size(f_building_workshopst_slots)},
     {"caste_raw", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_caste_raw_fields.data(), std::size(f_caste_raw_fields), nullptr, 0},
     {"construction_interfacest", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_construction_interfacest_fields.data(), std::size(f_construction_interfacest_fields), nullptr, 0},
     {"create_tree_interfacest", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_create_tree_interfacest_fields.data(), std::size(f_create_tree_interfacest_fields), nullptr, 0},
@@ -28106,6 +28655,7 @@ static constexpr Object objects[] = {
     {"history_event_collection_warst", "history_event_collection", DFCN_NATIVE_BINDING(0x16c49e0, 0x202e630), f_history_event_collection_warst_fields.data(), std::size(f_history_event_collection_warst_fields), f_history_event_collection_warst_slots, std::size(f_history_event_collection_warst_slots)},
     {"identity", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_identity_fields.data(), std::size(f_identity_fields), nullptr, 0},
     {"inorganic_raw", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_inorganic_raw_fields.data(), std::size(f_inorganic_raw_fields), nullptr, 0},
+    {"instrument_piece", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_instrument_piece_fields.data(), std::size(f_instrument_piece_fields), nullptr, 0},
     {"interaction_effect", "", DFCN_NATIVE_BINDING(0x16ede70, 0x20438c8), f_interaction_effect_fields.data(), std::size(f_interaction_effect_fields), f_interaction_effect_slots, std::size(f_interaction_effect_slots)},
     {"interaction_effect_add_syndromest", "interaction_effect", DFCN_NATIVE_BINDING(0x16edf30, 0x2043a88), f_interaction_effect_add_syndromest_fields.data(), std::size(f_interaction_effect_add_syndromest_fields), f_interaction_effect_add_syndromest_slots, std::size(f_interaction_effect_add_syndromest_slots)},
     {"interaction_effect_animatest", "interaction_effect", DFCN_NATIVE_BINDING(0x16edd58, 0x2043938), f_interaction_effect_animatest_fields.data(), std::size(f_interaction_effect_animatest_fields), f_interaction_effect_animatest_slots, std::size(f_interaction_effect_animatest_slots)},
@@ -28133,6 +28683,9 @@ static constexpr Object objects[] = {
     {"interaction_source_regionst", "interaction_source", DFCN_NATIVE_BINDING(0x16ed538, 0x20435b8), f_interaction_source_regionst_fields.data(), std::size(f_interaction_source_regionst_fields), f_interaction_source_regionst_slots, std::size(f_interaction_source_regionst_slots)},
     {"interaction_source_secretst", "interaction_source", DFCN_NATIVE_BINDING(0x16edcc8, 0x2043610), f_interaction_source_secretst_fields.data(), std::size(f_interaction_source_secretst_fields), f_interaction_source_secretst_slots, std::size(f_interaction_source_secretst_slots)},
     {"interaction_source_underground_specialst", "interaction_source", DFCN_NATIVE_BINDING(0x16edae8, 0x2043508), f_interaction_source_underground_specialst_fields.data(), std::size(f_interaction_source_underground_specialst_fields), f_interaction_source_underground_specialst_slots, std::size(f_interaction_source_underground_specialst_slots)},
+    {"interface_button_building_category_selectorst", "interface_button_buildingst", DFCN_NATIVE_BINDING(0x16be650, 0x20805d0), f_interface_button_building_category_selectorst_fields.data(), std::size(f_interface_button_building_category_selectorst_fields), f_interface_button_building_category_selectorst_slots, std::size(f_interface_button_building_category_selectorst_slots)},
+    {"interface_button_building_material_selectorst", "interface_button_buildingst", DFCN_NATIVE_BINDING(0x16be558, 0x2080490), f_interface_button_building_material_selectorst_fields.data(), std::size(f_interface_button_building_material_selectorst_fields), f_interface_button_building_material_selectorst_slots, std::size(f_interface_button_building_material_selectorst_slots)},
+    {"interface_button_building_new_jobst", "interface_button_buildingst", DFCN_NATIVE_BINDING(0x16be770, 0x2080350), f_interface_button_building_new_jobst_fields.data(), std::size(f_interface_button_building_new_jobst_fields), f_interface_button_building_new_jobst_slots, std::size(f_interface_button_building_new_jobst_slots)},
     {"item", "", DFCN_NATIVE_BINDING(0x15f8860, 0x207e230), f_item_fields.data(), std::size(f_item_fields), f_item_slots, std::size(f_item_slots)},
     {"item_actual", "item", DFCN_NATIVE_BINDING(0x15fbe68, 0x207e9c0), f_item_actual_fields.data(), std::size(f_item_actual_fields), f_item_actual_slots, std::size(f_item_actual_slots)},
     {"item_ammost", "item_constructed", DFCN_NATIVE_BINDING(0x16c9ba0, 0x2052a70), f_item_ammost_fields.data(), std::size(f_item_ammost_fields), f_item_ammost_slots, std::size(f_item_ammost_slots)},
@@ -28341,15 +28894,21 @@ static constexpr Object objects[] = {
     {"main_interface_settings", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_main_interface_settings_fields.data(), std::size(f_main_interface_settings_fields), nullptr, 0},
     {"manager_order", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_manager_order_fields.data(), std::size(f_manager_order_fields), nullptr, 0},
     {"manager_order_condition_item", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_manager_order_condition_item_fields.data(), std::size(f_manager_order_condition_item_fields), nullptr, 0},
+    {"manager_order_template", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_manager_order_template_fields.data(), std::size(f_manager_order_template_fields), nullptr, 0},
     {"material", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_material_fields.data(), std::size(f_material_fields), nullptr, 0},
     {"mod_headerst", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_mod_headerst_fields.data(), std::size(f_mod_headerst_fields), nullptr, 0},
     {"multifilter", "widget", DFCN_NATIVE_BINDING(0x1785978, 0x0), f_multifilter_fields.data(), std::size(f_multifilter_fields), f_multifilter_slots, std::size(f_multifilter_slots)},
     {"musical_form", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_musical_form_fields.data(), std::size(f_musical_form_fields), nullptr, 0},
     {"name_creator_interfacest", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_name_creator_interfacest_fields.data(), std::size(f_name_creator_interfacest_fields), nullptr, 0},
+    {"object_loaderst", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_object_loaderst_fields.data(), std::size(f_object_loaderst_fields), nullptr, 0},
     {"performance_menu_choicest", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_performance_menu_choicest_fields.data(), std::size(f_performance_menu_choicest_fields), nullptr, 0},
     {"plant_raw", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_plant_raw_fields.data(), std::size(f_plant_raw_fields), nullptr, 0},
     {"plotinfost", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_plotinfost_fields.data(), std::size(f_plotinfost_fields), nullptr, 0},
     {"poetic_form", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_poetic_form_fields.data(), std::size(f_poetic_form_fields), nullptr, 0},
+    {"reaction", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_reaction_fields.data(), std::size(f_reaction_fields), nullptr, 0},
+    {"reaction_product_item_improvementst", "reaction_product", DFCN_NATIVE_BINDING(0x1737470, 0x2047288), f_reaction_product_item_improvementst_fields.data(), std::size(f_reaction_product_item_improvementst_fields), f_reaction_product_item_improvementst_slots, std::size(f_reaction_product_item_improvementst_slots)},
+    {"reaction_product_itemst", "reaction_product", DFCN_NATIVE_BINDING(0x17374a0, 0x20472c8), f_reaction_product_itemst_fields.data(), std::size(f_reaction_product_itemst_fields), f_reaction_product_itemst_slots, std::size(f_reaction_product_itemst_slots)},
+    {"reaction_reagent_itemst", "reaction_reagent", DFCN_NATIVE_BINDING(0x17374d0, 0x2047228), f_reaction_reagent_itemst_fields.data(), std::size(f_reaction_reagent_itemst_fields), f_reaction_reagent_itemst_slots, std::size(f_reaction_reagent_itemst_slots)},
     {"region_map_entry", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_region_map_entry_fields.data(), std::size(f_region_map_entry_fields), nullptr, 0},
     {"report", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_report_fields.data(), std::size(f_report_fields), nullptr, 0},
     {"savegame_headerst", "", DFCN_NATIVE_BINDING(0x0, 0x0), f_savegame_headerst_fields.data(), std::size(f_savegame_headerst_fields), nullptr, 0},

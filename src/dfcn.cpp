@@ -17,6 +17,7 @@
 #include <condition_variable>
 #include <cctype>
 #include <cmath>
+#include <climits>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -39,6 +40,7 @@
 #include <optional>
 #include <regex>
 #include <sstream>
+#include <span>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -4525,10 +4527,11 @@ private:
         return translated;
     }
     struct LegendsSearchEntry {
-        std::vector<PreparedSearchText> fields;
+        SearchDescriptor descriptor;
         size_t bytes() const {
-            size_t total = sizeof(LegendsSearchEntry) + fields.capacity() * sizeof(PreparedSearchText);
-            for (const auto &field : fields) total += field.bytes();
+            size_t total = sizeof(LegendsSearchEntry)+descriptor.original_caption.capacity()+descriptor.display_caption.capacity();
+            for (const auto &field : descriptor.text_fields) total += sizeof(std::string)+field.capacity();
+            for (const auto &field : descriptor.lexical_labels) total += sizeof(std::string)+field.capacity();
             return total;
         }
     };
@@ -6125,8 +6128,12 @@ bool Overlay::translated_search_matches(std::string_view source,
     TranslationStateScope translation_scope;
     if (source.empty() || translated_search_query(query).literal.empty()) return false;
 
-    const auto contains_query = [query](const std::string &target) {
-        return translated_search_text_matches(target, query);
+    SearchDescriptor descriptor;descriptor.kind=SearchCandidateKind::TextRecord;descriptor.domain="conversation";
+    if(const auto *active=search_active_descriptor())descriptor=search_caption_descriptor(source,{},active->kind,active->domain,*search_concept_catalog());
+    descriptor.original_caption=native_text_to_utf8(source);
+    const auto contains_query = [&](const std::string &target) {
+        if(!target.empty() && target!=descriptor.original_caption)descriptor.lexical_labels.push_back(target);
+        return search_association_match(descriptor,query).accepted;
     };
     if (contains_query(native_text_to_utf8(source))) return true;
     if (const auto exact = memoize_search_translation('e', source, [&] {
@@ -6164,11 +6171,10 @@ bool Overlay::translated_plant_search_matches(std::string_view source,
     TranslationStateScope translation_scope;
     if (!config_.enabled) return false;
     if (source.empty() || translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
     const auto target = memoize_search_translation('p', source, [&] {
         return translate_plant_name(source);
     });
-    return target && translated_search_text_matches(*target, query);
+    return search_association_text(source,target.value_or(""),query,SearchCandidateKind::NamedEntity,"plants");
 }
 
 std::optional<std::string> Overlay::translate_color_picker_caption(
@@ -6208,11 +6214,10 @@ bool Overlay::translated_color_search_matches(std::string_view source,
     TranslationStateScope translation_scope;
     if (!config_.enabled || source.empty() ||
             translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
     const auto target = memoize_search_translation('o', source, [&] {
         return translate_color_picker_caption(source);
     });
-    return target && translated_search_text_matches(*target, query);
+    return search_association_text(source,target.value_or(""),query,SearchCandidateKind::PropertyChoice,"properties");
 }
 
 bool Overlay::translated_material_search_matches(std::string_view source,
@@ -6220,7 +6225,6 @@ bool Overlay::translated_material_search_matches(std::string_view source,
     TranslationStateScope translation_scope;
     if (!config_.enabled) return false;
     if (source.empty() || translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
     // Use the material noun grammar used by the displayed captions, never
     // equipment adjectives or unrelated creature-name token matches.
     const auto target = memoize_search_translation('m', source, [&] {
@@ -6228,7 +6232,8 @@ bool Overlay::translated_material_search_matches(std::string_view source,
         if (!translated && config_.compositional_rules) translated = translate_material_name(source);
         return translated;
     }, true);
-    return target && translated_search_text_matches(*target, query);
+    return search_association_text(source, target.value_or(""), query,
+        SearchCandidateKind::MaterialChoice, "materials");
 }
 
 bool Overlay::translated_work_order_condition_search_matches(std::string_view source,
@@ -6236,13 +6241,13 @@ bool Overlay::translated_work_order_condition_search_matches(std::string_view so
     TranslationStateScope translation_scope;
     if (!config_.enabled) return false;
     if (source.empty() || translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
     // Exactly the same complete grammar/cache as the displayed trait row,
     // including material-bearing, tool-use and multiword color constraints.
     const auto target = memoize_search_translation('w', source, [&] {
         return translate_workshop_recipe_source(source);
     });
-    return target && translated_search_text_matches(*target, query);
+    return search_association_text(source, target.value_or(""), query,
+        SearchCandidateKind::PropertyChoice, "properties");
 }
 
 bool Overlay::translated_item_search_matches(std::string_view source,
@@ -6250,15 +6255,14 @@ bool Overlay::translated_item_search_matches(std::string_view source,
     TranslationStateScope translation_scope;
     if (!config_.enabled) return false;
     if (source.empty() || translated_search_query(query).literal.empty()) return false;
-    if (translated_search_text_matches(native_text_to_utf8(source), query)) return true;
     // Select the caption's semantic context, not the host or visible rows.
     // Both display entries own the full-name grammar and bounded cache.
     const auto translated = memoize_search_translation(fortress_item ? 'i' : 'b', source, [&] {
         return fortress_item ? translate_fortress_item_caption(source)
             : translate_embark_equipment_item(source, -1, -1, source);
     }, true);
-    if (!translated || translated->empty()) return false;
-    return translated_search_text_matches(*translated, query);
+    return search_association_text(source, translated.value_or(""), query,
+        fortress_item ? SearchCandidateKind::ItemInstance : SearchCandidateKind::ItemDefinition, "items");
 }
 
 bool Overlay::translated_stocks_search_matches(std::string_view source,
@@ -6271,7 +6275,7 @@ bool Overlay::translated_stocks_search_matches(std::string_view source,
     if (const auto wood = memoize_search_translation('l', source, [&] {
             return translate_wood_item_caption(source, true, false);
         });
-            wood && translated_search_text_matches(*wood, query)) return true;
+            wood && search_association_text(source,*wood,query,SearchCandidateKind::ItemGroup,"items")) return true;
     return translated_item_search_matches(source, query, true);
 }
 
@@ -9093,18 +9097,13 @@ bool Overlay::translated_unit_search_matches(std::string_view source,
     TranslationStateScope translation_scope;
     if (!config_.enabled || source.empty() || source.size() > 65536) return false;
     if (translated_search_query(query).literal.empty()) return false;
-    const auto matches = [&](std::string_view text) {
-        return translated_search_text_matches(text, query);
-    };
-    // User-authored Chinese names/nicknames remain literal. Convert only the
-    // surrounding legacy game bytes, exactly as the visible name renderer does.
-    if (matches(native_text_to_utf8(source))) return true;
-    if (!activity)
-        if (const auto identity = native_unit_identity_source_target(source))
-            return matches(*identity);
-
-    const auto translated = translated_unit_search_target(source, activity);
-    return translated && matches(*translated);
+    if (activity) {
+        const auto target = translated_unit_search_target(source, true);
+        return search_association_text(source, target.value_or(""), query, SearchCandidateKind::JobTemplate, "jobs");
+    }
+    auto translated=native_unit_identity_source_target(source);
+    if(!translated)translated=translated_unit_search_target(source,false);
+    return search_association_text(source,translated.value_or(""),query,SearchCandidateKind::NamedEntity,"units");
 }
 
 std::optional<std::string> Overlay::translated_unit_search_target(

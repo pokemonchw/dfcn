@@ -94,19 +94,21 @@ static size_t match_native_legends_search(const char *native_text, size_t native
                 query_text, query_length);
         })
         : SIZE_MAX;
-    if (result != SIZE_MAX)
-        return native_search_item_result(result, native_text, native_length, query_text, query_length);
     try {
         if (!g_overlay.translation_enabled() || !frame || !screen || !query_text ||
             query_length == 0 || query_length > 4096) return result;
         const std::string_view query(query_text, query_length);
+        SearchNativeHitScope native_hit(result!=SIZE_MAX);
         std::string source, description;
         NativeHistoryName site_name;
         if (native_legends_search_source(kind, frame, screen, source, description,
-                kind == LegendsSearchKind::Site ? &site_name : nullptr) &&
-            g_overlay.translated_legends_search_matches(source, description, query, kind,
-                site_name.site_id >= 0 ? &site_name : nullptr))
-            return 0;
+                kind == LegendsSearchKind::Site ? &site_name : nullptr)) {
+            SearchDescriptor d;d.kind=SearchCandidateKind::NamedEntity;d.domain="legends";
+            d.candidate_id={reinterpret_cast<uintptr_t>(screen),reinterpret_cast<uintptr_t>(frame),0,0};
+            SearchDescriptorScope scope(d);
+            return g_overlay.translated_legends_search_matches(source, description, query, kind,
+                site_name.site_id >= 0 ? &site_name : nullptr)?0:SIZE_MAX;
+        }
     } catch (...) {
         // Never unwind translation/allocation failures through the game.
     }
@@ -143,17 +145,20 @@ static size_t capture_native_legends_search_descriptor_find(const char *native_t
                 query_text, query_length);
         })
         : SIZE_MAX;
-    if (result != SIZE_MAX)
-        return native_search_item_result(result, native_text, native_length, query_text, query_length);
     try {
         if (!g_overlay.translation_enabled() || !descriptor || !query_text ||
             query_length == 0 || query_length > 4096) return result;
         const std::string_view query(query_text, query_length);
         std::vector<std::string_view> sources;
+        SearchNativeHitScope native_hit(result!=SIZE_MAX);
         if (native_legends_search_descriptors(descriptor, sources)) {
-            for (const auto source : sources)
-                if (g_overlay.translated_legends_search_matches(
-                        {}, source, query, LegendsSearchKind::Figure)) return 0;
+            SearchDescriptor d;d.kind=SearchCandidateKind::TextRecord;d.domain="legends";
+            d.candidate_id.record=reinterpret_cast<uintptr_t>(descriptor);SearchDescriptorScope scope(d);
+            {
+                SearchTextCollectionScope collect(d);
+                for (const auto source : sources)g_overlay.translated_legends_search_matches({},source,query,LegendsSearchKind::Figure);
+            }
+            return search_association_match(d,query).accepted?0:SIZE_MAX;
         }
     } catch (...) {}
     return result;

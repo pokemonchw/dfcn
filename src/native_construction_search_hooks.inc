@@ -23,6 +23,7 @@ static NativeSearchFoldFn g_native_construction_search_fold = nullptr;
 static NativeSearchDestroyFn g_native_construction_search_destroy = nullptr;
 
 static void capture_native_construction_search_query_fold(NativeString *query) {
+    prepare_native_search_facts(query);
     fold_native_search_query(query, g_native_construction_search_fold);
 }
 
@@ -30,11 +31,11 @@ static size_t capture_native_construction_search_find(const char *text, size_t l
         const void *candidate, const char *query_text, size_t query_length) {
     NativeInputCallbackScope callback;
     const size_t result = native_search_byte_find(text, length, 0, query_text, query_length);
-    if (result != SIZE_MAX) return result;
     try {
         if (!g_overlay.translation_enabled() || !query_text ||
             query_length == 0 || query_length > 4096 ||
             !g_native_construction_search_destroy) return result;
+        refresh_native_search_world();SearchNativeHitScope native_hit(result!=SIZE_MAX);
         uintptr_t vtable = 0, caption_method = 0;
 #ifdef _WIN32
         constexpr size_t caption_slot = 2;
@@ -53,8 +54,28 @@ static size_t capture_native_construction_search_find(const char *text, size_t l
         std::string_view source;
         if (!native_string_view(&caption.value, &source, 65536) || source.empty() ||
             source.find('\0') != std::string_view::npos) return result;
-        if (g_overlay.translated_item_search_matches(source,
-                std::string_view(query_text, query_length), true)) return 0;
+        SearchDescriptor descriptor;
+        descriptor.kind = SearchCandidateKind::ItemGroup;
+        descriptor.domain = "construction";
+        const auto object = reinterpret_cast<uintptr_t>(candidate);
+        if (native_history_object_is(object, "build_req_choice_specst")) {
+            uintptr_t item = 0;
+            if (search_native_field(object, "build_req_choice_specst", "candidate", item)) descriptor = search_native_item(item);
+        } else if (native_history_object_is(object, "build_req_choice_genst")) {
+            int16_t type = -1, sub = -1, mat = -1; int32_t index = -1;
+            if (search_native_field(object, "build_req_choice_genst", "item_type", type) &&
+                search_native_field(object, "build_req_choice_genst", "item_subtype", sub) &&
+                search_native_field(object, "build_req_choice_genst", "mat_type", mat) &&
+                search_native_field(object, "build_req_choice_genst", "mat_index", index)) {
+                const auto world = search_world_snapshot_storage();
+                if (world) static_cast<SearchObjectFacts &>(descriptor) = search_native_tuple(type,sub,mat,index,*world,*search_concept_catalog());
+            }
+        }
+        descriptor.candidate_id.record = object;
+        descriptor.domain="construction";
+        SearchDescriptorScope descriptor_scope(descriptor);
+        return g_overlay.translated_item_search_matches(source,
+                std::string_view(query_text, query_length), true) ? 0 : SIZE_MAX;
     } catch (...) {
         // Caption/translation allocation failures retain native rejection.
     }

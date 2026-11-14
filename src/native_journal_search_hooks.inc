@@ -38,10 +38,18 @@ static void capture_native_journal_search_term(NativeString *term,
     } catch (...) {}
     prepare_native_inlined_search_term(term, query_string, g_native_journal_search_fold,
         [&](std::string_view, std::string_view query) {
+            if constexpr (Kind == JournalSearchKind::Agreement) {
+                SearchDescriptor descriptor;descriptor.kind=SearchCandidateKind::TextRecord;descriptor.domain="journal";
+                descriptor.original_caption=native_text_to_utf8(source);descriptor.candidate_id.record=reinterpret_cast<uintptr_t>(display_source);
+                {
+                    SearchTextCollectionScope collect(descriptor);
+                    if(!source.empty())g_overlay.translated_journal_search_matches(source,query,Kind);
+                    native_journal_agreement_search_matches(display_source,query);
+                }
+                return search_association_match(descriptor,query).accepted;
+            }
             if (!source.empty() &&
                     g_overlay.translated_journal_search_matches(source, query, Kind)) return true;
-            if constexpr (Kind == JournalSearchKind::Agreement)
-                return native_journal_agreement_search_matches(display_source, query);
             return false;
         });
 }

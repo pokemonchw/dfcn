@@ -10,6 +10,7 @@ static NativeCallHook g_native_adventure_barter_search_hook;
 static NativeSearchFoldFn g_native_adventure_barter_search_fold = nullptr;
 
 static void capture_native_adventure_barter_search_query(NativeString *query) {
+    prepare_native_search_facts(query);
     fold_native_search_query(query, g_native_adventure_barter_search_fold);
 }
 
@@ -44,6 +45,8 @@ static bool install_native_adventure_barter_search_hook() {
     }
     NativeAdventureBarterSearchProfile profile;
     if (!resolve_native_adventure_barter_search_profile(profile) || !profile.fold) return false;
+    append_native_search_caption_observers(profile.base, profile.calls,
+        reinterpret_cast<const void *>(&capture_native_adventure_barter_search_term));
     g_native_adventure_barter_search_fold = profile.fold;
     if (!g_native_adventure_barter_search_hook.install(profile.base, profile.calls,
                                                      "Native adventure barter search")) {
