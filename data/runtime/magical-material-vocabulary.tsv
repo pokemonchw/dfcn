@@ -9,7 +9,7 @@ remnant-adjective	cosmic	宇宙	宇宙
 remnant-adjective	primal	原始	原始
 remnant-adjective	elemental	元素	元素
 remnant-adjective	primeval	太古	太古
-remnant-material	stone	石头	石
+remnant-material	stone	石材	石
 remnant-material	crystal	水晶	晶
 remnant-material	chaos	混沌	混沌
 remnant-material	darkness	黑暗	暗
@@ -18,15 +18,15 @@ remnant-material	fire	火焰	火
 remnant-material	light	光	光
 remnant-material	lightning	闪电	雷
 remnant-material	metal	金属	金属
-remnant-material	moonstone	月石	月石
-remnant-material	mudstone	泥石	泥石
+remnant-material	moonstone	月长石	月石
+remnant-material	mudstone	泥岩	泥石
 remnant-material	ice	冰	冰
 remnant-material	leaf	叶	叶
 remnant-material	salt	盐	盐
 remnant-material	cloudstuff	云质	云质
 remnant-material	stardust	星尘	星尘
-remnant-material	sunstone	日石	日石
-remnant-material	wood	木头	木
+remnant-material	sunstone	日长石	日石
+remnant-material	wood	木材	木
 remnant-material	obsidian	黑曜石	黑曜石
 remnant-material	glitchstuff	异常质	异常质
 # Healing substances: adjective senses refer to the material, not personality,
@@ -41,7 +41,7 @@ healing-material	liquid	液体	液体制
 healing-material	fluid	流体	流体制
 healing-material	broth	汤汁	汤汁制
 healing-material	juice	汁液	汁液制
-healing-material	goo	黏稠物	黏稠物制
+healing-material	goo	稠血	黏稠物制
 healing-material	liquor	烈酒	烈酒制
 healing-material	solution	溶液	溶液制
 healing-material	jelly	凝胶	凝胶制
@@ -97,7 +97,7 @@ divine-silk	liquid cloth	液态的丝绸	液态的丝
 divine-silk	liquid darkness	液态黑暗	液态黑暗的丝
 divine-silk	misty cloth	雾霭的丝绸	雾霭的丝
 divine-silk	moist fabric	湿润的丝绸	湿润的丝
-divine-silk	molten liquid	熔融液	熔融液的丝
+divine-silk	molten liquid	熔融的液体	熔融液的丝
 divine-silk	motes of light	光尘	光尘的丝
 divine-silk	multicolored cloth	多彩的丝绸	多彩的丝
 divine-silk	never-still cloth	永动的丝绸	永动的丝
@@ -144,7 +144,7 @@ cloud-material	soot	煤烟	煤烟制
 cloud-material	fog	雾	雾制
 cloud-material	gloom	阴霾	阴霾制
 cloud-material	murk	暗雾	暗雾制
-cloud-material	smoke	烟	烟制
+cloud-material	smoke	烟雾	烟制
 cloud-material	vapor	蒸气	蒸气制
 rain-adjective	pungent	刺鼻的	刺鼻的
 rain-adjective	acrid	辛辣的	辛辣的
@@ -164,11 +164,11 @@ rain-adjective	repulsive	令人厌恶的	令人厌恶的
 rain-adjective	revolting	恶心的	恶心的
 rain-adjective	rotten	腐烂的	腐烂的
 rain-adjective	vile	卑劣的	卑劣的
-rain-material	slime	粘液	粘液制
-rain-material	goo	黏稠物	黏稠物制
-rain-material	mucus	粘液	粘液制
+rain-material	slime	黏液	粘液制
+rain-material	goo	稠血	黏稠物制
+rain-material	mucus	黏液	粘液制
 rain-material	ooze	污泥	污泥制
 rain-material	sludge	软泥	软泥制
 rain-material	filth	污垢	污垢制
 rain-material	muck	污泥	污泥制
-rain-material	slush	泥浆	泥浆制
+rain-material	slush	泥地	泥浆制

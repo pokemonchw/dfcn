@@ -4,9 +4,9 @@ base = "creatures::name::raw_names"
 [[rulesets]]
 name = "singular"
 [rulesets.rules]
-"dragon hatchling" = "幼龙"
+"dragon hatchling" = "巨龙幼崽"
 
 [[rulesets]]
 name = "plural"
 [rulesets.rules]
-"dragon hatchlings" = "幼龙"
+"dragon hatchlings" = "巨龙幼崽"

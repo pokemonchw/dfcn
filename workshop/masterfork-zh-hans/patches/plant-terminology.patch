@@ -1,0 +1,3535 @@
+# Masterfork zh-Hans Workshop item 3822762805, data version 4.
+# Align shared plant and seed terminology with the DFCN base vocabulary.
+# Paths are relative to the existing translation package root.
+
+diff --git a/dfcn/rulesets/zh-Hans/materials/state.toml b/dfcn/rulesets/zh-Hans/materials/state.toml
+--- a/dfcn/rulesets/zh-Hans/materials/state.toml
++++ b/dfcn/rulesets/zh-Hans/materials/state.toml
+@@ -9,9 +9,9 @@
+ "abaca" = "马尼拉麻"
+ "abaca paper" = "马尼拉麻纸"
+ "abaca slurry" = "马尼拉麻纸浆"
+-"acacia" = "黑荆"
+-"acacia flour" = "黑荆粉"
+-"acacia wood dye" = "黑荆木染料"
++"acacia" = "刺槐"
++"acacia flour" = "刺槐粉"
++"acacia wood dye" = "刺槐木染料"
+ "acorn flour" = "橡实粉"
+ "adamantine" = "精金"
+ "adder venom" = "蝰蛇毒素"
+@@ -286,7 +286,7 @@
+ "boiling finger millet milk" = "煮沸爪粟奶"
+ "boiling fisher berry wine" = "沸腾渔夫浆果果酒"
+ "boiling fly man acid vomit" = "沸腾的苍蝇人酸性呕吐物"
+-"boiling fonio beer" = "沸腾非尼奥啤酒"
++"boiling fonio beer" = "沸腾非尼奥米啤酒"
+ "boiling fonio milk" = "煮沸非尼奥米奶"
+ "boiling foxtail millet beer" = "沸腾狐尾粟啤酒"
+ "boiling foxtail millet milk" = "煮沸狐尾粟奶"
+@@ -422,7 +422,7 @@
+ "boiling quinoa beer" = "沸腾藜麦啤酒"
+ "boiling quinoa milk" = "煮沸藜麦奶"
+ "boiling radish wine" = "沸腾小萝卜果酒"
+-"boiling rambutan wine" = "沸腾红毛丹果酒"
++"boiling rambutan wine" = "沸腾红毛果果酒"
+ "boiling raspberry wine" = "沸腾树莓果酒"
+ "boiling rattlesnake venom" = "沸腾响尾蛇毒素"
+ "boiling raw adamantine" = "沸腾原始精金"
+@@ -576,12 +576,12 @@
+ "cassiterite concentrate" = "锡石精矿"
+ "catnip powder" = "猫薄荷粉"
+ "catnip tea" = "猫薄荷茶"
+-"cattail" = "香蒲"
++"cattail" = "猫尾草"
+ "cattail ale" = "猫尾草艾尔啤酒"
+ "cattail paper" = "猫尾草纸"
+-"cattail rhizome" = "香蒲根茎"
+-"cattail slurry" = "香蒲纸浆"
+-"cattail starch" = "香蒲淀粉"
++"cattail rhizome" = "猫尾草根茎"
++"cattail slurry" = "猫尾草纸浆"
++"cattail starch" = "猫尾草淀粉"
+ "cave blob fluid" = "洞穴滴团液体"
+ "cave boar cheese" = "洞穴猪奶酪"
+ "cave boar cheese powder" = "洞穴猪奶酪粉末"
+@@ -760,8 +760,8 @@
+ "flower" = "花"
+ "fluff" = "绒毛"
+ "fly man acid vomit" = "苍蝇人酸性呕吐物"
+-"fonio beer" = "非尼奥啤酒"
+-"fonio flour" = "非尼奥面粉"
++"fonio beer" = "非尼奥米啤酒"
++"fonio flour" = "非尼奥米面粉"
+ "fonio milk" = "非尼奥米奶"
+ "foxtail millet beer" = "狐尾粟啤酒"
+ "foxtail millet flour" = "狐尾粟面粉"
+@@ -865,7 +865,7 @@
+ "frozen finger millet beer" = "结冻爪粟啤酒"
+ "frozen finger millet milk" = "冻结爪粟奶"
+ "frozen fisher berry wine" = "结冻渔夫浆果果酒"
+-"frozen fonio beer" = "结冻非尼奥啤酒"
++"frozen fonio beer" = "结冻非尼奥米啤酒"
+ "frozen fonio milk" = "冻结非尼奥米奶"
+ "frozen foxtail millet beer" = "结冻狐尾粟啤酒"
+ "frozen foxtail millet milk" = "冻结狐尾粟奶"
+@@ -968,7 +968,7 @@
+ "frozen quinoa beer" = "结冻藜麦啤酒"
+ "frozen quinoa milk" = "冻结藜麦奶"
+ "frozen radish wine" = "结冻小萝卜果酒"
+-"frozen rambutan wine" = "结冻红毛丹果酒"
++"frozen rambutan wine" = "结冻红毛果果酒"
+ "frozen raspberry wine" = "结冻树莓果酒"
+ "frozen rattlesnake venom" = "结冻响尾蛇毒素"
+ "frozen red wine" = "冻结红色葡萄酒"
+@@ -1273,7 +1273,7 @@
+ "malachite concentrate" = "孔雀石精矿"
+ "mane" = "玛内"
+ "mango wine" = "芒果果酒"
+-"mango wood" = "芒果树"
++"mango wood" = "芒果木"
+ "mangrove" = "红树"
+ "mangrove bark" = "红树树皮"
+ "mangrove bark dye" = "红树树皮染料"
+@@ -1641,7 +1641,7 @@
+ "radiant energy" = "发光的能量"
+ "radish dye" = "小萝卜染料"
+ "radish wine" = "小萝卜果酒"
+-"rambutan wine" = "红毛丹果酒"
++"rambutan wine" = "红毛果果酒"
+ "rambutan wood" = "红毛果木"
+ "ramie" = "苎麻"
+ "ramie paper" = "苎麻纸"
+@@ -1977,9 +1977,9 @@
+ "abaca" = "马尼拉麻"
+ "abaca paper" = "马尼拉麻纸"
+ "abaca slurry" = "马尼拉麻纸浆"
+-"acacia" = "黑荆"
+-"acacia flour" = "黑荆粉"
+-"acacia wood dye" = "黑荆木染料"
++"acacia" = "刺槐"
++"acacia flour" = "刺槐粉"
++"acacia wood dye" = "刺槐木染料"
+ "acorn flour" = "橡实粉"
+ "adamantine" = "精金"
+ "adder venom" = "蝰蛇毒素"
+@@ -2254,7 +2254,7 @@
+ "boiling finger millet milk" = "煮沸爪粟奶"
+ "boiling fisher berry wine" = "沸腾渔夫浆果果酒"
+ "boiling fly man acid vomit" = "沸腾的苍蝇人酸性呕吐物"
+-"boiling fonio beer" = "沸腾非尼奥啤酒"
++"boiling fonio beer" = "沸腾非尼奥米啤酒"
+ "boiling fonio milk" = "煮沸非尼奥米奶"
+ "boiling foxtail millet beer" = "沸腾狐尾粟啤酒"
+ "boiling foxtail millet milk" = "煮沸狐尾粟奶"
+@@ -2390,7 +2390,7 @@
+ "boiling quinoa beer" = "沸腾藜麦啤酒"
+ "boiling quinoa milk" = "煮沸藜麦奶"
+ "boiling radish wine" = "沸腾小萝卜果酒"
+-"boiling rambutan wine" = "沸腾红毛丹果酒"
++"boiling rambutan wine" = "沸腾红毛果果酒"
+ "boiling raspberry wine" = "沸腾树莓果酒"
+ "boiling rattlesnake venom" = "沸腾响尾蛇毒素"
+ "boiling raw adamantine" = "沸腾原始精金"
+@@ -2544,12 +2544,12 @@
+ "cassiterite concentrate" = "锡石精矿"
+ "catnip powder" = "猫薄荷粉"
+ "catnip tea" = "猫薄荷茶"
+-"cattail" = "香蒲"
++"cattail" = "猫尾草"
+ "cattail ale" = "猫尾草艾尔啤酒"
+ "cattail paper" = "猫尾草纸"
+-"cattail rhizome" = "香蒲根茎"
+-"cattail slurry" = "香蒲纸浆"
+-"cattail starch" = "香蒲淀粉"
++"cattail rhizome" = "猫尾草根茎"
++"cattail slurry" = "猫尾草纸浆"
++"cattail starch" = "猫尾草淀粉"
+ "cave blob fluid" = "洞穴滴团液体"
+ "cave boar cheese" = "洞穴猪奶酪"
+ "cave boar cheese powder" = "洞穴猪奶酪粉末"
+@@ -2728,8 +2728,8 @@
+ "flower" = "花"
+ "fluff" = "绒毛"
+ "fly man acid vomit" = "苍蝇人酸性呕吐物"
+-"fonio beer" = "非尼奥啤酒"
+-"fonio flour" = "非尼奥面粉"
++"fonio beer" = "非尼奥米啤酒"
++"fonio flour" = "非尼奥米面粉"
+ "fonio milk" = "非尼奥米奶"
+ "foxtail millet beer" = "狐尾粟啤酒"
+ "foxtail millet flour" = "狐尾粟面粉"
+@@ -2833,7 +2833,7 @@
+ "frozen finger millet beer" = "结冻爪粟啤酒"
+ "frozen finger millet milk" = "冻结爪粟奶"
+ "frozen fisher berry wine" = "结冻渔夫浆果果酒"
+-"frozen fonio beer" = "结冻非尼奥啤酒"
++"frozen fonio beer" = "结冻非尼奥米啤酒"
+ "frozen fonio milk" = "冻结非尼奥米奶"
+ "frozen foxtail millet beer" = "结冻狐尾粟啤酒"
+ "frozen foxtail millet milk" = "冻结狐尾粟奶"
+@@ -2936,7 +2936,7 @@
+ "frozen quinoa beer" = "结冻藜麦啤酒"
+ "frozen quinoa milk" = "冻结藜麦奶"
+ "frozen radish wine" = "结冻小萝卜果酒"
+-"frozen rambutan wine" = "结冻红毛丹果酒"
++"frozen rambutan wine" = "结冻红毛果果酒"
+ "frozen raspberry wine" = "结冻树莓果酒"
+ "frozen rattlesnake venom" = "结冻响尾蛇毒素"
+ "frozen red wine" = "冻结红色葡萄酒"
+@@ -3241,7 +3241,7 @@
+ "malachite concentrate" = "孔雀石精矿"
+ "mane" = "玛内"
+ "mango wine" = "芒果果酒"
+-"mango wood" = "芒果树"
++"mango wood" = "芒果木"
+ "mangrove" = "红树"
+ "mangrove bark" = "红树树皮"
+ "mangrove bark dye" = "红树树皮染料"
+@@ -3609,7 +3609,7 @@
+ "radiant energy" = "发光的能量"
+ "radish dye" = "小萝卜染料"
+ "radish wine" = "小萝卜果酒"
+-"rambutan wine" = "红毛丹果酒"
++"rambutan wine" = "红毛果果酒"
+ "rambutan wood" = "红毛果木"
+ "ramie" = "苎麻"
+ "ramie paper" = "苎麻纸"
+diff --git a/dfcn/rulesets/zh-Hans/menu/index.toml b/dfcn/rulesets/zh-Hans/menu/index.toml
+--- a/dfcn/rulesets/zh-Hans/menu/index.toml
++++ b/dfcn/rulesets/zh-Hans/menu/index.toml
+@@ -93,8 +93,8 @@
+ "Brew a barrel of finger millet beer (opens menu)" = "酿造一桶爪粟啤酒（打开菜单）"
+ "Brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+ "Brew a barrel of fisher berry wine (opens menu)" = "酿造一桶渔夫浆果果酒（打开菜单）"
+-"Brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
+-"Brew a barrel of fonio beer (opens menu)" = "酿造一桶非尼奥啤酒（打开菜单）"
++"Brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
++"Brew a barrel of fonio beer (opens menu)" = "酿造一桶非尼奥米啤酒（打开菜单）"
+ "Brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "Brew a barrel of foxtail millet beer (opens menu)" = "酿造一桶狐尾粟啤酒（打开菜单）"
+ "Brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+@@ -169,8 +169,8 @@
+ "Brew a barrel of quinoa beer (opens menu)" = "酿造一桶藜麦啤酒（打开菜单）"
+ "Brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+ "Brew a barrel of radish wine (opens menu)" = "酿造一桶小萝卜果酒（打开菜单）"
+-"Brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
+-"Brew a barrel of rambutan wine (opens menu)" = "酿造一桶红毛丹果酒（打开菜单）"
++"Brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
++"Brew a barrel of rambutan wine (opens menu)" = "酿造一桶红毛果果酒（打开菜单）"
+ "Brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "Brew a barrel of raspberry wine (opens menu)" = "酿造一桶树莓果酒（打开菜单）"
+ "Brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+@@ -319,8 +319,8 @@
+ "Brew five drinks of finger millet beer (opens menu)" = "酿造5份爪粟啤酒（打开菜单）"
+ "Brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+ "Brew five drinks of fisher berry wine (opens menu)" = "酿造5份渔夫浆果果酒（打开菜单）"
+-"Brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
+-"Brew five drinks of fonio beer (opens menu)" = "酿造5份非尼奥啤酒（打开菜单）"
++"Brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
++"Brew five drinks of fonio beer (opens menu)" = "酿造5份非尼奥米啤酒（打开菜单）"
+ "Brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "Brew five drinks of foxtail millet beer (opens menu)" = "酿造5份狐尾粟啤酒（打开菜单）"
+ "Brew five drinks of guava wine" = "酿造5份番石榴果酒"
+@@ -377,8 +377,8 @@
+ "Brew five drinks of quinoa beer (opens menu)" = "酿造5份藜麦啤酒（打开菜单）"
+ "Brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+ "Brew five drinks of radish wine (opens menu)" = "酿造5份小萝卜果酒（打开菜单）"
+-"Brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
+-"Brew five drinks of rambutan wine (opens menu)" = "酿造5份红毛丹果酒（打开菜单）"
++"Brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
++"Brew five drinks of rambutan wine (opens menu)" = "酿造5份红毛果果酒（打开菜单）"
+ "Brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "Brew five drinks of raspberry wine (opens menu)" = "酿造5份树莓果酒（打开菜单）"
+ "Brew five drinks of rice beer" = "酿造5份稻米啤酒"
+@@ -535,8 +535,8 @@
+ "Brew one drink of finger millet beer (opens menu)" = "酿造1份爪粟啤酒（打开菜单）"
+ "Brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+ "Brew one drink of fisher berry wine (opens menu)" = "酿造1份渔夫浆果果酒（打开菜单）"
+-"Brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
+-"Brew one drink of fonio beer (opens menu)" = "酿造1份非尼奥啤酒（打开菜单）"
++"Brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
++"Brew one drink of fonio beer (opens menu)" = "酿造1份非尼奥米啤酒（打开菜单）"
+ "Brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "Brew one drink of foxtail millet beer (opens menu)" = "酿造1份狐尾粟啤酒（打开菜单）"
+ "Brew one drink of guava wine" = "酿造1份番石榴果酒"
+@@ -593,8 +593,8 @@
+ "Brew one drink of quinoa beer (opens menu)" = "酿造1份藜麦啤酒（打开菜单）"
+ "Brew one drink of radish wine" = "酿造1份小萝卜果酒"
+ "Brew one drink of radish wine (opens menu)" = "酿造1份小萝卜果酒（打开菜单）"
+-"Brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
+-"Brew one drink of rambutan wine (opens menu)" = "酿造1份红毛丹果酒（打开菜单）"
++"Brew one drink of rambutan wine" = "酿造1份红毛果果酒"
++"Brew one drink of rambutan wine (opens menu)" = "酿造1份红毛果果酒（打开菜单）"
+ "Brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "Brew one drink of raspberry wine (opens menu)" = "酿造1份树莓果酒（打开菜单）"
+ "Brew one drink of rice beer" = "酿造1份稻米啤酒"
+@@ -855,16 +855,16 @@
+ "Collect field mushroom spawn (opens menu)" = "收集领域蘑菇卵（打开菜单）"
+ "Collect fig seed" = "收集无花果种子"
+ "Collect fig seed (opens menu)" = "收集无花果种子（打开菜单）"
+-"Collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
+-"Collect finger millet grains (1-2) (opens menu)" = "收集龙爪稷籽粒（1-2）（打开菜单）"
++"Collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
++"Collect finger millet grains (1-2) (opens menu)" = "收集爪粟籽粒（1-2）（打开菜单）"
+ "Collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "Collect fisher berry seeds (1-2) (opens menu)" = "收集渔夫浆果种子（1-2）（打开菜单）"
+ "Collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+ "Collect flax seeds (1-2) (opens menu)" = "收集亚麻种子（1-2）（打开菜单）"
+-"Collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"Collect fonio grains (1-2) (opens menu)" = "收集福尼奥米籽粒（1-2）（打开菜单）"
+-"Collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
+-"Collect foxtail millet grains (1-2) (opens menu)" = "收集粟米籽粒（1-2）（打开菜单）"
++"Collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"Collect fonio grains (1-2) (opens menu)" = "收集非尼奥米籽粒（1-2）（打开菜单）"
++"Collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
++"Collect foxtail millet grains (1-2) (opens menu)" = "收集狐尾粟籽粒（1-2）（打开菜单）"
+ "Collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "Collect garden cress seeds (1-2) (opens menu)" = "收集水芹种子（1-2）（打开菜单）"
+ "Collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+@@ -1055,8 +1055,8 @@
+ "Collect whip vine seeds (1-2) (opens menu)" = "收集鞭藤种子（1-2）（打开菜单）"
+ "Collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+ "Collect white button mushroom spawn (opens menu)" = "收集白色钮扣蘑菇卵（打开菜单）"
+-"Collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
+-"Collect white millet grains (1-2) (opens menu)" = "收集白黍籽粒（1-2）（打开菜单）"
++"Collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
++"Collect white millet grains (1-2) (opens menu)" = "收集白粟籽粒（1-2）（打开菜单）"
+ "Collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "Collect white yam minisetts (1-2) (opens menu)" = "收集白薯蓣种薯块（1-2）（打开菜单）"
+ "Collect whitecurrant seed" = "收集白醋栗种子"
+@@ -2275,8 +2275,8 @@
+ "Make wooden wheelbarrow (5) (opens menu)" = "制作木制手推车 (5)（打开菜单）"
+ "Mash abaca slurry" = "捣制马尼拉麻纸浆"
+ "Mash abaca slurry (opens menu)" = "捣制马尼拉麻纸浆（打开菜单）"
+-"Mash cattail slurry" = "捣制香蒲纸浆"
+-"Mash cattail slurry (opens menu)" = "捣制香蒲纸浆（打开菜单）"
++"Mash cattail slurry" = "捣制猫尾草纸浆"
++"Mash cattail slurry (opens menu)" = "捣制猫尾草纸浆（打开菜单）"
+ "Mash cotton slurry" = "捣制棉花浆"
+ "Mash cotton slurry (opens menu)" = "捣制棉花浆（打开菜单）"
+ "Mash hemp slurry" = "捣制大麻浆"
+@@ -2347,8 +2347,8 @@
+ "Mill five cassava flour (opens menu)" = "研磨5份木薯粉（打开菜单）"
+ "Mill five catnip powder" = "研磨5份猫薄荷粉"
+ "Mill five catnip powder (opens menu)" = "研磨5份猫薄荷粉（打开菜单）"
+-"Mill five cattail starch" = "研磨5份香蒲淀粉"
+-"Mill five cattail starch (opens menu)" = "研磨5份香蒲淀粉（打开菜单）"
++"Mill five cattail starch" = "研磨5份猫尾草淀粉"
++"Mill five cattail starch (opens menu)" = "研磨5份猫尾草淀粉（打开菜单）"
+ "Mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "Mill five celery seed powder (opens menu)" = "研磨5份芹菜种子粉末（打开菜单）"
+ "Mill five chestnut flour" = "研磨5份栗子粉"
+@@ -2375,8 +2375,8 @@
+ "Mill five flax flour (opens menu)" = "研磨5份亚麻面粉（打开菜单）"
+ "Mill five flax seed paste" = "研磨5份亚麻种子膏"
+ "Mill five flax seed paste (opens menu)" = "研磨5份亚麻种子膏（打开菜单）"
+-"Mill five fonio flour" = "研磨5份非尼奥面粉"
+-"Mill five fonio flour (opens menu)" = "研磨5份非尼奥面粉（打开菜单）"
++"Mill five fonio flour" = "研磨5份非尼奥米面粉"
++"Mill five fonio flour (opens menu)" = "研磨5份非尼奥米面粉（打开菜单）"
+ "Mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "Mill five foxtail millet flour (opens menu)" = "研磨5份狐尾粟面粉（打开菜单）"
+ "Mill five garlic powder" = "研磨5份大蒜粉末"
+@@ -3073,8 +3073,8 @@
+ "brew a barrel of finger millet beer (opens menu)" = "酿造一桶爪粟啤酒（打开菜单）"
+ "brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+ "brew a barrel of fisher berry wine (opens menu)" = "酿造一桶渔夫浆果果酒（打开菜单）"
+-"brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
+-"brew a barrel of fonio beer (opens menu)" = "酿造一桶非尼奥啤酒（打开菜单）"
++"brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
++"brew a barrel of fonio beer (opens menu)" = "酿造一桶非尼奥米啤酒（打开菜单）"
+ "brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "brew a barrel of foxtail millet beer (opens menu)" = "酿造一桶狐尾粟啤酒（打开菜单）"
+ "brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+@@ -3151,8 +3151,8 @@
+ "brew a barrel of quinoa beer (opens menu)" = "酿造一桶藜麦啤酒（打开菜单）"
+ "brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+ "brew a barrel of radish wine (opens menu)" = "酿造一桶小萝卜果酒（打开菜单）"
+-"brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
+-"brew a barrel of rambutan wine (opens menu)" = "酿造一桶红毛丹果酒（打开菜单）"
++"brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
++"brew a barrel of rambutan wine (opens menu)" = "酿造一桶红毛果果酒（打开菜单）"
+ "brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "brew a barrel of raspberry wine (opens menu)" = "酿造一桶树莓果酒（打开菜单）"
+ "brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+@@ -3301,8 +3301,8 @@
+ "brew five drinks of finger millet beer (opens menu)" = "酿造5份爪粟啤酒（打开菜单）"
+ "brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+ "brew five drinks of fisher berry wine (opens menu)" = "酿造5份渔夫浆果果酒（打开菜单）"
+-"brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
+-"brew five drinks of fonio beer (opens menu)" = "酿造5份非尼奥啤酒（打开菜单）"
++"brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
++"brew five drinks of fonio beer (opens menu)" = "酿造5份非尼奥米啤酒（打开菜单）"
+ "brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "brew five drinks of foxtail millet beer (opens menu)" = "酿造5份狐尾粟啤酒（打开菜单）"
+ "brew five drinks of guava wine" = "酿造5份番石榴果酒"
+@@ -3361,8 +3361,8 @@
+ "brew five drinks of quinoa beer (opens menu)" = "酿造5份藜麦啤酒（打开菜单）"
+ "brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+ "brew five drinks of radish wine (opens menu)" = "酿造5份小萝卜果酒（打开菜单）"
+-"brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
+-"brew five drinks of rambutan wine (opens menu)" = "酿造5份红毛丹果酒（打开菜单）"
++"brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
++"brew five drinks of rambutan wine (opens menu)" = "酿造5份红毛果果酒（打开菜单）"
+ "brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "brew five drinks of raspberry wine (opens menu)" = "酿造5份树莓果酒（打开菜单）"
+ "brew five drinks of rice beer" = "酿造5份稻米啤酒"
+@@ -3519,8 +3519,8 @@
+ "brew one drink of finger millet beer (opens menu)" = "酿造1份爪粟啤酒（打开菜单）"
+ "brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+ "brew one drink of fisher berry wine (opens menu)" = "酿造1份渔夫浆果果酒（打开菜单）"
+-"brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
+-"brew one drink of fonio beer (opens menu)" = "酿造1份非尼奥啤酒（打开菜单）"
++"brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
++"brew one drink of fonio beer (opens menu)" = "酿造1份非尼奥米啤酒（打开菜单）"
+ "brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "brew one drink of foxtail millet beer (opens menu)" = "酿造1份狐尾粟啤酒（打开菜单）"
+ "brew one drink of guava wine" = "酿造1份番石榴果酒"
+@@ -3579,8 +3579,8 @@
+ "brew one drink of quinoa beer (opens menu)" = "酿造1份藜麦啤酒（打开菜单）"
+ "brew one drink of radish wine" = "酿造1份小萝卜果酒"
+ "brew one drink of radish wine (opens menu)" = "酿造1份小萝卜果酒（打开菜单）"
+-"brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
+-"brew one drink of rambutan wine (opens menu)" = "酿造1份红毛丹果酒（打开菜单）"
++"brew one drink of rambutan wine" = "酿造1份红毛果果酒"
++"brew one drink of rambutan wine (opens menu)" = "酿造1份红毛果果酒（打开菜单）"
+ "brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "brew one drink of raspberry wine (opens menu)" = "酿造1份树莓果酒（打开菜单）"
+ "brew one drink of rice beer" = "酿造1份稻米啤酒"
+@@ -3839,16 +3839,16 @@
+ "collect field mushroom spawn (opens menu)" = "收集领域蘑菇卵（打开菜单）"
+ "collect fig seed" = "收集无花果种子"
+ "collect fig seed (opens menu)" = "收集无花果种子（打开菜单）"
+-"collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
+-"collect finger millet grains (1-2) (opens menu)" = "收集龙爪稷籽粒（1-2）（打开菜单）"
++"collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
++"collect finger millet grains (1-2) (opens menu)" = "收集爪粟籽粒（1-2）（打开菜单）"
+ "collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "collect fisher berry seeds (1-2) (opens menu)" = "收集渔夫浆果种子（1-2）（打开菜单）"
+ "collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+ "collect flax seeds (1-2) (opens menu)" = "收集亚麻种子（1-2）（打开菜单）"
+-"collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"collect fonio grains (1-2) (opens menu)" = "收集福尼奥米籽粒（1-2）（打开菜单）"
+-"collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
+-"collect foxtail millet grains (1-2) (opens menu)" = "收集粟米籽粒（1-2）（打开菜单）"
++"collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"collect fonio grains (1-2) (opens menu)" = "收集非尼奥米籽粒（1-2）（打开菜单）"
++"collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
++"collect foxtail millet grains (1-2) (opens menu)" = "收集狐尾粟籽粒（1-2）（打开菜单）"
+ "collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "collect garden cress seeds (1-2) (opens menu)" = "收集水芹种子（1-2）（打开菜单）"
+ "collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+@@ -4043,8 +4043,8 @@
+ "collect whip vine seeds (1-2) (opens menu)" = "收集鞭藤种子（1-2）（打开菜单）"
+ "collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+ "collect white button mushroom spawn (opens menu)" = "收集白色钮扣蘑菇卵（打开菜单）"
+-"collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
+-"collect white millet grains (1-2) (opens menu)" = "收集白黍籽粒（1-2）（打开菜单）"
++"collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
++"collect white millet grains (1-2) (opens menu)" = "收集白粟籽粒（1-2）（打开菜单）"
+ "collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "collect white yam minisetts (1-2) (opens menu)" = "收集白薯蓣种薯块（1-2）（打开菜单）"
+ "collect whitecurrant seed" = "收集白醋栗种子"
+@@ -5263,8 +5263,8 @@
+ "make wooden wheelbarrow (5) (opens menu)" = "制作木制手推车 (5)（打开菜单）"
+ "mash abaca slurry" = "捣制马尼拉麻纸浆"
+ "mash abaca slurry (opens menu)" = "捣制马尼拉麻纸浆（打开菜单）"
+-"mash cattail slurry" = "捣制香蒲纸浆"
+-"mash cattail slurry (opens menu)" = "捣制香蒲纸浆（打开菜单）"
++"mash cattail slurry" = "捣制猫尾草纸浆"
++"mash cattail slurry (opens menu)" = "捣制猫尾草纸浆（打开菜单）"
+ "mash cotton slurry" = "捣制棉花浆"
+ "mash cotton slurry (opens menu)" = "捣制棉花浆（打开菜单）"
+ "mash hemp slurry" = "捣制大麻浆"
+@@ -5333,8 +5333,8 @@
+ "mill five cassava flour (opens menu)" = "研磨5份木薯粉（打开菜单）"
+ "mill five catnip powder" = "研磨5份猫薄荷粉"
+ "mill five catnip powder (opens menu)" = "研磨5份猫薄荷粉（打开菜单）"
+-"mill five cattail starch" = "研磨5份香蒲淀粉"
+-"mill five cattail starch (opens menu)" = "研磨5份香蒲淀粉（打开菜单）"
++"mill five cattail starch" = "研磨5份猫尾草淀粉"
++"mill five cattail starch (opens menu)" = "研磨5份猫尾草淀粉（打开菜单）"
+ "mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "mill five celery seed powder (opens menu)" = "研磨5份芹菜种子粉末（打开菜单）"
+ "mill five chestnut flour" = "研磨5份栗子粉"
+@@ -5361,8 +5361,8 @@
+ "mill five flax flour (opens menu)" = "研磨5份亚麻面粉（打开菜单）"
+ "mill five flax seed paste" = "研磨5份亚麻种子膏"
+ "mill five flax seed paste (opens menu)" = "研磨5份亚麻种子膏（打开菜单）"
+-"mill five fonio flour" = "研磨5份非尼奥面粉"
+-"mill five fonio flour (opens menu)" = "研磨5份非尼奥面粉（打开菜单）"
++"mill five fonio flour" = "研磨5份非尼奥米面粉"
++"mill five fonio flour (opens menu)" = "研磨5份非尼奥米面粉（打开菜单）"
+ "mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "mill five foxtail millet flour (opens menu)" = "研磨5份狐尾粟面粉（打开菜单）"
+ "mill five garlic powder" = "研磨5份大蒜粉末"
+@@ -6020,7 +6020,7 @@
+ "Brew a barrel of fig wine" = "酿造一桶无花果果酒"
+ "Brew a barrel of finger millet beer" = "酿造一桶爪粟啤酒"
+ "Brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+-"Brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
++"Brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
+ "Brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "Brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+ "Brew a barrel of gutter cruor" = "酿造一桶沟渠血酒"
+@@ -6058,7 +6058,7 @@
+ "Brew a barrel of pumpkin ale" = "酿造一桶南瓜色艾尔啤酒"
+ "Brew a barrel of quinoa beer" = "酿造一桶藜麦啤酒"
+ "Brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+-"Brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
++"Brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
+ "Brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "Brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+ "Brew a barrel of redcurrant wine" = "酿造一桶红醋栗果酒"
+@@ -6133,7 +6133,7 @@
+ "Brew five drinks of dwarven whiskey" = "酿造5份矮人威士忌"
+ "Brew five drinks of finger millet beer" = "酿造5份爪粟啤酒"
+ "Brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+-"Brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
++"Brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
+ "Brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "Brew five drinks of guava wine" = "酿造5份番石榴果酒"
+ "Brew five drinks of gutter cruor" = "酿造5份沟渠血酒"
+@@ -6162,7 +6162,7 @@
+ "Brew five drinks of prickle berry wine" = "酿造5份刺莓果酒"
+ "Brew five drinks of quinoa beer" = "酿造5份藜麦啤酒"
+ "Brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+-"Brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
++"Brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
+ "Brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "Brew five drinks of rice beer" = "酿造5份稻米啤酒"
+ "Brew five drinks of river spirits" = "酿造5份河川烈酒"
+@@ -6241,7 +6241,7 @@
+ "Brew one drink of dwarven whiskey" = "酿造1份矮人威士忌"
+ "Brew one drink of finger millet beer" = "酿造1份爪粟啤酒"
+ "Brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+-"Brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
++"Brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
+ "Brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "Brew one drink of guava wine" = "酿造1份番石榴果酒"
+ "Brew one drink of gutter cruor" = "酿造1份沟渠血酒"
+@@ -6270,7 +6270,7 @@
+ "Brew one drink of prickle berry wine" = "酿造1份刺莓果酒"
+ "Brew one drink of quinoa beer" = "酿造1份藜麦啤酒"
+ "Brew one drink of radish wine" = "酿造1份小萝卜果酒"
+-"Brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
++"Brew one drink of rambutan wine" = "酿造1份红毛果果酒"
+ "Brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "Brew one drink of rice beer" = "酿造1份稻米啤酒"
+ "Brew one drink of river spirits" = "酿造酒者饮料河精怪"
+@@ -6401,11 +6401,11 @@
+ "Collect elephant-head amaranth seeds (1-2)" = "收集象头苋种子（1-2）"
+ "Collect field mushroom spawn" = "收集领域蘑菇卵"
+ "Collect fig seed" = "收集无花果种子"
+-"Collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
++"Collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
+ "Collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "Collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+-"Collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"Collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
++"Collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"Collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
+ "Collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "Collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+ "Collect gold needle mushroom spawn" = "收集金针菇菌种"
+@@ -6501,7 +6501,7 @@
+ "Collect weld seed" = "收集黄木犀草种子"
+ "Collect whip vine seeds (1-2)" = "收集鞭藤种子（1-2）"
+ "Collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+-"Collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
++"Collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
+ "Collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "Collect whitecurrant seed" = "收集白醋栗种子"
+ "Collect wine cap mushroom spawn" = "收集葡萄酒帽子蘑菇卵"
+@@ -7111,7 +7111,7 @@
+ "Make wooden weapon rack (5)" = "制作木制兵器架 (5)"
+ "Make wooden wheelbarrow (5)" = "制作木制手推车 (5)"
+ "Mash abaca slurry" = "捣制马尼拉麻纸浆"
+-"Mash cattail slurry" = "捣制香蒲纸浆"
++"Mash cattail slurry" = "捣制猫尾草纸浆"
+ "Mash cotton slurry" = "捣制棉花浆"
+ "Mash hemp slurry" = "捣制大麻浆"
+ "Mash jute slurry" = "捣制黄麻纤维浆"
+@@ -7147,7 +7147,7 @@
+ "Mill five cashew paste" = "研磨5份腰果糊"
+ "Mill five cassava flour" = "研磨5份木薯粉"
+ "Mill five catnip powder" = "研磨5份猫薄荷粉"
+-"Mill five cattail starch" = "研磨5份香蒲淀粉"
++"Mill five cattail starch" = "研磨5份猫尾草淀粉"
+ "Mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "Mill five chestnut flour" = "研磨5份栗子粉"
+ "Mill five chickpea flour" = "研磨5份鹰嘴豆粉"
+@@ -7161,7 +7161,7 @@
+ "Mill five finger millet flour" = "研磨5份爪粟面粉"
+ "Mill five flax flour" = "研磨5份亚麻面粉"
+ "Mill five flax seed paste" = "研磨5份亚麻种子膏"
+-"Mill five fonio flour" = "研磨5份非尼奥面粉"
++"Mill five fonio flour" = "研磨5份非尼奥米面粉"
+ "Mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "Mill five garlic powder" = "研磨5份大蒜粉末"
+ "Mill five grape seed paste" = "研磨5份葡萄种子膏"
+@@ -7510,7 +7510,7 @@
+ "brew a barrel of fig wine" = "酿造一桶无花果果酒"
+ "brew a barrel of finger millet beer" = "酿造一桶爪粟啤酒"
+ "brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+-"brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
++"brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
+ "brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+ "brew a barrel of gutter cruor" = "酿造一桶沟渠血酒"
+@@ -7549,7 +7549,7 @@
+ "brew a barrel of pumpkin ale" = "酿造一桶南瓜色艾尔啤酒"
+ "brew a barrel of quinoa beer" = "酿造一桶藜麦啤酒"
+ "brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+-"brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
++"brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
+ "brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+ "brew a barrel of redcurrant wine" = "酿造一桶红醋栗果酒"
+@@ -7624,7 +7624,7 @@
+ "brew five drinks of dwarven whiskey" = "酿造5份矮人威士忌"
+ "brew five drinks of finger millet beer" = "酿造5份爪粟啤酒"
+ "brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+-"brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
++"brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
+ "brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "brew five drinks of guava wine" = "酿造5份番石榴果酒"
+ "brew five drinks of gutter cruor" = "酿造5份沟渠血酒"
+@@ -7654,7 +7654,7 @@
+ "brew five drinks of prickle berry wine" = "酿造5份刺莓果酒"
+ "brew five drinks of quinoa beer" = "酿造5份藜麦啤酒"
+ "brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+-"brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
++"brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
+ "brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "brew five drinks of rice beer" = "酿造5份稻米啤酒"
+ "brew five drinks of river spirits" = "酿造5份河川烈酒"
+@@ -7733,7 +7733,7 @@
+ "brew one drink of dwarven whiskey" = "酿造1份矮人威士忌"
+ "brew one drink of finger millet beer" = "酿造1份爪粟啤酒"
+ "brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+-"brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
++"brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
+ "brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "brew one drink of guava wine" = "酿造1份番石榴果酒"
+ "brew one drink of gutter cruor" = "酿造1份沟渠血酒"
+@@ -7763,7 +7763,7 @@
+ "brew one drink of prickle berry wine" = "酿造1份刺莓果酒"
+ "brew one drink of quinoa beer" = "酿造1份藜麦啤酒"
+ "brew one drink of radish wine" = "酿造1份小萝卜果酒"
+-"brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
++"brew one drink of rambutan wine" = "酿造1份红毛果果酒"
+ "brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "brew one drink of rice beer" = "酿造1份稻米啤酒"
+ "brew one drink of river spirits" = "酿造酒者饮料河精怪"
+@@ -7893,11 +7893,11 @@
+ "collect elephant-head amaranth seeds (1-2)" = "收集象头苋种子（1-2）"
+ "collect field mushroom spawn" = "收集领域蘑菇卵"
+ "collect fig seed" = "收集无花果种子"
+-"collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
++"collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
+ "collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+-"collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
++"collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
+ "collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+ "collect gold needle mushroom spawn" = "收集金针菇菌种"
+@@ -7995,7 +7995,7 @@
+ "collect weld seed" = "收集黄木犀草种子"
+ "collect whip vine seeds (1-2)" = "收集鞭藤种子（1-2）"
+ "collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+-"collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
++"collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
+ "collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "collect whitecurrant seed" = "收集白醋栗种子"
+ "collect wine cap mushroom spawn" = "收集葡萄酒帽子蘑菇卵"
+@@ -8605,7 +8605,7 @@
+ "make wooden weapon rack (5)" = "制作木制兵器架 (5)"
+ "make wooden wheelbarrow (5)" = "制作木制手推车 (5)"
+ "mash abaca slurry" = "捣制马尼拉麻纸浆"
+-"mash cattail slurry" = "捣制香蒲纸浆"
++"mash cattail slurry" = "捣制猫尾草纸浆"
+ "mash cotton slurry" = "捣制棉花浆"
+ "mash hemp slurry" = "捣制大麻浆"
+ "mash jute slurry" = "捣制黄麻纤维浆"
+@@ -8640,7 +8640,7 @@
+ "mill five cashew paste" = "研磨5份腰果糊"
+ "mill five cassava flour" = "研磨5份木薯粉"
+ "mill five catnip powder" = "研磨5份猫薄荷粉"
+-"mill five cattail starch" = "研磨5份香蒲淀粉"
++"mill five cattail starch" = "研磨5份猫尾草淀粉"
+ "mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "mill five chestnut flour" = "研磨5份栗子粉"
+ "mill five chickpea flour" = "研磨5份鹰嘴豆粉"
+@@ -8654,7 +8654,7 @@
+ "mill five finger millet flour" = "研磨5份爪粟面粉"
+ "mill five flax flour" = "研磨5份亚麻面粉"
+ "mill five flax seed paste" = "研磨5份亚麻种子膏"
+-"mill five fonio flour" = "研磨5份非尼奥面粉"
++"mill five fonio flour" = "研磨5份非尼奥米面粉"
+ "mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "mill five garlic powder" = "研磨5份大蒜粉末"
+ "mill five grape seed paste" = "研磨5份葡萄种子膏"
+diff --git a/dfcn/rulesets/zh-Hans/menu/workshop/reaction/menu.toml b/dfcn/rulesets/zh-Hans/menu/workshop/reaction/menu.toml
+--- a/dfcn/rulesets/zh-Hans/menu/workshop/reaction/menu.toml
++++ b/dfcn/rulesets/zh-Hans/menu/workshop/reaction/menu.toml
+@@ -48,7 +48,7 @@
+ "Brew a barrel of fig wine" = "酿造一桶无花果果酒"
+ "Brew a barrel of finger millet beer" = "酿造一桶爪粟啤酒"
+ "Brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+-"Brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
++"Brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
+ "Brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "Brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+ "Brew a barrel of gutter cruor" = "酿造一桶沟渠血酒"
+@@ -86,7 +86,7 @@
+ "Brew a barrel of pumpkin ale" = "酿造一桶南瓜色艾尔啤酒"
+ "Brew a barrel of quinoa beer" = "酿造一桶藜麦啤酒"
+ "Brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+-"Brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
++"Brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
+ "Brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "Brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+ "Brew a barrel of redcurrant wine" = "酿造一桶红醋栗果酒"
+@@ -161,7 +161,7 @@
+ "Brew five drinks of dwarven whiskey" = "酿造5份矮人威士忌"
+ "Brew five drinks of finger millet beer" = "酿造5份爪粟啤酒"
+ "Brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+-"Brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
++"Brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
+ "Brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "Brew five drinks of guava wine" = "酿造5份番石榴果酒"
+ "Brew five drinks of gutter cruor" = "酿造5份沟渠血酒"
+@@ -190,7 +190,7 @@
+ "Brew five drinks of prickle berry wine" = "酿造5份刺莓果酒"
+ "Brew five drinks of quinoa beer" = "酿造5份藜麦啤酒"
+ "Brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+-"Brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
++"Brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
+ "Brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "Brew five drinks of rice beer" = "酿造5份稻米啤酒"
+ "Brew five drinks of river spirits" = "酿造5份河川烈酒"
+@@ -269,7 +269,7 @@
+ "Brew one drink of dwarven whiskey" = "酿造1份矮人威士忌"
+ "Brew one drink of finger millet beer" = "酿造1份爪粟啤酒"
+ "Brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+-"Brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
++"Brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
+ "Brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "Brew one drink of guava wine" = "酿造1份番石榴果酒"
+ "Brew one drink of gutter cruor" = "酿造1份沟渠血酒"
+@@ -298,7 +298,7 @@
+ "Brew one drink of prickle berry wine" = "酿造1份刺莓果酒"
+ "Brew one drink of quinoa beer" = "酿造1份藜麦啤酒"
+ "Brew one drink of radish wine" = "酿造1份小萝卜果酒"
+-"Brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
++"Brew one drink of rambutan wine" = "酿造1份红毛果果酒"
+ "Brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "Brew one drink of rice beer" = "酿造1份稻米啤酒"
+ "Brew one drink of river spirits" = "酿造酒者饮料河精怪"
+@@ -429,11 +429,11 @@
+ "Collect elephant-head amaranth seeds (1-2)" = "收集象头苋种子（1-2）"
+ "Collect field mushroom spawn" = "收集领域蘑菇卵"
+ "Collect fig seed" = "收集无花果种子"
+-"Collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
++"Collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
+ "Collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "Collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+-"Collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"Collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
++"Collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"Collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
+ "Collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "Collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+ "Collect gold needle mushroom spawn" = "收集金针菇菌种"
+@@ -529,7 +529,7 @@
+ "Collect weld seed" = "收集黄木犀草种子"
+ "Collect whip vine seeds (1-2)" = "收集鞭藤种子（1-2）"
+ "Collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+-"Collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
++"Collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
+ "Collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "Collect whitecurrant seed" = "收集白醋栗种子"
+ "Collect wine cap mushroom spawn" = "收集葡萄酒帽子蘑菇卵"
+@@ -1139,7 +1139,7 @@
+ "Make wooden weapon rack (5)" = "制作木制兵器架 (5)"
+ "Make wooden wheelbarrow (5)" = "制作木制手推车 (5)"
+ "Mash abaca slurry" = "捣制马尼拉麻纸浆"
+-"Mash cattail slurry" = "捣制香蒲纸浆"
++"Mash cattail slurry" = "捣制猫尾草纸浆"
+ "Mash cotton slurry" = "捣制棉花浆"
+ "Mash hemp slurry" = "捣制大麻浆"
+ "Mash jute slurry" = "捣制黄麻纤维浆"
+@@ -1175,7 +1175,7 @@
+ "Mill five cashew paste" = "研磨5份腰果糊"
+ "Mill five cassava flour" = "研磨5份木薯粉"
+ "Mill five catnip powder" = "研磨5份猫薄荷粉"
+-"Mill five cattail starch" = "研磨5份香蒲淀粉"
++"Mill five cattail starch" = "研磨5份猫尾草淀粉"
+ "Mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "Mill five chestnut flour" = "研磨5份栗子粉"
+ "Mill five chickpea flour" = "研磨5份鹰嘴豆粉"
+@@ -1189,7 +1189,7 @@
+ "Mill five finger millet flour" = "研磨5份爪粟面粉"
+ "Mill five flax flour" = "研磨5份亚麻面粉"
+ "Mill five flax seed paste" = "研磨5份亚麻种子膏"
+-"Mill five fonio flour" = "研磨5份非尼奥面粉"
++"Mill five fonio flour" = "研磨5份非尼奥米面粉"
+ "Mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "Mill five garlic powder" = "研磨5份大蒜粉末"
+ "Mill five grape seed paste" = "研磨5份葡萄种子膏"
+@@ -1538,7 +1538,7 @@
+ "brew a barrel of fig wine" = "酿造一桶无花果果酒"
+ "brew a barrel of finger millet beer" = "酿造一桶爪粟啤酒"
+ "brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+-"brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
++"brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
+ "brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+ "brew a barrel of gutter cruor" = "酿造一桶沟渠血酒"
+@@ -1577,7 +1577,7 @@
+ "brew a barrel of pumpkin ale" = "酿造一桶南瓜色艾尔啤酒"
+ "brew a barrel of quinoa beer" = "酿造一桶藜麦啤酒"
+ "brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+-"brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
++"brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
+ "brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+ "brew a barrel of redcurrant wine" = "酿造一桶红醋栗果酒"
+@@ -1652,7 +1652,7 @@
+ "brew five drinks of dwarven whiskey" = "酿造5份矮人威士忌"
+ "brew five drinks of finger millet beer" = "酿造5份爪粟啤酒"
+ "brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+-"brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
++"brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
+ "brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "brew five drinks of guava wine" = "酿造5份番石榴果酒"
+ "brew five drinks of gutter cruor" = "酿造5份沟渠血酒"
+@@ -1682,7 +1682,7 @@
+ "brew five drinks of prickle berry wine" = "酿造5份刺莓果酒"
+ "brew five drinks of quinoa beer" = "酿造5份藜麦啤酒"
+ "brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+-"brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
++"brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
+ "brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "brew five drinks of rice beer" = "酿造5份稻米啤酒"
+ "brew five drinks of river spirits" = "酿造5份河川烈酒"
+@@ -1761,7 +1761,7 @@
+ "brew one drink of dwarven whiskey" = "酿造1份矮人威士忌"
+ "brew one drink of finger millet beer" = "酿造1份爪粟啤酒"
+ "brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+-"brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
++"brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
+ "brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "brew one drink of guava wine" = "酿造1份番石榴果酒"
+ "brew one drink of gutter cruor" = "酿造1份沟渠血酒"
+@@ -1791,7 +1791,7 @@
+ "brew one drink of prickle berry wine" = "酿造1份刺莓果酒"
+ "brew one drink of quinoa beer" = "酿造1份藜麦啤酒"
+ "brew one drink of radish wine" = "酿造1份小萝卜果酒"
+-"brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
++"brew one drink of rambutan wine" = "酿造1份红毛果果酒"
+ "brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "brew one drink of rice beer" = "酿造1份稻米啤酒"
+ "brew one drink of river spirits" = "酿造酒者饮料河精怪"
+@@ -1921,11 +1921,11 @@
+ "collect elephant-head amaranth seeds (1-2)" = "收集象头苋种子（1-2）"
+ "collect field mushroom spawn" = "收集领域蘑菇卵"
+ "collect fig seed" = "收集无花果种子"
+-"collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
++"collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
+ "collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+-"collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
++"collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
+ "collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+ "collect gold needle mushroom spawn" = "收集金针菇菌种"
+@@ -2023,7 +2023,7 @@
+ "collect weld seed" = "收集黄木犀草种子"
+ "collect whip vine seeds (1-2)" = "收集鞭藤种子（1-2）"
+ "collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+-"collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
++"collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
+ "collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "collect whitecurrant seed" = "收集白醋栗种子"
+ "collect wine cap mushroom spawn" = "收集葡萄酒帽子蘑菇卵"
+@@ -2633,7 +2633,7 @@
+ "make wooden weapon rack (5)" = "制作木制兵器架 (5)"
+ "make wooden wheelbarrow (5)" = "制作木制手推车 (5)"
+ "mash abaca slurry" = "捣制马尼拉麻纸浆"
+-"mash cattail slurry" = "捣制香蒲纸浆"
++"mash cattail slurry" = "捣制猫尾草纸浆"
+ "mash cotton slurry" = "捣制棉花浆"
+ "mash hemp slurry" = "捣制大麻浆"
+ "mash jute slurry" = "捣制黄麻纤维浆"
+@@ -2668,7 +2668,7 @@
+ "mill five cashew paste" = "研磨5份腰果糊"
+ "mill five cassava flour" = "研磨5份木薯粉"
+ "mill five catnip powder" = "研磨5份猫薄荷粉"
+-"mill five cattail starch" = "研磨5份香蒲淀粉"
++"mill five cattail starch" = "研磨5份猫尾草淀粉"
+ "mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "mill five chestnut flour" = "研磨5份栗子粉"
+ "mill five chickpea flour" = "研磨5份鹰嘴豆粉"
+@@ -2682,7 +2682,7 @@
+ "mill five finger millet flour" = "研磨5份爪粟面粉"
+ "mill five flax flour" = "研磨5份亚麻面粉"
+ "mill five flax seed paste" = "研磨5份亚麻种子膏"
+-"mill five fonio flour" = "研磨5份非尼奥面粉"
++"mill five fonio flour" = "研磨5份非尼奥米面粉"
+ "mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "mill five garlic powder" = "研磨5份大蒜粉末"
+ "mill five grape seed paste" = "研磨5份葡萄种子膏"
+@@ -3036,7 +3036,7 @@
+ "Brew a barrel of fig wine" = "酿造一桶无花果果酒"
+ "Brew a barrel of finger millet beer" = "酿造一桶爪粟啤酒"
+ "Brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+-"Brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
++"Brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
+ "Brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "Brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+ "Brew a barrel of gutter cruor" = "酿造一桶沟渠血酒"
+@@ -3074,7 +3074,7 @@
+ "Brew a barrel of pumpkin ale" = "酿造一桶南瓜色艾尔啤酒"
+ "Brew a barrel of quinoa beer" = "酿造一桶藜麦啤酒"
+ "Brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+-"Brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
++"Brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
+ "Brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "Brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+ "Brew a barrel of redcurrant wine" = "酿造一桶红醋栗果酒"
+@@ -3149,7 +3149,7 @@
+ "Brew five drinks of dwarven whiskey" = "酿造5份矮人威士忌"
+ "Brew five drinks of finger millet beer" = "酿造5份爪粟啤酒"
+ "Brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+-"Brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
++"Brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
+ "Brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "Brew five drinks of guava wine" = "酿造5份番石榴果酒"
+ "Brew five drinks of gutter cruor" = "酿造5份沟渠血酒"
+@@ -3178,7 +3178,7 @@
+ "Brew five drinks of prickle berry wine" = "酿造5份刺莓果酒"
+ "Brew five drinks of quinoa beer" = "酿造5份藜麦啤酒"
+ "Brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+-"Brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
++"Brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
+ "Brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "Brew five drinks of rice beer" = "酿造5份稻米啤酒"
+ "Brew five drinks of river spirits" = "酿造5份河川烈酒"
+@@ -3257,7 +3257,7 @@
+ "Brew one drink of dwarven whiskey" = "酿造1份矮人威士忌"
+ "Brew one drink of finger millet beer" = "酿造1份爪粟啤酒"
+ "Brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+-"Brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
++"Brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
+ "Brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "Brew one drink of guava wine" = "酿造1份番石榴果酒"
+ "Brew one drink of gutter cruor" = "酿造1份沟渠血酒"
+@@ -3286,7 +3286,7 @@
+ "Brew one drink of prickle berry wine" = "酿造1份刺莓果酒"
+ "Brew one drink of quinoa beer" = "酿造1份藜麦啤酒"
+ "Brew one drink of radish wine" = "酿造1份小萝卜果酒"
+-"Brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
++"Brew one drink of rambutan wine" = "酿造1份红毛果果酒"
+ "Brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "Brew one drink of rice beer" = "酿造1份稻米啤酒"
+ "Brew one drink of river spirits" = "酿造酒者饮料河精怪"
+@@ -3417,11 +3417,11 @@
+ "Collect elephant-head amaranth seeds (1-2)" = "收集象头苋种子（1-2）"
+ "Collect field mushroom spawn" = "收集领域蘑菇卵"
+ "Collect fig seed" = "收集无花果种子"
+-"Collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
++"Collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
+ "Collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "Collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+-"Collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"Collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
++"Collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"Collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
+ "Collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "Collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+ "Collect gold needle mushroom spawn" = "收集金针菇菌种"
+@@ -3517,7 +3517,7 @@
+ "Collect weld seed" = "收集黄木犀草种子"
+ "Collect whip vine seeds (1-2)" = "收集鞭藤种子（1-2）"
+ "Collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+-"Collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
++"Collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
+ "Collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "Collect whitecurrant seed" = "收集白醋栗种子"
+ "Collect wine cap mushroom spawn" = "收集葡萄酒帽子蘑菇卵"
+@@ -4127,7 +4127,7 @@
+ "Make wooden weapon rack (5)" = "制作木制兵器架 (5)"
+ "Make wooden wheelbarrow (5)" = "制作木制手推车 (5)"
+ "Mash abaca slurry" = "捣制马尼拉麻纸浆"
+-"Mash cattail slurry" = "捣制香蒲纸浆"
++"Mash cattail slurry" = "捣制猫尾草纸浆"
+ "Mash cotton slurry" = "捣制棉花浆"
+ "Mash hemp slurry" = "捣制大麻浆"
+ "Mash jute slurry" = "捣制黄麻纤维浆"
+@@ -4163,7 +4163,7 @@
+ "Mill five cashew paste" = "研磨5份腰果糊"
+ "Mill five cassava flour" = "研磨5份木薯粉"
+ "Mill five catnip powder" = "研磨5份猫薄荷粉"
+-"Mill five cattail starch" = "研磨5份香蒲淀粉"
++"Mill five cattail starch" = "研磨5份猫尾草淀粉"
+ "Mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "Mill five chestnut flour" = "研磨5份栗子粉"
+ "Mill five chickpea flour" = "研磨5份鹰嘴豆粉"
+@@ -4177,7 +4177,7 @@
+ "Mill five finger millet flour" = "研磨5份爪粟面粉"
+ "Mill five flax flour" = "研磨5份亚麻面粉"
+ "Mill five flax seed paste" = "研磨5份亚麻种子膏"
+-"Mill five fonio flour" = "研磨5份非尼奥面粉"
++"Mill five fonio flour" = "研磨5份非尼奥米面粉"
+ "Mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "Mill five garlic powder" = "研磨5份大蒜粉末"
+ "Mill five grape seed paste" = "研磨5份葡萄种子膏"
+@@ -4526,7 +4526,7 @@
+ "brew a barrel of fig wine" = "酿造一桶无花果果酒"
+ "brew a barrel of finger millet beer" = "酿造一桶爪粟啤酒"
+ "brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+-"brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
++"brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
+ "brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+ "brew a barrel of gutter cruor" = "酿造一桶沟渠血酒"
+@@ -4565,7 +4565,7 @@
+ "brew a barrel of pumpkin ale" = "酿造一桶南瓜色艾尔啤酒"
+ "brew a barrel of quinoa beer" = "酿造一桶藜麦啤酒"
+ "brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+-"brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
++"brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
+ "brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+ "brew a barrel of redcurrant wine" = "酿造一桶红醋栗果酒"
+@@ -4640,7 +4640,7 @@
+ "brew five drinks of dwarven whiskey" = "酿造5份矮人威士忌"
+ "brew five drinks of finger millet beer" = "酿造5份爪粟啤酒"
+ "brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+-"brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
++"brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
+ "brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "brew five drinks of guava wine" = "酿造5份番石榴果酒"
+ "brew five drinks of gutter cruor" = "酿造5份沟渠血酒"
+@@ -4670,7 +4670,7 @@
+ "brew five drinks of prickle berry wine" = "酿造5份刺莓果酒"
+ "brew five drinks of quinoa beer" = "酿造5份藜麦啤酒"
+ "brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+-"brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
++"brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
+ "brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "brew five drinks of rice beer" = "酿造5份稻米啤酒"
+ "brew five drinks of river spirits" = "酿造5份河川烈酒"
+@@ -4749,7 +4749,7 @@
+ "brew one drink of dwarven whiskey" = "酿造1份矮人威士忌"
+ "brew one drink of finger millet beer" = "酿造1份爪粟啤酒"
+ "brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+-"brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
++"brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
+ "brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "brew one drink of guava wine" = "酿造1份番石榴果酒"
+ "brew one drink of gutter cruor" = "酿造1份沟渠血酒"
+@@ -4779,7 +4779,7 @@
+ "brew one drink of prickle berry wine" = "酿造1份刺莓果酒"
+ "brew one drink of quinoa beer" = "酿造1份藜麦啤酒"
+ "brew one drink of radish wine" = "酿造1份小萝卜果酒"
+-"brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
++"brew one drink of rambutan wine" = "酿造1份红毛果果酒"
+ "brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "brew one drink of rice beer" = "酿造1份稻米啤酒"
+ "brew one drink of river spirits" = "酿造酒者饮料河精怪"
+@@ -4909,11 +4909,11 @@
+ "collect elephant-head amaranth seeds (1-2)" = "收集象头苋种子（1-2）"
+ "collect field mushroom spawn" = "收集领域蘑菇卵"
+ "collect fig seed" = "收集无花果种子"
+-"collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
++"collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
+ "collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+-"collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
++"collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
+ "collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+ "collect gold needle mushroom spawn" = "收集金针菇菌种"
+@@ -5011,7 +5011,7 @@
+ "collect weld seed" = "收集黄木犀草种子"
+ "collect whip vine seeds (1-2)" = "收集鞭藤种子（1-2）"
+ "collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+-"collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
++"collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
+ "collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "collect whitecurrant seed" = "收集白醋栗种子"
+ "collect wine cap mushroom spawn" = "收集葡萄酒帽子蘑菇卵"
+@@ -5621,7 +5621,7 @@
+ "make wooden weapon rack (5)" = "制作木制兵器架 (5)"
+ "make wooden wheelbarrow (5)" = "制作木制手推车 (5)"
+ "mash abaca slurry" = "捣制马尼拉麻纸浆"
+-"mash cattail slurry" = "捣制香蒲纸浆"
++"mash cattail slurry" = "捣制猫尾草纸浆"
+ "mash cotton slurry" = "捣制棉花浆"
+ "mash hemp slurry" = "捣制大麻浆"
+ "mash jute slurry" = "捣制黄麻纤维浆"
+@@ -5656,7 +5656,7 @@
+ "mill five cashew paste" = "研磨5份腰果糊"
+ "mill five cassava flour" = "研磨5份木薯粉"
+ "mill five catnip powder" = "研磨5份猫薄荷粉"
+-"mill five cattail starch" = "研磨5份香蒲淀粉"
++"mill five cattail starch" = "研磨5份猫尾草淀粉"
+ "mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "mill five chestnut flour" = "研磨5份栗子粉"
+ "mill five chickpea flour" = "研磨5份鹰嘴豆粉"
+@@ -5670,7 +5670,7 @@
+ "mill five finger millet flour" = "研磨5份爪粟面粉"
+ "mill five flax flour" = "研磨5份亚麻面粉"
+ "mill five flax seed paste" = "研磨5份亚麻种子膏"
+-"mill five fonio flour" = "研磨5份非尼奥面粉"
++"mill five fonio flour" = "研磨5份非尼奥米面粉"
+ "mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "mill five garlic powder" = "研磨5份大蒜粉末"
+ "mill five grape seed paste" = "研磨5份葡萄种子膏"
+diff --git a/dfcn/rulesets/zh-Hans/menu/workshop/reaction/name.toml b/dfcn/rulesets/zh-Hans/menu/workshop/reaction/name.toml
+--- a/dfcn/rulesets/zh-Hans/menu/workshop/reaction/name.toml
++++ b/dfcn/rulesets/zh-Hans/menu/workshop/reaction/name.toml
+@@ -48,7 +48,7 @@
+ "Brew a barrel of fig wine" = "酿造一桶无花果果酒"
+ "Brew a barrel of finger millet beer" = "酿造一桶爪粟啤酒"
+ "Brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+-"Brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
++"Brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
+ "Brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "Brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+ "Brew a barrel of gutter cruor" = "酿造一桶沟渠血酒"
+@@ -86,7 +86,7 @@
+ "Brew a barrel of pumpkin ale" = "酿造一桶南瓜色艾尔啤酒"
+ "Brew a barrel of quinoa beer" = "酿造一桶藜麦啤酒"
+ "Brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+-"Brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
++"Brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
+ "Brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "Brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+ "Brew a barrel of redcurrant wine" = "酿造一桶红醋栗果酒"
+@@ -161,7 +161,7 @@
+ "Brew five drinks of dwarven whiskey" = "酿造5份矮人威士忌"
+ "Brew five drinks of finger millet beer" = "酿造5份爪粟啤酒"
+ "Brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+-"Brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
++"Brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
+ "Brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "Brew five drinks of guava wine" = "酿造5份番石榴果酒"
+ "Brew five drinks of gutter cruor" = "酿造5份沟渠血酒"
+@@ -190,7 +190,7 @@
+ "Brew five drinks of prickle berry wine" = "酿造5份刺莓果酒"
+ "Brew five drinks of quinoa beer" = "酿造5份藜麦啤酒"
+ "Brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+-"Brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
++"Brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
+ "Brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "Brew five drinks of rice beer" = "酿造5份稻米啤酒"
+ "Brew five drinks of river spirits" = "酿造5份河川烈酒"
+@@ -269,7 +269,7 @@
+ "Brew one drink of dwarven whiskey" = "酿造1份矮人威士忌"
+ "Brew one drink of finger millet beer" = "酿造1份爪粟啤酒"
+ "Brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+-"Brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
++"Brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
+ "Brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "Brew one drink of guava wine" = "酿造1份番石榴果酒"
+ "Brew one drink of gutter cruor" = "酿造1份沟渠血酒"
+@@ -298,7 +298,7 @@
+ "Brew one drink of prickle berry wine" = "酿造1份刺莓果酒"
+ "Brew one drink of quinoa beer" = "酿造1份藜麦啤酒"
+ "Brew one drink of radish wine" = "酿造1份小萝卜果酒"
+-"Brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
++"Brew one drink of rambutan wine" = "酿造1份红毛果果酒"
+ "Brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "Brew one drink of rice beer" = "酿造1份稻米啤酒"
+ "Brew one drink of river spirits" = "酿造酒者饮料河精怪"
+@@ -429,11 +429,11 @@
+ "Collect elephant-head amaranth seeds (1-2)" = "收集象头苋种子（1-2）"
+ "Collect field mushroom spawn" = "收集领域蘑菇卵"
+ "Collect fig seed" = "收集无花果种子"
+-"Collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
++"Collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
+ "Collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "Collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+-"Collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"Collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
++"Collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"Collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
+ "Collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "Collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+ "Collect gold needle mushroom spawn" = "收集金针菇菌种"
+@@ -529,7 +529,7 @@
+ "Collect weld seed" = "收集黄木犀草种子"
+ "Collect whip vine seeds (1-2)" = "收集鞭藤种子（1-2）"
+ "Collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+-"Collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
++"Collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
+ "Collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "Collect whitecurrant seed" = "收集白醋栗种子"
+ "Collect wine cap mushroom spawn" = "收集葡萄酒帽子蘑菇卵"
+@@ -1139,7 +1139,7 @@
+ "Make wooden weapon rack (5)" = "制作木制兵器架 (5)"
+ "Make wooden wheelbarrow (5)" = "制作木制手推车 (5)"
+ "Mash abaca slurry" = "捣制马尼拉麻纸浆"
+-"Mash cattail slurry" = "捣制香蒲纸浆"
++"Mash cattail slurry" = "捣制猫尾草纸浆"
+ "Mash cotton slurry" = "捣制棉花浆"
+ "Mash hemp slurry" = "捣制大麻浆"
+ "Mash jute slurry" = "捣制黄麻纤维浆"
+@@ -1175,7 +1175,7 @@
+ "Mill five cashew paste" = "研磨5份腰果糊"
+ "Mill five cassava flour" = "研磨5份木薯粉"
+ "Mill five catnip powder" = "研磨5份猫薄荷粉"
+-"Mill five cattail starch" = "研磨5份香蒲淀粉"
++"Mill five cattail starch" = "研磨5份猫尾草淀粉"
+ "Mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "Mill five chestnut flour" = "研磨5份栗子粉"
+ "Mill five chickpea flour" = "研磨5份鹰嘴豆粉"
+@@ -1189,7 +1189,7 @@
+ "Mill five finger millet flour" = "研磨5份爪粟面粉"
+ "Mill five flax flour" = "研磨5份亚麻面粉"
+ "Mill five flax seed paste" = "研磨5份亚麻种子膏"
+-"Mill five fonio flour" = "研磨5份非尼奥面粉"
++"Mill five fonio flour" = "研磨5份非尼奥米面粉"
+ "Mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "Mill five garlic powder" = "研磨5份大蒜粉末"
+ "Mill five grape seed paste" = "研磨5份葡萄种子膏"
+@@ -1538,7 +1538,7 @@
+ "brew a barrel of fig wine" = "酿造一桶无花果果酒"
+ "brew a barrel of finger millet beer" = "酿造一桶爪粟啤酒"
+ "brew a barrel of fisher berry wine" = "酿造一桶渔夫浆果果酒"
+-"brew a barrel of fonio beer" = "酿造一桶非尼奥啤酒"
++"brew a barrel of fonio beer" = "酿造一桶非尼奥米啤酒"
+ "brew a barrel of foxtail millet beer" = "酿造一桶狐尾粟啤酒"
+ "brew a barrel of guava wine" = "酿造一桶番石榴果酒"
+ "brew a barrel of gutter cruor" = "酿造一桶沟渠血酒"
+@@ -1577,7 +1577,7 @@
+ "brew a barrel of pumpkin ale" = "酿造一桶南瓜色艾尔啤酒"
+ "brew a barrel of quinoa beer" = "酿造一桶藜麦啤酒"
+ "brew a barrel of radish wine" = "酿造一桶小萝卜果酒"
+-"brew a barrel of rambutan wine" = "酿造一桶红毛丹果酒"
++"brew a barrel of rambutan wine" = "酿造一桶红毛果果酒"
+ "brew a barrel of raspberry wine" = "酿造一桶树莓果酒"
+ "brew a barrel of redbud blossom tea" = "酿造一桶紫荆花茶"
+ "brew a barrel of redcurrant wine" = "酿造一桶红醋栗果酒"
+@@ -1652,7 +1652,7 @@
+ "brew five drinks of dwarven whiskey" = "酿造5份矮人威士忌"
+ "brew five drinks of finger millet beer" = "酿造5份爪粟啤酒"
+ "brew five drinks of fisher berry wine" = "酿造5份渔夫浆果果酒"
+-"brew five drinks of fonio beer" = "酿造5份非尼奥啤酒"
++"brew five drinks of fonio beer" = "酿造5份非尼奥米啤酒"
+ "brew five drinks of foxtail millet beer" = "酿造5份狐尾粟啤酒"
+ "brew five drinks of guava wine" = "酿造5份番石榴果酒"
+ "brew five drinks of gutter cruor" = "酿造5份沟渠血酒"
+@@ -1682,7 +1682,7 @@
+ "brew five drinks of prickle berry wine" = "酿造5份刺莓果酒"
+ "brew five drinks of quinoa beer" = "酿造5份藜麦啤酒"
+ "brew five drinks of radish wine" = "酿造5份小萝卜果酒"
+-"brew five drinks of rambutan wine" = "酿造5份红毛丹果酒"
++"brew five drinks of rambutan wine" = "酿造5份红毛果果酒"
+ "brew five drinks of raspberry wine" = "酿造5份树莓果酒"
+ "brew five drinks of rice beer" = "酿造5份稻米啤酒"
+ "brew five drinks of river spirits" = "酿造5份河川烈酒"
+@@ -1761,7 +1761,7 @@
+ "brew one drink of dwarven whiskey" = "酿造1份矮人威士忌"
+ "brew one drink of finger millet beer" = "酿造1份爪粟啤酒"
+ "brew one drink of fisher berry wine" = "酿造1份渔夫浆果果酒"
+-"brew one drink of fonio beer" = "酿造1份非尼奥啤酒"
++"brew one drink of fonio beer" = "酿造1份非尼奥米啤酒"
+ "brew one drink of foxtail millet beer" = "酿造1份狐尾粟啤酒"
+ "brew one drink of guava wine" = "酿造1份番石榴果酒"
+ "brew one drink of gutter cruor" = "酿造1份沟渠血酒"
+@@ -1791,7 +1791,7 @@
+ "brew one drink of prickle berry wine" = "酿造1份刺莓果酒"
+ "brew one drink of quinoa beer" = "酿造1份藜麦啤酒"
+ "brew one drink of radish wine" = "酿造1份小萝卜果酒"
+-"brew one drink of rambutan wine" = "酿造1份红毛丹果酒"
++"brew one drink of rambutan wine" = "酿造1份红毛果果酒"
+ "brew one drink of raspberry wine" = "酿造1份树莓果酒"
+ "brew one drink of rice beer" = "酿造1份稻米啤酒"
+ "brew one drink of river spirits" = "酿造酒者饮料河精怪"
+@@ -1921,11 +1921,11 @@
+ "collect elephant-head amaranth seeds (1-2)" = "收集象头苋种子（1-2）"
+ "collect field mushroom spawn" = "收集领域蘑菇卵"
+ "collect fig seed" = "收集无花果种子"
+-"collect finger millet grains (1-2)" = "收集龙爪稷籽粒（1-2）"
++"collect finger millet grains (1-2)" = "收集爪粟籽粒（1-2）"
+ "collect fisher berry seeds (1-2)" = "收集渔夫浆果种子（1-2）"
+ "collect flax seeds (1-2)" = "收集亚麻种子（1-2）"
+-"collect fonio grains (1-2)" = "收集福尼奥米籽粒（1-2）"
+-"collect foxtail millet grains (1-2)" = "收集粟米籽粒（1-2）"
++"collect fonio grains (1-2)" = "收集非尼奥米籽粒（1-2）"
++"collect foxtail millet grains (1-2)" = "收集狐尾粟籽粒（1-2）"
+ "collect garden cress seeds (1-2)" = "收集水芹种子（1-2）"
+ "collect garlic cloves (1-2)" = "收集大蒜劈开（1-2）"
+ "collect gold needle mushroom spawn" = "收集金针菇菌种"
+@@ -2023,7 +2023,7 @@
+ "collect weld seed" = "收集黄木犀草种子"
+ "collect whip vine seeds (1-2)" = "收集鞭藤种子（1-2）"
+ "collect white button mushroom spawn" = "收集白色钮扣蘑菇卵"
+-"collect white millet grains (1-2)" = "收集白黍籽粒（1-2）"
++"collect white millet grains (1-2)" = "收集白粟籽粒（1-2）"
+ "collect white yam minisetts (1-2)" = "收集白薯蓣种薯块（1-2）"
+ "collect whitecurrant seed" = "收集白醋栗种子"
+ "collect wine cap mushroom spawn" = "收集葡萄酒帽子蘑菇卵"
+@@ -2633,7 +2633,7 @@
+ "make wooden weapon rack (5)" = "制作木制兵器架 (5)"
+ "make wooden wheelbarrow (5)" = "制作木制手推车 (5)"
+ "mash abaca slurry" = "捣制马尼拉麻纸浆"
+-"mash cattail slurry" = "捣制香蒲纸浆"
++"mash cattail slurry" = "捣制猫尾草纸浆"
+ "mash cotton slurry" = "捣制棉花浆"
+ "mash hemp slurry" = "捣制大麻浆"
+ "mash jute slurry" = "捣制黄麻纤维浆"
+@@ -2668,7 +2668,7 @@
+ "mill five cashew paste" = "研磨5份腰果糊"
+ "mill five cassava flour" = "研磨5份木薯粉"
+ "mill five catnip powder" = "研磨5份猫薄荷粉"
+-"mill five cattail starch" = "研磨5份香蒲淀粉"
++"mill five cattail starch" = "研磨5份猫尾草淀粉"
+ "mill five celery seed powder" = "研磨5份芹菜种子粉末"
+ "mill five chestnut flour" = "研磨5份栗子粉"
+ "mill five chickpea flour" = "研磨5份鹰嘴豆粉"
+@@ -2682,7 +2682,7 @@
+ "mill five finger millet flour" = "研磨5份爪粟面粉"
+ "mill five flax flour" = "研磨5份亚麻面粉"
+ "mill five flax seed paste" = "研磨5份亚麻种子膏"
+-"mill five fonio flour" = "研磨5份非尼奥面粉"
++"mill five fonio flour" = "研磨5份非尼奥米面粉"
+ "mill five foxtail millet flour" = "研磨5份狐尾粟面粉"
+ "mill five garlic powder" = "研磨5份大蒜粉末"
+ "mill five grape seed paste" = "研磨5份葡萄种子膏"
+diff --git a/dfcn/rulesets/zh-Hans/plants/growth.toml b/dfcn/rulesets/zh-Hans/plants/growth.toml
+--- a/dfcn/rulesets/zh-Hans/plants/growth.toml
++++ b/dfcn/rulesets/zh-Hans/plants/growth.toml
+@@ -9,12 +9,12 @@
+ "abaca flowers" = "蕉麻花"
+ "abaca leaf" = "蕉麻叶"
+ "abaca leaves" = "蕉麻叶"
+-"acacia flower" = "黑荆花"
+-"acacia flowers" = "黑荆花"
+-"acacia leaf" = "黑荆叶"
+-"acacia leaves" = "黑荆叶"
+-"acacia pod" = "黑荆荚"
+-"acacia pods" = "黑荆荚"
++"acacia flower" = "刺槐花"
++"acacia flowers" = "刺槐花"
++"acacia leaf" = "刺槐叶"
++"acacia leaves" = "刺槐叶"
++"acacia pod" = "刺槐荚"
++"acacia pods" = "刺槐荚"
+ "acorn" = "橡子"
+ "acorns" = "橡子"
+ "agave leaf" = "龙舌兰叶"
+@@ -242,12 +242,12 @@
+ "carambola leaf" = "杨桃叶"
+ "carambola leaves" = "杨桃叶"
+ "carambolas" = "杨桃"
+-"carrot leaf" = "胡罗卜叶"
+-"carrot leaves" = "胡罗卜叶"
++"carrot leaf" = "胡萝卜叶"
++"carrot leaves" = "胡萝卜叶"
+ "carrot seedhead" = "胡萝卜种穗"
+ "carrot seedheads" = "胡萝卜种穗"
+-"carrot umbel" = "胡罗卜伞形花序"
+-"carrot umbels" = "胡罗卜伞形花序"
++"carrot umbel" = "胡萝卜伞形花序"
++"carrot umbels" = "胡萝卜伞形花序"
+ "cashew" = "腰果"
+ "cashew apple" = "腰果梨"
+ "cashew apples" = "腰果梨"
+@@ -270,8 +270,8 @@
+ "cattail flowers" = "猫尾草花"
+ "cattail leaf" = "猫尾草叶"
+ "cattail leaves" = "猫尾草叶"
+-"cattail seedhead" = "香蒲种穗"
+-"cattail seedheads" = "香蒲种穗"
++"cattail seedhead" = "猫尾草种穗"
++"cattail seedheads" = "猫尾草种穗"
+ "cedar pollen cone" = "雪松花粉球果"
+ "cedar pollen cones" = "雪松花粉球果"
+ "cedar scale-leaf" = "雪松鳞叶"
+@@ -459,12 +459,12 @@
+ "fonio leaves" = "非尼奥米叶"
+ "foxtail millet leaf" = "狐尾粟叶"
+ "foxtail millet leaves" = "狐尾粟叶"
+-"garden cress leaf" = "家独行菜叶"
+-"garden cress leaves" = "家独行菜叶"
+-"garden cress raceme" = "家独行菜总状花序"
+-"garden cress racemes" = "家独行菜总状花序"
+-"garden cress seed pod" = "家独行菜种荚"
+-"garden cress seed pods" = "家独行菜种荚"
++"garden cress leaf" = "水芹叶"
++"garden cress leaves" = "水芹叶"
++"garden cress raceme" = "水芹总状花序"
++"garden cress racemes" = "水芹总状花序"
++"garden cress seed pod" = "水芹种荚"
++"garden cress seed pods" = "水芹种荚"
+ "garlic flower" = "大蒜花"
+ "garlic flowers" = "大蒜花"
+ "garlic leaf" = "大蒜叶"
+@@ -1211,12 +1211,12 @@
+ "wild caper leaf" = "野生刺山柑叶"
+ "wild caper leaves" = "野生刺山柑叶"
+ "wild capers" = "野生刺山柑"
+-"wild carrot leaf" = "野生胡罗卜叶"
+-"wild carrot leaves" = "野生胡罗卜叶"
++"wild carrot leaf" = "野生胡萝卜叶"
++"wild carrot leaves" = "野生胡萝卜叶"
+ "wild carrot seedhead" = "野生胡萝卜种穗"
+ "wild carrot seedheads" = "野生胡萝卜种穗"
+-"wild carrot umbel" = "野生胡罗卜伞形花序"
+-"wild carrot umbels" = "野生胡罗卜伞形花序"
++"wild carrot umbel" = "野生胡萝卜伞形花序"
++"wild carrot umbels" = "野生胡萝卜伞形花序"
+ "wild cassava flower" = "野生木薯花"
+ "wild cassava flowers" = "野生木薯花"
+ "wild cassava leaf" = "野生木薯叶"
+@@ -1293,12 +1293,12 @@
+ "wild fonio leaves" = "野生非尼奥米叶"
+ "wild foxtail millet leaf" = "野生狐尾粟叶"
+ "wild foxtail millet leaves" = "野生狐尾粟叶"
+-"wild garden cress leaf" = "野生家独行菜叶"
+-"wild garden cress leaves" = "野生家独行菜叶"
+-"wild garden cress raceme" = "野生家独行菜总状花序"
+-"wild garden cress racemes" = "野生家独行菜总状花序"
+-"wild garden cress seed pod" = "野生家独行菜种荚"
+-"wild garden cress seed pods" = "野生家独行菜种荚"
++"wild garden cress leaf" = "野生水芹叶"
++"wild garden cress leaves" = "野生水芹叶"
++"wild garden cress raceme" = "野生水芹总状花序"
++"wild garden cress racemes" = "野生水芹总状花序"
++"wild garden cress seed pod" = "野生水芹种荚"
++"wild garden cress seed pods" = "野生水芹种荚"
+ "wild garlic flower" = "野生大蒜花"
+ "wild garlic flowers" = "野生大蒜花"
+ "wild garlic leaf" = "野生大蒜叶"
+@@ -1624,12 +1624,12 @@
+ "abaca flowers" = "蕉麻花"
+ "abaca leaf" = "蕉麻叶"
+ "abaca leaves" = "蕉麻叶"
+-"acacia flower" = "黑荆花"
+-"acacia flowers" = "黑荆花"
+-"acacia leaf" = "黑荆叶"
+-"acacia leaves" = "黑荆叶"
+-"acacia pod" = "黑荆荚"
+-"acacia pods" = "黑荆荚"
++"acacia flower" = "刺槐花"
++"acacia flowers" = "刺槐花"
++"acacia leaf" = "刺槐叶"
++"acacia leaves" = "刺槐叶"
++"acacia pod" = "刺槐荚"
++"acacia pods" = "刺槐荚"
+ "acorn" = "橡子"
+ "acorns" = "橡子"
+ "agave leaf" = "龙舌兰叶"
+@@ -1857,12 +1857,12 @@
+ "carambola leaf" = "杨桃叶"
+ "carambola leaves" = "杨桃叶"
+ "carambolas" = "杨桃"
+-"carrot leaf" = "胡罗卜叶"
+-"carrot leaves" = "胡罗卜叶"
++"carrot leaf" = "胡萝卜叶"
++"carrot leaves" = "胡萝卜叶"
+ "carrot seedhead" = "胡萝卜种穗"
+ "carrot seedheads" = "胡萝卜种穗"
+-"carrot umbel" = "胡罗卜伞形花序"
+-"carrot umbels" = "胡罗卜伞形花序"
++"carrot umbel" = "胡萝卜伞形花序"
++"carrot umbels" = "胡萝卜伞形花序"
+ "cashew" = "腰果"
+ "cashew apple" = "腰果梨"
+ "cashew apples" = "腰果梨"
+@@ -1885,8 +1885,8 @@
+ "cattail flowers" = "猫尾草花"
+ "cattail leaf" = "猫尾草叶"
+ "cattail leaves" = "猫尾草叶"
+-"cattail seedhead" = "香蒲种穗"
+-"cattail seedheads" = "香蒲种穗"
++"cattail seedhead" = "猫尾草种穗"
++"cattail seedheads" = "猫尾草种穗"
+ "cedar pollen cone" = "雪松花粉球果"
+ "cedar pollen cones" = "雪松花粉球果"
+ "cedar scale-leaf" = "雪松鳞叶"
+@@ -2074,12 +2074,12 @@
+ "fonio leaves" = "非尼奥米叶"
+ "foxtail millet leaf" = "狐尾粟叶"
+ "foxtail millet leaves" = "狐尾粟叶"
+-"garden cress leaf" = "家独行菜叶"
+-"garden cress leaves" = "家独行菜叶"
+-"garden cress raceme" = "家独行菜总状花序"
+-"garden cress racemes" = "家独行菜总状花序"
+-"garden cress seed pod" = "家独行菜种荚"
+-"garden cress seed pods" = "家独行菜种荚"
++"garden cress leaf" = "水芹叶"
++"garden cress leaves" = "水芹叶"
++"garden cress raceme" = "水芹总状花序"
++"garden cress racemes" = "水芹总状花序"
++"garden cress seed pod" = "水芹种荚"
++"garden cress seed pods" = "水芹种荚"
+ "garlic flower" = "大蒜花"
+ "garlic flowers" = "大蒜花"
+ "garlic leaf" = "大蒜叶"
+@@ -2826,12 +2826,12 @@
+ "wild caper leaf" = "野生刺山柑叶"
+ "wild caper leaves" = "野生刺山柑叶"
+ "wild capers" = "野生刺山柑"
+-"wild carrot leaf" = "野生胡罗卜叶"
+-"wild carrot leaves" = "野生胡罗卜叶"
++"wild carrot leaf" = "野生胡萝卜叶"
++"wild carrot leaves" = "野生胡萝卜叶"
+ "wild carrot seedhead" = "野生胡萝卜种穗"
+ "wild carrot seedheads" = "野生胡萝卜种穗"
+-"wild carrot umbel" = "野生胡罗卜伞形花序"
+-"wild carrot umbels" = "野生胡罗卜伞形花序"
++"wild carrot umbel" = "野生胡萝卜伞形花序"
++"wild carrot umbels" = "野生胡萝卜伞形花序"
+ "wild cassava flower" = "野生木薯花"
+ "wild cassava flowers" = "野生木薯花"
+ "wild cassava leaf" = "野生木薯叶"
+@@ -2908,12 +2908,12 @@
+ "wild fonio leaves" = "野生非尼奥米叶"
+ "wild foxtail millet leaf" = "野生狐尾粟叶"
+ "wild foxtail millet leaves" = "野生狐尾粟叶"
+-"wild garden cress leaf" = "野生家独行菜叶"
+-"wild garden cress leaves" = "野生家独行菜叶"
+-"wild garden cress raceme" = "野生家独行菜总状花序"
+-"wild garden cress racemes" = "野生家独行菜总状花序"
+-"wild garden cress seed pod" = "野生家独行菜种荚"
+-"wild garden cress seed pods" = "野生家独行菜种荚"
++"wild garden cress leaf" = "野生水芹叶"
++"wild garden cress leaves" = "野生水芹叶"
++"wild garden cress raceme" = "野生水芹总状花序"
++"wild garden cress racemes" = "野生水芹总状花序"
++"wild garden cress seed pod" = "野生水芹种荚"
++"wild garden cress seed pods" = "野生水芹种荚"
+ "wild garlic flower" = "野生大蒜花"
+ "wild garlic flowers" = "野生大蒜花"
+ "wild garlic leaf" = "野生大蒜叶"
+diff --git a/dfcn/rulesets/zh-Hans/plants/name.toml b/dfcn/rulesets/zh-Hans/plants/name.toml
+--- a/dfcn/rulesets/zh-Hans/plants/name.toml
++++ b/dfcn/rulesets/zh-Hans/plants/name.toml
+@@ -10,12 +10,12 @@
+ "abaca leaves" = "蕉麻叶"
+ "abaca tree" = "蕉麻树"
+ "abaca trees" = "蕉麻树"
+-"acacia" = "黑荆"
+-"acacia flower" = "黑荆花"
+-"acacia leaf" = "黑荆叶"
+-"acacia leaves" = "黑荆叶"
+-"acacia pod" = "黑荆荚"
+-"acacias" = "黑荆"
++"acacia" = "刺槐"
++"acacia flower" = "刺槐花"
++"acacia leaf" = "刺槐叶"
++"acacia leaves" = "刺槐叶"
++"acacia pod" = "刺槐荚"
++"acacias" = "刺槐"
+ "acorn" = "橡子"
+ "agave core" = "龙舌兰芯"
+ "agave cores" = "龙舌兰芯"
+@@ -264,10 +264,10 @@
+ "carambola tree" = "杨桃树"
+ "carambola trees" = "杨桃树"
+ "carrot" = "胡萝卜"
+-"carrot leaf" = "胡罗卜叶"
+-"carrot leaves" = "胡罗卜叶"
++"carrot leaf" = "胡萝卜叶"
++"carrot leaves" = "胡萝卜叶"
+ "carrot seedhead" = "胡萝卜种穗"
+-"carrot umbel" = "胡罗卜伞形花序"
++"carrot umbel" = "胡萝卜伞形花序"
+ "carrots" = "胡萝卜"
+ "cashew" = "腰果"
+ "cashew apple" = "腰果梨"
+@@ -290,9 +290,9 @@
+ "cattail flower" = "猫尾草花"
+ "cattail leaf" = "猫尾草叶"
+ "cattail leaves" = "猫尾草叶"
+-"cattail rhizome" = "香蒲根茎"
+-"cattail rhizomes" = "香蒲根茎"
+-"cattail seedhead" = "香蒲种穗"
++"cattail rhizome" = "猫尾草根茎"
++"cattail rhizomes" = "猫尾草根茎"
++"cattail seedhead" = "猫尾草种穗"
+ "cave wheat" = "洞穴小麦"
+ "cedar" = "雪松"
+ "cedar pollen cone" = "雪松花粉球果"
+@@ -480,7 +480,7 @@
+ "finger lime leaves" = "指橘叶"
+ "finger lime tree" = "指橘树"
+ "finger lime trees" = "指橘树"
+-"finger millet" = "龙爪稷"
++"finger millet" = "爪粟"
+ "finger millet leaf" = "爪粟叶"
+ "finger millet leaves" = "爪粟叶"
+ "fisher berries" = "渔夫浆果"
+@@ -500,22 +500,22 @@
+ "floor fungus" = "地真菌"
+ "fly agaric" = "毒蝇伞"
+ "fly agarics" = "毒蝇伞"
+-"fonio" = "福尼奥米"
++"fonio" = "非尼奥米"
+ "fonio leaf" = "非尼奥米叶"
+ "fonio leaves" = "非尼奥米叶"
+ "foul bolete" = "臭牛肝菌"
+ "foul boletes" = "臭牛肝菌"
+-"foxtail millet" = "粟米"
++"foxtail millet" = "狐尾粟"
+ "foxtail millet leaf" = "狐尾粟叶"
+ "foxtail millet leaves" = "狐尾粟叶"
+ "fungiwood" = "真菌木"
+ "fungiwoods" = "真菌木"
+-"garden cress leaf" = "家独行菜叶"
+-"garden cress leaves" = "家独行菜叶"
+-"garden cress plant" = "家独行菜植物"
+-"garden cress plants" = "家独行菜植物"
+-"garden cress raceme" = "家独行菜总状花序"
+-"garden cress seed pod" = "家独行菜种荚"
++"garden cress leaf" = "水芹叶"
++"garden cress leaves" = "水芹叶"
++"garden cress plant" = "水芹植物"
++"garden cress plants" = "水芹植物"
++"garden cress raceme" = "水芹总状花序"
++"garden cress seed pod" = "水芹种荚"
+ "garlic" = "大蒜"
+ "garlic flower" = "大蒜花"
+ "garlic leaf" = "大蒜叶"
+@@ -1313,7 +1313,7 @@
+ "whip vines" = "鞭藤"
+ "white button mushroom" = "白色钮扣蘑菇"
+ "white button mushrooms" = "白色钮扣蘑菇形物"
+-"white millet" = "白黍"
++"white millet" = "白粟"
+ "white millet leaf" = "白粟叶"
+ "white millet leaves" = "白粟叶"
+ "white yam" = "白薯蓣"
+@@ -1439,10 +1439,10 @@
+ "wild caper leaf" = "野生刺山柑叶"
+ "wild caper leaves" = "野生刺山柑叶"
+ "wild carrot" = "野生胡萝卜"
+-"wild carrot leaf" = "野生胡罗卜叶"
+-"wild carrot leaves" = "野生胡罗卜叶"
++"wild carrot leaf" = "野生胡萝卜叶"
++"wild carrot leaves" = "野生胡萝卜叶"
+ "wild carrot seedhead" = "野生胡萝卜种穗"
+-"wild carrot umbel" = "野生胡罗卜伞形花序"
++"wild carrot umbel" = "野生胡萝卜伞形花序"
+ "wild carrots" = "野生胡萝卜"
+ "wild cassava" = "野生木薯"
+ "wild cassava flower" = "野生木薯花"
+@@ -1540,12 +1540,12 @@
+ "wild foxtail millet" = "野生狐尾粟"
+ "wild foxtail millet leaf" = "野生狐尾粟叶"
+ "wild foxtail millet leaves" = "野生狐尾粟叶"
+-"wild garden cress leaf" = "野生家独行菜叶"
+-"wild garden cress leaves" = "野生家独行菜叶"
+-"wild garden cress plant" = "野生家独行菜植物"
+-"wild garden cress plants" = "野生家独行菜植物"
+-"wild garden cress raceme" = "野生家独行菜总状花序"
+-"wild garden cress seed pod" = "野生家独行菜种荚"
++"wild garden cress leaf" = "野生水芹叶"
++"wild garden cress leaves" = "野生水芹叶"
++"wild garden cress plant" = "野生水芹植物"
++"wild garden cress plants" = "野生水芹植物"
++"wild garden cress raceme" = "野生水芹总状花序"
++"wild garden cress seed pod" = "野生水芹种荚"
+ "wild garlic" = "野生大蒜"
+ "wild garlic flower" = "野生大蒜花"
+ "wild garlic leaf" = "野生大蒜叶"
+@@ -1967,12 +1967,12 @@
+ "abaca leaves" = "蕉麻叶"
+ "abaca tree" = "蕉麻树"
+ "abaca trees" = "蕉麻树"
+-"acacia" = "黑荆"
+-"acacia flower" = "黑荆花"
+-"acacia leaf" = "黑荆叶"
+-"acacia leaves" = "黑荆叶"
+-"acacia pod" = "黑荆荚"
+-"acacias" = "黑荆"
++"acacia" = "刺槐"
++"acacia flower" = "刺槐花"
++"acacia leaf" = "刺槐叶"
++"acacia leaves" = "刺槐叶"
++"acacia pod" = "刺槐荚"
++"acacias" = "刺槐"
+ "acorn" = "橡子"
+ "agave core" = "龙舌兰芯"
+ "agave cores" = "龙舌兰芯"
+@@ -2221,10 +2221,10 @@
+ "carambola tree" = "杨桃树"
+ "carambola trees" = "杨桃树"
+ "carrot" = "胡萝卜"
+-"carrot leaf" = "胡罗卜叶"
+-"carrot leaves" = "胡罗卜叶"
++"carrot leaf" = "胡萝卜叶"
++"carrot leaves" = "胡萝卜叶"
+ "carrot seedhead" = "胡萝卜种穗"
+-"carrot umbel" = "胡罗卜伞形花序"
++"carrot umbel" = "胡萝卜伞形花序"
+ "carrots" = "胡萝卜"
+ "cashew" = "腰果"
+ "cashew apple" = "腰果梨"
+@@ -2247,9 +2247,9 @@
+ "cattail flower" = "猫尾草花"
+ "cattail leaf" = "猫尾草叶"
+ "cattail leaves" = "猫尾草叶"
+-"cattail rhizome" = "香蒲根茎"
+-"cattail rhizomes" = "香蒲根茎"
+-"cattail seedhead" = "香蒲种穗"
++"cattail rhizome" = "猫尾草根茎"
++"cattail rhizomes" = "猫尾草根茎"
++"cattail seedhead" = "猫尾草种穗"
+ "cave wheat" = "洞穴小麦"
+ "cedar" = "雪松"
+ "cedar pollen cone" = "雪松花粉球果"
+@@ -2437,7 +2437,7 @@
+ "finger lime leaves" = "指橘叶"
+ "finger lime tree" = "指橘树"
+ "finger lime trees" = "指橘树"
+-"finger millet" = "龙爪稷"
++"finger millet" = "爪粟"
+ "finger millet leaf" = "爪粟叶"
+ "finger millet leaves" = "爪粟叶"
+ "fisher berries" = "渔夫浆果"
+@@ -2457,22 +2457,22 @@
+ "floor fungus" = "地真菌"
+ "fly agaric" = "毒蝇伞"
+ "fly agarics" = "毒蝇伞"
+-"fonio" = "福尼奥米"
++"fonio" = "非尼奥米"
+ "fonio leaf" = "非尼奥米叶"
+ "fonio leaves" = "非尼奥米叶"
+ "foul bolete" = "臭牛肝菌"
+ "foul boletes" = "臭牛肝菌"
+-"foxtail millet" = "粟米"
++"foxtail millet" = "狐尾粟"
+ "foxtail millet leaf" = "狐尾粟叶"
+ "foxtail millet leaves" = "狐尾粟叶"
+ "fungiwood" = "真菌木"
+ "fungiwoods" = "真菌木"
+-"garden cress leaf" = "家独行菜叶"
+-"garden cress leaves" = "家独行菜叶"
+-"garden cress plant" = "家独行菜植物"
+-"garden cress plants" = "家独行菜植物"
+-"garden cress raceme" = "家独行菜总状花序"
+-"garden cress seed pod" = "家独行菜种荚"
++"garden cress leaf" = "水芹叶"
++"garden cress leaves" = "水芹叶"
++"garden cress plant" = "水芹植物"
++"garden cress plants" = "水芹植物"
++"garden cress raceme" = "水芹总状花序"
++"garden cress seed pod" = "水芹种荚"
+ "garlic" = "大蒜"
+ "garlic flower" = "大蒜花"
+ "garlic leaf" = "大蒜叶"
+@@ -3270,7 +3270,7 @@
+ "whip vines" = "鞭藤"
+ "white button mushroom" = "白色钮扣蘑菇"
+ "white button mushrooms" = "白色钮扣蘑菇形物"
+-"white millet" = "白黍"
++"white millet" = "白粟"
+ "white millet leaf" = "白粟叶"
+ "white millet leaves" = "白粟叶"
+ "white yam" = "白薯蓣"
+@@ -3396,10 +3396,10 @@
+ "wild caper leaf" = "野生刺山柑叶"
+ "wild caper leaves" = "野生刺山柑叶"
+ "wild carrot" = "野生胡萝卜"
+-"wild carrot leaf" = "野生胡罗卜叶"
+-"wild carrot leaves" = "野生胡罗卜叶"
++"wild carrot leaf" = "野生胡萝卜叶"
++"wild carrot leaves" = "野生胡萝卜叶"
+ "wild carrot seedhead" = "野生胡萝卜种穗"
+-"wild carrot umbel" = "野生胡罗卜伞形花序"
++"wild carrot umbel" = "野生胡萝卜伞形花序"
+ "wild carrots" = "野生胡萝卜"
+ "wild cassava" = "野生木薯"
+ "wild cassava flower" = "野生木薯花"
+@@ -3497,12 +3497,12 @@
+ "wild foxtail millet" = "野生狐尾粟"
+ "wild foxtail millet leaf" = "野生狐尾粟叶"
+ "wild foxtail millet leaves" = "野生狐尾粟叶"
+-"wild garden cress leaf" = "野生家独行菜叶"
+-"wild garden cress leaves" = "野生家独行菜叶"
+-"wild garden cress plant" = "野生家独行菜植物"
+-"wild garden cress plants" = "野生家独行菜植物"
+-"wild garden cress raceme" = "野生家独行菜总状花序"
+-"wild garden cress seed pod" = "野生家独行菜种荚"
++"wild garden cress leaf" = "野生水芹叶"
++"wild garden cress leaves" = "野生水芹叶"
++"wild garden cress plant" = "野生水芹植物"
++"wild garden cress plants" = "野生水芹植物"
++"wild garden cress raceme" = "野生水芹总状花序"
++"wild garden cress seed pod" = "野生水芹种荚"
+ "wild garlic" = "野生大蒜"
+ "wild garlic flower" = "野生大蒜花"
+ "wild garlic leaf" = "野生大蒜叶"
+@@ -3927,14 +3927,14 @@
+ "abaca leaves" = "蕉麻叶"
+ "abaca tree" = "蕉麻树"
+ "abaca trees" = "蕉麻树"
+-"acacia" = "黑荆"
+-"acacia flower" = "黑荆花"
+-"acacia flowers" = "黑荆花"
+-"acacia leaf" = "黑荆叶"
+-"acacia leaves" = "黑荆叶"
+-"acacia pod" = "黑荆荚"
+-"acacia pods" = "黑荆荚"
+-"acacias" = "黑荆"
++"acacia" = "刺槐"
++"acacia flower" = "刺槐花"
++"acacia flowers" = "刺槐花"
++"acacia leaf" = "刺槐叶"
++"acacia leaves" = "刺槐叶"
++"acacia pod" = "刺槐荚"
++"acacia pods" = "刺槐荚"
++"acacias" = "刺槐"
+ "acorn" = "橡子"
+ "acorns" = "橡子"
+ "agave core" = "龙舌兰芯"
+@@ -4252,12 +4252,12 @@
+ "carambola trees" = "杨桃树"
+ "carambolas" = "杨桃"
+ "carrot" = "胡萝卜"
+-"carrot leaf" = "胡罗卜叶"
+-"carrot leaves" = "胡罗卜叶"
++"carrot leaf" = "胡萝卜叶"
++"carrot leaves" = "胡萝卜叶"
+ "carrot seedhead" = "胡萝卜种穗"
+ "carrot seedheads" = "胡萝卜种穗"
+-"carrot umbel" = "胡罗卜伞形花序"
+-"carrot umbels" = "胡罗卜伞形花序"
++"carrot umbel" = "胡萝卜伞形花序"
++"carrot umbels" = "胡萝卜伞形花序"
+ "carrots" = "胡萝卜"
+ "cashew" = "腰果"
+ "cashew apple" = "腰果梨"
+@@ -4286,10 +4286,10 @@
+ "cattail flowers" = "猫尾草花"
+ "cattail leaf" = "猫尾草叶"
+ "cattail leaves" = "猫尾草叶"
+-"cattail rhizome" = "香蒲根茎"
+-"cattail rhizomes" = "香蒲根茎"
+-"cattail seedhead" = "香蒲种穗"
+-"cattail seedheads" = "香蒲种穗"
++"cattail rhizome" = "猫尾草根茎"
++"cattail rhizomes" = "猫尾草根茎"
++"cattail seedhead" = "猫尾草种穗"
++"cattail seedheads" = "猫尾草种穗"
+ "cave wheat" = "洞穴小麦"
+ "cedar" = "雪松"
+ "cedar pollen cone" = "雪松花粉球果"
+@@ -4531,7 +4531,7 @@
+ "finger lime tree" = "指橘树"
+ "finger lime trees" = "指橘树"
+ "finger limes" = "指橘"
+-"finger millet" = "龙爪稷"
++"finger millet" = "爪粟"
+ "finger millet leaf" = "爪粟叶"
+ "finger millet leaves" = "爪粟叶"
+ "fisher berries" = "渔夫浆果"
+@@ -4554,24 +4554,24 @@
+ "floor fungus" = "地真菌"
+ "fly agaric" = "毒蝇伞"
+ "fly agarics" = "毒蝇伞"
+-"fonio" = "福尼奥米"
++"fonio" = "非尼奥米"
+ "fonio leaf" = "非尼奥米叶"
+ "fonio leaves" = "非尼奥米叶"
+ "foul bolete" = "臭牛肝菌"
+ "foul boletes" = "臭牛肝菌"
+-"foxtail millet" = "粟米"
++"foxtail millet" = "狐尾粟"
+ "foxtail millet leaf" = "狐尾粟叶"
+ "foxtail millet leaves" = "狐尾粟叶"
+ "fungiwood" = "真菌木"
+ "fungiwoods" = "真菌木"
+-"garden cress leaf" = "家独行菜叶"
+-"garden cress leaves" = "家独行菜叶"
+-"garden cress plant" = "家独行菜植物"
+-"garden cress plants" = "家独行菜植物"
+-"garden cress raceme" = "家独行菜总状花序"
+-"garden cress racemes" = "家独行菜总状花序"
+-"garden cress seed pod" = "家独行菜种荚"
+-"garden cress seed pods" = "家独行菜种荚"
++"garden cress leaf" = "水芹叶"
++"garden cress leaves" = "水芹叶"
++"garden cress plant" = "水芹植物"
++"garden cress plants" = "水芹植物"
++"garden cress raceme" = "水芹总状花序"
++"garden cress racemes" = "水芹总状花序"
++"garden cress seed pod" = "水芹种荚"
++"garden cress seed pods" = "水芹种荚"
+ "garlic" = "大蒜"
+ "garlic flower" = "大蒜花"
+ "garlic flowers" = "大蒜花"
+@@ -5558,7 +5558,7 @@
+ "whip vines" = "鞭藤"
+ "white button mushroom" = "白色钮扣蘑菇"
+ "white button mushrooms" = "白色钮扣蘑菇形物"
+-"white millet" = "白黍"
++"white millet" = "白粟"
+ "white millet leaf" = "白粟叶"
+ "white millet leaves" = "白粟叶"
+ "white yam" = "白薯蓣"
+@@ -5714,12 +5714,12 @@
+ "wild caper leaves" = "野生刺山柑叶"
+ "wild capers" = "野生刺山柑"
+ "wild carrot" = "野生胡萝卜"
+-"wild carrot leaf" = "野生胡罗卜叶"
+-"wild carrot leaves" = "野生胡罗卜叶"
++"wild carrot leaf" = "野生胡萝卜叶"
++"wild carrot leaves" = "野生胡萝卜叶"
+ "wild carrot seedhead" = "野生胡萝卜种穗"
+ "wild carrot seedheads" = "野生胡萝卜种穗"
+-"wild carrot umbel" = "野生胡罗卜伞形花序"
+-"wild carrot umbels" = "野生胡罗卜伞形花序"
++"wild carrot umbel" = "野生胡萝卜伞形花序"
++"wild carrot umbels" = "野生胡萝卜伞形花序"
+ "wild carrots" = "野生胡萝卜"
+ "wild cassava" = "野生木薯"
+ "wild cassava flower" = "野生木薯花"
+@@ -5839,14 +5839,14 @@
+ "wild foxtail millet" = "野生狐尾粟"
+ "wild foxtail millet leaf" = "野生狐尾粟叶"
+ "wild foxtail millet leaves" = "野生狐尾粟叶"
+-"wild garden cress leaf" = "野生家独行菜叶"
+-"wild garden cress leaves" = "野生家独行菜叶"
+-"wild garden cress plant" = "野生家独行菜植物"
+-"wild garden cress plants" = "野生家独行菜植物"
+-"wild garden cress raceme" = "野生家独行菜总状花序"
+-"wild garden cress racemes" = "野生家独行菜总状花序"
+-"wild garden cress seed pod" = "野生家独行菜种荚"
+-"wild garden cress seed pods" = "野生家独行菜种荚"
++"wild garden cress leaf" = "野生水芹叶"
++"wild garden cress leaves" = "野生水芹叶"
++"wild garden cress plant" = "野生水芹植物"
++"wild garden cress plants" = "野生水芹植物"
++"wild garden cress raceme" = "野生水芹总状花序"
++"wild garden cress racemes" = "野生水芹总状花序"
++"wild garden cress seed pod" = "野生水芹种荚"
++"wild garden cress seed pods" = "野生水芹种荚"
+ "wild garlic" = "野生大蒜"
+ "wild garlic flower" = "野生大蒜花"
+ "wild garlic flowers" = "野生大蒜花"
+@@ -6357,14 +6357,14 @@
+ "abaca leaves" = "蕉麻叶"
+ "abaca tree" = "蕉麻树"
+ "abaca trees" = "蕉麻树"
+-"acacia" = "黑荆"
+-"acacia flower" = "黑荆花"
+-"acacia flowers" = "黑荆花"
+-"acacia leaf" = "黑荆叶"
+-"acacia leaves" = "黑荆叶"
+-"acacia pod" = "黑荆荚"
+-"acacia pods" = "黑荆荚"
+-"acacias" = "黑荆"
++"acacia" = "刺槐"
++"acacia flower" = "刺槐花"
++"acacia flowers" = "刺槐花"
++"acacia leaf" = "刺槐叶"
++"acacia leaves" = "刺槐叶"
++"acacia pod" = "刺槐荚"
++"acacia pods" = "刺槐荚"
++"acacias" = "刺槐"
+ "acorn" = "橡子"
+ "acorns" = "橡子"
+ "agave core" = "龙舌兰芯"
+@@ -6682,12 +6682,12 @@
+ "carambola trees" = "杨桃树"
+ "carambolas" = "杨桃"
+ "carrot" = "胡萝卜"
+-"carrot leaf" = "胡罗卜叶"
+-"carrot leaves" = "胡罗卜叶"
++"carrot leaf" = "胡萝卜叶"
++"carrot leaves" = "胡萝卜叶"
+ "carrot seedhead" = "胡萝卜种穗"
+ "carrot seedheads" = "胡萝卜种穗"
+-"carrot umbel" = "胡罗卜伞形花序"
+-"carrot umbels" = "胡罗卜伞形花序"
++"carrot umbel" = "胡萝卜伞形花序"
++"carrot umbels" = "胡萝卜伞形花序"
+ "carrots" = "胡萝卜"
+ "cashew" = "腰果"
+ "cashew apple" = "腰果梨"
+@@ -6716,10 +6716,10 @@
+ "cattail flowers" = "猫尾草花"
+ "cattail leaf" = "猫尾草叶"
+ "cattail leaves" = "猫尾草叶"
+-"cattail rhizome" = "香蒲根茎"
+-"cattail rhizomes" = "香蒲根茎"
+-"cattail seedhead" = "香蒲种穗"
+-"cattail seedheads" = "香蒲种穗"
++"cattail rhizome" = "猫尾草根茎"
++"cattail rhizomes" = "猫尾草根茎"
++"cattail seedhead" = "猫尾草种穗"
++"cattail seedheads" = "猫尾草种穗"
+ "cave wheat" = "洞穴小麦"
+ "cedar" = "雪松"
+ "cedar pollen cone" = "雪松花粉球果"
+@@ -6961,7 +6961,7 @@
+ "finger lime tree" = "指橘树"
+ "finger lime trees" = "指橘树"
+ "finger limes" = "指橘"
+-"finger millet" = "龙爪稷"
++"finger millet" = "爪粟"
+ "finger millet leaf" = "爪粟叶"
+ "finger millet leaves" = "爪粟叶"
+ "fisher berries" = "渔夫浆果"
+@@ -6984,24 +6984,24 @@
+ "floor fungus" = "地真菌"
+ "fly agaric" = "毒蝇伞"
+ "fly agarics" = "毒蝇伞"
+-"fonio" = "福尼奥米"
++"fonio" = "非尼奥米"
+ "fonio leaf" = "非尼奥米叶"
+ "fonio leaves" = "非尼奥米叶"
+ "foul bolete" = "臭牛肝菌"
+ "foul boletes" = "臭牛肝菌"
+-"foxtail millet" = "粟米"
++"foxtail millet" = "狐尾粟"
+ "foxtail millet leaf" = "狐尾粟叶"
+ "foxtail millet leaves" = "狐尾粟叶"
+ "fungiwood" = "真菌木"
+ "fungiwoods" = "真菌木"
+-"garden cress leaf" = "家独行菜叶"
+-"garden cress leaves" = "家独行菜叶"
+-"garden cress plant" = "家独行菜植物"
+-"garden cress plants" = "家独行菜植物"
+-"garden cress raceme" = "家独行菜总状花序"
+-"garden cress racemes" = "家独行菜总状花序"
+-"garden cress seed pod" = "家独行菜种荚"
+-"garden cress seed pods" = "家独行菜种荚"
++"garden cress leaf" = "水芹叶"
++"garden cress leaves" = "水芹叶"
++"garden cress plant" = "水芹植物"
++"garden cress plants" = "水芹植物"
++"garden cress raceme" = "水芹总状花序"
++"garden cress racemes" = "水芹总状花序"
++"garden cress seed pod" = "水芹种荚"
++"garden cress seed pods" = "水芹种荚"
+ "garlic" = "大蒜"
+ "garlic flower" = "大蒜花"
+ "garlic flowers" = "大蒜花"
+@@ -7988,7 +7988,7 @@
+ "whip vines" = "鞭藤"
+ "white button mushroom" = "白色钮扣蘑菇"
+ "white button mushrooms" = "白色钮扣蘑菇形物"
+-"white millet" = "白黍"
++"white millet" = "白粟"
+ "white millet leaf" = "白粟叶"
+ "white millet leaves" = "白粟叶"
+ "white yam" = "白薯蓣"
+@@ -8144,12 +8144,12 @@
+ "wild caper leaves" = "野生刺山柑叶"
+ "wild capers" = "野生刺山柑"
+ "wild carrot" = "野生胡萝卜"
+-"wild carrot leaf" = "野生胡罗卜叶"
+-"wild carrot leaves" = "野生胡罗卜叶"
++"wild carrot leaf" = "野生胡萝卜叶"
++"wild carrot leaves" = "野生胡萝卜叶"
+ "wild carrot seedhead" = "野生胡萝卜种穗"
+ "wild carrot seedheads" = "野生胡萝卜种穗"
+-"wild carrot umbel" = "野生胡罗卜伞形花序"
+-"wild carrot umbels" = "野生胡罗卜伞形花序"
++"wild carrot umbel" = "野生胡萝卜伞形花序"
++"wild carrot umbels" = "野生胡萝卜伞形花序"
+ "wild carrots" = "野生胡萝卜"
+ "wild cassava" = "野生木薯"
+ "wild cassava flower" = "野生木薯花"
+@@ -8269,14 +8269,14 @@
+ "wild foxtail millet" = "野生狐尾粟"
+ "wild foxtail millet leaf" = "野生狐尾粟叶"
+ "wild foxtail millet leaves" = "野生狐尾粟叶"
+-"wild garden cress leaf" = "野生家独行菜叶"
+-"wild garden cress leaves" = "野生家独行菜叶"
+-"wild garden cress plant" = "野生家独行菜植物"
+-"wild garden cress plants" = "野生家独行菜植物"
+-"wild garden cress raceme" = "野生家独行菜总状花序"
+-"wild garden cress racemes" = "野生家独行菜总状花序"
+-"wild garden cress seed pod" = "野生家独行菜种荚"
+-"wild garden cress seed pods" = "野生家独行菜种荚"
++"wild garden cress leaf" = "野生水芹叶"
++"wild garden cress leaves" = "野生水芹叶"
++"wild garden cress plant" = "野生水芹植物"
++"wild garden cress plants" = "野生水芹植物"
++"wild garden cress raceme" = "野生水芹总状花序"
++"wild garden cress racemes" = "野生水芹总状花序"
++"wild garden cress seed pod" = "野生水芹种荚"
++"wild garden cress seed pods" = "野生水芹种荚"
+ "wild garlic" = "野生大蒜"
+ "wild garlic flower" = "野生大蒜花"
+ "wild garlic flowers" = "野生大蒜花"
+diff --git a/dfcn/rulesets/zh-Hans/plants/seed.toml b/dfcn/rulesets/zh-Hans/plants/seed.toml
+--- a/dfcn/rulesets/zh-Hans/plants/seed.toml
++++ b/dfcn/rulesets/zh-Hans/plants/seed.toml
+@@ -87,15 +87,15 @@
+ "field mushroom spawn" = "领域蘑菇卵"
+ "fig seed" = "无花果种子"
+ "fig seeds" = "无花果种子"
+-"finger millet" = "龙爪稷"
++"finger millet" = "爪粟"
+ "fisher berry seed" = "渔夫浆果种子"
+ "fisher berry seeds" = "渔夫浆果种子"
+ "flax seed" = "亚麻种子"
+ "flax seeds" = "亚麻种子"
+-"fonio" = "福尼奥米"
+-"foxtail millet" = "粟米"
+-"garden cress seed" = "家独行菜种子"
+-"garden cress seeds" = "家独行菜种子"
++"fonio" = "非尼奥米"
++"foxtail millet" = "狐尾粟"
++"garden cress seed" = "水芹种子"
++"garden cress seeds" = "水芹种子"
+ "garlic clove" = "大蒜劈开"
+ "garlic cloves" = "大蒜劈开"
+ "gold needle mushroom spawn" = "金针菇菌种"
+@@ -273,7 +273,7 @@
+ "whip vine seed" = "鞭藤种子"
+ "whip vine seeds" = "鞭藤种子"
+ "white button mushroom spawn" = "白色钮扣蘑菇卵"
+-"white millet" = "白黍"
++"white millet" = "白粟"
+ "white yam minisett" = "白薯蓣种薯块"
+ "white yam minisetts" = "白薯蓣种薯块"
+ "whitecurrant seed" = "白醋栗种子"
+@@ -372,15 +372,15 @@
+ "field mushroom spawn" = "领域蘑菇卵"
+ "fig seed" = "无花果种子"
+ "fig seeds" = "无花果种子"
+-"finger millet" = "龙爪稷"
++"finger millet" = "爪粟"
+ "fisher berry seed" = "渔夫浆果种子"
+ "fisher berry seeds" = "渔夫浆果种子"
+ "flax seed" = "亚麻种子"
+ "flax seeds" = "亚麻种子"
+-"fonio" = "福尼奥米"
+-"foxtail millet" = "粟米"
+-"garden cress seed" = "家独行菜种子"
+-"garden cress seeds" = "家独行菜种子"
++"fonio" = "非尼奥米"
++"foxtail millet" = "狐尾粟"
++"garden cress seed" = "水芹种子"
++"garden cress seeds" = "水芹种子"
+ "garlic clove" = "大蒜劈开"
+ "garlic cloves" = "大蒜劈开"
+ "gold needle mushroom spawn" = "金针菇菌种"
+@@ -558,7 +558,7 @@
+ "whip vine seed" = "鞭藤种子"
+ "whip vine seeds" = "鞭藤种子"
+ "white button mushroom spawn" = "白色钮扣蘑菇卵"
+-"white millet" = "白黍"
++"white millet" = "白粟"
+ "white yam minisett" = "白薯蓣种薯块"
+ "white yam minisetts" = "白薯蓣种薯块"
+ "whitecurrant seed" = "白醋栗种子"
+diff --git a/dfcn/translations.tsv b/dfcn/translations.tsv
+--- a/dfcn/translations.tsv
++++ b/dfcn/translations.tsv
+@@ -1086,8 +1086,8 @@
+ Brew a barrel of finger millet beer (opens menu)	酿造一桶爪粟啤酒（打开菜单）	l
+ Brew a barrel of fisher berry wine	酿造一桶渔夫浆果果酒	l
+ Brew a barrel of fisher berry wine (opens menu)	酿造一桶渔夫浆果果酒（打开菜单）	l
+-Brew a barrel of fonio beer	酿造一桶非尼奥啤酒	l
+-Brew a barrel of fonio beer (opens menu)	酿造一桶非尼奥啤酒（打开菜单）	l
++Brew a barrel of fonio beer	酿造一桶非尼奥米啤酒	l
++Brew a barrel of fonio beer (opens menu)	酿造一桶非尼奥米啤酒（打开菜单）	l
+ Brew a barrel of foxtail millet beer	酿造一桶狐尾粟啤酒	l
+ Brew a barrel of foxtail millet beer (opens menu)	酿造一桶狐尾粟啤酒（打开菜单）	l
+ Brew a barrel of guava wine	酿造一桶番石榴果酒	l
+@@ -1162,8 +1162,8 @@
+ Brew a barrel of quinoa beer (opens menu)	酿造一桶藜麦啤酒（打开菜单）	l
+ Brew a barrel of radish wine	酿造一桶小萝卜果酒	l
+ Brew a barrel of radish wine (opens menu)	酿造一桶小萝卜果酒（打开菜单）	l
+-Brew a barrel of rambutan wine	酿造一桶红毛丹果酒	l
+-Brew a barrel of rambutan wine (opens menu)	酿造一桶红毛丹果酒（打开菜单）	l
++Brew a barrel of rambutan wine	酿造一桶红毛果果酒	l
++Brew a barrel of rambutan wine (opens menu)	酿造一桶红毛果果酒（打开菜单）	l
+ Brew a barrel of raspberry wine	酿造一桶树莓果酒	l
+ Brew a barrel of raspberry wine (opens menu)	酿造一桶树莓果酒（打开菜单）	l
+ Brew a barrel of redbud blossom tea	酿造一桶紫荆花茶	l
+@@ -1314,8 +1314,8 @@
+ Brew five drinks of finger millet beer (opens menu)	酿造5份爪粟啤酒（打开菜单）	l
+ Brew five drinks of fisher berry wine	酿造5份渔夫浆果果酒	l
+ Brew five drinks of fisher berry wine (opens menu)	酿造5份渔夫浆果果酒（打开菜单）	l
+-Brew five drinks of fonio beer	酿造5份非尼奥啤酒	l
+-Brew five drinks of fonio beer (opens menu)	酿造5份非尼奥啤酒（打开菜单）	l
++Brew five drinks of fonio beer	酿造5份非尼奥米啤酒	l
++Brew five drinks of fonio beer (opens menu)	酿造5份非尼奥米啤酒（打开菜单）	l
+ Brew five drinks of foxtail millet beer	酿造5份狐尾粟啤酒	l
+ Brew five drinks of foxtail millet beer (opens menu)	酿造5份狐尾粟啤酒（打开菜单）	l
+ Brew five drinks of guava wine	酿造5份番石榴果酒	l
+@@ -1372,8 +1372,8 @@
+ Brew five drinks of quinoa beer (opens menu)	酿造5份藜麦啤酒（打开菜单）	l
+ Brew five drinks of radish wine	酿造5份小萝卜果酒	l
+ Brew five drinks of radish wine (opens menu)	酿造5份小萝卜果酒（打开菜单）	l
+-Brew five drinks of rambutan wine	酿造5份红毛丹果酒	l
+-Brew five drinks of rambutan wine (opens menu)	酿造5份红毛丹果酒（打开菜单）	l
++Brew five drinks of rambutan wine	酿造5份红毛果果酒	l
++Brew five drinks of rambutan wine (opens menu)	酿造5份红毛果果酒（打开菜单）	l
+ Brew five drinks of raspberry wine	酿造5份树莓果酒	l
+ Brew five drinks of raspberry wine (opens menu)	酿造5份树莓果酒（打开菜单）	l
+ Brew five drinks of rice beer	酿造5份稻米啤酒	l
+@@ -1530,8 +1530,8 @@
+ Brew one drink of finger millet beer (opens menu)	酿造1份爪粟啤酒（打开菜单）	l
+ Brew one drink of fisher berry wine	酿造1份渔夫浆果果酒	l
+ Brew one drink of fisher berry wine (opens menu)	酿造1份渔夫浆果果酒（打开菜单）	l
+-Brew one drink of fonio beer	酿造1份非尼奥啤酒	l
+-Brew one drink of fonio beer (opens menu)	酿造1份非尼奥啤酒（打开菜单）	l
++Brew one drink of fonio beer	酿造1份非尼奥米啤酒	l
++Brew one drink of fonio beer (opens menu)	酿造1份非尼奥米啤酒（打开菜单）	l
+ Brew one drink of foxtail millet beer	酿造1份狐尾粟啤酒	l
+ Brew one drink of foxtail millet beer (opens menu)	酿造1份狐尾粟啤酒（打开菜单）	l
+ Brew one drink of guava wine	酿造1份番石榴果酒	l
+@@ -1588,8 +1588,8 @@
+ Brew one drink of quinoa beer (opens menu)	酿造1份藜麦啤酒（打开菜单）	l
+ Brew one drink of radish wine	酿造1份小萝卜果酒	l
+ Brew one drink of radish wine (opens menu)	酿造1份小萝卜果酒（打开菜单）	l
+-Brew one drink of rambutan wine	酿造1份红毛丹果酒	l
+-Brew one drink of rambutan wine (opens menu)	酿造1份红毛丹果酒（打开菜单）	l
++Brew one drink of rambutan wine	酿造1份红毛果果酒	l
++Brew one drink of rambutan wine (opens menu)	酿造1份红毛果果酒（打开菜单）	l
+ Brew one drink of raspberry wine	酿造1份树莓果酒	l
+ Brew one drink of raspberry wine (opens menu)	酿造1份树莓果酒（打开菜单）	l
+ Brew one drink of rice beer	酿造1份稻米啤酒	l
+@@ -1858,16 +1858,16 @@
+ Collect field mushroom spawn (opens menu)	收集领域蘑菇卵（打开菜单）	l
+ Collect fig seed	收集无花果种子	l
+ Collect fig seed (opens menu)	收集无花果种子（打开菜单）	l
+-Collect finger millet grains (1-2)	收集龙爪稷籽粒（1-2）	l
+-Collect finger millet grains (1-2) (opens menu)	收集龙爪稷籽粒（1-2）（打开菜单）	l
++Collect finger millet grains (1-2)	收集爪粟籽粒（1-2）	l
++Collect finger millet grains (1-2) (opens menu)	收集爪粟籽粒（1-2）（打开菜单）	l
+ Collect fisher berry seeds (1-2)	收集渔夫浆果种子（1-2）	l
+ Collect fisher berry seeds (1-2) (opens menu)	收集渔夫浆果种子（1-2）（打开菜单）	l
+ Collect flax seeds (1-2)	收集亚麻种子（1-2）	l
+ Collect flax seeds (1-2) (opens menu)	收集亚麻种子（1-2）（打开菜单）	l
+-Collect fonio grains (1-2)	收集福尼奥米籽粒（1-2）	l
+-Collect fonio grains (1-2) (opens menu)	收集福尼奥米籽粒（1-2）（打开菜单）	l
+-Collect foxtail millet grains (1-2)	收集粟米籽粒（1-2）	l
+-Collect foxtail millet grains (1-2) (opens menu)	收集粟米籽粒（1-2）（打开菜单）	l
++Collect fonio grains (1-2)	收集非尼奥米籽粒（1-2）	l
++Collect fonio grains (1-2) (opens menu)	收集非尼奥米籽粒（1-2）（打开菜单）	l
++Collect foxtail millet grains (1-2)	收集狐尾粟籽粒（1-2）	l
++Collect foxtail millet grains (1-2) (opens menu)	收集狐尾粟籽粒（1-2）（打开菜单）	l
+ Collect garden cress seeds (1-2)	收集水芹种子（1-2）	l
+ Collect garden cress seeds (1-2) (opens menu)	收集水芹种子（1-2）（打开菜单）	l
+ Collect garlic cloves (1-2)	收集大蒜劈开（1-2）	l
+@@ -2060,8 +2060,8 @@
+ Collect whip vine seeds (1-2) (opens menu)	收集鞭藤种子（1-2）（打开菜单）	l
+ Collect white button mushroom spawn	收集白色钮扣蘑菇卵	l
+ Collect white button mushroom spawn (opens menu)	收集白色钮扣蘑菇卵（打开菜单）	l
+-Collect white millet grains (1-2)	收集白黍籽粒（1-2）	l
+-Collect white millet grains (1-2) (opens menu)	收集白黍籽粒（1-2）（打开菜单）	l
++Collect white millet grains (1-2)	收集白粟籽粒（1-2）	l
++Collect white millet grains (1-2) (opens menu)	收集白粟籽粒（1-2）（打开菜单）	l
+ Collect white yam minisetts (1-2)	收集白薯蓣种薯块（1-2）	l
+ Collect white yam minisetts (1-2) (opens menu)	收集白薯蓣种薯块（1-2）（打开菜单）	l
+ Collect whitecurrant seed	收集白醋栗种子	l
+@@ -2911,14 +2911,14 @@
+ Item description term: abaca slurry	马尼拉麻纸浆	l
+ Item description term: abaca tree	蕉麻树	l
+ Item description term: abaca trees	蕉麻树	l
+-Item description term: acacia	黑荆	l
+-Item description term: acacia flour	黑荆粉	l
+-Item description term: acacia flower	黑荆花	l
+-Item description term: acacia leaf	黑荆叶	l
+-Item description term: acacia leaves	黑荆叶	l
+-Item description term: acacia pod	黑荆荚	l
+-Item description term: acacia wood dye	黑荆木染料	l
+-Item description term: acacias	黑荆	l
++Item description term: acacia	刺槐	l
++Item description term: acacia flour	刺槐粉	l
++Item description term: acacia flower	刺槐花	l
++Item description term: acacia leaf	刺槐叶	l
++Item description term: acacia leaves	刺槐叶	l
++Item description term: acacia pod	刺槐荚	l
++Item description term: acacia wood dye	刺槐木染料	l
++Item description term: acacias	刺槐	l
+ Item description term: acorn	橡子	l
+ Item description term: acorn flour	橡实粉	l
+ Item description term: adamantine	精金	l
+@@ -3393,7 +3393,7 @@
+ Item description term: boiling finger millet beer	沸腾爪粟啤酒	l
+ Item description term: boiling finger millet milk	煮沸爪粟奶	l
+ Item description term: boiling fisher berry wine	沸腾渔夫浆果果酒	l
+-Item description term: boiling fonio beer	沸腾非尼奥啤酒	l
++Item description term: boiling fonio beer	沸腾非尼奥米啤酒	l
+ Item description term: boiling fonio milk	煮沸非尼奥米奶	l
+ Item description term: boiling foxtail millet beer	沸腾狐尾粟啤酒	l
+ Item description term: boiling foxtail millet milk	煮沸狐尾粟奶	l
+@@ -3497,7 +3497,7 @@
+ Item description term: boiling quinoa beer	沸腾藜麦啤酒	l
+ Item description term: boiling quinoa milk	煮沸藜麦奶	l
+ Item description term: boiling radish wine	沸腾小萝卜果酒	l
+-Item description term: boiling rambutan wine	沸腾红毛丹果酒	l
++Item description term: boiling rambutan wine	沸腾红毛果果酒	l
+ Item description term: boiling raspberry wine	沸腾树莓果酒	l
+ Item description term: boiling raw adamantine	沸腾原始精金	l
+ Item description term: boiling red wine	煮沸红色葡萄酒	l
+@@ -3636,7 +3636,7 @@
+ Item description term: brew a barrel of fig wine	酿造一桶无花果果酒	l
+ Item description term: brew a barrel of finger millet beer	酿造一桶爪粟啤酒	l
+ Item description term: brew a barrel of fisher berry wine	酿造一桶渔夫浆果果酒	l
+-Item description term: brew a barrel of fonio beer	酿造一桶非尼奥啤酒	l
++Item description term: brew a barrel of fonio beer	酿造一桶非尼奥米啤酒	l
+ Item description term: brew a barrel of foxtail millet beer	酿造一桶狐尾粟啤酒	l
+ Item description term: brew a barrel of guava wine	酿造一桶番石榴果酒	l
+ Item description term: brew a barrel of gutter cruor	酿造一桶沟渠血酒	l
+@@ -3675,7 +3675,7 @@
+ Item description term: brew a barrel of pumpkin ale	酿造一桶南瓜色艾尔啤酒	l
+ Item description term: brew a barrel of quinoa beer	酿造一桶藜麦啤酒	l
+ Item description term: brew a barrel of radish wine	酿造一桶小萝卜果酒	l
+-Item description term: brew a barrel of rambutan wine	酿造一桶红毛丹果酒	l
++Item description term: brew a barrel of rambutan wine	酿造一桶红毛果果酒	l
+ Item description term: brew a barrel of raspberry wine	酿造一桶树莓果酒	l
+ Item description term: brew a barrel of redbud blossom tea	酿造一桶紫荆花茶	l
+ Item description term: brew a barrel of redcurrant wine	酿造一桶红醋栗果酒	l
+@@ -3751,7 +3751,7 @@
+ Item description term: brew five drinks of dwarven whiskey	酿造5份矮人威士忌	l
+ Item description term: brew five drinks of finger millet beer	酿造5份爪粟啤酒	l
+ Item description term: brew five drinks of fisher berry wine	酿造5份渔夫浆果果酒	l
+-Item description term: brew five drinks of fonio beer	酿造5份非尼奥啤酒	l
++Item description term: brew five drinks of fonio beer	酿造5份非尼奥米啤酒	l
+ Item description term: brew five drinks of foxtail millet beer	酿造5份狐尾粟啤酒	l
+ Item description term: brew five drinks of guava wine	酿造5份番石榴果酒	l
+ Item description term: brew five drinks of gutter cruor	酿造5份沟渠血酒	l
+@@ -3781,7 +3781,7 @@
+ Item description term: brew five drinks of prickle berry wine	酿造5份刺莓果酒	l
+ Item description term: brew five drinks of quinoa beer	酿造5份藜麦啤酒	l
+ Item description term: brew five drinks of radish wine	酿造5份小萝卜果酒	l
+-Item description term: brew five drinks of rambutan wine	酿造5份红毛丹果酒	l
++Item description term: brew five drinks of rambutan wine	酿造5份红毛果果酒	l
+ Item description term: brew five drinks of raspberry wine	酿造5份树莓果酒	l
+ Item description term: brew five drinks of rice beer	酿造5份稻米啤酒	l
+ Item description term: brew five drinks of river spirits	酿造5份河川烈酒	l
+@@ -3859,7 +3859,7 @@
+ Item description term: brew one drink of dwarven whiskey	酿造1份矮人威士忌	l
+ Item description term: brew one drink of finger millet beer	酿造1份爪粟啤酒	l
+ Item description term: brew one drink of fisher berry wine	酿造1份渔夫浆果果酒	l
+-Item description term: brew one drink of fonio beer	酿造1份非尼奥啤酒	l
++Item description term: brew one drink of fonio beer	酿造1份非尼奥米啤酒	l
+ Item description term: brew one drink of foxtail millet beer	酿造1份狐尾粟啤酒	l
+ Item description term: brew one drink of guava wine	酿造1份番石榴果酒	l
+ Item description term: brew one drink of gutter cruor	酿造1份沟渠血酒	l
+@@ -3889,7 +3889,7 @@
+ Item description term: brew one drink of prickle berry wine	酿造1份刺莓果酒	l
+ Item description term: brew one drink of quinoa beer	酿造1份藜麦啤酒	l
+ Item description term: brew one drink of radish wine	酿造1份小萝卜果酒	l
+-Item description term: brew one drink of rambutan wine	酿造1份红毛丹果酒	l
++Item description term: brew one drink of rambutan wine	酿造1份红毛果果酒	l
+ Item description term: brew one drink of raspberry wine	酿造1份树莓果酒	l
+ Item description term: brew one drink of rice beer	酿造1份稻米啤酒	l
+ Item description term: brew one drink of river spirits	酿造酒者饮料河精怪	l
+@@ -4042,12 +4042,12 @@
+ Item description term: carpentry	木工	l
+ Item description term: carrot	胡萝卜	l
+ Item description term: carrot dye	胡萝卜染料	l
+-Item description term: carrot leaf	胡罗卜叶	l
+-Item description term: carrot leaves	胡罗卜叶	l
++Item description term: carrot leaf	胡萝卜叶	l
++Item description term: carrot leaves	胡萝卜叶	l
+ Item description term: carrot seed	胡萝卜种子	l
+ Item description term: carrot seedhead	胡萝卜种穗	l
+ Item description term: carrot seeds	胡萝卜种子	l
+-Item description term: carrot umbel	胡罗卜伞形花序	l
++Item description term: carrot umbel	胡萝卜伞形花序	l
+ Item description term: carrot wine	胡萝卜果酒	l
+ Item description term: carrots	胡萝卜	l
+ Item description term: cartilage	软骨	l
+@@ -4121,19 +4121,19 @@
+ Item description term: catnip seedhead	猫薄荷种穗	l
+ Item description term: catnip seeds	猫薄荷种子	l
+ Item description term: catnip tea	猫薄荷茶	l
+-Item description term: cattail	香蒲	l
++Item description term: cattail	猫尾草	l
+ Item description term: cattail ale	猫尾草艾尔啤酒	l
+ Item description term: cattail flower	猫尾草花	l
+ Item description term: cattail leaf	猫尾草叶	l
+ Item description term: cattail leaves	猫尾草叶	l
+ Item description term: cattail paper	猫尾草纸	l
+-Item description term: cattail rhizome	香蒲根茎	l
+-Item description term: cattail rhizomes	香蒲根茎	l
++Item description term: cattail rhizome	猫尾草根茎	l
++Item description term: cattail rhizomes	猫尾草根茎	l
+ Item description term: cattail seed	猫尾草种子	l
+-Item description term: cattail seedhead	香蒲种穗	l
++Item description term: cattail seedhead	猫尾草种穗	l
+ Item description term: cattail seeds	猫尾草种子	l
+-Item description term: cattail slurry	香蒲纸浆	l
+-Item description term: cattail starch	香蒲淀粉	l
++Item description term: cattail slurry	猫尾草纸浆	l
++Item description term: cattail starch	猫尾草淀粉	l
+ Item description term: cauldron	大锅	l
+ Item description term: cauldrons	大锅	l
+ Item description term: cave dweller worldgen resources	洞穴居民世界生成资源	l
+@@ -4318,11 +4318,11 @@
+ Item description term: collect elephant-head amaranth seeds (1-2)	收集象头苋种子（1-2）	l
+ Item description term: collect field mushroom spawn	收集领域蘑菇卵	l
+ Item description term: collect fig seed	收集无花果种子	l
+-Item description term: collect finger millet grains (1-2)	收集龙爪稷籽粒（1-2）	l
++Item description term: collect finger millet grains (1-2)	收集爪粟籽粒（1-2）	l
+ Item description term: collect fisher berry seeds (1-2)	收集渔夫浆果种子（1-2）	l
+ Item description term: collect flax seeds (1-2)	收集亚麻种子（1-2）	l
+-Item description term: collect fonio grains (1-2)	收集福尼奥米籽粒（1-2）	l
+-Item description term: collect foxtail millet grains (1-2)	收集粟米籽粒（1-2）	l
++Item description term: collect fonio grains (1-2)	收集非尼奥米籽粒（1-2）	l
++Item description term: collect foxtail millet grains (1-2)	收集狐尾粟籽粒（1-2）	l
+ Item description term: collect garden cress seeds (1-2)	收集水芹种子（1-2）	l
+ Item description term: collect garlic cloves (1-2)	收集大蒜劈开（1-2）	l
+ Item description term: collect gold needle mushroom spawn	收集金针菇菌种	l
+@@ -4422,7 +4422,7 @@
+ Item description term: collect weld seed	收集黄木犀草种子	l
+ Item description term: collect whip vine seeds (1-2)	收集鞭藤种子（1-2）	l
+ Item description term: collect white button mushroom spawn	收集白色钮扣蘑菇卵	l
+-Item description term: collect white millet grains (1-2)	收集白黍籽粒（1-2）	l
++Item description term: collect white millet grains (1-2)	收集白粟籽粒（1-2）	l
+ Item description term: collect white yam minisetts (1-2)	收集白薯蓣种薯块（1-2）	l
+ Item description term: collect whitecurrant seed	收集白醋栗种子	l
+ Item description term: collect wine cap mushroom spawn	收集葡萄酒帽子蘑菇卵	l
+@@ -4959,7 +4959,7 @@
+ Item description term: finger lime tree	指橘树	l
+ Item description term: finger lime trees	指橘树	l
+ Item description term: finger lime wood	指橘木	l
+-Item description term: finger millet	龙爪稷	l
++Item description term: finger millet	爪粟	l
+ Item description term: finger millet beer	爪粟啤酒	l
+ Item description term: finger millet flour	爪粟面粉	l
+ Item description term: finger millet leaf	爪粟叶	l
+@@ -5028,9 +5028,9 @@
+ Item description term: flower	花	l
+ Item description term: fly agaric	毒蝇伞	l
+ Item description term: fly agarics	毒蝇伞	l
+-Item description term: fonio	福尼奥米	l
+-Item description term: fonio beer	非尼奥啤酒	l
+-Item description term: fonio flour	非尼奥面粉	l
++Item description term: fonio	非尼奥米	l
++Item description term: fonio beer	非尼奥米啤酒	l
++Item description term: fonio flour	非尼奥米面粉	l
+ Item description term: fonio leaf	非尼奥米叶	l
+ Item description term: fonio leaves	非尼奥米叶	l
+ Item description term: fonio milk	非尼奥米奶	l
+@@ -5039,7 +5039,7 @@
+ Item description term: forge hammers	锻锤	l
+ Item description term: foul bolete	臭牛肝菌	l
+ Item description term: foul boletes	臭牛肝菌	l
+-Item description term: foxtail millet	粟米	l
++Item description term: foxtail millet	狐尾粟	l
+ Item description term: foxtail millet beer	狐尾粟啤酒	l
+ Item description term: foxtail millet flour	狐尾粟面粉	l
+ Item description term: foxtail millet leaf	狐尾粟叶	l
+@@ -5115,7 +5115,7 @@
+ Item description term: frozen finger millet beer	结冻爪粟啤酒	l
+ Item description term: frozen finger millet milk	冻结爪粟奶	l
+ Item description term: frozen fisher berry wine	结冻渔夫浆果果酒	l
+-Item description term: frozen fonio beer	结冻非尼奥啤酒	l
++Item description term: frozen fonio beer	结冻非尼奥米啤酒	l
+ Item description term: frozen fonio milk	冻结非尼奥米奶	l
+ Item description term: frozen foxtail millet beer	结冻狐尾粟啤酒	l
+ Item description term: frozen foxtail millet milk	冻结狐尾粟奶	l
+@@ -5196,7 +5196,7 @@
+ Item description term: frozen quinoa beer	结冻藜麦啤酒	l
+ Item description term: frozen quinoa milk	冻结藜麦奶	l
+ Item description term: frozen radish wine	结冻小萝卜果酒	l
+-Item description term: frozen rambutan wine	结冻红毛丹果酒	l
++Item description term: frozen rambutan wine	结冻红毛果果酒	l
+ Item description term: frozen raspberry wine	结冻树莓果酒	l
+ Item description term: frozen red wine	冻结红色葡萄酒	l
+ Item description term: frozen redbud blossom tea	冻结的紫荆花茶	l
+@@ -5265,14 +5265,14 @@
+ Item description term: galena concentrate	方铅矿精矿	l
+ Item description term: gambeson	衬垫甲	l
+ Item description term: gambesons	衬垫甲	l
+-Item description term: garden cress leaf	家独行菜叶	l
+-Item description term: garden cress leaves	家独行菜叶	l
+-Item description term: garden cress plant	家独行菜植物	l
+-Item description term: garden cress plants	家独行菜植物	l
+-Item description term: garden cress raceme	家独行菜总状花序	l
+-Item description term: garden cress seed	家独行菜种子	l
+-Item description term: garden cress seed pod	家独行菜种荚	l
+-Item description term: garden cress seeds	家独行菜种子	l
++Item description term: garden cress leaf	水芹叶	l
++Item description term: garden cress leaves	水芹叶	l
++Item description term: garden cress plant	水芹植物	l
++Item description term: garden cress plants	水芹植物	l
++Item description term: garden cress raceme	水芹总状花序	l
++Item description term: garden cress seed	水芹种子	l
++Item description term: garden cress seed pod	水芹种荚	l
++Item description term: garden cress seeds	水芹种子	l
+ Item description term: garlic	大蒜	l
+ Item description term: garlic clove	大蒜劈开	l
+ Item description term: garlic cloves	大蒜劈开	l
+@@ -6158,7 +6158,7 @@
+ Item description term: marsh thistle flower	沼泽蓟花	l
+ Item description term: marsh thistles	沼泽蓟	l
+ Item description term: mash abaca slurry	捣制马尼拉麻纸浆	l
+-Item description term: mash cattail slurry	捣制香蒲纸浆	l
++Item description term: mash cattail slurry	捣制猫尾草纸浆	l
+ Item description term: mash cotton slurry	捣制棉花浆	l
+ Item description term: mash hemp slurry	捣制大麻浆	l
+ Item description term: mash jute slurry	捣制黄麻纤维浆	l
+@@ -6245,7 +6245,7 @@
+ Item description term: mill five cashew paste	研磨5份腰果糊	l
+ Item description term: mill five cassava flour	研磨5份木薯粉	l
+ Item description term: mill five catnip powder	研磨5份猫薄荷粉	l
+-Item description term: mill five cattail starch	研磨5份香蒲淀粉	l
++Item description term: mill five cattail starch	研磨5份猫尾草淀粉	l
+ Item description term: mill five celery seed powder	研磨5份芹菜种子粉末	l
+ Item description term: mill five chestnut flour	研磨5份栗子粉	l
+ Item description term: mill five chickpea flour	研磨5份鹰嘴豆粉	l
+@@ -6259,7 +6259,7 @@
+ Item description term: mill five finger millet flour	研磨5份爪粟面粉	l
+ Item description term: mill five flax flour	研磨5份亚麻面粉	l
+ Item description term: mill five flax seed paste	研磨5份亚麻种子膏	l
+-Item description term: mill five fonio flour	研磨5份非尼奥面粉	l
++Item description term: mill five fonio flour	研磨5份非尼奥米面粉	l
+ Item description term: mill five foxtail millet flour	研磨5份狐尾粟面粉	l
+ Item description term: mill five garlic powder	研磨5份大蒜粉末	l
+ Item description term: mill five grape seed paste	研磨5份葡萄种子膏	l
+@@ -7056,7 +7056,7 @@
+ Item description term: rambutan leaves	红毛果叶	l
+ Item description term: rambutan tree	红毛果树	l
+ Item description term: rambutan trees	红毛果树	l
+-Item description term: rambutan wine	红毛丹果酒	l
++Item description term: rambutan wine	红毛果果酒	l
+ Item description term: rambutan wood	红毛果木	l
+ Item description term: ramie	苎麻	l
+ Item description term: ramie leaf	苎麻叶	l
+@@ -7969,7 +7969,7 @@
+ Item description term: white button mushroom spawn	白色钮扣蘑菇卵	l
+ Item description term: white button mushrooms	白色钮扣蘑菇形物	l
+ Item description term: white jade	白翡翠	l
+-Item description term: white millet	白黍	l
++Item description term: white millet	白粟	l
+ Item description term: white millet beer	白粟啤酒	l
+ Item description term: white millet flour	白粟面粉	l
+ Item description term: white millet leaf	白粟叶	l
+@@ -8104,10 +8104,10 @@
+ Item description term: wild caper leaf	野生刺山柑叶	l
+ Item description term: wild caper leaves	野生刺山柑叶	l
+ Item description term: wild carrot	野生胡萝卜	l
+-Item description term: wild carrot leaf	野生胡罗卜叶	l
+-Item description term: wild carrot leaves	野生胡罗卜叶	l
++Item description term: wild carrot leaf	野生胡萝卜叶	l
++Item description term: wild carrot leaves	野生胡萝卜叶	l
+ Item description term: wild carrot seedhead	野生胡萝卜种穗	l
+-Item description term: wild carrot umbel	野生胡罗卜伞形花序	l
++Item description term: wild carrot umbel	野生胡萝卜伞形花序	l
+ Item description term: wild carrots	野生胡萝卜	l
+ Item description term: wild cassava	野生木薯	l
+ Item description term: wild cassava flower	野生木薯花	l
+@@ -8205,12 +8205,12 @@
+ Item description term: wild foxtail millet	野生狐尾粟	l
+ Item description term: wild foxtail millet leaf	野生狐尾粟叶	l
+ Item description term: wild foxtail millet leaves	野生狐尾粟叶	l
+-Item description term: wild garden cress leaf	野生家独行菜叶	l
+-Item description term: wild garden cress leaves	野生家独行菜叶	l
+-Item description term: wild garden cress plant	野生家独行菜植物	l
+-Item description term: wild garden cress plants	野生家独行菜植物	l
+-Item description term: wild garden cress raceme	野生家独行菜总状花序	l
+-Item description term: wild garden cress seed pod	野生家独行菜种荚	l
++Item description term: wild garden cress leaf	野生水芹叶	l
++Item description term: wild garden cress leaves	野生水芹叶	l
++Item description term: wild garden cress plant	野生水芹植物	l
++Item description term: wild garden cress plants	野生水芹植物	l
++Item description term: wild garden cress raceme	野生水芹总状花序	l
++Item description term: wild garden cress seed pod	野生水芹种荚	l
+ Item description term: wild garlic	野生大蒜	l
+ Item description term: wild garlic flower	野生大蒜花	l
+ Item description term: wild garlic leaf	野生大蒜叶	l
+@@ -9104,8 +9104,8 @@
+ Make wooden wheelbarrow (5) (opens menu)	制作木制手推车 (5)（打开菜单）	l
+ Mash abaca slurry	捣制马尼拉麻纸浆	l
+ Mash abaca slurry (opens menu)	捣制马尼拉麻纸浆（打开菜单）	l
+-Mash cattail slurry	捣制香蒲纸浆	l
+-Mash cattail slurry (opens menu)	捣制香蒲纸浆（打开菜单）	l
++Mash cattail slurry	捣制猫尾草纸浆	l
++Mash cattail slurry (opens menu)	捣制猫尾草纸浆（打开菜单）	l
+ Mash cotton slurry	捣制棉花浆	l
+ Mash cotton slurry (opens menu)	捣制棉花浆（打开菜单）	l
+ Mash hemp slurry	捣制大麻浆	l
+@@ -9190,8 +9190,8 @@
+ Mill five cassava flour (opens menu)	研磨5份木薯粉（打开菜单）	l
+ Mill five catnip powder	研磨5份猫薄荷粉	l
+ Mill five catnip powder (opens menu)	研磨5份猫薄荷粉（打开菜单）	l
+-Mill five cattail starch	研磨5份香蒲淀粉	l
+-Mill five cattail starch (opens menu)	研磨5份香蒲淀粉（打开菜单）	l
++Mill five cattail starch	研磨5份猫尾草淀粉	l
++Mill five cattail starch (opens menu)	研磨5份猫尾草淀粉（打开菜单）	l
+ Mill five celery seed powder	研磨5份芹菜种子粉末	l
+ Mill five celery seed powder (opens menu)	研磨5份芹菜种子粉末（打开菜单）	l
+ Mill five chestnut flour	研磨5份栗子粉	l
+@@ -9218,8 +9218,8 @@
+ Mill five flax flour (opens menu)	研磨5份亚麻面粉（打开菜单）	l
+ Mill five flax seed paste	研磨5份亚麻种子膏	l
+ Mill five flax seed paste (opens menu)	研磨5份亚麻种子膏（打开菜单）	l
+-Mill five fonio flour	研磨5份非尼奥面粉	l
+-Mill five fonio flour (opens menu)	研磨5份非尼奥面粉（打开菜单）	l
++Mill five fonio flour	研磨5份非尼奥米面粉	l
++Mill five fonio flour (opens menu)	研磨5份非尼奥米面粉（打开菜单）	l
+ Mill five foxtail millet flour	研磨5份狐尾粟面粉	l
+ Mill five foxtail millet flour (opens menu)	研磨5份狐尾粟面粉（打开菜单）	l
+ Mill five garlic powder	研磨5份大蒜粉末	l
+@@ -10520,14 +10520,14 @@
+ Workshop recipe: abaca slurry	马尼拉麻纸浆	l
+ Workshop recipe: abaca tree	蕉麻树	l
+ Workshop recipe: abaca trees	蕉麻树	l
+-Workshop recipe: acacia	黑荆	l
+-Workshop recipe: acacia flour	黑荆粉	l
+-Workshop recipe: acacia flower	黑荆花	l
+-Workshop recipe: acacia leaf	黑荆叶	l
+-Workshop recipe: acacia leaves	黑荆叶	l
+-Workshop recipe: acacia pod	黑荆荚	l
+-Workshop recipe: acacia wood dye	黑荆木染料	l
+-Workshop recipe: acacias	黑荆	l
++Workshop recipe: acacia	刺槐	l
++Workshop recipe: acacia flour	刺槐粉	l
++Workshop recipe: acacia flower	刺槐花	l
++Workshop recipe: acacia leaf	刺槐叶	l
++Workshop recipe: acacia leaves	刺槐叶	l
++Workshop recipe: acacia pod	刺槐荚	l
++Workshop recipe: acacia wood dye	刺槐木染料	l
++Workshop recipe: acacias	刺槐	l
+ Workshop recipe: acorn	橡子	l
+ Workshop recipe: acorn flour	橡实粉	l
+ Workshop recipe: adamantine	精金	l
+@@ -11002,7 +11002,7 @@
+ Workshop recipe: boiling finger millet beer	沸腾爪粟啤酒	l
+ Workshop recipe: boiling finger millet milk	煮沸爪粟奶	l
+ Workshop recipe: boiling fisher berry wine	沸腾渔夫浆果果酒	l
+-Workshop recipe: boiling fonio beer	沸腾非尼奥啤酒	l
++Workshop recipe: boiling fonio beer	沸腾非尼奥米啤酒	l
+ Workshop recipe: boiling fonio milk	煮沸非尼奥米奶	l
+ Workshop recipe: boiling foxtail millet beer	沸腾狐尾粟啤酒	l
+ Workshop recipe: boiling foxtail millet milk	煮沸狐尾粟奶	l
+@@ -11106,7 +11106,7 @@
+ Workshop recipe: boiling quinoa beer	沸腾藜麦啤酒	l
+ Workshop recipe: boiling quinoa milk	煮沸藜麦奶	l
+ Workshop recipe: boiling radish wine	沸腾小萝卜果酒	l
+-Workshop recipe: boiling rambutan wine	沸腾红毛丹果酒	l
++Workshop recipe: boiling rambutan wine	沸腾红毛果果酒	l
+ Workshop recipe: boiling raspberry wine	沸腾树莓果酒	l
+ Workshop recipe: boiling raw adamantine	沸腾原始精金	l
+ Workshop recipe: boiling red wine	煮沸红色葡萄酒	l
+@@ -11245,7 +11245,7 @@
+ Workshop recipe: brew a barrel of fig wine	酿造一桶无花果果酒	l
+ Workshop recipe: brew a barrel of finger millet beer	酿造一桶爪粟啤酒	l
+ Workshop recipe: brew a barrel of fisher berry wine	酿造一桶渔夫浆果果酒	l
+-Workshop recipe: brew a barrel of fonio beer	酿造一桶非尼奥啤酒	l
++Workshop recipe: brew a barrel of fonio beer	酿造一桶非尼奥米啤酒	l
+ Workshop recipe: brew a barrel of foxtail millet beer	酿造一桶狐尾粟啤酒	l
+ Workshop recipe: brew a barrel of guava wine	酿造一桶番石榴果酒	l
+ Workshop recipe: brew a barrel of gutter cruor	酿造一桶沟渠血酒	l
+@@ -11284,7 +11284,7 @@
+ Workshop recipe: brew a barrel of pumpkin ale	酿造一桶南瓜色艾尔啤酒	l
+ Workshop recipe: brew a barrel of quinoa beer	酿造一桶藜麦啤酒	l
+ Workshop recipe: brew a barrel of radish wine	酿造一桶小萝卜果酒	l
+-Workshop recipe: brew a barrel of rambutan wine	酿造一桶红毛丹果酒	l
++Workshop recipe: brew a barrel of rambutan wine	酿造一桶红毛果果酒	l
+ Workshop recipe: brew a barrel of raspberry wine	酿造一桶树莓果酒	l
+ Workshop recipe: brew a barrel of redbud blossom tea	酿造一桶紫荆花茶	l
+ Workshop recipe: brew a barrel of redcurrant wine	酿造一桶红醋栗果酒	l
+@@ -11360,7 +11360,7 @@
+ Workshop recipe: brew five drinks of dwarven whiskey	酿造5份矮人威士忌	l
+ Workshop recipe: brew five drinks of finger millet beer	酿造5份爪粟啤酒	l
+ Workshop recipe: brew five drinks of fisher berry wine	酿造5份渔夫浆果果酒	l
+-Workshop recipe: brew five drinks of fonio beer	酿造5份非尼奥啤酒	l
++Workshop recipe: brew five drinks of fonio beer	酿造5份非尼奥米啤酒	l
+ Workshop recipe: brew five drinks of foxtail millet beer	酿造5份狐尾粟啤酒	l
+ Workshop recipe: brew five drinks of guava wine	酿造5份番石榴果酒	l
+ Workshop recipe: brew five drinks of gutter cruor	酿造5份沟渠血酒	l
+@@ -11390,7 +11390,7 @@
+ Workshop recipe: brew five drinks of prickle berry wine	酿造5份刺莓果酒	l
+ Workshop recipe: brew five drinks of quinoa beer	酿造5份藜麦啤酒	l
+ Workshop recipe: brew five drinks of radish wine	酿造5份小萝卜果酒	l
+-Workshop recipe: brew five drinks of rambutan wine	酿造5份红毛丹果酒	l
++Workshop recipe: brew five drinks of rambutan wine	酿造5份红毛果果酒	l
+ Workshop recipe: brew five drinks of raspberry wine	酿造5份树莓果酒	l
+ Workshop recipe: brew five drinks of rice beer	酿造5份稻米啤酒	l
+ Workshop recipe: brew five drinks of river spirits	酿造5份河川烈酒	l
+@@ -11468,7 +11468,7 @@
+ Workshop recipe: brew one drink of dwarven whiskey	酿造1份矮人威士忌	l
+ Workshop recipe: brew one drink of finger millet beer	酿造1份爪粟啤酒	l
+ Workshop recipe: brew one drink of fisher berry wine	酿造1份渔夫浆果果酒	l
+-Workshop recipe: brew one drink of fonio beer	酿造1份非尼奥啤酒	l
++Workshop recipe: brew one drink of fonio beer	酿造1份非尼奥米啤酒	l
+ Workshop recipe: brew one drink of foxtail millet beer	酿造1份狐尾粟啤酒	l
+ Workshop recipe: brew one drink of guava wine	酿造1份番石榴果酒	l
+ Workshop recipe: brew one drink of gutter cruor	酿造1份沟渠血酒	l
+@@ -11498,7 +11498,7 @@
+ Workshop recipe: brew one drink of prickle berry wine	酿造1份刺莓果酒	l
+ Workshop recipe: brew one drink of quinoa beer	酿造1份藜麦啤酒	l
+ Workshop recipe: brew one drink of radish wine	酿造1份小萝卜果酒	l
+-Workshop recipe: brew one drink of rambutan wine	酿造1份红毛丹果酒	l
++Workshop recipe: brew one drink of rambutan wine	酿造1份红毛果果酒	l
+ Workshop recipe: brew one drink of raspberry wine	酿造1份树莓果酒	l
+ Workshop recipe: brew one drink of rice beer	酿造1份稻米啤酒	l
+ Workshop recipe: brew one drink of river spirits	酿造酒者饮料河精怪	l
+@@ -11651,12 +11651,12 @@
+ Workshop recipe: carpentry	木工	l
+ Workshop recipe: carrot	胡萝卜	l
+ Workshop recipe: carrot dye	胡萝卜染料	l
+-Workshop recipe: carrot leaf	胡罗卜叶	l
+-Workshop recipe: carrot leaves	胡罗卜叶	l
++Workshop recipe: carrot leaf	胡萝卜叶	l
++Workshop recipe: carrot leaves	胡萝卜叶	l
+ Workshop recipe: carrot seed	胡萝卜种子	l
+ Workshop recipe: carrot seedhead	胡萝卜种穗	l
+ Workshop recipe: carrot seeds	胡萝卜种子	l
+-Workshop recipe: carrot umbel	胡罗卜伞形花序	l
++Workshop recipe: carrot umbel	胡萝卜伞形花序	l
+ Workshop recipe: carrot wine	胡萝卜果酒	l
+ Workshop recipe: carrots	胡萝卜	l
+ Workshop recipe: cartilage	软骨	l
+@@ -11730,19 +11730,19 @@
+ Workshop recipe: catnip seedhead	猫薄荷种穗	l
+ Workshop recipe: catnip seeds	猫薄荷种子	l
+ Workshop recipe: catnip tea	猫薄荷茶	l
+-Workshop recipe: cattail	香蒲	l
++Workshop recipe: cattail	猫尾草	l
+ Workshop recipe: cattail ale	猫尾草艾尔啤酒	l
+ Workshop recipe: cattail flower	猫尾草花	l
+ Workshop recipe: cattail leaf	猫尾草叶	l
+ Workshop recipe: cattail leaves	猫尾草叶	l
+ Workshop recipe: cattail paper	猫尾草纸	l
+-Workshop recipe: cattail rhizome	香蒲根茎	l
+-Workshop recipe: cattail rhizomes	香蒲根茎	l
++Workshop recipe: cattail rhizome	猫尾草根茎	l
++Workshop recipe: cattail rhizomes	猫尾草根茎	l
+ Workshop recipe: cattail seed	猫尾草种子	l
+-Workshop recipe: cattail seedhead	香蒲种穗	l
++Workshop recipe: cattail seedhead	猫尾草种穗	l
+ Workshop recipe: cattail seeds	猫尾草种子	l
+-Workshop recipe: cattail slurry	香蒲纸浆	l
+-Workshop recipe: cattail starch	香蒲淀粉	l
++Workshop recipe: cattail slurry	猫尾草纸浆	l
++Workshop recipe: cattail starch	猫尾草淀粉	l
+ Workshop recipe: cauldron	大锅	l
+ Workshop recipe: cauldrons	大锅	l
+ Workshop recipe: cave dweller worldgen resources	洞穴居民世界生成资源	l
+@@ -11927,11 +11927,11 @@
+ Workshop recipe: collect elephant-head amaranth seeds (1-2)	收集象头苋种子（1-2）	l
+ Workshop recipe: collect field mushroom spawn	收集领域蘑菇卵	l
+ Workshop recipe: collect fig seed	收集无花果种子	l
+-Workshop recipe: collect finger millet grains (1-2)	收集龙爪稷籽粒（1-2）	l
++Workshop recipe: collect finger millet grains (1-2)	收集爪粟籽粒（1-2）	l
+ Workshop recipe: collect fisher berry seeds (1-2)	收集渔夫浆果种子（1-2）	l
+ Workshop recipe: collect flax seeds (1-2)	收集亚麻种子（1-2）	l
+-Workshop recipe: collect fonio grains (1-2)	收集福尼奥米籽粒（1-2）	l
+-Workshop recipe: collect foxtail millet grains (1-2)	收集粟米籽粒（1-2）	l
++Workshop recipe: collect fonio grains (1-2)	收集非尼奥米籽粒（1-2）	l
++Workshop recipe: collect foxtail millet grains (1-2)	收集狐尾粟籽粒（1-2）	l
+ Workshop recipe: collect garden cress seeds (1-2)	收集水芹种子（1-2）	l
+ Workshop recipe: collect garlic cloves (1-2)	收集大蒜劈开（1-2）	l
+ Workshop recipe: collect gold needle mushroom spawn	收集金针菇菌种	l
+@@ -12031,7 +12031,7 @@
+ Workshop recipe: collect weld seed	收集黄木犀草种子	l
+ Workshop recipe: collect whip vine seeds (1-2)	收集鞭藤种子（1-2）	l
+ Workshop recipe: collect white button mushroom spawn	收集白色钮扣蘑菇卵	l
+-Workshop recipe: collect white millet grains (1-2)	收集白黍籽粒（1-2）	l
++Workshop recipe: collect white millet grains (1-2)	收集白粟籽粒（1-2）	l
+ Workshop recipe: collect white yam minisetts (1-2)	收集白薯蓣种薯块（1-2）	l
+ Workshop recipe: collect whitecurrant seed	收集白醋栗种子	l
+ Workshop recipe: collect wine cap mushroom spawn	收集葡萄酒帽子蘑菇卵	l
+@@ -12568,7 +12568,7 @@
+ Workshop recipe: finger lime tree	指橘树	l
+ Workshop recipe: finger lime trees	指橘树	l
+ Workshop recipe: finger lime wood	指橘木	l
+-Workshop recipe: finger millet	龙爪稷	l
++Workshop recipe: finger millet	爪粟	l
+ Workshop recipe: finger millet beer	爪粟啤酒	l
+ Workshop recipe: finger millet flour	爪粟面粉	l
+ Workshop recipe: finger millet leaf	爪粟叶	l
+@@ -12637,9 +12637,9 @@
+ Workshop recipe: flower	花	l
+ Workshop recipe: fly agaric	毒蝇伞	l
+ Workshop recipe: fly agarics	毒蝇伞	l
+-Workshop recipe: fonio	福尼奥米	l
+-Workshop recipe: fonio beer	非尼奥啤酒	l
+-Workshop recipe: fonio flour	非尼奥面粉	l
++Workshop recipe: fonio	非尼奥米	l
++Workshop recipe: fonio beer	非尼奥米啤酒	l
++Workshop recipe: fonio flour	非尼奥米面粉	l
+ Workshop recipe: fonio leaf	非尼奥米叶	l
+ Workshop recipe: fonio leaves	非尼奥米叶	l
+ Workshop recipe: fonio milk	非尼奥米奶	l
+@@ -12648,7 +12648,7 @@
+ Workshop recipe: forge hammers	锻锤	l
+ Workshop recipe: foul bolete	臭牛肝菌	l
+ Workshop recipe: foul boletes	臭牛肝菌	l
+-Workshop recipe: foxtail millet	粟米	l
++Workshop recipe: foxtail millet	狐尾粟	l
+ Workshop recipe: foxtail millet beer	狐尾粟啤酒	l
+ Workshop recipe: foxtail millet flour	狐尾粟面粉	l
+ Workshop recipe: foxtail millet leaf	狐尾粟叶	l
+@@ -12724,7 +12724,7 @@
+ Workshop recipe: frozen finger millet beer	结冻爪粟啤酒	l
+ Workshop recipe: frozen finger millet milk	冻结爪粟奶	l
+ Workshop recipe: frozen fisher berry wine	结冻渔夫浆果果酒	l
+-Workshop recipe: frozen fonio beer	结冻非尼奥啤酒	l
++Workshop recipe: frozen fonio beer	结冻非尼奥米啤酒	l
+ Workshop recipe: frozen fonio milk	冻结非尼奥米奶	l
+ Workshop recipe: frozen foxtail millet beer	结冻狐尾粟啤酒	l
+ Workshop recipe: frozen foxtail millet milk	冻结狐尾粟奶	l
+@@ -12805,7 +12805,7 @@
+ Workshop recipe: frozen quinoa beer	结冻藜麦啤酒	l
+ Workshop recipe: frozen quinoa milk	冻结藜麦奶	l
+ Workshop recipe: frozen radish wine	结冻小萝卜果酒	l
+-Workshop recipe: frozen rambutan wine	结冻红毛丹果酒	l
++Workshop recipe: frozen rambutan wine	结冻红毛果果酒	l
+ Workshop recipe: frozen raspberry wine	结冻树莓果酒	l
+ Workshop recipe: frozen red wine	冻结红色葡萄酒	l
+ Workshop recipe: frozen redbud blossom tea	冻结的紫荆花茶	l
+@@ -12874,14 +12874,14 @@
+ Workshop recipe: galena concentrate	方铅矿精矿	l
+ Workshop recipe: gambeson	衬垫甲	l
+ Workshop recipe: gambesons	衬垫甲	l
+-Workshop recipe: garden cress leaf	家独行菜叶	l
+-Workshop recipe: garden cress leaves	家独行菜叶	l
+-Workshop recipe: garden cress plant	家独行菜植物	l
+-Workshop recipe: garden cress plants	家独行菜植物	l
+-Workshop recipe: garden cress raceme	家独行菜总状花序	l
+-Workshop recipe: garden cress seed	家独行菜种子	l
+-Workshop recipe: garden cress seed pod	家独行菜种荚	l
+-Workshop recipe: garden cress seeds	家独行菜种子	l
++Workshop recipe: garden cress leaf	水芹叶	l
++Workshop recipe: garden cress leaves	水芹叶	l
++Workshop recipe: garden cress plant	水芹植物	l
++Workshop recipe: garden cress plants	水芹植物	l
++Workshop recipe: garden cress raceme	水芹总状花序	l
++Workshop recipe: garden cress seed	水芹种子	l
++Workshop recipe: garden cress seed pod	水芹种荚	l
++Workshop recipe: garden cress seeds	水芹种子	l
+ Workshop recipe: garlic	大蒜	l
+ Workshop recipe: garlic clove	大蒜劈开	l
+ Workshop recipe: garlic cloves	大蒜劈开	l
+@@ -13767,7 +13767,7 @@
+ Workshop recipe: marsh thistle flower	沼泽蓟花	l
+ Workshop recipe: marsh thistles	沼泽蓟	l
+ Workshop recipe: mash abaca slurry	捣制马尼拉麻纸浆	l
+-Workshop recipe: mash cattail slurry	捣制香蒲纸浆	l
++Workshop recipe: mash cattail slurry	捣制猫尾草纸浆	l
+ Workshop recipe: mash cotton slurry	捣制棉花浆	l
+ Workshop recipe: mash hemp slurry	捣制大麻浆	l
+ Workshop recipe: mash jute slurry	捣制黄麻纤维浆	l
+@@ -13854,7 +13854,7 @@
+ Workshop recipe: mill five cashew paste	研磨5份腰果糊	l
+ Workshop recipe: mill five cassava flour	研磨5份木薯粉	l
+ Workshop recipe: mill five catnip powder	研磨5份猫薄荷粉	l
+-Workshop recipe: mill five cattail starch	研磨5份香蒲淀粉	l
++Workshop recipe: mill five cattail starch	研磨5份猫尾草淀粉	l
+ Workshop recipe: mill five celery seed powder	研磨5份芹菜种子粉末	l
+ Workshop recipe: mill five chestnut flour	研磨5份栗子粉	l
+ Workshop recipe: mill five chickpea flour	研磨5份鹰嘴豆粉	l
+@@ -13868,7 +13868,7 @@
+ Workshop recipe: mill five finger millet flour	研磨5份爪粟面粉	l
+ Workshop recipe: mill five flax flour	研磨5份亚麻面粉	l
+ Workshop recipe: mill five flax seed paste	研磨5份亚麻种子膏	l
+-Workshop recipe: mill five fonio flour	研磨5份非尼奥面粉	l
++Workshop recipe: mill five fonio flour	研磨5份非尼奥米面粉	l
+ Workshop recipe: mill five foxtail millet flour	研磨5份狐尾粟面粉	l
+ Workshop recipe: mill five garlic powder	研磨5份大蒜粉末	l
+ Workshop recipe: mill five grape seed paste	研磨5份葡萄种子膏	l
+@@ -14665,7 +14665,7 @@
+ Workshop recipe: rambutan leaves	红毛果叶	l
+ Workshop recipe: rambutan tree	红毛果树	l
+ Workshop recipe: rambutan trees	红毛果树	l
+-Workshop recipe: rambutan wine	红毛丹果酒	l
++Workshop recipe: rambutan wine	红毛果果酒	l
+ Workshop recipe: rambutan wood	红毛果木	l
+ Workshop recipe: ramie	苎麻	l
+ Workshop recipe: ramie leaf	苎麻叶	l
+@@ -15578,7 +15578,7 @@
+ Workshop recipe: white button mushroom spawn	白色钮扣蘑菇卵	l
+ Workshop recipe: white button mushrooms	白色钮扣蘑菇形物	l
+ Workshop recipe: white jade	白翡翠	l
+-Workshop recipe: white millet	白黍	l
++Workshop recipe: white millet	白粟	l
+ Workshop recipe: white millet beer	白粟啤酒	l
+ Workshop recipe: white millet flour	白粟面粉	l
+ Workshop recipe: white millet leaf	白粟叶	l
+@@ -15713,10 +15713,10 @@
+ Workshop recipe: wild caper leaf	野生刺山柑叶	l
+ Workshop recipe: wild caper leaves	野生刺山柑叶	l
+ Workshop recipe: wild carrot	野生胡萝卜	l
+-Workshop recipe: wild carrot leaf	野生胡罗卜叶	l
+-Workshop recipe: wild carrot leaves	野生胡罗卜叶	l
++Workshop recipe: wild carrot leaf	野生胡萝卜叶	l
++Workshop recipe: wild carrot leaves	野生胡萝卜叶	l
+ Workshop recipe: wild carrot seedhead	野生胡萝卜种穗	l
+-Workshop recipe: wild carrot umbel	野生胡罗卜伞形花序	l
++Workshop recipe: wild carrot umbel	野生胡萝卜伞形花序	l
+ Workshop recipe: wild carrots	野生胡萝卜	l
+ Workshop recipe: wild cassava	野生木薯	l
+ Workshop recipe: wild cassava flower	野生木薯花	l
+@@ -15814,12 +15814,12 @@
+ Workshop recipe: wild foxtail millet	野生狐尾粟	l
+ Workshop recipe: wild foxtail millet leaf	野生狐尾粟叶	l
+ Workshop recipe: wild foxtail millet leaves	野生狐尾粟叶	l
+-Workshop recipe: wild garden cress leaf	野生家独行菜叶	l
+-Workshop recipe: wild garden cress leaves	野生家独行菜叶	l
+-Workshop recipe: wild garden cress plant	野生家独行菜植物	l
+-Workshop recipe: wild garden cress plants	野生家独行菜植物	l
+-Workshop recipe: wild garden cress raceme	野生家独行菜总状花序	l
+-Workshop recipe: wild garden cress seed pod	野生家独行菜种荚	l
++Workshop recipe: wild garden cress leaf	野生水芹叶	l
++Workshop recipe: wild garden cress leaves	野生水芹叶	l
++Workshop recipe: wild garden cress plant	野生水芹植物	l
++Workshop recipe: wild garden cress plants	野生水芹植物	l
++Workshop recipe: wild garden cress raceme	野生水芹总状花序	l
++Workshop recipe: wild garden cress seed pod	野生水芹种荚	l
+ Workshop recipe: wild garlic	野生大蒜	l
+ Workshop recipe: wild garlic flower	野生大蒜花	l
+ Workshop recipe: wild garlic leaf	野生大蒜叶	l
+@@ -16302,14 +16302,14 @@
+ abaca tree	蕉麻树	l
+ abaca trees	蕉麻树	l
+ abdomen	腹部	l
+-acacia	黑荆	l
+-acacia flour	黑荆粉	l
+-acacia flower	黑荆花	l
+-acacia leaf	黑荆叶	l
+-acacia leaves	黑荆叶	l
+-acacia pod	黑荆荚	l
+-acacia wood dye	黑荆木染料	l
+-acacias	黑荆	l
++acacia	刺槐	l
++acacia flour	刺槐粉	l
++acacia flower	刺槐花	l
++acacia leaf	刺槐叶	l
++acacia leaves	刺槐叶	l
++acacia pod	刺槐荚	l
++acacia wood dye	刺槐木染料	l
++acacias	刺槐	l
+ acolyte	侍僧	l
+ acolytes	侍僧	l
+ acorn	橡子	l
+@@ -17459,7 +17459,7 @@
+ boiling finger millet milk	煮沸爪粟奶	l
+ boiling fisher berry wine	沸腾渔夫浆果果酒	l
+ boiling fly man acid vomit	沸腾的苍蝇人酸性呕吐物	l
+-boiling fonio beer	沸腾非尼奥啤酒	l
++boiling fonio beer	沸腾非尼奥米啤酒	l
+ boiling fonio milk	煮沸非尼奥米奶	l
+ boiling foxtail millet beer	沸腾狐尾粟啤酒	l
+ boiling foxtail millet milk	煮沸狐尾粟奶	l
+@@ -17595,7 +17595,7 @@
+ boiling quinoa beer	沸腾藜麦啤酒	l
+ boiling quinoa milk	煮沸藜麦奶	l
+ boiling radish wine	沸腾小萝卜果酒	l
+-boiling rambutan wine	沸腾红毛丹果酒	l
++boiling rambutan wine	沸腾红毛果果酒	l
+ boiling raspberry wine	沸腾树莓果酒	l
+ boiling rattlesnake venom	沸腾响尾蛇毒素	l
+ boiling raw adamantine	沸腾原始精金	l
+@@ -17831,8 +17831,8 @@
+ brew a barrel of finger millet beer (opens menu)	酿造一桶爪粟啤酒（打开菜单）	l
+ brew a barrel of fisher berry wine	酿造一桶渔夫浆果果酒	l
+ brew a barrel of fisher berry wine (opens menu)	酿造一桶渔夫浆果果酒（打开菜单）	l
+-brew a barrel of fonio beer	酿造一桶非尼奥啤酒	l
+-brew a barrel of fonio beer (opens menu)	酿造一桶非尼奥啤酒（打开菜单）	l
++brew a barrel of fonio beer	酿造一桶非尼奥米啤酒	l
++brew a barrel of fonio beer (opens menu)	酿造一桶非尼奥米啤酒（打开菜单）	l
+ brew a barrel of foxtail millet beer	酿造一桶狐尾粟啤酒	l
+ brew a barrel of foxtail millet beer (opens menu)	酿造一桶狐尾粟啤酒（打开菜单）	l
+ brew a barrel of guava wine	酿造一桶番石榴果酒	l
+@@ -17909,8 +17909,8 @@
+ brew a barrel of quinoa beer (opens menu)	酿造一桶藜麦啤酒（打开菜单）	l
+ brew a barrel of radish wine	酿造一桶小萝卜果酒	l
+ brew a barrel of radish wine (opens menu)	酿造一桶小萝卜果酒（打开菜单）	l
+-brew a barrel of rambutan wine	酿造一桶红毛丹果酒	l
+-brew a barrel of rambutan wine (opens menu)	酿造一桶红毛丹果酒（打开菜单）	l
++brew a barrel of rambutan wine	酿造一桶红毛果果酒	l
++brew a barrel of rambutan wine (opens menu)	酿造一桶红毛果果酒（打开菜单）	l
+ brew a barrel of raspberry wine	酿造一桶树莓果酒	l
+ brew a barrel of raspberry wine (opens menu)	酿造一桶树莓果酒（打开菜单）	l
+ brew a barrel of redbud blossom tea	酿造一桶紫荆花茶	l
+@@ -18059,8 +18059,8 @@
+ brew five drinks of finger millet beer (opens menu)	酿造5份爪粟啤酒（打开菜单）	l
+ brew five drinks of fisher berry wine	酿造5份渔夫浆果果酒	l
+ brew five drinks of fisher berry wine (opens menu)	酿造5份渔夫浆果果酒（打开菜单）	l
+-brew five drinks of fonio beer	酿造5份非尼奥啤酒	l
+-brew five drinks of fonio beer (opens menu)	酿造5份非尼奥啤酒（打开菜单）	l
++brew five drinks of fonio beer	酿造5份非尼奥米啤酒	l
++brew five drinks of fonio beer (opens menu)	酿造5份非尼奥米啤酒（打开菜单）	l
+ brew five drinks of foxtail millet beer	酿造5份狐尾粟啤酒	l
+ brew five drinks of foxtail millet beer (opens menu)	酿造5份狐尾粟啤酒（打开菜单）	l
+ brew five drinks of guava wine	酿造5份番石榴果酒	l
+@@ -18119,8 +18119,8 @@
+ brew five drinks of quinoa beer (opens menu)	酿造5份藜麦啤酒（打开菜单）	l
+ brew five drinks of radish wine	酿造5份小萝卜果酒	l
+ brew five drinks of radish wine (opens menu)	酿造5份小萝卜果酒（打开菜单）	l
+-brew five drinks of rambutan wine	酿造5份红毛丹果酒	l
+-brew five drinks of rambutan wine (opens menu)	酿造5份红毛丹果酒（打开菜单）	l
++brew five drinks of rambutan wine	酿造5份红毛果果酒	l
++brew five drinks of rambutan wine (opens menu)	酿造5份红毛果果酒（打开菜单）	l
+ brew five drinks of raspberry wine	酿造5份树莓果酒	l
+ brew five drinks of raspberry wine (opens menu)	酿造5份树莓果酒（打开菜单）	l
+ brew five drinks of rice beer	酿造5份稻米啤酒	l
+@@ -18277,8 +18277,8 @@
+ brew one drink of finger millet beer (opens menu)	酿造1份爪粟啤酒（打开菜单）	l
+ brew one drink of fisher berry wine	酿造1份渔夫浆果果酒	l
+ brew one drink of fisher berry wine (opens menu)	酿造1份渔夫浆果果酒（打开菜单）	l
+-brew one drink of fonio beer	酿造1份非尼奥啤酒	l
+-brew one drink of fonio beer (opens menu)	酿造1份非尼奥啤酒（打开菜单）	l
++brew one drink of fonio beer	酿造1份非尼奥米啤酒	l
++brew one drink of fonio beer (opens menu)	酿造1份非尼奥米啤酒（打开菜单）	l
+ brew one drink of foxtail millet beer	酿造1份狐尾粟啤酒	l
+ brew one drink of foxtail millet beer (opens menu)	酿造1份狐尾粟啤酒（打开菜单）	l
+ brew one drink of guava wine	酿造1份番石榴果酒	l
+@@ -18337,8 +18337,8 @@
+ brew one drink of quinoa beer (opens menu)	酿造1份藜麦啤酒（打开菜单）	l
+ brew one drink of radish wine	酿造1份小萝卜果酒	l
+ brew one drink of radish wine (opens menu)	酿造1份小萝卜果酒（打开菜单）	l
+-brew one drink of rambutan wine	酿造1份红毛丹果酒	l
+-brew one drink of rambutan wine (opens menu)	酿造1份红毛丹果酒（打开菜单）	l
++brew one drink of rambutan wine	酿造1份红毛果果酒	l
++brew one drink of rambutan wine (opens menu)	酿造1份红毛果果酒（打开菜单）	l
+ brew one drink of raspberry wine	酿造1份树莓果酒	l
+ brew one drink of raspberry wine (opens menu)	酿造1份树莓果酒（打开菜单）	l
+ brew one drink of rice beer	酿造1份稻米啤酒	l
+@@ -18757,12 +18757,12 @@
+ carpentry (opens menu)	木工（打开菜单）	l
+ carrot	胡萝卜	l
+ carrot dye	胡萝卜染料	l
+-carrot leaf	胡罗卜叶	l
+-carrot leaves	胡罗卜叶	l
++carrot leaf	胡萝卜叶	l
++carrot leaves	胡萝卜叶	l
+ carrot seed	胡萝卜种子	l
+ carrot seedhead	胡萝卜种穗	l
+ carrot seeds	胡萝卜种子	l
+-carrot umbel	胡罗卜伞形花序	l
++carrot umbel	胡萝卜伞形花序	l
+ carrot wine	胡萝卜果酒	l
+ carrots	胡萝卜	l
+ cartilage	软骨	l
+@@ -18892,19 +18892,19 @@
+ catnip seeds	猫薄荷种子	l
+ catnip tea	猫薄荷茶	l
+ cats	家猫	l
+-cattail	香蒲	l
++cattail	猫尾草	l
+ cattail ale	猫尾草艾尔啤酒	l
+ cattail flower	猫尾草花	l
+ cattail leaf	猫尾草叶	l
+ cattail leaves	猫尾草叶	l
+ cattail paper	猫尾草纸	l
+-cattail rhizome	香蒲根茎	l
+-cattail rhizomes	香蒲根茎	l
++cattail rhizome	猫尾草根茎	l
++cattail rhizomes	猫尾草根茎	l
+ cattail seed	猫尾草种子	l
+-cattail seedhead	香蒲种穗	l
++cattail seedhead	猫尾草种穗	l
+ cattail seeds	猫尾草种子	l
+-cattail slurry	香蒲纸浆	l
+-cattail starch	香蒲淀粉	l
++cattail slurry	猫尾草纸浆	l
++cattail starch	猫尾草淀粉	l
+ cauldron	大锅	l
+ cauldrons	大锅	l
+ cave	洞穴	l
+@@ -19391,16 +19391,16 @@
+ collect field mushroom spawn (opens menu)	收集领域蘑菇卵（打开菜单）	l
+ collect fig seed	收集无花果种子	l
+ collect fig seed (opens menu)	收集无花果种子（打开菜单）	l
+-collect finger millet grains (1-2)	收集龙爪稷籽粒（1-2）	l
+-collect finger millet grains (1-2) (opens menu)	收集龙爪稷籽粒（1-2）（打开菜单）	l
++collect finger millet grains (1-2)	收集爪粟籽粒（1-2）	l
++collect finger millet grains (1-2) (opens menu)	收集爪粟籽粒（1-2）（打开菜单）	l
+ collect fisher berry seeds (1-2)	收集渔夫浆果种子（1-2）	l
+ collect fisher berry seeds (1-2) (opens menu)	收集渔夫浆果种子（1-2）（打开菜单）	l
+ collect flax seeds (1-2)	收集亚麻种子（1-2）	l
+ collect flax seeds (1-2) (opens menu)	收集亚麻种子（1-2）（打开菜单）	l
+-collect fonio grains (1-2)	收集福尼奥米籽粒（1-2）	l
+-collect fonio grains (1-2) (opens menu)	收集福尼奥米籽粒（1-2）（打开菜单）	l
+-collect foxtail millet grains (1-2)	收集粟米籽粒（1-2）	l
+-collect foxtail millet grains (1-2) (opens menu)	收集粟米籽粒（1-2）（打开菜单）	l
++collect fonio grains (1-2)	收集非尼奥米籽粒（1-2）	l
++collect fonio grains (1-2) (opens menu)	收集非尼奥米籽粒（1-2）（打开菜单）	l
++collect foxtail millet grains (1-2)	收集狐尾粟籽粒（1-2）	l
++collect foxtail millet grains (1-2) (opens menu)	收集狐尾粟籽粒（1-2）（打开菜单）	l
+ collect garden cress seeds (1-2)	收集水芹种子（1-2）	l
+ collect garden cress seeds (1-2) (opens menu)	收集水芹种子（1-2）（打开菜单）	l
+ collect garlic cloves (1-2)	收集大蒜劈开（1-2）	l
+@@ -19595,8 +19595,8 @@
+ collect whip vine seeds (1-2) (opens menu)	收集鞭藤种子（1-2）（打开菜单）	l
+ collect white button mushroom spawn	收集白色钮扣蘑菇卵	l
+ collect white button mushroom spawn (opens menu)	收集白色钮扣蘑菇卵（打开菜单）	l
+-collect white millet grains (1-2)	收集白黍籽粒（1-2）	l
+-collect white millet grains (1-2) (opens menu)	收集白黍籽粒（1-2）（打开菜单）	l
++collect white millet grains (1-2)	收集白粟籽粒（1-2）	l
++collect white millet grains (1-2) (opens menu)	收集白粟籽粒（1-2）（打开菜单）	l
+ collect white yam minisetts (1-2)	收集白薯蓣种薯块（1-2）	l
+ collect white yam minisetts (1-2) (opens menu)	收集白薯蓣种薯块（1-2）（打开菜单）	l
+ collect whitecurrant seed	收集白醋栗种子	l
+@@ -21176,7 +21176,7 @@
+ finger lime tree	指橘树	l
+ finger lime trees	指橘树	l
+ finger lime wood	指橘木	l
+-finger millet	龙爪稷	l
++finger millet	爪粟	l
+ finger millet beer	爪粟啤酒	l
+ finger millet flour	爪粟面粉	l
+ finger millet leaf	爪粟叶	l
+@@ -21402,9 +21402,9 @@
+ flying squirrel woman	鼯鼠人	l
+ flying squirrel women	鼯鼠人	l
+ flying squirrels	鼯鼠	l
+-fonio	福尼奥米	l
+-fonio beer	非尼奥啤酒	l
+-fonio flour	非尼奥面粉	l
++fonio	非尼奥米	l
++fonio beer	非尼奥米啤酒	l
++fonio flour	非尼奥米面粉	l
+ fonio leaf	非尼奥米叶	l
+ fonio leaves	非尼奥米叶	l
+ fonio milk	非尼奥米奶	l
+@@ -21468,7 +21468,7 @@
+ fox woman	狐狸人	l
+ fox women	狐狸人	l
+ foxes	狐狸	l
+-foxtail millet	粟米	l
++foxtail millet	狐尾粟	l
+ foxtail millet beer	狐尾粟啤酒	l
+ foxtail millet flour	狐尾粟面粉	l
+ foxtail millet leaf	狐尾粟叶	l
+@@ -21585,7 +21585,7 @@
+ frozen finger millet beer	结冻爪粟啤酒	l
+ frozen finger millet milk	冻结爪粟奶	l
+ frozen fisher berry wine	结冻渔夫浆果果酒	l
+-frozen fonio beer	结冻非尼奥啤酒	l
++frozen fonio beer	结冻非尼奥米啤酒	l
+ frozen fonio milk	冻结非尼奥米奶	l
+ frozen foxtail millet beer	结冻狐尾粟啤酒	l
+ frozen foxtail millet milk	冻结狐尾粟奶	l
+@@ -21688,7 +21688,7 @@
+ frozen quinoa beer	结冻藜麦啤酒	l
+ frozen quinoa milk	冻结藜麦奶	l
+ frozen radish wine	结冻小萝卜果酒	l
+-frozen rambutan wine	结冻红毛丹果酒	l
++frozen rambutan wine	结冻红毛果果酒	l
+ frozen raspberry wine	结冻树莓果酒	l
+ frozen rattlesnake venom	结冻响尾蛇毒素	l
+ frozen red wine	冻结红色葡萄酒	l
+@@ -21782,14 +21782,14 @@
+ gambesons	衬垫甲	l
+ gander	鹅	l
+ ganders	鹅	l
+-garden cress leaf	家独行菜叶	l
+-garden cress leaves	家独行菜叶	l
+-garden cress plant	家独行菜植物	l
+-garden cress plants	家独行菜植物	l
+-garden cress raceme	家独行菜总状花序	l
+-garden cress seed	家独行菜种子	l
+-garden cress seed pod	家独行菜种荚	l
+-garden cress seeds	家独行菜种子	l
++garden cress leaf	水芹叶	l
++garden cress leaves	水芹叶	l
++garden cress plant	水芹植物	l
++garden cress plants	水芹植物	l
++garden cress raceme	水芹总状花序	l
++garden cress seed	水芹种子	l
++garden cress seed pod	水芹种荚	l
++garden cress seeds	水芹种子	l
+ garlic	大蒜	l
+ garlic clove	大蒜劈开	l
+ garlic cloves	大蒜劈开	l
+@@ -25213,7 +25213,7 @@
+ mango tree	芒果树	l
+ mango trees	芒果树	l
+ mango wine	芒果果酒	l
+-mango wood	芒果树	l
++mango wood	芒果木	l
+ mangrove	红树	l
+ mangrove bark	红树树皮	l
+ mangrove bark dye	红树树皮染料	l
+@@ -25281,8 +25281,8 @@
+ marshes	沼泽	l
+ mash abaca slurry	捣制马尼拉麻纸浆	l
+ mash abaca slurry (opens menu)	捣制马尼拉麻纸浆（打开菜单）	l
+-mash cattail slurry	捣制香蒲纸浆	l
+-mash cattail slurry (opens menu)	捣制香蒲纸浆（打开菜单）	l
++mash cattail slurry	捣制猫尾草纸浆	l
++mash cattail slurry (opens menu)	捣制猫尾草纸浆（打开菜单）	l
+ mash cotton slurry	捣制棉花浆	l
+ mash cotton slurry (opens menu)	捣制棉花浆（打开菜单）	l
+ mash hemp slurry	捣制大麻浆	l
+@@ -25530,8 +25530,8 @@
+ mill five cassava flour (opens menu)	研磨5份木薯粉（打开菜单）	l
+ mill five catnip powder	研磨5份猫薄荷粉	l
+ mill five catnip powder (opens menu)	研磨5份猫薄荷粉（打开菜单）	l
+-mill five cattail starch	研磨5份香蒲淀粉	l
+-mill five cattail starch (opens menu)	研磨5份香蒲淀粉（打开菜单）	l
++mill five cattail starch	研磨5份猫尾草淀粉	l
++mill five cattail starch (opens menu)	研磨5份猫尾草淀粉（打开菜单）	l
+ mill five celery seed powder	研磨5份芹菜种子粉末	l
+ mill five celery seed powder (opens menu)	研磨5份芹菜种子粉末（打开菜单）	l
+ mill five chestnut flour	研磨5份栗子粉	l
+@@ -25558,8 +25558,8 @@
+ mill five flax flour (opens menu)	研磨5份亚麻面粉（打开菜单）	l
+ mill five flax seed paste	研磨5份亚麻种子膏	l
+ mill five flax seed paste (opens menu)	研磨5份亚麻种子膏（打开菜单）	l
+-mill five fonio flour	研磨5份非尼奥面粉	l
+-mill five fonio flour (opens menu)	研磨5份非尼奥面粉（打开菜单）	l
++mill five fonio flour	研磨5份非尼奥米面粉	l
++mill five fonio flour (opens menu)	研磨5份非尼奥米面粉（打开菜单）	l
+ mill five foxtail millet flour	研磨5份狐尾粟面粉	l
+ mill five foxtail millet flour (opens menu)	研磨5份狐尾粟面粉（打开菜单）	l
+ mill five garlic powder	研磨5份大蒜粉末	l
+@@ -27540,7 +27540,7 @@
+ rambutan leaves	红毛果叶	l
+ rambutan tree	红毛果树	l
+ rambutan trees	红毛果树	l
+-rambutan wine	红毛丹果酒	l
++rambutan wine	红毛果果酒	l
+ rambutan wood	红毛果木	l
+ ramie	苎麻	l
+ ramie leaf	苎麻叶	l
+@@ -30065,7 +30065,7 @@
+ white button mushroom spawn	白色钮扣蘑菇卵	l
+ white button mushrooms	白色钮扣蘑菇形物	l
+ white jade	白翡翠	l
+-white millet	白黍	l
++white millet	白粟	l
+ white millet beer	白粟啤酒	l
+ white millet flour	白粟面粉	l
+ white millet leaf	白粟叶	l
+@@ -30246,10 +30246,10 @@
+ wild caper leaf	野生刺山柑叶	l
+ wild caper leaves	野生刺山柑叶	l
+ wild carrot	野生胡萝卜	l
+-wild carrot leaf	野生胡罗卜叶	l
+-wild carrot leaves	野生胡罗卜叶	l
++wild carrot leaf	野生胡萝卜叶	l
++wild carrot leaves	野生胡萝卜叶	l
+ wild carrot seedhead	野生胡萝卜种穗	l
+-wild carrot umbel	野生胡罗卜伞形花序	l
++wild carrot umbel	野生胡萝卜伞形花序	l
+ wild carrots	野生胡萝卜	l
+ wild cassava	野生木薯	l
+ wild cassava flower	野生木薯花	l
+@@ -30347,12 +30347,12 @@
+ wild foxtail millet	野生狐尾粟	l
+ wild foxtail millet leaf	野生狐尾粟叶	l
+ wild foxtail millet leaves	野生狐尾粟叶	l
+-wild garden cress leaf	野生家独行菜叶	l
+-wild garden cress leaves	野生家独行菜叶	l
+-wild garden cress plant	野生家独行菜植物	l
+-wild garden cress plants	野生家独行菜植物	l
+-wild garden cress raceme	野生家独行菜总状花序	l
+-wild garden cress seed pod	野生家独行菜种荚	l
++wild garden cress leaf	野生水芹叶	l
++wild garden cress leaves	野生水芹叶	l
++wild garden cress plant	野生水芹植物	l
++wild garden cress plants	野生水芹植物	l
++wild garden cress raceme	野生水芹总状花序	l
++wild garden cress seed pod	野生水芹种荚	l
+ wild garlic	野生大蒜	l
+ wild garlic flower	野生大蒜花	l
+ wild garlic leaf	野生大蒜叶	l
+@@ -30975,22 +30975,22 @@
+ Blade Weed Seed Pod	刀刃草种荚	l
+ Cabbage Seed Pod	卷心菜种荚	l
+ Cabbage seed pod	卷心菜种荚	l
+-Garden cress plant	家独行菜植物	l
+-Garden Cress Plant	家独行菜植物	l
+-Garden cress plants	家独行菜植物	l
+-Garden Cress Plants	家独行菜植物	l
+-Garden cress seed	家独行菜种子	l
+-Garden Cress Seed	家独行菜种子	l
+-Garden Cress Seeds	家独行菜种子	l
+-Garden cress seeds	家独行菜种子	l
+-Garden cress leaf	家独行菜叶	l
+-Garden Cress Leaf	家独行菜叶	l
+-Garden cress leaves	家独行菜叶	l
+-Garden Cress Leaves	家独行菜叶	l
+-Garden cress raceme	家独行菜总状花序	l
+-Garden Cress Raceme	家独行菜总状花序	l
+-Garden Cress Seed Pod	家独行菜种荚	l
+-Garden cress seed pod	家独行菜种荚	l
++Garden cress plant	水芹植物	l
++Garden Cress Plant	水芹植物	l
++Garden cress plants	水芹植物	l
++Garden Cress Plants	水芹植物	l
++Garden cress seed	水芹种子	l
++Garden Cress Seed	水芹种子	l
++Garden Cress Seeds	水芹种子	l
++Garden cress seeds	水芹种子	l
++Garden cress leaf	水芹叶	l
++Garden Cress Leaf	水芹叶	l
++Garden cress leaves	水芹叶	l
++Garden Cress Leaves	水芹叶	l
++Garden cress raceme	水芹总状花序	l
++Garden Cress Raceme	水芹总状花序	l
++Garden Cress Seed Pod	水芹种荚	l
++Garden cress seed pod	水芹种荚	l
+ Radish seed pod	小萝卜种荚	l
+ Radish Seed Pod	小萝卜种荚	l
+ Rat weed seed pod	杂鼠草种荚	l
+@@ -31205,12 +31205,12 @@
+ Wild carrot	野生胡萝卜	l
+ Wild carrots	野生胡萝卜	l
+ Wild Carrots	野生胡萝卜	l
+-Wild carrot leaf	野生胡罗卜叶	l
+-Wild Carrot Leaf	野生胡罗卜叶	l
+-Wild Carrot Leaves	野生胡罗卜叶	l
+-Wild carrot leaves	野生胡罗卜叶	l
+-Wild Carrot Umbel	野生胡罗卜伞形花序	l
+-Wild carrot umbel	野生胡罗卜伞形花序	l
++Wild carrot leaf	野生胡萝卜叶	l
++Wild Carrot Leaf	野生胡萝卜叶	l
++Wild Carrot Leaves	野生胡萝卜叶	l
++Wild carrot leaves	野生胡萝卜叶	l
++Wild Carrot Umbel	野生胡萝卜伞形花序	l
++Wild carrot umbel	野生胡萝卜伞形花序	l
+ Wild Cassava	野生木薯	l
+ Wild cassava	野生木薯	l
+ Wild cassavas	野生木薯	l
+@@ -31367,18 +31367,18 @@
+ Wild foxtail millet leaf	野生狐尾粟叶	l
+ Wild foxtail millet leaves	野生狐尾粟叶	l
+ Wild Foxtail Millet Leaves	野生狐尾粟叶	l
+-Wild garden cress plant	野生家独行菜植物	l
+-Wild Garden Cress Plant	野生家独行菜植物	l
+-Wild garden cress plants	野生家独行菜植物	l
+-Wild Garden Cress Plants	野生家独行菜植物	l
+-Wild garden cress leaf	野生家独行菜叶	l
+-Wild Garden Cress Leaf	野生家独行菜叶	l
+-Wild garden cress leaves	野生家独行菜叶	l
+-Wild Garden Cress Leaves	野生家独行菜叶	l
+-Wild Garden Cress Raceme	野生家独行菜总状花序	l
+-Wild garden cress raceme	野生家独行菜总状花序	l
+-Wild garden cress seed pod	野生家独行菜种荚	l
+-Wild Garden Cress Seed Pod	野生家独行菜种荚	l
++Wild garden cress plant	野生水芹植物	l
++Wild Garden Cress Plant	野生水芹植物	l
++Wild garden cress plants	野生水芹植物	l
++Wild Garden Cress Plants	野生水芹植物	l
++Wild garden cress leaf	野生水芹叶	l
++Wild Garden Cress Leaf	野生水芹叶	l
++Wild garden cress leaves	野生水芹叶	l
++Wild Garden Cress Leaves	野生水芹叶	l
++Wild Garden Cress Raceme	野生水芹总状花序	l
++Wild garden cress raceme	野生水芹总状花序	l
++Wild garden cress seed pod	野生水芹种荚	l
++Wild Garden Cress Seed Pod	野生水芹种荚	l
+ Wild garlic	野生大蒜	l
+ Wild Garlic	野生大蒜	l
+ Wild Garlic Leaf	野生大蒜叶	l
+@@ -32144,9 +32144,9 @@
+ caper flowers	刺山柑花	l
+ Caper flowers	刺山柑花	l
+ Caper Flowers	刺山柑花	l
+-carrot umbels	胡罗卜伞形花序	l
+-Carrot Umbels	胡罗卜伞形花序	l
+-Carrot umbels	胡罗卜伞形花序	l
++carrot umbels	胡萝卜伞形花序	l
++Carrot Umbels	胡萝卜伞形花序	l
++Carrot umbels	胡萝卜伞形花序	l
+ Carrot seedheads	胡萝卜种穗	l
+ Carrot Seedheads	胡萝卜种穗	l
+ carrot seedheads	胡萝卜种穗	l
+@@ -32156,9 +32156,9 @@
+ cattail flowers	猫尾草花	l
+ Cattail flowers	猫尾草花	l
+ Cattail Flowers	猫尾草花	l
+-Cattail seedheads	香蒲种穗	l
+-Cattail Seedheads	香蒲种穗	l
+-cattail seedheads	香蒲种穗	l
++Cattail seedheads	猫尾草种穗	l
++Cattail Seedheads	猫尾草种穗	l
++cattail seedheads	猫尾草种穗	l
+ Celery Leafs	芹菜叶	l
+ celery leafs	芹菜叶	l
+ Celery leafs	芹菜叶	l
+@@ -32220,12 +32220,12 @@
+ Flax Seed Capsules	亚麻种子蒴果	l
+ Flax seed capsules	亚麻种子蒴果	l
+ flax seed capsules	亚麻种子蒴果	l
+-Garden Cress Racemes	家独行菜总状花序	l
+-garden cress racemes	家独行菜总状花序	l
+-Garden cress racemes	家独行菜总状花序	l
+-Garden Cress Seed Pods	家独行菜种荚	l
+-garden cress seed pods	家独行菜种荚	l
+-Garden cress seed pods	家独行菜种荚	l
++Garden Cress Racemes	水芹总状花序	l
++garden cress racemes	水芹总状花序	l
++Garden cress racemes	水芹总状花序	l
++Garden Cress Seed Pods	水芹种荚	l
++garden cress seed pods	水芹种荚	l
++Garden cress seed pods	水芹种荚	l
+ Garlic flowers	大蒜花	l
+ garlic flowers	大蒜花	l
+ Garlic Flowers	大蒜花	l
+@@ -32469,12 +32469,12 @@
+ abaca flowers	蕉麻花	l
+ Abaca Flowers	蕉麻花	l
+ Abaca flowers	蕉麻花	l
+-Acacia Flowers	黑荆花	l
+-acacia flowers	黑荆花	l
+-Acacia flowers	黑荆花	l
+-Acacia Pods	黑荆荚	l
+-Acacia pods	黑荆荚	l
+-acacia pods	黑荆荚	l
++Acacia Flowers	刺槐花	l
++acacia flowers	刺槐花	l
++Acacia flowers	刺槐花	l
++Acacia Pods	刺槐荚	l
++Acacia pods	刺槐荚	l
++acacia pods	刺槐荚	l
+ Alder pollen catkins	桤树花粉葇荑花序	l
+ Alder Pollen Catkins	桤树花粉葇荑花序	l
+ alder pollen catkins	桤树花粉葇荑花序	l
+@@ -32893,9 +32893,9 @@
+ wild caper flowers	野生刺山柑花	l
+ Wild caper flowers	野生刺山柑花	l
+ Wild Caper Flowers	野生刺山柑花	l
+-Wild Carrot Umbels	野生胡罗卜伞形花序	l
+-Wild carrot umbels	野生胡罗卜伞形花序	l
+-wild carrot umbels	野生胡罗卜伞形花序	l
++Wild Carrot Umbels	野生胡萝卜伞形花序	l
++Wild carrot umbels	野生胡萝卜伞形花序	l
++wild carrot umbels	野生胡萝卜伞形花序	l
+ wild carrot seedheads	野生胡萝卜种穗	l
+ Wild carrot seedheads	野生胡萝卜种穗	l
+ Wild Carrot Seedheads	野生胡萝卜种穗	l
+@@ -32965,12 +32965,12 @@
+ wild flax capsules	野生亚麻蒴果	l
+ Wild Flax Capsules	野生亚麻蒴果	l
+ Wild flax capsules	野生亚麻蒴果	l
+-Wild garden cress racemes	野生家独行菜总状花序	l
+-Wild Garden Cress Racemes	野生家独行菜总状花序	l
+-wild garden cress racemes	野生家独行菜总状花序	l
+-Wild Garden Cress Seed Pods	野生家独行菜种荚	l
+-wild garden cress seed pods	野生家独行菜种荚	l
+-Wild garden cress seed pods	野生家独行菜种荚	l
++Wild garden cress racemes	野生水芹总状花序	l
++Wild Garden Cress Racemes	野生水芹总状花序	l
++wild garden cress racemes	野生水芹总状花序	l
++Wild Garden Cress Seed Pods	野生水芹种荚	l
++wild garden cress seed pods	野生水芹种荚	l
++Wild garden cress seed pods	野生水芹种荚	l
+ Wild Garlic Flowers	野生大蒜花	l
+ wild garlic flowers	野生大蒜花	l
+ Wild garlic flowers	野生大蒜花	l
+@@ -33561,12 +33561,12 @@
+ Caper berry	刺山柑浆果	l
+ Caper Berries	刺山柑浆果	l
+ Caper berries	刺山柑浆果	l
+-Carrot Leaf	胡罗卜叶	l
+-Carrot leaf	胡罗卜叶	l
+-Carrot leaves	胡罗卜叶	l
+-Carrot Leaves	胡罗卜叶	l
+-Carrot Umbel	胡罗卜伞形花序	l
+-Carrot umbel	胡罗卜伞形花序	l
++Carrot Leaf	胡萝卜叶	l
++Carrot leaf	胡萝卜叶	l
++Carrot leaves	胡萝卜叶	l
++Carrot Leaves	胡萝卜叶	l
++Carrot Umbel	胡萝卜伞形花序	l
++Carrot umbel	胡萝卜伞形花序	l
+ Carrot Seedhead	胡萝卜种穗	l
+ Carrot seedhead	胡萝卜种穗	l
+ Cassava Leaf	木薯叶	l
+@@ -33581,8 +33581,8 @@
+ Cattail Leaves	猫尾草叶	l
+ Cattail flower	猫尾草花	l
+ Cattail Flower	猫尾草花	l
+-Cattail Seedhead	香蒲种穗	l
+-Cattail seedhead	香蒲种穗	l
++Cattail Seedhead	猫尾草种穗	l
++Cattail seedhead	猫尾草种穗	l
+ Celery Leaf	芹菜叶	l
+ Celery leaf	芹菜叶	l
+ Celery umbel	芹菜伞形花序	l
+@@ -34107,14 +34107,14 @@
+ Abaca Leaves	蕉麻叶	l
+ Abaca flower	蕉麻花	l
+ Abaca Flower	蕉麻花	l
+-Acacia Leaf	黑荆叶	l
+-Acacia leaf	黑荆叶	l
+-Acacia Leaves	黑荆叶	l
+-Acacia leaves	黑荆叶	l
+-Acacia flower	黑荆花	l
+-Acacia Flower	黑荆花	l
+-Acacia Pod	黑荆荚	l
+-Acacia pod	黑荆荚	l
++Acacia Leaf	刺槐叶	l
++Acacia leaf	刺槐叶	l
++Acacia Leaves	刺槐叶	l
++Acacia leaves	刺槐叶	l
++Acacia flower	刺槐花	l
++Acacia Flower	刺槐花	l
++Acacia Pod	刺槐荚	l
++Acacia pod	刺槐荚	l
+ Alder Leaf	桤树叶	l
+ Alder leaf	桤树叶	l
+ Alder leaves	桤树叶	l
+@@ -35056,8 +35056,8 @@
+ Elephant-head amaranth seed	象头苋种子	l
+ Elephant-Head Amaranth Seeds	象头苋种子	l
+ Elephant-head amaranth seeds	象头苋种子	l
+-Finger millet	龙爪稷	l
+-Finger Millet	龙爪稷	l
++Finger millet	爪粟	l
++Finger Millet	爪粟	l
+ Fisher berry seed	渔夫浆果种子	l
+ Fisher Berry Seed	渔夫浆果种子	l
+ Fisher berry seeds	渔夫浆果种子	l
+@@ -35066,9 +35066,9 @@
+ Flax seed	亚麻种子	l
+ Flax seeds	亚麻种子	l
+ Flax Seeds	亚麻种子	l
+-Fonio	福尼奥米	l
+-Foxtail Millet	粟米	l
+-Foxtail millet	粟米	l
++Fonio	非尼奥米	l
++Foxtail Millet	狐尾粟	l
++Foxtail millet	狐尾粟	l
+ Garlic Clove	大蒜劈开	l
+ Garlic clove	大蒜劈开	l
+ Garlic Cloves	大蒜劈开	l
+@@ -35326,8 +35326,8 @@
+ Whip vine seed	鞭藤种子	l
+ Whip vine seeds	鞭藤种子	l
+ Whip Vine Seeds	鞭藤种子	l
+-White millet	白黍	l
+-White Millet	白黍	l
++White millet	白粟	l
++White Millet	白粟	l
+ White Yam Minisett	白薯蓣种薯块	l
+ White yam minisett	白薯蓣种薯块	l
+ White yam minisetts	白薯蓣种薯块	l
+@@ -37091,12 +37091,12 @@
+ Art shape: Runic 'Z'	符文字母Z	l
+ Art shape: runic 'Z'	符文字母Z	l
+ Workshop recipe: format state reaction class	可作{s}	l
+-Acacia	黑荆	l
+-Acacias	黑荆	l
+-Acacia Wood Dye	黑荆木染料	l
+-Acacia wood dye	黑荆木染料	l
+-Acacia Flour	黑荆粉	l
+-Acacia flour	黑荆粉	l
++Acacia	刺槐	l
++Acacias	刺槐	l
++Acacia Wood Dye	刺槐木染料	l
++Acacia wood dye	刺槐木染料	l
++Acacia Flour	刺槐粉	l
++Acacia flour	刺槐粉	l
+ Cornflower plant	矢车菊植物	l
+ Cornflower Plant	矢车菊植物	l
+ Cornflower Plants	矢车菊植物	l

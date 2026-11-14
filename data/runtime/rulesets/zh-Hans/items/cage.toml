@@ -30,7 +30,7 @@ name = "main"
 [[rulesets]]
 name = "material"
 [rulesets.rules]
-"unknown material" = "未知物质"
+"unknown material" = "未知材料"
 "{::materials}" = "{::materials}"
 "{::materials::adjective}" = "{::materials::adjective}"
 "{::text::person}'s {::materials}" = "{::text::person}的{::materials}"

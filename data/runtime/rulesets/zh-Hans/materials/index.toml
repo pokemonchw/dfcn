@@ -9,7 +9,7 @@ base = "materials"
 "{job}" = "{job}"
 # Native fallback in the map track/item constructors (0x407d49,
 # 0xca0477 and storage-item methods); still a complete material noun.
-"unknown material" = "未知物质"
+"unknown material" = "未知材料"
 
 # The finished-item material callback is a real namespace dependency, just
 # like items::storage_container. Declare it so references are loadable; its
@@ -44,4 +44,4 @@ name = "adjective"
 name = "finished_adjective"
 [rulesets.rules]
 "{^prefix}{job::finished_adjective}" = "{^prefix}{job::finished_adjective}"
-"unknown material" = "未知物质"
+"unknown material" = "未知材料"

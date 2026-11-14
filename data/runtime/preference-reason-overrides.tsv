@@ -51,7 +51,7 @@ snouts	吻部
 spots	斑点
 stout bodies	粗壮的身体
 tail club	尾锤
-tail spikes	尾刺
+tail spikes	尾尖刺
 terrifying beaks	骇人的喙
 three horns	三只角
 thumb spikes	拇指上的尖刺
@@ -95,7 +95,7 @@ fruit and nuts	果实与坚果
 fuzzy projections	毛茸茸的突起
 gray leaves	灰色的叶子
 hanging leaves	下垂的叶子
-inner light	内在的光芒
+inner light	内在光芒
 leaf coloration	叶子的色彩
 length	修长的形态
 lens-shaped seeds	透镜状的种子
@@ -125,7 +125,7 @@ wine	果酒
 ability to annoy	惹人烦恼的本领
 ability to burrow	挖洞能力
 ability to conceal themselves	隐藏自己的能力
-ability to devour wood	啃食木头的能力
+ability to devour wood	啃食木材的能力
 ability to disgust	令人作呕的本领
 ability to expand	膨胀能力
 ability to feast on blood	吸食鲜血的能力
@@ -156,7 +156,7 @@ coat patterns	皮毛上的花纹
 comforting whirs	令人安心的呼呼声
 crackles and pops	噼啪作响的声音
 creepiness	诡异的气息
-cunning	狡黠
+cunning	狡猾
 deadly bite	致命的咬击
 deafening buzz	震耳欲聋的嗡鸣
 dedication to their young	对幼崽的呵护
@@ -189,8 +189,8 @@ long limbs	修长的四肢
 loving nature	充满关爱的天性
 massive schools	庞大的鱼群
 overlapping scales	层层叠叠的鳞片
-pincers	螯
-pouches	育儿袋
+pincers	钳子
+pouches	小袋
 powerful bites	强有力的咬击
 predatory nature	捕食的天性
 prehensile tails	能抓握的尾巴
@@ -237,3 +237,1276 @@ weedy bodies	草蔓般的身体
 whistles	口哨般的叫声
 woolly legs	毛茸茸的腿
 wriggling	蠕动的姿态
+
+# Shared reasons also published under the Preference reason namespace.
+Apricorns	球果
+Dream Mist	梦境烟雾
+Dreepy launching	发射多龙梅西亚
+Dynamax properties	极巨化属性
+HP boosting	提升体力
+Mini-Noses	小朝北鼻
+Moomoo milk	哞哞鲜奶
+Pikachu veil	皮卡丘面纱
+Poke Ball cap	精灵球帽
+Poke Beans	宝可豆
+Pollen Puffs	花粉团
+RKS System	ＡＲ系统
+Shellder	大舌贝
+Snoverberries	雪笠怪树果
+Soul-Heart	魂心
+ability to absorb anything	吸收任何东西的能力
+ability to balance objects	平衡物体的能力
+ability to boost agility	提高敏捷性的能力
+ability to bring happy dreams	带来美梦的能力
+ability to bring joy	带来欢乐的能力
+ability to bring nightmares	带来噩梦的能力
+ability to camouflage	伪装能力
+ability to change colors	改变颜色的能力
+ability to change form	改变形态的能力
+ability to clear throats	清嗓子的能力
+ability to control Pokemon	控制宝可梦的能力
+ability to control gravity	控制重力的能力
+ability to control snow	控雪能力
+ability to create dense fog	产生浓雾的能力
+ability to create diamonds	创造钻石的能力
+ability to create earthquakes	制造地震的能力
+ability to create ice crystals	产生冰晶的能力
+ability to create metal	创造金属的能力
+ability to create powerful shock waves	产生强大冲击波的能力
+ability to create storm clouds	创造风暴云的能力
+ability to create thunderclouds	创造雷雨云的能力
+ability to create ultrasonic waves	产生超声波的能力
+ability to create whirlwinds	制造旋风的能力
+ability to cure any illness	治愈任何疾病的能力
+ability to cure illness	治愈疾病的能力
+ability to cure paralysis	治愈麻痹的能力
+ability to cure poison	解毒能力
+ability to dissolve rocks	溶解岩石的能力
+ability to drill through wood	钻穿木材的能力
+ability to expand continents	扩展大陆的能力
+ability to expand oceans	扩大海洋的能力
+ability to fly	飞行能力
+ability to freeze moisture	冻结水分的能力
+ability to generate strong winds	产生强风的能力
+ability to grow plants	促进植物生长的能力
+ability to help crops grow	帮助农作物生长的能力
+ability to hold liquor	酒量
+ability to keep time	精准计时的能力
+ability to make fire	生火的能力
+ability to make lightning	制造闪电的能力
+ability to make rainbows	创造彩虹的能力
+ability to make snow	造雪能力
+ability to make storms	制造风暴的能力
+ability to manipulate peat	操纵泥炭的能力
+ability to open Ultra Wormholes	打开究极之洞的能力
+ability to organize	组织能力
+ability to predict disasters	预测灾害的能力
+ability to predict storms	预测风暴的能力
+ability to predict the future	预测未来的能力
+ability to produce loud pops	产生响亮爆裂声的能力
+ability to produce steam	产生蒸汽的能力
+ability to project dreams	投射梦境的能力
+ability to purify water	净化水的能力
+ability to read emotions	读懂情绪的能力
+ability to read feelings	读懂感情的能力
+ability to recall memories	唤回记忆的能力
+ability to relieve stress	缓解压力的能力
+ability to revive Pokemon	复活宝可梦的能力
+ability to roll	滚动能力
+ability to rotate their head	旋转头部的能力
+ability to see the future	预见未来的能力
+ability to sense auras	感知波导的能力
+ability to sense emotions	感知情绪的能力
+ability to sharpen ones focus	提高注意力的能力
+ability to shoot ink	射墨能力
+ability to shoot thunderbolts	发射雷电的能力
+ability to slip through cracks	穿过裂缝的能力
+ability to splash	溅跃的本领
+ability to store electricity	储存电力的能力
+ability to summon rain clouds	召唤雨云的能力
+ability to teleport	传送能力
+ability to transform	变身的能力
+ability to turn Pokemon pink	将宝可梦变成粉红色的能力
+ability to walk on water	在水上行走的能力
+accuracy	精准度
+acorn shape	橡子形状
+acrobatic ability	杂技能力
+activeness	活跃度
+adaptability	适应性
+adorable behavior	可爱的行为
+adorable looks	可爱的外表
+adversion to rain	厌恶雨水的习性
+affection	亲昵的举动
+affectionate nature	亲人的性格
+afro	爆炸头
+aggressiveness	攻击性
+agressive nature	好斗的性格
+aid in muscle growth	促进肌肉生长的功效
+aid in tougness	增强坚韧的功效
+aid with digestion	帮助消化的功效
+air bubbles	气泡
+alertness	警觉
+amazing vision	惊人的视力
+anchor	锚
+ancient genes	古老的基因
+angelic appearance	天使般的外表
+angry eyes	愤怒的眼睛
+antenna	触角
+antennae	触角
+antique tableware	古董餐具
+antlers	鹿角
+appetite	食欲
+apple	苹果
+apple disguise	苹果伪装
+apron	围裙
+armor	盔甲
+armored body	披甲的身体
+aroma	香气
+aspiration	愿望
+asymmetric cut	不对称剪裁
+attraction to light	趋光性
+attraction to strong emotions	对强烈情绪的喜好
+attraction to the deceased	对亡者的亲近
+aura sensing	波导感知
+axe horns	斧角
+axes	斧头
+bag like tail	袋状尾巴
+balanced flavored juice	风味均衡的果汁
+ball	球
+balloon shape	气球形状
+bamboo like body	竹子般的身体
+banana-like shape	香蕉状
+barbaric demeanor	野蛮的举止
+barbels	触须
+beads	珠子
+beady eyes	圆圆的眼睛
+beak	喙
+beard	胡须
+beard of fire	火焰胡须
+beards	胡须
+beautiful caudal fin	美丽的尾鳍
+beer	啤酒
+being a human in Pokemon form	以宝可梦形态生活的人类身份
+being turned into the form of a Pokemon	变成宝可梦的形态
+belief in ideals	对理想的信念
+belief in truth	相信真理
+bell	钟
+bell shape	钟形
+bellowing	吼叫
+benefits	益处
+benefits?	可能的益处
+berries	树果
+berry bushes	树果灌木
+berry juggling	抛接树果的杂耍
+berry throwing	投掷树果
+bill	喙
+biterness	苦味
+biting	啃咬的习性
+bitter flavor	苦味
+bitter flavored juice	苦味果汁
+bitter fruit	苦味果实
+bitter stem	苦茎
+bitter taste	苦味
+bitterness	苦味
+bittersweet juices	苦甜的汁液
+bittersweet taste	苦甜的味道
+bizare features	古怪的外貌
+blade	刀刃
+blade birds	刀锋鸟
+blades	刀片
+blessings	祝福
+blight on nature	对自然的损害
+blimp shape	飞艇形状
+blinking	眨眼
+blood red crest	血红色的冠
+blood red horns	血红色的角
+blood sucking	吸血
+bloodmoon mark	赫月印记
+bloom	头顶的花朵
+blooming	盛开
+body of magma	岩浆构成的身体
+body of plasma	等离子体构成的身体
+bolt like tail	闪电状的尾巴
+bone club	骨棒
+bone like features	骨样特征
+bone skirt	骨裙
+bouncing	弹跳
+bouquet	花束
+bows	蝴蝶结
+boxing	拳击
+boxing glove pincers	拳击手套般的钳子
+branch shooting	发射树枝
+bravery	勇敢
+brick pattern hide	砖纹皮肤
+bridge shape	桥形
+bright berries	鲜艳的浆果
+bright light	明亮的光
+brilliant color	绚丽的色彩
+bristly fur	刚毛
+bronze body	青铜构成的身体
+brutality	残暴的性情
+brute force	蛮力
+bubble beard	泡泡胡子
+bubble scarf	泡泡围巾
+buds	花苞
+bulb	背上的种子球茎
+bulk	壮硕的体格
+buoyancy	浮力
+bushy mane	浓密的鬃毛
+busy nature	忙碌的天性
+cable like limbs	电缆状四肢
+cackling	咯咯地笑
+call	叫声
+calm nature	沉稳的性格
+calm personality	冷静的性格
+calming aroma	令人平静的香气
+calming aura	令人平静的气场
+calmness	冷静
+canine body	犬形身体
+cannon	大炮
+cannons	大炮
+cap	帽状头顶
+capabilities	能力
+carbs	碳水化合物
+carefree nature	无忧无虑的天性
+caretaking	照顾
+caring	关怀
+castle structure	城堡结构
+caudal fins	尾鳍
+cellular body	细胞构成的身体
+charm	魅力
+cheek pouches	颊囊
+cheeks	脸颊
+cheering	欢呼
+cherry-like appearance	樱桃般的外观
+chimeric body	嵌合体
+chunky body	矮胖的身体
+clanging scales	叮当作响的鳞片
+clapping	鼓掌
+claw	爪
+claws	爪子
+clay structure	粘土结构
+cleaning	打扫
+climbing ability	攀爬能力
+climbing skill	攀爬技巧
+cloak	披风
+cloud-like wings	云朵般的翅膀
+coal	煤炭
+coal burning	燃烧煤炭
+coiling	卷绕
+coin	硬币
+coins	硬币
+cold temperature	寒冷的温度
+color	颜色
+colorful explosions	色彩缤纷的爆炸
+colorful feathers	色彩斑斓的羽毛
+colorful petals	五颜六色的花瓣
+colorful wings	色彩斑斓的翅膀
+colors	颜色
+comb	冠羽
+compassion	同情
+compound eyes	复眼
+concrete pillars	混凝土柱
+constant hunger	持续饥饿
+coolheadedness	冷静
+copper like skin	铜般的皮肤
+coral like growths	珊瑚状的附肢
+core	核心
+cotten puffs	棉絮
+cotton	棉花
+courage	勇气
+cowardly nature	胆怯的天性
+craftsmanship	工艺
+cream	奶油
+creamy body	奶油般的身体
+crescent wing	新月形翅膀
+crescent-shaped ornaments	月牙形饰物
+cries	叫声
+cry	叫声
+crying	哭泣
+crystal body	水晶构成的身体
+crystal energy	水晶能量
+crystal formation	晶体构造
+crystals	晶体
+cudgel	棍棒
+curiosity	好奇心
+curiousity	好奇心
+curled tail	卷曲的尾巴
+curly tail	卷尾
+cursed energy	诅咒能量
+curvy fruit	弯曲的水果
+cute antics	可爱的举动
+cute appearance	可爱的外表
+cute features	可爱的外貌
+dance	舞蹈
+dancing	跳舞
+dangles	头部两侧的垂饰
+dart like shape	飞镖状
+deceiving look	迷惑性的外表
+deception	欺骗
+decorations	装饰
+delicate skin	娇嫩的皮肤
+delicious smell	诱人的香气
+deliciousness	美味
+depth	醇厚的滋味
+desire for isolation and silence	对独处与安静的喜好
+destructive nature	喜欢破坏的天性
+diamond dress	钻石裙装
+diamonds	钻石
+diet of iron	以铁为食的习性
+diet of rocks and gemstones	以岩石和宝石为食的习性
+diet of sulfur	以硫磺为食的习性
+different appearances	不同的外观
+different colors	不同的颜色
+different forms	不同的形态
+digging	挖掘
+digging strength	挖掘力
+diligence	勤勉
+dimension travelling	次元旅行
+disgusting breath	令人作呕的吐息
+disheveled hair	蓬乱的头发
+diving	潜水
+diving ability	潜水能力
+docile nature	温顺的性情
+doll-like appearance	娃娃般的外表
+dorsal blade	背部刀刃
+draconic appearance	龙般的外形
+draconic apperance	龙般的外形
+dragon energy formation	龙形能量构造
+dravite	镁电气石
+draw speed	拔刀速度
+dream eating	食梦的习性
+drifting	漂流
+drill-like tail	钻头般的尾巴
+drink strength	酿成酒后的烈劲
+dripping embers	滴落的余烬
+drooping tentacles	下垂的触手
+drum	鼓
+drumming	击鼓
+dry flavor	涩味
+dry flavored juice	涩味果汁
+dryness	涩味
+dull wits	迟钝的头脑
+dullness	迟钝
+eagerness	争强好胜的性格
+ears	耳朵
+earth splitting power	劈开大地的力量
+earthy form	泥土构成的形体
+echolocation	回声定位
+ectoplasm	外质
+edible tubers	可食用的块茎
+effect?	可能的效果
+egg	蛋
+egg-shaped fireball	蛋形火球
+elbow blades	肘部刀刃
+electric generation	发电
+electric spines	电刺
+electric webs	电网
+electrical claws	电爪
+electrical fighting style	电力格斗风格
+electrical formation	电流构成的形体
+electrical glands	储存电力的腺体
+electrical power	电力
+electrical tail	带电的尾巴
+electricity-discharging organs	放电器官
+elegance	优雅
+elegant body	优雅的身材
+elegant moves	优雅的动作
+ember scattering	四散的火星
+emotion draining touch	吸取情感的触碰
+emotionless face	毫无表情的面孔
+enchanting melodies	迷人的旋律
+encouragement	鼓励
+endless hunger	无尽的饥饿
+endless sleeping	无休止的睡眠
+endurance	耐力
+energy	活力
+enigmatic properties	神秘的特性
+erratic movements	难以预测的动作
+erupting humps	喷发的驼峰
+eternal life	永生
+evil appearance	邪恶的外表
+evil nature	邪恶的天性
+excessive poison	充沛的毒素
+explosive tendency	容易爆炸的特性
+extraterrestrial origins	外星起源
+extreme kick	强烈的劲道
+eye-like fruit	眼睛形状的果实
+facial expressions	面部表情
+fan tail	扇形尾巴
+fangs	獠牙
+feather	羽毛
+feathery ruff	羽毛围领
+feelers	触角
+ferocity	凶猛的天性
+fetid breath	腐臭的吐息
+fickle nature	善变的本性
+fierce appearance	凶猛的外表
+fierce personality	凶猛的性格
+fiery dance	火热的舞蹈
+fiery mane	火焰般的鬃毛
+fiery plumage	火热的羽毛
+fighting speed	战斗速度
+fighting spirit	斗志
+fighting style	战斗风格
+fighting styles	战斗风格
+fighting technique	格斗技术
+fillet	脱落的鱼肉
+fin	鳍
+fins	鳍
+fire spitting	吐火
+fire streamers	火焰飘带
+firey body	炽热的身体
+fish like appearance	鱼般的外形
+fish-like tail	鱼形的尾巴
+flabby body	肥硕松软的身躯
+flame	火焰
+flame belt	火焰腰带
+flame sac	火焰囊
+flame tail	火焰尾
+flames	火焰
+flaming antennae	燃烧的触角
+flaming back	燃烧的背部
+flaming furballs	燃烧的毛球
+flaming head	燃烧的头
+flaming pebbles	燃烧的鹅卵石
+flaming tail	火焰尾
+flashing mane	闪烁的鬃毛
+flat body	扁平的身体
+flat top	平顶
+flexibility	灵活性
+flexible body	灵活的身体
+flickering spores	闪烁的孢子
+floating	漂浮的本领
+floating hands	漂浮的手
+flotation sac	浮囊
+flower	花
+flower bombs	花朵炸弹
+flower bud	花蕾
+flowing hair	飘逸的头发
+flowing wool	飘动的羊毛
+fluff	绒毛
+fluffy down	蓬松的绒羽
+fluffy ears	毛茸茸的耳朵
+fluffy fur	蓬松的毛皮
+fluffy tail	毛茸茸的尾巴
+fluffy tips	蓬松的末端
+flying skill	飞行技巧
+foot print claws	足印状的爪子
+footwork	步法
+forked tail	分叉的尾巴
+form	形态
+formation	形体构造
+formes	形态
+foul smell	臭味
+fragrance	香味
+fragrant fruit	芳香的果实
+freezing upper half	冰冷的上半身
+fresh scent	清新的气味
+friendliness	友好
+friendly nature	友善的天性
+frilled collar	褶边围领
+frills	褶边
+frozen texture	冰凉的口感
+frubbles	泡沫
+fruits	果实
+fulfillingness	饱腹感
+funny walk	滑稽的步态
+fusions	融合
+fuzzy body	毛茸茸的身体
+gas	气体
+gel	凝胶
+gem	宝石
+gem-like eyes	宝石般的眼睛
+generator tail	发电机般的尾巴
+gentle nature	温柔的天性
+gentle temperament	温和的性情
+ghostly arms	幽灵般的手臂
+ghostly plume	幽灵般的头冠
+giant fireball	巨大的火球
+giant jaw	巨大的颌部
+giant jaws	巨颚
+giant mouth	巨嘴
+girder	梁
+glare	锐利的目光
+gliding	滑行
+glimmering body	闪光的身躯
+glistening fur	闪闪发光的毛皮
+glittering	闪耀的光泽
+glittering spores	闪闪发光的孢子
+glittering wings	闪闪发光的翅膀
+gloomy appearance	阴沉的样子
+glow	辉光
+glowing body	发光的身体
+glowing eyes	发光的眼睛
+glowing features	发光特征
+glowing mushroom	发光蘑菇
+glowing mushrooms	发光蘑菇
+glowing rings	发光环
+glowing scales	发光鳞片
+glowing tail	发光的尾巴
+gluttonous nature	贪吃的本性
+gluttony	暴食
+gnawing strength	啃咬力
+god like status	神明般的地位
+gold mask	黄金面具
+gold structure	黄金结构
+golden aura	金色气场
+golden blade	金刃
+golden crown	金冠
+golden glow	金色光芒
+golden texture	金色质感
+good luck	带来好运的特性
+good nature	善良的本性
+gown	长袍
+grabage	垃圾
+grace	优雅
+graceful movements	优美的动作
+gracidea-like flowers	葛拉西蒂亚花般的花朵
+grain	籽粒
+great strength	强大的力量
+greed	贪婪
+gregarious nature	群居性
+griminess	污秽
+grin	咧嘴的笑容
+guardian status	守护者的地位
+habit of biting	咬人的习惯
+hair	头发
+halo	光环
+hammer	锤
+hand cannons	手炮
+hand like wings	手掌般的翅膀
+hanging lifestyle	悬挂栖息的习性
+hard shell	硬壳
+hardiness	坚韧
+hardness	硬度
+hardy nature	强健的体魄
+hardyness	坚韧
+harems	妻妾成群的习性
+hatred of light	憎恨光
+haunting clangs	令人毛骨悚然的铿锵声
+head armor	头甲
+head shield	盾状的头部
+head tail	带有头部的尾巴
+head turning	转动头部的本领
+headbutting	头撞
+headpiece	头饰
+healing ability	治愈能力
+healing properties	治疗功效
+health benefits	有益健康的功效
+healthy fibers	有益健康的纤维
+heart shaped body	心形身体
+heart shaped marking	心形标记
+heart-shaped nose	心形鼻子
+heat	热
+heat resistant body	耐热的身体
+heavyness	沉重的体格
+height	身高
+helpfullness	乐于助人的性格
+helpfulness	乐于助人的性格
+heroism	英勇的精神
+hex nut head	六角螺母头
+hidden psychic power	隐藏的超能力
+honey making	酿蜜的本领
+honeycomb shape	蜂窝形状
+hood pattern	颈部褶边上的图案
+hoops	圆环
+horn	角
+horns	角
+horrid screams	骇人的尖叫
+hot spiciness	辣味
+howls	嚎叫
+hump	驼峰
+humps	驼峰
+hunting skills	狩猎技巧
+hypnotizing dance	催眠舞蹈
+ice	冰
+ice beard	冰晶胡须
+ice cream shape	冰淇淋形状
+ice face	冰块状的头部
+ice fangs	冰制獠牙
+ice horns	冰角
+ice scales	冰鳞
+ice shafts	冰柱
+icy spikes	冰晶尖刺
+illuminating	照亮暗处的能力
+illusions	幻象
+immense psychic power	强大的超能力
+impervious head	坚不可摧的头部
+impressive size	惊人的体型
+inability to stay in a confined space	无法忍受狭小空间的习性
+incantations	咒语
+incredibly hard ice	极其坚硬的冰
+incredibly powerful trunk	极其强壮的象鼻
+independent nature	独立的性格
+industrious nature	勤劳的天性
+infinite power	无限的力量
+ink spraying	喷墨
+intellect	智力
+intelligence	聪慧
+intense body heat	炽热的体温
+intense flames	强烈的火焰
+intense heat	酷热
+interesting head shape	有趣的头型
+interlocking	环环相扣
+intimidating look	令人生畏的表情
+intimidating stance	威风凛凛的姿态
+intolerance towards bullying	不容忍欺凌行为
+intricate aerial dances	复杂的空中舞蹈
+iridescent sails	虹彩背鳍
+iron body	铁质身体
+iron-like skin	铁一样的皮肤
+irresistible drumming	不可抗拒的鼓声
+jaw	颚
+jet engine tail	喷气引擎般的尾巴
+jewl	珠宝
+jewl like body	宝石般的身体
+jingling	叮铃声
+joy dust	欢乐尘
+judo skills	柔道技巧
+juice	汁液
+juicy beans	多汁的豆子
+jumping	跳跃
+jumping ability	跳跃能力
+junkyness	速食风味
+karate skills	空手道技巧
+keen sense of smell	敏锐的嗅觉
+kelp like appearance	海带状外观
+keys	钥匙
+kicking	踢击的本领
+kimono	和服
+kindheartedness	善良
+kindness	仁慈
+knightly appearance	骑士般的外表
+knowledge	知识
+laid back nature	悠闲的性格
+laid-back nature	悠闲的性格
+lances	长矛
+large appearance	庞大的外形
+large bill	巨大的喙
+large brain	硕大的大脑
+large cannon	大炮
+large claw	大爪
+large ears	大耳朵
+large fins	大鳍
+large gem	大宝石
+large head	大头
+large jaws	大颚
+large mouth	大嘴
+large social groups	庞大的群居群体
+latex	乳汁
+laziness	懒惰
+lazyness	懒惰
+leadership	领导能力
+leaf	叶子
+leaf chewing	咀嚼树叶
+leaf cloak	叶斗篷
+leaf flute	叶笛
+leaf hood	叶罩
+leafy appearance	叶状外观
+leafy hood	绿叶罩
+leafy mane	绿叶鬃毛
+leaves	叶片
+leek	韭葱
+leeks	大葱
+legs	腿
+life force	生命力
+light	光
+light bulb tail	灯泡状尾巴
+lightning attraction	吸引雷电的特性
+lightning-fast movements	闪电般的动作
+lights	灯
+lightweight metal body	轻巧的金属身体
+likeability	讨人喜欢的性格
+lilypad	睡莲叶
+lingering spiciness	持久的辣味
+log	圆木
+long bodies	修长的身躯
+long body	修长的身体
+long fangs	长獠牙
+long fur	长长的毛发
+long legs	长腿
+long lifespan	悠长的寿命
+long neck	长脖子
+long tongue	长舌头
+loud cry	响亮的叫声
+loud shriek	响亮的尖叫声
+loudspeaker ears	扬声器般的耳朵
+loudspeaker like ears	扩音器般的耳朵
+love for fruit	对水果的热爱
+loyalty	忠诚
+luck	幸运
+lumps	表面的凸起
+luxurious fur	华美的毛皮
+magical properties	神奇的魔力
+magnetism	磁性
+magnets	磁铁
+majestic movements	雄伟的动作
+majesty	雄伟
+mandibles	大颚
+mane	鬃毛
+mane of bubbles	泡沫鬃毛
+many arms	许多触手
+many cannons	许多大炮
+many horns	许多角
+many patterns	许多图案
+many shapes	许多形状
+many stingers	许多毒刺
+many tentacles	许多触手
+many trims	多样的毛发造型
+many types	多种属性
+maraca sounds	沙锤声
+marching	行军
+markings	身上的斑纹
+martial arts	武术
+mash	果泥
+mask	面具
+masks	面具
+mass of eyes	成团的眼球
+massive claws	巨大的利爪
+massive wings	巨大的翅膀
+mechanical body	机械构成的身体
+medical properties	药用功效
+meditating	冥想
+mellow sweetness	醇厚的甜味
+melodies	旋律
+menacing beak	吓人的喙
+metal body	金属身体
+metal formation	金属构造
+metalic feathers	金属羽毛
+metronome tail	节拍器般的尾巴
+mighty blades	强劲的刀刃
+mighty horn	强劲的角
+mighty horns	强劲的角
+mild taste	温和的口味
+mimicking	模仿
+miming	表演哑剧的本领
+minecart shape	矿车形状
+mirroring	镜像
+mischief	顽皮
+mischievous tricks	恶作剧
+mischievousness	恶作剧
+mission of vengeance	复仇的使命
+mission to protect Pokemon	保护宝可梦的使命
+mission to protect the ecosystem	保护生态系统的使命
+mix of flavors	混合口味
+mix of flavors?	可能的混合风味
+mochi	粘糕
+moon shape	月亮形状
+mossy mane	苔藓般的鬃毛
+mountain crushing strength	粉碎山岳的力量
+mouth flames	口边的火焰
+move boosting ability	增强招式威力的能力
+mud ball	泥球
+multiple Binacle	多个龟脚脚
+multiple heads	多个头部
+multiple personalities	多重人格
+multiple tails	多尾
+multiple wings	众多翅膀
+muscle like hair	肌肉般的毛发
+muscles	肌肉
+mustache	胡子
+mutualistic nature	互利共生的习性
+mysterious energy	神秘能量
+mysterious origins	神秘的起源
+mystery	神秘
+naive personality	天真的性格
+nature changing ability	改变性格的能力
+neatness	整洁
+nectar	花蜜
+nests	巢穴
+nomadic nature	四处游走的习性
+nose	鼻子
+numbers	数字
+nurturing nature	照顾他人的天性
+nutrient-rich oil	营养丰富的油
+nutrients	营养素
+nutrition	营养
+nutritious seeds	营养丰富的种子
+nuts	坚果
+oblivious nature	迟钝的性格
+obliviousness	迟钝
+odd shape	奇怪的形状
+odor	气味
+oil	油
+onion head	洋葱头
+optimism	乐观
+origami body	折纸身体
+pacifism	和平主义
+paintbrush tail	画笔尾
+painting	绘画
+pairing	配对
+parasitic nature	寄生性
+patience	耐心
+patterns	图案
+peaceful disposition	平和的性格
+pearl	珍珠
+pearls	珍珠
+pendulum	钟摆
+perfection	完美
+persistence	坚持
+personality	性格
+petals	花瓣
+piercing stare	锐利的目光
+pig-like nose	猪鼻子
+pit nests	坑巢
+plant like smell	植物般的气味
+play-fighting	打闹游戏
+playful demeanor	顽皮的举止
+playful nature	顽皮的天性
+playful personality	俏皮的性格
+playfullness	嬉戏
+pleasant scent	宜人的气味
+plumage	羽毛
+plume	冠羽
+pods	豆荚
+pointed mouth	尖嘴
+pointed teeth	尖牙
+poison sac	毒囊
+pollen	花粉
+pollinating	授粉
+ponytail hands	充当双手的马尾辫
+popping clusters	会爆裂的果簇
+portly build	肥胖的身材
+potatoes	土豆
+pouch	小袋
+power	力量
+power of eternal life	永生的力量
+powerful arms	强有力的手臂
+powerful grip	强大的握力
+powerful hair	强大的头发
+powerful jaws	强壮的颌部
+powerful kicks	有力的踢腿
+powerful legs	有力的腿
+powerful poison	猛烈的毒性
+powerful tail	强大的尾巴
+powerful talons	强有力的脚爪
+powerful third legs	强大的第三条腿
+powerful trunk	强壮的象鼻
+powerful uppercut	强大的上勾拳
+powerful vision	敏锐的视力
+practical jokes	恶作剧
+precision	精确
+preference for heat	对热的偏好
+pretty diamond	漂亮的钻石
+pretty pearls	漂亮的珍珠
+prickles	尖刺
+primal glow	原始光芒
+prismatic body	棱晶般的身体
+prismatic wings	七彩的翅膀
+promise of death	死亡的预兆
+prongs	尖头
+propeller like tail	螺旋桨般的尾巴
+protective nature	保护他者的天性
+protuberance	突起
+psychic abilities	超能力
+psychic ability	超能力
+psychic power	超能力
+psychic powers	超能力
+puckered lips	撅起嘴唇
+pumpkin	南瓜
+pungency	辛辣味
+purple mane	紫色鬃毛
+quills	硬刺
+rage	愤怒
+rain of death	死亡之雨
+rampaging	横冲直撞
+rarity	稀有性
+rattle	尾部的响环
+razor sharp wings	锋利的翅膀
+reaction dulling	延缓反应的功效
+reclusive nature	隐居的天性
+refreshing flavor	清爽的味道
+relaxing fragrance	令人放松的香味
+relaxing scent	令人放松的气味
+respect of all forms of life	对一切生命的尊重
+revitalising leaves	恢复活力的叶片
+revitalising properties	恢复活力的功效
+ribbons	丝带
+richness	浓郁的滋味
+riddles	谜语
+ride form	坐骑形态
+rigid body	坚硬的身体
+rigid shell	坚硬的外壳
+ring of flowers	花环
+ring patterns	环形图案
+ringing	铃声
+rivalry	对抗
+rivalry with Seviper	与饭匙蛇的宿敌关系
+rivalry with Zangoose	与猫鼬斩的宿敌关系
+rock cannon	岩石炮
+rock shell	岩石甲壳
+rocky diet	以岩石为食的习性
+rocky formation	岩石构成的身体
+rocky fuel	岩石燃料
+rocky home	岩石之家
+rocky neck	颈部的岩石
+rocky shell	岩石甲壳
+rolling	滚动
+root like shape	根状
+roots	根系
+roses	玫瑰
+rotting body	腐烂的身躯
+round body	圆滚滚的身体
+round shape	圆形
+roundness	圆润的形状
+rows of teeth	层层排列的牙齿
+royal appearance	王者般的外表
+running	跑步
+runny nose	流鼻涕
+sacred law	神圣的戒律
+salt	盐
+salty flavor	咸味
+sand expelling	排砂
+sand pouch	沙袋
+sandy body	沙子构成的身体
+sausages	香肠
+savageness	野蛮的性情
+scalchop	贝壳刀
+scalchops	贝壳刀
+scales	鳞片
+scarf	围巾
+scent	香味
+schools	鱼群
+scowl	皱眉的神情
+scraps	碎片
+scream	尖叫
+scythe like tail	镰刀般的尾巴
+scythes	镰刀
+seamitars	贝壳长刀
+seasonal changing	季节变化
+seedling	幼苗
+seeds	种子
+segments	身体节段
+self preservation	自我保护
+selfish disposition	自私的性格
+sense of hearing	听觉
+sense of pride	自豪感
+sense of rhythm	节奏感
+sense of taste	味觉
+serpentine body	蛇形的身体
+serrated beak	锯齿状的喙
+serrated claws	锯齿状的爪子
+serrated fangs	锯齿状的獠牙
+shadow shifting	变幻影子的本领
+shadowy body	影子般的身体
+shaggy fur	毛茸茸的毛皮
+shapes	形状
+sharing	分享
+sharp cries	尖锐的叫声
+sharp edges	锋利的边缘
+sharp fangs	锋利的獠牙
+sharp leaves	锋利的叶子
+sharp quills	锋利的硬刺
+sharp teeth	锋利的牙齿
+sharp wings	锋利的翅膀
+sheer height	惊人的身高
+shell	壳
+shells	壳
+shield	盾
+shifting colors	变换的颜色
+shimmering scales	闪耀的鳞片
+shining eyes	闪亮的眼睛
+short necks	短脖子
+shouting	喊叫
+sickle-like tail	镰刀状的尾巴
+silk traps	丝网陷阱
+silky shell	丝质外壳
+silly worried expression	傻乎乎的担心表情
+simple taste	朴实的味道
+simpleness	朴实的风味
+singing	歌唱
+singing sound	歌声
+single eye	独眼
+singular ear	单耳
+sinister energy	邪恶的能量
+sinus clearing	通鼻的功效
+sixth sense	第六感
+skillful misdirection	巧妙的误导
+skull	颅骨
+skull helmet	头骨头盔
+skull marking	头骨标记
+slacking	偷懒
+sleeping face	睡脸
+slender body	修长的身材
+slimy film	粘糊糊的薄膜
+slitted eyes	细缝般的眼睛
+sludge	污泥
+small size	小体型
+small stature	娇小的体型
+small wings	小翅膀
+smell	气味
+smiling pattern	微笑图案
+smooth body	光滑的身体
+smoothness	光滑的表面
+snake like body	蛇一样的身体
+snowflake shape	雪花形状
+soft fur	柔软的毛皮
+soil consuming	吃土的习性
+solidarity	团结
+solitary nature	独居的习性
+sombrero	阔边帽
+song	歌曲
+soothing sound	舒缓的声音
+sour flavor	酸味
+sour flavored juice	酸味果汁
+sour skin	酸味的果皮
+sourness	酸味
+space controlling ability	空间掌控能力
+sparking	火花四溢
+sparks	火花
+special aura	特殊的气场
+special power	特殊的力量
+speed	速度
+spherical apparatus	球形装置
+spiciness	辣度
+spicy aroma	辛辣香气
+spicy chemicals	辣味成分
+spicy flavor	辣味
+spicy flavored juice	辣味果汁
+spicy teeth	蕴含辣味成分的牙齿
+spicy warmth	辛辣的暖意
+spiked pincers	带刺的钳子
+spiked shell	带刺的贝壳
+spikes	尖刺
+spiky fur	针刺般的毛发
+spinning	旋转
+spiny shell	刺壳
+spiral	螺旋
+spiral tail	螺旋状的尾巴
+spirit	精神
+spoon bending	弯曲汤匙的能力
+spoons	勺子
+sprig chewing	咀嚼小树枝
+spring like legs	像弹簧一样的腿
+spring shaped tail	弹簧状尾巴
+springy tentacles	有弹性的触手
+sprout	嫩芽
+squishy bodies	软绵绵的身体
+squishy body	柔软的身体
+stability	稳定性
+staggering voice	令人畏缩的吼声
+stalking	跟踪
+stalks	茎
+stamina	耐力
+star like appearance	星星般的外表
+star like faceplate	星形面甲
+star patterns	星形图案
+star shaped growth	星形突起
+stare	凝视的目光
+starscape face	星空般的面孔
+starscape head	星空般的头部
+stature	身材
+steel feathers	钢铁羽毛
+steel head	钢铁般的头部
+steel-like hide	钢铁般的皮肤
+stem-like body	茎状的身体
+stick	木棒
+stick beating	敲打木棒
+stimulating seasoning	刺激性调味料
+stingers	毒刺
+stockiness	敦实的体型
+stone	石头
+stone body	岩石构成的身体
+stone like structure	类似石头的结构
+stone-like scales	石头般的鳞片
+stoney skin	石质皮肤
+stout stature	身材粗壮
+strange combination	奇怪的组合
+strange composition	奇特的身体构成
+strange mask	奇怪的面具
+streamer-like tail	飘带状的尾巴
+strength	力量
+striking color	引人注目的颜色
+stripes	条纹
+strong antlers	强壮的鹿角
+strong body	强壮的身体
+strong child	强壮的幼崽
+strong flavor	味道浓烈
+strong hugs	强有力的拥抱
+strong jaw	强壮的颌部
+strong petals	坚韧的花瓣
+strong pincers	强大的钳子
+strong punches	重拳
+strong richness	浓郁的滋味
+strong talons	强有力的脚爪
+strong thread	结实的丝线
+strong webs	坚固的网
+strumming	弹奏
+stubbornness	固执
+stunning glare	令人石化的凝视
+sturdy body	坚固的身体
+sturdy legs	健壮的双腿
+sublime fur	华美的毛皮
+sucker mouth	吸盘嘴
+suction cups	吸盘
+sun shape	太阳形状
+sun shaped head	太阳形头
+sunflower	向日葵
+super high-calorie missiles	超高热量导弹
+surfboard tail	冲浪板般的尾巴
+surfing	冲浪
+surprising speed	惊人的速度
+sweeping stalks	弯曲的茎
+sweeping tail	扫尾
+sweet aftertaste	回味甘甜
+sweet and creamy flesh	甜美绵密的果肉
+sweet and richness	甜美浓郁的滋味
+sweet and tangy flavor	酸甜的风味
+sweet flavor	甜味
+sweet flavored juice	甜味果汁
+sweet flavour	甜味
+sweet pulp	香甜的果肉
+sweet skin	香甜的表皮
+sweet smell	香味
+sweet-smelling flowers	芬芳的花朵
+sweet-smelling gas	带甜香的气体
+sweetly spicy skin	甜辣的果皮
+sweetness	甜味
+swiftness	迅捷
+swimming ability	游泳能力
+sword	剑
+sword fangs	剑牙
+sword like leek	剑般的大葱
+swords	剑
+symbol of gratitude	感恩的象征
+symbol of love	爱的象征
+symbol of luck	幸运的象征
+symbol of prosparity	繁荣的象征
+symbol of victory	胜利的象征
+synchronizing	同步化
+syrpents	糖浆蛇
+syrup	糖浆
+syrupy flavour	糖浆味
+tablet shell	石板状的外壳
+tail	尾巴
+tail ball	尾端的球体
+tail claw	尾部的爪子
+tail hand	尾巴上的手
+tail hands	尾巴上的手
+tail head	尾部的头
+tantrums	发脾气
+tap dancing	踢踏舞
+tart flavour	酸味
+taste	味道
+taste?	未知口味
+tastiness	美味
+tasty fruit	美味的果实
+teamwork	团队合作
+teamwork with Dondozo	与吃吼霸的团队合作
+teamwork with Tatsugiri	与米立龙的团队合作
+technique	技术
+teeth	牙齿
+telekinetic ability	念动力
+teleporting	传送
+temper	脾气
+temperment	脾性
+tenacious nature	顽强的本性
+tenacity	坚韧
+tendancy to carve into tree roots	刮开树根的习性
+tendancy to expel its organs	吐出内脏的习性
+tendancy to flock	结群的习性
+tendancy to stand on one foot	单脚站立的习性
+tendency to windmill their arms	像风车一样转动手臂的习性
+tensile strength	抗拉强度
+tentacles	触手
+terrible majesty	可怕的威严
+terrifying features	骇人的外貌
+their ability to create sandstorms	制造沙尘暴的能力
+thermal vision	热感应视觉
+thick fur	厚厚的皮毛
+thievery	偷窃的习性
+third eye	第三只眼
+thorns	尖刺
+throat sac	喉囊
+throwing stars	飞镖
+tidiness	整洁
+time controlling ability	时间控制能力
+time travelling	时间旅行
+timid nature	胆怯的本性
+tingling to the touch	触碰时的刺痛感
+tiny hooks	小钩子
+tiny leaves	小叶子
+tochukaso shell	冬虫夏草构成的背壳
+tochukasos	冬虫夏草
+tomboy personality	假小子性格
+tongue	舌头
+tongue like flame	舌头般的火焰
+tongue scarf	舌头围巾
+toothy grin	龇牙咧嘴的笑容
+toothy smile	露齿的笑容
+top-shaped pieces	陀螺状的身体部件
+tough shell	坚韧的外壳
+tough skin	坚韧的皮肤
+toxic chain	毒锁链
+toxic gas	有毒气体
+trailing cloud	身下的云团
+tranquillity	宁静
+treads	履带
+tree	树
+tree controlling	操纵树木的能力
+tree like appearance	树状外观
+tree stump	树桩
+trembling movement	震动大地的步伐
+troops	成群结队的习性
+trunk	象鼻
+tuft	头顶的毛簇
+tunneling	掘洞的习性
+tusks	獠牙
+tusks made of ice	冰晶长牙
+twigs	树枝
+twisting branches	曲折的树枝
+twisting shape	扭曲的形状
+twisting stalks	扭曲的茎
+umami	鲜味
+undulating wings	波浪般摆动的翅膀
+unsociable demeanor	不合群的举止
+use as a whistle	用作哨子的功能
+use of rocks as ammo	使用岩石作为弹药
+use of seeds as ammo	使用种子作为弹药
+valiance	勇敢
+vampiric appearance	吸血鬼外观
+variety of smells	各种气味
+varying composition	不同的成分
+versatility	灵活多变的本领
+vibrating	产生振动的能力
+viciousness	凶暴的性情
+vines	藤蔓
+violent nature	凶暴的天性
+viscous fluid	粘性流体
+vitality	活力
+vivid color	色彩鲜艳
+vivid red color	鲜红色
+voice	嗓音
+wall locking	相互连成蜂墙的习性
+wand	魔杖
+warm touch	温暖的触感
+warmth	温暖
+warrior pride	战士的骄傲
+water bubble	水泡
+water shooting tail	喷水的尾巴
+water skating	滑水
+water spraying tail	喷水的尾巴
+webbed hands and feet	有蹼的手和脚
+well-rounded flavor	味道圆润
+wheel	车轮
+whip like tails	像鞭子一样的尾巴
+whips	鞭子
+whiskers	胡须
+wide mouth	宽嘴
+willpower	意志
+wing patterns	翅膀图案
+wish granting	实现愿望的能力
+wiskers	胡须
+witch like appearance	巫婆般的外表
+witch's hat	女巫的帽子
+wobbly body	摇摇晃晃的身体
+wool	羊毛
+woolly appearance	毛茸茸的外表
+wrapping like leaves	裹在身上的叶片
+yeast breath	含有酵母的吐息
+yummy cherries	美味的樱桃
+yummy hearts	美味的菜心
+zen mode	达摩模式
+zippers	拉链
+コメント さくせいちゅう	说明编写中

@@ -326,7 +326,7 @@ Rough glass	粗糙玻璃	wi
 Cut gem	切割宝石	wi
 Cut stone	切割石材	wi
 Cut glass	切割玻璃	wi
-Cloth (metal)	布匹（金属）	wi
+Cloth (metal)	布（金属）	wi
 Thread (metal)	线（金属）	wi
 Plant cloth	植物布	wi
 Item types	物品类型	wi
@@ -1260,7 +1260,7 @@ Arena	竞技场
 Crafts	工艺品	w
 crown	头冠	wi
 crowns	头冠	wi
-bone opal	骨欧泊	wi
+bone opal	骨质欧泊	wi
 bone opals	骨欧泊	wi
 Welcome to the arena!	欢迎来到竞技场！	wi
 # Match the complete explanation in the UI-message pass before its Here caption.
@@ -1301,7 +1301,7 @@ Missing	失踪	wi
 # Keep both attached and separately drawn suffixes in the established glossary.
  (Tm)	(驯服)	wi
 (Tm)	(驯服)	wi
-cardinal	红雀	wi
+cardinal	主红雀	wi
 centaur	半人马	wi
 wild boar	野猪	wi
 amphibian man	地底蛙人	wi
@@ -1317,7 +1317,7 @@ serpent men	地底蛇人	wi
 serpent woman	地底蛇人	wi
 serpent women	地底蛇人	wi
 serpent man venom	地底蛇人毒液	wi
-frozen serpent man venom	冻结的地底蛇人毒液	wi
+frozen serpent man venom	结冻的地底蛇人毒液	wi
 boiling serpent man venom	沸腾的地底蛇人毒液	wi
 serpent man bite	地底蛇人咬伤	wi
 sea nettle jellyfish	海荨麻水母	wi
@@ -2475,9 +2475,9 @@ Appearance	外貌
 Creature	生物	w
 Skills	技能	w
 Items	物品	wi
-first toe	第一趾	w
-second toe	第二趾	w
-third toe	第三趾	w
+first toe	第一脚趾	w
+second toe	第二脚趾	w
+third toe	第三脚趾	w
 fourth toe	第四趾	w
 fifth toe	第五趾	w
 Equipment	装备	w
@@ -3696,13 +3696,13 @@ I am ready!	准备好了！	w
 {d} rock nuts	{d} 份岩石坚果	wt
 {d} dimple cup spawn	{d} 份窝杯菇菌种	wtl
 {d} dwarven beer	{d} 份矮人啤酒	wt
-{d} dwarven wine	{d} 份矮人果酒	wt
+{d} dwarven wine	{d} 份矮人葡萄酒	wt
 {d} dwarven rum	{d} 份矮人朗姆酒	wt
 {d} plump helmets	{d} 份肉盔菇	wt
 Cloth (Plant)	植物布	wi
-Cloth (Silk)	丝布	wi
-silk	丝布	wi
- silk	丝布	wi
+Cloth (Silk)	丝绸	wi
+silk	丝绸	wi
+ silk	丝绸	wi
 # Project terminology: thread/threads and case variants share the item noun 线.
 thread	线	wi
 threads	线	wi
@@ -3712,7 +3712,7 @@ Thread (Silk)	线（丝）	wi
 Ropes (Silk)	绳索（丝）
 Bags (Yarn)	袋子（毛线）
 Ropes (Yarn)	绳索（毛线）
-Cloth (Yarn)	布料（毛线）	wi
+Cloth (Yarn)	布（毛线）	wi
 Thread (Yarn)	线（毛线）	wi
 Stone Blocks	石块
 # Generic stockpile/item-type headings group ingots and solid blocks together.
@@ -3740,7 +3740,7 @@ Bars and Blocks	锭块	wi
 Finished Goods	成品	wi
 Custom	自定义	wi
 Ammo	弹药	wi
-Cloth	布匹	wi
+Cloth	布	wi
 Corpses	尸体	wi
 # Shared filled-container packing words; never whole material/content names.
 Storage container packing: barrel	桶装	wi
@@ -3974,10 +3974,10 @@ Very high	非常高	w
 Mods install automatically when chosen during world creation.	在创建世界时选中的模组会自动安装。	l
 Click a mod to open its folder. This may not work on all systems.	单击模组可打开其文件夹；此功能可能无法在所有系统上使用。	l
 Installed	已安装	wl
-Dwarvemon {d}.{d}	矮人兽 {d}.{d}	wt
-Dwarvemon Entity Type {d}.{d}	矮人兽实体类型 {d}.{d}	wt
+Dwarvemon {d}.{d}	矮人宝可梦 {d}.{d}	wt
+Dwarvemon Entity Type {d}.{d}	矮人宝可梦：按属性文明 {d}.{d}	wt
 (Beta) Dwarvemon {d}.{d} ({d}.X)	（测试版）矮人兽 {d}.{d}（{d}.X）	wt
-Dwarvemon Entity All {d}.{d}	矮人兽全部实体 {d}.{d}	wt
+Dwarvemon Entity All {d}.{d}	矮人宝可梦：全种类文明 {d}.{d}	wt
 The Ignoble Beak	卑劣之喙
 The Walled Forests	壁垒森林
 Over a hundred	一百多个
@@ -4400,7 +4400,7 @@ bell-shaped	钟形	wi
 asymmetrical	不对称	wi
 armor	盔甲	wi
 armors	盔甲	wi
-cardinal leather	红雀皮革	wi
+cardinal leather	主红雀皮革	wi
 curved	弯曲	wi
 branching	分叉	wi
 pointed	尖头	wi
@@ -4600,17 +4600,17 @@ Click now to open to this mod folder.	单击即可打开此模组的文件夹。
 (This may not work on some platforms.)	（此功能在部分平台上可能不可用。）	l
 The default Dwarf Fortress graphics for the interface	《矮人要塞》界面的默认图像，	l
 buttons, icons, etc.	包括按钮、图标等。	l
-(Beta) Dwarvemon	（测试版）Dwarvemon
+(Beta) Dwarvemon	矮人宝可梦（测试版）
 Author: FirePhoenix{d}	作者：FirePhoenix{d}	wt
 Version: {d}.{d} ({d}.X)	版本：{d}.{d}（{d}.X）	wt
-(Beta) Adds Pokemon related content.	（测试版）添加宝可梦相关内容。	l
+(Beta) Adds Pokemon related content.	测试版：添加宝可梦相关内容。	l
 Must be after vanilla_bodies	必须置于 vanilla_bodies 之后
 Must be after vanilla_descriptors	必须置于 vanilla_descriptors 之后
 Must be after vanilla_interactions	必须置于 vanilla_interactions 之后
 Must be after vanilla_materials	必须置于 vanilla_materials 之后
 Must be after vanilla_plants	必须置于 vanilla_plants 之后
 Conflicts with Dwarvemon	与 Dwarvemon 冲突
-Dwarvemon Entity All	Dwarvemon 全部实体
+Dwarvemon Entity All	矮人宝可梦：全种类文明
 ENABLE ONE! Entities in Dwarvemon use all Pokemon	只能启用一个！Dwarvemon 的实体包含所有宝可梦	l
 Must be after vanilla_entities	必须置于 vanilla_entities 之后
 Must be after Dwarvemon	必须置于 Dwarvemon 之后
@@ -5460,7 +5460,7 @@ Hotkey: Building, Doors and Hatches	热键：建筑，门与活板门	w
 Hotkey: Building, Cages and Chains	热键：建筑，笼子与链条	w
 Hotkey: Building, Military	热键：建筑，军事	w
 Hotkey: Building, Workshop	热键：建筑，工坊	w
-Hotkey: Building, Workshops, Cloth/Leather	热键：建筑，工坊，布料/皮革	w
+Hotkey: Building, Workshops, Cloth/Leather	热键：建筑，工坊，布/皮革	w
 Hotkey: Building, Workshops, Farming	热键：建筑，工坊，农牧业	w
 Hotkey: Building, Furnace	热键：建筑，炉窑	w
 Hotkey: Building, Machine Component, Screw Pump	热键：建筑，机械组件，螺旋泵	w
@@ -5942,7 +5942,7 @@ Interaction (user)	互动（发起者）	w
 Interaction (target)	互动（目标）	w
 Undead attack	不死生物袭击	w
 Citizen missing	居民失踪	w
-Vomit	呕吐	w
+Vomit	呕吐物	w
 Masterwork construction lost	杰作建造损失	w
 Job cancellation	工作取消	w
 Citizen death	居民死亡	w
@@ -5971,7 +5971,7 @@ Masterwork engraving	杰作雕刻	w
 Wedding	婚礼	w
 Beast guzzles drink	野兽猛喝饮料	w
 Clear weather	天气放晴	w
-Snow	降雪	w
+Snow	雪	w
 Wet season	雨季	w
 Dry season	旱季	w
 Guest arrives	访客到来	w
@@ -6063,8 +6063,8 @@ ogre	食人魔	wi
 ogres	食人魔	wi
 ogress	食人魔	wi
 ogresses	食人魔	wi
-pike	狗鱼	wi
-pike fry	狗鱼幼鱼	wi
+pike	长枪	wi
+pike fry	长枪幼鱼	wi
 satyr	半羊人	wi
 satyrs	半羊人	wi
 In the midspring of {d}, the hydra Nguzo Gutcankers the Gnarled Stench was struck down by a dwarf in Constructbridges.	在{d}年仲春，扭曲恶臭的九头蛇 Nguzo Gutcankers 在建造桥梁被矮人击倒。	wt
@@ -6522,7 +6522,7 @@ creatures.	生物。	wl
 These are the default Dwarf Fortress plants and fungi.	这些是《矮人要塞》的默认植物和真菌。	wl
 These are the default Dwarf Fortress civilizations.	这些是《矮人要塞》的默认政权。	wl
 Sorting creature bodies...	正在整理生物身体结构……	w
-Dwarvemon Entity Type	Dwarvemon 实体类型	w
+Dwarvemon Entity Type	矮人宝可梦：按属性文明	w
 ENABLE ONE! Entities in Dwarvemon use certain types of	只能启用一个！Dwarvemon 中的实体仅包含特定类型的	wl
 Pokemon available.	可用宝可梦。	wl
 Conflicts with Dwarvemon_E_ALL	与 Dwarvemon_E_ALL 冲突	w
@@ -6638,7 +6638,7 @@ Blood of the living (sensed)	活物血液（感知到）	wl
 # Material vapors/dust/gases and item-cloud contents use their typed nouns.
 Miasma	瘴气	wl
 Mist	雾气	wl
-Steam	水蒸气	wl
+Steam	蒸汽	wl
 Item Cloud	物品云团	wl
 An Ocean Wave	海浪	wl
 Sea Foam	海沫	wl
@@ -6728,10 +6728,10 @@ crossbow	十字弩	wi
 crossbows	十字弩	wi
 dagger	匕首	wi
 daggers	匕首	wi
-mace	钉头锤	wi
-maces	钉头锤	wi
-morningstar	晨星锤	wi
-morningstars	晨星锤	wi
+mace	页锤	wi
+maces	页锤	wi
+morningstar	钉头锤	wi
+morningstars	钉头锤	wi
 pick	鹤嘴锄	wi
 picks	鹤嘴锄	wi
 great pick	大鹤嘴锄	wi
@@ -6800,8 +6800,8 @@ goblin-caps	哥布林菇	wi
 pear	白梨	wi
 pears	白梨	wi
 pear wood	白梨木	wi
-wagon wood	货车木	wi
-wagon wooden	货车木	wi
+wagon wood	树木	wi
+wagon wooden	树木	wi
 
 # Preserve the selected drink family names: cider=西打酒, wine=果酒,
 # beer=啤酒, ale=艾尔啤酒, rum=朗姆酒. Complete material names and
@@ -7012,7 +7012,7 @@ charcoal	木炭	wi
 Make totem	制作图腾	wi
 Make traction bench	制作牵引台	wi
 Dye thread	染线	wi
-Dye cloth	染布匹	wi
+Dye cloth	染布	wi
 Dye leather	染皮革	wi
 Weave metal cloth	织金属布	wi
 Weave thread into silk	将线织成丝绸	wi
@@ -7237,7 +7237,7 @@ Fortress activity: Play	游玩	li
 Fortress activity: Socialize	社交	li
 Fortress activity: Squad Order	小队命令	li
 # RAW CustomReaction NAME: reaction_other.txt:538 in both configured editions.
-Fortress activity: Carve wooden helve from branch	用树枝雕刻木制斧柄	li
+Fortress activity: Carve wooden helve from branch	用树枝雕刻树木斧柄	li
 # Complete unit activity graph, not only job_type. See data/extracted/unit-activity-sources.tsv.
 # Scoped meanings are shared by Tasks, Creatures, headers, depot and search.
 Fortress activity: Conduct Meeting	主持会面	li
@@ -7522,7 +7522,7 @@ Overview sentence: I had a bath with soap!	洗澡还用上了肥皂！	l
 Overview sentence: I was attacked.	有人袭击我了。	l
 Overview sentence: I was attacked by the dead.	死尸来袭击我了。	l
 Overview sentence: I drank bloody water.	喝的水里带着血。	l
-Overview sentence: I drank slime.	我喝了粘液。	l
+Overview sentence: I drank slime.	我喝了黏液。	l
 Overview sentence: I drank vomit.	我喝了呕吐物。	l
 Overview sentence: I drank gooey water.	喝的水黏糊糊的。	l
 Overview sentence: I drank water mixed with pus.	喝的水里混着脓。	l
@@ -9151,12 +9151,12 @@ To {b} and Glory!	为了{b}与荣耀！	hbti
 Writing material: paper	纸	l
 Writing material: rope reed	绳索苇纸	l
 Writing material: pig tail	猪尾草纸	l
-Writing material: linen	亚麻纸	l
+Writing material: linen	亚麻纤维纸	l
 Writing material: cotton	棉纸	l
 Writing material: ramie	苎麻纸	l
 Writing material: kenaf	洋麻纸	l
 Writing material: hemp	大麻纸	l
-Writing material: jute	黄麻纸	l
+Writing material: jute	黄麻纤维纸	l
 Writing material: papyrus	纸莎草纸	l
 {s}-bound codex	{s}书壳装订抄本	hvt
 {s} parchment scroll	{s}皮纸卷轴	hvt
@@ -9953,8 +9953,8 @@ Chores	杂务	w
 Automatically weave all thread	自动纺织所有线	wi
 Automatically weave dyed thread	仅自动纺织已染色的线	wi
 No automatic weaving	不自动纺织	wi
-Use any cloth	使用任何布匹	wi
-Use only dyed cloth	仅使用已染色的布匹	wi
+Use any cloth	使用任何布	wi
+Use only dyed cloth	仅使用已染色的布	wi
 Automatically collect webs	自动收集网	wi
 No automatic web collection	不自动收集网	wi
 Slaughter any marked animal	屠宰所有已标记的动物	wi
@@ -11419,7 +11419,7 @@ Travel building: Abandoned shop	废弃商店	wi
 Travel building: Food imports	食品进口店	wi
 Travel building: Clothing imports	服装进口店	wi
 Travel building: General imports	杂货进口店	wi
-Travel building: Cloth shop	布料店	wi
+Travel building: Cloth shop	布店	wi
 Travel building: Leather shop	皮革店	wi
 Travel building: Woven clothing shop	布制服装店	wi
 Travel building: Leather clothing shop	皮制服装店	wi
@@ -11495,8 +11495,8 @@ Custom uniform	自定义制式服装	wli
 {d} assigned items	已指定{d}件物品	wlt
 # Native material category switch, including the invalid-category fallback.
 Uniform material: leather	皮革	l
-Uniform material: cloth	布匹	l
-Uniform material: silk	丝布	l
+Uniform material: cloth	布	l
+Uniform material: silk	丝绸	l
 Uniform material: yarn	纱线	l
 Uniform material: plant fiber	植物纤维	l
 Uniform material: metal	金属	l
@@ -12542,7 +12542,7 @@ Workshop mood material: bars... metal..."	锭条……金属……	l
 Workshop mood material: gems... shining..."	宝石……闪耀……	l
 Workshop mood material: blocks... bricks......"	砖块……砌块……	l
 Workshop mood material: leather... skin..."	皮革……兽皮……	l
-Workshop mood material: cloth... thread..."	布料……线……	l
+Workshop mood material: cloth... thread..."	布……线……	l
 Workshop mood demand: "I must have {s}!"	“我必须得到{s}！”	l
 Workshop mood brood: "Yes.  I need {s}."	“对。我需要{s}。”	l
 Workshop mood brood: "Leave me.  I need... things...  certain things."	“别烦我。我需要……东西……某些东西。”	l
@@ -12552,7 +12552,7 @@ Workshop mood sketch: pictures of shells.	画着甲壳。	l
 Workshop mood sketch: pictures of death.	画着死亡。	l
 Workshop mood sketch: pictures of a forest.	画着森林。	l
 Workshop mood sketch: pictures of glass.	画着玻璃。	l
-Workshop mood sketch: pictures of glass and burning wood.	画着玻璃和燃烧的木头。	l
+Workshop mood sketch: pictures of glass and burning wood.	画着玻璃和燃烧的木材。	l
 Workshop mood sketch: pictures of rough gems and glass.	画着粗糙宝石和玻璃。	l
 Workshop mood sketch: pictures of rough gems.	画着粗糙宝石。	l
 Workshop mood sketch: pictures of a quarry.	画着采石场。	l
@@ -12560,7 +12560,7 @@ Workshop mood sketch: pictures of shining bars of metal.	画着闪耀的金属�
 Workshop mood sketch: pictures of cut gems.	画着切割宝石。	l
 Workshop mood sketch: pictures of square blocks.	画着方形砌块。	l
 Workshop mood sketch: pictures of stacked leather.	画着堆叠的皮革。	l
-Workshop mood sketch: pictures of stacked cloth.	画着堆叠的布料。	l
+Workshop mood sketch: pictures of stacked cloth.	画着堆叠的布。	l
 
 # DFHack gui/mod-manager.lua ModmanageMenu and its preset dialogs.
 # Captions use complete widget roles; preset names and mod IDs stay verbatim.
@@ -13307,3 +13307,1956 @@ Character overview: Values peace	崇尚和平	li
 Character overview: Disdains peace	轻视和平	li
 Character overview: Values knowledge	崇尚知识	li
 Character overview: Disdains knowledge	轻视知识	li
+
+# Shared item/material terminology; retain each existing semantic scope.
+DFHack help: For workshops without input stockpile links, bone carving, stonecrafting, and clothesmaking (cloth, silk, and yarn crafts) are supported. Stonecrafting is tried first, then bone carving, then clothesmaking if usable cloth exists anywhere on the map. Thus, to designate a workshop for bone carving, disable the stonecrafting labor while keeping the bone carving labor enabled. To designate a workshop for cloth crafts, disable both stonecrafting and bone carving.	对于没有输入储物堆链接的工坊，支持骨雕、石雕、制衣（布、丝、纱工艺品）。首先尝试石雕，然后是骨雕，如果地图上任何地方都有可用的布，然后是制衣。因此，要指定骨雕工坊，请禁用石雕劳动，同时保持骨雕劳动启用。要指定布艺作坊，请禁用石雕和骨雕。	l
+DFHack help: The (optional) search string will filter by the item description. It will be interpreted as a Lua pattern, so any special regular expression characters (like "-") will need to be escaped with "%" (e.g. "%-") to be interpreted as a literal string. See https://www.lua.org/manual/5.3/manual.html#6.4.1 for details. For example "cave spider silk" will match both "cave spider silk web" and "cave spider silk cloth". Use "^pattern$" to match the entire description.	（可选）搜索字符串将按项目描述进行过滤。它将被解释为 Lua 模式，因此任何特殊的正则表达式字符（如 "-"）都需要用"%"（例如"%-"）转义才能解释为文字字符串。详情请参见https://www.lua.org/manual/5.3/manual.html#6.4.1。例如，"洞穴蜘蛛丝"将匹配"洞穴蜘蛛丝网"和"洞穴蜘蛛丝绸"。使用"^pattern$"来匹配整个描述。	l
+DFHack help: If there are any minecarts available, one will be automatically assigned to the hauling route. If you don't have a free minecart, "gui/quantum" will enqueue a manager order to make a wooden one for you. Once it is built, you'll have to run assign-minecarts all to assign it to the route or open the (H)auling menu and assign it manually. The quantum stockpile will not function until the minecart is in place.	如果有矿车可用，则会自动分配一辆到运输路线。如果你没有免费的矿车，"gui/quantum" 会排队一份管理官订单，为你制作一辆树木矿车。构建完成后，您必须运行 allocate-minecarts all 将其分配给路线，或者打开 (H)auling 菜单并手动分配。在矿车就位之前，量子储物堆将无法运行。	l
+DFHack help: "--likematerial [ <token> [<token> ...] ]" This is usually set to three tokens: a type of stone, a type of metal, and a type of gem. It can also be a type of wood, glass, leather, horn, pearl, ivory, a decoration material - coral or amber, bone, shell, silk, yarn, or cloth. Please include the full tokens, not just a part.	"--likematerial [ <token> [<token> ...] ]" 这通常设置为三种令牌：一种石头、一种金属和一种宝石。它也可以是一种木材、玻璃、皮革、角、珍珠、象牙、装饰材料--珊瑚或琥珀、骨头、贝壳、丝绸、纱线或布。请包含完整的令牌，而不仅仅是部分。	l
+DFHack help: "tailor" supports adamantine cloth (using the "materials" keyword "adamantine") but does not use it by default, as most players find adamantine too precious to routinely make into cloth. "tailor" does not support modded "cloth" types which utilize custom reactions for making clothing out of those cloth types.	"tailor" 支持精金布（使用 "materials" 关键字 "adamantine"），但默认情况下不使用它，因为大多数玩家发现精金太珍贵而无法常规制作布。 "tailor" 不支持修改后的 "cloth" 类型，该类型利用自定义反应用这些布类型制作服装。	l
+DFHack help: If there are not enough clothes available, manager orders will be generated to manufacture some more. "tailor" will intelligently create orders using raw materials that you have on hand in the fort. For example, if you have lots of silk, but no cloth, then "tailor" will order only silk clothing to be made.	如果没有足够的衣服，将会生成管理官订单来制造更多衣服。 "tailor" 将使用您在要塞中现有的原材料智能创建订单。例如，如果您有大量丝绸，但没有布，则 "tailor" 将仅订购丝绸服装。	l
+DFHack help: This is usually set to three tokens: a type of stone, a type of metal, and a type of gem. It can also be a type of wood, glass, leather, horn, pearl, ivory, a decoration material - coral or amber, bone, shell, silk, yarn, or cloth. Please include the full tokens, not just a part.	这通常设置为三种令牌：一种石头、一种金属和一种宝石。它也可以是一种木材、玻璃、皮革、角、珍珠、象牙、装饰材料--珊瑚或琥珀、骨头、贝壳、丝绸、纱线或布。请包含完整的令牌，而不仅仅是部分。	l
+DFHack help: Note that the jugs are specifically made out of wood. This is so, as long as you don't make any other "Tools" out of wood, you can have a stockpile just for jugs by restricting a finished goods stockpile to only take wooden tools.	请注意，这些水壶是专门用木材制成的。是这样的，只要你不用木材制作任何其他"工具"，你就可以通过限制成品储物堆只能使用树木工具来拥有一个仅用于壶的储物堆。	l
+DFHack help: At present, dye automation uses any available dye and cloth will be dyed with whatever color dye can be found or made. The ability to specify color preferences may be added in the future.	目前，染料自动化使用任何可用的染料，并且布将使用可以找到或制造的任何颜色的染料进行染色。将来可能会添加指定颜色首选项的功能。	l
+DFHack help: "craft-age-wear" Fixes crafted items not wearing out over time (Bug 6003). With this tweak, items made from cloth and leather will gain a level of wear every 20 in-game years.	"craft-age-wear" 修复了制作的物品不会随着时间的推移而磨损的问题（错误 6003）。通过此调整，由布和皮革制成的物品将在游戏中每 20 年获得一定程度的磨损。	l
+DFHack help: Restrict the materials used for automatically manufacturing clothing to silk, cloth, and yarn, preferred in that order. This saves leather for other uses, like making armor.	将自动制造服装的材料限制为丝绸、布和纱线，按顺序优先。这可以节省皮革用于其他用途，例如制作盔甲。	l
+DFHack help: "autoclothing cloth "short skirt" 1" Ensures that every citizen will have a cloth short skirts available (as long as there is cloth available to make them out of).	"autoclothing cloth "短裙"1" 确保每个居民都有可用的布短裙（只要有布可以制作）。	l
+DFHack help: Fixes crafted items not wearing out over time (Bug 6003). With this tweak, items made from cloth and leather will gain a level of wear every 20 in-game years.	修复了制作的物品不会随着时间的推移而磨损的问题（错误 6003）。通过此调整，由布和皮革制成的物品将在游戏中每 20 年获得一定程度的磨损。	l
+Potash is the fertilizer of choice, and it can be created in the Ashery, using Ash from Wood burned in a Wood Furnace. A Water Source zone and a Bucket are also required.	[C:6:0:1]草碱[C:7:0:0]是合适的肥料。先在[C:6:0:0]烧木窑[C:7:0:0]中燃烧[C:6:0:1]木材[C:7:0:0]获得[C:6:0:1]灰烬[C:7:0:0]，再用[C:6:0:0]灰坊[C:7:0:0]制作草碱。这还需要一个[C:3:0:0]取水区[C:7:0:0]和一只[C:6:0:1]水桶[C:7:0:0]。	hq
+For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作树木储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。	hq
+DFHack help: "gui/create-item --unrestricted --count 1" Create one item made of anything in the game. For example, you can create a bar of vomit, if you please.	"gui/create-item --unrestricted --count 1" 创建一件由游戏中任何东西制成的物品。例如，如果您愿意，您可以创建一个呕吐物条。	l
+A small, spineless, eel-like fish that lives on the bottom of the ocean. It can turn the water around its body into a cloud of slime to escape predators.	一种生活在海底的、小型、无刺、类似鳗鱼的鱼。 它可以把身体周围的水变成一团黏液，以逃离捕食者。	lP
+Any ability you possess that doesn't fit elsewhere will appear here. For instance, many creatures can spit or pet animals. Others can breathe fire.	你拥有但不属于其他分类的能力会显示在这里。例如，许多生物可以唾液或抚摸动物，有些还能喷火。	hq
+DFHack help: Ensures that every citizen will have a cloth short skirts available (as long as there is cloth available to make them out of).	确保每个居民都有可用的布短裙（只要有布可以制作）。	l
+DFHack help: Miasma Steam Mist MaterialDust MagmaMist Smoke Dragonfire Fire Web MaterialGas MaterialVapor OceanWave SeaFoam	瘴气蒸汽雾材质尘埃岩浆雾烟雾龙火火网材质气体材质蒸汽海浪海泡沫	l
+DFHack help: Create one item made of anything in the game. For example, you can create a bar of vomit, if you please.	创建一件由游戏中任何东西制成的物品。例如，如果您愿意，您可以创建一个呕吐物条。	l
+(and some other things like Sand). Bins hold just about everything else except Furniture, Wood and Boulders.	[C:7:0:0]以及[C:6:0:1]沙子[C:7:0:0]等其他物品。除[C:6:0:1]家具[C:7:0:0]、[C:6:0:1]木材[C:7:0:0]和[C:6:0:1]石材[C:7:0:0]外，[C:6:0:1]储物箱[C:7:0:0]几乎能装下所有其他东西。	hq
+A small feathered bipedal dinosaur with a sharp scything claw on its second toe. It can run very quickly.	一种带羽毛的小型双足恐龙，第二脚趾上长有锋利的镰刀状爪，奔跑速度极快。	lP
+Furniture created at the Carpenter's Workshop usually takes one Wood to build. Add a task and make a Bed.	[C:6:0:0]木匠工坊[C:7:0:0]制作的[C:6:0:1]家具[C:7:0:0]通常每件消耗一份[C:6:0:1]木材[C:7:0:0]。添加任务，制作一张[C:6:0:1]床[C:7:0:0]。	hq
+Haulers will also drop Wood in your All Stockpile unless you turn it off in the Custom Stockpile Menu.	[C:2:0:0]搬运工[C:7:0:0]也会把[C:6:0:1]木材[C:7:0:0]放进[C:6:0:0]接收全部物品的储物堆[C:7:0:0]，除非你在“[C:5:0:1]自定义储物堆[C:7:0:0]”菜单中禁用了这一项。	hq
+A small feathered dinosaur person with a sharp claw on their second toe. They can run very quickly.	一种带羽毛的小型恐龙类人形生物，第二脚趾上长有利爪，奔跑速度极快。	lP
+A small, nocturnal, tree-dwelling mammal. It uses its long fingers to fish out grubs from the wood.	树栖哺乳动物一种夜间活动的小型树栖哺乳动物。它用长长的手指从木材里捞出食物。	lP
+A tiny winged humanoid with shifting colors which performs intricate aerial dances in large groups.	一种带翅膀的微小人形生物，体色变幻不定，常成群结队地在空中跳着复杂的舞蹈。	lP
+While it is possible to trade for Clothing, Cloth, or Leather, you can also farm Pigtails,	[C:7:0:0]虽然可以通过交易购买[C:6:0:1]衣服[C:7:0:0]、[C:6:0:1]布[C:7:0:0]和[C:6:0:1]皮革[C:7:0:0]，但你也可以种植[C:6:0:1]猪尾草[C:7:0:0]，	hq
+Before you start chopping down trees you may want to create a dedicated Wood Stockpile.	[C:7:0:0]开始砍树之前，不妨先设置一个[C:6:0:0]专门存放木材的储物堆[C:7:0:0]。	hq
+A very large feathered bipedal dinosaur with a sharp scything claw on its second toe.	一种体型很大的带羽毛双足恐龙，第二脚趾上长有锋利的镰刀状爪。	lP
+A very small feathered bipedal dinosaur with a sharp scything claw on its second toe.	一种很小的带羽毛双足恐龙，第二脚趾上长有锋利的镰刀状爪。	lP
+DFHack help: "--cloth" Restrict the selection to plants that yield thread for cloth.	"--cloth" 将选择限制为生产布线的植物。	l
+If you have some Wood stockpiled, you'll be able to place a Carpenter's Workshop.	[C:7:0:0]储备了一些[C:6:0:1]木材[C:7:0:0]后，你就能建造[C:6:0:0]木匠工坊[C:7:0:0]。	hq
+A large feathered bipedal dinosaur with a sharp scything claw on its second toe.	一种带羽毛的大型双足恐龙，第二脚趾上长有锋利的镰刀状爪。	lP
+DFHack help: Restrict the selection to plants that yield thread for cloth.	限制选择能生产布线的植物。	l
+A large feathered dinosaur person with a sharp claw on their second toe.	一种带羽毛的大型恐龙类人形生物，第二脚趾上长有利爪。	lP
+A small feathered dinosaur person with a sharp claw on their second toe.	一种带羽毛的小型恐龙类人形生物，第二脚趾上长有利爪。	lP
+A medium-sized creature dedicated to the ruthless protection of nature.	一种中等体型的生物，为了保护自然不惜采取严酷手段。	lP
+A small, squat humanoid with large pointy ears and yellow glowing eyes.	一种矮小敦实的人形生物，有硕大的尖耳朵和发出黄色光芒的眼睛。	lP
+A small river mammal with a flat tail, known for building wooden dams.	一种小体型的，有着扁平尾巴的，生活在河边的哺乳动物，他们以会用树枝建造树木大坝而闻名。	lP
+DFHack help: Cloth stockpile adjustments ~~~~~~~~~~~~~~~~~~~~~~~~~~~	布储物堆调整~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	l
+Most Workshops require building material, such as Wood or Boulders.	[C:7:0:0]大多数[C:6:0:0]工坊[C:7:0:0]都需要[C:6:0:1]木材[C:7:0:0]或[C:6:0:1]石材[C:7:0:0]等建筑材料。	hq
+A feathered dinosaur person with a sharp claw on their second toe.	一种带羽毛的恐龙类人形生物，第二脚趾上长有利爪。	lP
+A medium-sized humanoid driven to cruelty by its evil nature.	一种中等体型的人形生物，邪恶的天性驱使其残忍行事。	lP
+First you need building materials, like Wood or Boulders.	[C:7:0:0]首先，你需要[C:6:0:1]木材[C:7:0:0]或[C:6:0:1]石材[C:7:0:0]等建筑材料。	hq
+Announcement combat threat-material []: unknown material	未知材料	l
+There is nothing to catch in unknown material deposit.	未知材料矿脉中没有可捕捉的东西。	hP
+DFHack help: * bags of leather, cloth, silk, and yarn	* 皮革、布、丝绸和纱线袋	l
+Announcement combat guard-building []: a cloth shop	布店	l
+Fortress activity: Make wooden training short sword	制作树木训练短剑	li
+Announcement combat ability []: Spray jet of fire	喷射火柱	l
+Announcement combat material []: unknown material	未知材料	l
+Fortress activity: Make enormous wooden corkscrew	制作大号树木螺杆	li
+and added masterful cloth to a {i} in the wilds.	并在荒野中为{i1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth to a {i} in the wilds.	{a1}在荒野中为{i1}添加了杰作级的布装饰。	ht
+and added masterful cloth to a {i} in the wilds	并在荒野中为{i1}添加了杰作级的布装饰	ht
+{a} added masterful cloth to a {i} in the wilds	{a1}在荒野中为{i1}添加了杰作级的布装饰	ht
+You vomit and bits of it get stuck in the web.	你呕吐物了，一些呕吐物粘在了网上。	hP
+and added masterful cloth to a {i} during {e}.	并在{e1}期间为{i1}添加了杰作级的布装饰。	ht
+and added masterful cloth to a {i} within {p}.	并在{p1}为{i1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth to a {i} during {e}.	{a1}在{e1}期间为{i1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth to a {i} within {p}.	{a1}在{p1}为{i1}添加了杰作级的布装饰。	ht
+Fortress activity: Make menacing wooden spike	制作险恶树木尖刺	li
+Fortress activity: Make sweet potato skin dye	制作甘薯表皮染料	li
+Fortress activity: Make wooden training spear	制作树木训练矛	li
+and added masterful cloth to a {i} during {e}	并在{e1}期间为{i1}添加了杰作级的布装饰	ht
+and added masterful cloth to a {i} within {p}	并在{p1}为{i1}添加了杰作级的布装饰	ht
+{a} added masterful cloth to a {i} during {e}	{a1}在{e1}期间为{i1}添加了杰作级的布装饰	ht
+{a} added masterful cloth to a {i} within {p}	{a1}在{p1}为{i1}添加了杰作级的布装饰	ht
+Fortress activity: Make pomegranate rind dye	制作石榴果皮染料	li
+added masterful cloth to a {i} in the wilds.	在荒野中为{i1}添加了杰作级的布装饰。	ht
+Fortress activity: Make eight wooden blocks	制作八个树木锭块	li
+Fortress activity: Make wooden training axe	制作树木训练斧	li
+added masterful cloth to a {i} in the wilds	在荒野中为{i1}添加了杰作级的布装饰	ht
+Announcement combat combat-tissue []: wood	木材	l
+Fortress activity: Make four wooden blocks	制作四个树木锭块	li
+Fortress activity: Make spiked wooden ball	制作尖刺树木圆球	li
+Fortress activity: Make wooden animal trap	制作树木动物陷阱	li
+Fortress activity: Make wooden armor stand	制作树木盔甲架	li
+Fortress activity: Make wooden hatch cover	制作树木活动盖板	li
+added masterful cloth to a {i} during {e}.	在{e1}期间为{i1}添加了杰作级的布装饰。	ht
+added masterful cloth to a {i} within {p}.	在{p1}为{i1}添加了杰作级的布装饰。	ht
+and added masterful cloth to a {i} at {p}.	并在{p1}为{i1}添加了杰作级的布装饰。	ht
+and added masterful cloth to a {i} in {p}.	并在{p1}为{i1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth to a {i} at {p}.	{a1}在{p1}为{i1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth to a {i} in {p}.	{a1}在{p1}为{i1}添加了杰作级的布装饰。	ht
+Fortress activity: Make wooden stepladder	制作树木折梯	li
+Native history office: most exalted mucus	至尊黏液	h
+Native history office: most exalted vomit	至尊呕吐物	h
+added masterful cloth to a {i} during {e}	在{e1}期间为{i1}添加了杰作级的布装饰	ht
+added masterful cloth to a {i} within {p}	在{p1}为{i1}添加了杰作级的布装饰	ht
+addition of masterful cloth in the wilds.	在荒野中，添加杰作级的布装饰。	hEi
+and added masterful cloth to a {i} at {p}	并在{p1}为{i1}添加了杰作级的布装饰	ht
+and added masterful cloth to a {i} in {p}	并在{p1}为{i1}添加了杰作级的布装饰	ht
+{a} added masterful cloth to a {i} at {p}	{a1}在{p1}为{i1}添加了杰作级的布装饰	ht
+{a} added masterful cloth to a {i} in {p}	{a1}在{p1}为{i1}添加了杰作级的布装饰	ht
+Book title subject: the Unknown Material	未知材料	hi
+DFHack help: Cloth stockpile adjustments	布储物堆调整	l
+Native history office: most exalted wine	至尊葡萄酒	h
+Native history office: most sacred mucus	至圣黏液	h
+Native history office: most sacred vomit	至圣呕吐物	h
+addition of masterful cloth in the wilds	在荒野中，添加杰作级的布装饰	hEi
+Fortress activity: Make banana peel dye	制作香蕉果皮染料	li
+Fortress activity: Make potato skin dye	制作马铃薯表皮染料	li
+Fortress activity: Make tomato skin dye	制作番茄表皮染料	li
+Fortress activity: Make turnip skin dye	制作芜菁表皮染料	li
+Fortress activity: Make wooden bookcase	制作树木书架	li
+Fortress activity: Make wooden crossbow	制作树木十字弩	li
+Fortress activity: Make wooden pedestal	制作树木基座	li
+Native history office: most sacred wine	至圣葡萄酒	h
+addition of masterful cloth during {e}.	在{e1}期间，添加杰作级的布装饰。	htEi
+addition of masterful cloth within {p}.	在{p1}，添加杰作级的布装饰。	htEi
+and added masterful cloth in the wilds.	并在荒野中添加了杰作级的布装饰。	h
+{a} added masterful cloth in the wilds.	{a1}在荒野中添加了杰作级的布装饰。	ht
+Fortress activity: Make wooden buckler	制作树木小盾	li
+Fortress activity: Make wooden cabinet	制作树木橱柜	li
+Native history office: most high mucus	至高黏液	h
+Native history office: most high vomit	至高呕吐物	h
+Native history office: most holy mucus	至圣黏液	h
+Native history office: most holy vomit	至圣呕吐物	h
+added masterful cloth to a {i} at {p}.	在{p1}为{i1}添加了杰作级的布装饰。	ht
+added masterful cloth to a {i} in {p}.	在{p1}为{i1}添加了杰作级的布装饰。	ht
+addition of masterful cloth during {e}	在{e1}期间，添加杰作级的布装饰	htEi
+addition of masterful cloth within {p}	在{p1}，添加杰作级的布装饰	htEi
+and added masterful cloth in the wilds	并在荒野中添加了杰作级的布装饰	h
+{a} added masterful cloth in the wilds	{a1}在荒野中添加了杰作级的布装饰	ht
+Fortress activity: Make wooden barrel	制作树木圆桶	li
+Fortress activity: Make wooden bucket	制作树木提桶	li
+Fortress activity: Make wooden crutch	制作树木拐杖	li
+Fortress activity: Make wooden shield	制作树木盾牌	li
+Fortress activity: Make wooden splint	制作树木夹板	li
+Native history office: absolute mucus	绝对黏液	h
+Native history office: absolute vomit	绝对呕吐物	h
+Native history office: most high wine	至高葡萄酒	h
+Native history office: most holy wine	至圣葡萄酒	h
+added masterful cloth to a {i} at {p}	在{p1}为{i1}添加了杰作级的布装饰	ht
+added masterful cloth to a {i} in {p}	在{p1}为{i1}添加了杰作级的布装饰	ht
+and added masterful cloth during {e}.	并在{e1}期间添加了杰作级的布装饰。	ht
+and added masterful cloth within {p}.	并在{p1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth during {e}.	{a1}在{e1}期间添加了杰作级的布装饰。	ht
+{a} added masterful cloth within {p}.	{a1}在{p1}添加了杰作级的布装饰。	ht
+Announcement combat ability []: Spit	唾液	l
+Book title subject: Unknown Material	未知材料	hi
+DFHack help: silk cloth yarn leather	丝绸纱皮革	l
+Fortress activity: Make wooden altar	制作树木圣坛	li
+Fortress activity: Make wooden chair	制作树木椅子	li
+Fortress activity: Make wooden chest	制作树木箱子	li
+Fortress activity: Make wooden grate	制作树木格栅	li
+Fortress activity: Make wooden table	制作树木桌子	li
+Native history office: absolute wine	绝对葡萄酒	h
+Native history office: exalted mucus	高尚黏液	h
+Native history office: exalted vomit	高尚呕吐物	h
+and added masterful cloth during {e}	并在{e1}期间添加了杰作级的布装饰	ht
+and added masterful cloth within {p}	并在{p1}添加了杰作级的布装饰	ht
+{a} added masterful cloth during {e}	{a1}在{e1}期间添加了杰作级的布装饰	ht
+{a} added masterful cloth within {p}	{a1}在{p1}添加了杰作级的布装饰	ht
+Fortress activity: Make wooden cage	制作树木笼子	li
+Fortress activity: Make wooden door	制作树木门	li
+Native history office: exalted wine	高尚葡萄酒	h
+Native history office: first finger	食指	h
+Native history office: sacred mucus	神圣黏液	h
+Native history office: sacred vomit	神圣呕吐物	h
+added masterful cloth in the wilds.	在荒野中添加了杰作级的布装饰。	h
+addition of masterful cloth at {p}.	在{p1}，添加杰作级的布装饰。	htEi
+addition of masterful cloth in {d}.	{d1}年的添加杰作级的布装饰。	htEi
+addition of masterful cloth in {p}.	在{p1}，添加杰作级的布装饰。	htEi
+and added masterful cloth to a {i}.	并为{i1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth to a {i}.	{a1}为{i1}添加了杰作级的布装饰。	ht
+Fortress activity: Make wooden bed	制作树木床	li
+Fortress activity: Make wooden bin	制作树木储物箱	li
+Native history office: first drink	第一份酒	h
+Native history office: first mucus	第一黏液	h
+Native history office: first vomit	第一呕吐物	h
+Native history office: sacred wine	神圣葡萄酒	h
+added masterful cloth in the wilds	在荒野中添加了杰作级的布装饰	h
+addition of masterful cloth at {p}	在{p1}，添加杰作级的布装饰	htEi
+addition of masterful cloth in {d}	{d1}年的添加杰作级的布装饰	htEi
+addition of masterful cloth in {p}	在{p1}，添加杰作级的布装饰	htEi
+and added masterful cloth to a {i}	并为{i1}添加了杰作级的布装饰	ht
+{a} added masterful cloth to a {i}	{a1}为{i1}添加了杰作级的布装饰	ht
+Native history office: first wine	第一葡萄酒	h
+Native history office: high boots	高筒靴	h
+Native history office: high mucus	高阶黏液	h
+Native history office: high vomit	高阶呕吐物	h
+Native history office: holy mucus	神圣黏液	h
+Native history office: holy vomit	神圣呕吐物	h
+added masterful cloth during {e}.	在{e1}期间添加了杰作级的布装饰。	ht
+added masterful cloth within {p}.	在{p1}添加了杰作级的布装饰。	ht
+and added masterful cloth at {p}.	并在{p1}添加了杰作级的布装饰。	ht
+and added masterful cloth in {p}.	并在{p1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth at {p}.	{a1}在{p1}添加了杰作级的布装饰。	ht
+{a} added masterful cloth in {p}.	{a1}在{p1}添加了杰作级的布装饰。	ht
+Native history office: first toe	大脚趾	h
+Native history office: high boot	高筒靴	h
+Native history office: high wine	高阶葡萄酒	h
+Native history office: holy wine	神圣葡萄酒	h
+added masterful cloth during {e}	在{e1}期间添加了杰作级的布装饰	ht
+added masterful cloth within {p}	在{p1}添加了杰作级的布装饰	ht
+and added masterful cloth at {p}	并在{p1}添加了杰作级的布装饰	ht
+and added masterful cloth in {p}	并在{p1}添加了杰作级的布装饰	ht
+giant brown recluse spider venom	巨型棕色遁蛛毒液	wi
+{a} added masterful cloth at {p}	{a1}在{p1}添加了杰作级的布装饰	ht
+{a} added masterful cloth in {p}	{a1}在{p1}添加了杰作级的布装饰	ht
+added masterful cloth to a {i}.	为{i1}添加了杰作级的布装饰。	ht
+Carve wooden helve from branch	用树枝雕刻树木斧柄	hP
+added masterful cloth to a {i}	为{i1}添加了杰作级的布装饰	ht
+brown recluse spider man venom	棕色遁蛛人毒液	wi
+DFHack help: unknown material	未知材料	l
+added masterful cloth at {p}.	在{p1}添加了杰作级的布装饰。	ht
+added masterful cloth in {p}.	在{p1}添加了杰作级的布装饰。	ht
+Fortress activity: Dye cloth	染布	li
+added masterful cloth at {p}	在{p1}添加了杰作级的布装饰	ht
+added masterful cloth in {p}	在{p1}添加了杰作级的布装饰	ht
+addition of masterful cloth.	添加杰作级的布装饰。	hEi
+giant copperhead snake venom	巨型铜头蛇毒液	wi
+addition of masterful cloth	添加杰作级的布装饰	hEi
+being forced to drink slime	被迫喝黏液	wi
+and added masterful cloth.	并添加了杰作级的布装饰。	h
+brown recluse spider venom	棕色遁蛛毒液	wi
+copperhead snake man venom	铜头蛇人毒液	wi
+{a} added masterful cloth.	{a1}添加了杰作级的布装饰。	ht
+and added masterful cloth	并添加了杰作级的布装饰	h
+giant bark scorpion venom	巨型树皮蝎毒液	wi
+{a} added masterful cloth	{a1}添加了杰作级的布装饰	ht
+boiling malodorous mucus	沸腾的有恶臭的黏液制	hMi
+boiling malodorous mucus	沸腾的有恶臭的黏液	wim
+boiling malodorous slime	沸腾的有恶臭的黏液制	hMi
+boiling malodorous slime	沸腾的有恶臭的黏液	wim
+boiling nauseating mucus	沸腾的令人作呕的黏液制	hMi
+boiling nauseating mucus	沸腾的令人作呕的黏液	wim
+boiling nauseating slime	沸腾的令人作呕的黏液制	hMi
+boiling nauseating slime	沸腾的令人作呕的黏液	wim
+giant gila monster venom	巨型毒蜥毒液	wi
+bark scorpion man venom	树皮蝎人毒液	wi
+boiling abhorrent mucus	沸腾的可憎的黏液制	hMi
+boiling abhorrent mucus	沸腾的可憎的黏液	wim
+boiling abhorrent slime	沸腾的可憎的黏液制	hMi
+boiling abhorrent slime	沸腾的可憎的黏液	wim
+boiling loathsome mucus	沸腾的令人厌恶的黏液制	hMi
+boiling loathsome mucus	沸腾的令人厌恶的黏液	wim
+boiling loathsome slime	沸腾的令人厌恶的黏液制	hMi
+boiling loathsome slime	沸腾的令人厌恶的黏液	wim
+boiling repellent mucus	沸腾的令人厌恶的黏液制	hMi
+boiling repellent mucus	沸腾的令人厌恶的黏液	wim
+boiling repellent slime	沸腾的令人厌恶的黏液制	hMi
+boiling repellent slime	沸腾的令人厌恶的黏液	wim
+boiling repulsive mucus	沸腾的令人厌恶的黏液制	hMi
+boiling repulsive mucus	沸腾的令人厌恶的黏液	wim
+boiling repulsive slime	沸腾的令人厌恶的黏液制	hMi
+boiling repulsive slime	沸腾的令人厌恶的黏液	wim
+boiling revolting mucus	沸腾的恶心的黏液制	hMi
+boiling revolting mucus	沸腾的恶心的黏液	wim
+boiling revolting slime	沸腾的恶心的黏液制	hMi
+boiling revolting slime	沸腾的恶心的黏液	wim
+frozen malodorous mucus	冻结的有恶臭的黏液制	hMi
+frozen malodorous mucus	冻结的有恶臭的黏液	wim
+frozen malodorous slime	冻结的有恶臭的黏液制	hMi
+frozen malodorous slime	冻结的有恶臭的黏液	wim
+frozen nauseating mucus	冻结的令人作呕的黏液制	hMi
+frozen nauseating mucus	冻结的令人作呕的黏液	wim
+frozen nauseating slime	冻结的令人作呕的黏液制	hMi
+frozen nauseating slime	冻结的令人作呕的黏液	wim
+giant black mamba venom	巨型黑曼巴蛇毒液	wi
+giant cave spider venom	巨型洞穴蜘蛛毒液	wi
+giant rattlesnake venom	巨型响尾蛇毒液	wi
+ability to devour wood	可食木材	wi
+added masterful cloth.	添加了杰作级的布装饰。	h
+boiling stinking mucus	沸腾的发臭的黏液制	hMi
+boiling stinking mucus	沸腾的发臭的黏液	wim
+boiling stinking slime	沸腾的发臭的黏液制	hMi
+boiling stinking slime	沸腾的发臭的黏液	wim
+copperhead snake venom	铜头蛇毒液	wi
+frozen abhorrent mucus	冻结的可憎的黏液制	hMi
+frozen abhorrent mucus	冻结的可憎的黏液	wim
+frozen abhorrent slime	冻结的可憎的黏液制	hMi
+frozen abhorrent slime	冻结的可憎的黏液	wim
+frozen loathsome mucus	冻结的令人厌恶的黏液制	hMi
+frozen loathsome mucus	冻结的令人厌恶的黏液	wim
+frozen loathsome slime	冻结的令人厌恶的黏液制	hMi
+frozen loathsome slime	冻结的令人厌恶的黏液	wim
+frozen repellent mucus	冻结的令人厌恶的黏液制	hMi
+frozen repellent mucus	冻结的令人厌恶的黏液	wim
+frozen repellent slime	冻结的令人厌恶的黏液制	hMi
+frozen repellent slime	冻结的令人厌恶的黏液	wim
+frozen repulsive mucus	冻结的令人厌恶的黏液制	hMi
+frozen repulsive mucus	冻结的令人厌恶的黏液	wim
+frozen repulsive slime	冻结的令人厌恶的黏液制	hMi
+frozen repulsive slime	冻结的令人厌恶的黏液	wim
+frozen revolting mucus	冻结的恶心的黏液制	hMi
+frozen revolting mucus	冻结的恶心的黏液	wim
+frozen revolting slime	冻结的恶心的黏液制	hMi
+frozen revolting slime	冻结的恶心的黏液	wim
+giant bushmaster venom	巨型巨蝮毒液	wi
+giant king cobra venom	巨型眼镜王蛇毒液	wi
+gila monster man venom	毒蜥人毒液	wi
+{p} / Wooden Furniture	{p1} / 树木家具	hHt
+Make large wooden gem	制作大型树木宝石	wi
+added masterful cloth	添加了杰作级的布装饰	h
+black mamba man venom	黑曼巴蛇人毒液	wi
+boiling heinous mucus	沸腾的邪恶的黏液制	hMi
+boiling heinous mucus	沸腾的邪恶的黏液	wim
+boiling heinous slime	沸腾的邪恶的黏液制	hMi
+boiling heinous slime	沸腾的邪恶的黏液	wim
+boiling pungent mucus	沸腾的刺鼻的黏液制	hMi
+boiling pungent mucus	沸腾的刺鼻的黏液	wim
+boiling pungent slime	沸腾的刺鼻的黏液制	hMi
+boiling pungent slime	沸腾的刺鼻的黏液	wim
+bumblebee royal jelly	熊蜂蜂王浆	wi
+forced to drink slime	被迫喝黏液	wi
+frozen stinking mucus	冻结的发臭的黏液制	hMi
+frozen stinking mucus	冻结的发臭的黏液	wim
+frozen stinking slime	冻结的发臭的黏液制	hMi
+frozen stinking slime	冻结的发臭的黏液	wim
+rattlesnake man venom	响尾蛇人毒液	wi
+boiling bitter mucus	沸腾的苦涩的黏液制	hMi
+boiling bitter mucus	沸腾的苦涩的黏液	wim
+boiling bitter slime	沸腾的苦涩的黏液制	hMi
+boiling bitter slime	沸腾的苦涩的黏液	wim
+boiling filthy mucus	沸腾的污秽的黏液制	hMi
+boiling filthy mucus	沸腾的污秽的黏液	wim
+boiling filthy slime	沸腾的污秽的黏液制	hMi
+boiling filthy slime	沸腾的污秽的黏液	wim
+boiling horrid mucus	沸腾的可怕的黏液制	hMi
+boiling horrid mucus	沸腾的可怕的黏液	wim
+boiling horrid slime	沸腾的可怕的黏液制	hMi
+boiling horrid slime	沸腾的可怕的黏液	wim
+boiling putrid mucus	沸腾的腐败的黏液制	hMi
+boiling putrid mucus	沸腾的腐败的黏液	wim
+boiling putrid slime	沸腾的腐败的黏液制	hMi
+boiling putrid slime	沸腾的腐败的黏液	wim
+boiling rotten mucus	沸腾的腐烂的黏液制	hMi
+boiling rotten mucus	沸腾的腐烂的黏液	wim
+boiling rotten slime	沸腾的腐烂的黏液制	hMi
+boiling rotten slime	沸腾的腐烂的黏液	wim
+bushmaster man venom	巨蝮人毒液	wi
+frozen heinous mucus	冻结的邪恶的黏液制	hMi
+frozen heinous mucus	冻结的邪恶的黏液	wim
+frozen heinous slime	冻结的邪恶的黏液制	hMi
+frozen heinous slime	冻结的邪恶的黏液	wim
+frozen pungent mucus	冻结的刺鼻的黏液制	hMi
+frozen pungent mucus	冻结的刺鼻的黏液	wim
+frozen pungent slime	冻结的刺鼻的黏液制	hMi
+frozen pungent slime	冻结的刺鼻的黏液	wim
+giant platypus venom	巨型鸭嘴兽毒液	wi
+king cobra man venom	眼镜王蛇人毒液	wi
+phantom spider venom	幻影蜘蛛毒液	wi
+DFHack help: * wood	* 木材	l
+bark scorpion venom	树皮蝎毒液	wi
+boiling acrid mucus	沸腾的辛辣的黏液制	hMi
+boiling acrid mucus	沸腾的辛辣的黏液	wim
+boiling acrid slime	沸腾的辛辣的黏液制	hMi
+boiling acrid slime	沸腾的辛辣的黏液	wim
+boiling fetid mucus	沸腾的恶臭的黏液制	hMi
+boiling fetid mucus	沸腾的恶臭的黏液	wim
+boiling fetid slime	沸腾的恶臭的黏液制	hMi
+boiling fetid slime	沸腾的恶臭的黏液	wim
+boiling vile sludge	沸腾的恶毒淤浆	hMi
+boiling vile sludge	沸腾的恶毒淤浆	wim
+frozen bitter mucus	冻结的苦涩的黏液制	hMi
+frozen bitter mucus	冻结的苦涩的黏液	wim
+frozen bitter slime	冻结的苦涩的黏液制	hMi
+frozen bitter slime	冻结的苦涩的黏液	wim
+frozen filthy mucus	冻结的污秽的黏液制	hMi
+frozen filthy mucus	冻结的污秽的黏液	wim
+frozen filthy slime	冻结的污秽的黏液制	hMi
+frozen filthy slime	冻结的污秽的黏液	wim
+frozen horrid mucus	冻结的可怕的黏液制	hMi
+frozen horrid mucus	冻结的可怕的黏液	wim
+frozen horrid slime	冻结的可怕的黏液制	hMi
+frozen horrid slime	冻结的可怕的黏液	wim
+frozen putrid mucus	冻结的腐败的黏液制	hMi
+frozen putrid mucus	冻结的腐败的黏液	wim
+frozen putrid slime	冻结的腐败的黏液制	hMi
+frozen putrid slime	冻结的腐败的黏液	wim
+frozen rotten mucus	冻结的腐烂的黏液制	hMi
+frozen rotten mucus	冻结的腐烂的黏液	wim
+frozen rotten slime	冻结的腐烂的黏液制	hMi
+frozen rotten slime	冻结的腐烂的黏液	wim
+boiling vile mucus	沸腾的卑劣的黏液制	hMi
+boiling vile mucus	沸腾的卑劣的黏液	wim
+boiling vile slime	沸腾的卑劣的黏液制	hMi
+boiling vile slime	沸腾的卑劣的黏液	wim
+bumblebee wax cake	熊蜂蜡饼	wi
+frozen acrid mucus	冻结的辛辣的黏液制	hMi
+frozen acrid mucus	冻结的辛辣的黏液	wim
+frozen acrid slime	冻结的辛辣的黏液制	hMi
+frozen acrid slime	冻结的辛辣的黏液	wim
+frozen fetid mucus	冻结的恶臭的黏液制	hMi
+frozen fetid mucus	冻结的恶臭的黏液	wim
+frozen fetid slime	冻结的恶臭的黏液制	hMi
+frozen fetid slime	冻结的恶臭的黏液	wim
+frozen vile sludge	结冻的恶毒淤浆	hMi
+frozen vile sludge	结冻的恶毒淤浆	wim
+gila monster venom	毒蜥毒液	wi
+helmet snake venom	头盔蛇毒液	wi
+most exalted mucus	至尊黏液	hi
+most exalted vomit	至尊呕吐物	hi
+platypus man venom	鸭嘴兽人毒液	wi
+Cloth and leather	布与皮革	wi
+black mamba venom	黑曼巴蛇毒液	wi
+bumblebee workers	熊蜂工蜂	wi
+cave spider venom	洞穴蜘蛛毒液	wi
+frozen vile mucus	冻结的卑劣的黏液制	hMi
+frozen vile mucus	冻结的卑劣的黏液	wim
+frozen vile slime	冻结的卑劣的黏液制	hMi
+frozen vile slime	冻结的卑劣的黏液	wim
+giant adder venom	巨型蝰蛇毒液	wi
+honey bee workers	蜜蜂工蜂	wi
+most exalted wine	至尊葡萄酒	hi
+most sacred mucus	至圣黏液	hi
+most sacred vomit	至圣呕吐物	hi
+rattlesnake venom	响尾蛇毒液	wi
+Cloth and thread	布与线	wi
+Make cloth into 	在此将布制成衣物和工具(例如	w
+Wooden Furniture	树木家具	hH
+bumblebee drones	熊蜂雄蜂	wi
+bumblebee queens	熊蜂蜂后	wi
+bumblebee worker	熊蜂工蜂	wi
+bushmaster venom	巨蝮毒液	wi
+honey bee drones	蜜蜂雄蜂	wi
+honey bee queens	蜜蜂蜂后	wi
+king cobra venom	眼镜王蛇毒液	wi
+malodorous mucus	有恶臭的黏液制	hMi
+malodorous mucus	有恶臭的黏液	wim
+malodorous slime	有恶臭的黏液制	hMi
+malodorous slime	有恶臭的黏液	wim
+most sacred wine	至圣葡萄酒	hi
+nauseating mucus	令人作呕的黏液制	hMi
+nauseating mucus	令人作呕的黏液	wim
+nauseating slime	令人作呕的黏液制	hMi
+nauseating slime	令人作呕的黏液	wim
+unknown material	未知材料	h
+abhorrent mucus	可憎的黏液制	hMi
+abhorrent mucus	可憎的黏液	wim
+abhorrent slime	可憎的黏液制	hMi
+abhorrent slime	可憎的黏液	wim
+adder man venom	蝰蛇人毒液	wi
+bumblebee drone	熊蜂雄蜂	wi
+bumblebee honey	熊蜂蜜	wi
+bumblebee queen	熊蜂蜂后	wi
+bumblebee venom	熊蜂毒液	wi
+honey bee drone	蜜蜂雄蜂	wi
+honey bee venom	蜜蜂毒液	wi
+loathsome mucus	令人厌恶的黏液制	hMi
+loathsome mucus	令人厌恶的黏液	wim
+loathsome slime	令人厌恶的黏液制	hMi
+loathsome slime	令人厌恶的黏液	wim
+most high mucus	至高黏液	hi
+most high vomit	至高呕吐物	hi
+most holy mucus	至圣黏液	hi
+most holy vomit	至圣呕吐物	hi
+primordial wood	原初木材	wim
+repellent mucus	令人厌恶的黏液制	hMi
+repellent mucus	令人厌恶的黏液	wim
+repellent slime	令人厌恶的黏液制	hMi
+repellent slime	令人厌恶的黏液	wim
+repulsive mucus	令人厌恶的黏液制	hMi
+repulsive mucus	令人厌恶的黏液	wim
+repulsive slime	令人厌恶的黏液制	hMi
+repulsive slime	令人厌恶的黏液	wim
+revolting mucus	恶心的黏液制	hMi
+revolting mucus	恶心的黏液	wim
+revolting slime	恶心的黏液制	hMi
+revolting slime	恶心的黏液	wim
+Stockpile wood	储存木材	hqO
+absolute mucus	绝对黏液	hi
+absolute vomit	绝对呕吐物	hi
+bumblebee mead	熊蜂蜜酒	wi
+elemental wood	元素木材	wim
+most high wine	至高葡萄酒	hi
+most holy wine	至圣葡萄酒	hi
+platypus venom	鸭嘴兽毒液	wi
+stinking mucus	发臭的黏液制	hMi
+stinking mucus	发臭的黏液	wim
+stinking slime	发臭的黏液制	hMi
+stinking slime	发臭的黏液	wim
+absolute wine	绝对葡萄酒	hi
+bumblebee wax	熊蜂蜡	wi
+exalted mucus	高尚黏液	hi
+exalted vomit	高尚呕吐物	hi
+heinous mucus	邪恶的黏液制	hMi
+heinous mucus	邪恶的黏液	wim
+heinous slime	邪恶的黏液制	hMi
+heinous slime	邪恶的黏液	wim
+molten liquid	熔融的液体	hMi
+molten liquid	熔融的液体	wim
+primeval wood	太古木材	wim
+pungent mucus	刺鼻的黏液制	hMi
+pungent mucus	刺鼻的黏液	wim
+pungent slime	刺鼻的黏液制	hMi
+pungent slime	刺鼻的黏液	wim
+bitter mucus	苦涩的黏液制	hMi
+bitter mucus	苦涩的黏液	wim
+bitter slime	苦涩的黏液制	hMi
+bitter slime	苦涩的黏液	wim
+exalted wine	高尚葡萄酒	hi
+filthy mucus	污秽的黏液制	hMi
+filthy mucus	污秽的黏液	wim
+filthy slime	污秽的黏液制	hMi
+filthy slime	污秽的黏液	wim
+first finger	第一手指	hi
+horrid mucus	可怕的黏液制	hMi
+horrid mucus	可怕的黏液	wim
+horrid slime	可怕的黏液制	hMi
+horrid slime	可怕的黏液	wim
+putrid mucus	腐败的黏液制	hMi
+putrid mucus	腐败的黏液	wim
+putrid slime	腐败的黏液制	hMi
+putrid slime	腐败的黏液	wim
+rotten mucus	腐烂的黏液制	hMi
+rotten mucus	腐烂的黏液	wim
+rotten slime	腐烂的黏液制	hMi
+rotten slime	腐烂的黏液	wim
+sacred mucus	神圣黏液	hi
+sacred vomit	神圣呕吐物	hi
+slime trails	黏液痕迹	wi
+acrid mucus	辛辣的黏液制	hMi
+acrid mucus	辛辣的黏液	wim
+acrid slime	辛辣的黏液制	hMi
+acrid slime	辛辣的黏液	wim
+adder venom	蝰蛇毒液	wi
+cosmic wood	宇宙木材	wim
+fetid mucus	恶臭的黏液制	hMi
+fetid mucus	恶臭的黏液	wim
+fetid slime	恶臭的黏液制	hMi
+fetid slime	恶臭的黏液	wim
+first drink	第一份酒	hi
+first mucus	第一黏液	hi
+first vomit	第一呕吐物	hi
+primal wood	原始木材	wim
+sacred wine	神圣葡萄酒	hi
+saguaro rib	巨刺柱	wi
+vile sludge	恶毒淤浆	hMi
+vile sludge	恶毒淤浆	wim
+{p} / Cloth	{p1} / 布	hHt
+You vomit.	你呕吐物了。	hP
+bumblebees	熊蜂	wi
+elder wood	上古木材	wim
+first horn	第一只角	wi
+first wine	第一葡萄酒	hi
+high boots	高筒靴	hi
+high mucus	高阶黏液	hi
+high vomit	高阶呕吐物	hi
+holy mucus	神圣黏液	hi
+holy vomit	神圣呕吐物	hi
+vile mucus	卑劣的黏液制	hMi
+vile mucus	卑劣的黏液	wim
+vile slime	卑劣的黏液制	hMi
+vile slime	卑劣的黏液	wim
+bumblebee	熊蜂	wi
+first toe	第一脚趾	hi
+high boot	高筒靴	hi
+high wine	高阶葡萄酒	hi
+holy wine	神圣葡萄酒	hi
+rock nut	岩石坚果	wi
+the mace	页锤	h
+wooden	木制	wi
+Cloth	布	hH
+Mouth	嘴	w
+brain	脑	h
+mouth	嘴	h
+mouth	嘴	w
+mucus	黏液	wi
+skull	颅骨	h
+slime	黏液	wi
+smoke	烟雾	wi
+tails	尾巴	wi
+lips	嘴唇	wi
+eye	眼睛	h
+
+# Shared physical nouns and explicitly scoped actions.
+rock nut oil	岩石坚果油	wi
+rock nut soap	岩石坚果肥皂	wi
+fists	拳头	wi
+neck	颈部	wi
+tentacle	触手	wi
+tentacles	触手	wi
+talons	利爪	wi
+thorns	尖刺	wi
+Announcement combat attack-verb []: lunges at	猛扑向	wi
+Announcement combat attack-verb []: slam	猛撞	wi
+Announcement combat attack-verb []: slams	猛撞	wi
+
+# Whole physical body-part and item nouns.
+back	背部	wi
+beak	鸟喙	wi
+beaks	鸟喙	wi
+first eye	第一只眼	wi
+left upper tentacle	左上触手	wi
+left middle tentacle	左中触手	wi
+right upper tentacle	右上触手	wi
+right middle tentacle	右中触手	wi
+second head	第二个头	wi
+wire	金属丝	wi
+
+# Shared species and role terminology across translation extensions.
+A person with the head and wings of a cardinal.	一种长着主红雀脑袋和翅膀的人形生物。	lP
+A person with the head and wings of a grackle.	一种长着拟八哥脑袋和翅膀的人形生物。	lP
+A huge monster in the form of a cardinal.	一只体型巨大的主红雀怪。	lP
+A huge monster in the form of a grackle.	一只体型巨大的拟八哥怪。	lP
+Native history office: most high queens	至高阶女王	h
+Native history office: most high kings	至高阶国王	h
+Native history office: most high lords	至高阶领主	h
+Native history office: most high queen	至高阶女王	h
+Native history office: most high king	至高阶国王	h
+Native history office: most high lord	至高阶领主	h
+giant cardinal hatchlings	巨型主红雀幼崽	wi
+giant cardinal hatchling	巨型主红雀幼崽	wi
+giant grackle hatchlings	巨型拟八哥幼崽	wi
+giant grackle hatchling	巨型拟八哥幼崽	wi
+cardinal hatchlings	主红雀幼崽	wi
+cardinal hatchling	主红雀幼崽	wi
+giant leopard cubs	巨型豹子幼崽	wi
+grackle hatchlings	拟八哥幼崽	wi
+giant leopard cub	巨型豹子幼崽	wi
+grackle hatchling	拟八哥幼崽	wi
+most high queens	至高阶女王	hi
+giant cardinals	巨型主红雀	wi
+most high kings	至高阶国王	hi
+most high lords	至高阶领主	hi
+most high queen	至高阶女王	hi
+cardinal woman	主红雀人	wi
+cardinal women	主红雀人	wi
+giant cardinal	巨型主红雀	wi
+giant grackles	巨型拟八哥	wi
+giant leopards	巨型豹子	wi
+most high king	至高阶国王	hi
+most high lord	至高阶领主	hi
+giant grackle	巨型拟八哥	wi
+giant leopard	巨型豹子	wi
+grackle woman	拟八哥人	wi
+grackle women	拟八哥人	wi
+leopard woman	豹子人	wi
+leopard women	豹子人	wi
+cardinal man	主红雀人	wi
+cardinal men	主红雀人	wi
+grackle man	拟八哥人	wi
+grackle men	拟八哥人	wi
+leopard man	豹子人	wi
+leopard men	豹子人	wi
+cardinals	主红雀	wi
+grackles	普通拟八哥	wi
+grackle	普通拟八哥	wi
+
+# Scoped preference reasons share the authored extension terminology.
+Preference reason: Apricorns	球果	l
+Preference reason: Dream Mist	梦境烟雾	l
+Preference reason: Dreepy launching	发射多龙梅西亚	l
+Preference reason: Dynamax properties	极巨化属性	l
+Preference reason: HP boosting	提升体力	l
+Preference reason: Mini-Noses	小朝北鼻	l
+Preference reason: Moomoo milk	哞哞鲜奶	l
+Preference reason: Pikachu veil	皮卡丘面纱	l
+Preference reason: Poke Ball cap	精灵球帽	l
+Preference reason: Poke Beans	宝可豆	l
+Preference reason: Pollen Puffs	花粉团	l
+Preference reason: RKS System	ＡＲ系统	l
+Preference reason: Shellder	大舌贝	l
+Preference reason: Snoverberries	雪笠怪树果	l
+Preference reason: Soul-Heart	魂心	l
+Preference reason: ability to absorb anything	吸收任何东西的能力	l
+Preference reason: ability to balance objects	平衡物体的能力	l
+Preference reason: ability to boost agility	提高敏捷性的能力	l
+Preference reason: ability to bring happy dreams	带来美梦的能力	l
+Preference reason: ability to bring joy	带来欢乐的能力	l
+Preference reason: ability to bring nightmares	带来噩梦的能力	l
+Preference reason: ability to burrow	挖洞能力	l
+Preference reason: ability to camouflage	伪装能力	l
+Preference reason: ability to change colors	改变颜色的能力	l
+Preference reason: ability to change form	改变形态的能力	l
+Preference reason: ability to clear throats	清嗓子的能力	l
+Preference reason: ability to control Pokemon	控制宝可梦的能力	l
+Preference reason: ability to control gravity	控制重力的能力	l
+Preference reason: ability to control snow	控雪能力	l
+Preference reason: ability to create dense fog	产生浓雾的能力	l
+Preference reason: ability to create diamonds	创造钻石的能力	l
+Preference reason: ability to create earthquakes	制造地震的能力	l
+Preference reason: ability to create ice crystals	产生冰晶的能力	l
+Preference reason: ability to create metal	创造金属的能力	l
+Preference reason: ability to create powerful shock waves	产生强大冲击波的能力	l
+Preference reason: ability to create storm clouds	创造风暴云的能力	l
+Preference reason: ability to create thunderclouds	创造雷雨云的能力	l
+Preference reason: ability to create ultrasonic waves	产生超声波的能力	l
+Preference reason: ability to create whirlwinds	制造旋风的能力	l
+Preference reason: ability to cure any illness	治愈任何疾病的能力	l
+Preference reason: ability to cure illness	治愈疾病的能力	l
+Preference reason: ability to cure paralysis	治愈麻痹的能力	l
+Preference reason: ability to cure poison	解毒能力	l
+Preference reason: ability to dissolve rocks	溶解岩石的能力	l
+Preference reason: ability to drill through wood	钻穿木材的能力	l
+Preference reason: ability to expand continents	扩展大陆的能力	l
+Preference reason: ability to expand oceans	扩大海洋的能力	l
+Preference reason: ability to fly	飞行能力	l
+Preference reason: ability to freeze moisture	冻结水分的能力	l
+Preference reason: ability to generate strong winds	产生强风的能力	l
+Preference reason: ability to grow plants	促进植物生长的能力	l
+Preference reason: ability to help crops grow	帮助农作物生长的能力	l
+Preference reason: ability to hold liquor	酒量	l
+Preference reason: ability to keep time	精准计时的能力	l
+Preference reason: ability to make fire	生火的能力	l
+Preference reason: ability to make lightning	制造闪电的能力	l
+Preference reason: ability to make rainbows	创造彩虹的能力	l
+Preference reason: ability to make snow	造雪能力	l
+Preference reason: ability to make storms	制造风暴的能力	l
+Preference reason: ability to manipulate peat	操纵泥炭的能力	l
+Preference reason: ability to open Ultra Wormholes	打开究极之洞的能力	l
+Preference reason: ability to organize	组织能力	l
+Preference reason: ability to predict disasters	预测灾害的能力	l
+Preference reason: ability to predict storms	预测风暴的能力	l
+Preference reason: ability to predict the future	预测未来的能力	l
+Preference reason: ability to produce loud pops	产生响亮爆裂声的能力	l
+Preference reason: ability to produce steam	产生蒸汽的能力	l
+Preference reason: ability to project dreams	投射梦境的能力	l
+Preference reason: ability to purify water	净化水的能力	l
+Preference reason: ability to read emotions	读懂情绪的能力	l
+Preference reason: ability to read feelings	读懂感情的能力	l
+Preference reason: ability to recall memories	唤回记忆的能力	l
+Preference reason: ability to relieve stress	缓解压力的能力	l
+Preference reason: ability to revive Pokemon	复活宝可梦的能力	l
+Preference reason: ability to roll	滚动能力	l
+Preference reason: ability to rotate their head	旋转头部的能力	l
+Preference reason: ability to see the future	预见未来的能力	l
+Preference reason: ability to sense auras	感知波导的能力	l
+Preference reason: ability to sense emotions	感知情绪的能力	l
+Preference reason: ability to sharpen ones focus	提高注意力的能力	l
+Preference reason: ability to shoot ink	射墨能力	l
+Preference reason: ability to shoot thunderbolts	发射雷电的能力	l
+Preference reason: ability to slip through cracks	穿过裂缝的能力	l
+Preference reason: ability to splash	溅跃的本领	l
+Preference reason: ability to store electricity	储存电力的能力	l
+Preference reason: ability to summon rain clouds	召唤雨云的能力	l
+Preference reason: ability to teleport	传送能力	l
+Preference reason: ability to transform	变身的能力	l
+Preference reason: ability to turn Pokemon pink	将宝可梦变成粉红色的能力	l
+Preference reason: ability to walk on water	在水上行走的能力	l
+Preference reason: accuracy	精准度	l
+Preference reason: acorn shape	橡子形状	l
+Preference reason: acrobatic ability	杂技能力	l
+Preference reason: activeness	活跃度	l
+Preference reason: adaptability	适应性	l
+Preference reason: adorable behavior	可爱的行为	l
+Preference reason: adorable looks	可爱的外表	l
+Preference reason: adversion to rain	厌恶雨水的习性	l
+Preference reason: affection	亲昵的举动	l
+Preference reason: affectionate nature	亲人的性格	l
+Preference reason: afro	爆炸头	l
+Preference reason: aggression	好斗性	l
+Preference reason: aggressiveness	攻击性	l
+Preference reason: agility	敏捷身手	l
+Preference reason: agressive nature	好斗的性格	l
+Preference reason: aid in muscle growth	促进肌肉生长的功效	l
+Preference reason: aid in tougness	增强坚韧的功效	l
+Preference reason: aid with digestion	帮助消化的功效	l
+Preference reason: air bubbles	气泡	l
+Preference reason: alertness	警觉	l
+Preference reason: amazing vision	惊人的视力	l
+Preference reason: anchor	锚	l
+Preference reason: ancient genes	古老的基因	l
+Preference reason: angelic appearance	天使般的外表	l
+Preference reason: angry eyes	愤怒的眼睛	l
+Preference reason: antenna	触角	l
+Preference reason: antennae	触角	l
+Preference reason: antique tableware	古董餐具	l
+Preference reason: antlers	鹿角	l
+Preference reason: appetite	食欲	l
+Preference reason: apple	苹果	l
+Preference reason: apple disguise	苹果伪装	l
+Preference reason: apron	围裙	l
+Preference reason: armor	盔甲	l
+Preference reason: armored body	披甲的身体	l
+Preference reason: aroma	香气	l
+Preference reason: aspiration	愿望	l
+Preference reason: asymmetric cut	不对称剪裁	l
+Preference reason: attraction to light	趋光性	l
+Preference reason: attraction to strong emotions	对强烈情绪的喜好	l
+Preference reason: attraction to the deceased	对亡者的亲近	l
+Preference reason: aura sensing	波导感知	l
+Preference reason: axe horns	斧角	l
+Preference reason: axes	斧头	l
+Preference reason: bag like tail	袋状尾巴	l
+Preference reason: balanced flavored juice	风味均衡的果汁	l
+Preference reason: ball	球	l
+Preference reason: balloon shape	气球形状	l
+Preference reason: bamboo like body	竹子般的身体	l
+Preference reason: banana-like shape	香蕉状	l
+Preference reason: barbaric demeanor	野蛮的举止	l
+Preference reason: barbels	触须	l
+Preference reason: beads	珠子	l
+Preference reason: beady eyes	圆圆的眼睛	l
+Preference reason: beak	喙	l
+Preference reason: beard	胡须	l
+Preference reason: beard of fire	火焰胡须	l
+Preference reason: beards	胡须	l
+Preference reason: beautiful caudal fin	美丽的尾鳍	l
+Preference reason: beauty	美丽的外表	l
+Preference reason: beer	啤酒	l
+Preference reason: being a human in Pokemon form	以宝可梦形态生活的人类身份	l
+Preference reason: being turned into the form of a Pokemon	变成宝可梦的形态	l
+Preference reason: belief in ideals	对理想的信念	l
+Preference reason: belief in truth	相信真理	l
+Preference reason: bell	钟	l
+Preference reason: bell shape	钟形	l
+Preference reason: bellowing	吼叫	l
+Preference reason: benefits	益处	l
+Preference reason: benefits?	可能的益处	l
+Preference reason: berries	树果	l
+Preference reason: berry bushes	树果灌木	l
+Preference reason: berry juggling	抛接树果的杂耍	l
+Preference reason: berry throwing	投掷树果	l
+Preference reason: bill	喙	l
+Preference reason: biterness	苦味	l
+Preference reason: biting	啃咬的习性	l
+Preference reason: bitter flavor	苦味	l
+Preference reason: bitter flavored juice	苦味果汁	l
+Preference reason: bitter fruit	苦味果实	l
+Preference reason: bitter stem	苦茎	l
+Preference reason: bitter taste	苦味	l
+Preference reason: bitterness	苦味	l
+Preference reason: bittersweet juices	苦甜的汁液	l
+Preference reason: bittersweet taste	苦甜的味道	l
+Preference reason: bizare features	古怪的外貌	l
+Preference reason: blade	刀刃	l
+Preference reason: blade birds	刀锋鸟	l
+Preference reason: blades	刀片	l
+Preference reason: blessings	祝福	l
+Preference reason: blight on nature	对自然的损害	l
+Preference reason: blimp shape	飞艇形状	l
+Preference reason: blinking	眨眼	l
+Preference reason: blood red crest	血红色的冠	l
+Preference reason: blood red horns	血红色的角	l
+Preference reason: blood sucking	吸血	l
+Preference reason: bloodmoon mark	赫月印记	l
+Preference reason: bloom	头顶的花朵	l
+Preference reason: blooming	盛开	l
+Preference reason: blossoms	花朵	l
+Preference reason: body of magma	岩浆构成的身体	l
+Preference reason: body of plasma	等离子体构成的身体	l
+Preference reason: bolt like tail	闪电状的尾巴	l
+Preference reason: bone club	骨棒	l
+Preference reason: bone like features	骨样特征	l
+Preference reason: bone skirt	骨裙	l
+Preference reason: bouncing	弹跳	l
+Preference reason: bouquet	花束	l
+Preference reason: bows	蝴蝶结	l
+Preference reason: boxing	拳击	l
+Preference reason: boxing glove pincers	拳击手套般的钳子	l
+Preference reason: branch shooting	发射树枝	l
+Preference reason: bravery	勇敢	l
+Preference reason: brick pattern hide	砖纹皮肤	l
+Preference reason: bridge shape	桥形	l
+Preference reason: bright berries	鲜艳的浆果	l
+Preference reason: bright light	明亮的光	l
+Preference reason: brilliant color	绚丽的色彩	l
+Preference reason: bristly fur	刚毛	l
+Preference reason: bronze body	青铜构成的身体	l
+Preference reason: brutality	残暴的性情	l
+Preference reason: brute force	蛮力	l
+Preference reason: bubble beard	泡泡胡子	l
+Preference reason: bubble scarf	泡泡围巾	l
+Preference reason: buds	花苞	l
+Preference reason: bulb	背上的种子球茎	l
+Preference reason: bulk	壮硕的体格	l
+Preference reason: buoyancy	浮力	l
+Preference reason: bushy mane	浓密的鬃毛	l
+Preference reason: busy nature	忙碌的天性	l
+Preference reason: buzzing	嗡嗡的鸣声	l
+Preference reason: cable like limbs	电缆状四肢	l
+Preference reason: cackling	咯咯地笑	l
+Preference reason: call	叫声	l
+Preference reason: calm nature	沉稳的性格	l
+Preference reason: calm personality	冷静的性格	l
+Preference reason: calming aroma	令人平静的香气	l
+Preference reason: calming aura	令人平静的气场	l
+Preference reason: calmness	冷静	l
+Preference reason: canine body	犬形身体	l
+Preference reason: cannon	大炮	l
+Preference reason: cannons	大炮	l
+Preference reason: cap	帽状头顶	l
+Preference reason: capabilities	能力	l
+Preference reason: carbs	碳水化合物	l
+Preference reason: carefree nature	无忧无虑的天性	l
+Preference reason: caretaking	照顾	l
+Preference reason: caring	关怀	l
+Preference reason: castle structure	城堡结构	l
+Preference reason: caudal fins	尾鳍	l
+Preference reason: cellular body	细胞构成的身体	l
+Preference reason: charm	魅力	l
+Preference reason: cheek pouches	颊囊	l
+Preference reason: cheeks	脸颊	l
+Preference reason: cheering	欢呼	l
+Preference reason: cherry-like appearance	樱桃般的外观	l
+Preference reason: chimeric body	嵌合体	l
+Preference reason: chunky body	矮胖的身体	l
+Preference reason: clanging scales	叮当作响的鳞片	l
+Preference reason: clapping	鼓掌	l
+Preference reason: claw	爪	l
+Preference reason: claws	爪子	l
+Preference reason: clay structure	粘土结构	l
+Preference reason: cleaning	打扫	l
+Preference reason: climbing ability	攀爬能力	l
+Preference reason: climbing skill	攀爬技巧	l
+Preference reason: cloak	披风	l
+Preference reason: cloud-like wings	云朵般的翅膀	l
+Preference reason: coal	煤炭	l
+Preference reason: coal burning	燃烧煤炭	l
+Preference reason: coiling	卷绕	l
+Preference reason: coin	硬币	l
+Preference reason: coins	硬币	l
+Preference reason: cold temperature	寒冷的温度	l
+Preference reason: color	颜色	l
+Preference reason: colorful explosions	色彩缤纷的爆炸	l
+Preference reason: colorful feathers	色彩斑斓的羽毛	l
+Preference reason: colorful petals	五颜六色的花瓣	l
+Preference reason: colorful wings	色彩斑斓的翅膀	l
+Preference reason: colors	颜色	l
+Preference reason: comb	冠羽	l
+Preference reason: compassion	同情	l
+Preference reason: compound eyes	复眼	l
+Preference reason: concrete pillars	混凝土柱	l
+Preference reason: constant hunger	持续饥饿	l
+Preference reason: coolheadedness	冷静	l
+Preference reason: copper like skin	铜般的皮肤	l
+Preference reason: coral like growths	珊瑚状的附肢	l
+Preference reason: core	核心	l
+Preference reason: cotten puffs	棉絮	l
+Preference reason: cotton	棉花	l
+Preference reason: courage	勇气	l
+Preference reason: cowardly nature	胆怯的天性	l
+Preference reason: craftsmanship	工艺	l
+Preference reason: cream	奶油	l
+Preference reason: creamy body	奶油般的身体	l
+Preference reason: crescent wing	新月形翅膀	l
+Preference reason: crescent-shaped ornaments	月牙形饰物	l
+Preference reason: crest	头冠	l
+Preference reason: cries	叫声	l
+Preference reason: cry	叫声	l
+Preference reason: crying	哭泣	l
+Preference reason: crystal body	水晶构成的身体	l
+Preference reason: crystal energy	水晶能量	l
+Preference reason: crystal formation	晶体构造	l
+Preference reason: crystals	晶体	l
+Preference reason: cudgel	棍棒	l
+Preference reason: cunning	狡猾	l
+Preference reason: curiosity	好奇心	l
+Preference reason: curiousity	好奇心	l
+Preference reason: curled tail	卷曲的尾巴	l
+Preference reason: curly tail	卷尾	l
+Preference reason: cursed energy	诅咒能量	l
+Preference reason: curvy fruit	弯曲的水果	l
+Preference reason: cute antics	可爱的举动	l
+Preference reason: cute appearance	可爱的外表	l
+Preference reason: cute features	可爱的外貌	l
+Preference reason: dance	舞蹈	l
+Preference reason: dancing	跳舞	l
+Preference reason: dangles	头部两侧的垂饰	l
+Preference reason: dart like shape	飞镖状	l
+Preference reason: deceiving look	迷惑性的外表	l
+Preference reason: deception	欺骗	l
+Preference reason: decorations	装饰	l
+Preference reason: dedication to their young	对幼崽的呵护	l
+Preference reason: delicate skin	娇嫩的皮肤	l
+Preference reason: delicious smell	诱人的香气	l
+Preference reason: deliciousness	美味	l
+Preference reason: depth	醇厚的滋味	l
+Preference reason: desire for isolation and silence	对独处与安静的喜好	l
+Preference reason: destructive nature	喜欢破坏的天性	l
+Preference reason: diamond dress	钻石裙装	l
+Preference reason: diamonds	钻石	l
+Preference reason: diet of iron	以铁为食的习性	l
+Preference reason: diet of rocks and gemstones	以岩石和宝石为食的习性	l
+Preference reason: diet of sulfur	以硫磺为食的习性	l
+Preference reason: different appearances	不同的外观	l
+Preference reason: different colors	不同的颜色	l
+Preference reason: different forms	不同的形态	l
+Preference reason: digging	挖掘	l
+Preference reason: digging strength	挖掘力	l
+Preference reason: diligence	勤勉	l
+Preference reason: dimension travelling	次元旅行	l
+Preference reason: disgusting breath	令人作呕的吐息	l
+Preference reason: disheveled hair	蓬乱的头发	l
+Preference reason: diving	潜水	l
+Preference reason: diving ability	潜水能力	l
+Preference reason: docile nature	温顺的性情	l
+Preference reason: doll-like appearance	娃娃般的外表	l
+Preference reason: dorsal blade	背部刀刃	l
+Preference reason: draconic appearance	龙般的外形	l
+Preference reason: draconic apperance	龙般的外形	l
+Preference reason: dragon energy formation	龙形能量构造	l
+Preference reason: dravite	镁电气石	l
+Preference reason: draw speed	拔刀速度	l
+Preference reason: dream eating	食梦的习性	l
+Preference reason: drifting	漂流	l
+Preference reason: drill-like tail	钻头般的尾巴	l
+Preference reason: drink strength	酿成酒后的烈劲	l
+Preference reason: dripping embers	滴落的余烬	l
+Preference reason: drooping tentacles	下垂的触手	l
+Preference reason: drum	鼓	l
+Preference reason: drumming	击鼓	l
+Preference reason: dry flavor	涩味	l
+Preference reason: dry flavored juice	涩味果汁	l
+Preference reason: dryness	涩味	l
+Preference reason: dull wits	迟钝的头脑	l
+Preference reason: dullness	迟钝	l
+Preference reason: eagerness	争强好胜的性格	l
+Preference reason: ears	耳朵	l
+Preference reason: earth splitting power	劈开大地的力量	l
+Preference reason: earthy form	泥土构成的形体	l
+Preference reason: echolocation	回声定位	l
+Preference reason: ectoplasm	外质	l
+Preference reason: edible roots	可食用的根	l
+Preference reason: edible tubers	可食用的块茎	l
+Preference reason: effect?	可能的效果	l
+Preference reason: egg	蛋	l
+Preference reason: egg-shaped fireball	蛋形火球	l
+Preference reason: elbow blades	肘部刀刃	l
+Preference reason: electric generation	发电	l
+Preference reason: electric spines	电刺	l
+Preference reason: electric webs	电网	l
+Preference reason: electrical claws	电爪	l
+Preference reason: electrical fighting style	电力格斗风格	l
+Preference reason: electrical formation	电流构成的形体	l
+Preference reason: electrical glands	储存电力的腺体	l
+Preference reason: electrical power	电力	l
+Preference reason: electrical tail	带电的尾巴	l
+Preference reason: electricity-discharging organs	放电器官	l
+Preference reason: elegance	优雅	l
+Preference reason: elegant body	优雅的身材	l
+Preference reason: elegant moves	优雅的动作	l
+Preference reason: ember scattering	四散的火星	l
+Preference reason: emotion draining touch	吸取情感的触碰	l
+Preference reason: emotionless face	毫无表情的面孔	l
+Preference reason: enchanting melodies	迷人的旋律	l
+Preference reason: encouragement	鼓励	l
+Preference reason: endless hunger	无尽的饥饿	l
+Preference reason: endless sleeping	无休止的睡眠	l
+Preference reason: endurance	耐力	l
+Preference reason: energy	活力	l
+Preference reason: enigmatic properties	神秘的特性	l
+Preference reason: erratic movements	难以预测的动作	l
+Preference reason: erupting humps	喷发的驼峰	l
+Preference reason: eternal life	永生	l
+Preference reason: evil appearance	邪恶的外表	l
+Preference reason: evil nature	邪恶的天性	l
+Preference reason: excessive poison	充沛的毒素	l
+Preference reason: explosive tendency	容易爆炸的特性	l
+Preference reason: extraterrestrial origins	外星起源	l
+Preference reason: extreme kick	强烈的劲道	l
+Preference reason: eye-like fruit	眼睛形状的果实	l
+Preference reason: facial expressions	面部表情	l
+Preference reason: fan tail	扇形尾巴	l
+Preference reason: fangs	獠牙	l
+Preference reason: feather	羽毛	l
+Preference reason: feathers	羽毛	l
+Preference reason: feathery ruff	羽毛围领	l
+Preference reason: feelers	触角	l
+Preference reason: ferocity	凶猛的天性	l
+Preference reason: fetid breath	腐臭的吐息	l
+Preference reason: fickle nature	善变的本性	l
+Preference reason: fierce appearance	凶猛的外表	l
+Preference reason: fierce personality	凶猛的性格	l
+Preference reason: fiery dance	火热的舞蹈	l
+Preference reason: fiery mane	火焰般的鬃毛	l
+Preference reason: fiery plumage	火热的羽毛	l
+Preference reason: fighting speed	战斗速度	l
+Preference reason: fighting spirit	斗志	l
+Preference reason: fighting style	战斗风格	l
+Preference reason: fighting styles	战斗风格	l
+Preference reason: fighting technique	格斗技术	l
+Preference reason: fillet	脱落的鱼肉	l
+Preference reason: fin	鳍	l
+Preference reason: fins	鳍	l
+Preference reason: fire spitting	吐火	l
+Preference reason: fire streamers	火焰飘带	l
+Preference reason: firey body	炽热的身体	l
+Preference reason: fish like appearance	鱼般的外形	l
+Preference reason: fish-like tail	鱼形的尾巴	l
+Preference reason: flabby body	肥硕松软的身躯	l
+Preference reason: flame	火焰	l
+Preference reason: flame belt	火焰腰带	l
+Preference reason: flame sac	火焰囊	l
+Preference reason: flame tail	火焰尾	l
+Preference reason: flames	火焰	l
+Preference reason: flaming antennae	燃烧的触角	l
+Preference reason: flaming back	燃烧的背部	l
+Preference reason: flaming furballs	燃烧的毛球	l
+Preference reason: flaming head	燃烧的头	l
+Preference reason: flaming pebbles	燃烧的鹅卵石	l
+Preference reason: flaming tail	火焰尾	l
+Preference reason: flashing mane	闪烁的鬃毛	l
+Preference reason: flat body	扁平的身体	l
+Preference reason: flat top	平顶	l
+Preference reason: flexibility	灵活性	l
+Preference reason: flexible body	灵活的身体	l
+Preference reason: flickering spores	闪烁的孢子	l
+Preference reason: floating	漂浮的本领	l
+Preference reason: floating hands	漂浮的手	l
+Preference reason: flotation sac	浮囊	l
+Preference reason: flower	花	l
+Preference reason: flower bombs	花朵炸弹	l
+Preference reason: flower bud	花蕾	l
+Preference reason: flowing hair	飘逸的头发	l
+Preference reason: flowing wool	飘动的羊毛	l
+Preference reason: fluff	绒毛	l
+Preference reason: fluffy down	蓬松的绒羽	l
+Preference reason: fluffy ears	毛茸茸的耳朵	l
+Preference reason: fluffy fur	蓬松的毛皮	l
+Preference reason: fluffy tail	毛茸茸的尾巴	l
+Preference reason: fluffy tips	蓬松的末端	l
+Preference reason: flying skill	飞行技巧	l
+Preference reason: foot print claws	足印状的爪子	l
+Preference reason: footwork	步法	l
+Preference reason: forked tail	分叉的尾巴	l
+Preference reason: form	形态	l
+Preference reason: formation	形体构造	l
+Preference reason: formes	形态	l
+Preference reason: foul smell	臭味	l
+Preference reason: fragrance	香味	l
+Preference reason: fragrant fruit	芳香的果实	l
+Preference reason: freezing upper half	冰冷的上半身	l
+Preference reason: fresh scent	清新的气味	l
+Preference reason: friendliness	友好	l
+Preference reason: friendly nature	友善的天性	l
+Preference reason: frilled collar	褶边围领	l
+Preference reason: frills	褶边	l
+Preference reason: frozen texture	冰凉的口感	l
+Preference reason: frubbles	泡沫	l
+Preference reason: fruit	果实	l
+Preference reason: fruits	果实	l
+Preference reason: fulfillingness	饱腹感	l
+Preference reason: funny walk	滑稽的步态	l
+Preference reason: fur	毛皮	l
+Preference reason: fusions	融合	l
+Preference reason: fuzzy body	毛茸茸的身体	l
+Preference reason: gas	气体	l
+Preference reason: gel	凝胶	l
+Preference reason: gem	宝石	l
+Preference reason: gem-like eyes	宝石般的眼睛	l
+Preference reason: generator tail	发电机般的尾巴	l
+Preference reason: gentle nature	温柔的天性	l
+Preference reason: gentle temperament	温和的性情	l
+Preference reason: ghostly arms	幽灵般的手臂	l
+Preference reason: ghostly plume	幽灵般的头冠	l
+Preference reason: giant fireball	巨大的火球	l
+Preference reason: giant jaw	巨大的颌部	l
+Preference reason: giant jaws	巨颚	l
+Preference reason: giant mouth	巨嘴	l
+Preference reason: girder	梁	l
+Preference reason: glare	锐利的目光	l
+Preference reason: gliding	滑行	l
+Preference reason: glimmering body	闪光的身躯	l
+Preference reason: glistening fur	闪闪发光的毛皮	l
+Preference reason: glittering	闪耀的光泽	l
+Preference reason: glittering spores	闪闪发光的孢子	l
+Preference reason: glittering wings	闪闪发光的翅膀	l
+Preference reason: gloomy appearance	阴沉的样子	l
+Preference reason: glow	辉光	l
+Preference reason: glowing body	发光的身体	l
+Preference reason: glowing eyes	发光的眼睛	l
+Preference reason: glowing features	发光特征	l
+Preference reason: glowing mushroom	发光蘑菇	l
+Preference reason: glowing mushrooms	发光蘑菇	l
+Preference reason: glowing rings	发光环	l
+Preference reason: glowing scales	发光鳞片	l
+Preference reason: glowing tail	发光的尾巴	l
+Preference reason: gluttonous nature	贪吃的本性	l
+Preference reason: gluttony	暴食	l
+Preference reason: gnawing strength	啃咬力	l
+Preference reason: god like status	神明般的地位	l
+Preference reason: gold mask	黄金面具	l
+Preference reason: gold structure	黄金结构	l
+Preference reason: golden aura	金色气场	l
+Preference reason: golden blade	金刃	l
+Preference reason: golden crown	金冠	l
+Preference reason: golden glow	金色光芒	l
+Preference reason: golden texture	金色质感	l
+Preference reason: good luck	带来好运的特性	l
+Preference reason: good nature	善良的本性	l
+Preference reason: gown	长袍	l
+Preference reason: grabage	垃圾	l
+Preference reason: grace	优雅	l
+Preference reason: graceful movements	优美的动作	l
+Preference reason: gracidea-like flowers	葛拉西蒂亚花般的花朵	l
+Preference reason: grain	籽粒	l
+Preference reason: great strength	强大的力量	l
+Preference reason: greed	贪婪	l
+Preference reason: gregarious nature	群居性	l
+Preference reason: griminess	污秽	l
+Preference reason: grin	咧嘴的笑容	l
+Preference reason: guardian status	守护者的地位	l
+Preference reason: habit of biting	咬人的习惯	l
+Preference reason: hair	头发	l
+Preference reason: halo	光环	l
+Preference reason: hammer	锤	l
+Preference reason: hand cannons	手炮	l
+Preference reason: hand like wings	手掌般的翅膀	l
+Preference reason: hanging leaves	下垂的叶子	l
+Preference reason: hanging lifestyle	悬挂栖息的习性	l
+Preference reason: hard shell	硬壳	l
+Preference reason: hardiness	坚韧	l
+Preference reason: hardness	硬度	l
+Preference reason: hardy nature	强健的体魄	l
+Preference reason: hardyness	坚韧	l
+Preference reason: harems	妻妾成群的习性	l
+Preference reason: hatred of light	憎恨光	l
+Preference reason: haunting clangs	令人毛骨悚然的铿锵声	l
+Preference reason: head armor	头甲	l
+Preference reason: head shield	盾状的头部	l
+Preference reason: head tail	带有头部的尾巴	l
+Preference reason: head turning	转动头部的本领	l
+Preference reason: headbutting	头撞	l
+Preference reason: headpiece	头饰	l
+Preference reason: healing ability	治愈能力	l
+Preference reason: healing properties	治疗功效	l
+Preference reason: health benefits	有益健康的功效	l
+Preference reason: healthy fibers	有益健康的纤维	l
+Preference reason: heart shaped body	心形身体	l
+Preference reason: heart shaped marking	心形标记	l
+Preference reason: heart-shaped nose	心形鼻子	l
+Preference reason: heat	热	l
+Preference reason: heat resistant body	耐热的身体	l
+Preference reason: heavyness	沉重的体格	l
+Preference reason: height	身高	l
+Preference reason: helpfullness	乐于助人的性格	l
+Preference reason: helpfulness	乐于助人的性格	l
+Preference reason: heroism	英勇的精神	l
+Preference reason: hex nut head	六角螺母头	l
+Preference reason: hidden psychic power	隐藏的超能力	l
+Preference reason: honey making	酿蜜的本领	l
+Preference reason: honeycomb shape	蜂窝形状	l
+Preference reason: hood pattern	颈部褶边上的图案	l
+Preference reason: hoops	圆环	l
+Preference reason: horn	角	l
+Preference reason: horns	角	l
+Preference reason: horrid screams	骇人的尖叫	l
+Preference reason: hot spiciness	辣味	l
+Preference reason: howls	嚎叫	l
+Preference reason: hump	驼峰	l
+Preference reason: humps	驼峰	l
+Preference reason: hunting skills	狩猎技巧	l
+Preference reason: hypnotizing dance	催眠舞蹈	l
+Preference reason: ice	冰	l
+Preference reason: ice beard	冰晶胡须	l
+Preference reason: ice cream shape	冰淇淋形状	l
+Preference reason: ice face	冰块状的头部	l
+Preference reason: ice fangs	冰制獠牙	l
+Preference reason: ice horns	冰角	l
+Preference reason: ice scales	冰鳞	l
+Preference reason: ice shafts	冰柱	l
+Preference reason: icy spikes	冰晶尖刺	l
+Preference reason: illuminating	照亮暗处的能力	l
+Preference reason: illusions	幻象	l
+Preference reason: immense psychic power	强大的超能力	l
+Preference reason: impervious head	坚不可摧的头部	l
+Preference reason: impressive size	惊人的体型	l
+Preference reason: inability to stay in a confined space	无法忍受狭小空间的习性	l
+Preference reason: incantations	咒语	l
+Preference reason: incredibly hard ice	极其坚硬的冰	l
+Preference reason: incredibly powerful trunk	极其强壮的象鼻	l
+Preference reason: independent nature	独立的性格	l
+Preference reason: industrious nature	勤劳的天性	l
+Preference reason: infinite power	无限的力量	l
+Preference reason: ink spraying	喷墨	l
+Preference reason: inner light	内在光芒	l
+Preference reason: intellect	智力	l
+Preference reason: intelligence	聪慧	l
+Preference reason: intense body heat	炽热的体温	l
+Preference reason: intense flames	强烈的火焰	l
+Preference reason: intense heat	酷热	l
+Preference reason: interesting head shape	有趣的头型	l
+Preference reason: interlocking	环环相扣	l
+Preference reason: intimidating look	令人生畏的表情	l
+Preference reason: intimidating stance	威风凛凛的姿态	l
+Preference reason: intolerance towards bullying	不容忍欺凌行为	l
+Preference reason: intricate aerial dances	复杂的空中舞蹈	l
+Preference reason: iridescent sails	虹彩背鳍	l
+Preference reason: iron body	铁质身体	l
+Preference reason: iron-like skin	铁一样的皮肤	l
+Preference reason: irresistible drumming	不可抗拒的鼓声	l
+Preference reason: jaw	颚	l
+Preference reason: jet engine tail	喷气引擎般的尾巴	l
+Preference reason: jewl	珠宝	l
+Preference reason: jewl like body	宝石般的身体	l
+Preference reason: jingling	叮铃声	l
+Preference reason: joy dust	欢乐尘	l
+Preference reason: joyful nature	快乐的天性	l
+Preference reason: judo skills	柔道技巧	l
+Preference reason: juice	汁液	l
+Preference reason: juicy beans	多汁的豆子	l
+Preference reason: jumping	跳跃	l
+Preference reason: jumping ability	跳跃能力	l
+Preference reason: junkyness	速食风味	l
+Preference reason: karate skills	空手道技巧	l
+Preference reason: keen sense of smell	敏锐的嗅觉	l
+Preference reason: kelp like appearance	海带状外观	l
+Preference reason: keys	钥匙	l
+Preference reason: kicking	踢击的本领	l
+Preference reason: kimono	和服	l
+Preference reason: kindheartedness	善良	l
+Preference reason: kindness	仁慈	l
+Preference reason: knightly appearance	骑士般的外表	l
+Preference reason: knowledge	知识	l
+Preference reason: laid back nature	悠闲的性格	l
+Preference reason: laid-back nature	悠闲的性格	l
+Preference reason: lances	长矛	l
+Preference reason: large appearance	庞大的外形	l
+Preference reason: large bill	巨大的喙	l
+Preference reason: large brain	硕大的大脑	l
+Preference reason: large cannon	大炮	l
+Preference reason: large claw	大爪	l
+Preference reason: large ears	大耳朵	l
+Preference reason: large fins	大鳍	l
+Preference reason: large gem	大宝石	l
+Preference reason: large head	大头	l
+Preference reason: large jaws	大颚	l
+Preference reason: large mouth	大嘴	l
+Preference reason: large social groups	庞大的群居群体	l
+Preference reason: latex	乳汁	l
+Preference reason: laziness	懒惰	l
+Preference reason: lazyness	懒惰	l
+Preference reason: leadership	领导能力	l
+Preference reason: leaf	叶子	l
+Preference reason: leaf chewing	咀嚼树叶	l
+Preference reason: leaf cloak	叶斗篷	l
+Preference reason: leaf flute	叶笛	l
+Preference reason: leaf hood	叶罩	l
+Preference reason: leafy appearance	叶状外观	l
+Preference reason: leafy hood	绿叶罩	l
+Preference reason: leafy mane	绿叶鬃毛	l
+Preference reason: leaves	叶片	l
+Preference reason: leek	韭葱	l
+Preference reason: leeks	大葱	l
+Preference reason: legs	腿	l
+Preference reason: length	修长的形态	l
+Preference reason: life force	生命力	l
+Preference reason: light	光	l
+Preference reason: light bulb tail	灯泡状尾巴	l
+Preference reason: lightning attraction	吸引雷电的特性	l
+Preference reason: lightning-fast movements	闪电般的动作	l
+Preference reason: lights	灯	l
+Preference reason: lightweight metal body	轻巧的金属身体	l
+Preference reason: likeability	讨人喜欢的性格	l
+Preference reason: lilypad	睡莲叶	l
+Preference reason: lingering spiciness	持久的辣味	l
+Preference reason: log	圆木	l
+Preference reason: long bodies	修长的身躯	l
+Preference reason: long body	修长的身体	l
+Preference reason: long fangs	长獠牙	l
+Preference reason: long fur	长长的毛发	l
+Preference reason: long legs	长腿	l
+Preference reason: long lifespan	悠长的寿命	l
+Preference reason: long neck	长脖子	l
+Preference reason: long tongue	长舌头	l
+Preference reason: loud cry	响亮的叫声	l
+Preference reason: loud shriek	响亮的尖叫声	l
+Preference reason: loudspeaker ears	扬声器般的耳朵	l
+Preference reason: loudspeaker like ears	扩音器般的耳朵	l
+Preference reason: love for fruit	对水果的热爱	l
+Preference reason: loyalty	忠诚	l
+Preference reason: luck	幸运	l
+Preference reason: lumps	表面的凸起	l
+Preference reason: luxurious fur	华美的毛皮	l
+Preference reason: magical properties	神奇的魔力	l
+Preference reason: magnetism	磁性	l
+Preference reason: magnets	磁铁	l
+Preference reason: majestic movements	雄伟的动作	l
+Preference reason: majesty	雄伟	l
+Preference reason: mandibles	大颚	l
+Preference reason: mane	鬃毛	l
+Preference reason: mane of bubbles	泡沫鬃毛	l
+Preference reason: many arms	许多触手	l
+Preference reason: many cannons	许多大炮	l
+Preference reason: many horns	许多角	l
+Preference reason: many patterns	许多图案	l
+Preference reason: many shapes	许多形状	l
+Preference reason: many stingers	许多毒刺	l
+Preference reason: many tentacles	许多触手	l
+Preference reason: many trims	多样的毛发造型	l
+Preference reason: many types	多种属性	l
+Preference reason: maraca sounds	沙锤声	l
+Preference reason: marching	行军	l
+Preference reason: markings	身上的斑纹	l
+Preference reason: martial arts	武术	l
+Preference reason: mash	果泥	l
+Preference reason: mask	面具	l
+Preference reason: masks	面具	l
+Preference reason: mass of eyes	成团的眼球	l
+Preference reason: massive claws	巨大的利爪	l
+Preference reason: massive wings	巨大的翅膀	l
+Preference reason: mechanical body	机械构成的身体	l
+Preference reason: medical properties	药用功效	l
+Preference reason: meditating	冥想	l
+Preference reason: mellow sweetness	醇厚的甜味	l
+Preference reason: melodies	旋律	l
+Preference reason: menacing beak	吓人的喙	l
+Preference reason: metal body	金属身体	l
+Preference reason: metal formation	金属构造	l
+Preference reason: metalic feathers	金属羽毛	l
+Preference reason: metronome tail	节拍器般的尾巴	l
+Preference reason: mighty blades	强劲的刀刃	l
+Preference reason: mighty horn	强劲的角	l
+Preference reason: mighty horns	强劲的角	l
+Preference reason: mild taste	温和的口味	l
+Preference reason: mimicking	模仿	l
+Preference reason: miming	表演哑剧的本领	l
+Preference reason: minecart shape	矿车形状	l
+Preference reason: mirroring	镜像	l
+Preference reason: mischief	顽皮	l
+Preference reason: mischievous tricks	恶作剧	l
+Preference reason: mischievousness	恶作剧	l
+Preference reason: mission of vengeance	复仇的使命	l
+Preference reason: mission to protect Pokemon	保护宝可梦的使命	l
+Preference reason: mission to protect the ecosystem	保护生态系统的使命	l
+Preference reason: mix of flavors	混合口味	l
+Preference reason: mix of flavors?	可能的混合风味	l
+Preference reason: mochi	粘糕	l
+Preference reason: moon shape	月亮形状	l
+Preference reason: mossy mane	苔藓般的鬃毛	l
+Preference reason: mountain crushing strength	粉碎山岳的力量	l
+Preference reason: mouth flames	口边的火焰	l
+Preference reason: move boosting ability	增强招式威力的能力	l
+Preference reason: mud ball	泥球	l
+Preference reason: multiple Binacle	多个龟脚脚	l
+Preference reason: multiple heads	多个头部	l
+Preference reason: multiple personalities	多重人格	l
+Preference reason: multiple tails	多尾	l
+Preference reason: multiple wings	众多翅膀	l
+Preference reason: muscle like hair	肌肉般的毛发	l
+Preference reason: muscles	肌肉	l
+Preference reason: mustache	胡子	l
+Preference reason: mutualistic nature	互利共生的习性	l
+Preference reason: mysterious energy	神秘能量	l
+Preference reason: mysterious origins	神秘的起源	l
+Preference reason: mystery	神秘	l
+Preference reason: naive personality	天真的性格	l
+Preference reason: nature changing ability	改变性格的能力	l
+Preference reason: neatness	整洁	l
+Preference reason: nectar	花蜜	l
+Preference reason: needles	针叶	l
+Preference reason: nests	巢穴	l
+Preference reason: nomadic nature	四处游走的习性	l
+Preference reason: nose	鼻子	l
+Preference reason: numbers	数字	l
+Preference reason: nurturing nature	照顾他人的天性	l
+Preference reason: nutrient-rich oil	营养丰富的油	l
+Preference reason: nutrients	营养素	l
+Preference reason: nutrition	营养	l
+Preference reason: nutritious seeds	营养丰富的种子	l
+Preference reason: nuts	坚果	l
+Preference reason: oblivious nature	迟钝的性格	l
+Preference reason: obliviousness	迟钝	l
+Preference reason: odd shape	奇怪的形状	l
+Preference reason: odor	气味	l
+Preference reason: oil	油	l
+Preference reason: onion head	洋葱头	l
+Preference reason: optimism	乐观	l
+Preference reason: origami body	折纸身体	l
+Preference reason: pacifism	和平主义	l
+Preference reason: paintbrush tail	画笔尾	l
+Preference reason: painting	绘画	l
+Preference reason: pairing	配对	l
+Preference reason: parasitic nature	寄生性	l
+Preference reason: patience	耐心	l
+Preference reason: patterns	图案	l
+Preference reason: peaceful disposition	平和的性格	l
+Preference reason: pearl	珍珠	l
+Preference reason: pearls	珍珠	l
+Preference reason: pendulum	钟摆	l
+Preference reason: perfection	完美	l
+Preference reason: persistence	坚持	l
+Preference reason: personality	性格	l
+Preference reason: petals	花瓣	l
+Preference reason: piercing stare	锐利的目光	l
+Preference reason: pig-like nose	猪鼻子	l
+Preference reason: pincers	钳子	l
+Preference reason: pit nests	坑巢	l
+Preference reason: plant like smell	植物般的气味	l
+Preference reason: play-fighting	打闹游戏	l
+Preference reason: playful demeanor	顽皮的举止	l
+Preference reason: playful nature	顽皮的天性	l
+Preference reason: playful personality	俏皮的性格	l
+Preference reason: playfullness	嬉戏	l
+Preference reason: pleasant scent	宜人的气味	l
+Preference reason: plumage	羽毛	l
+Preference reason: plume	冠羽	l
+Preference reason: pods	豆荚	l
+Preference reason: pointed mouth	尖嘴	l
+Preference reason: pointed teeth	尖牙	l
+Preference reason: poison sac	毒囊	l
+Preference reason: pollen	花粉	l
+Preference reason: pollinating	授粉	l
+Preference reason: ponytail hands	充当双手的马尾辫	l
+Preference reason: popped kernels	爆开的籽粒	l
+Preference reason: popping clusters	会爆裂的果簇	l
+Preference reason: portly build	肥胖的身材	l
+Preference reason: potatoes	土豆	l
+Preference reason: pouch	小袋	l
+Preference reason: power	力量	l
+Preference reason: power of eternal life	永生的力量	l
+Preference reason: powerful arms	强有力的手臂	l
+Preference reason: powerful grip	强大的握力	l
+Preference reason: powerful hair	强大的头发	l
+Preference reason: powerful jaws	强壮的颌部	l
+Preference reason: powerful kicks	有力的踢腿	l
+Preference reason: powerful legs	有力的腿	l
+Preference reason: powerful poison	猛烈的毒性	l
+Preference reason: powerful tail	强大的尾巴	l
+Preference reason: powerful talons	强有力的脚爪	l
+Preference reason: powerful third legs	强大的第三条腿	l
+Preference reason: powerful trunk	强壮的象鼻	l
+Preference reason: powerful uppercut	强大的上勾拳	l
+Preference reason: powerful vision	敏锐的视力	l
+Preference reason: practical jokes	恶作剧	l
+Preference reason: precise lines	规整的纹路	l
+Preference reason: precise thorns	排列齐整的尖刺	l
+Preference reason: precision	精确	l
+Preference reason: preference for heat	对热的偏好	l
+Preference reason: pretty diamond	漂亮的钻石	l
+Preference reason: pretty pearls	漂亮的珍珠	l
+Preference reason: prickles	尖刺	l
+Preference reason: primal glow	原始光芒	l
+Preference reason: prismatic body	棱晶般的身体	l
+Preference reason: prismatic wings	七彩的翅膀	l
+Preference reason: promise of death	死亡的预兆	l
+Preference reason: prongs	尖头	l
+Preference reason: propeller like tail	螺旋桨般的尾巴	l
+Preference reason: protective nature	保护他者的天性	l
+Preference reason: protuberance	突起	l
+Preference reason: psychic abilities	超能力	l
+Preference reason: psychic ability	超能力	l
+Preference reason: psychic power	超能力	l
+Preference reason: psychic powers	超能力	l
+Preference reason: puckered lips	撅起嘴唇	l
+Preference reason: pumpkin	南瓜	l
+Preference reason: pungency	辛辣味	l
+Preference reason: purple mane	紫色鬃毛	l
+Preference reason: quills	硬刺	l
+Preference reason: rage	愤怒	l
+Preference reason: rain of death	死亡之雨	l
+Preference reason: rampaging	横冲直撞	l
+Preference reason: rarity	稀有性	l
+Preference reason: rattle	尾部的响环	l
+Preference reason: razor sharp wings	锋利的翅膀	l
+Preference reason: reaction dulling	延缓反应的功效	l
+Preference reason: reclusive nature	隐居的天性	l
+Preference reason: refreshing flavor	清爽的味道	l
+Preference reason: relaxing fragrance	令人放松的香味	l
+Preference reason: relaxing scent	令人放松的气味	l
+Preference reason: respect of all forms of life	对一切生命的尊重	l
+Preference reason: revitalising leaves	恢复活力的叶片	l
+Preference reason: revitalising properties	恢复活力的功效	l
+Preference reason: ribbons	丝带	l
+Preference reason: richness	浓郁的滋味	l
+Preference reason: riddles	谜语	l
+Preference reason: ride form	坐骑形态	l
+Preference reason: rigid body	坚硬的身体	l
+Preference reason: rigid shell	坚硬的外壳	l
+Preference reason: ring of flowers	花环	l
+Preference reason: ring patterns	环形图案	l
+Preference reason: ringing	铃声	l
+Preference reason: rivalry	对抗	l
+Preference reason: rivalry with Seviper	与饭匙蛇的宿敌关系	l
+Preference reason: rivalry with Zangoose	与猫鼬斩的宿敌关系	l
+Preference reason: rock cannon	岩石炮	l
+Preference reason: rock shell	岩石甲壳	l
+Preference reason: rocky diet	以岩石为食的习性	l
+Preference reason: rocky formation	岩石构成的身体	l
+Preference reason: rocky fuel	岩石燃料	l
+Preference reason: rocky home	岩石之家	l
+Preference reason: rocky neck	颈部的岩石	l
+Preference reason: rocky shell	岩石甲壳	l
+Preference reason: rolling	滚动	l
+Preference reason: root like shape	根状	l
+Preference reason: roots	根系	l
+Preference reason: roses	玫瑰	l
+Preference reason: rotting body	腐烂的身躯	l
+Preference reason: round body	圆滚滚的身体	l
+Preference reason: round shape	圆形	l
+Preference reason: rounded tops	圆润的顶部	l
+Preference reason: roundness	圆润的形状	l
+Preference reason: rows of teeth	层层排列的牙齿	l
+Preference reason: royal appearance	王者般的外表	l
+Preference reason: running	跑步	l
+Preference reason: runny nose	流鼻涕	l
+Preference reason: sacred law	神圣的戒律	l
+Preference reason: salt	盐	l
+Preference reason: salty flavor	咸味	l
+Preference reason: sand expelling	排砂	l
+Preference reason: sand pouch	沙袋	l
+Preference reason: sandy body	沙子构成的身体	l
+Preference reason: sausages	香肠	l
+Preference reason: savageness	野蛮的性情	l
+Preference reason: scalchop	贝壳刀	l
+Preference reason: scalchops	贝壳刀	l
+Preference reason: scales	鳞片	l
+Preference reason: scarf	围巾	l
+Preference reason: scent	香味	l
+Preference reason: schools	鱼群	l
+Preference reason: scowl	皱眉的神情	l
+Preference reason: scraps	碎片	l
+Preference reason: scream	尖叫	l
+Preference reason: scythe like tail	镰刀般的尾巴	l
+Preference reason: scythes	镰刀	l
+Preference reason: seamitars	贝壳长刀	l
+Preference reason: seasonal changing	季节变化	l
+Preference reason: seedling	幼苗	l
+Preference reason: seeds	种子	l
+Preference reason: segments	身体节段	l
+Preference reason: self preservation	自我保护	l
+Preference reason: selfish disposition	自私的性格	l
+Preference reason: sense of hearing	听觉	l
+Preference reason: sense of pride	自豪感	l
+Preference reason: sense of rhythm	节奏感	l
+Preference reason: sense of smell	嗅觉	l
+Preference reason: sense of taste	味觉	l
+Preference reason: serpentine body	蛇形的身体	l
+Preference reason: serrated beak	锯齿状的喙	l
+Preference reason: serrated claws	锯齿状的爪子	l
+Preference reason: serrated fangs	锯齿状的獠牙	l
+Preference reason: shadow shifting	变幻影子的本领	l
+Preference reason: shadowy body	影子般的身体	l
+Preference reason: shaggy fur	毛茸茸的毛皮	l
+Preference reason: shapes	形状	l
+Preference reason: sharing	分享	l
+Preference reason: sharp cries	尖锐的叫声	l
+Preference reason: sharp edges	锋利的边缘	l
+Preference reason: sharp fangs	锋利的獠牙	l
+Preference reason: sharp leaves	锋利的叶子	l
+Preference reason: sharp quills	锋利的硬刺	l
+Preference reason: sharp teeth	锋利的牙齿	l
+Preference reason: sharp wings	锋利的翅膀	l
+Preference reason: sheer height	惊人的身高	l
+Preference reason: shell	壳	l
+Preference reason: shells	壳	l
+Preference reason: shield	盾	l
+Preference reason: shifting colors	变换的颜色	l
+Preference reason: shimmering scales	闪耀的鳞片	l
+Preference reason: shining eyes	闪亮的眼睛	l
+Preference reason: short necks	短脖子	l
+Preference reason: shouting	喊叫	l
+Preference reason: sickle-like tail	镰刀状的尾巴	l
+Preference reason: silk traps	丝网陷阱	l
+Preference reason: silky shell	丝质外壳	l
+Preference reason: silly worried expression	傻乎乎的担心表情	l
+Preference reason: simple taste	朴实的味道	l
+Preference reason: simpleness	朴实的风味	l
+Preference reason: singing	歌唱	l
+Preference reason: singing sound	歌声	l
+Preference reason: single eye	独眼	l
+Preference reason: singular ear	单耳	l
+Preference reason: sinister energy	邪恶的能量	l
+Preference reason: sinus clearing	通鼻的功效	l
+Preference reason: sixth sense	第六感	l
+Preference reason: size	体型	l
+Preference reason: skillful misdirection	巧妙的误导	l
+Preference reason: skull	颅骨	l
+Preference reason: skull helmet	头骨头盔	l
+Preference reason: skull marking	头骨标记	l
+Preference reason: slacking	偷懒	l
+Preference reason: sleeping face	睡脸	l
+Preference reason: slender body	修长的身材	l
+Preference reason: slimy film	粘糊糊的薄膜	l
+Preference reason: slitted eyes	细缝般的眼睛	l
+Preference reason: sludge	污泥	l
+Preference reason: small size	小体型	l
+Preference reason: small stature	娇小的体型	l
+Preference reason: small wings	小翅膀	l
+Preference reason: smell	气味	l
+Preference reason: smiling pattern	微笑图案	l
+Preference reason: smooth body	光滑的身体	l
+Preference reason: smoothness	光滑的表面	l
+Preference reason: snake like body	蛇一样的身体	l
+Preference reason: snout	吻部	l
+Preference reason: snowflake shape	雪花形状	l
+Preference reason: soft fur	柔软的毛皮	l
+Preference reason: soil consuming	吃土的习性	l
+Preference reason: solidarity	团结	l
+Preference reason: solitary nature	独居的习性	l
+Preference reason: sombrero	阔边帽	l
+Preference reason: song	歌曲	l
+Preference reason: soothing fragrance	令人舒畅的芳香	l
+Preference reason: soothing sound	舒缓的声音	l
+Preference reason: sour flavor	酸味	l
+Preference reason: sour flavored juice	酸味果汁	l
+Preference reason: sour skin	酸味的果皮	l
+Preference reason: sourness	酸味	l
+Preference reason: space controlling ability	空间掌控能力	l
+Preference reason: sparking	火花四溢	l
+Preference reason: sparks	火花	l
+Preference reason: special aura	特殊的气场	l
+Preference reason: special power	特殊的力量	l
+Preference reason: speed	速度	l
+Preference reason: spherical apparatus	球形装置	l
+Preference reason: spiciness	辣度	l
+Preference reason: spicy aroma	辛辣香气	l
+Preference reason: spicy chemicals	辣味成分	l
+Preference reason: spicy flavor	辣味	l
+Preference reason: spicy flavored juice	辣味果汁	l
+Preference reason: spicy teeth	蕴含辣味成分的牙齿	l
+Preference reason: spicy warmth	辛辣的暖意	l
+Preference reason: spiked pincers	带刺的钳子	l
+Preference reason: spiked shell	带刺的贝壳	l
+Preference reason: spikes	尖刺	l
+Preference reason: spiky fur	针刺般的毛发	l
+Preference reason: spines	尖刺	l
+Preference reason: spinning	旋转	l
+Preference reason: spiny shell	刺壳	l
+Preference reason: spiral	螺旋	l
+Preference reason: spiral tail	螺旋状的尾巴	l
+Preference reason: spirit	精神	l
+Preference reason: spoon bending	弯曲汤匙的能力	l
+Preference reason: spoons	勺子	l
+Preference reason: sprig chewing	咀嚼小树枝	l
+Preference reason: spring like legs	像弹簧一样的腿	l
+Preference reason: spring shaped tail	弹簧状尾巴	l
+Preference reason: springy tentacles	有弹性的触手	l
+Preference reason: sprout	嫩芽	l
+Preference reason: squishy bodies	软绵绵的身体	l
+Preference reason: squishy body	柔软的身体	l
+Preference reason: stability	稳定性	l
+Preference reason: staggering voice	令人畏缩的吼声	l
+Preference reason: stalking	跟踪	l
+Preference reason: stalks	茎	l
+Preference reason: stamina	耐力	l
+Preference reason: star like appearance	星星般的外表	l
+Preference reason: star like faceplate	星形面甲	l
+Preference reason: star patterns	星形图案	l
+Preference reason: star shaped growth	星形突起	l
+Preference reason: stare	凝视的目光	l
+Preference reason: starscape face	星空般的面孔	l
+Preference reason: starscape head	星空般的头部	l
+Preference reason: stature	身材	l
+Preference reason: steel feathers	钢铁羽毛	l
+Preference reason: steel head	钢铁般的头部	l
+Preference reason: steel-like hide	钢铁般的皮肤	l
+Preference reason: stem-like body	茎状的身体	l
+Preference reason: stick	木棒	l
+Preference reason: stick beating	敲打木棒	l
+Preference reason: stimulating seasoning	刺激性调味料	l
+Preference reason: stingers	毒刺	l
+Preference reason: stockiness	敦实的体型	l
+Preference reason: stone	石头	l
+Preference reason: stone body	岩石构成的身体	l
+Preference reason: stone like structure	类似石头的结构	l
+Preference reason: stone-like scales	石头般的鳞片	l
+Preference reason: stoney skin	石质皮肤	l
+Preference reason: stout shape	粗壮的形态	l
+Preference reason: stout stature	身材粗壮	l
+Preference reason: strange combination	奇怪的组合	l
+Preference reason: strange composition	奇特的身体构成	l
+Preference reason: strange mask	奇怪的面具	l
+Preference reason: streamer-like tail	飘带状的尾巴	l
+Preference reason: strength	力量	l
+Preference reason: striking color	引人注目的颜色	l
+Preference reason: stripes	条纹	l
+Preference reason: strong antlers	强壮的鹿角	l
+Preference reason: strong body	强壮的身体	l
+Preference reason: strong child	强壮的幼崽	l
+Preference reason: strong flavor	味道浓烈	l
+Preference reason: strong hugs	强有力的拥抱	l
+Preference reason: strong jaw	强壮的颌部	l
+Preference reason: strong petals	坚韧的花瓣	l
+Preference reason: strong pincers	强大的钳子	l
+Preference reason: strong punches	重拳	l
+Preference reason: strong richness	浓郁的滋味	l
+Preference reason: strong talons	强有力的脚爪	l
+Preference reason: strong thread	结实的丝线	l
+Preference reason: strong webs	坚固的网	l
+Preference reason: strumming	弹奏	l
+Preference reason: stubbornness	固执	l
+Preference reason: stunning glare	令人石化的凝视	l
+Preference reason: sturdy body	坚固的身体	l
+Preference reason: sturdy legs	健壮的双腿	l
+Preference reason: sublime fur	华美的毛皮	l
+Preference reason: sucker mouth	吸盘嘴	l
+Preference reason: suction cups	吸盘	l
+Preference reason: sun shape	太阳形状	l
+Preference reason: sun shaped head	太阳形头	l
+Preference reason: sunflower	向日葵	l
+Preference reason: super high-calorie missiles	超高热量导弹	l
+Preference reason: surfboard tail	冲浪板般的尾巴	l
+Preference reason: surfing	冲浪	l
+Preference reason: surprising speed	惊人的速度	l
+Preference reason: sweeping stalks	弯曲的茎	l
+Preference reason: sweeping tail	扫尾	l
+Preference reason: sweet aftertaste	回味甘甜	l
+Preference reason: sweet and creamy flesh	甜美绵密的果肉	l
+Preference reason: sweet and richness	甜美浓郁的滋味	l
+Preference reason: sweet and tangy flavor	酸甜的风味	l
+Preference reason: sweet flavor	甜味	l
+Preference reason: sweet flavored juice	甜味果汁	l
+Preference reason: sweet flavour	甜味	l
+Preference reason: sweet pulp	香甜的果肉	l
+Preference reason: sweet skin	香甜的表皮	l
+Preference reason: sweet smell	香味	l
+Preference reason: sweet-smelling flowers	芬芳的花朵	l
+Preference reason: sweet-smelling gas	带甜香的气体	l
+Preference reason: sweetly spicy skin	甜辣的果皮	l
+Preference reason: sweetness	甜味	l
+Preference reason: swiftness	迅捷	l
+Preference reason: swimming ability	游泳能力	l
+Preference reason: sword	剑	l
+Preference reason: sword fangs	剑牙	l
+Preference reason: sword like leek	剑般的大葱	l
+Preference reason: swords	剑	l
+Preference reason: symbol of gratitude	感恩的象征	l
+Preference reason: symbol of love	爱的象征	l
+Preference reason: symbol of luck	幸运的象征	l
+Preference reason: symbol of prosparity	繁荣的象征	l
+Preference reason: symbol of victory	胜利的象征	l
+Preference reason: synchronizing	同步化	l
+Preference reason: syrpents	糖浆蛇	l
+Preference reason: syrup	糖浆	l
+Preference reason: syrupy flavour	糖浆味	l
+Preference reason: tablet shell	石板状的外壳	l
+Preference reason: tail	尾巴	l
+Preference reason: tail ball	尾端的球体	l
+Preference reason: tail claw	尾部的爪子	l
+Preference reason: tail hand	尾巴上的手	l
+Preference reason: tail hands	尾巴上的手	l
+Preference reason: tail head	尾部的头	l
+Preference reason: tantrums	发脾气	l
+Preference reason: tap dancing	踢踏舞	l
+Preference reason: tart flavour	酸味	l
+Preference reason: taste	味道	l
+Preference reason: taste?	未知口味	l
+Preference reason: tastiness	美味	l
+Preference reason: tasty fruit	美味的果实	l
+Preference reason: teamwork	团队合作	l
+Preference reason: teamwork with Dondozo	与吃吼霸的团队合作	l
+Preference reason: teamwork with Tatsugiri	与米立龙的团队合作	l
+Preference reason: technique	技术	l
+Preference reason: teeth	牙齿	l
+Preference reason: telekinetic ability	念动力	l
+Preference reason: teleporting	传送	l
+Preference reason: temper	脾气	l
+Preference reason: temperment	脾性	l
+Preference reason: tenacious nature	顽强的本性	l
+Preference reason: tenacity	坚韧	l
+Preference reason: tendancy to carve into tree roots	刮开树根的习性	l
+Preference reason: tendancy to expel its organs	吐出内脏的习性	l
+Preference reason: tendancy to flock	结群的习性	l
+Preference reason: tendancy to stand on one foot	单脚站立的习性	l
+Preference reason: tendency to windmill their arms	像风车一样转动手臂的习性	l
+Preference reason: tensile strength	抗拉强度	l
+Preference reason: tentacles	触手	l
+Preference reason: terrible majesty	可怕的威严	l
+Preference reason: terrifying features	骇人的外貌	l
+Preference reason: their ability to create sandstorms	制造沙尘暴的能力	l
+Preference reason: thermal vision	热感应视觉	l
+Preference reason: thick fur	厚厚的皮毛	l
+Preference reason: thievery	偷窃的习性	l
+Preference reason: third eye	第三只眼	l
+Preference reason: thorns	尖刺	l
+Preference reason: throat sac	喉囊	l
+Preference reason: throwing stars	飞镖	l
+Preference reason: tidiness	整洁	l
+Preference reason: time controlling ability	时间控制能力	l
+Preference reason: time travelling	时间旅行	l
+Preference reason: timid nature	胆怯的本性	l
+Preference reason: tingling to the touch	触碰时的刺痛感	l
+Preference reason: tiny hooks	小钩子	l
+Preference reason: tiny leaves	小叶子	l
+Preference reason: tochukaso shell	冬虫夏草构成的背壳	l
+Preference reason: tochukasos	冬虫夏草	l
+Preference reason: tomboy personality	假小子性格	l
+Preference reason: tongue	舌头	l
+Preference reason: tongue like flame	舌头般的火焰	l
+Preference reason: tongue scarf	舌头围巾	l
+Preference reason: toothy grin	龇牙咧嘴的笑容	l
+Preference reason: toothy smile	露齿的笑容	l
+Preference reason: top-shaped pieces	陀螺状的身体部件	l
+Preference reason: tough shell	坚韧的外壳	l
+Preference reason: tough skin	坚韧的皮肤	l
+Preference reason: toxic chain	毒锁链	l
+Preference reason: toxic gas	有毒气体	l
+Preference reason: trailing cloud	身下的云团	l
+Preference reason: tranquillity	宁静	l
+Preference reason: treads	履带	l
+Preference reason: tree	树	l
+Preference reason: tree controlling	操纵树木的能力	l
+Preference reason: tree like appearance	树状外观	l
+Preference reason: tree stump	树桩	l
+Preference reason: trembling movement	震动大地的步伐	l
+Preference reason: troops	成群结队的习性	l
+Preference reason: trunk	象鼻	l
+Preference reason: tuft	头顶的毛簇	l
+Preference reason: tunneling	掘洞的习性	l
+Preference reason: tusks	獠牙	l
+Preference reason: tusks made of ice	冰晶长牙	l
+Preference reason: twigs	树枝	l
+Preference reason: twisting branches	曲折的树枝	l
+Preference reason: twisting shape	扭曲的形状	l
+Preference reason: twisting stalks	扭曲的茎	l
+Preference reason: umami	鲜味	l
+Preference reason: undulating wings	波浪般摆动的翅膀	l
+Preference reason: unsociable demeanor	不合群的举止	l
+Preference reason: use as a whistle	用作哨子的功能	l
+Preference reason: use of rocks as ammo	使用岩石作为弹药	l
+Preference reason: use of seeds as ammo	使用种子作为弹药	l
+Preference reason: valiance	勇敢	l
+Preference reason: vampiric appearance	吸血鬼外观	l
+Preference reason: variety of smells	各种气味	l
+Preference reason: varying composition	不同的成分	l
+Preference reason: versatility	灵活多变的本领	l
+Preference reason: vibrating	产生振动的能力	l
+Preference reason: viciousness	凶暴的性情	l
+Preference reason: vines	藤蔓	l
+Preference reason: violent nature	凶暴的天性	l
+Preference reason: viscous fluid	粘性流体	l
+Preference reason: vitality	活力	l
+Preference reason: vivid color	色彩鲜艳	l
+Preference reason: vivid red color	鲜红色	l
+Preference reason: voice	嗓音	l
+Preference reason: waddle	摇摆的步姿	l
+Preference reason: wall locking	相互连成蜂墙的习性	l
+Preference reason: wand	魔杖	l
+Preference reason: warm touch	温暖的触感	l
+Preference reason: warmth	温暖	l
+Preference reason: warrior pride	战士的骄傲	l
+Preference reason: water bubble	水泡	l
+Preference reason: water shooting tail	喷水的尾巴	l
+Preference reason: water skating	滑水	l
+Preference reason: water spraying tail	喷水的尾巴	l
+Preference reason: waxy berries	带蜡质的浆果	l
+Preference reason: webbed hands and feet	有蹼的手和脚	l
+Preference reason: well-rounded flavor	味道圆润	l
+Preference reason: wheel	车轮	l
+Preference reason: whip like tails	像鞭子一样的尾巴	l
+Preference reason: whips	鞭子	l
+Preference reason: whiskers	胡须	l
+Preference reason: wicked thorns	凶险的尖刺	l
+Preference reason: wide mouth	宽嘴	l
+Preference reason: willpower	意志	l
+Preference reason: wine	果酒	l
+Preference reason: wing patterns	翅膀图案	l
+Preference reason: wings	翅膀	l
+Preference reason: wish granting	实现愿望的能力	l
+Preference reason: wiskers	胡须	l
+Preference reason: witch like appearance	巫婆般的外表	l
+Preference reason: witch's hat	女巫的帽子	l
+Preference reason: wobbly body	摇摇晃晃的身体	l
+Preference reason: wool	羊毛	l
+Preference reason: woolly appearance	毛茸茸的外表	l
+Preference reason: wrapping like leaves	裹在身上的叶片	l
+Preference reason: yeast breath	含有酵母的吐息	l
+Preference reason: yummy cherries	美味的樱桃	l
+Preference reason: yummy hearts	美味的菜心	l
+Preference reason: zen mode	达摩模式	l
+Preference reason: zippers	拉链	l
+Preference reason: コメント さくせいちゅう	说明编写中	l

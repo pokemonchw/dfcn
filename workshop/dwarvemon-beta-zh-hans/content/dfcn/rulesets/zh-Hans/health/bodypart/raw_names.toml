@@ -3,9 +3,9 @@ base = "health::bodypart::raw_names"
 
 [[rulesets]]
 [rulesets.rules]
-"bill" = "喙"
+"bill" = "扁喙"
 "brain" = "脑"
-"eye" = "眼"
-"tail" = "尾"
-"teeth" = "牙"
-"tooth" = "牙"
+"eye" = "眼睛"
+"tail" = "尾巴"
+"teeth" = "牙齿"
+"tooth" = "牙齿"

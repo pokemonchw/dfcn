@@ -64,7 +64,7 @@ name = "role"
 [[rulesets]]
 name = "role"
 [rulesets.rules]
-"none" = "无职务"
+"none" = "无"
 "mercenary" = "雇佣兵"
 "former mercenary" = "前雇佣兵"
 "former slave" = "曾经的奴隶"

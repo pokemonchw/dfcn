@@ -3,7 +3,7 @@ base = "menu::craft"
 [[rulesets]]
 [rulesets.rules]
 "rock" = "岩石"
-"wood" = "木头"
+"wood" = "木材"
 "bone" = "骨头"
 "shell" = "壳"
 # Vanilla adventure reactions reuse the complete item grammar for each carving.

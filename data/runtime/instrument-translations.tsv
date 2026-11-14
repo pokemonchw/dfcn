@@ -15,8 +15,8 @@ piece	pipe	音管
 piece	pipes	音管
 piece	body	琴身
 piece	bodies	琴身
-piece	chest	琴箱
-piece	chests	琴箱
+piece	chest	箱子
+piece	chests	箱子
 piece	case	琴箱
 piece	cases	琴箱
 piece	keyboard	键盘
@@ -27,8 +27,8 @@ piece	blowpipe	吹管
 piece	blowpipes	吹管
 piece	drone pipe	持续音管
 piece	drone pipes	持续音管
-piece	bag	气囊
-piece	bags	气囊
+piece	bag	袋子
+piece	bags	袋子
 piece	melody pipe	旋律管
 piece	melody pipes	旋律管
 piece	frame	框架
@@ -37,8 +37,8 @@ piece	yoke	轭架
 piece	yokes	轭架
 piece	neck	琴颈
 piece	necks	琴颈
-piece	bow	琴弓
-piece	bows	琴弓
+piece	bow	弓
+piece	bows	弓
 piece	hammer	音锤
 piece	hammers	音锤
 piece	mallet	音槌
@@ -83,7 +83,7 @@ t	noisy	嘈杂
 t	full	饱满
 t	thin	单薄
 t	round	圆润
-t	sharp	锐利
+t	sharp	锋利的
 t	smooth	柔顺
 t	choppy	断续
 t	steady	稳定
@@ -126,7 +126,7 @@ t	sonorous	洪亮
 t	watery	水声般清润
 t	gentle	柔和
 t	slicing	锐利
-t	liquid	流动如水
+t	liquid	液体
 t	raucous	沙哑刺耳
 t	breezy	轻快
 t	raspy	沙哑
@@ -142,22 +142,22 @@ t	sweet	甜美
 t	rippling	起伏
 t	sparkling	清亮灵动
 # Contextual material forms: strings are not bolts of silk cloth.
-f	silk	丝线
-f	gut	肠线
+f	silk	丝绸
+f	gut	肠
 f	wool	毛线
 f	yarn	纱线
 f	thread	线
-f	cloth	线
-m	silk	丝
-m	gut	肠线
+f	cloth	布
+m	silk	丝绸
+m	gut	肠
 m	ceramic	陶瓷
-m	wooden	木
+m	wooden	树木
 m	shell	壳
 m	bone	骨
 m	metal	金属
 m	glass	玻璃
-m	stone	石
-m	wood	木
+m	stone	石材
+m	wood	木材
 m	leather	皮革
 m	mysterious	神秘
 z	huge stationary	巨型固定式
@@ -241,7 +241,7 @@ p	wind instrument	管乐器
 p	percussion instrument	打击乐器
 p	musical instrument	乐器
 p	instrument	乐器
-p	horn	号角
+p	horn	角
 p	to the body	至琴身
 p	on the ground	在地面上
 p	plucked	拨响
@@ -295,7 +295,7 @@ p	bowl-shaped {p1}	碗形{p1}
 p	{p1} wind instrument	{p1}管乐器
 p	{p1} horn	{p1}号角
 v	plays	拉奏
-v	picks	拨奏
+v	picks	鹤嘴锄
 v	strikes	敲击
 v	plucks	弹拨
 v	scrapes	刮奏
@@ -432,17 +432,17 @@ s	{s1} and can also press keys to stop holes	{s1}，也可以按键闭合音孔
 s	{s1} and can also stop holes	{s1}，也可以按住音孔
 # Additional complete generator branches from the native stored-description writer.
 # Musical components are not jewelry rings or construction/metal stock bars.
-piece	ring	音环
-piece	rings	音环
+piece	ring	戒指
+piece	rings	戒指
 piece	bar	音条
-piece	bars	音条
+piece	bars	锭
 piece	block	音块
-piece	blocks	音块
+piece	blocks	锭块
 piece	bowl	碗
 piece	bowls	碗
 m	cloth	布
 p	cloth	布
-p	tube	管
+p	tube	晶管
 p	tubes	管
 p	{p1} attached to {p2}	{p1}，固定在{p2}上
 p	hourglass {p1}	沙漏形{p1}
@@ -450,8 +450,8 @@ shape	hourglass	沙漏形
 shape	bowl-shaped	碗形
 shape	cylindrical	圆柱形
 shape	conical	圆锥形
-shape	barrel	圆桶形
-shape	goblet	高脚杯形
+shape	barrel	圆桶
+shape	goblet	高脚杯
 shape	straight	笔直
 shape	curved	弯曲
 shape	closed	封闭

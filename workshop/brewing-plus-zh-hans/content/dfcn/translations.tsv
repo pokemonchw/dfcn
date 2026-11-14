@@ -4,7 +4,7 @@ A small woolly insect that lives in hive colonies.  It has an annoying sting whi
 apple	苹果	l
 apple bark dye	苹果树皮染料	l
 apple brandy	苹果白兰地	l
-apple cider	苹果酒	l
+apple cider	苹果西打酒	l
 apple flower	苹果花	l
 apple leaf	苹果叶	l
 apple leaf dye	苹果叶染料	l
@@ -13,7 +13,7 @@ apple mash	苹果酿醪	l
 apple seed	苹果种子	l
 apple seeds	苹果种子	l
 apple tree	苹果树	l
-apple wood	苹果木材	l
+apple wood	苹果木	l
 apricot	杏	l
 apricot bark dye	杏树皮染料	l
 apricot brandy	杏白兰地	l
@@ -21,11 +21,11 @@ apricot flower	杏花	l
 apricot leaf	杏叶	l
 apricot leaves	杏叶	l
 apricot mash	杏酿醪	l
-apricot pit	杏果核	l
-apricot pits	杏果核	l
+apricot pit	杏核	l
+apricot pits	杏核	l
 apricot tree	杏树	l
 apricot wine	杏果酒	l
-apricot wood	杏木材	l
+apricot wood	杏木	l
 artichoke	洋蓟	l
 artichoke brandy	洋蓟白兰地	l
 artichoke flower	洋蓟花	l
@@ -49,7 +49,7 @@ banana seeds	香蕉种子	l
 banana tree	香蕉树	l
 banana wine	香蕉果酒	l
 barley	大麦	l
-barley flour	大麦粉	l
+barley flour	大麦面粉	l
 barley leaf	大麦叶	l
 barley leaves	大麦叶	l
 barley mash	大麦酿醪	l
@@ -65,15 +65,15 @@ bayberry leaf	杨梅叶	l
 bayberry leaf dye	杨梅叶染料	l
 bayberry leaves	杨梅叶	l
 bayberry mash	杨梅酿醪	l
-bayberry pollen catkin	杨梅雄柔荑花序	l
+bayberry pollen catkin	杨梅花粉葇荑花序	l
 bayberry seed	杨梅种子	l
-bayberry seed catkin	杨梅雌柔荑花序	l
+bayberry seed catkin	杨梅种子葇荑花序	l
 bayberry seeds	杨梅种子	l
 bayberry tree	杨梅树	l
 bayberry wine	杨梅果酒	l
-bayberry wood	杨梅木材	l
+bayberry wood	杨梅木	l
 beer	啤酒	l
-beet flower spike	甜菜花穗	l
+beet flower spike	甜菜穗状花序	l
 beet leaf	甜菜叶	l
 beet leaves	甜菜叶	l
 beet mash	甜菜酿醪	l
@@ -112,7 +112,7 @@ bloated tuber seed	膨地根种子	l
 bloated tuber seeds	膨地根种子	l
 blood amaranth	血苋	l
 blood amaranth beer	血苋啤酒	l
-blood amaranth flour	血苋粉	l
+blood amaranth flour	血苋面粉	l
 blood amaranth inflorescence	血苋花序	l
 blood amaranth leaf	血苋叶	l
 blood amaranth leaves	血苋叶	l
@@ -133,7 +133,7 @@ blueberry seed	蓝莓种子	l
 blueberry seeds	蓝莓种子	l
 blueberry wine	蓝莓果酒	l
 boiling apple brandy	沸腾的苹果白兰地	l
-boiling apple cider	沸腾的苹果酒	l
+boiling apple cider	沸腾的苹果西打酒	l
 boiling apple mash	沸腾的苹果酿醪	l
 boiling apricot brandy	沸腾的杏白兰地	l
 boiling apricot mash	沸腾的杏酿醪	l
@@ -194,14 +194,14 @@ boiling cranberry wine	沸腾的蔓越莓果酒	l
 boiling custard-apple brandy	沸腾的番荔枝白兰地	l
 boiling custard-apple cider	沸腾的番荔枝西打酒	l
 boiling custard-apple mash	沸腾的番荔枝酿醪	l
-boiling date brandy	沸腾的枣白兰地	l
-boiling date mash	沸腾的枣酿醪	l
-boiling date wine	沸腾的枣果酒	l
-boiling durian brandy	沸腾的榴莲白兰地	l
-boiling durian mash	沸腾的榴莲酿醪	l
-boiling durian wine	沸腾的榴莲果酒	l
+boiling date brandy	沸腾的椰枣白兰地	l
+boiling date mash	沸腾的椰枣酿醪	l
+boiling date wine	沸腾的椰枣果酒	l
+boiling durian brandy	沸腾的榴梿白兰地	l
+boiling durian mash	沸腾的榴梿酿醪	l
+boiling durian wine	沸腾的榴梿果酒	l
 boiling dwarven absinthe	沸腾的矮人苦艾酒	l
-boiling dwarven ale	沸腾的矮人麦酒	l
+boiling dwarven ale	沸腾的矮人艾尔啤酒	l
 boiling dwarven beer	沸腾的矮人啤酒	l
 boiling dwarven brandy	沸腾的矮人白兰地	l
 boiling dwarven cachaca	沸腾的矮人卡莎萨酒	l
@@ -212,38 +212,38 @@ boiling dwarven sweet beer	沸腾的矮人甜啤酒	l
 boiling dwarven syrup	沸腾的矮人糖浆	l
 boiling dwarven whiskey	沸腾的矮人威士忌	l
 boiling dwarven wine	沸腾的矮人果酒	l
-boiling finger millet beer	沸腾的龙爪稷啤酒	l
-boiling finger millet mash	沸腾的龙爪稷酿醪	l
-boiling finger millet whiskey	沸腾的龙爪稷威士忌	l
-boiling fisher berry brandy	沸腾的渔浆果白兰地	l
-boiling fisher berry mash	沸腾的渔浆果酿醪	l
-boiling fisher berry wine	沸腾的渔浆果果酒	l
-boiling fonio beer	沸腾的福尼奥米啤酒	l
-boiling fonio mash	沸腾的福尼奥米酿醪	l
-boiling fonio whiskey	沸腾的福尼奥米威士忌	l
-boiling foxtail millet beer	沸腾的粟啤酒	l
-boiling foxtail millet mash	沸腾的粟酿醪	l
-boiling foxtail millet whiskey	沸腾的粟威士忌	l
+boiling finger millet beer	沸腾的爪粟啤酒	l
+boiling finger millet mash	沸腾的爪粟酿醪	l
+boiling finger millet whiskey	沸腾的爪粟威士忌	l
+boiling fisher berry brandy	沸腾的渔夫浆果白兰地	l
+boiling fisher berry mash	沸腾的渔夫浆果酿醪	l
+boiling fisher berry wine	沸腾的渔夫浆果果酒	l
+boiling fonio beer	沸腾的非尼奥米啤酒	l
+boiling fonio mash	沸腾的非尼奥米酿醪	l
+boiling fonio whiskey	沸腾的非尼奥米威士忌	l
+boiling foxtail millet beer	沸腾的狐尾粟啤酒	l
+boiling foxtail millet mash	沸腾的狐尾粟酿醪	l
+boiling foxtail millet whiskey	沸腾的狐尾粟威士忌	l
 boiling golden salve	沸腾的金色药膏	l
 boiling grape mash	沸腾的葡萄酿醪	l
 boiling guava brandy	沸腾的番石榴白兰地	l
 boiling guava mash	沸腾的番石榴酿醪	l
 boiling guava wine	沸腾的番石榴果酒	l
 boiling gutter beer	沸腾的阴沟啤酒	l
-boiling gutter cruor	沸腾的阴沟凝血酒	l
-boiling hard wheat beer	沸腾的硬粒小麦啤酒	l
-boiling hard wheat mash	沸腾的硬粒小麦酿醪	l
-boiling hard wheat whiskey	沸腾的硬粒小麦威士忌	l
+boiling gutter cruor	沸腾的凝血酒	l
+boiling hard wheat beer	沸腾的硬质小麦啤酒	l
+boiling hard wheat mash	沸腾的硬质小麦酿醪	l
+boiling hard wheat whiskey	沸腾的硬质小麦威士忌	l
 boiling honey bee honey	沸腾的蜜蜂蜜	l
 boiling honey bee royal jelly	沸腾的蜜蜂蜂王浆	l
 boiling honey bee venom	沸腾的蜜蜂毒液	l
-boiling honey bee wax	沸腾的蜜蜂蜡	l
-boiling kaniwa beer	沸腾的卡尼瓦藜啤酒	l
-boiling kaniwa mash	沸腾的卡尼瓦藜酿醪	l
-boiling kaniwa whiskey	沸腾的卡尼瓦藜威士忌	l
-boiling Longland beer	沸腾的长地啤酒	l
-boiling Longland mash	沸腾的长地酿醪	l
-boiling Longland whiskey	沸腾的长地威士忌	l
+boiling honey bee wax	沸腾的蜂蜡	l
+boiling kaniwa beer	沸腾的彩藜啤酒	l
+boiling kaniwa mash	沸腾的彩藜酿醪	l
+boiling kaniwa whiskey	沸腾的彩藜威士忌	l
+boiling Longland beer	沸腾的长岛啤酒	l
+boiling Longland mash	沸腾的长岛酿醪	l
+boiling Longland whiskey	沸腾的长岛威士忌	l
 boiling lychee brandy	沸腾的荔枝白兰地	l
 boiling lychee mash	沸腾的荔枝酿醪	l
 boiling lychee wine	沸腾的荔枝果酒	l
@@ -254,27 +254,27 @@ boiling mango brandy	沸腾的芒果白兰地	l
 boiling mango mash	沸腾的芒果酿醪	l
 boiling mango wine	沸腾的芒果果酒	l
 boiling mead	沸腾的蜜酒	l
-boiling muck root mash	沸腾的淤泥根酿醪	l
+boiling muck root mash	沸腾的淤曲根酿醪	l
 boiling papaya brandy	沸腾的番木瓜白兰地	l
 boiling papaya mash	沸腾的番木瓜酿醪	l
 boiling papaya wine	沸腾的番木瓜果酒	l
-boiling parsnip brandy	沸腾的欧洲防风白兰地	l
-boiling parsnip mash	沸腾的欧洲防风酿醪	l
-boiling parsnip wine	沸腾的欧洲防风果酒	l
+boiling parsnip brandy	沸腾的防风草白兰地	l
+boiling parsnip mash	沸腾的防风草酿醪	l
+boiling parsnip wine	沸腾的防风草果酒	l
 boiling passion fruit brandy	沸腾的百香果白兰地	l
 boiling passion fruit mash	沸腾的百香果酿醪	l
 boiling passion fruit wine	沸腾的百香果果酒	l
 boiling peach brandy	沸腾的桃白兰地	l
 boiling peach cider	沸腾的桃西打酒	l
 boiling peach mash	沸腾的桃酿醪	l
-boiling pear brandy	沸腾的梨白兰地	l
-boiling pear mash	沸腾的梨酿醪	l
+boiling pear brandy	沸腾的白梨白兰地	l
+boiling pear mash	沸腾的白梨酿醪	l
 boiling pearl millet beer	沸腾的珍珠粟啤酒	l
 boiling pearl millet mash	沸腾的珍珠粟酿醪	l
 boiling pearl millet whiskey	沸腾的珍珠粟威士忌	l
-boiling pendant amaranth beer	沸腾的垂穗苋啤酒	l
-boiling pendant amaranth mash	沸腾的垂穗苋酿醪	l
-boiling pendant amaranth whiskey	沸腾的垂穗苋威士忌	l
+boiling pendant amaranth beer	沸腾的吊坠苋啤酒	l
+boiling pendant amaranth mash	沸腾的吊坠苋酿醪	l
+boiling pendant amaranth whiskey	沸腾的吊坠苋威士忌	l
 boiling perry	沸腾的梨酒	l
 boiling persimmon brandy	沸腾的柿白兰地	l
 boiling persimmon mash	沸腾的柿酿醪	l
@@ -287,7 +287,7 @@ boiling pineapple wine	沸腾的菠萝果酒	l
 boiling plant mash	沸腾的植物酿醪	l
 boiling plum brandy	沸腾的李白兰地	l
 boiling plum mash	沸腾的李酿醪	l
-boiling plum wine	沸腾的李果酒	l
+boiling plum wine	沸腾的李子果酒	l
 boiling plump helment mash	沸腾的肉盔菇酿醪	l
 boiling pomegranate brandy	沸腾的石榴白兰地	l
 boiling pomegranate mash	沸腾的石榴酿醪	l
@@ -302,84 +302,84 @@ boiling purple amaranth whiskey	沸腾的紫苋威士忌	l
 boiling quinoa beer	沸腾的藜麦啤酒	l
 boiling quinoa mash	沸腾的藜麦酿醪	l
 boiling quinoa whiskey	沸腾的藜麦威士忌	l
-boiling radish brandy	沸腾的萝卜白兰地	l
-boiling radish mash	沸腾的萝卜酿醪	l
-boiling radish wine	沸腾的萝卜果酒	l
-boiling rambutan brandy	沸腾的红毛丹白兰地	l
-boiling rambutan mash	沸腾的红毛丹酿醪	l
-boiling rambutan wine	沸腾的红毛丹果酒	l
+boiling radish brandy	沸腾的小萝卜白兰地	l
+boiling radish mash	沸腾的小萝卜酿醪	l
+boiling radish wine	沸腾的小萝卜果酒	l
+boiling rambutan brandy	沸腾的红毛果白兰地	l
+boiling rambutan mash	沸腾的红毛果酿醪	l
+boiling rambutan wine	沸腾的红毛果果酒	l
 boiling raspberry brandy	沸腾的树莓白兰地	l
 boiling raspberry mash	沸腾的树莓酿醪	l
 boiling raspberry wine	沸腾的树莓果酒	l
-boiling rat weed mash	沸腾的鼠草酿醪	l
+boiling rat weed mash	沸腾的杂鼠草酿醪	l
 boiling rice beer	沸腾的稻米啤酒	l
 boiling rice mash	沸腾的稻米酿醪	l
 boiling river beer	沸腾的河流啤酒	l
-boiling river spirits	沸腾的河流烈酒	l
-boiling rope reed mash	沸腾的绳芦苇酿醪	l
+boiling river spirits	沸腾的河川烈酒	l
+boiling rope reed mash	沸腾的绳索苇酿醪	l
 boiling rye beer	沸腾的黑麦啤酒	l
 boiling rye mash	沸腾的黑麦酿醪	l
 boiling sake	沸腾的清酒	l
 boiling sand pear brandy	沸腾的沙梨白兰地	l
 boiling sand pear cider	沸腾的沙梨西打酒	l
 boiling sand pear mash	沸腾的沙梨酿醪	l
-boiling sewer brew	沸腾的下水道酿酒	l
+boiling sewer brew	沸腾的阴沟佳酿	l
 boiling sewer gin	沸腾的下水道金酒	l
 boiling single-grain wheat beer	沸腾的单粒小麦啤酒	l
 boiling single-grain wheat mash	沸腾的单粒小麦酿醪	l
 boiling single-grain wheat whiskey	沸腾的单粒小麦威士忌	l
-boiling sliver barb mash	沸腾的银刺草酿醪	l
-boiling soft wheat beer	沸腾的软粒小麦啤酒	l
-boiling soft wheat mash	沸腾的软粒小麦酿醪	l
-boiling soft wheat whiskey	沸腾的软粒小麦威士忌	l
+boiling sliver barb mash	沸腾的裂钩草酿醪	l
+boiling soft wheat beer	沸腾的软质小麦啤酒	l
+boiling soft wheat mash	沸腾的软质小麦酿醪	l
+boiling soft wheat whiskey	沸腾的软质小麦威士忌	l
 boiling sorghum beer	沸腾的高粱啤酒	l
 boiling sorghum mash	沸腾的高粱酿醪	l
 boiling sorghum whiskey	沸腾的高粱威士忌	l
-boiling spelt beer	沸腾的斯佩尔特小麦啤酒	l
-boiling spelt mash	沸腾的斯佩尔特小麦酿醪	l
-boiling spelt whiskey	沸腾的斯佩尔特小麦威士忌	l
+boiling spelt beer	沸腾的斯佩尔特麦啤酒	l
+boiling spelt mash	沸腾的斯佩尔特麦酿醪	l
+boiling spelt whiskey	沸腾的斯佩尔特麦威士忌	l
 boiling strawberry brandy	沸腾的草莓白兰地	l
 boiling strawberry mash	沸腾的草莓酿醪	l
 boiling strawberry wine	沸腾的草莓果酒	l
 boiling sun berry mash	沸腾的太阳浆果酿醪	l
 boiling sunny wine	沸腾的太阳果酒	l
-boiling sunshine	沸腾的阳光酒	l
+boiling sunshine	沸腾的日光酒	l
 boiling swamp beer	沸腾的沼泽啤酒	l
 boiling swamp whiskey	沸腾的沼泽威士忌	l
-boiling sweet pod mash	沸腾的甜荚酿醪	l
+boiling sweet pod mash	沸腾的甜豆荚酿醪	l
 boiling sweet potato mash	沸腾的甘薯酿醪	l
 boiling sweet potato vodka	沸腾的甘薯伏特加	l
 boiling sweet potato wine	沸腾的甘薯果酒	l
 boiling teff beer	沸腾的苔麸啤酒	l
 boiling teff mash	沸腾的苔麸酿醪	l
 boiling teff whiskey	沸腾的苔麸威士忌	l
-boiling tomatillo brandy	沸腾的酸浆白兰地	l
-boiling tomatillo mash	沸腾的酸浆酿醪	l
-boiling tomatillo wine	沸腾的酸浆果酒	l
+boiling tomatillo brandy	沸腾的灯笼番茄白兰地	l
+boiling tomatillo mash	沸腾的灯笼番茄酿醪	l
+boiling tomatillo wine	沸腾的灯笼番茄果酒	l
 boiling tomato brandy	沸腾的番茄白兰地	l
 boiling tomato mash	沸腾的番茄酿醪	l
 boiling tomato wine	沸腾的番茄果酒	l
-boiling tuber beer	沸腾的块茎啤酒	l
+boiling tuber beer	沸腾的地根啤酒	l
 boiling tuber vodka	沸腾的块茎伏特加	l
 boiling turnip brandy	沸腾的芜菁白兰地	l
 boiling turnip mash	沸腾的芜菁酿醪	l
 boiling turnip wine	沸腾的芜菁果酒	l
-boiling two-grain wheat beer	沸腾的二粒小麦啤酒	l
-boiling two-grain wheat mash	沸腾的二粒小麦酿醪	l
-boiling two-grain wheat whiskey	沸腾的二粒小麦威士忌	l
+boiling two-grain wheat beer	沸腾的双粒小麦啤酒	l
+boiling two-grain wheat mash	沸腾的双粒小麦酿醪	l
+boiling two-grain wheat whiskey	沸腾的双粒小麦威士忌	l
 boiling unfermented dwarven syrup	沸腾的未发酵的矮人糖浆	l
 boiling unfermented mead	沸腾的未发酵的蜜酒	l
-boiling valley herb mash	沸腾的谷地草酿醪	l
-boiling valley herb wine	沸腾的谷地草果酒	l
+boiling valley herb mash	沸腾的山谷香草酿醪	l
+boiling valley herb wine	沸腾的山谷香草果酒	l
 boiling vodka	沸腾的伏特加	l
 boiling whip brandy	沸腾的鞭藤白兰地	l
 boiling whip vine mash	沸腾的鞭藤酿醪	l
-boiling whip wine	沸腾的鞭藤果酒	l
+boiling whip wine	沸腾的长鞭果酒	l
 boiling whiskey	沸腾的威士忌	l
-boiling white millet beer	沸腾的白黍啤酒	l
-boiling white millet mash	沸腾的白黍酿醪	l
-boiling white millet whiskey	沸腾的白黍威士忌	l
-boiling wine	沸腾的果酒	l
+boiling white millet beer	沸腾的白粟啤酒	l
+boiling white millet mash	沸腾的白粟酿醪	l
+boiling white millet whiskey	沸腾的白粟威士忌	l
+boiling wine	沸腾的葡萄酒	l
 bottled dwarven brandy	瓶装矮人白兰地	l
 bottled dwarven wine	瓶装矮人果酒	l
 brandy	白兰地	l
@@ -388,7 +388,7 @@ brewmaster	酿酒总管	l
 brewmasters	酿酒总管	l
 buckwheat	荞麦	l
 buckwheat beer	荞麦啤酒	l
-buckwheat flour	荞麦粉	l
+buckwheat flour	荞麦面粉	l
 buckwheat flower	荞麦花	l
 buckwheat leaf	荞麦叶	l
 buckwheat leaves	荞麦叶	l
@@ -407,7 +407,7 @@ bumblebee royal jelly	熊蜂蜂王浆	l
 bumblebee sting	熊蜂螫针	l
 bumblebee venom	熊蜂毒液	l
 bumblebee wax	熊蜂蜡	l
-bumblebee wax cake	熊蜂蜡块	l
+bumblebee wax cake	熊蜂蜡饼	l
 bumblebee worker	熊蜂工蜂	l
 bumblebee workers	熊蜂工蜂	l
 bumblebees	熊蜂	l
@@ -421,7 +421,7 @@ carambola seed	杨桃种子	l
 carambola seeds	杨桃种子	l
 carambola tree	杨桃树	l
 carambola wine	杨桃果酒	l
-carambola wood	杨桃木材	l
+carambola wood	杨桃木	l
 carrot brandy	胡萝卜白兰地	l
 carrot dye	胡萝卜染料	l
 carrot leaf	胡萝卜叶	l
@@ -453,11 +453,11 @@ cherry leaf	樱桃叶	l
 cherry leaf dye	樱桃叶染料	l
 cherry leaves	樱桃叶	l
 cherry mash	樱桃酿醪	l
-cherry pit	樱桃果核	l
-cherry pits	樱桃果核	l
+cherry pit	樱桃核	l
+cherry pits	樱桃核	l
 cherry tree	樱桃树	l
 cherry wine	樱桃果酒	l
-cherry wood	樱桃木材	l
+cherry wood	樱桃木	l
 cranberries	蔓越莓	l
 cranberry	蔓越莓	l
 cranberry brandy	蔓越莓白兰地	l
@@ -480,19 +480,19 @@ custard-apple mash	番荔枝酿醪	l
 custard-apple seed	番荔枝种子	l
 custard-apple seeds	番荔枝种子	l
 custard-apple tree	番荔枝树	l
-custard-apple wood	番荔枝木材	l
-date	枣	l
-date brandy	枣白兰地	l
-date mash	枣酿醪	l
-date palm	枣椰	l
-date palm flower stalk	枣椰花茎	l
-date palm frond blade	枣椰羽叶叶片	l
-date palm frond blades	枣椰羽叶叶片	l
-date palm seed	枣椰种子	l
-date palm seeds	枣椰种子	l
-date palm wood	枣椰木材	l
-date wine	枣果酒	l
-Distill apple cider into brandy	将苹果酒蒸馏为白兰地	l
+custard-apple wood	番荔枝木	l
+date	椰枣	l
+date brandy	椰枣白兰地	l
+date mash	椰枣酿醪	l
+date palm	枣棕榈	l
+date palm flower stalk	枣棕榈花梗	l
+date palm frond blade	枣棕榈刃叶	l
+date palm frond blades	枣棕榈刃叶	l
+date palm seed	枣棕榈种子	l
+date palm seeds	枣棕榈种子	l
+date palm wood	枣棕榈木	l
+date wine	椰枣果酒	l
+Distill apple cider into brandy	将苹果西打酒蒸馏为白兰地	l
 Distill apricot wine into brandy	将杏果酒蒸馏为白兰地	l
 Distill artichoke wine into brandy	将洋蓟果酒蒸馏为白兰地	l
 Distill banana wine into brandy	将香蕉果酒蒸馏为白兰地	l
@@ -511,123 +511,123 @@ Distill cave wheat beer into whiskey	将洞穴小麦啤酒蒸馏为威士忌	l
 Distill cherry wine into brandy	将樱桃果酒蒸馏为白兰地	l
 Distill cranberry wine into brandy	将蔓越莓果酒蒸馏为白兰地	l
 Distill custard-apple wine into brandy	将番荔枝果酒蒸馏为白兰地	l
-Distill date palm wine into brandy	将枣椰果酒蒸馏为白兰地	l
+Distill date palm wine into brandy	将枣棕榈果酒蒸馏为白兰地	l
 Distill deep brew into rum	将深酿酒蒸馏为朗姆酒	l
-Distill durian wine into brandy	将榴莲果酒蒸馏为白兰地	l
-Distill finger millet beer into whiskey	将龙爪稷啤酒蒸馏为威士忌	l
-Distill fisher berry wine into brandy	将渔浆果果酒蒸馏为白兰地	l
-Distill fonio beer into whiskey	将福尼奥米啤酒蒸馏为威士忌	l
-Distill foxtail millet beer into whiskey	将粟啤酒蒸馏为威士忌	l
+Distill durian wine into brandy	将榴梿果酒蒸馏为白兰地	l
+Distill finger millet beer into whiskey	将爪粟啤酒蒸馏为威士忌	l
+Distill fisher berry wine into brandy	将渔夫浆果果酒蒸馏为白兰地	l
+Distill fonio beer into whiskey	将非尼奥米啤酒蒸馏为威士忌	l
+Distill foxtail millet beer into whiskey	将狐尾粟啤酒蒸馏为威士忌	l
 Distill guava wine into brandy	将番石榴果酒蒸馏为白兰地	l
 Distill gutter beer into cruor	将阴沟啤酒蒸馏为凝血酒	l
-Distill hard wheat beer into whiskey	将硬粒小麦啤酒蒸馏为威士忌	l
-Distill kaniwa beer into whiskey	将卡尼瓦藜啤酒蒸馏为威士忌	l
-Distill longland beer into whiskey	将长地啤酒蒸馏为威士忌	l
+Distill hard wheat beer into whiskey	将硬质小麦啤酒蒸馏为威士忌	l
+Distill kaniwa beer into whiskey	将彩藜啤酒蒸馏为威士忌	l
+Distill longland beer into whiskey	将长岛啤酒蒸馏为威士忌	l
 Distill lychee wine into brandy	将荔枝果酒蒸馏为白兰地	l
 Distill maize beer into whiskey	将玉米啤酒蒸馏为威士忌	l
 Distill mango wine into brandy	将芒果果酒蒸馏为白兰地	l
 Distill papaya wine into brandy	将番木瓜果酒蒸馏为白兰地	l
-Distill parsnip wine into brandy	将欧洲防风果酒蒸馏为白兰地	l
+Distill parsnip wine into brandy	将防风草果酒蒸馏为白兰地	l
 Distill passion fruit wine into brandy	将百香果果酒蒸馏为白兰地	l
 Distill peach wine into brandy	将桃果酒蒸馏为白兰地	l
 Distill pearl millet beer into whiskey	将珍珠粟啤酒蒸馏为威士忌	l
-Distill pendant amaranth beer into whiskey	将垂穗苋啤酒蒸馏为威士忌	l
+Distill pendant amaranth beer into whiskey	将吊坠苋啤酒蒸馏为威士忌	l
 Distill perry into brandy	将梨酒蒸馏为白兰地	l
 Distill persimmon wine into brandy	将柿果酒蒸馏为白兰地	l
 Distill pig tail beer into whiskey	将猪尾草啤酒蒸馏为威士忌	l
 Distill pineapple wine into brandy	将菠萝果酒蒸馏为白兰地	l
-Distill plum wine into brandy	将李果酒蒸馏为白兰地	l
+Distill plum wine into brandy	将李子果酒蒸馏为白兰地	l
 Distill plump helmet wine into brandy	将肉盔菇果酒蒸馏为白兰地	l
 Distill pomegranate wine into brandy	将石榴果酒蒸馏为白兰地	l
 Distill potato wine into vodka	将马铃薯果酒蒸馏为伏特加	l
 Distill prickle berry wine into brandy	将刺莓果酒蒸馏为白兰地	l
 Distill purple amaranth beer into whiskey	将紫苋啤酒蒸馏为威士忌	l
 Distill quinoa beer into whiskey	将藜麦啤酒蒸馏为威士忌	l
-Distill radish wine into brandy	将萝卜果酒蒸馏为白兰地	l
-Distill rambutan wine into brandy	将红毛丹果酒蒸馏为白兰地	l
+Distill radish wine into brandy	将小萝卜果酒蒸馏为白兰地	l
+Distill rambutan wine into brandy	将红毛果果酒蒸馏为白兰地	l
 Distill raspberry wine into brandy	将树莓果酒蒸馏为白兰地	l
 Distill rice beer into sake	将稻米啤酒蒸馏为清酒	l
 Distill river beer into spirits	将河流啤酒蒸馏为烈酒	l
 Distill rye beer into whiskey	将黑麦啤酒蒸馏为威士忌	l
 Distill sand pear wine into brandy	将沙梨果酒蒸馏为白兰地	l
-Distill sewer brew into gin	将下水道酿酒蒸馏为金酒	l
+Distill sewer brew into gin	将阴沟佳酿蒸馏为金酒	l
 Distill single-grain wheat beer into whiskey	将单粒小麦啤酒蒸馏为威士忌	l
-Distill soft wheat beer into whiskey	将软粒小麦啤酒蒸馏为威士忌	l
+Distill soft wheat beer into whiskey	将软质小麦啤酒蒸馏为威士忌	l
 Distill some spirits	蒸馏烈酒	l
 Distill sorghum beer into whiskey	将高粱啤酒蒸馏为威士忌	l
-Distill spelt beer into whiskey	将斯佩尔特小麦啤酒蒸馏为威士忌	l
+Distill spelt beer into whiskey	将斯佩尔特麦啤酒蒸馏为威士忌	l
 Distill strawberry wine into brandy	将草莓果酒蒸馏为白兰地	l
-Distill sunny wine into sunshine	将太阳果酒蒸馏为阳光酒	l
+Distill sunny wine into sunshine	将太阳果酒蒸馏为日光酒	l
 Distill swamp beer into whiskey	将沼泽啤酒蒸馏为威士忌	l
 Distill sweet beer into cachaca	将甜啤酒蒸馏为卡莎萨酒	l
 Distill sweet potato wine into vodka	将甘薯果酒蒸馏为伏特加	l
 Distill teff beer into whiskey	将苔麸啤酒蒸馏为威士忌	l
-Distill tomatillo wine into brandy	将酸浆果酒蒸馏为白兰地	l
+Distill tomatillo wine into brandy	将灯笼番茄果酒蒸馏为白兰地	l
 Distill tomato wine into brandy	将番茄果酒蒸馏为白兰地	l
-Distill tuber beer into vodka	将块茎啤酒蒸馏为伏特加	l
+Distill tuber beer into vodka	将地根啤酒蒸馏为伏特加	l
 Distill turnip wine into brandy	将芜菁果酒蒸馏为白兰地	l
-Distill two-grain wheat beer into whiskey	将二粒小麦啤酒蒸馏为威士忌	l
-Distill valley herb wine into absinthe	将谷地草果酒蒸馏为苦艾酒	l
-Distill whip wine into brandy	将鞭藤果酒蒸馏为白兰地	l
-Distill white millet beer into whiskey	将白黍啤酒蒸馏为威士忌	l
+Distill two-grain wheat beer into whiskey	将双粒小麦啤酒蒸馏为威士忌	l
+Distill valley herb wine into absinthe	将山谷香草果酒蒸馏为苦艾酒	l
+Distill whip wine into brandy	将长鞭果酒蒸馏为白兰地	l
+Distill white millet beer into whiskey	将白粟啤酒蒸馏为威士忌	l
 Distill wine into brandy	将果酒蒸馏为白兰地	l
-durian	榴莲	l
-durian brandy	榴莲白兰地	l
-durian flower	榴莲花	l
-durian leaf	榴莲叶	l
-durian leaves	榴莲叶	l
-durian mash	榴莲酿醪	l
-durian seed	榴莲种子	l
-durian seeds	榴莲种子	l
-durian tree	榴莲树	l
-durian wine	榴莲果酒	l
-durian wood	榴莲木材	l
+durian	榴梿	l
+durian brandy	榴梿白兰地	l
+durian flower	榴梿花	l
+durian leaf	榴梿叶	l
+durian leaves	榴梿叶	l
+durian mash	榴梿酿醪	l
+durian seed	榴梿种子	l
+durian seeds	榴梿种子	l
+durian tree	榴梿树	l
+durian wine	榴梿果酒	l
+durian wood	榴梿木	l
 dwarven absinthe	矮人苦艾酒	l
-dwarven ale	矮人麦酒	l
+dwarven ale	矮人艾尔啤酒	l
 dwarven beer	矮人啤酒	l
 dwarven brandy	矮人白兰地	l
 dwarven cachaca	矮人卡莎萨酒	l
 dwarven cognac	矮人干邑	l
 dwarven deep brew	矮人深酿酒	l
 dwarven rum	矮人朗姆酒	l
-dwarven sugar	矮人糖	l
+dwarven sugar	矮人砂糖	l
 dwarven sweet beer	矮人甜啤酒	l
 dwarven syrup	矮人糖浆	l
 dwarven wheat flour	矮人小麦粉	l
 dwarven whiskey	矮人威士忌	l
 dwarven wine	矮人果酒	l
-finger millet	龙爪稷	l
-finger millet beer	龙爪稷啤酒	l
-finger millet flour	龙爪稷粉	l
-finger millet leaf	龙爪稷叶	l
-finger millet leaves	龙爪稷叶	l
-finger millet mash	龙爪稷酿醪	l
-finger millet plant	龙爪稷植株	l
-finger millet whiskey	龙爪稷威士忌	l
-fisher berry	渔浆果	l
-fisher berry brandy	渔浆果白兰地	l
-fisher berry mash	渔浆果酿醪	l
-fisher berry seed	渔浆果种子	l
-fisher berry seeds	渔浆果种子	l
-fisher berry wine	渔浆果果酒	l
-fonio	福尼奥米	l
-fonio beer	福尼奥米啤酒	l
-fonio flour	福尼奥米粉	l
-fonio leaf	福尼奥米叶	l
-fonio leaves	福尼奥米叶	l
-fonio mash	福尼奥米酿醪	l
-fonio plant	福尼奥米植株	l
-fonio whiskey	福尼奥米威士忌	l
-foxtail millet	粟	l
-foxtail millet beer	粟啤酒	l
-foxtail millet flour	粟粉	l
-foxtail millet leaf	粟叶	l
-foxtail millet leaves	粟叶	l
-foxtail millet mash	粟酿醪	l
-foxtail millet plant	粟植株	l
-foxtail millet whiskey	粟威士忌	l
+finger millet	爪粟	l
+finger millet beer	爪粟啤酒	l
+finger millet flour	爪粟面粉	l
+finger millet leaf	爪粟叶	l
+finger millet leaves	爪粟叶	l
+finger millet mash	爪粟酿醪	l
+finger millet plant	爪粟植株	l
+finger millet whiskey	爪粟威士忌	l
+fisher berry	渔夫浆果	l
+fisher berry brandy	渔夫浆果白兰地	l
+fisher berry mash	渔夫浆果酿醪	l
+fisher berry seed	渔夫浆果种子	l
+fisher berry seeds	渔夫浆果种子	l
+fisher berry wine	渔夫浆果果酒	l
+fonio	非尼奥米	l
+fonio beer	非尼奥米啤酒	l
+fonio flour	非尼奥米面粉	l
+fonio leaf	非尼奥米叶	l
+fonio leaves	非尼奥米叶	l
+fonio mash	非尼奥米酿醪	l
+fonio plant	非尼奥米植株	l
+fonio whiskey	非尼奥米威士忌	l
+foxtail millet	狐尾粟	l
+foxtail millet beer	狐尾粟啤酒	l
+foxtail millet flour	狐尾粟面粉	l
+foxtail millet leaf	狐尾粟叶	l
+foxtail millet leaves	狐尾粟叶	l
+foxtail millet mash	狐尾粟酿醪	l
+foxtail millet plant	狐尾粟植株	l
+foxtail millet whiskey	狐尾粟威士忌	l
 frozen apple brandy	结冻的苹果白兰地	l
-frozen apple cider	结冻的苹果酒	l
+frozen apple cider	结冻的苹果西打酒	l
 frozen apple mash	结冻的苹果酿醪	l
 frozen apricot brandy	结冻的杏白兰地	l
 frozen apricot mash	结冻的杏酿醪	l
@@ -687,14 +687,14 @@ frozen cranberry wine	结冻的蔓越莓果酒	l
 frozen custard-apple brandy	结冻的番荔枝白兰地	l
 frozen custard-apple cider	结冻的番荔枝西打酒	l
 frozen custard-apple mash	结冻的番荔枝酿醪	l
-frozen date brandy	结冻的枣白兰地	l
-frozen date mash	结冻的枣酿醪	l
-frozen date wine	结冻的枣果酒	l
-frozen durian brandy	结冻的榴莲白兰地	l
-frozen durian mash	结冻的榴莲酿醪	l
-frozen durian wine	结冻的榴莲果酒	l
+frozen date brandy	结冻的椰枣白兰地	l
+frozen date mash	结冻的椰枣酿醪	l
+frozen date wine	结冻的椰枣果酒	l
+frozen durian brandy	结冻的榴梿白兰地	l
+frozen durian mash	结冻的榴梿酿醪	l
+frozen durian wine	结冻的榴梿果酒	l
 frozen dwarven absinthe	结冻的矮人苦艾酒	l
-frozen dwarven ale	结冻的矮人麦酒	l
+frozen dwarven ale	结冻的矮人艾尔啤酒	l
 frozen dwarven beer	结冻的矮人啤酒	l
 frozen dwarven brandy	结冻的矮人白兰地	l
 frozen dwarven cachaca	结冻的矮人卡莎萨酒	l
@@ -705,37 +705,37 @@ frozen dwarven sweet beer	结冻的矮人甜啤酒	l
 frozen dwarven syrup	结冻的矮人糖浆	l
 frozen dwarven whiskey	结冻的矮人威士忌	l
 frozen dwarven wine	结冻的矮人果酒	l
-frozen finger millet beer	结冻的龙爪稷啤酒	l
-frozen finger millet mash	结冻的龙爪稷酿醪	l
-frozen finger millet whiskey	结冻的龙爪稷威士忌	l
-frozen fisher berry brandy	结冻的渔浆果白兰地	l
-frozen fisher berry mash	结冻的渔浆果酿醪	l
-frozen fisher berry wine	结冻的渔浆果果酒	l
-frozen fonio beer	结冻的福尼奥米啤酒	l
-frozen fonio mash	结冻的福尼奥米酿醪	l
-frozen fonio whiskey	结冻的福尼奥米威士忌	l
-frozen foxtail millet beer	结冻的粟啤酒	l
-frozen foxtail millet mash	结冻的粟酿醪	l
-frozen foxtail millet whiskey	结冻的粟威士忌	l
+frozen finger millet beer	结冻的爪粟啤酒	l
+frozen finger millet mash	结冻的爪粟酿醪	l
+frozen finger millet whiskey	结冻的爪粟威士忌	l
+frozen fisher berry brandy	结冻的渔夫浆果白兰地	l
+frozen fisher berry mash	结冻的渔夫浆果酿醪	l
+frozen fisher berry wine	结冻的渔夫浆果果酒	l
+frozen fonio beer	结冻的非尼奥米啤酒	l
+frozen fonio mash	结冻的非尼奥米酿醪	l
+frozen fonio whiskey	结冻的非尼奥米威士忌	l
+frozen foxtail millet beer	结冻的狐尾粟啤酒	l
+frozen foxtail millet mash	结冻的狐尾粟酿醪	l
+frozen foxtail millet whiskey	结冻的狐尾粟威士忌	l
 frozen golden salve	结冻的金色药膏	l
 frozen grape mash	结冻的葡萄酿醪	l
 frozen guava brandy	结冻的番石榴白兰地	l
 frozen guava mash	结冻的番石榴酿醪	l
 frozen guava wine	结冻的番石榴果酒	l
 frozen gutter beer	结冻的阴沟啤酒	l
-frozen gutter cruor	结冻的阴沟凝血酒	l
-frozen hard wheat beer	结冻的硬粒小麦啤酒	l
-frozen hard wheat mash	结冻的硬粒小麦酿醪	l
-frozen hard wheat whiskey	结冻的硬粒小麦威士忌	l
+frozen gutter cruor	结冻的凝血酒	l
+frozen hard wheat beer	结冻的硬质小麦啤酒	l
+frozen hard wheat mash	结冻的硬质小麦酿醪	l
+frozen hard wheat whiskey	结冻的硬质小麦威士忌	l
 frozen honey bee honey	结冻的蜜蜂蜜	l
 frozen honey bee royal jelly	结冻的蜜蜂蜂王浆	l
 frozen honey bee venom	结冻的蜜蜂毒液	l
-frozen kaniwa beer	结冻的卡尼瓦藜啤酒	l
-frozen kaniwa mash	结冻的卡尼瓦藜酿醪	l
-frozen kaniwa whiskey	结冻的卡尼瓦藜威士忌	l
-frozen Longland beer	结冻的长地啤酒	l
-frozen Longland mash	结冻的长地酿醪	l
-frozen Longland whiskey	结冻的长地威士忌	l
+frozen kaniwa beer	结冻的彩藜啤酒	l
+frozen kaniwa mash	结冻的彩藜酿醪	l
+frozen kaniwa whiskey	结冻的彩藜威士忌	l
+frozen Longland beer	结冻的长岛啤酒	l
+frozen Longland mash	结冻的长岛酿醪	l
+frozen Longland whiskey	结冻的长岛威士忌	l
 frozen lychee brandy	结冻的荔枝白兰地	l
 frozen lychee mash	结冻的荔枝酿醪	l
 frozen lychee wine	结冻的荔枝果酒	l
@@ -746,27 +746,27 @@ frozen mango brandy	结冻的芒果白兰地	l
 frozen mango mash	结冻的芒果酿醪	l
 frozen mango wine	结冻的芒果果酒	l
 frozen mead	结冻的蜜酒	l
-frozen muck root mash	结冻的淤泥根酿醪	l
+frozen muck root mash	结冻的淤曲根酿醪	l
 frozen papaya brandy	结冻的番木瓜白兰地	l
 frozen papaya mash	结冻的番木瓜酿醪	l
 frozen papaya wine	结冻的番木瓜果酒	l
-frozen parsnip brandy	结冻的欧洲防风白兰地	l
-frozen parsnip mash	结冻的欧洲防风酿醪	l
-frozen parsnip wine	结冻的欧洲防风果酒	l
+frozen parsnip brandy	结冻的防风草白兰地	l
+frozen parsnip mash	结冻的防风草酿醪	l
+frozen parsnip wine	结冻的防风草果酒	l
 frozen passion fruit brandy	结冻的百香果白兰地	l
 frozen passion fruit mash	结冻的百香果酿醪	l
 frozen passion fruit wine	结冻的百香果果酒	l
 frozen peach brandy	结冻的桃白兰地	l
 frozen peach cider	结冻的桃西打酒	l
 frozen peach mash	结冻的桃酿醪	l
-frozen pear brandy	结冻的梨白兰地	l
-frozen pear mash	结冻的梨酿醪	l
+frozen pear brandy	结冻的白梨白兰地	l
+frozen pear mash	结冻的白梨酿醪	l
 frozen pearl millet beer	结冻的珍珠粟啤酒	l
 frozen pearl millet mash	结冻的珍珠粟酿醪	l
 frozen pearl millet whiskey	结冻的珍珠粟威士忌	l
-frozen pendant amaranth beer	结冻的垂穗苋啤酒	l
-frozen pendant amaranth mash	结冻的垂穗苋酿醪	l
-frozen pendant amaranth whiskey	结冻的垂穗苋威士忌	l
+frozen pendant amaranth beer	结冻的吊坠苋啤酒	l
+frozen pendant amaranth mash	结冻的吊坠苋酿醪	l
+frozen pendant amaranth whiskey	结冻的吊坠苋威士忌	l
 frozen perry	结冻的梨酒	l
 frozen persimmon brandy	结冻的柿白兰地	l
 frozen persimmon mash	结冻的柿酿醪	l
@@ -779,7 +779,7 @@ frozen pineapple wine	结冻的菠萝果酒	l
 frozen plant mash	结冻的植物酿醪	l
 frozen plum brandy	结冻的李白兰地	l
 frozen plum mash	结冻的李酿醪	l
-frozen plum wine	结冻的李果酒	l
+frozen plum wine	结冻的李子果酒	l
 frozen plump helmet mash	结冻的肉盔菇酿醪	l
 frozen pomegranate brandy	结冻的石榴白兰地	l
 frozen pomegranate mash	结冻的石榴酿醪	l
@@ -794,84 +794,84 @@ frozen purple amaranth whiskey	结冻的紫苋威士忌	l
 frozen quinoa beer	结冻的藜麦啤酒	l
 frozen quinoa mash	结冻的藜麦酿醪	l
 frozen quinoa whiskey	结冻的藜麦威士忌	l
-frozen radish brandy	结冻的萝卜白兰地	l
-frozen radish mash	结冻的萝卜酿醪	l
-frozen radish wine	结冻的萝卜果酒	l
-frozen rambutan brandy	结冻的红毛丹白兰地	l
-frozen rambutan mash	结冻的红毛丹酿醪	l
-frozen rambutan wine	结冻的红毛丹果酒	l
+frozen radish brandy	结冻的小萝卜白兰地	l
+frozen radish mash	结冻的小萝卜酿醪	l
+frozen radish wine	结冻的小萝卜果酒	l
+frozen rambutan brandy	结冻的红毛果白兰地	l
+frozen rambutan mash	结冻的红毛果酿醪	l
+frozen rambutan wine	结冻的红毛果果酒	l
 frozen raspberry brandy	结冻的树莓白兰地	l
 frozen raspberry mash	结冻的树莓酿醪	l
 frozen raspberry wine	结冻的树莓果酒	l
-frozen rat weed mash	结冻的鼠草酿醪	l
+frozen rat weed mash	结冻的杂鼠草酿醪	l
 frozen rice beer	结冻的稻米啤酒	l
 frozen rice mash	结冻的稻米酿醪	l
 frozen river beer	结冻的河流啤酒	l
-frozen river spirits	结冻的河流烈酒	l
-frozen rope reed mash	结冻的绳芦苇酿醪	l
+frozen river spirits	结冻的河川烈酒	l
+frozen rope reed mash	结冻的绳索苇酿醪	l
 frozen rye beer	结冻的黑麦啤酒	l
 frozen rye mash	结冻的黑麦酿醪	l
 frozen sake	结冻的清酒	l
 frozen sand pear brandy	结冻的沙梨白兰地	l
 frozen sand pear cider	结冻的沙梨西打酒	l
 frozen sand pear mash	结冻的沙梨酿醪	l
-frozen sewer brew	结冻的下水道酿酒	l
+frozen sewer brew	结冻的阴沟佳酿	l
 frozen sewer gin	结冻的下水道金酒	l
 frozen single-grain wheat beer	结冻的单粒小麦啤酒	l
 frozen single-grain wheat mash	结冻的单粒小麦酿醪	l
 frozen single-grain wheat whiskey	结冻的单粒小麦威士忌	l
-frozen sliver barb mash	结冻的银刺草酿醪	l
-frozen soft wheat beer	结冻的软粒小麦啤酒	l
-frozen soft wheat mash	结冻的软粒小麦酿醪	l
-frozen soft wheat whiskey	结冻的软粒小麦威士忌	l
+frozen sliver barb mash	结冻的裂钩草酿醪	l
+frozen soft wheat beer	结冻的软质小麦啤酒	l
+frozen soft wheat mash	结冻的软质小麦酿醪	l
+frozen soft wheat whiskey	结冻的软质小麦威士忌	l
 frozen sorghum beer	结冻的高粱啤酒	l
 frozen sorghum mash	结冻的高粱酿醪	l
 frozen sorghum whiskey	结冻的高粱威士忌	l
-frozen spelt beer	结冻的斯佩尔特小麦啤酒	l
-frozen spelt mash	结冻的斯佩尔特小麦酿醪	l
-frozen spelt whiskey	结冻的斯佩尔特小麦威士忌	l
+frozen spelt beer	结冻的斯佩尔特麦啤酒	l
+frozen spelt mash	结冻的斯佩尔特麦酿醪	l
+frozen spelt whiskey	结冻的斯佩尔特麦威士忌	l
 frozen strawberry brandy	结冻的草莓白兰地	l
 frozen strawberry mash	结冻的草莓酿醪	l
 frozen strawberry wine	结冻的草莓果酒	l
 frozen sun berry mash	结冻的太阳浆果酿醪	l
 frozen sunny wine	结冻的太阳果酒	l
-frozen sunshine	结冻的阳光酒	l
+frozen sunshine	结冻的日光酒	l
 frozen swamp beer	结冻的沼泽啤酒	l
 frozen swamp whiskey	结冻的沼泽威士忌	l
-frozen sweet pod mash	结冻的甜荚酿醪	l
+frozen sweet pod mash	结冻的甜豆荚酿醪	l
 frozen sweet potato mash	结冻的甘薯酿醪	l
 frozen sweet potato vodka	结冻的甘薯伏特加	l
 frozen sweet potato wine	结冻的甘薯果酒	l
 frozen teff beer	结冻的苔麸啤酒	l
 frozen teff mash	结冻的苔麸酿醪	l
 frozen teff whiskey	结冻的苔麸威士忌	l
-frozen tomatillo brandy	结冻的酸浆白兰地	l
-frozen tomatillo mash	结冻的酸浆酿醪	l
-frozen tomatillo wine	结冻的酸浆果酒	l
+frozen tomatillo brandy	结冻的灯笼番茄白兰地	l
+frozen tomatillo mash	结冻的灯笼番茄酿醪	l
+frozen tomatillo wine	结冻的灯笼番茄果酒	l
 frozen tomato brandy	结冻的番茄白兰地	l
 frozen tomato mash	结冻的番茄酿醪	l
 frozen tomato wine	结冻的番茄果酒	l
-frozen tuber beer	结冻的块茎啤酒	l
+frozen tuber beer	结冻的地根啤酒	l
 frozen tuber vodka	结冻的块茎伏特加	l
 frozen turnip brandy	结冻的芜菁白兰地	l
 frozen turnip mash	结冻的芜菁酿醪	l
 frozen turnip wine	结冻的芜菁果酒	l
-frozen two-grain wheat beer	结冻的二粒小麦啤酒	l
-frozen two-grain wheat mash	结冻的二粒小麦酿醪	l
-frozen two-grain wheat whiskey	结冻的二粒小麦威士忌	l
+frozen two-grain wheat beer	结冻的双粒小麦啤酒	l
+frozen two-grain wheat mash	结冻的双粒小麦酿醪	l
+frozen two-grain wheat whiskey	结冻的双粒小麦威士忌	l
 frozen unfermented dwarven syrup	结冻的未发酵的矮人糖浆	l
 frozen unfermented mead	结冻的未发酵的蜜酒	l
-frozen valley herb wine	结冻的谷地草果酒	l
+frozen valley herb wine	结冻的山谷香草果酒	l
 frozen valley mash	结冻的谷地草酿醪	l
 frozen vodka	结冻的伏特加	l
 frozen whip brandy	结冻的鞭藤白兰地	l
 frozen whip vine mash	结冻的鞭藤酿醪	l
-frozen whip wine	结冻的鞭藤果酒	l
+frozen whip wine	结冻的长鞭果酒	l
 frozen whiskey	结冻的威士忌	l
-frozen white millet beer	结冻的白黍啤酒	l
-frozen white millet mash	结冻的白黍酿醪	l
-frozen white millet whiskey	结冻的白黍威士忌	l
-frozen wine	结冻的果酒	l
+frozen white millet beer	结冻的白粟啤酒	l
+frozen white millet mash	结冻的白粟酿醪	l
+frozen white millet whiskey	结冻的白粟威士忌	l
+frozen wine	结冻的葡萄酒	l
 golden salve	金色药膏	l
 grape	葡萄	l
 grape dye	葡萄染料	l
@@ -894,18 +894,18 @@ guava seed	番石榴种子	l
 guava seeds	番石榴种子	l
 guava tree	番石榴树	l
 guava wine	番石榴果酒	l
-guava wood	番石榴木材	l
+guava wood	番石榴木	l
 gutter beer	阴沟啤酒	l
-gutter cruor	阴沟凝血酒	l
-hard wheat	硬粒小麦	l
-hard wheat beer	硬粒小麦啤酒	l
-hard wheat flour	硬粒小麦粉	l
-hard wheat leaf	硬粒小麦叶	l
-hard wheat leaves	硬粒小麦叶	l
-hard wheat mash	硬粒小麦酿醪	l
-hard wheat seed	硬粒小麦种子	l
-hard wheat seeds	硬粒小麦种子	l
-hard wheat whiskey	硬粒小麦威士忌	l
+gutter cruor	凝血酒	l
+hard wheat	硬质小麦	l
+hard wheat beer	硬质小麦啤酒	l
+hard wheat flour	硬质小麦面粉	l
+hard wheat leaf	硬质小麦叶	l
+hard wheat leaves	硬质小麦叶	l
+hard wheat mash	硬质小麦酿醪	l
+hard wheat seed	硬质小麦种子	l
+hard wheat seeds	硬质小麦种子	l
+hard wheat whiskey	硬质小麦威士忌	l
 honey bee	蜜蜂	l
 honey bee drone	蜜蜂雄蜂	l
 honey bee drones	蜜蜂雄蜂	l
@@ -915,28 +915,28 @@ honey bee queens	蜜蜂蜂后	l
 honey bee royal jelly	蜜蜂蜂王浆	l
 honey bee sting	蜜蜂螫针	l
 honey bee venom	蜜蜂毒液	l
-honey bee wax	蜜蜂蜡	l
-honey bee wax cake	蜜蜂蜡块	l
+honey bee wax	蜂蜡	l
+honey bee wax cake	蜂蜡饼	l
 honey bee worker	蜜蜂工蜂	l
 honey bee workers	蜜蜂工蜂	l
 honey bees	蜜蜂	l
-kaniwa	卡尼瓦藜	l
-kaniwa beer	卡尼瓦藜啤酒	l
-kaniwa flour	卡尼瓦藜粉	l
-kaniwa flower	卡尼瓦藜花	l
-kaniwa leaf	卡尼瓦藜叶	l
-kaniwa leaves	卡尼瓦藜叶	l
-kaniwa mash	卡尼瓦藜酿醪	l
-kaniwa seed	卡尼瓦藜种子	l
-kaniwa seeds	卡尼瓦藜种子	l
-kaniwa whiskey	卡尼瓦藜威士忌	l
-Longland beer	长地啤酒	l
-Longland flour	长地粉	l
-Longland grass	长地草	l
-Longland grass seed	长地草种子	l
-Longland grass seeds	长地草种子	l
-Longland mash	长地酿醪	l
-Longland whiskey	长地威士忌	l
+kaniwa	彩藜	l
+kaniwa beer	彩藜啤酒	l
+kaniwa flour	彩藜面粉	l
+kaniwa flower	彩藜花	l
+kaniwa leaf	彩藜叶	l
+kaniwa leaves	彩藜叶	l
+kaniwa mash	彩藜酿醪	l
+kaniwa seed	彩藜种子	l
+kaniwa seeds	彩藜种子	l
+kaniwa whiskey	彩藜威士忌	l
+Longland beer	长岛啤酒	l
+Longland flour	长岛草面粉	l
+Longland grass	长岛草	l
+Longland grass seed	长岛草种子	l
+Longland grass seeds	长岛草种子	l
+Longland mash	长岛酿醪	l
+Longland whiskey	长岛威士忌	l
 lychee	荔枝	l
 lychee brandy	荔枝白兰地	l
 lychee flower	荔枝花	l
@@ -947,10 +947,10 @@ lychee seed	荔枝种子	l
 lychee seeds	荔枝种子	l
 lychee tree	荔枝树	l
 lychee wine	荔枝果酒	l
-lychee wood	荔枝木材	l
+lychee wood	荔枝木	l
 maize	玉米	l
 maize beer	玉米啤酒	l
-maize flour	玉米粉	l
+maize flour	玉米面粉	l
 maize leaf	玉米叶	l
 maize leaves	玉米叶	l
 maize mash	玉米酿醪	l
@@ -962,21 +962,21 @@ mango flower	芒果花	l
 mango leaf	芒果叶	l
 mango leaves	芒果叶	l
 mango mash	芒果酿醪	l
-mango pit	芒果果核	l
-mango pits	芒果果核	l
+mango pit	芒果核	l
+mango pits	芒果核	l
 mango tree	芒果树	l
 mango wine	芒果果酒	l
-mango wood	芒果木材	l
+mango wood	芒果木	l
 Mash plump helmets for wine	将肉盔菇捣成酿醪以酿造果酒	l
 Mash prickle berries for wine	将刺莓捣成酿醪以酿造果酒	l
 Mash strawberries for wine	将草莓捣成酿醪以酿造果酒	l
 mead	蜜酒	l
-melted bumblebee wax	熔化的熊蜂蜡	l
-melted honey bee wax	熔化的蜜蜂蜡	l
-muck root	淤泥根	l
-muck root mash	淤泥根酿醪	l
-muck root seed	淤泥根种子	l
-muck root seeds	淤泥根种子	l
+melted bumblebee wax	熔融的熊蜂蜡	l
+melted honey bee wax	熔融的蜂蜡	l
+muck root	淤曲根	l
+muck root mash	淤曲根酿醪	l
+muck root seed	淤曲根种子	l
+muck root seeds	淤曲根种子	l
 papaya	番木瓜	l
 papaya brandy	番木瓜白兰地	l
 papaya flower	番木瓜花	l
@@ -987,16 +987,16 @@ papaya seed	番木瓜种子	l
 papaya seeds	番木瓜种子	l
 papaya tree	番木瓜树	l
 papaya wine	番木瓜果酒	l
-papaya wood	番木瓜木材	l
-parsnip brandy	欧洲防风白兰地	l
-parsnip leaf	欧洲防风叶	l
-parsnip leaves	欧洲防风叶	l
-parsnip mash	欧洲防风酿醪	l
-parsnip plant	欧洲防风植株	l
-parsnip seed	欧洲防风种子	l
-parsnip seeds	欧洲防风种子	l
-parsnip umbel	欧洲防风伞形花序	l
-parsnip wine	欧洲防风果酒	l
+papaya wood	番木瓜木	l
+parsnip brandy	防风草白兰地	l
+parsnip leaf	防风草叶	l
+parsnip leaves	防风草叶	l
+parsnip mash	防风草酿醪	l
+parsnip plant	防风草植株	l
+parsnip seed	防风草种子	l
+parsnip seeds	防风草种子	l
+parsnip umbel	防风草伞形花序	l
+parsnip wine	防风草果酒	l
 passion fruit	百香果	l
 passion fruit brandy	百香果白兰地	l
 passion fruit flower	百香果花	l
@@ -1015,41 +1015,41 @@ peach flower	桃花	l
 peach leaf	桃叶	l
 peach leaves	桃叶	l
 peach mash	桃酿醪	l
-peach pit	桃果核	l
-peach pits	桃果核	l
+peach pit	桃核	l
+peach pits	桃核	l
 peach tree	桃树	l
-peach wood	桃木材	l
+peach wood	桃木	l
 peaches	桃	l
-pear	梨	l
-pear bark dye	梨树皮染料	l
-pear brandy	梨白兰地	l
-pear flower	梨花	l
-pear leaf	梨叶	l
-pear leaf dye	梨叶染料	l
-pear leaves	梨叶	l
-pear mash	梨酿醪	l
-pear seed	梨种子	l
-pear seeds	梨种子	l
-pear tree	梨树	l
-pear wood	梨木材	l
+pear	白梨	l
+pear bark dye	白梨树皮染料	l
+pear brandy	白梨白兰地	l
+pear flower	白梨花	l
+pear leaf	白梨叶	l
+pear leaf dye	白梨叶染料	l
+pear leaves	白梨叶	l
+pear mash	白梨酿醪	l
+pear seed	白梨种子	l
+pear seeds	白梨种子	l
+pear tree	白梨树	l
+pear wood	白梨木	l
 pearl millet	珍珠粟	l
 pearl millet beer	珍珠粟啤酒	l
-pearl millet flour	珍珠粟粉	l
+pearl millet flour	珍珠粟面粉	l
 pearl millet leaf	珍珠粟叶	l
 pearl millet leaves	珍珠粟叶	l
 pearl millet mash	珍珠粟酿醪	l
 pearl millet plant	珍珠粟植株	l
 pearl millet whiskey	珍珠粟威士忌	l
-pendant amaranth	垂穗苋	l
-pendant amaranth beer	垂穗苋啤酒	l
-pendant amaranth flour	垂穗苋粉	l
-pendant amaranth inflorescence	垂穗苋花序	l
-pendant amaranth leaf	垂穗苋叶	l
-pendant amaranth leaves	垂穗苋叶	l
-pendant amaranth mash	垂穗苋酿醪	l
-pendant amaranth seed	垂穗苋种子	l
-pendant amaranth seeds	垂穗苋种子	l
-pendant amaranth whiskey	垂穗苋威士忌	l
+pendant amaranth	吊坠苋	l
+pendant amaranth beer	吊坠苋啤酒	l
+pendant amaranth flour	吊坠苋面粉	l
+pendant amaranth inflorescence	吊坠苋花序	l
+pendant amaranth leaf	吊坠苋叶	l
+pendant amaranth leaves	吊坠苋叶	l
+pendant amaranth mash	吊坠苋酿醪	l
+pendant amaranth seed	吊坠苋种子	l
+pendant amaranth seeds	吊坠苋种子	l
+pendant amaranth whiskey	吊坠苋威士忌	l
 perry	梨酒	l
 persimmon	柿	l
 persimmon brandy	柿白兰地	l
@@ -1062,13 +1062,13 @@ persimmon seed	柿种子	l
 persimmon seeds	柿种子	l
 persimmon tree	柿树	l
 persimmon wine	柿果酒	l
-persimmon wood	柿木材	l
+persimmon wood	柿木	l
 pig tail	猪尾草	l
 pig tail mash	猪尾草酿醪	l
 pig tail paper	猪尾草纸	l
 pig tail seed	猪尾草种子	l
 pig tail seeds	猪尾草种子	l
-pig tail slurry	猪尾草浆液	l
+pig tail slurry	猪尾草浆	l
 pig tail whiskey	猪尾草威士忌	l
 pineapple	菠萝	l
 pineapple brandy	菠萝白兰地	l
@@ -1089,11 +1089,11 @@ plum flower	李花	l
 plum leaf	李叶	l
 plum leaves	李叶	l
 plum mash	李酿醪	l
-plum pit	李果核	l
-plum pits	李果核	l
+plum pit	李核	l
+plum pits	李核	l
 plum tree	李树	l
-plum wine	李果酒	l
-plum wood	李木材	l
+plum wine	李子果酒	l
+plum wood	李子木	l
 plump helmet	肉盔菇	l
 plump helmet mash	肉盔菇酿醪	l
 plump helmet spawn	肉盔菇菌种	l
@@ -1110,7 +1110,7 @@ pomegranate seed	石榴种子	l
 pomegranate seeds	石榴种子	l
 pomegranate tree	石榴树	l
 pomegranate wine	石榴果酒	l
-pomegranate wood	石榴木材	l
+pomegranate wood	石榴木	l
 potato flower	马铃薯花	l
 potato leaf	马铃薯叶	l
 potato leaves	马铃薯叶	l
@@ -1124,35 +1124,35 @@ Preference reason: ability to organize	组织能力	l
 Preference reason: beer	啤酒	l
 Preference reason: blossoms	花朵	l
 Preference reason: busy nature	忙碌的天性	l
-Preference reason: buzzing	嗡嗡声	l
+Preference reason: buzzing	嗡嗡的鸣声	l
 Preference reason: edible roots	可食用的根	l
 Preference reason: edible tubers	可食用的块茎	l
 Preference reason: fragrant fruit	芳香的果实	l
 Preference reason: fruit	果实	l
-Preference reason: grain	谷粒	l
-Preference reason: hanging leaves	下垂的叶片	l
-Preference reason: inner light	内部的微光	l
-Preference reason: length	长度	l
-Preference reason: popped kernels	爆开的谷粒	l
-Preference reason: precise lines	整齐的纹路	l
-Preference reason: precise thorns	整齐的刺	l
-Preference reason: roots	根	l
-Preference reason: round shape	圆润的形状	l
+Preference reason: grain	籽粒	l
+Preference reason: hanging leaves	下垂的叶子	l
+Preference reason: inner light	内在光芒	l
+Preference reason: length	修长的形态	l
+Preference reason: popped kernels	爆开的籽粒	l
+Preference reason: precise lines	规整的纹路	l
+Preference reason: precise thorns	排列齐整的尖刺	l
+Preference reason: roots	根系	l
+Preference reason: round shape	圆形	l
 Preference reason: rounded tops	圆润的顶部	l
-Preference reason: soothing fragrance	舒缓的香气	l
-Preference reason: stalks	茎秆	l
-Preference reason: stout shape	粗壮的形状	l
-Preference reason: striking color	鲜明的颜色	l
-Preference reason: sweeping stalks	舒展的茎秆	l
-Preference reason: sweet-smelling flowers	芳香的花	l
-Preference reason: tiny leaves	细小的叶片	l
+Preference reason: soothing fragrance	令人舒畅的芳香	l
+Preference reason: stalks	茎	l
+Preference reason: stout shape	粗壮的形态	l
+Preference reason: striking color	引人注目的颜色	l
+Preference reason: sweeping stalks	弯曲的茎	l
+Preference reason: sweet-smelling flowers	芬芳的花朵	l
+Preference reason: tiny leaves	小叶子	l
 Preference reason: twisting shape	扭曲的形状	l
-Preference reason: twisting stalks	曲折的茎秆	l
-Preference reason: vivid red color	鲜艳的红色	l
-Preference reason: waxy berries	蜡质浆果	l
-Preference reason: wicked thorns	尖锐的刺	l
+Preference reason: twisting stalks	扭曲的茎	l
+Preference reason: vivid red color	鲜红色	l
+Preference reason: waxy berries	带蜡质的浆果	l
+Preference reason: wicked thorns	凶险的尖刺	l
 Preference reason: wine	果酒	l
-Preference reason: woolly appearance	绒毛外观	l
+Preference reason: woolly appearance	毛茸茸的外表	l
 Preference reason: yummy hearts	美味的菜心	l
 Prepare apples for wine	准备苹果以酿造果酒	l
 Prepare apricots for wine	准备杏以酿造果酒	l
@@ -1175,31 +1175,31 @@ Prepare cave wheat for beer	准备洞穴小麦以酿造啤酒	l
 Prepare cherries for wine	准备樱桃以酿造果酒	l
 Prepare cranberries for wine	准备蔓越莓以酿造果酒	l
 Prepare custard-apples for wine	准备番荔枝以酿造果酒	l
-Prepare date palms for wine	准备枣椰以酿造果酒	l
-Prepare durians for wine	准备榴莲以酿造果酒	l
+Prepare date palms for wine	准备枣棕榈以酿造果酒	l
+Prepare durians for wine	准备榴梿以酿造果酒	l
 Prepare dwarven syrup for deep brew	准备矮人糖浆以酿造深酿酒	l
-Prepare finger millet for beer	准备龙爪稷以酿造啤酒	l
-Prepare fisher berries for wine	准备渔浆果以酿造果酒	l
-Prepare fonio for beer	准备福尼奥米以酿造啤酒	l
-Prepare foxtail millet for beer	准备粟以酿造啤酒	l
+Prepare finger millet for beer	准备爪粟以酿造啤酒	l
+Prepare fisher berries for wine	准备渔夫浆果以酿造果酒	l
+Prepare fonio for beer	准备非尼奥米以酿造啤酒	l
+Prepare foxtail millet for beer	准备狐尾粟以酿造啤酒	l
 Prepare fruit for fermentation	准备果实用于发酵	l
 Prepare grapes for wine	准备葡萄以酿造果酒	l
 Prepare guavas for wine	准备番石榴以酿造果酒	l
-Prepare hard wheat for beer	准备硬粒小麦以酿造啤酒	l
-Prepare kaniwa for beer	准备卡尼瓦藜以酿造啤酒	l
-Prepare longland grass for beer	准备长地草以酿造啤酒	l
+Prepare hard wheat for beer	准备硬质小麦以酿造啤酒	l
+Prepare kaniwa for beer	准备彩藜以酿造啤酒	l
+Prepare longland grass for beer	准备长岛草以酿造啤酒	l
 Prepare lychees for wine	准备荔枝以酿造果酒	l
 Prepare maize for beer	准备玉米以酿造啤酒	l
 Prepare mangoes for wine	准备芒果以酿造果酒	l
 Prepare mead mix for fermentation	准备蜜酒酿液用于发酵	l
-Prepare muck root for beer	准备淤泥根以酿造啤酒	l
+Prepare muck root for beer	准备淤曲根以酿造啤酒	l
 Prepare papayas for wine	准备番木瓜以酿造果酒	l
-Prepare parsnip for wine	准备欧洲防风以酿造果酒	l
+Prepare parsnip for wine	准备防风草以酿造果酒	l
 Prepare passion fruit for wine	准备百香果以酿造果酒	l
 Prepare peaches for wine	准备桃以酿造果酒	l
 Prepare pearl millet for beer	准备珍珠粟以酿造啤酒	l
-Prepare pears for perry	准备梨以酿造梨酒	l
-Prepare pendant amaranth for beer	准备垂穗苋以酿造啤酒	l
+Prepare pears for perry	准备白梨以酿造梨酒	l
+Prepare pendant amaranth for beer	准备吊坠苋以酿造啤酒	l
 Prepare persimmons for wine	准备柿以酿造果酒	l
 Prepare pig tails for beer	准备猪尾草以酿造啤酒	l
 Prepare pineapple for wine	准备菠萝以酿造果酒	l
@@ -1211,30 +1211,30 @@ Prepare pomegranates for wine	准备石榴以酿造果酒	l
 Prepare potato for wine	准备马铃薯以酿造果酒	l
 Prepare purple amaranth for beer	准备紫苋以酿造啤酒	l
 Prepare quinoa for beer	准备藜麦以酿造啤酒	l
-Prepare radish for wine	准备萝卜以酿造果酒	l
-Prepare rambutans for wine	准备红毛丹以酿造果酒	l
+Prepare radish for wine	准备小萝卜以酿造果酒	l
+Prepare rambutans for wine	准备红毛果以酿造果酒	l
 Prepare raspberries for wine	准备树莓以酿造果酒	l
-Prepare rat weed for sewer brew	准备鼠草以酿造下水道酿酒	l
+Prepare rat weed for sewer brew	准备杂鼠草以酿造阴沟佳酿	l
 Prepare rice for beer	准备稻米以酿造啤酒	l
-Prepare rope reed for river beer	准备绳芦苇以酿造河流啤酒	l
+Prepare rope reed for river beer	准备绳索苇以酿造河流啤酒	l
 Prepare rye for beer	准备黑麦以酿造啤酒	l
 Prepare sand pears for wine	准备沙梨以酿造果酒	l
 Prepare single-grain wheat for beer	准备单粒小麦以酿造啤酒	l
-Prepare sliver barbs for beer	准备银刺草以酿造啤酒	l
-Prepare soft wheat for beer	准备软粒小麦以酿造啤酒	l
+Prepare sliver barbs for beer	准备裂钩草以酿造啤酒	l
+Prepare soft wheat for beer	准备软质小麦以酿造啤酒	l
 Prepare sorghum for beer	准备高粱以酿造啤酒	l
-Prepare spelt for beer	准备斯佩尔特小麦以酿造啤酒	l
+Prepare spelt for beer	准备斯佩尔特麦以酿造啤酒	l
 Prepare sun berries for wine	准备太阳浆果以酿造果酒	l
-Prepare sweet pods for beer	准备甜荚以酿造啤酒	l
+Prepare sweet pods for beer	准备甜豆荚以酿造啤酒	l
 Prepare sweet potato for wine	准备甘薯以酿造果酒	l
 Prepare teff for beer	准备苔麸以酿造啤酒	l
-Prepare tomatillo for wine	准备酸浆以酿造果酒	l
+Prepare tomatillo for wine	准备灯笼番茄以酿造果酒	l
 Prepare tomatoes for wine	准备番茄以酿造果酒	l
 Prepare turnip for wine	准备芜菁以酿造果酒	l
-Prepare two-grain wheat for beer	准备二粒小麦以酿造啤酒	l
-Prepare valley herbs for wine	准备谷地草以酿造果酒	l
-Prepare vine whip for whip wine	准备鞭藤以酿造鞭藤果酒	l
-Prepare white millet for beer	准备白黍以酿造啤酒	l
+Prepare two-grain wheat for beer	准备双粒小麦以酿造啤酒	l
+Prepare valley herbs for wine	准备山谷香草以酿造果酒	l
+Prepare vine whip for whip wine	准备鞭藤以酿造长鞭果酒	l
+Prepare white millet for beer	准备白粟以酿造啤酒	l
 prickle berry	刺莓	l
 prickle berry mash	刺莓酿醪	l
 prickle berry seed	刺莓种子	l
@@ -1242,7 +1242,7 @@ prickle berry seeds	刺莓种子	l
 prickle berry wine	刺莓果酒	l
 purple amaranth	紫苋	l
 purple amaranth beer	紫苋啤酒	l
-purple amaranth flour	紫苋粉	l
+purple amaranth flour	紫苋面粉	l
 purple amaranth inflorescence	紫苋花序	l
 purple amaranth leaf	紫苋叶	l
 purple amaranth leaves	紫苋叶	l
@@ -1252,7 +1252,7 @@ purple amaranth seeds	紫苋种子	l
 purple amaranth whiskey	紫苋威士忌	l
 quinoa	藜麦	l
 quinoa beer	藜麦啤酒	l
-quinoa flour	藜麦粉	l
+quinoa flour	藜麦面粉	l
 quinoa flower	藜麦花	l
 quinoa leaf	藜麦叶	l
 quinoa leaves	藜麦叶	l
@@ -1260,27 +1260,27 @@ quinoa mash	藜麦酿醪	l
 quinoa seed	藜麦种子	l
 quinoa seeds	藜麦种子	l
 quinoa whiskey	藜麦威士忌	l
-radish brandy	萝卜白兰地	l
-radish dye	萝卜染料	l
-radish leaf	萝卜叶	l
-radish leaves	萝卜叶	l
-radish mash	萝卜酿醪	l
-radish plant	萝卜植株	l
-radish raceme	萝卜总状花序	l
-radish seed	萝卜种子	l
-radish seeds	萝卜种子	l
-radish wine	萝卜果酒	l
-rambutan	红毛丹	l
-rambutan brandy	红毛丹白兰地	l
-rambutan flower	红毛丹花	l
-rambutan leaf	红毛丹叶	l
-rambutan leaves	红毛丹叶	l
-rambutan mash	红毛丹酿醪	l
-rambutan seed	红毛丹种子	l
-rambutan seeds	红毛丹种子	l
-rambutan tree	红毛丹树	l
-rambutan wine	红毛丹果酒	l
-rambutan wood	红毛丹木材	l
+radish brandy	小萝卜白兰地	l
+radish dye	小萝卜染料	l
+radish leaf	小萝卜叶	l
+radish leaves	小萝卜叶	l
+radish mash	小萝卜酿醪	l
+radish plant	小萝卜植株	l
+radish raceme	小萝卜总状花序	l
+radish seed	小萝卜种子	l
+radish seeds	小萝卜种子	l
+radish wine	小萝卜果酒	l
+rambutan	红毛果	l
+rambutan brandy	红毛果白兰地	l
+rambutan flower	红毛果花	l
+rambutan leaf	红毛果叶	l
+rambutan leaves	红毛果叶	l
+rambutan mash	红毛果酿醪	l
+rambutan seed	红毛果种子	l
+rambutan seeds	红毛果种子	l
+rambutan tree	红毛果树	l
+rambutan wine	红毛果果酒	l
+rambutan wood	红毛果木	l
 raspberries	树莓	l
 raspberry	树莓	l
 raspberry brandy	树莓白兰地	l
@@ -1293,29 +1293,29 @@ raspberry mash	树莓酿醪	l
 raspberry seed	树莓种子	l
 raspberry seeds	树莓种子	l
 raspberry wine	树莓果酒	l
-rat weed	鼠草	l
-rat weed mash	鼠草酿醪	l
-rat weed seed	鼠草种子	l
-rat weed seeds	鼠草种子	l
+rat weed	杂鼠草	l
+rat weed mash	杂鼠草酿醪	l
+rat weed seed	杂鼠草种子	l
+rat weed seeds	杂鼠草种子	l
 rice	稻米	l
 rice beer	稻米啤酒	l
-rice flour	稻米粉	l
+rice flour	稻米面粉	l
 rice husk dye	稻米谷壳染料	l
 rice leaf	稻米叶	l
 rice leaves	稻米叶	l
 rice mash	稻米酿醪	l
 rice plant	稻米植株	l
 river beer	河流啤酒	l
-river spirits	河流烈酒	l
-rope reed	绳芦苇	l
-rope reed mash	绳芦苇酿醪	l
-rope reed paper	绳芦苇纸	l
-rope reed seed	绳芦苇种子	l
-rope reed seeds	绳芦苇种子	l
-rope reed slurry	绳芦苇浆液	l
+river spirits	河川烈酒	l
+rope reed	绳索苇	l
+rope reed mash	绳索苇酿醪	l
+rope reed paper	绳索苇纸	l
+rope reed seed	绳索苇种子	l
+rope reed seeds	绳索苇种子	l
+rope reed slurry	绳索苇浆	l
 rye	黑麦	l
 rye beer	黑麦啤酒	l
-rye flour	黑麦粉	l
+rye flour	黑麦面粉	l
 rye leaf	黑麦叶	l
 rye leaves	黑麦叶	l
 rye mash	黑麦酿醪	l
@@ -1333,34 +1333,34 @@ sand pear seed	沙梨种子	l
 sand pear seeds	沙梨种子	l
 sand pear tree	沙梨树	l
 sand pear wood	沙梨木	l
-sewer brew	下水道酿酒	l
+sewer brew	阴沟佳酿	l
 sewer gin	下水道金酒	l
 single-grain wheat	单粒小麦	l
 single-grain wheat beer	单粒小麦啤酒	l
-single-grain wheat flour	单粒小麦粉	l
+single-grain wheat flour	单粒小麦面粉	l
 single-grain wheat leaf	单粒小麦叶	l
 single-grain wheat leaves	单粒小麦叶	l
 single-grain wheat mash	单粒小麦酿醪	l
 single-grain wheat seed	单粒小麦种子	l
 single-grain wheat seeds	单粒小麦种子	l
 single-grain wheat whiskey	单粒小麦威士忌	l
-sliver barb	银刺草	l
-sliver barb mash	银刺草酿醪	l
-sliver barb seed	银刺草种子	l
-sliver barb seeds	银刺草种子	l
-sliver dye	银刺草染料	l
-soft wheat	软粒小麦	l
-soft wheat beer	软粒小麦啤酒	l
-soft wheat flour	软粒小麦粉	l
-soft wheat leaf	软粒小麦叶	l
-soft wheat leaves	软粒小麦叶	l
-soft wheat mash	软粒小麦酿醪	l
-soft wheat seed	软粒小麦种子	l
-soft wheat seeds	软粒小麦种子	l
-soft wheat whiskey	软粒小麦威士忌	l
+sliver barb	裂钩草	l
+sliver barb mash	裂钩草酿醪	l
+sliver barb seed	裂钩草种子	l
+sliver barb seeds	裂钩草种子	l
+sliver dye	裂钩染料	l
+soft wheat	软质小麦	l
+soft wheat beer	软质小麦啤酒	l
+soft wheat flour	软质小麦面粉	l
+soft wheat leaf	软质小麦叶	l
+soft wheat leaves	软质小麦叶	l
+soft wheat mash	软质小麦酿醪	l
+soft wheat seed	软质小麦种子	l
+soft wheat seeds	软质小麦种子	l
+soft wheat whiskey	软质小麦威士忌	l
 sorghum	高粱	l
 sorghum beer	高粱啤酒	l
-sorghum flour	高粱粉	l
+sorghum flour	高粱面粉	l
 sorghum flower cluster	高粱花簇	l
 sorghum leaf	高粱叶	l
 sorghum leaf dye	高粱叶染料	l
@@ -1369,15 +1369,15 @@ sorghum mash	高粱酿醪	l
 sorghum seed	高粱种子	l
 sorghum seeds	高粱种子	l
 sorghum whiskey	高粱威士忌	l
-spelt	斯佩尔特小麦	l
-spelt beer	斯佩尔特小麦啤酒	l
-spelt flour	斯佩尔特小麦粉	l
-spelt leaf	斯佩尔特小麦叶	l
-spelt leaves	斯佩尔特小麦叶	l
-spelt mash	斯佩尔特小麦酿醪	l
-spelt seed	斯佩尔特小麦种子	l
-spelt seeds	斯佩尔特小麦种子	l
-spelt whiskey	斯佩尔特小麦威士忌	l
+spelt	斯佩尔特麦	l
+spelt beer	斯佩尔特麦啤酒	l
+spelt flour	斯佩尔特麦面粉	l
+spelt leaf	斯佩尔特麦叶	l
+spelt leaves	斯佩尔特麦叶	l
+spelt mash	斯佩尔特麦酿醪	l
+spelt seed	斯佩尔特麦种子	l
+spelt seeds	斯佩尔特麦种子	l
+spelt whiskey	斯佩尔特麦威士忌	l
 strawberries	草莓	l
 strawberry	草莓	l
 strawberry brandy	草莓白兰地	l
@@ -1391,13 +1391,13 @@ sun berry mash	太阳浆果酿醪	l
 sun berry seed	太阳浆果种子	l
 sun berry seeds	太阳浆果种子	l
 sunny wine	太阳果酒	l
-sunshine	阳光酒	l
+sunshine	日光酒	l
 swamp beer	沼泽啤酒	l
 swamp whiskey	沼泽威士忌	l
-sweet pod	甜荚	l
-sweet pod mash	甜荚酿醪	l
-sweet pod seed	甜荚种子	l
-sweet pod seeds	甜荚种子	l
+sweet pod	甜豆荚	l
+sweet pod mash	甜豆荚酿醪	l
+sweet pod seed	甜豆荚种子	l
+sweet pod seeds	甜豆荚种子	l
 sweet potato flower	甘薯花	l
 sweet potato leaf	甘薯叶	l
 sweet potato leaves	甘薯叶	l
@@ -1410,7 +1410,7 @@ sweet potato vodka	甘薯伏特加	l
 sweet potato wine	甘薯果酒	l
 teff	苔麸	l
 teff beer	苔麸啤酒	l
-teff flour	苔麸粉	l
+teff flour	苔麸面粉	l
 teff leaf	苔麸叶	l
 teff leaves	苔麸叶	l
 teff mash	苔麸酿醪	l
@@ -1418,16 +1418,16 @@ teff plant	苔麸植株	l
 teff whiskey	苔麸威士忌	l
 The brewmaster handles the production of alcohol, which we all know to be the most important liquid in Dwarven Culture. They will inspect all barrel racks for the current state of fermentation.	酿酒总管负责酒类生产，而酒是矮人文化中最重要的液体。他们会查看所有酒桶架，判断当前的发酵进度。	l
 Tired of the simplicity of brewing in DF? Want to wait months until your dwarves can drink anything you produce? Want to need to use fuel for brewing? Then this mod is for you!\n\nComplicates the brewing process, everything now takes place in the new workshop: The Barrel Rack, it works automatically issuing a grab order for any fermentable it \ndetects, which is produced in the still.\n\nAlso adds distillables, a highly valuable variant made with the use of fuel, and raises the value of all types of alcohol since it takes longer to produce\n	觉得矮人要塞的酿酒过程太简单？想让矮人等上数月才能喝到酿出的酒？想让酿酒也需要燃料？这个模组就是为你准备的！它让酿酒过程更复杂：蒸馏间先生产可发酵原料，再由新工坊“酒桶架”自动安排搬运并进行发酵。此外还新增了耗费燃料制作的高价值蒸馏酒，并因酒类生产耗时增加而提高了所有酒类的价值。	l
-tomatillo	酸浆	l
-tomatillo brandy	酸浆白兰地	l
-tomatillo flower	酸浆花	l
-tomatillo leaf	酸浆叶	l
-tomatillo leaves	酸浆叶	l
-tomatillo mash	酸浆酿醪	l
-tomatillo plant	酸浆植株	l
-tomatillo seed	酸浆种子	l
-tomatillo seeds	酸浆种子	l
-tomatillo wine	酸浆果酒	l
+tomatillo	灯笼番茄	l
+tomatillo brandy	灯笼番茄白兰地	l
+tomatillo flower	灯笼番茄花	l
+tomatillo leaf	灯笼番茄叶	l
+tomatillo leaves	灯笼番茄叶	l
+tomatillo mash	灯笼番茄酿醪	l
+tomatillo plant	灯笼番茄植株	l
+tomatillo seed	灯笼番茄种子	l
+tomatillo seeds	灯笼番茄种子	l
+tomatillo wine	灯笼番茄果酒	l
 tomato	番茄	l
 tomato brandy	番茄白兰地	l
 tomato flower	番茄花	l
@@ -1440,7 +1440,7 @@ tomato seeds	番茄种子	l
 tomato skin dye	番茄表皮染料	l
 tomato wine	番茄果酒	l
 tomatoes	番茄	l
-tuber beer	块茎啤酒	l
+tuber beer	地根啤酒	l
 tuber vodka	块茎伏特加	l
 turnip brandy	芜菁白兰地	l
 turnip flower	芜菁花	l
@@ -1452,39 +1452,39 @@ turnip seed	芜菁种子	l
 turnip seeds	芜菁种子	l
 turnip skin dye	芜菁表皮染料	l
 turnip wine	芜菁果酒	l
-two-grain wheat	二粒小麦	l
-two-grain wheat beer	二粒小麦啤酒	l
-two-grain wheat flour	二粒小麦粉	l
-two-grain wheat leaf	二粒小麦叶	l
-two-grain wheat leaves	二粒小麦叶	l
-two-grain wheat mash	二粒小麦酿醪	l
-two-grain wheat seed	二粒小麦种子	l
-two-grain wheat seeds	二粒小麦种子	l
-two-grain wheat whiskey	二粒小麦威士忌	l
+two-grain wheat	双粒小麦	l
+two-grain wheat beer	双粒小麦啤酒	l
+two-grain wheat flour	双粒小麦面粉	l
+two-grain wheat leaf	双粒小麦叶	l
+two-grain wheat leaves	双粒小麦叶	l
+two-grain wheat mash	双粒小麦酿醪	l
+two-grain wheat seed	双粒小麦种子	l
+two-grain wheat seeds	双粒小麦种子	l
+two-grain wheat whiskey	双粒小麦威士忌	l
 unfermented dwarven syrup	未发酵的矮人糖浆	l
 unfermented mead	未发酵的蜜酒	l
-valley herb	谷地草	l
-valley herb mash	谷地草酿醪	l
-valley herb wine	谷地草果酒	l
+valley herb	山谷香草	l
+valley herb mash	山谷香草酿醪	l
+valley herb wine	山谷香草果酒	l
 vodka	伏特加	l
 whip brandy	鞭藤白兰地	l
 whip vine	鞭藤	l
-whip vine flour	鞭藤粉	l
+whip vine flour	鞭藤面粉	l
 whip vine mash	鞭藤酿醪	l
 whip vine seed	鞭藤种子	l
 whip vine seeds	鞭藤种子	l
-whip wine	鞭藤果酒	l
+whip wine	长鞭果酒	l
 whiskey	威士忌	l
-white millet	白黍	l
-white millet beer	白黍啤酒	l
-white millet flour	白黍粉	l
-white millet leaf	白黍叶	l
-white millet leaves	白黍叶	l
-white millet mash	白黍酿醪	l
-white millet plant	白黍植株	l
-white millet whiskey	白黍威士忌	l
+white millet	白粟	l
+white millet beer	白粟啤酒	l
+white millet flour	白粟面粉	l
+white millet leaf	白粟叶	l
+white millet leaves	白粟叶	l
+white millet mash	白粟酿醪	l
+white millet plant	白粟植株	l
+white millet whiskey	白粟威士忌	l
 wild carrot plant	野胡萝卜植株	l
-wine	果酒	l
+wine	葡萄酒	l
 apple trees	苹果树	l
 apricot trees	杏树	l
 artichokes	洋蓟	l
@@ -1501,25 +1501,25 @@ cassavas	木薯	l
 cherry trees	樱桃树	l
 cranberry vines	蔓越莓藤	l
 custard-apple trees	番荔枝树	l
-date palms	枣椰	l
-durian trees	榴莲树	l
-finger millet plants	龙爪稷植株	l
-fisher berries	渔浆果	l
-fonio plants	福尼奥米植株	l
-foxtail millet plants	粟植株	l
+date palms	枣棕榈	l
+durian trees	榴梿树	l
+finger millet plants	爪粟植株	l
+fisher berries	渔夫浆果	l
+fonio plants	非尼奥米植株	l
+foxtail millet plants	狐尾粟植株	l
 grape vines	葡萄藤	l
 guava trees	番石榴树	l
 lychee trees	荔枝树	l
 maize plants	玉米植株	l
 mango trees	芒果树	l
-muck roots	淤泥根	l
+muck roots	淤曲根	l
 papaya trees	番木瓜树	l
-parsnip plants	欧洲防风植株	l
+parsnip plants	防风草植株	l
 passion fruit vines	百香果藤	l
 peach trees	桃树	l
-pear trees	梨树	l
+pear trees	白梨树	l
 pearl millet plants	珍珠粟植株	l
-pendant amaranths	垂穗苋	l
+pendant amaranths	吊坠苋	l
 persimmon trees	柿树	l
 pig tails	猪尾草	l
 pineapple plants	菠萝植株	l
@@ -1529,28 +1529,28 @@ pomegranate trees	石榴树	l
 potato plants	马铃薯植株	l
 prickle berries	刺莓	l
 purple amaranths	紫苋	l
-radish plants	萝卜植株	l
-rambutan trees	红毛丹树	l
+radish plants	小萝卜植株	l
+rambutan trees	红毛果树	l
 raspberry bushes	树莓灌木	l
 rice plants	稻米植株	l
-rope reeds	绳芦苇	l
+rope reeds	绳索苇	l
 sand pear trees	沙梨树	l
-sliver barbs	银刺草	l
+sliver barbs	裂钩草	l
 strawberry plants	草莓植株	l
 sun berries	太阳浆果	l
-sweet pods	甜荚	l
+sweet pods	甜豆荚	l
 sweet potato plants	甘薯植株	l
 teff plants	苔麸植株	l
-tomatillo plants	酸浆植株	l
+tomatillo plants	灯笼番茄植株	l
 tomato plants	番茄植株	l
 turnip plants	芜菁植株	l
-valley herbs	谷地草	l
+valley herbs	山谷香草	l
 whip vines	鞭藤	l
-white millet plants	白黍植株	l
+white millet plants	白粟植株	l
 wild carrot plants	野胡萝卜植株	l
 Leave barrels here to ferment for months (Or years!) to create alcohol, it gets better with age!	把酒桶放在这里发酵数月（甚至数年！）以酿成酒，陈放越久，品质越佳！	lj
 stung	被螫刺	l
-chitin	几丁质	l
+chitin	甲壳	l
 eyes	眼睛	l
 first drink	第一份酒	l
 second drink	第二份酒	l
@@ -1570,7 +1570,7 @@ Toggle	切换	l
 DFHack GUI Overlay control: |Toggle|I|0|-1|1	|切换	l
 Working	工作中	l
 DFHack GUI Overlay control: |Working|I|0|-1|0	|工作中	l
-Disabled	已停用	l
+Disabled	已禁用	l
 DFHack GUI Overlay control: |Disabled|I|0|-1|0	|已停用	l
 Fermenting1...	第1桶发酵中……	l
 DFHack GUI Overlay control: |Fermenting1...|I|0|-1|0	|第1桶发酵中……	l

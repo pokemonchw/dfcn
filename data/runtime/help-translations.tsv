@@ -50,9 +50,9 @@ good idea to keep your fortress clean.	有助于保持要塞清洁。
 If the Stockpile menu is still open, you can close it now by right-clicking. Right-clicking can	[C:7:0:0]如果“[C:5:0:1]储物堆[C:7:0:0]”菜单仍然开着，现在可以右键关闭。右键
 always be used to close most menus, as well as	通常可以关闭大多数菜单，也可以使用
 With shelter ready underground, it's time to build.	地下避难场所已经就绪，该开始建造了。
-First you need building materials, like Wood or Boulders.	[C:7:0:0]首先，你需要[C:6:0:1]木头[C:7:0:0]或[C:6:0:1]石材[C:7:0:0]等建筑材料。
-Before you start chopping down trees you may want to create a dedicated Wood Stockpile.	[C:7:0:0]开始砍树之前，不妨先设置一个[C:6:0:0]专门存放木头的储物堆[C:7:0:0]。
-Haulers will also drop Wood in your All Stockpile unless you turn it off in the Custom Stockpile Menu.	[C:2:0:0]搬运工[C:7:0:0]也会把[C:6:0:1]木头[C:7:0:0]放进[C:6:0:0]接收全部物品的储物堆[C:7:0:0]，除非你在“[C:5:0:1]自定义储物堆[C:7:0:0]”菜单中禁用了这一项。
+First you need building materials, like Wood or Boulders.	[C:7:0:0]首先，你需要[C:6:0:1]木材[C:7:0:0]或[C:6:0:1]石材[C:7:0:0]等建筑材料。
+Before you start chopping down trees you may want to create a dedicated Wood Stockpile.	[C:7:0:0]开始砍树之前，不妨先设置一个[C:6:0:0]专门存放木材的储物堆[C:7:0:0]。
+Haulers will also drop Wood in your All Stockpile unless you turn it off in the Custom Stockpile Menu.	[C:2:0:0]搬运工[C:7:0:0]也会把[C:6:0:1]木材[C:7:0:0]放进[C:6:0:0]接收全部物品的储物堆[C:7:0:0]，除非你在“[C:5:0:1]自定义储物堆[C:7:0:0]”菜单中禁用了这一项。
 When you are ready, open the Woodcutting menu and designate the trunk of a tree on the surface.	[C:7:0:0]准备好后，打开“[C:5:0:1]伐木[C:7:0:0]”菜单，指定地表上一棵树的树干。
 Make sure your woodcutter can walk to the designated location.	确保樵夫能走到指定地点。
 Now we just need to wait for the woodcutter to chop down the tree.	现在只需等待樵夫把树砍倒。
@@ -61,14 +61,14 @@ You can right click to close Woodcutting mode. Right clicking closes most menus.
 If all of your Stockpiles are full, go ahead and place another one.	[C:7:0:0]如果所有[C:6:0:0]储物堆[C:7:0:0]都满了，就再设置一个。
 Now that you have the building materials it's time to start building.	有了建筑材料，现在可以开始建造。
 Workshops are one of many buildings you can place with the highlighted Build button. Click it now.	[C:6:0:0]工坊[C:7:0:0]只是众多可建建筑中的一种，点击已高亮的“[C:5:0:1]建造[C:7:0:0]”按钮即可放置。现在点击它。
-Most Workshops require building material, such as Wood or Boulders.	[C:7:0:0]大多数[C:6:0:0]工坊[C:7:0:0]都需要[C:6:0:1]木头[C:7:0:0]或[C:6:0:1]石材[C:7:0:0]等建筑材料。
-If you have some Wood stockpiled, you'll be able to place a Carpenter's Workshop.	[C:7:0:0]储备了一些[C:6:0:1]木头[C:7:0:0]后，你就能建造[C:6:0:0]木匠工坊[C:7:0:0]。
+Most Workshops require building material, such as Wood or Boulders.	[C:7:0:0]大多数[C:6:0:0]工坊[C:7:0:0]都需要[C:6:0:1]木材[C:7:0:0]或[C:6:0:1]石材[C:7:0:0]等建筑材料。
+If you have some Wood stockpiled, you'll be able to place a Carpenter's Workshop.	[C:7:0:0]储备了一些[C:6:0:1]木材[C:7:0:0]后，你就能建造[C:6:0:0]木匠工坊[C:7:0:0]。
 Click Workshops -> Carpenter and place the shop in an empty area on the surface or underground.	[C:7:0:0]点击“[C:5:0:1]工坊[C:7:0:0] → [C:5:0:1]木匠工坊[C:7:0:0]”，在地表或地下的空地上放置工坊。
 When unpaused, a worker should now build the Workshop.	[C:7:0:0]解除暂停后，工人应该就会开始建造[C:6:0:0]工坊[C:7:0:0]。
 Once the worker is done, click on the building to select it.	工人完工后，点击建筑选中它。
 Your industrious citizens will perform any task added to the Workshop.	[C:7:0:0]勤劳的居民会执行你添加到[C:6:0:0]工坊[C:7:0:0]中的各项任务。
 Most objects that are placed, like Doors and Furniture, must first be built in a Workshop.	[C:6:0:1]门[C:7:0:0]和[C:6:0:1]家具[C:7:0:0]等大多数需要放置的物品，都必须先在[C:6:0:0]工坊[C:7:0:0]中制作。
-Furniture created at the Carpenter's Workshop usually takes one Wood to build. Add a task and make a Bed.	[C:6:0:0]木匠工坊[C:7:0:0]制作的[C:6:0:1]家具[C:7:0:0]通常每件消耗一份[C:6:0:1]木头[C:7:0:0]。添加任务，制作一张[C:6:0:1]床[C:7:0:0]。
+Furniture created at the Carpenter's Workshop usually takes one Wood to build. Add a task and make a Bed.	[C:6:0:0]木匠工坊[C:7:0:0]制作的[C:6:0:1]家具[C:7:0:0]通常每件消耗一份[C:6:0:1]木材[C:7:0:0]。添加任务，制作一张[C:6:0:1]床[C:7:0:0]。
 Chop down more trees if necessary. Unpause and wait for the Bed to be completed.	[C:7:0:0]必要时再砍一些树。解除暂停，等待[C:6:0:1]床[C:7:0:0]制作完成。
 Now that you have a Bed you can place in it the fortress.	[C:7:0:0]现在你有了一张[C:6:0:1]床[C:7:0:0]，可以将它放进要塞。
 Use the Build menu to place it in a room underground, just like the Workshop. Dig a new room first if you like.	[C:7:0:0]和放置[C:6:0:0]工坊[C:7:0:0]一样，使用“[C:5:0:1]建造[C:7:0:0]”菜单，将床放进地下房间。也可以先另挖一个房间。
@@ -136,7 +136,7 @@ Now your Planters, those that can access both the Farmplot and the Spawn, will p
 If you'd like to focus a few of your citizens on farming, which gives skill benefits, you can assign them to the Planters work detail from the Labor menu.	[C:7:0:0]若想让部分居民专职耕种，以获得技能提升带来的好处，可以在“[C:5:0:1]劳动[C:7:0:0]”菜单中将他们分配到“[C:2:0:0]播种者[C:7:0:0]”劳动分组。
 Fertilizer and skilled Planters have a direct impact on crop yield.	[C:6:0:1]肥料[C:7:0:0]和熟练的[C:2:0:0]播种者[C:7:0:0]会直接影响作物产量。
 These effects are more pronounced deep underground where you can locate the cavern biome and its rich soil.	在地下深处的洞穴生态群系及其肥沃土壤中，这些效果更加明显。
-Potash is the fertilizer of choice, and it can be created in the Ashery, using Ash from Wood burned in a Wood Furnace. A Water Source zone and a Bucket are also required.	[C:6:0:1]草碱[C:7:0:0]是合适的肥料。先在[C:6:0:0]烧木窑[C:7:0:0]中燃烧[C:6:0:1]木头[C:7:0:0]获得[C:6:0:1]灰烬[C:7:0:0]，再用[C:6:0:0]灰坊[C:7:0:0]制作草碱。这还需要一个[C:3:0:0]取水区[C:7:0:0]和一只[C:6:0:1]水桶[C:7:0:0]。
+Potash is the fertilizer of choice, and it can be created in the Ashery, using Ash from Wood burned in a Wood Furnace. A Water Source zone and a Bucket are also required.	[C:6:0:1]草碱[C:7:0:0]是合适的肥料。先在[C:6:0:0]烧木窑[C:7:0:0]中燃烧[C:6:0:1]木材[C:7:0:0]获得[C:6:0:1]灰烬[C:7:0:0]，再用[C:6:0:0]灰坊[C:7:0:0]制作草碱。这还需要一个[C:3:0:0]取水区[C:7:0:0]和一只[C:6:0:1]水桶[C:7:0:0]。
 Fertilizer is not needed to farm.	[C:7:0:0]不[C:6:0:1]施肥[C:7:0:0]也可以种植。
 If there is a river or pond nearby you may consider fishing. If the water isn't frozen, a worker with the	如果附近有河流或池塘，可以考虑钓鱼。只要水没有结冰，被分配了
 fishing labor assigned will begin fishing automatically.	捕鱼工作的工人就会自动开始捕鱼。
@@ -203,13 +203,13 @@ You can also cause trouble if you'd like to raid your neighbors.	你也可以主
 Raids are created by clicking on any site not belonging to your civilization.	点击不属于你所在政权的地点，即可安排袭击。
 Work orders are used to automate Tasks in Workshops.	[C:7:0:0]工单用于自动安排[C:6:0:0]工坊[C:3:0:1]任务[C:7:0:0]。
 These work orders are set to complete a certain number of Tasks and can be given start conditions.	[C:7:0:0]可以设置订单完成一定数量的[C:3:0:1]任务[C:7:0:0]，并为其指定启动条件。
-For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作木制储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。
+For instance, you can create an order to Make Wooden Bins if you are out of empty ones, to Brew Drinks if you are running low, or to Make Five Statues every month.	[C:7:0:0]例如，没有空箱子时[C:3:0:1]制作树木储物箱[C:7:0:0]，饮料不足时[C:3:0:1]酿酒[C:7:0:0]，或每个月[C:3:0:1]制作五座雕像[C:7:0:0]。
 You can limit work orders to a number of Workshops.	[C:7:0:0]你可以限制执行订单的[C:6:0:0]工坊[C:7:0:0]数量。
 You can also create work orders at specific Workshops from their building sheet.	[C:7:0:0]也可以从某座[C:6:0:0]工坊[C:7:0:0]的建筑信息面板中，创建仅由该工坊执行的订单。
 The system is reasonably powerful and you can eventually automate almost all of your production if you wish.	这套系统功能相当强大，只要愿意，最终几乎可以让所有生产自动进行。
 If you find that your stockpiles are filling up too fast, you can create room by building Bins,	[C:7:0:0]如果储物堆满得太快，可以制作[C:6:0:1]储物箱[C:7:0:0]、
 Barrels, and Bags. Barrels are used to store Food. Bags are used to store Seeds	[C:6:0:1]桶[C:7:0:0]和[C:6:0:1]袋子[C:7:0:0]来腾出空间。[C:6:0:1]桶[C:7:0:0]用来储存[C:6:0:1]食物[C:7:0:0]，[C:6:0:1]袋子[C:7:0:0]用来储存[C:6:0:1]种子[C:7:0:0]
-(and some other things like Sand). Bins hold just about everything else except Furniture, Wood and Boulders.	[C:7:0:0]以及[C:6:0:1]沙子[C:7:0:0]等其他物品。除[C:6:0:1]家具[C:7:0:0]、[C:6:0:1]木头[C:7:0:0]和[C:6:0:1]石材[C:7:0:0]外，[C:6:0:1]储物箱[C:7:0:0]几乎能装下所有其他东西。
+(and some other things like Sand). Bins hold just about everything else except Furniture, Wood and Boulders.	[C:7:0:0]以及[C:6:0:1]沙子[C:7:0:0]等其他物品。除[C:6:0:1]家具[C:7:0:0]、[C:6:0:1]木材[C:7:0:0]和[C:6:0:1]石材[C:7:0:0]外，[C:6:0:1]储物箱[C:7:0:0]几乎能装下所有其他东西。
 The Carpenter's Workshop is the best place to make lightweight Bins and Barrels, but they can also be made at	[C:6:0:0]木匠工坊[C:7:0:0]最适合制作轻便的[C:6:0:1]储物箱[C:7:0:0]和[C:6:0:1]桶[C:7:0:0]，不过也可以在
 the Stoneworker's Shop and the Metalsmith's Forge. Bags are created at the Clothier's Shop or the Leatherworks.	[C:6:0:0]石匠工坊[C:7:0:0]和[C:6:0:0]金属锻造坊[C:7:0:0]制作。[C:6:0:1]袋子[C:7:0:0]则由[C:6:0:0]裁缝工坊[C:7:0:0]或[C:6:0:0]皮革工坊[C:7:0:0]制作。
 When the caravan arrives at the Trade Depot, you must click on the depot and select "Bring Goods to Depot".	[C:7:0:0]商队抵达[C:6:0:0]贸易站[C:7:0:0]后，点击贸易站，选择[C:5:0:1]“将货物运往贸易站”[C:7:0:0]。
@@ -255,7 +255,7 @@ One way is to simply re-designate the damp stone for mining in order to build a 
 You can then build Walls around the stairs until the leaking water is blocked off.	[C:7:0:0]然后在楼梯周围建[C:6:0:0]墙[C:7:0:0]，直到堵住渗水。
 Repeat this pattern until you get below the aquifer.	重复这一过程，直到穿过含水层。
 Eventually the Clothing that your residents start with will rot away.	[C:7:0:0]居民启程时穿的[C:6:0:1]衣服[C:7:0:0]，最终会腐烂损坏。
-While it is possible to trade for Clothing, Cloth, or Leather, you can also farm Pigtails,	[C:7:0:0]虽然可以通过交易购买[C:6:0:1]衣服[C:7:0:0]、[C:6:0:1]布料[C:7:0:0]和[C:6:0:1]皮革[C:7:0:0]，但你也可以种植[C:6:0:1]猪尾草[C:7:0:0]，
+While it is possible to trade for Clothing, Cloth, or Leather, you can also farm Pigtails,	[C:7:0:0]虽然可以通过交易购买[C:6:0:1]衣服[C:7:0:0]、[C:6:0:1]布[C:7:0:0]和[C:6:0:1]皮革[C:7:0:0]，但你也可以种植[C:6:0:1]猪尾草[C:7:0:0]，
 gather Silk, or tan Skins for Leather.	[C:7:0:0]采集[C:6:0:1]丝[C:7:0:0]，或将[C:6:0:1]兽皮[C:7:0:0]鞣制成[C:6:0:1]皮革[C:7:0:0]。
 After harvesting plants like the Pigtail, first process them at the Farmer's Workshop, then	[C:7:0:0]收获[C:6:0:1]猪尾草[C:7:0:0]等植物后，先在[C:6:0:0]农夫工坊[C:7:0:0]加工，接着
 weave Cloth at the Loom, then make Clothing at the Clothier.	[C:7:0:0]在[C:6:0:0]织布机[C:7:0:0]上织成[C:6:0:1]布[C:7:0:0]，再由[C:6:0:0]裁缝[C:7:0:0]制成[C:6:0:1]衣服[C:7:0:0]。
@@ -489,7 +489,7 @@ Compositions take more time, and you'll pass through a period of time similar to
 This is the butchering and crafting menu.	这是屠宰与制作菜单。
 Butchering requires a sharp-edged weapon or tool, as well as a butcherable carcass. Butchering is an excellent source of meat. The other products cannot currently be used.	屠宰需要有刃口的武器或工具，以及可以屠宰的尸体。屠宰是很好的肉食来源，但其他产物目前还无法使用。
 Crafting in the base game is limited to constructing a stone axe necessary to fell trees. You can pick up few rocks and a tree branch to get started.	原版游戏的制作仅限于打造伐木所需的石斧。捡几块石头和一根树枝，就可以开始。
-Any ability you possess that doesn't fit elsewhere will appear here. For instance, many creatures can spit or pet animals. Others can breathe fire.	你拥有但不属于其他分类的能力会显示在这里。例如，许多生物可以吐唾沫或抚摸动物，有些还能喷火。
+Any ability you possess that doesn't fit elsewhere will appear here. For instance, many creatures can spit or pet animals. Others can breathe fire.	你拥有但不属于其他分类的能力会显示在这里。例如，许多生物可以唾液或抚摸动物，有些还能喷火。
 Some abilities, like the flight of winged creatures, can just be used during regular movement without needing this menu.	某些能力，例如有翼生物的飞行，可以直接在普通移动时使用，无需打开这个菜单。
 If you obtain any magical powers during your adventure, you will find them in this menu.	如果在冒险中获得魔法力量，也会在此菜单中找到。
 This is the attack menu. Here you can strike creatures with an item or body part, or you can initiate a dodge or parry movement.	这是攻击菜单。可以用物品或身体部位打击生物，也可以发起闪避或招架动作。
@@ -640,7 +640,7 @@ The guides here will suggest other possible avenues of play.	这里的指南还�
 And remember: Losing is fun, and now it's personal!	记住：[C:2:0:1]输了才好玩，而这次轮到你亲身体验！[C:7:0:0]
 The game is open-ended and you can do whatever you choose. If you'd like a goal, try to become a barony, then a Mountainhome.	游戏是开放式的，你可以随心所欲。若想有个目标，不妨先晋升为男爵领，再发展为山之家。
 More likely, your dwarves will starve, unless you read the first few guides here!	不过，你的矮人更可能先饿死，除非你读一读这里前几篇指南！
-Stockpile wood	储存木头
+Stockpile wood	储存木材
 Open building mode	打开建筑模式
 Place carpenter's workshop	放置木匠工坊
 Construct workshop	建造工坊

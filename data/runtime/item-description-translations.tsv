@@ -301,8 +301,8 @@ sentence	{p} / Imported Food	{p1} / 进口食物
 sentence	Imported Food	进口食物
 sentence	{p} / Imported Clothing	{p1} / 进口服装
 sentence	Imported Clothing	进口服装
-sentence	{p} / Cloth	{p1} / 布料
-sentence	Cloth	布料
+sentence	{p} / Cloth	{p1} / 布
+sentence	Cloth	布
 sentence	{p} / Leather	{p1} / 皮革
 sentence	Leather	皮革
 sentence	{p} / Woven Clothing	{p1} / 织物服装
@@ -325,8 +325,8 @@ sentence	{p} / Metal Crafts	{p1} / 金属工艺品
 sentence	Metal Crafts	金属工艺品
 sentence	{p} / Leather Goods	{p1} / 皮革制品
 sentence	Leather Goods	皮革制品
-sentence	{p} / Wooden Furniture	{p1} / 木制家具
-sentence	Wooden Furniture	木制家具
+sentence	{p} / Wooden Furniture	{p1} / 树木家具
+sentence	Wooden Furniture	树木家具
 sentence	{p} / Stone Furniture	{p1} / 石制家具
 sentence	Stone Furniture	石制家具
 sentence	{p} / Metal Furniture	{p1} / 金属家具

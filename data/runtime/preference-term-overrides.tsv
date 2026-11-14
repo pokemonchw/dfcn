@@ -33,20 +33,20 @@ boiling miohippus cheese	沸腾的中新马奶酪
 # translations are empty. These are complete native material-state names,
 # used by material preferences and the shared item-name supplier.
 sorghum leaf dye	高粱叶染料
-rice husk dye	稻壳染料
+rice husk dye	稻米谷壳染料
 red spinach leaf dye	红菠菜叶染料
 cabbage leaf dye	卷心菜叶染料
 carrot dye	胡萝卜染料
 eggplant dye	茄子染料
 onion skin dye	洋葱皮染料
 peanut shell dye	花生壳染料
-potato skin dye	马铃薯皮染料
-radish dye	萝卜染料
+potato skin dye	马铃薯表皮染料
+radish dye	小萝卜染料
 rhubarb leaf dye	大黄叶染料
 spinach leaf dye	菠菜叶染料
-sweet potato skin dye	甘薯皮染料
-tomato skin dye	番茄皮染料
-turnip skin dye	芜菁皮染料
+sweet potato skin dye	甘薯表皮染料
+tomato skin dye	番茄表皮染料
+turnip skin dye	芜菁表皮染料
 watermelon dye	西瓜染料
 grape dye	葡萄染料
 cranberry dye	蔓越莓染料
@@ -56,7 +56,7 @@ blackberry dye	黑莓染料
 raspberry dye	树莓染料
 pineapple leaf dye	菠萝叶染料
 banana leaf dye	香蕉叶染料
-banana peel dye	香蕉皮染料
+banana peel dye	香蕉果皮染料
 coffee bean dye	咖啡豆染料
 guava bark dye	番石榴树皮染料
 guava leaf dye	番石榴叶染料
@@ -65,7 +65,7 @@ avocado skin dye	鳄梨皮染料
 olive bark dye	橄榄树皮染料
 olive leaf dye	橄榄叶染料
 pomegranate leaf dye	石榴叶染料
-pomegranate rind dye	石榴皮染料
+pomegranate rind dye	石榴果皮染料
 pomegranate bark dye	石榴树皮染料
 almond shell dye	扁桃壳染料
 apple bark dye	苹果树皮染料

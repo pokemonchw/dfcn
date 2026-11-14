@@ -1,0 +1,2559 @@
+# Subscribed Dwarvemon terminology
+# Paths are relative to the installed translation package root.
+
+diff --git a/dfcn/rulesets/zh-Hans/creatures/name/raw_names.toml b/dfcn/rulesets/zh-Hans/creatures/name/raw_names.toml
+--- a/dfcn/rulesets/zh-Hans/creatures/name/raw_names.toml
++++ b/dfcn/rulesets/zh-Hans/creatures/name/raw_names.toml
+@@ -4,9 +4,9 @@
+ [[rulesets]]
+ name = "singular"
+ [rulesets.rules]
+-"dragon hatchling" = "幼龙"
++"dragon hatchling" = "巨龙幼崽"
+ 
+ [[rulesets]]
+ name = "plural"
+ [rulesets.rules]
+-"dragon hatchlings" = "幼龙"
++"dragon hatchlings" = "巨龙幼崽"
+diff --git a/dfcn/rulesets/zh-Hans/health/bodypart/dwarvemon.toml b/dfcn/rulesets/zh-Hans/health/bodypart/dwarvemon.toml
+--- a/dfcn/rulesets/zh-Hans/health/bodypart/dwarvemon.toml
++++ b/dfcn/rulesets/zh-Hans/health/bodypart/dwarvemon.toml
+@@ -29,7 +29,7 @@
+ "apple underside" = "苹果底面"
+ "apples" = "苹果"
+ "apron" = "围裙"
+-"arm" = "臂"
++"arm" = "手臂"
+ "arm bands" = "臂环带"
+ "arm feathers" = "臂羽毛"
+ "arm fin" = "臂鳍"
+@@ -42,7 +42,7 @@
+ "arm tentacles" = "臂触手"
+ "arm undersides" = "臂底面"
+ "armor" = "盔甲"
+-"arms" = "臂"
++"arms" = "手臂"
+ "arms and hair" = "臂和毛发"
+ "arms and legs" = "臂和腿"
+ "arms and lower legs" = "臂和下腿"
+@@ -50,7 +50,7 @@
+ "arrow pattern and tail base" = "箭矢图案和尾基础"
+ "arrow patterns" = "箭矢图案"
+ "artifice" = "机巧"
+-"back" = "背"
++"back" = "背部"
+ "back and wing tips" = "背和翅膀尖端"
+ "back feet" = "背足"
+ "back fur and underside" = "背毛皮和底面"
+@@ -65,7 +65,7 @@
+ "bands" = "环带"
+ "barbels" = "触须"
+ "bead" = "珠"
+-"beak" = "尖喙"
++"beak" = "鸟喙"
+ "beak and ridges" = "尖喙和脊"
+ "beak and wing base" = "尖喙和翅根"
+ "beak tip" = "尖喙尖端"
+@@ -73,7 +73,7 @@
+ "beak topside" = "尖喙顶面"
+ "beak underside" = "尖喙底面"
+ "beak underside and feet" = "尖喙底面和足"
+-"beaks" = "尖喙"
++"beaks" = "鸟喙"
+ "beard" = "胡须"
+ "beard and moustache" = "胡须和胡须"
+ "bell" = "铃铛"
+@@ -83,10 +83,10 @@
+ "berries" = "树果"
+ "berry decorations" = "树果装饰"
+ "bib pattern" = "围兜图案"
+-"bill" = "喙"
++"bill" = "扁喙"
+ "bill and webbing" = "喙和蹼"
+-"blade" = "刃"
+-"blades" = "刃"
++"blade" = "刀刃"
++"blades" = "刀刃"
+ "blaze" = "猛火"
+ "blaze and back" = "猛火和背"
+ "block" = "挡路"
+@@ -106,7 +106,7 @@
+ "bolt" = "弩矢"
+ "bolt like tail" = "弩矢状尾"
+ "bolt-like protrusion" = "弩矢－状突起"
+-"bolts" = "电流"
++"bolts" = "弩矢"
+ "bone" = "骨"
+ "bone skirt" = "骨裙"
+ "bottom half" = "下半部"
+@@ -164,7 +164,7 @@
+ "cheek pouches" = "颊囊"
+ "cheeks" = "脸颊"
+ "cheeks and ridges" = "脸颊和脊"
+-"chest" = "胸"
++"chest" = "箱子"
+ "chest and back" = "胸和背"
+ "chest and belly" = "胸和腹部"
+ "chest and head" = "胸和头"
+@@ -180,7 +180,7 @@
+ "chest spike" = "胸尖刺"
+ "chest structure" = "胸结构"
+ "chests" = "箱子"
+-"chitin" = "几丁质"
++"chitin" = "甲壳"
+ "circular patterns" = "圆形图案"
+ "claw" = "爪"
+ "claw markings" = "爪纹路"
+@@ -189,14 +189,14 @@
+ "clay" = "黏土"
+ "cloak" = "斗篷"
+ "cloaks" = "斗篷"
+-"cloth" = "布匹"
++"cloth" = "布"
+ "cloud" = "云"
+ "cloud portions" = "云团"
+ "clover decorations" = "三叶草装饰"
+ "coal pile" = "煤堆"
+ "coat" = "大衣"
+ "code" = "编码"
+-"coif" = "发帽"
++"coif" = "链甲头套"
+ "coin" = "硬币"
+ "collar" = "颈圈"
+ "collar and tail tip" = "颈圈和尾尖端"
+@@ -241,10 +241,10 @@
+ "dravite" = "镁电气石"
+ "dreadlock" = "脏辫"
+ "dreadlocks" = "脏辫"
+-"dress" = "裙"
++"dress" = "裙装"
+ "dress and streamers" = "裙和飘带"
+ "drumset" = "架子鼓"
+-"ear" = "耳"
++"ear" = "耳朵"
+ "ear and ribbon markings" = "耳和缎带纹路"
+ "ear and tail feathers" = "耳和尾羽"
+ "ear bases" = "耳基部"
+@@ -255,7 +255,7 @@
+ "ear tips" = "耳尖端"
+ "ear tufts and markings" = "耳羽和纹路"
+ "ear tufts and tail tip" = "耳羽和尾尖端"
+-"ears" = "耳"
++"ears" = "耳朵"
+ "ears and feet" = "耳和足"
+ "ears and markings" = "耳和纹路"
+ "ears and membrane" = "耳和膜"
+@@ -270,7 +270,7 @@
+ "exhaust" = "排气管"
+ "exhausts" = "排气管"
+ "exoskeleton" = "外骨骼"
+-"eye" = "眼"
++"eye" = "眼睛"
+ "eye circles" = "眼圆圈"
+ "eye covers" = "眼罩"
+ "eye highlights" = "眼亮色部分"
+@@ -296,7 +296,7 @@
+ "eyelashes" = "睫毛"
+ "eyelids" = "眼睑"
+ "eyelids and horn tips" = "眼睑和角尖端"
+-"eyes" = "眼"
++"eyes" = "眼睛"
+ "eyes and antenna tips" = "眼和触角尖端"
+ "eyes and tips" = "眼和尖端"
+ "eyess" = "眼"
+@@ -310,13 +310,13 @@
+ "face stripe" = "面部条纹"
+ "faceplate" = "面板"
+ "faceplate and claws" = "面板和爪"
+-"fang" = "牙"
++"fang" = "尖牙"
+ "fangs" = "獠牙"
+ "feather" = "羽毛"
+ "feathers" = "羽毛"
+ "feathery ruff" = "羽毛翎领"
+ "feelers" = "触角"
+-"feet" = "足"
++"feet" = "脚"
+ "feet and markings" = "足和纹路"
+ "feet and tail tip" = "足和尾尖端"
+ "feet pads" = "足肉垫"
+@@ -354,8 +354,8 @@
+ "first brain" = "第一脑"
+ "first chest ribbon" = "第一胸缎带"
+ "first disc" = "第一圆盘"
+-"first eye" = "第一眼睛"
+-"first finger" = "食指"
++"first eye" = "第一只眼"
++"first finger" = "第一手指"
+ "first foot" = "第一脚"
+ "first foot spike" = "第一脚尖刺"
+ "first front left foot" = "第一前左脚"
+@@ -366,7 +366,7 @@
+ "first head" = "第一头"
+ "first head ribbon" = "第一头缎带"
+ "first heart" = "第一心"
+-"first horn" = "第一角"
++"first horn" = "第一只角"
+ "first horn, head" = "第一角，头"
+ "first horn, left head" = "第一角，左头"
+ "first horn, right head" = "第一角，右头"
+@@ -455,12 +455,12 @@
+ "first tail finger, right tail hand" = "第一尾部手指，右尾巴手"
+ "first tail horn" = "第一尾部角"
+ "first tentacle" = "第一触须"
+-"first toe" = "大脚趾"
++"first toe" = "第一脚趾"
+ "first upper left horn" = "第一上左角"
+ "first upper leg" = "第一上腿"
+ "first upper right horn" = "第一上右角"
+ "first upper vine" = "第一上藤蔓"
+-"fists" = "拳"
++"fists" = "拳头"
+ "five tuft tail" = "五簇尾毛"
+ "flakes" = "碎片"
+ "flame" = "火焰"
+@@ -479,7 +479,7 @@
+ "fluffs" = "绒毛"
+ "fluid" = "液体"
+ "fog" = "雾"
+-"foot" = "足"
++"foot" = "脚"
+ "foot markings" = "足纹路"
+ "forearms" = "前臂"
+ "forehead and chest marking" = "额头和胸纹路"
+@@ -596,7 +596,7 @@
+ "hardened fur" = "硬化的毛皮"
+ "hat" = "帽"
+ "hat tip" = "帽尖端"
+-"head" = "头"
++"head" = "头部"
+ "head and collar fur" = "头和颈圈毛皮"
+ "head and lights" = "头和光"
+ "head and markings" = "头和纹路"
+@@ -646,7 +646,7 @@
+ "heart-shaped marking" = "心脏－形纹路"
+ "heart-shaped pads" = "心脏－形肉垫"
+ "helmet" = "头盔"
+-"hide" = "隐匿"
++"hide" = "兽皮"
+ "hips" = "髋部"
+ "hood" = "兜帽"
+ "hood eyes" = "兜帽眼"
+@@ -691,8 +691,8 @@
+ "knees and back scales" = "膝和背鳞片"
+ "knuckles" = "指关节"
+ "lacy marking" = "蕾丝纹路"
+-"lance" = "长枪"
+-"lances" = "长枪"
++"lance" = "长矛"
++"lances" = "长矛"
+ "large fin" = "大鳍"
+ "large gear" = "大齿轮"
+ "lashes" = "皮鞭"
+@@ -811,7 +811,7 @@
+ "left upper foreleg" = "左前大腿"
+ "left upper incisor" = "左上门牙"
+ "left upper leg" = "左大腿"
+-"left upper tentacle" = "左上触角"
++"left upper tentacle" = "左上触手"
+ "left upper vine" = "左上藤蔓"
+ "left vine tip" = "左藤蔓尖端"
+ "left whip" = "左鞭"
+@@ -940,7 +940,7 @@
+ "muzzle plate" = "口鼻甲片"
+ "nails" = "钉刺"
+ "nape" = "后颈"
+-"neck" = "颈"
++"neck" = "颈部"
+ "neck adornments" = "颈饰物"
+ "neck and beak stripe" = "颈和尖喙条纹"
+ "neck and markings" = "颈和纹路"
+@@ -954,7 +954,7 @@
+ "needle" = "针"
+ "needles" = "针"
+ "ninth tail" = "第九尾"
+-"nose" = "鼻"
++"nose" = "鼻子"
+ "nose and fins" = "鼻和鳍"
+ "nose and magnet" = "鼻和磁铁"
+ "nose and mouth" = "鼻和嘴"
+@@ -1183,14 +1183,14 @@
+ "right upper foreleg" = "右前大腿"
+ "right upper incisor" = "右上门牙"
+ "right upper leg" = "右大腿"
+-"right upper tentacle" = "右上触角"
++"right upper tentacle" = "右上触手"
+ "right upper vine" = "右上藤蔓"
+ "right vine tip" = "右藤蔓尖端"
+ "right whip" = "右鞭"
+ "right wing" = "右翅"
+ "right wing markings" = "右翅纹路"
+-"ring" = "环"
+-"rings" = "环"
++"ring" = "戒指"
++"rings" = "戒指"
+ "rings and bands" = "环和环带"
+ "robe" = "长袍"
+ "rock" = "岩石"
+@@ -1223,9 +1223,9 @@
+ "scarf" = "围巾"
+ "screw" = "螺钉"
+ "screws" = "螺钉"
+-"scythe" = "镰刀"
++"scythe" = "长镰"
+ "scythe tips and toes" = "镰刀尖端和脚趾"
+-"scythes" = "镰刀"
++"scythes" = "长镰"
+ "seamitars and armor" = "贝壳刀和盔甲"
+ "seathes" = "剑鞘"
+ "seaweed" = "海藻"
+@@ -1246,7 +1246,7 @@
+ "second front tentacle" = "第二前触手"
+ "second hand" = "第二手"
+ "second hand spike" = "第二手尖刺"
+-"second head" = "第二头"
++"second head" = "第二个头"
+ "second head ribbon" = "第二头缎带"
+ "second heart" = "第二心脏"
+ "second horn" = "第二个角"
+@@ -1387,7 +1387,7 @@
+ "shoulder tufts" = "肩簇毛"
+ "shoulders" = "肩"
+ "sides" = "锡德"
+-"silk" = "丝布"
++"silk" = "丝绸"
+ "simple eyes" = "单纯眼"
+ "sixth eye" = "第六眼"
+ "sixth finger" = "第六手指"
+@@ -1413,7 +1413,7 @@
+ "smoke like mane" = "烟雾状鬃毛"
+ "snout" = "长鼻子"
+ "snout and markings" = "长鼻子和纹路"
+-"snow" = "降雪"
++"snow" = "雪"
+ "spike" = "尖刺"
+ "spikes" = "尖刺"
+ "spine" = "棘"
+@@ -1434,8 +1434,8 @@
+ "stinger" = "毒刺"
+ "stingers" = "毒刺"
+ "stomach" = "胃"
+-"stone" = "石"
+-"stones" = "石"
++"stone" = "石材"
++"stones" = "石头"
+ "strata" = "地层"
+ "strawberry decorations" = "草莓片装饰"
+ "streak" = "条痕"
+@@ -1455,13 +1455,13 @@
+ "suction cups" = "吸盘"
+ "suction cups and markings" = "吸盘和纹路"
+ "swirl" = "漩涡纹"
+-"sword" = "剑术"
++"sword" = "剑"
+ "sword blade" = "剑术刃"
+ "sword blades" = "剑术刃"
+ "sword hilt" = "剑柄"
+ "sword hilts" = "剑柄"
+ "swords" = "剑"
+-"tail" = "尾"
++"tail" = "尾巴"
+ "tail and markings" = "尾和纹路"
+ "tail and puffs" = "尾和绒球"
+ "tail and shoulders" = "尾和肩"
+@@ -1499,7 +1499,7 @@
+ "tail tip" = "尾尖端"
+ "tail tips" = "尾尖端"
+ "tail tufts" = "尾簇毛"
+-"tails" = "尾"
++"tails" = "尾巴"
+ "talons" = "利爪"
+ "tank top and belt" = "背心和腰带"
+ "tassels" = "流苏"
+@@ -1507,7 +1507,7 @@
+ "tea caddy" = "茶罐"
+ "teacup" = "茶杯"
+ "teapot" = "茶壶"
+-"teeth" = "牙"
++"teeth" = "牙齿"
+ "tendrils" = "卷须"
+ "tentacle" = "触手"
+ "tentacle hand" = "触手手"
+@@ -1597,9 +1597,9 @@
+ "thorax" = "胸廓"
+ "thorax and abdomen" = "胸廓和腹部"
+ "thorn" = "刺"
+-"thorns" = "刺"
++"thorns" = "尖刺"
+ "thorns and markings" = "刺和纹路"
+-"thread" = "丝线"
++"thread" = "线"
+ "three body stripes" = "三条身体条纹"
+ "three tuft tail" = "三簇尾毛"
+ "throat sac" = "喉咙囊"
+@@ -1611,8 +1611,8 @@
+ "toe" = "脚趾"
+ "toenails" = "趾甲"
+ "toes" = "脚趾"
+-"tongue" = "舌"
+-"tooth" = "牙"
++"tongue" = "舌头"
++"tooth" = "牙齿"
+ "top" = "顶部"
+ "top half" = "上半部"
+ "top horn" = "顶部角"
+@@ -1725,7 +1725,7 @@
+ "wing undersides" = "翅膀底面"
+ "wings" = "翅膀"
+ "wings top half" = "翅膀上半部"
+-"wire" = "铁丝"
++"wire" = "金属丝"
+ "wiskers" = "胡须"
+ "wisp" = "缕"
+ "wisps" = "缕"
+diff --git a/dfcn/rulesets/zh-Hans/health/bodypart/raw_names.toml b/dfcn/rulesets/zh-Hans/health/bodypart/raw_names.toml
+--- a/dfcn/rulesets/zh-Hans/health/bodypart/raw_names.toml
++++ b/dfcn/rulesets/zh-Hans/health/bodypart/raw_names.toml
+@@ -3,9 +3,9 @@
+ 
+ [[rulesets]]
+ [rulesets.rules]
+-"bill" = "喙"
++"bill" = "扁喙"
+ "brain" = "脑"
+-"eye" = "眼"
+-"tail" = "尾"
+-"teeth" = "牙"
+-"tooth" = "牙"
++"eye" = "眼睛"
++"tail" = "尾巴"
++"teeth" = "牙齿"
++"tooth" = "牙齿"
+diff --git a/dfcn/rulesets/zh-Hans/items/dwarvemon.toml b/dfcn/rulesets/zh-Hans/items/dwarvemon.toml
+--- a/dfcn/rulesets/zh-Hans/items/dwarvemon.toml
++++ b/dfcn/rulesets/zh-Hans/items/dwarvemon.toml
+@@ -44,7 +44,7 @@
+ "Balm Mushroom" = "芳香蘑菇"
+ "Balms" = "镇宝"
+ "Band" = "绑带"
+-"Bands" = "环带"
++"Bands" = "绑带"
+ "Banettite" = "诅咒娃娃进化石"
+ "Bang" = "声弹"
+ "Bangs" = "声弹"
+@@ -154,7 +154,7 @@
+ "Cracked Pot" = "破裂的茶壶"
+ "Cracked Pots" = "破裂的茶壶"
+ "Crest" = "冠"
+-"Crests" = "头冠"
++"Crests" = "冠"
+ "Cufant Tarnish" = "铜象的锈"
+ "Cuff" = "袖口"
+ "Custap Berry" = "释陀果"
+@@ -237,7 +237,7 @@
+ "Fairy Tera Shard" = "妖精太晶碎块"
+ "Falinks Sweat" = "列阵兵的汗"
+ "Fang" = "牙"
+-"Fangs" = "獠牙"
++"Fangs" = "牙"
+ "Fast Ball" = "速度球"
+ "Feather" = "羽毛"
+ "Feather Ball" = "飞羽球"
+@@ -258,7 +258,7 @@
+ "Flame Plate" = "火球石板"
+ "Float Stone" = "轻石"
+ "Fluffy Tail" = "向尾喵的尾巴"
+-"Fluffy Tails" = "蓬松的尾巴"
++"Fluffy Tails" = "向尾喵的尾巴"
+ "Flute" = "哨子"
+ "Flutes" = "哨子"
+ "Flying Gem" = "飞行宝石"
+@@ -544,10 +544,10 @@
+ "Poke Ball" = "精灵球"
+ "Poke Beanstalk seed" = "宝可豆藤种子"
+ "Poke Beanstalk seeds" = "宝可豆藤种子"
+-"Poke Doll" = "宝可梦玩偶"
+-"Poke Dolls" = "宝可梦玩偶"
+-"Poke Toy" = "宝可梦玩具"
+-"Poke Toys" = "宝可梦玩具"
++"Poke Doll" = "皮皮玩偶"
++"Poke Dolls" = "皮皮玩偶"
++"Poke Toy" = "宝可尾草"
++"Poke Toys" = "宝可尾草"
+ "Pokeball thrower" = "精灵球投掷者"
+ "Pokeball throwers" = "精灵球投掷者"
+ "Pokeshi Doll" = "宝可梦木偶"
+@@ -662,7 +662,7 @@
+ "Shaderoot Carrot" = "黑萝卜"
+ "Shalour Sable" = "娑罗沙布蕾"
+ "Share" = "分享"
+-"Shares" = "夏尔"
++"Shares" = "分享"
+ "Sharp Beak" = "锐利鸟嘴"
+ "Sharpedonite" = "巨牙鲨进化石"
+ "Shed Shell" = "美丽空壳"
+@@ -703,7 +703,7 @@
+ "Soul Dew" = "心之水滴"
+ "Sour Herba Mystica" = "秘传：酸味料"
+ "Sp. Atk" = "特攻击"
+-"Sp. Atks" = "特攻"
++"Sp. Atks" = "特攻击"
+ "Sp. Def" = "特防"
+ "Sp. Defs" = "特防"
+ "Sparkling Stone" = "光辉石"
+@@ -739,8 +739,8 @@
+ "Sweet Herba Mystica" = "秘传：甜味料"
+ "Swift Feather" = "瞬发之羽"
+ "Swift Mochi" = "瞬发粘糕"
+-"Sword" = "剑术"
+-"Swords" = "剑"
++"Sword" = "剑"
++"Swords" = "剑术"
+ "Syrupy Apple" = "蜜汁苹果"
+ "Tadbulb Mucus" = "光蚪仔的黏液"
+ "Tamato Berry" = "茄番果"
+@@ -809,7 +809,7 @@
+ "X Accuracy" = "命中强化"
+ "X Attack" = "力量强化"
+ "X Defense" = "防御强化"
+-"X Sp. Atk" = "特攻强化"
++"X Sp. Atk" = "特攻击强化"
+ "X Sp. Def" = "特防强化"
+ "X Speed" = "速度强化"
+ "Yache Berry" = "番荔果"
+@@ -828,7 +828,7 @@
+ "spray bottle" = "喷出瓶"
+ "spray bottles" = "喷出瓶"
+ "whistle" = "鸣哨"
+-"whistles" = "口哨"
++"whistles" = "鸣哨"
+ 
+ [[rulesets]]
+ name = "tool"
+@@ -849,7 +849,7 @@
+ "Balm" = "镇宝"
+ "Balms" = "镇宝"
+ "Band" = "绑带"
+-"Bands" = "环带"
++"Bands" = "绑带"
+ "Bang" = "声弹"
+ "Bangs" = "声弹"
+ "Barb" = "刺针"
+@@ -891,7 +891,7 @@
+ "Cracked Pot" = "破裂的茶壶"
+ "Cracked Pots" = "破裂的茶壶"
+ "Crest" = "冠"
+-"Crests" = "头冠"
++"Crests" = "冠"
+ "Cuff" = "袖口"
+ "Darkness" = "黑暗"
+ "Defense" = "防御"
+@@ -917,7 +917,7 @@
+ "Extender" = "延长"
+ "Extenders" = "延长"
+ "Fang" = "牙"
+-"Fangs" = "獠牙"
++"Fangs" = "牙"
+ "Feather" = "羽毛"
+ "Feathers" = "羽毛"
+ "Glass" = "玻璃"
+@@ -981,7 +981,7 @@
+ "Seal Ball Capsules" = "贴纸球壳"
+ "Seals" = "贴纸"
+ "Share" = "分享"
+-"Shares" = "夏尔"
++"Shares" = "分享"
+ "Shell" = "壳"
+ "Shells" = "壳"
+ "Shield" = "盾牌"
+@@ -993,7 +993,7 @@
+ "Soft Sand" = "柔软沙子"
+ "Soft Sands" = "柔软沙子"
+ "Sp. Atk" = "特攻击"
+-"Sp. Atks" = "特攻"
++"Sp. Atks" = "特攻击"
+ "Sp. Def" = "特防"
+ "Sp. Defs" = "特防"
+ "Speed" = "速度"
+@@ -1054,11 +1054,11 @@
+ name = "toy"
+ [rulesets.rules]
+ "Fluffy Tail" = "向尾喵的尾巴"
+-"Fluffy Tails" = "蓬松的尾巴"
+-"Poke Doll" = "宝可梦玩偶"
+-"Poke Dolls" = "宝可梦玩偶"
+-"Poke Toy" = "宝可梦玩具"
+-"Poke Toys" = "宝可梦玩具"
++"Fluffy Tails" = "向尾喵的尾巴"
++"Poke Doll" = "皮皮玩偶"
++"Poke Dolls" = "皮皮玩偶"
++"Poke Toy" = "宝可尾草"
++"Poke Toys" = "宝可尾草"
+ "Pokeshi Doll" = "宝可梦木偶"
+ "Pokeshi Dolls" = "宝可梦木偶"
+ "spinning top" = "纺纱顶部"
+@@ -1079,15 +1079,15 @@
+ "flute" = "哨子"
+ "flutes" = "哨子"
+ "whistle" = "鸣哨"
+-"whistles" = "口哨"
++"whistles" = "鸣哨"
+ 
+ [[rulesets]]
+ name = "weapon"
+ [rulesets.rules]
+ "Pokeball thrower" = "精灵球投掷者"
+ "Pokeball throwers" = "精灵球投掷者"
+-"Sword" = "剑术"
+-"Swords" = "剑"
++"Sword" = "剑"
++"Swords" = "剑术"
+ "Thick Club" = "粗骨头"
+ "Thick Clubs" = "粗骨头"
+ 
+diff --git a/dfcn/rulesets/zh-Hans/items/dwarvemon_optional.toml b/dfcn/rulesets/zh-Hans/items/dwarvemon_optional.toml
+--- a/dfcn/rulesets/zh-Hans/items/dwarvemon_optional.toml
++++ b/dfcn/rulesets/zh-Hans/items/dwarvemon_optional.toml
+@@ -35,7 +35,7 @@
+ [rulesets.rules]
+ "Accuracy Drink" = "命中饮料"
+ "Ancient Crystal" = "古代结晶"
+-"apple cider" = "苹果酒"
++"apple cider" = "苹果西打酒"
+ "Balloon Berry" = "气球果"
+ "Ban Seed" = "封印种子"
+ "Banana" = "香蕉"
+@@ -47,7 +47,7 @@
+ "Blinker Seed" = "失明种子"
+ "Board" = "板"
+ "Boards" = "板"
+-"bow" = "蝴蝶结"
++"bow" = "弓"
+ "Bravery Charm" = "勇气护符"
+ "Bravery Charms" = "勇气护符"
+ "Buddy-Buddy Poffin" = "好伙伴宝芬"
+diff --git a/dfcn/rulesets/zh-Hans/materials/dwarvemon.toml b/dfcn/rulesets/zh-Hans/materials/dwarvemon.toml
+--- a/dfcn/rulesets/zh-Hans/materials/dwarvemon.toml
++++ b/dfcn/rulesets/zh-Hans/materials/dwarvemon.toml
+@@ -481,7 +481,7 @@
+ "Kelpsy Berry tree wood" = "藻根果树木材"
+ "Key Stone" = "钥石"
+ "King's Leaf" = "王者之叶"
+-"King's Rock" = "国王的岩石"
++"King's Rock" = "王者之证"
+ "Koffing gas" = "瓦斯弹的气体"
+ "Komala drool" = "树枕尾熊口水"
+ "Kommonium Z" = "杖尾鳞甲龙Ｚ"
+@@ -586,8 +586,8 @@
+ "Micle Berry" = "奇秘果"
+ "Micle Berry tree" = "奇秘果树"
+ "Micle Berry tree wood" = "奇秘果树木材"
+-"Milcery cheese" = "小仙奶奶酪"
+-"Milcery cheese powder" = "小仙奶奶酪粉末"
++"Milcery cheese" = "小仙奶酪"
++"Milcery cheese powder" = "小仙奶酪粉末"
+ "Milcery cream" = "小仙奶奶油"
+ "Mild Mint" = "慢吞吞薄荷"
+ "Mimikium Z" = "谜拟ＱＺ"
+@@ -754,7 +754,7 @@
+ "Pumkin Berry" = "金南果"
+ "Pumkin Berry tree" = "金南果树"
+ "Pumkin Berry tree wood" = "金南果树木材"
+-"Pungent Root" = "刺鼻根"
++"Pungent Root" = "水边香草"
+ "Purple" = "紫色"
+ "Purple Juice" = "紫色果汁"
+ "Pyukumuku fluid" = "拳海参液体"
+@@ -937,7 +937,7 @@
+ "Steenee Sweat" = "甜舞妮汗液"
+ "Stellar Tera Shard" = "星晶太晶碎块"
+ "Sticky" = "黏着"
+-"Stone" = "石"
++"Stone" = "石材"
+ "Strib Berry" = "青豌果"
+ "Strib Berry tree" = "青豌果树"
+ "Strib Berry tree wood" = "青豌果树木材"
+@@ -1157,7 +1157,7 @@
+ "boiling Marill oil" = "沸腾的玛力露油"
+ "boiling Marshtomp film" = "沸腾的沼跃鱼薄膜"
+ "boiling Meditite Sweat" = "沸腾的玛沙那的汗"
+-"boiling Milcery cheese" = "沸腾的小仙奶奶酪"
++"boiling Milcery cheese" = "沸腾的小仙奶酪"
+ "boiling Milcery cream" = "沸腾的小仙奶奶油"
+ "boiling Mirror beer" = "沸腾的模仿啤酒"
+ "boiling Misdreavus Tears" = "沸腾的梦妖的眼泪"
+@@ -1257,7 +1257,7 @@
+ "boiling white glass" = "沸腾的白色玻璃"
+ "boiling yellow Aprijuice" = "沸腾的黄色球果汁"
+ "boiling yellow glass" = "沸腾的黄色玻璃"
+-"bone" = "骨"
++"bone" = "骨头"
+ "bubble" = "泡沫"
+ "buzzwole fluid" = "爆肌蚊液体"
+ "calming" = "安神"
+@@ -1311,171 +1311,171 @@
+ "fluff" = "绒毛"
+ "fog" = "雾"
+ "frost" = "霜"
+-"frozen Alcremie cream" = "冻结的霜奶仙奶油"
+-"frozen Alomomola membrane" = "冻结的保姆曼波膜"
+-"frozen Applin juice" = "冻结的啃果虫的果汁"
+-"frozen Applin syrup" = "冻结的啃果虫糖浆"
+-"frozen Arboliva oil" = "冻结的奥利瓦油"
+-"frozen Babiri Berry medicine" = "冻结的霹霹果医学"
+-"frozen Barboach slime" = "冻结的泥泥鳅的黏液"
+-"frozen Bellibolt Mucus" = "冻结的电肚蛙黏液"
+-"frozen Berry Juice" = "冻结的树果汁"
+-"frozen Blue Juice" = "冻结的蓝色果汁"
+-"frozen Bounsweet Sweat" = "冻结的甜竹竹的汗"
++"frozen Alcremie cream" = "结冻的霜奶仙奶油"
++"frozen Alomomola membrane" = "结冻的保姆曼波膜"
++"frozen Applin juice" = "结冻的啃果虫的果汁"
++"frozen Applin syrup" = "结冻的啃果虫糖浆"
++"frozen Arboliva oil" = "结冻的奥利瓦油"
++"frozen Babiri Berry medicine" = "结冻的霹霹果医学"
++"frozen Barboach slime" = "结冻的泥泥鳅的黏液"
++"frozen Bellibolt Mucus" = "结冻的电肚蛙黏液"
++"frozen Berry Juice" = "结冻的树果汁"
++"frozen Blue Juice" = "结冻的蓝色果汁"
++"frozen Bounsweet Sweat" = "结冻的甜竹竹的汗"
+ "frozen Buzzwole fluid" = "冻结的爆肌蚊液体"
+-"frozen Candy wine" = "冻结的糖果酒"
++"frozen Candy wine" = "结冻的糖果酒"
+ "frozen Celesteela gas" = "冻结的铁火辉夜气体"
+-"frozen Centiskorch gas" = "冻结的焚焰蚣气体"
+-"frozen Cetitan Grease" = "冻结的浩大鲸油脂"
+-"frozen Cetoddle Grease" = "冻结的走鲸的油脂"
+-"frozen Cinccino Oil" = "冻结的奇诺栗鼠油"
+-"frozen Clodsire slime" = "冻结的土王粘液"
+-"frozen Colorful Shake" = "冻结的缤纷的奶昔"
+-"frozen Combee royal jelly" = "冻结的三蜜蜂蜂王浆"
+-"frozen Comfey oil" = "冻结的花疗环环油"
+-"frozen Conkeldurr Sweat" = "冻结的修建老匠汗液"
+-"frozen Cosmog gas" = "冻结的科斯莫古气体"
+-"frozen Cradily digestive fluid" = "冻结的摇篮百合消化液体"
+-"frozen Ditto Goo" = "冻结的百变怪的黏糊"
+-"frozen Dolliv oil" = "冻结的奥利纽油"
+-"frozen Drifblim gas" = "冻结的随风球气体"
+-"frozen Drifloon gas" = "冻结的飘飘球的气体"
+-"frozen Duosion gel" = "冻结的双卵细胞球凝胶"
+-"frozen Falinks Sweat" = "冻结的列阵兵的汗"
+-"frozen Finizen Mucus" = "冻结的波普海豚的黏液"
+-"frozen Flapple spit" = "冻结的苹裹龙唾液"
+-"frozen Gabite scale medicine" = "冻结的尖牙陆鲨鳞片医学"
+-"frozen Gastly gas" = "冻结的鬼斯的气体"
+-"frozen Gastly saliva" = "冻结的鬼斯唾液"
+-"frozen Gastrodon ooze" = "冻结的海兔兽黏液"
+-"frozen Gengar saliva" = "冻结的耿鬼唾液"
+-"frozen Gloom nectar" = "冻结的臭臭花花蜜"
+-"frozen Goodra goo" = "冻结的黏美龙稠血"
+-"frozen Goomy goo" = "冻结的黏黏宝的黏液"
+-"frozen Gossifleur pollen tea" = "冻结的幼棉棉花粉茶"
+-"frozen Grafaiai Ink" = "冻结的涂标客墨汁"
+-"frozen Green Juice" = "冻结的绿色果汁"
+-"frozen Grimer Toxin" = "冻结的臭泥的毒素"
+-"frozen Gulpin Mucus" = "冻结的溶食兽的黏液"
+-"frozen Gulpin ooze" = "冻结的溶食兽黏液"
+-"frozen Gurdurr Sweat" = "冻结的铁骨土人汗液"
+-"frozen Haunter gas" = "冻结的鬼斯通气体"
+-"frozen Haunter saliva" = "冻结的鬼斯通唾液"
+-"frozen Hearty beer" = "冻结的旺旺谷啤酒"
+-"frozen Hitmonchan Sweat" = "冻结的快拳郎汗液"
+-"frozen Hitmonlee Sweat" = "冻结的飞腿郎汗液"
+-"frozen Hitmontop Sweat" = "冻结的战舞郎汗液"
+-"frozen Hydrapple syrup" = "冻结的蜜集大蛇糖浆"
+-"frozen Iceroot Carrot wine" = "冻结的冰萝卜酒"
+-"frozen Illumise Fluid" = "冻结的甜甜萤的汁液"
+-"frozen Karrablast poison" = "冻结的盖盖虫毒"
+-"frozen Kelpsy Berry extract" = "冻结的藻根果提取物"
+-"frozen Koffing gas" = "冻结的瓦斯弹的气体"
+-"frozen Komala drool" = "冻结的树枕尾熊口水"
+-"frozen Lickilicky saliva" = "冻结的大舌舔唾液"
+-"frozen Lickitung saliva" = "冻结的大舌头唾液"
+-"frozen Lombre film" = "冻结的莲帽小童薄膜"
+-"frozen Makuhita Sweat" = "冻结的幕下力士的汗"
+-"frozen Marill oil" = "冻结的玛力露油"
+-"frozen Marshtomp film" = "冻结的沼跃鱼薄膜"
+-"frozen Meditite Sweat" = "冻结的玛沙那的汗"
+-"frozen Mega Gengar saliva" = "冻结的超级耿鬼唾液"
+-"frozen Milcery cream" = "冻结的小仙奶奶油"
+-"frozen Mirror beer" = "冻结的模仿啤酒"
+-"frozen Misdreavus Tears" = "冻结的梦妖的眼泪"
+-"frozen Moomoo Milk" = "冻结的哞哞鲜奶"
+-"frozen Moomoo yogurt" = "冻结的哞哞酸奶"
+-"frozen Mudbray Mud" = "冻结的泥驴仔的泥巴"
+-"frozen Mudsdale Mud" = "冻结的重泥挽马淤泥"
+-"frozen Nihilego neurotoxin" = "冻结的虚吾伊德神经毒素"
+-"frozen Oinkologne aroma" = "冻结的飘香豚芳香"
+-"frozen Omanyte gas" = "冻结的菊石兽气体"
+-"frozen Paldean Wooper film" = "冻结的帕底亚的乌波薄膜"
+-"frozen Perilous Soup" = "冻结的危险汤"
+-"frozen Phantump leaf medicine" = "冻结的小木灵叶医学"
+-"frozen Pinap Berry medicine" = "冻结的凰梨果医学"
+-"frozen Pink Juice" = "冻结的粉红色果汁"
+-"frozen Poliwag Slime" = "冻结的蚊香蝌蚪的黏液"
+-"frozen Poliwhirl fluid" = "冻结的蚊香君液体"
+-"frozen Poltchageist tea" = "冻结的斯魔茶茶"
+-"frozen Polteageist tea" = "冻结的怖思壶茶"
+-"frozen Purple Juice" = "冻结的紫色果汁"
+-"frozen Pyukumuku fluid" = "冻结的拳海参液体"
+-"frozen Quagsire slime" = "冻结的沼王粘液"
+-"frozen Quaxly gel" = "冻结的润水鸭凝胶"
+-"frozen Quaxwell gel" = "冻结的涌跃鸭凝胶"
+-"frozen Rare Soda" = "冻结的稀有汽水"
+-"frozen Red Juice" = "冻结的红色果汁"
+-"frozen Remeyo weed medicine" = "冻结的丽美草医学"
+-"frozen Reuniclus gel" = "冻结的人造细胞卵凝胶"
+-"frozen Revavroom Fume" = "冻结的普隆隆姆烟雾"
+-"frozen Salandit gas" = "冻结的夜盗火蜥的气体"
+-"frozen Salveyo weed medicine" = "冻结的三色堇医学"
+-"frozen Scrafty Sweat" = "冻结的头巾混混汗液"
+-"frozen Scrafty spit" = "冻结的头巾混混唾液"
+-"frozen Scraggy Sweat" = "冻结的滑滑小子汗液"
+-"frozen Seismitoad liquid" = "冻结的蟾蜍王液体"
+-"frozen Shaderoot Carrot wine" = "冻结的黑萝卜酒"
+-"frozen Shellos Mucus" = "冻结的无壳海兔的黏液"
+-"frozen Shellos ooze" = "冻结的无壳海兔黏液"
+-"frozen Shelmet poison" = "冻结的小嘴蜗毒"
+-"frozen Shroodle Ink" = "冻结的滋汁鼹的墨汁"
+-"frozen Sinistcha tea" = "冻结的来悲粗茶茶"
+-"frozen Sinistea tea" = "冻结的来悲茶茶"
+-"frozen Sizzlipede gas" = "冻结的烧火蚣气体"
+-"frozen Skuntank fluid" = "冻结的坦克臭鼬液体"
+-"frozen Sliggoo goo" = "冻结的黏美儿稠血"
+-"frozen Smoliv oil" = "冻结的迷你芙的油"
+-"frozen Solosis gel" = "冻结的单卵细胞球凝胶"
+-"frozen Spiritomb fog" = "冻结的花岩怪雾"
+-"frozen Sprigatito aroma" = "冻结的新叶喵芳香"
+-"frozen Springy wine" = "冻结的弹弹菇酒"
+-"frozen Steenee Sweat" = "冻结的甜舞妮汗液"
+-"frozen Stunky fluid" = "冻结的臭鼬噗液体"
+-"frozen Surskit oil" = "冻结的溜溜糖球油"
+-"frozen Surskit syrup" = "冻结的溜溜糖球的蜜"
+-"frozen Swalot ooze" = "冻结的吞食兽黏液"
+-"frozen Tadbulb Mucus" = "冻结的光蚪仔的黏液"
+-"frozen Timburr Sweat" = "冻结的搬运小匠的汗"
+-"frozen Toucannon gas" = "冻结的铳嘴大鸟气体"
+-"frozen Tropius fruit beer" = "冻结的热带龙果实啤酒"
+-"frozen Tsareena Sweat" = "冻结的甜冷美后汗液"
+-"frozen Tynamo slime" = "冻结的麻麻小鱼的黏液"
+-"frozen Tyrogue Sweat" = "冻结的无畏小子汗液"
+-"frozen Ultra Rare Soda" = "冻结的究极稀有汽水"
+-"frozen Umbreon sweat" = "冻结的月亮伊布汗液"
+-"frozen Varoom Fume" = "冻结的噗隆隆的气体"
++"frozen Centiskorch gas" = "结冻的焚焰蚣气体"
++"frozen Cetitan Grease" = "结冻的浩大鲸油脂"
++"frozen Cetoddle Grease" = "结冻的走鲸的油脂"
++"frozen Cinccino Oil" = "结冻的奇诺栗鼠油"
++"frozen Clodsire slime" = "结冻的土王粘液"
++"frozen Colorful Shake" = "结冻的缤纷的奶昔"
++"frozen Combee royal jelly" = "结冻的三蜜蜂蜂王浆"
++"frozen Comfey oil" = "结冻的花疗环环油"
++"frozen Conkeldurr Sweat" = "结冻的修建老匠汗液"
++"frozen Cosmog gas" = "结冻的科斯莫古气体"
++"frozen Cradily digestive fluid" = "结冻的摇篮百合消化液体"
++"frozen Ditto Goo" = "结冻的百变怪的黏糊"
++"frozen Dolliv oil" = "结冻的奥利纽油"
++"frozen Drifblim gas" = "结冻的随风球气体"
++"frozen Drifloon gas" = "结冻的飘飘球的气体"
++"frozen Duosion gel" = "结冻的双卵细胞球凝胶"
++"frozen Falinks Sweat" = "结冻的列阵兵的汗"
++"frozen Finizen Mucus" = "结冻的波普海豚的黏液"
++"frozen Flapple spit" = "结冻的苹裹龙唾液"
++"frozen Gabite scale medicine" = "结冻的尖牙陆鲨鳞片医学"
++"frozen Gastly gas" = "结冻的鬼斯的气体"
++"frozen Gastly saliva" = "结冻的鬼斯唾液"
++"frozen Gastrodon ooze" = "结冻的海兔兽黏液"
++"frozen Gengar saliva" = "结冻的耿鬼唾液"
++"frozen Gloom nectar" = "结冻的臭臭花花蜜"
++"frozen Goodra goo" = "结冻的黏美龙稠血"
++"frozen Goomy goo" = "结冻的黏黏宝的黏液"
++"frozen Gossifleur pollen tea" = "结冻的幼棉棉花粉茶"
++"frozen Grafaiai Ink" = "结冻的涂标客墨汁"
++"frozen Green Juice" = "结冻的绿色果汁"
++"frozen Grimer Toxin" = "结冻的臭泥的毒素"
++"frozen Gulpin Mucus" = "结冻的溶食兽的黏液"
++"frozen Gulpin ooze" = "结冻的溶食兽黏液"
++"frozen Gurdurr Sweat" = "结冻的铁骨土人汗液"
++"frozen Haunter gas" = "结冻的鬼斯通气体"
++"frozen Haunter saliva" = "结冻的鬼斯通唾液"
++"frozen Hearty beer" = "结冻的旺旺谷啤酒"
++"frozen Hitmonchan Sweat" = "结冻的快拳郎汗液"
++"frozen Hitmonlee Sweat" = "结冻的飞腿郎汗液"
++"frozen Hitmontop Sweat" = "结冻的战舞郎汗液"
++"frozen Hydrapple syrup" = "结冻的蜜集大蛇糖浆"
++"frozen Iceroot Carrot wine" = "结冻的冰萝卜酒"
++"frozen Illumise Fluid" = "结冻的甜甜萤的汁液"
++"frozen Karrablast poison" = "结冻的盖盖虫毒"
++"frozen Kelpsy Berry extract" = "结冻的藻根果提取物"
++"frozen Koffing gas" = "结冻的瓦斯弹的气体"
++"frozen Komala drool" = "结冻的树枕尾熊口水"
++"frozen Lickilicky saliva" = "结冻的大舌舔唾液"
++"frozen Lickitung saliva" = "结冻的大舌头唾液"
++"frozen Lombre film" = "结冻的莲帽小童薄膜"
++"frozen Makuhita Sweat" = "结冻的幕下力士的汗"
++"frozen Marill oil" = "结冻的玛力露油"
++"frozen Marshtomp film" = "结冻的沼跃鱼薄膜"
++"frozen Meditite Sweat" = "结冻的玛沙那的汗"
++"frozen Mega Gengar saliva" = "结冻的超级耿鬼唾液"
++"frozen Milcery cream" = "结冻的小仙奶奶油"
++"frozen Mirror beer" = "结冻的模仿啤酒"
++"frozen Misdreavus Tears" = "结冻的梦妖的眼泪"
++"frozen Moomoo Milk" = "结冻的哞哞鲜奶"
++"frozen Moomoo yogurt" = "结冻的哞哞酸奶"
++"frozen Mudbray Mud" = "结冻的泥驴仔的泥巴"
++"frozen Mudsdale Mud" = "结冻的重泥挽马淤泥"
++"frozen Nihilego neurotoxin" = "结冻的虚吾伊德神经毒素"
++"frozen Oinkologne aroma" = "结冻的飘香豚芳香"
++"frozen Omanyte gas" = "结冻的菊石兽气体"
++"frozen Paldean Wooper film" = "结冻的帕底亚的乌波薄膜"
++"frozen Perilous Soup" = "结冻的危险汤"
++"frozen Phantump leaf medicine" = "结冻的小木灵叶医学"
++"frozen Pinap Berry medicine" = "结冻的凰梨果医学"
++"frozen Pink Juice" = "结冻的粉红色果汁"
++"frozen Poliwag Slime" = "结冻的蚊香蝌蚪的黏液"
++"frozen Poliwhirl fluid" = "结冻的蚊香君液体"
++"frozen Poltchageist tea" = "结冻的斯魔茶茶"
++"frozen Polteageist tea" = "结冻的怖思壶茶"
++"frozen Purple Juice" = "结冻的紫色果汁"
++"frozen Pyukumuku fluid" = "结冻的拳海参液体"
++"frozen Quagsire slime" = "结冻的沼王粘液"
++"frozen Quaxly gel" = "结冻的润水鸭凝胶"
++"frozen Quaxwell gel" = "结冻的涌跃鸭凝胶"
++"frozen Rare Soda" = "结冻的稀有汽水"
++"frozen Red Juice" = "结冻的红色果汁"
++"frozen Remeyo weed medicine" = "结冻的丽美草医学"
++"frozen Reuniclus gel" = "结冻的人造细胞卵凝胶"
++"frozen Revavroom Fume" = "结冻的普隆隆姆烟雾"
++"frozen Salandit gas" = "结冻的夜盗火蜥的气体"
++"frozen Salveyo weed medicine" = "结冻的三色堇医学"
++"frozen Scrafty Sweat" = "结冻的头巾混混汗液"
++"frozen Scrafty spit" = "结冻的头巾混混唾液"
++"frozen Scraggy Sweat" = "结冻的滑滑小子汗液"
++"frozen Seismitoad liquid" = "结冻的蟾蜍王液体"
++"frozen Shaderoot Carrot wine" = "结冻的黑萝卜酒"
++"frozen Shellos Mucus" = "结冻的无壳海兔的黏液"
++"frozen Shellos ooze" = "结冻的无壳海兔黏液"
++"frozen Shelmet poison" = "结冻的小嘴蜗毒"
++"frozen Shroodle Ink" = "结冻的滋汁鼹的墨汁"
++"frozen Sinistcha tea" = "结冻的来悲粗茶茶"
++"frozen Sinistea tea" = "结冻的来悲茶茶"
++"frozen Sizzlipede gas" = "结冻的烧火蚣气体"
++"frozen Skuntank fluid" = "结冻的坦克臭鼬液体"
++"frozen Sliggoo goo" = "结冻的黏美儿稠血"
++"frozen Smoliv oil" = "结冻的迷你芙的油"
++"frozen Solosis gel" = "结冻的单卵细胞球凝胶"
++"frozen Spiritomb fog" = "结冻的花岩怪雾"
++"frozen Sprigatito aroma" = "结冻的新叶喵芳香"
++"frozen Springy wine" = "结冻的弹弹菇酒"
++"frozen Steenee Sweat" = "结冻的甜舞妮汗液"
++"frozen Stunky fluid" = "结冻的臭鼬噗液体"
++"frozen Surskit oil" = "结冻的溜溜糖球油"
++"frozen Surskit syrup" = "结冻的溜溜糖球的蜜"
++"frozen Swalot ooze" = "结冻的吞食兽黏液"
++"frozen Tadbulb Mucus" = "结冻的光蚪仔的黏液"
++"frozen Timburr Sweat" = "结冻的搬运小匠的汗"
++"frozen Toucannon gas" = "结冻的铳嘴大鸟气体"
++"frozen Tropius fruit beer" = "结冻的热带龙果实啤酒"
++"frozen Tsareena Sweat" = "结冻的甜冷美后汗液"
++"frozen Tynamo slime" = "结冻的麻麻小鱼的黏液"
++"frozen Tyrogue Sweat" = "结冻的无畏小子汗液"
++"frozen Ultra Rare Soda" = "结冻的究极稀有汽水"
++"frozen Umbreon sweat" = "结冻的月亮伊布汗液"
++"frozen Varoom Fume" = "结冻的噗隆隆的气体"
+ "frozen Venipede extract" = "冻结的百足蜈蚣提取物"
+-"frozen Vibrava acid" = "冻结的超音波幼虫溶解液"
+-"frozen Victreebel acid" = "冻结的大食花溶解液"
+-"frozen Volbeat Fluid" = "冻结的电萤虫的汁液"
+-"frozen Weepinbell acid" = "冻结的口呆花溶解液"
+-"frozen Weezing gas" = "冻结的双弹瓦斯气体"
+-"frozen Wooper film" = "冻结的乌波薄膜"
+-"frozen Yellow Juice" = "冻结的黄色果汁"
+-"frozen black Aprijuice" = "冻结的黑色球果汁"
+-"frozen blue Aprijuice" = "冻结的蓝色球果汁"
+-"frozen drink" = "冻结的饮料"
+-"frozen green Aprijuice" = "冻结的绿色球果汁"
+-"frozen honey" = "冻结的甜甜蜜"
+-"frozen liquid" = "冻结的液体"
+-"frozen mead" = "冻结的蜜酒"
+-"frozen miracle potion" = "冻结的奇迹伤药"
+-"frozen mucus" = "冻结的黏液"
+-"frozen nectar" = "冻结的花蜜"
+-"frozen pink Aprijuice" = "冻结的粉红色球果汁"
+-"frozen poison" = "冻结的毒"
+-"frozen pungent beer" = "冻结的刺鼻啤酒"
+-"frozen red Aprijuice" = "冻结的红色球果汁"
+-"frozen sludge" = "冻结的污泥"
+-"frozen sweet apple cider" = "冻结的甜甜苹果苹果酒"
+-"frozen syrupy apple cider" = "冻结的蜜汁苹果苹果酒"
+-"frozen tar" = "冻结的焦油"
+-"frozen tart apple cider" = "冻结的酸酸苹果苹果酒"
+-"frozen tears" = "冻结的眼泪"
+-"frozen tochukaso medicine" = "冻结的冬虫夏草医学"
+-"frozen white Aprijuice" = "冻结的白色球果汁"
+-"frozen yellow Aprijuice" = "冻结的黄色球果汁"
++"frozen Vibrava acid" = "结冻的超音波幼虫溶解液"
++"frozen Victreebel acid" = "结冻的大食花溶解液"
++"frozen Volbeat Fluid" = "结冻的电萤虫的汁液"
++"frozen Weepinbell acid" = "结冻的口呆花溶解液"
++"frozen Weezing gas" = "结冻的双弹瓦斯气体"
++"frozen Wooper film" = "结冻的乌波薄膜"
++"frozen Yellow Juice" = "结冻的黄色果汁"
++"frozen black Aprijuice" = "结冻的黑色球果汁"
++"frozen blue Aprijuice" = "结冻的蓝色球果汁"
++"frozen drink" = "结冻的饮料"
++"frozen green Aprijuice" = "结冻的绿色球果汁"
++"frozen honey" = "结冻的甜甜蜜"
++"frozen liquid" = "结冻的液体"
++"frozen mead" = "结冻的蜜酒"
++"frozen miracle potion" = "结冻的奇迹伤药"
++"frozen mucus" = "结冻的黏液"
++"frozen nectar" = "结冻的花蜜"
++"frozen pink Aprijuice" = "结冻的粉红色球果汁"
++"frozen poison" = "结冻的毒"
++"frozen pungent beer" = "结冻的刺鼻啤酒"
++"frozen red Aprijuice" = "结冻的红色球果汁"
++"frozen sludge" = "结冻的污泥"
++"frozen sweet apple cider" = "结冻的甜甜苹果苹果酒"
++"frozen syrupy apple cider" = "结冻的蜜汁苹果苹果酒"
++"frozen tar" = "结冻的焦油"
++"frozen tart apple cider" = "结冻的酸酸苹果苹果酒"
++"frozen tears" = "结冻的眼泪"
++"frozen tochukaso medicine" = "结冻的冬虫夏草医学"
++"frozen white Aprijuice" = "结冻的白色球果汁"
++"frozen yellow Aprijuice" = "结冻的黄色球果汁"
+ "fur" = "毛皮"
+ "gem" = "宝石"
+ "glass" = "玻璃"
+@@ -1510,13 +1510,13 @@
+ "liquid metal" = "液体金属"
+ "magma" = "岩浆"
+ "mead" = "蜜酒"
+-"melted Alcremie cheese" = "熔化而死霜奶仙奶酪"
+-"melted Combee wax" = "熔化而死三蜜蜂蜡"
+-"melted Greavard wax" = "熔化而死墓仔狗的蜡"
+-"melted Litwick wax" = "熔化而死烛光灵蜡"
+-"melted Milcery cheese" = "熔化而死小仙奶奶酪"
+-"melted Moomoo cheese" = "熔化而死哞哞乳酪"
+-"melted diamond" = "熔化而死钻石"
++"melted Alcremie cheese" = "熔融的霜奶仙奶酪"
++"melted Combee wax" = "熔融的三蜜蜂蜡"
++"melted Greavard wax" = "熔融的墓仔狗的蜡"
++"melted Litwick wax" = "熔融的烛光灵蜡"
++"melted Milcery cheese" = "熔融的小仙奶酪"
++"melted Moomoo cheese" = "熔融的哞哞乳酪"
++"melted diamond" = "熔融的钻石"
+ "mild Poffin" = "慢吞吞宝芬"
+ "milk" = "奶"
+ "miracle potion" = "奇迹伤药"
+@@ -1585,18 +1585,18 @@
+ "red sand" = "红沙"
+ "remedy" = "中药"
+ "revival" = "复活"
+-"rock nut oil" = "石头坚果油"
++"rock nut oil" = "岩石坚果油"
+ "sand" = "沙"
+ "scales" = "鳞片"
+ "shadow mist" = "暗影白雾"
+ "shadowy essance" = "暗影精华"
+-"silk" = "丝布"
++"silk" = "丝绸"
+ "skin" = "皮肤"
+ "sleet" = "雨夹雪"
+ "sludge" = "污泥"
+ "smoke" = "烟雾"
+ "snack" = "点心"
+-"snow" = "降雪"
++"snow" = "雪"
+ "solid Alolan Grimer sludge" = "固态臭泥（阿罗拉的样子）污泥"
+ "solid Alolan Muk sludge" = "固态臭臭泥（阿罗拉的样子）污泥"
+ "solid Cursola ectoplasm" = "固态魔灵珊瑚灵质"
+@@ -1608,8 +1608,8 @@
+ "spicy Poffin" = "辣辣宝芬"
+ "spores" = "孢子"
+ "static" = "静电"
+-"steam" = "水蒸气"
+-"stone" = "石"
++"steam" = "蒸汽"
++"stone" = "石材"
+ "stun spores" = "麻痹粉"
+ "super mild Poffin" = "超级松软宝芬"
+ "sweet Poffin" = "甜甜宝芬"
+@@ -1624,7 +1624,7 @@
+ "time distortion" = "时间扭曲"
+ "tochukaso" = "冬虫夏草"
+ "tochukaso medicine" = "冬虫夏草医学"
+-"tooth" = "牙"
++"tooth" = "牙齿"
+ "trimming" = "修剪"
+ "vellum" = "皮纸"
+ "venipede extract" = "百足蜈蚣提取物"
+diff --git a/dfcn/rulesets/zh-Hans/plants/dwarvemon.toml b/dfcn/rulesets/zh-Hans/plants/dwarvemon.toml
+--- a/dfcn/rulesets/zh-Hans/plants/dwarvemon.toml
++++ b/dfcn/rulesets/zh-Hans/plants/dwarvemon.toml
+@@ -122,7 +122,7 @@
+ "Colbur Berry tree" = "刺耳果树"
+ "Colbur Berry trees" = "刺耳果树"
+ "Colorful Shake" = "缤纷的奶昔"
+-"Colorful Shakes" = "缤纷奶昔"
++"Colorful Shakes" = "缤纷的奶昔"
+ "Cornn Berries" = "玉黍果"
+ "Cornn Berry" = "玉黍果"
+ "Cornn Berry tree" = "玉黍果树"
+@@ -283,7 +283,7 @@
+ "Kelpsy Berry tree" = "藻根果树"
+ "Kelpsy Berry trees" = "藻根果树"
+ "King's Leaf" = "王者之叶"
+-"King's Leaves" = "国王的叶"
++"King's Leaves" = "王者之叶"
+ "Kuo Berries" = "葵秋果"
+ "Kuo Berry" = "葵秋果"
+ "Kuo Berry tree" = "葵秋果树"
+@@ -439,7 +439,7 @@
+ "Petaya Berry tree" = "龙火果树"
+ "Petaya Berry trees" = "龙火果树"
+ "Petilil leaf" = "百合根娃娃的叶片"
+-"Petilil leaves" = "百合根娃娃叶"
++"Petilil leaves" = "百合根娃娃的叶片"
+ "Pewter Crunchies" = "深灰米果"
+ "Phantump leaf" = "小木灵叶"
+ "Phantump leaves" = "小木灵叶"
+@@ -474,8 +474,8 @@
+ "Pumkin Berry" = "金南果"
+ "Pumkin Berry tree" = "金南果树"
+ "Pumkin Berry trees" = "金南果树"
+-"Pungent Root" = "刺鼻根"
+-"Pungent Roots" = "刺鼻根"
++"Pungent Root" = "水边香草"
++"Pungent Roots" = "水边香草"
+ "Purple Juice" = "紫色果汁"
+ "Qualot Berries" = "比巴果"
+ "Qualot Berry" = "比巴果"
+@@ -557,7 +557,7 @@
+ "Seasoned Curry" = "香料咖喱饭"
+ "Secret Medicine" = "秘传之药"
+ "Seed of Mastery" = "精通种子"
+-"Seeds of Mastery" = "种子的精通"
++"Seeds of Mastery" = "精通种子"
+ "Serious Mint" = "认真薄荷"
+ "Serious Mints" = "认真薄荷"
+ "Shaderoot Carrot" = "黑萝卜"
+@@ -1346,8 +1346,8 @@
+ "Kee Berry seeds" = "亚开果种子"
+ "Kelpsy Berry seed" = "藻根果种子"
+ "Kelpsy Berry seeds" = "藻根果种子"
+-"King's Leaf seed" = "国王的叶种子"
+-"King's Leaf seeds" = "国王的叶种子"
++"King's Leaf seed" = "王者之叶种子"
++"King's Leaf seeds" = "王者之叶种子"
+ "Kuo Berry seed" = "葵秋果种子"
+ "Kuo Berry seeds" = "葵秋果种子"
+ "Lansat Berry seed" = "兰萨果种子"
+@@ -1421,8 +1421,8 @@
+ "Psychic Seeds" = "精神种子"
+ "Pumkin Berry seed" = "金南果种子"
+ "Pumkin Berry seeds" = "金南果种子"
+-"Pungent Root seed" = "刺鼻根种子"
+-"Pungent Root seeds" = "刺鼻根种子"
++"Pungent Root seed" = "水边香草种子"
++"Pungent Root seeds" = "水边香草种子"
+ "Qualot Berry seed" = "比巴果种子"
+ "Qualot Berry seeds" = "比巴果种子"
+ "Rabuta Berry seed" = "茸丹果种子"
+diff --git a/dfcn/translations.tsv b/dfcn/translations.tsv
+--- a/dfcn/translations.tsv
++++ b/dfcn/translations.tsv
+@@ -2,8 +2,8 @@
+ # source<TAB>replacement UTF-8<TAB>flags; source and semantic scope are separate identities.
+ # Preferences and announcements use complete contextual keys; historical templates retain h scope.
+ Clear	清除	wi
+-Items	道具	wi
+-first toe	大脚趾	wi
++Items	物品	wi
++first toe	第一脚趾	wi
+ second toe	第二脚趾	wi
+ third toe	第三脚趾	wi
+ wind	风	wi
+@@ -21,13 +21,13 @@
+ dance	跳舞	wi
+ Memory	存储碟	wI
+ Normal	一般	wi
+-thread	丝线	wi
++thread	线	wi
+ Powders	粉末	wi
+-Stone	石	wi
++Stone	石材	wi
+ Glass	玻璃	wi
+ Eggs	蛋	wi
+ Dwarvemon {d}.{d}	矮人宝可梦 {d}.{d}	wt
+-eyes	眼	wi
++eyes	眼睛	wi
+ Iron	防御增强剂	wl
+ Silver	银色	wi
+ Zinc	特防增强剂	wl
+@@ -39,7 +39,7 @@
+ Adds Pokemon related content.	添加宝可梦相关内容。	lP
+ Smoke	烟雾	wi
+ Water	水	wi
+-blades	刃	wi
++blades	刀刃	wi
+ Dig	挖洞	wi
+ Rest	睡觉	wi
+ devoured	吞噬了	wi
+@@ -283,7 +283,7 @@
+ Balms	镇宝	wi
+ Baltoy	天秤偶	wi
+ Band	绑带	wi
+-Bands	环带	wi
++Bands	绑带	wi
+ Banette	诅咒娃娃	wi
+ Banettite	诅咒娃娃进化石	wl
+ Bang	声弹	wi
+@@ -712,7 +712,7 @@
+ Colbur Berry tree wood	刺耳果树木材	wi
+ Colbur Berry trees	刺耳果树	wi
+ Colorful Shake	缤纷的奶昔	wi
+-Colorful Shakes	缤纷奶昔	wi
++Colorful Shakes	缤纷的奶昔	wi
+ Combat Breed Tauros	肯泰罗（斗战种）	wi
+ Combee	三蜜蜂	wi
+ Combee royal jelly	三蜜蜂蜂王浆	wi
+@@ -780,7 +780,7 @@
+ Create mummy	创建木乃伊	wi
+ Cresselia	克雷色利亚	wi
+ Crest	冠	wi
+-Crests	头冠	wi
++Crests	冠	wi
+ Croagunk	不良蛙	wi
+ Crobat	叉字蝠	wi
+ Crocalor	炙烫鳄	wi
+@@ -1186,7 +1186,7 @@
+ Fancy Poke Puff	花式宝芙蕾	wi
+ Fancy Poke Puffs	花式宝芙蕾	wi
+ Fang	牙	wi
+-Fangs	獠牙	wi
++Fangs	牙	wi
+ Farfetch'd	大葱鸭	wi
+ Farigiraf	奇麒麟	wi
+ Fast	速度	wi
+@@ -1275,7 +1275,7 @@
+ Florges	花洁夫人	wi
+ Flower Gift	花之礼	wi
+ Fluffy Tail	向尾喵的尾巴	wl
+-Fluffy Tails	蓬松的尾巴	wi
++Fluffy Tails	向尾喵的尾巴	wi
+ Flute	哨子	wi
+ Flutes	哨子	wi
+ Flutter Mane	振翼发	wi
+@@ -2014,9 +2014,9 @@
+ Kilowattrel	大电海燕	wi
+ Kinesis	折弯汤匙	wi
+ King's Leaf	王者之叶	wi
+-King's Leaf seed	国王的叶种子	wi
+-King's Leaf seeds	国王的叶种子	wi
+-King's Leaves	国王的叶	wi
++King's Leaf seed	王者之叶种子	wi
++King's Leaf seeds	王者之叶种子	wi
++King's Leaves	王者之叶	wi
+ King's Rock	王者之证	wl
+ Kingambit	仆刀将军	wi
+ Kingdra	刺龙王	wi
+@@ -2563,8 +2563,8 @@
+ Mienshao	师父鼬	wi
+ Mightyena	大狼犬	wi
+ Milcery	小仙奶	wi
+-Milcery cheese	小仙奶奶酪	wi
+-Milcery cheese powder	小仙奶奶酪粉末	wi
++Milcery cheese	小仙奶酪	wi
++Milcery cheese powder	小仙奶酪粉末	wi
+ Milcery cream	小仙奶奶油	wi
+ Mild Mint	慢吞吞薄荷	wl
+ Mild Mints	慢吞吞薄荷	wi
+@@ -2953,7 +2953,7 @@
+ Petaya Berry trees	龙火果树	wi
+ Petilil	百合根娃娃	wi
+ Petilil leaf	百合根娃娃的叶片	wi
+-Petilil leaves	百合根娃娃叶	wi
++Petilil leaves	百合根娃娃的叶片	wi
+ Pewter Crunchies	深灰米果	wl
+ Phanpy	小小象	wi
+ Phantump	小木灵	wi
+@@ -3068,11 +3068,11 @@
+ Poke Beanstalk wood	宝可豆藤木材	wi
+ Poke Beanstalks	宝可豆藤	wi
+ Poke Doll	皮皮玩偶	wl
+-Poke Dolls	宝可梦玩偶	wi
++Poke Dolls	皮皮玩偶	wi
+ Poke Puff	宝芙蕾	wi
+ Poke Puffs	宝芙蕾	wi
+ Poke Toy	宝可尾草	wl
+-Poke Toys	宝可梦玩具	wi
++Poke Toys	宝可尾草	wi
+ Pokeball	精灵球	wi
+ Pokeball Pattern Vivillon	彩粉蝶（球球花纹）	wi
+ Pokeball items	精灵球道具	wi
+@@ -3217,9 +3217,9 @@
+ Pumpkaboo	南瓜精	wi
+ Punching Glove	拳击手套	wl
+ Pungent Root	水边香草	wl
+-Pungent Root seed	刺鼻根种子	wi
+-Pungent Root seeds	刺鼻根种子	wi
+-Pungent Roots	刺鼻根	wi
++Pungent Root seed	水边香草种子	wi
++Pungent Root seeds	水边香草种子	wi
++Pungent Roots	水边香草	wi
+ Pupitar	沙基拉斯	wi
+ Purple	紫色	wi
+ Purple Juice	紫色果汁	wi
+@@ -3574,7 +3574,7 @@
+ Seed Sower	掉出种子	wi
+ Seed of Mastery	精通种子	wi
+ Seedot	橡实果	wi
+-Seeds of Mastery	种子的精通	wi
++Seeds of Mastery	精通种子	wi
+ Seel	小海狮	wi
+ Seismitoad	蟾蜍王	wi
+ Seismitoad liquid	蟾蜍王液体	wi
+@@ -3602,7 +3602,7 @@
+ Shalour Sable	娑罗沙布蕾	wl
+ Shalour Sables	娑罗沙布蕾	wi
+ Share	分享	wi
+-Shares	夏尔	wi
++Shares	分享	wi
+ Sharp	锋利的	wi
+ Sharp Beak	锐利鸟嘴	wl
+ Sharpedo	巨牙鲨	wi
+@@ -3795,7 +3795,7 @@
+ Sour Herba Mystica seed	秘传：酸味料种子	wi
+ Sour Herba Mystica seeds	秘传：酸味料种子	wi
+ Sp. Atk	特攻击	wi
+-Sp. Atks	特攻	wi
++Sp. Atks	特攻击	wi
+ Sp. Def	特防	wi
+ Sp. Defs	特防	wi
+ Spark	电火花	wi
+@@ -4006,14 +4006,14 @@
+ Swinub	小山猪	wi
+ Swirlix	绵绵泡芙	wi
+ Swoobat	心蝙蝠	wi
+-Sword	剑术	wi
++Sword	剑	wi
+ Sword of Ruin	灾祸之剑	wi
+ Sword of Ruin weakened the Defense of all surrounding Pokemon	灾祸之剑降低了周围所有宝可梦的防御	wi
+ Swordcap	剑帽菇	wi
+ Swordcap spore	剑帽菇孢子	wi
+ Swordcap spores	剑帽菇孢子	wi
+ Swordcaps	剑帽菇	wi
+-Swords	剑	wi
++Swords	剑术	wi
+ Sylveon	仙子伊布	wi
+ Synchronize	同步	wi
+ Syrup Bomb	糖浆炸弹	wi
+@@ -4523,7 +4523,7 @@
+ X Accuracy	命中强化	wl
+ X Attack	力量强化	wl
+ X Defense	防御强化	wl
+-X Sp. Atk	特攻强化	wl
++X Sp. Atk	特攻击强化	wl
+ X Sp. Def	特防强化	wl
+ X Speed	速度强化	wl
+ Xatu	天然鸟	wi
+@@ -5763,7 +5763,7 @@
+ are paralysed	陷入了麻痹	wi
+ are poisoned	中毒了	wi
+ are switched out with the Eject Button	因逃脱按键而退场	wi
+-arm	臂	wi
++arm	手臂	wi
+ arm bands	臂环带	wi
+ arm feathers	臂羽毛	wi
+ arm fin	臂鳍	wi
+@@ -5775,7 +5775,7 @@
+ arm stingers	臂毒刺	wi
+ arm tentacles	臂触手	wi
+ arm undersides	臂底面	wi
+-arms	臂	wi
++arms	手臂	wi
+ arms and hair	臂和毛发	wi
+ arms and legs	臂和腿	wi
+ arms and lower legs	臂和下腿	wi
+@@ -5799,7 +5799,7 @@
+ average size Gourgeist	南瓜怪人（普通尺寸）	wi
+ average size Pumpkaboo	南瓜精（普通尺寸）	wi
+ baby Kangaskhan	袋兽幼崽	wi
+-back	背	wi
++back	背部	wi
+ back and wing tips	背和翅膀尖端	wi
+ back feet	背足	wi
+ back fur and underside	背毛皮和底面	wi
+@@ -5821,7 +5821,7 @@
+ bash	猛击	wi
+ bashes	猛击	wi
+ bead	珠	wi
+-beak	尖喙	wi
++beak	鸟喙	wi
+ beak and ridges	尖喙和脊	wi
+ beak and wing base	尖喙和翅根	wi
+ beak tip	尖喙尖端	wi
+@@ -5829,7 +5829,7 @@
+ beak topside	尖喙顶面	wi
+ beak underside	尖喙底面	wi
+ beak underside and feet	尖喙底面和足	wi
+-beaks	尖喙	wi
++beaks	鸟喙	wi
+ beard	胡须	wi
+ beard and moustache	胡须和胡须	wi
+ beat your drum	敲击你的鼓	wi
+@@ -5854,7 +5854,7 @@
+ berry dyes	树果染料	wi
+ berry powder	树果粉	wi
+ bib pattern	围兜图案	wi
+-bill	喙	wi
++bill	扁喙	wi
+ bill and webbing	喙和蹼	wi
+ bismuth bar	铋锭	wi
+ bite playfully	嬉戏地咬	wi
+@@ -5869,7 +5869,7 @@
+ black glass	黑色玻璃	wi
+ black glass paste	黑色玻璃糊	wi
+ black sand	黑沙	wi
+-blade	刃	wi
++blade	刀刃	wi
+ blaze	猛火	wi
+ blaze and back	猛火和背	wi
+ blend in with the surroundings	融入周围环境	wi
+@@ -5978,7 +5978,7 @@
+ boiling Marill oil	沸腾的玛力露油	wi
+ boiling Marshtomp film	沸腾的沼跃鱼薄膜	wi
+ boiling Meditite Sweat	沸腾的玛沙那的汗	wi
+-boiling Milcery cheese	沸腾的小仙奶奶酪	wi
++boiling Milcery cheese	沸腾的小仙奶酪	wi
+ boiling Milcery cream	沸腾的小仙奶奶油	wi
+ boiling Mirror beer	沸腾的模仿啤酒	wi
+ boiling Misdreavus Tears	沸腾的梦妖的眼泪	wi
+@@ -6193,7 +6193,7 @@
+ children voices	孩子们的声音	wi
+ chirp	鸣叫	wi
+ chirping	‘虫类’鸣叫	wi
+-chitin	几丁质	wi
++chitin	甲壳	wi
+ chrips	鸣叫	wi
+ circular patterns	圆形图案	wi
+ clang scales	敲响鳞片	wi
+@@ -6230,7 +6230,7 @@
+ closes our shell	合上我们的壳	w
+ closes their shell	合上它们的壳	w
+ closes your shell	合上你的壳	w
+-cloth	布匹	wi
++cloth	布	wi
+ cloud	云	wi
+ cloud portions	云团	wi
+ clover decorations	三叶草装饰	wi
+@@ -6239,7 +6239,7 @@
+ coconut	椰子	wi
+ coconut palm log	椰棕榈原木	wi
+ code	编码	wi
+-coif	发帽	wi
++coif	链甲头套	wi
+ coin	硬币	wi
+ collar	颈圈	wi
+ collar and tail tip	颈圈和尾尖端	wi
+@@ -6515,7 +6515,7 @@
+ dravite	镁电气石	wi
+ dreadlock	脏辫	wi
+ dreadlocks	脏辫	wi
+-dress	裙	wi
++dress	裙装	wi
+ dress and streamers	裙和飘带	wi
+ drifblim	随风球	wi
+ drink	饮料	wi
+@@ -6563,7 +6563,7 @@
+ dwarven sugar	矮人砂糖	wi
+ dwarven sugar bag	矮人砂糖袋子	wi
+ e-Reader Berry	进化－阅读者树果	wi
+-ear	耳	wi
++ear	耳朵	wi
+ ear and ribbon markings	耳和缎带纹路	wi
+ ear and tail feathers	耳和尾羽	wi
+ ear bases	耳基部	wi
+@@ -6574,7 +6574,7 @@
+ ear tips	耳尖端	wi
+ ear tufts and markings	耳羽和纹路	wi
+ ear tufts and tail tip	耳羽和尾尖端	wi
+-ears	耳	wi
++ears	耳朵	wi
+ ears and feet	耳和足	wi
+ ears and markings	耳和纹路	wi
+ ears and membrane	耳和膜	wi
+@@ -6617,7 +6617,7 @@
+ extract Soul Dew	提取心之水滴	wi
+ extrasensory	神通力	wi
+ extremely harsh sunlight	极为强烈的阳光	wi
+-eye	眼	wi
++eye	眼睛	wi
+ eye circles	眼圆圈	wi
+ eye covers	眼罩	wi
+ eye highlights	眼亮色部分	wi
+@@ -6658,14 +6658,14 @@
+ faceplate and claws	面板和爪	wi
+ fairy Memory Silvally	银伴战兽（妖精属性）	wi
+ fall asleep	睡着了	wi
+-fang	牙	wi
++fang	尖牙	wi
+ fangs	獠牙	wi
+ feather	羽毛	wi
+ feathers	羽毛	wi
+ feathery ruff	羽毛翎领	wi
+ feeler touch	触角触碰	wi
+ feelers	触角	wi
+-feet	足	wi
++feet	脚	wi
+ feet and markings	足和纹路	wi
+ feet and tail tip	足和尾尖端	wi
+ feet pads	足肉垫	wi
+@@ -6709,8 +6709,8 @@
+ first brain	第一脑	wi
+ first chest ribbon	第一胸缎带	wi
+ first disc	第一圆盘	wi
+-first eye	第一眼睛	wi
+-first finger	食指	wi
++first eye	第一只眼	wi
++first finger	第一手指	wi
+ first foot	第一脚	wi
+ first foot spike	第一脚尖刺	wi
+ first front left foot	第一前左脚	wi
+@@ -6721,7 +6721,7 @@
+ first head	第一头	wi
+ first head ribbon	第一头缎带	wi
+ first heart	第一心	wi
+-first horn	第一角	wi
++first horn	第一只角	wi
+ first horn, head	第一角，头	wi
+ first horn, left head	第一角，左头	wi
+ first horn, right head	第一角，右头	wi
+@@ -6814,7 +6814,7 @@
+ first upper leg	第一上腿	wi
+ first upper right horn	第一上右角	wi
+ first upper vine	第一上藤蔓	wi
+-fists	拳	wi
++fists	拳头	wi
+ five tuft tail	五簇尾毛	wi
+ flakes	碎片	wi
+ flame	火焰	wi
+@@ -6845,7 +6845,7 @@
+ flying Memory Silvally	银伴战兽（飞行属性）	wi
+ focus	专注力	wi
+ fog	雾	wi
+-foot	足	wi
++foot	脚	wi
+ foot markings	足纹路	wi
+ force Dynamax	自然之灵极巨化	wi
+ forced Dynamax	强制极巨化	wi
+@@ -6928,174 +6928,174 @@
+ front top right horn	前顶部右角	wi
+ frontside	正面	wi
+ frost	霜	wi
+-frozen Alcremie cream	冻结的霜奶仙奶油	wi
+-frozen Alomomola membrane	冻结的保姆曼波膜	wi
+-frozen Applin juice	冻结的啃果虫的果汁	wi
+-frozen Applin syrup	冻结的啃果虫糖浆	wi
+-frozen Arboliva oil	冻结的奥利瓦油	wi
+-frozen Babiri Berry medicine	冻结的霹霹果医学	wi
+-frozen Barboach slime	冻结的泥泥鳅的黏液	wi
+-frozen Bellibolt Mucus	冻结的电肚蛙黏液	wi
+-frozen Berry Juice	冻结的树果汁	wi
+-frozen Blue Juice	冻结的蓝色果汁	wi
+-frozen Bounsweet Sweat	冻结的甜竹竹的汗	wi
++frozen Alcremie cream	结冻的霜奶仙奶油	wi
++frozen Alomomola membrane	结冻的保姆曼波膜	wi
++frozen Applin juice	结冻的啃果虫的果汁	wi
++frozen Applin syrup	结冻的啃果虫糖浆	wi
++frozen Arboliva oil	结冻的奥利瓦油	wi
++frozen Babiri Berry medicine	结冻的霹霹果医学	wi
++frozen Barboach slime	结冻的泥泥鳅的黏液	wi
++frozen Bellibolt Mucus	结冻的电肚蛙黏液	wi
++frozen Berry Juice	结冻的树果汁	wi
++frozen Blue Juice	结冻的蓝色果汁	wi
++frozen Bounsweet Sweat	结冻的甜竹竹的汗	wi
+ frozen Buzzwole fluid	冻结的爆肌蚊液体	wi
+-frozen Candy wine	冻结的糖果酒	wi
++frozen Candy wine	结冻的糖果酒	wi
+ frozen Celesteela gas	冻结的铁火辉夜气体	wi
+-frozen Centiskorch gas	冻结的焚焰蚣气体	wi
+-frozen Cetitan Grease	冻结的浩大鲸油脂	wi
+-frozen Cetoddle Grease	冻结的走鲸的油脂	wi
+-frozen Cinccino Oil	冻结的奇诺栗鼠油	wi
+-frozen Clodsire slime	冻结的土王粘液	wi
+-frozen Colorful Shake	冻结的缤纷的奶昔	wi
+-frozen Combee royal jelly	冻结的三蜜蜂蜂王浆	wi
+-frozen Comfey oil	冻结的花疗环环油	wi
+-frozen Conkeldurr Sweat	冻结的修建老匠汗液	wi
+-frozen Cosmog gas	冻结的科斯莫古气体	wi
+-frozen Cradily digestive fluid	冻结的摇篮百合消化液体	wi
+-frozen Ditto Goo	冻结的百变怪的黏糊	wi
+-frozen Dolliv oil	冻结的奥利纽油	wi
+-frozen Drifblim gas	冻结的随风球气体	wi
+-frozen Drifloon gas	冻结的飘飘球的气体	wi
+-frozen Duosion gel	冻结的双卵细胞球凝胶	wi
+-frozen Falinks Sweat	冻结的列阵兵的汗	wi
+-frozen Finizen Mucus	冻结的波普海豚的黏液	wi
+-frozen Flapple spit	冻结的苹裹龙唾液	wi
+-frozen Gabite scale medicine	冻结的尖牙陆鲨鳞片医学	wi
+-frozen Gastly gas	冻结的鬼斯的气体	wi
+-frozen Gastly saliva	冻结的鬼斯唾液	wi
+-frozen Gastrodon ooze	冻结的海兔兽黏液	wi
+-frozen Gengar saliva	冻结的耿鬼唾液	wi
+-frozen Gloom nectar	冻结的臭臭花花蜜	wi
+-frozen Goodra goo	冻结的黏美龙稠血	wi
+-frozen Goomy goo	冻结的黏黏宝的黏液	wi
+-frozen Gossifleur pollen tea	冻结的幼棉棉花粉茶	wi
+-frozen Grafaiai Ink	冻结的涂标客墨汁	wi
+-frozen Green Juice	冻结的绿色果汁	wi
+-frozen Grimer Toxin	冻结的臭泥的毒素	wi
+-frozen Gulpin Mucus	冻结的溶食兽的黏液	wi
+-frozen Gulpin ooze	冻结的溶食兽黏液	wi
+-frozen Gurdurr Sweat	冻结的铁骨土人汗液	wi
+-frozen Haunter gas	冻结的鬼斯通气体	wi
+-frozen Haunter saliva	冻结的鬼斯通唾液	wi
+-frozen Hearty beer	冻结的旺旺谷啤酒	wi
+-frozen Hitmonchan Sweat	冻结的快拳郎汗液	wi
+-frozen Hitmonlee Sweat	冻结的飞腿郎汗液	wi
+-frozen Hitmontop Sweat	冻结的战舞郎汗液	wi
+-frozen Hydrapple syrup	冻结的蜜集大蛇糖浆	wi
+-frozen Iceroot Carrot wine	冻结的冰萝卜酒	wi
+-frozen Illumise Fluid	冻结的甜甜萤的汁液	wi
+-frozen Karrablast poison	冻结的盖盖虫毒	wi
+-frozen Kelpsy Berry extract	冻结的藻根果提取物	wi
+-frozen Koffing gas	冻结的瓦斯弹的气体	wi
+-frozen Komala drool	冻结的树枕尾熊口水	wi
+-frozen Lickilicky saliva	冻结的大舌舔唾液	wi
+-frozen Lickitung saliva	冻结的大舌头唾液	wi
+-frozen Lombre film	冻结的莲帽小童薄膜	wi
+-frozen Makuhita Sweat	冻结的幕下力士的汗	wi
+-frozen Marill oil	冻结的玛力露油	wi
+-frozen Marshtomp film	冻结的沼跃鱼薄膜	wi
+-frozen Meditite Sweat	冻结的玛沙那的汗	wi
+-frozen Mega Gengar saliva	冻结的超级耿鬼唾液	wi
+-frozen Milcery cream	冻结的小仙奶奶油	wi
+-frozen Mirror beer	冻结的模仿啤酒	wi
+-frozen Misdreavus Tears	冻结的梦妖的眼泪	wi
+-frozen Moomoo Milk	冻结的哞哞鲜奶	wi
+-frozen Moomoo yogurt	冻结的哞哞酸奶	wi
+-frozen Mudbray Mud	冻结的泥驴仔的泥巴	wi
+-frozen Mudsdale Mud	冻结的重泥挽马淤泥	wi
+-frozen Nihilego neurotoxin	冻结的虚吾伊德神经毒素	wi
+-frozen Oinkologne aroma	冻结的飘香豚芳香	wi
+-frozen Omanyte gas	冻结的菊石兽气体	wi
+-frozen Paldean Wooper film	冻结的帕底亚的乌波薄膜	wi
+-frozen Perilous Soup	冻结的危险汤	wi
+-frozen Phantump leaf medicine	冻结的小木灵叶医学	wi
+-frozen Pinap Berry medicine	冻结的凰梨果医学	wi
+-frozen Pink Juice	冻结的粉红色果汁	wi
+-frozen Poliwag Slime	冻结的蚊香蝌蚪的黏液	wi
+-frozen Poliwhirl fluid	冻结的蚊香君液体	wi
+-frozen Poltchageist tea	冻结的斯魔茶茶	wi
+-frozen Polteageist tea	冻结的怖思壶茶	wi
+-frozen Purple Juice	冻结的紫色果汁	wi
+-frozen Pyukumuku fluid	冻结的拳海参液体	wi
+-frozen Quagsire slime	冻结的沼王粘液	wi
+-frozen Quaxly gel	冻结的润水鸭凝胶	wi
+-frozen Quaxwell gel	冻结的涌跃鸭凝胶	wi
+-frozen Rare Soda	冻结的稀有汽水	wi
+-frozen Red Juice	冻结的红色果汁	wi
+-frozen Remeyo weed medicine	冻结的丽美草医学	wi
+-frozen Reuniclus gel	冻结的人造细胞卵凝胶	wi
+-frozen Revavroom Fume	冻结的普隆隆姆烟雾	wi
+-frozen Salandit gas	冻结的夜盗火蜥的气体	wi
+-frozen Salveyo weed medicine	冻结的三色堇医学	wi
+-frozen Scrafty Sweat	冻结的头巾混混汗液	wi
+-frozen Scrafty spit	冻结的头巾混混唾液	wi
+-frozen Scraggy Sweat	冻结的滑滑小子汗液	wi
+-frozen Seismitoad liquid	冻结的蟾蜍王液体	wi
+-frozen Shaderoot Carrot wine	冻结的黑萝卜酒	wi
+-frozen Shellos Mucus	冻结的无壳海兔的黏液	wi
+-frozen Shellos ooze	冻结的无壳海兔黏液	wi
+-frozen Shelmet poison	冻结的小嘴蜗毒	wi
+-frozen Shroodle Ink	冻结的滋汁鼹的墨汁	wi
+-frozen Sinistcha tea	冻结的来悲粗茶茶	wi
+-frozen Sinistea tea	冻结的来悲茶茶	wi
+-frozen Sizzlipede gas	冻结的烧火蚣气体	wi
+-frozen Skuntank fluid	冻结的坦克臭鼬液体	wi
+-frozen Sliggoo goo	冻结的黏美儿稠血	wi
+-frozen Smoliv oil	冻结的迷你芙的油	wi
+-frozen Solosis gel	冻结的单卵细胞球凝胶	wi
+-frozen Spiritomb fog	冻结的花岩怪雾	wi
+-frozen Sprigatito aroma	冻结的新叶喵芳香	wi
+-frozen Springy wine	冻结的弹弹菇酒	wi
+-frozen Steenee Sweat	冻结的甜舞妮汗液	wi
+-frozen Stunky fluid	冻结的臭鼬噗液体	wi
+-frozen Surskit oil	冻结的溜溜糖球油	wi
+-frozen Surskit syrup	冻结的溜溜糖球的蜜	wi
+-frozen Swalot ooze	冻结的吞食兽黏液	wi
+-frozen Tadbulb Mucus	冻结的光蚪仔的黏液	wi
+-frozen Timburr Sweat	冻结的搬运小匠的汗	wi
+-frozen Toucannon gas	冻结的铳嘴大鸟气体	wi
+-frozen Tropius fruit beer	冻结的热带龙果实啤酒	wi
+-frozen Tsareena Sweat	冻结的甜冷美后汗液	wi
+-frozen Tynamo slime	冻结的麻麻小鱼的黏液	wi
+-frozen Tyrogue Sweat	冻结的无畏小子汗液	wi
+-frozen Ultra Rare Soda	冻结的究极稀有汽水	wi
+-frozen Umbreon sweat	冻结的月亮伊布汗液	wi
+-frozen Varoom Fume	冻结的噗隆隆的气体	wi
++frozen Centiskorch gas	结冻的焚焰蚣气体	wi
++frozen Cetitan Grease	结冻的浩大鲸油脂	wi
++frozen Cetoddle Grease	结冻的走鲸的油脂	wi
++frozen Cinccino Oil	结冻的奇诺栗鼠油	wi
++frozen Clodsire slime	结冻的土王粘液	wi
++frozen Colorful Shake	结冻的缤纷的奶昔	wi
++frozen Combee royal jelly	结冻的三蜜蜂蜂王浆	wi
++frozen Comfey oil	结冻的花疗环环油	wi
++frozen Conkeldurr Sweat	结冻的修建老匠汗液	wi
++frozen Cosmog gas	结冻的科斯莫古气体	wi
++frozen Cradily digestive fluid	结冻的摇篮百合消化液体	wi
++frozen Ditto Goo	结冻的百变怪的黏糊	wi
++frozen Dolliv oil	结冻的奥利纽油	wi
++frozen Drifblim gas	结冻的随风球气体	wi
++frozen Drifloon gas	结冻的飘飘球的气体	wi
++frozen Duosion gel	结冻的双卵细胞球凝胶	wi
++frozen Falinks Sweat	结冻的列阵兵的汗	wi
++frozen Finizen Mucus	结冻的波普海豚的黏液	wi
++frozen Flapple spit	结冻的苹裹龙唾液	wi
++frozen Gabite scale medicine	结冻的尖牙陆鲨鳞片医学	wi
++frozen Gastly gas	结冻的鬼斯的气体	wi
++frozen Gastly saliva	结冻的鬼斯唾液	wi
++frozen Gastrodon ooze	结冻的海兔兽黏液	wi
++frozen Gengar saliva	结冻的耿鬼唾液	wi
++frozen Gloom nectar	结冻的臭臭花花蜜	wi
++frozen Goodra goo	结冻的黏美龙稠血	wi
++frozen Goomy goo	结冻的黏黏宝的黏液	wi
++frozen Gossifleur pollen tea	结冻的幼棉棉花粉茶	wi
++frozen Grafaiai Ink	结冻的涂标客墨汁	wi
++frozen Green Juice	结冻的绿色果汁	wi
++frozen Grimer Toxin	结冻的臭泥的毒素	wi
++frozen Gulpin Mucus	结冻的溶食兽的黏液	wi
++frozen Gulpin ooze	结冻的溶食兽黏液	wi
++frozen Gurdurr Sweat	结冻的铁骨土人汗液	wi
++frozen Haunter gas	结冻的鬼斯通气体	wi
++frozen Haunter saliva	结冻的鬼斯通唾液	wi
++frozen Hearty beer	结冻的旺旺谷啤酒	wi
++frozen Hitmonchan Sweat	结冻的快拳郎汗液	wi
++frozen Hitmonlee Sweat	结冻的飞腿郎汗液	wi
++frozen Hitmontop Sweat	结冻的战舞郎汗液	wi
++frozen Hydrapple syrup	结冻的蜜集大蛇糖浆	wi
++frozen Iceroot Carrot wine	结冻的冰萝卜酒	wi
++frozen Illumise Fluid	结冻的甜甜萤的汁液	wi
++frozen Karrablast poison	结冻的盖盖虫毒	wi
++frozen Kelpsy Berry extract	结冻的藻根果提取物	wi
++frozen Koffing gas	结冻的瓦斯弹的气体	wi
++frozen Komala drool	结冻的树枕尾熊口水	wi
++frozen Lickilicky saliva	结冻的大舌舔唾液	wi
++frozen Lickitung saliva	结冻的大舌头唾液	wi
++frozen Lombre film	结冻的莲帽小童薄膜	wi
++frozen Makuhita Sweat	结冻的幕下力士的汗	wi
++frozen Marill oil	结冻的玛力露油	wi
++frozen Marshtomp film	结冻的沼跃鱼薄膜	wi
++frozen Meditite Sweat	结冻的玛沙那的汗	wi
++frozen Mega Gengar saliva	结冻的超级耿鬼唾液	wi
++frozen Milcery cream	结冻的小仙奶奶油	wi
++frozen Mirror beer	结冻的模仿啤酒	wi
++frozen Misdreavus Tears	结冻的梦妖的眼泪	wi
++frozen Moomoo Milk	结冻的哞哞鲜奶	wi
++frozen Moomoo yogurt	结冻的哞哞酸奶	wi
++frozen Mudbray Mud	结冻的泥驴仔的泥巴	wi
++frozen Mudsdale Mud	结冻的重泥挽马淤泥	wi
++frozen Nihilego neurotoxin	结冻的虚吾伊德神经毒素	wi
++frozen Oinkologne aroma	结冻的飘香豚芳香	wi
++frozen Omanyte gas	结冻的菊石兽气体	wi
++frozen Paldean Wooper film	结冻的帕底亚的乌波薄膜	wi
++frozen Perilous Soup	结冻的危险汤	wi
++frozen Phantump leaf medicine	结冻的小木灵叶医学	wi
++frozen Pinap Berry medicine	结冻的凰梨果医学	wi
++frozen Pink Juice	结冻的粉红色果汁	wi
++frozen Poliwag Slime	结冻的蚊香蝌蚪的黏液	wi
++frozen Poliwhirl fluid	结冻的蚊香君液体	wi
++frozen Poltchageist tea	结冻的斯魔茶茶	wi
++frozen Polteageist tea	结冻的怖思壶茶	wi
++frozen Purple Juice	结冻的紫色果汁	wi
++frozen Pyukumuku fluid	结冻的拳海参液体	wi
++frozen Quagsire slime	结冻的沼王粘液	wi
++frozen Quaxly gel	结冻的润水鸭凝胶	wi
++frozen Quaxwell gel	结冻的涌跃鸭凝胶	wi
++frozen Rare Soda	结冻的稀有汽水	wi
++frozen Red Juice	结冻的红色果汁	wi
++frozen Remeyo weed medicine	结冻的丽美草医学	wi
++frozen Reuniclus gel	结冻的人造细胞卵凝胶	wi
++frozen Revavroom Fume	结冻的普隆隆姆烟雾	wi
++frozen Salandit gas	结冻的夜盗火蜥的气体	wi
++frozen Salveyo weed medicine	结冻的三色堇医学	wi
++frozen Scrafty Sweat	结冻的头巾混混汗液	wi
++frozen Scrafty spit	结冻的头巾混混唾液	wi
++frozen Scraggy Sweat	结冻的滑滑小子汗液	wi
++frozen Seismitoad liquid	结冻的蟾蜍王液体	wi
++frozen Shaderoot Carrot wine	结冻的黑萝卜酒	wi
++frozen Shellos Mucus	结冻的无壳海兔的黏液	wi
++frozen Shellos ooze	结冻的无壳海兔黏液	wi
++frozen Shelmet poison	结冻的小嘴蜗毒	wi
++frozen Shroodle Ink	结冻的滋汁鼹的墨汁	wi
++frozen Sinistcha tea	结冻的来悲粗茶茶	wi
++frozen Sinistea tea	结冻的来悲茶茶	wi
++frozen Sizzlipede gas	结冻的烧火蚣气体	wi
++frozen Skuntank fluid	结冻的坦克臭鼬液体	wi
++frozen Sliggoo goo	结冻的黏美儿稠血	wi
++frozen Smoliv oil	结冻的迷你芙的油	wi
++frozen Solosis gel	结冻的单卵细胞球凝胶	wi
++frozen Spiritomb fog	结冻的花岩怪雾	wi
++frozen Sprigatito aroma	结冻的新叶喵芳香	wi
++frozen Springy wine	结冻的弹弹菇酒	wi
++frozen Steenee Sweat	结冻的甜舞妮汗液	wi
++frozen Stunky fluid	结冻的臭鼬噗液体	wi
++frozen Surskit oil	结冻的溜溜糖球油	wi
++frozen Surskit syrup	结冻的溜溜糖球的蜜	wi
++frozen Swalot ooze	结冻的吞食兽黏液	wi
++frozen Tadbulb Mucus	结冻的光蚪仔的黏液	wi
++frozen Timburr Sweat	结冻的搬运小匠的汗	wi
++frozen Toucannon gas	结冻的铳嘴大鸟气体	wi
++frozen Tropius fruit beer	结冻的热带龙果实啤酒	wi
++frozen Tsareena Sweat	结冻的甜冷美后汗液	wi
++frozen Tynamo slime	结冻的麻麻小鱼的黏液	wi
++frozen Tyrogue Sweat	结冻的无畏小子汗液	wi
++frozen Ultra Rare Soda	结冻的究极稀有汽水	wi
++frozen Umbreon sweat	结冻的月亮伊布汗液	wi
++frozen Varoom Fume	结冻的噗隆隆的气体	wi
+ frozen Venipede extract	冻结的百足蜈蚣提取物	wi
+-frozen Vibrava acid	冻结的超音波幼虫溶解液	wi
+-frozen Victreebel acid	冻结的大食花溶解液	wi
+-frozen Volbeat Fluid	冻结的电萤虫的汁液	wi
+-frozen Weepinbell acid	冻结的口呆花溶解液	wi
+-frozen Weezing gas	冻结的双弹瓦斯气体	wi
+-frozen Wooper film	冻结的乌波薄膜	wi
+-frozen Yellow Juice	冻结的黄色果汁	wi
+-frozen black Aprijuice	冻结的黑色球果汁	wi
+-frozen blue Aprijuice	冻结的蓝色球果汁	wi
+-frozen cure	冻结的治愈	wi
+-frozen drink	冻结的饮料	wi
+-frozen green Aprijuice	冻结的绿色球果汁	wi
++frozen Vibrava acid	结冻的超音波幼虫溶解液	wi
++frozen Victreebel acid	结冻的大食花溶解液	wi
++frozen Volbeat Fluid	结冻的电萤虫的汁液	wi
++frozen Weepinbell acid	结冻的口呆花溶解液	wi
++frozen Weezing gas	结冻的双弹瓦斯气体	wi
++frozen Wooper film	结冻的乌波薄膜	wi
++frozen Yellow Juice	结冻的黄色果汁	wi
++frozen black Aprijuice	结冻的黑色球果汁	wi
++frozen blue Aprijuice	结冻的蓝色球果汁	wi
++frozen cure	结冻的治愈	wi
++frozen drink	结冻的饮料	wi
++frozen green Aprijuice	结冻的绿色球果汁	wi
+ frozen heal	冻结的治疗	wi
+-frozen honey	冻结的甜甜蜜	wi
++frozen honey	结冻的甜甜蜜	wi
+ frozen in time	时间冻结	wi
+-frozen liquid	冻结的液体	wi
+-frozen mead	冻结的蜜酒	wi
+-frozen miracle potion	冻结的奇迹伤药	wi
+-frozen mucus	冻结的黏液	wi
+-frozen nectar	冻结的花蜜	wi
+-frozen pink Aprijuice	冻结的粉红色球果汁	wi
+-frozen poison	冻结的毒	wi
+-frozen pungent beer	冻结的刺鼻啤酒	wi
+-frozen red Aprijuice	冻结的红色球果汁	wi
+-frozen sludge	冻结的污泥	wi
+-frozen sweet apple cider	冻结的甜甜苹果苹果酒	wi
+-frozen syrupy apple cider	冻结的蜜汁苹果苹果酒	wi
+-frozen tar	冻结的焦油	wi
+-frozen tart apple cider	冻结的酸酸苹果苹果酒	wi
+-frozen tears	冻结的眼泪	wi
+-frozen tochukaso medicine	冻结的冬虫夏草医学	wi
+-frozen white Aprijuice	冻结的白色球果汁	wi
+-frozen yellow Aprijuice	冻结的黄色球果汁	wi
++frozen liquid	结冻的液体	wi
++frozen mead	结冻的蜜酒	wi
++frozen miracle potion	结冻的奇迹伤药	wi
++frozen mucus	结冻的黏液	wi
++frozen nectar	结冻的花蜜	wi
++frozen pink Aprijuice	结冻的粉红色球果汁	wi
++frozen poison	结冻的毒	wi
++frozen pungent beer	结冻的刺鼻啤酒	wi
++frozen red Aprijuice	结冻的红色球果汁	wi
++frozen sludge	结冻的污泥	wi
++frozen sweet apple cider	结冻的甜甜苹果苹果酒	wi
++frozen syrupy apple cider	结冻的蜜汁苹果苹果酒	wi
++frozen tar	结冻的焦油	wi
++frozen tart apple cider	结冻的酸酸苹果苹果酒	wi
++frozen tears	结冻的眼泪	wi
++frozen tochukaso medicine	结冻的冬虫夏草医学	wi
++frozen white Aprijuice	结冻的白色球果汁	wi
++frozen yellow Aprijuice	结冻的黄色球果汁	wi
+ frubble mane	呱呱泡沫鬃毛	wi
+ fruit	果实	wi
+ fruits	果实	wi
+@@ -7222,7 +7222,7 @@
+ harsh sunlight	强烈的阳光	wi
+ hat	帽	wi
+ hat tip	帽尖端	wi
+-head	头	wi
++head	头部	wi
+ head and collar fur	头和颈圈毛皮	wi
+ head and lights	头和光	wi
+ head and markings	头和纹路	wi
+@@ -7280,7 +7280,7 @@
+ helmet	头盔	wi
+ hematite	赤铁矿	wi
+ herblike scent	草药气味	wi
+-hide	隐匿	wi
++hide	兽皮	wi
+ hide in your teapot	藏入你的茶壶	wi
+ hides in its teapot	藏入它的茶壶	wi
+ hips	髋部	wi
+@@ -7375,8 +7375,8 @@
+ knees and back scales	膝和背鳞片	wi
+ knuckles	指关节	wi
+ lacy marking	蕾丝纹路	wi
+-lance	长枪	wi
+-lances	长枪	wi
++lance	长矛	wi
++lances	长矛	wi
+ large fin	大鳍	wi
+ large gear	大齿轮	wi
+ large gem	大宝石	wi
+@@ -7503,7 +7503,7 @@
+ left upper foreleg	左前大腿	wi
+ left upper incisor	左上门牙	wi
+ left upper leg	左大腿	wi
+-left upper tentacle	左上触角	wi
++left upper tentacle	左上触手	wi
+ left upper vine	左上藤蔓	wi
+ left vine tip	左藤蔓尖端	wi
+ left whip	左鞭	wi
+@@ -7873,8 +7873,8 @@
+ make Poison Barb	制作毒针	wi
+ make Poison Memory	制作毒存储碟	wi
+ make Poke Balls	制作精灵球	wi
+-make Poke Doll	制作宝可梦玩偶	wi
+-make Poke Toy	制作宝可梦玩具	wi
++make Poke Doll	制作皮皮玩偶	wi
++make Poke Toy	制作宝可尾草	wi
+ make Pokeshi Doll	制作宝可梦木偶	wi
+ make Potion	制作伤药	wi
+ make Power Anklet	制作力量护踝	wi
+@@ -8005,7 +8005,7 @@
+ make X Accuracy	制作命中强化	wi
+ make X Attack	制作力量强化	wi
+ make X Defense	制作防御强化	wi
+-make X Sp. Atk	制作特攻强化	wi
++make X Sp. Atk	制作特攻击强化	wi
+ make X Sp. Def	制作特防强化	wi
+ make X Speed	制作速度强化	wi
+ make Yellow Flute	制作黄色玻璃哨	wi
+@@ -8097,16 +8097,16 @@
+ matron trim	贵妇造型	wi
+ mead	蜜酒	wi
+ meat	肉	wi
+-mechanism	机械组件	wi
++mechanism	机件	wi
+ mechanisms	机件	wi
+ melt into water	融化成水	wi
+-melted Alcremie cheese	熔化而死霜奶仙奶酪	wi
+-melted Combee wax	熔化而死三蜜蜂蜡	wi
+-melted Greavard wax	熔化而死墓仔狗的蜡	wi
+-melted Litwick wax	熔化而死烛光灵蜡	wi
+-melted Milcery cheese	熔化而死小仙奶奶酪	wi
+-melted Moomoo cheese	熔化而死哞哞乳酪	wi
+-melted diamond	熔化而死钻石	wi
++melted Alcremie cheese	熔融的霜奶仙奶酪	wi
++melted Combee wax	熔融的三蜜蜂蜡	wi
++melted Greavard wax	熔融的墓仔狗的蜡	wi
++melted Litwick wax	熔融的烛光灵蜡	wi
++melted Milcery cheese	熔融的小仙奶酪	wi
++melted Moomoo cheese	熔融的哞哞乳酪	wi
++melted diamond	熔融的钻石	wi
+ melts into water	融化成水	wi
+ membrane	膜	wi
+ membranes	膜	wi
+@@ -8188,7 +8188,7 @@
+ n/a	不适用	wi
+ nail	指甲	wi
+ nape	后颈	wi
+-neck	颈	wi
++neck	颈部	wi
+ neck adornments	颈饰物	wi
+ neck and beak stripe	颈和尖喙条纹	wi
+ neck and markings	颈和纹路	wi
+@@ -8206,7 +8206,7 @@
+ nether cap logs	幽冥帽原木	wi
+ nickel bar	镍锭	wi
+ ninth tail	第九尾	wi
+-nose	鼻	wi
++nose	鼻子	wi
+ nose and fins	鼻和鳍	wi
+ nose and magnet	鼻和磁铁	wi
+ nose and mouth	鼻和嘴	wi
+@@ -8655,22 +8655,22 @@
+ right upper foreleg	右前大腿	wi
+ right upper incisor	右上门牙	wi
+ right upper leg	右大腿	wi
+-right upper tentacle	右上触角	wi
++right upper tentacle	右上触手	wi
+ right upper vine	右上藤蔓	wi
+ right vine tip	右藤蔓尖端	wi
+ right whip	右鞭	wi
+ right wing	右翅	wi
+ right wing markings	右翅纹路	wi
+-ring	环	wi
++ring	戒指	wi
+ ringing	响铃声	wi
+-rings	环	wi
++rings	戒指	wi
+ rings and bands	环和环带	wi
+ robe	长袍	wi
+ rock	岩石	wi
+ rock Memory Silvally	银伴战兽（岩石属性）	wi
+ rock cannon	岩石炮	wi
+-rock nut oil	石头坚果油	wi
+-rock nut oil container	石头坚果油容器	wi
++rock nut oil	岩石坚果油	wi
++rock nut oil container	岩石坚果油容器	wi
+ rocks	岩石	wi
+ root	根	wi
+ roots	根	wi
+@@ -8710,9 +8710,9 @@
+ screw	螺钉	wi
+ screws	螺钉	wi
+ scroll rollers	卷筒	wi
+-scythe	镰刀	wi
++scythe	长镰	wi
+ scythe tips and toes	镰刀尖端和脚趾	wi
+-scythes	镰刀	wi
++scythes	长镰	wi
+ seamitars and armor	贝壳刀和盔甲	wi
+ seathes	剑鞘	wi
+ seaweed	海藻	wi
+@@ -8733,7 +8733,7 @@
+ second front tentacle	第二前触手	wi
+ second hand	第二手	wi
+ second hand spike	第二手尖刺	wi
+-second head	第二头	wi
++second head	第二个头	wi
+ second head ribbon	第二头缎带	wi
+ second heart	第二心脏	wi
+ second horn	第二个角	wi
+@@ -8954,7 +8954,7 @@
+ snack	点心	wi
+ snout	长鼻子	wi
+ snout and markings	长鼻子和纹路	wi
+-snow	降雪	wi
++snow	雪	wi
+ soak each other	互相浇水	wi
+ solid Alolan Grimer sludge	固态臭泥（阿罗拉的样子）污泥	wi
+ solid Alolan Muk sludge	固态臭臭泥（阿罗拉的样子）污泥	wi
+@@ -9023,7 +9023,7 @@
+ spiral eyes	螺旋状的眼	wi
+ spiral stare	螺旋凝视	wi
+ spirit stolen	灵魂被夺	wi
+-spit	吐唾沫	wi
++spit	唾液	wi
+ spit acid	吐出溶解液	wi
+ spit sand	吐出沙	wi
+ spit tea	吐出茶	wi
+@@ -9058,7 +9058,7 @@
+ stats rose sharply	能力大幅提高了	wi
+ status cure	健康总览治愈	wi
+ status heal	健康总览治疗	wi
+-steam	水蒸气	wi
++steam	蒸汽	wi
+ steel	钢	wi
+ steel Memory Silvally	银伴战兽（钢属性）	wi
+ steel bar	钢锭	wi
+@@ -9068,8 +9068,8 @@
+ stingers	毒刺	wi
+ stings	刺	wi
+ stomach	胃	wi
+-stone	石	wi
+-stones	石	wi
++stone	石材	wi
++stones	石头	wi
+ strata	地层	wi
+ strawberry decorations	草莓片装饰	wi
+ streak	条痕	wi
+@@ -9116,13 +9116,13 @@
+ sweet-smelling aroma	甜美的芳香	wi
+ swift	高速星星	wi
+ swirl	漩涡纹	wi
+-sword	剑术	wi
++sword	剑	wi
+ sword blade	剑术刃	wi
+ sword blades	剑术刃	wi
+ sword hilt	剑柄	wi
+ sword hilts	剑柄	wi
+ syrupy apple cider	蜜汁苹果苹果酒	wi
+-tail	尾	wi
++tail	尾巴	wi
+ tail and markings	尾和纹路	wi
+ tail and puffs	尾和绒球	wi
+ tail and shoulders	尾和肩	wi
+@@ -9160,7 +9160,7 @@
+ tail tip	尾尖端	wi
+ tail tips	尾尖端	wi
+ tail tufts	尾簇毛	wi
+-tails	尾	wi
++tails	尾巴	wi
+ tall grass	高挑草	wi
+ talons	利爪	wi
+ tan sand	棕褐色沙	wi
+@@ -9175,7 +9175,7 @@
+ teapot	茶壶	wi
+ tears	眼泪	wi
+ techno Blast	高科技光炮	wi
+-teeth	牙	wi
++teeth	牙齿	wi
+ teleport	瞬间移动	wi
+ teleports	瞬间移动	wi
+ tendrils	卷须	wi
+@@ -9271,7 +9271,7 @@
+ thorax	胸廓	wi
+ thorax and abdomen	胸廓和腹部	wi
+ thorn	刺	wi
+-thorns	刺	wi
++thorns	尖刺	wi
+ thorns and markings	刺和纹路	wi
+ three body stripes	三条身体条纹	wi
+ three tuft tail	三簇尾毛	wi
+@@ -9296,9 +9296,9 @@
+ toe	脚趾	wi
+ toenails	趾甲	wi
+ toes	脚趾	wi
+-tongue	舌	wi
++tongue	舌头	wi
+ tool	工具	wi
+-tooth	牙	wi
++tooth	牙齿	wi
+ top	顶部	wi
+ top half	上半部	wi
+ top horn	顶部角	wi
+@@ -9960,9 +9960,9 @@
+ use Poison Tail on	使用毒尾攻击	wi
+ use Poison Tera Shard	使用毒太晶碎块	wi
+ use Poisonium Z	使用毒Ｚ	wi
+-use Poke Doll	使用宝可梦玩偶	wi
++use Poke Doll	使用皮皮玩偶	wi
+ use Poke Puff	使用宝芙蕾	wi
+-use Poke Toy	使用宝可梦玩具	wi
++use Poke Toy	使用宝可尾草	wi
+ use Polkadot Bow	使用水玉缎带	wi
+ use Pomeg Berry	使用榴石果	wi
+ use Population Bomb on	使用鼠数儿攻击	wi
+@@ -10233,7 +10233,7 @@
+ use X Accuracy	使用命中强化	wi
+ use X Attack	使用力量强化	wi
+ use X Defense	使用防御强化	wi
+-use X Sp. Atk	使用特攻强化	wi
++use X Sp. Atk	使用特攻击强化	wi
+ use X Sp. Def	使用特防强化	wi
+ use X Speed	使用速度强化	wi
+ use X-Scissor on	使用十字剪攻击	wi
+@@ -10661,7 +10661,7 @@
+ whip tips	鞭尖端	wi
+ whiskers	胡须	wi
+ whistle	鸣哨	wi
+-whistles	口哨	wi
++whistles	鸣哨	wi
+ white	白色	wi
+ white Apricorn	白球果	wi
+ white Apricorns	白球果	wi
+@@ -10691,7 +10691,7 @@
+ wing undersides	翅膀底面	wi
+ wings	翅膀	w
+ wings top half	翅膀上半部	wi
+-wire	铁丝	wi
++wire	金属丝	wi
+ wish	祈愿	wi
+ wiskers	胡须	wi
+ wisp	缕	wi
+@@ -10863,7 +10863,7 @@
+ A Pokemon that resembles two swords sheathed on a plaque. The swords are able to communicate telepathically, and they use this ability to carry out complex attacks that are unstoppable even to those skilled at swordplay.	宝可梦类似于镶在牌匾上的两把剑。这些剑能够进行心灵感应交流，他们利用这种能力进行复杂的攻击，即使是那些擅长剑术的人也无法阻挡。	lP
+ A Pokemon which resembles a hand. Binacle always live in pairs on one gray rock, when they fight, one of them will move to a different rock.	一种外形像手的宝可梦。龟脚脚总是成对栖息在灰色岩石上。如果发生争执，其中一只就会搬到另一块岩石上。	lP
+ A Pokemon whose body appears to be constructed out of black crystalline material. Due to the peculiar nature of its body, the power it wields, and the rumors that it came from another world in the distant past, it is speculated that it may be related to the Ultra Beasts if not actually one itself.	一种身体仿佛由黑色晶体构成的宝可梦。由于其独特的身体、拥有的力量，以及远古时来自异世界的传闻，人们推测它可能本身就是究极异兽，即使不是，也可能与究极异兽有关。	lP
+-A Pokemon with a body closely resembling a living skeleton. It uses its sharp scythes to cut enemies and drink their internal fluids.	一种身体像活骷髅的宝可梦。会用锋利的镰刀切开敌人，吸饮其体液。	lP
++A Pokemon with a body closely resembling a living skeleton. It uses its sharp scythes to cut enemies and drink their internal fluids.	一种身体像活骷髅的宝可梦。会用锋利的长镰切开敌人，吸饮其体液。	lP
+ A Pokemon with a gaseous body. Haunter hides in very dark places, where it plots to take the life of the next living thing that comes near it.	具有气态体的宝可梦。 鬼斯通隐藏在非常黑暗的地方，它计划在那里夺走下一个靠近它的生物的生命。	lP
+ A Pokemon with a head reminiscent of a helmet. It is a very fast Pokemon; it can attack using ways similar to ninjas.	一种头部让人联想到头盔的宝可梦。速度极快，能以类似忍者的方式发动攻击。	lP
+ A Pokemon with a spherical body and a flat, paddle-shaped tail. Fishers detest this troublesome Pokemon because it sprays poison from its spines, getting it everywhere.	宝可梦具有球形身体和扁平桨状尾部。渔民们厌恶这种麻烦的宝可梦，因为它会从刺中喷出毒液，将毒液弄得到处都是。	lP
+@@ -11665,7 +11665,7 @@
+ A bipedal, humanoid Pokemon. From birth, this Pokemon is an excellent pantomime. As it matures, it gains the ability to solidify air molecules by vibrating its fingertips. This ability allows it to create invisible objects with its gestures.	双足人形宝可梦。它从出生起就擅长哑剧表演。随着成长，它能振动指尖使空气分子凝固，从而用手势制造看不见的物体。	lP
+ A bipedal, humanoid Pokemon. Machoke is a Pokemon of immense strength. Its muscles are as hard as steel, and it is capable of lifting extremely heavy objects with only one finger. In spite of this, it is modest and often helps people with manual labor.	双足人形宝可梦。豪力拥有惊人的力量，肌肉坚硬如钢，仅用一根手指就能举起极重的物体。不过它十分谦逊，经常帮人们做体力活。	lP
+ A bipedal, humanoid Pokemon. Through its feet, it is able to control the temperature and create a floor of ice, which it can kick up to act as a barrier.	双足人形宝可梦。它能通过双脚控制温度，在地面形成冰层，再将冰层踢起作为屏障。	lP
+-A bipedal, insectoid Pokemon. Scyther's blade-like forearms are capable of slicing through logs, and become sharper by cutting through hard materials. Using swift movements, it camouflages itself and enhances the effectiveness of its scythes.	双足的昆虫状宝可梦。飞天螳螂刀刃般的前臂能劈开原木，并在切割坚硬材料时变得更锋利。它以迅速的动作迷惑对手，使镰刀更具威力。	lP
++A bipedal, insectoid Pokemon. Scyther's blade-like forearms are capable of slicing through logs, and become sharper by cutting through hard materials. Using swift movements, it camouflages itself and enhances the effectiveness of its scythes.	双足的昆虫状宝可梦。飞天螳螂刀刃般的前臂能劈开原木，并在切割坚硬材料时变得更锋利。它以迅速的动作迷惑对手，使长镰更具威力。	lP
+ A bipedal, lizard-like Pokemon. Low Key Form Toxtricity are known to be selfish and have a high regard towards its strength. Unlike its Amped form counterpart, Toxtricity prefers to taunt opponents into fighting it when making eye contact with them.	外形像蜥蜴的双足宝可梦。颤弦蝾螈（低调的样子）性格自私，对自身实力十分自负。与高调的样子不同，它更喜欢用目光挑衅对手，诱使对手战斗。	lP
+ A bipedal, mammalian Pokemon with some plant-like features. Once it gets into its defensive stance with its hands covering its face, it can stand up to a bombs explosion.	兼具植物特征的双足哺乳动物状宝可梦。它双手护住脸、摆出防御姿态后，甚至能抵御炸弹爆炸。	lP
+ A bipedal, mushroom-like Pokemon with some kangaroo-like qualities. Breloom can stretch its short arms to deliver fast punches. Additionally, it has light, springy footwork that allows it to get close to opponents.	外形像蘑菇，又带有袋鼠特征的双足宝可梦。斗笠菇能伸长短短的手臂，迅速挥拳；它还会以轻盈而富有弹性的步法逼近对手。	lP
+@@ -12110,7 +12110,7 @@
+ Announcement combat ability []: Extrasensory1	神通力1	l
+ Announcement combat ability []: Extrasensory2	神通力2	l
+ Announcement combat ability []: Extrasensory3	神通力3	l
+-Announcement combat ability []: Extrude thread	吐出丝线	l
++Announcement combat ability []: Extrude thread	吐出线	l
+ Announcement combat ability []: Fairy Aura	妖精气场	l
+ Announcement combat ability []: Fairy Lock	妖精之锁	l
+ Announcement combat ability []: Fickle Beam1	随机光1	l
+@@ -12208,11 +12208,11 @@
+ Announcement combat ability []: Hydro Pump3	水炮3	l
+ Announcement combat ability []: Hydro Pump4	水炮4	l
+ Announcement combat ability []: Hydro Pump5	水炮5	l
+-Announcement combat ability []: Hydro Steam1	水蒸气1	l
+-Announcement combat ability []: Hydro Steam2	水蒸气2	l
+-Announcement combat ability []: Hydro Steam3	水蒸气3	l
+-Announcement combat ability []: Hydro Steam4	水蒸气4	l
+-Announcement combat ability []: Hydro Steam5	水蒸气5	l
++Announcement combat ability []: Hydro Steam1	蒸汽1	l
++Announcement combat ability []: Hydro Steam2	蒸汽2	l
++Announcement combat ability []: Hydro Steam3	蒸汽3	l
++Announcement combat ability []: Hydro Steam4	蒸汽4	l
++Announcement combat ability []: Hydro Steam5	蒸汽5	l
+ Announcement combat ability []: Hyper Beam1	破坏光线1	l
+ Announcement combat ability []: Hyper Beam2	破坏光线2	l
+ Announcement combat ability []: Hyper Beam3	破坏光线3	l
+@@ -12340,8 +12340,8 @@
+ Announcement combat ability []: Poison Point	毒刺	l
+ Announcement combat ability []: Poison Powder	毒粉	l
+ Announcement combat ability []: Poisoned	中毒	l
+-Announcement combat ability []: Poke Doll	宝可梦玩偶	l
+-Announcement combat ability []: Poke Toy	宝可梦玩具	l
++Announcement combat ability []: Poke Doll	皮皮玩偶	l
++Announcement combat ability []: Poke Toy	宝可尾草	l
+ Announcement combat ability []: Powder	粉末	l
+ Announcement combat ability []: Power Gem1	力量宝石1	l
+ Announcement combat ability []: Power Gem2	力量宝石2	l
+@@ -12426,7 +12426,7 @@
+ Announcement combat ability []: Smooth Rock	沙沙岩石	l
+ Announcement combat ability []: Snipe Shot	狙击	l
+ Announcement combat ability []: Snow Cloak	雪隐	l
+-Announcement combat ability []: Snow Warning	降雪	l
++Announcement combat ability []: Snow Warning	雪	l
+ Announcement combat ability []: Solar Beam1	日光束1	l
+ Announcement combat ability []: Solar Beam2	日光束2	l
+ Announcement combat ability []: Solar Beam3	日光束3	l
+@@ -12667,8 +12667,8 @@
+ Announcement combat ability []: throw flower4	投掷花朵４	l
+ Announcement combat ability []: wild might	野性的力量	l
+ Announcement combat attack-verb []: Sweet Veil	甜幕	l
+-Announcement combat attack-verb []: slam	摔打	l
+-Announcement combat attack-verb []: slams	摔打	l
++Announcement combat attack-verb []: slam	猛撞	l
++Announcement combat attack-verb []: slams	猛撞	l
+ Announcement combat attack-verb []: use 10,000,000 Volt Thunderbolt on	使用千万伏特攻击	l
+ Announcement combat attack-verb []: use Absorb on	使用吸取攻击	l
+ Announcement combat attack-verb []: use Accelerock on	使用冲岩攻击	l
+@@ -14580,8 +14580,8 @@
+ Announcement combat sentence []: You Slush Rush.	你的特性“拨雪”发动了。	l
+ Announcement combat sentence []: You Snow Cloak!	你的特性“雪隐”发动了！	l
+ Announcement combat sentence []: You Snow Cloak.	你的特性“雪隐”发动了。	l
+-Announcement combat sentence []: You Snow Warning!	你的特性“降雪”发动了！	l
+-Announcement combat sentence []: You Snow Warning.	你的特性“降雪”发动了。	l
++Announcement combat sentence []: You Snow Warning!	你的特性“雪”发动了！	l
++Announcement combat sentence []: You Snow Warning.	你的特性“雪”发动了。	l
+ Announcement combat sentence []: You Soul-Heart!	你的特性“魂心”发动了！	l
+ Announcement combat sentence []: You Speed Boost!	你的特性“加速”发动了！	l
+ Announcement combat sentence []: You Stamina!	你的特性“持久力”发动了！	l
+@@ -14863,8 +14863,8 @@
+ Announcement combat sentence []: You speed rose sharply.	你的速度大幅提高了。	l
+ Announcement combat sentence []: You speed rose!	你的速度提高了！	l
+ Announcement combat sentence []: You speed rose.	你的速度提高了。	l
+-Announcement combat sentence []: You spit!	你吐唾沫！	l
+-Announcement combat sentence []: You spit.	你吐唾沫。	l
++Announcement combat sentence []: You spit!	你唾液！	l
++Announcement combat sentence []: You spit.	你唾液。	l
+ Announcement combat sentence []: You squirt ink!	你喷出墨汁！	l
+ Announcement combat sentence []: You squirt ink.	你喷出墨汁。	l
+ Announcement combat sentence []: You stats rose sharply!	你的能力大幅提高了！	l
+@@ -15142,8 +15142,8 @@
+ Announcement combat sentence [unit]: {s} Slush Rush.	{s1}的特性“拨雪”发动了。	l
+ Announcement combat sentence [unit]: {s} Snow Cloak!	{s1}的特性“雪隐”发动了！	l
+ Announcement combat sentence [unit]: {s} Snow Cloak.	{s1}的特性“雪隐”发动了。	l
+-Announcement combat sentence [unit]: {s} Snow Warning!	{s1}的特性“降雪”发动了！	l
+-Announcement combat sentence [unit]: {s} Snow Warning.	{s1}的特性“降雪”发动了。	l
++Announcement combat sentence [unit]: {s} Snow Warning!	{s1}的特性“雪”发动了！	l
++Announcement combat sentence [unit]: {s} Snow Warning.	{s1}的特性“雪”发动了。	l
+ Announcement combat sentence [unit]: {s} Soul-Heart!	{s1}的特性“魂心”发动了！	l
+ Announcement combat sentence [unit]: {s} Speed Boost!	{s1}的特性“加速”发动了！	l
+ Announcement combat sentence [unit]: {s} Stamina!	{s1}的特性“持久力”发动了！	l
+@@ -15743,9 +15743,9 @@
+ Preference reason: affection	亲昵的举动	l
+ Preference reason: affectionate nature	亲人的性格	l
+ Preference reason: afro	爆炸头	l
+-Preference reason: aggression	好斗的天性	l
++Preference reason: aggression	好斗性	l
+ Preference reason: aggressiveness	攻击性	l
+-Preference reason: agility	敏捷	l
++Preference reason: agility	敏捷身手	l
+ Preference reason: agressive nature	好斗的性格	l
+ Preference reason: aid in muscle growth	促进肌肉生长的功效	l
+ Preference reason: aid in tougness	增强坚韧的功效	l
+@@ -15789,7 +15789,7 @@
+ Preference reason: beard	胡须	l
+ Preference reason: beard of fire	火焰胡须	l
+ Preference reason: beautiful caudal fin	美丽的尾鳍	l
+-Preference reason: beauty	美丽	l
++Preference reason: beauty	美丽的外表	l
+ Preference reason: belief in ideals	对理想的信念	l
+ Preference reason: belief in truth	相信真理	l
+ Preference reason: bell	钟	l
+@@ -16078,11 +16078,11 @@
+ Preference reason: form	形态	l
+ Preference reason: formation	形体构造	l
+ Preference reason: formes	形态	l
+-Preference reason: foul smell	恶臭	l
++Preference reason: foul smell	臭味	l
+ Preference reason: fragrance	香味	l
+ Preference reason: freezing upper half	冰冷的上半身	l
+ Preference reason: fresh scent	清新的气味	l
+-Preference reason: friendliness	友善	l
++Preference reason: friendliness	友好	l
+ Preference reason: friendly nature	友善的天性	l
+ Preference reason: frilled collar	褶边围领	l
+ Preference reason: frills	褶边	l
+@@ -16099,7 +16099,7 @@
+ Preference reason: gem	宝石	l
+ Preference reason: gem-like eyes	宝石般的眼睛	l
+ Preference reason: generator tail	发电机般的尾巴	l
+-Preference reason: gentle nature	温柔的性格	l
++Preference reason: gentle nature	温柔的天性	l
+ Preference reason: gentle temperament	温和的性情	l
+ Preference reason: ghostly arms	幽灵般的手臂	l
+ Preference reason: ghostly plume	幽灵般的头冠	l
+@@ -16109,7 +16109,7 @@
+ Preference reason: giant mouth	巨嘴	l
+ Preference reason: girder	梁	l
+ Preference reason: glare	锐利的目光	l
+-Preference reason: gliding	滑翔	l
++Preference reason: gliding	滑行	l
+ Preference reason: glistening fur	闪闪发光的毛皮	l
+ Preference reason: glittering	闪耀的光泽	l
+ Preference reason: glittering spores	闪闪发光的孢子	l
+@@ -16138,7 +16138,7 @@
+ Preference reason: grabage	垃圾	l
+ Preference reason: graceful movements	优美的动作	l
+ Preference reason: gracidea-like flowers	葛拉西蒂亚花般的花朵	l
+-Preference reason: grain	粮食	l
++Preference reason: grain	籽粒	l
+ Preference reason: great strength	强大的力量	l
+ Preference reason: greed	贪婪	l
+ Preference reason: gregarious nature	群居性	l
+@@ -16207,11 +16207,11 @@
+ Preference reason: incredibly hard ice	极其坚硬的冰	l
+ Preference reason: incredibly powerful trunk	极其强壮的象鼻	l
+ Preference reason: independent nature	独立的性格	l
+-Preference reason: industrious nature	勤劳的本性	l
++Preference reason: industrious nature	勤劳的天性	l
+ Preference reason: infinite power	无限的力量	l
+ Preference reason: ink spraying	喷墨	l
+ Preference reason: intellect	智力	l
+-Preference reason: intelligence	智力	l
++Preference reason: intelligence	聪慧	l
+ Preference reason: intense body heat	炽热的体温	l
+ Preference reason: intense flames	强烈的火焰	l
+ Preference reason: intense heat	酷热	l
+@@ -16229,7 +16229,7 @@
+ Preference reason: jewl like body	宝石般的身体	l
+ Preference reason: jingling	叮铃声	l
+ Preference reason: joy dust	欢乐尘	l
+-Preference reason: joyful nature	开朗的性格	l
++Preference reason: joyful nature	快乐的天性	l
+ Preference reason: judo skills	柔道技巧	l
+ Preference reason: juice	汁液	l
+ Preference reason: juicy beans	多汁的豆子	l
+@@ -16272,11 +16272,11 @@
+ Preference reason: leafy appearance	叶状外观	l
+ Preference reason: leafy hood	绿叶罩	l
+ Preference reason: leafy mane	绿叶鬃毛	l
+-Preference reason: leaves	树叶	l
++Preference reason: leaves	叶片	l
+ Preference reason: leek	韭葱	l
+ Preference reason: leeks	大葱	l
+ Preference reason: legs	腿	l
+-Preference reason: length	长度	l
++Preference reason: length	修长的形态	l
+ Preference reason: life force	生命力	l
+ Preference reason: light	光	l
+ Preference reason: light bulb tail	灯泡状尾巴	l
+@@ -16307,7 +16307,7 @@
+ Preference reason: mandibles	大颚	l
+ Preference reason: mane	鬃毛	l
+ Preference reason: mane of bubbles	泡沫鬃毛	l
+-Preference reason: many arms	众多手臂	l
++Preference reason: many arms	许多触手	l
+ Preference reason: many cannons	许多大炮	l
+ Preference reason: many horns	许多角	l
+ Preference reason: many patterns	许多图案	l
+@@ -16368,7 +16368,7 @@
+ Preference reason: nature changing ability	改变性格的能力	l
+ Preference reason: neatness	整洁	l
+ Preference reason: nectar	花蜜	l
+-Preference reason: needles	针	l
++Preference reason: needles	针叶	l
+ Preference reason: nests	巢穴	l
+ Preference reason: nomadic nature	四处游走的习性	l
+ Preference reason: nose	鼻子	l
+@@ -16402,7 +16402,7 @@
+ Preference reason: personality	性格	l
+ Preference reason: petals	花瓣	l
+ Preference reason: pig-like nose	猪鼻子	l
+-Preference reason: pincers	钳	l
++Preference reason: pincers	钳子	l
+ Preference reason: pit nests	坑巢	l
+ Preference reason: plant like smell	植物般的气味	l
+ Preference reason: play-fighting	打闹游戏	l
+@@ -16546,7 +16546,7 @@
+ Preference reason: sharp teeth	锋利的牙齿	l
+ Preference reason: sharp wings	锋利的翅膀	l
+ Preference reason: shell	壳	l
+-Preference reason: shells	贝壳	l
++Preference reason: shells	壳	l
+ Preference reason: shield	盾	l
+ Preference reason: shining eyes	闪亮的眼睛	l
+ Preference reason: shouting	喊叫	l
+@@ -16558,12 +16558,12 @@
+ Preference reason: simpleness	朴实的风味	l
+ Preference reason: singing	歌唱	l
+ Preference reason: singing sound	歌声	l
+-Preference reason: single eye	单眼	l
++Preference reason: single eye	独眼	l
+ Preference reason: singular ear	单耳	l
+ Preference reason: sinister energy	邪恶的能量	l
+ Preference reason: sinus clearing	通鼻的功效	l
+ Preference reason: sixth sense	第六感	l
+-Preference reason: size	大小	l
++Preference reason: size	体型	l
+ Preference reason: skillful misdirection	巧妙的误导	l
+ Preference reason: skull	颅骨	l
+ Preference reason: skull helmet	头骨头盔	l
+@@ -16574,7 +16574,7 @@
+ Preference reason: slimy film	粘糊糊的薄膜	l
+ Preference reason: slitted eyes	细缝般的眼睛	l
+ Preference reason: sludge	污泥	l
+-Preference reason: small size	小巧的个头	l
++Preference reason: small size	小体型	l
+ Preference reason: small wings	小翅膀	l
+ Preference reason: smell	气味	l
+ Preference reason: smiling pattern	微笑图案	l
+@@ -16612,12 +16612,12 @@
+ Preference reason: spiked shell	带刺的贝壳	l
+ Preference reason: spikes	尖刺	l
+ Preference reason: spiky fur	针刺般的毛发	l
+-Preference reason: spines	刺	l
++Preference reason: spines	尖刺	l
+ Preference reason: spinning	旋转	l
+ Preference reason: spiny shell	刺壳	l
+ Preference reason: spiral	螺旋	l
+ Preference reason: spiral tail	螺旋状的尾巴	l
+-Preference reason: spirit	旺盛的斗志	l
++Preference reason: spirit	精神	l
+ Preference reason: spoon bending	弯曲汤匙的能力	l
+ Preference reason: spoons	勺子	l
+ Preference reason: sprig chewing	咀嚼小树枝	l
+@@ -16733,7 +16733,7 @@
+ Preference reason: temper	脾气	l
+ Preference reason: temperment	脾性	l
+ Preference reason: tenacious nature	顽强的本性	l
+-Preference reason: tenacity	韧性	l
++Preference reason: tenacity	坚韧	l
+ Preference reason: tendancy to carve into tree roots	刮开树根的习性	l
+ Preference reason: tendancy to expel its organs	吐出内脏的习性	l
+ Preference reason: tendancy to flock	结群的习性	l
+@@ -16747,7 +16747,7 @@
+ Preference reason: thick fur	厚厚的皮毛	l
+ Preference reason: thievery	偷窃的习性	l
+ Preference reason: third eye	第三只眼	l
+-Preference reason: thorns	荆棘	l
++Preference reason: thorns	尖刺	l
+ Preference reason: throat sac	喉囊	l
+ Preference reason: throwing stars	飞镖	l
+ Preference reason: tidiness	整洁	l
+@@ -16778,7 +16778,7 @@
+ Preference reason: trunk	象鼻	l
+ Preference reason: tuft	头顶的毛簇	l
+ Preference reason: tunneling	掘洞的习性	l
+-Preference reason: tusks	长牙	l
++Preference reason: tusks	獠牙	l
+ Preference reason: tusks made of ice	冰晶长牙	l
+ Preference reason: twigs	树枝	l
+ Preference reason: umami	鲜味	l
+@@ -16800,7 +16800,7 @@
+ Preference reason: vitality	活力	l
+ Preference reason: vivid color	色彩鲜艳	l
+ Preference reason: voice	嗓音	l
+-Preference reason: waddle	摇摇摆摆的步态	l
++Preference reason: waddle	摇摆的步姿	l
+ Preference reason: wall locking	相互连成蜂墙的习性	l
+ Preference reason: wand	魔杖	l
+ Preference reason: warm touch	温暖的触感	l
+@@ -16884,24 +16884,24 @@
+ A small mythical Pokemon resembling a piece of mochi. It feeds others toxic mochi that draw out desires and capabilities. Those who eat the mochi fall under Pecharunt\xE2\x80\x99s control, chained to its will.	外形像一块粘糕的小型幻之宝可梦。桃歹郎把有毒的粘糕喂给其他生物，激发它们的欲望和能力。吃下粘糕者会受到桃歹郎的控制，被它的意志束缚。	lP
+ A Pokemon said to be created when a lonely spirit possesses a cold, leftover cup of tea. The teacup in which this Pok\xC3\xA9mon makes its home is a famous piece of antique tableware.	据说是孤独的灵魂附身于一杯已经冷掉的剩茶后诞生的宝可梦。它居住的茶杯是著名的古董餐具。	lP
+ A bipedal humanoid Pokemon. Gholdengo is a sociable Pok\xC3\xA9mon, able to quickly befriend anybody. It overwhelms opponents by firing coins at them in quick succession.	双足人形宝可梦。赛富豪善于交际，能很快和任何人成为朋友。它接连不断地向对手发射硬币，将对手压制。	lP
+-dragon hatchlings	幼龙	wi
+-dragon hatchling	幼龙	wi
++dragon hatchlings	巨龙幼崽	wi
++dragon hatchling	巨龙幼崽	wi
+ Pok\x82 Ball	精灵球	wl
+ Pok\x82 Doll	皮皮玩偶	wl
+ Pok\x82 Toy	宝可尾草	wl
+ brain	脑	h
+-teeth	牙	h
+-tooth	牙	h
+-bill	喙	h
+-tail	尾	h
+-eye	眼	h
++teeth	牙齿	h
++tooth	牙齿	h
++bill	扁喙	h
++tail	尾巴	h
++eye	眼睛	h
+ 
+ # Additional authored creature, item and workshop text.
+ Cheat Workshop	作弊工坊	l
+ were Midnight Form Lycanroc	兽化鬃岩狼人（黑夜的样子）	l
+ WerePokemon	兽化宝可梦	l
+ Thief	小偷	l
+-Komala drool	树枕尾熊的口水	l
++Komala drool	树枕尾熊口水	l
+ Boost the power of Pokemon with Z-Crystals, or turn certain ones into a "Z-Powered" form. (That haven't previously evolved, those without an (e) next to the name)	使用Ｚ纯晶增强宝可梦，或让部分宝可梦变成“Ｚ力量形态”。仅适用于尚未进化、名字旁没有“(e)”标记的宝可梦。	lP
+ "The powers of Plates are shared among Pokemon. The rightful bearer of a Plate draws from the Plate it holds."	“石板的力量在宝可梦之间共享。石板真正的持有者能从所持石板中汲取力量。”	lP
+  a flammable gas that it can shoot from its two huge arms. This is mostly used to propel itself in flight and for battle, but it is thought to have sufficient power and lift to even fly into space.	一种能够从两条巨大手臂中喷出的可燃气体。它主要用于推进飞行和战斗，据说其推力甚至足以让它飞入太空。	lP
+@@ -16991,11 +16991,11 @@
+ Preference reason: griminess	污秽	l
+ Preference reason: inner light	内在光芒	l
+ Preference reason: luck	幸运	l
+-Preference reason: mischief	恶作剧	l
++Preference reason: mischief	顽皮	l
+ Preference reason: mix of flavors?	可能的混合风味	l
+ Preference reason: perfection	完美	l
+ Preference reason: revitalising leaves	恢复活力的叶片	l
+-Preference reason: stature	体格	l
++Preference reason: stature	身材	l
+ Preference reason: taste?	未知口味	l
+ Preference reason: tastiness	美味	l
+ Preference reason: terrifying features	骇人的外貌	l
+@@ -17141,9 +17141,9 @@
+ aprons	围裙	wi
+ Aromas	香气	wi
+ Balloons	气球	wi
+-caps	便帽	wi
++caps	帽子	wi
+ collars	项圈	wi
+-dresses	连衣裙	wi
++dresses	裙装	wi
+ hats	帽子	wi
+ robes	长袍	wi
+ ruffs	皱褶领	wi
+@@ -17226,8 +17226,8 @@
+ WAZA_YOBI_03	招式备用０３	l
+ weakened	被削弱	wi
+ Blast	爆裂	wi
+-boiling apple cider	沸腾的苹果酒	l
+-frozen apple cider	冰冻的苹果酒	l
++boiling apple cider	沸腾的苹果西打酒	l
++frozen apple cider	结冻的苹果西打酒	l
+ boiling golden apple cider	沸腾的金苹果酒	l
+ frozen golden apple cider	冰冻的金苹果酒	l
+ boiling golden banana beer	沸腾的金香蕉啤酒	l

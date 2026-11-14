@@ -57,7 +57,7 @@ kind	enforcers	执行者
 kind	experiment	实验体
 kind	experiments	实验体
 kind	eye	眼
-kind	eyes	眼
+kind	eyes	眼睛
 kind	fiend	邪魔
 kind	fiends	邪魔
 kind	fighter	战士
@@ -216,8 +216,8 @@ modifier	blue	蓝色
 modifier	boiling	沸腾
 modifier	bone	骨骸
 modifier	bones	骨骸
-modifier	branch	枝条
-modifier	branches	枝条
+modifier	branch	树枝
+modifier	branches	树枝
 modifier	bright	明亮
 modifier	brine	盐水
 modifier	bronze	青铜
@@ -236,8 +236,8 @@ modifier	cinder	炉渣
 modifier	cinders	炉渣
 modifier	cloud	云
 modifier	clouds	云
-modifier	coal	煤
-modifier	coffin	棺中
+modifier	coal	煤炭
+modifier	coffin	灵柩
 modifier	cold	冰冷
 modifier	coral	珊瑚
 modifier	corrupted	腐化
@@ -279,10 +279,10 @@ modifier	fallen	堕落
 modifier	fear	恐惧
 modifier	fell	凶恶
 modifier	fetid	腐臭
-modifier	filth	污物
+modifier	filth	污垢
 modifier	fire	火焰
 modifier	flame	烈焰
-modifier	flames	烈焰
+modifier	flames	火焰
 modifier	flaming	燃烧
 modifier	flare	耀斑
 modifier	flash	闪光
@@ -311,7 +311,7 @@ modifier	grave	墓穴
 modifier	gray	灰色
 modifier	green	绿色
 modifier	grim	阴森
-modifier	grime	污垢
+modifier	grime	尘垢
 modifier	groaning	呻吟的
 modifier	grumbling	低声嘟哝的
 modifier	heights	高地
@@ -332,7 +332,7 @@ modifier	jewels	珠宝
 modifier	jungle	丛林
 modifier	lake	湖泊
 modifier	lava	熔岩
-modifier	leaf	树叶
+modifier	leaf	叶
 modifier	leaves	树叶
 modifier	light	光明
 modifier	lightning	闪电
@@ -388,7 +388,7 @@ modifier	sacred	神圣
 modifier	sallow	蜡黄
 modifier	salt	盐
 modifier	sanctified	神圣
-modifier	sand	沙地
+modifier	sand	沙
 modifier	savanna	稀树草原
 modifier	scorching	灼热
 modifier	screaming	尖叫的
@@ -408,14 +408,14 @@ modifier	sleeping	沉眠
 modifier	sleet	雨夹雪
 modifier	slick	湿滑
 modifier	sludge	烂泥
-modifier	slush	雪泥
+modifier	slush	泥地
 modifier	snow	雪
 modifier	soot	煤烟
 modifier	star	星辰
 modifier	stars	星辰
 modifier	starved	饥饿的
 modifier	steam	蒸汽
-modifier	steel	钢铁
+modifier	steel	钢
 modifier	stone	石质
 modifier	storm	风暴
 modifier	storms	风暴
@@ -426,7 +426,7 @@ modifier	swamp	沼泽
 modifier	taiga	针叶林
 modifier	tainted	污染
 modifier	tear	泪水
-modifier	tears	泪水
+modifier	tears	眼泪
 modifier	terror	恐怖
 modifier	three-eyed	三眼
 modifier	tidal	潮汐

@@ -19,19 +19,19 @@ Adventure crafting reaction: make wooden door	制作木门	l
 Adventure crafting reaction: make wooden barrel	制作木桶	l
 Adventure crafting reaction: make wooden bucket	制作木水桶	l
 Adventure crafting reaction: make wooden casket	制作木棺	l
-Adventure crafting reaction: make wooden hatch cover	制作木制活板盖	l
-Adventure crafting reaction: make wooden grate	制作木制格栅	l
-Adventure crafting reaction: make wooden bin	制作木制储物箱	l
+Adventure crafting reaction: make wooden hatch cover	制作树木活板盖	l
+Adventure crafting reaction: make wooden grate	制作树木格栅	l
+Adventure crafting reaction: make wooden bin	制作树木储物箱	l
 Adventure crafting reaction: make wooden stepladder	制作木梯	l
 Adventure crafting reaction: make wooden bookcase	制作木书柜	l
 Adventure crafting reaction: make wooden splint	制作木夹板	l
 Adventure crafting reaction: make wooden crutch	制作木拐杖	l
 Adventure crafting reaction: make wooden shield	制作木盾	l
-Adventure crafting reaction: make wooden buckler	制作木制小盾	l
-Adventure crafting reaction: make wooden training axe	制作木制训练斧	l
-Adventure crafting reaction: make wooden training short sword	制作木制训练短剑	l
-Adventure crafting reaction: make wooden training spear	制作木制训练矛	l
-Adventure crafting reaction: make wooden pedestal	制作木制基座	l
+Adventure crafting reaction: make wooden buckler	制作树木小盾	l
+Adventure crafting reaction: make wooden training axe	制作树木训练斧	l
+Adventure crafting reaction: make wooden training short sword	制作树木训练短剑	l
+Adventure crafting reaction: make wooden training spear	制作树木训练矛	l
+Adventure crafting reaction: make wooden pedestal	制作树木基座	l
 Adventure crafting reaction: make sharp rock	打制尖石	l
 Adventure crafting reaction: carve bone figurine	雕刻骨制小塑像	l
 Adventure crafting reaction: carve bone ring	雕刻骨戒指	l
@@ -129,8 +129,8 @@ Adventure crafting description: Make metal ammo and weapons from metal chunks.	�
 Adventure crafting description: Make metal armor from metal chunks.	使用金属碎块制作金属盔甲。	l
 Adventure crafting description: Make stone ammo and trinkets.	制作石制弹药和饰品。	l
 Adventure crafting description: Make stone trinkets.	制作石制饰品。	l
-Adventure crafting description: Carve wood into ammo and weapons.	将木头雕刻成弹药和武器。	l
-Adventure crafting description: Make splints and crutches from wooden logs.	使用原木制作夹板和拐杖。	l
+Adventure crafting description: Carve wood into ammo and weapons.	将木材雕刻成弹药和武器。	l
+Adventure crafting description: Make splints and crutches from wooden logs.	使用原树木作夹板和拐杖。	l
 Adventure crafting description: Make an alchemical ingredient from soulgems dropped by megabeasts.	使用巨兽掉落的灵魂石制作炼金材料。	l
 Adventure crafting description: Make a temporary pill which removes fatigue, lasts 1 hour in adventure mode and 1 day in fortress mode.	制作临时消除疲劳的药丸，在冒险模式中持续1小时，在要塞模式中持续1天。	l
 Adventure crafting description: Make a temporary painkiller pill, lasts 1 hour in adventure mode and 1 day in fortress mode.	制作临时止痛药丸，在冒险模式中持续1小时，在要塞模式中持续1天。	l
@@ -183,7 +183,7 @@ Adventure crafting reaction: carve bone bolts	雕刻骨弩矢	l
 Adventure crafting reaction: carve bone bow	雕刻骨弓	l
 Adventure crafting reaction: carve bone dagger (Bone)	雕刻骨匕首（骨头）	l
 Adventure crafting reaction: carve bone spear	雕刻骨矛	l
-Adventure crafting reaction: carve bone boots	雕刻骨制靴子	l
+Adventure crafting reaction: carve bone boots	雕刻骨制长靴	l
 Adventure crafting reaction: carve bone breastplate	雕刻骨制胸甲	l
 Adventure crafting reaction: carve bone greaves	雕刻骨制护胫	l
 Adventure crafting reaction: carve bone helm	雕刻骨制头盔	l
@@ -223,21 +223,21 @@ Adventure crafting reaction: forge great axe	锻造巨斧	l
 Adventure crafting reaction: forge flail	锻造连枷	l
 Adventure crafting reaction: forge halberd	锻造戟	l
 Adventure crafting reaction: forge long sword	锻造长剑	l
-Adventure crafting reaction: forge mace	锻造钉头锤	l
+Adventure crafting reaction: forge mace	锻造页锤	l
 Adventure crafting reaction: forge pike	锻造长枪	l
 Adventure crafting reaction: forge short sword	锻造短剑	l
 Adventure crafting reaction: forge spear	锻造矛	l
 Adventure crafting reaction: forge two-handed sword	锻造双手剑	l
 Adventure crafting reaction: forge war hammer	锻造战锤	l
-Adventure crafting reaction: forge boots	锻造靴子	l
+Adventure crafting reaction: forge boots	锻造长靴	l
 Adventure crafting reaction: forge breastplate	锻造胸甲	l
 Adventure crafting reaction: forge chainmail	锻造锁子甲	l
 Adventure crafting reaction: forge helm	锻造头盔	l
 Adventure crafting reaction: forge greaves	锻造护胫	l
 Adventure crafting reaction: make stone arrows (bone shaft)	制作石箭（骨制箭杆）	l
-Adventure crafting reaction: make stone arrows (wooden shaft)	制作石箭（木制箭杆）	l
+Adventure crafting reaction: make stone arrows (wooden shaft)	制作石箭（树木箭杆）	l
 Adventure crafting reaction: make stone bolts (bone shaft)	制作石弩矢（骨制箭杆）	l
-Adventure crafting reaction: make stone bolts (wooden shaft)	制作石弩矢（木制箭杆）	l
+Adventure crafting reaction: make stone bolts (wooden shaft)	制作石弩矢（树木箭杆）	l
 Adventure crafting reaction: carve stone amulet	雕刻石制护身符	l
 Adventure crafting reaction: carve stone bracelet	雕刻石制手镯	l
 Adventure crafting reaction: carve stone earring	雕刻石制耳环	l
@@ -246,11 +246,11 @@ Adventure crafting reaction: carve stone ring	雕刻石制戒指	l
 Adventure crafting reaction: carve wooden arrows	雕刻木箭	l
 Adventure crafting reaction: carve wooden bolts	雕刻木弩矢	l
 Adventure crafting reaction: make wooden bow	制作木弓	l
-Adventure crafting reaction: carve wooden amulet	雕刻木制护身符	l
-Adventure crafting reaction: carve wooden bracelet	雕刻木制手镯	l
-Adventure crafting reaction: carve wooden earring	雕刻木制耳环	l
-Adventure crafting reaction: carve wooden figurine	雕刻木制小塑像	l
-Adventure crafting reaction: carve wooden ring	雕刻木制戒指	l
+Adventure crafting reaction: carve wooden amulet	雕刻树木护身符	l
+Adventure crafting reaction: carve wooden bracelet	雕刻树木手镯	l
+Adventure crafting reaction: carve wooden earring	雕刻树木耳环	l
+Adventure crafting reaction: carve wooden figurine	雕刻树木小塑像	l
+Adventure crafting reaction: carve wooden ring	雕刻树木戒指	l
 
 # Reagent NAME values are displayed by the native selection prompt.
 # A is the author's material alias for PARCHMENT_MAT in quire/scroll recipes.

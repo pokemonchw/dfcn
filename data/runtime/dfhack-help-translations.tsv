@@ -608,9 +608,9 @@ DFHack help: For each of the parameters that take lists of tokens, if there is a
 DFHack help: "--show" Print the list of current likes/dislikes for the selected unit	"--show" 打印所选单元当前likes/dislikes的列表	l
 DFHack help: "--show"	"--show"	l
 DFHack help: Print the list of current likes/dislikes for the selected unit	打印所选单元当前likes/dislikes的列表	l
-DFHack help: "--likematerial [ <token> [<token> ...] ]" This is usually set to three tokens: a type of stone, a type of metal, and a type of gem. It can also be a type of wood, glass, leather, horn, pearl, ivory, a decoration material - coral or amber, bone, shell, silk, yarn, or cloth. Please include the full tokens, not just a part.	"--likematerial [ <token> [<token> ...] ]" 这通常设置为三种令牌：一种石头、一种金属和一种宝石。它也可以是一种木材、玻璃、皮革、角、珍珠、象牙、装饰材料--珊瑚或琥珀、骨头、贝壳、丝绸、纱线或布料。请包含完整的令牌，而不仅仅是部分。	l
+DFHack help: "--likematerial [ <token> [<token> ...] ]" This is usually set to three tokens: a type of stone, a type of metal, and a type of gem. It can also be a type of wood, glass, leather, horn, pearl, ivory, a decoration material - coral or amber, bone, shell, silk, yarn, or cloth. Please include the full tokens, not just a part.	"--likematerial [ <token> [<token> ...] ]" 这通常设置为三种令牌：一种石头、一种金属和一种宝石。它也可以是一种木材、玻璃、皮革、角、珍珠、象牙、装饰材料--珊瑚或琥珀、骨头、贝壳、丝绸、纱线或布。请包含完整的令牌，而不仅仅是部分。	l
 DFHack help: "--likematerial [ <token> [<token> ...] ]"	"--likematerial [ <token> [<token> ...] ]"	l
-DFHack help: This is usually set to three tokens: a type of stone, a type of metal, and a type of gem. It can also be a type of wood, glass, leather, horn, pearl, ivory, a decoration material - coral or amber, bone, shell, silk, yarn, or cloth. Please include the full tokens, not just a part.	这通常设置为三种令牌：一种石头、一种金属和一种宝石。它也可以是一种木材、玻璃、皮革、角、珍珠、象牙、装饰材料--珊瑚或琥珀、骨头、贝壳、丝绸、纱线或布料。请包含完整的令牌，而不仅仅是部分。	l
+DFHack help: This is usually set to three tokens: a type of stone, a type of metal, and a type of gem. It can also be a type of wood, glass, leather, horn, pearl, ivory, a decoration material - coral or amber, bone, shell, silk, yarn, or cloth. Please include the full tokens, not just a part.	这通常设置为三种令牌：一种石头、一种金属和一种宝石。它也可以是一种木材、玻璃、皮革、角、珍珠、象牙、装饰材料--珊瑚或琥珀、骨头、贝壳、丝绸、纱线或布。请包含完整的令牌，而不仅仅是部分。	l
 DFHack help: "--likecreature [ <token> [<token> ...] ]" For this preference, you can just list the species as the token. For example, a creature token can be something like "CREATURE:SPARROW:SKIN". Here, you can just say "SPARROW".	"--likecreature [ <token> [<token> ...] ]" 对于此偏好，您可以仅将物种列为令牌。例如，生物标记可以是类似 "CREATURE:SPARROW:SKIN" 的东西。这里，你可以直接说"SPARROW"。	l
 DFHack help: "--likecreature [ <token> [<token> ...] ]"	"--likecreature [ <token> [<token> ...] ]"	l
 DFHack help: For this preference, you can just list the species as the token. For example, a creature token can be something like "CREATURE:SPARROW:SKIN". Here, you can just say "SPARROW".	对于此偏好，您可以仅将物种列为标记。例如，生物标记可以是类似 "CREATURE:SPARROW:SKIN" 的东西。这里，你可以直接说"SPARROW"。	l
@@ -834,9 +834,9 @@ DFHack help: autoclothing clear <material> <item>	汽车服装透明 <material> 
 DFHack help: "<material>" can be "cloth", "silk", "yarn", or "leather". The "<item>" can be anything your civilization can produce, such as "dress" or "mitten".	"<材料>"可以是 "cloth"、"silk"、"yarn" 或 "leather"。 "<item>"可以是您的政权可以生产的任何东西，例如 "dress" 或 "mitten"。	l
 DFHack help: The quantity is **per-citizen**, so keep the values low. A quantity of "1" makes one per citizen. "2" will ensure everyone has a pre-made spare. Usually, "1" is enough.	数量为**每个公民**，因此请保持较低的值。数量"1"相当于每个居民一个。 "2"将确保每个人都有一个预制的备用件。通常，"1"就足够了。	l
 DFHack help: When invoked without parameters, it shows a summary of all managed clothing orders, and the overall clothing situation in your fort. When invoked with a material and item, but without a quantity, it shows the current configuration for that material and item.	当不带参数调用时，它会显示所有托管服装订单的摘要，以及您要塞中的总体服装情况。当使用材料和项目但没有数量调用时，它会显示该材料和项目的当前配置。	l
-DFHack help: "autoclothing cloth "short skirt" 1" Ensures that every citizen will have a cloth short skirts available (as long as there is cloth available to make them out of).	"autoclothing cloth "短裙"1" 确保每个居民都有可用的布料短裙（只要有布料可以制作）。	l
+DFHack help: "autoclothing cloth "short skirt" 1" Ensures that every citizen will have a cloth short skirts available (as long as there is cloth available to make them out of).	"autoclothing cloth "短裙"1" 确保每个居民都有可用的布短裙（只要有布可以制作）。	l
 DFHack help: "autoclothing cloth "short skirt" 1"	"autoclothing cloth "短裙"1"	l
-DFHack help: Ensures that every citizen will have a cloth short skirts available (as long as there is cloth available to make them out of).	确保每个居民都有可用的布料短裙（只要有布料可以制作）。	l
+DFHack help: Ensures that every citizen will have a cloth short skirts available (as long as there is cloth available to make them out of).	确保每个居民都有可用的布短裙（只要有布可以制作）。	l
 DFHack help: "autoclothing cloth dress" Displays the currently set number of cloth dresses chosen per citizen.	"autoclothing cloth dress" 显示当前设置的每个居民选择的布裙数量。	l
 DFHack help: "autoclothing cloth dress"	"autoclothing cloth dress"	l
 DFHack help: Displays the currently set number of cloth dresses chosen per citizen.	显示当前设置的每个居民选择的布衣服数量。	l
@@ -4588,9 +4588,9 @@ DFHack help: Restrict the selection to plants with parts that can be eaten raw.	
 DFHack help: "--oil" Restrict the selection to plants with seeds, nuts, or fruits that can be pressed into oil.	"--oil" 将选择限制为含有种子、坚果或可榨油的水果的植物。	l
 DFHack help: "--oil"	"--oil"	l
 DFHack help: Restrict the selection to plants with seeds, nuts, or fruits that can be pressed into oil.	限制选择含有种子、坚果或可榨油的水果的植物。	l
-DFHack help: "--cloth" Restrict the selection to plants that yield thread for cloth.	"--cloth" 将选择限制为生产布料线的植物。	l
+DFHack help: "--cloth" Restrict the selection to plants that yield thread for cloth.	"--cloth" 将选择限制为生产布线的植物。	l
 DFHack help: "--cloth"	"--cloth"	l
-DFHack help: Restrict the selection to plants that yield thread for cloth.	限制选择能生产布料线的植物。	l
+DFHack help: Restrict the selection to plants that yield thread for cloth.	限制选择能生产布线的植物。	l
 DFHack help: "--dye" Restrict the selection to plants that yield dyes.	"--dye" 将选择限制为产生染料的植物。	l
 DFHack help: "--dye"	"--dye"	l
 DFHack help: Restrict the selection to plants that yield dyes.	将选择限制为产生染料的植物。	l
@@ -4899,9 +4899,9 @@ DFHack help: gui/create-item [<options>]	gui/create-item [<options>]	l
 DFHack help: "gui/create-item" Walk player through the creation of an item that can normally exist in the game.	"gui/create-item" 引导玩家创建通常可以存在于游戏中的物品。	l
 DFHack help: "gui/create-item"	"gui/create-item"	l
 DFHack help: Walk player through the creation of an item that can normally exist in the game.	引导玩家创建游戏中通常存在的物品。	l
-DFHack help: "gui/create-item --unrestricted --count 1" Create one item made of anything in the game. For example, you can create a bar of vomit, if you please.	"gui/create-item --unrestricted --count 1" 创建一件由游戏中任何东西制成的物品。例如，如果您愿意，您可以创建一个呕吐条。	l
+DFHack help: "gui/create-item --unrestricted --count 1" Create one item made of anything in the game. For example, you can create a bar of vomit, if you please.	"gui/create-item --unrestricted --count 1" 创建一件由游戏中任何东西制成的物品。例如，如果您愿意，您可以创建一个呕吐物条。	l
 DFHack help: "gui/create-item --unrestricted --count 1"	"gui/create-item --unrestricted --count 1"	l
-DFHack help: Create one item made of anything in the game. For example, you can create a bar of vomit, if you please.	创建一件由游戏中任何东西制成的物品。例如，如果您愿意，您可以创建一个呕吐条。	l
+DFHack help: Create one item made of anything in the game. For example, you can create a bar of vomit, if you please.	创建一件由游戏中任何东西制成的物品。例如，如果您愿意，您可以创建一个呕吐物条。	l
 DFHack help: "-c", "--count <num>" Set the quantity of items to create instead of prompting for it.	"-c"、"--count <num>" 设置要创建的项目数量，而不是提示。	l
 DFHack help: "-c", "--count <num>"	"-c", "--count <num>"	l
 DFHack help: Set the quantity of items to create instead of prompting for it.	设置要创建的项目数量，而不是提示。	l
@@ -4966,7 +4966,7 @@ DFHack help: Command: "gui/dfstatus"	命令："gui/dfstatus"	l
 DFHack help: Show a quick overview of critical stock quantities.	显示关键库存数量的快速概览。	l
 DFHack help: This tool show a quick overview of stock quantities for:	此工具显示以下库存数量的快速概览：	l
 DFHack help: * drinks	* 饮料	l
-DFHack help: * wood	* 木头	l
+DFHack help: * wood	* 木材	l
 DFHack help: * fuel	* 燃料	l
 DFHack help: * prepared_meals	* 准备好的饭菜	l
 DFHack help: * tanned_hides	* 晒黑的皮革	l
@@ -5288,7 +5288,7 @@ DFHack help: The UI will walk you through the steps:	UI 将引导您完成以下
 DFHack help: 1. Select a feeder stockpile by clicking on it. If you want to select multiple feeder stockpiles, switch the feeder selection toggle into multi mode.	1. 单击选择供料器储物堆。如果要选择多个供料器储物堆，请将供料器选择开关切换到多模式。	l
 DFHack help: 2. Set configuration with the onscreen options.	2. 使用屏幕选项设置配置。	l
 DFHack help: 3. Click on the map to build the quantum stockpile there.	3. 点击地图，在那里建造量子储物堆。	l
-DFHack help: If there are any minecarts available, one will be automatically assigned to the hauling route. If you don't have a free minecart, "gui/quantum" will enqueue a manager order to make a wooden one for you. Once it is built, you'll have to run assign-minecarts all to assign it to the route or open the (H)auling menu and assign it manually. The quantum stockpile will not function until the minecart is in place.	如果有矿车可用，则会自动分配一辆到运输路线。如果你没有免费的矿车，"gui/quantum" 会排队一份管理官订单，为你制作一辆木制矿车。构建完成后，您必须运行 allocate-minecarts all 将其分配给路线，或者打开 (H)auling 菜单并手动分配。在矿车就位之前，量子储物堆将无法运行。	l
+DFHack help: If there are any minecarts available, one will be automatically assigned to the hauling route. If you don't have a free minecart, "gui/quantum" will enqueue a manager order to make a wooden one for you. Once it is built, you'll have to run assign-minecarts all to assign it to the route or open the (H)auling menu and assign it manually. The quantum stockpile will not function until the minecart is in place.	如果有矿车可用，则会自动分配一辆到运输路线。如果你没有免费的矿车，"gui/quantum" 会排队一份管理官订单，为你制作一辆树木矿车。构建完成后，您必须运行 allocate-minecarts all 将其分配给路线，或者打开 (H)auling 菜单并手动分配。在矿车就位之前，量子储物堆将无法运行。	l
 DFHack help: See the wiki for more information on quantum stockpiles.	有关量子储物堆的更多信息，请参阅 wiki。	l
 DFHack help: Tips ----	温馨提示----	l
 DFHack help: Tips	温馨提示	l
@@ -5784,7 +5784,7 @@ DFHack help: "idle-crafting happy yes"	"idle-crafting happy yes"	l
 DFHack help: Treat happy and ecstatic dwarves the same as everyone else.	像其他人一样对待快乐和欣喜若狂的矮人。	l
 DFHack help: This script provides an overlay on the "Workers" tab of Craftsdwarf's workshops, allowing you to designate that workshop for use by idle dwarves to satisfy their needs to craft objects. Workshops that have a master assigned cannot be used in this way.	该脚本在 Craftsdwarf 工作室的"工人"选项卡上提供了覆盖，允许您指定该工作室供闲置的矮人使用，以满足他们制作物品的需求。指定了大师的工坊不能以这种方式使用。	l
 DFHack help: When a workshop is designated for idle crafting, this tool will create crafting jobs and assign them to idle dwarves who have a need for crafting objects. This script respects the setting for permitted general work order labors from the "Workers" tab.	当工场被指定用于闲置制作时，该工具将创建制作工作并将其分配给需要制作物品的闲置矮人。此脚本遵循"Workers"选项卡中允许的常规工作订单劳动的设置。	l
-DFHack help: For workshops without input stockpile links, bone carving, stonecrafting, and clothesmaking (cloth, silk, and yarn crafts) are supported. Stonecrafting is tried first, then bone carving, then clothesmaking if usable cloth exists anywhere on the map. Thus, to designate a workshop for bone carving, disable the stonecrafting labor while keeping the bone carving labor enabled. To designate a workshop for cloth crafts, disable both stonecrafting and bone carving.	对于没有输入储物堆链接的工坊，支持骨雕、石雕、制衣（布、丝、纱工艺品）。首先尝试石雕，然后是骨雕，如果地图上任何地方都有可用的布料，然后是制衣。因此，要指定骨雕工坊，请禁用石雕劳动，同时保持骨雕劳动启用。要指定布艺作坊，请禁用石雕和骨雕。	l
+DFHack help: For workshops without input stockpile links, bone carving, stonecrafting, and clothesmaking (cloth, silk, and yarn crafts) are supported. Stonecrafting is tried first, then bone carving, then clothesmaking if usable cloth exists anywhere on the map. Thus, to designate a workshop for bone carving, disable the stonecrafting labor while keeping the bone carving labor enabled. To designate a workshop for cloth crafts, disable both stonecrafting and bone carving.	对于没有输入储物堆链接的工坊，支持骨雕、石雕、制衣（布、丝、纱工艺品）。首先尝试石雕，然后是骨雕，如果地图上任何地方都有可用的布，然后是制衣。因此，要指定骨雕工坊，请禁用石雕劳动，同时保持骨雕劳动启用。要指定布艺作坊，请禁用石雕和骨雕。	l
 DFHack help: For workshops with input stockpile links, the creation of totems, shell crafts, horn crafts, and cloth crafts are supported as well. In this case, the choice of job is made randomly based on the resources available in the input stockpiles (respecting the permitted labors from the workshop profile).	输入储物堆链接的工坊，还支持制作图腾、贝壳工艺品、牛角工艺品、布艺工艺品。在这种情况下，工作的选择是根据输入储物堆中的可用资源随机进行的（尊重车间配置文件中允许的劳动）。	l
 DFHack help: immortal-cravings =================	immortal-cravings =================	l
 DFHack help: immortal-cravings	immortal-cravings	l
@@ -5842,7 +5842,7 @@ DFHack help: Perform bulk operations on groups of items.	对一组项目执行�
 DFHack help: Filter items in you fort by various properties (e.g., item type, material, wear-level, quality, ...), and perform bulk operations like forbid, dump, melt, and their inverses. By default, the tool does not consider artifacts and owned items. Outputs the number of items that matched the filters and were modified.	按各种属性（例如，物品类型、材料、磨损程度、质量等）过滤要塞中的物品，并执行批量操作，例如禁止、倾倒、熔化及其逆操作。默认情况下，该工具不考虑神器和拥有的物品。输出与过滤器匹配并被修改的项目数。	l
 DFHack help: "item [count|[un]forbid|[un]dump|[un]hide|[un]melt] [<filter options>] [<search>]"	"item [count|[un]forbid|[un]dump|[un]hide|[un]melt] [<filter options>] [<search>]"	l
 DFHack help: The "count" action counts up the items that are matched by the given filter options. Otherwise, the named property is set (or unset) on all the items matched by the filter options. The counts reported when you actually apply a property might differ from those reported by "count", because applying a property skips over all items that already have the property set (see "--dry-run")	"count" 操作对与给定过滤器选项匹配的项目进行计数。否则，将在与过滤器选项匹配的所有项目上设置（或取消设置）命名属性。实际应用属性时报告的计数可能与 "count" 报告的计数不同，因为应用属性会跳过已设置该属性的所有项目（请参阅 "--dry-run"）	l
-DFHack help: The (optional) search string will filter by the item description. It will be interpreted as a Lua pattern, so any special regular expression characters (like "-") will need to be escaped with "%" (e.g. "%-") to be interpreted as a literal string. See https://www.lua.org/manual/5.3/manual.html#6.4.1 for details. For example "cave spider silk" will match both "cave spider silk web" and "cave spider silk cloth". Use "^pattern$" to match the entire description.	（可选）搜索字符串将按项目描述进行过滤。它将被解释为 Lua 模式，因此任何特殊的正则表达式字符（如 "-"）都需要用"%"（例如"%-"）转义才能解释为文字字符串。详情请参见https://www.lua.org/manual/5.3/manual.html#6.4.1。例如，"洞穴蜘蛛丝"将匹配"洞穴蜘蛛丝网"和"洞穴蜘蛛丝布"。使用"^pattern$"来匹配整个描述。	l
+DFHack help: The (optional) search string will filter by the item description. It will be interpreted as a Lua pattern, so any special regular expression characters (like "-") will need to be escaped with "%" (e.g. "%-") to be interpreted as a literal string. See https://www.lua.org/manual/5.3/manual.html#6.4.1 for details. For example "cave spider silk" will match both "cave spider silk web" and "cave spider silk cloth". Use "^pattern$" to match the entire description.	（可选）搜索字符串将按项目描述进行过滤。它将被解释为 Lua 模式，因此任何特殊的正则表达式字符（如 "-"）都需要用"%"（例如"%-"）转义才能解释为文字字符串。详情请参见https://www.lua.org/manual/5.3/manual.html#6.4.1。例如，"洞穴蜘蛛丝"将匹配"洞穴蜘蛛丝网"和"洞穴蜘蛛丝绸"。使用"^pattern$"来匹配整个描述。	l
 DFHack help: "item count steel -v" Scan your stocks for (unowned) items that contain the word "steel" and print out the counts for each steel item found.	"item count steel -v" 扫描您的库存中是否有包含单词 "steel" 的（无主）物品，并打印出找到的每个钢铁物品的数量。	l
 DFHack help: "item count steel -v"	"item count steel -v"	l
 DFHack help: Scan your stocks for (unowned) items that contain the word "steel" and print out the counts for each steel item found.	扫描您的库存中是否有包含单词 "steel" 的（无主）物品，并打印出找到的每个钢铁物品的数量。	l
@@ -7679,7 +7679,7 @@ DFHack help: Specify the material of the flow, if applicable. E.g. "INORGANIC:IR
 DFHack help: "--flowType <type>" The flow type, one of:	"--flowType <type>" 流类型，其中之一：	l
 DFHack help: "--flowType <type>"	"--flowType <type>"	l
 DFHack help: The flow type, one of:	流类型，以下之一：	l
-DFHack help: Miasma Steam Mist MaterialDust MagmaMist Smoke Dragonfire Fire Web MaterialGas MaterialVapor OceanWave SeaFoam	瘴气蒸汽雾材质尘埃岩浆雾烟雾龙火火网材质气体材质水蒸气海浪海泡沫	l
+DFHack help: Miasma Steam Mist MaterialDust MagmaMist Smoke Dragonfire Fire Web MaterialGas MaterialVapor OceanWave SeaFoam	瘴气蒸汽雾材质尘埃岩浆雾烟雾龙火火网材质气体材质蒸汽海浪海泡沫	l
 DFHack help: Miasma	瘴气	l
 DFHack help: Steam	蒸汽	l
 DFHack help: Mist	雾	l
@@ -7936,7 +7936,7 @@ DFHack help: * prepared meals and food products (and by-products like oil)	* 预
 DFHack help: * booze/mead	* booze/mead	l
 DFHack help: * thread/cloth/dye	* thread/cloth/dye	l
 DFHack help: * pots/bins/jugs/buckets/mugs	* pots/bins/jugs/buckets/mugs	l
-DFHack help: * bags of leather, cloth, silk, and yarn	* 皮革、布料、丝绸和纱线袋	l
+DFHack help: * bags of leather, cloth, silk, and yarn	* 皮革、布、丝绸和纱线袋	l
 DFHack help: * crafts, totems, and shleggings from otherwise unusable by-products	* 来自其他无法使用的副产品的工艺品、图腾和木棍	l
 DFHack help: * mechanisms/cages	* mechanisms/cages	l
 DFHack help: * splints/crutches	* splints/crutches	l
@@ -7946,7 +7946,7 @@ DFHack help: * beds/wheelbarrows/minecarts	* beds/wheelbarrows/minecarts	l
 DFHack help: * paper/scrolls	* paper/scrolls	l
 DFHack help: You should import it as soon as you have enough dwarves to perform the tasks. Right after the first migration wave is usually a good time.	一旦您有足够的矮人来执行任务，您就应该导入它。在第一次迁移浪潮之后通常是一个好时机。	l
 DFHack help: These orders do not contain milking, shearing, or cheesemaking jobs since the game does not provide sufficient order conditions. Please enable "automilk", "autoshear", and autocheese on the DFHack gui/control-panel for these types of jobs.	这些订单不包含挤奶、剪羊毛或奶酪制作工作，因为游戏没有提供足够的订单条件。对于这些类型的作业，请在 DFHack gui/control-panel 上启用 "automilk"、"autoshear" 和 autocheese。	l
-DFHack help: Note that the jugs are specifically made out of wood. This is so, as long as you don't make any other "Tools" out of wood, you can have a stockpile just for jugs by restricting a finished goods stockpile to only take wooden tools.	请注意，这些水壶是专门用木头制成的。是这样的，只要你不用木头制作任何其他"工具"，你就可以通过限制成品储物堆只能使用木制工具来拥有一个仅用于壶的储物堆。	l
+DFHack help: Note that the jugs are specifically made out of wood. This is so, as long as you don't make any other "Tools" out of wood, you can have a stockpile just for jugs by restricting a finished goods stockpile to only take wooden tools.	请注意，这些水壶是专门用木材制成的。是这样的，只要你不用木材制作任何其他"工具"，你就可以通过限制成品储物堆只能使用树木工具来拥有一个仅用于壶的储物堆。	l
 DFHack help: Armok's additional note: "shleggings? Yes, shleggings."	Armok 的附加注释："shleggings？是的，shleggings。"	l
 DFHack help: library/furnace ~~~~~~~~~~~~~~~	library/furnace ~~~~~~~~~~~~~~~	l
 DFHack help: library/furnace	library/furnace	l
@@ -9711,8 +9711,8 @@ DFHack help: soap	肥皂	l
 DFHack help: blocks	块	l
 DFHack help: Example commands for a stockpile of blocks:	储物堆块的示例命令：	l
 DFHack help: stockpiles import blocks	储物堆导入块	l
-DFHack help: Cloth stockpile adjustments ~~~~~~~~~~~~~~~~~~~~~~~~~~~	布料储物堆调整~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	l
-DFHack help: Cloth stockpile adjustments	布料储物堆调整	l
+DFHack help: Cloth stockpile adjustments ~~~~~~~~~~~~~~~~~~~~~~~~~~~	布储物堆调整~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	l
+DFHack help: Cloth stockpile adjustments	布储物堆调整	l
 DFHack help: thread/silk/ thread/plant/ thread/yarn/ thread/metal/ cloth/silk/ cloth/plant/ cloth/yarn/ cloth/metal/	thread/silk/ thread/plant/ thread/yarn/ thread/metal/ cloth/silk/ cloth/plant/ cloth/yarn/ cloth/metal/	l
 DFHack help: thread/silk/	thread/silk/	l
 DFHack help: thread/plant/	thread/plant/	l
@@ -10186,7 +10186,7 @@ DFHack help: tailor	tailor	l
 DFHack help: Command: "tailor"	命令："tailor"	l
 DFHack help: Automatically keep your dwarves in fresh clothing.	自动让您的矮人保持干净的衣服。	l
 DFHack help: Once a day, this plugin will scan the clothing situation in the fort. If there are fresh cloths available, dwarves who are wearing tattered clothing will have their rags confiscated (in the same manner as the cleanowned tool) so that they'll reequip with replacement clothes.	每天一次，该插件会扫描要塞中的服装情况。如果有干净的衣服可用，则穿着破烂衣服的矮人的破布将被没收（与干净拥有的工具相同），以便他们重新装备替换衣服。	l
-DFHack help: If there are not enough clothes available, manager orders will be generated to manufacture some more. "tailor" will intelligently create orders using raw materials that you have on hand in the fort. For example, if you have lots of silk, but no cloth, then "tailor" will order only silk clothing to be made.	如果没有足够的衣服，将会生成管理官订单来制造更多衣服。 "tailor" 将使用您在要塞中现有的原材料智能创建订单。例如，如果您有大量丝绸，但没有布料，则 "tailor" 将仅订购丝绸服装。	l
+DFHack help: If there are not enough clothes available, manager orders will be generated to manufacture some more. "tailor" will intelligently create orders using raw materials that you have on hand in the fort. For example, if you have lots of silk, but no cloth, then "tailor" will order only silk clothing to be made.	如果没有足够的衣服，将会生成管理官订单来制造更多衣服。 "tailor" 将使用您在要塞中现有的原材料智能创建订单。例如，如果您有大量丝绸，但没有布，则 "tailor" 将仅订购丝绸服装。	l
 DFHack help: If you are wondering whether you should enable autoclothing instead, see the head-to-head comparison in the autoclothing docs.	如果您想知道是否应该启用自动服装，请参阅自动服装文档中的头对头比较。	l
 DFHack help: enable tailor tailor [status] tailor now tailor materials <material> [<material> ...] tailor confiscate [true|false] tailor dye [true|false]	启用裁缝裁缝[状态]裁缝现在裁缝材料<material>[<material>...]裁缝没收[true|false]裁缝染料[true|false]	l
 DFHack help: enable tailor	启用裁缝	l
@@ -10196,9 +10196,9 @@ DFHack help: tailor materials <material> [<material> ...]	裁缝材料 <material
 DFHack help: tailor confiscate [true|false]	裁缝没收[真|假]	l
 DFHack help: tailor dye [true|false]	裁缝染料 [真|假]	l
 DFHack help: By default, "tailor" will prefer using materials in this order:	默认情况下，"tailor" 会优先按以下顺序使用材质：	l
-DFHack help: silk cloth yarn leather	丝布纱皮革	l
+DFHack help: silk cloth yarn leather	丝绸纱皮革	l
 DFHack help: but you can use the "tailor materials" command to restrict which materials are used, and in what order. By default, "tailor" will "confiscate" (i.e., remove ownership and mark for dumping) equipped tattered clothing once replacements are available. This can be changed using "tailor confiscate". The default behavior minimizes the time you dwarves keep wearing worn-out clothing, minimizing the number of negative thoughts incurred by this. However, it will also result in tattered clothing being brought to your "garbage" zones and forbidden, which may be undesirable.	但您可以使用 "tailor materials" 命令来限制使用哪些材料以及按什么顺序。默认情况下，一旦有替代品，"tailor" 将配备 "confiscate"（即删除所有权和倾销标记）的破烂衣服。这可以使用 "tailor confiscate" 进行更改。默认行为会最大限度地减少您矮人继续穿着破旧衣服的时间，从而最大限度地减少由此产生的负面想法。然而，这也会导致破烂的衣服被带到你的 "garbage" 区域并被禁止，这可能是不可取的。	l
-DFHack help: "tailor" supports adamantine cloth (using the "materials" keyword "adamantine") but does not use it by default, as most players find adamantine too precious to routinely make into cloth. "tailor" does not support modded "cloth" types which utilize custom reactions for making clothing out of those cloth types.	"tailor" 支持精金布料（使用 "materials" 关键字 "adamantine"），但默认情况下不使用它，因为大多数玩家发现精金太珍贵而无法常规制作布料。 "tailor" 不支持修改后的 "cloth" 类型，该类型利用自定义反应用这些布料类型制作服装。	l
+DFHack help: "tailor" supports adamantine cloth (using the "materials" keyword "adamantine") but does not use it by default, as most players find adamantine too precious to routinely make into cloth. "tailor" does not support modded "cloth" types which utilize custom reactions for making clothing out of those cloth types.	"tailor" 支持精金布（使用 "materials" 关键字 "adamantine"），但默认情况下不使用它，因为大多数玩家发现精金太珍贵而无法常规制作布。 "tailor" 不支持修改后的 "cloth" 类型，该类型利用自定义反应用这些布类型制作服装。	l
 DFHack help: If dye management is enabled, "tailor" will also issue orders to dye cloth as needed to fulfill fortress clothing requirements, and will issue orders to manufacture dyes required to fulfill the dye cloth orders. Dye management is disabled by default.	如果启用染料管理，"tailor" 还将根据需要发出染布订单以满足要塞服装需求，并发出制造满足染布订单所需染料的订单。默认情况下禁用染料管理。	l
 DFHack help: "enable tailor" Start replacing tattered clothes with default settings.	"enable tailor" 开始用默认设置替换破烂的衣服。	l
 DFHack help: "enable tailor"	"enable tailor"	l
@@ -10208,10 +10208,10 @@ DFHack help: "tailor now"	"tailor now"	l
 DFHack help: Run a scan and order cycle right now, regardless of whether the plugin is enabled.	立即运行扫描和订购周期，无论插件是否启用。	l
 DFHack help: "tailor materials silk cloth yarn" Restrict the materials used for automatically manufacturing clothing to silk, cloth, and yarn, preferred in that order. This saves leather for other uses, like making armor.	"tailor materials silk cloth yarn" 将自动制造服装的材料限制为丝、布、纱，依次优先。这可以节省皮革用于其他用途，例如制作盔甲。	l
 DFHack help: "tailor materials silk cloth yarn"	"tailor materials silk cloth yarn"	l
-DFHack help: Restrict the materials used for automatically manufacturing clothing to silk, cloth, and yarn, preferred in that order. This saves leather for other uses, like making armor.	将自动制造服装的材料限制为丝绸、布料和纱线，按顺序优先。这可以节省皮革用于其他用途，例如制作盔甲。	l
+DFHack help: Restrict the materials used for automatically manufacturing clothing to silk, cloth, and yarn, preferred in that order. This saves leather for other uses, like making armor.	将自动制造服装的材料限制为丝绸、布和纱线，按顺序优先。这可以节省皮革用于其他用途，例如制作盔甲。	l
 DFHack help: Modded cloth-like materials are not supported because custom reactions do not support being sized for non-dwarf races. The game only supports sizing the built-in default make-clothing or make-armor reactions.	不支持改装的类似布料的材料，因为自定义反应不支持针对非矮人种族调整尺寸。游戏仅支持调整内置默认制作服装或制作盔甲反应的尺寸。	l
 DFHack help: Dye automation will not not issue orders to mill dyes that are made at a millstone or quern because Dwarf Fortress does not currently support "mill plant" orders for a specified material.	染料自动化不会发出订单来研磨在磨石或磨坊上制造的染料，因为矮人要塞目前不支持指定材料的"工厂"订单。	l
-DFHack help: At present, dye automation uses any available dye and cloth will be dyed with whatever color dye can be found or made. The ability to specify color preferences may be added in the future.	目前，染料自动化使用任何可用的染料，并且布料将使用可以找到或制造的任何颜色的染料进行染色。将来可能会添加指定颜色首选项的功能。	l
+DFHack help: At present, dye automation uses any available dye and cloth will be dyed with whatever color dye can be found or made. The ability to specify color preferences may be added in the future.	目前，染料自动化使用任何可用的染料，并且布将使用可以找到或制造的任何颜色的染料进行染色。将来可能会添加指定颜色首选项的功能。	l
 DFHack help: tame ====	tame ====	l
 DFHack help: tame	tame	l
 DFHack help: Command: "tame"	命令："tame"	l
@@ -10482,9 +10482,9 @@ DFHack help: Prevents adamantine clothing from wearing out while being worn (Bug
 DFHack help: "animaltrap-reuse" Makes built animal traps unload caught vermin into stockpiled animal traps so that they can be automatically re-baited and reused.	"animaltrap-reuse" 使建造的动物陷阱将捕获的害虫卸载到储存的动物陷阱中，以便它们可以自动重新装饵并重复使用。	l
 DFHack help: "animaltrap-reuse"	"animaltrap-reuse"	l
 DFHack help: Makes built animal traps unload caught vermin into stockpiled animal traps so that they can be automatically re-baited and reused.	使建造的动物陷阱将捕获的害虫卸载到储存的动物陷阱中，以便它们可以自动重新装饵并重复使用。	l
-DFHack help: "craft-age-wear" Fixes crafted items not wearing out over time (Bug 6003). With this tweak, items made from cloth and leather will gain a level of wear every 20 in-game years.	"craft-age-wear" 修复了制作的物品不会随着时间的推移而磨损的问题（错误 6003）。通过此调整，由布料和皮革制成的物品将在游戏中每 20 年获得一定程度的磨损。	l
+DFHack help: "craft-age-wear" Fixes crafted items not wearing out over time (Bug 6003). With this tweak, items made from cloth and leather will gain a level of wear every 20 in-game years.	"craft-age-wear" 修复了制作的物品不会随着时间的推移而磨损的问题（错误 6003）。通过此调整，由布和皮革制成的物品将在游戏中每 20 年获得一定程度的磨损。	l
 DFHack help: "craft-age-wear"	"craft-age-wear"	l
-DFHack help: Fixes crafted items not wearing out over time (Bug 6003). With this tweak, items made from cloth and leather will gain a level of wear every 20 in-game years.	修复了制作的物品不会随着时间的推移而磨损的问题（错误 6003）。通过此调整，由布料和皮革制成的物品将在游戏中每 20 年获得一定程度的磨损。	l
+DFHack help: Fixes crafted items not wearing out over time (Bug 6003). With this tweak, items made from cloth and leather will gain a level of wear every 20 in-game years.	修复了制作的物品不会随着时间的推移而磨损的问题（错误 6003）。通过此调整，由布和皮革制成的物品将在游戏中每 20 年获得一定程度的磨损。	l
 DFHack help: "drawbridge-tiles" Makes raising bridges in ASCII mode render with different tiles when they are raised.	"drawbridge-tiles" 使 ASCII 模式下的升高桥梁在升高时使用不同的图块进行渲染。	l
 DFHack help: "drawbridge-tiles"	"drawbridge-tiles"	l
 DFHack help: Makes raising bridges in ASCII mode render with different tiles when they are raised.	使 ASCII 模式下的升起桥梁在升起时使用不同的图块进行渲染。	l

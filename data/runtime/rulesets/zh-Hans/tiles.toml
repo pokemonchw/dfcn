@@ -436,7 +436,7 @@ optional = true
 [[rulesets]]
 name = "constructed::main"
 [rulesets.rules]
-"unknown material" = "未知物质"
+"unknown material" = "未知材料"
 "{::materials::state::adjective}" = "{::materials::state::adjective}"
 "{::materials::^prefix}{::materials::state::adjective}" = "{::materials::^prefix}{::materials::state::adjective}"
 # Natural tiles call the material noun formatter (0x1414d1920), while
@@ -459,5 +459,5 @@ name = "material"
 [[rulesets]]
 name = "material::base"
 [rulesets.rules]
-"unknown material" = "未知物质"
+"unknown material" = "未知材料"
 "{::materials}" = "{::materials}"

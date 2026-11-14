@@ -2,7 +2,7 @@ base = "materials::job"
 
 [[rulesets]]
 [rulesets.rules]
-"wood" = "木头"
+"wood" = "木材"
 "{shared}" = "{shared}"
 
 [[rulesets]]

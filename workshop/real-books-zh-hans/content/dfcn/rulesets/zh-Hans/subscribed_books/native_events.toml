@@ -3,7 +3,7 @@ base = "subscribed_books::native_events"
 
 [[rulesets]]
 [rulesets.rules]
-"none" = "无事件"
+"none" = "无"
 "war attacked site" = "战争中的据点袭击"
 "war destroyed site" = "战争中的据点毁灭"
 "created site" = "据点建立"

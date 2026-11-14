@@ -89,7 +89,7 @@ name = "economy::resource"
 "lumber" = "木材"
 "gems" = "宝石"
 "ale" = "麦酒"
-"cloth" = "布料"
+"cloth" = "布"
 "stone" = "石材"
 
 [[rulesets]]

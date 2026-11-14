@@ -16006,6 +16006,10 @@ std::optional<std::string> Overlay::translate_character_preference_term(
     std::function<std::optional<std::string>(std::string_view)> material_field;
     material_field = [&](std::string_view source) -> std::optional<std::string> {
         source = trim_view(source);
+        if (config_.compositional_rules) {
+            if (const auto current = RULESETS.translate_material_state(
+                    native_text_to_utf8(source))) return current;
+        }
         if (const auto found = preference_material_states.find(source);
                 found != preference_material_states.end())
             return std::string(found->second);
@@ -16035,10 +16039,31 @@ std::optional<std::string> Overlay::translate_character_preference_term(
         return std::nullopt;
     };
 
-    auto direct_term = [this, &material_field](std::string_view raw)
+    // Use the live, scoped nouns also used by item/material captions. Keep
+    // the generated catalog's growth/seed/plant/material precedence, and
+    // retain its fallback for RAW fields without a current production.
+    const auto current_term = [this, &material_field](const std::string& source)
+            -> std::optional<std::string> {
+        if (!config_.compositional_rules) return std::nullopt;
+        const auto utf8 = native_text_to_utf8(source);
+        if (source.starts_with("the color "))
+            return RULESETS.translate_color(native_text_to_utf8(source.substr(10)));
+        for (const char* context : {"::plants::growth", "::plants::seed", "::plants::name"}) {
+            std::vector<size_t> origins;
+            if (const auto current = RULESETS.translate_with_origins(utf8, context, origins))
+                return current;
+        }
+        if (const auto current = material_field(source)) return current;
+        if (const auto current = RULESETS.translate_equipment_type(utf8, false)) return current;
+        if (const auto current = RULESETS.translate_furniture_type(utf8)) return current;
+        return RULESETS.translate_creature_name(utf8);
+    };
+
+    auto direct_term = [this, &material_field, &current_term](std::string_view raw)
             -> std::optional<std::string> {
         const std::string source = trim(std::string(raw));
         if (source.empty()) return std::nullopt;
+        if (const auto current = current_term(source)) return current;
         if (const auto found = preference_terms.find(source);
             found != preference_terms.end()) return std::string(found->second);
         if (const auto material = material_field(source)) return material;
@@ -16264,6 +16289,7 @@ std::optional<std::string> Overlay::translate_character_preference_term(
         if (source == "the sound of") return "未命名乐曲的声韵";
         if (source == "the sight of") return "未命名舞蹈的舞姿";
 
+        if (const auto current = current_term(source)) return current;
         if (const auto found = preference_terms.find(source);
             found != preference_terms.end()) {
             return std::string(found->second);

@@ -72,10 +72,10 @@ Preference reason: rows of teeth	层层排列的牙齿	l
 Preference reason: rotting body	腐烂的身躯	l
 Preference reason: fetid breath	腐臭的吐息	l
 Preference reason: strength	力量	l
-Preference reason: agility	敏捷的身手	l
-Preference reason: terrifying features	可怕的外貌	l
+Preference reason: agility	敏捷身手	l
+Preference reason: terrifying features	骇人的外貌	l
 Preference reason: bushy mane	浓密的鬃毛	l
-Preference reason: bravery	勇气	l
+Preference reason: bravery	勇敢	l
 Preference reason: speed	速度	l
 Preference reason: hardy nature	强健的体魄	l
 Preference reason: endurance	耐力	l
@@ -84,9 +84,9 @@ Preference reason: mossy mane	苔藓般的鬃毛	l
 Preference reason: horrid screams	骇人的尖叫	l
 Preference reason: mass of eyes	成团的眼球	l
 Preference reason: wings	翅膀	l
-Preference reason: long legs	修长的腿	l
+Preference reason: long legs	长腿	l
 Preference reason: strong antlers	强壮的鹿角	l
-Preference reason: shifting colors	变幻的体色	l
+Preference reason: shifting colors	变换的颜色	l
 Preference reason: intricate aerial dances	复杂的空中舞蹈	l
 Preference reason: long bodies	修长的身躯	l
 Preference reason: menacing beak	吓人的喙	l
@@ -94,7 +94,7 @@ Preference reason: magical properties	神奇的魔力	l
 Preference reason: loyalty	忠诚	l
 Preference reason: toothy grin	龇牙咧嘴的笑容	l
 Preference reason: bizare features	古怪的外貌	l
-Preference reason: ability to hold liquor	好酒量	l
+Preference reason: ability to hold liquor	酒量	l
 Preference reason: shimmering scales	闪耀的鳞片	l
 Preference reason: dedication to their young	对幼崽的呵护	l
 Preference reason: stoney skin	石质皮肤	l
@@ -103,7 +103,7 @@ Preference reason: stunning glare	令人石化的凝视	l
 Preference reason: reclusive nature	隐居的天性	l
 Preference reason: blood red horns	血红色的角	l
 Preference reason: fiery mane	火焰般的鬃毛	l
-Preference reason: majesty	威仪	l
+Preference reason: majesty	雄伟	l
 Preference reason: long lifespan	悠长的寿命	l
 Preference reason: sheer height	惊人的身高	l
 Preference reason: toothy smile	露齿的笑容	l
@@ -111,18 +111,18 @@ Preference reason: riddles	谜语	l
 Preference reason: ice fangs	冰制獠牙	l
 Preference reason: impressive size	惊人的体型	l
 Preference reason: docile nature	温顺的性情	l
-Preference reason: tenacity	顽强的性格	l
+Preference reason: tenacity	坚韧	l
 Preference reason: colorful wings	色彩斑斓的翅膀	l
 Preference reason: cute features	可爱的外貌	l
 Preference reason: squishy bodies	软绵绵的身体	l
 Preference reason: metalic feathers	金属羽毛	l
-Preference reason: ferocity	凶猛的性情	l
+Preference reason: ferocity	凶猛的天性	l
 Preference reason: massive claws	巨大的利爪	l
 Preference reason: blood red crest	血红色的冠	l
 Preference reason: funny walk	滑稽的步态	l
 Preference reason: drink strength	酿成酒后的烈劲	l
 Preference reason: alertness	警觉	l
-Preference reason: cunning	机敏	l
+Preference reason: cunning	狡猾	l
 Preference reason: extreme kick	强烈的劲道	l
 
 # Adventure ability captions (CDI:ADV_NAME) and learned-power announcements.
@@ -132,7 +132,7 @@ Adventure action: Create mogalls	创造魔眼	l
 Adventure action: Cry Blood	泣血	l
 Adventure action: Dragon's Decree	龙之敕令	l
 Adventure action: Gorgon stare	戈耳工凝视	l
-Adventure action: Head bump	用头蹭蹭	l
+Adventure action: Head bump	头部轻碰	l
 Adventure action: Hurl rock shard	投射岩石碎片	l
 Adventure action: Pet animal	抚摸动物	l
 Adventure action: Qilin's Blessing	麒麟赐福	l
@@ -157,7 +157,7 @@ Announcement combat ability []: Hurl rock shard	投射岩石碎片	l
 Announcement combat ability []: Pet animal	抚摸动物	l
 Announcement combat ability []: Qilin's Blessing	麒麟赐福	l
 Announcement combat ability []: Shoot Icebolt	发射冰箭	l
-Announcement combat ability []: Spit	吐唾沫	l
+Announcement combat ability []: Spit	唾液	l
 Announcement combat ability []: Use fetid breath	喷吐腐臭气息	l
 Announcement combat ability []: Use frost breath	喷吐寒霜	l
 Announcement combat ability []: Use ice breath	喷吐寒冰	l
@@ -208,14 +208,14 @@ Announcement combat attack-verb []: claw	爪击	l
 Announcement combat attack-verb []: claws	爪击	l
 Announcement combat attack-verb []: gnaw	啃咬	l
 Announcement combat attack-verb []: gnaws	啃咬	l
-Announcement combat attack-verb []: lash	抽打	l
-Announcement combat attack-verb []: lashes	抽打	l
+Announcement combat attack-verb []: lash	鞭打	l
+Announcement combat attack-verb []: lashes	鞭打	l
 Announcement combat attack-verb []: lunge at	猛扑向	l
 Announcement combat attack-verb []: lunges at	猛扑向	l
-Announcement combat attack-verb []: slash	劈砍	l
-Announcement combat attack-verb []: slashes	劈砍	l
-Announcement combat attack-verb []: snatch at	猛抓	l
-Announcement combat attack-verb []: snatches at	猛抓	l
+Announcement combat attack-verb []: slash	劈	l
+Announcement combat attack-verb []: slashes	劈	l
+Announcement combat attack-verb []: snatch at	扑抓	l
+Announcement combat attack-verb []: snatches at	扑抓	l
 
 # SOUND labels include the author's unusual peaceful verbs, not only roars.
 Announcement combat mythical-beasts-sound []: a booming roar	震耳欲聋的咆哮声	l
@@ -255,14 +255,14 @@ Announcement combat mythical-beasts-effect []: hears shifting of earth	听到大
 
 # Explicit RAW gaits use the existing movement field dictionary.
 Adventure movement: Crawl	爬行	l
-Adventure movement: Creep	缓缓爬行	l
+Adventure movement: Creep	缓缓移动	l
 Adventure movement: Fast Crawl	快速爬行	l
-Adventure movement: Faster Crawl	高速爬行	l
-Adventure movement: Scramble	全速爬行	l
-Adventure movement: Slow Crawl	缓慢爬行	l
+Adventure movement: Faster Crawl	更快爬行	l
+Adventure movement: Scramble	快速挪动	l
+Adventure movement: Slow Crawl	慢爬	l
 Adventure movement: Creeping Swim	缓缓游泳	l
 Adventure movement: Fast Swim	快速游泳	l
-Adventure movement: Faster Swim	高速游泳	l
+Adventure movement: Faster Swim	更快游泳	l
 Adventure movement: Maximum Swim Speed	全速游泳	l
 Adventure movement: Slow Swim	缓慢游泳	l
 Adventure movement: Swim	游泳	l
@@ -285,4 +285,4 @@ fetidbreath	腐臭吐息中毒	l
 poisonbreath	剧毒吐息中毒	l
 mandrake toxin	曼德拉草毒素	l
 mandrake poison	曼德拉草中毒	l
-Animated corpse	活化尸体	l
+Animated corpse	活尸	l
