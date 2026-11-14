@@ -626,7 +626,7 @@ base = "materials::dwarvemon"
 "Nanab Berry tree" = "蕉香果树"
 "Nanab Berry tree wood" = "蕉香果树木材"
 "Naughty Mint" = "顽皮薄荷"
-# Nest is a standalone inorganic material; see materials/state.toml.
+# Nest is a standalone inorganic material; see materials/index.toml.
 "Net" = "捕网"
 "Never-Melt" = "不融"
 "Nihilego neurotoxin" = "虚吾伊德神经毒素"

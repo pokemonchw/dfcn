@@ -1,32 +1,14 @@
 # Dwarvemon 2.22 translation extension; merges into the base namespace.
-base = "materials"
-
-# inorganic_pokeitem.txt defines Nest as a complete inorganic material.
-# It cannot take a plant/creature prefix: accepting "willow nest" as a
-# material splits the complete item noun "nest boxes" into Nest + boxes.
-# Keep it reachable by material nouns and item qualifiers, outside state.
-[[rulesets]]
-[rulesets.rules]
-"{dwarvemon::inorganic}" = "{dwarvemon::inorganic}"
+base = "materials::state"
 
 [[rulesets]]
 name = "adjective"
-[rulesets.rules]
-"{dwarvemon::inorganic}" = "{dwarvemon::inorganic}"
-
-[[rulesets]]
-name = "dwarvemon::inorganic"
-[rulesets.rules]
-"Nest" = "巢穴"
-
-[[rulesets]]
-name = "state::adjective"
 [rulesets.rules]
 "{::materials::dwarvemon_optional}" = "{::materials::dwarvemon_optional}"
 "{::materials::dwarvemon}" = "{::materials::dwarvemon}"
 
 [[rulesets]]
-name = "state::shared::main"
+name = "shared::main"
 [rulesets.rules]
 "{::materials::dwarvemon_optional}" = "{::materials::dwarvemon_optional}"
 "{::materials::dwarvemon}" = "{::materials::dwarvemon}"
