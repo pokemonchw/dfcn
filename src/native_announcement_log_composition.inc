@@ -102,6 +102,15 @@ std::optional<std::string> Overlay::compose_native_announcement_log_record(
         return target;
     }
 
+    if (document.report.type == 278) {
+        // SOMEBODY_GROWS_UP binds the entire post-growth unit label, including
+        // an authored nickname. Preserve that native owner before any generic
+        // announcement/rumor constructor can reinterpret "has" as possession.
+        auto target = translate_announcement_combat(source, "fortress-announcement");
+        if (target) append_colors(target_colors, *target, foreground);
+        return target;
+    }
+
     if (document.report.type == 351 && source.starts_with("\"Greetings. I am ")) {
         // 7f079c submits this complete deity pronouncement. Its optional
         // sphere and material/followers clauses are four reviewed productions,
