@@ -31085,7 +31085,7 @@ static bool is_writing_item_noun(std::string_view source) {
 }
 
 static std::optional<std::string> translate_embark_tool_item_name(
-        std::string_view raw_source) {
+        std::string_view raw_source, bool require_material = false) {
     std::string source = lower(trim(std::string(raw_source)));
     if (source.empty()) return std::nullopt;
 
@@ -31144,7 +31144,7 @@ static std::optional<std::string> translate_embark_tool_item_name(
     // The ordinary tool path selects their woven cloth state instead.
     const auto qualifier = is_writing_item_noun(item.noun->source)
         ? translate_writing_material_qualifier(material_source, true)
-        : translate_embark_item_material_qualifier(std::move(material_source));
+        : translate_embark_item_material_qualifier(std::move(material_source), require_material);
     if (!qualifier || qualifier->empty()) return std::nullopt;
     if (const auto noun = overlay_exact_literal_translation(item.noun->source))
         return *qualifier + *noun;
@@ -31503,12 +31503,14 @@ static std::optional<std::string> translate_arena_equipment_source_phrase(
     if (folded.empty()) return std::nullopt;
     if (const auto *material = magical_material(folded)) return material->noun;
 
-    // Inventory headings and complete item phrases need the same paper
-    // material as the embark picker, before generic textile composition.
-    // Longest noun matching keeps scroll rollers in the ordinary tool family.
-    const auto writing_item = find_embark_tool_item_noun(folded);
-    if (writing_item.noun && is_writing_item_noun(writing_item.noun->source))
-        return translate_embark_tool_item_name(folded);
+    // Construction groups, inventory and split equipment rows share the
+    // complete ITEM_TOOL noun. Resolve nest box / display case / scroll
+    // roller before generic composition can consume Nest as a building and
+    // translate box independently. The remaining field must be a complete
+    // material; an English title containing a tool noun is not an item.
+    // The same resolver retains the paper state for scrolls and quires.
+    if (const auto tool = translate_embark_tool_item_name(folded, true))
+        return tool;
 
     if (const auto ammunition = translate_ammunition_item_name(source))
         return ammunition;
