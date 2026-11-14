@@ -1,7 +1,7 @@
 // Native reshape and viewport zoom run on the SDL thread, independently of
 // DFHack's simulation-thread update. Acquire the private-output lock BEFORE
-// either routine reads graphicst's pointers. Locking viewport::resize itself
-// would be too late: its caller may already have retained a private viewport.
+// either routine reads graphicst's pointers. Viewports stay native, but resize
+// also consumes UI arrays and must not retain a private UI binding.
 #include "native_dfhack_display_inputs.inc"
 
 static NativeEntryHook g_native_dfhack_graphics_resize_entry;

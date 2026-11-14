@@ -1,6 +1,7 @@
-// Every DFHack drawing path uses private output buffers on the real graphicst.
-// Lua globals, retained native handles and C++ gps therefore share one drawing
-// state. Native parent segments restore the game's own output binding.
+// DFHack UI drawing uses private buffers on the real graphicst. Lua globals,
+// retained native handles and C++ gps share that UI state, while all viewport
+// and map-port objects remain native for map-reading and map-editing mods.
+// Native parent segments restore only the game's UI output binding.
 using NativeDfhackLayerTexture = std::remove_pointer_t<decltype(graphicst::screentexpos)>;
 static void native_dfhack_gpu_suspend() noexcept;
 static void native_dfhack_gpu_resume() noexcept;
@@ -43,11 +44,19 @@ struct NativeDfhackOutputBinding {
         std::memcpy(b.draw.data(), &gps.screenx, b.draw.size());
         std::copy_n(gps.clipx, 2, b.clipx.begin());
         std::copy_n(gps.clipy, 2, b.clipy.begin());
-        std::memcpy(b.viewports.data(), &gps.viewport, sizeof(b.viewports));
-        std::memcpy(b.map_ports.data(), &gps.map_port, sizeof(b.map_ports));
-        b.main_viewport = gps.main_viewport; b.main_map_port = gps.main_map_port;
-        std::copy_n(gps.lower_viewport, 8, b.lower.begin());
+        b.capture_map_output(gps);
         return b;
+    }
+    void capture_map_output(const graphicst &gps) noexcept {
+        std::memcpy(viewports.data(), &gps.viewport, sizeof(viewports));
+        std::memcpy(map_ports.data(), &gps.map_port, sizeof(map_ports));
+        main_viewport = gps.main_viewport; main_map_port = gps.main_map_port;
+        std::copy_n(gps.lower_viewport, 8, lower.begin());
+    }
+    void detach_map_output() noexcept {
+        viewports = {}; map_ports = {};
+        main_viewport = main_map_port = nullptr;
+        lower = {};
     }
     void apply(graphicst &gps, bool include_map_output = true) const noexcept {
         gps.screen = static_cast<unsigned char *>(pointers[0]);
@@ -80,172 +89,6 @@ struct NativeDfhackOutputBinding {
             for (size_t i = 0; i < lower.size(); ++i)
                 gps.lower_viewport[i] = reinterpret_cast<decltype(gps.main_viewport)>(lower[i]);
         }
-    }
-};
-
-// Viewport/map-port objects have scalar layout followed by output pointers.
-// Their private arrays start at zero; no native texture contents are copied.
-class NativeDfhackMapLayer {
-    void *source_ = nullptr;
-    bool map_port_ = false;
-    int dimx_ = 0, dimy_ = 0;
-    size_t prefix_ = 0, fields_ = 0, stride_ = 0;
-    std::vector<uint64_t> object_;
-    unsigned char *data_ = nullptr;
-    size_t bytes_ = 0;
-    std::vector<uint8_t> candidates_;
-    std::vector<size_t> dirty_offsets_;
-    bool has_writes_ = false;
-    bool dirty_offsets_valid_ = false;
-#ifdef _WIN32
-    std::vector<void *> pages_;
-#else
-    std::vector<unsigned char> fallback_;
-#endif
-    size_t width(size_t field) const noexcept {
-        return map_port_ ? (field == 33 ? 8 : 4) : (field == 1 || field == 6 ? 8 : 4);
-    }
-public:
-    NativeDfhackMapLayer(void *source, bool port) : source_(source), map_port_(port) {
-        std::memcpy(&dimx_, static_cast<unsigned char *>(source) + 4, 4);
-        std::memcpy(&dimy_, static_cast<unsigned char *>(source) + 8, 4);
-        if (dimx_ <= 0 || dimy_ <= 0 || dimx_ > 4096 || dimy_ > 4096) return;
-        prefix_ = port ? 0x38 : 0x28; fields_ = port ? 34 : 25;
-        const size_t object_bytes = port ? 0x2e0 : 0x1c8;
-        object_.resize(object_bytes / 8);
-        std::memcpy(object_.data(), source, object_bytes);
-        stride_ = (static_cast<size_t>(dimx_) * dimy_ * 8 + 4095) & ~size_t{4095};
-        bytes_ = fields_ * stride_;
-        candidates_.assign(static_cast<size_t>(dimx_) * dimy_, 0);
-#ifdef _WIN32
-        pages_.resize(bytes_ / 4096);
-        dirty_offsets_.reserve(pages_.size());
-        data_ = static_cast<unsigned char *>(VirtualAlloc(nullptr, bytes_,
-            MEM_RESERVE | MEM_COMMIT | MEM_WRITE_WATCH, PAGE_READWRITE));
-        if (!data_) throw std::bad_alloc();
-#else
-        fallback_.resize(bytes_); data_ = fallback_.data();
-#endif
-        auto *bytes = reinterpret_cast<unsigned char *>(object_.data());
-        for (size_t i = 0; i < fields_; ++i) {
-            void *array = data_ + i * stride_;
-            std::memcpy(bytes + prefix_ + i * 8, &array, 8);
-            // Renderer history also belongs to this private map object.
-            std::memcpy(bytes + prefix_ + (fields_ + i) * 8, &array, 8);
-        }
-    }
-    NativeDfhackMapLayer(const NativeDfhackMapLayer &source)
-        : source_(source.source_), map_port_(source.map_port_),
-          dimx_(source.dimx_), dimy_(source.dimy_), prefix_(source.prefix_),
-          fields_(source.fields_), stride_(source.stride_), object_(source.object_),
-          bytes_(source.bytes_), candidates_(source.candidates_),
-          dirty_offsets_(source.dirty_offsets_), has_writes_(source.has_writes_),
-          dirty_offsets_valid_(source.dirty_offsets_valid_) {
-        if (!source.data_) return;
-#ifdef _WIN32
-        pages_.resize(bytes_ / 4096);
-        dirty_offsets_.reserve(pages_.size());
-        data_ = static_cast<unsigned char *>(VirtualAlloc(nullptr, bytes_,
-            MEM_RESERVE | MEM_COMMIT | MEM_WRITE_WATCH, PAGE_READWRITE));
-        if (!data_) throw std::bad_alloc();
-        if (dirty_offsets_valid_) {
-            for (const size_t offset : dirty_offsets_)
-                std::memcpy(data_ + offset, source.data_ + offset,
-                    std::min(size_t{4096}, bytes_ - offset));
-        } else if (has_writes_) {
-            std::memcpy(data_, source.data_, bytes_);
-        }
-#else
-        fallback_.assign(source.data_, source.data_ + bytes_);
-        data_ = fallback_.data();
-#endif
-        auto *object = reinterpret_cast<unsigned char *>(object_.data());
-        for (size_t field = 0; field < fields_; ++field) {
-            void *array = data_ + field * stride_;
-            std::memcpy(object + prefix_ + field * sizeof(void *), &array, sizeof(array));
-            std::memcpy(object + prefix_ + (fields_ + field) * sizeof(void *), &array, sizeof(array));
-        }
-    }
-    NativeDfhackMapLayer &operator=(const NativeDfhackMapLayer &) = delete;
-    ~NativeDfhackMapLayer() {
-#ifdef _WIN32
-        if (data_) VirtualFree(data_, 0, MEM_RELEASE);
-#endif
-    }
-    void *source() const noexcept { return source_; }
-    void *view() const noexcept { return data_ ? const_cast<uint64_t *>(object_.data()) : nullptr; }
-    bool map_port() const noexcept { return map_port_; }
-    int dimx() const noexcept { return dimx_; }
-    int dimy() const noexcept { return dimy_; }
-    bool dimensions_current() const noexcept {
-        int32_t width = 0, height = 0;
-        std::memcpy(&width, static_cast<unsigned char *>(source_) + 4, sizeof(width));
-        std::memcpy(&height, static_cast<unsigned char *>(source_) + 8, sizeof(height));
-        return width == dimx_ && height == dimy_;
-    }
-    void refresh_layout() noexcept {
-        if (object_.empty()) return;
-        auto *destination = reinterpret_cast<unsigned char *>(object_.data());
-        const auto *source = static_cast<const unsigned char *>(source_);
-        // Scrolling, zoom and clip changes reuse the native object. Borrow its
-        // current scalar layout and read-only tree/biome metadata, while both
-        // current/history output pointer groups remain private.
-        std::memcpy(destination, source, prefix_);
-        const size_t metadata = prefix_ + fields_ * sizeof(void *) * 2;
-        std::memcpy(destination + metadata, source + metadata,
-            object_.size() * sizeof(uint64_t) - metadata);
-    }
-    void collect_writes() noexcept {
-        if (!data_) return;
-#ifdef _WIN32
-        ULONG_PTR count = pages_.size(); ULONG granularity = 0;
-        dirty_offsets_valid_ = false;
-        dirty_offsets_.clear();
-        if (GetWriteWatch(0, data_, bytes_, pages_.data(), &count, &granularity)) {
-            has_writes_ = true;
-            std::fill(candidates_.begin(), candidates_.end(), 1);
-            return;
-        }
-        dirty_offsets_valid_ = true;
-        has_writes_ = has_writes_ || count != 0;
-        for (size_t page = 0; page < count; ++page) {
-            const size_t offset = static_cast<unsigned char *>(pages_[page]) - data_;
-            dirty_offsets_.push_back(offset);
-            const size_t field = offset / stride_;
-            const size_t start = (offset % stride_) / width(field);
-            const size_t end = std::min(candidates_.size(), start + granularity / width(field));
-            if (start < end) std::fill(candidates_.begin() + start, candidates_.begin() + end, 1);
-        }
-#else
-        std::fill(candidates_.begin(), candidates_.end(), 1);
-        has_writes_ = true;
-#endif
-    }
-    void clear() noexcept {
-        if (!data_) return;
-#ifdef _WIN32
-        ULONG_PTR count = pages_.size(); ULONG granularity = 0;
-        if (!GetWriteWatch(0, data_, bytes_, pages_.data(), &count, &granularity)) {
-            for (size_t i = 0; i < count; ++i) std::memset(pages_[i], 0, granularity);
-            ResetWriteWatch(data_, bytes_);
-        }
-#else
-        std::memset(data_, 0, bytes_);
-#endif
-        std::fill(candidates_.begin(), candidates_.end(), 0);
-        dirty_offsets_.clear();
-        dirty_offsets_valid_ = false;
-        has_writes_ = false;
-    }
-    bool any_content() const noexcept { return has_writes_; }
-    bool has_content(size_t at) const noexcept {
-        if (at >= candidates_.size() || !candidates_[at]) return false;
-        for (size_t i = 0; i < fields_; ++i) {
-            const auto *value = data_ + i * stride_ + at * width(i);
-            uint64_t bits = 0; std::memcpy(&bits, value, width(i));
-            if (bits) return true;
-        }
-        return false;
     }
 };
 
@@ -286,8 +129,6 @@ struct NativeDfhackLayerStorage {
     std::array<Plane, 2> planes;
     std::vector<int32_t> refresh;
     std::vector<uint8_t> written;
-    std::vector<std::unique_ptr<NativeDfhackMapLayer>> maps;
-    std::vector<void *> viewport_views, map_port_views;
     std::unique_ptr<graphicst, NativeDfhackLayerGraphicsDeleter> graphics;
     NativeDfhackOutputBinding output;
     int dimx = 0, dimy = 0;
@@ -332,19 +173,6 @@ struct NativeDfhackLayerStorage {
         const std::array<uintptr_t, 3> command_view{command_begin,
             command_begin + copy->command_bytes.size(), command_begin + copy->command_bytes.size()};
         std::memcpy(&copy->graphics->texblits, command_view.data(), sizeof(command_view));
-        copy->maps.reserve(maps.size());
-        for (const auto &map : maps)
-            copy->maps.push_back(map && map->any_content()
-                ? std::make_unique<NativeDfhackMapLayer>(*map) : nullptr);
-        const auto mapped = [&](void *view) -> void * {
-            if (!view) return nullptr;
-            for (size_t index = 0; index < maps.size(); ++index)
-                if (maps[index] && maps[index]->view() == view)
-                    return copy->maps[index] ? copy->maps[index]->view() : nullptr;
-            return nullptr;
-        };
-        for (void *view : viewport_views) copy->viewport_views.push_back(mapped(view));
-        for (void *view : map_port_views) copy->map_port_views.push_back(mapped(view));
         copy->output = NativeDfhackOutputBinding::capture(*graphics);
         for (size_t index = 0; index < copy->planes.size(); ++index) {
             auto &plane = copy->planes[index]; const size_t base = index * 7;
@@ -353,16 +181,10 @@ struct NativeDfhackLayerStorage {
                 copy->output.pointers[base + texture + 1] = plane.textures[texture].data();
             copy->output.pointers[base + 6] = plane.flags.data();
         }
-        const auto vector_view = [](const auto &values) {
-            const uintptr_t first = reinterpret_cast<uintptr_t>(values.data());
-            return std::array<uintptr_t, 3>{first, first + values.size() * sizeof(void *),
-                first + values.capacity() * sizeof(void *)};
-        };
-        copy->output.viewports = vector_view(copy->viewport_views);
-        copy->output.map_ports = vector_view(copy->map_port_views);
-        copy->output.main_viewport = mapped(copy->output.main_viewport);
-        copy->output.main_map_port = mapped(copy->output.main_map_port);
-        for (auto &view : copy->output.lower) view = mapped(view);
+        // The translator and SDL UI compositor retain immutable UI frames.
+        // Map changes already belong to the native renderer; never retain
+        // its live objects here or replay them above the finished map.
+        copy->output.detach_map_output();
         copy->output.limit = copy->planes[0].screen.data() + copy->planes[0].screen.size();
         copy->output.top_limit = copy->planes[1].screen.data() + copy->planes[1].screen.size();
         copy->output.refresh = copy->refresh.data();
@@ -438,10 +260,8 @@ struct NativeDfhackLayerStorage {
         bool content = grid_content || text_content;
         content = content || std::any_of(written.begin(), written.end(),
             [](auto byte) { return byte != 0; });
-        content = content || std::any_of(maps.begin(), maps.end(),
-            [](const auto &map) { return map && map->any_content(); });
-        // Commands and map writes are conservative content evidence, but
-        // neither was part of the logical-grid translation key.
+        // Commands are content evidence outside the logical-grid key.
+        // Native map writes do not require a translated UI submission.
         std::array<uintptr_t, 2> commands{};
         std::memcpy(commands.data(), &graphics->texblits, sizeof(commands));
         content = content || commands[0] != commands[1];
@@ -450,20 +270,6 @@ struct NativeDfhackLayerStorage {
         translation_content_ready = true;
     }
 
-    void *map_view(void *source, bool port) {
-        if (!source) return nullptr;
-        for (auto &map : maps) {
-            if (map->source() != source || map->map_port() != port) continue;
-            // Changing only dimensions would leave the private arrays at the
-            // old stride. Rebuild first, so every view/main/lower binding made
-            // by this prepare pass receives the same current private object.
-            if (!map->dimensions_current()) map = std::make_unique<NativeDfhackMapLayer>(source, port);
-            else map->refresh_layout();
-            return map->view();
-        }
-        auto map = std::make_unique<NativeDfhackMapLayer>(source, port);
-        auto *view = map->view(); maps.push_back(std::move(map)); return view;
-    }
     void prepare(const graphicst &gps, const NativeDfhackOutputBinding &native, bool begin) {
         const bool resized = !ready || dimx != gps.dimx || dimy != gps.dimy;
         if (resized) {
@@ -477,7 +283,7 @@ struct NativeDfhackLayerStorage {
                 plane.flags.resize(count);
                 plane.artwork_pens.resize(count);
             }
-            refresh.resize(count); written.resize(count); maps.clear(); ready = true;
+            refresh.resize(count); written.resize(count); ready = true;
         }
         if (resized || begin) {
             translation_content_ready = false;
@@ -489,7 +295,6 @@ struct NativeDfhackLayerStorage {
             }
             std::fill(refresh.begin(), refresh.end(), 0);
             std::fill(written.begin(), written.end(), 0);
-            for (auto &map : maps) map->clear();
             output = native;
         }
         for (size_t i = 0; i < planes.size(); ++i) {
@@ -502,38 +307,10 @@ struct NativeDfhackLayerStorage {
         output.limit = planes[0].screen.data() + planes[0].screen.size();
         output.top_limit = planes[1].screen.data() + planes[1].screen.size();
         output.refresh = refresh.data();
-        const auto prepare_vector = [&](const auto &source, bool port, auto &views) {
-            views.clear();
-            const size_t count = source[1] >= source[0] ? (source[1] - source[0]) / sizeof(void *) : 0;
-            if (count > 256) throw std::bad_alloc();
-            views.reserve(count);
-            for (size_t i = 0; i < count; ++i) {
-                void *pointer = nullptr;
-                std::memcpy(&pointer, reinterpret_cast<void *>(source[0] + i * sizeof(void *)), sizeof(pointer));
-                views.push_back(map_view(pointer, port));
-            }
-            const auto first = reinterpret_cast<uintptr_t>(views.data());
-            return std::array<uintptr_t, 3>{first, first + views.size() * sizeof(void *),
-                first + views.capacity() * sizeof(void *)};
-        };
-        output.viewports = prepare_vector(native.viewports, false, viewport_views);
-        output.map_ports = prepare_vector(native.map_ports, true, map_port_views);
-        output.main_viewport = map_view(native.main_viewport, false);
-        output.main_map_port = map_view(native.main_map_port, true);
-        for (size_t i = 0; i < output.lower.size(); ++i)
-            output.lower[i] = map_view(native.lower[i], false);
-        // Replace every binding before releasing retired objects. Present
-        // traverses this storage, so an old unbound map must neither retain
-        // allocation pages nor submit stale foreign drawing.
-        std::erase_if(maps, [&](const auto &map) {
-            const auto *view = map->view();
-            if (!view) return true;
-            const auto &views = map->map_port() ? map_port_views : viewport_views;
-            if (std::find(views.begin(), views.end(), view) != views.end()) return false;
-            if (map->map_port()) return output.main_map_port != view;
-            return output.main_viewport != view &&
-                std::find(output.lower.begin(), output.lower.end(), view) == output.lower.end();
-        });
+        // Live writers see every native map layer, history array and metadata
+        // through the original objects. Read/modify/write mods therefore see
+        // the game's actual tiles, including the main and lower viewports.
+        output.capture_map_output(gps);
         if (!graphics) {
 #ifdef _WIN32
             graphics.reset(new graphicst{});
@@ -544,7 +321,7 @@ struct NativeDfhackLayerStorage {
 #endif
         }
         // This copies layout, palette and shared texture resources, never
-        // pointed-to game cells. Command/output vectors are kept private.
+        // pointed-to game cells. UI arrays and command vectors stay private.
         std::array<unsigned char, sizeof(graphicst::texblits)> texblits{};
         std::memcpy(texblits.data(), &graphics->texblits, texblits.size());
         std::memcpy(graphics.get(), &gps, sizeof(gps));
@@ -564,6 +341,7 @@ struct NativeDfhackLayerStorage {
         output.display_title = current.display_title; output.background = current.background;
         output.last_background = current.last_background; output.refresh_value = current.refresh_value;
         output.force_full_display = current.force_full_display;
+        output.capture_map_output(gps);
     }
 };
 static std::recursive_mutex g_native_dfhack_layer_mutex;
@@ -577,7 +355,7 @@ static std::atomic<int64_t> g_native_dfhack_render_refresh{kNativeDfhackNoRender
 static std::atomic<int16_t> g_native_dfhack_render_force{0};
 // The update thread can hold the private writer across an entire DFHack tick.
 // Publish the restored native header before entering that writer so display
-// never falls back to the preceding frame's swapped screen/viewport pointers.
+// never falls back to the preceding frame's swapped UI pointers.
 // This short handoff is independent of the private writer and translation locks.
 static std::mutex g_native_dfhack_display_source_mutex;
 alignas(graphicst) static std::array<unsigned char, sizeof(graphicst)> g_native_dfhack_display_source{};
@@ -786,7 +564,6 @@ static void native_dfhack_publish_staging() noexcept {
             g_native_dfhack_layer_retired !=
                 g_native_dfhack_layer_retirement.load(std::memory_order_acquire)) return;
     try {
-        for (auto &map : s.maps) map->collect_writes();
         s.cache_translation_input();
         s.revision = ++g_native_dfhack_layer_revision;
         auto frame = s.snapshot();
@@ -847,7 +624,9 @@ class NativeDfhackLayerWriteScope {
         gps_ = g_native_dfhack_layer_staging.graphics.get();
         if (!gps_) return;
         const auto redraw = native_->force_full_display_count;
-        g_native_dfhack_layer_staging.output.apply(*native_);
+        // Map bindings stay on the actual graphicst, including changes a
+        // plugin makes to its viewport list or main/lower viewport pointers.
+        g_native_dfhack_layer_staging.output.apply(*native_, false);
         // Redraw requests schedule the host frame rather than belonging to
         // either output buffer. Keep Lua/C++ requests and native consumption
         // live instead of restoring a retained private frame's old count.
@@ -862,7 +641,7 @@ class NativeDfhackLayerWriteScope {
     void restore_native() noexcept {
         if (!private_bound_) return;
         const auto redraw = native_->force_full_display_count;
-        native_output_.apply(*native_);
+        native_output_.apply(*native_, false);
         native_->force_full_display_count = redraw;
         std::memcpy(&native_->texblits, native_texblits_.data(), native_texblits_.size());
         private_bound_ = false;
@@ -991,11 +770,9 @@ static void native_dfhack_commit_callback_writes() noexcept {
 class NativeDfhackLayerUpdateScope {
     NativeDfhackLayerWriteScope write_;
 public:
-    // A pending frame already owns its private arrays and map bindings.
-    // Native render segments refresh their layout before returning; reshape,
-    // zoom, release and page changes retire those bindings independently.
-    // Keep raw onUpdate writes inside the same ownership scope without
-    // rebuilding its unchanged viewport/map-port list on every game tick.
+    // A pending frame already owns its private UI arrays. Map objects stay
+    // native across onUpdate and render, under the existing ownership scope.
+    // Reshape, zoom, release and page changes still retire UI state normally.
     explicit NativeDfhackLayerUpdateScope(bool enter = true) noexcept : write_(enter) {}
     bool valid() const noexcept { return write_.valid(); }
 };
@@ -1135,10 +912,6 @@ public:
     graphicst *graphics() const noexcept { return gps_; }
     const NativeDfhackLayerStorage *storage() const noexcept { return reader_.storage(); }
     const auto &frame() const noexcept { return reader_.frame(); }
-    const auto &maps() const noexcept {
-        static const std::vector<std::unique_ptr<NativeDfhackMapLayer>> empty;
-        return storage() ? storage()->maps : empty;
-    }
 };
 
 static void clear_native_dfhack_layers() noexcept {

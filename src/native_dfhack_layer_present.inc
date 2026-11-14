@@ -704,7 +704,6 @@ static void native_dfhack_compose_graphical_gpu(SDL_Renderer *renderer,
 }
 
 using NativeDfhackLayerTileMethod = void (*)(void *, int, int);
-using NativeDfhackLayerMapMethod = void (*)(void *, void *, int, int);
 struct NativeDfhackLayerPaintContext {
     inline static thread_local NativeDfhackLayerPaintContext *active = nullptr;
     NativeDfhackLayerPaintContext *previous = active;
@@ -852,8 +851,6 @@ static bool native_dfhack_layer_has_content(SDL_Renderer *renderer,
     const auto *storage = layer.storage();
     if (!storage) return false;
     if (storage->translation_content_ready) return storage->translation_has_content;
-    for (const auto &map : layer.maps())
-        if (map && map->any_content()) return true;
     // This scope pins one immutable submission. Inspect only that frame's
     // arrays before allocating, binding or clearing an SDL target.
     const auto nonzero = [](const auto &values) noexcept {
@@ -981,23 +978,9 @@ static void native_dfhack_present_layer(SDL_Renderer *renderer,
         NativeDfhackLayerPaintContext paint(renderer, native_renderer, paint_graphics, methods);
         const auto fields = native_dfhack_translation_source_cells(*gps, *completed->matches);
         if (!fields.empty() && (paint.tile_width <= 0 || paint.tile_height <= 0)) return;
-        // Every source glyph is removed before the first native tile/map
+        // Every source glyph is removed before the first native UI tile
         // call. Matching and authored fields still use the immutable source.
         native_dfhack_suppress_source_glyphs(paint, fields);
-        for (const auto &map : paint_storage.maps) {
-            if (!map || !map->any_content() || !map->view() ||
-                    map->dimx() <= 0 || map->dimy() <= 0) continue;
-            const bool map_port = map->map_port();
-            const auto draw = reinterpret_cast<NativeDfhackLayerMapMethod>(methods[map_port ? 5 : 4]);
-            if (!draw) continue;
-            for (int x = 0; x < map->dimx(); ++x)
-                for (int y = 0; y < map->dimy(); ++y) {
-                    const size_t at = map_port
-                        ? static_cast<size_t>(y) * map->dimx() + x
-                        : static_cast<size_t>(x) * map->dimy() + y;
-                    if (map->has_content(at)) draw(native_renderer, map->view(), x, y);
-                }
-        }
         for (size_t pass = 0; pass < 4; ++pass) {
             const bool top = pass >= 2;
             if (top && !paint_graphics->top_in_use) continue;

@@ -26,22 +26,7 @@ static bool native_dfhack_translation_layout_compatible(
             a.screen_pixel_x != b.screen_pixel_x || a.screen_pixel_y != b.screen_pixel_y ||
             a.tile_pixel_x != b.tile_pixel_x || a.tile_pixel_y != b.tile_pixel_y ||
             a.top_in_use != b.top_in_use ||
-            std::memcmp(a.uccolor, b.uccolor, sizeof(a.uccolor)) ||
-            source.maps.size() != latest.maps.size()) return false;
-    for (size_t index = 0; index < source.maps.size(); ++index) {
-        const auto &old_map = source.maps[index];
-        const auto &new_map = latest.maps[index];
-        if (static_cast<bool>(old_map) != static_cast<bool>(new_map)) return false;
-        if (!old_map) continue;
-        const auto *old_view = old_map->view();
-        const auto *new_view = new_map->view();
-        if (static_cast<bool>(old_view) != static_cast<bool>(new_view)) return false;
-        if (!old_view) continue;
-        if (old_map->map_port() != new_map->map_port() ||
-                old_map->dimx() != new_map->dimx() || old_map->dimy() != new_map->dimy() ||
-                std::memcmp(old_view, new_view, old_map->map_port() ? 0x38 : 0x28))
-            return false;
-    }
+            std::memcmp(a.uccolor, b.uccolor, sizeof(a.uccolor))) return false;
     return true;
 }
 
@@ -258,19 +243,11 @@ void Overlay::dfhack_translation_worker_loop() {
                 std::memory_order_release);
             key = dfhack_layer_translation_key();
             if (!key) continue;
-            // The completed source also includes commands and map output.
+            // The completed UI source also includes drawing commands.
             // Do not reuse a text-only key's old complete graphical source.
             for (const auto byte : input->command_bytes) {
                 key ^= byte;
                 key *= 1099511628211ULL;
-            }
-            if (std::any_of(input->maps.begin(), input->maps.end(),
-                    [](const auto &map) { return map && map->any_content(); })) {
-                const auto *bytes = reinterpret_cast<const unsigned char *>(&input->revision);
-                for (size_t index = 0; index < sizeof(input->revision); ++index) {
-                    key ^= bytes[index];
-                    key *= 1099511628211ULL;
-                }
             }
             if (!key) key = 1;
             const auto inputs_current = [&] {

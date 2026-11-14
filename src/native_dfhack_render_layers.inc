@@ -1,5 +1,6 @@
-// DFHack writes only to its private output buffers. Native parent rendering
-// temporarily restores the game's output pointers. Registered links use DFHack's
+// DFHack UI writes to private output while complete native map buffers remain
+// available to map-reading and map-editing plugins. Native parent rendering
+// temporarily restores the game's UI pointers. Registered links use DFHack's
 // own constructor and chain maintenance; no registry field is overwritten.
 using NativeDfhackRenderMethod = void (*)(void *, uint32_t);
 using NativeDfhackRenderLinkCtor = void (*)(void *, const void *, int, void *, void *, int, const char *);
@@ -71,7 +72,7 @@ static void native_dfhack_render_capture_failed(bool = false) noexcept {
     g_native_dfhack_render_failures.fetch_add(1, std::memory_order_release);
 }
 
-// Enter DFHack with private output pointers. No native page is copied,
+// Enter DFHack with private UI pointers and the complete native map. No page is copied,
 // compared or restored cell by cell; the game always retains its own buffers.
 struct NativeDfhackRenderFrame {
     NativeDfhackLayerWriteScope layer;
