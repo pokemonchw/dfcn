@@ -311,6 +311,54 @@ std::string Overlay::site_name_full_transliteration(const NativeHistoryName &nam
     return transliterate_site_spelling(name.native_name);
 }
 
+// Annotate a serialized name with existing RAW forms, then compare both
+// displayed fields. WORD indices and POS have already been read from the
+// save; spelling never chooses or moves any of the seven slots.
+bool Overlay::match_saved_site_name(NativeHistoryName &name,
+        std::string_view language, std::string_view complete) const {
+    const auto pair = split_generated_name_identity(complete);
+    if (!pair || !name.has_name || name.type != 4 ||
+            !name.first_name.empty() || !name.nickname.empty()) return false;
+    for (auto &word : name.words) {
+        if (word.id.empty()) continue;
+        const auto found = history_english_name_forms_.find(word.id);
+        if (found == history_english_name_forms_.end() ||
+                word.part_of_speech < 0 || word.part_of_speech > 8) return false;
+        word.english_form = found->second[size_t(word.part_of_speech)];
+        word.has_form = !word.english_form.empty();
+    }
+    const auto english = reconstruct_site_english_name(name);
+    if (!english || lower_native_name(*english) !=
+            lower_native_name(std::string(pair->gloss))) return false;
+    const uint8_t mask = language == "DWARF" ? 1 : language == "ELF" ? 2 :
+        language == "GOBLIN" ? 4 : language == "HUMAN" ? 8 : 0;
+    if (!mask) return false;
+    std::array<std::string, 7> native;
+    for (const auto &[spelling, meanings] : native_name_word_languages_)
+        for (size_t slot = 0; slot < name.words.size(); ++slot) {
+            if (name.words[slot].id.empty()) continue;
+            for (const auto &[word, languages] : meanings)
+                if ((languages & mask) && word == name.words[slot].id) {
+                    if (!native[slot].empty() && native[slot] != spelling) return false;
+                    native[slot] = spelling;
+                }
+        }
+    for (size_t slot = 0; slot < native.size(); ++slot) {
+        if (!name.words[slot].id.empty() && native[slot].empty()) return false;
+    }
+    std::string spelling;
+    for (const auto &group : {native[0] + native[1],
+            native[2] + native[3] + native[4] + native[5], native[6]}) {
+        if (group.empty()) continue;
+        if (!spelling.empty()) spelling += ' ';
+        spelling += group;
+    }
+    if (lower_native_name(std::string(trim_view(spelling))) !=
+            lower_native_name(std::string(pair->native_name))) return false;
+    name.native_name = std::string(pair->native_name);
+    return true;
+}
+
 std::optional<std::string> Overlay::translate_saved_name(
         const NativeSaveNameSource &source) const {
     if (source.original.empty()) return std::nullopt;
@@ -347,9 +395,10 @@ std::optional<std::string> Overlay::translate_saved_name(
     case 0: case 3: case 8: case 10: break;
     default: return std::nullopt;
     }
-    // Use only header text and an already loaded world on the render path.
+    // The list reader has completed any native block reads before rendering.
     if (const auto pair = split_generated_name_identity(source.original)) {
         std::optional<NativeHistoryName> identity;
+        if (source.identity) identity = *source.identity;
         NativeHistoryName fortress;
         std::string fortress_english;
         const auto same = [](std::string_view left, std::string_view right) {
@@ -357,8 +406,8 @@ std::optional<std::string> Overlay::translate_saved_name(
                 lower_native_name(native_text_to_utf8(trim_view(right)));
         };
         // Only the header's own world can supply a live place identity.
-        // Other saves use the existing text fallback without disk access.
-        if (native_save_world_is_current(source)) {
+        // A missing serialized source can still use the matching live world.
+        if (!identity && native_save_world_is_current(source)) {
             if (capture_current_fortress_site_name(fortress, fortress_english) &&
                     same(pair->native_name, fortress.native_name) &&
                     same(pair->gloss, fortress_english))
@@ -438,121 +487,6 @@ std::string Overlay::transliterate_english_name(std::string_view english,
     return english_name_transliterator_.name(english, readings);
 }
 
-std::optional<std::string> Overlay::localize_site_text(
-        std::string_view english, std::string_view suffix) const {
-    const std::string text = lower(native_text_to_utf8(trim_view(english)));
-    if (text.empty() || text.size() > 512) return std::nullopt;
-    const std::string key = std::string(suffix) + '\t' + text;
-    if (const auto cached = site_text_cache_.find(key); cached != site_text_cache_.end())
-        return cached->second;
-
-    // Adapt the displayed English grammar to the existing site compositor.
-    // These are lexical readings from the loaded RAW dictionary, not a claim
-    // to have recovered an object's identity or its serialized WORD indices.
-    // The compositor still owns senses, adjectives, compounds, of-relations,
-    // phonetic fallback and placement of the site suffix.
-    struct Piece { size_t slot; std::string prefix; };
-    struct Reading {
-        std::array<NativeHistoryWord, 7> words{};
-        int score = 0;
-    };
-    const auto role_score = [](size_t slot, int pos) {
-        const bool noun = pos == 0 || pos == 1;
-        if (slot == 2 || slot == 3) return pos == 2 ? 4 : 0;
-        if (slot == 6) return noun || pos == 8 ? 4 : 0;
-        if (slot == 0 || slot == 4) return noun ? 4 : pos == 2 || pos == 3 ? 3 : 0;
-        return noun ? 4 : 0;
-    };
-    const auto lexical_word = [&](std::string_view value, size_t slot) -> const NativeHistoryWord * {
-        const auto found = site_english_forms_.find(std::string(value));
-        if (found == site_english_forms_.end()) return nullptr;
-        const NativeHistoryWord *best = nullptr;
-        for (const auto &word : found->second) {
-            const int score = role_score(slot, word.part_of_speech);
-            const int previous = best ? role_score(slot, best->part_of_speech) : -1;
-            if (!best || score > previous || (score == previous &&
-                    (word.id < best->id || (word.id == best->id &&
-                        word.part_of_speech < best->part_of_speech)))) best = &word;
-        }
-        return best;
-    };
-    std::optional<Reading> best;
-    // Enumerate the formatter's seven optional fields. Separators mirror
-    // reconstruct_site_english_name, including a visible H- with no N.
-    // Exact dictionary forms can contain spaces or hyphens themselves.
-    for (unsigned mask = 1; mask < 128; ++mask) {
-        const auto present = [&](size_t slot) { return (mask & (1u << slot)) != 0; };
-        const bool front = present(0) || present(1);
-        const bool title = present(2) || present(3) || present(5);
-        if ((present(4) && !title) || (!front && !title)) continue;
-        std::vector<Piece> pieces;
-        for (size_t slot : {size_t(0), size_t(1)})
-            if (present(slot)) pieces.push_back({slot, ""});
-        bool first_title = true;
-        for (size_t slot = 2; slot <= 5; ++slot) if (present(slot)) {
-            std::string prefix = first_title ? (front ? " the " : "the ") :
-                slot == 5 && present(4) ? "-" : " ";
-            pieces.push_back({slot, std::move(prefix)});
-            first_title = false;
-        }
-        const bool open_compound = present(4) && !present(5);
-        if (present(6)) pieces.push_back({6, open_compound ? "-of " : " of "});
-        const std::string_view ending = open_compound && !present(6) ? "-" : "";
-        if (!text.ends_with(ending)) continue;
-        const size_t finish = text.size() - ending.size();
-        std::unordered_map<size_t, std::optional<Reading>> memo;
-        std::function<std::optional<Reading>(size_t, size_t)> parse;
-        parse = [&](size_t index, size_t start) -> std::optional<Reading> {
-            const size_t position = index * (text.size() + 1) + start;
-            if (const auto cached = memo.find(position); cached != memo.end()) return cached->second;
-            std::optional<Reading> result;
-            const auto &piece = pieces[index];
-            if (start > finish || !std::string_view(text).substr(start).starts_with(piece.prefix))
-                return memo.emplace(position, result).first->second;
-            const size_t begin = start + piece.prefix.size();
-            if (begin >= finish) return memo.emplace(position, result).first->second;
-            const bool last = index + 1 == pieces.size();
-            const auto accept = [&](size_t end) {
-                const auto *word = lexical_word(std::string_view(text).substr(begin, end - begin), piece.slot);
-                if (!word) return;
-                auto tail = last ? std::optional<Reading>(Reading{}) : parse(index + 1, end);
-                if (!tail) return;
-                tail->words[piece.slot] = *word;
-                // Prefer whole lexical forms over unnecessary splitting;
-                // grammatical roles disambiguate otherwise equal readings.
-                tail->score += role_score(piece.slot, word->part_of_speech) - 8;
-                if (!result || tail->score > result->score) result = std::move(tail);
-            };
-            if (last) accept(finish);
-            else {
-                const auto &separator = pieces[index + 1].prefix;
-                for (size_t end = begin + 1; end < finish; ++end)
-                    if (separator.empty() || std::string_view(text).substr(end).starts_with(separator))
-                        accept(end);
-            }
-            memo.emplace(position, result);
-            return result;
-        };
-        auto candidate = parse(0, 0);
-        if (candidate && (!best || candidate->score > best->score)) best = std::move(candidate);
-    }
-    std::optional<std::string> result;
-    if (best) {
-        NativeHistoryName name;
-        name.has_name = true;
-        name.type = 4;
-        name.words = std::move(best->words);
-        // Require the adapter to account for the entire visible name before
-        // using the very same formatter as a live site's captured fields.
-        const auto reconstructed = reconstruct_site_english_name(name);
-        if (reconstructed && lower(native_text_to_utf8(*reconstructed)) == text)
-            result = localize_site_name(name, suffix);
-    }
-    if (site_text_cache_.size() >= 4096) site_text_cache_.clear();
-    site_text_cache_.emplace(key, result);
-    return result;
-}
-
 std::optional<std::string> Overlay::translate_english_site_name(
         std::string_view english, const NativeHistoryName *identity,
         std::string_view suffix) const {
@@ -571,7 +505,9 @@ std::optional<std::string> Overlay::translate_english_site_name(
             if (auto localized = localize_site_name(*identity, suffix)) return localized;
         }
     }
-    if (const auto localized = localize_site_text(english, suffix)) return localized;
+    // The surface string cannot distinguish modifier slots from title slots
+    // or recover the original WORD/POS. Only a supplied identity may enter
+    // the site translator; dictionary POS must not choose another layout.
     return native_text_to_utf8(english) + std::string(suffix);
 }
 

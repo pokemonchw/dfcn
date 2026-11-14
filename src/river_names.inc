@@ -1,6 +1,5 @@
 bool Overlay::load_river_names() {
     ++river_names_revision_;
-    site_text_cache_.clear();
     river_name_cache_.clear();
     river_name_cache_world_.clear();
     return river_names_.load(runtime::data_path(), english_character_names_);

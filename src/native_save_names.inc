@@ -28,6 +28,15 @@ static std::optional<NativeSaveNameSource> capture_native_save_name_source(
                 !native_history_copy(field(0xf0, sizeof(result.world_id1)), result.world_id1) ||
                 !native_history_copy(field(0xf4, sizeof(result.world_id2)), result.world_id2))
             return std::nullopt;
+        if (!result.authored) {
+            std::lock_guard lock(g_native_save_name_mutex);
+            const auto found = g_native_save_header_names.find(header);
+            if (found != g_native_save_header_names.end() &&
+                    found->second.original == result.original &&
+                    found->second.world_id1 == result.world_id1 &&
+                    found->second.world_id2 == result.world_id2)
+                result.identity = found->second.identity;
+        }
         return result;
     }
     return std::nullopt;

@@ -1192,7 +1192,10 @@ struct NativeSaveNameSource {
     bool authored = false;
     int16_t game_type = -1;
     uint32_t world_id1 = 0, world_id2 = 0;
+    std::shared_ptr<const NativeHistoryName> identity;
 };
+static std::mutex g_native_save_name_mutex;
+static std::unordered_map<uintptr_t, NativeSaveNameSource> g_native_save_header_names;
 static std::optional<NativeSaveNameSource> capture_native_save_name_source(
     uintptr_t source, std::string_view complete);
 static bool native_save_world_is_current(const NativeSaveNameSource &source);
@@ -3970,6 +3973,8 @@ public:
     void clear_conversation_choices() { capture_conversation_choices({}); }
     int native_knowledge_required_rows(const std::string &source, int width,
         bool personality = false, bool health = false, bool thoughts = false) const;
+    bool match_saved_site_name(NativeHistoryName &name, std::string_view language,
+        std::string_view complete) const;
 
 private:
     std::vector<Match> announcement_log_prepared_matches_;
@@ -4215,8 +4220,6 @@ private:
     std::string site_name_core(const NativeHistoryName &name) const;
     std::optional<std::string> localize_site_name(const NativeHistoryName &name,
         std::string_view suffix = {}) const;
-    std::optional<std::string> localize_site_text(std::string_view english,
-        std::string_view suffix) const;
     std::string site_name_full_transliteration(const NativeHistoryName &name) const;
     std::vector<std::string> site_name_search_aliases(const NativeHistoryName &name) const;
     std::string translate_river_name(const RiverNameIdentity &identity,
@@ -4472,8 +4475,6 @@ private:
     // These forms only reconstruct the game's English history references.
     // Chinese character-name selection always receives the resulting text.
     std::unordered_map<std::string, std::array<std::string, 9>> history_english_name_forms_;
-    std::unordered_map<std::string, std::vector<NativeHistoryWord>> site_english_forms_;
-    mutable std::unordered_map<std::string, std::optional<std::string>> site_text_cache_;
     EnglishCharacterNames english_character_names_;
     EnglishNameTransliterator english_name_transliterator_;
     // The editor offers all raw forms, including those disallowed in a
@@ -7384,8 +7385,6 @@ bool Overlay::load_procedural_name_grammar() {
     procedural_word_meanings_.clear();
     name_editor_word_forms_.clear();
     history_english_name_forms_.clear();
-    site_english_forms_.clear();
-    site_text_cache_.clear();
     std::string path =
         "data/vanilla/vanilla_languages/objects/language_words.txt";
     std::ifstream input(path, std::ios::binary);
@@ -7568,12 +7567,6 @@ bool Overlay::load_procedural_name_grammar() {
                 mark_form(index, kNameVerb);
         }
     }
-
-    for (const auto &[id, variants] : history_english_name_forms_)
-        for (size_t pos = 0; pos < variants.size(); ++pos)
-            if (!variants[pos].empty())
-                site_english_forms_[variants[pos]].push_back(
-                    NativeHistoryWord{id, static_cast<int16_t>(pos), true, variants[pos]});
 
     size_t stale_senses = 0;
     for (const auto &[sense_key, gloss] : procedural_word_senses_) {

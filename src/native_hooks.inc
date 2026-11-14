@@ -22,6 +22,7 @@ static bool native_history_site_type(uintptr_t site, NativeHistoryEventData &out
 static bool native_history_war_selection(uintptr_t collection, int32_t &category,
     int32_t &index, int32_t &count);
 #include "native_history_names.inc"
+#include "native_save_name_hooks.inc"
 #include "native_ui_semantics_elf.inc"
 #include "native_workshop_names.inc"
 #include "native_world_artifact_cache.inc"
@@ -155,6 +156,7 @@ static bool install_sdl_hooks() {
         {"Translated unit search", install_native_unit_search_hook},
         {"Native unit identity fields", install_native_unit_identity_hooks},
         {"Native authored squad names", install_native_squad_name_hooks},
+        {"Native save-list name slots", install_native_save_name_hook},
         {"Native adventure charge fields", install_native_adventure_charge_hooks},
         {"Native adventure introduction error text", install_native_adventure_introduction_hooks},
         {"Native overview event source", install_native_overview_event_hooks},
@@ -229,6 +231,7 @@ static bool install_sdl_hooks() {
 }
 
 static void uninstall_sdl_hooks() {
+    uninstall_native_save_name_hook();
     uninstall_native_riding_hook();
     [[maybe_unused]] NativePatchMappingScope mapping_scope;
     uninstall_native_petition_layer_hook();
@@ -345,7 +348,7 @@ static bool native_hooks_detached() {
         !native_character_relations_hook_active() &&
         !native_overview_quote_hooks_active() &&
         !native_journal_search_hook_active() &&
-        !native_item_picker_search_hook_active() &&
+        !native_save_name_hook_active() && !native_item_picker_search_hook_active() &&
         !native_kitchen_search_hook_active() &&
         !native_justice_search_hook_active() &&
         !native_justice_actor_capture_hook_active() &&
