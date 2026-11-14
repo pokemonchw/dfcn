@@ -29080,6 +29080,7 @@ Overview sentence: The tax collection did not go smoothly.	税收得不顺利。
 Partially used in place of low musical performance skills.	可部分弥补音乐表演技能的不足。	w
 Personal freedom must be tempered by other considerations.	个人自由也必须有所节制，兼顾其他事情。	hPD
 Please be patient. I'll have your order ready in a moment.	请耐心等候。你点的东西马上就好。	hPD
+Preference reason: being turned into the form of a Pokemon	变成宝可梦的形态	l
 Prepare writing material and assign scholars to a library.	请准备书写材料，并为图书馆指派学者。	hP
 Push off {s} in {d} day when at most {d}% of desired items	等待{d1}天且所需物品装载量不高于{d2}%时，向{s1}推出矿车	hPt
 Select creature ({d} selected, range {d}, disturber only).	选择生物（已选{d1}个，距离{d2}，仅限惊扰者）。	hPt
@@ -30038,6 +30039,7 @@ Overview sentence: I was yelled at by an unhappy citizen.	有个不满的居民�
 Overview sentence: That is not in the least bit arousing.	这丝毫没有勾起我的情欲。	l
 Overview sentence: There are not enough cages and chains.	笼子和锁链都不够用。	l
 Overview sentence: There's nothing to be indignant about.	这没什么好愤愤不平的。	l
+Preference reason: ability to create powerful shock waves	产生强大冲击波的能力	l
 Recenter on the deepest discovered area at this location.	将视图重新居中到此位置已发现的最深区域。	hj
 Recenter on the deepest discovered area at this location.	将视图重新居中到此位置已发现的最深区域。	wl
 Select corpses ({d} selected, range {d}, disturber only).	选择尸体（已选{d1}个，距离{d2}，仅限惊扰者）。	hPt
@@ -31093,6 +31095,7 @@ Overview sentence: This doesn't put me in a jovial mood.	这没让我高兴起�
 Play your role in this noble quest and become legendary!	投身这项崇高的使命，成就传奇吧！	hP
 Praise {p} for ignoring your hubris. Peace is cherished.	赞美{p1}，宽恕了你的狂妄。和平备受珍视。	hPt
 Praise {p} for ignoring your hubris. {r} without bounds.	赞美{p1}，宽恕了你的狂妄。无边的{r1}。	hPt
+Preference reason: inability to stay in a confined space	无法忍受狭小空间的习性	l
 Push off {s} immediately when at least {d}% of any items	总装载量不低于{d1}%时，立即向{s1}推出矿车	hPt
 Push off {s} in {d} days when at least {d}% of any items	等待{d1}天且总装载量不低于{d2}%时，向{s1}推出矿车	hPt
 Ride {s} immediately when at least {d}% of desired items	所需物品装载量不低于{d1}%时，立即乘坐矿车向{s1}行驶	hPt
@@ -34425,6 +34428,8 @@ Overview sentence: That's nothing to be bitter about.	这没什么好怨恨的�
 Overview sentence: There aren't enough dining tables.	餐桌不够用。	l
 Overview sentence: There is no need to feel vengeful.	没必要想着报复。	l
 Overview sentence: There will be no sympathy from me.	别指望我会同情。	l
+Preference reason: ability to create ultrasonic waves	产生超声波的能力	l
+Preference reason: their ability to create sandstorms	制造沙尘暴的能力	l
 Request duty or advice pertaining to service as a {s}	请求分派{s1}的职责或给予建议	hPt
 She has a tendency to consider ideas and abstractions	她倾向于思考观念和抽象概念，	l
 Spread rumor of {e}'s refusal of {e}'s offer of peace	传播{e1}拒绝{e2}的和平提议的传闻	hPt
@@ -35717,6 +35722,7 @@ Overview sentence: I'm terribly bitter about this...	这件事让我心里怨恨
 Overview sentence: There is no need for celebration.	没什么好庆祝的。	l
 Path to here (no climbing/jumping) ({d} levels down)	寻路至此（不攀爬或跳跃）（下方{d1}层）	hPt
 Power over others is the only true measure of worth.	能支配多少人，才是衡量价值的唯一标准。	hPD
+Preference reason: tendancy to carve into tree roots	刮开树根的习性	l
 Push off {s} immediately when empty of desired items	未装载所需物品时，立即向{s1}推出矿车	hPt
 Push off {s} in {d} days when empty of desired items	等待{d1}天且未装载所需物品时，向{s1}推出矿车	hPt
 Repeat this pattern until you get below the aquifer.	重复这一过程，直到穿过含水层。	hq
@@ -36982,6 +36988,9 @@ Overview sentence: This is driving me to agitation.	真让人静不下心来。	
 Path to here (no climbing/jumping) ({d} level down)	寻路至此（不攀爬或跳跃）（下方{d1}层）	hPt
 Praise {p} for ignoring your hubris. Oh tender {r}!	赞美{p1}，宽恕了你的狂妄。啊，温柔的{r1}！	hPt
 Praise {p} for ignoring your hubris. You are loved.	赞美{p1}，宽恕了你的狂妄。你被爱着。	hPt
+Preference reason: ability to generate strong winds	产生强风的能力	l
+Preference reason: desire for isolation and silence	对独处与安静的喜好	l
+Preference reason: mission to protect the ecosystem	保护生态系统的使命	l
 Push off {s} immediately when full of desired items	所需物品装满矿车时，立即向{s1}推出矿车	hPt
 Push off {s} in {d} day when empty of desired items	等待{d1}天且未装载所需物品时，向{s1}推出矿车	hPt
 Push off {s} in {d} days when full of desired items	等待{d1}天且所需物品装满矿车时，向{s1}推出矿车	hPt
@@ -38336,6 +38345,9 @@ Overview sentence: What is the meaning of it all?!	这一切到底有什么意�
 Path to here (no climbing/jumping) ({d} levels up)	寻路至此（不攀爬或跳跃）（上方{d1}层）	hPt
 Praise {p} for ignoring your hubris. Infinite {r}!	赞美{p1}，宽恕了你的狂妄。无穷的{r1}！	hPt
 Praise {p} for ignoring your hubris. Oh sweet {r}!	赞美{p1}，宽恕了你的狂妄。啊，甘美的{r1}！	hPt
+Preference reason: ability to create thunderclouds	创造雷雨云的能力	l
+Preference reason: ability to open Ultra Wormholes	打开究极之洞的能力	l
+Preference reason: tendency to windmill their arms	像风车一样转动手臂的习性	l
 Push off {s} in {d} day when full of desired items	等待{d1}天且所需物品装满矿车时，向{s1}推出矿车	hPt
 Quick movement and other actions decrease stealth.	快速移动和其他动作会降低隐蔽程度。	hP
 Randomize appearance, respecting local populations	依据当地人口特征随机生成外貌	l
@@ -39759,6 +39771,10 @@ Overview sentence: What is the meaning of life...	活着到底有什么意义…
 Overview sentence: Wrath has not risen within me.	我心中并未燃起怒火。	l
 Path to here (no climbing/jumping) ({d} level up)	寻路至此（不攀爬或跳跃）（上方{d1}层）	hPt
 Perhaps some of your friends here can remind you.	也许这里的朋友能提醒你。	hq
+Preference reason: ability to create ice crystals	产生冰晶的能力	l
+Preference reason: ability to create storm clouds	创造风暴云的能力	l
+Preference reason: ability to slip through cracks	穿过裂缝的能力	l
+Preference reason: electricity-discharging organs	放电器官	l
 Restarts if completed, conditions checked monthly	完成后重新开始，每月检查条件。	hP
 She is generally quite confident of her abilities	她通常对自己的能力颇有信心，	l
 She tends to be a little wasteful when working on	她工作时往往有些浪费。	l
@@ -41318,6 +41334,16 @@ Overview sentence: That's incredibly suspicious!	这太可疑了！	l
 Overview sentence: These lyrics are too austere.	这歌词也太死板了。	l
 Overview sentence: Things usually don't work out	事情往往不会如愿。	l
 Overview sentence: This might require an answer.	这事得回应一下吧。	l
+Preference reason: ability to bring happy dreams	带来美梦的能力	l
+Preference reason: ability to create earthquakes	制造地震的能力	l
+Preference reason: ability to drill through wood	钻穿木材的能力	l
+Preference reason: ability to predict the future	预测未来的能力	l
+Preference reason: ability to sharpen ones focus	提高注意力的能力	l
+Preference reason: ability to shoot thunderbolts	发射雷电的能力	l
+Preference reason: ability to summon rain clouds	召唤雨云的能力	l
+Preference reason: attraction to strong emotions	对强烈情绪的喜好	l
+Preference reason: being a human in Pokemon form	以宝可梦形态生活的人类身份	l
+Preference reason: tendancy to stand on one foot	单脚站立的习性	l
 Push off {s} immediately when empty of any items	矿车空载时，立即向{s1}推出矿车	hPt
 Push off {s} in {d} days when empty of any items	等待{d1}天且矿车空载时，向{s1}推出矿车	hPt
 Really, I've been over all this nonsense before.	说真的，这些废话我早就听过了。	hPD
@@ -42318,6 +42344,7 @@ A person with the arms and wings of a barn owl.	一种长着仓鸮脑袋和翅�
 A person with the head and markings of a hyena.	一种长着鬣狗头和斑纹的人形生物。	lP
 A person with the head and tail of a wolverine.	一种长着狼獾头和尾巴的人形生物。	lP
 A person with the head and tail of an aardvark.	一种长着土豚头和尾巴的人形生物。	lP
+A person with the head and wings of a cardinal.	一种长着红雀脑袋和翅膀的人形生物。	lP
 A person with the head and wings of a cardinal.	一种长着主红雀脑袋和翅膀的人形生物。	lP
 A person with the head and wings of a mosquito.	一种长着蚊子脑袋和翅膀的人形生物。	lP
 A person with the head and wings of a parakeet.	一种长着长尾鹦鹉脑袋和翅膀的人形生物。	lP
@@ -42892,6 +42919,16 @@ Overview sentence: The wrath rises within me...	越想越来气……	l
 Overview sentence: There is no sense of wonder.	没什么稀奇的。	l
 Overview sentence: These lyrics are too breezy.	这歌词也太不正经了。	l
 Overview sentence: Who's skulking around there?	谁在那里鬼鬼祟祟的？	l
+Preference reason: ability to create whirlwinds	制造旋风的能力	l
+Preference reason: ability to expand continents	扩展大陆的能力	l
+Preference reason: ability to predict disasters	预测灾害的能力	l
+Preference reason: ability to produce loud pops	产生响亮爆裂声的能力	l
+Preference reason: ability to rotate their head	旋转头部的能力	l
+Preference reason: ability to store electricity	储存电力的能力	l
+Preference reason: ability to turn Pokemon pink	将宝可梦变成粉红色的能力	l
+Preference reason: intolerance towards bullying	不容忍欺凌行为	l
+Preference reason: respect of all forms of life	对一切生命的尊重	l
+Preference reason: tendancy to expel its organs	吐出内脏的习性	l
 Push off {s} immediately when full of any items	矿车满载时，立即向{s1}推出矿车	hPt
 Push off {s} in {d} day when empty of any items	等待{d1}天且矿车空载时，向{s1}推出矿车	hPt
 Push off {s} in {d} days when full of any items	等待{d1}天且矿车满载时，向{s1}推出矿车	hPt
@@ -43943,6 +43980,7 @@ A person with the head and tail of an opossum.	一种有负鼠头和尾巴的人
 A person with the head and wings of a bluejay.	一种长着冠蓝鸦头和翅膀的人形生物。	lP
 A person with the head and wings of a bushtit.	一种长着丛山雀脑袋和翅膀的人形生物。	lP
 A person with the head and wings of a buzzard.	一种长着秃鹰脑袋和翅膀的人形生物。	lP
+A person with the head and wings of a grackle.	一种长着黑羽椋鸟脑袋和翅膀的人形生物。	lP
 A person with the head and wings of a grackle.	一种长着拟八哥脑袋和翅膀的人形生物。	lP
 A person with the head and wings of a kestrel.	一种长着茶隼脑袋和翅膀的人形生物。	lP
 A person with the head and wings of a sparrow.	一种长着麻雀脑袋和翅膀的人形生物。	lP
@@ -44757,6 +44795,11 @@ Overview sentence: Things are going to happen.	眼看就要有事发生了。	l
 Overview sentence: This is a true masterpiece.	这是真正的杰作。	l
 Overview sentence: This is my favorite poetry.	这是我最喜欢的诗歌。	l
 Praise {p} for ignoring your hubris. Such {r}!	赞美{p1}，宽恕了你的狂妄。何等的{r1}！	hPt
+Preference reason: ability to bring nightmares	带来噩梦的能力	l
+Preference reason: ability to create dense fog	产生浓雾的能力	l
+Preference reason: ability to cure any illness	治愈任何疾病的能力	l
+Preference reason: diet of rocks and gemstones	以岩石和宝石为食的习性	l
+Preference reason: super high-calorie missiles	超高热量导弹	l
 Push off {s} immediately always (at most 100%)	立即向{s1}推出矿车（不限装载量，至多100%）	hPt
 Push off {s} in {d} day when full of any items	等待{d1}天且矿车满载时，向{s1}推出矿车	hPt
 Push off {s} in {d} days always (at most 100%)	等待{d1}天后向{s1}推出矿车（不限装载量，至多100%）	hPt
@@ -46791,6 +46834,18 @@ Overview sentence: What am I even doing here?	我到底在这里做什么？	l
 Overview sentence: You will know my ferocity!	让你见识见识我的厉害！	l
 Partially used in place of low ranged skills.	可部分弥补远程战斗技能的不足。	w
 Perhaps some of your friends here have ideas.	也许这里的朋友有些主意。	hq
+Preference reason: ability to absorb anything	吸收任何东西的能力	l
+Preference reason: ability to balance objects	平衡物体的能力	l
+Preference reason: ability to control Pokemon	控制宝可梦的能力	l
+Preference reason: ability to control gravity	控制重力的能力	l
+Preference reason: ability to create diamonds	创造钻石的能力	l
+Preference reason: ability to freeze moisture	冻结水分的能力	l
+Preference reason: ability to help crops grow	帮助农作物生长的能力	l
+Preference reason: ability to manipulate peat	操纵泥炭的能力	l
+Preference reason: ability to recall memories	唤回记忆的能力	l
+Preference reason: attraction to the deceased	对亡者的亲近	l
+Preference reason: mission to protect Pokemon	保护宝可梦的使命	l
+Preference reason: mountain crushing strength	粉碎山岳的力量	l
 Push off {s} immediately always (at least 0%)	立即向{s1}推出矿车（不限装载量，至少0%）	hPt
 Push off {s} in {d} day always (at most 100%)	等待{d1}天后向{s1}推出矿车（不限装载量，至多100%）	hPt
 Push off {s} in {d} days always (at least 0%)	等待{d1}天后向{s1}推出矿车（不限装载量，至少0%）	hPt
@@ -49213,6 +49268,20 @@ Overview sentence: This leaves me so shaken.	实在有点承受不住了。	l
 Overview sentence: We are rid of a nuisance.	咱们少了个祸害。	l
 Overview sentence: We must make merry again.	咱们得再好好乐一场。	l
 Partially used in place of low melee skills.	可部分弥补近战技能的不足。	w
+Preference reason: ability to cure paralysis	治愈麻痹的能力	l
+Preference reason: ability to dissolve rocks	溶解岩石的能力	l
+Preference reason: ability to make lightning	制造闪电的能力	l
+Preference reason: ability to predict storms	预测风暴的能力	l
+Preference reason: ability to project dreams	投射梦境的能力	l
+Preference reason: ability to relieve stress	缓解压力的能力	l
+Preference reason: ability to revive Pokemon	复活宝可梦的能力	l
+Preference reason: ability to see the future	预见未来的能力	l
+Preference reason: ability to sense emotions	感知情绪的能力	l
+Preference reason: crescent-shaped ornaments	月牙形饰物	l
+Preference reason: dedication to their young	对幼崽的呵护	l
+Preference reason: electrical fighting style	电力格斗风格	l
+Preference reason: incredibly powerful trunk	极其强壮的象鼻	l
+Preference reason: space controlling ability	空间掌控能力	l
 Push off {s} in {d} day always (at least 0%)	等待{d1}天后向{s1}推出矿车（不限装载量，至少0%）	hPt
 Required to climb difficult surfaces safely.	使攀爬难以攀附的表面更安全。	w
 Ride {s} immediately when empty of any items	矿车空载时，立即乘坐矿车向{s1}行驶	hPt
@@ -52067,6 +52136,19 @@ Overview sentence: This isn't embarrassing.	这并不尴尬。	l
 Overview sentence: This isn't exasperating.	这没什么可气的。	l
 Overview sentence: This poetry is so funny!	这诗歌真有趣！	l
 Overview sentence: You can't take me alive!	你们休想活捉我！	l
+Preference reason: ability to boost agility	提高敏捷性的能力	l
+Preference reason: ability to change colors	改变颜色的能力	l
+Preference reason: ability to clear throats	清嗓子的能力	l
+Preference reason: ability to expand oceans	扩大海洋的能力	l
+Preference reason: ability to make rainbows	创造彩虹的能力	l
+Preference reason: ability to produce steam	产生蒸汽的能力	l
+Preference reason: ability to read emotions	读懂情绪的能力	l
+Preference reason: ability to read feelings	读懂感情的能力	l
+Preference reason: ability to walk on water	在水上行走的能力	l
+Preference reason: extraterrestrial origins	外星起源	l
+Preference reason: lightning-fast movements	闪电般的动作	l
+Preference reason: silly worried expression	傻乎乎的担心表情	l
+Preference reason: time controlling ability	时间控制能力	l
 Really retire?  The world will be saved but	确定要退役吗？世界将会保存，	w
 Ride {s} immediately when full of any items	矿车满载时，立即乘坐矿车向{s1}行驶	hPt
 Ride {s} in {d} day when empty of any items	等待{d1}天且矿车空载时，乘坐矿车向{s1}行驶	hPt
@@ -55691,6 +55773,16 @@ Overview sentence: This isn't frustrating.	这还不至于让人泄气。	l
 Overview sentence: We are rid of an enemy.	咱们除掉了一个敌人。	l
 Overview sentence: What is it this time...	这次又是什么……	l
 Passing a few weeks to get things ready...	矮人们正忙上几周时间, 把事情准备妥当...	w
+Preference reason: ability to control snow	控雪能力	l
+Preference reason: ability to create metal	创造金属的能力	l
+Preference reason: ability to cure illness	治愈疾病的能力	l
+Preference reason: ability to purify water	净化水的能力	l
+Preference reason: balanced flavored juice	风味均衡的果汁	l
+Preference reason: dragon energy formation	龙形能量构造	l
+Preference reason: intricate aerial dances	复杂的空中舞蹈	l
+Preference reason: nature changing ability	改变性格的能力	l
+Preference reason: revitalising properties	恢复活力的功效	l
+Preference reason: teamwork with Tatsugiri	与米立龙的团队合作	l
 Required to swim well without floundering.	使游泳顺畅，避免在水中挣扎。	w
 Ride {s} immediately always (at most 100%)	立即乘坐矿车向{s1}行驶（不限装载量，至多100%）	hPt
 Ride {s} in {d} day when full of any items	等待{d1}天且矿车满载时，乘坐矿车向{s1}行驶	hPt
@@ -57006,6 +57098,7 @@ you will need to unretire the fort to play	但你需要先重新启用这座要�
 "It's foolish to work hard for anything."	“为任何事辛苦劳作，都是愚蠢的。”	l
 (only this inactive copy will be deleted)	（只会删除这个未启用的副本）	l
 A horned person with the head of an ibex.	一种长着山羊头的有角的人形生物。	lP
+A huge monster in the form of a cardinal.	一只体型巨大的红雀怪。	lP
 A huge monster in the form of a cardinal.	一只体型巨大的主红雀怪。	lP
 A huge monster in the form of a pangolin.	一只巨大的穿山甲怪。	lP
 A huge monster in the shape of a kestrel.	一只巨大的茶隼怪。	lP
@@ -60052,6 +60145,20 @@ Overview sentence: This is a masterpiece.	这是一件杰作。	l
 Overview sentence: This is disappointing.	唉，白期待了。	l
 Overview sentence: This isn't irritating.	这没什么可烦的。	l
 Please let me shelter here for the night.	请让我在这里借宿一晚。	hPD
+Preference reason: ability to change form	改变形态的能力	l
+Preference reason: ability to cure poison	解毒能力	l
+Preference reason: ability to grow plants	促进植物生长的能力	l
+Preference reason: ability to hold liquor	酒量	l
+Preference reason: ability to make storms	制造风暴的能力	l
+Preference reason: ability to sense auras	感知波导的能力	l
+Preference reason: cherry-like appearance	樱桃般的外观	l
+Preference reason: emotion draining touch	吸取情感的触碰	l
+Preference reason: interesting head shape	有趣的头型	l
+Preference reason: lightweight metal body	轻巧的金属身体	l
+Preference reason: multiple personalities	多重人格	l
+Preference reason: sweet and creamy flesh	甜美绵密的果肉	l
+Preference reason: sweet and tangy flavor	酸甜的风味	l
+Preference reason: sweet-smelling flowers	芬芳的花朵	l
 Raid (squads will try to avoid detection)	突袭（小队会尽量避免被发现）	wliP
 Recenter on the surface at this location.	将视图重新居中到此位置的地表。	hj
 Recenter on the surface at this location.	将视图重新居中到此位置的地表。	wl
@@ -61334,6 +61441,7 @@ A huge monster in the form of a bluejay.	一只体型巨大的冠蓝鸦怪物。
 A huge monster in the form of a bushtit.	一只体型巨大的丛山雀怪物。	lP
 A huge monster in the form of a buzzard.	一只巨大的秃鹰怪。	lP
 A huge monster in the form of a gazelle.	一只巨大的瞪羚怪。	lP
+A huge monster in the form of a grackle.	一只体型巨大的黑羽椋鸟怪。	lP
 A huge monster in the form of a grackle.	一只体型巨大的拟八哥怪。	lP
 A huge monster in the form of a vulture.	一只巨大的秃鹫怪。	lP
 A huge monster in the form of an impala.	一只巨大的高角羚怪。	lP
@@ -64924,6 +65032,23 @@ Overview sentence: That's very annoying.	那可真烦死了。	l
 Overview sentence: This is my fight too.	这一仗也有我的份。	l
 Overview sentence: This isn't confusing.	这没什么难懂的。	l
 Overview sentence: Wow!  That's amazing!	哇！真了不起！	l
+Preference reason: ability to camouflage	伪装能力	l
+Preference reason: bitter flavored juice	苦味果汁	l
+Preference reason: different appearances	不同的外观	l
+Preference reason: earth splitting power	劈开大地的力量	l
+Preference reason: gracidea-like flowers	葛拉西蒂亚花般的花朵	l
+Preference reason: immense psychic power	强大的超能力	l
+Preference reason: irresistible drumming	不可抗拒的鼓声	l
+Preference reason: loudspeaker like ears	扩音器般的耳朵	l
+Preference reason: move boosting ability	增强招式威力的能力	l
+Preference reason: power of eternal life	永生的力量	l
+Preference reason: rivalry with Zangoose	与猫鼬斩的宿敌关系	l
+Preference reason: skillful misdirection	巧妙的误导	l
+Preference reason: stimulating seasoning	刺激性调味料	l
+Preference reason: teamwork with Dondozo	与吃吼霸的团队合作	l
+Preference reason: tingling to the touch	触碰时的刺痛感	l
+Preference reason: webbed hands and feet	有蹼的手和脚	l
+Preference reason: witch like appearance	巫婆般的外表	l
 Really quit?  The character will live on	确定要结束吗？这个角色的事迹	w
 Really quit?  The fort will be saved but	确定要放弃吗？要塞将会保存，	w
 Recenter on the announcement's location.	将视图重新居中到公告发生地点。	hj
@@ -69954,6 +70079,36 @@ Overview sentence: This is so exciting!	这太令人兴奋了！	l
 Overview sentence: This isn't a defeat.	这不是失败。	l
 Persevere though it may be for nothing.	即使可能徒劳，也要坚持。	hP
 Praise listener for completing the task	称赞对方完成了任务	hP
+Preference reason: ability to bring joy	带来欢乐的能力	l
+Preference reason: ability to keep time	精准计时的能力	l
+Preference reason: ability to make fire	生火的能力	l
+Preference reason: ability to make snow	造雪能力	l
+Preference reason: ability to shoot ink	射墨能力	l
+Preference reason: ability to transform	变身的能力	l
+Preference reason: aid in muscle growth	促进肌肉生长的功效	l
+Preference reason: beautiful caudal fin	美丽的尾鳍	l
+Preference reason: boxing glove pincers	拳击手套般的钳子	l
+Preference reason: dimension travelling	次元旅行	l
+Preference reason: doll-like appearance	娃娃般的外表	l
+Preference reason: electrical formation	电流构成的形体	l
+Preference reason: enigmatic properties	神秘的特性	l
+Preference reason: fish like appearance	鱼般的外形	l
+Preference reason: heart shaped marking	心形标记	l
+Preference reason: hidden psychic power	隐藏的超能力	l
+Preference reason: kelp like appearance	海带状外观	l
+Preference reason: lightning attraction	吸引雷电的特性	l
+Preference reason: mission of vengeance	复仇的使命	l
+Preference reason: peaceful disposition	平和的性格	l
+Preference reason: rivalry with Seviper	与饭匙蛇的宿敌关系	l
+Preference reason: spicy flavored juice	辣味果汁	l
+Preference reason: star like appearance	星星般的外表	l
+Preference reason: stone like structure	类似石头的结构	l
+Preference reason: sweet flavored juice	甜味果汁	l
+Preference reason: symbol of prosparity	繁荣的象征	l
+Preference reason: tree like appearance	树状外观	l
+Preference reason: use of rocks as ammo	使用岩石作为弹药	l
+Preference reason: use of seeds as ammo	使用种子作为弹药	l
+Preference reason: wrapping like leaves	裹在身上的叶片	l
 Request suggestion for course of action	请求建议下一步行动	hP
 Seems a pleasant enough dawn out there.	看起来外头的黎明挺宜人。	hPD
 Select corpses ({d} of {d}, range {d}).	选择尸体（{d1}/{d2}，距离{d3}）。	hPt
@@ -75498,6 +75653,43 @@ Overview sentence: This is an outrage!	这也太气人了！	l
 Overview sentence: This is delightful!	真叫人高兴！	l
 Overview sentence: This is mortifying.	真丢人，往哪儿躲才好。	l
 Overview sentence: You have my thanks.	多谢你了。	l
+Preference reason: ability to organize	组织能力	l
+Preference reason: ability to teleport	传送能力	l
+Preference reason: affectionate nature	亲人的性格	l
+Preference reason: attraction to light	趋光性	l
+Preference reason: colorful explosions	色彩缤纷的爆炸	l
+Preference reason: draconic appearance	龙般的外形	l
+Preference reason: egg-shaped fireball	蛋形火球	l
+Preference reason: electric generation	发电	l
+Preference reason: enchanting melodies	迷人的旋律	l
+Preference reason: freezing upper half	冰冷的上半身	l
+Preference reason: heat resistant body	耐热的身体	l
+Preference reason: incredibly hard ice	极其坚硬的冰	l
+Preference reason: intimidating stance	威风凛凛的姿态	l
+Preference reason: keen sense of smell	敏锐的嗅觉	l
+Preference reason: knightly appearance	骑士般的外表	l
+Preference reason: large social groups	庞大的群居群体	l
+Preference reason: lingering spiciness	持久的辣味	l
+Preference reason: playful personality	俏皮的性格	l
+Preference reason: powerful third legs	强大的第三条腿	l
+Preference reason: preference for heat	对热的偏好	l
+Preference reason: propeller like tail	螺旋桨般的尾巴	l
+Preference reason: revitalising leaves	恢复活力的叶片	l
+Preference reason: selfish disposition	自私的性格	l
+Preference reason: sour flavored juice	酸味果汁	l
+Preference reason: spherical apparatus	球形装置	l
+Preference reason: star like faceplate	星形面甲	l
+Preference reason: strange combination	奇怪的组合	l
+Preference reason: strange composition	奇特的身体构成	l
+Preference reason: symbol of gratitude	感恩的象征	l
+Preference reason: telekinetic ability	念动力	l
+Preference reason: terrifying features	骇人的外貌	l
+Preference reason: unsociable demeanor	不合群的举止	l
+Preference reason: vampiric appearance	吸血鬼外观	l
+Preference reason: varying composition	不同的成分	l
+Preference reason: water shooting tail	喷水的尾巴	l
+Preference reason: water spraying tail	喷水的尾巴	l
+Preference reason: well-rounded flavor	味道圆润	l
 Preparing for the Caravan ({d} of {d})	为商队的到来做好准备 ({d} of {d})	wt
 Provide the location of specific place	告知某个具体地点的位置	hP
 Rampage of {n} in in {p} in the wilds.	在荒野中，{n1}在{p1}的肆虐事件。	htEi
@@ -81131,6 +81323,42 @@ Overview sentence: This is agonizing.	真难熬。	l
 Overview sentence: This is confusing.	这到底怎么回事。	l
 Overview sentence: This is so boring!	这太无聊了！	l
 Overview sentence: What has happened?	发生了什么？	l
+Preference reason: Dynamax properties	极巨化属性	l
+Preference reason: aid with digestion	帮助消化的功效	l
+Preference reason: angelic appearance	天使般的外表	l
+Preference reason: bittersweet juices	苦甜的汁液	l
+Preference reason: bone like features	骨样特征	l
+Preference reason: brick pattern hide	砖纹皮肤	l
+Preference reason: coral like growths	珊瑚状的附肢	l
+Preference reason: destructive nature	喜欢破坏的天性	l
+Preference reason: draconic apperance	龙般的外形	l
+Preference reason: drooping tentacles	下垂的触手	l
+Preference reason: dry flavored juice	涩味果汁	l
+Preference reason: explosive tendency	容易爆炸的特性	l
+Preference reason: facial expressions	面部表情	l
+Preference reason: fierce personality	凶猛的性格	l
+Preference reason: fighting technique	格斗技术	l
+Preference reason: gentle temperament	温和的性情	l
+Preference reason: graceful movements	优美的动作	l
+Preference reason: healing properties	治疗功效	l
+Preference reason: independent nature	独立的性格	l
+Preference reason: industrious nature	勤劳的天性	l
+Preference reason: magical properties	神奇的魔力	l
+Preference reason: majestic movements	雄伟的动作	l
+Preference reason: medical properties	药用功效	l
+Preference reason: mischievous tricks	恶作剧	l
+Preference reason: mutualistic nature	互利共生的习性	l
+Preference reason: mysterious origins	神秘的起源	l
+Preference reason: relaxing fragrance	令人放松的香味	l
+Preference reason: soothing fragrance	令人舒畅的芳香	l
+Preference reason: spring shaped tail	弹簧状尾巴	l
+Preference reason: star shaped growth	星形突起	l
+Preference reason: streamer-like tail	飘带状的尾巴	l
+Preference reason: sweet and richness	甜美浓郁的滋味	l
+Preference reason: sweet-smelling gas	带甜香的气体	l
+Preference reason: sweetly spicy skin	甜辣的果皮	l
+Preference reason: tomboy personality	假小子性格	l
+Preference reason: trembling movement	震动大地的步伐	l
 Prepare carefully embark confirmation	仔细准备启程确认	w
 Prepare using a saved embark profile:	使用已保存的出发配置进行准备：	wl
 Rampage of {n} in in {p} in the wilds	在荒野中，{n1}在{p1}的肆虐事件	htEi
@@ -86585,6 +86813,54 @@ Overview sentence: They are outlaws.	他们是亡命之徒。	l
 Overview sentence: Those injuries...	伤成这样……	l
 Overview sentence: What's going on?!	这是怎么回事？！	l
 Overview sentence: Yes!  It is done.	好！事情办成了。	l
+Preference reason: ability to burrow	挖洞能力	l
+Preference reason: ability to splash	溅跃的本领	l
+Preference reason: acrobatic ability	杂技能力	l
+Preference reason: adorable behavior	可爱的行为	l
+Preference reason: adversion to rain	厌恶雨水的习性	l
+Preference reason: antique tableware	古董餐具	l
+Preference reason: banana-like shape	香蕉状	l
+Preference reason: barbaric demeanor	野蛮的举止	l
+Preference reason: bittersweet taste	苦甜的味道	l
+Preference reason: colorful feathers	色彩斑斓的羽毛	l
+Preference reason: crystal formation	晶体构造	l
+Preference reason: disgusting breath	令人作呕的吐息	l
+Preference reason: electrical glands	储存电力的腺体	l
+Preference reason: erratic movements	难以预测的动作	l
+Preference reason: fierce appearance	凶猛的外表	l
+Preference reason: flickering spores	闪烁的孢子	l
+Preference reason: glittering spores	闪闪发光的孢子	l
+Preference reason: gloomy appearance	阴沉的样子	l
+Preference reason: glowing mushrooms	发光蘑菇	l
+Preference reason: gluttonous nature	贪吃的本性	l
+Preference reason: gregarious nature	群居性	l
+Preference reason: hanging lifestyle	悬挂栖息的习性	l
+Preference reason: heart shaped body	心形身体	l
+Preference reason: heart-shaped nose	心形鼻子	l
+Preference reason: hypnotizing dance	催眠舞蹈	l
+Preference reason: intense body heat	炽热的体温	l
+Preference reason: intimidating look	令人生畏的表情	l
+Preference reason: mysterious energy	神秘能量	l
+Preference reason: naive personality	天真的性格	l
+Preference reason: nutrient-rich oil	营养丰富的油	l
+Preference reason: powerful uppercut	强大的上勾拳	l
+Preference reason: protective nature	保护他者的天性	l
+Preference reason: psychic abilities	超能力	l
+Preference reason: razor sharp wings	锋利的翅膀	l
+Preference reason: refreshing flavor	清爽的味道	l
+Preference reason: seasonal changing	季节变化	l
+Preference reason: self preservation	自我保护	l
+Preference reason: shimmering scales	闪耀的鳞片	l
+Preference reason: springy tentacles	有弹性的触手	l
+Preference reason: stone-like scales	石头般的鳞片	l
+Preference reason: symbol of victory	胜利的象征	l
+Preference reason: tendancy to flock	结群的习性	l
+Preference reason: tongue like flame	舌头般的火焰	l
+Preference reason: top-shaped pieces	陀螺状的身体部件	l
+Preference reason: tusks made of ice	冰晶长牙	l
+Preference reason: twisting branches	曲折的树枝	l
+Preference reason: variety of smells	各种气味	l
+Preference reason: woolly appearance	毛茸茸的外表	l
 Rampage of {n} in in {p} during {e}.	在{e1}期间，{n1}在{p1}的肆虐事件。	htEi
 Rampage of {n} in in {p} within {p}.	在{p2}，{n1}在{p1}的肆虐事件。	htEi
 Refuse to have {e} pay homage to {e}	拒绝让{e1}向{e2}称臣纳贡	hPt
@@ -91676,6 +91952,69 @@ Overview sentence: This is a fight!	这是打起来了！	l
 Overview sentence: This is nothing.	这不算什么。	l
 Percentage Beasts Dead For Stoppage	停止历史演算所需的巨兽死亡比例
 Poetry Competition of in the wilds.	在荒野中，诗歌比赛。	hEi
+Preference reason: Dreepy launching	发射多龙梅西亚	l
+Preference reason: agressive nature	好斗的性格	l
+Preference reason: bamboo like body	竹子般的身体	l
+Preference reason: belief in ideals	对理想的信念	l
+Preference reason: blight on nature	对自然的损害	l
+Preference reason: cable like limbs	电缆状四肢	l
+Preference reason: calm personality	冷静的性格	l
+Preference reason: castle structure	城堡结构	l
+Preference reason: climbing ability	攀爬能力	l
+Preference reason: cloud-like wings	云朵般的翅膀	l
+Preference reason: cold temperature	寒冷的温度	l
+Preference reason: concrete pillars	混凝土柱	l
+Preference reason: copper like skin	铜般的皮肤	l
+Preference reason: different colors	不同的颜色	l
+Preference reason: digging strength	挖掘力	l
+Preference reason: electrical claws	电爪	l
+Preference reason: electrical power	电力	l
+Preference reason: ember scattering	四散的火星	l
+Preference reason: emotionless face	毫无表情的面孔	l
+Preference reason: endless sleeping	无休止的睡眠	l
+Preference reason: excessive poison	充沛的毒素	l
+Preference reason: flaming antennae	燃烧的触角	l
+Preference reason: flaming furballs	燃烧的毛球	l
+Preference reason: foot print claws	足印状的爪子	l
+Preference reason: glittering wings	闪闪发光的翅膀	l
+Preference reason: glowing features	发光特征	l
+Preference reason: glowing mushroom	发光蘑菇	l
+Preference reason: gnawing strength	啃咬力	l
+Preference reason: iridescent sails	虹彩背鳍	l
+Preference reason: laid back nature	悠闲的性格	l
+Preference reason: laid-back nature	悠闲的性格	l
+Preference reason: large appearance	庞大的外形	l
+Preference reason: leafy appearance	叶状外观	l
+Preference reason: loudspeaker ears	扬声器般的耳朵	l
+Preference reason: mellow sweetness	醇厚的甜味	l
+Preference reason: metalic feathers	金属羽毛	l
+Preference reason: multiple Binacle	多个龟脚脚	l
+Preference reason: muscle like hair	肌肉般的毛发	l
+Preference reason: nurturing nature	照顾他人的天性	l
+Preference reason: nutritious seeds	营养丰富的种子	l
+Preference reason: oblivious nature	迟钝的性格	l
+Preference reason: parasitic nature	寄生性	l
+Preference reason: plant like smell	植物般的气味	l
+Preference reason: playful demeanor	顽皮的举止	l
+Preference reason: popping clusters	会爆裂的果簇	l
+Preference reason: promise of death	死亡的预兆	l
+Preference reason: reaction dulling	延缓反应的功效	l
+Preference reason: reclusive nature	隐居的天性	l
+Preference reason: royal appearance	王者般的外表	l
+Preference reason: scythe like tail	镰刀般的尾巴	l
+Preference reason: sense of hearing	听觉	l
+Preference reason: sickle-like tail	镰刀状的尾巴	l
+Preference reason: spring like legs	像弹簧一样的腿	l
+Preference reason: staggering voice	令人畏缩的吼声	l
+Preference reason: surprising speed	惊人的速度	l
+Preference reason: sweet aftertaste	回味甘甜	l
+Preference reason: swimming ability	游泳能力	l
+Preference reason: tenacious nature	顽强的本性	l
+Preference reason: tensile strength	抗拉强度	l
+Preference reason: terrible majesty	可怕的威严	l
+Preference reason: tree controlling	操纵树木的能力	l
+Preference reason: undulating wings	波浪般摆动的翅膀	l
+Preference reason: use as a whistle	用作哨子的功能	l
 Press plant slurry into paper sheet	将植物纸浆压成纸张	wi
 Pressure plate: Range: {s1} to {s2}	范围：{s1}至{s2}	htl
 Quiet vocalization (heard recently)	微弱叫声（刚刚听到）	wl
@@ -96706,6 +97045,85 @@ Path to here (no climbing/jumping)	寻路至此（不攀爬或跳跃）	hP
 Place stockpiles for item storage.	放置用于存储物品的储物堆。	hj
 Place stockpiles for item storage.	放置物品储存的库存.	w
 Poetry Competition of in the wilds	在荒野中，诗歌比赛	hEi
+Preference reason: ability to roll	滚动能力	l
+Preference reason: aid in tougness	增强坚韧的功效	l
+Preference reason: belief in truth	相信真理	l
+Preference reason: bizare features	古怪的外貌	l
+Preference reason: blood red crest	血红色的冠	l
+Preference reason: blood red horns	血红色的角	l
+Preference reason: branch shooting	发射树枝	l
+Preference reason: brilliant color	绚丽的色彩	l
+Preference reason: carefree nature	无忧无虑的天性	l
+Preference reason: clanging scales	叮当作响的鳞片	l
+Preference reason: colorful petals	五颜六色的花瓣	l
+Preference reason: constant hunger	持续饥饿	l
+Preference reason: cowardly nature	胆怯的天性	l
+Preference reason: cute appearance	可爱的外表	l
+Preference reason: dart like shape	飞镖状	l
+Preference reason: delicious smell	诱人的香气	l
+Preference reason: different forms	不同的形态	l
+Preference reason: disheveled hair	蓬乱的头发	l
+Preference reason: drill-like tail	钻头般的尾巴	l
+Preference reason: dripping embers	滴落的余烬	l
+Preference reason: electric spines	电刺	l
+Preference reason: electrical tail	带电的尾巴	l
+Preference reason: evil appearance	邪恶的外表	l
+Preference reason: fighting spirit	斗志	l
+Preference reason: fighting styles	战斗风格	l
+Preference reason: flaming pebbles	燃烧的鹅卵石	l
+Preference reason: friendly nature	友善的天性	l
+Preference reason: glimmering body	闪光的身躯	l
+Preference reason: god like status	神明般的地位	l
+Preference reason: guardian status	守护者的地位	l
+Preference reason: habit of biting	咬人的习惯	l
+Preference reason: hand like wings	手掌般的翅膀	l
+Preference reason: hatred of light	憎恨光	l
+Preference reason: haunting clangs	令人毛骨悚然的铿锵声	l
+Preference reason: healing ability	治愈能力	l
+Preference reason: health benefits	有益健康的功效	l
+Preference reason: honeycomb shape	蜂窝形状	l
+Preference reason: ice cream shape	冰淇淋形状	l
+Preference reason: impervious head	坚不可摧的头部	l
+Preference reason: impressive size	惊人的体型	l
+Preference reason: jet engine tail	喷气引擎般的尾巴	l
+Preference reason: jumping ability	跳跃能力	l
+Preference reason: kindheartedness	善良	l
+Preference reason: light bulb tail	灯泡状尾巴	l
+Preference reason: mane of bubbles	泡沫鬃毛	l
+Preference reason: mechanical body	机械构成的身体	l
+Preference reason: metal formation	金属构造	l
+Preference reason: mischievousness	恶作剧	l
+Preference reason: mix of flavors?	可能的混合风味	l
+Preference reason: paintbrush tail	画笔尾	l
+Preference reason: powerful poison	猛烈的毒性	l
+Preference reason: powerful talons	强有力的脚爪	l
+Preference reason: powerful vision	敏锐的视力	l
+Preference reason: practical jokes	恶作剧	l
+Preference reason: prismatic wings	七彩的翅膀	l
+Preference reason: psychic ability	超能力	l
+Preference reason: ring of flowers	花环	l
+Preference reason: rocky formation	岩石构成的身体	l
+Preference reason: root like shape	根状	l
+Preference reason: sense of rhythm	节奏感	l
+Preference reason: serpentine body	蛇形的身体	l
+Preference reason: shadow shifting	变幻影子的本领	l
+Preference reason: shifting colors	变换的颜色	l
+Preference reason: sinister energy	邪恶的能量	l
+Preference reason: smiling pattern	微笑图案	l
+Preference reason: snake like body	蛇一样的身体	l
+Preference reason: snowflake shape	雪花形状	l
+Preference reason: solitary nature	独居的习性	l
+Preference reason: spicy chemicals	辣味成分	l
+Preference reason: steel-like hide	钢铁般的皮肤	l
+Preference reason: strong richness	浓郁的滋味	l
+Preference reason: sun shaped head	太阳形头	l
+Preference reason: sweeping stalks	弯曲的茎	l
+Preference reason: sword like leek	剑般的大葱	l
+Preference reason: time travelling	时间旅行	l
+Preference reason: tochukaso shell	冬虫夏草构成的背壳	l
+Preference reason: twisting stalks	扭曲的茎	l
+Preference reason: vivid red color	鲜红色	l
+Preference reason: whip like tails	像鞭子一样的尾巴	l
 Remind listener of pending service	提醒对方还有待办的服务	hP
 Remove current location assignment	取消当前地点分配	wli
 Remove this stockpile permanently.	永久移除此储物堆。	hj
@@ -101028,6 +101446,105 @@ Periodically Erode Extreme Cliffs	定期侵蚀极端陡崖
 Poetry Competition of during {e}.	在{e1}期间，诗歌比赛。	htEi
 Poetry Competition of within {p}.	在{p1}，诗歌比赛。	htEi
 Population Cap After Civ Creation	政权生成后的人口上限
+Preference reason: ability to fly	飞行能力	l
+Preference reason: adorable looks	可爱的外表	l
+Preference reason: aggressiveness	攻击性	l
+Preference reason: amazing vision	惊人的视力	l
+Preference reason: apple disguise	苹果伪装	l
+Preference reason: asymmetric cut	不对称剪裁	l
+Preference reason: berry juggling	抛接树果的杂耍	l
+Preference reason: berry throwing	投掷树果	l
+Preference reason: bloodmoon mark	赫月印记	l
+Preference reason: body of plasma	等离子体构成的身体	l
+Preference reason: bolt like tail	闪电状的尾巴	l
+Preference reason: bright berries	鲜艳的浆果	l
+Preference reason: clay structure	粘土结构	l
+Preference reason: climbing skill	攀爬技巧	l
+Preference reason: colorful wings	色彩斑斓的翅膀	l
+Preference reason: coolheadedness	冷静	l
+Preference reason: crystal energy	水晶能量	l
+Preference reason: deceiving look	迷惑性的外表	l
+Preference reason: diet of sulfur	以硫磺为食的习性	l
+Preference reason: diving ability	潜水能力	l
+Preference reason: drink strength	酿成酒后的烈劲	l
+Preference reason: endless hunger	无尽的饥饿	l
+Preference reason: erupting humps	喷发的驼峰	l
+Preference reason: eye-like fruit	眼睛形状的果实	l
+Preference reason: fighting speed	战斗速度	l
+Preference reason: fighting style	战斗风格	l
+Preference reason: fire streamers	火焰飘带	l
+Preference reason: fish-like tail	鱼形的尾巴	l
+Preference reason: floating hands	漂浮的手	l
+Preference reason: fragrant fruit	芳香的果实	l
+Preference reason: frilled collar	褶边围领	l
+Preference reason: frozen texture	冰凉的口感	l
+Preference reason: fulfillingness	饱腹感	l
+Preference reason: generator tail	发电机般的尾巴	l
+Preference reason: giant fireball	巨大的火球	l
+Preference reason: glistening fur	闪闪发光的毛皮	l
+Preference reason: glowing scales	发光鳞片	l
+Preference reason: gold structure	黄金结构	l
+Preference reason: golden texture	金色质感	l
+Preference reason: great strength	强大的力量	l
+Preference reason: hanging leaves	下垂的叶子	l
+Preference reason: healthy fibers	有益健康的纤维	l
+Preference reason: horrid screams	骇人的尖叫	l
+Preference reason: hunting skills	狩猎技巧	l
+Preference reason: infinite power	无限的力量	l
+Preference reason: intense flames	强烈的火焰	l
+Preference reason: iron-like skin	铁一样的皮肤	l
+Preference reason: jewl like body	宝石般的身体	l
+Preference reason: love for fruit	对水果的热爱	l
+Preference reason: many tentacles	许多触手	l
+Preference reason: metronome tail	节拍器般的尾巴	l
+Preference reason: minecart shape	矿车形状	l
+Preference reason: mix of flavors	混合口味	l
+Preference reason: multiple heads	多个头部	l
+Preference reason: multiple tails	多尾	l
+Preference reason: multiple wings	众多翅膀	l
+Preference reason: nomadic nature	四处游走的习性	l
+Preference reason: piercing stare	锐利的目光	l
+Preference reason: playful nature	顽皮的天性	l
+Preference reason: pleasant scent	宜人的气味	l
+Preference reason: ponytail hands	充当双手的马尾辫	l
+Preference reason: popped kernels	爆开的籽粒	l
+Preference reason: powerful kicks	有力的踢腿	l
+Preference reason: powerful trunk	强壮的象鼻	l
+Preference reason: precise thorns	排列齐整的尖刺	l
+Preference reason: pretty diamond	漂亮的钻石	l
+Preference reason: prismatic body	棱晶般的身体	l
+Preference reason: psychic powers	超能力	l
+Preference reason: relaxing scent	令人放松的气味	l
+Preference reason: sand expelling	排砂	l
+Preference reason: sense of pride	自豪感	l
+Preference reason: sense of smell	嗅觉	l
+Preference reason: sense of taste	味觉	l
+Preference reason: serrated claws	锯齿状的爪子	l
+Preference reason: serrated fangs	锯齿状的獠牙	l
+Preference reason: sinus clearing	通鼻的功效	l
+Preference reason: soil consuming	吃土的习性	l
+Preference reason: soothing sound	舒缓的声音	l
+Preference reason: spiked pincers	带刺的钳子	l
+Preference reason: squishy bodies	软绵绵的身体	l
+Preference reason: starscape face	星空般的面孔	l
+Preference reason: starscape head	星空般的头部	l
+Preference reason: steel feathers	钢铁羽毛	l
+Preference reason: stem-like body	茎状的身体	l
+Preference reason: striking color	引人注目的颜色	l
+Preference reason: strong antlers	强壮的鹿角	l
+Preference reason: strong pincers	强大的钳子	l
+Preference reason: strong punches	重拳	l
+Preference reason: stunning glare	令人石化的凝视	l
+Preference reason: surfboard tail	冲浪板般的尾巴	l
+Preference reason: symbol of love	爱的象征	l
+Preference reason: symbol of luck	幸运的象征	l
+Preference reason: syrupy flavour	糖浆味	l
+Preference reason: thermal vision	热感应视觉	l
+Preference reason: throwing stars	飞镖	l
+Preference reason: trailing cloud	身下的云团	l
+Preference reason: twisting shape	扭曲的形状	l
+Preference reason: violent nature	凶暴的天性	l
+Preference reason: yummy cherries	美味的樱桃	l
 Prepare for the journey carefully	仔细准备旅程	l
 Really delete this parameter set?	确定删除这个参数集吗？
 Really start a conflict with {n}?	确定要与{n1}发生冲突吗？	hPt
@@ -104403,6 +104920,97 @@ Poetry Competition of during {e}	在{e1}期间，诗歌比赛	htEi
 Poetry Competition of within {p}	在{p1}，诗歌比赛	htEi
 Practice fire (uses many bolts!)	练习射击（会消耗大量弩箭！）	hP
 Practice fire (uses many bolts!)	进行训练射击(将消耗非常多的弩箭!)	wi
+Preference reason: Poke Ball cap	精灵球帽	l
+Preference reason: Snoverberries	雪笠怪树果	l
+Preference reason: ancient genes	古老的基因	l
+Preference reason: bag like tail	袋状尾巴	l
+Preference reason: balloon shape	气球形状	l
+Preference reason: beard of fire	火焰胡须	l
+Preference reason: bitter flavor	苦味	l
+Preference reason: blood sucking	吸血	l
+Preference reason: body of magma	岩浆构成的身体	l
+Preference reason: calming aroma	令人平静的香气	l
+Preference reason: cellular body	细胞构成的身体	l
+Preference reason: cheek pouches	颊囊	l
+Preference reason: chimeric body	嵌合体	l
+Preference reason: compound eyes	复眼	l
+Preference reason: craftsmanship	工艺	l
+Preference reason: crescent wing	新月形翅膀	l
+Preference reason: cursed energy	诅咒能量	l
+Preference reason: cute features	可爱的外貌	l
+Preference reason: delicate skin	娇嫩的皮肤	l
+Preference reason: deliciousness	美味	l
+Preference reason: diamond dress	钻石裙装	l
+Preference reason: docile nature	温顺的性情	l
+Preference reason: edible tubers	可食用的块茎	l
+Preference reason: electric webs	电网	l
+Preference reason: elegant moves	优雅的动作	l
+Preference reason: encouragement	鼓励	l
+Preference reason: feathery ruff	羽毛围领	l
+Preference reason: fickle nature	善变的本性	l
+Preference reason: fiery plumage	火热的羽毛	l
+Preference reason: fire spitting	吐火	l
+Preference reason: flashing mane	闪烁的鬃毛	l
+Preference reason: flexible body	灵活的身体	l
+Preference reason: flotation sac	浮囊	l
+Preference reason: gem-like eyes	宝石般的眼睛	l
+Preference reason: gentle nature	温柔的天性	l
+Preference reason: ghostly plume	幽灵般的头冠	l
+Preference reason: glowing rings	发光环	l
+Preference reason: hot spiciness	辣味	l
+Preference reason: joyful nature	快乐的天性	l
+Preference reason: karate skills	空手道技巧	l
+Preference reason: long lifespan	悠长的寿命	l
+Preference reason: luxurious fur	华美的毛皮	l
+Preference reason: many patterns	许多图案	l
+Preference reason: many stingers	许多毒刺	l
+Preference reason: maraca sounds	沙锤声	l
+Preference reason: massive claws	巨大的利爪	l
+Preference reason: massive wings	巨大的翅膀	l
+Preference reason: menacing beak	吓人的喙	l
+Preference reason: mighty blades	强劲的刀刃	l
+Preference reason: obliviousness	迟钝	l
+Preference reason: pig-like nose	猪鼻子	l
+Preference reason: play-fighting	打闹游戏	l
+Preference reason: pointed mouth	尖嘴	l
+Preference reason: pointed teeth	尖牙	l
+Preference reason: powerful arms	强有力的手臂	l
+Preference reason: powerful grip	强大的握力	l
+Preference reason: powerful hair	强大的头发	l
+Preference reason: powerful jaws	强壮的颌部	l
+Preference reason: powerful legs	有力的腿	l
+Preference reason: powerful tail	强大的尾巴	l
+Preference reason: precise lines	规整的纹路	l
+Preference reason: pretty pearls	漂亮的珍珠	l
+Preference reason: psychic power	超能力	l
+Preference reason: puckered lips	撅起嘴唇	l
+Preference reason: rain of death	死亡之雨	l
+Preference reason: ring patterns	环形图案	l
+Preference reason: rows of teeth	层层排列的牙齿	l
+Preference reason: serrated beak	锯齿状的喙	l
+Preference reason: singing sound	歌声	l
+Preference reason: skull marking	头骨标记	l
+Preference reason: sleeping face	睡脸	l
+Preference reason: small stature	娇小的体型	l
+Preference reason: special power	特殊的力量	l
+Preference reason: spoon bending	弯曲汤匙的能力	l
+Preference reason: sprig chewing	咀嚼小树枝	l
+Preference reason: star patterns	星形图案	l
+Preference reason: stick beating	敲打木棒	l
+Preference reason: stout stature	身材粗壮	l
+Preference reason: strong flavor	味道浓烈	l
+Preference reason: strong petals	坚韧的花瓣	l
+Preference reason: strong talons	强有力的脚爪	l
+Preference reason: strong thread	结实的丝线	l
+Preference reason: sweeping tail	扫尾	l
+Preference reason: sweet flavour	甜味	l
+Preference reason: synchronizing	同步化	l
+Preference reason: viscous fluid	粘性流体	l
+Preference reason: warrior pride	战士的骄傲	l
+Preference reason: water skating	滑水	l
+Preference reason: wicked thorns	凶险的尖刺	l
+Preference reason: wing patterns	翅膀图案	l
+Preference reason: wish granting	实现愿望的能力	l
 Rampage of {n} in in {p} at {p}.	在{p2}，{n1}在{p1}的肆虐事件。	htEi
 Rampage of {n} in in {p} in {d}.	{d1}年的{n1}在{p1}的肆虐事件。	htEi
 Rampage of {n} in in {p} in {p}.	在{p2}，{n1}在{p1}的肆虐事件。	htEi
@@ -106918,6 +107526,106 @@ Persecution of {p} in the wilds	在荒野中，对{p1}的迫害	htEi
 Poetry Competition in the wilds	在荒野中，诗歌比赛	hEi
 Poetry Recital of in the wilds.	在荒野中，诗歌朗诵。	hEi
 Prefer zones for water drinking	优先在指定区域饮水	wi
+Preference reason: Pikachu veil	皮卡丘面纱	l
+Preference reason: Pollen Puffs	花粉团	l
+Preference reason: adaptability	适应性	l
+Preference reason: armored body	披甲的身体	l
+Preference reason: aura sensing	波导感知	l
+Preference reason: berry bushes	树果灌木	l
+Preference reason: bitter fruit	苦味果实	l
+Preference reason: bitter taste	苦味	l
+Preference reason: bridge shape	桥形	l
+Preference reason: bright light	明亮的光	l
+Preference reason: bubble beard	泡泡胡子	l
+Preference reason: bubble scarf	泡泡围巾	l
+Preference reason: calming aura	令人平静的气场	l
+Preference reason: capabilities	能力	l
+Preference reason: coal burning	燃烧煤炭	l
+Preference reason: cotten puffs	棉絮	l
+Preference reason: crystal body	水晶构成的身体	l
+Preference reason: diet of iron	以铁为食的习性	l
+Preference reason: dorsal blade	背部刀刃	l
+Preference reason: dream eating	食梦的习性	l
+Preference reason: echolocation	回声定位	l
+Preference reason: edible roots	可食用的根	l
+Preference reason: elbow blades	肘部刀刃	l
+Preference reason: elegant body	优雅的身材	l
+Preference reason: eternal life	永生	l
+Preference reason: extreme kick	强烈的劲道	l
+Preference reason: fetid breath	腐臭的吐息	l
+Preference reason: flaming back	燃烧的背部	l
+Preference reason: flaming head	燃烧的头	l
+Preference reason: flaming tail	火焰尾	l
+Preference reason: flower bombs	花朵炸弹	l
+Preference reason: flowing hair	飘逸的头发	l
+Preference reason: flowing wool	飘动的羊毛	l
+Preference reason: flying skill	飞行技巧	l
+Preference reason: friendliness	友好	l
+Preference reason: ghostly arms	幽灵般的手臂	l
+Preference reason: glowing body	发光的身体	l
+Preference reason: glowing eyes	发光的眼睛	l
+Preference reason: glowing tail	发光的尾巴	l
+Preference reason: golden blade	金刃	l
+Preference reason: golden crown	金冠	l
+Preference reason: hand cannons	手炮	l
+Preference reason: hardy nature	强健的体魄	l
+Preference reason: head turning	转动头部的本领	l
+Preference reason: helpfullness	乐于助人的性格	l
+Preference reason: hex nut head	六角螺母头	l
+Preference reason: honey making	酿蜜的本领	l
+Preference reason: hood pattern	颈部褶边上的图案	l
+Preference reason: illuminating	照亮暗处的能力	l
+Preference reason: incantations	咒语	l
+Preference reason: ink spraying	喷墨	l
+Preference reason: intelligence	聪慧	l
+Preference reason: intense heat	酷热	l
+Preference reason: interlocking	环环相扣	l
+Preference reason: large cannon	大炮	l
+Preference reason: leaf chewing	咀嚼树叶	l
+Preference reason: many cannons	许多大炮	l
+Preference reason: martial arts	武术	l
+Preference reason: mass of eyes	成团的眼球	l
+Preference reason: mighty horns	强劲的角	l
+Preference reason: mouth flames	口边的火焰	l
+Preference reason: origami body	折纸身体	l
+Preference reason: playfullness	嬉戏	l
+Preference reason: portly build	肥胖的身材	l
+Preference reason: protuberance	突起	l
+Preference reason: rotting body	腐烂的身躯	l
+Preference reason: rounded tops	圆润的顶部	l
+Preference reason: salty flavor	咸味	l
+Preference reason: shadowy body	影子般的身体	l
+Preference reason: sharp leaves	锋利的叶子	l
+Preference reason: sharp quills	锋利的硬刺	l
+Preference reason: sheer height	惊人的身高	l
+Preference reason: shining eyes	闪亮的眼睛	l
+Preference reason: simple taste	朴实的味道	l
+Preference reason: singular ear	单耳	l
+Preference reason: skull helmet	头骨头盔	l
+Preference reason: slender body	修长的身材	l
+Preference reason: slitted eyes	细缝般的眼睛	l
+Preference reason: special aura	特殊的气场	l
+Preference reason: spicy flavor	辣味	l
+Preference reason: spicy warmth	辛辣的暖意	l
+Preference reason: spiked shell	带刺的贝壳	l
+Preference reason: squishy body	柔软的身体	l
+Preference reason: strange mask	奇怪的面具	l
+Preference reason: strong child	强壮的幼崽	l
+Preference reason: stubbornness	固执	l
+Preference reason: sucker mouth	吸盘嘴	l
+Preference reason: suction cups	吸盘	l
+Preference reason: sweet flavor	甜味	l
+Preference reason: tablet shell	石板状的外壳	l
+Preference reason: tart flavour	酸味	l
+Preference reason: timid nature	胆怯的本性	l
+Preference reason: tongue scarf	舌头围巾	l
+Preference reason: toothy smile	露齿的笑容	l
+Preference reason: tranquillity	宁静	l
+Preference reason: wall locking	相互连成蜂墙的习性	l
+Preference reason: water bubble	水泡	l
+Preference reason: waxy berries	带蜡质的浆果	l
+Preference reason: yeast breath	含有酵母的吐息	l
+Preference reason: yummy hearts	美味的菜心	l
 Put this item into a container.	将此物品放入容器。	hj
 Quick start and short tutorial?	快速开始并进行简短教程？	hq
 Quick start and short tutorial?	快速开始简短的教程?	w
@@ -109532,6 +110240,101 @@ Playable Civilization Required	必须生成可玩政权
 Poetry Competition during {e}.	在{e1}期间，诗歌比赛。	htEi
 Poetry Competition within {p}.	在{p1}，诗歌比赛。	htEi
 Poetry Recital of in the wilds	在荒野中，诗歌朗诵	hEi
+Preference reason: HP boosting	提升体力	l
+Preference reason: Moomoo milk	哞哞鲜奶	l
+Preference reason: acorn shape	橡子形状	l
+Preference reason: air bubbles	气泡	l
+Preference reason: bitter stem	苦茎	l
+Preference reason: blade birds	刀锋鸟	l
+Preference reason: blimp shape	飞艇形状	l
+Preference reason: bristly fur	刚毛	l
+Preference reason: bronze body	青铜构成的身体	l
+Preference reason: brute force	蛮力	l
+Preference reason: busy nature	忙碌的天性	l
+Preference reason: calm nature	沉稳的性格	l
+Preference reason: canine body	犬形身体	l
+Preference reason: caudal fins	尾鳍	l
+Preference reason: chunky body	矮胖的身体	l
+Preference reason: creamy body	奶油般的身体	l
+Preference reason: curled tail	卷曲的尾巴	l
+Preference reason: curvy fruit	弯曲的水果	l
+Preference reason: cute antics	可爱的举动	l
+Preference reason: decorations	装饰	l
+Preference reason: earthy form	泥土构成的形体	l
+Preference reason: evil nature	邪恶的天性	l
+Preference reason: fiery dance	火热的舞蹈	l
+Preference reason: flabby body	肥硕松软的身躯	l
+Preference reason: flexibility	灵活性	l
+Preference reason: fluffy down	蓬松的绒羽	l
+Preference reason: fluffy ears	毛茸茸的耳朵	l
+Preference reason: fluffy tail	毛茸茸的尾巴	l
+Preference reason: fluffy tips	蓬松的末端	l
+Preference reason: forked tail	分叉的尾巴	l
+Preference reason: fresh scent	清新的气味	l
+Preference reason: giant mouth	巨嘴	l
+Preference reason: golden aura	金色气场	l
+Preference reason: golden glow	金色光芒	l
+Preference reason: good nature	善良的本性	l
+Preference reason: head shield	盾状的头部	l
+Preference reason: headbutting	头撞	l
+Preference reason: helpfulness	乐于助人的性格	l
+Preference reason: inner light	内在光芒	l
+Preference reason: judo skills	柔道技巧	l
+Preference reason: juicy beans	多汁的豆子	l
+Preference reason: large brain	硕大的大脑	l
+Preference reason: large mouth	大嘴	l
+Preference reason: likeability	讨人喜欢的性格	l
+Preference reason: long bodies	修长的身躯	l
+Preference reason: long tongue	长舌头	l
+Preference reason: loud shriek	响亮的尖叫声	l
+Preference reason: many shapes	许多形状	l
+Preference reason: mighty horn	强劲的角	l
+Preference reason: persistence	坚持	l
+Preference reason: personality	性格	l
+Preference reason: pollinating	授粉	l
+Preference reason: primal glow	原始光芒	l
+Preference reason: purple mane	紫色鬃毛	l
+Preference reason: rigid shell	坚硬的外壳	l
+Preference reason: rock cannon	岩石炮	l
+Preference reason: rocky shell	岩石甲壳	l
+Preference reason: round shape	圆形	l
+Preference reason: sharp cries	尖锐的叫声	l
+Preference reason: sharp edges	锋利的边缘	l
+Preference reason: sharp fangs	锋利的獠牙	l
+Preference reason: sharp teeth	锋利的牙齿	l
+Preference reason: sharp wings	锋利的翅膀	l
+Preference reason: short necks	短脖子	l
+Preference reason: silky shell	丝质外壳	l
+Preference reason: sixth sense	第六感	l
+Preference reason: small wings	小翅膀	l
+Preference reason: smooth body	光滑的身体	l
+Preference reason: sour flavor	酸味	l
+Preference reason: spicy aroma	辛辣香气	l
+Preference reason: spicy teeth	蕴含辣味成分的牙齿	l
+Preference reason: spiny shell	刺壳	l
+Preference reason: spiral tail	螺旋状的尾巴	l
+Preference reason: stoney skin	石质皮肤	l
+Preference reason: stout shape	粗壮的形态	l
+Preference reason: strong body	强壮的身体	l
+Preference reason: strong hugs	强有力的拥抱	l
+Preference reason: strong webs	坚固的网	l
+Preference reason: sturdy body	坚固的身体	l
+Preference reason: sturdy legs	健壮的双腿	l
+Preference reason: sublime fur	华美的毛皮	l
+Preference reason: sweet smell	香味	l
+Preference reason: sword fangs	剑牙	l
+Preference reason: tap dancing	踢踏舞	l
+Preference reason: tasty fruit	美味的果实	l
+Preference reason: teleporting	传送	l
+Preference reason: tiny leaves	小叶子	l
+Preference reason: toothy grin	龇牙咧嘴的笑容	l
+Preference reason: tough shell	坚韧的外壳	l
+Preference reason: toxic chain	毒锁链	l
+Preference reason: versatility	灵活多变的本领	l
+Preference reason: viciousness	凶暴的性情	l
+Preference reason: vivid color	色彩鲜艳	l
+Preference reason: witch's hat	女巫的帽子	l
+Preference reason: wobbly body	摇摇晃晃的身体	l
 Prepare for the Journey to {s}	准备前往{s}	tx
 Provide the whereabouts of {n}	告知{n1}的下落	hPt
 Rainfall And Rivers And Beyond	降雨与河流及更远之处	wli
@@ -109591,8 +110394,6 @@ State the value of tranquility	阐述宁静的价值	hP
 State the worthlessness of law	阐述法律毫无价值	hP
 Storage container packing: bag	袋装	wi
 Storage container packing: bin	箱装	wi
-bin	储物箱	wi
-bins	储物箱	wi
 Storage container packing: cup	杯装	wi
 Storage container packing: jug	壶装	wi
 Storage container packing: mug	杯装	wi
@@ -112076,6 +112877,101 @@ Poetry Competition of in {p}.	在{p1}，诗歌比赛。	htEi
 Poetry Competition within {p}	在{p1}，诗歌比赛	htEi
 Poetry Recital of during {e}.	在{e1}期间，诗歌朗诵。	htEi
 Poetry Recital of within {p}.	在{p1}，诗歌朗诵。	htEi
+Preference reason: Dream Mist	梦境烟雾	l
+Preference reason: Mini-Noses	小朝北鼻	l
+Preference reason: Poke Beans	宝可豆	l
+Preference reason: RKS System	ＡＲ系统	l
+Preference reason: Soul-Heart	魂心	l
+Preference reason: activeness	活跃度	l
+Preference reason: aggression	好斗性	l
+Preference reason: angry eyes	愤怒的眼睛	l
+Preference reason: aspiration	愿望	l
+Preference reason: beady eyes	圆圆的眼睛	l
+Preference reason: bell shape	钟形	l
+Preference reason: bitterness	苦味	l
+Preference reason: bone skirt	骨裙	l
+Preference reason: bushy mane	浓密的鬃毛	l
+Preference reason: caretaking	照顾	l
+Preference reason: compassion	同情	l
+Preference reason: curiousity	好奇心	l
+Preference reason: curly tail	卷尾	l
+Preference reason: draw speed	拔刀速度	l
+Preference reason: dry flavor	涩味	l
+Preference reason: fiery mane	火焰般的鬃毛	l
+Preference reason: firey body	炽热的身体	l
+Preference reason: flame belt	火焰腰带	l
+Preference reason: flame tail	火焰尾	l
+Preference reason: flower bud	花蕾	l
+Preference reason: fluffy fur	蓬松的毛皮	l
+Preference reason: foul smell	臭味	l
+Preference reason: funny walk	滑稽的步态	l
+Preference reason: fuzzy body	毛茸茸的身体	l
+Preference reason: giant jaws	巨颚	l
+Preference reason: glittering	闪耀的光泽	l
+Preference reason: hard shell	硬壳	l
+Preference reason: head armor	头甲	l
+Preference reason: ice scales	冰鳞	l
+Preference reason: ice shafts	冰柱	l
+Preference reason: icy spikes	冰晶尖刺	l
+Preference reason: large bill	巨大的喙	l
+Preference reason: large claw	大爪	l
+Preference reason: large ears	大耳朵	l
+Preference reason: large fins	大鳍	l
+Preference reason: large head	大头	l
+Preference reason: large jaws	大颚	l
+Preference reason: leadership	领导能力	l
+Preference reason: leaf cloak	叶斗篷	l
+Preference reason: leaf flute	叶笛	l
+Preference reason: leafy hood	绿叶罩	l
+Preference reason: leafy mane	绿叶鬃毛	l
+Preference reason: life force	生命力	l
+Preference reason: long fangs	长獠牙	l
+Preference reason: many horns	许多角	l
+Preference reason: many trims	多样的毛发造型	l
+Preference reason: many types	多种属性	l
+Preference reason: meditating	冥想	l
+Preference reason: metal body	金属身体	l
+Preference reason: mild taste	温和的口味	l
+Preference reason: moon shape	月亮形状	l
+Preference reason: mossy mane	苔藓般的鬃毛	l
+Preference reason: onion head	洋葱头	l
+Preference reason: perfection	完美	l
+Preference reason: poison sac	毒囊	l
+Preference reason: rigid body	坚硬的身体	l
+Preference reason: rock shell	岩石甲壳	l
+Preference reason: rocky diet	以岩石为食的习性	l
+Preference reason: rocky fuel	岩石燃料	l
+Preference reason: rocky home	岩石之家	l
+Preference reason: rocky neck	颈部的岩石	l
+Preference reason: round body	圆滚滚的身体	l
+Preference reason: runny nose	流鼻涕	l
+Preference reason: sacred law	神圣的戒律	l
+Preference reason: sand pouch	沙袋	l
+Preference reason: sandy body	沙子构成的身体	l
+Preference reason: savageness	野蛮的性情	l
+Preference reason: shaggy fur	毛茸茸的毛皮	l
+Preference reason: silk traps	丝网陷阱	l
+Preference reason: simpleness	朴实的风味	l
+Preference reason: single eye	独眼	l
+Preference reason: slimy film	粘糊糊的薄膜	l
+Preference reason: small size	小体型	l
+Preference reason: smoothness	光滑的表面	l
+Preference reason: solidarity	团结	l
+Preference reason: steel head	钢铁般的头部	l
+Preference reason: stockiness	敦实的体型	l
+Preference reason: stone body	岩石构成的身体	l
+Preference reason: strong jaw	强壮的颌部	l
+Preference reason: sweet pulp	香甜的果肉	l
+Preference reason: sweet skin	香甜的表皮	l
+Preference reason: tail hands	尾巴上的手	l
+Preference reason: temperment	脾性	l
+Preference reason: throat sac	喉囊	l
+Preference reason: tiny hooks	小钩子	l
+Preference reason: tochukasos	冬虫夏草	l
+Preference reason: tough skin	坚韧的皮肤	l
+Preference reason: tree stump	树桩	l
+Preference reason: warm touch	温暖的触感	l
+Preference reason: wide mouth	宽嘴	l
 Pusillanimous - Overconfident	畏缩 - 过于自信	wl
 Put an item into a container.	将一件物品放入容器。	hj
 Quarreler    <->    Flatterer	爱争吵 ↔ 爱奉承	wl
@@ -114492,6 +115388,86 @@ Poetry Recital in the wilds.	在荒野中，诗歌朗诵。	hEi
 Poetry Recital of during {e}	在{e1}期间，诗歌朗诵	htEi
 Poetry Recital of within {p}	在{p1}，诗歌朗诵	htEi
 Possessed by unknown forces!	被未知力量附身！	hP
+Preference reason: Apricorns	球果	l
+Preference reason: affection	亲昵的举动	l
+Preference reason: alertness	警觉	l
+Preference reason: axe horns	斧角	l
+Preference reason: bellowing	吼叫	l
+Preference reason: benefits?	可能的益处	l
+Preference reason: biterness	苦味	l
+Preference reason: blessings	祝福	l
+Preference reason: bone club	骨棒	l
+Preference reason: brutality	残暴的性情	l
+Preference reason: curiosity	好奇心	l
+Preference reason: deception	欺骗	l
+Preference reason: diligence	勤勉	l
+Preference reason: dull wits	迟钝的头脑	l
+Preference reason: eagerness	争强好胜的性格	l
+Preference reason: ectoplasm	外质	l
+Preference reason: endurance	耐力	l
+Preference reason: flame sac	火焰囊	l
+Preference reason: flat body	扁平的身体	l
+Preference reason: formation	形体构造	l
+Preference reason: fragrance	香味	l
+Preference reason: giant jaw	巨大的颌部	l
+Preference reason: gold mask	黄金面具	l
+Preference reason: good luck	带来好运的特性	l
+Preference reason: griminess	污秽	l
+Preference reason: hardiness	坚韧	l
+Preference reason: hardyness	坚韧	l
+Preference reason: head tail	带有头部的尾巴	l
+Preference reason: headpiece	头饰	l
+Preference reason: heavyness	沉重的体格	l
+Preference reason: ice beard	冰晶胡须	l
+Preference reason: ice fangs	冰制獠牙	l
+Preference reason: ice horns	冰角	l
+Preference reason: illusions	幻象	l
+Preference reason: intellect	智力	l
+Preference reason: iron body	铁质身体	l
+Preference reason: junkyness	速食风味	l
+Preference reason: knowledge	知识	l
+Preference reason: large gem	大宝石	l
+Preference reason: leaf hood	叶罩	l
+Preference reason: long body	修长的身体	l
+Preference reason: long legs	长腿	l
+Preference reason: long neck	长脖子	l
+Preference reason: magnetism	磁性	l
+Preference reason: mandibles	大颚	l
+Preference reason: many arms	许多触手	l
+Preference reason: mimicking	模仿	l
+Preference reason: mirroring	镜像	l
+Preference reason: nutrients	营养素	l
+Preference reason: nutrition	营养	l
+Preference reason: odd shape	奇怪的形状	l
+Preference reason: pit nests	坑巢	l
+Preference reason: precision	精确	l
+Preference reason: rampaging	横冲直撞	l
+Preference reason: ride form	坐骑形态	l
+Preference reason: roundness	圆润的形状	l
+Preference reason: scalchops	贝壳刀	l
+Preference reason: seamitars	贝壳长刀	l
+Preference reason: sour skin	酸味的果皮	l
+Preference reason: spiciness	辣度	l
+Preference reason: spiky fur	针刺般的毛发	l
+Preference reason: stability	稳定性	l
+Preference reason: strumming	弹奏	l
+Preference reason: sun shape	太阳形状	l
+Preference reason: sunflower	向日葵	l
+Preference reason: sweetness	甜味	l
+Preference reason: swiftness	迅捷	l
+Preference reason: tail ball	尾端的球体	l
+Preference reason: tail claw	尾部的爪子	l
+Preference reason: tail hand	尾巴上的手	l
+Preference reason: tail head	尾部的头	l
+Preference reason: tastiness	美味	l
+Preference reason: technique	技术	l
+Preference reason: tentacles	触手	l
+Preference reason: thick fur	厚厚的皮毛	l
+Preference reason: third eye	第三只眼	l
+Preference reason: toxic gas	有毒气体	l
+Preference reason: tunneling	掘洞的习性	l
+Preference reason: vibrating	产生振动的能力	l
+Preference reason: willpower	意志	l
 Pressure plate: One use only	仅触发一次	l
 Rampage in in {p} during {e}	在{e1}期间，{p1}的肆虐事件	htEi
 Rampage in in {p} within {p}	在{p2}，{p1}的肆虐事件	htEi
@@ -116799,6 +117775,85 @@ Pillaging of {p} during {e}	在{e1}期间，{p1}劫掠事件	htEi
 Pillaging of {p} within {p}	在{p2}，{p1}劫掠事件	htEi
 Poetry Recital in the wilds	在荒野中，诗歌朗诵	hEi
 Powder for casts (Desired):	石膏粉（期望数量）：	wl
+Preference reason: Shellder	大舌贝	l
+Preference reason: accuracy	精准度	l
+Preference reason: antennae	触角	l
+Preference reason: appetite	食欲	l
+Preference reason: benefits	益处	l
+Preference reason: blinking	眨眼	l
+Preference reason: blooming	盛开	l
+Preference reason: blossoms	花朵	l
+Preference reason: bouncing	弹跳	l
+Preference reason: buoyancy	浮力	l
+Preference reason: cackling	咯咯地笑	l
+Preference reason: calmness	冷静	l
+Preference reason: cheering	欢呼	l
+Preference reason: clapping	鼓掌	l
+Preference reason: cleaning	打扫	l
+Preference reason: crystals	晶体	l
+Preference reason: diamonds	钻石	l
+Preference reason: drifting	漂流	l
+Preference reason: drumming	击鼓	l
+Preference reason: dullness	迟钝	l
+Preference reason: elegance	优雅	l
+Preference reason: fan tail	扇形尾巴	l
+Preference reason: feathers	羽毛	l
+Preference reason: ferocity	凶猛的天性	l
+Preference reason: flat top	平顶	l
+Preference reason: floating	漂浮的本领	l
+Preference reason: footwork	步法	l
+Preference reason: frubbles	泡沫	l
+Preference reason: gluttony	暴食	l
+Preference reason: hardness	硬度	l
+Preference reason: ice face	冰块状的头部	l
+Preference reason: jingling	叮铃声	l
+Preference reason: joy dust	欢乐尘	l
+Preference reason: kindness	仁慈	l
+Preference reason: laziness	懒惰	l
+Preference reason: lazyness	懒惰	l
+Preference reason: long fur	长长的毛发	l
+Preference reason: loud cry	响亮的叫声	l
+Preference reason: marching	行军	l
+Preference reason: markings	身上的斑纹	l
+Preference reason: melodies	旋律	l
+Preference reason: mischief	顽皮	l
+Preference reason: mud ball	泥球	l
+Preference reason: mustache	胡子	l
+Preference reason: neatness	整洁	l
+Preference reason: optimism	乐观	l
+Preference reason: pacifism	和平主义	l
+Preference reason: painting	绘画	l
+Preference reason: patience	耐心	l
+Preference reason: patterns	图案	l
+Preference reason: pendulum	钟摆	l
+Preference reason: potatoes	土豆	l
+Preference reason: prickles	尖刺	l
+Preference reason: pungency	辛辣味	l
+Preference reason: richness	浓郁的滋味	l
+Preference reason: sausages	香肠	l
+Preference reason: scalchop	贝壳刀	l
+Preference reason: seedling	幼苗	l
+Preference reason: segments	身体节段	l
+Preference reason: shouting	喊叫	l
+Preference reason: slacking	偷懒	l
+Preference reason: soft fur	柔软的毛皮	l
+Preference reason: sombrero	阔边帽	l
+Preference reason: sourness	酸味	l
+Preference reason: sparking	火花四溢	l
+Preference reason: spinning	旋转	l
+Preference reason: stalking	跟踪	l
+Preference reason: stingers	毒刺	l
+Preference reason: strength	力量	l
+Preference reason: syrpents	糖浆蛇	l
+Preference reason: tantrums	发脾气	l
+Preference reason: teamwork	团队合作	l
+Preference reason: tenacity	坚韧	l
+Preference reason: thievery	偷窃的习性	l
+Preference reason: tidiness	整洁	l
+Preference reason: valiance	勇敢	l
+Preference reason: vitality	活力	l
+Preference reason: whiskers	胡须	l
+Preference reason: zen mode	达摩模式	l
 Prepare for disappointment.	做好失望的准备。	hP
 Priesthood needs recognized	需要认可祭司团	w
 Procession of in the wilds.	在荒野中，游行。	hEi
@@ -119202,6 +120257,60 @@ Poetry Competition in {p}.	在{p1}，诗歌比赛。	htEi
 Poetry Recital during {e}.	在{e1}期间，诗歌朗诵。	htEi
 Poetry Recital within {p}.	在{p1}，诗歌朗诵。	htEi
 Preaching (heard recently)	传道声（刚刚听到）	wl
+Preference reason: agility	敏捷身手	l
+Preference reason: antenna	触角	l
+Preference reason: antlers	鹿角	l
+Preference reason: barbels	触须	l
+Preference reason: berries	树果	l
+Preference reason: bouquet	花束	l
+Preference reason: bravery	勇敢	l
+Preference reason: buzzing	嗡嗡的鸣声	l
+Preference reason: cannons	大炮	l
+Preference reason: coiling	卷绕	l
+Preference reason: courage	勇气	l
+Preference reason: cunning	狡猾	l
+Preference reason: dancing	跳舞	l
+Preference reason: dangles	头部两侧的垂饰	l
+Preference reason: digging	挖掘	l
+Preference reason: dravite	镁电气石	l
+Preference reason: dryness	涩味	l
+Preference reason: effect?	可能的效果	l
+Preference reason: feather	羽毛	l
+Preference reason: feelers	触角	l
+Preference reason: fusions	融合	l
+Preference reason: gliding	滑行	l
+Preference reason: grabage	垃圾	l
+Preference reason: heroism	英勇的精神	l
+Preference reason: jumping	跳跃	l
+Preference reason: kicking	踢击的本领	l
+Preference reason: lilypad	睡莲叶	l
+Preference reason: loyalty	忠诚	l
+Preference reason: magnets	磁铁	l
+Preference reason: majesty	雄伟	l
+Preference reason: muscles	肌肉	l
+Preference reason: mystery	神秘	l
+Preference reason: needles	针叶	l
+Preference reason: numbers	数字	l
+Preference reason: pairing	配对	l
+Preference reason: pincers	钳子	l
+Preference reason: plumage	羽毛	l
+Preference reason: pumpkin	南瓜	l
+Preference reason: ribbons	丝带	l
+Preference reason: riddles	谜语	l
+Preference reason: ringing	铃声	l
+Preference reason: rivalry	对抗	l
+Preference reason: rolling	滚动	l
+Preference reason: running	跑步	l
+Preference reason: schools	鱼群	l
+Preference reason: scythes	镰刀	l
+Preference reason: sharing	分享	l
+Preference reason: singing	歌唱	l
+Preference reason: stamina	耐力	l
+Preference reason: stature	身材	l
+Preference reason: stripes	条纹	l
+Preference reason: surfing	冲浪	l
+Preference reason: wiskers	胡须	l
+Preference reason: zippers	拉链	l
 Press honey from honeycomb	从蜜脾中压出蜂蜜	wi
 Processing interactions...	处理交互......	w
 Procession of in the wilds	在荒野中，游行	hEi
@@ -121277,6 +122386,69 @@ Poetry Recital of at {p}.	在{p1}，诗歌朗诵。	htEi
 Poetry Recital of in {d}.	{d1}年的诗歌朗诵。	htEi
 Poetry Recital of in {p}.	在{p1}，诗歌朗诵。	htEi
 Poetry Recital within {p}	在{p1}，诗歌朗诵	htEi
+Preference reason: anchor	锚	l
+Preference reason: beards	胡须	l
+Preference reason: beauty	美丽的外表	l
+Preference reason: biting	啃咬的习性	l
+Preference reason: blades	刀片	l
+Preference reason: boxing	拳击	l
+Preference reason: cannon	大炮	l
+Preference reason: caring	关怀	l
+Preference reason: cheeks	脸颊	l
+Preference reason: colors	颜色	l
+Preference reason: cotton	棉花	l
+Preference reason: crying	哭泣	l
+Preference reason: cudgel	棍棒	l
+Preference reason: diving	潜水	l
+Preference reason: energy	活力	l
+Preference reason: fillet	脱落的鱼肉	l
+Preference reason: flames	火焰	l
+Preference reason: flower	花	l
+Preference reason: formes	形态	l
+Preference reason: frills	褶边	l
+Preference reason: fruits	果实	l
+Preference reason: girder	梁	l
+Preference reason: hammer	锤	l
+Preference reason: harems	妻妾成群的习性	l
+Preference reason: height	身高	l
+Preference reason: kimono	和服	l
+Preference reason: lances	长矛	l
+Preference reason: leaves	叶片	l
+Preference reason: length	修长的形态	l
+Preference reason: lights	灯	l
+Preference reason: miming	表演哑剧的本领	l
+Preference reason: nectar	花蜜	l
+Preference reason: pearls	珍珠	l
+Preference reason: petals	花瓣	l
+Preference reason: pollen	花粉	l
+Preference reason: prongs	尖头	l
+Preference reason: quills	硬刺	l
+Preference reason: rarity	稀有性	l
+Preference reason: rattle	尾部的响环	l
+Preference reason: scales	鳞片	l
+Preference reason: scraps	碎片	l
+Preference reason: scream	尖叫	l
+Preference reason: shapes	形状	l
+Preference reason: shells	壳	l
+Preference reason: shield	盾	l
+Preference reason: sludge	污泥	l
+Preference reason: sparks	火花	l
+Preference reason: spikes	尖刺	l
+Preference reason: spines	尖刺	l
+Preference reason: spiral	螺旋	l
+Preference reason: spirit	精神	l
+Preference reason: spoons	勺子	l
+Preference reason: sprout	嫩芽	l
+Preference reason: stalks	茎	l
+Preference reason: swords	剑	l
+Preference reason: taste?	未知口味	l
+Preference reason: temper	脾气	l
+Preference reason: thorns	尖刺	l
+Preference reason: tongue	舌头	l
+Preference reason: treads	履带	l
+Preference reason: troops	成群结队的习性	l
+Preference reason: waddle	摇摆的步姿	l
+Preference reason: warmth	温暖	l
 Preparing for the Caravan	为商队做准备	hq
 Preparing for the caravan	为商队做准备	hq
 Preparing for the caravan	为商队做准备	w
@@ -123263,6 +124435,76 @@ Popup: Butcher and craft	弹窗：屠宰与制作	w
 Praise for returning {i}	称赞归还{i1}之举	hPt
 Preaching is my calling.	传道是我的天职。	hPD
 Prefer zones for fishing	优先在指定区域捕鱼	wi
+Preference reason: apple	苹果	l
+Preference reason: apron	围裙	l
+Preference reason: armor	盔甲	l
+Preference reason: aroma	香气	l
+Preference reason: beads	珠子	l
+Preference reason: beard	胡须	l
+Preference reason: blade	刀刃	l
+Preference reason: bloom	头顶的花朵	l
+Preference reason: carbs	碳水化合物	l
+Preference reason: charm	魅力	l
+Preference reason: claws	爪子	l
+Preference reason: cloak	披风	l
+Preference reason: coins	硬币	l
+Preference reason: color	颜色	l
+Preference reason: cream	奶油	l
+Preference reason: crest	头冠	l
+Preference reason: cries	叫声	l
+Preference reason: dance	舞蹈	l
+Preference reason: depth	醇厚的滋味	l
+Preference reason: fangs	獠牙	l
+Preference reason: flame	火焰	l
+Preference reason: fluff	绒毛	l
+Preference reason: fruit	果实	l
+Preference reason: glare	锐利的目光	l
+Preference reason: grace	优雅	l
+Preference reason: grain	籽粒	l
+Preference reason: greed	贪婪	l
+Preference reason: hoops	圆环	l
+Preference reason: horns	角	l
+Preference reason: howls	嚎叫	l
+Preference reason: humps	驼峰	l
+Preference reason: juice	汁液	l
+Preference reason: latex	乳汁	l
+Preference reason: leeks	大葱	l
+Preference reason: light	光	l
+Preference reason: lumps	表面的凸起	l
+Preference reason: masks	面具	l
+Preference reason: mochi	粘糕	l
+Preference reason: nests	巢穴	l
+Preference reason: pearl	珍珠	l
+Preference reason: plume	冠羽	l
+Preference reason: pouch	小袋	l
+Preference reason: power	力量	l
+Preference reason: roots	根系	l
+Preference reason: roses	玫瑰	l
+Preference reason: scarf	围巾	l
+Preference reason: scent	香味	l
+Preference reason: scowl	皱眉的神情	l
+Preference reason: seeds	种子	l
+Preference reason: shell	壳	l
+Preference reason: skull	颅骨	l
+Preference reason: smell	气味	l
+Preference reason: snout	吻部	l
+Preference reason: speed	速度	l
+Preference reason: stare	凝视的目光	l
+Preference reason: stick	木棒	l
+Preference reason: stone	石头	l
+Preference reason: sword	剑	l
+Preference reason: syrup	糖浆	l
+Preference reason: taste	味道	l
+Preference reason: teeth	牙齿	l
+Preference reason: trunk	象鼻	l
+Preference reason: tusks	獠牙	l
+Preference reason: twigs	树枝	l
+Preference reason: umami	鲜味	l
+Preference reason: vines	藤蔓	l
+Preference reason: voice	嗓音	l
+Preference reason: wheel	车轮	l
+Preference reason: whips	鞭子	l
+Preference reason: wings	翅膀	l
 Process plants and work 	在此加工植物和照料牲畜。挤奶、	w
 Processing inorganics...	处理无机物......	w
 Procession in the wilds.	在荒野中，游行。	hEi
@@ -125349,6 +126591,58 @@ Popup: Adventurer's log	弹窗：冒险者日志	hq
 Popup: Adventurer's log	弹窗：冒险者日志	w
 Popup: Movement options	弹窗：移动选项	hq
 Popup: Movement options	弹窗：移动选项	w
+Preference reason: afro	爆炸头	l
+Preference reason: axes	斧头	l
+Preference reason: ball	球	l
+Preference reason: beak	喙	l
+Preference reason: beer	啤酒	l
+Preference reason: bell	钟	l
+Preference reason: bill	喙	l
+Preference reason: bows	蝴蝶结	l
+Preference reason: buds	花苞	l
+Preference reason: bulb	背上的种子球茎	l
+Preference reason: bulk	壮硕的体格	l
+Preference reason: call	叫声	l
+Preference reason: claw	爪	l
+Preference reason: coal	煤炭	l
+Preference reason: coin	硬币	l
+Preference reason: comb	冠羽	l
+Preference reason: core	核心	l
+Preference reason: drum	鼓	l
+Preference reason: ears	耳朵	l
+Preference reason: fins	鳍	l
+Preference reason: form	形态	l
+Preference reason: glow	辉光	l
+Preference reason: gown	长袍	l
+Preference reason: grin	咧嘴的笑容	l
+Preference reason: hair	头发	l
+Preference reason: halo	光环	l
+Preference reason: heat	热	l
+Preference reason: horn	角	l
+Preference reason: hump	驼峰	l
+Preference reason: jewl	珠宝	l
+Preference reason: keys	钥匙	l
+Preference reason: leaf	叶子	l
+Preference reason: leek	韭葱	l
+Preference reason: legs	腿	l
+Preference reason: luck	幸运	l
+Preference reason: mane	鬃毛	l
+Preference reason: mash	果泥	l
+Preference reason: mask	面具	l
+Preference reason: nose	鼻子	l
+Preference reason: nuts	坚果	l
+Preference reason: odor	气味	l
+Preference reason: pods	豆荚	l
+Preference reason: rage	愤怒	l
+Preference reason: salt	盐	l
+Preference reason: size	体型	l
+Preference reason: song	歌曲	l
+Preference reason: tail	尾巴	l
+Preference reason: tree	树	l
+Preference reason: tuft	头顶的毛簇	l
+Preference reason: wand	魔杖	l
+Preference reason: wine	果酒	l
+Preference reason: wool	羊毛	l
 Preliminary cleaning...	正在进行初步清理……	w
 Preparing graphics...  	准备图形...... 	w
 Press liquid from fruit	从果实中压出液体	wi
@@ -127443,6 +128737,18 @@ Poetry Recital in {p}.	在{p1}，诗歌朗诵。	htEi
 Poor kinesthetic sense	糟糕的身体感知能力	w
 Popup: Shoot and throw	弹窗：射击与投掷	hq
 Popup: Shoot and throw	弹窗：射击与投掷	w
+Preference reason: cap	帽状头顶	l
+Preference reason: cry	叫声	l
+Preference reason: egg	蛋	l
+Preference reason: fin	鳍	l
+Preference reason: fur	毛皮	l
+Preference reason: gas	气体	l
+Preference reason: gel	凝胶	l
+Preference reason: gem	宝石	l
+Preference reason: ice	冰	l
+Preference reason: jaw	颚	l
+Preference reason: log	圆木	l
+Preference reason: oil	油	l
 Preparing elevation...	正在生成地形高度……
 Preserver of knowledge	博学大师	w
 Pressure plate: Resets	可重复触发	l
@@ -139132,7 +140438,7 @@ gila monster venom	毒蜥毒液	wi
 gila monster woman	毒蜥人	wi
 gila monster women	毒蜥人	wi
 goblin's dead body	哥布林尸体	wi
-grackle hatchlings	拟八哥幼崽	wi
+grackle hatchlings	普通拟八哥幼崽	wi
 grain commissioner	粮食专员	hi
 grain commissioner	粮食专员	wi
 great white sharks	大白鲨	wi
@@ -143227,7 +144533,7 @@ gigantic tortoise	巨型陆龟	wi
 glyptodon leather	雕齿兽皮革
 graceful drifting	优美地飘动	wi
 graceful swimming	优雅的游泳	wi
-grackle hatchling	拟八哥幼崽	wi
+grackle hatchling	普通拟八哥幼崽	wi
 grasshopper woman	蚱蜢人	wi
 grasshopper women	蚱蜢人	wi
 gray chalcedonies	灰玉髓	wi
@@ -185755,6 +187061,7 @@ bend	弯曲	wi
 bent	弯曲	wi
 bile	胆汁	wi
 bill	扁喙	h
+bins	储物箱	wi
 bird	鸟	wi
 bite	咬	wi
 blot	污迹	wi
@@ -186530,6 +187837,7 @@ bat	蝙蝠	wi
 bed	床	wi
 bee	蜜蜂	wi
 big	高大	wi
+bin	储物箱	wi
 bog	沼泽	wi
 bow	弓	wi
 box	盒子	wi
@@ -186684,1310 +187992,3 @@ of	所属	h
 .	。	hq
 :	：	h
 ;	；	h
-
-# Scoped preference reasons share the authored extension terminology.
-Preference reason: Apricorns	球果	l
-Preference reason: Dream Mist	梦境烟雾	l
-Preference reason: Dreepy launching	发射多龙梅西亚	l
-Preference reason: Dynamax properties	极巨化属性	l
-Preference reason: HP boosting	提升体力	l
-Preference reason: Mini-Noses	小朝北鼻	l
-Preference reason: Moomoo milk	哞哞鲜奶	l
-Preference reason: Pikachu veil	皮卡丘面纱	l
-Preference reason: Poke Ball cap	精灵球帽	l
-Preference reason: Poke Beans	宝可豆	l
-Preference reason: Pollen Puffs	花粉团	l
-Preference reason: RKS System	ＡＲ系统	l
-Preference reason: Shellder	大舌贝	l
-Preference reason: Snoverberries	雪笠怪树果	l
-Preference reason: Soul-Heart	魂心	l
-Preference reason: ability to absorb anything	吸收任何东西的能力	l
-Preference reason: ability to balance objects	平衡物体的能力	l
-Preference reason: ability to boost agility	提高敏捷性的能力	l
-Preference reason: ability to bring happy dreams	带来美梦的能力	l
-Preference reason: ability to bring joy	带来欢乐的能力	l
-Preference reason: ability to bring nightmares	带来噩梦的能力	l
-Preference reason: ability to burrow	挖洞能力	l
-Preference reason: ability to camouflage	伪装能力	l
-Preference reason: ability to change colors	改变颜色的能力	l
-Preference reason: ability to change form	改变形态的能力	l
-Preference reason: ability to clear throats	清嗓子的能力	l
-Preference reason: ability to control Pokemon	控制宝可梦的能力	l
-Preference reason: ability to control gravity	控制重力的能力	l
-Preference reason: ability to control snow	控雪能力	l
-Preference reason: ability to create dense fog	产生浓雾的能力	l
-Preference reason: ability to create diamonds	创造钻石的能力	l
-Preference reason: ability to create earthquakes	制造地震的能力	l
-Preference reason: ability to create ice crystals	产生冰晶的能力	l
-Preference reason: ability to create metal	创造金属的能力	l
-Preference reason: ability to create powerful shock waves	产生强大冲击波的能力	l
-Preference reason: ability to create storm clouds	创造风暴云的能力	l
-Preference reason: ability to create thunderclouds	创造雷雨云的能力	l
-Preference reason: ability to create ultrasonic waves	产生超声波的能力	l
-Preference reason: ability to create whirlwinds	制造旋风的能力	l
-Preference reason: ability to cure any illness	治愈任何疾病的能力	l
-Preference reason: ability to cure illness	治愈疾病的能力	l
-Preference reason: ability to cure paralysis	治愈麻痹的能力	l
-Preference reason: ability to cure poison	解毒能力	l
-Preference reason: ability to dissolve rocks	溶解岩石的能力	l
-Preference reason: ability to drill through wood	钻穿木材的能力	l
-Preference reason: ability to expand continents	扩展大陆的能力	l
-Preference reason: ability to expand oceans	扩大海洋的能力	l
-Preference reason: ability to fly	飞行能力	l
-Preference reason: ability to freeze moisture	冻结水分的能力	l
-Preference reason: ability to generate strong winds	产生强风的能力	l
-Preference reason: ability to grow plants	促进植物生长的能力	l
-Preference reason: ability to help crops grow	帮助农作物生长的能力	l
-Preference reason: ability to hold liquor	酒量	l
-Preference reason: ability to keep time	精准计时的能力	l
-Preference reason: ability to make fire	生火的能力	l
-Preference reason: ability to make lightning	制造闪电的能力	l
-Preference reason: ability to make rainbows	创造彩虹的能力	l
-Preference reason: ability to make snow	造雪能力	l
-Preference reason: ability to make storms	制造风暴的能力	l
-Preference reason: ability to manipulate peat	操纵泥炭的能力	l
-Preference reason: ability to open Ultra Wormholes	打开究极之洞的能力	l
-Preference reason: ability to organize	组织能力	l
-Preference reason: ability to predict disasters	预测灾害的能力	l
-Preference reason: ability to predict storms	预测风暴的能力	l
-Preference reason: ability to predict the future	预测未来的能力	l
-Preference reason: ability to produce loud pops	产生响亮爆裂声的能力	l
-Preference reason: ability to produce steam	产生蒸汽的能力	l
-Preference reason: ability to project dreams	投射梦境的能力	l
-Preference reason: ability to purify water	净化水的能力	l
-Preference reason: ability to read emotions	读懂情绪的能力	l
-Preference reason: ability to read feelings	读懂感情的能力	l
-Preference reason: ability to recall memories	唤回记忆的能力	l
-Preference reason: ability to relieve stress	缓解压力的能力	l
-Preference reason: ability to revive Pokemon	复活宝可梦的能力	l
-Preference reason: ability to roll	滚动能力	l
-Preference reason: ability to rotate their head	旋转头部的能力	l
-Preference reason: ability to see the future	预见未来的能力	l
-Preference reason: ability to sense auras	感知波导的能力	l
-Preference reason: ability to sense emotions	感知情绪的能力	l
-Preference reason: ability to sharpen ones focus	提高注意力的能力	l
-Preference reason: ability to shoot ink	射墨能力	l
-Preference reason: ability to shoot thunderbolts	发射雷电的能力	l
-Preference reason: ability to slip through cracks	穿过裂缝的能力	l
-Preference reason: ability to splash	溅跃的本领	l
-Preference reason: ability to store electricity	储存电力的能力	l
-Preference reason: ability to summon rain clouds	召唤雨云的能力	l
-Preference reason: ability to teleport	传送能力	l
-Preference reason: ability to transform	变身的能力	l
-Preference reason: ability to turn Pokemon pink	将宝可梦变成粉红色的能力	l
-Preference reason: ability to walk on water	在水上行走的能力	l
-Preference reason: accuracy	精准度	l
-Preference reason: acorn shape	橡子形状	l
-Preference reason: acrobatic ability	杂技能力	l
-Preference reason: activeness	活跃度	l
-Preference reason: adaptability	适应性	l
-Preference reason: adorable behavior	可爱的行为	l
-Preference reason: adorable looks	可爱的外表	l
-Preference reason: adversion to rain	厌恶雨水的习性	l
-Preference reason: affection	亲昵的举动	l
-Preference reason: affectionate nature	亲人的性格	l
-Preference reason: afro	爆炸头	l
-Preference reason: aggression	好斗性	l
-Preference reason: aggressiveness	攻击性	l
-Preference reason: agility	敏捷身手	l
-Preference reason: agressive nature	好斗的性格	l
-Preference reason: aid in muscle growth	促进肌肉生长的功效	l
-Preference reason: aid in tougness	增强坚韧的功效	l
-Preference reason: aid with digestion	帮助消化的功效	l
-Preference reason: air bubbles	气泡	l
-Preference reason: alertness	警觉	l
-Preference reason: amazing vision	惊人的视力	l
-Preference reason: anchor	锚	l
-Preference reason: ancient genes	古老的基因	l
-Preference reason: angelic appearance	天使般的外表	l
-Preference reason: angry eyes	愤怒的眼睛	l
-Preference reason: antenna	触角	l
-Preference reason: antennae	触角	l
-Preference reason: antique tableware	古董餐具	l
-Preference reason: antlers	鹿角	l
-Preference reason: appetite	食欲	l
-Preference reason: apple	苹果	l
-Preference reason: apple disguise	苹果伪装	l
-Preference reason: apron	围裙	l
-Preference reason: armor	盔甲	l
-Preference reason: armored body	披甲的身体	l
-Preference reason: aroma	香气	l
-Preference reason: aspiration	愿望	l
-Preference reason: asymmetric cut	不对称剪裁	l
-Preference reason: attraction to light	趋光性	l
-Preference reason: attraction to strong emotions	对强烈情绪的喜好	l
-Preference reason: attraction to the deceased	对亡者的亲近	l
-Preference reason: aura sensing	波导感知	l
-Preference reason: axe horns	斧角	l
-Preference reason: axes	斧头	l
-Preference reason: bag like tail	袋状尾巴	l
-Preference reason: balanced flavored juice	风味均衡的果汁	l
-Preference reason: ball	球	l
-Preference reason: balloon shape	气球形状	l
-Preference reason: bamboo like body	竹子般的身体	l
-Preference reason: banana-like shape	香蕉状	l
-Preference reason: barbaric demeanor	野蛮的举止	l
-Preference reason: barbels	触须	l
-Preference reason: beads	珠子	l
-Preference reason: beady eyes	圆圆的眼睛	l
-Preference reason: beak	喙	l
-Preference reason: beard	胡须	l
-Preference reason: beard of fire	火焰胡须	l
-Preference reason: beards	胡须	l
-Preference reason: beautiful caudal fin	美丽的尾鳍	l
-Preference reason: beauty	美丽的外表	l
-Preference reason: beer	啤酒	l
-Preference reason: being a human in Pokemon form	以宝可梦形态生活的人类身份	l
-Preference reason: being turned into the form of a Pokemon	变成宝可梦的形态	l
-Preference reason: belief in ideals	对理想的信念	l
-Preference reason: belief in truth	相信真理	l
-Preference reason: bell	钟	l
-Preference reason: bell shape	钟形	l
-Preference reason: bellowing	吼叫	l
-Preference reason: benefits	益处	l
-Preference reason: benefits?	可能的益处	l
-Preference reason: berries	树果	l
-Preference reason: berry bushes	树果灌木	l
-Preference reason: berry juggling	抛接树果的杂耍	l
-Preference reason: berry throwing	投掷树果	l
-Preference reason: bill	喙	l
-Preference reason: biterness	苦味	l
-Preference reason: biting	啃咬的习性	l
-Preference reason: bitter flavor	苦味	l
-Preference reason: bitter flavored juice	苦味果汁	l
-Preference reason: bitter fruit	苦味果实	l
-Preference reason: bitter stem	苦茎	l
-Preference reason: bitter taste	苦味	l
-Preference reason: bitterness	苦味	l
-Preference reason: bittersweet juices	苦甜的汁液	l
-Preference reason: bittersweet taste	苦甜的味道	l
-Preference reason: bizare features	古怪的外貌	l
-Preference reason: blade	刀刃	l
-Preference reason: blade birds	刀锋鸟	l
-Preference reason: blades	刀片	l
-Preference reason: blessings	祝福	l
-Preference reason: blight on nature	对自然的损害	l
-Preference reason: blimp shape	飞艇形状	l
-Preference reason: blinking	眨眼	l
-Preference reason: blood red crest	血红色的冠	l
-Preference reason: blood red horns	血红色的角	l
-Preference reason: blood sucking	吸血	l
-Preference reason: bloodmoon mark	赫月印记	l
-Preference reason: bloom	头顶的花朵	l
-Preference reason: blooming	盛开	l
-Preference reason: blossoms	花朵	l
-Preference reason: body of magma	岩浆构成的身体	l
-Preference reason: body of plasma	等离子体构成的身体	l
-Preference reason: bolt like tail	闪电状的尾巴	l
-Preference reason: bone club	骨棒	l
-Preference reason: bone like features	骨样特征	l
-Preference reason: bone skirt	骨裙	l
-Preference reason: bouncing	弹跳	l
-Preference reason: bouquet	花束	l
-Preference reason: bows	蝴蝶结	l
-Preference reason: boxing	拳击	l
-Preference reason: boxing glove pincers	拳击手套般的钳子	l
-Preference reason: branch shooting	发射树枝	l
-Preference reason: bravery	勇敢	l
-Preference reason: brick pattern hide	砖纹皮肤	l
-Preference reason: bridge shape	桥形	l
-Preference reason: bright berries	鲜艳的浆果	l
-Preference reason: bright light	明亮的光	l
-Preference reason: brilliant color	绚丽的色彩	l
-Preference reason: bristly fur	刚毛	l
-Preference reason: bronze body	青铜构成的身体	l
-Preference reason: brutality	残暴的性情	l
-Preference reason: brute force	蛮力	l
-Preference reason: bubble beard	泡泡胡子	l
-Preference reason: bubble scarf	泡泡围巾	l
-Preference reason: buds	花苞	l
-Preference reason: bulb	背上的种子球茎	l
-Preference reason: bulk	壮硕的体格	l
-Preference reason: buoyancy	浮力	l
-Preference reason: bushy mane	浓密的鬃毛	l
-Preference reason: busy nature	忙碌的天性	l
-Preference reason: buzzing	嗡嗡的鸣声	l
-Preference reason: cable like limbs	电缆状四肢	l
-Preference reason: cackling	咯咯地笑	l
-Preference reason: call	叫声	l
-Preference reason: calm nature	沉稳的性格	l
-Preference reason: calm personality	冷静的性格	l
-Preference reason: calming aroma	令人平静的香气	l
-Preference reason: calming aura	令人平静的气场	l
-Preference reason: calmness	冷静	l
-Preference reason: canine body	犬形身体	l
-Preference reason: cannon	大炮	l
-Preference reason: cannons	大炮	l
-Preference reason: cap	帽状头顶	l
-Preference reason: capabilities	能力	l
-Preference reason: carbs	碳水化合物	l
-Preference reason: carefree nature	无忧无虑的天性	l
-Preference reason: caretaking	照顾	l
-Preference reason: caring	关怀	l
-Preference reason: castle structure	城堡结构	l
-Preference reason: caudal fins	尾鳍	l
-Preference reason: cellular body	细胞构成的身体	l
-Preference reason: charm	魅力	l
-Preference reason: cheek pouches	颊囊	l
-Preference reason: cheeks	脸颊	l
-Preference reason: cheering	欢呼	l
-Preference reason: cherry-like appearance	樱桃般的外观	l
-Preference reason: chimeric body	嵌合体	l
-Preference reason: chunky body	矮胖的身体	l
-Preference reason: clanging scales	叮当作响的鳞片	l
-Preference reason: clapping	鼓掌	l
-Preference reason: claw	爪	l
-Preference reason: claws	爪子	l
-Preference reason: clay structure	粘土结构	l
-Preference reason: cleaning	打扫	l
-Preference reason: climbing ability	攀爬能力	l
-Preference reason: climbing skill	攀爬技巧	l
-Preference reason: cloak	披风	l
-Preference reason: cloud-like wings	云朵般的翅膀	l
-Preference reason: coal	煤炭	l
-Preference reason: coal burning	燃烧煤炭	l
-Preference reason: coiling	卷绕	l
-Preference reason: coin	硬币	l
-Preference reason: coins	硬币	l
-Preference reason: cold temperature	寒冷的温度	l
-Preference reason: color	颜色	l
-Preference reason: colorful explosions	色彩缤纷的爆炸	l
-Preference reason: colorful feathers	色彩斑斓的羽毛	l
-Preference reason: colorful petals	五颜六色的花瓣	l
-Preference reason: colorful wings	色彩斑斓的翅膀	l
-Preference reason: colors	颜色	l
-Preference reason: comb	冠羽	l
-Preference reason: compassion	同情	l
-Preference reason: compound eyes	复眼	l
-Preference reason: concrete pillars	混凝土柱	l
-Preference reason: constant hunger	持续饥饿	l
-Preference reason: coolheadedness	冷静	l
-Preference reason: copper like skin	铜般的皮肤	l
-Preference reason: coral like growths	珊瑚状的附肢	l
-Preference reason: core	核心	l
-Preference reason: cotten puffs	棉絮	l
-Preference reason: cotton	棉花	l
-Preference reason: courage	勇气	l
-Preference reason: cowardly nature	胆怯的天性	l
-Preference reason: craftsmanship	工艺	l
-Preference reason: cream	奶油	l
-Preference reason: creamy body	奶油般的身体	l
-Preference reason: crescent wing	新月形翅膀	l
-Preference reason: crescent-shaped ornaments	月牙形饰物	l
-Preference reason: crest	头冠	l
-Preference reason: cries	叫声	l
-Preference reason: cry	叫声	l
-Preference reason: crying	哭泣	l
-Preference reason: crystal body	水晶构成的身体	l
-Preference reason: crystal energy	水晶能量	l
-Preference reason: crystal formation	晶体构造	l
-Preference reason: crystals	晶体	l
-Preference reason: cudgel	棍棒	l
-Preference reason: cunning	狡猾	l
-Preference reason: curiosity	好奇心	l
-Preference reason: curiousity	好奇心	l
-Preference reason: curled tail	卷曲的尾巴	l
-Preference reason: curly tail	卷尾	l
-Preference reason: cursed energy	诅咒能量	l
-Preference reason: curvy fruit	弯曲的水果	l
-Preference reason: cute antics	可爱的举动	l
-Preference reason: cute appearance	可爱的外表	l
-Preference reason: cute features	可爱的外貌	l
-Preference reason: dance	舞蹈	l
-Preference reason: dancing	跳舞	l
-Preference reason: dangles	头部两侧的垂饰	l
-Preference reason: dart like shape	飞镖状	l
-Preference reason: deceiving look	迷惑性的外表	l
-Preference reason: deception	欺骗	l
-Preference reason: decorations	装饰	l
-Preference reason: dedication to their young	对幼崽的呵护	l
-Preference reason: delicate skin	娇嫩的皮肤	l
-Preference reason: delicious smell	诱人的香气	l
-Preference reason: deliciousness	美味	l
-Preference reason: depth	醇厚的滋味	l
-Preference reason: desire for isolation and silence	对独处与安静的喜好	l
-Preference reason: destructive nature	喜欢破坏的天性	l
-Preference reason: diamond dress	钻石裙装	l
-Preference reason: diamonds	钻石	l
-Preference reason: diet of iron	以铁为食的习性	l
-Preference reason: diet of rocks and gemstones	以岩石和宝石为食的习性	l
-Preference reason: diet of sulfur	以硫磺为食的习性	l
-Preference reason: different appearances	不同的外观	l
-Preference reason: different colors	不同的颜色	l
-Preference reason: different forms	不同的形态	l
-Preference reason: digging	挖掘	l
-Preference reason: digging strength	挖掘力	l
-Preference reason: diligence	勤勉	l
-Preference reason: dimension travelling	次元旅行	l
-Preference reason: disgusting breath	令人作呕的吐息	l
-Preference reason: disheveled hair	蓬乱的头发	l
-Preference reason: diving	潜水	l
-Preference reason: diving ability	潜水能力	l
-Preference reason: docile nature	温顺的性情	l
-Preference reason: doll-like appearance	娃娃般的外表	l
-Preference reason: dorsal blade	背部刀刃	l
-Preference reason: draconic appearance	龙般的外形	l
-Preference reason: draconic apperance	龙般的外形	l
-Preference reason: dragon energy formation	龙形能量构造	l
-Preference reason: dravite	镁电气石	l
-Preference reason: draw speed	拔刀速度	l
-Preference reason: dream eating	食梦的习性	l
-Preference reason: drifting	漂流	l
-Preference reason: drill-like tail	钻头般的尾巴	l
-Preference reason: drink strength	酿成酒后的烈劲	l
-Preference reason: dripping embers	滴落的余烬	l
-Preference reason: drooping tentacles	下垂的触手	l
-Preference reason: drum	鼓	l
-Preference reason: drumming	击鼓	l
-Preference reason: dry flavor	涩味	l
-Preference reason: dry flavored juice	涩味果汁	l
-Preference reason: dryness	涩味	l
-Preference reason: dull wits	迟钝的头脑	l
-Preference reason: dullness	迟钝	l
-Preference reason: eagerness	争强好胜的性格	l
-Preference reason: ears	耳朵	l
-Preference reason: earth splitting power	劈开大地的力量	l
-Preference reason: earthy form	泥土构成的形体	l
-Preference reason: echolocation	回声定位	l
-Preference reason: ectoplasm	外质	l
-Preference reason: edible roots	可食用的根	l
-Preference reason: edible tubers	可食用的块茎	l
-Preference reason: effect?	可能的效果	l
-Preference reason: egg	蛋	l
-Preference reason: egg-shaped fireball	蛋形火球	l
-Preference reason: elbow blades	肘部刀刃	l
-Preference reason: electric generation	发电	l
-Preference reason: electric spines	电刺	l
-Preference reason: electric webs	电网	l
-Preference reason: electrical claws	电爪	l
-Preference reason: electrical fighting style	电力格斗风格	l
-Preference reason: electrical formation	电流构成的形体	l
-Preference reason: electrical glands	储存电力的腺体	l
-Preference reason: electrical power	电力	l
-Preference reason: electrical tail	带电的尾巴	l
-Preference reason: electricity-discharging organs	放电器官	l
-Preference reason: elegance	优雅	l
-Preference reason: elegant body	优雅的身材	l
-Preference reason: elegant moves	优雅的动作	l
-Preference reason: ember scattering	四散的火星	l
-Preference reason: emotion draining touch	吸取情感的触碰	l
-Preference reason: emotionless face	毫无表情的面孔	l
-Preference reason: enchanting melodies	迷人的旋律	l
-Preference reason: encouragement	鼓励	l
-Preference reason: endless hunger	无尽的饥饿	l
-Preference reason: endless sleeping	无休止的睡眠	l
-Preference reason: endurance	耐力	l
-Preference reason: energy	活力	l
-Preference reason: enigmatic properties	神秘的特性	l
-Preference reason: erratic movements	难以预测的动作	l
-Preference reason: erupting humps	喷发的驼峰	l
-Preference reason: eternal life	永生	l
-Preference reason: evil appearance	邪恶的外表	l
-Preference reason: evil nature	邪恶的天性	l
-Preference reason: excessive poison	充沛的毒素	l
-Preference reason: explosive tendency	容易爆炸的特性	l
-Preference reason: extraterrestrial origins	外星起源	l
-Preference reason: extreme kick	强烈的劲道	l
-Preference reason: eye-like fruit	眼睛形状的果实	l
-Preference reason: facial expressions	面部表情	l
-Preference reason: fan tail	扇形尾巴	l
-Preference reason: fangs	獠牙	l
-Preference reason: feather	羽毛	l
-Preference reason: feathers	羽毛	l
-Preference reason: feathery ruff	羽毛围领	l
-Preference reason: feelers	触角	l
-Preference reason: ferocity	凶猛的天性	l
-Preference reason: fetid breath	腐臭的吐息	l
-Preference reason: fickle nature	善变的本性	l
-Preference reason: fierce appearance	凶猛的外表	l
-Preference reason: fierce personality	凶猛的性格	l
-Preference reason: fiery dance	火热的舞蹈	l
-Preference reason: fiery mane	火焰般的鬃毛	l
-Preference reason: fiery plumage	火热的羽毛	l
-Preference reason: fighting speed	战斗速度	l
-Preference reason: fighting spirit	斗志	l
-Preference reason: fighting style	战斗风格	l
-Preference reason: fighting styles	战斗风格	l
-Preference reason: fighting technique	格斗技术	l
-Preference reason: fillet	脱落的鱼肉	l
-Preference reason: fin	鳍	l
-Preference reason: fins	鳍	l
-Preference reason: fire spitting	吐火	l
-Preference reason: fire streamers	火焰飘带	l
-Preference reason: firey body	炽热的身体	l
-Preference reason: fish like appearance	鱼般的外形	l
-Preference reason: fish-like tail	鱼形的尾巴	l
-Preference reason: flabby body	肥硕松软的身躯	l
-Preference reason: flame	火焰	l
-Preference reason: flame belt	火焰腰带	l
-Preference reason: flame sac	火焰囊	l
-Preference reason: flame tail	火焰尾	l
-Preference reason: flames	火焰	l
-Preference reason: flaming antennae	燃烧的触角	l
-Preference reason: flaming back	燃烧的背部	l
-Preference reason: flaming furballs	燃烧的毛球	l
-Preference reason: flaming head	燃烧的头	l
-Preference reason: flaming pebbles	燃烧的鹅卵石	l
-Preference reason: flaming tail	火焰尾	l
-Preference reason: flashing mane	闪烁的鬃毛	l
-Preference reason: flat body	扁平的身体	l
-Preference reason: flat top	平顶	l
-Preference reason: flexibility	灵活性	l
-Preference reason: flexible body	灵活的身体	l
-Preference reason: flickering spores	闪烁的孢子	l
-Preference reason: floating	漂浮的本领	l
-Preference reason: floating hands	漂浮的手	l
-Preference reason: flotation sac	浮囊	l
-Preference reason: flower	花	l
-Preference reason: flower bombs	花朵炸弹	l
-Preference reason: flower bud	花蕾	l
-Preference reason: flowing hair	飘逸的头发	l
-Preference reason: flowing wool	飘动的羊毛	l
-Preference reason: fluff	绒毛	l
-Preference reason: fluffy down	蓬松的绒羽	l
-Preference reason: fluffy ears	毛茸茸的耳朵	l
-Preference reason: fluffy fur	蓬松的毛皮	l
-Preference reason: fluffy tail	毛茸茸的尾巴	l
-Preference reason: fluffy tips	蓬松的末端	l
-Preference reason: flying skill	飞行技巧	l
-Preference reason: foot print claws	足印状的爪子	l
-Preference reason: footwork	步法	l
-Preference reason: forked tail	分叉的尾巴	l
-Preference reason: form	形态	l
-Preference reason: formation	形体构造	l
-Preference reason: formes	形态	l
-Preference reason: foul smell	臭味	l
-Preference reason: fragrance	香味	l
-Preference reason: fragrant fruit	芳香的果实	l
-Preference reason: freezing upper half	冰冷的上半身	l
-Preference reason: fresh scent	清新的气味	l
-Preference reason: friendliness	友好	l
-Preference reason: friendly nature	友善的天性	l
-Preference reason: frilled collar	褶边围领	l
-Preference reason: frills	褶边	l
-Preference reason: frozen texture	冰凉的口感	l
-Preference reason: frubbles	泡沫	l
-Preference reason: fruit	果实	l
-Preference reason: fruits	果实	l
-Preference reason: fulfillingness	饱腹感	l
-Preference reason: funny walk	滑稽的步态	l
-Preference reason: fur	毛皮	l
-Preference reason: fusions	融合	l
-Preference reason: fuzzy body	毛茸茸的身体	l
-Preference reason: gas	气体	l
-Preference reason: gel	凝胶	l
-Preference reason: gem	宝石	l
-Preference reason: gem-like eyes	宝石般的眼睛	l
-Preference reason: generator tail	发电机般的尾巴	l
-Preference reason: gentle nature	温柔的天性	l
-Preference reason: gentle temperament	温和的性情	l
-Preference reason: ghostly arms	幽灵般的手臂	l
-Preference reason: ghostly plume	幽灵般的头冠	l
-Preference reason: giant fireball	巨大的火球	l
-Preference reason: giant jaw	巨大的颌部	l
-Preference reason: giant jaws	巨颚	l
-Preference reason: giant mouth	巨嘴	l
-Preference reason: girder	梁	l
-Preference reason: glare	锐利的目光	l
-Preference reason: gliding	滑行	l
-Preference reason: glimmering body	闪光的身躯	l
-Preference reason: glistening fur	闪闪发光的毛皮	l
-Preference reason: glittering	闪耀的光泽	l
-Preference reason: glittering spores	闪闪发光的孢子	l
-Preference reason: glittering wings	闪闪发光的翅膀	l
-Preference reason: gloomy appearance	阴沉的样子	l
-Preference reason: glow	辉光	l
-Preference reason: glowing body	发光的身体	l
-Preference reason: glowing eyes	发光的眼睛	l
-Preference reason: glowing features	发光特征	l
-Preference reason: glowing mushroom	发光蘑菇	l
-Preference reason: glowing mushrooms	发光蘑菇	l
-Preference reason: glowing rings	发光环	l
-Preference reason: glowing scales	发光鳞片	l
-Preference reason: glowing tail	发光的尾巴	l
-Preference reason: gluttonous nature	贪吃的本性	l
-Preference reason: gluttony	暴食	l
-Preference reason: gnawing strength	啃咬力	l
-Preference reason: god like status	神明般的地位	l
-Preference reason: gold mask	黄金面具	l
-Preference reason: gold structure	黄金结构	l
-Preference reason: golden aura	金色气场	l
-Preference reason: golden blade	金刃	l
-Preference reason: golden crown	金冠	l
-Preference reason: golden glow	金色光芒	l
-Preference reason: golden texture	金色质感	l
-Preference reason: good luck	带来好运的特性	l
-Preference reason: good nature	善良的本性	l
-Preference reason: gown	长袍	l
-Preference reason: grabage	垃圾	l
-Preference reason: grace	优雅	l
-Preference reason: graceful movements	优美的动作	l
-Preference reason: gracidea-like flowers	葛拉西蒂亚花般的花朵	l
-Preference reason: grain	籽粒	l
-Preference reason: great strength	强大的力量	l
-Preference reason: greed	贪婪	l
-Preference reason: gregarious nature	群居性	l
-Preference reason: griminess	污秽	l
-Preference reason: grin	咧嘴的笑容	l
-Preference reason: guardian status	守护者的地位	l
-Preference reason: habit of biting	咬人的习惯	l
-Preference reason: hair	头发	l
-Preference reason: halo	光环	l
-Preference reason: hammer	锤	l
-Preference reason: hand cannons	手炮	l
-Preference reason: hand like wings	手掌般的翅膀	l
-Preference reason: hanging leaves	下垂的叶子	l
-Preference reason: hanging lifestyle	悬挂栖息的习性	l
-Preference reason: hard shell	硬壳	l
-Preference reason: hardiness	坚韧	l
-Preference reason: hardness	硬度	l
-Preference reason: hardy nature	强健的体魄	l
-Preference reason: hardyness	坚韧	l
-Preference reason: harems	妻妾成群的习性	l
-Preference reason: hatred of light	憎恨光	l
-Preference reason: haunting clangs	令人毛骨悚然的铿锵声	l
-Preference reason: head armor	头甲	l
-Preference reason: head shield	盾状的头部	l
-Preference reason: head tail	带有头部的尾巴	l
-Preference reason: head turning	转动头部的本领	l
-Preference reason: headbutting	头撞	l
-Preference reason: headpiece	头饰	l
-Preference reason: healing ability	治愈能力	l
-Preference reason: healing properties	治疗功效	l
-Preference reason: health benefits	有益健康的功效	l
-Preference reason: healthy fibers	有益健康的纤维	l
-Preference reason: heart shaped body	心形身体	l
-Preference reason: heart shaped marking	心形标记	l
-Preference reason: heart-shaped nose	心形鼻子	l
-Preference reason: heat	热	l
-Preference reason: heat resistant body	耐热的身体	l
-Preference reason: heavyness	沉重的体格	l
-Preference reason: height	身高	l
-Preference reason: helpfullness	乐于助人的性格	l
-Preference reason: helpfulness	乐于助人的性格	l
-Preference reason: heroism	英勇的精神	l
-Preference reason: hex nut head	六角螺母头	l
-Preference reason: hidden psychic power	隐藏的超能力	l
-Preference reason: honey making	酿蜜的本领	l
-Preference reason: honeycomb shape	蜂窝形状	l
-Preference reason: hood pattern	颈部褶边上的图案	l
-Preference reason: hoops	圆环	l
-Preference reason: horn	角	l
-Preference reason: horns	角	l
-Preference reason: horrid screams	骇人的尖叫	l
-Preference reason: hot spiciness	辣味	l
-Preference reason: howls	嚎叫	l
-Preference reason: hump	驼峰	l
-Preference reason: humps	驼峰	l
-Preference reason: hunting skills	狩猎技巧	l
-Preference reason: hypnotizing dance	催眠舞蹈	l
-Preference reason: ice	冰	l
-Preference reason: ice beard	冰晶胡须	l
-Preference reason: ice cream shape	冰淇淋形状	l
-Preference reason: ice face	冰块状的头部	l
-Preference reason: ice fangs	冰制獠牙	l
-Preference reason: ice horns	冰角	l
-Preference reason: ice scales	冰鳞	l
-Preference reason: ice shafts	冰柱	l
-Preference reason: icy spikes	冰晶尖刺	l
-Preference reason: illuminating	照亮暗处的能力	l
-Preference reason: illusions	幻象	l
-Preference reason: immense psychic power	强大的超能力	l
-Preference reason: impervious head	坚不可摧的头部	l
-Preference reason: impressive size	惊人的体型	l
-Preference reason: inability to stay in a confined space	无法忍受狭小空间的习性	l
-Preference reason: incantations	咒语	l
-Preference reason: incredibly hard ice	极其坚硬的冰	l
-Preference reason: incredibly powerful trunk	极其强壮的象鼻	l
-Preference reason: independent nature	独立的性格	l
-Preference reason: industrious nature	勤劳的天性	l
-Preference reason: infinite power	无限的力量	l
-Preference reason: ink spraying	喷墨	l
-Preference reason: inner light	内在光芒	l
-Preference reason: intellect	智力	l
-Preference reason: intelligence	聪慧	l
-Preference reason: intense body heat	炽热的体温	l
-Preference reason: intense flames	强烈的火焰	l
-Preference reason: intense heat	酷热	l
-Preference reason: interesting head shape	有趣的头型	l
-Preference reason: interlocking	环环相扣	l
-Preference reason: intimidating look	令人生畏的表情	l
-Preference reason: intimidating stance	威风凛凛的姿态	l
-Preference reason: intolerance towards bullying	不容忍欺凌行为	l
-Preference reason: intricate aerial dances	复杂的空中舞蹈	l
-Preference reason: iridescent sails	虹彩背鳍	l
-Preference reason: iron body	铁质身体	l
-Preference reason: iron-like skin	铁一样的皮肤	l
-Preference reason: irresistible drumming	不可抗拒的鼓声	l
-Preference reason: jaw	颚	l
-Preference reason: jet engine tail	喷气引擎般的尾巴	l
-Preference reason: jewl	珠宝	l
-Preference reason: jewl like body	宝石般的身体	l
-Preference reason: jingling	叮铃声	l
-Preference reason: joy dust	欢乐尘	l
-Preference reason: joyful nature	快乐的天性	l
-Preference reason: judo skills	柔道技巧	l
-Preference reason: juice	汁液	l
-Preference reason: juicy beans	多汁的豆子	l
-Preference reason: jumping	跳跃	l
-Preference reason: jumping ability	跳跃能力	l
-Preference reason: junkyness	速食风味	l
-Preference reason: karate skills	空手道技巧	l
-Preference reason: keen sense of smell	敏锐的嗅觉	l
-Preference reason: kelp like appearance	海带状外观	l
-Preference reason: keys	钥匙	l
-Preference reason: kicking	踢击的本领	l
-Preference reason: kimono	和服	l
-Preference reason: kindheartedness	善良	l
-Preference reason: kindness	仁慈	l
-Preference reason: knightly appearance	骑士般的外表	l
-Preference reason: knowledge	知识	l
-Preference reason: laid back nature	悠闲的性格	l
-Preference reason: laid-back nature	悠闲的性格	l
-Preference reason: lances	长矛	l
-Preference reason: large appearance	庞大的外形	l
-Preference reason: large bill	巨大的喙	l
-Preference reason: large brain	硕大的大脑	l
-Preference reason: large cannon	大炮	l
-Preference reason: large claw	大爪	l
-Preference reason: large ears	大耳朵	l
-Preference reason: large fins	大鳍	l
-Preference reason: large gem	大宝石	l
-Preference reason: large head	大头	l
-Preference reason: large jaws	大颚	l
-Preference reason: large mouth	大嘴	l
-Preference reason: large social groups	庞大的群居群体	l
-Preference reason: latex	乳汁	l
-Preference reason: laziness	懒惰	l
-Preference reason: lazyness	懒惰	l
-Preference reason: leadership	领导能力	l
-Preference reason: leaf	叶子	l
-Preference reason: leaf chewing	咀嚼树叶	l
-Preference reason: leaf cloak	叶斗篷	l
-Preference reason: leaf flute	叶笛	l
-Preference reason: leaf hood	叶罩	l
-Preference reason: leafy appearance	叶状外观	l
-Preference reason: leafy hood	绿叶罩	l
-Preference reason: leafy mane	绿叶鬃毛	l
-Preference reason: leaves	叶片	l
-Preference reason: leek	韭葱	l
-Preference reason: leeks	大葱	l
-Preference reason: legs	腿	l
-Preference reason: length	修长的形态	l
-Preference reason: life force	生命力	l
-Preference reason: light	光	l
-Preference reason: light bulb tail	灯泡状尾巴	l
-Preference reason: lightning attraction	吸引雷电的特性	l
-Preference reason: lightning-fast movements	闪电般的动作	l
-Preference reason: lights	灯	l
-Preference reason: lightweight metal body	轻巧的金属身体	l
-Preference reason: likeability	讨人喜欢的性格	l
-Preference reason: lilypad	睡莲叶	l
-Preference reason: lingering spiciness	持久的辣味	l
-Preference reason: log	圆木	l
-Preference reason: long bodies	修长的身躯	l
-Preference reason: long body	修长的身体	l
-Preference reason: long fangs	长獠牙	l
-Preference reason: long fur	长长的毛发	l
-Preference reason: long legs	长腿	l
-Preference reason: long lifespan	悠长的寿命	l
-Preference reason: long neck	长脖子	l
-Preference reason: long tongue	长舌头	l
-Preference reason: loud cry	响亮的叫声	l
-Preference reason: loud shriek	响亮的尖叫声	l
-Preference reason: loudspeaker ears	扬声器般的耳朵	l
-Preference reason: loudspeaker like ears	扩音器般的耳朵	l
-Preference reason: love for fruit	对水果的热爱	l
-Preference reason: loyalty	忠诚	l
-Preference reason: luck	幸运	l
-Preference reason: lumps	表面的凸起	l
-Preference reason: luxurious fur	华美的毛皮	l
-Preference reason: magical properties	神奇的魔力	l
-Preference reason: magnetism	磁性	l
-Preference reason: magnets	磁铁	l
-Preference reason: majestic movements	雄伟的动作	l
-Preference reason: majesty	雄伟	l
-Preference reason: mandibles	大颚	l
-Preference reason: mane	鬃毛	l
-Preference reason: mane of bubbles	泡沫鬃毛	l
-Preference reason: many arms	许多触手	l
-Preference reason: many cannons	许多大炮	l
-Preference reason: many horns	许多角	l
-Preference reason: many patterns	许多图案	l
-Preference reason: many shapes	许多形状	l
-Preference reason: many stingers	许多毒刺	l
-Preference reason: many tentacles	许多触手	l
-Preference reason: many trims	多样的毛发造型	l
-Preference reason: many types	多种属性	l
-Preference reason: maraca sounds	沙锤声	l
-Preference reason: marching	行军	l
-Preference reason: markings	身上的斑纹	l
-Preference reason: martial arts	武术	l
-Preference reason: mash	果泥	l
-Preference reason: mask	面具	l
-Preference reason: masks	面具	l
-Preference reason: mass of eyes	成团的眼球	l
-Preference reason: massive claws	巨大的利爪	l
-Preference reason: massive wings	巨大的翅膀	l
-Preference reason: mechanical body	机械构成的身体	l
-Preference reason: medical properties	药用功效	l
-Preference reason: meditating	冥想	l
-Preference reason: mellow sweetness	醇厚的甜味	l
-Preference reason: melodies	旋律	l
-Preference reason: menacing beak	吓人的喙	l
-Preference reason: metal body	金属身体	l
-Preference reason: metal formation	金属构造	l
-Preference reason: metalic feathers	金属羽毛	l
-Preference reason: metronome tail	节拍器般的尾巴	l
-Preference reason: mighty blades	强劲的刀刃	l
-Preference reason: mighty horn	强劲的角	l
-Preference reason: mighty horns	强劲的角	l
-Preference reason: mild taste	温和的口味	l
-Preference reason: mimicking	模仿	l
-Preference reason: miming	表演哑剧的本领	l
-Preference reason: minecart shape	矿车形状	l
-Preference reason: mirroring	镜像	l
-Preference reason: mischief	顽皮	l
-Preference reason: mischievous tricks	恶作剧	l
-Preference reason: mischievousness	恶作剧	l
-Preference reason: mission of vengeance	复仇的使命	l
-Preference reason: mission to protect Pokemon	保护宝可梦的使命	l
-Preference reason: mission to protect the ecosystem	保护生态系统的使命	l
-Preference reason: mix of flavors	混合口味	l
-Preference reason: mix of flavors?	可能的混合风味	l
-Preference reason: mochi	粘糕	l
-Preference reason: moon shape	月亮形状	l
-Preference reason: mossy mane	苔藓般的鬃毛	l
-Preference reason: mountain crushing strength	粉碎山岳的力量	l
-Preference reason: mouth flames	口边的火焰	l
-Preference reason: move boosting ability	增强招式威力的能力	l
-Preference reason: mud ball	泥球	l
-Preference reason: multiple Binacle	多个龟脚脚	l
-Preference reason: multiple heads	多个头部	l
-Preference reason: multiple personalities	多重人格	l
-Preference reason: multiple tails	多尾	l
-Preference reason: multiple wings	众多翅膀	l
-Preference reason: muscle like hair	肌肉般的毛发	l
-Preference reason: muscles	肌肉	l
-Preference reason: mustache	胡子	l
-Preference reason: mutualistic nature	互利共生的习性	l
-Preference reason: mysterious energy	神秘能量	l
-Preference reason: mysterious origins	神秘的起源	l
-Preference reason: mystery	神秘	l
-Preference reason: naive personality	天真的性格	l
-Preference reason: nature changing ability	改变性格的能力	l
-Preference reason: neatness	整洁	l
-Preference reason: nectar	花蜜	l
-Preference reason: needles	针叶	l
-Preference reason: nests	巢穴	l
-Preference reason: nomadic nature	四处游走的习性	l
-Preference reason: nose	鼻子	l
-Preference reason: numbers	数字	l
-Preference reason: nurturing nature	照顾他人的天性	l
-Preference reason: nutrient-rich oil	营养丰富的油	l
-Preference reason: nutrients	营养素	l
-Preference reason: nutrition	营养	l
-Preference reason: nutritious seeds	营养丰富的种子	l
-Preference reason: nuts	坚果	l
-Preference reason: oblivious nature	迟钝的性格	l
-Preference reason: obliviousness	迟钝	l
-Preference reason: odd shape	奇怪的形状	l
-Preference reason: odor	气味	l
-Preference reason: oil	油	l
-Preference reason: onion head	洋葱头	l
-Preference reason: optimism	乐观	l
-Preference reason: origami body	折纸身体	l
-Preference reason: pacifism	和平主义	l
-Preference reason: paintbrush tail	画笔尾	l
-Preference reason: painting	绘画	l
-Preference reason: pairing	配对	l
-Preference reason: parasitic nature	寄生性	l
-Preference reason: patience	耐心	l
-Preference reason: patterns	图案	l
-Preference reason: peaceful disposition	平和的性格	l
-Preference reason: pearl	珍珠	l
-Preference reason: pearls	珍珠	l
-Preference reason: pendulum	钟摆	l
-Preference reason: perfection	完美	l
-Preference reason: persistence	坚持	l
-Preference reason: personality	性格	l
-Preference reason: petals	花瓣	l
-Preference reason: piercing stare	锐利的目光	l
-Preference reason: pig-like nose	猪鼻子	l
-Preference reason: pincers	钳子	l
-Preference reason: pit nests	坑巢	l
-Preference reason: plant like smell	植物般的气味	l
-Preference reason: play-fighting	打闹游戏	l
-Preference reason: playful demeanor	顽皮的举止	l
-Preference reason: playful nature	顽皮的天性	l
-Preference reason: playful personality	俏皮的性格	l
-Preference reason: playfullness	嬉戏	l
-Preference reason: pleasant scent	宜人的气味	l
-Preference reason: plumage	羽毛	l
-Preference reason: plume	冠羽	l
-Preference reason: pods	豆荚	l
-Preference reason: pointed mouth	尖嘴	l
-Preference reason: pointed teeth	尖牙	l
-Preference reason: poison sac	毒囊	l
-Preference reason: pollen	花粉	l
-Preference reason: pollinating	授粉	l
-Preference reason: ponytail hands	充当双手的马尾辫	l
-Preference reason: popped kernels	爆开的籽粒	l
-Preference reason: popping clusters	会爆裂的果簇	l
-Preference reason: portly build	肥胖的身材	l
-Preference reason: potatoes	土豆	l
-Preference reason: pouch	小袋	l
-Preference reason: power	力量	l
-Preference reason: power of eternal life	永生的力量	l
-Preference reason: powerful arms	强有力的手臂	l
-Preference reason: powerful grip	强大的握力	l
-Preference reason: powerful hair	强大的头发	l
-Preference reason: powerful jaws	强壮的颌部	l
-Preference reason: powerful kicks	有力的踢腿	l
-Preference reason: powerful legs	有力的腿	l
-Preference reason: powerful poison	猛烈的毒性	l
-Preference reason: powerful tail	强大的尾巴	l
-Preference reason: powerful talons	强有力的脚爪	l
-Preference reason: powerful third legs	强大的第三条腿	l
-Preference reason: powerful trunk	强壮的象鼻	l
-Preference reason: powerful uppercut	强大的上勾拳	l
-Preference reason: powerful vision	敏锐的视力	l
-Preference reason: practical jokes	恶作剧	l
-Preference reason: precise lines	规整的纹路	l
-Preference reason: precise thorns	排列齐整的尖刺	l
-Preference reason: precision	精确	l
-Preference reason: preference for heat	对热的偏好	l
-Preference reason: pretty diamond	漂亮的钻石	l
-Preference reason: pretty pearls	漂亮的珍珠	l
-Preference reason: prickles	尖刺	l
-Preference reason: primal glow	原始光芒	l
-Preference reason: prismatic body	棱晶般的身体	l
-Preference reason: prismatic wings	七彩的翅膀	l
-Preference reason: promise of death	死亡的预兆	l
-Preference reason: prongs	尖头	l
-Preference reason: propeller like tail	螺旋桨般的尾巴	l
-Preference reason: protective nature	保护他者的天性	l
-Preference reason: protuberance	突起	l
-Preference reason: psychic abilities	超能力	l
-Preference reason: psychic ability	超能力	l
-Preference reason: psychic power	超能力	l
-Preference reason: psychic powers	超能力	l
-Preference reason: puckered lips	撅起嘴唇	l
-Preference reason: pumpkin	南瓜	l
-Preference reason: pungency	辛辣味	l
-Preference reason: purple mane	紫色鬃毛	l
-Preference reason: quills	硬刺	l
-Preference reason: rage	愤怒	l
-Preference reason: rain of death	死亡之雨	l
-Preference reason: rampaging	横冲直撞	l
-Preference reason: rarity	稀有性	l
-Preference reason: rattle	尾部的响环	l
-Preference reason: razor sharp wings	锋利的翅膀	l
-Preference reason: reaction dulling	延缓反应的功效	l
-Preference reason: reclusive nature	隐居的天性	l
-Preference reason: refreshing flavor	清爽的味道	l
-Preference reason: relaxing fragrance	令人放松的香味	l
-Preference reason: relaxing scent	令人放松的气味	l
-Preference reason: respect of all forms of life	对一切生命的尊重	l
-Preference reason: revitalising leaves	恢复活力的叶片	l
-Preference reason: revitalising properties	恢复活力的功效	l
-Preference reason: ribbons	丝带	l
-Preference reason: richness	浓郁的滋味	l
-Preference reason: riddles	谜语	l
-Preference reason: ride form	坐骑形态	l
-Preference reason: rigid body	坚硬的身体	l
-Preference reason: rigid shell	坚硬的外壳	l
-Preference reason: ring of flowers	花环	l
-Preference reason: ring patterns	环形图案	l
-Preference reason: ringing	铃声	l
-Preference reason: rivalry	对抗	l
-Preference reason: rivalry with Seviper	与饭匙蛇的宿敌关系	l
-Preference reason: rivalry with Zangoose	与猫鼬斩的宿敌关系	l
-Preference reason: rock cannon	岩石炮	l
-Preference reason: rock shell	岩石甲壳	l
-Preference reason: rocky diet	以岩石为食的习性	l
-Preference reason: rocky formation	岩石构成的身体	l
-Preference reason: rocky fuel	岩石燃料	l
-Preference reason: rocky home	岩石之家	l
-Preference reason: rocky neck	颈部的岩石	l
-Preference reason: rocky shell	岩石甲壳	l
-Preference reason: rolling	滚动	l
-Preference reason: root like shape	根状	l
-Preference reason: roots	根系	l
-Preference reason: roses	玫瑰	l
-Preference reason: rotting body	腐烂的身躯	l
-Preference reason: round body	圆滚滚的身体	l
-Preference reason: round shape	圆形	l
-Preference reason: rounded tops	圆润的顶部	l
-Preference reason: roundness	圆润的形状	l
-Preference reason: rows of teeth	层层排列的牙齿	l
-Preference reason: royal appearance	王者般的外表	l
-Preference reason: running	跑步	l
-Preference reason: runny nose	流鼻涕	l
-Preference reason: sacred law	神圣的戒律	l
-Preference reason: salt	盐	l
-Preference reason: salty flavor	咸味	l
-Preference reason: sand expelling	排砂	l
-Preference reason: sand pouch	沙袋	l
-Preference reason: sandy body	沙子构成的身体	l
-Preference reason: sausages	香肠	l
-Preference reason: savageness	野蛮的性情	l
-Preference reason: scalchop	贝壳刀	l
-Preference reason: scalchops	贝壳刀	l
-Preference reason: scales	鳞片	l
-Preference reason: scarf	围巾	l
-Preference reason: scent	香味	l
-Preference reason: schools	鱼群	l
-Preference reason: scowl	皱眉的神情	l
-Preference reason: scraps	碎片	l
-Preference reason: scream	尖叫	l
-Preference reason: scythe like tail	镰刀般的尾巴	l
-Preference reason: scythes	镰刀	l
-Preference reason: seamitars	贝壳长刀	l
-Preference reason: seasonal changing	季节变化	l
-Preference reason: seedling	幼苗	l
-Preference reason: seeds	种子	l
-Preference reason: segments	身体节段	l
-Preference reason: self preservation	自我保护	l
-Preference reason: selfish disposition	自私的性格	l
-Preference reason: sense of hearing	听觉	l
-Preference reason: sense of pride	自豪感	l
-Preference reason: sense of rhythm	节奏感	l
-Preference reason: sense of smell	嗅觉	l
-Preference reason: sense of taste	味觉	l
-Preference reason: serpentine body	蛇形的身体	l
-Preference reason: serrated beak	锯齿状的喙	l
-Preference reason: serrated claws	锯齿状的爪子	l
-Preference reason: serrated fangs	锯齿状的獠牙	l
-Preference reason: shadow shifting	变幻影子的本领	l
-Preference reason: shadowy body	影子般的身体	l
-Preference reason: shaggy fur	毛茸茸的毛皮	l
-Preference reason: shapes	形状	l
-Preference reason: sharing	分享	l
-Preference reason: sharp cries	尖锐的叫声	l
-Preference reason: sharp edges	锋利的边缘	l
-Preference reason: sharp fangs	锋利的獠牙	l
-Preference reason: sharp leaves	锋利的叶子	l
-Preference reason: sharp quills	锋利的硬刺	l
-Preference reason: sharp teeth	锋利的牙齿	l
-Preference reason: sharp wings	锋利的翅膀	l
-Preference reason: sheer height	惊人的身高	l
-Preference reason: shell	壳	l
-Preference reason: shells	壳	l
-Preference reason: shield	盾	l
-Preference reason: shifting colors	变换的颜色	l
-Preference reason: shimmering scales	闪耀的鳞片	l
-Preference reason: shining eyes	闪亮的眼睛	l
-Preference reason: short necks	短脖子	l
-Preference reason: shouting	喊叫	l
-Preference reason: sickle-like tail	镰刀状的尾巴	l
-Preference reason: silk traps	丝网陷阱	l
-Preference reason: silky shell	丝质外壳	l
-Preference reason: silly worried expression	傻乎乎的担心表情	l
-Preference reason: simple taste	朴实的味道	l
-Preference reason: simpleness	朴实的风味	l
-Preference reason: singing	歌唱	l
-Preference reason: singing sound	歌声	l
-Preference reason: single eye	独眼	l
-Preference reason: singular ear	单耳	l
-Preference reason: sinister energy	邪恶的能量	l
-Preference reason: sinus clearing	通鼻的功效	l
-Preference reason: sixth sense	第六感	l
-Preference reason: size	体型	l
-Preference reason: skillful misdirection	巧妙的误导	l
-Preference reason: skull	颅骨	l
-Preference reason: skull helmet	头骨头盔	l
-Preference reason: skull marking	头骨标记	l
-Preference reason: slacking	偷懒	l
-Preference reason: sleeping face	睡脸	l
-Preference reason: slender body	修长的身材	l
-Preference reason: slimy film	粘糊糊的薄膜	l
-Preference reason: slitted eyes	细缝般的眼睛	l
-Preference reason: sludge	污泥	l
-Preference reason: small size	小体型	l
-Preference reason: small stature	娇小的体型	l
-Preference reason: small wings	小翅膀	l
-Preference reason: smell	气味	l
-Preference reason: smiling pattern	微笑图案	l
-Preference reason: smooth body	光滑的身体	l
-Preference reason: smoothness	光滑的表面	l
-Preference reason: snake like body	蛇一样的身体	l
-Preference reason: snout	吻部	l
-Preference reason: snowflake shape	雪花形状	l
-Preference reason: soft fur	柔软的毛皮	l
-Preference reason: soil consuming	吃土的习性	l
-Preference reason: solidarity	团结	l
-Preference reason: solitary nature	独居的习性	l
-Preference reason: sombrero	阔边帽	l
-Preference reason: song	歌曲	l
-Preference reason: soothing fragrance	令人舒畅的芳香	l
-Preference reason: soothing sound	舒缓的声音	l
-Preference reason: sour flavor	酸味	l
-Preference reason: sour flavored juice	酸味果汁	l
-Preference reason: sour skin	酸味的果皮	l
-Preference reason: sourness	酸味	l
-Preference reason: space controlling ability	空间掌控能力	l
-Preference reason: sparking	火花四溢	l
-Preference reason: sparks	火花	l
-Preference reason: special aura	特殊的气场	l
-Preference reason: special power	特殊的力量	l
-Preference reason: speed	速度	l
-Preference reason: spherical apparatus	球形装置	l
-Preference reason: spiciness	辣度	l
-Preference reason: spicy aroma	辛辣香气	l
-Preference reason: spicy chemicals	辣味成分	l
-Preference reason: spicy flavor	辣味	l
-Preference reason: spicy flavored juice	辣味果汁	l
-Preference reason: spicy teeth	蕴含辣味成分的牙齿	l
-Preference reason: spicy warmth	辛辣的暖意	l
-Preference reason: spiked pincers	带刺的钳子	l
-Preference reason: spiked shell	带刺的贝壳	l
-Preference reason: spikes	尖刺	l
-Preference reason: spiky fur	针刺般的毛发	l
-Preference reason: spines	尖刺	l
-Preference reason: spinning	旋转	l
-Preference reason: spiny shell	刺壳	l
-Preference reason: spiral	螺旋	l
-Preference reason: spiral tail	螺旋状的尾巴	l
-Preference reason: spirit	精神	l
-Preference reason: spoon bending	弯曲汤匙的能力	l
-Preference reason: spoons	勺子	l
-Preference reason: sprig chewing	咀嚼小树枝	l
-Preference reason: spring like legs	像弹簧一样的腿	l
-Preference reason: spring shaped tail	弹簧状尾巴	l
-Preference reason: springy tentacles	有弹性的触手	l
-Preference reason: sprout	嫩芽	l
-Preference reason: squishy bodies	软绵绵的身体	l
-Preference reason: squishy body	柔软的身体	l
-Preference reason: stability	稳定性	l
-Preference reason: staggering voice	令人畏缩的吼声	l
-Preference reason: stalking	跟踪	l
-Preference reason: stalks	茎	l
-Preference reason: stamina	耐力	l
-Preference reason: star like appearance	星星般的外表	l
-Preference reason: star like faceplate	星形面甲	l
-Preference reason: star patterns	星形图案	l
-Preference reason: star shaped growth	星形突起	l
-Preference reason: stare	凝视的目光	l
-Preference reason: starscape face	星空般的面孔	l
-Preference reason: starscape head	星空般的头部	l
-Preference reason: stature	身材	l
-Preference reason: steel feathers	钢铁羽毛	l
-Preference reason: steel head	钢铁般的头部	l
-Preference reason: steel-like hide	钢铁般的皮肤	l
-Preference reason: stem-like body	茎状的身体	l
-Preference reason: stick	木棒	l
-Preference reason: stick beating	敲打木棒	l
-Preference reason: stimulating seasoning	刺激性调味料	l
-Preference reason: stingers	毒刺	l
-Preference reason: stockiness	敦实的体型	l
-Preference reason: stone	石头	l
-Preference reason: stone body	岩石构成的身体	l
-Preference reason: stone like structure	类似石头的结构	l
-Preference reason: stone-like scales	石头般的鳞片	l
-Preference reason: stoney skin	石质皮肤	l
-Preference reason: stout shape	粗壮的形态	l
-Preference reason: stout stature	身材粗壮	l
-Preference reason: strange combination	奇怪的组合	l
-Preference reason: strange composition	奇特的身体构成	l
-Preference reason: strange mask	奇怪的面具	l
-Preference reason: streamer-like tail	飘带状的尾巴	l
-Preference reason: strength	力量	l
-Preference reason: striking color	引人注目的颜色	l
-Preference reason: stripes	条纹	l
-Preference reason: strong antlers	强壮的鹿角	l
-Preference reason: strong body	强壮的身体	l
-Preference reason: strong child	强壮的幼崽	l
-Preference reason: strong flavor	味道浓烈	l
-Preference reason: strong hugs	强有力的拥抱	l
-Preference reason: strong jaw	强壮的颌部	l
-Preference reason: strong petals	坚韧的花瓣	l
-Preference reason: strong pincers	强大的钳子	l
-Preference reason: strong punches	重拳	l
-Preference reason: strong richness	浓郁的滋味	l
-Preference reason: strong talons	强有力的脚爪	l
-Preference reason: strong thread	结实的丝线	l
-Preference reason: strong webs	坚固的网	l
-Preference reason: strumming	弹奏	l
-Preference reason: stubbornness	固执	l
-Preference reason: stunning glare	令人石化的凝视	l
-Preference reason: sturdy body	坚固的身体	l
-Preference reason: sturdy legs	健壮的双腿	l
-Preference reason: sublime fur	华美的毛皮	l
-Preference reason: sucker mouth	吸盘嘴	l
-Preference reason: suction cups	吸盘	l
-Preference reason: sun shape	太阳形状	l
-Preference reason: sun shaped head	太阳形头	l
-Preference reason: sunflower	向日葵	l
-Preference reason: super high-calorie missiles	超高热量导弹	l
-Preference reason: surfboard tail	冲浪板般的尾巴	l
-Preference reason: surfing	冲浪	l
-Preference reason: surprising speed	惊人的速度	l
-Preference reason: sweeping stalks	弯曲的茎	l
-Preference reason: sweeping tail	扫尾	l
-Preference reason: sweet aftertaste	回味甘甜	l
-Preference reason: sweet and creamy flesh	甜美绵密的果肉	l
-Preference reason: sweet and richness	甜美浓郁的滋味	l
-Preference reason: sweet and tangy flavor	酸甜的风味	l
-Preference reason: sweet flavor	甜味	l
-Preference reason: sweet flavored juice	甜味果汁	l
-Preference reason: sweet flavour	甜味	l
-Preference reason: sweet pulp	香甜的果肉	l
-Preference reason: sweet skin	香甜的表皮	l
-Preference reason: sweet smell	香味	l
-Preference reason: sweet-smelling flowers	芬芳的花朵	l
-Preference reason: sweet-smelling gas	带甜香的气体	l
-Preference reason: sweetly spicy skin	甜辣的果皮	l
-Preference reason: sweetness	甜味	l
-Preference reason: swiftness	迅捷	l
-Preference reason: swimming ability	游泳能力	l
-Preference reason: sword	剑	l
-Preference reason: sword fangs	剑牙	l
-Preference reason: sword like leek	剑般的大葱	l
-Preference reason: swords	剑	l
-Preference reason: symbol of gratitude	感恩的象征	l
-Preference reason: symbol of love	爱的象征	l
-Preference reason: symbol of luck	幸运的象征	l
-Preference reason: symbol of prosparity	繁荣的象征	l
-Preference reason: symbol of victory	胜利的象征	l
-Preference reason: synchronizing	同步化	l
-Preference reason: syrpents	糖浆蛇	l
-Preference reason: syrup	糖浆	l
-Preference reason: syrupy flavour	糖浆味	l
-Preference reason: tablet shell	石板状的外壳	l
-Preference reason: tail	尾巴	l
-Preference reason: tail ball	尾端的球体	l
-Preference reason: tail claw	尾部的爪子	l
-Preference reason: tail hand	尾巴上的手	l
-Preference reason: tail hands	尾巴上的手	l
-Preference reason: tail head	尾部的头	l
-Preference reason: tantrums	发脾气	l
-Preference reason: tap dancing	踢踏舞	l
-Preference reason: tart flavour	酸味	l
-Preference reason: taste	味道	l
-Preference reason: taste?	未知口味	l
-Preference reason: tastiness	美味	l
-Preference reason: tasty fruit	美味的果实	l
-Preference reason: teamwork	团队合作	l
-Preference reason: teamwork with Dondozo	与吃吼霸的团队合作	l
-Preference reason: teamwork with Tatsugiri	与米立龙的团队合作	l
-Preference reason: technique	技术	l
-Preference reason: teeth	牙齿	l
-Preference reason: telekinetic ability	念动力	l
-Preference reason: teleporting	传送	l
-Preference reason: temper	脾气	l
-Preference reason: temperment	脾性	l
-Preference reason: tenacious nature	顽强的本性	l
-Preference reason: tenacity	坚韧	l
-Preference reason: tendancy to carve into tree roots	刮开树根的习性	l
-Preference reason: tendancy to expel its organs	吐出内脏的习性	l
-Preference reason: tendancy to flock	结群的习性	l
-Preference reason: tendancy to stand on one foot	单脚站立的习性	l
-Preference reason: tendency to windmill their arms	像风车一样转动手臂的习性	l
-Preference reason: tensile strength	抗拉强度	l
-Preference reason: tentacles	触手	l
-Preference reason: terrible majesty	可怕的威严	l
-Preference reason: terrifying features	骇人的外貌	l
-Preference reason: their ability to create sandstorms	制造沙尘暴的能力	l
-Preference reason: thermal vision	热感应视觉	l
-Preference reason: thick fur	厚厚的皮毛	l
-Preference reason: thievery	偷窃的习性	l
-Preference reason: third eye	第三只眼	l
-Preference reason: thorns	尖刺	l
-Preference reason: throat sac	喉囊	l
-Preference reason: throwing stars	飞镖	l
-Preference reason: tidiness	整洁	l
-Preference reason: time controlling ability	时间控制能力	l
-Preference reason: time travelling	时间旅行	l
-Preference reason: timid nature	胆怯的本性	l
-Preference reason: tingling to the touch	触碰时的刺痛感	l
-Preference reason: tiny hooks	小钩子	l
-Preference reason: tiny leaves	小叶子	l
-Preference reason: tochukaso shell	冬虫夏草构成的背壳	l
-Preference reason: tochukasos	冬虫夏草	l
-Preference reason: tomboy personality	假小子性格	l
-Preference reason: tongue	舌头	l
-Preference reason: tongue like flame	舌头般的火焰	l
-Preference reason: tongue scarf	舌头围巾	l
-Preference reason: toothy grin	龇牙咧嘴的笑容	l
-Preference reason: toothy smile	露齿的笑容	l
-Preference reason: top-shaped pieces	陀螺状的身体部件	l
-Preference reason: tough shell	坚韧的外壳	l
-Preference reason: tough skin	坚韧的皮肤	l
-Preference reason: toxic chain	毒锁链	l
-Preference reason: toxic gas	有毒气体	l
-Preference reason: trailing cloud	身下的云团	l
-Preference reason: tranquillity	宁静	l
-Preference reason: treads	履带	l
-Preference reason: tree	树	l
-Preference reason: tree controlling	操纵树木的能力	l
-Preference reason: tree like appearance	树状外观	l
-Preference reason: tree stump	树桩	l
-Preference reason: trembling movement	震动大地的步伐	l
-Preference reason: troops	成群结队的习性	l
-Preference reason: trunk	象鼻	l
-Preference reason: tuft	头顶的毛簇	l
-Preference reason: tunneling	掘洞的习性	l
-Preference reason: tusks	獠牙	l
-Preference reason: tusks made of ice	冰晶长牙	l
-Preference reason: twigs	树枝	l
-Preference reason: twisting branches	曲折的树枝	l
-Preference reason: twisting shape	扭曲的形状	l
-Preference reason: twisting stalks	扭曲的茎	l
-Preference reason: umami	鲜味	l
-Preference reason: undulating wings	波浪般摆动的翅膀	l
-Preference reason: unsociable demeanor	不合群的举止	l
-Preference reason: use as a whistle	用作哨子的功能	l
-Preference reason: use of rocks as ammo	使用岩石作为弹药	l
-Preference reason: use of seeds as ammo	使用种子作为弹药	l
-Preference reason: valiance	勇敢	l
-Preference reason: vampiric appearance	吸血鬼外观	l
-Preference reason: variety of smells	各种气味	l
-Preference reason: varying composition	不同的成分	l
-Preference reason: versatility	灵活多变的本领	l
-Preference reason: vibrating	产生振动的能力	l
-Preference reason: viciousness	凶暴的性情	l
-Preference reason: vines	藤蔓	l
-Preference reason: violent nature	凶暴的天性	l
-Preference reason: viscous fluid	粘性流体	l
-Preference reason: vitality	活力	l
-Preference reason: vivid color	色彩鲜艳	l
-Preference reason: vivid red color	鲜红色	l
-Preference reason: voice	嗓音	l
-Preference reason: waddle	摇摆的步姿	l
-Preference reason: wall locking	相互连成蜂墙的习性	l
-Preference reason: wand	魔杖	l
-Preference reason: warm touch	温暖的触感	l
-Preference reason: warmth	温暖	l
-Preference reason: warrior pride	战士的骄傲	l
-Preference reason: water bubble	水泡	l
-Preference reason: water shooting tail	喷水的尾巴	l
-Preference reason: water skating	滑水	l
-Preference reason: water spraying tail	喷水的尾巴	l
-Preference reason: waxy berries	带蜡质的浆果	l
-Preference reason: webbed hands and feet	有蹼的手和脚	l
-Preference reason: well-rounded flavor	味道圆润	l
-Preference reason: wheel	车轮	l
-Preference reason: whip like tails	像鞭子一样的尾巴	l
-Preference reason: whips	鞭子	l
-Preference reason: whiskers	胡须	l
-Preference reason: wicked thorns	凶险的尖刺	l
-Preference reason: wide mouth	宽嘴	l
-Preference reason: willpower	意志	l
-Preference reason: wine	果酒	l
-Preference reason: wing patterns	翅膀图案	l
-Preference reason: wings	翅膀	l
-Preference reason: wish granting	实现愿望的能力	l
-Preference reason: wiskers	胡须	l
-Preference reason: witch like appearance	巫婆般的外表	l
-Preference reason: witch's hat	女巫的帽子	l
-Preference reason: wobbly body	摇摇晃晃的身体	l
-Preference reason: wool	羊毛	l
-Preference reason: woolly appearance	毛茸茸的外表	l
-Preference reason: wrapping like leaves	裹在身上的叶片	l
-Preference reason: yeast breath	含有酵母的吐息	l
-Preference reason: yummy cherries	美味的樱桃	l
-Preference reason: yummy hearts	美味的菜心	l
-Preference reason: zen mode	达摩模式	l
-Preference reason: zippers	拉链	l
-Preference reason: コメント さくせいちゅう	说明编写中	l

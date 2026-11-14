@@ -49,6 +49,8 @@ RUNTIME_FILES = (
     "data/runtime/phrase-pinyin-data/large_pinyin.txt",
     "data/runtime/phrase-pinyin-data/LICENSE", "data/runtime/phrase-pinyin-data/SOURCE",
     "data/runtime/search-concepts.tsv",
+    "data/runtime/search-lexemes.tsv", "data/runtime/search-native-bindings.tsv",
+    "data/runtime/search-relations.tsv", "data/runtime/search-predicates.toml",
 )
 LICENSE_FILES = (
     "data/upstream/licenses/dfi18n-data.LICENSE.md", "data/upstream/licenses/dfzh-data.LICENSE.md",

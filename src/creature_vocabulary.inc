@@ -516,7 +516,7 @@ static const std::unordered_map<std::string_view, std::string_view>
     {"caddisfly", "石蛾"},
     {"camel", "骆驼"},
     {"capybara", "水豚"},
-    {"cardinal", "红雀"},
+    {"cardinal", "主红雀"},
     {"cat", "猫"},
     {"caterpillar", "毛虫"},
     {"cavy", "豚鼠"},
