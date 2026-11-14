@@ -28,7 +28,7 @@ Windows 与 Linux 共用汉化数据载入优化：TOML 规则图按节点及引
 
 汉化启动时优先读取游戏根目录的 `dfcn_config.ini`；文件不存在时，从订阅目录的 `DFCN/dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖。订阅目录中的 `config.ini` 保留为默认模板，复制失败时作为回退配置。手动安装、路径示例与卸载方法见 [安装说明](workshop/content/INSTALL.txt)。
 
-**GitHub Release：**从 [v53.17-20261114.2](https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261114.2) 下载 `DFCN-Windows-x64-minimal.zip`，解压后将全部内容按原有目录结构复制到游戏根目录，包括 `dfhooks.dll`、`dfhooks_dfcn.ini` 和整个 `dfcn` 文件夹。汉化设置同样使用游戏根目录的 `dfcn_config.ini`，首次启动时由 `dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖；复制失败时读取默认模板。完整变化见 Release 更新日志。
+**GitHub Release：**从 [v53.17-20261115](https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261115) 下载 `DFCN-Windows-x64-minimal.zip`，解压后将全部内容按原有目录结构复制到游戏根目录，包括 `dfhooks.dll`、`dfhooks_dfcn.ini` 和整个 `dfcn` 文件夹。汉化设置同样使用游戏根目录的 `dfcn_config.ini`，首次启动时由 `dfcn/data/runtime/config.ini` 复制生成，已有文件不会覆盖；复制失败时读取默认模板。完整变化见 Release 更新日志。
 
 Windows 汉化核心与翻译数据按汉化模块所在目录定位，支持将运行文件保留在工坊目录；用户配置统一使用游戏根目录的 `dfcn_config.ini`。游戏中按 **Shift+F10** 开启或关闭汉化，保留当前核心与数据；按 **Shift+F5** 关闭再开启汉化时，重新加载核心与数据。数据仅在启动、**Shift+F5** 重新开启或 **Ctrl+Shift+F10** 显式刷新时加载，不自动检查文件变化。安装仅添加汉化自身文件，不改写磁盘上的游戏本体、RAW 或存档；取消订阅不会删除已复制的入口文件和 `dfcn_config.ini`，卸载时需手动移除自己安装的汉化文件。
 
@@ -96,8 +96,8 @@ Linux 宿主打包已有的 Windows 交叉编译产物时，使用固定 Python 
 Windows 工坊包和六个公开扩展 ZIP，不编译或生成数据。
 工坊发布工具 `tools/publish-workshop.py` 支持 Linux 已安装的 Steamworks 库及现有登录会话。
 
-当前 Windows 发布版本为 **v53.17-20261114**，变化见
-[更新日志](docs/releases/v53.17-20261114.md)。
+当前 Windows 发布版本为 **v53.17-20261115**，变化见
+[更新日志](docs/releases/v53.17-20261115.md)。
 
 ## Linux 交叉编译 Windows x64
 

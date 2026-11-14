@@ -10,8 +10,8 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[h2]DFCN v53.17-20261114.2[/h2]\n[list]\n[*]改进 Windows 53.17 存档列表的地名翻译，依据存档中的原始名称结构生成译名，与世界内地名保持一致；没有既有名称索引的旧存档也能自动读取，无需先进入世界或重新保存。\n[*]复用已读取的存档名称信息；无法确认名称来源时保留完整英文，不再额外追加“堡”，手写存档名称保持原样。\n[*]修复巢箱、展示柜、卷轴轴等复合物品名称被错误拆词的问题，统一建造、库存及装备列表中的材料与物品名称翻译。\n[*]修复 Dwarvemon 与 Dwarvemon Beta 汉化扩展中“巢穴”材料干扰巢箱等物品翻译的问题，并修复材料规则引起的全局漏译。\n[*]补齐 Dwarvemon 与 Dwarvemon Beta 中复数形式“巢穴球”的翻译。\n[/list]\n",
-  "release_tag": "v53.17-20261114.2",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261114.2",
+  "changelog": "[h2]DFCN v53.17-20261115[/h2]\n[list]\n[*]修复 Windows 53.17 存档列表在预读无有效名称索引的存档时可能闪退的问题。\n[*]存档列表仅依据有效名称索引或已载入世界中的名称信息翻译地名；缺少这些信息时保留英文释义，不再额外预读存档。正常载入或保存世界时仍会建立名称索引，自定义存档名称保持原样。\n[*]补齐贸易站“交易员：”标签的中文翻译。\n[/list]\n",
+  "release_tag": "v53.17-20261115",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261115",
   "github_url": "https://github.com/pokemonchw/dfcn"
 }
