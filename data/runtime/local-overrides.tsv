@@ -281,6 +281,7 @@ Broker can access depot	交易员可以到达贸易站	wi
 Broker cannot access depot	交易员无法到达贸易站	wi
 You do not have a broker.	尚未任命交易员。	wi
 Trade depot broker label	交易员：	l
+Broker:	交易员：	wl
 Distance:	距离：	w
 Distance: {d}	距离：{d}	wt
 # Depot delivery status owns the count and noun together, not Awaiting/items fragments.
