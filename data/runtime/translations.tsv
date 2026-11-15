@@ -50837,7 +50837,7 @@ Forgotten beast sensitivity (less = sooner)	遗忘猛兽敏感度（越低越早
 Fortress activity: Carve downward staircase	挖掘下行楼梯	li
 Fortress activity: Extract from land animal	提炼陆地动物	li
 Fortress activity: Make bismuth bronze bars	制作铋青铜锭	li
-Fortress activity: Make eight wooden blocks	制作八个木制锭块	li
+Fortress activity: Make eight wooden blocks	制作八个木块	li
 Fortress activity: Make wooden training axe	制作木制训练斧	li
 Fortress activity: Mill seeds/nuts to paste	将种子/坚果磨浆	li
 Fortress activity: Organize Combat Training	组织战斗训练	li
@@ -53866,7 +53866,7 @@ Fortress activity: Carve up/down staircase	挖掘上下楼梯	li
 Fortress activity: Cut raw glass into gems	将粗糙玻璃切割成宝石	li
 Fortress activity: Glaze clay/stone statue	为黏土/石质雕像上釉	li
 Fortress activity: Hunt for small creature	猎捕小型生物	li
-Fortress activity: Make four wooden blocks	制作四个木制锭块	li
+Fortress activity: Make four wooden blocks	制作四个木块	li
 Fortress activity: Make nickel silver bars	制作镍银锭	li
 Fortress activity: Make pineapple leaf dye	制作菠萝叶染料	li
 Fortress activity: Make spiked wooden ball	制作尖刺木制圆球	li
@@ -130499,7 +130499,7 @@ Attribute points: {d}	属性点数：{d}	wtl
 Author: Bay {d} Games	作者：Bay {d} Games	wt
 Average spatial sense	空间感知一般	wil
 Avoid conflict today.	今天要避免冲突。	hP
-Bars: other materials	锭：其他材料	wi
+Bars: other materials	条：其他材料	wi
 Believe no one today.	今天不要相信任何人。	hP
 Below average agility	敏捷低于平均	wil
 Below average empathy	同理心低于平均	wil
@@ -143154,7 +143154,7 @@ Be compassionate.	心怀怜悯。	hP
 Be playful today.	今天不妨玩乐一番。	hP
 Better Combat Log	优化战斗日志	w
 Beware their {s}!	小心他们的{s1}！	hPt
-Blocks and stones	锭块与石料	wi
+Blocks and stones	块与石料	wi
 Bowyer's Workshop	制弓工坊	wi
 Brook: Bandedglum	小溪: 条纹忧郁	w
 Brook: Giftwinnow	溪流:礼物筛选	w
@@ -152186,7 +152186,7 @@ Available Items	可用物品
 Average Profile	身形一般	hP
 Average agility	敏捷一般	wil
 Average empathy	同理心一般	wil
-Bars and Blocks	锭块	wi
+Bars and Blocks	条和块	wi
 Be with friends	与朋友相处	w
 Beware a rival.	提防对手。	hP
 Broker's Office	交易员办公室	wli
@@ -170995,8 +170995,8 @@ Armorsmiths	盔甲匠	wi
 Astronomers	天文学家	wi
 Autumn(now)	秋季（当前）	wi
 Bags (Yarn)	袋子（毛线）
-Bars/Blocks	锭块	wi
-Bars: metal	锭：金属	wi
+Bars/Blocks	条和块	wi
+Bars: metal	条：金属	wi
 Be a Parent	养育孩子	w
 Be creative	发挥创造力	w
 Be patient.	耐心一些。	hP
@@ -178652,7 +178652,7 @@ authority	权力	wi
 avalanche	雪崩	wi
 axe blade	斧刃	wi
 backpacks	背包	wi
-bar/block	锭块	wi
+bar/block	条／块	wi
 barbarian	野蛮人	wi
 barbarity	野蛮	wi
 barn owls	仓鸮	wi
@@ -183906,7 +183906,7 @@ blazes	火焰	wi
 blight	枯萎	r
 blight	枯萎	wi
 bloats	肿胀	wi
-blocks	锭块	wi
+blocks	块	wi
 blocky	呈块状	hv
 blocky	块状	wi
 bloods	血	wi

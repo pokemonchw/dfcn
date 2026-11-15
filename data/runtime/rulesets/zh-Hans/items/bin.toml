@@ -18,7 +18,7 @@ name = "main"
 name = "contents"
 [rulesets.rules]
 "ammo" = "弹药"
-"bar/block" = "锭块"
+"bar/block" = "条／块"
 "finished goods" = "成品"
 "{::items::coin::main}" = "{::items::coin::main}"
 "{::items::sheet::main}" = "{::items::sheet::main}"

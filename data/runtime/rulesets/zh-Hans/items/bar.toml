@@ -2,7 +2,7 @@ base = "items::bar"
 
 [[rulesets]]
 [rulesets.rules]
-"bars" = "锭"
+"bars" = "条"
 "{::materials}" = "{::materials}"
 "{inorganic}" = "{inorganic}"
 "{coal}" = "{coal}"

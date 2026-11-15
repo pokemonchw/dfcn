@@ -315,8 +315,8 @@ Usable weapons	可用武器	wi
 Unusable weapons	不可用武器	wi
 Undyed	未染色	wi
 Dyed	已染色	wi
-Bars: metal	锭：金属	wi
-Bars: other materials	锭：其他材料	wi
+Bars: metal	条：金属	wi
+Bars: other materials	条：其他材料	wi
 Blocks: metal	块：金属	wi
 Blocks: stone/clay	块：石材／黏土	wi
 Blocks: other materials	块：其他材料	wi
@@ -3716,11 +3716,10 @@ Ropes (Yarn)	绳索（毛线）
 Cloth (Yarn)	布（毛线）	wi
 Thread (Yarn)	线（毛线）	wi
 Stone Blocks	石块
-# Generic stockpile/item-type headings group ingots and solid blocks together.
-# Concrete embark item rows have their own material-aware naming path, so this
-# shared classification can remain the concise umbrella term `锭块`.
-blocks	锭块	wi
-Bars/Blocks	锭块	wi
+# Stockpile categories distinguish bars (条) from blocks (块).
+# Concrete metal bars retain their material-aware ingot names (金属锭).
+blocks	块	wi
+Bars/Blocks	条和块	wi
 # Stockpile custom settings use sentence-case compound category/filter labels.
 # Match complete captions before shorter words such as Other or Furniture.
 Furniture/siege ammo	家具／攻城弹药	wi
@@ -3737,7 +3736,7 @@ Max wheelbarrows	手推车上限	wi
 Max	上限	w
 # Stockpile type controls: whole captions, including the native two-row labels.
 # Reuse the existing item categories and Customize terminology, not name sounds.
-Bars and Blocks	锭块	wi
+Bars and Blocks	条和块	wi
 Finished Goods	成品	wi
 Custom	自定义	wi
 Ammo	弹药	wi
@@ -13387,11 +13386,11 @@ and added masterful cloth to a {i} within {p}	并在{p1}为{i1}添加了杰作�
 {a} added masterful cloth to a {i} within {p}	{a1}在{p1}为{i1}添加了杰作级的布装饰	ht
 Fortress activity: Make pomegranate rind dye	制作石榴果皮染料	li
 added masterful cloth to a {i} in the wilds.	在荒野中为{i1}添加了杰作级的布装饰。	ht
-Fortress activity: Make eight wooden blocks	制作八个树木锭块	li
+Fortress activity: Make eight wooden blocks	制作八个木块	li
 Fortress activity: Make wooden training axe	制作树木训练斧	li
 added masterful cloth to a {i} in the wilds	在荒野中为{i1}添加了杰作级的布装饰	ht
 Announcement combat combat-tissue []: wood	木材	l
-Fortress activity: Make four wooden blocks	制作四个树木锭块	li
+Fortress activity: Make four wooden blocks	制作四个木块	li
 Fortress activity: Make spiked wooden ball	制作尖刺树木圆球	li
 Fortress activity: Make wooden animal trap	制作树木动物陷阱	li
 Fortress activity: Make wooden armor stand	制作树木盔甲架	li

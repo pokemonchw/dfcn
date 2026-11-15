@@ -13,5 +13,5 @@ optional = true
 [[rulesets]]
 name = "main"
 [rulesets.rules]
-"blocks" = "锭块"
+"blocks" = "块"
 "bricks" = "砖块"
