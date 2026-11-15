@@ -154,6 +154,18 @@ bool Overlay::load_site_name_imagery() {
     return !site_name_imagery_.empty();
 }
 
+NativeSavedNameVocabulary Overlay::saved_name_vocabulary() const {
+    NativeSavedNameVocabulary result;
+    result.english = history_english_name_forms_;
+    constexpr std::array<std::string_view, 4> languages = {"DWARF", "ELF", "GOBLIN", "HUMAN"};
+    for (const auto &[spelling, meanings] : native_name_word_languages_)
+        for (const auto &[word, mask] : meanings)
+            for (size_t language = 0; language < languages.size(); ++language)
+                if (mask & (1u << language))
+                    result.original[std::string(languages[language])].emplace(word, spelling);
+    return result;
+}
+
 bool Overlay::capture_name_word_forms(NativeHistoryName &name) const {
     // Read the exact saved WORD/POS form. This annotates serialized slots;
     // it neither infers their positions nor translates the resulting name.
@@ -380,12 +392,16 @@ std::optional<std::string> Overlay::translate_saved_name(
                 identity = std::move(fortress);
             else identity = resolve_site_reference_name(source.original);
         }
-        const auto english = identity ? translate_english_site_name(
+        const std::string gloss = native_text_to_utf8(pair->gloss);
+        auto english = identity ? translate_english_site_name(
             pair->gloss, &*identity, "堡") : std::nullopt;
+        // A missing index is recovered from this save's serialized WORD/POS
+        // record. Until that owned snapshot is ready, retain the gloss: the
+        // entity-name parser must not choose a different sense from spelling.
         const auto native = identity && identity->site_id >= 0
             ? site_name_full_transliteration(*identity)
             : transliterate_site_spelling(pair->native_name);
-        return native + "，“" + english.value_or(native_text_to_utf8(pair->gloss)) + "”";
+        return native + "，“" + english.value_or(gloss) + "”";
     }
     // A header without an English name retains only its original spelling.
     // It supplies neither WORD/POS nor a site subtype, so do not infer a

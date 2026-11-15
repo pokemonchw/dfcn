@@ -37,6 +37,10 @@ static std::optional<NativeSaveNameSource> capture_native_save_name_source(
                     found->second.world_id2 == result.world_id2)
                 result.identity = found->second.identity;
         }
+#ifdef _WIN32
+        if (!result.authored && !result.identity && native_pe_5317())
+            native_saved_sites::recover_header_name(header, result);
+#endif
         return result;
     }
     return std::nullopt;

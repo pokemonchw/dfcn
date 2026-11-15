@@ -1194,8 +1194,13 @@ struct NativeSaveNameSource {
     uint32_t world_id1 = 0, world_id2 = 0;
     std::shared_ptr<const NativeHistoryName> identity;
 };
+struct NativeSavedNameVocabulary {
+    std::unordered_map<std::string, std::array<std::string, 9>> english;
+    std::unordered_map<std::string, std::unordered_map<std::string, std::string>> original;
+};
 static std::mutex g_native_save_name_mutex;
 static std::unordered_map<uintptr_t, NativeSaveNameSource> g_native_save_header_names;
+static std::atomic_uint64_t g_native_save_name_revision{0};
 static std::optional<NativeSaveNameSource> capture_native_save_name_source(
     uintptr_t source, std::string_view complete);
 static bool native_save_world_is_current(const NativeSaveNameSource &source);
@@ -3974,6 +3979,7 @@ public:
     int native_knowledge_required_rows(const std::string &source, int width,
         bool personality = false, bool health = false, bool thoughts = false) const;
     bool capture_name_word_forms(NativeHistoryName &name) const;
+    NativeSavedNameVocabulary saved_name_vocabulary() const;
 
 private:
     std::vector<Match> announcement_log_prepared_matches_;

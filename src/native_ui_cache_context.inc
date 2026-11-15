@@ -1077,6 +1077,7 @@ static std::optional<std::string> native_main_ui_cache_context() {
     key.graphics(native_graphics());
     key.knowledge_sources();
     key.text("main"); key.current();
+    key.value(g_native_save_name_revision.load(std::memory_order_acquire));
     if (!key.complete) return std::nullopt;
     key.other_sources();
     // The base layer's character reader changes when another component

@@ -1,5 +1,6 @@
-// Observe native world-site serialization, not byte patterns or English words.
-// The list reuses its own file_compressorst only for an indexed name record.
+// Observe native world-site serialization. The list reuses its own
+// file_compressorst only for an indexed name record. Missing indexes are
+// recovered separately from owned file bytes, never with a native world load.
 // Never invoke a world/region deserializer from the title-screen list: those
 // readers consume unrelated polymorphic objects and require a full load context.
 #ifdef _WIN32
@@ -185,8 +186,10 @@ static bool identify_fortress(Record &record, const NativeSaveNameSource &source
     record.name = std::move(name);
     return true;
 }
+static std::mutex publish_mutex;
 static void publish(const Observed &state, const Record &record) {
     if (state.header_key.empty() || state.size < 8 || !record.name.has_name) return;
+    std::lock_guard lock(publish_mutex);
     const auto path = index_path(state.header_key, state.size);
     std::ostringstream output(std::ios::binary | std::ios::out);
     output.write("DFCNSS01", 8);
@@ -475,6 +478,7 @@ static void capture_copy(void *output, const void *input) {
     } catch (...) {}
 }
 } // namespace native_saved_sites
+#include "native_saved_site_index.inc"
 #endif
 
 static bool native_save_name_hook_active() {
@@ -493,6 +497,7 @@ static void uninstall_native_save_name_hook() {
             !raw_read_hook.uninstall("Native save read position") ||
             !raw_write_hook.uninstall("Native save write position")) return;
     { std::lock_guard lock(streams_mutex); streams.clear(); loaded.reset(); }
+    { std::lock_guard lock(recovered_mutex); recovered.clear(); }
 #endif
     std::lock_guard lock(g_native_save_name_mutex);
     g_native_save_header_names.clear();
