@@ -32209,7 +32209,7 @@ This event occurred on the {d}st Slate in the year {d}.	第{d2}年板岩月{d1}�
 This event occurred on the {d}th Slate in the year {d}.	第{d2}年板岩月{d1}日发生了这件事。	wtl
 To change the camera's elevation, roll the mouse wheel.	[C:2:0:1]滚动鼠标滚轮[C:7:0:0]，可以改变视角所在的高度层。	hq
 To change the camera's elevation, roll the mouse wheel.	滚动鼠标滚轮可改变镜头的高度层。	l
-Workshop mood sketch: pictures of rough gems and glass.	画着粗糙宝石和玻璃。	l
+Workshop mood sketch: pictures of rough gems and glass.	画着宝石原石和玻璃。	l
 Written on the item is a entitled {b}, authored by {n}.	物品上写有{n1}撰写的《{b1}》，作品类型未注明。	ht
 You already know the will of {p}. Let another day pass.	你已经知晓{p1}的意志。再等一天。	hPt
 You can limit work orders to a number of Workshops. You	你可以限定工作命令适用的工坊数量，也	wl
@@ -46925,7 +46925,7 @@ Why harm yourself for anybody else's benefit?	何必为了别人的好处损害�
 Why would I waste time thinking about myself?	我为什么要浪费时间琢磨自己？	hPD
 Wilderness irritation minimum (less = sooner)	荒野激怒值下限（越低越早来袭）
 Window is resizable (takes effect on restart)	窗口可调整大小 (重启后生效)	w
-Workshop mood sketch: pictures of rough gems.	画着粗糙宝石。	l
+Workshop mood sketch: pictures of rough gems.	画着宝石原石。	l
 Workshop recipe: format available leather/dye	可用皮革／染料：{d}	l
 Workshop recipe: kind tameable small creature	小型生物	l
 Workshop recipe: state folded sheet protector	用于保护折叠纸张	l
@@ -61729,7 +61729,7 @@ DFHack GUI Control tool: sort.candidates	贵族任命搜索（sort.candidates）
 DFHack GUI Control tool: sort.conviction	定罪对象筛选（sort.conviction）	l
 DFHack GUI Design: Auto-commit on click:	点击自动应用：	l
 DFHack GUI Design: Commit mirror changes	应用镜像	l
-DFHack GUI Item type selector: rough gem	粗糙宝石	l
+DFHack GUI Item type selector: rough gem	宝石原石	l
 DFHack GUI Notification settings: Toggle	切换	l
 DFHack GUI Quickfort: Current blueprint:	当前蓝图：	l
 DFHack GUI Quickfort: Load new blueprint	加载新蓝图	l
@@ -126247,7 +126247,7 @@ Credits: Tuuli Saarinen	Tuuli Saarinen	wl
 Crossbow, leather armor	十字弩（皮甲）	wli
 Current amount: {d}/{d}	当前施肥量：{d}/{d}	wtli
 Cut raw glass into gems	将粗糙玻璃切割成宝石	wi
-Cut rough gems here to 	在此切割粗糙宝石以提高其价值，	w
+Cut rough gems here to 	在此切割宝石原石以提高其价值，	w
 DFHack GUI Autodump: On	开启	l
 DFHack GUI Caption: Out	输出	l
 DFHack GUI Design: Add:	添加：	l
@@ -152434,7 +152434,7 @@ Right upper arm	右上臂	w
 Right upper leg	右大腿	w
 Rocky Wasteland	岩石荒漠
 Rotten raw hide	腐烂生皮	wi
-Rough gemstones	粗糙宝石	wi
+Rough gemstones	宝石原石	wi
 Royal Mausoleum	皇家陵寝	w
 Ruined hillocks	丘堡废墟	wi
 Ruled the World	已经统治世界	w
@@ -177899,7 +177899,7 @@ rope reeds	绳索苇	wi
 rose taupe	玫瑰褐色	wi
 rotten goo	腐烂的黏稠物制	hMi
 rotten goo	腐烂的稠血	wim
-rough gems	粗糙宝石	wi
+rough gems	宝石原石	wi
 round lime	圆橘	wi
 round-chin	圆下巴	wi
 routed {a}	击溃了{a1}	ht
@@ -178518,7 +178518,7 @@ Resilient	抗压能力强	w
 Restraint	束缚器具	wi
 Right ear	右耳	w
 Right eye	右眼	w
-Rough gem	粗糙宝石	wi
+Rough gem	宝石原石	wi
 Satisfied	满意	w
 Scorching	酷热
 Seed text	种子文本	w

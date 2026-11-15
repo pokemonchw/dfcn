@@ -2,8 +2,8 @@ base = "items::rough"
 
 [[rulesets]]
 [rulesets.rules]
-"rough gems" = "粗糙宝石"
+"rough gems" = "宝石原石"
 "raw green glass" = "粗糙绿玻璃"
 "raw clear glass" = "粗糙透明玻璃"
 "raw crystal glass" = "粗糙水晶玻璃"
-"rough {::gems::plural}" = "粗糙{::gems::plural}"
+"rough {::gems::plural}" = "{::gems::plural}原石"

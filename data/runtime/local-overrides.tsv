@@ -322,7 +322,8 @@ Blocks: stone/clay	块：石材／黏土	wi
 Blocks: other materials	块：其他材料	wi
 Stone/clay	石材／黏土	wi
 Metal ores	金属矿石	wi
-Rough gem	粗糙宝石	wi
+Rough gem	宝石原石	wi
+Cut rough gems here to 	在此切割宝石原石以提高其价值，	w
 Rough glass	粗糙玻璃	wi
 Cut gem	切割宝石	wi
 Cut stone	切割石材	wi
@@ -12547,8 +12548,8 @@ Workshop mood sketch: pictures of death.	画着死亡。	l
 Workshop mood sketch: pictures of a forest.	画着森林。	l
 Workshop mood sketch: pictures of glass.	画着玻璃。	l
 Workshop mood sketch: pictures of glass and burning wood.	画着玻璃和燃烧的木材。	l
-Workshop mood sketch: pictures of rough gems and glass.	画着粗糙宝石和玻璃。	l
-Workshop mood sketch: pictures of rough gems.	画着粗糙宝石。	l
+Workshop mood sketch: pictures of rough gems and glass.	画着宝石原石和玻璃。	l
+Workshop mood sketch: pictures of rough gems.	画着宝石原石。	l
 Workshop mood sketch: pictures of a quarry.	画着采石场。	l
 Workshop mood sketch: pictures of shining bars of metal.	画着闪耀的金属锭。	l
 Workshop mood sketch: pictures of cut gems.	画着切割宝石。	l
@@ -12590,7 +12591,7 @@ DFHack GUI Item type selector: none	无	l
 DFHack GUI Item type selector: (chain)	（链甲式）	l
 DFHack GUI Item type selector: No matches	无匹配项	l
 DFHack GUI Item type selector: cut gem	切割宝石	l
-DFHack GUI Item type selector: rough gem	粗糙宝石	l
+DFHack GUI Item type selector: rough gem	宝石原石	l
 DFHack GUI Item type selector: boulder	大圆石	l
 DFHack GUI Item type selector: instrument	乐器	l
 Wiltwonders	枯萎奇观	w
