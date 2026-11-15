@@ -159,6 +159,17 @@ static bool translation_complete_with_native_nicknames(
 
 #include "item_display_results.inc"
 
+bool Overlay::is_adjectival_art_epithet(std::string_view source) const {
+    // Use the installed language WORD/POS forms, not a generic translated
+    // term: an adjective-only name form cannot be an item's type or a caste.
+    const auto found = name_editor_word_forms_.find(lower(std::string(trim_view(source))));
+    return found != name_editor_word_forms_.end() && !found->second.empty() &&
+        std::all_of(found->second.begin(), found->second.end(),
+            [](const ProceduralNameMeaning &meaning) {
+                return meaning.part_of_speech == ProceduralNamePartOfSpeech::adjective;
+            });
+}
+
 // PE 53.16 0x147e82/0x147ec2/0x147efc identifies a named artifact by its
 // complete name followed by " the " and the material/type description from
 // the shared item formatter at 0xc65450. The name can be a
@@ -183,6 +194,7 @@ std::optional<std::string> Overlay::translate_named_art_item(
         const auto name_source = trim_view(source.substr(0, at));
         const auto item_source = trim_view(source.substr(at + 5));
         if (name_source.empty() || item_source.empty()) continue;
+        if (is_adjectival_art_epithet(item_source)) continue;
         // Figure elements use the same connector, but keep their personal-name
         // semantics in the symbol parser. An item can still carry a creature
         // material, such as harpy parchment, because its full suffix is typed.
@@ -212,6 +224,18 @@ std::optional<std::string> Overlay::translate_named_art_item(
         if (!depicted_item && (list_source.find(',') != std::string_view::npos ||
                 list_source.find(" and ") != std::string_view::npos) &&
                 !item_description_translation_complete(exact_literal_translation(item_source)))
+            continue;
+        // A personal epithet uses this same connector, e.g. "the Gloved".
+        // The general description-term fallback also accepts adjectives and
+        // name roots; translating that suffix does not prove an item type.
+        // Require a complete item/written-item production before treating the
+        // preceding name as an artifact. Statues/figurines retain their own
+        // typed subject grammar rather than entering the base-item parser.
+        if (!depicted_item &&
+                !translation_complete_with_native_nicknames(
+                    translate_item_caption_grammar(item_source), item_source) &&
+                !translation_complete_with_native_nicknames(
+                    translate_legends_written_item(item_source), item_source))
             continue;
         const auto item = translate_item_description_term(item_source);
         if (!translation_complete_with_native_nicknames(item, item_source)) continue;

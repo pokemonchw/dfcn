@@ -197,6 +197,14 @@ std::optional<std::string> Overlay::translate_symbol_element(
         for (size_t at = find_template_literal(value, " the ", 0, true);
              at != std::string_view::npos;
              at = find_template_literal(value, " the ", at + 5, true)) {
+            // A personal title such as "the Gloved" shares this connector.
+            // Resolve adjective-only RAW name forms with the same complete
+            // actor parser used by the deity sentence, before either the
+            // named-creature or named-item branch can split off the title.
+            if (!article_noun && is_adjectival_art_epithet(value.substr(at + 5))) {
+                const auto name = translate_legends_actor(value);
+                return complete(name) ? name : std::nullopt;
+            }
             const auto species = depicted_creature(value.substr(at + 5));
             if (!complete(species)) continue;
             const auto name = translate_legends_name(value.substr(0, at), true);

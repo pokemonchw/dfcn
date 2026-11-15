@@ -4368,6 +4368,7 @@ private:
     TranslationResult translate_fortress_item_caption_display(
         std::string_view source, bool bounded_button = false,
         bool building_material = false) const;
+    bool is_adjectival_art_epithet(std::string_view source) const;
     std::optional<std::string> translate_named_art_item(
         std::string_view source) const;
     std::optional<std::string> translate_written_item_caption(
