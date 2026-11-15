@@ -1,0 +1,5 @@
+edition	role	start_rva	end_rva	source
+reference	selected-description	0x66ec0	0x66ed2	imported throw followed by int3
+reference	job-header	0x66ec0	0x66ed2	imported throw followed by int3
+classic	selected-description	0x66e50	0x66e62	imported throw followed by int3
+classic	job-header	0x66e50	0x66e62	imported throw followed by int3

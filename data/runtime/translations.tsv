@@ -52258,6 +52258,7 @@ You may find very unpleasant environs here.	此地的环境可能会非常险恶
 You need a broker with the appraisal skill.	需要有估价技能的交易员。	wl
 You pick up the {i} and put it in your {i}.	你拾起了{i1}，并将其放入自己的{i2}中。	hPt
 You will wait, staying awake for {u} hours.	你将保持清醒，等待{u1}小时。	hPt
+You won't perform your action if you leave.	离开后将不会执行此次操作。	wl
 You've already searched this area recently.	你最近已经搜寻过此区域。	hP
 a long-dead corpse was convicted of a crime	一具久远的尸体被判定有罪	wi
 a scuffle between {a} and {a} in the wilds.	在荒野中，{a1}与{a2}的扭打。	htEi
@@ -107214,6 +107215,7 @@ I was out visiting the library.	我刚才去图书馆了。	hPD
 I will return it to {e} in {e}.	我会把它送回{e2}的{e1}。	hPtD
 I'm going to visit the library.	我正要去图书馆。	hPD
 I'm preparing to travel to {e}.	我正准备前往{e1}。	hPtD
+Image information for engraving	雕刻图像信息	wl
 Inaccessible from your location	无法从当前位置抵达	wli
 Information sheets ({d} of {d})	信息表 ({d} of {d})	wt
 Insurrection in {p} during {e}.	在{e1}期间，{p1}起义。	htEi
@@ -133073,6 +133075,7 @@ Disdains tranquility	轻视宁静	w
 Dismiss minor doubts	不在意些许疑虑	hP
 Do not alter actions	保持当前行动不变	hP
 Do not automate kiln	黏土窑不自动加工	wi
+Don't perform action	不执行操作	wl
 Don't waste my time.	别浪费我的时间。	hPD
 Drowning in sadness!	沉浸在悲伤之中！	hP
 Duel of {a} and {a}.	{a1}与{a2}的决斗。	htEi
@@ -133135,6 +133138,7 @@ Just think about it.	好好想想吧。	hPD
 Justice case: Murder	谋杀	l
 Justice plot: A plot	一项阴谋	l
 Justice plot: Abduct	绑架	l
+Let your mind wander	自由构思	wl
 Light combat (heard)	轻微战斗声（听到）	wl
 Loading adventure...	正在加载冒险数据……	w
 Loading art forms...	正在加载艺术形式……	w
@@ -135794,6 +135798,7 @@ Ceremony within {p}	在{p1}，仪式	htEi
 Change the weather,	调整天气、	l
 Charge to serve {e}	责令为{e1}效力	hPt
 Chief Medical Dwarf	首席矮人医师	hq
+Civilization symbol	文明徽记	wl
 Click or select via	点击或通过选择	w
 Climb down from {s}	从{s1}向下攀爬	hPt
 Climb {s} ({s}/Air)	攀爬{s1}（{s2}／空气）	hPt
@@ -143333,6 +143338,7 @@ I yield! I yield!	我投降！我投降！	hPD
 I'd like the {s}.	我要{s1}。	hPtD
 I'm going to {e}.	我正前往{e1}。	hPtD
 I'm proud of you.	我为你感到骄傲。	hPD
+Image information	图像信息	wl
 Imported Clothing	进口服装	hH
 Imports from {e}:	从{e1}进口：	hPt
 In Pursuit of {b}	追寻{b}	hbti
@@ -147696,6 +147702,7 @@ Get {s} from {s}	从{s2}处拿取{s1}	hPt
 Gigantic Profile	身形极其巨大	hP
 Give me a break.	饶了我吧。	hPD
 Gladiatory Games	角斗比赛	hEi
+Group commission	势力委托	wl
 Guard Cpt Dining	卫队统领餐厅	wli
 Guard Cpt Office	卫队统领办公室	wli
 Guide {s} to {s}	引导{s1}至{s2}	hPt
@@ -157061,6 +157068,7 @@ Cheese (plant)	奶酪（植物）	wi
 Chop down tree	砍倒树木	hqO
 Chopping trees	砍伐树木	wo
 Citizenship of	公民资格申请：	wi
+Civ commission	文明委托	wl
 Click workshop	点击工坊	hqO
 Close the map.	关闭地图。	hj
 Clothes Making	制衣	wi
@@ -166735,6 +166743,7 @@ Go downward.	向下。	hj
 Grand Master	泰斗级的	wi
 Great hunter	伟大的猎人	w
 Group Symbol	势力徽记	i
+Group symbol	势力徽记	wl
 Hammer Lords	战锤之主	wi
 He generally	他通常	l
 Hematite {d}	第{d}年 赤铁矿月	wt

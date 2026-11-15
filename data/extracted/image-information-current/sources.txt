@@ -1,0 +1,75 @@
+图像信息／制作雕像界面：当前映像的反编译来源
+
+来源为 native-pe-images.json 指定的两个磁盘 PE，不读取游戏日志，也不操作游戏。
+Steam 53.17：PE:6aea05a1:02734000。
+官网 53.17：PE:6aea11a5:0272d000。
+pe-functions.tsv 保留实际文件路径、SHA256、原生 unwind 所有者和范围。
+pe-*-*.c 是 Ghidra 12.1.4 的实际 C 输出；不是手写伪代码或模拟结果。
+pe-switches.tsv 保留原始选择值、二级映射、跳转表索引和目标；Ghidra 将同一目标的
+别名合并为 case，判断原生枚举值时以此 TSV 和原始汇编为准。
+pe-branches.tsv、pe-conditions.tsv、pe-literals.tsv、pe-calls.tsv 分别保留直接分支、
+条件、文本操作数和调用边。pe-virtuals.tsv 保留全部元素／关系类的实际虚表槽。
+pe-noreturn.tsv 保存末尾 INT3 的导入抛异常包装器，避免把后续跳转表误反编译成代码。
+
+界面和标题
+
+image-header：Steam 202970，官网 202900。
+标题选择：The symbol of + 组织名；Image information for + 现有任务；
+Image information for + 工作指令任务及可选数量；固定雕刻标题；外部传入标题；
+无对象的 Image information。原生最终按 78 字节截断，不能推造截断后不存在的内容。
+job-title-wrapper 和 job-header 保留任务的手术特例、248 项原生任务选择和动态材料／
+物品／生物／生成乐器／反应名称来源。标题进入既有完整任务语法，材料不再单独匹配。
+
+image-editor-render：Steam 202f00，官网 202e90。
+完整渲染所有者包含：退出执行警告、放弃数据警告、关联对象类别、允许自行选择、
+各候选列表、搜索输入、滚动、数量输入、命名／完成／返回／取消、删除、动作选择、
+选择 X／Y、完整预览和悬停说明。输入文字、数量与原生名称保持各自字段语义。
+已有图像的四种标签由实体来源和 art_image_type 选择：Group commission、Group symbol、
+Civ commission、Civilization symbol；无匹配归属时原生不生成这些标签。
+截图的 option 5 为全宽列表，此时不绘制新图像的 Creature／Delete element 等分类按钮。
+完整标题及所属外框也用于确定此模式的说明范围，不再依赖不存在的分类按钮。
+
+selected-description：Steam 2159e0，官网 215970。
+按 current_option 的完整原生分发表：
+1、8：历史人物，selected-biography；其身份、出生、亲属、神祇形态及领域复用人物语法。
+2：地点，地点类型、种族、可选区域；使用 symbol_picker_descriptions.inc 的完整地点生产式。
+3：组织，种族、local／migrating／nomadic／outcast、类型及行会职业；使用完整组织生产式。
+5：已有图像，artwork-description；原生类别为缺少物理来源的 It is ... 分支提供艺术上下文。
+7：生物所选 caste 的 DESCRIPTION；无指定 caste 时取首个 caste。
+12：乐器或工具的 RAW DESCRIPTION；其他物品类型无此页脚。
+13：造物，selected-item-description，复用完整物品、装饰、材料、书写及乐器语法。
+4、6、9、10、11 和范围外值：原生不生成页脚；不得虚构描述。
+无候选、索引越界、缺失记录、空 RAW DESCRIPTION 均保持原生空分支。
+每种有文本的分支均通过同一个完整原文及行地址捕获处理，保留独立的中文排版边界。
+
+艺术图像正文
+
+artwork-description：Steam 146ad80，官网 1465ad0。
+物理来源：造物／书、普通物品及制作地点、钱币及正反面、墙／地面雕刻及地点、
+独立艺术设计；缺少或不支持的来源走 It is a/an ...，不推断已有载体。
+共享位置分支还包含 The item、On the item、钱币正反面及 Engraved；同一完整物品语法处理。
+设计／摹本质量、摹本作者、原图标题、描绘对象、材质、原作者均为独立条件。
+对象为完整列表，保留逗号／and、单复数与数词，不按屏幕上的单个英文词替换。
+六个元素虚表（含空基类）覆盖生物／人物／神祇、物品／造物、形状、植物和树。
+植物和树共用一个实际实现；基类元素和基类关系共用空字符串实现，均记录在虚表目录。
+动作／关系：及物表 46 个原生槽、非及物表 48 个原生槽，含别名、默认、空谓语、
+无效对象、is／are、looks／look、itself／themselves。全部沿 symbol_description.inc 的动作语法。
+数量：0 表示无编号复数，1 为单数，其他有效数量由 number-words 生成。
+神祇领域：130 项名词表和独立冠词选择，保存在 deity-domain-nouns／article 的 C 和分发表。
+历史后缀：The artwork relates to 事件，可再附 during 历史集合；沿既有类型化历史语法。
+组织后缀：徽记／委托、命名／无名、种族可选、11 个实体类型、四种状态、行会职业或 craft。
+guild-profession 保留原生职业分发表；实体、地点和历史动态名字沿现有专名来源处理。
+RAW 名称、材料、程序生成名称、作者和存档历史为动态叶子，不能以截图实例枚举其取值。
+共享历史事件／集合、RAW、乐器、书写和物品深层来源仍使用已有的
+artwork-history-native、statue-history-sources.tsv、symbol-picker-descriptions 和物品来源目录。
+
+preview-description：Steam 2158c0，官网 215850。
+新图像元素向量为空时无预览；否则调用同一完整艺术正文并由原生文本框换行。
+本次让预览和候选图像共用艺术语法，原有完整元素／动作解析继续保留。
+
+修改入口
+
+src/dfcn.cpp：标题、外框、全宽列表、完整页脚和预览。
+src/symbol_picker_descriptions.inc：原生已有图像类别授权的完整艺术正文。
+data/runtime/local-overrides.tsv：完整标题、四种标签、退出执行和自由构思提示。
+这里保留的是离线反编译来源与语法对应关系，不是实机显示观察或测试报告。

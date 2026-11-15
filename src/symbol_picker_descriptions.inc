@@ -2,7 +2,7 @@
 // supplies one complete paragraph. Its site/entity branches are finite typed
 // productions, separate from the item, image, RAW and biography paragraphs.
 std::optional<std::string> Overlay::translate_symbol_picker_description(
-        std::string_view raw_source) const {
+        std::string_view raw_source, bool artwork_context) const {
     TranslationStateScope translation_scope;
     std::string source = normalize_art_utterance(raw_source);
     for (char &ch : source)
@@ -21,7 +21,12 @@ std::optional<std::string> Overlay::translate_symbol_picker_description(
     const std::string_view introduction = source.starts_with("This is ")
         ? std::string_view("This is ") : source.starts_with("These are ")
             ? std::string_view("These are ") : std::string_view{};
-    bool item_context = false;
+    // Current native option 5 supplies an art_image paragraph even when its
+    // physical source is absent. That branch starts "It is a/an ...", and
+    // can still append qualities, actions, history and an entity relation.
+    // Its native category authorizes the complete shared art grammar without
+    // treating unrelated biographies or RAW paragraphs as item descriptions.
+    bool item_context = artwork_context;
     if (!introduction.empty()) {
         bool quoted = false;
         for (size_t at = introduction.size(); at < source.size(); ++at) {

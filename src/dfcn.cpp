@@ -4411,7 +4411,7 @@ private:
     std::optional<std::string> translate_symbol_description_source(
         std::string_view source) const;
     std::optional<std::string> translate_symbol_picker_description(
-        std::string_view raw_source) const;
+        std::string_view raw_source, bool artwork_context = false) const;
     std::optional<std::string> translate_overview_quote(
         std::string_view source, std::vector<size_t> *origins = nullptr) const;
     std::optional<std::string> translate_overview_quote_uncached(
@@ -21535,8 +21535,9 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     context_detail.checkpoint(RenderTimingStage::Scenes);
 
     // The art-image editor's candidate list and footer are independent fields,
-    // not prose fragments. Recognize the page through its controls (also in
-    // raw-layer suppression queries), never through the selected species.
+    // not prose fragments. The native option 1..5 lists hide the category
+    // controls, so their own image-information title also identifies the
+    // enclosing editor (including raw-layer suppression queries).
     if (!announcement_panel_only) {
         std::vector<std::string> context = screen_rows;
         if (screen_override) {
@@ -21554,8 +21555,21 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         bool action = false, deletion = false, deleting = false;
         bool historical_figures = false, artifacts = false;
         bool related_figure = false, related_site = false, related_group = false, existing_image = false;
+        std::optional<Match> image_header;
+        uint8_t image_creator_open = 0;
+        const bool native_image_creator = native_history_copy(native_history_named_global(
+            "gamest", "main_interface.image_creator.open", 1), image_creator_open) && image_creator_open == 1;
+        int32_t image_creator_option = -1;
+        if (native_image_creator)
+            native_history_copy(native_history_named_global("gamest",
+                "main_interface.image_creator.current_option", 4), image_creator_option);
         for (int y = 0; y < gps_->dimy; ++y) {
             for (const auto &field : split_text_fields(context[y])) {
+                if (!image_header && (field.text == "Image information" ||
+                        field.text.starts_with("Image information for ") ||
+                        (native_image_creator && field.text.starts_with("The symbol of "))))
+                    image_header = Match{field.start, y, field.end - field.start,
+                        kSymbolDescriptionRule, {}, std::string(field.text)};
                 // The symbol editor uses singular "Historical figure";
                 // "Historical figures" is the separate Legends tab. Both
                 // translate to the same Chinese caption, so testing only the
@@ -21603,6 +21617,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         }
         const bool related_picker = related_figure && related_site && related_group && existing_image;
         const bool image_editor = action && deletion && creature_y >= 0;
+        const bool full_width_picker = image_header && !image_editor && !related_picker;
         // Every category belongs to the same editor, while individual buttons
         // and the right-hand list have their own frames. A rectangle spanning
         // all category rows can only be enclosed by the editor's outer frame.
@@ -21616,6 +21631,11 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
                 controls_left, controls_top, controls_right - controls_left,
                 controls_bottom - controls_top});
         }
+        if (!editor_interior && image_header) {
+            const NativePanelBorders borders(*gps_);
+            editor_interior = native_panel_interior(borders, *gps_, SDL_Rect{
+                image_header->x, image_header->y, image_header->length, 1});
+        }
         const int editor_right = editor_interior
             ? editor_interior->x + editor_interior->w : gps_->dimx - 3;
         const int editor_bottom = editor_interior
@@ -21623,16 +21643,65 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         // Related-to and existing-image pickers put their buttons across the
         // top; the new-image editor puts its categories in a left sidebar.
         // Their shared yellow footer retains each mode's own text origin.
-        const int footer_anchor_y = related_picker ? controls_bottom - 1 : creature_y;
-        const int footer_left = related_picker
+        const int footer_anchor_y = full_width_picker ? image_header->y
+            : related_picker ? controls_bottom - 1 : creature_y;
+        const int footer_left = full_width_picker
+            ? (editor_interior ? editor_interior->x : 0) : related_picker
             ? (editor_interior ? editor_interior->x : std::max(0, controls_left)) : controls_right;
+        if (image_header && screen_rows[image_header->y].compare(image_header->x,
+                image_header->length, image_header->source) == 0) {
+            // 53.17 PE 202970/202900 builds one title from a job, work order,
+            // engraving or supplied header. A job's material is part of that
+            // same source; translating Make/statue separately strands rock.
+            constexpr std::string_view prefix = "Image information for ";
+            std::optional<std::string> target = exact_literal_translation(image_header->source);
+            if (!target && image_header->source.starts_with(prefix)) {
+                const auto subject = std::string_view(image_header->source).substr(prefix.size());
+                auto translated = translate_fortress_activity(std::string(subject));
+                if (!translated) translated = translate_workshop_recipe_source(subject);
+                // Work orders append their numeric quantity in parentheses.
+                // Retain that count on the whole translated job.
+                if (!translated && subject.ends_with(')')) {
+                    const auto count = subject.rfind(" (");
+                    if (count != std::string_view::npos) {
+                        const auto digits = subject.substr(count + 2, subject.size() - count - 3);
+                        if (!digits.empty() && std::all_of(digits.begin(), digits.end(),
+                                [](unsigned char ch) { return ch >= '0' && ch <= '9'; })) {
+                            translated = translate_fortress_activity(std::string(subject.substr(0, count)));
+                            if (translated) *translated += "（" + std::string(digits) + "）";
+                        }
+                    }
+                }
+                const auto label = exact_literal_translation("Image information for");
+                if (label && translation_complete_with_native_nicknames(translated, subject))
+                    target = *label + *translated;
+            }
+            // The existing typed name route owns symbol-of titles; never
+            // infer a custom squad alias from the spelling of the header.
+            if (target && translation_complete_with_native_nicknames(target, image_header->source)) {
+                auto row = *image_header;
+                row.target = *target;
+                row.layout_x = row.x;
+                row.layout_length = row.length;
+                row.layout_clip_right = editor_right;
+                std::fill_n(screen_rows[row.y].begin() + row.x, row.length, ' ');
+                if (only_y < 0 || only_y == row.y) result.push_back(std::move(row));
+            }
+        }
         if (action && deletion && creature_y >= 0) {
             // The preview spans the full panel ABOVE the categories, not the
             // right-hand list or its hovered-entry footer. Join every native
             // row, including multiple sentences separated by double spaces,
             // before any standalone creature/item literal can claim its ink.
-            for (int y = 0; y < creature_y; ++y) {
-                const size_t start = screen_rows[y].find("It is an image of ");
+            for (int y = image_header ? image_header->y + 1 : 0; y < creature_y; ++y) {
+                size_t start = std::string::npos;
+                // The same supplier can retain an original design's quality
+                // or physical source. Its opening is not always the bare
+                // "It is an image of" form; all four native source families
+                // belong to this preview band, above the category controls.
+                for (const std::string_view prefix : {"It is ", "This artwork ",
+                        "This work of art ", "This engraving "})
+                    start = std::min(start, screen_rows[y].find(prefix));
                 if (start == std::string::npos) continue;
                 const int left = static_cast<int>(start);
                 int right = gps_->dimx - 3;
@@ -21661,7 +21730,13 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
                         kSymbolImageDescriptionRule, {}, std::move(part)});
                 }
                 if (auto complete = native_source_for_rows(description)) source = std::move(*complete);
-                if (auto target = translate_symbol_description_source(source))
+                // Share the complete art grammar and independent action
+                // sentences with the hovered image. The native preview
+                // suppresses the entire paragraph when its vector is empty.
+                auto target = translate_item_description_source(source, true);
+                if (!translation_complete_with_native_nicknames(target, source))
+                    target = translate_symbol_description_source(source);
+                if (translation_complete_with_native_nicknames(target, source))
                     append_setup_paragraph(std::move(description), *target, right, right);
                 break;
             }
@@ -21895,7 +21970,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         // A hovered description is a separate native paragraph. It remains
         // valid when the search has no recognizable identity rows, and the
         // same footer is used by every catalog category.
-        const bool catalog_page = ((image_editor && !deleting) || related_picker) && !role_prompt;
+        const bool catalog_page = ((image_editor && !deleting) || related_picker || full_width_picker) && !role_prompt;
         if (numbered_list || catalog_page) {
             if (list_left < 0) list_left = footer_left;
             if (hint_right < 0) hint_right = editor_right;
@@ -22078,7 +22153,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
             if (prose) {
                 const bool already_resolved = legends_translation_cache_.contains(
                     "T:" + normalize_utterance(source));
-                auto target = translate_symbol_picker_description(source);
+                auto target = translate_symbol_picker_description(source, image_creator_option == 5);
                 if (!target && !already_resolved)
                     log_line("WARN", "Symbol description not translated: " + cp437_to_utf8(source));
                 // An item parser can preserve unsupported sentences beside

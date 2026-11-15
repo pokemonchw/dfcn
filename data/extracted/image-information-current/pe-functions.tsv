@@ -1,0 +1,45 @@
+edition	image	source_path	sha256	role	start_rva	end_rva
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	image-header	0x202970	0x202ef8
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	image-editor-render	0x202f00	0x20c354
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	selected-description	0x2159e0	0x21672c
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	artwork-description	0x146ad80	0x146c39c
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	art_image_element_treest	0x14a7c0	0x14a9be
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	art_image_element_itemst	0x149200	0x1497b2
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	art_image_property_intransitive_verbst	0x148550	0x148ce0
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	art_image_property_transitive_verbst	0x147df0	0x148544
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	art_image_element_creaturest	0x1499c0	0x14a56f
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	art_image_elementst	0x738b0	0x738ca
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	art_image_element_shapest	0x148ce0	0x148fab
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	job-title-wrapper	0xd1ae60	0xd1af8b
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	job-header	0xd1afa0	0xd1ffc4
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	preview-description	0x2158c0	0x2159d7
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	selected-biography	0xc43530	0xc44b93
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	selected-item-description	0xc8ccf0	0xc9139a
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	item-noun	0xa9c6b0	0xaa1d9c
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	material-name	0x14eab90	0x14eafe9
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	number-words	0x547840	0x54804c
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	guild-profession	0x1345520	0x13469c4
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	deity-domain-article	0x76faf0	0x76fc78
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	deity-domain-nouns	0x76fc80	0x770970
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	image-header	0x202900	0x202e88
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	image-editor-render	0x202e90	0x20c2e4
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	selected-description	0x215970	0x2166bc
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	artwork-description	0x1465ad0	0x14670ec
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	art_image_element_treest	0x14a750	0x14a94e
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	art_image_element_itemst	0x149190	0x149742
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	art_image_property_intransitive_verbst	0x1484e0	0x148c70
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	art_image_property_transitive_verbst	0x147d80	0x1484d4
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	art_image_element_creaturest	0x149950	0x14a4ff
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	art_image_elementst	0x73840	0x7385a
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	art_image_element_shapest	0x148c70	0x148f3b
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	job-title-wrapper	0xd17c80	0xd17dab
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	job-header	0xd17dc0	0xd1cde4
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	preview-description	0x215850	0x215967
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	selected-biography	0xc40350	0xc419b3
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	selected-item-description	0xc89b10	0xc8e1ba
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	item-noun	0xa99510	0xa9ebfc
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	material-name	0x14e58e0	0x14e5d39
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	number-words	0x545040	0x54584c
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	guild-profession	0x1340270	0x1341714
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	deity-domain-article	0x76d2f0	0x76d478
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	deity-domain-nouns	0x76d480	0x76e170

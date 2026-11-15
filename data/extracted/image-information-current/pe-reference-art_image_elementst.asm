@@ -1,0 +1,9 @@
+; reference PE:6aea05a1:02734000; art_image_elementst; RVA 0x738b0..0x738ca; code ends 0x738ca
+0x738b0: mov    QWORD PTR [rdx+0x10],0x0
+0x738b8: cmp    QWORD PTR [rdx+0x18],0xf
+0x738bd: jbe    0x1400738c6
+0x738bf: mov    rax,QWORD PTR [rdx]
+0x738c2: mov    BYTE PTR [rax],0x0
+0x738c5: ret
+0x738c6: mov    BYTE PTR [rdx],0x0
+0x738c9: ret

@@ -6298,8 +6298,18 @@ Choose Y: {s}	选择 Y：{s}	wtlx
 Delete element	删除元素	w
 Stop deleting	停止删除	w
 Name the image	为图像命名	w
-# Art-image subject selection; job/material captions remain independent.
+# Image-information editor: complete labels from both 53.17 PE renderers.
+# The header's complete job/material subject is translated by the activity grammar.
 Image information for	图像信息：	wl
+Image information	图像信息	wl
+Image information for engraving	雕刻图像信息	wl
+Group commission	势力委托	wl
+Group symbol	势力徽记	wl
+Civ commission	文明委托	wl
+Civilization symbol	文明徽记	wl
+You won't perform your action if you leave.	离开后将不会执行此次操作。	wl
+Don't perform action	不执行操作	wl
+Let your mind wander	自由构思	wl
 Related to historical figure	与历史人物有关	w
 Related to site	与地点有关	w
 Related to civilization or other group	与文明或其他团体有关	w
