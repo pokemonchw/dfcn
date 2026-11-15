@@ -117,6 +117,7 @@ try {
         'data/runtime/search-concepts.tsv', 'data/runtime/search-lexemes.tsv',
         'data/runtime/search-native-bindings.tsv', 'data/runtime/search-relations.tsv',
         'data/runtime/search-predicates.toml',
+        'data/runtime/dfhack-native-map.lua',
         'data/runtime/dfhack-help-translations.tsv', 'data/runtime/dfhack-help-overrides.tsv',
         'data/runtime/dfhack-help-command-overrides.tsv', 'data/runtime/dfhack-output-core.tsv',
         'data/runtime/dfhack-output-translations.tsv', 'data/runtime/dfhack-output-stonesense.tsv',
