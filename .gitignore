@@ -14,6 +14,7 @@
 *.log
 
 # Build and Python caches
+/.codex-work/
 /.cache/
 /build/
 /.dfcn-build-sources-*/

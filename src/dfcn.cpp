@@ -26791,9 +26791,14 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         // even when a clipped grid opening did not translate as a poem.
         if (paragraph.find(" poetic ") != std::string_view::npos)
             return std::optional<std::string>{};
-        if (auto dance = translate_dance_form_paragraph(paragraph))
-            return dance;
-        return translate_musical_form_paragraph(paragraph);
+        const bool music_passage = paragraph.find(" is voiced by the ") !=
+            std::string_view::npos;
+        if (!music_passage)
+            if (auto dance = translate_dance_form_paragraph(paragraph))
+                return dance;
+        if (auto music = translate_musical_form_paragraph(paragraph))
+            return music;
+        return std::optional<std::string>{};
     };
     for (const std::vector<std::string> &rows : musical_row_sources) {
         for (int run_start = musical_first_row;
