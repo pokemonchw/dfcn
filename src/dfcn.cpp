@@ -8647,15 +8647,26 @@ static bool is_written_work_description(std::string_view source) {
     return false;
 }
 
+static bool is_native_musical_description(std::string_view source) {
+    return source.find(" form of music") != std::string_view::npos ||
+        source.find("The rules of the form are applied by composers to produce individual pieces of music") != std::string_view::npos ||
+        source.find("The form guides musicians during improvised performances") != std::string_view::npos ||
+        source.find(" is voiced by the ") != std::string_view::npos;
+}
+
 static bool is_native_knowledge_description(std::string_view source) {
     return is_written_work_description(source) ||
         source.find(" poetic ") != std::string_view::npos ||
-        source.find(" form of music") != std::string_view::npos ||
+        is_native_musical_description(source) ||
         source.find(" dance") != std::string_view::npos ||
         // A default music-purpose selector emits no kind in the opening.
         // The actual composer/musician rule clause still owns its document.
         source.find("The rules of the form are applied by composers to produce individual pieces of music") != std::string_view::npos ||
-        source.find("The form guides musicians during improvised performances") != std::string_view::npos;
+        source.find("The form guides musicians during improvised performances") != std::string_view::npos ||
+        // Passage text can arrive as its own native wrap capture, without
+        // the form's identity paragraph. Its generated predicate still
+        // establishes musical knowledge ownership.
+        source.find(" is voiced by the ") != std::string_view::npos;
 }
 
 // Translation matching and structured layout must agree about complete
@@ -16889,9 +16900,14 @@ const NativeKnowledgeLayout &Overlay::prepare_native_knowledge_layout(
     const int nominal_font_pixels = unified_font_pixels();
     const uint64_t source_context = native_identity_translation_context();
     const uint64_t resource_revision = RULESETS.resource_revision();
+    const bool musical_source = !personality && !health && !thoughts &&
+        is_native_musical_description(source) && !is_written_work_description(source);
     const auto cached = std::find_if(native_knowledge_layouts_.begin(),
         native_knowledge_layouts_.end(), [&](const NativeKnowledgeLayout &layout) {
-            return layout.reusable && layout.source_context == source_context &&
+            return layout.reusable &&
+                (!musical_source || (layout.translation_result &&
+                    !layout.translation_result->has_untranslated())) &&
+                layout.source_context == source_context &&
                 layout.resource_revision == resource_revision &&
                 layout.width == width && layout.personality == personality &&
                 layout.health == health && layout.thoughts == thoughts &&
@@ -17236,10 +17252,14 @@ const NativeKnowledgeLayout &Overlay::prepare_native_knowledge_layout(
             } else {
                 TranslationWorkScope work;
                 size_t source_offset = 0;
+                const bool music_document = !is_written_work_description(whole) &&
+                    is_native_musical_description(whole);
                 for (const std::string &part : paragraphs) {
                     TranslationResult translated;
                     try {
-                        if (auto target = translate_written_work_paragraph(part))
+                        if (music_document)
+                            translated = translate_musical_form_paragraph_result(part);
+                        else if (auto target = translate_written_work_paragraph(part))
                             translated = TranslationResult::translated(part, *target, "written work");
                         if (!translated.usable()) {
                             auto dance = translate_dance_form_paragraph_result(part, false);
@@ -17250,8 +17270,14 @@ const NativeKnowledgeLayout &Overlay::prepare_native_knowledge_layout(
                             else {
                                 dance = translate_dance_form_paragraph_result(part);
                                 music = translate_musical_form_paragraph_result(part);
-                                if (dance.changed()) translated = std::move(dance);
-                                else if (music.changed()) translated = std::move(music);
+                                const auto has_translation = [](const TranslationResult &candidate) {
+                                    return std::any_of(candidate.fragments.begin(), candidate.fragments.end(),
+                                        [](const TranslationFragment &fragment) {
+                                            return fragment.status == TranslationStatus::Translated;
+                                        });
+                                };
+                                if (has_translation(dance)) translated = std::move(dance);
+                                else if (has_translation(music)) translated = std::move(music);
                             }
                         }
                     } catch (const TranslationWorkLimit &) {
@@ -17430,7 +17456,13 @@ const NativeKnowledgeLayout &Overlay::prepare_native_knowledge_layout(
                 start = end;
             }
         }
-        next.reusable = source_context == native_identity_translation_context();
+        // Source identity proves ownership, not successful translation. The
+        // character component keeps this layout and its frame independently;
+        // caching a retained-English paragraph here made that failed result
+        // survive without another call to the musical grammar.
+        next.reusable = source_context == native_identity_translation_context() &&
+            (!musical_source || (next.translation_result &&
+                !next.translation_result->has_untranslated()));
         const auto &layout = native_knowledge_layouts_.emplace_front(std::move(next));
         static constexpr size_t maximum_layouts = 16;
         while (native_knowledge_layouts_.size() > maximum_layouts)
@@ -17535,7 +17567,13 @@ std::vector<Match> Overlay::embark_pause_menu_matches() const {
 std::vector<Match> Overlay::native_knowledge_matches(
         int only_y, const std::vector<Match> &pause_menu, bool allow_transition) const {
     if (!config_.enabled || !face_ || !gps_) return {};
-    if (!native_knowledge_frame_.reusable ||
+    const bool incomplete_music = native_knowledge_frame_.document &&
+        is_native_musical_description(native_knowledge_frame_.document->source) &&
+        std::any_of(native_knowledge_frame_.matches.begin(), native_knowledge_frame_.matches.end(),
+            [](const Match &match) {
+                return match.translation_result && match.translation_result->has_untranslated();
+            });
+    if (!native_knowledge_frame_.reusable || incomplete_music ||
             native_knowledge_frame_.source_context != native_identity_translation_context() ||
             native_knowledge_frame_.resource_revision != RULESETS.resource_revision()) {
         native_knowledge_frame_ = {};

@@ -77,12 +77,19 @@ static bool form_description_fixed_start(std::string_view text, std::string_view
     } else if (kind == "music") {
         static constexpr auto starts = std::to_array<std::string_view>({
             "The music ", "The musical voices ", "The entire performance ",
+            "All musical voices ", "Several musical voices ",
             "The passage ", "This passage ", "The melody ",
+            "Each passage ", "It is performed ",
             "The counterpoint melody ", "Only one pitch ", "Never more than ",
+            "Chords, seldom-used, ", "Chords are packed close together ",
+            "Pitches are densely packed ",
             "Throughout, when possible, ", "From beginning to end, when improvising",
             "Scales are ", "In quartertones, ", "The tonic note ",
             "The degrees selected are ", "It is called ", "The names are ",
             "These chords are named ", "The rhythm system ", "The rhythm lines ",
+            "After a scale is constructed, ",
+            "A single note in the fundamental scale is named",
+            "Preferred notes in the fundamental scale are named", "Every note is named",
             "There are always multiple rhythm lines", "As stated above, ",
             "The patterns are ", "The beats are named ", "The beat is stressed ",
             "where ", "As always, the ",
@@ -151,7 +158,12 @@ struct FormDescriptionSentence {
 template<class Translate>
 static std::vector<FormDescriptionSentence> form_description_sentences(
         std::string_view source, std::string_view kind, Translate translate,
-        bool allow_unknown_boundaries) {
+        bool allow_unknown_boundaries,
+        const std::function<bool(std::string_view)>& native_start = {}) {
+    const auto fixed_start = [&](std::string_view text) {
+        return form_description_fixed_start(text, kind) ||
+               (native_start && native_start(text));
+    };
     std::vector<FormDescriptionSentence> sentences;
     size_t begin = 0;
     int parentheses = 0, brackets = 0;
@@ -178,7 +190,7 @@ static std::vector<FormDescriptionSentence> form_description_sentences(
             !std::isspace(static_cast<unsigned char>(source[at + 1]))) continue;
         const auto sentence = trim_view(source.substr(begin, at - begin));
         const auto next = trim_view(source.substr(at + 1));
-        if (!next.empty() && !form_description_fixed_start(next, kind) &&
+        if (!next.empty() && !fixed_start(next) &&
             form_description_has_opaque_tail(sentence)) continue;
         std::optional<std::string> target;
         try {
@@ -195,14 +207,15 @@ static std::vector<FormDescriptionSentence> form_description_sentences(
         // Do not grow it through the rest of the document and reinterpret
         // all preceding prose as a generated name in a later production.
         if (!target && !allow_unknown_boundaries && !next.empty() &&
-                form_description_fixed_start(next, kind)) {
+                fixed_start(next)) {
             sentences.push_back({begin, source.size(), source.size(), {}});
             return sentences;
         }
         const bool proven_unknown = allow_unknown_boundaries &&
-            form_description_fixed_start(sentence, kind) &&
-            (next.empty() || form_description_fixed_start(next, kind)) &&
-            !form_description_has_opaque_tail(sentence);
+            fixed_start(sentence) &&
+            (next.empty() || fixed_start(next)) &&
+            (!form_description_has_opaque_tail(sentence) ||
+             (native_start && native_start(sentence)));
         if (!target && !next.empty() && !proven_unknown) continue;
         sentences.push_back({begin, at, at + 1, std::move(target)});
         begin = at + 1;
@@ -222,8 +235,10 @@ static std::vector<FormDescriptionSentence> form_description_sentences(
 template<class Translate>
 static TranslationResult render_form_description(std::string_view raw,
         const FormDescriptionText& normalized, std::string_view kind,
-        bool display, Translate translate) {
-    auto sentences = form_description_sentences(normalized.text, kind, translate, display);
+        bool display, Translate translate,
+        const std::function<bool(std::string_view)>& native_start = {}) {
+    auto sentences = form_description_sentences(normalized.text, kind, translate,
+        display, native_start);
     TranslationResult result;
     result.source = raw;
     result.kind = kind;

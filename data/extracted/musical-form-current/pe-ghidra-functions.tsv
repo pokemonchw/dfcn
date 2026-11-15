@@ -1,0 +1,11 @@
+edition	image	role	start_rva	end_rva	assembly_file
+reference	PE:6aea05a1:02734000	musical-form	0xded9d0	0xdf49f4	pe-reference-musical-form.asm
+reference	PE:6aea05a1:02734000	cardinal	0x547840	0x547fdc	pe-reference-cardinal.asm
+reference	PE:6aea05a1:02734000	ordinal	0x548050	0x548520	pe-reference-ordinal.asm
+reference	PE:6aea05a1:02734000	timbre-selector	0x796510	0x796a60	pe-reference-timbre-selector.asm
+reference	PE:6aea05a1:02734000	register-timbre-choice	0xdecaa0	0xdecb5c	pe-reference-register-timbre-choice.asm
+classic	PE:6aea11a5:0272d000	musical-form	0xde8720	0xdef744	pe-classic-musical-form.asm
+classic	PE:6aea11a5:0272d000	cardinal	0x545040	0x5457dc	pe-classic-cardinal.asm
+classic	PE:6aea11a5:0272d000	ordinal	0x545850	0x545d20	pe-classic-ordinal.asm
+classic	PE:6aea11a5:0272d000	timbre-selector	0x793d10	0x794260	pe-classic-timbre-selector.asm
+classic	PE:6aea11a5:0272d000	register-timbre-choice	0xde77f0	0xde78ac	pe-classic-register-timbre-choice.asm

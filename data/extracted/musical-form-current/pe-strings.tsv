@@ -1,0 +1,1037 @@
+edition	role	instruction_rva	string_rva	text
+reference	musical-form	0xdeda40	0x1665514	 is a 
+reference	musical-form	0xdeda6d	0x173afe0	form of music used during marches and military engagements
+reference	musical-form	0xdeda76	0x173b078	devotional form of music
+reference	musical-form	0xdeda8f	0x173b098	 directed toward the worship of 
+reference	musical-form	0xdedad3	0x173b020	form of music used to commemorate important events
+reference	musical-form	0xdedadc	0x173afb8	form of music used for entertainment
+reference	musical-form	0xdedb11	0x1665b58	 originating in 
+reference	musical-form	0xdedb18	0x1665b30	 which grew out of the performances of 
+reference	musical-form	0xdedb5e	0x1665b70	 originally devised by 
+reference	musical-form	0xdedb94	0x1619598	.  
+reference	musical-form	0xdedbaa	0x173b130	The form guides musicians during improvised performances.  
+reference	musical-form	0xdedbb1	0x173b0c0	The rules of the form are applied by composers to produce individual pieces of music which can be performed.  
+reference	musical-form	0xdedc17	0x173b1e8	recites
+reference	musical-form	0xdedc1e	0x173b170	while the
+reference	musical-form	0xdedc5a	0x1684f74	A
+reference	musical-form	0xdedc64	0x161eaec	a
+reference	musical-form	0xdedcfc	0x1608834	 to 
+reference	musical-form	0xdedd50	0x16039f0	 
+reference	musical-form	0xdedd72	0x173b054	singer
+reference	musical-form	0xdedd8e	0x173b060	speaker
+reference	musical-form	0xdeddaa	0x173b068	chanter
+reference	musical-form	0xdeddcc	0x16044f0	s
+reference	musical-form	0xdede1b	0x173b070	recite
+reference	musical-form	0xdede32	0x173b1f0	 the words of 
+reference	musical-form	0xdedea7	0x173b200	 a composition of
+reference	musical-form	0xdedf2a	0x173b218	 nonsensical words and sounds
+reference	musical-form	0xdedf9f	0x1665ae8	The
+reference	musical-form	0xdedfb5	0x173b180	 music is played on 
+reference	musical-form	0xdee0e3	0x1604394	, 
+reference	musical-form	0xdee0f1	0x160438c	 and 
+reference	musical-form	0xdee2b0	0x173b198	The music
+reference	musical-form	0xdee2c1	0x173b1a8	al voices join in melody and counterpoint, harmony and rhythm
+reference	musical-form	0xdee2c8	0x173b2c0	al voices bring melody, counterpoint and rhythm
+reference	musical-form	0xdee2d7	0x173b2f0	al voices cover melody, harmony and rhythm
+reference	musical-form	0xdee2de	0x173b320	 is melody and rhythm without harmony
+reference	musical-form	0xdee2ed	0x173b348	The musical voices 
+reference	musical-form	0xdee2fe	0x173b238	join in melody, counterpoint and harmony
+reference	musical-form	0xdee305	0x173b268	bring melody and counterpoint
+reference	musical-form	0xdee314	0x173b288	bring melody with harmony
+reference	musical-form	0xdee31b	0x173b2a8	are joined in melody
+reference	musical-form	0xdee32a	0x173b3a8	The musical voices are purely rhythmic
+reference	musical-form	0xdee378	0x173b3d0	The entire performance 
+reference	musical-form	0xdee396	0x173b3e8	should 
+reference	musical-form	0xdee3c7	0x173b3f0	stress the rhythm
+reference	musical-form	0xdee3d3	0x173b360	be stately
+reference	musical-form	0xdee3df	0x173b370	be bright
+reference	musical-form	0xdee3eb	0x173b380	be lively
+reference	musical-form	0xdee3f7	0x173b390	be made with skill
+reference	musical-form	0xdee403	0x173b458	be vigorous
+reference	musical-form	0xdee40f	0x173b468	be spirited
+reference	musical-form	0xdee41b	0x173b478	be delicate
+reference	musical-form	0xdee427	0x173b408	bring a sense of motion
+reference	musical-form	0xdee433	0x173b488	be fiery
+reference	musical-form	0xdee43f	0x173b420	be made with feeling
+reference	musical-form	0xdee44b	0x173b438	feel agitated
+reference	musical-form	0xdee457	0x173b448	be passionate
+reference	musical-form	0xdee463	0x173aaa8	sparkle
+reference	musical-form	0xdee46f	0x173aab0	be broad
+reference	musical-form	0xdee47b	0x173aac0	be made sweetly
+reference	musical-form	0xdee487	0x173aad0	be strong
+reference	musical-form	0xdee493	0x173aa60	be energetic
+reference	musical-form	0xdee49f	0x173aa70	be forceful
+reference	musical-form	0xdee4ab	0x173aa80	feel heroic
+reference	musical-form	0xdee4b7	0x173aa90	be made expressively
+reference	musical-form	0xdee4c3	0x173ab28	feel furious
+reference	musical-form	0xdee4cf	0x173ab38	be joyful
+reference	musical-form	0xdee4db	0x173ab48	be grand
+reference	musical-form	0xdee4e4	0x173ab58	be merry
+reference	musical-form	0xdee4ed	0x173aae0	be graceful
+reference	musical-form	0xdee4f6	0x173aaf0	build as it proceeds
+reference	musical-form	0xdee4ff	0x173ab08	evoke tears
+reference	musical-form	0xdee508	0x173ab18	be melancholic
+reference	musical-form	0xdee511	0x173aba8	feel mournful
+reference	musical-form	0xdee51a	0x173abb8	be made with a light touch
+reference	musical-form	0xdee523	0x173abd8	feel heavy
+reference	musical-form	0xdee52c	0x173abe8	feel mysterious
+reference	musical-form	0xdee535	0x173ab68	be jumpy
+reference	musical-form	0xdee53e	0x173ab78	feel playful
+reference	musical-form	0xdee547	0x173ab88	feel tender
+reference	musical-form	0xdee550	0x173ab98	feel calm
+reference	musical-form	0xdee559	0x173ac48	be triumphant
+reference	musical-form	0xdee5ae	0x173ac58	is at a free tempo
+reference	musical-form	0xdee5ba	0x173ac70	is very slow
+reference	musical-form	0xdee5c6	0x173ac80	is slow
+reference	musical-form	0xdee5cf	0x173abf8	is at a walking pace
+reference	musical-form	0xdee5d8	0x173ac10	is moderately paced
+reference	musical-form	0xdee5e1	0x173ac28	is moderately fast
+reference	musical-form	0xdee5ea	0x173ac40	is fast
+reference	musical-form	0xdee5f3	0x173ad10	is very fast
+reference	musical-form	0xdee5fc	0x173ad20	is extremely fast
+reference	musical-form	0xdee605	0x173ad38	accelerates as it proceeds
+reference	musical-form	0xdee60e	0x173ad58	slows and broadens
+reference	musical-form	0xdee617	0x173ac88	is consistently slowing
+reference	musical-form	0xdee620	0x173aca0	is at a hurried pace
+reference	musical-form	0xdee629	0x173acb8	gradually slows as it comes to an end
+reference	musical-form	0xdee632	0x173ace0	slows down and dies away as it draws to a close
+reference	musical-form	0xdee63b	0x173adc0	becomes calmer as the end is approached
+reference	musical-form	0xdee644	0x173ade8	becomes frenzied as it proceeds
+reference	musical-form	0xdee676	0x173ae08	is to
+reference	musical-form	0xdee67f	0x173ae10	, and it is to
+reference	musical-form	0xdee6bb	0x173ad70	be in whispered undertones
+reference	musical-form	0xdee6c4	0x173ad90	be very soft
+reference	musical-form	0xdee6cd	0x173ada0	be soft
+reference	musical-form	0xdee6d6	0x173ada8	be moderately soft
+reference	musical-form	0xdee6df	0x173aea8	be moderately loud
+reference	musical-form	0xdee6e8	0x173aec0	be loud
+reference	musical-form	0xdee6f1	0x173aec8	be very loud
+reference	musical-form	0xdee6fa	0x173aed8	become louder and louder
+reference	musical-form	0xdee703	0x173ae20	become softer and softer
+reference	musical-form	0xdee70c	0x173ae40	fade into silence
+reference	musical-form	0xdee715	0x173ae58	start loud then be immediately soft
+reference	musical-form	0xdee915	0x173ae80	The melody and counterpoint both have 
+reference	musical-form	0xdee93e	0x173af98	phrases of varied length
+reference	musical-form	0xdee94a	0x173af88	long phrases
+reference	musical-form	0xdee956	0x173af70	mid-length phrases
+reference	musical-form	0xdee962	0x173aef8	The melody has 
+reference	musical-form	0xdee99e	0x173af60	short phrases
+reference	musical-form	0xdee9ad	0x173af08	, while the counterpoint has 
+reference	musical-form	0xdee9d6	0x173af40	The counterpoint melody has 
+reference	musical-form	0xdee9fd	0x173af28	 throughout the form.  
+reference	musical-form	0xdeea2c	0x173b998	The music is broadly layered with chords spanning the range.  
+reference	musical-form	0xdeea35	0x173baf0	Pitches are densely packed in clusters as music moves from chord to chord.  
+reference	musical-form	0xdeea3e	0x173baa0	Chords, seldom-used, are sparse -- intervals and single pitches are favored.  
+reference	musical-form	0xdeea47	0x173ba70	Never more than an interval sounds at once.  
+reference	musical-form	0xdeea50	0x173ba40	Only one pitch is ever played at a time.  
+reference	musical-form	0xdeea6a	0x173b9d8	The music repeats for as long as necessary.  
+reference	musical-form	0xdeeb2d	0x173ba08	It is performed 
+reference	musical-form	0xdeeb3f	0x173ba20	without preference for a scale
+reference	musical-form	0xdeeb92	0x173bbd8	using the 
+reference	musical-form	0xdeebc0	0x173bbe4	 scale
+reference	musical-form	0xdeec07	0x1608224	in 
+reference	musical-form	0xdeec10	0x173bbf0	 and in 
+reference	musical-form	0xdeec33	0x173bc00	free rhythm
+reference	musical-form	0xdeec3f	0x1604104	the 
+reference	musical-form	0xdeecd3	0x16657f0	 rhythm
+reference	musical-form	0xdeed11	0x173bb40	Throughout, when possible, composers and performers are to 
+reference	musical-form	0xdeed1a	0x173bb80	Throughout, when possible, performers are to 
+reference	musical-form	0xdeeebd	0x173bbb0	glide from note to note
+reference	musical-form	0xdeeec9	0x173bbc8	use grace notes
+reference	musical-form	0xdeeed5	0x173bc68	use mordents
+reference	musical-form	0xdeeee1	0x173bc78	make trills
+reference	musical-form	0xdeeeed	0x173bc88	play rapid runs
+reference	musical-form	0xdeeef9	0x173bc98	locally improvise
+reference	musical-form	0xdeef05	0x173bcb0	spread syllables over many notes
+reference	musical-form	0xdeef11	0x173bcd8	match notes and syllables
+reference	musical-form	0xdeef1d	0x173bc10	syncopate
+reference	musical-form	0xdeef48	0x173bc50	modulate frequently
+reference	musical-form	0xdeef51	0x173bc30	alternate tension and repose
+reference	musical-form	0xdeef5a	0x173bc20	add fills
+reference	musical-form	0xdeef63	0x173bd30	play arpeggios
+reference	musical-form	0xdeef84	0x173bd60	freely adjust the beats
+reference	musical-form	0xdeef8d	0x173bd50	play legato
+reference	musical-form	0xdeef96	0x173bd40	play staccato
+reference	musical-form	0xdef001	0x173bcf8	From beginning to end, when improvising
+reference	musical-form	0xdef01b	0x173bd20	 or composing
+reference	musical-form	0xdef02a	0x173bdb0	, artists should 
+reference	musical-form	0xdef0ae	0x173bdd8	sometimes
+reference	musical-form	0xdef0b7	0x173bdcc	often
+reference	musical-form	0xdef0c0	0x173bdc4	always
+reference	musical-form	0xdef0cf	0x173bd78	 include a 
+reference	musical-form	0xdef100	0x173bda0	falling-rising
+reference	musical-form	0xdef109	0x173bd90	rising-falling
+reference	musical-form	0xdef112	0x1619778	falling
+reference	musical-form	0xdef11b	0x173bd84	rising
+reference	musical-form	0xdef12a	0x173be20	 melody pattern
+reference	musical-form	0xdef158	0x1609848	 with 
+reference	musical-form	0xdef1f3	0x16a51d0	flattened
+reference	musical-form	0xdef215	0x173be30	sharpened
+reference	musical-form	0xdef279	0x173be40	 degree
+reference	musical-form	0xdef2c0	0x173be48	 on the rise
+reference	musical-form	0xdef2c9	0x173bde8	 on the fall
+reference	musical-form	0xdef369	0x173bdf8	 as well as 
+reference	musical-form	0xdef490	0x173be94	trills
+reference	musical-form	0xdef499	0x173be88	mordents
+reference	musical-form	0xdef4a2	0x173be10	grace notes
+reference	musical-form	0xdef4ab	0x173be08	glides
+reference	musical-form	0xdef4b4	0x173bea0	rapid runs
+reference	musical-form	0xdef4d5	0x173be64	legato
+reference	musical-form	0xdef4de	0x173be58	staccato
+reference	musical-form	0xdef4e7	0x173beb0	arpeggios
+reference	musical-form	0xdef9e7	0x1618ed0	[B]
+reference	musical-form	0xdefa0a	0x173be6c	Each 
+reference	musical-form	0xdefa13	0x1608c3c	The 
+reference	musical-form	0xdefbd7	0x173be78	 always 
+reference	musical-form	0xdefc13	0x173bf60	provides the rhythm
+reference	musical-form	0xdefc1c	0x173bf50	does harmony
+reference	musical-form	0xdefc25	0x173bf30	does the counterpoint melody
+reference	musical-form	0xdefc2e	0x173bf18	does the main melody
+reference	musical-form	0xdefceb	0x173bec0	perform with skill
+reference	musical-form	0xdefd33	0x173bed8	perform with feeling
+reference	musical-form	0xdefd6f	0x173bef0	perform sweetly
+reference	musical-form	0xdefdab	0x173bf00	perform expressively
+reference	musical-form	0xdefdea	0x173b4e8	build as the performance proceeds
+reference	musical-form	0xdefe0e	0x173b510	perform with a light touch
+reference	musical-form	0xdefeae	0x173b52c	is to 
+reference	musical-form	0xdf005f	0x173b538	glides from note to note
+reference	musical-form	0xdf006b	0x173b498	uses grace notes
+reference	musical-form	0xdf0077	0x173b4b0	uses mordents
+reference	musical-form	0xdf0083	0x173b4c0	makes trills
+reference	musical-form	0xdf008f	0x173b4d0	plays rapid runs
+reference	musical-form	0xdf009b	0x173b588	spreads syllables over many notes
+reference	musical-form	0xdf00a7	0x173b680	matches notes and syllables
+reference	musical-form	0xdf00b0	0x173b5b0	locally improvises
+reference	musical-form	0xdf00df	0x173b5e8	modulates frequently
+reference	musical-form	0xdf00e8	0x173b5d8	adds fills
+reference	musical-form	0xdf00f1	0x173b5c8	syncopates
+reference	musical-form	0xdf00fa	0x173b558	plays arpeggios
+reference	musical-form	0xdf0115	0x173b578	plays legato
+reference	musical-form	0xdf011e	0x173b568	plays staccato
+reference	musical-form	0xdf01b6	0x173b6a0	The voice stays in the 
+reference	musical-form	0xdf01de	0x1666110	high
+reference	musical-form	0xdf01ea	0x173b6b8	middle
+reference	musical-form	0xdf0200	0x173b600	The voice uses its entire range.  
+reference	musical-form	0xdf0214	0x173b628	The voice ranges from the 
+reference	musical-form	0xdf0246	0x1666118	low
+reference	musical-form	0xdf0255	0x173b648	 register to the 
+reference	musical-form	0xdf028e	0x173b6c0	 register.  
+reference	musical-form	0xdf02d8	0x173b660	The voice is confined to the 
+reference	musical-form	0xdf0374	0x173b750	top
+reference	musical-form	0xdf0421	0x173b758	 voice uses its entire range.  
+reference	musical-form	0xdf044f	0x173b778	 voice ranges from the 
+reference	musical-form	0xdf04f8	0x173b790	The voice uses its entire range from the 
+reference	musical-form	0xdf079e	0x173b6d0	 has a simple structure: 
+reference	musical-form	0xdf07b8	0x173b6f0	 has the following structure: 
+reference	musical-form	0xdf07c1	0x173b710	 has a well-defined multi-passage structure: 
+reference	musical-form	0xdf08ad	0x173b740	an additional
+reference	musical-form	0xdf08be	0x173b800	another 
+reference	musical-form	0xdf0a57	0x173b810	 lengthy
+reference	musical-form	0xdf0a65	0x173b81c	 brief
+reference	musical-form	0xdf0aa2	0x173b828	 unrelated
+reference	musical-form	0xdf0ab1	0x173b7c0	 passage
+reference	musical-form	0xdf0ae3	0x1665354	n
+reference	musical-form	0xdf0af2	0x173b7d0	 introduction
+reference	musical-form	0xdf0b12	0x173b7e0	 exposition
+reference	musical-form	0xdf0b34	0x1604230	 of the theme
+reference	musical-form	0xdf0b40	0x1604218	 of the first theme
+reference	musical-form	0xdf0b54	0x1604260	 of the second theme
+reference	musical-form	0xdf0b60	0x1604240	 of the previous passage
+reference	musical-form	0xdf0b6c	0x173b7f0	 recapitulation
+reference	musical-form	0xdf0b9a	0x173b860	 synthesis
+reference	musical-form	0xdf0bb7	0x16042b8	 of the two themes
+reference	musical-form	0xdf0bc3	0x16042a0	 of previous passages
+reference	musical-form	0xdf0bcf	0x173b86c	 verse
+reference	musical-form	0xdf0bf4	0x173b878	 chorus
+reference	musical-form	0xdf0c00	0x173b880	 finale
+reference	musical-form	0xdf0c0c	0x173b834	 coda
+reference	musical-form	0xdf0c18	0x173b840	 bridge-passage
+reference	musical-form	0xdf0c3d	0x173b850	 first
+reference	musical-form	0xdf0c4c	0x173b8b8	 theme
+reference	musical-form	0xdf0c67	0x173b858	 second
+reference	musical-form	0xdf0c82	0x173b8c0	 series of variations
+reference	musical-form	0xdf0ca4	0x1604338	 on the theme
+reference	musical-form	0xdf0cad	0x1604378	 on the first theme
+reference	musical-form	0xdf0cbb	0x1604360	 on the second theme
+reference	musical-form	0xdf0d63	0x173b8d8	possibly 
+reference	musical-form	0xdf0d85	0x173b8e8	all repeated
+reference	musical-form	0xdf0d8e	0x173b888	repeated
+reference	musical-form	0xdf0dbe	0x173b898	 up to 
+reference	musical-form	0xdf0e06	0x173b8a0	 times
+reference	musical-form	0xdf13d0	0x173b8a8	Each of the 
+reference	musical-form	0xdf147b	0x173b950	simple passage
+reference	musical-form	0xdf149f	0x1666518	introduction
+reference	musical-form	0xdf14a8	0x1666528	exposition
+reference	musical-form	0xdf14b1	0x16661d0	recapitulation
+reference	musical-form	0xdf14ba	0x16661e0	synthesis
+reference	musical-form	0xdf14c3	0x16661ec	verse
+reference	musical-form	0xdf14cc	0x16661f4	chorus
+reference	musical-form	0xdf14d5	0x16661fc	finale
+reference	musical-form	0xdf14de	0x1666204	coda
+reference	musical-form	0xdf14e7	0x1666210	bridge-passage
+reference	musical-form	0xdf14f0	0x1604324	theme
+reference	musical-form	0xdf14f9	0x173b960	series of variations
+reference	musical-form	0xdf153f	0x173b8f8	 is voiced by 
+reference	musical-form	0xdf15e5	0x1695264	the
+reference	musical-form	0xdf15ee	0x173c820	the rhythm of the
+reference	musical-form	0xdf15f7	0x173b938	the harmony of the
+reference	musical-form	0xdf1600	0x173b920	the counterpoint of the
+reference	musical-form	0xdf1609	0x173b908	the melody of the
+reference	musical-form	0xdf1739	0x173c838	 reciting the words of 
+reference	musical-form	0xdf177d	0x173c850	 reciting
+reference	musical-form	0xdf1808	0x173c860	 reciting nonsensical words and sounds
+reference	musical-form	0xdf18cb	0x173b978	Each passage
+reference	musical-form	0xdf18d9	0x173b988	The passage
+reference	musical-form	0xdf1c81	0x173c780	is twice the tempo of the last passage
+reference	musical-form	0xdf1c8d	0x173c7a8	is half the tempo of the last passage
+reference	musical-form	0xdf1c99	0x173c7d0	moves more quickly than the last passage
+reference	musical-form	0xdf1ca5	0x173c800	is slower than the last passage
+reference	musical-form	0xdf1cb1	0x173c8c8	resumes the previous tempo
+reference	musical-form	0xdf1cbd	0x173c8e8	resumes the original tempo
+reference	musical-form	0xdf1e77	0x1619f70	In 
+reference	musical-form	0xdf1f77	0x173c908	each of the 
+reference	musical-form	0xdf1faa	0x173c918	s'
+reference	musical-form	0xdf1fb3	0x16044e4	's
+reference	musical-form	0xdf1fbf	0x173c888	 voice
+reference	musical-form	0xdf210f	0x173c890	stays in the 
+reference	musical-form	0xdf2166	0x173c8b0	covers its entire range
+reference	musical-form	0xdf2172	0x173c9c8	ranges from the 
+reference	musical-form	0xdf2226	0x173c9e0	is confined to the 
+reference	musical-form	0xdf2441	0x173c9f8	covers its entire range from the 
+reference	musical-form	0xdf2546	0x173c8a0	 register
+reference	musical-form	0xdf2640	0x168a77c	 has 
+reference	musical-form	0xdf2680	0x173ca20	 in the melody and counterpoint
+reference	musical-form	0xdf271a	0x173c920	 in the melody, while the counterpoint has 
+reference	musical-form	0xdf27bb	0x173c950	 in the melody.  
+reference	musical-form	0xdf2822	0x173c968	 in the counterpoint melody.  
+reference	musical-form	0xdf2859	0x173cb80	This passage is richly layered with full chords making use of the available range.  
+reference	musical-form	0xdf2862	0x173cb30	Chords are packed close together in dense clusters in this passage.  
+reference	musical-form	0xdf286b	0x173caf8	This passage typically has some sparse chords.  
+reference	musical-form	0xdf2874	0x173cab8	This passage features only melodic tones and intervals.  
+reference	musical-form	0xdf287d	0x173c988	Only one pitch is ever played at a time in this passage.  
+reference	musical-form	0xdf28f9	0x173ca40	 is performed 
+reference	musical-form	0xdf2ad8	0x173ca50	 should be composed and performed using 
+reference	musical-form	0xdf2ae1	0x173ca80	 should be performed using 
+reference	musical-form	0xdf2d15	0x173caa0	locally improvisation
+reference	musical-form	0xdf2d21	0x173cbf8	melismatic phrasing
+reference	musical-form	0xdf2d2d	0x173cc10	syllabic phrasing
+reference	musical-form	0xdf2d39	0x173cc38	syncopation
+reference	musical-form	0xdf2d64	0x173cc78	frequent modulation
+reference	musical-form	0xdf2d6d	0x173cc50	alternation between tension and repose
+reference	musical-form	0xdf2d76	0x173cc44	fills
+reference	musical-form	0xdf2da0	0x173cbd8	free adjustment of the beats
+reference	musical-form	0xdf2e66	0x173cc28	 should 
+reference	musical-form	0xdf347d	0x173cce0	Scales are conceived of as two chords built using a division of the perfect fourth interval into 
+reference	musical-form	0xdf34b8	0x173cd48	 notes.  
+reference	musical-form	0xdf34d4	0x173cd98	Scales are constructed from 
+reference	musical-form	0xdf350f	0x173cde8	 notes dividing the octave.  
+reference	musical-form	0xdf351e	0x173ce08	In quartertones, their spacing is roughly 
+reference	musical-form	0xdf35af	0x173cc90	, where 1 is the tonic, O marks the octave and x marks other notes.  
+reference	musical-form	0xdf3608	0x173cdb8	 notes spaced evenly throughout the octave.  
+reference	musical-form	0xdf362f	0x173cd58	The tonic note is fixed only at the time of performance.  
+reference	musical-form	0xdf3638	0x173cf00	The tonic note is a fixed tone passed from teacher to student.  
+reference	musical-form	0xdf3676	0x173ce90	After a scale is constructed, the root note of chords are named.  
+reference	musical-form	0xdf367f	0x173ce40	After a scale is constructed, notes are named according to degree.  
+reference	musical-form	0xdf3690	0x173cf60	A single note in the fundamental scale is named.  
+reference	musical-form	0xdf3699	0x173cf98	Preferred notes in the fundamental scale are named.  
+reference	musical-form	0xdf36a2	0x173cf48	Every note is named.  
+reference	musical-form	0xdf36bc	0x173ced8	It is called 
+reference	musical-form	0xdf36c5	0x173cee8	The names are 
+reference	musical-form	0xdf3709	0x16312f0	 (
+reference	musical-form	0xdf371c	0x173d0a0	spoken 
+reference	musical-form	0xdf3792	0x1631330	)
+reference	musical-form	0xdf38e2	0x173d0a8	As always, the 
+reference	musical-form	0xdf397a	0x173d0c8	hexatonic
+reference	musical-form	0xdf3983	0x173d0b8	pentatonic
+reference	musical-form	0xdf399b	0x173cfd0	heptatonic
+reference	musical-form	0xdf39aa	0x173cfe0	 scale is 
+reference	musical-form	0xdf39e6	0x173c060	thought of as two disjoint chords drawn from the fundamental division of the perfect fourth
+reference	musical-form	0xdf39f7	0x173c0c0	thought of as two disjoint chords spanning two perfect fourths
+reference	musical-form	0xdf3a08	0x173c010	thought of as two disjoint chords spanning a tritone and a perfect fourth
+reference	musical-form	0xdf3a1c	0x173bfc0	thought of as two disjoint chords spanning a perfect fifth and a major third
+reference	musical-form	0xdf3a30	0x173d050	thought of as joined chords spanning a perfect fifth and a perfect fourth
+reference	musical-form	0xdf3a44	0x173cff0	constructed by selection of degrees from the fundamental scale.  The degrees selected are 
+reference	musical-form	0xdf3b1e	0x173bf78	These chords are named 
+reference	musical-form	0xdf3c4f	0x173bf90	[B]The 
+reference	musical-form	0xdf3c8b	0x173c3f8	pentachord
+reference	musical-form	0xdf3c94	0x173bfa8	tetrachord
+reference	musical-form	0xdf3c9d	0x173bf98	trichord
+reference	musical-form	0xdf3cac	0x1612ef4	 is 
+reference	musical-form	0xdf3d35	0x173c408	 (completing the octave)
+reference	musical-form	0xdf3daf	0x173c120	degrees of the fundamental perfect fourth division
+reference	musical-form	0xdf3db8	0x173c100	degrees of the octave scale
+reference	musical-form	0xdf3dc6	0x173c428	degrees of the semitone octave scale
+reference	musical-form	0xdf3dcf	0x173c450	degrees of the quartertone octave scale
+reference	musical-form	0xdf3f22	0x173c160	[B]The rhythm system is fundamentally polyrhythmic.  There are always multiple rhythm lines, and each of their bars is played over the same period of time, regardless of the number of beats.  The rhythm lines are thought of as one, without a primary-subordinate relationship, though individual lines can be named.  
+reference	musical-form	0xdf3f38	0x173c2a0	[B]The rhythm system is fundamentally polymetric.  There are always multiple rhythm lines, and the beats are always played together, even if one rhythm line completes (and then repeats) before the other is finished.  The rhythm lines are thought of as one, without a primary-subordinate relationship, though individual lines can be named.  
+reference	musical-form	0xdf406d	0x173c5b0	 rhythm is made from 
+reference	musical-form	0xdf40bd	0x173c5c8	 patterns: 
+reference	musical-form	0xdf418d	0x173c5d8	 (considered the primary)
+reference	musical-form	0xdf4303	0x173c5f8	As stated above, they are to be played in polyrhythm.  
+reference	musical-form	0xdf4310	0x173c478	As stated above, they are to be played in polymeter.  
+reference	musical-form	0xdf431e	0x173c4b0	The patterns are to be played in the same beat, allowing one to repeat before the other is concluded.  
+reference	musical-form	0xdf4327	0x173c520	The patterns are to be played over the same period of time, concluding together regardless of beat number.  
+reference	musical-form	0xdf4450	0x173c590	 rhythm is a single line with 
+reference	musical-form	0xdf44ad	0x173c674	 beats
+reference	musical-form	0xdf44d8	0x173c680	 divided into 
+reference	musical-form	0xdf4528	0x173c690	 bars in a 
+reference	musical-form	0xdf45a2	0x166972c	-
+reference	musical-form	0xdf45bf	0x173c6a0	 pattern
+reference	musical-form	0xdf45f1	0x173c630	The beats are named 
+reference	musical-form	0xdf46a6	0x173c648	The beat is stressed as follows:
+reference	musical-form	0xdf46df	0x173c66c	| 
+reference	musical-form	0xdf4771	0x16096b8	!
+reference	musical-form	0xdf4787	0x16dfebc	X
+reference	musical-form	0xdf479d	0x161a3e4	x
+reference	musical-form	0xdf47c5	0x173c670	`
+reference	musical-form	0xdf47e1	0x166fdd0	'
+reference	musical-form	0xdf486c	0x173c710	[B]where 
+reference	musical-form	0xdf4880	0x173c720	! marks the primary accent, 
+reference	musical-form	0xdf4894	0x173c740	X marks an accented beat, 
+reference	musical-form	0xdf48a8	0x173c760	` marks a beat as early, 
+reference	musical-form	0xdf48bc	0x173c6b0	' marks a beat as late, 
+reference	musical-form	0xdf48cb	0x173c6d0	x is a beat
+reference	musical-form	0xdf48e1	0x173c6e0	, - is silent
+reference	musical-form	0xdf48f0	0x173c6f0	 and | indicates a bar.  
+reference	cardinal	0x54788b	0x1672000	negative 
+reference	cardinal	0x5478c0	0x1672058	zero
+reference	cardinal	0x5478da	0x1672060	one
+reference	cardinal	0x5478f4	0x167204c	two
+reference	cardinal	0x54790e	0x1672050	three
+reference	cardinal	0x547928	0x167203c	four
+reference	cardinal	0x547942	0x1672044	five
+reference	cardinal	0x54795c	0x1672030	six
+reference	cardinal	0x547976	0x1672034	seven
+reference	cardinal	0x547990	0x16720a0	eight
+reference	cardinal	0x5479aa	0x16720a8	nine
+reference	cardinal	0x5479c4	0x1672094	ten
+reference	cardinal	0x5479de	0x1672098	eleven
+reference	cardinal	0x5479f8	0x1672080	twelve
+reference	cardinal	0x547a12	0x1672088	thirteen
+reference	cardinal	0x547a2c	0x1672068	fourteen
+reference	cardinal	0x547a46	0x1672078	fifteen
+reference	cardinal	0x547a60	0x1672160	sixteen
+reference	cardinal	0x547a7a	0x1672168	seventeen
+reference	cardinal	0x547a94	0x1672140	eighteen
+reference	cardinal	0x547aae	0x1672150	nineteen
+reference	cardinal	0x547b23	0x1672120	 billion
+reference	cardinal	0x547b42	0x16039f0	 
+reference	cardinal	0x547be6	0x1672130	 million
+reference	cardinal	0x547ce2	0x1672100	 thousand
+reference	cardinal	0x547dd9	0x1672110	 hundred
+reference	cardinal	0x547ea5	0x16721a8	twenty
+reference	cardinal	0x547eae	0x16721b0	thirty
+reference	cardinal	0x547ebd	0x1672198	forty
+reference	cardinal	0x547ecc	0x16721a0	fifty
+reference	cardinal	0x547edb	0x1672184	sixty
+reference	cardinal	0x547eea	0x1672190	seventy
+reference	cardinal	0x547ef3	0x1672174	eighty
+reference	cardinal	0x547efc	0x167217c	ninety
+reference	cardinal	0x547f24	0x166972c	-
+reference	ordinal	0x548086	0x166972c	-
+reference	ordinal	0x5480ce	0x1607960	th
+reference	ordinal	0x5480f7	0x160795c	rd
+reference	ordinal	0x548127	0x16078f8	nd
+reference	ordinal	0x548157	0x16078f4	st
+reference	ordinal	0x548170	0x16721e8	Negative 
+reference	ordinal	0x5481aa	0x16721f4	Zeroth
+reference	ordinal	0x5481c9	0x16721d8	First
+reference	ordinal	0x5481e8	0x16721e0	Second
+reference	ordinal	0x548207	0x16721c8	Third
+reference	ordinal	0x548226	0x16721d0	Fourth
+reference	ordinal	0x548245	0x16721b8	Fifth
+reference	ordinal	0x548264	0x16721c0	Sixth
+reference	ordinal	0x548283	0x1672248	Seventh
+reference	ordinal	0x5482a2	0x1672250	Eighth
+reference	ordinal	0x5482c1	0x1672238	Ninth
+reference	ordinal	0x5482e0	0x1672240	Tenth
+reference	ordinal	0x5482ff	0x1672220	Eleventh
+reference	ordinal	0x54831e	0x1672230	Twelfth
+reference	ordinal	0x54833d	0x1672200	Thirteenth
+reference	ordinal	0x54835c	0x1672210	Fourteenth
+reference	ordinal	0x54837b	0x16720e0	Fifteenth
+reference	ordinal	0x54839a	0x16720f0	Sixteenth
+reference	ordinal	0x5483b9	0x16720c0	Seventeenth
+reference	ordinal	0x5483d8	0x16720d0	Eighteenth
+reference	ordinal	0x5483f7	0x16720b0	Nineteenth
+reference	timbre-selector	0x796538	0x165dca0	clear
+reference	timbre-selector	0x79654d	0x16c6894	noisy
+reference	timbre-selector	0x796562	0x16c688c	full
+reference	timbre-selector	0x796577	0x16a5204	thin
+reference	timbre-selector	0x79658c	0x16a4f38	round
+reference	timbre-selector	0x7965a1	0x16c68a4	sharp
+reference	timbre-selector	0x7965b6	0x16a50c8	smooth
+reference	timbre-selector	0x7965cb	0x16c689c	choppy
+reference	timbre-selector	0x7965e0	0x16c68bc	steady
+reference	timbre-selector	0x7965f5	0x16c68b0	evolving
+reference	timbre-selector	0x79660a	0x16660a4	strong
+reference	timbre-selector	0x79661f	0x1666078	delicate
+reference	timbre-selector	0x796634	0x16c68d0	bright
+reference	timbre-selector	0x796649	0x1666028	graceful
+reference	timbre-selector	0x79665e	0x16a5214	sparse
+reference	timbre-selector	0x796673	0x16c68c8	breathy
+reference	timbre-selector	0x796688	0x1609e18	strained
+reference	timbre-selector	0x79669d	0x16a5144	broad
+reference	timbre-selector	0x7966b2	0x168e8e0	light
+reference	timbre-selector	0x7966c7	0x16c68e4	mellow
+reference	timbre-selector	0x7966dc	0x16c68d8	wobbling
+reference	timbre-selector	0x7966f1	0x16c6790	focused
+reference	timbre-selector	0x796706	0x16c6788	even
+reference	timbre-selector	0x79671b	0x16660c4	fluid
+reference	timbre-selector	0x79672a	0x16c67a8	vibrating
+reference	timbre-selector	0x79673f	0x16c6798	quavering
+reference	timbre-selector	0x79675a	0x16c67c0	eerie
+reference	timbre-selector	0x79676f	0x16c67b8	fragile
+reference	timbre-selector	0x796784	0x16c67d0	brittle
+reference	timbre-selector	0x796799	0x16c67c8	pure
+reference	timbre-selector	0x7967ae	0x16c67e8	piercing
+reference	timbre-selector	0x7967c3	0x16c67d8	strident
+reference	timbre-selector	0x7967d8	0x16c6800	wavering
+reference	timbre-selector	0x7967ed	0x16c67f4	harsh
+reference	timbre-selector	0x796802	0x16c6814	reedy
+reference	timbre-selector	0x796817	0x16c680c	nasal
+reference	timbre-selector	0x79682c	0x16c6824	buzzy
+reference	timbre-selector	0x796841	0x16c681c	rough
+reference	timbre-selector	0x796856	0x16c6708	warm
+reference	timbre-selector	0x79686b	0x16c6700	rugged
+reference	timbre-selector	0x796880	0x16c6718	heavy
+reference	timbre-selector	0x796895	0x16c6710	flat
+reference	timbre-selector	0x7968aa	0x16c17d4	dark
+reference	timbre-selector	0x7968bf	0x16c672c	crisp
+reference	timbre-selector	0x7968d4	0x16c6720	sonorous
+reference	timbre-selector	0x7968e9	0x16c1bfc	watery
+reference	timbre-selector	0x7968fe	0x16c6740	gentle
+reference	timbre-selector	0x796913	0x16c6738	slicing
+reference	timbre-selector	0x796928	0x16c6750	liquid
+reference	timbre-selector	0x79693d	0x16c6748	raucous
+reference	timbre-selector	0x796952	0x16c6760	breezy
+reference	timbre-selector	0x796967	0x16c6758	raspy
+reference	timbre-selector	0x79697c	0x16c6770	wispy
+reference	timbre-selector	0x796991	0x16c6768	shrill
+reference	timbre-selector	0x7969a6	0x16c1998	muddy
+reference	timbre-selector	0x7969bb	0x16c6780	rich
+reference	timbre-selector	0x7969d0	0x16c6778	dull
+reference	timbre-selector	0x7969e5	0x16c6c38	floating
+reference	timbre-selector	0x7969fa	0x16c6c30	ringing
+reference	timbre-selector	0x796a0f	0x16c6c50	resonant
+reference	timbre-selector	0x796a24	0x16c6c44	sweet
+reference	timbre-selector	0x796a39	0x16c6c70	rippling
+reference	timbre-selector	0x796a48	0x16c6c60	sparkling
+classic	musical-form	0xde8790	0x16603cc	 is a 
+classic	musical-form	0xde87bd	0x17354a8	form of music used during marches and military engagements
+classic	musical-form	0xde87c6	0x17353c0	devotional form of music
+classic	musical-form	0xde87df	0x17353e0	 directed toward the worship of 
+classic	musical-form	0xde8823	0x1735388	form of music used to commemorate important events
+classic	musical-form	0xde882c	0x1735480	form of music used for entertainment
+classic	musical-form	0xde8861	0x1660490	 originating in 
+classic	musical-form	0xde8868	0x1660468	 which grew out of the performances of 
+classic	musical-form	0xde88ae	0x16604a8	 originally devised by 
+classic	musical-form	0xde88e4	0x1614680	.  
+classic	musical-form	0xde88fa	0x1735520	The form guides musicians during improvised performances.  
+classic	musical-form	0xde8901	0x1735410	The rules of the form are applied by composers to produce individual pieces of music which can be performed.  
+classic	musical-form	0xde8967	0x17354f0	recites
+classic	musical-form	0xde896e	0x1735d58	while the
+classic	musical-form	0xde89aa	0x16873b4	A
+classic	musical-form	0xde89b4	0x1619928	a
+classic	musical-form	0xde8a4c	0x1603794	 to 
+classic	musical-form	0xde8aa0	0x15fe96c	 
+classic	musical-form	0xde8ac2	0x173555c	singer
+classic	musical-form	0xde8ade	0x1735568	speaker
+classic	musical-form	0xde8afa	0x1735570	chanter
+classic	musical-form	0xde8b1c	0x15ff4c8	s
+classic	musical-form	0xde8b6b	0x17354e4	recite
+classic	musical-form	0xde8b82	0x17354f8	 the words of 
+classic	musical-form	0xde8bf7	0x1735508	 a composition of
+classic	musical-form	0xde8c7a	0x1735d38	 nonsensical words and sounds
+classic	musical-form	0xde8cef	0x1660a50	The
+classic	musical-form	0xde8d05	0x1735d68	 music is played on 
+classic	musical-form	0xde8e33	0x15ff308	, 
+classic	musical-form	0xde8e41	0x15ff340	 and 
+classic	musical-form	0xde9000	0x1735d80	The music
+classic	musical-form	0xde9011	0x1735c70	al voices join in melody and counterpoint, harmony and rhythm
+classic	musical-form	0xde9018	0x1735cb0	al voices bring melody, counterpoint and rhythm
+classic	musical-form	0xde9027	0x1735ce0	al voices cover melody, harmony and rhythm
+classic	musical-form	0xde902e	0x1735d10	 is melody and rhythm without harmony
+classic	musical-form	0xde903d	0x1735df0	The musical voices 
+classic	musical-form	0xde904e	0x1735e08	join in melody, counterpoint and harmony
+classic	musical-form	0xde9055	0x1735e38	bring melody and counterpoint
+classic	musical-form	0xde9064	0x1735e58	bring melody with harmony
+classic	musical-form	0xde906b	0x1735d90	are joined in melody
+classic	musical-form	0xde907a	0x1735da8	The musical voices are purely rhythmic
+classic	musical-form	0xde90c8	0x1735dd0	The entire performance 
+classic	musical-form	0xde90e6	0x1735de8	should 
+classic	musical-form	0xde9117	0x1735ec0	stress the rhythm
+classic	musical-form	0xde9123	0x1735ed8	be stately
+classic	musical-form	0xde912f	0x1735ee8	be bright
+classic	musical-form	0xde913b	0x1735ef8	be lively
+classic	musical-form	0xde9147	0x1735e78	be made with skill
+classic	musical-form	0xde9153	0x1735e90	be vigorous
+classic	musical-form	0xde915f	0x1735ea0	be spirited
+classic	musical-form	0xde916b	0x1735eb0	be delicate
+classic	musical-form	0xde9177	0x1735f50	bring a sense of motion
+classic	musical-form	0xde9183	0x1735f40	be fiery
+classic	musical-form	0xde918f	0x1735f68	be made with feeling
+classic	musical-form	0xde919b	0x1735f80	feel agitated
+classic	musical-form	0xde91a7	0x1735f08	be passionate
+classic	musical-form	0xde91b3	0x1735f18	sparkle
+classic	musical-form	0xde91bf	0x1735f20	be broad
+classic	musical-form	0xde91cb	0x1735f30	be made sweetly
+classic	musical-form	0xde91d7	0x1735fd8	be strong
+classic	musical-form	0xde91e3	0x1735fe8	be energetic
+classic	musical-form	0xde91ef	0x1735ff8	be forceful
+classic	musical-form	0xde91fb	0x1736008	feel heroic
+classic	musical-form	0xde9207	0x1735f90	be made expressively
+classic	musical-form	0xde9213	0x1735fa8	feel furious
+classic	musical-form	0xde921f	0x1735fb8	be joyful
+classic	musical-form	0xde922b	0x1735fc8	be grand
+classic	musical-form	0xde9234	0x1736068	be merry
+classic	musical-form	0xde923d	0x1736078	be graceful
+classic	musical-form	0xde9246	0x1736088	build as it proceeds
+classic	musical-form	0xde924f	0x17360a0	evoke tears
+classic	musical-form	0xde9258	0x1736018	be melancholic
+classic	musical-form	0xde9261	0x1736028	feel mournful
+classic	musical-form	0xde926a	0x1736038	be made with a light touch
+classic	musical-form	0xde9273	0x1736058	feel heavy
+classic	musical-form	0xde927c	0x17360f8	feel mysterious
+classic	musical-form	0xde9285	0x1736108	be jumpy
+classic	musical-form	0xde928e	0x1736118	feel playful
+classic	musical-form	0xde9297	0x1736128	feel tender
+classic	musical-form	0xde92a0	0x17360b0	feel calm
+classic	musical-form	0xde92a9	0x17360c0	be triumphant
+classic	musical-form	0xde92fe	0x17360d0	is at a free tempo
+classic	musical-form	0xde930a	0x17360e8	is very slow
+classic	musical-form	0xde9316	0x1736188	is slow
+classic	musical-form	0xde931f	0x1736190	is at a walking pace
+classic	musical-form	0xde9328	0x17361a8	is moderately paced
+classic	musical-form	0xde9331	0x17361c0	is moderately fast
+classic	musical-form	0xde933a	0x1736138	is fast
+classic	musical-form	0xde9343	0x1736140	is very fast
+classic	musical-form	0xde934c	0x1736150	is extremely fast
+classic	musical-form	0xde9355	0x1736168	accelerates as it proceeds
+classic	musical-form	0xde935e	0x17355f8	slows and broadens
+classic	musical-form	0xde9367	0x1735610	is consistently slowing
+classic	musical-form	0xde9370	0x1735628	is at a hurried pace
+classic	musical-form	0xde9379	0x1735640	gradually slows as it comes to an end
+classic	musical-form	0xde9382	0x1735578	slows down and dies away as it draws to a close
+classic	musical-form	0xde938b	0x17355a8	becomes calmer as the end is approached
+classic	musical-form	0xde9394	0x17355d0	becomes frenzied as it proceeds
+classic	musical-form	0xde93c6	0x17355f0	is to
+classic	musical-form	0xde93cf	0x17356b0	, and it is to
+classic	musical-form	0xde940b	0x17356c0	be in whispered undertones
+classic	musical-form	0xde9414	0x17356e0	be very soft
+classic	musical-form	0xde941d	0x17356f0	be soft
+classic	musical-form	0xde9426	0x1735668	be moderately soft
+classic	musical-form	0xde942f	0x1735680	be moderately loud
+classic	musical-form	0xde9438	0x1735698	be loud
+classic	musical-form	0xde9441	0x17356a0	be very loud
+classic	musical-form	0xde944a	0x1735758	become louder and louder
+classic	musical-form	0xde9453	0x1735778	become softer and softer
+classic	musical-form	0xde945c	0x1735798	fade into silence
+classic	musical-form	0xde9465	0x17357b0	start loud then be immediately soft
+classic	musical-form	0xde9665	0x17356f8	The melody and counterpoint both have 
+classic	musical-form	0xde968e	0x17358b0	phrases of varied length
+classic	musical-form	0xde969a	0x1735748	long phrases
+classic	musical-form	0xde96a6	0x1735730	mid-length phrases
+classic	musical-form	0xde96b2	0x17358d0	The melody has 
+classic	musical-form	0xde96ee	0x1735720	short phrases
+classic	musical-form	0xde96fd	0x17358e0	, while the counterpoint has 
+classic	musical-form	0xde9726	0x17357d8	The counterpoint melody has 
+classic	musical-form	0xde974d	0x1735900	 throughout the form.  
+classic	musical-form	0xde977c	0x17359b0	The music is broadly layered with chords spanning the range.  
+classic	musical-form	0xde9785	0x1735960	Pitches are densely packed in clusters as music moves from chord to chord.  
+classic	musical-form	0xde978e	0x1735860	Chords, seldom-used, are sparse -- intervals and single pitches are favored.  
+classic	musical-form	0xde9797	0x1735828	Never more than an interval sounds at once.  
+classic	musical-form	0xde97a0	0x17357f8	Only one pitch is ever played at a time.  
+classic	musical-form	0xde97ba	0x17359f0	The music repeats for as long as necessary.  
+classic	musical-form	0xde987d	0x1735a20	It is performed 
+classic	musical-form	0xde988f	0x1735918	without preference for a scale
+classic	musical-form	0xde98e2	0x1735938	using the 
+classic	musical-form	0xde9910	0x1735944	 scale
+classic	musical-form	0xde9957	0x1603224	in 
+classic	musical-form	0xde9960	0x1735950	 and in 
+classic	musical-form	0xde9983	0x1735a78	free rhythm
+classic	musical-form	0xde998f	0x15ff078	the 
+classic	musical-form	0xde9a23	0x1660ce0	 rhythm
+classic	musical-form	0xde9a61	0x1735a88	Throughout, when possible, composers and performers are to 
+classic	musical-form	0xde9a6a	0x1735ac8	Throughout, when possible, performers are to 
+classic	musical-form	0xde9c0d	0x1735af8	glide from note to note
+classic	musical-form	0xde9c19	0x1735a38	use grace notes
+classic	musical-form	0xde9c25	0x1735a48	use mordents
+classic	musical-form	0xde9c31	0x1735a58	make trills
+classic	musical-form	0xde9c3d	0x1735a68	play rapid runs
+classic	musical-form	0xde9c49	0x1735b58	locally improvise
+classic	musical-form	0xde9c55	0x1735c00	spread syllables over many notes
+classic	musical-form	0xde9c61	0x1735c28	match notes and syllables
+classic	musical-form	0xde9c6d	0x1735b70	syncopate
+classic	musical-form	0xde9c98	0x1735b10	modulate frequently
+classic	musical-form	0xde9ca1	0x1735b90	alternate tension and repose
+classic	musical-form	0xde9caa	0x1735b80	add fills
+classic	musical-form	0xde9cb3	0x1735b28	play arpeggios
+classic	musical-form	0xde9cd4	0x1735be8	freely adjust the beats
+classic	musical-form	0xde9cdd	0x1735b48	play legato
+classic	musical-form	0xde9ce6	0x1735b38	play staccato
+classic	musical-form	0xde9d51	0x1735c48	From beginning to end, when improvising
+classic	musical-form	0xde9d6b	0x1735bb0	 or composing
+classic	musical-form	0xde9d7a	0x1735bc0	, artists should 
+classic	musical-form	0xde9dfe	0x1736850	sometimes
+classic	musical-form	0xde9e07	0x1735bdc	often
+classic	musical-form	0xde9e10	0x1735bd4	always
+classic	musical-form	0xde9e1f	0x1736860	 include a 
+classic	musical-form	0xde9e50	0x1736818	falling-rising
+classic	musical-form	0xde9e59	0x1736878	rising-falling
+classic	musical-form	0xde9e62	0x16145c8	falling
+classic	musical-form	0xde9e6b	0x173686c	rising
+classic	musical-form	0xde9e7a	0x1736828	 melody pattern
+classic	musical-form	0xde9ea8	0x16047e8	 with 
+classic	musical-form	0xde9f43	0x16a0080	flattened
+classic	musical-form	0xde9f65	0x1736838	sharpened
+classic	musical-form	0xde9fc9	0x1736848	 degree
+classic	musical-form	0xdea010	0x17368c0	 on the rise
+classic	musical-form	0xdea019	0x17368d0	 on the fall
+classic	musical-form	0xdea0b9	0x17368e0	 as well as 
+classic	musical-form	0xdea1e0	0x17368a4	trills
+classic	musical-form	0xdea1e9	0x1736898	mordents
+classic	musical-form	0xdea1f2	0x1736888	grace notes
+classic	musical-form	0xdea1fb	0x17368f0	glides
+classic	musical-form	0xdea204	0x17368b0	rapid runs
+classic	musical-form	0xdea225	0x173696c	legato
+classic	musical-form	0xdea22e	0x1736960	staccato
+classic	musical-form	0xdea237	0x1736950	arpeggios
+classic	musical-form	0xdea737	0x16140ac	[B]
+classic	musical-form	0xdea75a	0x1736974	Each 
+classic	musical-form	0xdea763	0x1603c34	The 
+classic	musical-form	0xdea927	0x17368f8	 always 
+classic	musical-form	0xdea963	0x17369e8	provides the rhythm
+classic	musical-form	0xdea96c	0x1736940	does harmony
+classic	musical-form	0xdea975	0x1736920	does the counterpoint melody
+classic	musical-form	0xdea97e	0x1736908	does the main melody
+classic	musical-form	0xdeaa3b	0x1736a00	perform with skill
+classic	musical-form	0xdeaa83	0x1736a18	perform with feeling
+classic	musical-form	0xdeaabf	0x1736a30	perform sweetly
+classic	musical-form	0xdeaafb	0x1736980	perform expressively
+classic	musical-form	0xdeab3a	0x1736998	build as the performance proceeds
+classic	musical-form	0xdeab5e	0x17369c0	perform with a light touch
+classic	musical-form	0xdeabfe	0x17369dc	is to 
+classic	musical-form	0xdeadaf	0x1736a90	glides from note to note
+classic	musical-form	0xdeadbb	0x1736ab0	uses grace notes
+classic	musical-form	0xdeadc7	0x1736ac8	uses mordents
+classic	musical-form	0xdeadd3	0x1736ad8	makes trills
+classic	musical-form	0xdeaddf	0x1736a40	plays rapid runs
+classic	musical-form	0xdeadeb	0x1736ae8	spreads syllables over many notes
+classic	musical-form	0xdeadf7	0x1736b10	matches notes and syllables
+classic	musical-form	0xdeae00	0x1736a58	locally improvises
+classic	musical-form	0xdeae2f	0x1736b50	modulates frequently
+classic	musical-form	0xdeae38	0x1736a80	adds fills
+classic	musical-form	0xdeae41	0x1736a70	syncopates
+classic	musical-form	0xdeae4a	0x1736b68	plays arpeggios
+classic	musical-form	0xdeae65	0x1736b88	plays legato
+classic	musical-form	0xdeae6e	0x1736b78	plays staccato
+classic	musical-form	0xdeaf06	0x1736b30	The voice stays in the 
+classic	musical-form	0xdeaf2e	0x1660ff0	high
+classic	musical-form	0xdeaf3a	0x1736b48	middle
+classic	musical-form	0xdeaf50	0x1736c08	The voice uses its entire range.  
+classic	musical-form	0xdeaf64	0x1736c30	The voice ranges from the 
+classic	musical-form	0xdeaf96	0x1660ff8	low
+classic	musical-form	0xdeafa5	0x1736c50	 register to the 
+classic	musical-form	0xdeafde	0x1736bf8	 register.  
+classic	musical-form	0xdeb028	0x1736b98	The voice is confined to the 
+classic	musical-form	0xdeb0c4	0x1736bb8	top
+classic	musical-form	0xdeb171	0x1736bc0	 voice uses its entire range.  
+classic	musical-form	0xdeb19f	0x1736be0	 voice ranges from the 
+classic	musical-form	0xdeb248	0x1736ca0	The voice uses its entire range from the 
+classic	musical-form	0xdeb4ee	0x1736cd0	 has a simple structure: 
+classic	musical-form	0xdeb508	0x1736cf0	 has the following structure: 
+classic	musical-form	0xdeb511	0x1736d10	 has a well-defined multi-passage structure: 
+classic	musical-form	0xdeb5fd	0x1736c68	an additional
+classic	musical-form	0xdeb60e	0x1736c78	another 
+classic	musical-form	0xdeb7a7	0x1736c88	 lengthy
+classic	musical-form	0xdeb7b5	0x1736c94	 brief
+classic	musical-form	0xdeb7f2	0x1736208	 unrelated
+classic	musical-form	0xdeb801	0x1736218	 passage
+classic	musical-form	0xdeb833	0x1660254	n
+classic	musical-form	0xdeb842	0x1736228	 introduction
+classic	musical-form	0xdeb862	0x1736238	 exposition
+classic	musical-form	0xdeb884	0x15ff198	 of the theme
+classic	musical-form	0xdeb890	0x15ff1d0	 of the first theme
+classic	musical-form	0xdeb8a4	0x15ff1b8	 of the second theme
+classic	musical-form	0xdeb8b0	0x15ff200	 of the previous passage
+classic	musical-form	0xdeb8bc	0x17361d8	 recapitulation
+classic	musical-form	0xdeb8ea	0x17361e8	 synthesis
+classic	musical-form	0xdeb907	0x15ff220	 of the two themes
+classic	musical-form	0xdeb913	0x15ff250	 of previous passages
+classic	musical-form	0xdeb91f	0x17361f4	 verse
+classic	musical-form	0xdeb944	0x1736200	 chorus
+classic	musical-form	0xdeb950	0x1736280	 finale
+classic	musical-form	0xdeb95c	0x1736288	 coda
+classic	musical-form	0xdeb968	0x1736290	 bridge-passage
+classic	musical-form	0xdeb98d	0x17362a0	 first
+classic	musical-form	0xdeb99c	0x1736250	 theme
+classic	musical-form	0xdeb9b7	0x1736248	 second
+classic	musical-form	0xdeb9d2	0x1736258	 series of variations
+classic	musical-form	0xdeb9f4	0x15ff2f8	 on the theme
+classic	musical-form	0xdeb9fd	0x15ff2e0	 on the first theme
+classic	musical-form	0xdeba0b	0x15ff310	 on the second theme
+classic	musical-form	0xdebab3	0x1736270	possibly 
+classic	musical-form	0xdebad5	0x17362f0	all repeated
+classic	musical-form	0xdebade	0x1736300	repeated
+classic	musical-form	0xdebb0e	0x1736310	 up to 
+classic	musical-form	0xdebb56	0x1736318	 times
+classic	musical-form	0xdec120	0x17362a8	Each of the 
+classic	musical-form	0xdec1cb	0x17362b8	simple passage
+classic	musical-form	0xdec1ef	0x16612e0	introduction
+classic	musical-form	0xdec1f8	0x16612f0	exposition
+classic	musical-form	0xdec201	0x1661300	recapitulation
+classic	musical-form	0xdec20a	0x1661310	synthesis
+classic	musical-form	0xdec213	0x166131c	verse
+classic	musical-form	0xdec21c	0x1661324	chorus
+classic	musical-form	0xdec225	0x166132c	finale
+classic	musical-form	0xdec22e	0x1661334	coda
+classic	musical-form	0xdec237	0x1661340	bridge-passage
+classic	musical-form	0xdec240	0x15ff2d8	theme
+classic	musical-form	0xdec249	0x17362c8	series of variations
+classic	musical-form	0xdec28f	0x1736388	 is voiced by 
+classic	musical-form	0xdec335	0x167f544	the
+classic	musical-form	0xdec33e	0x1736338	the rhythm of the
+classic	musical-form	0xdec347	0x1736320	the harmony of the
+classic	musical-form	0xdec350	0x17363b0	the counterpoint of the
+classic	musical-form	0xdec359	0x1736398	the melody of the
+classic	musical-form	0xdec489	0x1736350	 reciting the words of 
+classic	musical-form	0xdec4cd	0x1736368	 reciting
+classic	musical-form	0xdec558	0x1736438	 reciting nonsensical words and sounds
+classic	musical-form	0xdec61b	0x17362e0	Each passage
+classic	musical-form	0xdec629	0x1736378	The passage
+classic	musical-form	0xdec9d1	0x1736460	is twice the tempo of the last passage
+classic	musical-form	0xdec9dd	0x1736488	is half the tempo of the last passage
+classic	musical-form	0xdec9e9	0x17364b0	moves more quickly than the last passage
+classic	musical-form	0xdec9f5	0x17363c8	is slower than the last passage
+classic	musical-form	0xdeca01	0x17363e8	resumes the previous tempo
+classic	musical-form	0xdeca0d	0x1736408	resumes the original tempo
+classic	musical-form	0xdecbc7	0x1614db0	In 
+classic	musical-form	0xdeccc7	0x1736428	each of the 
+classic	musical-form	0xdeccfa	0x173654c	s'
+classic	musical-form	0xdecd03	0x15ff490	's
+classic	musical-form	0xdecd0f	0x1736550	 voice
+classic	musical-form	0xdece5f	0x1736558	stays in the 
+classic	musical-form	0xdeceb6	0x17364e0	covers its entire range
+classic	musical-form	0xdecec2	0x17364f8	ranges from the 
+classic	musical-form	0xdecf76	0x1736510	is confined to the 
+classic	musical-form	0xded191	0x1736528	covers its entire range from the 
+classic	musical-form	0xded296	0x1736568	 register
+classic	musical-form	0xded390	0x168d678	 has 
+classic	musical-form	0xded3d0	0x1736678	 in the melody and counterpoint
+classic	musical-form	0xded46a	0x1736698	 in the melody, while the counterpoint has 
+classic	musical-form	0xded50b	0x17366c8	 in the melody.  
+classic	musical-form	0xded572	0x17366e0	 in the counterpoint melody.  
+classic	musical-form	0xded5a9	0x1736760	This passage is richly layered with full chords making use of the available range.  
+classic	musical-form	0xded5b2	0x1736630	Chords are packed close together in dense clusters in this passage.  
+classic	musical-form	0xded5bb	0x17365f8	This passage typically has some sparse chords.  
+classic	musical-form	0xded5c4	0x17365b8	This passage features only melodic tones and intervals.  
+classic	musical-form	0xded5cd	0x1736578	Only one pitch is ever played at a time in this passage.  
+classic	musical-form	0xded649	0x17367b8	 is performed 
+classic	musical-form	0xded828	0x17367c8	 should be composed and performed using 
+classic	musical-form	0xded831	0x17367f8	 should be performed using 
+classic	musical-form	0xdeda65	0x1736700	locally improvisation
+classic	musical-form	0xdeda71	0x1736e78	melismatic phrasing
+classic	musical-form	0xdeda7d	0x1736e90	syllabic phrasing
+classic	musical-form	0xdeda89	0x1736718	syncopation
+classic	musical-form	0xdedab4	0x1736e40	frequent modulation
+classic	musical-form	0xdedabd	0x1736730	alternation between tension and repose
+classic	musical-form	0xdedac6	0x1736724	fills
+classic	musical-form	0xdedaf0	0x1736e58	free adjustment of the beats
+classic	musical-form	0xdedbb6	0x1736dc0	 should 
+classic	musical-form	0xdee1cd	0x1737010	Scales are conceived of as two chords built using a division of the perfect fourth interval into 
+classic	musical-form	0xdee208	0x1737078	 notes.  
+classic	musical-form	0xdee224	0x1736dd0	Scales are constructed from 
+classic	musical-form	0xdee25f	0x1736e20	 notes dividing the octave.  
+classic	musical-form	0xdee26e	0x1736f88	In quartertones, their spacing is roughly 
+classic	musical-form	0xdee2ff	0x1736fc0	, where 1 is the tonic, O marks the octave and x marks other notes.  
+classic	musical-form	0xdee358	0x1736df0	 notes spaced evenly throughout the octave.  
+classic	musical-form	0xdee37f	0x1736ea8	The tonic note is fixed only at the time of performance.  
+classic	musical-form	0xdee388	0x1736ef0	The tonic note is a fixed tone passed from teacher to student.  
+classic	musical-form	0xdee3c6	0x1737150	After a scale is constructed, the root note of chords are named.  
+classic	musical-form	0xdee3cf	0x1737100	After a scale is constructed, notes are named according to degree.  
+classic	musical-form	0xdee3e0	0x1736f50	A single note in the fundamental scale is named.  
+classic	musical-form	0xdee3e9	0x17370c0	Preferred notes in the fundamental scale are named.  
+classic	musical-form	0xdee3f2	0x1736f38	Every note is named.  
+classic	musical-form	0xdee40c	0x1737198	It is called 
+classic	musical-form	0xdee415	0x1737088	The names are 
+classic	musical-form	0xdee459	0x162bff0	 (
+classic	musical-form	0xdee46c	0x1737098	spoken 
+classic	musical-form	0xdee4e2	0x162c030	)
+classic	musical-form	0xdee632	0x17370a0	As always, the 
+classic	musical-form	0xdee6ca	0x1737300	hexatonic
+classic	musical-form	0xdee6d3	0x17370b0	pentatonic
+classic	musical-form	0xdee6eb	0x1737310	heptatonic
+classic	musical-form	0xdee6fa	0x1737320	 scale is 
+classic	musical-form	0xdee736	0x17372a0	thought of as two disjoint chords drawn from the fundamental division of the perfect fourth
+classic	musical-form	0xdee747	0x17373f8	thought of as two disjoint chords spanning two perfect fourths
+classic	musical-form	0xdee758	0x1737250	thought of as two disjoint chords spanning a tritone and a perfect fourth
+classic	musical-form	0xdee76c	0x1737200	thought of as two disjoint chords spanning a perfect fifth and a major third
+classic	musical-form	0xdee780	0x17371b0	thought of as joined chords spanning a perfect fifth and a perfect fourth
+classic	musical-form	0xdee794	0x1737330	constructed by selection of degrees from the fundamental scale.  The degrees selected are 
+classic	musical-form	0xdee86e	0x1737438	These chords are named 
+classic	musical-form	0xdee99f	0x1737450	[B]The 
+classic	musical-form	0xdee9db	0x17373a0	pentachord
+classic	musical-form	0xdee9e4	0x1737390	tetrachord
+classic	musical-form	0xdee9ed	0x1737458	trichord
+classic	musical-form	0xdee9fc	0x160deec	 is 
+classic	musical-form	0xdeea85	0x17373b0	 (completing the octave)
+classic	musical-form	0xdeeaff	0x1737658	degrees of the fundamental perfect fourth division
+classic	musical-form	0xdeeb08	0x1737638	degrees of the octave scale
+classic	musical-form	0xdeeb16	0x17373d0	degrees of the semitone octave scale
+classic	musical-form	0xdeeb1f	0x1737610	degrees of the quartertone octave scale
+classic	musical-form	0xdeec72	0x1737690	[B]The rhythm system is fundamentally polyrhythmic.  There are always multiple rhythm lines, and each of their bars is played over the same period of time, regardless of the number of beats.  The rhythm lines are thought of as one, without a primary-subordinate relationship, though individual lines can be named.  
+classic	musical-form	0xdeec88	0x1737470	[B]The rhythm system is fundamentally polymetric.  There are always multiple rhythm lines, and the beats are always played together, even if one rhythm line completes (and then repeats) before the other is finished.  The rhythm lines are thought of as one, without a primary-subordinate relationship, though individual lines can be named.  
+classic	musical-form	0xdeedbd	0x17375c8	 rhythm is made from 
+classic	musical-form	0xdeee0d	0x17375e0	 patterns: 
+classic	musical-form	0xdeeedd	0x17375f0	 (considered the primary)
+classic	musical-form	0xdef053	0x1737818	As stated above, they are to be played in polyrhythm.  
+classic	musical-form	0xdef060	0x1737850	As stated above, they are to be played in polymeter.  
+classic	musical-form	0xdef06e	0x1737890	The patterns are to be played in the same beat, allowing one to repeat before the other is concluded.  
+classic	musical-form	0xdef077	0x1737900	The patterns are to be played over the same period of time, concluding together regardless of beat number.  
+classic	musical-form	0xdef1a0	0x17377d0	 rhythm is a single line with 
+classic	musical-form	0xdef1fd	0x17377f0	 beats
+classic	musical-form	0xdef228	0x17377f8	 divided into 
+classic	musical-form	0xdef278	0x1737808	 bars in a 
+classic	musical-form	0xdef2f2	0x16645bc	-
+classic	musical-form	0xdef30f	0x17379c8	 pattern
+classic	musical-form	0xdef341	0x17379d8	The beats are named 
+classic	musical-form	0xdef3f6	0x17379f0	The beat is stressed as follows:
+classic	musical-form	0xdef42f	0x1737a14	| 
+classic	musical-form	0xdef4c1	0x160469c	!
+classic	musical-form	0xdef4d7	0x16dadc8	X
+classic	musical-form	0xdef4ed	0x1615404	x
+classic	musical-form	0xdef515	0x1737970	`
+classic	musical-form	0xdef531	0x166a7f4	'
+classic	musical-form	0xdef5bc	0x1737978	[B]where 
+classic	musical-form	0xdef5d0	0x1737988	! marks the primary accent, 
+classic	musical-form	0xdef5e4	0x17379a8	X marks an accented beat, 
+classic	musical-form	0xdef5f8	0x1736d60	` marks a beat as early, 
+classic	musical-form	0xdef60c	0x1736d80	' marks a beat as late, 
+classic	musical-form	0xdef61b	0x1736da0	x is a beat
+classic	musical-form	0xdef631	0x1736db0	, - is silent
+classic	musical-form	0xdef640	0x1736d40	 and | indicates a bar.  
+classic	cardinal	0x54508b	0x166ceb0	negative 
+classic	cardinal	0x5450c0	0x166ce9c	zero
+classic	cardinal	0x5450da	0x166cea4	one
+classic	cardinal	0x5450f4	0x166ce90	two
+classic	cardinal	0x54510e	0x166ce94	three
+classic	cardinal	0x545128	0x166cef4	four
+classic	cardinal	0x545142	0x166cefc	five
+classic	cardinal	0x54515c	0x166cee8	six
+classic	cardinal	0x545176	0x166ceec	seven
+classic	cardinal	0x545190	0x166ced8	eight
+classic	cardinal	0x5451aa	0x166cee0	nine
+classic	cardinal	0x5451c4	0x166cecc	ten
+classic	cardinal	0x5451de	0x166ced0	eleven
+classic	cardinal	0x5451f8	0x166cf58	twelve
+classic	cardinal	0x545212	0x166cf60	thirteen
+classic	cardinal	0x54522c	0x166cf40	fourteen
+classic	cardinal	0x545246	0x166cf50	fifteen
+classic	cardinal	0x545260	0x166cf28	sixteen
+classic	cardinal	0x54527a	0x166cf30	seventeen
+classic	cardinal	0x545294	0x166cf08	eighteen
+classic	cardinal	0x5452ae	0x166cf18	nineteen
+classic	cardinal	0x545323	0x166cfb0	 billion
+classic	cardinal	0x545342	0x15fe96c	 
+classic	cardinal	0x5453e6	0x166cfc0	 million
+classic	cardinal	0x5454e2	0x166cf90	 thousand
+classic	cardinal	0x5455d9	0x166cfa0	 hundred
+classic	cardinal	0x5456a5	0x166cf7c	twenty
+classic	cardinal	0x5456ae	0x166cf84	thirty
+classic	cardinal	0x5456bd	0x166cf6c	forty
+classic	cardinal	0x5456cc	0x166cf74	fifty
+classic	cardinal	0x5456db	0x166d014	sixty
+classic	cardinal	0x5456ea	0x166d020	seventy
+classic	cardinal	0x5456f3	0x166d004	eighty
+classic	cardinal	0x5456fc	0x166d00c	ninety
+classic	cardinal	0x545724	0x16645bc	-
+classic	ordinal	0x545886	0x16645bc	-
+classic	ordinal	0x5458ce	0x16028d4	th
+classic	ordinal	0x5458f7	0x16028d0	rd
+classic	ordinal	0x545927	0x16028dc	nd
+classic	ordinal	0x545957	0x16028d8	st
+classic	ordinal	0x545970	0x166cff0	Negative 
+classic	ordinal	0x5459aa	0x166cffc	Zeroth
+classic	ordinal	0x5459c9	0x166cfe0	First
+classic	ordinal	0x5459e8	0x166cfe8	Second
+classic	ordinal	0x545a07	0x166d058	Third
+classic	ordinal	0x545a26	0x166d060	Fourth
+classic	ordinal	0x545a45	0x166d048	Fifth
+classic	ordinal	0x545a64	0x166d050	Sixth
+classic	ordinal	0x545a83	0x166d038	Seventh
+classic	ordinal	0x545aa2	0x166d040	Eighth
+classic	ordinal	0x545ac1	0x166d028	Ninth
+classic	ordinal	0x545ae0	0x166d030	Tenth
+classic	ordinal	0x545aff	0x166d0c8	Eleventh
+classic	ordinal	0x545b1e	0x166d0d8	Twelfth
+classic	ordinal	0x545b3d	0x166d0a8	Thirteenth
+classic	ordinal	0x545b5c	0x166d0b8	Fourteenth
+classic	ordinal	0x545b7b	0x166d088	Fifteenth
+classic	ordinal	0x545b9a	0x166d098	Sixteenth
+classic	ordinal	0x545bb9	0x166d068	Seventeenth
+classic	ordinal	0x545bd8	0x166d078	Eighteenth
+classic	ordinal	0x545bf7	0x166d0e0	Nineteenth
+classic	timbre-selector	0x793d38	0x1658c78	clear
+classic	timbre-selector	0x793d4d	0x16c1994	noisy
+classic	timbre-selector	0x793d62	0x16c198c	full
+classic	timbre-selector	0x793d77	0x16a00b4	thin
+classic	timbre-selector	0x793d8c	0x16a0168	round
+classic	timbre-selector	0x793da1	0x16c19a4	sharp
+classic	timbre-selector	0x793db6	0x169f938	smooth
+classic	timbre-selector	0x793dcb	0x16c199c	choppy
+classic	timbre-selector	0x793de0	0x16c19bc	steady
+classic	timbre-selector	0x793df5	0x16c19b0	evolving
+classic	timbre-selector	0x793e0a	0x1660b04	strong
+classic	timbre-selector	0x793e1f	0x1660ad8	delicate
+classic	timbre-selector	0x793e34	0x16c1828	bright
+classic	timbre-selector	0x793e49	0x1660a88	graceful
+classic	timbre-selector	0x793e5e	0x16a00c4	sparse
+classic	timbre-selector	0x793e73	0x16c1820	breathy
+classic	timbre-selector	0x793e88	0x1604db8	strained
+classic	timbre-selector	0x793e9d	0x169f9b4	broad
+classic	timbre-selector	0x793eb2	0x1691838	light
+classic	timbre-selector	0x793ec7	0x16c183c	mellow
+classic	timbre-selector	0x793edc	0x16c1830	wobbling
+classic	timbre-selector	0x793ef1	0x16c1850	focused
+classic	timbre-selector	0x793f06	0x16c1844	even
+classic	timbre-selector	0x793f1b	0x1660fa4	fluid
+classic	timbre-selector	0x793f2a	0x16c1868	vibrating
+classic	timbre-selector	0x793f3f	0x16c1858	quavering
+classic	timbre-selector	0x793f5a	0x16c1880	eerie
+classic	timbre-selector	0x793f6f	0x16c1878	fragile
+classic	timbre-selector	0x793f84	0x16c1890	brittle
+classic	timbre-selector	0x793f99	0x16c1888	pure
+classic	timbre-selector	0x793fae	0x16c18a8	piercing
+classic	timbre-selector	0x793fc3	0x16c1898	strident
+classic	timbre-selector	0x793fd8	0x16c18c0	wavering
+classic	timbre-selector	0x793fed	0x16c18b4	harsh
+classic	timbre-selector	0x794002	0x16c179c	reedy
+classic	timbre-selector	0x794017	0x16c1794	nasal
+classic	timbre-selector	0x79402c	0x16c17ac	buzzy
+classic	timbre-selector	0x794041	0x16c17a4	rough
+classic	timbre-selector	0x794056	0x16c17bc	warm
+classic	timbre-selector	0x79406b	0x16c17b4	rugged
+classic	timbre-selector	0x794080	0x16c17cc	heavy
+classic	timbre-selector	0x794095	0x16c17c4	flat
+classic	timbre-selector	0x7940aa	0x16bc798	dark
+classic	timbre-selector	0x7940bf	0x16c17e4	crisp
+classic	timbre-selector	0x7940d4	0x16c17d8	sonorous
+classic	timbre-selector	0x7940e9	0x16bc8c4	watery
+classic	timbre-selector	0x7940fe	0x16c17f8	gentle
+classic	timbre-selector	0x794113	0x16c17f0	slicing
+classic	timbre-selector	0x794128	0x16c1808	liquid
+classic	timbre-selector	0x79413d	0x16c1800	raucous
+classic	timbre-selector	0x794152	0x16c1818	breezy
+classic	timbre-selector	0x794167	0x16c1810	raspy
+classic	timbre-selector	0x79417c	0x16c1700	wispy
+classic	timbre-selector	0x794191	0x16c16f8	shrill
+classic	timbre-selector	0x7941a6	0x16bc8cc	muddy
+classic	timbre-selector	0x7941bb	0x16c1710	rich
+classic	timbre-selector	0x7941d0	0x16c1708	dull
+classic	timbre-selector	0x7941e5	0x16c1720	floating
+classic	timbre-selector	0x7941fa	0x16c1718	ringing
+classic	timbre-selector	0x79420f	0x16c1738	resonant
+classic	timbre-selector	0x794224	0x16c172c	sweet
+classic	timbre-selector	0x794239	0x16c1758	rippling
+classic	timbre-selector	0x794248	0x16c1748	sparkling

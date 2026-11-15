@@ -1,0 +1,1497 @@
+edition	role	instruction_rva	condition
+reference	musical-form	0xdeda5d	test   ecx,ecx
+reference	musical-form	0xdeda69	cmp    ecx,esi
+reference	musical-form	0xdeda85	cmp    DWORD PTR [r13+0x11c],0xffffffff
+reference	musical-form	0xdedaf2	cmp    edx,0xffffffff
+reference	musical-form	0xdedb05	test   rax,rax
+reference	musical-form	0xdedb0a	cmp    WORD PTR [rax],0x8
+reference	musical-form	0xdedb1f	test   ecx,ecx
+reference	musical-form	0xdedb48	cmp    DWORD PTR [r13+0x84],0xffffffff
+reference	musical-form	0xdedba3	test   BYTE PTR [r13+0x120],sil
+reference	musical-form	0xdedc0f	test   al,al
+reference	musical-form	0xdedc32	test   BYTE PTR [rcx+0x4],0x7
+reference	musical-form	0xdedc4c	cmp    DWORD PTR [rax+0x10],0x1
+reference	musical-form	0xdedc61	cmp    rbx,rax
+reference	musical-form	0xdedcad	cmp    rbx,rax
+reference	musical-form	0xdedcf7	cmp    DWORD PTR [rbx+0x10],eax
+reference	musical-form	0xdedd6c	test   BYTE PTR [rcx+0x4],0x1
+reference	musical-form	0xdedd88	test   BYTE PTR [rcx+0x4],0x2
+reference	musical-form	0xdedda4	test   BYTE PTR [rcx+0x4],0x4
+reference	musical-form	0xdeddc6	cmp    DWORD PTR [rcx+0x10],0x2
+reference	musical-form	0xdeddf1	cmp    edx,0xffffffff
+reference	musical-form	0xdede05	test   rax,rax
+reference	musical-form	0xdede22	cmp    DWORD PTR [rcx+0x10],0x2
+reference	musical-form	0xdede59	cmp    edx,0xffffffff
+reference	musical-form	0xdede71	test   rax,rax
+reference	musical-form	0xdede8e	cmp    DWORD PTR [rcx+0x10],0x2
+reference	musical-form	0xdede9e	test   BYTE PTR [rbx+0x8c],0x2
+reference	musical-form	0xdedf1a	cmp    DWORD PTR [rcx+0x10],0x2
+reference	musical-form	0xdedf39	cmp    esi,0x2
+reference	musical-form	0xdedf5e	cmp    DWORD PTR [rcx],0xffffffff
+reference	musical-form	0xdedf86	test   r14,r14
+reference	musical-form	0xdedf8f	test   r15b,r15b
+reference	musical-form	0xdedfa6	cmp    rcx,rax
+reference	musical-form	0xdedfd4	cmp    DWORD PTR [rcx+0x10],0x1
+reference	musical-form	0xdee050	cmp    DWORD PTR [rbx+0x10],eax
+reference	musical-form	0xdee0c5	cmp    DWORD PTR [rcx+0x10],0x2
+reference	musical-form	0xdee0de	cmp    esi,0x3
+reference	musical-form	0xdee0ec	cmp    esi,0x2
+reference	musical-form	0xdee130	test   al,al
+reference	musical-form	0xdee196	test   al,al
+reference	musical-form	0xdee1f2	test   al,al
+reference	musical-form	0xdee201	test   edx,edx
+reference	musical-form	0xdee20f	cmp    edx,0x1
+reference	musical-form	0xdee24c	test   al,al
+reference	musical-form	0xdee277	test   al,al
+reference	musical-form	0xdee27f	test   sil,sil
+reference	musical-form	0xdee284	test   r14b,r14b
+reference	musical-form	0xdee295	cmp    rax,0x2
+reference	musical-form	0xdee29f	test   sil,sil
+reference	musical-form	0xdee2ab	test   r14b,r14b
+reference	musical-form	0xdee2bc	test   r15b,r15b
+reference	musical-form	0xdee2cf	test   bl,bl
+reference	musical-form	0xdee2e5	test   bl,bl
+reference	musical-form	0xdee2f9	test   r15b,r15b
+reference	musical-form	0xdee30c	test   bl,bl
+reference	musical-form	0xdee322	test   bl,bl
+reference	musical-form	0xdee353	cmp    DWORD PTR [r12+0xe8],0xffffffff
+reference	musical-form	0xdee35e	cmp    DWORD PTR [r12+0xec],0xffffffff
+reference	musical-form	0xdee369	cmp    DWORD PTR [r12+0xf0],0xffffffff
+reference	musical-form	0xdee387	cmp    DWORD PTR [r12+0xf0],0xffffffff
+reference	musical-form	0xdee3b0	cmp    eax,0x26
+reference	musical-form	0xdee568	cmp    DWORD PTR [r12+0xe8],0xffffffff
+reference	musical-form	0xdee577	cmp    DWORD PTR [r12+0xf0],0xffffffff
+reference	musical-form	0xdee599	cmp    eax,0x21
+reference	musical-form	0xdee653	cmp    DWORD PTR [r12+0xec],0xffffffff
+reference	musical-form	0xdee662	cmp    DWORD PTR [r12+0xe8],0xffffffff
+reference	musical-form	0xdee66d	cmp    DWORD PTR [r12+0xf0],0xffffffff
+reference	musical-form	0xdee6a8	cmp    eax,0xa
+reference	musical-form	0xdee77c	test   al,al
+reference	musical-form	0xdee80d	test   al,al
+reference	musical-form	0xdee81f	cmp    DWORD PTR [rax],0x0
+reference	musical-form	0xdee82e	cmp    ebx,DWORD PTR [rax]
+reference	musical-form	0xdee832	cmp    ebx,r14d
+reference	musical-form	0xdee854	cmp    DWORD PTR [rax],0x1
+reference	musical-form	0xdee863	cmp    esi,DWORD PTR [rax]
+reference	musical-form	0xdee867	cmp    esi,r14d
+reference	musical-form	0xdee8b1	test   al,al
+reference	musical-form	0xdee8e0	test   al,al
+reference	musical-form	0xdee8e8	cmp    ebx,0xfffffffe
+reference	musical-form	0xdee8f2	cmp    esi,0xfffffffe
+reference	musical-form	0xdee8fc	cmp    ebx,r14d
+reference	musical-form	0xdee908	cmp    esi,r14d
+reference	musical-form	0xdee911	cmp    ebx,esi
+reference	musical-form	0xdee921	test   ebx,ebx
+reference	musical-form	0xdee935	cmp    ecx,0x1
+reference	musical-form	0xdee970	test   ebx,ebx
+reference	musical-form	0xdee97e	cmp    ecx,0x1
+reference	musical-form	0xdee9be	test   esi,esi
+reference	musical-form	0xdee9d1	cmp    esi,r14d
+reference	musical-form	0xdee9e7	test   esi,esi
+reference	musical-form	0xdeea14	test   ecx,ecx
+reference	musical-form	0xdeea27	cmp    ecx,0x1
+reference	musical-form	0xdeea5f	test   BYTE PTR [r12+0x120],0x2
+reference	musical-form	0xdeeab5	test   al,al
+reference	musical-form	0xdeeacf	cmp    DWORD PTR [rcx+0x1c],0xffffffff
+reference	musical-form	0xdeeae7	cmp    DWORD PTR [rcx+0x24],0xffffffff
+reference	musical-form	0xdeeb14	test   al,al
+reference	musical-form	0xdeeb20	cmp    edx,0xffffffff
+reference	musical-form	0xdeeb25	test   bl,bl
+reference	musical-form	0xdeeb54	test   rax,rax
+reference	musical-form	0xdeeb59	cmp    DWORD PTR [r12+0x100],0x0
+reference	musical-form	0xdeeb7b	cmp    rdx,rax
+reference	musical-form	0xdeebcf	cmp    DWORD PTR [r12+0x104],0xffffffff
+reference	musical-form	0xdeebda	test   sil,sil
+reference	musical-form	0xdeebe3	test   r14b,r14b
+reference	musical-form	0xdeebfa	cmp    DWORD PTR [r12+0xfc],0xffffffff
+reference	musical-form	0xdeec05	test   bl,bl
+reference	musical-form	0xdeec1f	cmp    DWORD PTR [r12+0x104],0xffffffff
+reference	musical-form	0xdeec2a	test   sil,sil
+reference	musical-form	0xdeec65	test   rax,rax
+reference	musical-form	0xdeec6a	cmp    DWORD PTR [r12+0x108],0x0
+reference	musical-form	0xdeec86	cmp    rsi,rax
+reference	musical-form	0xdeec99	cmp    DWORD PTR [r12+0x10c],0x0
+reference	musical-form	0xdeecb8	cmp    rbx,rax
+reference	musical-form	0xdeece2	test   r14b,r14b
+reference	musical-form	0xdeecf6	cmp    DWORD PTR [r12+0x110],0x0
+reference	musical-form	0xdeed08	test   BYTE PTR [r12+0x120],0x1
+reference	musical-form	0xdeed48	cmp    r8d,0xf
+reference	musical-form	0xdeedc9	test   r9d,edx
+reference	musical-form	0xdeedd3	cmp    r8d,0x10
+reference	musical-form	0xdeedf8	cmp    r14d,0xf
+reference	musical-form	0xdeee7d	test   DWORD PTR [r12+0x110],ebx
+reference	musical-form	0xdeee8b	cmp    ebx,0x100
+reference	musical-form	0xdeeea0	cmp    eax,0x7f
+reference	musical-form	0xdeef26	cmp    ebx,0x1000
+reference	musical-form	0xdeef30	cmp    ebx,0x200
+reference	musical-form	0xdeef38	cmp    ebx,0x400
+reference	musical-form	0xdeef40	cmp    ebx,0x800
+reference	musical-form	0xdeef6c	cmp    ebx,0x2000
+reference	musical-form	0xdeef74	cmp    ebx,0x4000
+reference	musical-form	0xdeef7c	cmp    ebx,0x8000
+reference	musical-form	0xdeefa5	cmp    esi,0x3
+reference	musical-form	0xdeefb3	cmp    esi,0x2
+reference	musical-form	0xdeefcc	cmp    r14d,0x10
+reference	musical-form	0xdeeff8	test   rax,rax
+reference	musical-form	0xdef010	test   BYTE PTR [r12+0x120],0x1
+reference	musical-form	0xdef07e	test   al,al
+reference	musical-form	0xdef0a0	test   edx,edx
+reference	musical-form	0xdef0a9	cmp    edx,0x1
+reference	musical-form	0xdef0ed	test   edx,edx
+reference	musical-form	0xdef0fb	cmp    edx,0x1
+reference	musical-form	0xdef14f	test   rax,rax
+reference	musical-form	0xdef1d4	test   al,al
+reference	musical-form	0xdef1ed	test   BYTE PTR [rcx+0x4],0x2
+reference	musical-form	0xdef20f	test   BYTE PTR [rcx+0x4],0x4
+reference	musical-form	0xdef295	cmp    DWORD PTR [rcx],0x2
+reference	musical-form	0xdef2a7	cmp    DWORD PTR [rcx],0x3
+reference	musical-form	0xdef2b9	test   BYTE PTR [rcx+0x4],0x1
+reference	musical-form	0xdef2d5	cmp    ebx,0x3
+reference	musical-form	0xdef2e3	cmp    ebx,0x2
+reference	musical-form	0xdef32e	test   al,al
+reference	musical-form	0xdef343	cmp    DWORD PTR [rcx+0x20],0x0
+reference	musical-form	0xdef366	test   rax,rax
+reference	musical-form	0xdef391	cmp    ebx,0x7
+reference	musical-form	0xdef3ed	test   DWORD PTR [rcx+0x20],r15d
+reference	musical-form	0xdef3f8	cmp    ebx,0x8
+reference	musical-form	0xdef414	cmp    ebx,0x7
+reference	musical-form	0xdef46a	test   DWORD PTR [rcx+0x20],esi
+reference	musical-form	0xdef473	cmp    esi,0x10
+reference	musical-form	0xdef48b	cmp    eax,0x4
+reference	musical-form	0xdef4bd	cmp    esi,0x1000
+reference	musical-form	0xdef4c5	cmp    esi,0x2000
+reference	musical-form	0xdef4cd	cmp    esi,0x4000
+reference	musical-form	0xdef4f6	cmp    r14d,0x3
+reference	musical-form	0xdef505	cmp    r14d,0x2
+reference	musical-form	0xdef51f	cmp    ebx,0x8
+reference	musical-form	0xdef52f	cmp    r12d,0x3
+reference	musical-form	0xdef53e	cmp    r12d,0x2
+reference	musical-form	0xdef581	test   al,al
+reference	musical-form	0xdef5e3	test   al,al
+reference	musical-form	0xdef646	test   al,al
+reference	musical-form	0xdef6d6	test   al,al
+reference	musical-form	0xdef6ea	cmp    DWORD PTR [rax],r14d
+reference	musical-form	0xdef71f	test   al,al
+reference	musical-form	0xdef72e	cmp    r15d,0xffffffff
+reference	musical-form	0xdef739	cmp    r15d,DWORD PTR [rax]
+reference	musical-form	0xdef75b	test   al,al
+reference	musical-form	0xdef787	test   al,al
+reference	musical-form	0xdef7eb	test   al,al
+reference	musical-form	0xdef8b3	test   al,al
+reference	musical-form	0xdef8c9	cmp    DWORD PTR [rax],r14d
+reference	musical-form	0xdef8d7	cmp    r13d,0xfffffffe
+reference	musical-form	0xdef8f6	cmp    r13d,DWORD PTR [rax]
+reference	musical-form	0xdef904	cmp    ebx,DWORD PTR [rax]
+reference	musical-form	0xdef908	test   sil,sil
+reference	musical-form	0xdef945	test   al,al
+reference	musical-form	0xdef97a	test   al,al
+reference	musical-form	0xdef98d	test   sil,sil
+reference	musical-form	0xdef9a8	cmp    DWORD PTR [rcx+0x8],0x0
+reference	musical-form	0xdef9bb	cmp    DWORD PTR [rcx+0x14],0xffffffff
+reference	musical-form	0xdef9ce	cmp    DWORD PTR [rcx+0x18],0xffffffff
+reference	musical-form	0xdef9d4	test   r12b,r12b
+reference	musical-form	0xdef9dd	cmp    r15d,0x4
+reference	musical-form	0xdefa03	cmp    DWORD PTR [rcx+0x10],0x2
+reference	musical-form	0xdefa2c	test   BYTE PTR [rcx+0x4],0x1
+reference	musical-form	0xdefa4e	test   BYTE PTR [rcx+0x4],0x2
+reference	musical-form	0xdefa70	test   BYTE PTR [rcx+0x4],0x4
+reference	musical-form	0xdefa92	cmp    DWORD PTR [rcx],0xffffffff
+reference	musical-form	0xdefab6	test   rbx,rbx
+reference	musical-form	0xdefac8	cmp    DWORD PTR [rcx+0x10],0x2
+reference	musical-form	0xdefae7	test   r12b,r12b
+reference	musical-form	0xdefaec	cmp    r15d,0x4
+reference	musical-form	0xdefb08	cmp    DWORD PTR [rcx+0x18],0xffffffff
+reference	musical-form	0xdefb23	cmp    DWORD PTR [rax+0x14],0xffffffff
+reference	musical-form	0xdefb40	cmp    esi,0xd
+reference	musical-form	0xdefbc0	test   DWORD PTR [rcx+0x8],edi
+reference	musical-form	0xdefbca	cmp    esi,0xe
+reference	musical-form	0xdefbea	cmp    BYTE PTR [rsp+0x33],0x0
+reference	musical-form	0xdefbf6	cmp    r15d,0x4
+reference	musical-form	0xdefbfc	test   r15d,r15d
+reference	musical-form	0xdefc0d	cmp    r15d,0x1
+reference	musical-form	0xdefc3d	cmp    r14d,0x3
+reference	musical-form	0xdefc4c	cmp    r14d,0x2
+reference	musical-form	0xdefc71	cmp    DWORD PTR [rcx+0x18],0xffffffff
+reference	musical-form	0xdefca4	cmp    eax,0x26
+reference	musical-form	0xdefe5c	cmp    r14d,0x3
+reference	musical-form	0xdefe76	cmp    r14d,0x2
+reference	musical-form	0xdefea4	cmp    DWORD PTR [rcx+0x14],0xffffffff
+reference	musical-form	0xdefed0	cmp    eax,0xa
+reference	musical-form	0xdeff4c	cmp    r14d,0x3
+reference	musical-form	0xdeff5b	cmp    r14d,0x2
+reference	musical-form	0xdeff80	cmp    DWORD PTR [rcx+0x8],0x0
+reference	musical-form	0xdeff9a	cmp    ebx,0xd
+reference	musical-form	0xdf0029	test   DWORD PTR [rcx+0x8],r13d
+reference	musical-form	0xdf0033	cmp    r13d,0x80
+reference	musical-form	0xdf0042	cmp    eax,0x3f
+reference	musical-form	0xdf00b9	cmp    r13d,0x1000
+reference	musical-form	0xdf00c4	cmp    r13d,0x100
+reference	musical-form	0xdf00cd	cmp    r13d,0x200
+reference	musical-form	0xdf00d6	cmp    r13d,0x800
+reference	musical-form	0xdf0103	cmp    r13d,0x2000
+reference	musical-form	0xdf010c	cmp    r13d,0x4000
+reference	musical-form	0xdf012d	cmp    r14d,0x3
+reference	musical-form	0xdf013c	cmp    r14d,0x2
+reference	musical-form	0xdf0156	cmp    ebx,0xe
+reference	musical-form	0xdf0182	test   sil,sil
+reference	musical-form	0xdf018b	test   r13d,r13d
+reference	musical-form	0xdf01a4	cmp    eax,0xffffffff
+reference	musical-form	0xdf01b1	cmp    r13d,ebx
+reference	musical-form	0xdf01c5	test   r13d,r13d
+reference	musical-form	0xdf01d4	cmp    r13d,0x1
+reference	musical-form	0xdf01f6	test   r13d,r13d
+reference	musical-form	0xdf01fb	cmp    ebx,0x2
+reference	musical-form	0xdf0223	test   r13d,r13d
+reference	musical-form	0xdf022e	cmp    r13d,0x1
+reference	musical-form	0xdf0264	test   ebx,ebx
+reference	musical-form	0xdf0271	cmp    ebx,0x1
+reference	musical-form	0xdf02c8	cmp    r13d,r14d
+reference	musical-form	0xdf02d4	cmp    r15d,0x4
+reference	musical-form	0xdf0316	cmp    eax,0xffffffff
+reference	musical-form	0xdf0334	test   r13d,r13d
+reference	musical-form	0xdf0345	cmp    r13d,0x1
+reference	musical-form	0xdf034b	cmp    r15d,0x3
+reference	musical-form	0xdf0361	cmp    r13d,eax
+reference	musical-form	0xdf036a	cmp    r15d,0x4
+reference	musical-form	0xdf03db	test   r13d,r13d
+reference	musical-form	0xdf03e0	cmp    r14d,ebx
+reference	musical-form	0xdf03e5	cmp    esi,0xffffffff
+reference	musical-form	0xdf03ea	cmp    eax,esi
+reference	musical-form	0xdf03fa	cmp    r14d,ebx
+reference	musical-form	0xdf03ff	cmp    esi,r12d
+reference	musical-form	0xdf042d	cmp    esi,r12d
+reference	musical-form	0xdf045e	test   r13d,r13d
+reference	musical-form	0xdf046c	cmp    r13d,0x1
+reference	musical-form	0xdf0472	cmp    r15d,0x3
+reference	musical-form	0xdf0485	cmp    r13d,eax
+reference	musical-form	0xdf048a	cmp    r15d,0x4
+reference	musical-form	0xdf04b5	test   r14d,r14d
+reference	musical-form	0xdf04c6	cmp    r14d,0x1
+reference	musical-form	0xdf04cc	cmp    r15d,0x3
+reference	musical-form	0xdf04e2	cmp    r14d,eax
+reference	musical-form	0xdf04ea	test   r13d,r13d
+reference	musical-form	0xdf04f2	cmp    DWORD PTR [rsp+0x60],ebx
+reference	musical-form	0xdf051b	cmp    esi,0xffffffff
+reference	musical-form	0xdf0539	test   r13d,r13d
+reference	musical-form	0xdf0547	cmp    r13d,0x1
+reference	musical-form	0xdf054d	cmp    r15d,0x3
+reference	musical-form	0xdf055c	cmp    r13d,r14d
+reference	musical-form	0xdf0561	cmp    r15d,0x4
+reference	musical-form	0xdf058c	cmp    r12d,0xffffffff
+reference	musical-form	0xdf05b0	test   ecx,ecx
+reference	musical-form	0xdf05bd	cmp    ecx,0x1
+reference	musical-form	0xdf05c2	cmp    r15d,0x3
+reference	musical-form	0xdf05d5	cmp    ecx,eax
+reference	musical-form	0xdf05d9	cmp    r15d,0x4
+reference	musical-form	0xdf0638	test   al,al
+reference	musical-form	0xdf06ac	test   al,al
+reference	musical-form	0xdf06c5	cmp    DWORD PTR [rcx],0x0
+reference	musical-form	0xdf06dc	cmp    DWORD PTR [rcx],0xa
+reference	musical-form	0xdf06e4	cmp    esi,0xffffffff
+reference	musical-form	0xdf06ed	cmp    r13d,0xffffffff
+reference	musical-form	0xdf071f	test   al,al
+reference	musical-form	0xdf0798	cmp    rax,0x1
+reference	musical-form	0xdf07b4	cmp    rax,0x2
+reference	musical-form	0xdf082b	test   al,al
+reference	musical-form	0xdf085f	cmp    DWORD PTR [rcx+0xc],0x0
+reference	musical-form	0xdf088e	cmp    DWORD PTR [rbx],0x0
+reference	musical-form	0xdf0897	cmp    DWORD PTR [rsp+0x3c],0x1
+reference	musical-form	0xdf08a8	cmp    eax,0x1
+reference	musical-form	0xdf08c5	cmp    DWORD PTR [rbx+0xc],eax
+reference	musical-form	0xdf0980	cmp    eax,0x1
+reference	musical-form	0xdf09a3	cmp    DWORD PTR [rbx+0xc],eax
+reference	musical-form	0xdf0a4d	cmp    eax,0xffffffff
+reference	musical-form	0xdf0a52	cmp    eax,0x14
+reference	musical-form	0xdf0a60	cmp    eax,0x4
+reference	musical-form	0xdf0a7a	cmp    eax,0xb
+reference	musical-form	0xdf0a96	cmp    DWORD PTR [rbp-0x48],0x1
+reference	musical-form	0xdf0a9c	cmp    DWORD PTR [rbx+0x10],0x2
+reference	musical-form	0xdf0ac0	cmp    DWORD PTR [rbx+0x10],0x2
+reference	musical-form	0xdf0ade	test   sil,sil
+reference	musical-form	0xdf0afe	test   sil,sil
+reference	musical-form	0xdf0b24	cmp    eax,DWORD PTR [rsp+0x60]
+reference	musical-form	0xdf0b2d	cmp    DWORD PTR [rsp+0x64],0x1
+reference	musical-form	0xdf0b4f	cmp    eax,r13d
+reference	musical-form	0xdf0b7e	cmp    eax,DWORD PTR [rsp+0x60]
+reference	musical-form	0xdf0b87	cmp    DWORD PTR [rsp+0x64],0x1
+reference	musical-form	0xdf0bac	cmp    eax,DWORD PTR [rsp+0x60]
+reference	musical-form	0xdf0bb2	cmp    eax,r13d
+reference	musical-form	0xdf0bde	cmp    DWORD PTR [rbx+0x10],0x2
+reference	musical-form	0xdf0c21	cmp    r13d,0xffffffff
+reference	musical-form	0xdf0c37	cmp    DWORD PTR [r15+rcx*1],eax
+reference	musical-form	0xdf0c61	cmp    DWORD PTR [r15+rcx*1],r13d
+reference	musical-form	0xdf0c94	cmp    eax,DWORD PTR [rsp+0x60]
+reference	musical-form	0xdf0c9d	cmp    DWORD PTR [rsp+0x64],0x1
+reference	musical-form	0xdf0cb6	cmp    eax,r13d
+reference	musical-form	0xdf0cca	cmp    r14d,0x3
+reference	musical-form	0xdf0cd9	cmp    r14d,0x2
+reference	musical-form	0xdf0d04	cmp    r12d,DWORD PTR [rcx+0xc]
+reference	musical-form	0xdf0d26	cmp    DWORD PTR [rcx+0x14],0x2
+reference	musical-form	0xdf0d4b	cmp    DWORD PTR [rcx+0x10],0x1
+reference	musical-form	0xdf0d5d	cmp    DWORD PTR [rcx+0x14],0x2
+reference	musical-form	0xdf0d7e	cmp    DWORD PTR [rcx+0xc],0x2
+reference	musical-form	0xdf0da6	cmp    DWORD PTR [rcx+0x10],0x1
+reference	musical-form	0xdf0db8	cmp    DWORD PTR [rcx+0x14],0x3
+reference	musical-form	0xdf0e3d	cmp    DWORD PTR [rcx+0x10],eax
+reference	musical-form	0xdf0eb7	cmp    DWORD PTR [rcx+0x10],0x2
+reference	musical-form	0xdf0f7a	cmp    esi,0x3
+reference	musical-form	0xdf0f88	cmp    esi,0x2
+reference	musical-form	0xdf0fc8	test   al,al
+reference	musical-form	0xdf1062	test   al,al
+reference	musical-form	0xdf1098	cmp    DWORD PTR [rcx+0x1c],0xffffffff
+reference	musical-form	0xdf10b5	cmp    DWORD PTR [rcx+0x24],0xffffffff
+reference	musical-form	0xdf10e4	test   al,al
+reference	musical-form	0xdf1124	cmp    rcx,QWORD PTR [rbp-0x78]
+reference	musical-form	0xdf1137	test   dl,dl
+reference	musical-form	0xdf11b9	test   al,al
+reference	musical-form	0xdf11ce	cmp    DWORD PTR [rax],0x0
+reference	musical-form	0xdf11d3	cmp    r13,0xffffffffffffffff
+reference	musical-form	0xdf11ef	cmp    DWORD PTR [rax],0x1
+reference	musical-form	0xdf11f4	cmp    rbx,0xffffffffffffffff
+reference	musical-form	0xdf1236	test   al,al
+reference	musical-form	0xdf12b8	test   al,al
+reference	musical-form	0xdf12ce	cmp    DWORD PTR [rax],0xffffffff
+reference	musical-form	0xdf1308	test   al,al
+reference	musical-form	0xdf1315	test   sil,sil
+reference	musical-form	0xdf131e	cmp    BYTE PTR [rbp-0x60],0x0
+reference	musical-form	0xdf1324	test   r13d,r13d
+reference	musical-form	0xdf1329	cmp    r14d,0xffffffff
+reference	musical-form	0xdf132f	cmp    r15d,r14d
+reference	musical-form	0xdf1334	cmp    DWORD PTR [r12+0x18],r14d
+reference	musical-form	0xdf133b	cmp    DWORD PTR [r12+0x14],r14d
+reference	musical-form	0xdf1342	cmp    DWORD PTR [r12+0xa8],r14d
+reference	musical-form	0xdf134c	cmp    DWORD PTR [r12+0xac],r14d
+reference	musical-form	0xdf1356	cmp    DWORD PTR [r12+0xb0],r14d
+reference	musical-form	0xdf1360	cmp    DWORD PTR [r12+0x1c],r14d
+reference	musical-form	0xdf1367	cmp    BYTE PTR [rsp+0x33],0x0
+reference	musical-form	0xdf136e	cmp    DWORD PTR [r12+0x24],r14d
+reference	musical-form	0xdf1375	cmp    BYTE PTR [rsp+0x31],0x0
+reference	musical-form	0xdf137c	cmp    DWORD PTR [r12+0xb8],r14d
+reference	musical-form	0xdf1386	cmp    DWORD PTR [r12+0xb4],0x0
+reference	musical-form	0xdf139e	test   rax,rax
+reference	musical-form	0xdf13ca	cmp    DWORD PTR [r12+0x10],0x2
+reference	musical-form	0xdf13e9	cmp    DWORD PTR [rbp+rax*4+0x210],0x2
+reference	musical-form	0xdf145f	cmp    eax,0xb
+reference	musical-form	0xdf148e	cmp    DWORD PTR [r12+0x10],0x2
+reference	musical-form	0xdf151f	test   sil,sil
+reference	musical-form	0xdf15b2	test   al,al
+reference	musical-form	0xdf15cd	test   edx,edx
+reference	musical-form	0xdf15e0	cmp    edx,0x1
+reference	musical-form	0xdf1641	test   BYTE PTR [r15+0x4],0x1
+reference	musical-form	0xdf1657	cmp    DWORD PTR [r15+0x10],0x2
+reference	musical-form	0xdf1670	test   BYTE PTR [r15+0x4],0x2
+reference	musical-form	0xdf1686	cmp    DWORD PTR [r15+0x10],0x2
+reference	musical-form	0xdf169f	test   BYTE PTR [r15+0x4],0x4
+reference	musical-form	0xdf16b5	cmp    DWORD PTR [r15+0x10],0x2
+reference	musical-form	0xdf16d1	cmp    eax,0xffffffff
+reference	musical-form	0xdf16e0	cmp    DWORD PTR [r15+0x10],0x2
+reference	musical-form	0xdf170c	test   r14b,r14b
+reference	musical-form	0xdf171c	cmp    edx,0xffffffff
+reference	musical-form	0xdf1730	test   rax,rax
+reference	musical-form	0xdf175c	cmp    edx,0xffffffff
+reference	musical-form	0xdf1774	test   rax,rax
+reference	musical-form	0xdf178c	test   BYTE PTR [rsi+0x8c],0x2
+reference	musical-form	0xdf17f4	cmp    DWORD PTR [r13+0xf4],0xffffffff
+reference	musical-form	0xdf17fe	cmp    DWORD PTR [r13+0xf8],0xffffffff
+reference	musical-form	0xdf1817	cmp    r12d,0x3
+reference	musical-form	0xdf1826	cmp    r12d,0x2
+reference	musical-form	0xdf186c	test   al,al
+reference	musical-form	0xdf1896	cmp    DWORD PTR [r12+0xa8],0xffffffff
+reference	musical-form	0xdf18a1	cmp    DWORD PTR [r12+0xac],0xffffffff
+reference	musical-form	0xdf18ac	cmp    DWORD PTR [r12+0xb0],0xffffffff
+reference	musical-form	0xdf18be	test   r14b,r14b
+reference	musical-form	0xdf18c3	cmp    DWORD PTR [r12+0x10],0x2
+reference	musical-form	0xdf190a	cmp    DWORD PTR [r12+0xb0],0xffffffff
+reference	musical-form	0xdf193a	cmp    eax,0x26
+reference	musical-form	0xdf1c3b	cmp    DWORD PTR [r12+0xa8],0xffffffff
+reference	musical-form	0xdf1c4a	cmp    DWORD PTR [r12+0xb0],0xffffffff
+reference	musical-form	0xdf1c6c	cmp    eax,0x21
+reference	musical-form	0xdf1d6e	cmp    DWORD PTR [r12+0xac],0xffffffff
+reference	musical-form	0xdf1d7d	cmp    DWORD PTR [r12+0xa8],0xffffffff
+reference	musical-form	0xdf1d88	cmp    DWORD PTR [r12+0xb0],0xffffffff
+reference	musical-form	0xdf1dc3	cmp    eax,0xa
+reference	musical-form	0xdf1e4e	cmp    BYTE PTR [rbp-0x60],0x0
+reference	musical-form	0xdf1e58	test   r13d,r13d
+reference	musical-form	0xdf1e66	test   r14b,r14b
+reference	musical-form	0xdf1f15	test   al,al
+reference	musical-form	0xdf1f2c	cmp    DWORD PTR [rax],0xffffffff
+reference	musical-form	0xdf1f54	test   bl,bl
+reference	musical-form	0xdf1f58	cmp    eax,0x2
+reference	musical-form	0xdf1f74	cmp    eax,0x2
+reference	musical-form	0xdf1f8c	test   BYTE PTR [r14+0x4],0x1
+reference	musical-form	0xdf1fa5	cmp    DWORD PTR [r14+0x10],0x2
+reference	musical-form	0xdf1fce	cmp    DWORD PTR [r14+0x10],0x2
+reference	musical-form	0xdf1fe4	test   BYTE PTR [r14+0x4],0x2
+reference	musical-form	0xdf1ffd	cmp    DWORD PTR [r14+0x10],0x2
+reference	musical-form	0xdf2026	cmp    DWORD PTR [r14+0x10],0x2
+reference	musical-form	0xdf203c	test   BYTE PTR [r14+0x4],0x4
+reference	musical-form	0xdf2055	cmp    DWORD PTR [r14+0x10],0x2
+reference	musical-form	0xdf207e	cmp    DWORD PTR [r14+0x10],0x2
+reference	musical-form	0xdf2097	cmp    eax,0xffffffff
+reference	musical-form	0xdf20a6	cmp    DWORD PTR [r14+0x10],0x2
+reference	musical-form	0xdf2101	cmp    eax,0xffffffff
+reference	musical-form	0xdf210a	cmp    esi,r15d
+reference	musical-form	0xdf211e	test   esi,esi
+reference	musical-form	0xdf212b	cmp    esi,0x1
+reference	musical-form	0xdf215c	test   esi,esi
+reference	musical-form	0xdf2160	cmp    r15d,0x2
+reference	musical-form	0xdf2181	test   esi,esi
+reference	musical-form	0xdf218a	cmp    esi,0x1
+reference	musical-form	0xdf21bf	test   r15d,r15d
+reference	musical-form	0xdf21d2	cmp    r15d,0x1
+reference	musical-form	0xdf2216	cmp    esi,r15d
+reference	musical-form	0xdf2222	cmp    r12d,0x4
+reference	musical-form	0xdf2264	cmp    eax,0xffffffff
+reference	musical-form	0xdf2282	test   esi,esi
+reference	musical-form	0xdf229a	cmp    esi,0x1
+reference	musical-form	0xdf229f	cmp    r12d,0x3
+reference	musical-form	0xdf22be	cmp    esi,eax
+reference	musical-form	0xdf22c2	cmp    r12d,0x4
+reference	musical-form	0xdf2350	test   esi,esi
+reference	musical-form	0xdf2354	cmp    r15d,r14d
+reference	musical-form	0xdf2359	cmp    r12d,eax
+reference	musical-form	0xdf237a	cmp    r12d,r13d
+reference	musical-form	0xdf2392	test   esi,esi
+reference	musical-form	0xdf23a4	cmp    esi,0x1
+reference	musical-form	0xdf23a9	cmp    eax,0x3
+reference	musical-form	0xdf23b7	cmp    esi,r14d
+reference	musical-form	0xdf23bc	cmp    eax,0x4
+reference	musical-form	0xdf23e6	test   r15d,r15d
+reference	musical-form	0xdf23fc	cmp    r15d,0x1
+reference	musical-form	0xdf2402	cmp    ecx,0x3
+reference	musical-form	0xdf2416	cmp    r15d,eax
+reference	musical-form	0xdf241f	cmp    ecx,0x4
+reference	musical-form	0xdf2434	test   esi,esi
+reference	musical-form	0xdf243b	cmp    DWORD PTR [rbp-0x5c],r14d
+reference	musical-form	0xdf2464	cmp    r12d,0xffffffff
+reference	musical-form	0xdf2484	test   esi,esi
+reference	musical-form	0xdf2496	cmp    esi,0x1
+reference	musical-form	0xdf249b	cmp    eax,0x3
+reference	musical-form	0xdf24a9	cmp    esi,r15d
+reference	musical-form	0xdf24ae	cmp    eax,0x4
+reference	musical-form	0xdf24d8	cmp    r13d,0xffffffff
+reference	musical-form	0xdf24fb	test   ecx,ecx
+reference	musical-form	0xdf250d	cmp    ecx,0x1
+reference	musical-form	0xdf2512	cmp    edx,0x3
+reference	musical-form	0xdf2523	cmp    ecx,eax
+reference	musical-form	0xdf2527	cmp    edx,0x4
+reference	musical-form	0xdf2555	cmp    r13d,0x3
+reference	musical-form	0xdf2564	cmp    r13d,0x2
+reference	musical-form	0xdf25b8	test   al,al
+reference	musical-form	0xdf25e0	cmp    esi,0xffffffff
+reference	musical-form	0xdf25e5	cmp    r14d,esi
+reference	musical-form	0xdf25f7	test   r13b,r13b
+reference	musical-form	0xdf25fc	cmp    DWORD PTR [r12+0x10],0x2
+reference	musical-form	0xdf2637	cmp    esi,0xffffffff
+reference	musical-form	0xdf264f	cmp    r14d,0xffffffff
+reference	musical-form	0xdf2659	cmp    esi,r14d
+reference	musical-form	0xdf265e	test   esi,esi
+reference	musical-form	0xdf266c	cmp    esi,0x1
+reference	musical-form	0xdf26dd	test   esi,esi
+reference	musical-form	0xdf26eb	cmp    esi,0x1
+reference	musical-form	0xdf2729	test   r14d,r14d
+reference	musical-form	0xdf273a	cmp    r14d,0x1
+reference	musical-form	0xdf277e	test   esi,esi
+reference	musical-form	0xdf278c	cmp    esi,0x1
+reference	musical-form	0xdf27cc	cmp    r14d,0xffffffff
+reference	musical-form	0xdf27e1	test   r14d,r14d
+reference	musical-form	0xdf27f2	cmp    r14d,0x1
+reference	musical-form	0xdf2841	test   ecx,ecx
+reference	musical-form	0xdf2854	cmp    ecx,0x1
+reference	musical-form	0xdf2898	cmp    DWORD PTR [r12+0x1c],0xffffffff
+reference	musical-form	0xdf28a0	test   r14b,r14b
+reference	musical-form	0xdf28a5	cmp    DWORD PTR [r12+0x24],0xffffffff
+reference	musical-form	0xdf28ad	test   r15b,r15b
+reference	musical-form	0xdf28b9	test   r13b,r13b
+reference	musical-form	0xdf28be	cmp    DWORD PTR [r12+0x10],0x2
+reference	musical-form	0xdf290d	cmp    edx,0xffffffff
+reference	musical-form	0xdf2912	test   r14b,r14b
+reference	musical-form	0xdf292c	test   rax,rax
+reference	musical-form	0xdf2931	cmp    DWORD PTR [r12+0x20],0x0
+reference	musical-form	0xdf294d	cmp    rdx,rax
+reference	musical-form	0xdf298c	cmp    DWORD PTR [r12+0x24],0xffffffff
+reference	musical-form	0xdf2994	test   r15b,r15b
+reference	musical-form	0xdf299d	cmp    DWORD PTR [r12+0x1c],0xffffffff
+reference	musical-form	0xdf29a5	test   r14b,r14b
+reference	musical-form	0xdf29c0	cmp    DWORD PTR [r12+0x24],0xffffffff
+reference	musical-form	0xdf29c8	test   r15b,r15b
+reference	musical-form	0xdf2a00	test   rax,rax
+reference	musical-form	0xdf2a05	cmp    DWORD PTR [r12+0x28],0x0
+reference	musical-form	0xdf2a1b	cmp    rsi,rax
+reference	musical-form	0xdf2a2e	cmp    DWORD PTR [r12+0x2c],0x0
+reference	musical-form	0xdf2a44	cmp    rsi,rax
+reference	musical-form	0xdf2a7e	cmp    DWORD PTR [r12+0xb4],0x0
+reference	musical-form	0xdf2a90	test   r13b,r13b
+reference	musical-form	0xdf2a95	cmp    DWORD PTR [r12+0x10],0x2
+reference	musical-form	0xdf2ad1	test   BYTE PTR [rax+0x120],0x1
+reference	musical-form	0xdf2b10	cmp    edx,0xf
+reference	musical-form	0xdf2be7	test   r8d,eax
+reference	musical-form	0xdf2bf1	cmp    edx,0x10
+reference	musical-form	0xdf2c17	cmp    esi,0xf
+reference	musical-form	0xdf2c99	test   DWORD PTR [r12+0xb4],ebx
+reference	musical-form	0xdf2ca7	cmp    ebx,0x100
+reference	musical-form	0xdf2cbc	cmp    eax,0x7f
+reference	musical-form	0xdf2d42	cmp    ebx,0x1000
+reference	musical-form	0xdf2d4c	cmp    ebx,0x200
+reference	musical-form	0xdf2d54	cmp    ebx,0x400
+reference	musical-form	0xdf2d5c	cmp    ebx,0x800
+reference	musical-form	0xdf2d88	cmp    ebx,0x2000
+reference	musical-form	0xdf2d90	cmp    ebx,0x4000
+reference	musical-form	0xdf2d98	cmp    ebx,0x8000
+reference	musical-form	0xdf2dc1	cmp    r14d,0x3
+reference	musical-form	0xdf2dd0	cmp    r14d,0x2
+reference	musical-form	0xdf2dea	cmp    esi,0x10
+reference	musical-form	0xdf2e25	test   rax,rax
+reference	musical-form	0xdf2e31	test   r13b,r13b
+reference	musical-form	0xdf2e36	cmp    DWORD PTR [r12+0x10],0x2
+reference	musical-form	0xdf2eb5	cmp    rcx,QWORD PTR [rbp+0x40]
+reference	musical-form	0xdf2ecc	test   al,al
+reference	musical-form	0xdf2ee3	test   edx,edx
+reference	musical-form	0xdf2eec	cmp    edx,0x1
+reference	musical-form	0xdf2f2f	test   edx,edx
+reference	musical-form	0xdf2f3d	cmp    edx,0x1
+reference	musical-form	0xdf2f90	test   rax,rax
+reference	musical-form	0xdf2ff8	cmp    rax,QWORD PTR [rbp-0x18]
+reference	musical-form	0xdf3009	test   dl,dl
+reference	musical-form	0xdf301e	test   BYTE PTR [rcx+0x4],0x2
+reference	musical-form	0xdf3040	test   BYTE PTR [rcx+0x4],0x4
+reference	musical-form	0xdf30d0	cmp    DWORD PTR [rcx],0x2
+reference	musical-form	0xdf30e1	cmp    DWORD PTR [rcx],0x3
+reference	musical-form	0xdf30f3	test   BYTE PTR [rcx+0x4],0x1
+reference	musical-form	0xdf310f	cmp    esi,0x3
+reference	musical-form	0xdf311d	cmp    esi,0x2
+reference	musical-form	0xdf315a	cmp    DWORD PTR [rcx+0x20],0x0
+reference	musical-form	0xdf317c	test   rax,rax
+reference	musical-form	0xdf31a8	cmp    esi,0x7
+reference	musical-form	0xdf31fd	test   DWORD PTR [rcx+0x20],edi
+reference	musical-form	0xdf3207	cmp    esi,0x8
+reference	musical-form	0xdf3220	cmp    esi,0x7
+reference	musical-form	0xdf327b	test   DWORD PTR [rcx+0x20],ebx
+reference	musical-form	0xdf3284	cmp    ebx,0x10
+reference	musical-form	0xdf329c	cmp    eax,0x4
+reference	musical-form	0xdf32ce	cmp    ebx,0x1000
+reference	musical-form	0xdf32d6	cmp    ebx,0x2000
+reference	musical-form	0xdf32de	cmp    ebx,0x4000
+reference	musical-form	0xdf3307	cmp    r14d,0x3
+reference	musical-form	0xdf3316	cmp    r14d,0x2
+reference	musical-form	0xdf3330	cmp    esi,0x8
+reference	musical-form	0xdf3342	cmp    r15d,0x3
+reference	musical-form	0xdf3351	cmp    r15d,0x2
+reference	musical-form	0xdf33ca	cmp    eax,esi
+reference	musical-form	0xdf33e3	cmp    esi,0xffffffff
+reference	musical-form	0xdf3408	cmp    r12d,0xffffffff
+reference	musical-form	0xdf3421	cmp    eax,0xffffffff
+reference	musical-form	0xdf344b	test   rax,rax
+reference	musical-form	0xdf3467	test   eax,eax
+reference	musical-form	0xdf3474	cmp    eax,0x1
+reference	musical-form	0xdf3556	cmp    rdx,0x1
+reference	musical-form	0xdf35a3	cmp    rsi,0x19
+reference	musical-form	0xdf362a	test   BYTE PTR [r15+0x4],0x1
+reference	musical-form	0xdf364b	cmp    ecx,0xffffffff
+reference	musical-form	0xdf365b	test   edx,edx
+reference	musical-form	0xdf3663	test   ecx,ecx
+reference	musical-form	0xdf3671	cmp    ecx,0x1
+reference	musical-form	0xdf368b	cmp    edx,0x1
+reference	musical-form	0xdf36b4	cmp    DWORD PTR [r15+0x754],0x1
+reference	musical-form	0xdf36d4	cmp    DWORD PTR [r15+0x754],0x0
+reference	musical-form	0xdf3718	test   esi,esi
+reference	musical-form	0xdf373d	cmp    DWORD PTR [r15+0xa8],0x1
+reference	musical-form	0xdf37ab	cmp    esi,eax
+reference	musical-form	0xdf37c8	cmp    esi,eax
+reference	musical-form	0xdf37e1	cmp    esi,DWORD PTR [r15+0x754]
+reference	musical-form	0xdf3835	cmp    eax,r13d
+reference	musical-form	0xdf3840	cmp    r13d,0xffffffff
+reference	musical-form	0xdf384a	cmp    DWORD PTR [rax+0xfc],r12d
+reference	musical-form	0xdf3870	cmp    DWORD PTR [rcx+0x1c],r12d
+reference	musical-form	0xdf388b	cmp    esi,0xffffffff
+reference	musical-form	0xdf38a2	cmp    eax,0xffffffff
+reference	musical-form	0xdf38dd	cmp    DWORD PTR [r15+0x8],0x2
+reference	musical-form	0xdf3903	cmp    DWORD PTR [r14],0x0
+reference	musical-form	0xdf3913	cmp    eax,0xffffffff
+reference	musical-form	0xdf3918	cmp    DWORD PTR [r14+0x4c],0xffffffff
+reference	musical-form	0xdf3943	cmp    DWORD PTR [r14],0x1
+reference	musical-form	0xdf3972	cmp    r12d,0x1
+reference	musical-form	0xdf39bc	test   ecx,ecx
+reference	musical-form	0xdf39d3	cmp    ecx,0x1
+reference	musical-form	0xdf39df	cmp    DWORD PTR [r15+0x8],0x2
+reference	musical-form	0xdf3a57	cmp    DWORD PTR [r14+0x44],eax
+reference	musical-form	0xdf3ab7	cmp    esi,eax
+reference	musical-form	0xdf3ad1	cmp    esi,eax
+reference	musical-form	0xdf3af7	cmp    esi,DWORD PTR [r14+0x44]
+reference	musical-form	0xdf3b10	cmp    DWORD PTR [r14+0x48],0xffffffff
+reference	musical-form	0xdf3b17	cmp    DWORD PTR [r14+0x4c],0xffffffff
+reference	musical-form	0xdf3b88	cmp    DWORD PTR [r14+0x48],0xffffffff
+reference	musical-form	0xdf3ba3	cmp    DWORD PTR [rdx],0xffffffff
+reference	musical-form	0xdf3be0	cmp    rax,QWORD PTR [rbp-0x18]
+reference	musical-form	0xdf3bf5	test   dl,dl
+reference	musical-form	0xdf3c15	cmp    eax,0xffffffff
+reference	musical-form	0xdf3c86	cmp    ecx,0x1
+reference	musical-form	0xdf3cbf	cmp    DWORD PTR [r13+0x34],eax
+reference	musical-form	0xdf3d25	cmp    DWORD PTR [r15+0x8],0x0
+reference	musical-form	0xdf3d30	cmp    DWORD PTR [r14],eax
+reference	musical-form	0xdf3d4b	cmp    esi,eax
+reference	musical-form	0xdf3d5b	cmp    esi,eax
+reference	musical-form	0xdf3d81	cmp    esi,DWORD PTR [r13+0x34]
+reference	musical-form	0xdf3da1	test   ecx,ecx
+reference	musical-form	0xdf3daa	cmp    ecx,0x1
+reference	musical-form	0xdf3dc1	cmp    DWORD PTR [r15+0x70],0xc
+reference	musical-form	0xdf3e32	cmp    r13d,eax
+reference	musical-form	0xdf3e64	cmp    esi,eax
+reference	musical-form	0xdf3e91	cmp    eax,r13d
+reference	musical-form	0xdf3eb0	cmp    r13d,0xffffffff
+reference	musical-form	0xdf3ed6	cmp    esi,0xffffffff
+reference	musical-form	0xdf3eea	cmp    eax,0xffffffff
+reference	musical-form	0xdf3f13	test   rax,rax
+reference	musical-form	0xdf3f1c	test   BYTE PTR [rax+0x38],0x1
+reference	musical-form	0xdf3f31	test   BYTE PTR [r15+0x38],0x2
+reference	musical-form	0xdf3f73	cmp    eax,r14d
+reference	musical-form	0xdf3f80	cmp    r14d,0xffffffff
+reference	musical-form	0xdf3f8a	cmp    DWORD PTR [rax+0x104],esi
+reference	musical-form	0xdf3fb5	cmp    DWORD PTR [rcx+0x24],esi
+reference	musical-form	0xdf3fe8	cmp    esi,0xffffffff
+reference	musical-form	0xdf3ffb	cmp    eax,0xffffffff
+reference	musical-form	0xdf401f	cmp    DWORD PTR [rsp+0x50],0xffffffff
+reference	musical-form	0xdf4037	cmp    esi,0xffffffff
+reference	musical-form	0xdf4133	test   al,al
+reference	musical-form	0xdf4188	test   BYTE PTR [rax],0x1
+reference	musical-form	0xdf419c	cmp    r15d,0x3
+reference	musical-form	0xdf41ab	cmp    r15d,0x2
+reference	musical-form	0xdf4228	test   al,al
+reference	musical-form	0xdf4264	test   al,al
+reference	musical-form	0xdf4268	cmp    r12d,0xffffffff
+reference	musical-form	0xdf4277	cmp    r12d,esi
+reference	musical-form	0xdf42cf	test   al,al
+reference	musical-form	0xdf42f3	test   r14b,r14b
+reference	musical-form	0xdf42ff	test   al,0x1
+reference	musical-form	0xdf430c	test   al,0x2
+reference	musical-form	0xdf4319	test   BYTE PTR [r13+0x50],0x1
+reference	musical-form	0xdf4371	test   al,al
+reference	musical-form	0xdf4398	cmp    eax,0xffffffff
+reference	musical-form	0xdf4408	cmp    rax,rcx
+reference	musical-form	0xdf4414	test   dl,dl
+reference	musical-form	0xdf44c8	cmp    rax,0x2
+reference	musical-form	0xdf4565	cmp    rax,QWORD PTR [rbp+0x40]
+reference	musical-form	0xdf4572	test   dl,dl
+reference	musical-form	0xdf459d	cmp    rcx,rax
+reference	musical-form	0xdf45e6	cmp    DWORD PTR [r14+0x48],0x0
+reference	musical-form	0xdf4603	cmp    DWORD PTR [r14+0x48],0x0
+reference	musical-form	0xdf4635	test   esi,esi
+reference	musical-form	0xdf466d	cmp    esi,eax
+reference	musical-form	0xdf468d	cmp    esi,DWORD PTR [r14+0x48]
+reference	musical-form	0xdf4720	test   al,al
+reference	musical-form	0xdf4740	cmp    DWORD PTR [rcx+0x8],ebx
+reference	musical-form	0xdf476c	cmp    eax,0x3
+reference	musical-form	0xdf4782	cmp    eax,0x1
+reference	musical-form	0xdf4798	cmp    eax,0x2
+reference	musical-form	0xdf47bf	test   sil,0x4
+reference	musical-form	0xdf47db	test   sil,0x8
+reference	musical-form	0xdf4819	cmp    r15d,DWORD PTR [rcx+0x8]
+reference	musical-form	0xdf4859	test   al,al
+reference	musical-form	0xdf487b	test   r12b,r12b
+reference	musical-form	0xdf488f	test   r13b,r13b
+reference	musical-form	0xdf48a3	test   sil,sil
+reference	musical-form	0xdf48b7	test   r15b,r15b
+reference	musical-form	0xdf48da	cmp    BYTE PTR [rsp+0x34],0x0
+reference	musical-form	0xdf4926	test   al,al
+reference	musical-form	0xdf495c	cmp    r14d,eax
+reference	musical-form	0xdf4991	cmp    r13d,eax
+reference	cardinal	0x547872	cmp    QWORD PTR [rdx+0x18],0xf
+reference	cardinal	0x54787f	test   esi,esi
+reference	cardinal	0x5478a1	cmp    esi,0x13
+reference	cardinal	0x547ac2	cmp    esi,0x3b9aca00
+reference	cardinal	0x547b07	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547b60	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547b85	cmp    esi,0xf4240
+reference	cardinal	0x547bca	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547c23	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547c3e	cmp    rdx,0xf
+reference	cardinal	0x547c52	cmp    rdx,0x1000
+reference	cardinal	0x547c6a	cmp    rax,0x1f
+reference	cardinal	0x547c81	cmp    esi,0x3e8
+reference	cardinal	0x547cc6	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547d1f	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547d3a	cmp    rdx,0xf
+reference	cardinal	0x547d4e	cmp    rdx,0x1000
+reference	cardinal	0x547d6a	cmp    rax,0x1f
+reference	cardinal	0x547d7b	cmp    esi,0x64
+reference	cardinal	0x547dbd	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547e13	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547e2e	cmp    rdx,0xf
+reference	cardinal	0x547e42	cmp    rdx,0x1000
+reference	cardinal	0x547e5e	cmp    rax,0x1f
+reference	cardinal	0x547e72	cmp    eax,0x4f
+reference	cardinal	0x547e91	cmp    eax,0x7
+reference	cardinal	0x547f59	cmp    QWORD PTR [rbp-0x18],0xf
+reference	cardinal	0x547f74	cmp    rdx,0xf
+reference	cardinal	0x547f84	cmp    rdx,0x1000
+reference	cardinal	0x547fa0	cmp    rax,0x1f
+reference	ordinal	0x548065	cmp    QWORD PTR [rdx+0x18],0xf
+reference	ordinal	0x548077	test   r8b,r8b
+reference	ordinal	0x548080	test   edi,edi
+reference	ordinal	0x5480c9	cmp    ecx,0x1
+reference	ordinal	0x5480fe	cmp    edi,0xd
+reference	ordinal	0x54812e	cmp    edi,0xc
+reference	ordinal	0x54815e	cmp    edi,0xb
+reference	ordinal	0x54816a	test   edi,edi
+reference	ordinal	0x548185	cmp    edi,0x13
+reference	ordinal	0x548448	cmp    ecx,0x1
+reference	ordinal	0x54848a	cmp    edi,0xd
+reference	ordinal	0x5484c7	cmp    edi,0xc
+reference	ordinal	0x5484fa	cmp    edi,0xb
+reference	timbre-selector	0x796513	cmp    ecx,0x3e
+reference	register-timbre-choice	0xdecab5	cmp    rax,rcx
+reference	register-timbre-choice	0xdecac1	cmp    r9d,0x3e
+reference	register-timbre-choice	0xdecae7	test   edx,edx
+reference	register-timbre-choice	0xdecafb	test   edx,edx
+reference	register-timbre-choice	0xdecb0f	test   edx,edx
+reference	register-timbre-choice	0xdecb22	test   edx,edx
+reference	register-timbre-choice	0xdecb36	test   edx,edx
+reference	register-timbre-choice	0xdecb4a	test   edx,edx
+classic	musical-form	0xde87ad	test   ecx,ecx
+classic	musical-form	0xde87b9	cmp    ecx,esi
+classic	musical-form	0xde87d5	cmp    DWORD PTR [r13+0x11c],0xffffffff
+classic	musical-form	0xde8842	cmp    edx,0xffffffff
+classic	musical-form	0xde8855	test   rax,rax
+classic	musical-form	0xde885a	cmp    WORD PTR [rax],0x8
+classic	musical-form	0xde886f	test   ecx,ecx
+classic	musical-form	0xde8898	cmp    DWORD PTR [r13+0x84],0xffffffff
+classic	musical-form	0xde88f3	test   BYTE PTR [r13+0x120],sil
+classic	musical-form	0xde895f	test   al,al
+classic	musical-form	0xde8982	test   BYTE PTR [rcx+0x4],0x7
+classic	musical-form	0xde899c	cmp    DWORD PTR [rax+0x10],0x1
+classic	musical-form	0xde89b1	cmp    rbx,rax
+classic	musical-form	0xde89fd	cmp    rbx,rax
+classic	musical-form	0xde8a47	cmp    DWORD PTR [rbx+0x10],eax
+classic	musical-form	0xde8abc	test   BYTE PTR [rcx+0x4],0x1
+classic	musical-form	0xde8ad8	test   BYTE PTR [rcx+0x4],0x2
+classic	musical-form	0xde8af4	test   BYTE PTR [rcx+0x4],0x4
+classic	musical-form	0xde8b16	cmp    DWORD PTR [rcx+0x10],0x2
+classic	musical-form	0xde8b41	cmp    edx,0xffffffff
+classic	musical-form	0xde8b55	test   rax,rax
+classic	musical-form	0xde8b72	cmp    DWORD PTR [rcx+0x10],0x2
+classic	musical-form	0xde8ba9	cmp    edx,0xffffffff
+classic	musical-form	0xde8bc1	test   rax,rax
+classic	musical-form	0xde8bde	cmp    DWORD PTR [rcx+0x10],0x2
+classic	musical-form	0xde8bee	test   BYTE PTR [rbx+0x8c],0x2
+classic	musical-form	0xde8c6a	cmp    DWORD PTR [rcx+0x10],0x2
+classic	musical-form	0xde8c89	cmp    esi,0x2
+classic	musical-form	0xde8cae	cmp    DWORD PTR [rcx],0xffffffff
+classic	musical-form	0xde8cd6	test   r14,r14
+classic	musical-form	0xde8cdf	test   r15b,r15b
+classic	musical-form	0xde8cf6	cmp    rcx,rax
+classic	musical-form	0xde8d24	cmp    DWORD PTR [rcx+0x10],0x1
+classic	musical-form	0xde8da0	cmp    DWORD PTR [rbx+0x10],eax
+classic	musical-form	0xde8e15	cmp    DWORD PTR [rcx+0x10],0x2
+classic	musical-form	0xde8e2e	cmp    esi,0x3
+classic	musical-form	0xde8e3c	cmp    esi,0x2
+classic	musical-form	0xde8e80	test   al,al
+classic	musical-form	0xde8ee6	test   al,al
+classic	musical-form	0xde8f42	test   al,al
+classic	musical-form	0xde8f51	test   edx,edx
+classic	musical-form	0xde8f5f	cmp    edx,0x1
+classic	musical-form	0xde8f9c	test   al,al
+classic	musical-form	0xde8fc7	test   al,al
+classic	musical-form	0xde8fcf	test   sil,sil
+classic	musical-form	0xde8fd4	test   r14b,r14b
+classic	musical-form	0xde8fe5	cmp    rax,0x2
+classic	musical-form	0xde8fef	test   sil,sil
+classic	musical-form	0xde8ffb	test   r14b,r14b
+classic	musical-form	0xde900c	test   r15b,r15b
+classic	musical-form	0xde901f	test   bl,bl
+classic	musical-form	0xde9035	test   bl,bl
+classic	musical-form	0xde9049	test   r15b,r15b
+classic	musical-form	0xde905c	test   bl,bl
+classic	musical-form	0xde9072	test   bl,bl
+classic	musical-form	0xde90a3	cmp    DWORD PTR [r12+0xe8],0xffffffff
+classic	musical-form	0xde90ae	cmp    DWORD PTR [r12+0xec],0xffffffff
+classic	musical-form	0xde90b9	cmp    DWORD PTR [r12+0xf0],0xffffffff
+classic	musical-form	0xde90d7	cmp    DWORD PTR [r12+0xf0],0xffffffff
+classic	musical-form	0xde9100	cmp    eax,0x26
+classic	musical-form	0xde92b8	cmp    DWORD PTR [r12+0xe8],0xffffffff
+classic	musical-form	0xde92c7	cmp    DWORD PTR [r12+0xf0],0xffffffff
+classic	musical-form	0xde92e9	cmp    eax,0x21
+classic	musical-form	0xde93a3	cmp    DWORD PTR [r12+0xec],0xffffffff
+classic	musical-form	0xde93b2	cmp    DWORD PTR [r12+0xe8],0xffffffff
+classic	musical-form	0xde93bd	cmp    DWORD PTR [r12+0xf0],0xffffffff
+classic	musical-form	0xde93f8	cmp    eax,0xa
+classic	musical-form	0xde94cc	test   al,al
+classic	musical-form	0xde955d	test   al,al
+classic	musical-form	0xde956f	cmp    DWORD PTR [rax],0x0
+classic	musical-form	0xde957e	cmp    ebx,DWORD PTR [rax]
+classic	musical-form	0xde9582	cmp    ebx,r14d
+classic	musical-form	0xde95a4	cmp    DWORD PTR [rax],0x1
+classic	musical-form	0xde95b3	cmp    esi,DWORD PTR [rax]
+classic	musical-form	0xde95b7	cmp    esi,r14d
+classic	musical-form	0xde9601	test   al,al
+classic	musical-form	0xde9630	test   al,al
+classic	musical-form	0xde9638	cmp    ebx,0xfffffffe
+classic	musical-form	0xde9642	cmp    esi,0xfffffffe
+classic	musical-form	0xde964c	cmp    ebx,r14d
+classic	musical-form	0xde9658	cmp    esi,r14d
+classic	musical-form	0xde9661	cmp    ebx,esi
+classic	musical-form	0xde9671	test   ebx,ebx
+classic	musical-form	0xde9685	cmp    ecx,0x1
+classic	musical-form	0xde96c0	test   ebx,ebx
+classic	musical-form	0xde96ce	cmp    ecx,0x1
+classic	musical-form	0xde970e	test   esi,esi
+classic	musical-form	0xde9721	cmp    esi,r14d
+classic	musical-form	0xde9737	test   esi,esi
+classic	musical-form	0xde9764	test   ecx,ecx
+classic	musical-form	0xde9777	cmp    ecx,0x1
+classic	musical-form	0xde97af	test   BYTE PTR [r12+0x120],0x2
+classic	musical-form	0xde9805	test   al,al
+classic	musical-form	0xde981f	cmp    DWORD PTR [rcx+0x1c],0xffffffff
+classic	musical-form	0xde9837	cmp    DWORD PTR [rcx+0x24],0xffffffff
+classic	musical-form	0xde9864	test   al,al
+classic	musical-form	0xde9870	cmp    edx,0xffffffff
+classic	musical-form	0xde9875	test   bl,bl
+classic	musical-form	0xde98a4	test   rax,rax
+classic	musical-form	0xde98a9	cmp    DWORD PTR [r12+0x100],0x0
+classic	musical-form	0xde98cb	cmp    rdx,rax
+classic	musical-form	0xde991f	cmp    DWORD PTR [r12+0x104],0xffffffff
+classic	musical-form	0xde992a	test   sil,sil
+classic	musical-form	0xde9933	test   r14b,r14b
+classic	musical-form	0xde994a	cmp    DWORD PTR [r12+0xfc],0xffffffff
+classic	musical-form	0xde9955	test   bl,bl
+classic	musical-form	0xde996f	cmp    DWORD PTR [r12+0x104],0xffffffff
+classic	musical-form	0xde997a	test   sil,sil
+classic	musical-form	0xde99b5	test   rax,rax
+classic	musical-form	0xde99ba	cmp    DWORD PTR [r12+0x108],0x0
+classic	musical-form	0xde99d6	cmp    rsi,rax
+classic	musical-form	0xde99e9	cmp    DWORD PTR [r12+0x10c],0x0
+classic	musical-form	0xde9a08	cmp    rbx,rax
+classic	musical-form	0xde9a32	test   r14b,r14b
+classic	musical-form	0xde9a46	cmp    DWORD PTR [r12+0x110],0x0
+classic	musical-form	0xde9a58	test   BYTE PTR [r12+0x120],0x1
+classic	musical-form	0xde9a98	cmp    r8d,0xf
+classic	musical-form	0xde9b19	test   r9d,edx
+classic	musical-form	0xde9b23	cmp    r8d,0x10
+classic	musical-form	0xde9b48	cmp    r14d,0xf
+classic	musical-form	0xde9bcd	test   DWORD PTR [r12+0x110],ebx
+classic	musical-form	0xde9bdb	cmp    ebx,0x100
+classic	musical-form	0xde9bf0	cmp    eax,0x7f
+classic	musical-form	0xde9c76	cmp    ebx,0x1000
+classic	musical-form	0xde9c80	cmp    ebx,0x200
+classic	musical-form	0xde9c88	cmp    ebx,0x400
+classic	musical-form	0xde9c90	cmp    ebx,0x800
+classic	musical-form	0xde9cbc	cmp    ebx,0x2000
+classic	musical-form	0xde9cc4	cmp    ebx,0x4000
+classic	musical-form	0xde9ccc	cmp    ebx,0x8000
+classic	musical-form	0xde9cf5	cmp    esi,0x3
+classic	musical-form	0xde9d03	cmp    esi,0x2
+classic	musical-form	0xde9d1c	cmp    r14d,0x10
+classic	musical-form	0xde9d48	test   rax,rax
+classic	musical-form	0xde9d60	test   BYTE PTR [r12+0x120],0x1
+classic	musical-form	0xde9dce	test   al,al
+classic	musical-form	0xde9df0	test   edx,edx
+classic	musical-form	0xde9df9	cmp    edx,0x1
+classic	musical-form	0xde9e3d	test   edx,edx
+classic	musical-form	0xde9e4b	cmp    edx,0x1
+classic	musical-form	0xde9e9f	test   rax,rax
+classic	musical-form	0xde9f24	test   al,al
+classic	musical-form	0xde9f3d	test   BYTE PTR [rcx+0x4],0x2
+classic	musical-form	0xde9f5f	test   BYTE PTR [rcx+0x4],0x4
+classic	musical-form	0xde9fe5	cmp    DWORD PTR [rcx],0x2
+classic	musical-form	0xde9ff7	cmp    DWORD PTR [rcx],0x3
+classic	musical-form	0xdea009	test   BYTE PTR [rcx+0x4],0x1
+classic	musical-form	0xdea025	cmp    ebx,0x3
+classic	musical-form	0xdea033	cmp    ebx,0x2
+classic	musical-form	0xdea07e	test   al,al
+classic	musical-form	0xdea093	cmp    DWORD PTR [rcx+0x20],0x0
+classic	musical-form	0xdea0b6	test   rax,rax
+classic	musical-form	0xdea0e1	cmp    ebx,0x7
+classic	musical-form	0xdea13d	test   DWORD PTR [rcx+0x20],r15d
+classic	musical-form	0xdea148	cmp    ebx,0x8
+classic	musical-form	0xdea164	cmp    ebx,0x7
+classic	musical-form	0xdea1ba	test   DWORD PTR [rcx+0x20],esi
+classic	musical-form	0xdea1c3	cmp    esi,0x10
+classic	musical-form	0xdea1db	cmp    eax,0x4
+classic	musical-form	0xdea20d	cmp    esi,0x1000
+classic	musical-form	0xdea215	cmp    esi,0x2000
+classic	musical-form	0xdea21d	cmp    esi,0x4000
+classic	musical-form	0xdea246	cmp    r14d,0x3
+classic	musical-form	0xdea255	cmp    r14d,0x2
+classic	musical-form	0xdea26f	cmp    ebx,0x8
+classic	musical-form	0xdea27f	cmp    r12d,0x3
+classic	musical-form	0xdea28e	cmp    r12d,0x2
+classic	musical-form	0xdea2d1	test   al,al
+classic	musical-form	0xdea333	test   al,al
+classic	musical-form	0xdea396	test   al,al
+classic	musical-form	0xdea426	test   al,al
+classic	musical-form	0xdea43a	cmp    DWORD PTR [rax],r14d
+classic	musical-form	0xdea46f	test   al,al
+classic	musical-form	0xdea47e	cmp    r15d,0xffffffff
+classic	musical-form	0xdea489	cmp    r15d,DWORD PTR [rax]
+classic	musical-form	0xdea4ab	test   al,al
+classic	musical-form	0xdea4d7	test   al,al
+classic	musical-form	0xdea53b	test   al,al
+classic	musical-form	0xdea603	test   al,al
+classic	musical-form	0xdea619	cmp    DWORD PTR [rax],r14d
+classic	musical-form	0xdea627	cmp    r13d,0xfffffffe
+classic	musical-form	0xdea646	cmp    r13d,DWORD PTR [rax]
+classic	musical-form	0xdea654	cmp    ebx,DWORD PTR [rax]
+classic	musical-form	0xdea658	test   sil,sil
+classic	musical-form	0xdea695	test   al,al
+classic	musical-form	0xdea6ca	test   al,al
+classic	musical-form	0xdea6dd	test   sil,sil
+classic	musical-form	0xdea6f8	cmp    DWORD PTR [rcx+0x8],0x0
+classic	musical-form	0xdea70b	cmp    DWORD PTR [rcx+0x14],0xffffffff
+classic	musical-form	0xdea71e	cmp    DWORD PTR [rcx+0x18],0xffffffff
+classic	musical-form	0xdea724	test   r12b,r12b
+classic	musical-form	0xdea72d	cmp    r15d,0x4
+classic	musical-form	0xdea753	cmp    DWORD PTR [rcx+0x10],0x2
+classic	musical-form	0xdea77c	test   BYTE PTR [rcx+0x4],0x1
+classic	musical-form	0xdea79e	test   BYTE PTR [rcx+0x4],0x2
+classic	musical-form	0xdea7c0	test   BYTE PTR [rcx+0x4],0x4
+classic	musical-form	0xdea7e2	cmp    DWORD PTR [rcx],0xffffffff
+classic	musical-form	0xdea806	test   rbx,rbx
+classic	musical-form	0xdea818	cmp    DWORD PTR [rcx+0x10],0x2
+classic	musical-form	0xdea837	test   r12b,r12b
+classic	musical-form	0xdea83c	cmp    r15d,0x4
+classic	musical-form	0xdea858	cmp    DWORD PTR [rcx+0x18],0xffffffff
+classic	musical-form	0xdea873	cmp    DWORD PTR [rax+0x14],0xffffffff
+classic	musical-form	0xdea890	cmp    esi,0xd
+classic	musical-form	0xdea910	test   DWORD PTR [rcx+0x8],edi
+classic	musical-form	0xdea91a	cmp    esi,0xe
+classic	musical-form	0xdea93a	cmp    BYTE PTR [rsp+0x33],0x0
+classic	musical-form	0xdea946	cmp    r15d,0x4
+classic	musical-form	0xdea94c	test   r15d,r15d
+classic	musical-form	0xdea95d	cmp    r15d,0x1
+classic	musical-form	0xdea98d	cmp    r14d,0x3
+classic	musical-form	0xdea99c	cmp    r14d,0x2
+classic	musical-form	0xdea9c1	cmp    DWORD PTR [rcx+0x18],0xffffffff
+classic	musical-form	0xdea9f4	cmp    eax,0x26
+classic	musical-form	0xdeabac	cmp    r14d,0x3
+classic	musical-form	0xdeabc6	cmp    r14d,0x2
+classic	musical-form	0xdeabf4	cmp    DWORD PTR [rcx+0x14],0xffffffff
+classic	musical-form	0xdeac20	cmp    eax,0xa
+classic	musical-form	0xdeac9c	cmp    r14d,0x3
+classic	musical-form	0xdeacab	cmp    r14d,0x2
+classic	musical-form	0xdeacd0	cmp    DWORD PTR [rcx+0x8],0x0
+classic	musical-form	0xdeacea	cmp    ebx,0xd
+classic	musical-form	0xdead79	test   DWORD PTR [rcx+0x8],r13d
+classic	musical-form	0xdead83	cmp    r13d,0x80
+classic	musical-form	0xdead92	cmp    eax,0x3f
+classic	musical-form	0xdeae09	cmp    r13d,0x1000
+classic	musical-form	0xdeae14	cmp    r13d,0x100
+classic	musical-form	0xdeae1d	cmp    r13d,0x200
+classic	musical-form	0xdeae26	cmp    r13d,0x800
+classic	musical-form	0xdeae53	cmp    r13d,0x2000
+classic	musical-form	0xdeae5c	cmp    r13d,0x4000
+classic	musical-form	0xdeae7d	cmp    r14d,0x3
+classic	musical-form	0xdeae8c	cmp    r14d,0x2
+classic	musical-form	0xdeaea6	cmp    ebx,0xe
+classic	musical-form	0xdeaed2	test   sil,sil
+classic	musical-form	0xdeaedb	test   r13d,r13d
+classic	musical-form	0xdeaef4	cmp    eax,0xffffffff
+classic	musical-form	0xdeaf01	cmp    r13d,ebx
+classic	musical-form	0xdeaf15	test   r13d,r13d
+classic	musical-form	0xdeaf24	cmp    r13d,0x1
+classic	musical-form	0xdeaf46	test   r13d,r13d
+classic	musical-form	0xdeaf4b	cmp    ebx,0x2
+classic	musical-form	0xdeaf73	test   r13d,r13d
+classic	musical-form	0xdeaf7e	cmp    r13d,0x1
+classic	musical-form	0xdeafb4	test   ebx,ebx
+classic	musical-form	0xdeafc1	cmp    ebx,0x1
+classic	musical-form	0xdeb018	cmp    r13d,r14d
+classic	musical-form	0xdeb024	cmp    r15d,0x4
+classic	musical-form	0xdeb066	cmp    eax,0xffffffff
+classic	musical-form	0xdeb084	test   r13d,r13d
+classic	musical-form	0xdeb095	cmp    r13d,0x1
+classic	musical-form	0xdeb09b	cmp    r15d,0x3
+classic	musical-form	0xdeb0b1	cmp    r13d,eax
+classic	musical-form	0xdeb0ba	cmp    r15d,0x4
+classic	musical-form	0xdeb12b	test   r13d,r13d
+classic	musical-form	0xdeb130	cmp    r14d,ebx
+classic	musical-form	0xdeb135	cmp    esi,0xffffffff
+classic	musical-form	0xdeb13a	cmp    eax,esi
+classic	musical-form	0xdeb14a	cmp    r14d,ebx
+classic	musical-form	0xdeb14f	cmp    esi,r12d
+classic	musical-form	0xdeb17d	cmp    esi,r12d
+classic	musical-form	0xdeb1ae	test   r13d,r13d
+classic	musical-form	0xdeb1bc	cmp    r13d,0x1
+classic	musical-form	0xdeb1c2	cmp    r15d,0x3
+classic	musical-form	0xdeb1d5	cmp    r13d,eax
+classic	musical-form	0xdeb1da	cmp    r15d,0x4
+classic	musical-form	0xdeb205	test   r14d,r14d
+classic	musical-form	0xdeb216	cmp    r14d,0x1
+classic	musical-form	0xdeb21c	cmp    r15d,0x3
+classic	musical-form	0xdeb232	cmp    r14d,eax
+classic	musical-form	0xdeb23a	test   r13d,r13d
+classic	musical-form	0xdeb242	cmp    DWORD PTR [rsp+0x60],ebx
+classic	musical-form	0xdeb26b	cmp    esi,0xffffffff
+classic	musical-form	0xdeb289	test   r13d,r13d
+classic	musical-form	0xdeb297	cmp    r13d,0x1
+classic	musical-form	0xdeb29d	cmp    r15d,0x3
+classic	musical-form	0xdeb2ac	cmp    r13d,r14d
+classic	musical-form	0xdeb2b1	cmp    r15d,0x4
+classic	musical-form	0xdeb2dc	cmp    r12d,0xffffffff
+classic	musical-form	0xdeb300	test   ecx,ecx
+classic	musical-form	0xdeb30d	cmp    ecx,0x1
+classic	musical-form	0xdeb312	cmp    r15d,0x3
+classic	musical-form	0xdeb325	cmp    ecx,eax
+classic	musical-form	0xdeb329	cmp    r15d,0x4
+classic	musical-form	0xdeb388	test   al,al
+classic	musical-form	0xdeb3fc	test   al,al
+classic	musical-form	0xdeb415	cmp    DWORD PTR [rcx],0x0
+classic	musical-form	0xdeb42c	cmp    DWORD PTR [rcx],0xa
+classic	musical-form	0xdeb434	cmp    esi,0xffffffff
+classic	musical-form	0xdeb43d	cmp    r13d,0xffffffff
+classic	musical-form	0xdeb46f	test   al,al
+classic	musical-form	0xdeb4e8	cmp    rax,0x1
+classic	musical-form	0xdeb504	cmp    rax,0x2
+classic	musical-form	0xdeb57b	test   al,al
+classic	musical-form	0xdeb5af	cmp    DWORD PTR [rcx+0xc],0x0
+classic	musical-form	0xdeb5de	cmp    DWORD PTR [rbx],0x0
+classic	musical-form	0xdeb5e7	cmp    DWORD PTR [rsp+0x3c],0x1
+classic	musical-form	0xdeb5f8	cmp    eax,0x1
+classic	musical-form	0xdeb615	cmp    DWORD PTR [rbx+0xc],eax
+classic	musical-form	0xdeb6d0	cmp    eax,0x1
+classic	musical-form	0xdeb6f3	cmp    DWORD PTR [rbx+0xc],eax
+classic	musical-form	0xdeb79d	cmp    eax,0xffffffff
+classic	musical-form	0xdeb7a2	cmp    eax,0x14
+classic	musical-form	0xdeb7b0	cmp    eax,0x4
+classic	musical-form	0xdeb7ca	cmp    eax,0xb
+classic	musical-form	0xdeb7e6	cmp    DWORD PTR [rbp-0x48],0x1
+classic	musical-form	0xdeb7ec	cmp    DWORD PTR [rbx+0x10],0x2
+classic	musical-form	0xdeb810	cmp    DWORD PTR [rbx+0x10],0x2
+classic	musical-form	0xdeb82e	test   sil,sil
+classic	musical-form	0xdeb84e	test   sil,sil
+classic	musical-form	0xdeb874	cmp    eax,DWORD PTR [rsp+0x60]
+classic	musical-form	0xdeb87d	cmp    DWORD PTR [rsp+0x64],0x1
+classic	musical-form	0xdeb89f	cmp    eax,r13d
+classic	musical-form	0xdeb8ce	cmp    eax,DWORD PTR [rsp+0x60]
+classic	musical-form	0xdeb8d7	cmp    DWORD PTR [rsp+0x64],0x1
+classic	musical-form	0xdeb8fc	cmp    eax,DWORD PTR [rsp+0x60]
+classic	musical-form	0xdeb902	cmp    eax,r13d
+classic	musical-form	0xdeb92e	cmp    DWORD PTR [rbx+0x10],0x2
+classic	musical-form	0xdeb971	cmp    r13d,0xffffffff
+classic	musical-form	0xdeb987	cmp    DWORD PTR [r15+rcx*1],eax
+classic	musical-form	0xdeb9b1	cmp    DWORD PTR [r15+rcx*1],r13d
+classic	musical-form	0xdeb9e4	cmp    eax,DWORD PTR [rsp+0x60]
+classic	musical-form	0xdeb9ed	cmp    DWORD PTR [rsp+0x64],0x1
+classic	musical-form	0xdeba06	cmp    eax,r13d
+classic	musical-form	0xdeba1a	cmp    r14d,0x3
+classic	musical-form	0xdeba29	cmp    r14d,0x2
+classic	musical-form	0xdeba54	cmp    r12d,DWORD PTR [rcx+0xc]
+classic	musical-form	0xdeba76	cmp    DWORD PTR [rcx+0x14],0x2
+classic	musical-form	0xdeba9b	cmp    DWORD PTR [rcx+0x10],0x1
+classic	musical-form	0xdebaad	cmp    DWORD PTR [rcx+0x14],0x2
+classic	musical-form	0xdebace	cmp    DWORD PTR [rcx+0xc],0x2
+classic	musical-form	0xdebaf6	cmp    DWORD PTR [rcx+0x10],0x1
+classic	musical-form	0xdebb08	cmp    DWORD PTR [rcx+0x14],0x3
+classic	musical-form	0xdebb8d	cmp    DWORD PTR [rcx+0x10],eax
+classic	musical-form	0xdebc07	cmp    DWORD PTR [rcx+0x10],0x2
+classic	musical-form	0xdebcca	cmp    esi,0x3
+classic	musical-form	0xdebcd8	cmp    esi,0x2
+classic	musical-form	0xdebd18	test   al,al
+classic	musical-form	0xdebdb2	test   al,al
+classic	musical-form	0xdebde8	cmp    DWORD PTR [rcx+0x1c],0xffffffff
+classic	musical-form	0xdebe05	cmp    DWORD PTR [rcx+0x24],0xffffffff
+classic	musical-form	0xdebe34	test   al,al
+classic	musical-form	0xdebe74	cmp    rcx,QWORD PTR [rbp-0x78]
+classic	musical-form	0xdebe87	test   dl,dl
+classic	musical-form	0xdebf09	test   al,al
+classic	musical-form	0xdebf1e	cmp    DWORD PTR [rax],0x0
+classic	musical-form	0xdebf23	cmp    r13,0xffffffffffffffff
+classic	musical-form	0xdebf3f	cmp    DWORD PTR [rax],0x1
+classic	musical-form	0xdebf44	cmp    rbx,0xffffffffffffffff
+classic	musical-form	0xdebf86	test   al,al
+classic	musical-form	0xdec008	test   al,al
+classic	musical-form	0xdec01e	cmp    DWORD PTR [rax],0xffffffff
+classic	musical-form	0xdec058	test   al,al
+classic	musical-form	0xdec065	test   sil,sil
+classic	musical-form	0xdec06e	cmp    BYTE PTR [rbp-0x60],0x0
+classic	musical-form	0xdec074	test   r13d,r13d
+classic	musical-form	0xdec079	cmp    r14d,0xffffffff
+classic	musical-form	0xdec07f	cmp    r15d,r14d
+classic	musical-form	0xdec084	cmp    DWORD PTR [r12+0x18],r14d
+classic	musical-form	0xdec08b	cmp    DWORD PTR [r12+0x14],r14d
+classic	musical-form	0xdec092	cmp    DWORD PTR [r12+0xa8],r14d
+classic	musical-form	0xdec09c	cmp    DWORD PTR [r12+0xac],r14d
+classic	musical-form	0xdec0a6	cmp    DWORD PTR [r12+0xb0],r14d
+classic	musical-form	0xdec0b0	cmp    DWORD PTR [r12+0x1c],r14d
+classic	musical-form	0xdec0b7	cmp    BYTE PTR [rsp+0x33],0x0
+classic	musical-form	0xdec0be	cmp    DWORD PTR [r12+0x24],r14d
+classic	musical-form	0xdec0c5	cmp    BYTE PTR [rsp+0x31],0x0
+classic	musical-form	0xdec0cc	cmp    DWORD PTR [r12+0xb8],r14d
+classic	musical-form	0xdec0d6	cmp    DWORD PTR [r12+0xb4],0x0
+classic	musical-form	0xdec0ee	test   rax,rax
+classic	musical-form	0xdec11a	cmp    DWORD PTR [r12+0x10],0x2
+classic	musical-form	0xdec139	cmp    DWORD PTR [rbp+rax*4+0x210],0x2
+classic	musical-form	0xdec1af	cmp    eax,0xb
+classic	musical-form	0xdec1de	cmp    DWORD PTR [r12+0x10],0x2
+classic	musical-form	0xdec26f	test   sil,sil
+classic	musical-form	0xdec302	test   al,al
+classic	musical-form	0xdec31d	test   edx,edx
+classic	musical-form	0xdec330	cmp    edx,0x1
+classic	musical-form	0xdec391	test   BYTE PTR [r15+0x4],0x1
+classic	musical-form	0xdec3a7	cmp    DWORD PTR [r15+0x10],0x2
+classic	musical-form	0xdec3c0	test   BYTE PTR [r15+0x4],0x2
+classic	musical-form	0xdec3d6	cmp    DWORD PTR [r15+0x10],0x2
+classic	musical-form	0xdec3ef	test   BYTE PTR [r15+0x4],0x4
+classic	musical-form	0xdec405	cmp    DWORD PTR [r15+0x10],0x2
+classic	musical-form	0xdec421	cmp    eax,0xffffffff
+classic	musical-form	0xdec430	cmp    DWORD PTR [r15+0x10],0x2
+classic	musical-form	0xdec45c	test   r14b,r14b
+classic	musical-form	0xdec46c	cmp    edx,0xffffffff
+classic	musical-form	0xdec480	test   rax,rax
+classic	musical-form	0xdec4ac	cmp    edx,0xffffffff
+classic	musical-form	0xdec4c4	test   rax,rax
+classic	musical-form	0xdec4dc	test   BYTE PTR [rsi+0x8c],0x2
+classic	musical-form	0xdec544	cmp    DWORD PTR [r13+0xf4],0xffffffff
+classic	musical-form	0xdec54e	cmp    DWORD PTR [r13+0xf8],0xffffffff
+classic	musical-form	0xdec567	cmp    r12d,0x3
+classic	musical-form	0xdec576	cmp    r12d,0x2
+classic	musical-form	0xdec5bc	test   al,al
+classic	musical-form	0xdec5e6	cmp    DWORD PTR [r12+0xa8],0xffffffff
+classic	musical-form	0xdec5f1	cmp    DWORD PTR [r12+0xac],0xffffffff
+classic	musical-form	0xdec5fc	cmp    DWORD PTR [r12+0xb0],0xffffffff
+classic	musical-form	0xdec60e	test   r14b,r14b
+classic	musical-form	0xdec613	cmp    DWORD PTR [r12+0x10],0x2
+classic	musical-form	0xdec65a	cmp    DWORD PTR [r12+0xb0],0xffffffff
+classic	musical-form	0xdec68a	cmp    eax,0x26
+classic	musical-form	0xdec98b	cmp    DWORD PTR [r12+0xa8],0xffffffff
+classic	musical-form	0xdec99a	cmp    DWORD PTR [r12+0xb0],0xffffffff
+classic	musical-form	0xdec9bc	cmp    eax,0x21
+classic	musical-form	0xdecabe	cmp    DWORD PTR [r12+0xac],0xffffffff
+classic	musical-form	0xdecacd	cmp    DWORD PTR [r12+0xa8],0xffffffff
+classic	musical-form	0xdecad8	cmp    DWORD PTR [r12+0xb0],0xffffffff
+classic	musical-form	0xdecb13	cmp    eax,0xa
+classic	musical-form	0xdecb9e	cmp    BYTE PTR [rbp-0x60],0x0
+classic	musical-form	0xdecba8	test   r13d,r13d
+classic	musical-form	0xdecbb6	test   r14b,r14b
+classic	musical-form	0xdecc65	test   al,al
+classic	musical-form	0xdecc7c	cmp    DWORD PTR [rax],0xffffffff
+classic	musical-form	0xdecca4	test   bl,bl
+classic	musical-form	0xdecca8	cmp    eax,0x2
+classic	musical-form	0xdeccc4	cmp    eax,0x2
+classic	musical-form	0xdeccdc	test   BYTE PTR [r14+0x4],0x1
+classic	musical-form	0xdeccf5	cmp    DWORD PTR [r14+0x10],0x2
+classic	musical-form	0xdecd1e	cmp    DWORD PTR [r14+0x10],0x2
+classic	musical-form	0xdecd34	test   BYTE PTR [r14+0x4],0x2
+classic	musical-form	0xdecd4d	cmp    DWORD PTR [r14+0x10],0x2
+classic	musical-form	0xdecd76	cmp    DWORD PTR [r14+0x10],0x2
+classic	musical-form	0xdecd8c	test   BYTE PTR [r14+0x4],0x4
+classic	musical-form	0xdecda5	cmp    DWORD PTR [r14+0x10],0x2
+classic	musical-form	0xdecdce	cmp    DWORD PTR [r14+0x10],0x2
+classic	musical-form	0xdecde7	cmp    eax,0xffffffff
+classic	musical-form	0xdecdf6	cmp    DWORD PTR [r14+0x10],0x2
+classic	musical-form	0xdece51	cmp    eax,0xffffffff
+classic	musical-form	0xdece5a	cmp    esi,r15d
+classic	musical-form	0xdece6e	test   esi,esi
+classic	musical-form	0xdece7b	cmp    esi,0x1
+classic	musical-form	0xdeceac	test   esi,esi
+classic	musical-form	0xdeceb0	cmp    r15d,0x2
+classic	musical-form	0xdeced1	test   esi,esi
+classic	musical-form	0xdeceda	cmp    esi,0x1
+classic	musical-form	0xdecf0f	test   r15d,r15d
+classic	musical-form	0xdecf22	cmp    r15d,0x1
+classic	musical-form	0xdecf66	cmp    esi,r15d
+classic	musical-form	0xdecf72	cmp    r12d,0x4
+classic	musical-form	0xdecfb4	cmp    eax,0xffffffff
+classic	musical-form	0xdecfd2	test   esi,esi
+classic	musical-form	0xdecfea	cmp    esi,0x1
+classic	musical-form	0xdecfef	cmp    r12d,0x3
+classic	musical-form	0xded00e	cmp    esi,eax
+classic	musical-form	0xded012	cmp    r12d,0x4
+classic	musical-form	0xded0a0	test   esi,esi
+classic	musical-form	0xded0a4	cmp    r15d,r14d
+classic	musical-form	0xded0a9	cmp    r12d,eax
+classic	musical-form	0xded0ca	cmp    r12d,r13d
+classic	musical-form	0xded0e2	test   esi,esi
+classic	musical-form	0xded0f4	cmp    esi,0x1
+classic	musical-form	0xded0f9	cmp    eax,0x3
+classic	musical-form	0xded107	cmp    esi,r14d
+classic	musical-form	0xded10c	cmp    eax,0x4
+classic	musical-form	0xded136	test   r15d,r15d
+classic	musical-form	0xded14c	cmp    r15d,0x1
+classic	musical-form	0xded152	cmp    ecx,0x3
+classic	musical-form	0xded166	cmp    r15d,eax
+classic	musical-form	0xded16f	cmp    ecx,0x4
+classic	musical-form	0xded184	test   esi,esi
+classic	musical-form	0xded18b	cmp    DWORD PTR [rbp-0x5c],r14d
+classic	musical-form	0xded1b4	cmp    r12d,0xffffffff
+classic	musical-form	0xded1d4	test   esi,esi
+classic	musical-form	0xded1e6	cmp    esi,0x1
+classic	musical-form	0xded1eb	cmp    eax,0x3
+classic	musical-form	0xded1f9	cmp    esi,r15d
+classic	musical-form	0xded1fe	cmp    eax,0x4
+classic	musical-form	0xded228	cmp    r13d,0xffffffff
+classic	musical-form	0xded24b	test   ecx,ecx
+classic	musical-form	0xded25d	cmp    ecx,0x1
+classic	musical-form	0xded262	cmp    edx,0x3
+classic	musical-form	0xded273	cmp    ecx,eax
+classic	musical-form	0xded277	cmp    edx,0x4
+classic	musical-form	0xded2a5	cmp    r13d,0x3
+classic	musical-form	0xded2b4	cmp    r13d,0x2
+classic	musical-form	0xded308	test   al,al
+classic	musical-form	0xded330	cmp    esi,0xffffffff
+classic	musical-form	0xded335	cmp    r14d,esi
+classic	musical-form	0xded347	test   r13b,r13b
+classic	musical-form	0xded34c	cmp    DWORD PTR [r12+0x10],0x2
+classic	musical-form	0xded387	cmp    esi,0xffffffff
+classic	musical-form	0xded39f	cmp    r14d,0xffffffff
+classic	musical-form	0xded3a9	cmp    esi,r14d
+classic	musical-form	0xded3ae	test   esi,esi
+classic	musical-form	0xded3bc	cmp    esi,0x1
+classic	musical-form	0xded42d	test   esi,esi
+classic	musical-form	0xded43b	cmp    esi,0x1
+classic	musical-form	0xded479	test   r14d,r14d
+classic	musical-form	0xded48a	cmp    r14d,0x1
+classic	musical-form	0xded4ce	test   esi,esi
+classic	musical-form	0xded4dc	cmp    esi,0x1
+classic	musical-form	0xded51c	cmp    r14d,0xffffffff
+classic	musical-form	0xded531	test   r14d,r14d
+classic	musical-form	0xded542	cmp    r14d,0x1
+classic	musical-form	0xded591	test   ecx,ecx
+classic	musical-form	0xded5a4	cmp    ecx,0x1
+classic	musical-form	0xded5e8	cmp    DWORD PTR [r12+0x1c],0xffffffff
+classic	musical-form	0xded5f0	test   r14b,r14b
+classic	musical-form	0xded5f5	cmp    DWORD PTR [r12+0x24],0xffffffff
+classic	musical-form	0xded5fd	test   r15b,r15b
+classic	musical-form	0xded609	test   r13b,r13b
+classic	musical-form	0xded60e	cmp    DWORD PTR [r12+0x10],0x2
+classic	musical-form	0xded65d	cmp    edx,0xffffffff
+classic	musical-form	0xded662	test   r14b,r14b
+classic	musical-form	0xded67c	test   rax,rax
+classic	musical-form	0xded681	cmp    DWORD PTR [r12+0x20],0x0
+classic	musical-form	0xded69d	cmp    rdx,rax
+classic	musical-form	0xded6dc	cmp    DWORD PTR [r12+0x24],0xffffffff
+classic	musical-form	0xded6e4	test   r15b,r15b
+classic	musical-form	0xded6ed	cmp    DWORD PTR [r12+0x1c],0xffffffff
+classic	musical-form	0xded6f5	test   r14b,r14b
+classic	musical-form	0xded710	cmp    DWORD PTR [r12+0x24],0xffffffff
+classic	musical-form	0xded718	test   r15b,r15b
+classic	musical-form	0xded750	test   rax,rax
+classic	musical-form	0xded755	cmp    DWORD PTR [r12+0x28],0x0
+classic	musical-form	0xded76b	cmp    rsi,rax
+classic	musical-form	0xded77e	cmp    DWORD PTR [r12+0x2c],0x0
+classic	musical-form	0xded794	cmp    rsi,rax
+classic	musical-form	0xded7ce	cmp    DWORD PTR [r12+0xb4],0x0
+classic	musical-form	0xded7e0	test   r13b,r13b
+classic	musical-form	0xded7e5	cmp    DWORD PTR [r12+0x10],0x2
+classic	musical-form	0xded821	test   BYTE PTR [rax+0x120],0x1
+classic	musical-form	0xded860	cmp    edx,0xf
+classic	musical-form	0xded937	test   r8d,eax
+classic	musical-form	0xded941	cmp    edx,0x10
+classic	musical-form	0xded967	cmp    esi,0xf
+classic	musical-form	0xded9e9	test   DWORD PTR [r12+0xb4],ebx
+classic	musical-form	0xded9f7	cmp    ebx,0x100
+classic	musical-form	0xdeda0c	cmp    eax,0x7f
+classic	musical-form	0xdeda92	cmp    ebx,0x1000
+classic	musical-form	0xdeda9c	cmp    ebx,0x200
+classic	musical-form	0xdedaa4	cmp    ebx,0x400
+classic	musical-form	0xdedaac	cmp    ebx,0x800
+classic	musical-form	0xdedad8	cmp    ebx,0x2000
+classic	musical-form	0xdedae0	cmp    ebx,0x4000
+classic	musical-form	0xdedae8	cmp    ebx,0x8000
+classic	musical-form	0xdedb11	cmp    r14d,0x3
+classic	musical-form	0xdedb20	cmp    r14d,0x2
+classic	musical-form	0xdedb3a	cmp    esi,0x10
+classic	musical-form	0xdedb75	test   rax,rax
+classic	musical-form	0xdedb81	test   r13b,r13b
+classic	musical-form	0xdedb86	cmp    DWORD PTR [r12+0x10],0x2
+classic	musical-form	0xdedc05	cmp    rcx,QWORD PTR [rbp+0x40]
+classic	musical-form	0xdedc1c	test   al,al
+classic	musical-form	0xdedc33	test   edx,edx
+classic	musical-form	0xdedc3c	cmp    edx,0x1
+classic	musical-form	0xdedc7f	test   edx,edx
+classic	musical-form	0xdedc8d	cmp    edx,0x1
+classic	musical-form	0xdedce0	test   rax,rax
+classic	musical-form	0xdedd48	cmp    rax,QWORD PTR [rbp-0x18]
+classic	musical-form	0xdedd59	test   dl,dl
+classic	musical-form	0xdedd6e	test   BYTE PTR [rcx+0x4],0x2
+classic	musical-form	0xdedd90	test   BYTE PTR [rcx+0x4],0x4
+classic	musical-form	0xdede20	cmp    DWORD PTR [rcx],0x2
+classic	musical-form	0xdede31	cmp    DWORD PTR [rcx],0x3
+classic	musical-form	0xdede43	test   BYTE PTR [rcx+0x4],0x1
+classic	musical-form	0xdede5f	cmp    esi,0x3
+classic	musical-form	0xdede6d	cmp    esi,0x2
+classic	musical-form	0xdedeaa	cmp    DWORD PTR [rcx+0x20],0x0
+classic	musical-form	0xdedecc	test   rax,rax
+classic	musical-form	0xdedef8	cmp    esi,0x7
+classic	musical-form	0xdedf4d	test   DWORD PTR [rcx+0x20],edi
+classic	musical-form	0xdedf57	cmp    esi,0x8
+classic	musical-form	0xdedf70	cmp    esi,0x7
+classic	musical-form	0xdedfcb	test   DWORD PTR [rcx+0x20],ebx
+classic	musical-form	0xdedfd4	cmp    ebx,0x10
+classic	musical-form	0xdedfec	cmp    eax,0x4
+classic	musical-form	0xdee01e	cmp    ebx,0x1000
+classic	musical-form	0xdee026	cmp    ebx,0x2000
+classic	musical-form	0xdee02e	cmp    ebx,0x4000
+classic	musical-form	0xdee057	cmp    r14d,0x3
+classic	musical-form	0xdee066	cmp    r14d,0x2
+classic	musical-form	0xdee080	cmp    esi,0x8
+classic	musical-form	0xdee092	cmp    r15d,0x3
+classic	musical-form	0xdee0a1	cmp    r15d,0x2
+classic	musical-form	0xdee11a	cmp    eax,esi
+classic	musical-form	0xdee133	cmp    esi,0xffffffff
+classic	musical-form	0xdee158	cmp    r12d,0xffffffff
+classic	musical-form	0xdee171	cmp    eax,0xffffffff
+classic	musical-form	0xdee19b	test   rax,rax
+classic	musical-form	0xdee1b7	test   eax,eax
+classic	musical-form	0xdee1c4	cmp    eax,0x1
+classic	musical-form	0xdee2a6	cmp    rdx,0x1
+classic	musical-form	0xdee2f3	cmp    rsi,0x19
+classic	musical-form	0xdee37a	test   BYTE PTR [r15+0x4],0x1
+classic	musical-form	0xdee39b	cmp    ecx,0xffffffff
+classic	musical-form	0xdee3ab	test   edx,edx
+classic	musical-form	0xdee3b3	test   ecx,ecx
+classic	musical-form	0xdee3c1	cmp    ecx,0x1
+classic	musical-form	0xdee3db	cmp    edx,0x1
+classic	musical-form	0xdee404	cmp    DWORD PTR [r15+0x754],0x1
+classic	musical-form	0xdee424	cmp    DWORD PTR [r15+0x754],0x0
+classic	musical-form	0xdee468	test   esi,esi
+classic	musical-form	0xdee48d	cmp    DWORD PTR [r15+0xa8],0x1
+classic	musical-form	0xdee4fb	cmp    esi,eax
+classic	musical-form	0xdee518	cmp    esi,eax
+classic	musical-form	0xdee531	cmp    esi,DWORD PTR [r15+0x754]
+classic	musical-form	0xdee585	cmp    eax,r13d
+classic	musical-form	0xdee590	cmp    r13d,0xffffffff
+classic	musical-form	0xdee59a	cmp    DWORD PTR [rax+0xfc],r12d
+classic	musical-form	0xdee5c0	cmp    DWORD PTR [rcx+0x1c],r12d
+classic	musical-form	0xdee5db	cmp    esi,0xffffffff
+classic	musical-form	0xdee5f2	cmp    eax,0xffffffff
+classic	musical-form	0xdee62d	cmp    DWORD PTR [r15+0x8],0x2
+classic	musical-form	0xdee653	cmp    DWORD PTR [r14],0x0
+classic	musical-form	0xdee663	cmp    eax,0xffffffff
+classic	musical-form	0xdee668	cmp    DWORD PTR [r14+0x4c],0xffffffff
+classic	musical-form	0xdee693	cmp    DWORD PTR [r14],0x1
+classic	musical-form	0xdee6c2	cmp    r12d,0x1
+classic	musical-form	0xdee70c	test   ecx,ecx
+classic	musical-form	0xdee723	cmp    ecx,0x1
+classic	musical-form	0xdee72f	cmp    DWORD PTR [r15+0x8],0x2
+classic	musical-form	0xdee7a7	cmp    DWORD PTR [r14+0x44],eax
+classic	musical-form	0xdee807	cmp    esi,eax
+classic	musical-form	0xdee821	cmp    esi,eax
+classic	musical-form	0xdee847	cmp    esi,DWORD PTR [r14+0x44]
+classic	musical-form	0xdee860	cmp    DWORD PTR [r14+0x48],0xffffffff
+classic	musical-form	0xdee867	cmp    DWORD PTR [r14+0x4c],0xffffffff
+classic	musical-form	0xdee8d8	cmp    DWORD PTR [r14+0x48],0xffffffff
+classic	musical-form	0xdee8f3	cmp    DWORD PTR [rdx],0xffffffff
+classic	musical-form	0xdee930	cmp    rax,QWORD PTR [rbp-0x18]
+classic	musical-form	0xdee945	test   dl,dl
+classic	musical-form	0xdee965	cmp    eax,0xffffffff
+classic	musical-form	0xdee9d6	cmp    ecx,0x1
+classic	musical-form	0xdeea0f	cmp    DWORD PTR [r13+0x34],eax
+classic	musical-form	0xdeea75	cmp    DWORD PTR [r15+0x8],0x0
+classic	musical-form	0xdeea80	cmp    DWORD PTR [r14],eax
+classic	musical-form	0xdeea9b	cmp    esi,eax
+classic	musical-form	0xdeeaab	cmp    esi,eax
+classic	musical-form	0xdeead1	cmp    esi,DWORD PTR [r13+0x34]
+classic	musical-form	0xdeeaf1	test   ecx,ecx
+classic	musical-form	0xdeeafa	cmp    ecx,0x1
+classic	musical-form	0xdeeb11	cmp    DWORD PTR [r15+0x70],0xc
+classic	musical-form	0xdeeb82	cmp    r13d,eax
+classic	musical-form	0xdeebb4	cmp    esi,eax
+classic	musical-form	0xdeebe1	cmp    eax,r13d
+classic	musical-form	0xdeec00	cmp    r13d,0xffffffff
+classic	musical-form	0xdeec26	cmp    esi,0xffffffff
+classic	musical-form	0xdeec3a	cmp    eax,0xffffffff
+classic	musical-form	0xdeec63	test   rax,rax
+classic	musical-form	0xdeec6c	test   BYTE PTR [rax+0x38],0x1
+classic	musical-form	0xdeec81	test   BYTE PTR [r15+0x38],0x2
+classic	musical-form	0xdeecc3	cmp    eax,r14d
+classic	musical-form	0xdeecd0	cmp    r14d,0xffffffff
+classic	musical-form	0xdeecda	cmp    DWORD PTR [rax+0x104],esi
+classic	musical-form	0xdeed05	cmp    DWORD PTR [rcx+0x24],esi
+classic	musical-form	0xdeed38	cmp    esi,0xffffffff
+classic	musical-form	0xdeed4b	cmp    eax,0xffffffff
+classic	musical-form	0xdeed6f	cmp    DWORD PTR [rsp+0x50],0xffffffff
+classic	musical-form	0xdeed87	cmp    esi,0xffffffff
+classic	musical-form	0xdeee83	test   al,al
+classic	musical-form	0xdeeed8	test   BYTE PTR [rax],0x1
+classic	musical-form	0xdeeeec	cmp    r15d,0x3
+classic	musical-form	0xdeeefb	cmp    r15d,0x2
+classic	musical-form	0xdeef78	test   al,al
+classic	musical-form	0xdeefb4	test   al,al
+classic	musical-form	0xdeefb8	cmp    r12d,0xffffffff
+classic	musical-form	0xdeefc7	cmp    r12d,esi
+classic	musical-form	0xdef01f	test   al,al
+classic	musical-form	0xdef043	test   r14b,r14b
+classic	musical-form	0xdef04f	test   al,0x1
+classic	musical-form	0xdef05c	test   al,0x2
+classic	musical-form	0xdef069	test   BYTE PTR [r13+0x50],0x1
+classic	musical-form	0xdef0c1	test   al,al
+classic	musical-form	0xdef0e8	cmp    eax,0xffffffff
+classic	musical-form	0xdef158	cmp    rax,rcx
+classic	musical-form	0xdef164	test   dl,dl
+classic	musical-form	0xdef218	cmp    rax,0x2
+classic	musical-form	0xdef2b5	cmp    rax,QWORD PTR [rbp+0x40]
+classic	musical-form	0xdef2c2	test   dl,dl
+classic	musical-form	0xdef2ed	cmp    rcx,rax
+classic	musical-form	0xdef336	cmp    DWORD PTR [r14+0x48],0x0
+classic	musical-form	0xdef353	cmp    DWORD PTR [r14+0x48],0x0
+classic	musical-form	0xdef385	test   esi,esi
+classic	musical-form	0xdef3bd	cmp    esi,eax
+classic	musical-form	0xdef3dd	cmp    esi,DWORD PTR [r14+0x48]
+classic	musical-form	0xdef470	test   al,al
+classic	musical-form	0xdef490	cmp    DWORD PTR [rcx+0x8],ebx
+classic	musical-form	0xdef4bc	cmp    eax,0x3
+classic	musical-form	0xdef4d2	cmp    eax,0x1
+classic	musical-form	0xdef4e8	cmp    eax,0x2
+classic	musical-form	0xdef50f	test   sil,0x4
+classic	musical-form	0xdef52b	test   sil,0x8
+classic	musical-form	0xdef569	cmp    r15d,DWORD PTR [rcx+0x8]
+classic	musical-form	0xdef5a9	test   al,al
+classic	musical-form	0xdef5cb	test   r12b,r12b
+classic	musical-form	0xdef5df	test   r13b,r13b
+classic	musical-form	0xdef5f3	test   sil,sil
+classic	musical-form	0xdef607	test   r15b,r15b
+classic	musical-form	0xdef62a	cmp    BYTE PTR [rsp+0x34],0x0
+classic	musical-form	0xdef676	test   al,al
+classic	musical-form	0xdef6ac	cmp    r14d,eax
+classic	musical-form	0xdef6e1	cmp    r13d,eax
+classic	cardinal	0x545072	cmp    QWORD PTR [rdx+0x18],0xf
+classic	cardinal	0x54507f	test   esi,esi
+classic	cardinal	0x5450a1	cmp    esi,0x13
+classic	cardinal	0x5452c2	cmp    esi,0x3b9aca00
+classic	cardinal	0x545307	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x545360	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x545385	cmp    esi,0xf4240
+classic	cardinal	0x5453ca	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x545423	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x54543e	cmp    rdx,0xf
+classic	cardinal	0x545452	cmp    rdx,0x1000
+classic	cardinal	0x54546a	cmp    rax,0x1f
+classic	cardinal	0x545481	cmp    esi,0x3e8
+classic	cardinal	0x5454c6	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x54551f	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x54553a	cmp    rdx,0xf
+classic	cardinal	0x54554e	cmp    rdx,0x1000
+classic	cardinal	0x54556a	cmp    rax,0x1f
+classic	cardinal	0x54557b	cmp    esi,0x64
+classic	cardinal	0x5455bd	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x545613	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x54562e	cmp    rdx,0xf
+classic	cardinal	0x545642	cmp    rdx,0x1000
+classic	cardinal	0x54565e	cmp    rax,0x1f
+classic	cardinal	0x545672	cmp    eax,0x4f
+classic	cardinal	0x545691	cmp    eax,0x7
+classic	cardinal	0x545759	cmp    QWORD PTR [rbp-0x18],0xf
+classic	cardinal	0x545774	cmp    rdx,0xf
+classic	cardinal	0x545784	cmp    rdx,0x1000
+classic	cardinal	0x5457a0	cmp    rax,0x1f
+classic	ordinal	0x545865	cmp    QWORD PTR [rdx+0x18],0xf
+classic	ordinal	0x545877	test   r8b,r8b
+classic	ordinal	0x545880	test   edi,edi
+classic	ordinal	0x5458c9	cmp    ecx,0x1
+classic	ordinal	0x5458fe	cmp    edi,0xd
+classic	ordinal	0x54592e	cmp    edi,0xc
+classic	ordinal	0x54595e	cmp    edi,0xb
+classic	ordinal	0x54596a	test   edi,edi
+classic	ordinal	0x545985	cmp    edi,0x13
+classic	ordinal	0x545c48	cmp    ecx,0x1
+classic	ordinal	0x545c8a	cmp    edi,0xd
+classic	ordinal	0x545cc7	cmp    edi,0xc
+classic	ordinal	0x545cfa	cmp    edi,0xb
+classic	timbre-selector	0x793d13	cmp    ecx,0x3e
+classic	register-timbre-choice	0xde7805	cmp    rax,rcx
+classic	register-timbre-choice	0xde7811	cmp    r9d,0x3e
+classic	register-timbre-choice	0xde7837	test   edx,edx
+classic	register-timbre-choice	0xde784b	test   edx,edx
+classic	register-timbre-choice	0xde785f	test   edx,edx
+classic	register-timbre-choice	0xde7872	test   edx,edx
+classic	register-timbre-choice	0xde7886	test   edx,edx
+classic	register-timbre-choice	0xde789a	test   edx,edx

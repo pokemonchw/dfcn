@@ -1,0 +1,11 @@
+edition	image	source_path	sha256	role	start_rva	end_rva
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	musical-form	0xded9d0	0xdf5154
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	cardinal	0x547840	0x54804c
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	ordinal	0x548050	0x548570
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	timbre-selector	0x796510	0x7971b0
+reference	PE:6aea05a1:02734000	D:\program\steam\steamapps\common\Dwarf Fortress\Dwarf Fortress.exe	3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16	register-timbre-choice	0xdecaa0	0xdecbb0
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	musical-form	0xde8720	0xdefea4
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	cardinal	0x545040	0x54584c
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	ordinal	0x545850	0x545d70
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	timbre-selector	0x793d10	0x7949b0
+classic	PE:6aea11a5:0272d000	C:\Users\WIN11\Downloads\df_53_17_win\Dwarf Fortress.exe	4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f	register-timbre-choice	0xde77f0	0xde7900

@@ -1,0 +1,1887 @@
+edition	role	instruction_rva	operand	kind	text
+reference	musical-form	0xdeda40	0x141665514	cstring	 is a 
+reference	musical-form	0xdeda6d	0x14173afe0	cstring	form of music used during marches and military engagements
+reference	musical-form	0xdeda76	0x14173b078	cstring	devotional form of music
+reference	musical-form	0xdeda8f	0x14173b098	cstring	 directed toward the worship of 
+reference	musical-form	0xdedad3	0x14173b020	cstring	form of music used to commemorate important events
+reference	musical-form	0xdedadc	0x14173afb8	cstring	form of music used for entertainment
+reference	musical-form	0xdedb11	0x141665b58	cstring	 originating in 
+reference	musical-form	0xdedb18	0x141665b30	cstring	 which grew out of the performances of 
+reference	musical-form	0xdedb5e	0x141665b70	cstring	 originally devised by 
+reference	musical-form	0xdedb94	0x141619598	cstring	.  
+reference	musical-form	0xdedbaa	0x14173b130	cstring	The form guides musicians during improvised performances.  
+reference	musical-form	0xdedbb1	0x14173b0c0	cstring	The rules of the form are applied by composers to produce individual pieces of music which can be performed.  
+reference	musical-form	0xdedc17	0x14173b1e8	cstring	recites
+reference	musical-form	0xdedc1e	0x14173b170	cstring	while the
+reference	musical-form	0xdedc5a	0x141684f74	cstring	A
+reference	musical-form	0xdedc64	0x14161eaec	cstring	a
+reference	musical-form	0xdedcfc	0x141608834	cstring	 to 
+reference	musical-form	0xdedd50	0x1416039f0	cstring	 
+reference	musical-form	0xdedd72	0x14173b054	cstring	singer
+reference	musical-form	0xdedd8e	0x14173b060	cstring	speaker
+reference	musical-form	0xdeddaa	0x14173b068	cstring	chanter
+reference	musical-form	0xdeddcc	0x1416044f0	cstring	s
+reference	musical-form	0xdedddb	0x1416039f0	cstring	 
+reference	musical-form	0xdede1b	0x14173b070	cstring	recite
+reference	musical-form	0xdede32	0x14173b1f0	cstring	 the words of 
+reference	musical-form	0xdede87	0x14173b070	cstring	recite
+reference	musical-form	0xdedea7	0x14173b200	cstring	 a composition of
+reference	musical-form	0xdedeb6	0x1416039f0	cstring	 
+reference	musical-form	0xdedf13	0x14173b070	cstring	recite
+reference	musical-form	0xdedf2a	0x14173b218	cstring	 nonsensical words and sounds
+reference	musical-form	0xdedf42	0x1416039f0	cstring	 
+reference	musical-form	0xdedf9f	0x141665ae8	cstring	The
+reference	musical-form	0xdedfb5	0x14173b180	cstring	 music is played on 
+reference	musical-form	0xdedfda	0x14161eaec	cstring	a
+reference	musical-form	0xdee055	0x141608834	cstring	 to 
+reference	musical-form	0xdee0a9	0x1416039f0	cstring	 
+reference	musical-form	0xdee0e3	0x141604394	cstring	, 
+reference	musical-form	0xdee0f1	0x14160438c	cstring	 and 
+reference	musical-form	0xdee100	0x14173b1e8	cstring	recites
+reference	musical-form	0xdee132	0x14173b170	cstring	while the
+reference	musical-form	0xdee13f	0x141619598	cstring	.  
+reference	musical-form	0xdee2b0	0x14173b198	cstring	The music
+reference	musical-form	0xdee2c1	0x14173b1a8	cstring	al voices join in melody and counterpoint, harmony and rhythm
+reference	musical-form	0xdee2c8	0x14173b2c0	cstring	al voices bring melody, counterpoint and rhythm
+reference	musical-form	0xdee2d7	0x14173b2f0	cstring	al voices cover melody, harmony and rhythm
+reference	musical-form	0xdee2de	0x14173b320	cstring	 is melody and rhythm without harmony
+reference	musical-form	0xdee2ed	0x14173b348	cstring	The musical voices 
+reference	musical-form	0xdee2fe	0x14173b238	cstring	join in melody, counterpoint and harmony
+reference	musical-form	0xdee305	0x14173b268	cstring	bring melody and counterpoint
+reference	musical-form	0xdee314	0x14173b288	cstring	bring melody with harmony
+reference	musical-form	0xdee31b	0x14173b2a8	cstring	are joined in melody
+reference	musical-form	0xdee32a	0x14173b3a8	cstring	The musical voices are purely rhythmic
+reference	musical-form	0xdee339	0x141619598	cstring	.  
+reference	musical-form	0xdee378	0x14173b3d0	cstring	The entire performance 
+reference	musical-form	0xdee396	0x14173b3e8	cstring	should 
+reference	musical-form	0xdee3c7	0x14173b3f0	cstring	stress the rhythm
+reference	musical-form	0xdee3d3	0x14173b360	cstring	be stately
+reference	musical-form	0xdee3df	0x14173b370	cstring	be bright
+reference	musical-form	0xdee3eb	0x14173b380	cstring	be lively
+reference	musical-form	0xdee3f7	0x14173b390	cstring	be made with skill
+reference	musical-form	0xdee403	0x14173b458	cstring	be vigorous
+reference	musical-form	0xdee40f	0x14173b468	cstring	be spirited
+reference	musical-form	0xdee41b	0x14173b478	cstring	be delicate
+reference	musical-form	0xdee427	0x14173b408	cstring	bring a sense of motion
+reference	musical-form	0xdee433	0x14173b488	cstring	be fiery
+reference	musical-form	0xdee43f	0x14173b420	cstring	be made with feeling
+reference	musical-form	0xdee44b	0x14173b438	cstring	feel agitated
+reference	musical-form	0xdee457	0x14173b448	cstring	be passionate
+reference	musical-form	0xdee463	0x14173aaa8	cstring	sparkle
+reference	musical-form	0xdee46f	0x14173aab0	cstring	be broad
+reference	musical-form	0xdee47b	0x14173aac0	cstring	be made sweetly
+reference	musical-form	0xdee487	0x14173aad0	cstring	be strong
+reference	musical-form	0xdee493	0x14173aa60	cstring	be energetic
+reference	musical-form	0xdee49f	0x14173aa70	cstring	be forceful
+reference	musical-form	0xdee4ab	0x14173aa80	cstring	feel heroic
+reference	musical-form	0xdee4b7	0x14173aa90	cstring	be made expressively
+reference	musical-form	0xdee4c3	0x14173ab28	cstring	feel furious
+reference	musical-form	0xdee4cf	0x14173ab38	cstring	be joyful
+reference	musical-form	0xdee4db	0x14173ab48	cstring	be grand
+reference	musical-form	0xdee4e4	0x14173ab58	cstring	be merry
+reference	musical-form	0xdee4ed	0x14173aae0	cstring	be graceful
+reference	musical-form	0xdee4f6	0x14173aaf0	cstring	build as it proceeds
+reference	musical-form	0xdee4ff	0x14173ab08	cstring	evoke tears
+reference	musical-form	0xdee508	0x14173ab18	cstring	be melancholic
+reference	musical-form	0xdee511	0x14173aba8	cstring	feel mournful
+reference	musical-form	0xdee51a	0x14173abb8	cstring	be made with a light touch
+reference	musical-form	0xdee523	0x14173abd8	cstring	feel heavy
+reference	musical-form	0xdee52c	0x14173abe8	cstring	feel mysterious
+reference	musical-form	0xdee535	0x14173ab68	cstring	be jumpy
+reference	musical-form	0xdee53e	0x14173ab78	cstring	feel playful
+reference	musical-form	0xdee547	0x14173ab88	cstring	feel tender
+reference	musical-form	0xdee550	0x14173ab98	cstring	feel calm
+reference	musical-form	0xdee559	0x14173ac48	cstring	be triumphant
+reference	musical-form	0xdee582	0x14160438c	cstring	 and 
+reference	musical-form	0xdee5ae	0x14173ac58	cstring	is at a free tempo
+reference	musical-form	0xdee5ba	0x14173ac70	cstring	is very slow
+reference	musical-form	0xdee5c6	0x14173ac80	cstring	is slow
+reference	musical-form	0xdee5cf	0x14173abf8	cstring	is at a walking pace
+reference	musical-form	0xdee5d8	0x14173ac10	cstring	is moderately paced
+reference	musical-form	0xdee5e1	0x14173ac28	cstring	is moderately fast
+reference	musical-form	0xdee5ea	0x14173ac40	cstring	is fast
+reference	musical-form	0xdee5f3	0x14173ad10	cstring	is very fast
+reference	musical-form	0xdee5fc	0x14173ad20	cstring	is extremely fast
+reference	musical-form	0xdee605	0x14173ad38	cstring	accelerates as it proceeds
+reference	musical-form	0xdee60e	0x14173ad58	cstring	slows and broadens
+reference	musical-form	0xdee617	0x14173ac88	cstring	is consistently slowing
+reference	musical-form	0xdee620	0x14173aca0	cstring	is at a hurried pace
+reference	musical-form	0xdee629	0x14173acb8	cstring	gradually slows as it comes to an end
+reference	musical-form	0xdee632	0x14173ace0	cstring	slows down and dies away as it draws to a close
+reference	musical-form	0xdee63b	0x14173adc0	cstring	becomes calmer as the end is approached
+reference	musical-form	0xdee644	0x14173ade8	cstring	becomes frenzied as it proceeds
+reference	musical-form	0xdee676	0x14173ae08	cstring	is to
+reference	musical-form	0xdee67f	0x14173ae10	cstring	, and it is to
+reference	musical-form	0xdee68e	0x1416039f0	cstring	 
+reference	musical-form	0xdee6bb	0x14173ad70	cstring	be in whispered undertones
+reference	musical-form	0xdee6c4	0x14173ad90	cstring	be very soft
+reference	musical-form	0xdee6cd	0x14173ada0	cstring	be soft
+reference	musical-form	0xdee6d6	0x14173ada8	cstring	be moderately soft
+reference	musical-form	0xdee6df	0x14173aea8	cstring	be moderately loud
+reference	musical-form	0xdee6e8	0x14173aec0	cstring	be loud
+reference	musical-form	0xdee6f1	0x14173aec8	cstring	be very loud
+reference	musical-form	0xdee6fa	0x14173aed8	cstring	become louder and louder
+reference	musical-form	0xdee703	0x14173ae20	cstring	become softer and softer
+reference	musical-form	0xdee70c	0x14173ae40	cstring	fade into silence
+reference	musical-form	0xdee715	0x14173ae58	cstring	start loud then be immediately soft
+reference	musical-form	0xdee724	0x141619598	cstring	.  
+reference	musical-form	0xdee915	0x14173ae80	cstring	The melody and counterpoint both have 
+reference	musical-form	0xdee93e	0x14173af98	cstring	phrases of varied length
+reference	musical-form	0xdee94a	0x14173af88	cstring	long phrases
+reference	musical-form	0xdee956	0x14173af70	cstring	mid-length phrases
+reference	musical-form	0xdee962	0x14173aef8	cstring	The melody has 
+reference	musical-form	0xdee983	0x14173af98	cstring	phrases of varied length
+reference	musical-form	0xdee98c	0x14173af88	cstring	long phrases
+reference	musical-form	0xdee995	0x14173af70	cstring	mid-length phrases
+reference	musical-form	0xdee99e	0x14173af60	cstring	short phrases
+reference	musical-form	0xdee9ad	0x14173af08	cstring	, while the counterpoint has 
+reference	musical-form	0xdee9c5	0x14173aef8	cstring	The melody has 
+reference	musical-form	0xdee9d6	0x14173af40	cstring	The counterpoint melody has 
+reference	musical-form	0xdee9ee	0x14173af60	cstring	short phrases
+reference	musical-form	0xdee9fd	0x14173af28	cstring	 throughout the form.  
+reference	musical-form	0xdeea2c	0x14173b998	cstring	The music is broadly layered with chords spanning the range.  
+reference	musical-form	0xdeea35	0x14173baf0	cstring	Pitches are densely packed in clusters as music moves from chord to chord.  
+reference	musical-form	0xdeea3e	0x14173baa0	cstring	Chords, seldom-used, are sparse -- intervals and single pitches are favored.  
+reference	musical-form	0xdeea47	0x14173ba70	cstring	Never more than an interval sounds at once.  
+reference	musical-form	0xdeea50	0x14173ba40	cstring	Only one pitch is ever played at a time.  
+reference	musical-form	0xdeea6a	0x14173b9d8	cstring	The music repeats for as long as necessary.  
+reference	musical-form	0xdeeb2d	0x14173ba08	cstring	It is performed 
+reference	musical-form	0xdeeb3f	0x14173ba20	cstring	without preference for a scale
+reference	musical-form	0xdeeb80	0x14173ba08	cstring	It is performed 
+reference	musical-form	0xdeeb92	0x14173bbd8	cstring	using the 
+reference	musical-form	0xdeebc0	0x14173bbe4	cstring	 scale
+reference	musical-form	0xdeebe8	0x14173ba08	cstring	It is performed 
+reference	musical-form	0xdeec07	0x141608224	cstring	in 
+reference	musical-form	0xdeec10	0x14173bbf0	cstring	 and in 
+reference	musical-form	0xdeec33	0x14173bc00	cstring	free rhythm
+reference	musical-form	0xdeec3f	0x141604104	cstring	the 
+reference	musical-form	0xdeecd3	0x1416657f0	cstring	 rhythm
+reference	musical-form	0xdeece7	0x141619598	cstring	.  
+reference	musical-form	0xdeed11	0x14173bb40	cstring	Throughout, when possible, composers and performers are to 
+reference	musical-form	0xdeed1a	0x14173bb80	cstring	Throughout, when possible, performers are to 
+reference	musical-form	0xdeeebd	0x14173bbb0	cstring	glide from note to note
+reference	musical-form	0xdeeec9	0x14173bbc8	cstring	use grace notes
+reference	musical-form	0xdeeed5	0x14173bc68	cstring	use mordents
+reference	musical-form	0xdeeee1	0x14173bc78	cstring	make trills
+reference	musical-form	0xdeeeed	0x14173bc88	cstring	play rapid runs
+reference	musical-form	0xdeeef9	0x14173bc98	cstring	locally improvise
+reference	musical-form	0xdeef05	0x14173bcb0	cstring	spread syllables over many notes
+reference	musical-form	0xdeef11	0x14173bcd8	cstring	match notes and syllables
+reference	musical-form	0xdeef1d	0x14173bc10	cstring	syncopate
+reference	musical-form	0xdeef48	0x14173bc50	cstring	modulate frequently
+reference	musical-form	0xdeef51	0x14173bc30	cstring	alternate tension and repose
+reference	musical-form	0xdeef5a	0x14173bc20	cstring	add fills
+reference	musical-form	0xdeef63	0x14173bd30	cstring	play arpeggios
+reference	musical-form	0xdeef84	0x14173bd60	cstring	freely adjust the beats
+reference	musical-form	0xdeef8d	0x14173bd50	cstring	play legato
+reference	musical-form	0xdeef96	0x14173bd40	cstring	play staccato
+reference	musical-form	0xdeefaa	0x141604394	cstring	, 
+reference	musical-form	0xdeefb8	0x14160438c	cstring	 and 
+reference	musical-form	0xdeefd6	0x141619598	cstring	.  
+reference	musical-form	0xdef001	0x14173bcf8	cstring	From beginning to end, when improvising
+reference	musical-form	0xdef01b	0x14173bd20	cstring	 or composing
+reference	musical-form	0xdef02a	0x14173bdb0	cstring	, artists should 
+reference	musical-form	0xdef0ae	0x14173bdd8	cstring	sometimes
+reference	musical-form	0xdef0b7	0x14173bdcc	cstring	often
+reference	musical-form	0xdef0c0	0x14173bdc4	cstring	always
+reference	musical-form	0xdef0cf	0x14173bd78	cstring	 include a 
+reference	musical-form	0xdef100	0x14173bda0	cstring	falling-rising
+reference	musical-form	0xdef109	0x14173bd90	cstring	rising-falling
+reference	musical-form	0xdef112	0x141619778	cstring	falling
+reference	musical-form	0xdef11b	0x14173bd84	cstring	rising
+reference	musical-form	0xdef12a	0x14173be20	cstring	 melody pattern
+reference	musical-form	0xdef158	0x141609848	cstring	 with 
+reference	musical-form	0xdef1f3	0x1416a51d0	cstring	flattened
+reference	musical-form	0xdef215	0x14173be30	cstring	sharpened
+reference	musical-form	0xdef224	0x1416039f0	cstring	 
+reference	musical-form	0xdef279	0x14173be40	cstring	 degree
+reference	musical-form	0xdef2c0	0x14173be48	cstring	 on the rise
+reference	musical-form	0xdef2c9	0x14173bde8	cstring	 on the fall
+reference	musical-form	0xdef2da	0x141604394	cstring	, 
+reference	musical-form	0xdef2e8	0x14160438c	cstring	 and 
+reference	musical-form	0xdef369	0x14173bdf8	cstring	 as well as 
+reference	musical-form	0xdef372	0x141609848	cstring	 with 
+reference	musical-form	0xdef490	0x14173be94	cstring	trills
+reference	musical-form	0xdef499	0x14173be88	cstring	mordents
+reference	musical-form	0xdef4a2	0x14173be10	cstring	grace notes
+reference	musical-form	0xdef4ab	0x14173be08	cstring	glides
+reference	musical-form	0xdef4b4	0x14173bea0	cstring	rapid runs
+reference	musical-form	0xdef4d5	0x14173be64	cstring	legato
+reference	musical-form	0xdef4de	0x14173be58	cstring	staccato
+reference	musical-form	0xdef4e7	0x14173beb0	cstring	arpeggios
+reference	musical-form	0xdef4fc	0x141604394	cstring	, 
+reference	musical-form	0xdef50b	0x14160438c	cstring	 and 
+reference	musical-form	0xdef535	0x141604394	cstring	, 
+reference	musical-form	0xdef544	0x14160438c	cstring	 and 
+reference	musical-form	0xdef589	0x141619598	cstring	.  
+reference	musical-form	0xdef9e7	0x141618ed0	cstring	[B]
+reference	musical-form	0xdefa0a	0x14173be6c	cstring	Each 
+reference	musical-form	0xdefa13	0x141608c3c	cstring	The 
+reference	musical-form	0xdefa32	0x14173b054	cstring	singer
+reference	musical-form	0xdefa54	0x14173b060	cstring	speaker
+reference	musical-form	0xdefa76	0x14173b068	cstring	chanter
+reference	musical-form	0xdefbd7	0x14173be78	cstring	 always 
+reference	musical-form	0xdefc13	0x14173bf60	cstring	provides the rhythm
+reference	musical-form	0xdefc1c	0x14173bf50	cstring	does harmony
+reference	musical-form	0xdefc25	0x14173bf30	cstring	does the counterpoint melody
+reference	musical-form	0xdefc2e	0x14173bf18	cstring	does the main melody
+reference	musical-form	0xdefc43	0x141604394	cstring	, 
+reference	musical-form	0xdefc52	0x14160438c	cstring	 and 
+reference	musical-form	0xdefc7b	0x14173b3e8	cstring	should 
+reference	musical-form	0xdefcbb	0x14173b3f0	cstring	stress the rhythm
+reference	musical-form	0xdefcc7	0x14173b360	cstring	be stately
+reference	musical-form	0xdefcd3	0x14173b370	cstring	be bright
+reference	musical-form	0xdefcdf	0x14173b380	cstring	be lively
+reference	musical-form	0xdefceb	0x14173bec0	cstring	perform with skill
+reference	musical-form	0xdefcf7	0x14173b458	cstring	be vigorous
+reference	musical-form	0xdefd03	0x14173b468	cstring	be spirited
+reference	musical-form	0xdefd0f	0x14173b478	cstring	be delicate
+reference	musical-form	0xdefd1b	0x14173b408	cstring	bring a sense of motion
+reference	musical-form	0xdefd27	0x14173b488	cstring	be fiery
+reference	musical-form	0xdefd33	0x14173bed8	cstring	perform with feeling
+reference	musical-form	0xdefd3f	0x14173b438	cstring	feel agitated
+reference	musical-form	0xdefd4b	0x14173b448	cstring	be passionate
+reference	musical-form	0xdefd57	0x14173aaa8	cstring	sparkle
+reference	musical-form	0xdefd63	0x14173aab0	cstring	be broad
+reference	musical-form	0xdefd6f	0x14173bef0	cstring	perform sweetly
+reference	musical-form	0xdefd7b	0x14173aad0	cstring	be strong
+reference	musical-form	0xdefd87	0x14173aa60	cstring	be energetic
+reference	musical-form	0xdefd93	0x14173aa70	cstring	be forceful
+reference	musical-form	0xdefd9f	0x14173aa80	cstring	feel heroic
+reference	musical-form	0xdefdab	0x14173bf00	cstring	perform expressively
+reference	musical-form	0xdefdb7	0x14173ab28	cstring	feel furious
+reference	musical-form	0xdefdc3	0x14173ab38	cstring	be joyful
+reference	musical-form	0xdefdcf	0x14173ab48	cstring	be grand
+reference	musical-form	0xdefdd8	0x14173ab58	cstring	be merry
+reference	musical-form	0xdefde1	0x14173aae0	cstring	be graceful
+reference	musical-form	0xdefdea	0x14173b4e8	cstring	build as the performance proceeds
+reference	musical-form	0xdefdf3	0x14173ab08	cstring	evoke tears
+reference	musical-form	0xdefdfc	0x14173ab18	cstring	be melancholic
+reference	musical-form	0xdefe05	0x14173aba8	cstring	feel mournful
+reference	musical-form	0xdefe0e	0x14173b510	cstring	perform with a light touch
+reference	musical-form	0xdefe17	0x14173abd8	cstring	feel heavy
+reference	musical-form	0xdefe20	0x14173abe8	cstring	feel mysterious
+reference	musical-form	0xdefe29	0x14173ab68	cstring	be jumpy
+reference	musical-form	0xdefe32	0x14173ab78	cstring	feel playful
+reference	musical-form	0xdefe3b	0x14173ab88	cstring	feel tender
+reference	musical-form	0xdefe44	0x14173ab98	cstring	feel calm
+reference	musical-form	0xdefe4d	0x14173ac48	cstring	be triumphant
+reference	musical-form	0xdefe62	0x141604394	cstring	, 
+reference	musical-form	0xdefe7c	0x14160438c	cstring	 and 
+reference	musical-form	0xdefeae	0x14173b52c	cstring	is to 
+reference	musical-form	0xdefee3	0x14173ad70	cstring	be in whispered undertones
+reference	musical-form	0xdefeec	0x14173ad90	cstring	be very soft
+reference	musical-form	0xdefef5	0x14173ada0	cstring	be soft
+reference	musical-form	0xdefefe	0x14173ada8	cstring	be moderately soft
+reference	musical-form	0xdeff07	0x14173aea8	cstring	be moderately loud
+reference	musical-form	0xdeff10	0x14173aec0	cstring	be loud
+reference	musical-form	0xdeff19	0x14173aec8	cstring	be very loud
+reference	musical-form	0xdeff22	0x14173aed8	cstring	become louder and louder
+reference	musical-form	0xdeff2b	0x14173ae20	cstring	become softer and softer
+reference	musical-form	0xdeff34	0x14173ae40	cstring	fade into silence
+reference	musical-form	0xdeff3d	0x14173ae58	cstring	start loud then be immediately soft
+reference	musical-form	0xdeff52	0x141604394	cstring	, 
+reference	musical-form	0xdeff61	0x14160438c	cstring	 and 
+reference	musical-form	0xdf005f	0x14173b538	cstring	glides from note to note
+reference	musical-form	0xdf006b	0x14173b498	cstring	uses grace notes
+reference	musical-form	0xdf0077	0x14173b4b0	cstring	uses mordents
+reference	musical-form	0xdf0083	0x14173b4c0	cstring	makes trills
+reference	musical-form	0xdf008f	0x14173b4d0	cstring	plays rapid runs
+reference	musical-form	0xdf009b	0x14173b588	cstring	spreads syllables over many notes
+reference	musical-form	0xdf00a7	0x14173b680	cstring	matches notes and syllables
+reference	musical-form	0xdf00b0	0x14173b5b0	cstring	locally improvises
+reference	musical-form	0xdf00df	0x14173b5e8	cstring	modulates frequently
+reference	musical-form	0xdf00e8	0x14173b5d8	cstring	adds fills
+reference	musical-form	0xdf00f1	0x14173b5c8	cstring	syncopates
+reference	musical-form	0xdf00fa	0x14173b558	cstring	plays arpeggios
+reference	musical-form	0xdf0115	0x14173b578	cstring	plays legato
+reference	musical-form	0xdf011e	0x14173b568	cstring	plays staccato
+reference	musical-form	0xdf0133	0x141604394	cstring	, 
+reference	musical-form	0xdf0142	0x14160438c	cstring	 and 
+reference	musical-form	0xdf0169	0x141619598	cstring	.  
+reference	musical-form	0xdf01b6	0x14173b6a0	cstring	The voice stays in the 
+reference	musical-form	0xdf01de	0x141666110	cstring	high
+reference	musical-form	0xdf01ea	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf0200	0x14173b600	cstring	The voice uses its entire range.  
+reference	musical-form	0xdf0214	0x14173b628	cstring	The voice ranges from the 
+reference	musical-form	0xdf0234	0x141666110	cstring	high
+reference	musical-form	0xdf023d	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf0246	0x141666118	cstring	low
+reference	musical-form	0xdf0255	0x14173b648	cstring	 register to the 
+reference	musical-form	0xdf0276	0x141666110	cstring	high
+reference	musical-form	0xdf027f	0x141666118	cstring	low
+reference	musical-form	0xdf028e	0x14173b6c0	cstring	 register.  
+reference	musical-form	0xdf02d8	0x14173b660	cstring	The voice is confined to the 
+reference	musical-form	0xdf02e1	0x14173b6a0	cstring	The voice stays in the 
+reference	musical-form	0xdf0325	0x1416039f0	cstring	 
+reference	musical-form	0xdf0339	0x141666118	cstring	low
+reference	musical-form	0xdf0351	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf0374	0x14173b750	cstring	top
+reference	musical-form	0xdf03ee	0x14173b600	cstring	The voice uses its entire range.  
+reference	musical-form	0xdf0408	0x141608c3c	cstring	The 
+reference	musical-form	0xdf0421	0x14173b758	cstring	 voice uses its entire range.  
+reference	musical-form	0xdf0436	0x141608c3c	cstring	The 
+reference	musical-form	0xdf044f	0x14173b778	cstring	 voice ranges from the 
+reference	musical-form	0xdf0463	0x141666118	cstring	low
+reference	musical-form	0xdf0478	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf048e	0x14173b750	cstring	top
+reference	musical-form	0xdf0497	0x141666110	cstring	high
+reference	musical-form	0xdf04a6	0x14173b648	cstring	 register to the 
+reference	musical-form	0xdf04ba	0x141666118	cstring	low
+reference	musical-form	0xdf04d2	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf04f8	0x14173b790	cstring	The voice uses its entire range from the 
+reference	musical-form	0xdf0509	0x14173b628	cstring	The voice ranges from the 
+reference	musical-form	0xdf052a	0x1416039f0	cstring	 
+reference	musical-form	0xdf053e	0x141666118	cstring	low
+reference	musical-form	0xdf0553	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf0565	0x14173b750	cstring	top
+reference	musical-form	0xdf056e	0x141666110	cstring	high
+reference	musical-form	0xdf057d	0x14173b648	cstring	 register to the 
+reference	musical-form	0xdf059d	0x1416039f0	cstring	 
+reference	musical-form	0xdf05b4	0x141666118	cstring	low
+reference	musical-form	0xdf05c8	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf05dd	0x14173b750	cstring	top
+reference	musical-form	0xdf05e6	0x141666110	cstring	high
+reference	musical-form	0xdf05f5	0x14173b6c0	cstring	 register.  
+reference	musical-form	0xdf0730	0x141618ed0	cstring	[B]
+reference	musical-form	0xdf079e	0x14173b6d0	cstring	 has a simple structure: 
+reference	musical-form	0xdf07b8	0x14173b6f0	cstring	 has the following structure: 
+reference	musical-form	0xdf07c1	0x14173b710	cstring	 has a well-defined multi-passage structure: 
+reference	musical-form	0xdf08ad	0x14173b740	cstring	an additional
+reference	musical-form	0xdf08be	0x14173b800	cstring	another 
+reference	musical-form	0xdf093d	0x141608834	cstring	 to 
+reference	musical-form	0xdf0985	0x14161eaec	cstring	a
+reference	musical-form	0xdf0a00	0x141608834	cstring	 to 
+reference	musical-form	0xdf0a57	0x14173b810	cstring	 lengthy
+reference	musical-form	0xdf0a65	0x14173b81c	cstring	 brief
+reference	musical-form	0xdf0aa2	0x14173b828	cstring	 unrelated
+reference	musical-form	0xdf0ab1	0x14173b7c0	cstring	 passage
+reference	musical-form	0xdf0ac6	0x1416044f0	cstring	s
+reference	musical-form	0xdf0ae3	0x141665354	cstring	n
+reference	musical-form	0xdf0af2	0x14173b7d0	cstring	 introduction
+reference	musical-form	0xdf0b03	0x141665354	cstring	n
+reference	musical-form	0xdf0b12	0x14173b7e0	cstring	 exposition
+reference	musical-form	0xdf0b34	0x141604230	cstring	 of the theme
+reference	musical-form	0xdf0b40	0x141604218	cstring	 of the first theme
+reference	musical-form	0xdf0b54	0x141604260	cstring	 of the second theme
+reference	musical-form	0xdf0b60	0x141604240	cstring	 of the previous passage
+reference	musical-form	0xdf0b6c	0x14173b7f0	cstring	 recapitulation
+reference	musical-form	0xdf0b8e	0x141604230	cstring	 of the theme
+reference	musical-form	0xdf0b9a	0x14173b860	cstring	 synthesis
+reference	musical-form	0xdf0bb7	0x1416042b8	cstring	 of the two themes
+reference	musical-form	0xdf0bc3	0x1416042a0	cstring	 of previous passages
+reference	musical-form	0xdf0bcf	0x14173b86c	cstring	 verse
+reference	musical-form	0xdf0be8	0x1416044f0	cstring	s
+reference	musical-form	0xdf0bf4	0x14173b878	cstring	 chorus
+reference	musical-form	0xdf0c00	0x14173b880	cstring	 finale
+reference	musical-form	0xdf0c0c	0x14173b834	cstring	 coda
+reference	musical-form	0xdf0c18	0x14173b840	cstring	 bridge-passage
+reference	musical-form	0xdf0c3d	0x14173b850	cstring	 first
+reference	musical-form	0xdf0c4c	0x14173b8b8	cstring	 theme
+reference	musical-form	0xdf0c67	0x14173b858	cstring	 second
+reference	musical-form	0xdf0c76	0x14173b8b8	cstring	 theme
+reference	musical-form	0xdf0c82	0x14173b8c0	cstring	 series of variations
+reference	musical-form	0xdf0ca4	0x141604338	cstring	 on the theme
+reference	musical-form	0xdf0cad	0x141604378	cstring	 on the first theme
+reference	musical-form	0xdf0cbb	0x141604360	cstring	 on the second theme
+reference	musical-form	0xdf0cd0	0x141604394	cstring	, 
+reference	musical-form	0xdf0cdf	0x14160438c	cstring	 and 
+reference	musical-form	0xdf0d30	0x1416039f0	cstring	 
+reference	musical-form	0xdf0d63	0x14173b8d8	cstring	possibly 
+reference	musical-form	0xdf0d85	0x14173b8e8	cstring	all repeated
+reference	musical-form	0xdf0d8e	0x14173b888	cstring	repeated
+reference	musical-form	0xdf0dbe	0x14173b898	cstring	 up to 
+reference	musical-form	0xdf0e06	0x14173b8a0	cstring	 times
+reference	musical-form	0xdf0e42	0x1416039f0	cstring	 
+reference	musical-form	0xdf0e8a	0x14173b8a0	cstring	 times
+reference	musical-form	0xdf0ec1	0x1416039f0	cstring	 
+reference	musical-form	0xdf0f16	0x141608834	cstring	 to 
+reference	musical-form	0xdf0f6b	0x14173b8a0	cstring	 times
+reference	musical-form	0xdf0f7f	0x141604394	cstring	, 
+reference	musical-form	0xdf0f8d	0x14160438c	cstring	 and 
+reference	musical-form	0xdf0fd8	0x141619598	cstring	.  
+reference	musical-form	0xdf13a7	0x141618ed0	cstring	[B]
+reference	musical-form	0xdf13d0	0x14173b8a8	cstring	Each of the 
+reference	musical-form	0xdf13d9	0x141608c3c	cstring	The 
+reference	musical-form	0xdf143b	0x1416039f0	cstring	 
+reference	musical-form	0xdf147b	0x14173b950	cstring	simple passage
+reference	musical-form	0xdf1496	0x1416044f0	cstring	s
+reference	musical-form	0xdf149f	0x141666518	cstring	introduction
+reference	musical-form	0xdf14a8	0x141666528	cstring	exposition
+reference	musical-form	0xdf14b1	0x1416661d0	cstring	recapitulation
+reference	musical-form	0xdf14ba	0x1416661e0	cstring	synthesis
+reference	musical-form	0xdf14c3	0x1416661ec	cstring	verse
+reference	musical-form	0xdf14cc	0x1416661f4	cstring	chorus
+reference	musical-form	0xdf14d5	0x1416661fc	cstring	finale
+reference	musical-form	0xdf14de	0x141666204	cstring	coda
+reference	musical-form	0xdf14e7	0x141666210	cstring	bridge-passage
+reference	musical-form	0xdf14f0	0x141604324	cstring	theme
+reference	musical-form	0xdf14f9	0x14173b960	cstring	series of variations
+reference	musical-form	0xdf153f	0x14173b8f8	cstring	 is voiced by 
+reference	musical-form	0xdf15e5	0x141695264	cstring	the
+reference	musical-form	0xdf15ee	0x14173c820	cstring	the rhythm of the
+reference	musical-form	0xdf15f7	0x14173b938	cstring	the harmony of the
+reference	musical-form	0xdf1600	0x14173b920	cstring	the counterpoint of the
+reference	musical-form	0xdf1609	0x14173b908	cstring	the melody of the
+reference	musical-form	0xdf1618	0x1416039f0	cstring	 
+reference	musical-form	0xdf1648	0x14173b054	cstring	singer
+reference	musical-form	0xdf165e	0x1416044f0	cstring	s
+reference	musical-form	0xdf1677	0x14173b060	cstring	speaker
+reference	musical-form	0xdf168d	0x1416044f0	cstring	s
+reference	musical-form	0xdf16a6	0x14173b068	cstring	chanter
+reference	musical-form	0xdf16bc	0x1416044f0	cstring	s
+reference	musical-form	0xdf1739	0x14173c838	cstring	 reciting the words of 
+reference	musical-form	0xdf177d	0x14173c850	cstring	 reciting
+reference	musical-form	0xdf1795	0x14173b200	cstring	 a composition of
+reference	musical-form	0xdf17a4	0x1416039f0	cstring	 
+reference	musical-form	0xdf1808	0x14173c860	cstring	 reciting nonsensical words and sounds
+reference	musical-form	0xdf181d	0x141604394	cstring	, 
+reference	musical-form	0xdf182c	0x14160438c	cstring	 and 
+reference	musical-form	0xdf1883	0x141619598	cstring	.  
+reference	musical-form	0xdf18cb	0x14173b978	cstring	Each passage
+reference	musical-form	0xdf18d9	0x14173b988	cstring	The passage
+reference	musical-form	0xdf18fb	0x1416039f0	cstring	 
+reference	musical-form	0xdf1919	0x14173b3e8	cstring	should 
+reference	musical-form	0xdf1951	0x14173b3f0	cstring	stress the rhythm
+reference	musical-form	0xdf1965	0x14173b360	cstring	be stately
+reference	musical-form	0xdf1979	0x14173b370	cstring	be bright
+reference	musical-form	0xdf198d	0x14173b380	cstring	be lively
+reference	musical-form	0xdf19a1	0x14173b390	cstring	be made with skill
+reference	musical-form	0xdf19b5	0x14173b458	cstring	be vigorous
+reference	musical-form	0xdf19c9	0x14173b468	cstring	be spirited
+reference	musical-form	0xdf19dd	0x14173b478	cstring	be delicate
+reference	musical-form	0xdf19f1	0x14173b408	cstring	bring a sense of motion
+reference	musical-form	0xdf1a05	0x14173b488	cstring	be fiery
+reference	musical-form	0xdf1a19	0x14173b420	cstring	be made with feeling
+reference	musical-form	0xdf1a2d	0x14173b438	cstring	feel agitated
+reference	musical-form	0xdf1a41	0x14173b448	cstring	be passionate
+reference	musical-form	0xdf1a55	0x14173aaa8	cstring	sparkle
+reference	musical-form	0xdf1a69	0x14173aab0	cstring	be broad
+reference	musical-form	0xdf1a7d	0x14173aac0	cstring	be made sweetly
+reference	musical-form	0xdf1a91	0x14173aad0	cstring	be strong
+reference	musical-form	0xdf1aa5	0x14173aa60	cstring	be energetic
+reference	musical-form	0xdf1ab9	0x14173aa70	cstring	be forceful
+reference	musical-form	0xdf1acd	0x14173aa80	cstring	feel heroic
+reference	musical-form	0xdf1ae1	0x14173aa90	cstring	be made expressively
+reference	musical-form	0xdf1af5	0x14173ab28	cstring	feel furious
+reference	musical-form	0xdf1b09	0x14173ab38	cstring	be joyful
+reference	musical-form	0xdf1b1d	0x14173ab48	cstring	be grand
+reference	musical-form	0xdf1b31	0x14173ab58	cstring	be merry
+reference	musical-form	0xdf1b45	0x14173aae0	cstring	be graceful
+reference	musical-form	0xdf1b59	0x14173aaf0	cstring	build as it proceeds
+reference	musical-form	0xdf1b6d	0x14173ab08	cstring	evoke tears
+reference	musical-form	0xdf1b81	0x14173ab18	cstring	be melancholic
+reference	musical-form	0xdf1b95	0x14173aba8	cstring	feel mournful
+reference	musical-form	0xdf1ba9	0x14173abb8	cstring	be made with a light touch
+reference	musical-form	0xdf1bbd	0x14173abd8	cstring	feel heavy
+reference	musical-form	0xdf1bce	0x14173abe8	cstring	feel mysterious
+reference	musical-form	0xdf1bdf	0x14173ab68	cstring	be jumpy
+reference	musical-form	0xdf1bf0	0x14173ab78	cstring	feel playful
+reference	musical-form	0xdf1c01	0x14173ab88	cstring	feel tender
+reference	musical-form	0xdf1c12	0x14173ab98	cstring	feel calm
+reference	musical-form	0xdf1c23	0x14173ac48	cstring	be triumphant
+reference	musical-form	0xdf1c55	0x14160438c	cstring	 and 
+reference	musical-form	0xdf1c81	0x14173c780	cstring	is twice the tempo of the last passage
+reference	musical-form	0xdf1c8d	0x14173c7a8	cstring	is half the tempo of the last passage
+reference	musical-form	0xdf1c99	0x14173c7d0	cstring	moves more quickly than the last passage
+reference	musical-form	0xdf1ca5	0x14173c800	cstring	is slower than the last passage
+reference	musical-form	0xdf1cb1	0x14173c8c8	cstring	resumes the previous tempo
+reference	musical-form	0xdf1cbd	0x14173c8e8	cstring	resumes the original tempo
+reference	musical-form	0xdf1cc9	0x14173ac58	cstring	is at a free tempo
+reference	musical-form	0xdf1cd5	0x14173ac70	cstring	is very slow
+reference	musical-form	0xdf1ce1	0x14173ac80	cstring	is slow
+reference	musical-form	0xdf1cea	0x14173abf8	cstring	is at a walking pace
+reference	musical-form	0xdf1cf3	0x14173ac10	cstring	is moderately paced
+reference	musical-form	0xdf1cfc	0x14173ac28	cstring	is moderately fast
+reference	musical-form	0xdf1d05	0x14173ac40	cstring	is fast
+reference	musical-form	0xdf1d0e	0x14173ad10	cstring	is very fast
+reference	musical-form	0xdf1d17	0x14173ad20	cstring	is extremely fast
+reference	musical-form	0xdf1d20	0x14173ad38	cstring	accelerates as it proceeds
+reference	musical-form	0xdf1d29	0x14173ad58	cstring	slows and broadens
+reference	musical-form	0xdf1d32	0x14173ac88	cstring	is consistently slowing
+reference	musical-form	0xdf1d3b	0x14173aca0	cstring	is at a hurried pace
+reference	musical-form	0xdf1d44	0x14173acb8	cstring	gradually slows as it comes to an end
+reference	musical-form	0xdf1d4d	0x14173ace0	cstring	slows down and dies away as it draws to a close
+reference	musical-form	0xdf1d56	0x14173adc0	cstring	becomes calmer as the end is approached
+reference	musical-form	0xdf1d5f	0x14173ade8	cstring	becomes frenzied as it proceeds
+reference	musical-form	0xdf1d91	0x14173ae08	cstring	is to
+reference	musical-form	0xdf1d9a	0x14173ae10	cstring	, and it is to
+reference	musical-form	0xdf1da9	0x1416039f0	cstring	 
+reference	musical-form	0xdf1dd6	0x14173ad70	cstring	be in whispered undertones
+reference	musical-form	0xdf1ddf	0x14173ad90	cstring	be very soft
+reference	musical-form	0xdf1de8	0x14173ada0	cstring	be soft
+reference	musical-form	0xdf1df1	0x14173ada8	cstring	be moderately soft
+reference	musical-form	0xdf1dfa	0x14173aea8	cstring	be moderately loud
+reference	musical-form	0xdf1e03	0x14173aec0	cstring	be loud
+reference	musical-form	0xdf1e0c	0x14173aec8	cstring	be very loud
+reference	musical-form	0xdf1e15	0x14173aed8	cstring	become louder and louder
+reference	musical-form	0xdf1e1e	0x14173ae20	cstring	become softer and softer
+reference	musical-form	0xdf1e27	0x14173ae40	cstring	fade into silence
+reference	musical-form	0xdf1e30	0x14173ae58	cstring	start loud then be immediately soft
+reference	musical-form	0xdf1e3f	0x141619598	cstring	.  
+reference	musical-form	0xdf1e77	0x141619f70	cstring	In 
+reference	musical-form	0xdf1e95	0x141604394	cstring	, 
+reference	musical-form	0xdf1f5b	0x14173b8a8	cstring	Each of the 
+reference	musical-form	0xdf1f64	0x141608c3c	cstring	The 
+reference	musical-form	0xdf1f77	0x14173c908	cstring	each of the 
+reference	musical-form	0xdf1f80	0x141604104	cstring	the 
+reference	musical-form	0xdf1f93	0x14173b054	cstring	singer
+reference	musical-form	0xdf1faa	0x14173c918	cstring	s'
+reference	musical-form	0xdf1fb3	0x1416044e4	cstring	's
+reference	musical-form	0xdf1fbf	0x14173c888	cstring	 voice
+reference	musical-form	0xdf1fd5	0x1416044f0	cstring	s
+reference	musical-form	0xdf1feb	0x14173b060	cstring	speaker
+reference	musical-form	0xdf2002	0x14173c918	cstring	s'
+reference	musical-form	0xdf200b	0x1416044e4	cstring	's
+reference	musical-form	0xdf2017	0x14173c888	cstring	 voice
+reference	musical-form	0xdf202d	0x1416044f0	cstring	s
+reference	musical-form	0xdf2043	0x14173b068	cstring	chanter
+reference	musical-form	0xdf205a	0x14173c918	cstring	s'
+reference	musical-form	0xdf2063	0x1416044e4	cstring	's
+reference	musical-form	0xdf206f	0x14173c888	cstring	 voice
+reference	musical-form	0xdf2085	0x1416044f0	cstring	s
+reference	musical-form	0xdf20d2	0x1416039f0	cstring	 
+reference	musical-form	0xdf210f	0x14173c890	cstring	stays in the 
+reference	musical-form	0xdf2134	0x141666110	cstring	high
+reference	musical-form	0xdf2148	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf2166	0x14173c8b0	cstring	covers its entire range
+reference	musical-form	0xdf2172	0x14173c9c8	cstring	ranges from the 
+reference	musical-form	0xdf218f	0x141666110	cstring	high
+reference	musical-form	0xdf2198	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf21a1	0x141666118	cstring	low
+reference	musical-form	0xdf21b0	0x14173b648	cstring	 register to the 
+reference	musical-form	0xdf21dc	0x141666110	cstring	high
+reference	musical-form	0xdf2226	0x14173c9e0	cstring	is confined to the 
+reference	musical-form	0xdf222f	0x14173c890	cstring	stays in the 
+reference	musical-form	0xdf2273	0x1416039f0	cstring	 
+reference	musical-form	0xdf2286	0x141666118	cstring	low
+reference	musical-form	0xdf22a5	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf22c8	0x14173b750	cstring	top
+reference	musical-form	0xdf22dc	0x141666110	cstring	high
+reference	musical-form	0xdf2362	0x14173c8b0	cstring	covers its entire range
+reference	musical-form	0xdf2383	0x14173c9c8	cstring	ranges from the 
+reference	musical-form	0xdf2396	0x141666118	cstring	low
+reference	musical-form	0xdf23ae	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf23bf	0x14173b750	cstring	top
+reference	musical-form	0xdf23c8	0x141666110	cstring	high
+reference	musical-form	0xdf23d7	0x14173b648	cstring	 register to the 
+reference	musical-form	0xdf23eb	0x141666118	cstring	low
+reference	musical-form	0xdf2407	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf2428	0x14173b750	cstring	top
+reference	musical-form	0xdf2441	0x14173c9f8	cstring	covers its entire range from the 
+reference	musical-form	0xdf2452	0x14173c9c8	cstring	ranges from the 
+reference	musical-form	0xdf2475	0x1416039f0	cstring	 
+reference	musical-form	0xdf2488	0x141666118	cstring	low
+reference	musical-form	0xdf24a0	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf24b1	0x14173b750	cstring	top
+reference	musical-form	0xdf24ba	0x141666110	cstring	high
+reference	musical-form	0xdf24c9	0x14173b648	cstring	 register to the 
+reference	musical-form	0xdf24e9	0x1416039f0	cstring	 
+reference	musical-form	0xdf24ff	0x141666118	cstring	low
+reference	musical-form	0xdf2517	0x14173b6b8	cstring	middle
+reference	musical-form	0xdf252a	0x14173b750	cstring	top
+reference	musical-form	0xdf2533	0x141666110	cstring	high
+reference	musical-form	0xdf2546	0x14173c8a0	cstring	 register
+reference	musical-form	0xdf255b	0x141604394	cstring	, 
+reference	musical-form	0xdf256a	0x14160438c	cstring	 and 
+reference	musical-form	0xdf25c9	0x141619598	cstring	.  
+reference	musical-form	0xdf2604	0x14173b978	cstring	Each passage
+reference	musical-form	0xdf2612	0x14173b988	cstring	The passage
+reference	musical-form	0xdf2640	0x14168a77c	cstring	 has 
+reference	musical-form	0xdf2671	0x14173af98	cstring	phrases of varied length
+reference	musical-form	0xdf2680	0x14173ca20	cstring	 in the melody and counterpoint
+reference	musical-form	0xdf268c	0x14173af88	cstring	long phrases
+reference	musical-form	0xdf269b	0x14173ca20	cstring	 in the melody and counterpoint
+reference	musical-form	0xdf26a7	0x14173af70	cstring	mid-length phrases
+reference	musical-form	0xdf26b6	0x14173ca20	cstring	 in the melody and counterpoint
+reference	musical-form	0xdf26c2	0x14173af60	cstring	short phrases
+reference	musical-form	0xdf26d1	0x14173ca20	cstring	 in the melody and counterpoint
+reference	musical-form	0xdf26f0	0x14173af98	cstring	phrases of varied length
+reference	musical-form	0xdf26f9	0x14173af88	cstring	long phrases
+reference	musical-form	0xdf2702	0x14173af70	cstring	mid-length phrases
+reference	musical-form	0xdf270b	0x14173af60	cstring	short phrases
+reference	musical-form	0xdf271a	0x14173c920	cstring	 in the melody, while the counterpoint has 
+reference	musical-form	0xdf2740	0x14173af98	cstring	phrases of varied length
+reference	musical-form	0xdf2749	0x14173af88	cstring	long phrases
+reference	musical-form	0xdf2752	0x14173af70	cstring	mid-length phrases
+reference	musical-form	0xdf275b	0x14173af60	cstring	short phrases
+reference	musical-form	0xdf276a	0x141619598	cstring	.  
+reference	musical-form	0xdf2791	0x14173af98	cstring	phrases of varied length
+reference	musical-form	0xdf279a	0x14173af88	cstring	long phrases
+reference	musical-form	0xdf27a3	0x14173af70	cstring	mid-length phrases
+reference	musical-form	0xdf27ac	0x14173af60	cstring	short phrases
+reference	musical-form	0xdf27bb	0x14173c950	cstring	 in the melody.  
+reference	musical-form	0xdf27d2	0x14168a77c	cstring	 has 
+reference	musical-form	0xdf27f8	0x14173af98	cstring	phrases of varied length
+reference	musical-form	0xdf2801	0x14173af88	cstring	long phrases
+reference	musical-form	0xdf280a	0x14173af70	cstring	mid-length phrases
+reference	musical-form	0xdf2813	0x14173af60	cstring	short phrases
+reference	musical-form	0xdf2822	0x14173c968	cstring	 in the counterpoint melody.  
+reference	musical-form	0xdf2859	0x14173cb80	cstring	This passage is richly layered with full chords making use of the available range.  
+reference	musical-form	0xdf2862	0x14173cb30	cstring	Chords are packed close together in dense clusters in this passage.  
+reference	musical-form	0xdf286b	0x14173caf8	cstring	This passage typically has some sparse chords.  
+reference	musical-form	0xdf2874	0x14173cab8	cstring	This passage features only melodic tones and intervals.  
+reference	musical-form	0xdf287d	0x14173c988	cstring	Only one pitch is ever played at a time in this passage.  
+reference	musical-form	0xdf28c6	0x14173b978	cstring	Each passage
+reference	musical-form	0xdf28d4	0x14173b988	cstring	The passage
+reference	musical-form	0xdf28f9	0x14173ca40	cstring	 is performed 
+reference	musical-form	0xdf2917	0x14173ba20	cstring	without preference for a scale
+reference	musical-form	0xdf2952	0x14173bbd8	cstring	using the 
+reference	musical-form	0xdf297d	0x14173bbe4	cstring	 scale
+reference	musical-form	0xdf29a8	0x141608224	cstring	in 
+reference	musical-form	0xdf29b1	0x14173bbf0	cstring	 and in 
+reference	musical-form	0xdf29d1	0x14173bc00	cstring	free rhythm
+reference	musical-form	0xdf29dd	0x141604104	cstring	the 
+reference	musical-form	0xdf2a60	0x1416657f0	cstring	 rhythm
+reference	musical-form	0xdf2a6f	0x141619598	cstring	.  
+reference	musical-form	0xdf2a9d	0x14173b978	cstring	Each passage
+reference	musical-form	0xdf2aab	0x14173b988	cstring	The passage
+reference	musical-form	0xdf2ad8	0x14173ca50	cstring	 should be composed and performed using 
+reference	musical-form	0xdf2ae1	0x14173ca80	cstring	 should be performed using 
+reference	musical-form	0xdf2cd9	0x14173be08	cstring	glides
+reference	musical-form	0xdf2ce5	0x14173be10	cstring	grace notes
+reference	musical-form	0xdf2cf1	0x14173be88	cstring	mordents
+reference	musical-form	0xdf2cfd	0x14173be94	cstring	trills
+reference	musical-form	0xdf2d09	0x14173bea0	cstring	rapid runs
+reference	musical-form	0xdf2d15	0x14173caa0	cstring	locally improvisation
+reference	musical-form	0xdf2d21	0x14173cbf8	cstring	melismatic phrasing
+reference	musical-form	0xdf2d2d	0x14173cc10	cstring	syllabic phrasing
+reference	musical-form	0xdf2d39	0x14173cc38	cstring	syncopation
+reference	musical-form	0xdf2d64	0x14173cc78	cstring	frequent modulation
+reference	musical-form	0xdf2d6d	0x14173cc50	cstring	alternation between tension and repose
+reference	musical-form	0xdf2d76	0x14173cc44	cstring	fills
+reference	musical-form	0xdf2d7f	0x14173beb0	cstring	arpeggios
+reference	musical-form	0xdf2da0	0x14173cbd8	cstring	free adjustment of the beats
+reference	musical-form	0xdf2da9	0x14173be64	cstring	legato
+reference	musical-form	0xdf2db2	0x14173be58	cstring	staccato
+reference	musical-form	0xdf2dc7	0x141604394	cstring	, 
+reference	musical-form	0xdf2dd6	0x14160438c	cstring	 and 
+reference	musical-form	0xdf2dfd	0x141619598	cstring	.  
+reference	musical-form	0xdf2e3e	0x14173b978	cstring	Each passage
+reference	musical-form	0xdf2e4c	0x14173b988	cstring	The passage
+reference	musical-form	0xdf2e66	0x14173cc28	cstring	 should 
+reference	musical-form	0xdf2ef1	0x14173bdd8	cstring	sometimes
+reference	musical-form	0xdf2efa	0x14173bdcc	cstring	often
+reference	musical-form	0xdf2f03	0x14173bdc4	cstring	always
+reference	musical-form	0xdf2f12	0x14173bd78	cstring	 include a 
+reference	musical-form	0xdf2f42	0x14173bda0	cstring	falling-rising
+reference	musical-form	0xdf2f4b	0x14173bd90	cstring	rising-falling
+reference	musical-form	0xdf2f54	0x141619778	cstring	falling
+reference	musical-form	0xdf2f5d	0x14173bd84	cstring	rising
+reference	musical-form	0xdf2f6c	0x14173be20	cstring	 melody pattern
+reference	musical-form	0xdf2f99	0x141609848	cstring	 with 
+reference	musical-form	0xdf3024	0x1416a51d0	cstring	flattened
+reference	musical-form	0xdf3046	0x14173be30	cstring	sharpened
+reference	musical-form	0xdf3055	0x1416039f0	cstring	 
+reference	musical-form	0xdf30b5	0x14173be40	cstring	 degree
+reference	musical-form	0xdf30fa	0x14173be48	cstring	 on the rise
+reference	musical-form	0xdf3103	0x14173bde8	cstring	 on the fall
+reference	musical-form	0xdf3114	0x141604394	cstring	, 
+reference	musical-form	0xdf3122	0x14160438c	cstring	 and 
+reference	musical-form	0xdf317f	0x14173bdf8	cstring	 as well as 
+reference	musical-form	0xdf3188	0x141609848	cstring	 with 
+reference	musical-form	0xdf32a1	0x14173be94	cstring	trills
+reference	musical-form	0xdf32aa	0x14173be88	cstring	mordents
+reference	musical-form	0xdf32b3	0x14173be10	cstring	grace notes
+reference	musical-form	0xdf32bc	0x14173be08	cstring	glides
+reference	musical-form	0xdf32c5	0x14173bea0	cstring	rapid runs
+reference	musical-form	0xdf32e6	0x14173be64	cstring	legato
+reference	musical-form	0xdf32ef	0x14173be58	cstring	staccato
+reference	musical-form	0xdf32f8	0x14173beb0	cstring	arpeggios
+reference	musical-form	0xdf330d	0x141604394	cstring	, 
+reference	musical-form	0xdf331c	0x14160438c	cstring	 and 
+reference	musical-form	0xdf3348	0x141604394	cstring	, 
+reference	musical-form	0xdf3357	0x14160438c	cstring	 and 
+reference	musical-form	0xdf337b	0x141619598	cstring	.  
+reference	musical-form	0xdf3454	0x141618ed0	cstring	[B]
+reference	musical-form	0xdf347d	0x14173cce0	cstring	Scales are conceived of as two chords built using a division of the perfect fourth interval into 
+reference	musical-form	0xdf34b8	0x14173cd48	cstring	 notes.  
+reference	musical-form	0xdf34d4	0x14173cd98	cstring	Scales are constructed from 
+reference	musical-form	0xdf350f	0x14173cde8	cstring	 notes dividing the octave.  
+reference	musical-form	0xdf351e	0x14173ce08	cstring	In quartertones, their spacing is roughly 
+reference	musical-form	0xdf352d	0x1417ac9a0/16	vector	----------------
+reference	musical-form	0xdf35af	0x14173cc90	cstring	, where 1 is the tonic, O marks the octave and x marks other notes.  
+reference	musical-form	0xdf35cd	0x14173cd98	cstring	Scales are constructed from 
+reference	musical-form	0xdf3608	0x14173cdb8	cstring	 notes spaced evenly throughout the octave.  
+reference	musical-form	0xdf362f	0x14173cd58	cstring	The tonic note is fixed only at the time of performance.  
+reference	musical-form	0xdf3638	0x14173cf00	cstring	The tonic note is a fixed tone passed from teacher to student.  
+reference	musical-form	0xdf3676	0x14173ce90	cstring	After a scale is constructed, the root note of chords are named.  
+reference	musical-form	0xdf367f	0x14173ce40	cstring	After a scale is constructed, notes are named according to degree.  
+reference	musical-form	0xdf3690	0x14173cf60	cstring	A single note in the fundamental scale is named.  
+reference	musical-form	0xdf3699	0x14173cf98	cstring	Preferred notes in the fundamental scale are named.  
+reference	musical-form	0xdf36a2	0x14173cf48	cstring	Every note is named.  
+reference	musical-form	0xdf36bc	0x14173ced8	cstring	It is called 
+reference	musical-form	0xdf36c5	0x14173cee8	cstring	The names are 
+reference	musical-form	0xdf3709	0x1416312f0	cstring	 (
+reference	musical-form	0xdf371c	0x14173d0a0	cstring	spoken 
+reference	musical-form	0xdf3747	0x141604394	cstring	, 
+reference	musical-form	0xdf3792	0x141631330	cstring	)
+reference	musical-form	0xdf37af	0x141604394	cstring	, 
+reference	musical-form	0xdf37cc	0x14160438c	cstring	 and 
+reference	musical-form	0xdf37f6	0x141619598	cstring	.  
+reference	musical-form	0xdf38cb	0x141618ed0	cstring	[B]
+reference	musical-form	0xdf38e2	0x14173d0a8	cstring	As always, the 
+reference	musical-form	0xdf38eb	0x141608c3c	cstring	The 
+reference	musical-form	0xdf3957	0x1416039f0	cstring	 
+reference	musical-form	0xdf397a	0x14173d0c8	cstring	hexatonic
+reference	musical-form	0xdf3983	0x14173d0b8	cstring	pentatonic
+reference	musical-form	0xdf398c	0x1416039f0	cstring	 
+reference	musical-form	0xdf399b	0x14173cfd0	cstring	heptatonic
+reference	musical-form	0xdf39aa	0x14173cfe0	cstring	 scale is 
+reference	musical-form	0xdf39e6	0x14173c060	cstring	thought of as two disjoint chords drawn from the fundamental division of the perfect fourth
+reference	musical-form	0xdf39f7	0x14173c0c0	cstring	thought of as two disjoint chords spanning two perfect fourths
+reference	musical-form	0xdf3a08	0x14173c010	cstring	thought of as two disjoint chords spanning a tritone and a perfect fourth
+reference	musical-form	0xdf3a1c	0x14173bfc0	cstring	thought of as two disjoint chords spanning a perfect fifth and a major third
+reference	musical-form	0xdf3a30	0x14173d050	cstring	thought of as joined chords spanning a perfect fifth and a perfect fourth
+reference	musical-form	0xdf3a44	0x14173cff0	cstring	constructed by selection of degrees from the fundamental scale.  The degrees selected are 
+reference	musical-form	0xdf3a70	0x141604104	cstring	the 
+reference	musical-form	0xdf3abb	0x141604394	cstring	, 
+reference	musical-form	0xdf3ad5	0x14160438c	cstring	 and 
+reference	musical-form	0xdf3b01	0x141619598	cstring	.  
+reference	musical-form	0xdf3b1e	0x14173bf78	cstring	These chords are named 
+reference	musical-form	0xdf3b45	0x14160438c	cstring	 and 
+reference	musical-form	0xdf3b6c	0x141619598	cstring	.  
+reference	musical-form	0xdf3c4f	0x14173bf90	cstring	[B]The 
+reference	musical-form	0xdf3c69	0x1416039f0	cstring	 
+reference	musical-form	0xdf3c8b	0x14173c3f8	cstring	pentachord
+reference	musical-form	0xdf3c94	0x14173bfa8	cstring	tetrachord
+reference	musical-form	0xdf3c9d	0x14173bf98	cstring	trichord
+reference	musical-form	0xdf3cac	0x141612ef4	cstring	 is 
+reference	musical-form	0xdf3cd6	0x141604104	cstring	the 
+reference	musical-form	0xdf3d35	0x14173c408	cstring	 (completing the octave)
+reference	musical-form	0xdf3d4f	0x141604394	cstring	, 
+reference	musical-form	0xdf3d5f	0x14160438c	cstring	 and 
+reference	musical-form	0xdf3d8e	0x1416039f0	cstring	 
+reference	musical-form	0xdf3daf	0x14173c120	cstring	degrees of the fundamental perfect fourth division
+reference	musical-form	0xdf3db8	0x14173c100	cstring	degrees of the octave scale
+reference	musical-form	0xdf3dc6	0x14173c428	cstring	degrees of the semitone octave scale
+reference	musical-form	0xdf3dcf	0x14173c450	cstring	degrees of the quartertone octave scale
+reference	musical-form	0xdf3de4	0x141619598	cstring	.  
+reference	musical-form	0xdf3f22	0x14173c160	cstring	[B]The rhythm system is fundamentally polyrhythmic.  There are always multiple rhythm lines, and each of their bars is played over the same period of time, regardless of the number of beats.  The rhythm lines are thought of as one, without a primary-subordinate relationship, though individual lines can be named.  
+reference	musical-form	0xdf3f38	0x14173c2a0	cstring	[B]The rhythm system is fundamentally polymetric.  There are always multiple rhythm lines, and the beats are always played together, even if one rhythm line completes (and then repeats) before the other is finished.  The rhythm lines are thought of as one, without a primary-subordinate relationship, though individual lines can be named.  
+reference	musical-form	0xdf4053	0x14173bf90	cstring	[B]The 
+reference	musical-form	0xdf406d	0x14173c5b0	cstring	 rhythm is made from 
+reference	musical-form	0xdf40bd	0x14173c5c8	cstring	 patterns: 
+reference	musical-form	0xdf4150	0x141604104	cstring	the 
+reference	musical-form	0xdf418d	0x14173c5d8	cstring	 (considered the primary)
+reference	musical-form	0xdf41a2	0x141604394	cstring	, 
+reference	musical-form	0xdf41b1	0x14160438c	cstring	 and 
+reference	musical-form	0xdf42e0	0x141619598	cstring	.  
+reference	musical-form	0xdf4303	0x14173c5f8	cstring	As stated above, they are to be played in polyrhythm.  
+reference	musical-form	0xdf4310	0x14173c478	cstring	As stated above, they are to be played in polymeter.  
+reference	musical-form	0xdf431e	0x14173c4b0	cstring	The patterns are to be played in the same beat, allowing one to repeat before the other is concluded.  
+reference	musical-form	0xdf4327	0x14173c520	cstring	The patterns are to be played over the same period of time, concluding together regardless of beat number.  
+reference	musical-form	0xdf4430	0x14173bf90	cstring	[B]The 
+reference	musical-form	0xdf4450	0x14173c590	cstring	 rhythm is a single line with 
+reference	musical-form	0xdf44ad	0x14173c674	cstring	 beats
+reference	musical-form	0xdf44d8	0x14173c680	cstring	 divided into 
+reference	musical-form	0xdf4528	0x14173c690	cstring	 bars in a 
+reference	musical-form	0xdf45a2	0x14166972c	cstring	-
+reference	musical-form	0xdf45bf	0x14173c6a0	cstring	 pattern
+reference	musical-form	0xdf45d7	0x141619598	cstring	.  
+reference	musical-form	0xdf45f1	0x14173c630	cstring	The beats are named 
+reference	musical-form	0xdf4626	0x1416312f0	cstring	 (
+reference	musical-form	0xdf4639	0x14173d0a0	cstring	spoken 
+reference	musical-form	0xdf4657	0x141631330	cstring	)
+reference	musical-form	0xdf4671	0x141604394	cstring	, 
+reference	musical-form	0xdf467c	0x14160438c	cstring	 and 
+reference	musical-form	0xdf4697	0x141619598	cstring	.  
+reference	musical-form	0xdf46a6	0x14173c648	cstring	The beat is stressed as follows:
+reference	musical-form	0xdf46b5	0x141618ed0	cstring	[B]
+reference	musical-form	0xdf46df	0x14173c66c	cstring	| 
+reference	musical-form	0xdf4771	0x1416096b8	cstring	!
+reference	musical-form	0xdf4787	0x1416dfebc	cstring	X
+reference	musical-form	0xdf479d	0x14161a3e4	cstring	x
+reference	musical-form	0xdf47ab	0x14166972c	cstring	-
+reference	musical-form	0xdf47c5	0x14173c670	cstring	`
+reference	musical-form	0xdf47e1	0x14166fdd0	cstring	'
+reference	musical-form	0xdf47f4	0x1416039f0	cstring	 
+reference	musical-form	0xdf4823	0x14173c66c	cstring	| 
+reference	musical-form	0xdf486c	0x14173c710	cstring	[B]where 
+reference	musical-form	0xdf4880	0x14173c720	cstring	! marks the primary accent, 
+reference	musical-form	0xdf4894	0x14173c740	cstring	X marks an accented beat, 
+reference	musical-form	0xdf48a8	0x14173c760	cstring	` marks a beat as early, 
+reference	musical-form	0xdf48bc	0x14173c6b0	cstring	' marks a beat as late, 
+reference	musical-form	0xdf48cb	0x14173c6d0	cstring	x is a beat
+reference	musical-form	0xdf48e1	0x14173c6e0	cstring	, - is silent
+reference	musical-form	0xdf48f0	0x14173c6f0	cstring	 and | indicates a bar.  
+reference	cardinal	0x54788b	0x141672000	cstring	negative 
+reference	cardinal	0x5478c0	0x141672058	cstring	zero
+reference	cardinal	0x5478da	0x141672060	cstring	one
+reference	cardinal	0x5478f4	0x14167204c	cstring	two
+reference	cardinal	0x54790e	0x141672050	cstring	three
+reference	cardinal	0x547928	0x14167203c	cstring	four
+reference	cardinal	0x547942	0x141672044	cstring	five
+reference	cardinal	0x54795c	0x141672030	cstring	six
+reference	cardinal	0x547976	0x141672034	cstring	seven
+reference	cardinal	0x547990	0x1416720a0	cstring	eight
+reference	cardinal	0x5479aa	0x1416720a8	cstring	nine
+reference	cardinal	0x5479c4	0x141672094	cstring	ten
+reference	cardinal	0x5479de	0x141672098	cstring	eleven
+reference	cardinal	0x5479f8	0x141672080	cstring	twelve
+reference	cardinal	0x547a12	0x141672088	cstring	thirteen
+reference	cardinal	0x547a2c	0x141672068	cstring	fourteen
+reference	cardinal	0x547a46	0x141672078	cstring	fifteen
+reference	cardinal	0x547a60	0x141672160	cstring	sixteen
+reference	cardinal	0x547a7a	0x141672168	cstring	seventeen
+reference	cardinal	0x547a94	0x141672140	cstring	eighteen
+reference	cardinal	0x547aae	0x141672150	cstring	nineteen
+reference	cardinal	0x547b23	0x141672120	cstring	 billion
+reference	cardinal	0x547b42	0x1416039f0	cstring	 
+reference	cardinal	0x547be6	0x141672130	cstring	 million
+reference	cardinal	0x547c05	0x1416039f0	cstring	 
+reference	cardinal	0x547ce2	0x141672100	cstring	 thousand
+reference	cardinal	0x547d01	0x1416039f0	cstring	 
+reference	cardinal	0x547dd9	0x141672110	cstring	 hundred
+reference	cardinal	0x547df5	0x1416039f0	cstring	 
+reference	cardinal	0x547ea5	0x1416721a8	cstring	twenty
+reference	cardinal	0x547eae	0x1416721b0	cstring	thirty
+reference	cardinal	0x547ebd	0x141672198	cstring	forty
+reference	cardinal	0x547ecc	0x1416721a0	cstring	fifty
+reference	cardinal	0x547edb	0x141672184	cstring	sixty
+reference	cardinal	0x547eea	0x141672190	cstring	seventy
+reference	cardinal	0x547ef3	0x141672174	cstring	eighty
+reference	cardinal	0x547efc	0x14167217c	cstring	ninety
+reference	cardinal	0x547f24	0x14166972c	cstring	-
+reference	ordinal	0x548086	0x14166972c	cstring	-
+reference	ordinal	0x5480ce	0x141607960	cstring	th
+reference	ordinal	0x5480ee	0x141607960	cstring	th
+reference	ordinal	0x5480f7	0x14160795c	cstring	rd
+reference	ordinal	0x54811e	0x141607960	cstring	th
+reference	ordinal	0x548127	0x1416078f8	cstring	nd
+reference	ordinal	0x54814e	0x141607960	cstring	th
+reference	ordinal	0x548157	0x1416078f4	cstring	st
+reference	ordinal	0x548170	0x1416721e8	cstring	Negative 
+reference	ordinal	0x5481aa	0x1416721f4	cstring	Zeroth
+reference	ordinal	0x5481c9	0x1416721d8	cstring	First
+reference	ordinal	0x5481e8	0x1416721e0	cstring	Second
+reference	ordinal	0x548207	0x1416721c8	cstring	Third
+reference	ordinal	0x548226	0x1416721d0	cstring	Fourth
+reference	ordinal	0x548245	0x1416721b8	cstring	Fifth
+reference	ordinal	0x548264	0x1416721c0	cstring	Sixth
+reference	ordinal	0x548283	0x141672248	cstring	Seventh
+reference	ordinal	0x5482a2	0x141672250	cstring	Eighth
+reference	ordinal	0x5482c1	0x141672238	cstring	Ninth
+reference	ordinal	0x5482e0	0x141672240	cstring	Tenth
+reference	ordinal	0x5482ff	0x141672220	cstring	Eleventh
+reference	ordinal	0x54831e	0x141672230	cstring	Twelfth
+reference	ordinal	0x54833d	0x141672200	cstring	Thirteenth
+reference	ordinal	0x54835c	0x141672210	cstring	Fourteenth
+reference	ordinal	0x54837b	0x1416720e0	cstring	Fifteenth
+reference	ordinal	0x54839a	0x1416720f0	cstring	Sixteenth
+reference	ordinal	0x5483b9	0x1416720c0	cstring	Seventeenth
+reference	ordinal	0x5483d8	0x1416720d0	cstring	Eighteenth
+reference	ordinal	0x5483f7	0x1416720b0	cstring	Nineteenth
+reference	ordinal	0x548450	0x141607960	cstring	th
+reference	ordinal	0x54847a	0x141607960	cstring	th
+reference	ordinal	0x548483	0x14160795c	cstring	rd
+reference	ordinal	0x5484b7	0x141607960	cstring	th
+reference	ordinal	0x5484c0	0x1416078f8	cstring	nd
+reference	ordinal	0x5484f1	0x141607960	cstring	th
+reference	ordinal	0x5484ff	0x1416078f4	cstring	st
+reference	timbre-selector	0x796538	0x14165dca0	cstring	clear
+reference	timbre-selector	0x79654d	0x1416c6894	cstring	noisy
+reference	timbre-selector	0x796562	0x1416c688c	cstring	full
+reference	timbre-selector	0x796577	0x1416a5204	cstring	thin
+reference	timbre-selector	0x79658c	0x1416a4f38	cstring	round
+reference	timbre-selector	0x7965a1	0x1416c68a4	cstring	sharp
+reference	timbre-selector	0x7965b6	0x1416a50c8	cstring	smooth
+reference	timbre-selector	0x7965cb	0x1416c689c	cstring	choppy
+reference	timbre-selector	0x7965e0	0x1416c68bc	cstring	steady
+reference	timbre-selector	0x7965f5	0x1416c68b0	cstring	evolving
+reference	timbre-selector	0x79660a	0x1416660a4	cstring	strong
+reference	timbre-selector	0x79661f	0x141666078	cstring	delicate
+reference	timbre-selector	0x796634	0x1416c68d0	cstring	bright
+reference	timbre-selector	0x796649	0x141666028	cstring	graceful
+reference	timbre-selector	0x79665e	0x1416a5214	cstring	sparse
+reference	timbre-selector	0x796673	0x1416c68c8	cstring	breathy
+reference	timbre-selector	0x796688	0x141609e18	cstring	strained
+reference	timbre-selector	0x79669d	0x1416a5144	cstring	broad
+reference	timbre-selector	0x7966b2	0x14168e8e0	cstring	light
+reference	timbre-selector	0x7966c7	0x1416c68e4	cstring	mellow
+reference	timbre-selector	0x7966dc	0x1416c68d8	cstring	wobbling
+reference	timbre-selector	0x7966f1	0x1416c6790	cstring	focused
+reference	timbre-selector	0x796706	0x1416c6788	cstring	even
+reference	timbre-selector	0x79671b	0x1416660c4	cstring	fluid
+reference	timbre-selector	0x79672a	0x1416c67a8	cstring	vibrating
+reference	timbre-selector	0x79673f	0x1416c6798	cstring	quavering
+reference	timbre-selector	0x79675a	0x1416c67c0	cstring	eerie
+reference	timbre-selector	0x79676f	0x1416c67b8	cstring	fragile
+reference	timbre-selector	0x796784	0x1416c67d0	cstring	brittle
+reference	timbre-selector	0x796799	0x1416c67c8	cstring	pure
+reference	timbre-selector	0x7967ae	0x1416c67e8	cstring	piercing
+reference	timbre-selector	0x7967c3	0x1416c67d8	cstring	strident
+reference	timbre-selector	0x7967d8	0x1416c6800	cstring	wavering
+reference	timbre-selector	0x7967ed	0x1416c67f4	cstring	harsh
+reference	timbre-selector	0x796802	0x1416c6814	cstring	reedy
+reference	timbre-selector	0x796817	0x1416c680c	cstring	nasal
+reference	timbre-selector	0x79682c	0x1416c6824	cstring	buzzy
+reference	timbre-selector	0x796841	0x1416c681c	cstring	rough
+reference	timbre-selector	0x796856	0x1416c6708	cstring	warm
+reference	timbre-selector	0x79686b	0x1416c6700	cstring	rugged
+reference	timbre-selector	0x796880	0x1416c6718	cstring	heavy
+reference	timbre-selector	0x796895	0x1416c6710	cstring	flat
+reference	timbre-selector	0x7968aa	0x1416c17d4	cstring	dark
+reference	timbre-selector	0x7968bf	0x1416c672c	cstring	crisp
+reference	timbre-selector	0x7968d4	0x1416c6720	cstring	sonorous
+reference	timbre-selector	0x7968e9	0x1416c1bfc	cstring	watery
+reference	timbre-selector	0x7968fe	0x1416c6740	cstring	gentle
+reference	timbre-selector	0x796913	0x1416c6738	cstring	slicing
+reference	timbre-selector	0x796928	0x1416c6750	cstring	liquid
+reference	timbre-selector	0x79693d	0x1416c6748	cstring	raucous
+reference	timbre-selector	0x796952	0x1416c6760	cstring	breezy
+reference	timbre-selector	0x796967	0x1416c6758	cstring	raspy
+reference	timbre-selector	0x79697c	0x1416c6770	cstring	wispy
+reference	timbre-selector	0x796991	0x1416c6768	cstring	shrill
+reference	timbre-selector	0x7969a6	0x1416c1998	cstring	muddy
+reference	timbre-selector	0x7969bb	0x1416c6780	cstring	rich
+reference	timbre-selector	0x7969d0	0x1416c6778	cstring	dull
+reference	timbre-selector	0x7969e5	0x1416c6c38	cstring	floating
+reference	timbre-selector	0x7969fa	0x1416c6c30	cstring	ringing
+reference	timbre-selector	0x796a0f	0x1416c6c50	cstring	resonant
+reference	timbre-selector	0x796a24	0x1416c6c44	cstring	sweet
+reference	timbre-selector	0x796a39	0x1416c6c70	cstring	rippling
+reference	timbre-selector	0x796a48	0x1416c6c60	cstring	sparkling
+classic	musical-form	0xde8790	0x1416603cc	cstring	 is a 
+classic	musical-form	0xde87bd	0x1417354a8	cstring	form of music used during marches and military engagements
+classic	musical-form	0xde87c6	0x1417353c0	cstring	devotional form of music
+classic	musical-form	0xde87df	0x1417353e0	cstring	 directed toward the worship of 
+classic	musical-form	0xde8823	0x141735388	cstring	form of music used to commemorate important events
+classic	musical-form	0xde882c	0x141735480	cstring	form of music used for entertainment
+classic	musical-form	0xde8861	0x141660490	cstring	 originating in 
+classic	musical-form	0xde8868	0x141660468	cstring	 which grew out of the performances of 
+classic	musical-form	0xde88ae	0x1416604a8	cstring	 originally devised by 
+classic	musical-form	0xde88e4	0x141614680	cstring	.  
+classic	musical-form	0xde88fa	0x141735520	cstring	The form guides musicians during improvised performances.  
+classic	musical-form	0xde8901	0x141735410	cstring	The rules of the form are applied by composers to produce individual pieces of music which can be performed.  
+classic	musical-form	0xde8967	0x1417354f0	cstring	recites
+classic	musical-form	0xde896e	0x141735d58	cstring	while the
+classic	musical-form	0xde89aa	0x1416873b4	cstring	A
+classic	musical-form	0xde89b4	0x141619928	cstring	a
+classic	musical-form	0xde8a4c	0x141603794	cstring	 to 
+classic	musical-form	0xde8aa0	0x1415fe96c	cstring	 
+classic	musical-form	0xde8ac2	0x14173555c	cstring	singer
+classic	musical-form	0xde8ade	0x141735568	cstring	speaker
+classic	musical-form	0xde8afa	0x141735570	cstring	chanter
+classic	musical-form	0xde8b1c	0x1415ff4c8	cstring	s
+classic	musical-form	0xde8b2b	0x1415fe96c	cstring	 
+classic	musical-form	0xde8b6b	0x1417354e4	cstring	recite
+classic	musical-form	0xde8b82	0x1417354f8	cstring	 the words of 
+classic	musical-form	0xde8bd7	0x1417354e4	cstring	recite
+classic	musical-form	0xde8bf7	0x141735508	cstring	 a composition of
+classic	musical-form	0xde8c06	0x1415fe96c	cstring	 
+classic	musical-form	0xde8c63	0x1417354e4	cstring	recite
+classic	musical-form	0xde8c7a	0x141735d38	cstring	 nonsensical words and sounds
+classic	musical-form	0xde8c92	0x1415fe96c	cstring	 
+classic	musical-form	0xde8cef	0x141660a50	cstring	The
+classic	musical-form	0xde8d05	0x141735d68	cstring	 music is played on 
+classic	musical-form	0xde8d2a	0x141619928	cstring	a
+classic	musical-form	0xde8da5	0x141603794	cstring	 to 
+classic	musical-form	0xde8df9	0x1415fe96c	cstring	 
+classic	musical-form	0xde8e33	0x1415ff308	cstring	, 
+classic	musical-form	0xde8e41	0x1415ff340	cstring	 and 
+classic	musical-form	0xde8e50	0x1417354f0	cstring	recites
+classic	musical-form	0xde8e82	0x141735d58	cstring	while the
+classic	musical-form	0xde8e8f	0x141614680	cstring	.  
+classic	musical-form	0xde9000	0x141735d80	cstring	The music
+classic	musical-form	0xde9011	0x141735c70	cstring	al voices join in melody and counterpoint, harmony and rhythm
+classic	musical-form	0xde9018	0x141735cb0	cstring	al voices bring melody, counterpoint and rhythm
+classic	musical-form	0xde9027	0x141735ce0	cstring	al voices cover melody, harmony and rhythm
+classic	musical-form	0xde902e	0x141735d10	cstring	 is melody and rhythm without harmony
+classic	musical-form	0xde903d	0x141735df0	cstring	The musical voices 
+classic	musical-form	0xde904e	0x141735e08	cstring	join in melody, counterpoint and harmony
+classic	musical-form	0xde9055	0x141735e38	cstring	bring melody and counterpoint
+classic	musical-form	0xde9064	0x141735e58	cstring	bring melody with harmony
+classic	musical-form	0xde906b	0x141735d90	cstring	are joined in melody
+classic	musical-form	0xde907a	0x141735da8	cstring	The musical voices are purely rhythmic
+classic	musical-form	0xde9089	0x141614680	cstring	.  
+classic	musical-form	0xde90c8	0x141735dd0	cstring	The entire performance 
+classic	musical-form	0xde90e6	0x141735de8	cstring	should 
+classic	musical-form	0xde9117	0x141735ec0	cstring	stress the rhythm
+classic	musical-form	0xde9123	0x141735ed8	cstring	be stately
+classic	musical-form	0xde912f	0x141735ee8	cstring	be bright
+classic	musical-form	0xde913b	0x141735ef8	cstring	be lively
+classic	musical-form	0xde9147	0x141735e78	cstring	be made with skill
+classic	musical-form	0xde9153	0x141735e90	cstring	be vigorous
+classic	musical-form	0xde915f	0x141735ea0	cstring	be spirited
+classic	musical-form	0xde916b	0x141735eb0	cstring	be delicate
+classic	musical-form	0xde9177	0x141735f50	cstring	bring a sense of motion
+classic	musical-form	0xde9183	0x141735f40	cstring	be fiery
+classic	musical-form	0xde918f	0x141735f68	cstring	be made with feeling
+classic	musical-form	0xde919b	0x141735f80	cstring	feel agitated
+classic	musical-form	0xde91a7	0x141735f08	cstring	be passionate
+classic	musical-form	0xde91b3	0x141735f18	cstring	sparkle
+classic	musical-form	0xde91bf	0x141735f20	cstring	be broad
+classic	musical-form	0xde91cb	0x141735f30	cstring	be made sweetly
+classic	musical-form	0xde91d7	0x141735fd8	cstring	be strong
+classic	musical-form	0xde91e3	0x141735fe8	cstring	be energetic
+classic	musical-form	0xde91ef	0x141735ff8	cstring	be forceful
+classic	musical-form	0xde91fb	0x141736008	cstring	feel heroic
+classic	musical-form	0xde9207	0x141735f90	cstring	be made expressively
+classic	musical-form	0xde9213	0x141735fa8	cstring	feel furious
+classic	musical-form	0xde921f	0x141735fb8	cstring	be joyful
+classic	musical-form	0xde922b	0x141735fc8	cstring	be grand
+classic	musical-form	0xde9234	0x141736068	cstring	be merry
+classic	musical-form	0xde923d	0x141736078	cstring	be graceful
+classic	musical-form	0xde9246	0x141736088	cstring	build as it proceeds
+classic	musical-form	0xde924f	0x1417360a0	cstring	evoke tears
+classic	musical-form	0xde9258	0x141736018	cstring	be melancholic
+classic	musical-form	0xde9261	0x141736028	cstring	feel mournful
+classic	musical-form	0xde926a	0x141736038	cstring	be made with a light touch
+classic	musical-form	0xde9273	0x141736058	cstring	feel heavy
+classic	musical-form	0xde927c	0x1417360f8	cstring	feel mysterious
+classic	musical-form	0xde9285	0x141736108	cstring	be jumpy
+classic	musical-form	0xde928e	0x141736118	cstring	feel playful
+classic	musical-form	0xde9297	0x141736128	cstring	feel tender
+classic	musical-form	0xde92a0	0x1417360b0	cstring	feel calm
+classic	musical-form	0xde92a9	0x1417360c0	cstring	be triumphant
+classic	musical-form	0xde92d2	0x1415ff340	cstring	 and 
+classic	musical-form	0xde92fe	0x1417360d0	cstring	is at a free tempo
+classic	musical-form	0xde930a	0x1417360e8	cstring	is very slow
+classic	musical-form	0xde9316	0x141736188	cstring	is slow
+classic	musical-form	0xde931f	0x141736190	cstring	is at a walking pace
+classic	musical-form	0xde9328	0x1417361a8	cstring	is moderately paced
+classic	musical-form	0xde9331	0x1417361c0	cstring	is moderately fast
+classic	musical-form	0xde933a	0x141736138	cstring	is fast
+classic	musical-form	0xde9343	0x141736140	cstring	is very fast
+classic	musical-form	0xde934c	0x141736150	cstring	is extremely fast
+classic	musical-form	0xde9355	0x141736168	cstring	accelerates as it proceeds
+classic	musical-form	0xde935e	0x1417355f8	cstring	slows and broadens
+classic	musical-form	0xde9367	0x141735610	cstring	is consistently slowing
+classic	musical-form	0xde9370	0x141735628	cstring	is at a hurried pace
+classic	musical-form	0xde9379	0x141735640	cstring	gradually slows as it comes to an end
+classic	musical-form	0xde9382	0x141735578	cstring	slows down and dies away as it draws to a close
+classic	musical-form	0xde938b	0x1417355a8	cstring	becomes calmer as the end is approached
+classic	musical-form	0xde9394	0x1417355d0	cstring	becomes frenzied as it proceeds
+classic	musical-form	0xde93c6	0x1417355f0	cstring	is to
+classic	musical-form	0xde93cf	0x1417356b0	cstring	, and it is to
+classic	musical-form	0xde93de	0x1415fe96c	cstring	 
+classic	musical-form	0xde940b	0x1417356c0	cstring	be in whispered undertones
+classic	musical-form	0xde9414	0x1417356e0	cstring	be very soft
+classic	musical-form	0xde941d	0x1417356f0	cstring	be soft
+classic	musical-form	0xde9426	0x141735668	cstring	be moderately soft
+classic	musical-form	0xde942f	0x141735680	cstring	be moderately loud
+classic	musical-form	0xde9438	0x141735698	cstring	be loud
+classic	musical-form	0xde9441	0x1417356a0	cstring	be very loud
+classic	musical-form	0xde944a	0x141735758	cstring	become louder and louder
+classic	musical-form	0xde9453	0x141735778	cstring	become softer and softer
+classic	musical-form	0xde945c	0x141735798	cstring	fade into silence
+classic	musical-form	0xde9465	0x1417357b0	cstring	start loud then be immediately soft
+classic	musical-form	0xde9474	0x141614680	cstring	.  
+classic	musical-form	0xde9665	0x1417356f8	cstring	The melody and counterpoint both have 
+classic	musical-form	0xde968e	0x1417358b0	cstring	phrases of varied length
+classic	musical-form	0xde969a	0x141735748	cstring	long phrases
+classic	musical-form	0xde96a6	0x141735730	cstring	mid-length phrases
+classic	musical-form	0xde96b2	0x1417358d0	cstring	The melody has 
+classic	musical-form	0xde96d3	0x1417358b0	cstring	phrases of varied length
+classic	musical-form	0xde96dc	0x141735748	cstring	long phrases
+classic	musical-form	0xde96e5	0x141735730	cstring	mid-length phrases
+classic	musical-form	0xde96ee	0x141735720	cstring	short phrases
+classic	musical-form	0xde96fd	0x1417358e0	cstring	, while the counterpoint has 
+classic	musical-form	0xde9715	0x1417358d0	cstring	The melody has 
+classic	musical-form	0xde9726	0x1417357d8	cstring	The counterpoint melody has 
+classic	musical-form	0xde973e	0x141735720	cstring	short phrases
+classic	musical-form	0xde974d	0x141735900	cstring	 throughout the form.  
+classic	musical-form	0xde977c	0x1417359b0	cstring	The music is broadly layered with chords spanning the range.  
+classic	musical-form	0xde9785	0x141735960	cstring	Pitches are densely packed in clusters as music moves from chord to chord.  
+classic	musical-form	0xde978e	0x141735860	cstring	Chords, seldom-used, are sparse -- intervals and single pitches are favored.  
+classic	musical-form	0xde9797	0x141735828	cstring	Never more than an interval sounds at once.  
+classic	musical-form	0xde97a0	0x1417357f8	cstring	Only one pitch is ever played at a time.  
+classic	musical-form	0xde97ba	0x1417359f0	cstring	The music repeats for as long as necessary.  
+classic	musical-form	0xde987d	0x141735a20	cstring	It is performed 
+classic	musical-form	0xde988f	0x141735918	cstring	without preference for a scale
+classic	musical-form	0xde98d0	0x141735a20	cstring	It is performed 
+classic	musical-form	0xde98e2	0x141735938	cstring	using the 
+classic	musical-form	0xde9910	0x141735944	cstring	 scale
+classic	musical-form	0xde9938	0x141735a20	cstring	It is performed 
+classic	musical-form	0xde9957	0x141603224	cstring	in 
+classic	musical-form	0xde9960	0x141735950	cstring	 and in 
+classic	musical-form	0xde9983	0x141735a78	cstring	free rhythm
+classic	musical-form	0xde998f	0x1415ff078	cstring	the 
+classic	musical-form	0xde9a23	0x141660ce0	cstring	 rhythm
+classic	musical-form	0xde9a37	0x141614680	cstring	.  
+classic	musical-form	0xde9a61	0x141735a88	cstring	Throughout, when possible, composers and performers are to 
+classic	musical-form	0xde9a6a	0x141735ac8	cstring	Throughout, when possible, performers are to 
+classic	musical-form	0xde9c0d	0x141735af8	cstring	glide from note to note
+classic	musical-form	0xde9c19	0x141735a38	cstring	use grace notes
+classic	musical-form	0xde9c25	0x141735a48	cstring	use mordents
+classic	musical-form	0xde9c31	0x141735a58	cstring	make trills
+classic	musical-form	0xde9c3d	0x141735a68	cstring	play rapid runs
+classic	musical-form	0xde9c49	0x141735b58	cstring	locally improvise
+classic	musical-form	0xde9c55	0x141735c00	cstring	spread syllables over many notes
+classic	musical-form	0xde9c61	0x141735c28	cstring	match notes and syllables
+classic	musical-form	0xde9c6d	0x141735b70	cstring	syncopate
+classic	musical-form	0xde9c98	0x141735b10	cstring	modulate frequently
+classic	musical-form	0xde9ca1	0x141735b90	cstring	alternate tension and repose
+classic	musical-form	0xde9caa	0x141735b80	cstring	add fills
+classic	musical-form	0xde9cb3	0x141735b28	cstring	play arpeggios
+classic	musical-form	0xde9cd4	0x141735be8	cstring	freely adjust the beats
+classic	musical-form	0xde9cdd	0x141735b48	cstring	play legato
+classic	musical-form	0xde9ce6	0x141735b38	cstring	play staccato
+classic	musical-form	0xde9cfa	0x1415ff308	cstring	, 
+classic	musical-form	0xde9d08	0x1415ff340	cstring	 and 
+classic	musical-form	0xde9d26	0x141614680	cstring	.  
+classic	musical-form	0xde9d51	0x141735c48	cstring	From beginning to end, when improvising
+classic	musical-form	0xde9d6b	0x141735bb0	cstring	 or composing
+classic	musical-form	0xde9d7a	0x141735bc0	cstring	, artists should 
+classic	musical-form	0xde9dfe	0x141736850	cstring	sometimes
+classic	musical-form	0xde9e07	0x141735bdc	cstring	often
+classic	musical-form	0xde9e10	0x141735bd4	cstring	always
+classic	musical-form	0xde9e1f	0x141736860	cstring	 include a 
+classic	musical-form	0xde9e50	0x141736818	cstring	falling-rising
+classic	musical-form	0xde9e59	0x141736878	cstring	rising-falling
+classic	musical-form	0xde9e62	0x1416145c8	cstring	falling
+classic	musical-form	0xde9e6b	0x14173686c	cstring	rising
+classic	musical-form	0xde9e7a	0x141736828	cstring	 melody pattern
+classic	musical-form	0xde9ea8	0x1416047e8	cstring	 with 
+classic	musical-form	0xde9f43	0x1416a0080	cstring	flattened
+classic	musical-form	0xde9f65	0x141736838	cstring	sharpened
+classic	musical-form	0xde9f74	0x1415fe96c	cstring	 
+classic	musical-form	0xde9fc9	0x141736848	cstring	 degree
+classic	musical-form	0xdea010	0x1417368c0	cstring	 on the rise
+classic	musical-form	0xdea019	0x1417368d0	cstring	 on the fall
+classic	musical-form	0xdea02a	0x1415ff308	cstring	, 
+classic	musical-form	0xdea038	0x1415ff340	cstring	 and 
+classic	musical-form	0xdea0b9	0x1417368e0	cstring	 as well as 
+classic	musical-form	0xdea0c2	0x1416047e8	cstring	 with 
+classic	musical-form	0xdea1e0	0x1417368a4	cstring	trills
+classic	musical-form	0xdea1e9	0x141736898	cstring	mordents
+classic	musical-form	0xdea1f2	0x141736888	cstring	grace notes
+classic	musical-form	0xdea1fb	0x1417368f0	cstring	glides
+classic	musical-form	0xdea204	0x1417368b0	cstring	rapid runs
+classic	musical-form	0xdea225	0x14173696c	cstring	legato
+classic	musical-form	0xdea22e	0x141736960	cstring	staccato
+classic	musical-form	0xdea237	0x141736950	cstring	arpeggios
+classic	musical-form	0xdea24c	0x1415ff308	cstring	, 
+classic	musical-form	0xdea25b	0x1415ff340	cstring	 and 
+classic	musical-form	0xdea285	0x1415ff308	cstring	, 
+classic	musical-form	0xdea294	0x1415ff340	cstring	 and 
+classic	musical-form	0xdea2d9	0x141614680	cstring	.  
+classic	musical-form	0xdea737	0x1416140ac	cstring	[B]
+classic	musical-form	0xdea75a	0x141736974	cstring	Each 
+classic	musical-form	0xdea763	0x141603c34	cstring	The 
+classic	musical-form	0xdea782	0x14173555c	cstring	singer
+classic	musical-form	0xdea7a4	0x141735568	cstring	speaker
+classic	musical-form	0xdea7c6	0x141735570	cstring	chanter
+classic	musical-form	0xdea927	0x1417368f8	cstring	 always 
+classic	musical-form	0xdea963	0x1417369e8	cstring	provides the rhythm
+classic	musical-form	0xdea96c	0x141736940	cstring	does harmony
+classic	musical-form	0xdea975	0x141736920	cstring	does the counterpoint melody
+classic	musical-form	0xdea97e	0x141736908	cstring	does the main melody
+classic	musical-form	0xdea993	0x1415ff308	cstring	, 
+classic	musical-form	0xdea9a2	0x1415ff340	cstring	 and 
+classic	musical-form	0xdea9cb	0x141735de8	cstring	should 
+classic	musical-form	0xdeaa0b	0x141735ec0	cstring	stress the rhythm
+classic	musical-form	0xdeaa17	0x141735ed8	cstring	be stately
+classic	musical-form	0xdeaa23	0x141735ee8	cstring	be bright
+classic	musical-form	0xdeaa2f	0x141735ef8	cstring	be lively
+classic	musical-form	0xdeaa3b	0x141736a00	cstring	perform with skill
+classic	musical-form	0xdeaa47	0x141735e90	cstring	be vigorous
+classic	musical-form	0xdeaa53	0x141735ea0	cstring	be spirited
+classic	musical-form	0xdeaa5f	0x141735eb0	cstring	be delicate
+classic	musical-form	0xdeaa6b	0x141735f50	cstring	bring a sense of motion
+classic	musical-form	0xdeaa77	0x141735f40	cstring	be fiery
+classic	musical-form	0xdeaa83	0x141736a18	cstring	perform with feeling
+classic	musical-form	0xdeaa8f	0x141735f80	cstring	feel agitated
+classic	musical-form	0xdeaa9b	0x141735f08	cstring	be passionate
+classic	musical-form	0xdeaaa7	0x141735f18	cstring	sparkle
+classic	musical-form	0xdeaab3	0x141735f20	cstring	be broad
+classic	musical-form	0xdeaabf	0x141736a30	cstring	perform sweetly
+classic	musical-form	0xdeaacb	0x141735fd8	cstring	be strong
+classic	musical-form	0xdeaad7	0x141735fe8	cstring	be energetic
+classic	musical-form	0xdeaae3	0x141735ff8	cstring	be forceful
+classic	musical-form	0xdeaaef	0x141736008	cstring	feel heroic
+classic	musical-form	0xdeaafb	0x141736980	cstring	perform expressively
+classic	musical-form	0xdeab07	0x141735fa8	cstring	feel furious
+classic	musical-form	0xdeab13	0x141735fb8	cstring	be joyful
+classic	musical-form	0xdeab1f	0x141735fc8	cstring	be grand
+classic	musical-form	0xdeab28	0x141736068	cstring	be merry
+classic	musical-form	0xdeab31	0x141736078	cstring	be graceful
+classic	musical-form	0xdeab3a	0x141736998	cstring	build as the performance proceeds
+classic	musical-form	0xdeab43	0x1417360a0	cstring	evoke tears
+classic	musical-form	0xdeab4c	0x141736018	cstring	be melancholic
+classic	musical-form	0xdeab55	0x141736028	cstring	feel mournful
+classic	musical-form	0xdeab5e	0x1417369c0	cstring	perform with a light touch
+classic	musical-form	0xdeab67	0x141736058	cstring	feel heavy
+classic	musical-form	0xdeab70	0x1417360f8	cstring	feel mysterious
+classic	musical-form	0xdeab79	0x141736108	cstring	be jumpy
+classic	musical-form	0xdeab82	0x141736118	cstring	feel playful
+classic	musical-form	0xdeab8b	0x141736128	cstring	feel tender
+classic	musical-form	0xdeab94	0x1417360b0	cstring	feel calm
+classic	musical-form	0xdeab9d	0x1417360c0	cstring	be triumphant
+classic	musical-form	0xdeabb2	0x1415ff308	cstring	, 
+classic	musical-form	0xdeabcc	0x1415ff340	cstring	 and 
+classic	musical-form	0xdeabfe	0x1417369dc	cstring	is to 
+classic	musical-form	0xdeac33	0x1417356c0	cstring	be in whispered undertones
+classic	musical-form	0xdeac3c	0x1417356e0	cstring	be very soft
+classic	musical-form	0xdeac45	0x1417356f0	cstring	be soft
+classic	musical-form	0xdeac4e	0x141735668	cstring	be moderately soft
+classic	musical-form	0xdeac57	0x141735680	cstring	be moderately loud
+classic	musical-form	0xdeac60	0x141735698	cstring	be loud
+classic	musical-form	0xdeac69	0x1417356a0	cstring	be very loud
+classic	musical-form	0xdeac72	0x141735758	cstring	become louder and louder
+classic	musical-form	0xdeac7b	0x141735778	cstring	become softer and softer
+classic	musical-form	0xdeac84	0x141735798	cstring	fade into silence
+classic	musical-form	0xdeac8d	0x1417357b0	cstring	start loud then be immediately soft
+classic	musical-form	0xdeaca2	0x1415ff308	cstring	, 
+classic	musical-form	0xdeacb1	0x1415ff340	cstring	 and 
+classic	musical-form	0xdeadaf	0x141736a90	cstring	glides from note to note
+classic	musical-form	0xdeadbb	0x141736ab0	cstring	uses grace notes
+classic	musical-form	0xdeadc7	0x141736ac8	cstring	uses mordents
+classic	musical-form	0xdeadd3	0x141736ad8	cstring	makes trills
+classic	musical-form	0xdeaddf	0x141736a40	cstring	plays rapid runs
+classic	musical-form	0xdeadeb	0x141736ae8	cstring	spreads syllables over many notes
+classic	musical-form	0xdeadf7	0x141736b10	cstring	matches notes and syllables
+classic	musical-form	0xdeae00	0x141736a58	cstring	locally improvises
+classic	musical-form	0xdeae2f	0x141736b50	cstring	modulates frequently
+classic	musical-form	0xdeae38	0x141736a80	cstring	adds fills
+classic	musical-form	0xdeae41	0x141736a70	cstring	syncopates
+classic	musical-form	0xdeae4a	0x141736b68	cstring	plays arpeggios
+classic	musical-form	0xdeae65	0x141736b88	cstring	plays legato
+classic	musical-form	0xdeae6e	0x141736b78	cstring	plays staccato
+classic	musical-form	0xdeae83	0x1415ff308	cstring	, 
+classic	musical-form	0xdeae92	0x1415ff340	cstring	 and 
+classic	musical-form	0xdeaeb9	0x141614680	cstring	.  
+classic	musical-form	0xdeaf06	0x141736b30	cstring	The voice stays in the 
+classic	musical-form	0xdeaf2e	0x141660ff0	cstring	high
+classic	musical-form	0xdeaf3a	0x141736b48	cstring	middle
+classic	musical-form	0xdeaf50	0x141736c08	cstring	The voice uses its entire range.  
+classic	musical-form	0xdeaf64	0x141736c30	cstring	The voice ranges from the 
+classic	musical-form	0xdeaf84	0x141660ff0	cstring	high
+classic	musical-form	0xdeaf8d	0x141736b48	cstring	middle
+classic	musical-form	0xdeaf96	0x141660ff8	cstring	low
+classic	musical-form	0xdeafa5	0x141736c50	cstring	 register to the 
+classic	musical-form	0xdeafc6	0x141660ff0	cstring	high
+classic	musical-form	0xdeafcf	0x141660ff8	cstring	low
+classic	musical-form	0xdeafde	0x141736bf8	cstring	 register.  
+classic	musical-form	0xdeb028	0x141736b98	cstring	The voice is confined to the 
+classic	musical-form	0xdeb031	0x141736b30	cstring	The voice stays in the 
+classic	musical-form	0xdeb075	0x1415fe96c	cstring	 
+classic	musical-form	0xdeb089	0x141660ff8	cstring	low
+classic	musical-form	0xdeb0a1	0x141736b48	cstring	middle
+classic	musical-form	0xdeb0c4	0x141736bb8	cstring	top
+classic	musical-form	0xdeb13e	0x141736c08	cstring	The voice uses its entire range.  
+classic	musical-form	0xdeb158	0x141603c34	cstring	The 
+classic	musical-form	0xdeb171	0x141736bc0	cstring	 voice uses its entire range.  
+classic	musical-form	0xdeb186	0x141603c34	cstring	The 
+classic	musical-form	0xdeb19f	0x141736be0	cstring	 voice ranges from the 
+classic	musical-form	0xdeb1b3	0x141660ff8	cstring	low
+classic	musical-form	0xdeb1c8	0x141736b48	cstring	middle
+classic	musical-form	0xdeb1de	0x141736bb8	cstring	top
+classic	musical-form	0xdeb1e7	0x141660ff0	cstring	high
+classic	musical-form	0xdeb1f6	0x141736c50	cstring	 register to the 
+classic	musical-form	0xdeb20a	0x141660ff8	cstring	low
+classic	musical-form	0xdeb222	0x141736b48	cstring	middle
+classic	musical-form	0xdeb248	0x141736ca0	cstring	The voice uses its entire range from the 
+classic	musical-form	0xdeb259	0x141736c30	cstring	The voice ranges from the 
+classic	musical-form	0xdeb27a	0x1415fe96c	cstring	 
+classic	musical-form	0xdeb28e	0x141660ff8	cstring	low
+classic	musical-form	0xdeb2a3	0x141736b48	cstring	middle
+classic	musical-form	0xdeb2b5	0x141736bb8	cstring	top
+classic	musical-form	0xdeb2be	0x141660ff0	cstring	high
+classic	musical-form	0xdeb2cd	0x141736c50	cstring	 register to the 
+classic	musical-form	0xdeb2ed	0x1415fe96c	cstring	 
+classic	musical-form	0xdeb304	0x141660ff8	cstring	low
+classic	musical-form	0xdeb318	0x141736b48	cstring	middle
+classic	musical-form	0xdeb32d	0x141736bb8	cstring	top
+classic	musical-form	0xdeb336	0x141660ff0	cstring	high
+classic	musical-form	0xdeb345	0x141736bf8	cstring	 register.  
+classic	musical-form	0xdeb480	0x1416140ac	cstring	[B]
+classic	musical-form	0xdeb4ee	0x141736cd0	cstring	 has a simple structure: 
+classic	musical-form	0xdeb508	0x141736cf0	cstring	 has the following structure: 
+classic	musical-form	0xdeb511	0x141736d10	cstring	 has a well-defined multi-passage structure: 
+classic	musical-form	0xdeb5fd	0x141736c68	cstring	an additional
+classic	musical-form	0xdeb60e	0x141736c78	cstring	another 
+classic	musical-form	0xdeb68d	0x141603794	cstring	 to 
+classic	musical-form	0xdeb6d5	0x141619928	cstring	a
+classic	musical-form	0xdeb750	0x141603794	cstring	 to 
+classic	musical-form	0xdeb7a7	0x141736c88	cstring	 lengthy
+classic	musical-form	0xdeb7b5	0x141736c94	cstring	 brief
+classic	musical-form	0xdeb7f2	0x141736208	cstring	 unrelated
+classic	musical-form	0xdeb801	0x141736218	cstring	 passage
+classic	musical-form	0xdeb816	0x1415ff4c8	cstring	s
+classic	musical-form	0xdeb833	0x141660254	cstring	n
+classic	musical-form	0xdeb842	0x141736228	cstring	 introduction
+classic	musical-form	0xdeb853	0x141660254	cstring	n
+classic	musical-form	0xdeb862	0x141736238	cstring	 exposition
+classic	musical-form	0xdeb884	0x1415ff198	cstring	 of the theme
+classic	musical-form	0xdeb890	0x1415ff1d0	cstring	 of the first theme
+classic	musical-form	0xdeb8a4	0x1415ff1b8	cstring	 of the second theme
+classic	musical-form	0xdeb8b0	0x1415ff200	cstring	 of the previous passage
+classic	musical-form	0xdeb8bc	0x1417361d8	cstring	 recapitulation
+classic	musical-form	0xdeb8de	0x1415ff198	cstring	 of the theme
+classic	musical-form	0xdeb8ea	0x1417361e8	cstring	 synthesis
+classic	musical-form	0xdeb907	0x1415ff220	cstring	 of the two themes
+classic	musical-form	0xdeb913	0x1415ff250	cstring	 of previous passages
+classic	musical-form	0xdeb91f	0x1417361f4	cstring	 verse
+classic	musical-form	0xdeb938	0x1415ff4c8	cstring	s
+classic	musical-form	0xdeb944	0x141736200	cstring	 chorus
+classic	musical-form	0xdeb950	0x141736280	cstring	 finale
+classic	musical-form	0xdeb95c	0x141736288	cstring	 coda
+classic	musical-form	0xdeb968	0x141736290	cstring	 bridge-passage
+classic	musical-form	0xdeb98d	0x1417362a0	cstring	 first
+classic	musical-form	0xdeb99c	0x141736250	cstring	 theme
+classic	musical-form	0xdeb9b7	0x141736248	cstring	 second
+classic	musical-form	0xdeb9c6	0x141736250	cstring	 theme
+classic	musical-form	0xdeb9d2	0x141736258	cstring	 series of variations
+classic	musical-form	0xdeb9f4	0x1415ff2f8	cstring	 on the theme
+classic	musical-form	0xdeb9fd	0x1415ff2e0	cstring	 on the first theme
+classic	musical-form	0xdeba0b	0x1415ff310	cstring	 on the second theme
+classic	musical-form	0xdeba20	0x1415ff308	cstring	, 
+classic	musical-form	0xdeba2f	0x1415ff340	cstring	 and 
+classic	musical-form	0xdeba80	0x1415fe96c	cstring	 
+classic	musical-form	0xdebab3	0x141736270	cstring	possibly 
+classic	musical-form	0xdebad5	0x1417362f0	cstring	all repeated
+classic	musical-form	0xdebade	0x141736300	cstring	repeated
+classic	musical-form	0xdebb0e	0x141736310	cstring	 up to 
+classic	musical-form	0xdebb56	0x141736318	cstring	 times
+classic	musical-form	0xdebb92	0x1415fe96c	cstring	 
+classic	musical-form	0xdebbda	0x141736318	cstring	 times
+classic	musical-form	0xdebc11	0x1415fe96c	cstring	 
+classic	musical-form	0xdebc66	0x141603794	cstring	 to 
+classic	musical-form	0xdebcbb	0x141736318	cstring	 times
+classic	musical-form	0xdebccf	0x1415ff308	cstring	, 
+classic	musical-form	0xdebcdd	0x1415ff340	cstring	 and 
+classic	musical-form	0xdebd28	0x141614680	cstring	.  
+classic	musical-form	0xdec0f7	0x1416140ac	cstring	[B]
+classic	musical-form	0xdec120	0x1417362a8	cstring	Each of the 
+classic	musical-form	0xdec129	0x141603c34	cstring	The 
+classic	musical-form	0xdec18b	0x1415fe96c	cstring	 
+classic	musical-form	0xdec1cb	0x1417362b8	cstring	simple passage
+classic	musical-form	0xdec1e6	0x1415ff4c8	cstring	s
+classic	musical-form	0xdec1ef	0x1416612e0	cstring	introduction
+classic	musical-form	0xdec1f8	0x1416612f0	cstring	exposition
+classic	musical-form	0xdec201	0x141661300	cstring	recapitulation
+classic	musical-form	0xdec20a	0x141661310	cstring	synthesis
+classic	musical-form	0xdec213	0x14166131c	cstring	verse
+classic	musical-form	0xdec21c	0x141661324	cstring	chorus
+classic	musical-form	0xdec225	0x14166132c	cstring	finale
+classic	musical-form	0xdec22e	0x141661334	cstring	coda
+classic	musical-form	0xdec237	0x141661340	cstring	bridge-passage
+classic	musical-form	0xdec240	0x1415ff2d8	cstring	theme
+classic	musical-form	0xdec249	0x1417362c8	cstring	series of variations
+classic	musical-form	0xdec28f	0x141736388	cstring	 is voiced by 
+classic	musical-form	0xdec335	0x14167f544	cstring	the
+classic	musical-form	0xdec33e	0x141736338	cstring	the rhythm of the
+classic	musical-form	0xdec347	0x141736320	cstring	the harmony of the
+classic	musical-form	0xdec350	0x1417363b0	cstring	the counterpoint of the
+classic	musical-form	0xdec359	0x141736398	cstring	the melody of the
+classic	musical-form	0xdec368	0x1415fe96c	cstring	 
+classic	musical-form	0xdec398	0x14173555c	cstring	singer
+classic	musical-form	0xdec3ae	0x1415ff4c8	cstring	s
+classic	musical-form	0xdec3c7	0x141735568	cstring	speaker
+classic	musical-form	0xdec3dd	0x1415ff4c8	cstring	s
+classic	musical-form	0xdec3f6	0x141735570	cstring	chanter
+classic	musical-form	0xdec40c	0x1415ff4c8	cstring	s
+classic	musical-form	0xdec489	0x141736350	cstring	 reciting the words of 
+classic	musical-form	0xdec4cd	0x141736368	cstring	 reciting
+classic	musical-form	0xdec4e5	0x141735508	cstring	 a composition of
+classic	musical-form	0xdec4f4	0x1415fe96c	cstring	 
+classic	musical-form	0xdec558	0x141736438	cstring	 reciting nonsensical words and sounds
+classic	musical-form	0xdec56d	0x1415ff308	cstring	, 
+classic	musical-form	0xdec57c	0x1415ff340	cstring	 and 
+classic	musical-form	0xdec5d3	0x141614680	cstring	.  
+classic	musical-form	0xdec61b	0x1417362e0	cstring	Each passage
+classic	musical-form	0xdec629	0x141736378	cstring	The passage
+classic	musical-form	0xdec64b	0x1415fe96c	cstring	 
+classic	musical-form	0xdec669	0x141735de8	cstring	should 
+classic	musical-form	0xdec6a1	0x141735ec0	cstring	stress the rhythm
+classic	musical-form	0xdec6b5	0x141735ed8	cstring	be stately
+classic	musical-form	0xdec6c9	0x141735ee8	cstring	be bright
+classic	musical-form	0xdec6dd	0x141735ef8	cstring	be lively
+classic	musical-form	0xdec6f1	0x141735e78	cstring	be made with skill
+classic	musical-form	0xdec705	0x141735e90	cstring	be vigorous
+classic	musical-form	0xdec719	0x141735ea0	cstring	be spirited
+classic	musical-form	0xdec72d	0x141735eb0	cstring	be delicate
+classic	musical-form	0xdec741	0x141735f50	cstring	bring a sense of motion
+classic	musical-form	0xdec755	0x141735f40	cstring	be fiery
+classic	musical-form	0xdec769	0x141735f68	cstring	be made with feeling
+classic	musical-form	0xdec77d	0x141735f80	cstring	feel agitated
+classic	musical-form	0xdec791	0x141735f08	cstring	be passionate
+classic	musical-form	0xdec7a5	0x141735f18	cstring	sparkle
+classic	musical-form	0xdec7b9	0x141735f20	cstring	be broad
+classic	musical-form	0xdec7cd	0x141735f30	cstring	be made sweetly
+classic	musical-form	0xdec7e1	0x141735fd8	cstring	be strong
+classic	musical-form	0xdec7f5	0x141735fe8	cstring	be energetic
+classic	musical-form	0xdec809	0x141735ff8	cstring	be forceful
+classic	musical-form	0xdec81d	0x141736008	cstring	feel heroic
+classic	musical-form	0xdec831	0x141735f90	cstring	be made expressively
+classic	musical-form	0xdec845	0x141735fa8	cstring	feel furious
+classic	musical-form	0xdec859	0x141735fb8	cstring	be joyful
+classic	musical-form	0xdec86d	0x141735fc8	cstring	be grand
+classic	musical-form	0xdec881	0x141736068	cstring	be merry
+classic	musical-form	0xdec895	0x141736078	cstring	be graceful
+classic	musical-form	0xdec8a9	0x141736088	cstring	build as it proceeds
+classic	musical-form	0xdec8bd	0x1417360a0	cstring	evoke tears
+classic	musical-form	0xdec8d1	0x141736018	cstring	be melancholic
+classic	musical-form	0xdec8e5	0x141736028	cstring	feel mournful
+classic	musical-form	0xdec8f9	0x141736038	cstring	be made with a light touch
+classic	musical-form	0xdec90d	0x141736058	cstring	feel heavy
+classic	musical-form	0xdec91e	0x1417360f8	cstring	feel mysterious
+classic	musical-form	0xdec92f	0x141736108	cstring	be jumpy
+classic	musical-form	0xdec940	0x141736118	cstring	feel playful
+classic	musical-form	0xdec951	0x141736128	cstring	feel tender
+classic	musical-form	0xdec962	0x1417360b0	cstring	feel calm
+classic	musical-form	0xdec973	0x1417360c0	cstring	be triumphant
+classic	musical-form	0xdec9a5	0x1415ff340	cstring	 and 
+classic	musical-form	0xdec9d1	0x141736460	cstring	is twice the tempo of the last passage
+classic	musical-form	0xdec9dd	0x141736488	cstring	is half the tempo of the last passage
+classic	musical-form	0xdec9e9	0x1417364b0	cstring	moves more quickly than the last passage
+classic	musical-form	0xdec9f5	0x1417363c8	cstring	is slower than the last passage
+classic	musical-form	0xdeca01	0x1417363e8	cstring	resumes the previous tempo
+classic	musical-form	0xdeca0d	0x141736408	cstring	resumes the original tempo
+classic	musical-form	0xdeca19	0x1417360d0	cstring	is at a free tempo
+classic	musical-form	0xdeca25	0x1417360e8	cstring	is very slow
+classic	musical-form	0xdeca31	0x141736188	cstring	is slow
+classic	musical-form	0xdeca3a	0x141736190	cstring	is at a walking pace
+classic	musical-form	0xdeca43	0x1417361a8	cstring	is moderately paced
+classic	musical-form	0xdeca4c	0x1417361c0	cstring	is moderately fast
+classic	musical-form	0xdeca55	0x141736138	cstring	is fast
+classic	musical-form	0xdeca5e	0x141736140	cstring	is very fast
+classic	musical-form	0xdeca67	0x141736150	cstring	is extremely fast
+classic	musical-form	0xdeca70	0x141736168	cstring	accelerates as it proceeds
+classic	musical-form	0xdeca79	0x1417355f8	cstring	slows and broadens
+classic	musical-form	0xdeca82	0x141735610	cstring	is consistently slowing
+classic	musical-form	0xdeca8b	0x141735628	cstring	is at a hurried pace
+classic	musical-form	0xdeca94	0x141735640	cstring	gradually slows as it comes to an end
+classic	musical-form	0xdeca9d	0x141735578	cstring	slows down and dies away as it draws to a close
+classic	musical-form	0xdecaa6	0x1417355a8	cstring	becomes calmer as the end is approached
+classic	musical-form	0xdecaaf	0x1417355d0	cstring	becomes frenzied as it proceeds
+classic	musical-form	0xdecae1	0x1417355f0	cstring	is to
+classic	musical-form	0xdecaea	0x1417356b0	cstring	, and it is to
+classic	musical-form	0xdecaf9	0x1415fe96c	cstring	 
+classic	musical-form	0xdecb26	0x1417356c0	cstring	be in whispered undertones
+classic	musical-form	0xdecb2f	0x1417356e0	cstring	be very soft
+classic	musical-form	0xdecb38	0x1417356f0	cstring	be soft
+classic	musical-form	0xdecb41	0x141735668	cstring	be moderately soft
+classic	musical-form	0xdecb4a	0x141735680	cstring	be moderately loud
+classic	musical-form	0xdecb53	0x141735698	cstring	be loud
+classic	musical-form	0xdecb5c	0x1417356a0	cstring	be very loud
+classic	musical-form	0xdecb65	0x141735758	cstring	become louder and louder
+classic	musical-form	0xdecb6e	0x141735778	cstring	become softer and softer
+classic	musical-form	0xdecb77	0x141735798	cstring	fade into silence
+classic	musical-form	0xdecb80	0x1417357b0	cstring	start loud then be immediately soft
+classic	musical-form	0xdecb8f	0x141614680	cstring	.  
+classic	musical-form	0xdecbc7	0x141614db0	cstring	In 
+classic	musical-form	0xdecbe5	0x1415ff308	cstring	, 
+classic	musical-form	0xdeccab	0x1417362a8	cstring	Each of the 
+classic	musical-form	0xdeccb4	0x141603c34	cstring	The 
+classic	musical-form	0xdeccc7	0x141736428	cstring	each of the 
+classic	musical-form	0xdeccd0	0x1415ff078	cstring	the 
+classic	musical-form	0xdecce3	0x14173555c	cstring	singer
+classic	musical-form	0xdeccfa	0x14173654c	cstring	s'
+classic	musical-form	0xdecd03	0x1415ff490	cstring	's
+classic	musical-form	0xdecd0f	0x141736550	cstring	 voice
+classic	musical-form	0xdecd25	0x1415ff4c8	cstring	s
+classic	musical-form	0xdecd3b	0x141735568	cstring	speaker
+classic	musical-form	0xdecd52	0x14173654c	cstring	s'
+classic	musical-form	0xdecd5b	0x1415ff490	cstring	's
+classic	musical-form	0xdecd67	0x141736550	cstring	 voice
+classic	musical-form	0xdecd7d	0x1415ff4c8	cstring	s
+classic	musical-form	0xdecd93	0x141735570	cstring	chanter
+classic	musical-form	0xdecdaa	0x14173654c	cstring	s'
+classic	musical-form	0xdecdb3	0x1415ff490	cstring	's
+classic	musical-form	0xdecdbf	0x141736550	cstring	 voice
+classic	musical-form	0xdecdd5	0x1415ff4c8	cstring	s
+classic	musical-form	0xdece22	0x1415fe96c	cstring	 
+classic	musical-form	0xdece5f	0x141736558	cstring	stays in the 
+classic	musical-form	0xdece84	0x141660ff0	cstring	high
+classic	musical-form	0xdece98	0x141736b48	cstring	middle
+classic	musical-form	0xdeceb6	0x1417364e0	cstring	covers its entire range
+classic	musical-form	0xdecec2	0x1417364f8	cstring	ranges from the 
+classic	musical-form	0xdecedf	0x141660ff0	cstring	high
+classic	musical-form	0xdecee8	0x141736b48	cstring	middle
+classic	musical-form	0xdecef1	0x141660ff8	cstring	low
+classic	musical-form	0xdecf00	0x141736c50	cstring	 register to the 
+classic	musical-form	0xdecf2c	0x141660ff0	cstring	high
+classic	musical-form	0xdecf76	0x141736510	cstring	is confined to the 
+classic	musical-form	0xdecf7f	0x141736558	cstring	stays in the 
+classic	musical-form	0xdecfc3	0x1415fe96c	cstring	 
+classic	musical-form	0xdecfd6	0x141660ff8	cstring	low
+classic	musical-form	0xdecff5	0x141736b48	cstring	middle
+classic	musical-form	0xded018	0x141736bb8	cstring	top
+classic	musical-form	0xded02c	0x141660ff0	cstring	high
+classic	musical-form	0xded0b2	0x1417364e0	cstring	covers its entire range
+classic	musical-form	0xded0d3	0x1417364f8	cstring	ranges from the 
+classic	musical-form	0xded0e6	0x141660ff8	cstring	low
+classic	musical-form	0xded0fe	0x141736b48	cstring	middle
+classic	musical-form	0xded10f	0x141736bb8	cstring	top
+classic	musical-form	0xded118	0x141660ff0	cstring	high
+classic	musical-form	0xded127	0x141736c50	cstring	 register to the 
+classic	musical-form	0xded13b	0x141660ff8	cstring	low
+classic	musical-form	0xded157	0x141736b48	cstring	middle
+classic	musical-form	0xded178	0x141736bb8	cstring	top
+classic	musical-form	0xded191	0x141736528	cstring	covers its entire range from the 
+classic	musical-form	0xded1a2	0x1417364f8	cstring	ranges from the 
+classic	musical-form	0xded1c5	0x1415fe96c	cstring	 
+classic	musical-form	0xded1d8	0x141660ff8	cstring	low
+classic	musical-form	0xded1f0	0x141736b48	cstring	middle
+classic	musical-form	0xded201	0x141736bb8	cstring	top
+classic	musical-form	0xded20a	0x141660ff0	cstring	high
+classic	musical-form	0xded219	0x141736c50	cstring	 register to the 
+classic	musical-form	0xded239	0x1415fe96c	cstring	 
+classic	musical-form	0xded24f	0x141660ff8	cstring	low
+classic	musical-form	0xded267	0x141736b48	cstring	middle
+classic	musical-form	0xded27a	0x141736bb8	cstring	top
+classic	musical-form	0xded283	0x141660ff0	cstring	high
+classic	musical-form	0xded296	0x141736568	cstring	 register
+classic	musical-form	0xded2ab	0x1415ff308	cstring	, 
+classic	musical-form	0xded2ba	0x1415ff340	cstring	 and 
+classic	musical-form	0xded319	0x141614680	cstring	.  
+classic	musical-form	0xded354	0x1417362e0	cstring	Each passage
+classic	musical-form	0xded362	0x141736378	cstring	The passage
+classic	musical-form	0xded390	0x14168d678	cstring	 has 
+classic	musical-form	0xded3c1	0x1417358b0	cstring	phrases of varied length
+classic	musical-form	0xded3d0	0x141736678	cstring	 in the melody and counterpoint
+classic	musical-form	0xded3dc	0x141735748	cstring	long phrases
+classic	musical-form	0xded3eb	0x141736678	cstring	 in the melody and counterpoint
+classic	musical-form	0xded3f7	0x141735730	cstring	mid-length phrases
+classic	musical-form	0xded406	0x141736678	cstring	 in the melody and counterpoint
+classic	musical-form	0xded412	0x141735720	cstring	short phrases
+classic	musical-form	0xded421	0x141736678	cstring	 in the melody and counterpoint
+classic	musical-form	0xded440	0x1417358b0	cstring	phrases of varied length
+classic	musical-form	0xded449	0x141735748	cstring	long phrases
+classic	musical-form	0xded452	0x141735730	cstring	mid-length phrases
+classic	musical-form	0xded45b	0x141735720	cstring	short phrases
+classic	musical-form	0xded46a	0x141736698	cstring	 in the melody, while the counterpoint has 
+classic	musical-form	0xded490	0x1417358b0	cstring	phrases of varied length
+classic	musical-form	0xded499	0x141735748	cstring	long phrases
+classic	musical-form	0xded4a2	0x141735730	cstring	mid-length phrases
+classic	musical-form	0xded4ab	0x141735720	cstring	short phrases
+classic	musical-form	0xded4ba	0x141614680	cstring	.  
+classic	musical-form	0xded4e1	0x1417358b0	cstring	phrases of varied length
+classic	musical-form	0xded4ea	0x141735748	cstring	long phrases
+classic	musical-form	0xded4f3	0x141735730	cstring	mid-length phrases
+classic	musical-form	0xded4fc	0x141735720	cstring	short phrases
+classic	musical-form	0xded50b	0x1417366c8	cstring	 in the melody.  
+classic	musical-form	0xded522	0x14168d678	cstring	 has 
+classic	musical-form	0xded548	0x1417358b0	cstring	phrases of varied length
+classic	musical-form	0xded551	0x141735748	cstring	long phrases
+classic	musical-form	0xded55a	0x141735730	cstring	mid-length phrases
+classic	musical-form	0xded563	0x141735720	cstring	short phrases
+classic	musical-form	0xded572	0x1417366e0	cstring	 in the counterpoint melody.  
+classic	musical-form	0xded5a9	0x141736760	cstring	This passage is richly layered with full chords making use of the available range.  
+classic	musical-form	0xded5b2	0x141736630	cstring	Chords are packed close together in dense clusters in this passage.  
+classic	musical-form	0xded5bb	0x1417365f8	cstring	This passage typically has some sparse chords.  
+classic	musical-form	0xded5c4	0x1417365b8	cstring	This passage features only melodic tones and intervals.  
+classic	musical-form	0xded5cd	0x141736578	cstring	Only one pitch is ever played at a time in this passage.  
+classic	musical-form	0xded616	0x1417362e0	cstring	Each passage
+classic	musical-form	0xded624	0x141736378	cstring	The passage
+classic	musical-form	0xded649	0x1417367b8	cstring	 is performed 
+classic	musical-form	0xded667	0x141735918	cstring	without preference for a scale
+classic	musical-form	0xded6a2	0x141735938	cstring	using the 
+classic	musical-form	0xded6cd	0x141735944	cstring	 scale
+classic	musical-form	0xded6f8	0x141603224	cstring	in 
+classic	musical-form	0xded701	0x141735950	cstring	 and in 
+classic	musical-form	0xded721	0x141735a78	cstring	free rhythm
+classic	musical-form	0xded72d	0x1415ff078	cstring	the 
+classic	musical-form	0xded7b0	0x141660ce0	cstring	 rhythm
+classic	musical-form	0xded7bf	0x141614680	cstring	.  
+classic	musical-form	0xded7ed	0x1417362e0	cstring	Each passage
+classic	musical-form	0xded7fb	0x141736378	cstring	The passage
+classic	musical-form	0xded828	0x1417367c8	cstring	 should be composed and performed using 
+classic	musical-form	0xded831	0x1417367f8	cstring	 should be performed using 
+classic	musical-form	0xdeda29	0x1417368f0	cstring	glides
+classic	musical-form	0xdeda35	0x141736888	cstring	grace notes
+classic	musical-form	0xdeda41	0x141736898	cstring	mordents
+classic	musical-form	0xdeda4d	0x1417368a4	cstring	trills
+classic	musical-form	0xdeda59	0x1417368b0	cstring	rapid runs
+classic	musical-form	0xdeda65	0x141736700	cstring	locally improvisation
+classic	musical-form	0xdeda71	0x141736e78	cstring	melismatic phrasing
+classic	musical-form	0xdeda7d	0x141736e90	cstring	syllabic phrasing
+classic	musical-form	0xdeda89	0x141736718	cstring	syncopation
+classic	musical-form	0xdedab4	0x141736e40	cstring	frequent modulation
+classic	musical-form	0xdedabd	0x141736730	cstring	alternation between tension and repose
+classic	musical-form	0xdedac6	0x141736724	cstring	fills
+classic	musical-form	0xdedacf	0x141736950	cstring	arpeggios
+classic	musical-form	0xdedaf0	0x141736e58	cstring	free adjustment of the beats
+classic	musical-form	0xdedaf9	0x14173696c	cstring	legato
+classic	musical-form	0xdedb02	0x141736960	cstring	staccato
+classic	musical-form	0xdedb17	0x1415ff308	cstring	, 
+classic	musical-form	0xdedb26	0x1415ff340	cstring	 and 
+classic	musical-form	0xdedb4d	0x141614680	cstring	.  
+classic	musical-form	0xdedb8e	0x1417362e0	cstring	Each passage
+classic	musical-form	0xdedb9c	0x141736378	cstring	The passage
+classic	musical-form	0xdedbb6	0x141736dc0	cstring	 should 
+classic	musical-form	0xdedc41	0x141736850	cstring	sometimes
+classic	musical-form	0xdedc4a	0x141735bdc	cstring	often
+classic	musical-form	0xdedc53	0x141735bd4	cstring	always
+classic	musical-form	0xdedc62	0x141736860	cstring	 include a 
+classic	musical-form	0xdedc92	0x141736818	cstring	falling-rising
+classic	musical-form	0xdedc9b	0x141736878	cstring	rising-falling
+classic	musical-form	0xdedca4	0x1416145c8	cstring	falling
+classic	musical-form	0xdedcad	0x14173686c	cstring	rising
+classic	musical-form	0xdedcbc	0x141736828	cstring	 melody pattern
+classic	musical-form	0xdedce9	0x1416047e8	cstring	 with 
+classic	musical-form	0xdedd74	0x1416a0080	cstring	flattened
+classic	musical-form	0xdedd96	0x141736838	cstring	sharpened
+classic	musical-form	0xdedda5	0x1415fe96c	cstring	 
+classic	musical-form	0xdede05	0x141736848	cstring	 degree
+classic	musical-form	0xdede4a	0x1417368c0	cstring	 on the rise
+classic	musical-form	0xdede53	0x1417368d0	cstring	 on the fall
+classic	musical-form	0xdede64	0x1415ff308	cstring	, 
+classic	musical-form	0xdede72	0x1415ff340	cstring	 and 
+classic	musical-form	0xdedecf	0x1417368e0	cstring	 as well as 
+classic	musical-form	0xdeded8	0x1416047e8	cstring	 with 
+classic	musical-form	0xdedff1	0x1417368a4	cstring	trills
+classic	musical-form	0xdedffa	0x141736898	cstring	mordents
+classic	musical-form	0xdee003	0x141736888	cstring	grace notes
+classic	musical-form	0xdee00c	0x1417368f0	cstring	glides
+classic	musical-form	0xdee015	0x1417368b0	cstring	rapid runs
+classic	musical-form	0xdee036	0x14173696c	cstring	legato
+classic	musical-form	0xdee03f	0x141736960	cstring	staccato
+classic	musical-form	0xdee048	0x141736950	cstring	arpeggios
+classic	musical-form	0xdee05d	0x1415ff308	cstring	, 
+classic	musical-form	0xdee06c	0x1415ff340	cstring	 and 
+classic	musical-form	0xdee098	0x1415ff308	cstring	, 
+classic	musical-form	0xdee0a7	0x1415ff340	cstring	 and 
+classic	musical-form	0xdee0cb	0x141614680	cstring	.  
+classic	musical-form	0xdee1a4	0x1416140ac	cstring	[B]
+classic	musical-form	0xdee1cd	0x141737010	cstring	Scales are conceived of as two chords built using a division of the perfect fourth interval into 
+classic	musical-form	0xdee208	0x141737078	cstring	 notes.  
+classic	musical-form	0xdee224	0x141736dd0	cstring	Scales are constructed from 
+classic	musical-form	0xdee25f	0x141736e20	cstring	 notes dividing the octave.  
+classic	musical-form	0xdee26e	0x141736f88	cstring	In quartertones, their spacing is roughly 
+classic	musical-form	0xdee27d	0x1417a72f0/16	vector	----------------
+classic	musical-form	0xdee2ff	0x141736fc0	cstring	, where 1 is the tonic, O marks the octave and x marks other notes.  
+classic	musical-form	0xdee31d	0x141736dd0	cstring	Scales are constructed from 
+classic	musical-form	0xdee358	0x141736df0	cstring	 notes spaced evenly throughout the octave.  
+classic	musical-form	0xdee37f	0x141736ea8	cstring	The tonic note is fixed only at the time of performance.  
+classic	musical-form	0xdee388	0x141736ef0	cstring	The tonic note is a fixed tone passed from teacher to student.  
+classic	musical-form	0xdee3c6	0x141737150	cstring	After a scale is constructed, the root note of chords are named.  
+classic	musical-form	0xdee3cf	0x141737100	cstring	After a scale is constructed, notes are named according to degree.  
+classic	musical-form	0xdee3e0	0x141736f50	cstring	A single note in the fundamental scale is named.  
+classic	musical-form	0xdee3e9	0x1417370c0	cstring	Preferred notes in the fundamental scale are named.  
+classic	musical-form	0xdee3f2	0x141736f38	cstring	Every note is named.  
+classic	musical-form	0xdee40c	0x141737198	cstring	It is called 
+classic	musical-form	0xdee415	0x141737088	cstring	The names are 
+classic	musical-form	0xdee459	0x14162bff0	cstring	 (
+classic	musical-form	0xdee46c	0x141737098	cstring	spoken 
+classic	musical-form	0xdee497	0x1415ff308	cstring	, 
+classic	musical-form	0xdee4e2	0x14162c030	cstring	)
+classic	musical-form	0xdee4ff	0x1415ff308	cstring	, 
+classic	musical-form	0xdee51c	0x1415ff340	cstring	 and 
+classic	musical-form	0xdee546	0x141614680	cstring	.  
+classic	musical-form	0xdee61b	0x1416140ac	cstring	[B]
+classic	musical-form	0xdee632	0x1417370a0	cstring	As always, the 
+classic	musical-form	0xdee63b	0x141603c34	cstring	The 
+classic	musical-form	0xdee6a7	0x1415fe96c	cstring	 
+classic	musical-form	0xdee6ca	0x141737300	cstring	hexatonic
+classic	musical-form	0xdee6d3	0x1417370b0	cstring	pentatonic
+classic	musical-form	0xdee6dc	0x1415fe96c	cstring	 
+classic	musical-form	0xdee6eb	0x141737310	cstring	heptatonic
+classic	musical-form	0xdee6fa	0x141737320	cstring	 scale is 
+classic	musical-form	0xdee736	0x1417372a0	cstring	thought of as two disjoint chords drawn from the fundamental division of the perfect fourth
+classic	musical-form	0xdee747	0x1417373f8	cstring	thought of as two disjoint chords spanning two perfect fourths
+classic	musical-form	0xdee758	0x141737250	cstring	thought of as two disjoint chords spanning a tritone and a perfect fourth
+classic	musical-form	0xdee76c	0x141737200	cstring	thought of as two disjoint chords spanning a perfect fifth and a major third
+classic	musical-form	0xdee780	0x1417371b0	cstring	thought of as joined chords spanning a perfect fifth and a perfect fourth
+classic	musical-form	0xdee794	0x141737330	cstring	constructed by selection of degrees from the fundamental scale.  The degrees selected are 
+classic	musical-form	0xdee7c0	0x1415ff078	cstring	the 
+classic	musical-form	0xdee80b	0x1415ff308	cstring	, 
+classic	musical-form	0xdee825	0x1415ff340	cstring	 and 
+classic	musical-form	0xdee851	0x141614680	cstring	.  
+classic	musical-form	0xdee86e	0x141737438	cstring	These chords are named 
+classic	musical-form	0xdee895	0x1415ff340	cstring	 and 
+classic	musical-form	0xdee8bc	0x141614680	cstring	.  
+classic	musical-form	0xdee99f	0x141737450	cstring	[B]The 
+classic	musical-form	0xdee9b9	0x1415fe96c	cstring	 
+classic	musical-form	0xdee9db	0x1417373a0	cstring	pentachord
+classic	musical-form	0xdee9e4	0x141737390	cstring	tetrachord
+classic	musical-form	0xdee9ed	0x141737458	cstring	trichord
+classic	musical-form	0xdee9fc	0x14160deec	cstring	 is 
+classic	musical-form	0xdeea26	0x1415ff078	cstring	the 
+classic	musical-form	0xdeea85	0x1417373b0	cstring	 (completing the octave)
+classic	musical-form	0xdeea9f	0x1415ff308	cstring	, 
+classic	musical-form	0xdeeaaf	0x1415ff340	cstring	 and 
+classic	musical-form	0xdeeade	0x1415fe96c	cstring	 
+classic	musical-form	0xdeeaff	0x141737658	cstring	degrees of the fundamental perfect fourth division
+classic	musical-form	0xdeeb08	0x141737638	cstring	degrees of the octave scale
+classic	musical-form	0xdeeb16	0x1417373d0	cstring	degrees of the semitone octave scale
+classic	musical-form	0xdeeb1f	0x141737610	cstring	degrees of the quartertone octave scale
+classic	musical-form	0xdeeb34	0x141614680	cstring	.  
+classic	musical-form	0xdeec72	0x141737690	cstring	[B]The rhythm system is fundamentally polyrhythmic.  There are always multiple rhythm lines, and each of their bars is played over the same period of time, regardless of the number of beats.  The rhythm lines are thought of as one, without a primary-subordinate relationship, though individual lines can be named.  
+classic	musical-form	0xdeec88	0x141737470	cstring	[B]The rhythm system is fundamentally polymetric.  There are always multiple rhythm lines, and the beats are always played together, even if one rhythm line completes (and then repeats) before the other is finished.  The rhythm lines are thought of as one, without a primary-subordinate relationship, though individual lines can be named.  
+classic	musical-form	0xdeeda3	0x141737450	cstring	[B]The 
+classic	musical-form	0xdeedbd	0x1417375c8	cstring	 rhythm is made from 
+classic	musical-form	0xdeee0d	0x1417375e0	cstring	 patterns: 
+classic	musical-form	0xdeeea0	0x1415ff078	cstring	the 
+classic	musical-form	0xdeeedd	0x1417375f0	cstring	 (considered the primary)
+classic	musical-form	0xdeeef2	0x1415ff308	cstring	, 
+classic	musical-form	0xdeef01	0x1415ff340	cstring	 and 
+classic	musical-form	0xdef030	0x141614680	cstring	.  
+classic	musical-form	0xdef053	0x141737818	cstring	As stated above, they are to be played in polyrhythm.  
+classic	musical-form	0xdef060	0x141737850	cstring	As stated above, they are to be played in polymeter.  
+classic	musical-form	0xdef06e	0x141737890	cstring	The patterns are to be played in the same beat, allowing one to repeat before the other is concluded.  
+classic	musical-form	0xdef077	0x141737900	cstring	The patterns are to be played over the same period of time, concluding together regardless of beat number.  
+classic	musical-form	0xdef180	0x141737450	cstring	[B]The 
+classic	musical-form	0xdef1a0	0x1417377d0	cstring	 rhythm is a single line with 
+classic	musical-form	0xdef1fd	0x1417377f0	cstring	 beats
+classic	musical-form	0xdef228	0x1417377f8	cstring	 divided into 
+classic	musical-form	0xdef278	0x141737808	cstring	 bars in a 
+classic	musical-form	0xdef2f2	0x1416645bc	cstring	-
+classic	musical-form	0xdef30f	0x1417379c8	cstring	 pattern
+classic	musical-form	0xdef327	0x141614680	cstring	.  
+classic	musical-form	0xdef341	0x1417379d8	cstring	The beats are named 
+classic	musical-form	0xdef376	0x14162bff0	cstring	 (
+classic	musical-form	0xdef389	0x141737098	cstring	spoken 
+classic	musical-form	0xdef3a7	0x14162c030	cstring	)
+classic	musical-form	0xdef3c1	0x1415ff308	cstring	, 
+classic	musical-form	0xdef3cc	0x1415ff340	cstring	 and 
+classic	musical-form	0xdef3e7	0x141614680	cstring	.  
+classic	musical-form	0xdef3f6	0x1417379f0	cstring	The beat is stressed as follows:
+classic	musical-form	0xdef405	0x1416140ac	cstring	[B]
+classic	musical-form	0xdef42f	0x141737a14	cstring	| 
+classic	musical-form	0xdef4c1	0x14160469c	cstring	!
+classic	musical-form	0xdef4d7	0x1416dadc8	cstring	X
+classic	musical-form	0xdef4ed	0x141615404	cstring	x
+classic	musical-form	0xdef4fb	0x1416645bc	cstring	-
+classic	musical-form	0xdef515	0x141737970	cstring	`
+classic	musical-form	0xdef531	0x14166a7f4	cstring	'
+classic	musical-form	0xdef544	0x1415fe96c	cstring	 
+classic	musical-form	0xdef573	0x141737a14	cstring	| 
+classic	musical-form	0xdef5bc	0x141737978	cstring	[B]where 
+classic	musical-form	0xdef5d0	0x141737988	cstring	! marks the primary accent, 
+classic	musical-form	0xdef5e4	0x1417379a8	cstring	X marks an accented beat, 
+classic	musical-form	0xdef5f8	0x141736d60	cstring	` marks a beat as early, 
+classic	musical-form	0xdef60c	0x141736d80	cstring	' marks a beat as late, 
+classic	musical-form	0xdef61b	0x141736da0	cstring	x is a beat
+classic	musical-form	0xdef631	0x141736db0	cstring	, - is silent
+classic	musical-form	0xdef640	0x141736d40	cstring	 and | indicates a bar.  
+classic	cardinal	0x54508b	0x14166ceb0	cstring	negative 
+classic	cardinal	0x5450c0	0x14166ce9c	cstring	zero
+classic	cardinal	0x5450da	0x14166cea4	cstring	one
+classic	cardinal	0x5450f4	0x14166ce90	cstring	two
+classic	cardinal	0x54510e	0x14166ce94	cstring	three
+classic	cardinal	0x545128	0x14166cef4	cstring	four
+classic	cardinal	0x545142	0x14166cefc	cstring	five
+classic	cardinal	0x54515c	0x14166cee8	cstring	six
+classic	cardinal	0x545176	0x14166ceec	cstring	seven
+classic	cardinal	0x545190	0x14166ced8	cstring	eight
+classic	cardinal	0x5451aa	0x14166cee0	cstring	nine
+classic	cardinal	0x5451c4	0x14166cecc	cstring	ten
+classic	cardinal	0x5451de	0x14166ced0	cstring	eleven
+classic	cardinal	0x5451f8	0x14166cf58	cstring	twelve
+classic	cardinal	0x545212	0x14166cf60	cstring	thirteen
+classic	cardinal	0x54522c	0x14166cf40	cstring	fourteen
+classic	cardinal	0x545246	0x14166cf50	cstring	fifteen
+classic	cardinal	0x545260	0x14166cf28	cstring	sixteen
+classic	cardinal	0x54527a	0x14166cf30	cstring	seventeen
+classic	cardinal	0x545294	0x14166cf08	cstring	eighteen
+classic	cardinal	0x5452ae	0x14166cf18	cstring	nineteen
+classic	cardinal	0x545323	0x14166cfb0	cstring	 billion
+classic	cardinal	0x545342	0x1415fe96c	cstring	 
+classic	cardinal	0x5453e6	0x14166cfc0	cstring	 million
+classic	cardinal	0x545405	0x1415fe96c	cstring	 
+classic	cardinal	0x5454e2	0x14166cf90	cstring	 thousand
+classic	cardinal	0x545501	0x1415fe96c	cstring	 
+classic	cardinal	0x5455d9	0x14166cfa0	cstring	 hundred
+classic	cardinal	0x5455f5	0x1415fe96c	cstring	 
+classic	cardinal	0x5456a5	0x14166cf7c	cstring	twenty
+classic	cardinal	0x5456ae	0x14166cf84	cstring	thirty
+classic	cardinal	0x5456bd	0x14166cf6c	cstring	forty
+classic	cardinal	0x5456cc	0x14166cf74	cstring	fifty
+classic	cardinal	0x5456db	0x14166d014	cstring	sixty
+classic	cardinal	0x5456ea	0x14166d020	cstring	seventy
+classic	cardinal	0x5456f3	0x14166d004	cstring	eighty
+classic	cardinal	0x5456fc	0x14166d00c	cstring	ninety
+classic	cardinal	0x545724	0x1416645bc	cstring	-
+classic	ordinal	0x545886	0x1416645bc	cstring	-
+classic	ordinal	0x5458ce	0x1416028d4	cstring	th
+classic	ordinal	0x5458ee	0x1416028d4	cstring	th
+classic	ordinal	0x5458f7	0x1416028d0	cstring	rd
+classic	ordinal	0x54591e	0x1416028d4	cstring	th
+classic	ordinal	0x545927	0x1416028dc	cstring	nd
+classic	ordinal	0x54594e	0x1416028d4	cstring	th
+classic	ordinal	0x545957	0x1416028d8	cstring	st
+classic	ordinal	0x545970	0x14166cff0	cstring	Negative 
+classic	ordinal	0x5459aa	0x14166cffc	cstring	Zeroth
+classic	ordinal	0x5459c9	0x14166cfe0	cstring	First
+classic	ordinal	0x5459e8	0x14166cfe8	cstring	Second
+classic	ordinal	0x545a07	0x14166d058	cstring	Third
+classic	ordinal	0x545a26	0x14166d060	cstring	Fourth
+classic	ordinal	0x545a45	0x14166d048	cstring	Fifth
+classic	ordinal	0x545a64	0x14166d050	cstring	Sixth
+classic	ordinal	0x545a83	0x14166d038	cstring	Seventh
+classic	ordinal	0x545aa2	0x14166d040	cstring	Eighth
+classic	ordinal	0x545ac1	0x14166d028	cstring	Ninth
+classic	ordinal	0x545ae0	0x14166d030	cstring	Tenth
+classic	ordinal	0x545aff	0x14166d0c8	cstring	Eleventh
+classic	ordinal	0x545b1e	0x14166d0d8	cstring	Twelfth
+classic	ordinal	0x545b3d	0x14166d0a8	cstring	Thirteenth
+classic	ordinal	0x545b5c	0x14166d0b8	cstring	Fourteenth
+classic	ordinal	0x545b7b	0x14166d088	cstring	Fifteenth
+classic	ordinal	0x545b9a	0x14166d098	cstring	Sixteenth
+classic	ordinal	0x545bb9	0x14166d068	cstring	Seventeenth
+classic	ordinal	0x545bd8	0x14166d078	cstring	Eighteenth
+classic	ordinal	0x545bf7	0x14166d0e0	cstring	Nineteenth
+classic	ordinal	0x545c50	0x1416028d4	cstring	th
+classic	ordinal	0x545c7a	0x1416028d4	cstring	th
+classic	ordinal	0x545c83	0x1416028d0	cstring	rd
+classic	ordinal	0x545cb7	0x1416028d4	cstring	th
+classic	ordinal	0x545cc0	0x1416028dc	cstring	nd
+classic	ordinal	0x545cf1	0x1416028d4	cstring	th
+classic	ordinal	0x545cff	0x1416028d8	cstring	st
+classic	timbre-selector	0x793d38	0x141658c78	cstring	clear
+classic	timbre-selector	0x793d4d	0x1416c1994	cstring	noisy
+classic	timbre-selector	0x793d62	0x1416c198c	cstring	full
+classic	timbre-selector	0x793d77	0x1416a00b4	cstring	thin
+classic	timbre-selector	0x793d8c	0x1416a0168	cstring	round
+classic	timbre-selector	0x793da1	0x1416c19a4	cstring	sharp
+classic	timbre-selector	0x793db6	0x14169f938	cstring	smooth
+classic	timbre-selector	0x793dcb	0x1416c199c	cstring	choppy
+classic	timbre-selector	0x793de0	0x1416c19bc	cstring	steady
+classic	timbre-selector	0x793df5	0x1416c19b0	cstring	evolving
+classic	timbre-selector	0x793e0a	0x141660b04	cstring	strong
+classic	timbre-selector	0x793e1f	0x141660ad8	cstring	delicate
+classic	timbre-selector	0x793e34	0x1416c1828	cstring	bright
+classic	timbre-selector	0x793e49	0x141660a88	cstring	graceful
+classic	timbre-selector	0x793e5e	0x1416a00c4	cstring	sparse
+classic	timbre-selector	0x793e73	0x1416c1820	cstring	breathy
+classic	timbre-selector	0x793e88	0x141604db8	cstring	strained
+classic	timbre-selector	0x793e9d	0x14169f9b4	cstring	broad
+classic	timbre-selector	0x793eb2	0x141691838	cstring	light
+classic	timbre-selector	0x793ec7	0x1416c183c	cstring	mellow
+classic	timbre-selector	0x793edc	0x1416c1830	cstring	wobbling
+classic	timbre-selector	0x793ef1	0x1416c1850	cstring	focused
+classic	timbre-selector	0x793f06	0x1416c1844	cstring	even
+classic	timbre-selector	0x793f1b	0x141660fa4	cstring	fluid
+classic	timbre-selector	0x793f2a	0x1416c1868	cstring	vibrating
+classic	timbre-selector	0x793f3f	0x1416c1858	cstring	quavering
+classic	timbre-selector	0x793f5a	0x1416c1880	cstring	eerie
+classic	timbre-selector	0x793f6f	0x1416c1878	cstring	fragile
+classic	timbre-selector	0x793f84	0x1416c1890	cstring	brittle
+classic	timbre-selector	0x793f99	0x1416c1888	cstring	pure
+classic	timbre-selector	0x793fae	0x1416c18a8	cstring	piercing
+classic	timbre-selector	0x793fc3	0x1416c1898	cstring	strident
+classic	timbre-selector	0x793fd8	0x1416c18c0	cstring	wavering
+classic	timbre-selector	0x793fed	0x1416c18b4	cstring	harsh
+classic	timbre-selector	0x794002	0x1416c179c	cstring	reedy
+classic	timbre-selector	0x794017	0x1416c1794	cstring	nasal
+classic	timbre-selector	0x79402c	0x1416c17ac	cstring	buzzy
+classic	timbre-selector	0x794041	0x1416c17a4	cstring	rough
+classic	timbre-selector	0x794056	0x1416c17bc	cstring	warm
+classic	timbre-selector	0x79406b	0x1416c17b4	cstring	rugged
+classic	timbre-selector	0x794080	0x1416c17cc	cstring	heavy
+classic	timbre-selector	0x794095	0x1416c17c4	cstring	flat
+classic	timbre-selector	0x7940aa	0x1416bc798	cstring	dark
+classic	timbre-selector	0x7940bf	0x1416c17e4	cstring	crisp
+classic	timbre-selector	0x7940d4	0x1416c17d8	cstring	sonorous
+classic	timbre-selector	0x7940e9	0x1416bc8c4	cstring	watery
+classic	timbre-selector	0x7940fe	0x1416c17f8	cstring	gentle
+classic	timbre-selector	0x794113	0x1416c17f0	cstring	slicing
+classic	timbre-selector	0x794128	0x1416c1808	cstring	liquid
+classic	timbre-selector	0x79413d	0x1416c1800	cstring	raucous
+classic	timbre-selector	0x794152	0x1416c1818	cstring	breezy
+classic	timbre-selector	0x794167	0x1416c1810	cstring	raspy
+classic	timbre-selector	0x79417c	0x1416c1700	cstring	wispy
+classic	timbre-selector	0x794191	0x1416c16f8	cstring	shrill
+classic	timbre-selector	0x7941a6	0x1416bc8cc	cstring	muddy
+classic	timbre-selector	0x7941bb	0x1416c1710	cstring	rich
+classic	timbre-selector	0x7941d0	0x1416c1708	cstring	dull
+classic	timbre-selector	0x7941e5	0x1416c1720	cstring	floating
+classic	timbre-selector	0x7941fa	0x1416c1718	cstring	ringing
+classic	timbre-selector	0x79420f	0x1416c1738	cstring	resonant
+classic	timbre-selector	0x794224	0x1416c172c	cstring	sweet
+classic	timbre-selector	0x794239	0x1416c1758	cstring	rippling
+classic	timbre-selector	0x794248	0x1416c1748	cstring	sparkling

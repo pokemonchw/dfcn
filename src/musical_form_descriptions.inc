@@ -309,6 +309,9 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
         }
         return std::nullopt;
     };
+    // These lists occur only in instrument/voice fields. Resolve their RAW
+    // singular/plural spelling with the same typed resolver as instrument
+    // descriptions instead of trying general procedural titles.
     auto translate_reference_list = [&](std::string_view raw)
             -> std::optional<std::string> {
         std::vector<std::string> translated;
@@ -334,8 +337,8 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
                  boundary = item.find(' ', boundary + 1)) {
                 const auto count = translate_count(item.substr(0, boundary));
                 if (!count) continue;
-                const auto name = translate_native_reference(
-                    item.substr(boundary + 1));
+                const auto name = translate_instrument_native_name(
+                    item.substr(boundary + 1), true);
                 if (!name) continue;
                 counted = *count + "件“" + *name + "”";
             }
@@ -344,7 +347,7 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
                 continue;
             }
 
-            const auto part = translate_native_reference(item);
+            const auto part = translate_instrument_native_name(item, true);
             if (!part) return std::nullopt;
             translated.push_back((one_item ? "一件“" : "“") + *part + "”");
         }
@@ -672,6 +675,54 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
         }
         return std::nullopt;
     };
+
+    // The native range paragraph starts with "In " plus the lowercased
+    // complete passage subject, including "each of the" for repetitions.
+    // Share that subject with sentence boundaries and range translation.
+    auto passage_scope = [&](std::string_view sentence)
+            -> std::optional<std::pair<std::string, std::string_view>> {
+        if (!sentence.starts_with("In ")) return std::nullopt;
+        const size_t comma = sentence.find(", ");
+        if (comma == std::string_view::npos) return std::nullopt;
+        const auto scope = translate_subject(sentence.substr(3, comma - 3));
+        if (!scope) return std::nullopt;
+        return std::pair{*scope, sentence.substr(comma + 2)};
+    };
+
+    auto native_sentence_start = [&](std::string_view text) {
+        // Never borrow a predicate from a later sentence to classify a name
+        // fragment. Opaque work/instrument names retain their punctuation.
+        text = text.substr(0, text.find(". "));
+        if (passage_scope(text)) return true;
+        if (!text.starts_with("The ") && !text.starts_with("Each "))
+            return false;
+        for (const std::string_view marker : {
+                 " is voiced by ", " should ", " is to ", " has ",
+                 " is performed ", " are performed "}) {
+            const size_t at = text.find(marker);
+            if (at != std::string_view::npos && translate_subject(text.substr(0, at)))
+                return true;
+        }
+        for (const auto &[english, chinese] : tempos) {
+            const std::string marker = " " + std::string(english);
+            const size_t at = text.find(marker);
+            if (at != std::string_view::npos && translate_subject(text.substr(0, at)))
+                return true;
+        }
+        // Voice subjects can be generated instrument names or singular/plural
+        // singer/speaker/chanter possessives. These native predicates prove
+        // the boundary without translating or truncating the name itself.
+        for (const std::string_view marker : {
+                 " always ", " is to ", " covers its entire range",
+                 " uses its entire range", " stays in the ",
+                 " is confined to the ", " ranges from the ",
+                 " spreads syllables over many notes",
+                 " scale is ", " rhythm is ",
+                 " trichord is ", " tetrachord is ", " pentachord is "}) {
+            if (text.find(marker) != std::string_view::npos) return true;
+        }
+        return false;
+    };
     auto translate_voice_subject = [&](std::string_view raw)
             -> std::optional<std::string> {
         if (const auto fixed = translate_subject(raw)) return fixed;
@@ -978,6 +1029,177 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
             sentence = "The " + sentence.substr(15);
         if (sentence.empty()) return std::string{};
 
+        // The native voicing production owns its complete sentence before
+        // overview/count/name alternatives inspect the embedded performers.
+        const size_t voiced = sentence.find(" is voiced by ");
+        if (voiced != std::string::npos) {
+            const auto translated_group = translate_subject(
+                std::string_view(sentence).substr(0, voiced));
+            if (!translated_group) return std::nullopt;
+            const std::string_view tail =
+                std::string_view(sentence).substr(voiced + 14);
+
+            // A voicing entry begins with a role assignment, or with a bare
+            // reciter.  Generated composition titles can themselves contain
+            // `and`, so the ordinary English-list splitter is not valid for
+            // this production.  Locate only separators followed by another
+            // legal voicing entry; this preserves the complete embedded
+            // title and also handles vocalists used as melody/rhythm voices.
+            static constexpr auto voicing_entry_prefixes =
+                std::to_array<std::string_view>({
+                    "the melody of the ", "the counterpoint of the ",
+                    "the harmony of the ", "the rhythm of the ",
+                });
+            // Vocalists can voice a passage without naming recited material
+            // or an explicit melody/rhythm duty (`the speakers`). Share the
+            // bare roles between list boundaries and assignment translation.
+            static constexpr auto bare_vocalists =
+                std::to_array<std::pair<std::string_view, std::string_view>>({
+                    {"speaker", "朗诵者负责朗诵"},
+                    {"speakers", "朗诵者负责朗诵"},
+                    {"chanter", "吟唱者负责吟唱"},
+                    {"chanters", "吟唱者负责吟唱"},
+                    {"singer", "歌者负责演唱"},
+                    {"singers", "歌者负责演唱"},
+                });
+            // Use the same singular/plural reciter slots both to delimit
+            // assignments and to translate them. Otherwise `and the speakers
+            // reciting ...` is swallowed into the preceding instrument name.
+            static constexpr auto reciter_prefixes =
+                std::to_array<std::pair<std::string_view, std::string_view>>({
+                    {"speaker reciting ", "朗诵者"},
+                    {"speakers reciting ", "朗诵者"},
+                    {"chanter reciting ", "吟唱者"},
+                    {"chanters reciting ", "吟唱者"},
+                    {"singer reciting ", "歌者"},
+                    {"singers reciting ", "歌者"},
+                });
+            auto begins_voicing_entry = [&](std::string_view value, bool first = false) {
+                if (std::any_of(
+                    voicing_entry_prefixes.begin(),
+                    voicing_entry_prefixes.end(),
+                    [&](std::string_view prefix) {
+                        return value.starts_with(prefix);
+                    })) return true;
+                if (!value.starts_with("the ")) return false;
+                value.remove_prefix(4);
+                for (const auto &[role, chinese] : bare_vocalists) {
+                    if (!value.starts_with(role)) continue;
+                    const std::string_view rest = value.substr(role.size());
+                    if (rest.empty() || rest.starts_with(", ") ||
+                        rest.starts_with(" and ")) return true;
+                }
+                if (std::any_of(reciter_prefixes.begin(),
+                    reciter_prefixes.end(), [&](const auto &entry) {
+                        return value.starts_with(entry.first);
+                    })) return true;
+                // Native duty 4 emits only "the" before either a vocal or
+                // instrument field in the voicing loop, with no melodic role.
+                // A later bare entry needs native-name evidence so an "and
+                // the ..." inside a recited work's title remains opaque.
+                const size_t end = std::min(value.find(", "), value.find(" and "));
+                return translate_instrument_native_name(value.substr(0, end), first).has_value();
+            };
+            if (!begins_voicing_entry(tail, true)) return std::nullopt;
+            std::vector<std::string_view> raw_voicings;
+            size_t item_start = 0;
+            while (item_start < tail.size()) {
+                size_t item_end = tail.size();
+                size_t next_start = tail.size();
+                for (size_t at = item_start; at < tail.size(); ++at) {
+                    size_t separator_size = 0;
+                    if (tail.substr(at).starts_with(", ")) {
+                        separator_size = 2;
+                    } else if (tail.substr(at).starts_with(" and ")) {
+                        separator_size = 5;
+                    }
+                    if (separator_size == 0 ||
+                        !begins_voicing_entry(
+                            tail.substr(at + separator_size))) {
+                        continue;
+                    }
+                    item_end = at;
+                    next_start = at + separator_size;
+                    break;
+                }
+                const std::string_view item = trim_view(
+                    tail.substr(item_start, item_end - item_start));
+                if (item.empty()) return std::nullopt;
+                raw_voicings.push_back(item);
+                if (item_end == tail.size()) break;
+                item_start = next_start;
+            }
+
+            auto translate_recitation = [&](std::string_view raw)
+                    -> std::optional<std::string> {
+                if (raw.starts_with("the ")) raw.remove_prefix(4);
+                std::string_view actor;
+                for (const auto &[prefix, chinese] : reciter_prefixes) {
+                    if (!raw.starts_with(prefix)) continue;
+                    actor = chinese;
+                    raw.remove_prefix(prefix.size());
+                    break;
+                }
+                if (actor.empty()) return std::nullopt;
+                const auto material = translate_recited_material(raw);
+                if (!material) return std::nullopt;
+                return std::string(actor) + *material;
+            };
+
+            std::vector<std::string> assignments;
+            for (std::string_view item : raw_voicings) {
+                std::string_view performer = item;
+                std::string_view action;
+                for (const auto &[prefix, verb] : std::array<std::pair<
+                         std::string_view, std::string_view>, 4>{{
+                         {"the melody of the ", "负责主旋律"},
+                         {"the counterpoint of the ", "负责对位旋律"},
+                         {"the harmony of the ", "负责和声"},
+                         {"the rhythm of the ", "负责节奏"},
+                     }}) {
+                    if (!performer.starts_with(prefix)) continue;
+                    performer.remove_prefix(prefix.size());
+                    action = verb;
+                    break;
+                }
+                if (action.empty()) {
+                    std::string_view role = performer;
+                    if (role.starts_with("the ")) role.remove_prefix(4);
+                    const auto bare = std::find_if(bare_vocalists.begin(),
+                        bare_vocalists.end(), [&](const auto &entry) {
+                            return role == entry.first;
+                        });
+                    if (bare != bare_vocalists.end()) {
+                        assignments.emplace_back(bare->second);
+                        continue;
+                    }
+                    if (const auto speech = translate_recitation(performer)) {
+                        assignments.push_back(*speech);
+                    } else if (const auto instrument = translate_instrument_native_name(role, true)) {
+                        assignments.push_back("“" + *instrument + "”声部参与演奏");
+                    } else return std::nullopt;
+                    continue;
+                }
+                if (performer.empty()) return std::nullopt;
+                if (const auto speech = translate_recitation(performer)) {
+                    assignments.push_back(*speech + "并" +
+                                          std::string(action));
+                    continue;
+                }
+                // Pure vocal assignments use the same singer/chanter/speaker
+                // subjects as range and duty clauses; they are not generated
+                // instrument names even when no recitation follows them.
+                const auto translated_performer =
+                    translate_voice_subject(performer);
+                if (!translated_performer) return std::nullopt;
+                assignments.push_back(*translated_performer + std::string(action));
+            }
+            if (assignments.empty()) return std::nullopt;
+            return *translated_group + "中，" +
+                   join_chinese(assignments, "，");
+        }
+
+
         // dd5ce0/dd0c50 append the identity even when the native name is
         // empty. Origin, performance origin and creator are alternatives;
         // IDs of -1 omit the corresponding suffix entirely.
@@ -1159,7 +1381,7 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
                         name = tail;
                     }
                     if (!count || name.empty()) return std::nullopt;
-                    const auto translated = translate_native_reference(name);
+                    const auto translated = translate_instrument_native_name(name, true);
                     if (!translated) return std::nullopt;
                     instruments.push_back(*count + "件“" + *translated + "”");
                 }
@@ -1824,19 +2046,10 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
 
         // Both standalone and coordinated ranges use the same prose. A
         // passage scope belongs before the entire list, not to a voice name.
-        if (sentence.starts_with("In the ") || sentence.starts_with("In each ")) {
-            const bool each_scope = sentence.starts_with("In each ");
-            const size_t scope_prefix = each_scope ? 8 : 7;
-            const size_t comma = sentence.find(", ");
-            if (comma != std::string::npos) {
-                const auto scope = translate_subject(
-                    std::string(each_scope ? "Each of the " : "The ") +
-                    sentence.substr(scope_prefix, comma - scope_prefix));
-                const auto assignments = translate_voice_range_assignments(
-                    std::string_view(sentence).substr(comma + 2));
-                if (scope && assignments)
-                    return *scope + "中，" + join_chinese(*assignments, "；");
-            }
+        if (const auto scope = passage_scope(sentence)) {
+            const auto assignments = translate_voice_range_assignments(scope->second);
+            if (assignments)
+                return scope->first + "中，" + join_chinese(*assignments, "；");
         } else if (const auto assignments =
                        translate_voice_range_assignments(sentence)) {
             return join_chinese(*assignments, "；");
@@ -1988,166 +2201,6 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
             }
             return result;
         }
-        const size_t voiced = sentence.find(" is voiced by ");
-        if (voiced != std::string::npos) {
-            const auto translated_group = translate_subject(
-                std::string_view(sentence).substr(0, voiced));
-            if (!translated_group) return std::nullopt;
-            const std::string_view tail =
-                std::string_view(sentence).substr(voiced + 14);
-
-            // A voicing entry begins with a role assignment, or with a bare
-            // reciter.  Generated composition titles can themselves contain
-            // `and`, so the ordinary English-list splitter is not valid for
-            // this production.  Locate only separators followed by another
-            // legal voicing entry; this preserves the complete embedded
-            // title and also handles vocalists used as melody/rhythm voices.
-            static constexpr auto voicing_entry_prefixes =
-                std::to_array<std::string_view>({
-                    "the melody of the ", "the counterpoint of the ",
-                    "the harmony of the ", "the rhythm of the ",
-                });
-            // Vocalists can voice a passage without naming recited material
-            // or an explicit melody/rhythm duty (`the speakers`). Share the
-            // bare roles between list boundaries and assignment translation.
-            static constexpr auto bare_vocalists =
-                std::to_array<std::pair<std::string_view, std::string_view>>({
-                    {"speaker", "朗诵者负责朗诵"},
-                    {"speakers", "朗诵者负责朗诵"},
-                    {"chanter", "吟唱者负责吟唱"},
-                    {"chanters", "吟唱者负责吟唱"},
-                    {"singer", "歌者负责演唱"},
-                    {"singers", "歌者负责演唱"},
-                });
-            // Use the same singular/plural reciter slots both to delimit
-            // assignments and to translate them. Otherwise `and the speakers
-            // reciting ...` is swallowed into the preceding instrument name.
-            static constexpr auto reciter_prefixes =
-                std::to_array<std::pair<std::string_view, std::string_view>>({
-                    {"speaker reciting ", "朗诵者"},
-                    {"speakers reciting ", "朗诵者"},
-                    {"chanter reciting ", "吟唱者"},
-                    {"chanters reciting ", "吟唱者"},
-                    {"singer reciting ", "歌者"},
-                    {"singers reciting ", "歌者"},
-                });
-            auto begins_voicing_entry = [&](std::string_view value) {
-                if (std::any_of(
-                    voicing_entry_prefixes.begin(),
-                    voicing_entry_prefixes.end(),
-                    [&](std::string_view prefix) {
-                        return value.starts_with(prefix);
-                    })) return true;
-                if (!value.starts_with("the ")) return false;
-                value.remove_prefix(4);
-                for (const auto &[role, chinese] : bare_vocalists) {
-                    if (!value.starts_with(role)) continue;
-                    const std::string_view rest = value.substr(role.size());
-                    if (rest.empty() || rest.starts_with(", ") ||
-                        rest.starts_with(" and ")) return true;
-                }
-                return std::any_of(reciter_prefixes.begin(),
-                    reciter_prefixes.end(), [&](const auto &entry) {
-                        return value.starts_with(entry.first);
-                    });
-            };
-            if (!begins_voicing_entry(tail)) return std::nullopt;
-            std::vector<std::string_view> raw_voicings;
-            size_t item_start = 0;
-            while (item_start < tail.size()) {
-                size_t item_end = tail.size();
-                size_t next_start = tail.size();
-                for (size_t at = item_start; at < tail.size(); ++at) {
-                    size_t separator_size = 0;
-                    if (tail.substr(at).starts_with(", ")) {
-                        separator_size = 2;
-                    } else if (tail.substr(at).starts_with(" and ")) {
-                        separator_size = 5;
-                    }
-                    if (separator_size == 0 ||
-                        !begins_voicing_entry(
-                            tail.substr(at + separator_size))) {
-                        continue;
-                    }
-                    item_end = at;
-                    next_start = at + separator_size;
-                    break;
-                }
-                const std::string_view item = trim_view(
-                    tail.substr(item_start, item_end - item_start));
-                if (item.empty()) return std::nullopt;
-                raw_voicings.push_back(item);
-                if (item_end == tail.size()) break;
-                item_start = next_start;
-            }
-
-            auto translate_recitation = [&](std::string_view raw)
-                    -> std::optional<std::string> {
-                if (raw.starts_with("the ")) raw.remove_prefix(4);
-                std::string_view actor;
-                for (const auto &[prefix, chinese] : reciter_prefixes) {
-                    if (!raw.starts_with(prefix)) continue;
-                    actor = chinese;
-                    raw.remove_prefix(prefix.size());
-                    break;
-                }
-                if (actor.empty()) return std::nullopt;
-                const auto material = translate_recited_material(raw);
-                if (!material) return std::nullopt;
-                return std::string(actor) + *material;
-            };
-
-            std::vector<std::string> assignments;
-            for (std::string_view item : raw_voicings) {
-                std::string_view performer = item;
-                std::string_view action;
-                for (const auto &[prefix, verb] : std::array<std::pair<
-                         std::string_view, std::string_view>, 4>{{
-                         {"the melody of the ", "负责主旋律"},
-                         {"the counterpoint of the ", "负责对位旋律"},
-                         {"the harmony of the ", "负责和声"},
-                         {"the rhythm of the ", "负责节奏"},
-                     }}) {
-                    if (!performer.starts_with(prefix)) continue;
-                    performer.remove_prefix(prefix.size());
-                    action = verb;
-                    break;
-                }
-                if (action.empty()) {
-                    std::string_view role = performer;
-                    if (role.starts_with("the ")) role.remove_prefix(4);
-                    const auto bare = std::find_if(bare_vocalists.begin(),
-                        bare_vocalists.end(), [&](const auto &entry) {
-                            return role == entry.first;
-                        });
-                    if (bare != bare_vocalists.end()) {
-                        assignments.emplace_back(bare->second);
-                        continue;
-                    }
-                    const auto speech = translate_recitation(performer);
-                    if (!speech) return std::nullopt;
-                    assignments.push_back(*speech);
-                    continue;
-                }
-                if (performer.empty()) return std::nullopt;
-                if (const auto speech = translate_recitation(performer)) {
-                    assignments.push_back(*speech + "并" +
-                                          std::string(action));
-                    continue;
-                }
-                // Pure vocal assignments use the same singer/chanter/speaker
-                // subjects as range and duty clauses; they are not generated
-                // instrument names even when no recitation follows them.
-                const auto translated_performer =
-                    translate_voice_subject(performer);
-                if (!translated_performer) return std::nullopt;
-                assignments.push_back(*translated_performer + std::string(action));
-            }
-            if (assignments.empty()) return std::nullopt;
-            return *translated_group + "中，" +
-                   join_chinese(assignments, "，");
-        }
-
         // Passage character, dynamics and technique.
         for (const auto &[english, chinese] : tempos) {
             const std::string suffix = " " + std::string(english);
@@ -2773,5 +2826,5 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
     // clauses split only where the generator supplies independent sentence
     // frames; an ambiguous named tail stays one complete source unit.
     return render_form_description(raw_paragraph, normalized, "music", display,
-        translate_sentence);
+        translate_sentence, native_sentence_start);
 }
