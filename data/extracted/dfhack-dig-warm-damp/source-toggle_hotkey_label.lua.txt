@@ -1,0 +1,17 @@
+Installed readable Lua source (not bytecode decompilation): D:\program\steam\steamapps\common\DFHack\hack\lua\gui\widgets\labels\toggle_hotkey_label.lua
+
+1: local CycleHotkeyLabel = require('gui.widgets.labels.cycle_hotkey_label')
+2: 
+3: -----------------------
+4: -- ToggleHotkeyLabel --
+5: -----------------------
+6: 
+7: ---@class widgets.ToggleHotkeyLabel: widgets.CycleHotkeyLabel
+8: ---@field super widgets.CycleHotkeyLabel
+9: ToggleHotkeyLabel = defclass(ToggleHotkeyLabel, CycleHotkeyLabel)
+10: ToggleHotkeyLabel.ATTRS{
+11:     options={{label='On', value=true, pen=COLOR_GREEN},
+12:              {label='Off', value=false}},
+13: }
+14: 
+15: return ToggleHotkeyLabel

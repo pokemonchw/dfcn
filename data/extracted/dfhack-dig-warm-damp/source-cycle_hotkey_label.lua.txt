@@ -1,0 +1,147 @@
+Installed readable Lua source (not bytecode decompilation): D:\program\steam\steamapps\common\DFHack\hack\lua\gui\widgets\labels\cycle_hotkey_label.lua
+
+1: local utils = require('utils')
+2: local Label = require('gui.widgets.labels.label')
+3: 
+4: local getval = utils.getval
+5: 
+6: local function is_disabled(token)
+7:     return (token.disabled ~= nil and getval(token.disabled)) or
+8:            (token.enabled ~= nil and not getval(token.enabled))
+9: end
+10: 
+11: ----------------------
+12: -- CycleHotkeyLabel --
+13: ----------------------
+14: 
+15: ---@class widgets.CycleHotkeyLabel.attrs: widgets.Label.attrs
+16: ---@field key? string
+17: ---@field key_back? string
+18: ---@field key_sep string
+19: ---@field label? string|fun(): string
+20: ---@field label_width? integer
+21: ---@field label_below boolean
+22: ---@field option_gap integer
+23: ---@field options? { label: string, value: string, pen: dfhack.pen|nil }[]
+24: ---@field initial_option integer|string
+25: ---@field on_change? fun(new_option_value: integer|string, old_option_value: integer|string)
+26: 
+27: ---@class widgets.CycleHotkeyLabel.attrs.partial: widgets.CycleHotkeyLabel.attrs
+28: 
+29: ---@class widgets.CycleHotkeyLabel: widgets.Label, widgets.CycleHotkeyLabel.attrs
+30: ---@field super widgets.Label
+31: ---@field ATTRS widgets.CycleHotkeyLabel.attrs|fun(attributes: widgets.CycleHotkeyLabel.attrs.partial)
+32: ---@overload fun(init_table: widgets.CycleHotkeyLabel.attrs.partial)
+33: CycleHotkeyLabel = defclass(CycleHotkeyLabel, Label)
+34: 
+35: CycleHotkeyLabel.ATTRS{
+36:     key=DEFAULT_NIL,
+37:     key_back=DEFAULT_NIL,
+38:     key_sep=': ',
+39:     option_gap=1,
+40:     label=DEFAULT_NIL,
+41:     label_width=DEFAULT_NIL,
+42:     label_below=false,
+43:     options=DEFAULT_NIL,
+44:     initial_option=1,
+45:     on_change=DEFAULT_NIL,
+46: }
+47: 
+48: function CycleHotkeyLabel:init()
+49:     self:setOption(self.initial_option)
+50: 
+51:     if self.label_below then
+52:         self.option_gap = self.option_gap + (self.key_back and 1 or 0) + (self.key and 2 or 0)
+53:     end
+54: 
+55:     self:setText{
+56:         self.key_back ~= nil and {key=self.key_back, key_sep='', width=0, on_activate=self:callback('cycle', true)} or {},
+57:         {key=self.key, key_sep=self.key_sep, text=self.label, width=self.label_width,
+58:          on_activate=self:callback('cycle')},
+59:         self.label_below and NEWLINE or '',
+60:         {gap=self.option_gap, text=self:callback('getOptionLabel'),
+61:          pen=self:callback('getOptionPen')},
+62:     }
+63: end
+64: 
+65: -- CycleHotkeyLabels are always clickable and therefore should always change
+66: -- color when hovered.
+67: function CycleHotkeyLabel:shouldHover()
+68:     return true
+69: end
+70: 
+71: function CycleHotkeyLabel:cycle(backwards)
+72:     local old_option_idx = self.option_idx
+73:     if self.option_idx == #self.options and not backwards then
+74:         self.option_idx = 1
+75:     elseif self.option_idx == 1 and backwards then
+76:         self.option_idx = #self.options
+77:     else
+78:         self.option_idx = self.option_idx + (not backwards and 1 or -1)
+79:     end
+80:     if self.on_change then
+81:         self.on_change(self:getOptionValue(),
+82:                        self:getOptionValue(old_option_idx))
+83:     end
+84: end
+85: 
+86: function CycleHotkeyLabel:setOption(value_or_index, call_on_change)
+87:     local option_idx = nil
+88:     for i in ipairs(self.options) do
+89:         if value_or_index == self:getOptionValue(i) then
+90:             option_idx = i
+91:             break
+92:         end
+93:     end
+94:     if not option_idx then
+95:         if self.options[value_or_index] then
+96:             option_idx = value_or_index
+97:         end
+98:     end
+99:     if not option_idx then
+100:         option_idx = 1
+101:     end
+102:     local old_option_idx = self.option_idx
+103:     self.option_idx = option_idx
+104:     if call_on_change and self.on_change then
+105:         self.on_change(self:getOptionValue(),
+106:                        self:getOptionValue(old_option_idx))
+107:     end
+108: end
+109: 
+110: local function cyclehotkeylabel_getOptionElem(self, option_idx, key, require_key)
+111:     option_idx = option_idx or self.option_idx
+112:     local option = self.options[option_idx]
+113:     if type(option) == 'table' then
+114:         return option[key]
+115:     end
+116:     return not require_key and option or nil
+117: end
+118: 
+119: function CycleHotkeyLabel:getOptionLabel(option_idx)
+120:     return getval(cyclehotkeylabel_getOptionElem(self, option_idx, 'label'))
+121: end
+122: 
+123: function CycleHotkeyLabel:getOptionValue(option_idx)
+124:     return cyclehotkeylabel_getOptionElem(self, option_idx, 'value')
+125: end
+126: 
+127: function CycleHotkeyLabel:getOptionPen(option_idx)
+128:     local pen = getval(cyclehotkeylabel_getOptionElem(self, option_idx, 'pen', true))
+129:     if type(pen) == 'string' then return nil end
+130:     return pen
+131: end
+132: 
+133: function CycleHotkeyLabel:onInput(keys)
+134:     if CycleHotkeyLabel.super.onInput(self, keys) then
+135:         return true
+136:     elseif keys._MOUSE_L and not is_disabled(self) then
+137:         local x = self:getMousePos()
+138:         if x then
+139:             self:cycle(self.key_back and x == 0)
+140:             return true
+141:         end
+142:     end
+143: end
+144: 
+145: return CycleHotkeyLabel

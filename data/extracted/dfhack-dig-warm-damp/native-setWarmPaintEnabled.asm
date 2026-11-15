@@ -1,0 +1,2 @@
+0x233a0: mov    BYTE PTR [rip+0x3bbcd],dl        # 0x18005ef73
+0x233a6: ret

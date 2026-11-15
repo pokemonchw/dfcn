@@ -1,0 +1,45 @@
+edition	role	site_rva	address	kind	text
+dig	lua-function-registration	0x15d7	0x180048bb8	cstring	getWarmConfigKey
+dig	lua-function-registration	0x1611	0x180048bd0	cstring	getDampConfigKey
+dig	lua-function-registration	0x16a1	0x180048be8	cstring	setWarmPaintEnabled
+dig	lua-function-registration	0x173b	0x180048c00	cstring	getWarmPaintEnabled
+dig	lua-function-registration	0x17d2	0x180048c18	cstring	setDampPaintEnabled
+dig	lua-function-registration	0x1865	0x180048c30	cstring	getDampPaintEnabled
+dig	lua-function-registration	0x18f5	0x180048c48	cstring	addTileWarmDig
+dig	lua-function-registration	0x198f	0x180048c58	cstring	addTileDampDig
+dig	lua-function-registration	0x1a22	0x180048c68	cstring	getCurLevelDesignatedCount
+dig	lua-function-registration	0x1ab9	0x180048c88	cstring	toggleCurLevelWarmDig
+dig	lua-function-registration	0x1b50	0x180048ca0	cstring	toggleCurLevelDampDig
+dig	lua-function-registration	0x1be0	0x180048cb8	cstring	paintScreenWarmDamp
+dig	lua-function-registration	0x1c7a	0x180048cd0	cstring	paintScreenDesignated
+dig	paintScreenWarmDamp	0x212f6	0x180049d28	cstring	entering paintScreenDampWarm aquifer_mode={}, show_damp={}\n
+dig	paintScreenWarmDamp	0x213e8	0x180049d68	cstring	MINING_INDICATORS
+dig	paintScreenWarmDamp	0x213f2	0x180049d78	cstring	S
+dig	paintScreenWarmDamp	0x214a9	0x180049d68	cstring	MINING_INDICATORS
+dig	paintScreenWarmDamp	0x214b3	0x180049d78	cstring	S
+dig	paintScreenWarmDamp	0x217d0	0x180049d80	cstring	skipping hidden tile\n
+dig	paintScreenWarmDamp	0x21a3e	0x180049d98	cstring	scanning map tile at ({},{},{}) screen offset ({},{})\n
+dig	paintScreenWarmDamp	0x21ba9	0x180049dd0	cstring	cannot read tile at offset {}, {}\n
+dig	paintScreenWarmDamp	0x21ed4	0x180049df8	cstring	no need to modify tile; skipping\n
+dig	paintScreenDesignated	0x20b49	0x180049e20	cstring	entering paintScreenDesignated\n
+dig	paintScreenDesignated	0x20d08	0x180049d98	cstring	scanning map tile at ({},{},{}) screen offset ({},{})\n
+dig	paintScreenDesignated	0x210af	0x180049e40	cstring	skipping tile with no designation\n
+dig	paintScreenDesignated	0x2123b	0x18004a2c0	cstring	invalid unordered_map<K, T> key
+dig	registerWarmDampBox	0x22d3	0x180049cf0	cstring	entering registerWarmDampBox\n
+dig	registerWarmDampBox	0x230c	0x180049cd8	cstring	x1
+dig	registerWarmDampBox	0x2361	0x180049cdc	cstring	y1
+dig	registerWarmDampBox	0x23ae	0x180049ce0	cstring	z1
+dig	registerWarmDampBox	0x23fb	0x180049ce4	cstring	x2
+dig	registerWarmDampBox	0x2455	0x180049ce8	cstring	y2
+dig	registerWarmDampBox	0x2479	0x180049cec	cstring	z2
+dig	registerWarmDampBox	0x2594	0x180049d10	cstring	invalid box bounds
+dig	registerWarmDampTile	0x21a8	0x180049cb8	cstring	entering registerWarmDampTile\n
+dig	toggleCurLevelDig	0x2406f	0x18004a310	cstring	unordered_map/set too long
+dig	collectLevelDesignations	0x1e397	0x18004a310	cstring	unordered_map/set too long
+dig	setPluginEnabled	0x1d94d	0x180049138	cstring	enabled
+dig	setPluginEnabled	0x1d954	0x180049140	cstring	disabled
+dig	setPluginEnabled	0x1d978	0x18004914c	cstring	{}\n
+dig	setPluginEnabled	0x1da9f	0x180049138	cstring	enabled
+dig	setPluginEnabled	0x1daa6	0x180049140	cstring	disabled
+dig	setPluginEnabled	0x1dace	0x180049150	cstring	{}, but already {}; no action\n
+dig	onJobCompleted	0x24236	0x180049358	cstring	handing dig job at ({},{},{})\n

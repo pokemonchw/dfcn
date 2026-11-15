@@ -1,0 +1,72 @@
+Installed readable Lua source (not bytecode decompilation): D:\program\steam\steamapps\common\DFHack\hack\lua\gui\widgets\labels\hotkey_label.lua
+
+1: local utils = require('utils')
+2: local Label = require('gui.widgets.labels.label')
+3: 
+4: local getval = utils.getval
+5: 
+6: local function is_disabled(token)
+7:     return (token.disabled ~= nil and getval(token.disabled)) or
+8:            (token.enabled ~= nil and not getval(token.enabled))
+9: end
+10: 
+11: -----------------
+12: -- HotkeyLabel --
+13: -----------------
+14: 
+15: ---@class widgets.HotkeyLabel.attrs: widgets.Label.attrs
+16: ---@field key? string
+17: ---@field key_sep string
+18: ---@field label? string|fun(): string
+19: ---@field on_activate? function
+20: 
+21: ---@class widgets.HotkeyLabel.attrs.partial: widgets.HotkeyLabel.attrs
+22: 
+23: ---@class widgets.HotkeyLabel: widgets.Label, widgets.HotkeyLabel.attrs
+24: ---@field super widgets.Label
+25: ---@field ATTRS widgets.HotkeyLabel.attrs|fun(attributes: widgets.HotkeyLabel.attrs.partial)
+26: ---@overload fun(init_table: widgets.HotkeyLabel.attrs.partial): self
+27: HotkeyLabel = defclass(HotkeyLabel, Label)
+28: 
+29: HotkeyLabel.ATTRS{
+30:     key=DEFAULT_NIL,
+31:     key_sep=': ',
+32:     label=DEFAULT_NIL,
+33:     on_activate=DEFAULT_NIL,
+34: }
+35: 
+36: function HotkeyLabel:init()
+37:     self:initializeLabel()
+38: end
+39: 
+40: function HotkeyLabel:setOnActivate(on_activate)
+41:     self.on_activate = on_activate
+42:     self:initializeLabel()
+43: end
+44: 
+45: function HotkeyLabel:setLabel(label)
+46:     self.label = label
+47:     self:initializeLabel()
+48: end
+49: 
+50: function HotkeyLabel:shouldHover()
+51:     -- When on_activate is set, text should also hover on mouseover
+52:     return self.on_activate or HotkeyLabel.super.shouldHover(self)
+53: end
+54: 
+55: function HotkeyLabel:initializeLabel()
+56:     self:setText{{key=self.key, key_sep=self.key_sep, text=self.label,
+57:                   on_activate=self.on_activate}}
+58: end
+59: 
+60: function HotkeyLabel:onInput(keys)
+61:     if HotkeyLabel.super.onInput(self, keys) then
+62:         return true
+63:     elseif keys._MOUSE_L and self:getMousePos() and self.on_activate
+64:             and not is_disabled(self) then
+65:         self.on_activate()
+66:         return true
+67:     end
+68: end
+69: 
+70: return HotkeyLabel

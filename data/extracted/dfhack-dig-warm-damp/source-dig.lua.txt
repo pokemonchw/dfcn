@@ -1,0 +1,390 @@
+Installed readable Lua source (not bytecode decompilation): D:\program\steam\steamapps\common\DFHack\hack\lua\plugins\dig.lua
+
+1: local _ENV = mkmodule('plugins.dig')
+2: 
+3: local gui = require('gui')
+4: local overlay = require('plugins.overlay')
+5: local widgets = require('gui.widgets')
+6: 
+7: local toolbar_textures = dfhack.textures.loadTileset(dfhack.getHackPath()..'/data/art/damp_dig_toolbar.png', 8, 12, true)
+8: 
+9: local main_if = df.global.game.main_interface
+10: local selection_rect = df.global.selection_rect
+11: 
+12: local BASELINE_OFFSET = 42
+13: 
+14: local function get_l_offset(parent_rect)
+15:     local w = parent_rect.width
+16:     if w <= 177 then
+17:         return BASELINE_OFFSET + w - 114
+18:     end
+19:     return BASELINE_OFFSET + (w+1)//2 - 26
+20: end
+21: 
+22: -- --------------------------------
+23: -- WarmDampDigConfig
+24: --
+25: 
+26: WarmDampDigConfig = defclass(WarmDampDigConfig, widgets.Panel)
+27: WarmDampDigConfig.ATTRS {
+28:     frame={w=26, h=18, b=7},
+29: }
+30: 
+31: function WarmDampDigConfig:init()
+32:     self.dcount = getCurLevelDesignatedCount()
+33:     self.z = df.global.window_z
+34: 
+35:     local panel = widgets.Panel{
+36:         frame_style=gui.FRAME_MEDIUM,
+37:         frame_background=gui.CLEAR_PEN,
+38:         autoarrange_subviews=true,
+39:         autoarrange_gap=1,
+40:         subviews={
+41:             widgets.Label{
+42:                 text={
+43:                     'Mark newly designated', NEWLINE,
+44:                     'tiles for:'
+45:                 },
+46:             },
+47:             widgets.ToggleHotkeyLabel{
+48:                 view_id='damp',
+49:                 key='CUSTOM_CTRL_D',
+50:                 label='Damp dig:',
+51:                 initial_option=false,
+52:                 on_change=setDampPaintEnabled,
+53:             },
+54:             widgets.ToggleHotkeyLabel{
+55:                 view_id='warm',
+56:                 key='CUSTOM_CTRL_W',
+57:                 label='Warm dig:',
+58:                 initial_option=false,
+59:                 on_change=setWarmPaintEnabled,
+60:             },
+61:             widgets.Divider{
+62:                 frame={h=1},
+63:                 frame_style=gui.FRAME_INTERIOR,
+64:                 frame_style_l=false,
+65:                 frame_style_r=false,
+66:             },
+67:             widgets.Label{
+68:                 text={
+69:                     'Mark/unmark ',
+70:                     {text=function() return self.dcount end, pen=COLOR_YELLOW},
+71:                     {text=function() return (' tile%s'):format(self.dcount == 1 and '' or 's') end},
+72:                     NEWLINE,
+73:                     'currently designated on', NEWLINE,
+74:                     'this level for:'
+75:                 },
+76:             },
+77:             widgets.HotkeyLabel{
+78:                 key='CUSTOM_CTRL_N',
+79:                 label='Damp dig',
+80:                 on_activate=toggleCurLevelDampDig,
+81:             },
+82:             widgets.HotkeyLabel{
+83:                 key='CUSTOM_CTRL_M',
+84:                 label='Warm dig',
+85:                 on_activate=toggleCurLevelWarmDig,
+86:             },
+87:         },
+88:     }
+89:     self:addviews{
+90:         panel,
+91:         widgets.HelpButton{command='dig'},
+92:     }
+93: end
+94: 
+95: function WarmDampDigConfig:render(dc)
+96:     self.subviews.damp:setOption(getDampPaintEnabled())
+97:     self.subviews.warm:setOption(getWarmPaintEnabled())
+98:     if df.global.window_z ~= self.z then
+99:         self.dcount = getCurLevelDesignatedCount()
+100:         self.z = df.global.window_z
+101:     end
+102:     WarmDampDigConfig.super.render(self, dc)
+103: end
+104: 
+105: function WarmDampDigConfig:onInput(keys)
+106:     if keys._MOUSE_L and not self:getMouseFramePos() then
+107:         self.parent_view:dismiss()
+108:         return
+109:     end
+110:     return WarmDampDigConfig.super.onInput(self, keys) or
+111:         keys._MOUSE_L and self:getMouseFramePos()
+112: end
+113: 
+114: function WarmDampDigConfig:preUpdateLayout(parent_rect)
+115:     self.frame.l = get_l_offset(parent_rect) - 1
+116: end
+117: 
+118: -- --------------------------------
+119: -- WarmDampDigConfigScreen
+120: --
+121: 
+122: WarmDampDigConfigScreen = defclass(WarmDampDigConfigScreen, gui.ZScreen)
+123: WarmDampDigConfigScreen.ATTRS {
+124:     focus_path='WarmDampDigConfigScreen',
+125:     defocusable=false,
+126:     pass_movement_keys=true,
+127: }
+128: 
+129: function WarmDampDigConfigScreen:init()
+130:     self:addviews{WarmDampDigConfig{}}
+131: end
+132: 
+133: function WarmDampDigConfigScreen:onDismiss()
+134:     view = nil
+135: end
+136: 
+137: local function launch_warm_damp_dig_config()
+138:     view = view and view:raise() or WarmDampDigConfigScreen{}:show()
+139: end
+140: 
+141: -- --------------------------------
+142: -- WarmDampToolbarOverlay
+143: --
+144: 
+145: WarmDampToolbarOverlay = defclass(WarmDampToolbarOverlay, overlay.OverlayWidget)
+146: WarmDampToolbarOverlay.ATTRS{
+147:     desc='Adds widgets to the dig interface to allow uninterrupted digging through warm and damp tiles.',
+148:     default_pos={x=BASELINE_OFFSET, y=-4},
+149:     default_enabled=true,
+150:     viewscreens={
+151:         'dwarfmode/Designate/DIG_DIG',
+152:         'dwarfmode/Designate/DIG_REMOVE_STAIRS_RAMPS',
+153:         'dwarfmode/Designate/DIG_STAIR_UP',
+154:         'dwarfmode/Designate/DIG_STAIR_UPDOWN',
+155:         'dwarfmode/Designate/DIG_STAIR_DOWN',
+156:         'dwarfmode/Designate/DIG_RAMP',
+157:         'dwarfmode/Designate/DIG_CHANNEL',
+158:         'dwarfmode/Designate/DIG_FROM_MARKER',
+159:         'dwarfmode/Designate/DIG_TO_MARKER',
+160:     },
+161:     frame={w=26, h=11},
+162: }
+163: 
+164: function WarmDampToolbarOverlay:init()
+165:     local button_chars = {
+166:         {218, 196, 196, 191},
+167:         {179, '~', '~', 179},
+168:         {192, 196, 196, 217},
+169:     }
+170: 
+171:     self:addviews{
+172:         widgets.Panel{
+173:             frame={t=0, r=0, w=26, h=7},
+174:             frame_style=gui.FRAME_PANEL,
+175:             frame_background=gui.CLEAR_PEN,
+176:             frame_inset={l=1, r=1},
+177:             visible=function() return not not self.subviews.icon:getMousePos() end,
+178:             subviews={
+179:                 widgets.Label{
+180:                     text={
+181:                         'Mark for uninterrupted', NEWLINE,
+182:                         'digging through damp', NEWLINE,
+183:                         'or warm tiles.', NEWLINE,
+184:                         NEWLINE,
+185:                         {text='Hotkey: ', pen=COLOR_GRAY}, {key='CUSTOM_CTRL_D'},
+186:                     },
+187:                 },
+188:             },
+189:         },
+190:         widgets.Panel{
+191:             view_id='icon',
+192:             frame={b=0, r=22, w=4, h=3},
+193:             subviews={
+194:                 widgets.Label{
+195:                     text=widgets.makeButtonLabelText{
+196:                         chars=button_chars,
+197:                         pens=COLOR_GRAY,
+198:                         tileset=toolbar_textures,
+199:                         tileset_offset=1,
+200:                         tileset_stride=8,
+201:                     },
+202:                     on_click=launch_warm_damp_dig_config,
+203:                     visible=function() return not getWarmPaintEnabled() and not getDampPaintEnabled() end,
+204:                 },
+205:                 widgets.Label{
+206:                     text=widgets.makeButtonLabelText{
+207:                         chars=button_chars,
+208:                         pens={
+209:                             {COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE},
+210:                             {COLOR_WHITE, COLOR_RED,   COLOR_GRAY,  COLOR_WHITE},
+211:                             {COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE},
+212:                         },
+213:                         tileset=toolbar_textures,
+214:                         tileset_offset=25,
+215:                         tileset_stride=8,
+216:                     },
+217:                     on_click=launch_warm_damp_dig_config,
+218:                     visible=function() return getWarmPaintEnabled() and not getDampPaintEnabled() end,
+219:                 },
+220:                 widgets.Label{
+221:                     text=widgets.makeButtonLabelText{
+222:                         chars=button_chars,
+223:                         pens={
+224:                             {COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE},
+225:                             {COLOR_WHITE, COLOR_GRAY,  COLOR_BLUE,  COLOR_WHITE},
+226:                             {COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE},
+227:                         },
+228:                         tileset=toolbar_textures,
+229:                         tileset_offset=5,
+230:                         tileset_stride=8,
+231:                     },
+232:                     on_click=launch_warm_damp_dig_config,
+233:                     visible=function() return not getWarmPaintEnabled() and getDampPaintEnabled() end,
+234:                 },
+235:                 widgets.Label{
+236:                     text=widgets.makeButtonLabelText{
+237:                         chars=button_chars,
+238:                         pens={
+239:                             {COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE},
+240:                             {COLOR_WHITE, COLOR_RED,   COLOR_BLUE,  COLOR_WHITE},
+241:                             {COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE},
+242:                         },
+243:                         tileset=toolbar_textures,
+244:                         tileset_offset=29,
+245:                         tileset_stride=8,
+246:                     },
+247:                     on_click=launch_warm_damp_dig_config,
+248:                     visible=function() return getWarmPaintEnabled() and getDampPaintEnabled() end,
+249:                 },
+250:             },
+251:         },
+252:     }
+253: end
+254: 
+255: function WarmDampToolbarOverlay:preUpdateLayout(parent_rect)
+256:     self.frame.w = get_l_offset(parent_rect) - BASELINE_OFFSET + 26
+257: end
+258: 
+259: function WarmDampToolbarOverlay:onInput(keys)
+260:     if keys.CUSTOM_CTRL_D then
+261:         launch_warm_damp_dig_config()
+262:         return true
+263:     end
+264:     return WarmDampToolbarOverlay.super.onInput(self, keys)
+265: end
+266: 
+267: -- --------------------------------
+268: -- WarmDampOverlay
+269: --
+270: 
+271: WarmDampOverlay = defclass(WarmDampOverlay, overlay.OverlayWidget)
+272: WarmDampOverlay.ATTRS{
+273:     desc='Visibility improvements for warm and damp map tiles.',
+274:     viewscreens={
+275:         'dwarfmode/Designate/DIG_DIG',
+276:         'dwarfmode/Designate/DIG_REMOVE_STAIRS_RAMPS',
+277:         'dwarfmode/Designate/DIG_STAIR_UP',
+278:         'dwarfmode/Designate/DIG_STAIR_UPDOWN',
+279:         'dwarfmode/Designate/DIG_STAIR_DOWN',
+280:         'dwarfmode/Designate/DIG_RAMP',
+281:         'dwarfmode/Designate/DIG_CHANNEL',
+282:         'dwarfmode/Designate/DIG_FROM_MARKER',
+283:         'dwarfmode/Designate/DIG_TO_MARKER',
+284:         'dwarfmode/Designate/ERASE',
+285:         'dwarfmode/Designate/SMOOTH',
+286:         'dwarfmode/Designate/ENGRAVE',
+287:         'dwarfmode/Designate/TRACK',
+288:         'dwarfmode/Designate/FORTIFY',
+289:     },
+290:     default_enabled=true,
+291:     frame={w=0, h=0},
+292: }
+293: 
+294: local function get_bounds()
+295:     local pos1 = dfhack.gui.getMousePos(true)
+296:     if not pos1 then return end
+297:     pos1 = xyz2pos(
+298:         math.max(0, math.min(df.global.world.map.x_count-1, pos1.x)),
+299:         math.max(0, math.min(df.global.world.map.y_count-1, pos1.y)),
+300:         math.max(0, math.min(df.global.world.map.z_count-1, pos1.z)))
+301:     local pos2 = xyz2pos(
+302:         math.max(0, math.min(df.global.world.map.x_count-1, selection_rect.start_x)),
+303:         math.max(0, math.min(df.global.world.map.y_count-1, selection_rect.start_y)),
+304:         math.max(0, math.min(df.global.world.map.z_count-1, selection_rect.start_z)))
+305:     local bounds = {
+306:         x1=math.min(pos1.x, pos2.x),
+307:         x2=math.max(pos1.x, pos2.x),
+308:         y1=math.min(pos1.y, pos2.y),
+309:         y2=math.max(pos1.y, pos2.y),
+310:         z1=math.min(pos1.z, pos2.z),
+311:         z2=math.max(pos1.z, pos2.z),
+312:     }
+313: 
+314:     return bounds
+315: end
+316: 
+317: function WarmDampOverlay:onInput(keys)
+318:     if WarmDampOverlay.super.onInput(self, keys) then
+319:         return true
+320:     end
+321:     if main_if.main_designation_doing_rectangles then
+322:         if keys._MOUSE_L and selection_rect.start_z >= 0 then
+323:             local bounds = get_bounds()
+324:             if bounds then
+325:                 if self.pending_fn then
+326:                     self.pending_fn()
+327:                 end
+328:                 self.pending_fn = function() registerWarmDampBox(bounds) end
+329:             end
+330:         end
+331:     else
+332:         if keys._MOUSE_L_DOWN then
+333:             local pos = dfhack.gui.getMousePos()
+334:             if pos then
+335:                 registerWarmDampTile(pos)
+336:             end
+337:         end
+338:     end
+339: end
+340: 
+341: function WarmDampOverlay:onRenderFrame(dc, rect)
+342:     WarmDampOverlay.super.onRenderFrame(self, dc, rect)
+343:     if self.pending_fn then
+344:         self.pending_fn()
+345:         self.pending_fn = nil
+346:     end
+347:     paintScreenWarmDamp()
+348: end
+349: 
+350: -- --------------------------------
+351: -- DesignatedOverlay
+352: --
+353: 
+354: DesignatedOverlay = defclass(DesignatedOverlay, overlay.OverlayWidget)
+355: DesignatedOverlay.ATTRS{
+356:     desc='Makes existing carving designations visible when in ASCII mode.',
+357:     viewscreens={
+358:         'dwarfmode/Designate/DIG_DIG',
+359:         'dwarfmode/Designate/DIG_REMOVE_STAIRS_RAMPS',
+360:         'dwarfmode/Designate/DIG_STAIR_UPDOWN',
+361:         'dwarfmode/Designate/DIG_RAMP',
+362:         'dwarfmode/Designate/DIG_CHANNEL',
+363:         'dwarfmode/Designate/SMOOTH',
+364:         'dwarfmode/Designate/ENGRAVE',
+365:         'dwarfmode/Designate/TRACK',
+366:         'dwarfmode/Designate/FORTIFY',
+367:         'dwarfmode/Designate/ERASE',
+368:         'dwarfmode/dfhack/lua/quickfort',
+369:     },
+370:     default_enabled=true,
+371:     frame={w=0, h=0},
+372: }
+373: 
+374: function DesignatedOverlay:onRenderFrame()
+375:     paintScreenDesignated()
+376: end
+377: 
+378: -- --------------------------------
+379: -- Exported symbols
+380: --
+381: 
+382: OVERLAY_WIDGETS = {
+383:     asciidesignated=DesignatedOverlay,
+384:     warmdamp=WarmDampOverlay,
+385:     warmdamptoolbar=WarmDampToolbarOverlay,
+386: }
+387: 
+388: return _ENV

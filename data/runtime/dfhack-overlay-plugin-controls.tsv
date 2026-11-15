@@ -175,6 +175,23 @@ DFHack GUI Overlay control: Damp dig:|Off|I|1|-1|1	潮湿处挖掘：|关闭	l
 DFHack GUI Overlay control: Warm dig:|On|I|1|-1|1	高温处挖掘：|开启	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/dig.lua:54-60 [WarmDampDigConfig]
 DFHack GUI Overlay control: Warm dig:|Off|I|1|-1|1	高温处挖掘：|关闭	l
+# Source: plugins/dig.lua:41-86,175-181; data/extracted/dfhack-dig-warm-damp/
+# Native count/state/actions are decompiled from the installed dig.plug.dll.
+# Keep the count token untouched (yellow); translate its two noun branches separately.
+# The three count lines read: 本层已指定 N 格 / 为上述地块添加或取消 / 以下挖掘标记：
+DFHack GUI Overlay control: |Mark newly designated|I|0|-1|0	|为新指定的地块	l
+DFHack GUI Overlay control: |tiles for:|I|0|-1|0	|设置挖掘标记：	l
+DFHack GUI Overlay control: Mark/unmark|{d}|I|1|-1|0	本层已指定|{d}	l
+DFHack GUI Overlay control:  tiles||I|0|-1|0	 格|	l
+DFHack GUI Overlay control:  tile||I|0|-1|0	 格|	l
+DFHack GUI Overlay control: |currently designated on|I|0|-1|0	|为上述地块添加或取消	l
+DFHack GUI Overlay control: |this level for:|I|0|-1|0	|以下挖掘标记：	l
+DFHack GUI Overlay control: Damp dig||I|0|-1|1	潮湿挖掘|	l
+DFHack GUI Overlay control: Warm dig||I|0|-1|1	高温挖掘|	l
+DFHack GUI Overlay control: |Mark for uninterrupted|I|0|-1|0	|标记后可持续挖掘	l
+DFHack GUI Overlay control: |digging through damp|I|0|-1|0	|即使遇到潮湿	l
+DFHack GUI Overlay control: |or warm tiles.|I|0|-1|0	|或高温地块也不中断。	l
+DFHack GUI Overlay control: |Hotkey: |I|0|-1|0	|快捷键：	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/logistics.lua:298-306 [logistics.autoretrain]
 DFHack GUI Overlay control: Autoretrain livestock:|On|I|1|-1|1	自动重新驯养牲畜：|开启	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/logistics.lua:298-306 [logistics.autoretrain]

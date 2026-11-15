@@ -1,0 +1,77 @@
+潮湿／高温挖掘面板：原生反编译与界面文本来源
+
+范围
+截图对应 plugins/dig.lua 的 WarmDampDigConfig，以及打开它的
+WarmDampToolbarOverlay。包含面板的全部文案、数量变化、两个状态开关、
+两个当前层批量操作、悬停说明、图标状态及其原生入口。
+DFHack 品牌、? 按钮、快捷键显示、内部命令名保留原样。
+
+二进制来源
+D:/program/steam/steamapps/common/DFHack/hack/plugins/dig.plug.dll
+文件身份和 SHA-256 见 native-image.json。没有读取运行日志或进程内存。
+pe-ghidra-functions.tsv 保存 18 个入口的 RVA 和函数范围。
+native-*.asm 是该文件的原始反汇编。
+pe-dig-ghidra-decompiled.c 及 pe-dig-<role>.c 是 Ghidra 12.1.4 实际输出，
+由 tools/DecompileLoadGameModDialogPE.java 读取函数范围后反编译。
+pe-literals.tsv 保留所选函数引用的字符串（换行写作 \n）。
+Ghidra 的类型推断和全局变量重叠提示保留，角色名是根据注册表和调用用途命名，
+不是声称 DLL 带有这些调试符号。标准库容器和 DFHack 导入函数不重复反编译。
+
+Lua 来源
+source-dig.lua.txt 保存安装目录中的完整可读 Lua 源码，带原始行号。
+source-*_label.lua.txt 与 source-help_button.lua.txt 保存相关控件实现。
+这些文件是现成源码提取，不冒充 Lua 字节码反编译。
+原生 DLL 不含面板英文标题；标题及单复数文本由该 Lua 文件组装。
+
+文本与分支
+dig.lua:41-46：始终显示 Mark newly designated / tiles for:。
+dig.lua:47-60：Damp dig: / Warm dig: 各有 On、Off 两个选项。
+toggle_hotkey_label.lua:10-12：On=true（绿色）、Off=false（继承默认色）。
+dig.lua:69-74：Mark/unmark + 黄色 dcount + " tile" 或 " tiles"。
+只有 dcount == 1 使用 tile；0 和其他数量均使用 tiles。
+其后两行固定为 currently designated on / this level for:。
+dig.lua:77-86：Ctrl+N 的 Damp dig、Ctrl+M 的 Warm dig 始终存在；
+原生操作选择添加或取消标记，界面不改成另一套按钮文字。
+dig.lua:95-102：每次绘制读取两个开关；改变 window_z 时刷新数量。
+dig.lua:105-112：点击面板外关闭；面板内输入沿用控件；没有附加文字。
+dig.lua:114-143：位置由父矩形计算；已打开时 raise，否则新建；关闭清空 view。
+get_l_offset：宽度 <= 177 与 > 177 两个位置分支，文案相同。
+dig.lua:175-181：悬停说明为 Mark for uninterrupted / digging through damp /
+or warm tiles. / 空行 / Hotkey: + 当前 CUSTOM_CTRL_D 键名。
+dig.lua:188-242：warm=false,damp=false；true,false；false,true；true,true
+四种组合分别使用纹理偏移 1、25、5、29；只改变图标颜色和纹理。
+dig.lua:254-260：Ctrl+D 或图标点击打开同一面板。
+工具栏只在源码列出的九种 DIG_* 挖掘／标记上下文显示，文案共用。
+dig.lua:307-340：鼠标位置缺失则无边界；位置夹到地图范围后规范化六个边界。
+dig.lua:343-362：矩形模式排队登记框选范围；绘制前执行；自由绘制登记单格。
+dig.lua:365-373：登记后绘制潮湿／高温地图标记，没有另一套文字。
+附带的 DesignatedOverlay 只绘制已有雕刻指定图案，源码说明已走 help 词表。
+HelpButton 的 ? 跳转 gui/launcher 的 dig 帮助，沿用现有帮助汉化通道。
+
+原生分支
+getWarmPaintEnabled / setWarmPaintEnabled：读写 RVA 0x5ef73。
+getDampPaintEnabled / setDampPaintEnabled：读写 RVA 0x5ef74。
+getCurLevelDesignatedCount：遍历当前 z 层的地图块及每块 16x16 地格；
+按 0x200、0x70 标志和 collectLevelDesignations 收集的任务坐标决定计数。
+两个 toggleCurLevel* 入口将各自的持久标记对象传给 toggleCurLevelDig。
+该公共函数只处理当前层；首次可处理地块的已有标记决定本次统一添加或取消；
+没有可处理地块时无操作，有活动任务时按原生路径处理对应任务。
+registerTile：无效地图块／指定信息返回；不再有指定或任务时清除旧标记；
+其余按两个独立开关添加高温、潮湿标记，可同时启用。
+registerWarmDampBox：读取六个边界，缺少字段走 invalid box bounds；
+该错误已有 DFHack output 词条，不是面板的一条隐藏文案。
+setPluginEnabled：状态不变时不重复注册，开启注册任务完成回调，关闭取消注册。
+onJobCompleted：按任务类型、持久标记、占用状态及邻格继续原生挖掘处理。
+paintScreenWarmDamp / paintScreenDesignated 的图形／ASCII、标记、可见性分支
+只绘制符号、颜色和纹理，不返回英文标题。完整分支见对应反编译输出。
+DebugCategory 的 enabled/disabled、重复启停、任务完成位置等文本以及标准库
+异常字串均保留在反编译材料中；它们是控制台／异常路径，不是本面板控件。
+
+运行数据
+修改 data/runtime/dfhack-overlay-plugin-controls.tsv，复用现有 Overlay control
+匹配与热更新通道，不修改 DLL、Lua 控件、核心代码或加载器。
+新增 13 条文本规则，沿用已有四条开关状态规则。
+数量行按中文语序分成“本层已指定 N 格／为上述地块添加或取消／以下挖掘标记：”。
+数字 token 不替换，保留黄色；tile 与 tiles 各自完整匹配，避免把 s 留在界面。
+动作要求快捷键字段，Damp dig 与 Damp dig: 的开关标题分别匹配。
+没有运行构建、生成器或游戏操作；这里是来源提取说明，不是实机显示结果。
