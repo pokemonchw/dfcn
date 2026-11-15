@@ -5342,6 +5342,7 @@ private:
         const std::string &source, bool typed_only = false) const;
     TranslationResult translate_fortress_activity_display(
         std::string_view source, bool typed_only = false) const;
+    TranslationResult translate_memorial_activity_display(std::string_view source) const;
     std::optional<std::string> translate_fortress_material_use(const std::string &source) const;
     void append_work_order_shop_fields(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;

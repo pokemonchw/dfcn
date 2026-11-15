@@ -1,0 +1,2397 @@
+edition	role	instruction_rva	instruction
+reference	job-object-caption	0xd1ae74	cmp    r8w,ax
+reference	job-object-caption	0xd1aef8	cmp    QWORD PTR [rdx+0x18],0xf
+reference	job-object-caption	0xd1af08	test   ecx,ecx
+reference	job-object-caption	0xd1af16	cmp    ecx,0x1
+reference	job-caption	0xd1b02e	cmp    QWORD PTR [rdx+0x18],r12
+reference	job-caption	0xd1b03e	cmp    eax,0xf7
+reference	job-caption	0xd1b0d3	cmp    ax,cx
+reference	job-caption	0xd1b150	cmp    ax,cx
+reference	job-caption	0xd1b1d5	test   rdi,rdi
+reference	job-caption	0xd1b1e8	cmp    rbx,rdi
+reference	job-caption	0xd1b1f6	cmp    eax,0xe
+reference	job-caption	0xd1b20d	test   rax,rax
+reference	job-caption	0xd1b274	test   rdi,rdi
+reference	job-caption	0xd1b287	cmp    rbx,rdi
+reference	job-caption	0xd1b295	cmp    eax,0x1b
+reference	job-caption	0xd1b2ac	test   rax,rax
+reference	job-caption	0xd1b31d	cmp    ax,cx
+reference	job-caption	0xd1b3a9	cmp    ax,cx
+reference	job-caption	0xd1b468	cmp    ecx,0x1
+reference	job-caption	0xd1b4c1	cmp    ax,cx
+reference	job-caption	0xd1b56a	test   rdi,rdi
+reference	job-caption	0xd1b580	cmp    rbx,rdi
+reference	job-caption	0xd1b58e	cmp    eax,0x14
+reference	job-caption	0xd1b5a5	test   rax,rax
+reference	job-caption	0xd1b61e	test   rdi,rdi
+reference	job-caption	0xd1b631	cmp    rbx,rdi
+reference	job-caption	0xd1b63f	cmp    eax,0x45
+reference	job-caption	0xd1b656	test   rax,rax
+reference	job-caption	0xd1b6bd	test   rdi,rdi
+reference	job-caption	0xd1b6d4	cmp    rbx,rdi
+reference	job-caption	0xd1b6e6	cmp    eax,0x14
+reference	job-caption	0xd1b6fd	test   rax,rax
+reference	job-caption	0xd1b79e	test   rdi,rdi
+reference	job-caption	0xd1b7b5	cmp    rbx,rdi
+reference	job-caption	0xd1b7c7	cmp    eax,0x14
+reference	job-caption	0xd1b7de	test   rax,rax
+reference	job-caption	0xd1b912	test   rdi,rdi
+reference	job-caption	0xd1b930	cmp    rbx,rdi
+reference	job-caption	0xd1b942	cmp    eax,0x14
+reference	job-caption	0xd1b959	test   rax,rax
+reference	job-caption	0xd1b9d0	test   rdi,rdi
+reference	job-caption	0xd1b9e7	cmp    rbx,rdi
+reference	job-caption	0xd1b9f9	cmp    eax,0x14
+reference	job-caption	0xd1ba10	test   rax,rax
+reference	job-caption	0xd1bb02	test   rdi,rdi
+reference	job-caption	0xd1bb20	cmp    rbx,rdi
+reference	job-caption	0xd1bb2e	cmp    eax,0x14
+reference	job-caption	0xd1bb45	test   rax,rax
+reference	job-caption	0xd1bbc7	test   rdi,rdi
+reference	job-caption	0xd1bbe0	cmp    rbx,rdi
+reference	job-caption	0xd1bbf2	cmp    eax,0x1a
+reference	job-caption	0xd1bc09	test   rax,rax
+reference	job-caption	0xd1bc6e	test   rdi,rdi
+reference	job-caption	0xd1bc85	cmp    rbx,rdi
+reference	job-caption	0xd1bc97	cmp    eax,0x3b
+reference	job-caption	0xd1bcae	test   rax,rax
+reference	job-caption	0xd1bd13	test   rdi,rdi
+reference	job-caption	0xd1bd30	cmp    rbx,rdi
+reference	job-caption	0xd1bd42	cmp    eax,0x14
+reference	job-caption	0xd1bd59	test   rax,rax
+reference	job-caption	0xd1bdcd	test   rdi,rdi
+reference	job-caption	0xd1bde4	cmp    rbx,rdi
+reference	job-caption	0xd1bdf6	cmp    eax,0xf
+reference	job-caption	0xd1be0d	test   rax,rax
+reference	job-caption	0xd1beb2	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1bf27	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1bf9c	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c011	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c086	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c0fb	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c170	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c1e5	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c25a	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c2cf	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c302	cmp    r14w,0xffff
+reference	job-caption	0xd1c34f	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c385	cmp    r14w,0xffff
+reference	job-caption	0xd1c3d2	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c402	cmp    r14w,0xffff
+reference	job-caption	0xd1c42a	cmp    r14d,0xffffffff
+reference	job-caption	0xd1c445	test   rdx,rdx
+reference	job-caption	0xd1c45c	cmp    DWORD PTR [rdi+0xe0],r14d
+reference	job-caption	0xd1c473	cmp    ebx,edx
+reference	job-caption	0xd1c489	test   rdi,rdi
+reference	job-caption	0xd1c48e	cmp    BYTE PTR [rdi+0xaa],0x0
+reference	job-caption	0xd1c4e5	test   rax,rax
+reference	job-caption	0xd1c5d2	bt     r14d,0xa
+reference	job-caption	0xd1c5ee	test   r14b,0x4
+reference	job-caption	0xd1c609	test   r14b,0x40
+reference	job-caption	0xd1c641	cmp    r8w,0xffff
+reference	job-caption	0xd1c677	bt     r14d,0xa
+reference	job-caption	0xd1c693	test   r14b,0x4
+reference	job-caption	0xd1c6ae	test   r14b,0x40
+reference	job-caption	0xd1c6e6	cmp    r8w,0xffff
+reference	job-caption	0xd1c71f	bt     r14d,0xa
+reference	job-caption	0xd1c73b	test   r14b,0x4
+reference	job-caption	0xd1c756	test   r14b,0x40
+reference	job-caption	0xd1c78e	cmp    r8w,0xffff
+reference	job-caption	0xd1c814	test   r15b,0x2
+reference	job-caption	0xd1c82d	test   rax,rax
+reference	job-caption	0xd1c832	cmp    DWORD PTR [rax+0x298],0x7
+reference	job-caption	0xd1c842	test   BYTE PTR [rax+0x7],0x10
+reference	job-caption	0xd1c84e	test   al,al
+reference	job-caption	0xd1c893	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c92a	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1c959	test   rax,rax
+reference	job-caption	0xd1c95e	cmp    DWORD PTR [rax+0x298],0x6
+reference	job-caption	0xd1c96e	test   BYTE PTR [rax+0x6],0x2
+reference	job-caption	0xd1c97a	test   al,al
+reference	job-caption	0xd1c9ec	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ca61	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1cad6	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1cb4b	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1cbd2	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1cc47	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ccbc	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1cd31	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1cda6	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ce1b	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ce93	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1cebe	test   rax,rax
+reference	job-caption	0xd1cec3	cmp    DWORD PTR [rax+0x298],0x6
+reference	job-caption	0xd1ced3	test   BYTE PTR [rax+0x6],0x2
+reference	job-caption	0xd1cedf	test   al,al
+reference	job-caption	0xd1cef5	test   bx,bx
+reference	job-caption	0xd1cf11	test   al,al
+reference	job-caption	0xd1cf87	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d001	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d02a	cmp    ax,cx
+reference	job-caption	0xd1d02f	test   r14d,0x1003
+reference	job-caption	0xd1d053	test   al,al
+reference	job-caption	0xd1d0da	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d100	cmp    bx,cx
+reference	job-caption	0xd1d105	test   r14d,0x1003
+reference	job-caption	0xd1d14f	test   rax,rax
+reference	job-caption	0xd1d154	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1d164	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1d170	test   al,al
+reference	job-caption	0xd1d1ad	cmp    DWORD PTR [rip+0xba1084],0x0        # 0x1418be238
+reference	job-caption	0xd1d1b6	cmp    r14d,0xffffffff
+reference	job-caption	0xd1d1c4	cmp    r14d,r9d
+reference	job-caption	0xd1d1e6	cmp    eax,0x1
+reference	job-caption	0xd1d244	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d28c	cmp    QWORD PTR [rdx+0x18],0xf
+reference	job-caption	0xd1d2cc	test   rax,rax
+reference	job-caption	0xd1d2d1	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1d2e1	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1d2ed	test   al,al
+reference	job-caption	0xd1d32a	cmp    DWORD PTR [rip+0xba0f07],0x0        # 0x1418be238
+reference	job-caption	0xd1d333	cmp    r14d,0xffffffff
+reference	job-caption	0xd1d341	cmp    r14d,r9d
+reference	job-caption	0xd1d363	cmp    eax,0x1
+reference	job-caption	0xd1d3c1	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d409	cmp    QWORD PTR [rdx+0x18],0xf
+reference	job-caption	0xd1d437	test   rax,rax
+reference	job-caption	0xd1d43c	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1d44c	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1d458	test   al,al
+reference	job-caption	0xd1d4b1	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d514	test   rax,rax
+reference	job-caption	0xd1d519	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1d529	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1d535	test   al,al
+reference	job-caption	0xd1d58e	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d5ba	test   rax,rax
+reference	job-caption	0xd1d5bf	cmp    DWORD PTR [rax+0x298],0x6
+reference	job-caption	0xd1d5cf	test   BYTE PTR [rax+0x6],0x2
+reference	job-caption	0xd1d5db	test   al,al
+reference	job-caption	0xd1d61e	test   rax,rax
+reference	job-caption	0xd1d623	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1d633	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1d63f	test   al,al
+reference	job-caption	0xd1d698	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d6b1	test   bl,0x2
+reference	job-caption	0xd1d6c8	test   bl,0x8
+reference	job-caption	0xd1d6db	cmp    r14w,cx
+reference	job-caption	0xd1d6e1	test   ebx,0x1015
+reference	job-caption	0xd1d72a	test   rax,rax
+reference	job-caption	0xd1d72f	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1d73f	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1d74b	test   al,al
+reference	job-caption	0xd1d7b9	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d7d2	test   bl,0x10
+reference	job-caption	0xd1d7fc	test   rax,rax
+reference	job-caption	0xd1d801	cmp    DWORD PTR [rax+0x298],0x6
+reference	job-caption	0xd1d811	test   BYTE PTR [rax+0x6],0x2
+reference	job-caption	0xd1d81d	test   al,al
+reference	job-caption	0xd1d864	test   rax,rax
+reference	job-caption	0xd1d869	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1d879	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1d885	test   al,al
+reference	job-caption	0xd1d8f3	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1d91d	cmp    ax,cx
+reference	job-caption	0xd1d922	test   ebx,0x1003
+reference	job-caption	0xd1d92a	test   r14w,r14w
+reference	job-caption	0xd1d947	test   al,al
+reference	job-caption	0xd1d9a0	test   rax,rax
+reference	job-caption	0xd1d9a5	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1d9b5	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1d9c1	test   al,al
+reference	job-caption	0xd1da1a	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1da64	cmp    WORD PTR [rax+0x28],r14w
+reference	job-caption	0xd1dab6	test   r14,r14
+reference	job-caption	0xd1dad2	cmp    QWORD PTR [r14+0x18],0xf
+reference	job-caption	0xd1dae6	cmp    rbx,rdi
+reference	job-caption	0xd1daef	cmp    rbx,0xf
+reference	job-caption	0xd1db0e	cmp    rax,rdi
+reference	job-caption	0xd1db1c	cmp    rax,r8
+reference	job-caption	0xd1db53	cmp    r12,0xf
+reference	job-caption	0xd1db91	test   rax,rax
+reference	job-caption	0xd1db96	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1dba6	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1dbb2	test   al,al
+reference	job-caption	0xd1dc0b	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1dc51	test   rax,rax
+reference	job-caption	0xd1dc56	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1dc66	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1dc72	test   al,al
+reference	job-caption	0xd1dccb	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1dd11	test   rax,rax
+reference	job-caption	0xd1dd16	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1dd26	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1dd32	test   al,al
+reference	job-caption	0xd1dd8b	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ddd1	test   rax,rax
+reference	job-caption	0xd1ddd6	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1dde6	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1ddf2	test   al,al
+reference	job-caption	0xd1de4b	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1de77	test   rax,rax
+reference	job-caption	0xd1de7c	cmp    DWORD PTR [rax+0x298],0x6
+reference	job-caption	0xd1de8c	test   BYTE PTR [rax+0x6],0x2
+reference	job-caption	0xd1de98	test   al,al
+reference	job-caption	0xd1dedb	test   rax,rax
+reference	job-caption	0xd1dee0	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1def0	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1defc	test   al,al
+reference	job-caption	0xd1df55	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1dfca	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e03f	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e0b4	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e0fa	test   rax,rax
+reference	job-caption	0xd1e0ff	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1e10f	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1e11b	test   al,al
+reference	job-caption	0xd1e143	cmp    DWORD PTR [rip+0xba00ee],0x0        # 0x1418be238
+reference	job-caption	0xd1e14c	cmp    r14d,0xffffffff
+reference	job-caption	0xd1e15a	cmp    r14d,r9d
+reference	job-caption	0xd1e17c	cmp    eax,0x1
+reference	job-caption	0xd1e1da	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e23b	test   rax,rax
+reference	job-caption	0xd1e240	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1e250	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1e25c	test   al,al
+reference	job-caption	0xd1e284	cmp    DWORD PTR [rip+0xb9ffad],0x0        # 0x1418be238
+reference	job-caption	0xd1e28d	cmp    r14d,0xffffffff
+reference	job-caption	0xd1e29b	cmp    r14d,r9d
+reference	job-caption	0xd1e2bd	cmp    eax,0x1
+reference	job-caption	0xd1e31b	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e382	cmp    ecx,0x1
+reference	job-caption	0xd1e3e2	test   rax,rax
+reference	job-caption	0xd1e3e7	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1e3f7	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1e403	test   al,al
+reference	job-caption	0xd1e42b	cmp    DWORD PTR [rip+0xb9fe06],0x0        # 0x1418be238
+reference	job-caption	0xd1e434	cmp    r14d,0xffffffff
+reference	job-caption	0xd1e442	cmp    r14d,r9d
+reference	job-caption	0xd1e464	cmp    eax,0x1
+reference	job-caption	0xd1e4c2	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e523	test   rax,rax
+reference	job-caption	0xd1e528	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1e538	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1e544	test   al,al
+reference	job-caption	0xd1e59d	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e600	test   rax,rax
+reference	job-caption	0xd1e605	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1e615	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1e621	test   al,al
+reference	job-caption	0xd1e67a	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e6ef	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e752	test   rax,rax
+reference	job-caption	0xd1e757	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1e767	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1e773	test   al,al
+reference	job-caption	0xd1e7a5	test   r14b,0x20
+reference	job-caption	0xd1e7f8	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e858	test   r14b,0x2
+reference	job-caption	0xd1e8a3	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1e8e6	test   rax,rax
+reference	job-caption	0xd1e8eb	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1e8fb	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1e907	test   al,al
+reference	job-caption	0xd1e948	cmp    QWORD PTR [rdx+0xb8],0x0
+reference	job-caption	0xd1e95d	cmp    QWORD PTR [rdx+0x18],0xf
+reference	job-caption	0xd1e9b5	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ea56	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ea9d	test   r14b,0x2
+reference	job-caption	0xd1eae8	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1eb2c	test   r14b,0x2
+reference	job-caption	0xd1eb77	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ebec	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ec45	cmp    ax,cx
+reference	job-caption	0xd1ec51	test   r14b,0x3
+reference	job-caption	0xd1ecf6	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ed6b	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ede0	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ee55	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1ee9c	test   rdi,rdi
+reference	job-caption	0xd1eeb3	cmp    rbx,rdi
+reference	job-caption	0xd1eec5	cmp    eax,0xf
+reference	job-caption	0xd1eedc	test   rax,rax
+reference	job-caption	0xd1ef62	test   rdi,rdi
+reference	job-caption	0xd1ef80	cmp    rbx,rdi
+reference	job-caption	0xd1ef92	cmp    eax,0xf
+reference	job-caption	0xd1efa9	test   rax,rax
+reference	job-caption	0xd1f02f	test   rdi,rdi
+reference	job-caption	0xd1f046	cmp    rbx,rdi
+reference	job-caption	0xd1f058	cmp    eax,0xf
+reference	job-caption	0xd1f06f	test   rax,rax
+reference	job-caption	0xd1f0e6	cmp    QWORD PTR [r15+0x18],0xf
+reference	job-caption	0xd1f109	test   r14,r14
+reference	job-caption	0xd1f117	cmp    QWORD PTR [rax+0x18],0xf
+reference	job-caption	0xd1f121	cmp    r15,QWORD PTR [rax+0x10]
+reference	job-caption	0xd1f132	test   eax,eax
+reference	job-caption	0xd1f13f	cmp    rax,r14
+reference	job-caption	0xd1f15e	test   rdx,rdx
+reference	job-caption	0xd1f17e	cmp    QWORD PTR [rbp-0x40],0xf
+reference	job-caption	0xd1f1ed	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1f23c	cmp    r14d,0xffffffff
+reference	job-caption	0xd1f246	cmp    r13d,0xffffffff
+reference	job-caption	0xd1f250	cmp    r15d,0xffffffff
+reference	job-caption	0xd1f31d	cmp    r14d,0xffffffff
+reference	job-caption	0xd1f323	cmp    r13d,0xffffffff
+reference	job-caption	0xd1f329	cmp    r15d,0xffffffff
+reference	job-caption	0xd1f3a0	cmp    r14d,0xffffffff
+reference	job-caption	0xd1f3a6	cmp    r13d,0xffffffff
+reference	job-caption	0xd1f3ac	cmp    r15d,0xffffffff
+reference	job-caption	0xd1f42e	test   edi,edi
+reference	job-caption	0xd1f447	cmp    rdi,rax
+reference	job-caption	0xd1f480	cmp    r13d,0xffffffff
+reference	job-caption	0xd1f48a	cmp    r15d,0xffffffff
+reference	job-caption	0xd1f4a3	test   r13d,r13d
+reference	job-caption	0xd1f4bd	cmp    r13,rax
+reference	job-caption	0xd1f4e1	test   r15d,r15d
+reference	job-caption	0xd1f4ff	cmp    r15,rax
+reference	job-caption	0xd1f567	cmp    QWORD PTR [rsp+0x60],0xf
+reference	job-caption	0xd1f5bd	test   rax,rax
+reference	job-caption	0xd1f5c2	cmp    DWORD PTR [rax+0x298],0x5
+reference	job-caption	0xd1f5d2	cmp    BYTE PTR [rax+0x5],0x0
+reference	job-caption	0xd1f5de	test   al,al
+reference	job-caption	0xd1f5e2	test   bx,bx
+reference	job-caption	0xd1f5e7	cmp    edi,0xffffffff
+reference	job-caption	0xd1f609	test   al,0x8
+reference	job-caption	0xd1f616	bt     eax,0xc
+reference	job-caption	0xd1f632	cmp    DWORD PTR [rbp+0x280],0x0
+reference	job-caption	0xd1fb70	cmp    rdx,0xf
+reference	job-caption	0xd1fb81	cmp    rdx,0x1000
+reference	job-caption	0xd1fb99	cmp    rax,0x1f
+reference	memorial-language-name	0xaadafd	cmp    BYTE PTR [rcx+0x72],0x0
+reference	memorial-language-name	0xaadb14	cmp    eax,0xa
+reference	memorial-language-name	0xaadb2b	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-language-name	0xaadb38	cmp    QWORD PTR [rcx+0x30],r12
+reference	memorial-language-name	0xaadb3e	test   r14d,0xfffffffd
+reference	memorial-language-name	0xaadb58	cmp    QWORD PTR [rbx+0x18],0xf
+reference	memorial-language-name	0xaadb97	cmp    QWORD PTR [rbp-0x18],0xf
+reference	memorial-language-name	0xaadbba	test   rbx,rbx
+reference	memorial-language-name	0xaadbc5	cmp    QWORD PTR [rdi+0x30],0x0
+reference	memorial-language-name	0xaadbcc	cmp    r14d,0x1
+reference	memorial-language-name	0xaadbd2	test   r15b,r15b
+reference	memorial-language-name	0xaadbfa	cmp    QWORD PTR [rbx+0x18],0xf
+reference	memorial-language-name	0xaadc1c	cmp    QWORD PTR [rdi+0x30],0x0
+reference	memorial-language-name	0xaadc23	cmp    r14d,0x2
+reference	memorial-language-name	0xaadc36	cmp    eax,0xffffffff
+reference	memorial-language-name	0xaadc3b	cmp    DWORD PTR [rdi+0x44],eax
+reference	memorial-language-name	0xaadc5b	test   eax,eax
+reference	memorial-language-name	0xaadc74	cmp    r8,rax
+reference	memorial-language-name	0xaadc79	test   ecx,ecx
+reference	memorial-language-name	0xaadc92	cmp    rcx,rax
+reference	memorial-language-name	0xaadcaa	cmp    rcx,r8
+reference	memorial-language-name	0xaadcb7	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-language-name	0xaadcd9	test   eax,eax
+reference	memorial-language-name	0xaadcf2	cmp    r8,rax
+reference	memorial-language-name	0xaadcf7	test   ecx,ecx
+reference	memorial-language-name	0xaadd09	cmp    rcx,rax
+reference	memorial-language-name	0xaadd21	cmp    rcx,r8
+reference	memorial-language-name	0xaadd2e	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-language-name	0xaadd41	cmp    QWORD PTR [rbp-0x20],0x0
+reference	memorial-language-name	0xaadd48	test   r15b,r15b
+reference	memorial-language-name	0xaadd6f	cmp    QWORD PTR [rbp-0x18],0xf
+reference	memorial-language-name	0xaadd91	cmp    DWORD PTR [rdi+0x54],0xffffffff
+reference	memorial-language-name	0xaadd97	cmp    DWORD PTR [rdi+0x48],0xffffffff
+reference	memorial-language-name	0xaadd9d	cmp    DWORD PTR [rdi+0x4c],0xffffffff
+reference	memorial-language-name	0xaaddc2	test   eax,eax
+reference	memorial-language-name	0xaadddb	cmp    r8,rax
+reference	memorial-language-name	0xaadde0	test   ecx,ecx
+reference	memorial-language-name	0xaaddf9	cmp    rcx,rax
+reference	memorial-language-name	0xaade11	cmp    rcx,r8
+reference	memorial-language-name	0xaade1e	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-language-name	0xaade40	test   eax,eax
+reference	memorial-language-name	0xaade59	cmp    r8,rax
+reference	memorial-language-name	0xaade5e	test   ecx,ecx
+reference	memorial-language-name	0xaade70	cmp    rcx,rax
+reference	memorial-language-name	0xaade88	cmp    rcx,r8
+reference	memorial-language-name	0xaade95	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-language-name	0xaadeb7	test   eax,eax
+reference	memorial-language-name	0xaaded0	cmp    r8,rax
+reference	memorial-language-name	0xaaded5	test   ecx,ecx
+reference	memorial-language-name	0xaadee7	cmp    rcx,rax
+reference	memorial-language-name	0xaadeff	cmp    rcx,r8
+reference	memorial-language-name	0xaadf0c	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-language-name	0xaadf2e	test   eax,eax
+reference	memorial-language-name	0xaadf47	cmp    r8,rax
+reference	memorial-language-name	0xaadf4c	test   ecx,ecx
+reference	memorial-language-name	0xaadf5e	cmp    rcx,rax
+reference	memorial-language-name	0xaadf76	cmp    rcx,r8
+reference	memorial-language-name	0xaadf83	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-language-name	0xaadf9d	cmp    QWORD PTR [rbp-0x20],0x0
+reference	memorial-language-name	0xaadfa4	test   r15b,r15b
+reference	memorial-language-name	0xaadfcb	cmp    QWORD PTR [rbp-0x18],0xf
+reference	memorial-language-name	0xaadfef	cmp    rax,0xf
+reference	memorial-language-name	0xaae000	cmp    rdx,0x1000
+reference	memorial-language-name	0xaae018	cmp    rax,0x1f
+reference	memorial-language-name	0xaae035	cmp    eax,0xffffffff
+reference	memorial-language-name	0xaae055	test   eax,eax
+reference	memorial-language-name	0xaae072	cmp    r8,rax
+reference	memorial-language-name	0xaae07b	test   ecx,ecx
+reference	memorial-language-name	0xaae091	cmp    rcx,rax
+reference	memorial-language-name	0xaae0a9	cmp    rcx,r8
+reference	memorial-language-name	0xaae0b6	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-language-name	0xaae0c9	cmp    QWORD PTR [rbp-0x20],0x0
+reference	memorial-language-name	0xaae0d0	test   r15b,r15b
+reference	memorial-language-name	0xaae0f7	cmp    QWORD PTR [rbp-0x18],0xf
+reference	memorial-language-name	0xaae111	cmp    rbx,0xf
+reference	memorial-language-name	0xaae122	cmp    rdx,0x1000
+reference	memorial-language-name	0xaae13a	cmp    rax,0x1f
+reference	memorial-unit-identity	0x134957d	cmp    eax,0x1
+reference	memorial-unit-identity	0x13495ad	test   rax,rax
+reference	memorial-unit-identity	0x13495b9	test   rax,rax
+reference	memorial-unit-identity	0x13495c7	test   rcx,rcx
+reference	memorial-unit-identity	0x13495d4	cmp    edx,0xffffffff
+reference	memorial-unit-identity	0x13495ed	test   r14,r14
+reference	memorial-unit-identity	0x134960d	cmp    QWORD PTR [rbx+0x18],0xf
+reference	memorial-unit-identity	0x1349627	cmp    BYTE PTR [r12+0x72],0x0
+reference	memorial-unit-identity	0x1349633	cmp    DWORD PTR [rip+0x574bfa],r13d        # 0x1418be234
+reference	memorial-unit-identity	0x1349652	test   rax,rax
+reference	memorial-unit-identity	0x1349662	test   rdx,rdx
+reference	memorial-unit-identity	0x134968b	test   rax,rax
+reference	memorial-unit-identity	0x134969a	cmp    ecx,edi
+reference	memorial-unit-identity	0x13496a5	test   rdx,rdx
+reference	memorial-unit-identity	0x13496aa	cmp    QWORD PTR [rdx+0x60],0x0
+reference	memorial-unit-identity	0x13496ba	test   rax,rax
+reference	memorial-unit-identity	0x13496bf	test   BYTE PTR [rax+0x4],0x1
+reference	memorial-unit-identity	0x13496c9	test   r14,r14
+reference	memorial-unit-identity	0x13496e9	cmp    BYTE PTR [rbp-0x31],0x0
+reference	memorial-unit-identity	0x13496fa	cmp    eax,edi
+reference	memorial-unit-identity	0x1349712	cmp    r8d,edi
+reference	memorial-unit-identity	0x134971e	test   rax,rax
+reference	memorial-unit-identity	0x1349727	test   rdx,rdx
+reference	memorial-unit-identity	0x1349744	cmp    BYTE PTR [rbp-0x31],0x0
+reference	memorial-unit-identity	0x134974d	cmp    eax,edi
+reference	memorial-unit-identity	0x1349757	test   r14b,r14b
+reference	memorial-unit-identity	0x13497ac	cmp    QWORD PTR [rbp-0x11],0xf
+reference	memorial-unit-identity	0x13497c2	cmp    BYTE PTR [rbp-0x49],0x0
+reference	memorial-unit-identity	0x13497d4	test   ax,ax
+reference	memorial-unit-identity	0x13497f5	cmp    rdx,rax
+reference	memorial-unit-identity	0x1349802	cmp    DWORD PTR [rax+0x1b0],0x8
+reference	memorial-unit-identity	0x1349816	test   BYTE PTR [rax+0x8],0x4
+reference	memorial-unit-identity	0x134982a	cmp    DWORD PTR [rip+0x574a07],0x0        # 0x1418be238
+reference	memorial-unit-identity	0x1349833	test   r14,r14
+reference	memorial-unit-identity	0x1349846	test   rdx,rdx
+reference	memorial-unit-identity	0x1349856	test   rax,rax
+reference	memorial-unit-identity	0x134985b	test   BYTE PTR [rax+0x4],0x8
+reference	memorial-unit-identity	0x134989f	cmp    QWORD PTR [rbp+0xf],0xf
+reference	memorial-unit-identity	0x13498b5	test   r12b,r12b
+reference	memorial-unit-identity	0x13498f2	test   al,al
+reference	memorial-unit-identity	0x13498fa	cmp    BYTE PTR [rsi+0x12e],0x0
+reference	memorial-unit-identity	0x1349920	test   DWORD PTR [rsi+0x118],0x10000000
+reference	memorial-unit-identity	0x1349940	test   DWORD PTR [rsi+0x118],0x10000000
+reference	memorial-unit-identity	0x1349956	cmp    BYTE PTR [rsi+0x12e],0x1
+reference	memorial-unit-identity	0x134997c	test   DWORD PTR [rsi+0x118],0x10000000
+reference	memorial-unit-identity	0x134999c	test   DWORD PTR [rsi+0x118],0x10000000
+reference	memorial-unit-identity	0x13499b2	test   DWORD PTR [rsi+0x110],0x4000000
+reference	memorial-unit-identity	0x13499e2	cmp    eax,0x7
+reference	memorial-unit-identity	0x1349a43	cmp    BYTE PTR [rax+r8*1],0x0
+reference	memorial-unit-identity	0x1349a73	cmp    BYTE PTR [rax+rdi*1],0x0
+reference	memorial-unit-identity	0x1349a93	cmp    BYTE PTR [rax+r8*1],0x0
+reference	memorial-unit-identity	0x1349ac3	cmp    BYTE PTR [rax+rdi*1],0x0
+reference	memorial-unit-identity	0x1349b0d	cmp    rdx,0xf
+reference	memorial-unit-identity	0x1349b1d	cmp    rdx,0x1000
+reference	memorial-unit-identity	0x1349b35	cmp    rax,0x1f
+reference	memorial-unit-identity	0x1349b50	test   rdx,rdx
+reference	memorial-unit-identity	0x1349b55	cmp    QWORD PTR [rdx+0x30],0x0
+reference	memorial-unit-identity	0x1349b66	cmp    rbx,rdx
+reference	memorial-unit-identity	0x1349b6b	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-race-caste	0xabd685	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-race-caste	0xabd6a5	cmp    r9w,0xffff
+reference	memorial-race-caste	0xabd6b0	test   r8b,r8b
+reference	memorial-race-caste	0xabd6b9	test   si,si
+reference	memorial-race-caste	0xabd6d3	cmp    rsi,rax
+reference	memorial-race-caste	0xabd6d8	test   r9w,r9w
+reference	memorial-race-caste	0xabd6ff	cmp    r8,rax
+reference	memorial-race-caste	0xabd710	cmp    rdi,rdx
+reference	memorial-race-caste	0xabd715	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-race-caste	0xabd732	cmp    QWORD PTR [rdi+0x10],0x0
+reference	memorial-race-caste	0xabd74a	test   si,si
+reference	memorial-race-caste	0xabd75d	cmp    rsi,rax
+reference	memorial-race-caste	0xabd762	test   r9w,r9w
+reference	memorial-race-caste	0xabd785	cmp    r8,rax
+reference	memorial-race-caste	0xabd792	cmp    rdi,rdx
+reference	memorial-race-caste	0xabd797	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-race-caste	0xabd7b4	cmp    QWORD PTR [rdi+0x10],0x0
+reference	memorial-race-caste	0xabd7be	test   si,si
+reference	memorial-race-caste	0xabd7d1	cmp    rbx,rax
+reference	memorial-race-caste	0xabd7de	cmp    rdi,rdx
+reference	memorial-race-caste	0xabd7e3	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-race-caste	0xabd80c	test   r8b,r8b
+reference	memorial-race-caste	0xabd811	test   si,si
+reference	memorial-race-caste	0xabd824	cmp    rbx,rax
+reference	memorial-unit-role	0x13482c9	test   rdx,rdx
+reference	memorial-unit-role	0x13482ce	cmp    QWORD PTR [rdx+0x30],0x0
+reference	memorial-unit-role	0x13482e7	cmp    eax,0x1
+reference	memorial-unit-role	0x1348319	test   rax,rax
+reference	memorial-unit-role	0x1348329	test   rcx,rcx
+reference	memorial-unit-role	0x1348336	test   rax,rax
+reference	memorial-unit-role	0x1348342	cmp    edx,0xffffffff
+reference	memorial-unit-role	0x134835a	test   rbx,rbx
+reference	memorial-unit-role	0x134836a	cmp    r11d,0xffffffff
+reference	memorial-unit-role	0x1348389	test   r10,r10
+reference	memorial-unit-role	0x13483ad	cmp    DWORD PTR [rdx+0xe0],r11d
+reference	memorial-unit-role	0x13483c7	cmp    r8d,r10d
+reference	memorial-unit-role	0x13483ce	test   rdx,rdx
+reference	memorial-unit-role	0x13483d3	cmp    DWORD PTR [rdx+0xd0],0x0
+reference	memorial-unit-role	0x13483e3	test   BYTE PTR [rax],0x4
+reference	memorial-unit-role	0x13483fa	test   BYTE PTR [rax],0x8
+reference	memorial-unit-role	0x1348418	cmp    ax,0xffff
+reference	memorial-unit-role	0x134844b	cmp    QWORD PTR [rdi+0xd80],0x0
+reference	memorial-unit-role	0x1348455	cmp    BYTE PTR [rdi+0x838],0x0
+reference	memorial-unit-role	0x1348499	test   rbx,rbx
+reference	memorial-unit-role	0x13484a2	cmp    WORD PTR [rbx+0xac],0xffff
+reference	memorial-unit-role	0x13484cf	test   rax,rax
+reference	memorial-unit-role	0x13484fb	test   rax,rax
+reference	memorial-unit-role	0x1348504	test   r13,r13
+reference	memorial-unit-role	0x1348512	cmp    BYTE PTR [rbp-0x40],0x0
+reference	memorial-unit-role	0x1348518	test   ecx,ecx
+reference	memorial-unit-role	0x134851c	cmp    ecx,0x1
+reference	memorial-unit-role	0x134852a	cmp    QWORD PTR [rax+0x1e8],0x0
+reference	memorial-unit-role	0x1348546	cmp    QWORD PTR [rax+0x1a8],0x0
+reference	memorial-unit-role	0x1348562	test   ecx,ecx
+reference	memorial-unit-role	0x1348566	cmp    ecx,0x1
+reference	memorial-unit-role	0x1348574	cmp    QWORD PTR [rax+0x128],0x0
+reference	memorial-unit-role	0x1348590	cmp    QWORD PTR [rax+0xe8],0x0
+reference	memorial-unit-role	0x13485ac	cmp    rax,rdx
+reference	memorial-unit-role	0x13485b5	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-unit-role	0x13485c8	cmp    WORD PTR [rbx+0x2c8],0x0
+reference	memorial-unit-role	0x134860f	test   rax,rax
+reference	memorial-unit-role	0x134862b	test   ax,ax
+reference	memorial-unit-role	0x1348639	cmp    ax,0x1
+reference	memorial-unit-role	0x134863f	cmp    QWORD PTR [rbp-0x18],0x0
+reference	memorial-unit-role	0x1348665	cmp    r14,0x5
+reference	memorial-unit-role	0x134866f	cmp    r14,0xf
+reference	memorial-unit-role	0x13486aa	cmp    r14,rax
+reference	memorial-unit-role	0x13486bd	cmp    rax,rbx
+reference	memorial-unit-role	0x13486f2	cmp    r14,0xf
+reference	memorial-unit-role	0x1348703	cmp    rdx,0x1000
+reference	memorial-unit-role	0x134871b	cmp    rax,0x1f
+reference	memorial-unit-role	0x134874f	test   rax,rax
+reference	memorial-unit-role	0x1348767	test   ax,ax
+reference	memorial-unit-role	0x1348785	test   rax,rax
+reference	memorial-unit-role	0x13487a1	test   ax,ax
+reference	memorial-unit-role	0x13487af	cmp    r12w,0x1
+reference	memorial-unit-role	0x13487b6	cmp    QWORD PTR [rbp-0x18],0x0
+reference	memorial-unit-role	0x13487dc	cmp    rbx,0x8
+reference	memorial-unit-role	0x13487e6	cmp    rbx,0xf
+reference	memorial-unit-role	0x1348819	cmp    rbx,rax
+reference	memorial-unit-role	0x1348828	cmp    rax,r15
+reference	memorial-unit-role	0x1348858	cmp    rbx,0xf
+reference	memorial-unit-role	0x1348869	cmp    rdx,0x1000
+reference	memorial-unit-role	0x1348881	cmp    rax,0x1f
+reference	memorial-unit-role	0x134889a	cmp    QWORD PTR [rdi+0x90],0x0
+reference	memorial-unit-role	0x13488a4	cmp    BYTE PTR [rbp-0x3f],0x0
+reference	memorial-unit-role	0x13488b5	cmp    rax,rdx
+reference	memorial-unit-role	0x13488be	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-unit-role	0x13488df	cmp    QWORD PTR [rsi+0x18],0xf
+reference	memorial-unit-role	0x13488ff	test   al,al
+reference	memorial-unit-role	0x1348907	cmp    DWORD PTR [rdi+0x3bc],0xffffffff
+reference	memorial-unit-role	0x1348910	test   DWORD PTR [rdi+0x110],0x4000000
+reference	memorial-unit-role	0x1348930	test   rax,0xfffffffffffffff8
+reference	memorial-unit-role	0x1348938	cmp    ecx,0xffffffff
+reference	memorial-unit-role	0x1348949	test   rax,rax
+reference	memorial-unit-role	0x1348952	cmp    DWORD PTR [rax+0x3a8],0x7
+reference	memorial-unit-role	0x1348962	test   BYTE PTR [rax+0x7],0x10
+reference	memorial-unit-role	0x1348984	test   al,al
+reference	memorial-unit-role	0x134898c	test   DWORD PTR [rdi+0x11c],0x1000
+reference	memorial-unit-role	0x13489ad	test   DWORD PTR [rdi+0x118],0x1000
+reference	memorial-unit-role	0x13489b9	cmp    BYTE PTR [rdi+0x838],0x0
+reference	memorial-unit-role	0x13489c2	test   r14b,r14b
+reference	memorial-unit-role	0x13489c7	cmp    QWORD PTR [rsi+0x10],0x0
+reference	memorial-unit-role	0x13489fd	cmp    BYTE PTR [rdi+0x838],0x0
+reference	memorial-unit-role	0x1348a06	cmp    QWORD PTR [rdi+0x850],0x0
+reference	memorial-unit-role	0x1348a10	cmp    QWORD PTR [rdi+0x890],0x0
+reference	memorial-unit-role	0x1348a25	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-unit-role	0x1348a50	cmp    QWORD PTR [rbp-0x10],0xf
+reference	memorial-unit-role	0x1348a66	cmp    BYTE PTR [rdi+0x838],0x0
+reference	memorial-unit-role	0x1348a6f	cmp    QWORD PTR [rdi+0x850],0x0
+reference	memorial-unit-role	0x1348a79	cmp    QWORD PTR [rsi+0x10],0x0
+reference	memorial-unit-role	0x1348aa0	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-unit-role	0x1348ab2	cmp    QWORD PTR [rdi+0xd80],0x0
+reference	memorial-unit-role	0x1348abf	cmp    QWORD PTR [rsi+0x10],0x0
+reference	memorial-unit-role	0x1348aec	cmp    rdx,0xf
+reference	memorial-unit-role	0x1348afc	cmp    rdx,0x1000
+reference	memorial-unit-role	0x1348b14	cmp    rax,0x1f
+reference	memorial-unit-role	0x1348b2c	cmp    rsi,rdx
+reference	memorial-unit-role	0x1348b31	cmp    QWORD PTR [rdx+0x18],0xf
+reference	memorial-choice-refresh	0x8db720	cmp    DWORD PTR [rcx+0x48],0xd3
+reference	memorial-choice-refresh	0x8db749	test   r8,r8
+reference	memorial-choice-refresh	0x8db752	cmp    r11d,0xffffffff
+reference	memorial-choice-refresh	0x8db77d	cmp    DWORD PTR [r10+0xe0],r11d
+reference	memorial-choice-refresh	0x8db796	cmp    edx,r8d
+reference	memorial-choice-refresh	0x8db7a0	test   r10,r10
+reference	memorial-choice-refresh	0x8db7c5	test   r8d,r8d
+reference	memorial-choice-refresh	0x8db7ce	cmp    r11d,0xffffffff
+reference	memorial-choice-refresh	0x8db7ed	cmp    DWORD PTR [rdi+0x130],r11d
+reference	memorial-choice-refresh	0x8db806	cmp    edx,eax
+reference	memorial-choice-refresh	0x8db80c	test   rdi,rdi
+reference	memorial-choice-refresh	0x8db829	test   rax,rax
+reference	memorial-choice-refresh	0x8db840	cmp    rax,rcx
+reference	memorial-choice-refresh	0x8db848	cmp    WORD PTR [r8+0x10c],0x0
+reference	memorial-choice-refresh	0x8db859	cmp    DWORD PTR [r8+0x108],edx
+reference	memorial-choice-refresh	0x8db86a	test   ebx,ebx
+reference	memorial-choice-refresh	0x8db88d	cmp    ebx,0x2
+reference	memorial-choice-refresh	0x8db913	cmp    rdx,0xf
+reference	memorial-choice-refresh	0x8db927	cmp    rdx,0x1000
+reference	memorial-choice-refresh	0x8db943	cmp    rax,0x1f
+reference	memorial-choice-refresh	0x8db9c0	cmp    rdx,0xf
+reference	memorial-choice-refresh	0x8db9d0	cmp    rdx,0x1000
+reference	memorial-choice-refresh	0x8db9e8	cmp    rax,0x1f
+reference	memorial-choice-refresh	0x8dba14	test   bl,bl
+reference	memorial-choice-refresh	0x8dba1c	test   al,al
+reference	memorial-choice-refresh	0x8dba2b	test   rax,rax
+reference	memorial-choice-refresh	0x8dba34	test   BYTE PTR [rax+0x1c],0x1
+reference	memorial-choice-refresh	0x8dba90	cmp    rdx,0xf
+reference	memorial-choice-refresh	0x8dbaa1	cmp    rdx,0x1000
+reference	memorial-choice-refresh	0x8dbabc	cmp    rax,0x1f
+reference	memorial-choice-refresh	0x8dbbdb	test   al,al
+reference	memorial-choice-refresh	0x8dbc3b	cmp    rdx,0xf
+reference	memorial-choice-refresh	0x8dbc4b	cmp    rdx,0x1000
+reference	memorial-choice-refresh	0x8dbc67	cmp    rax,0x1f
+reference	task-choice-construction	0x8df0b5	test   al,al
+reference	task-choice-construction	0x8df0df	cmp    eax,0x17
+reference	task-choice-construction	0x8df108	test   al,al
+reference	task-choice-construction	0x8df20e	test   al,al
+reference	task-choice-construction	0x8df243	test   al,al
+reference	task-choice-construction	0x8df257	test   rax,rax
+reference	task-choice-construction	0x8df2df	test   al,al
+reference	task-choice-construction	0x8df324	test   al,al
+reference	task-choice-construction	0x8df369	test   al,al
+reference	task-choice-construction	0x8df43f	test   al,al
+reference	task-choice-construction	0x8df45f	cmp    edi,0xffffffff
+reference	task-choice-construction	0x8df49f	test   al,al
+reference	task-choice-construction	0x8df4d3	cmp    ax,0x1
+reference	task-choice-construction	0x8df4d9	cmp    dx,bx
+reference	task-choice-construction	0x8df4e2	cmp    ecx,0xffffffff
+reference	task-choice-construction	0x8df52d	cmp    eax,0x9
+reference	task-choice-construction	0x8df54b	cmp    eax,0xb
+reference	task-choice-construction	0x8df5f1	test   al,al
+reference	task-choice-construction	0x8df60b	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8df638	test   al,al
+reference	task-choice-construction	0x8df657	test   r12d,r12d
+reference	task-choice-construction	0x8df670	cmp    ebx,DWORD PTR [rip+0xfe411a]        # 0x1418c3790
+reference	task-choice-construction	0x8df67c	test   r13d,r13d
+reference	task-choice-construction	0x8df68e	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8df6a2	cmp    r15d,DWORD PTR [rip+0xfe40e7]        # 0x1418c3790
+reference	task-choice-construction	0x8df6af	cmp    ebx,r15d
+reference	task-choice-construction	0x8df6b8	test   r13d,r13d
+reference	task-choice-construction	0x8df6c9	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8df6d4	cmp    r13d,0x1
+reference	task-choice-construction	0x8df6e7	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8df6f8	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8df736	cmp    DWORD PTR [rbp+rax*4+0x110],ecx
+reference	task-choice-construction	0x8df742	cmp    rax,0x7
+reference	task-choice-construction	0x8df77c	test   r13d,r13d
+reference	task-choice-construction	0x8df79e	cmp    ebx,DWORD PTR [rax]
+reference	task-choice-construction	0x8df7eb	cmp    r15d,eax
+reference	task-choice-construction	0x8df807	cmp    ebx,r12d
+reference	task-choice-construction	0x8df813	cmp    r13d,0x2
+reference	task-choice-construction	0x8df84f	cmp    dx,ax
+reference	task-choice-construction	0x8df858	cmp    ecx,0xffffffff
+reference	task-choice-construction	0x8df877	test   eax,eax
+reference	task-choice-construction	0x8df887	cmp    ebx,ecx
+reference	task-choice-construction	0x8df893	cmp    r15d,r12d
+reference	task-choice-construction	0x8df8a5	cmp    r15d,ecx
+reference	task-choice-construction	0x8df8b7	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8df8c8	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8df8cd	cmp    r13d,0x1
+reference	task-choice-construction	0x8df8d3	test   r13d,r13d
+reference	task-choice-construction	0x8df910	cmp    DWORD PTR [rbp+rax*4+0x110],ecx
+reference	task-choice-construction	0x8df91c	cmp    rax,0x7
+reference	task-choice-construction	0x8df950	test   r13d,r13d
+reference	task-choice-construction	0x8df971	cmp    DWORD PTR [rax],ebx
+reference	task-choice-construction	0x8df9c4	cmp    r15d,eax
+reference	task-choice-construction	0x8df9e4	cmp    ebx,eax
+reference	task-choice-construction	0x8df9ef	cmp    r13d,0x2
+reference	task-choice-construction	0x8dfa10	cmp    eax,0x2
+reference	task-choice-construction	0x8dfa19	cmp    ecx,0x8
+reference	task-choice-construction	0x8dfa4f	test   eax,eax
+reference	task-choice-construction	0x8dfa73	cmp    ecx,r12d
+reference	task-choice-construction	0x8dfa8c	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8dfaa1	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8dfad5	cmp    eax,r15d
+reference	task-choice-construction	0x8dfada	cmp    eax,edi
+reference	task-choice-construction	0x8dfade	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8dfb05	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfb30	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfb51	cmp    eax,r15d
+reference	task-choice-construction	0x8dfb56	cmp    eax,edi
+reference	task-choice-construction	0x8dfb5a	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8dfb81	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfbac	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfbcd	cmp    eax,r15d
+reference	task-choice-construction	0x8dfbd2	cmp    eax,edi
+reference	task-choice-construction	0x8dfbd6	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8dfbfd	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfc28	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfc49	cmp    eax,r15d
+reference	task-choice-construction	0x8dfc4e	cmp    eax,edi
+reference	task-choice-construction	0x8dfc52	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8dfc79	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfca4	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfcc5	cmp    eax,r15d
+reference	task-choice-construction	0x8dfcca	cmp    eax,edi
+reference	task-choice-construction	0x8dfcce	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8dfcf5	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfd20	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfd41	cmp    eax,r15d
+reference	task-choice-construction	0x8dfd46	cmp    eax,edi
+reference	task-choice-construction	0x8dfd4a	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8dfd71	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfd9c	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfdbd	cmp    eax,r15d
+reference	task-choice-construction	0x8dfdc2	cmp    eax,edi
+reference	task-choice-construction	0x8dfdc6	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8dfded	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfe18	cmp    DWORD PTR [rax],ecx
+reference	task-choice-construction	0x8dfe38	cmp    edi,r12d
+reference	task-choice-construction	0x8dfe52	cmp    ecx,esi
+reference	task-choice-construction	0x8dfe77	test   r12d,r12d
+reference	task-choice-construction	0x8dfe90	cmp    DWORD PTR [rax],0x0
+reference	task-choice-construction	0x8dfe95	cmp    r13d,0x1
+reference	task-choice-construction	0x8dfe9b	test   r13d,r13d
+reference	task-choice-construction	0x8dfec2	test   al,al
+reference	task-choice-construction	0x8dfedf	test   r13d,r13d
+reference	task-choice-construction	0x8dff2d	cmp    ebx,r12d
+reference	task-choice-construction	0x8dff3c	cmp    r13d,0x2
+reference	task-choice-construction	0x8e0033	cmp    eax,0x9
+reference	task-choice-construction	0x8e0051	cmp    eax,0xb
+reference	task-choice-construction	0x8e00fd	test   al,al
+reference	task-choice-construction	0x8e0117	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e0143	test   al,al
+reference	task-choice-construction	0x8e016f	test   r12d,r12d
+reference	task-choice-construction	0x8e018c	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8e01a0	cmp    r15d,edi
+reference	task-choice-construction	0x8e01b5	cmp    DWORD PTR [rax],r14d
+reference	task-choice-construction	0x8e01d8	cmp    ebx,DWORD PTR [rax]
+reference	task-choice-construction	0x8e0216	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e021b	cmp    eax,r15d
+reference	task-choice-construction	0x8e0220	cmp    eax,edi
+reference	task-choice-construction	0x8e0236	cmp    DWORD PTR [rax],ebx
+reference	task-choice-construction	0x8e0252	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e0257	cmp    eax,r15d
+reference	task-choice-construction	0x8e025c	cmp    eax,edi
+reference	task-choice-construction	0x8e0272	cmp    DWORD PTR [rax],ebx
+reference	task-choice-construction	0x8e028e	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e0293	cmp    eax,r15d
+reference	task-choice-construction	0x8e0298	cmp    eax,edi
+reference	task-choice-construction	0x8e02ae	cmp    DWORD PTR [rax],ebx
+reference	task-choice-construction	0x8e02ca	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e02cf	cmp    eax,r15d
+reference	task-choice-construction	0x8e02d4	cmp    eax,edi
+reference	task-choice-construction	0x8e02ea	cmp    DWORD PTR [rax],ebx
+reference	task-choice-construction	0x8e0306	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e030b	cmp    eax,r15d
+reference	task-choice-construction	0x8e0310	cmp    eax,edi
+reference	task-choice-construction	0x8e0326	cmp    DWORD PTR [rax],ebx
+reference	task-choice-construction	0x8e0342	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e0347	cmp    eax,r15d
+reference	task-choice-construction	0x8e034c	cmp    eax,edi
+reference	task-choice-construction	0x8e0362	cmp    DWORD PTR [rax],ebx
+reference	task-choice-construction	0x8e037e	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e0383	cmp    eax,r15d
+reference	task-choice-construction	0x8e0388	cmp    eax,edi
+reference	task-choice-construction	0x8e039e	cmp    DWORD PTR [rax],ebx
+reference	task-choice-construction	0x8e03b8	cmp    edi,r12d
+reference	task-choice-construction	0x8e03c7	cmp    r15d,r12d
+reference	task-choice-construction	0x8e03ea	test   rdi,rdi
+reference	task-choice-construction	0x8e0404	cmp    DWORD PTR [rax+r12*4],0x0
+reference	task-choice-construction	0x8e040b	cmp    r13d,0x1
+reference	task-choice-construction	0x8e0411	test   r13d,r13d
+reference	task-choice-construction	0x8e042c	cmp    ecx,0x9
+reference	task-choice-construction	0x8e043f	cmp    ecx,0xb
+reference	task-choice-construction	0x8e0463	test   r13d,r13d
+reference	task-choice-construction	0x8e04fb	cmp    r12,rdi
+reference	task-choice-construction	0x8e050a	cmp    r13d,0x2
+reference	task-choice-construction	0x8e052a	test   rdi,rdi
+reference	task-choice-construction	0x8e0538	cmp    DWORD PTR [rax+r13*4],0x0
+reference	task-choice-construction	0x8e053f	cmp    r12d,0x1
+reference	task-choice-construction	0x8e0545	test   r12d,r12d
+reference	task-choice-construction	0x8e0560	cmp    eax,0x9
+reference	task-choice-construction	0x8e056d	cmp    eax,0xb
+reference	task-choice-construction	0x8e0587	test   r12d,r12d
+reference	task-choice-construction	0x8e05ed	cmp    eax,0x9
+reference	task-choice-construction	0x8e0601	cmp    eax,0xb
+reference	task-choice-construction	0x8e0648	cmp    r13,rdi
+reference	task-choice-construction	0x8e0657	cmp    r12d,0x2
+reference	task-choice-construction	0x8e06a7	test   al,al
+reference	task-choice-construction	0x8e06e4	test   al,al
+reference	task-choice-construction	0x8e0773	test   al,al
+reference	task-choice-construction	0x8e077b	cmp    DWORD PTR [rip+0xfe2ffa],0x7        # 0x1418c377c
+reference	task-choice-construction	0x8e07f9	test   al,al
+reference	task-choice-construction	0x8e080e	cmp    DWORD PTR [rbx+0xc30],0xffffffff
+reference	task-choice-construction	0x8e081b	test   BYTE PTR [rbx+0x110],0x2
+reference	task-choice-construction	0x8e0824	test   DWORD PTR [rbx+0x118],0x1000
+reference	task-choice-construction	0x8e0846	test   rax,rax
+reference	task-choice-construction	0x8e0851	cmp    DWORD PTR [rax+0xd4],ecx
+reference	task-choice-construction	0x8e085f	cmp    DWORD PTR [rax+0xe0],ecx
+reference	task-choice-construction	0x8e0867	test   BYTE PTR [rax+0xec],0x3
+reference	task-choice-construction	0x8e0886	test   rax,rax
+reference	task-choice-construction	0x8e08cf	test   al,al
+reference	task-choice-construction	0x8e08e0	cmp    WORD PTR [rcx+0x10c],0x0
+reference	task-choice-construction	0x8e08fd	cmp    DWORD PTR [rax+0x108],ecx
+reference	task-choice-construction	0x8e092d	test   al,al
+reference	task-choice-construction	0x8e095d	test   al,al
+reference	task-choice-construction	0x8e096f	test   al,al
+reference	task-choice-construction	0x8e098a	test   rax,rax
+reference	task-choice-construction	0x8e09ae	cmp    DWORD PTR [rbx+0x140],eax
+reference	task-choice-construction	0x8e09f0	test   al,al
+reference	task-choice-construction	0x8e0a46	test   al,al
+reference	task-choice-construction	0x8e0a81	test   rax,rax
+reference	task-choice-construction	0x8e0a9f	test   rax,rax
+reference	task-choice-construction	0x8e0aeb	test   al,al
+reference	task-choice-construction	0x8e0afd	cmp    WORD PTR [rcx+0x10c],r14w
+reference	task-choice-construction	0x8e0b1b	cmp    DWORD PTR [rcx+0x108],eax
+reference	task-choice-construction	0x8e0b4d	test   al,al
+reference	task-choice-construction	0x8e0b6f	test   r13b,r13b
+reference	task-choice-construction	0x8e0b74	test   al,al
+reference	task-choice-construction	0x8e0b7f	test   rcx,rcx
+reference	task-choice-construction	0x8e0bb2	test   al,al
+reference	task-choice-construction	0x8e0be7	test   ebx,ebx
+reference	task-choice-construction	0x8e0beb	cmp    ebx,0x2
+reference	task-choice-construction	0x8e0c31	cmp    BYTE PTR [rsp+0x50],r14b
+reference	task-choice-construction	0x8e0c38	cmp    BYTE PTR [rbp-0x68],r14b
+reference	task-choice-construction	0x8e0c3e	test   r12b,r12b
+reference	task-choice-construction	0x8e0c57	test   al,al
+reference	task-choice-construction	0x8e0c5e	test   ebx,ebx
+reference	task-choice-construction	0x8e0c6a	test   r13,r13
+reference	task-choice-construction	0x8e0c6f	test   ebx,ebx
+reference	task-choice-construction	0x8e0c7b	test   ebx,ebx
+reference	task-choice-construction	0x8e0c8f	test   al,al
+reference	task-choice-construction	0x8e0ca4	test   r13,r13
+reference	task-choice-construction	0x8e0cdc	test   al,al
+reference	task-choice-construction	0x8e0e8e	test   r15,r15
+reference	task-choice-construction	0x8e0ea9	test   rax,rax
+reference	task-choice-construction	0x8e0ee4	test   al,al
+reference	task-choice-construction	0x8e0f18	test   al,al
+reference	task-choice-construction	0x8e0f4b	test   al,al
+reference	task-choice-construction	0x8e0f7e	test   al,al
+reference	task-choice-construction	0x8e0fba	cmp    rdi,rax
+reference	task-choice-construction	0x8e0fd4	test   al,al
+reference	task-choice-construction	0x8e1019	test   al,al
+reference	task-choice-construction	0x8e1029	test   r15,r15
+reference	task-choice-construction	0x8e1048	test   rax,rax
+reference	task-choice-construction	0x8e108d	cmp    r13,rax
+reference	task-choice-construction	0x8e10ad	test   rax,rax
+reference	task-choice-construction	0x8e10f9	cmp    r13,rax
+reference	task-choice-construction	0x8e128f	test   r15,r15
+reference	task-choice-construction	0x8e12ab	test   rax,rax
+reference	task-choice-construction	0x8e12f0	test   al,al
+reference	task-choice-construction	0x8e133c	cmp    r12,rax
+reference	task-choice-construction	0x8e1354	test   rax,rax
+reference	task-choice-construction	0x8e138f	test   al,al
+reference	task-choice-construction	0x8e13c3	test   al,al
+reference	task-choice-construction	0x8e13f6	test   al,al
+reference	task-choice-construction	0x8e1429	test   al,al
+reference	task-choice-construction	0x8e1466	cmp    r15,rax
+reference	task-choice-construction	0x8e14be	test   al,al
+reference	task-choice-construction	0x8e14c6	test   r15,r15
+reference	task-choice-construction	0x8e14e1	test   rax,rax
+reference	task-choice-construction	0x8e151a	test   al,al
+reference	task-choice-construction	0x8e1587	cmp    r15,rax
+reference	task-choice-construction	0x8e15a1	test   al,al
+reference	task-choice-construction	0x8e15f0	test   r15,r15
+reference	task-choice-construction	0x8e1622	test   rax,rax
+reference	task-choice-construction	0x8e1633	test   ebx,ebx
+reference	task-choice-construction	0x8e1657	test   al,al
+reference	task-choice-construction	0x8e1672	test   al,al
+reference	task-choice-construction	0x8e16ab	cmp    r15d,ebx
+reference	task-choice-construction	0x8e16f0	cmp    r12,rax
+reference	task-choice-construction	0x8e170e	test   al,al
+reference	task-choice-construction	0x8e1716	test   r15,r15
+reference	task-choice-construction	0x8e1731	test   rax,rax
+reference	task-choice-construction	0x8e1773	test   al,al
+reference	task-choice-construction	0x8e17b9	cmp    rdi,rax
+reference	task-choice-construction	0x8e17cd	test   rax,rax
+reference	task-choice-construction	0x8e1813	test   al,al
+reference	task-choice-construction	0x8e1859	cmp    rdi,rax
+reference	task-choice-construction	0x8e186d	test   rax,rax
+reference	task-choice-construction	0x8e18b3	test   al,al
+reference	task-choice-construction	0x8e18f9	cmp    rdi,rax
+reference	task-choice-construction	0x8e1940	cmp    DWORD PTR [rax+0xf0],r14d
+reference	task-choice-construction	0x8e1950	test   BYTE PTR [rax],0x20
+reference	task-choice-construction	0x8e19aa	cmp    rdx,rax
+reference	task-choice-construction	0x8e19e0	cmp    DWORD PTR [rax+0xf0],r14d
+reference	task-choice-construction	0x8e19f0	test   BYTE PTR [rax],0x20
+reference	task-choice-construction	0x8e1a38	cmp    rax,rcx
+reference	task-choice-construction	0x8e1a94	cmp    rax,rcx
+reference	task-choice-construction	0x8e1b19	test   al,al
+reference	task-choice-construction	0x8e1b21	cmp    WORD PTR [rip+0xfe1c57],0xffff        # 0x1418c3780
+reference	task-choice-construction	0x8e1b2b	cmp    DWORD PTR [rip+0xfe1c56],0x0        # 0x1418c3788
+reference	task-choice-construction	0x8e1b74	test   r15,r15
+reference	task-choice-construction	0x8e1b8c	test   rax,rax
+reference	task-choice-construction	0x8e1bd0	test   al,al
+reference	task-choice-construction	0x8e1c2f	cmp    rdi,rax
+reference	task-choice-construction	0x8e1c47	test   rax,rax
+reference	task-choice-construction	0x8e1c90	test   al,al
+reference	task-choice-construction	0x8e1cef	cmp    rdi,rax
+reference	task-choice-construction	0x8e1d07	test   rax,rax
+reference	task-choice-construction	0x8e1d50	test   al,al
+reference	task-choice-construction	0x8e1daf	cmp    rdi,rax
+reference	task-choice-construction	0x8e1df0	cmp    DWORD PTR [rax+0xf0],r14d
+reference	task-choice-construction	0x8e1e00	test   BYTE PTR [rax],0x1
+reference	task-choice-construction	0x8e1e73	cmp    rdx,rax
+reference	task-choice-construction	0x8e1eb0	cmp    DWORD PTR [rax+0xf0],r14d
+reference	task-choice-construction	0x8e1ec0	test   BYTE PTR [rax],0x1
+reference	task-choice-construction	0x8e1f21	cmp    rax,rcx
+reference	task-choice-construction	0x8e1feb	test   al,al
+reference	task-choice-construction	0x8e2000	cmp    DWORD PTR [rip+0xfe1775],0xffffffff        # 0x1418c377c
+reference	task-choice-construction	0x8e200d	cmp    cx,0xffff
+reference	task-choice-construction	0x8e2017	test   eax,eax
+reference	task-choice-construction	0x8e20df	test   eax,eax
+reference	task-choice-construction	0x8e2104	test   al,al
+reference	task-choice-construction	0x8e2122	cmp    ebx,edi
+reference	task-choice-construction	0x8e2137	test   r14d,r14d
+reference	task-choice-construction	0x8e2159	cmp    r14d,0x1
+reference	task-choice-construction	0x8e2183	cmp    r14d,0x2
+reference	task-choice-construction	0x8e21ad	cmp    r14d,0x3
+reference	task-choice-construction	0x8e21d4	cmp    r14d,edi
+reference	task-choice-construction	0x8e21fa	cmp    r14d,0x5
+reference	task-choice-construction	0x8e2221	cmp    r14d,0x6
+reference	task-choice-construction	0x8e228c	test   ebx,0xe62
+reference	task-choice-construction	0x8e22ec	test   ebx,0x622
+reference	task-choice-construction	0x8e230d	cmp    r14d,0x7
+reference	task-choice-construction	0x8e2332	cmp    eax,0x2
+reference	task-choice-construction	0x8e236f	test   r15,r15
+reference	task-choice-construction	0x8e238e	test   rax,rax
+reference	task-choice-construction	0x8e23d9	cmp    r13,rax
+reference	task-choice-construction	0x8e23f5	test   rax,rax
+reference	task-choice-construction	0x8e2430	test   al,al
+reference	task-choice-construction	0x8e2464	test   al,al
+reference	task-choice-construction	0x8e2497	test   al,al
+reference	task-choice-construction	0x8e24ca	test   al,al
+reference	task-choice-construction	0x8e2507	cmp    r15,rax
+reference	task-choice-construction	0x8e25c5	cmp    eax,0x20
+reference	task-choice-construction	0x8e25d1	test   r15,r15
+reference	task-choice-construction	0x8e25e5	test   rax,rax
+reference	task-choice-construction	0x8e2634	cmp    r12,rax
+reference	task-choice-construction	0x8e266d	test   r15,r15
+reference	task-choice-construction	0x8e268e	test   rax,rax
+reference	task-choice-construction	0x8e26d0	test   al,al
+reference	task-choice-construction	0x8e2720	cmp    r12,rax
+reference	task-choice-construction	0x8e273c	test   rax,rax
+reference	task-choice-construction	0x8e2780	test   al,al
+reference	task-choice-construction	0x8e27d0	cmp    r12,rax
+reference	task-choice-construction	0x8e27ec	test   rax,rax
+reference	task-choice-construction	0x8e2830	test   al,al
+reference	task-choice-construction	0x8e2880	cmp    r12,rax
+reference	task-choice-construction	0x8e28c0	cmp    DWORD PTR [rax+0xf0],r14d
+reference	task-choice-construction	0x8e28d0	test   BYTE PTR [rax],0x8
+reference	task-choice-construction	0x8e292d	cmp    rdx,rax
+reference	task-choice-construction	0x8e2970	cmp    DWORD PTR [rax+0xf0],r14d
+reference	task-choice-construction	0x8e2980	test   BYTE PTR [rax],0x8
+reference	task-choice-construction	0x8e29cb	cmp    rax,rcx
+reference	task-choice-construction	0x8e2a00	cmp    DWORD PTR [rdx+0xb0],0x2
+reference	task-choice-construction	0x8e2a10	test   BYTE PTR [rax+0x2],0x2
+reference	task-choice-construction	0x8e2a16	test   BYTE PTR [rax+0x2],0x1
+reference	task-choice-construction	0x8e2a1c	test   BYTE PTR [rax+0x1],0x1
+reference	task-choice-construction	0x8e2a69	cmp    rax,rcx
+reference	task-choice-construction	0x8e2b43	cmp    eax,0x40
+reference	task-choice-construction	0x8e2b83	test   r15,r15
+reference	task-choice-construction	0x8e2ba4	test   rax,rax
+reference	task-choice-construction	0x8e2be0	test   al,al
+reference	task-choice-construction	0x8e2c30	cmp    r12,rax
+reference	task-choice-construction	0x8e2c4c	test   rax,rax
+reference	task-choice-construction	0x8e2c90	test   al,al
+reference	task-choice-construction	0x8e2ce0	cmp    r12,rax
+reference	task-choice-construction	0x8e2cfc	test   rax,rax
+reference	task-choice-construction	0x8e2d40	test   al,al
+reference	task-choice-construction	0x8e2d90	cmp    r12,rax
+reference	task-choice-construction	0x8e2dac	test   rax,rax
+reference	task-choice-construction	0x8e2df0	test   al,al
+reference	task-choice-construction	0x8e2e40	cmp    r12,rax
+reference	task-choice-construction	0x8e2e9c	test   al,al
+reference	task-choice-construction	0x8e2ee7	cmp    r12,rax
+reference	task-choice-construction	0x8e2f26	cmp    eax,0x2
+reference	task-choice-construction	0x8e2f32	test   BYTE PTR [rax+0x2],0x2
+reference	task-choice-construction	0x8e2f3a	cmp    eax,0x1
+reference	task-choice-construction	0x8e2f4a	test   cl,cl
+reference	task-choice-construction	0x8e2f4e	test   cl,0x1
+reference	task-choice-construction	0x8e2fa3	cmp    r12,rax
+reference	task-choice-construction	0x8e3067	test   cx,cx
+reference	task-choice-construction	0x8e30bb	test   r15,r15
+reference	task-choice-construction	0x8e30d3	test   rax,rax
+reference	task-choice-construction	0x8e3110	test   al,al
+reference	task-choice-construction	0x8e3154	cmp    rdi,rax
+reference	task-choice-construction	0x8e316b	test   rax,rax
+reference	task-choice-construction	0x8e31af	test   al,al
+reference	task-choice-construction	0x8e31e3	test   al,al
+reference	task-choice-construction	0x8e3216	test   al,al
+reference	task-choice-construction	0x8e3249	test   al,al
+reference	task-choice-construction	0x8e3294	cmp    rdi,rax
+reference	task-choice-construction	0x8e33f2	test   al,al
+reference	task-choice-construction	0x8e3401	cmp    eax,0xffffffff
+reference	task-choice-construction	0x8e3497	cmp    WORD PTR [rip+0xfe02e1],0xffff        # 0x1418c3780
+reference	task-choice-construction	0x8e34a5	cmp    DWORD PTR [rip+0xfe02dc],0x0        # 0x1418c3788
+reference	task-choice-construction	0x8e34d1	cmp    eax,0x6
+reference	task-choice-construction	0x8e34f9	test   eax,eax
+reference	task-choice-construction	0x8e3527	test   al,al
+reference	task-choice-construction	0x8e3546	test   al,al
+reference	task-choice-construction	0x8e3561	test   al,al
+reference	task-choice-construction	0x8e357c	test   al,al
+reference	task-choice-construction	0x8e3594	test   al,al
+reference	task-choice-construction	0x8e35c2	cmp    ebx,r15d
+reference	task-choice-construction	0x8e35e1	test   eax,eax
+reference	task-choice-construction	0x8e3607	test   al,al
+reference	task-choice-construction	0x8e3622	test   al,al
+reference	task-choice-construction	0x8e3650	cmp    ebx,edi
+reference	task-choice-construction	0x8e366a	test   eax,eax
+reference	task-choice-construction	0x8e3689	test   al,al
+reference	task-choice-construction	0x8e36a4	test   al,al
+reference	task-choice-construction	0x8e36d2	cmp    ebx,edi
+reference	task-choice-construction	0x8e36ec	test   eax,eax
+reference	task-choice-construction	0x8e370b	test   al,al
+reference	task-choice-construction	0x8e3726	test   al,al
+reference	task-choice-construction	0x8e3754	cmp    ebx,edi
+reference	task-choice-construction	0x8e376e	test   eax,eax
+reference	task-choice-construction	0x8e3797	test   al,al
+reference	task-choice-construction	0x8e37b2	test   al,al
+reference	task-choice-construction	0x8e37e0	cmp    ebx,edi
+reference	task-choice-construction	0x8e37fa	test   eax,eax
+reference	task-choice-construction	0x8e3819	test   al,al
+reference	task-choice-construction	0x8e3834	test   al,al
+reference	task-choice-construction	0x8e3862	cmp    ebx,edi
+reference	task-choice-construction	0x8e3880	test   eax,eax
+reference	task-choice-construction	0x8e38a7	test   al,al
+reference	task-choice-construction	0x8e38c6	test   al,al
+reference	task-choice-construction	0x8e38ce	test   r15,r15
+reference	task-choice-construction	0x8e38eb	test   rax,rax
+reference	task-choice-construction	0x8e392c	test   al,al
+reference	task-choice-construction	0x8e395f	test   al,al
+reference	task-choice-construction	0x8e398f	test   al,al
+reference	task-choice-construction	0x8e39e1	cmp    r12,rax
+reference	task-choice-construction	0x8e39fe	test   rax,rax
+reference	task-choice-construction	0x8e3a3c	test   al,al
+reference	task-choice-construction	0x8e3a6f	test   al,al
+reference	task-choice-construction	0x8e3a9f	test   al,al
+reference	task-choice-construction	0x8e3af1	cmp    r12,rax
+reference	task-choice-construction	0x8e3b0e	test   rax,rax
+reference	task-choice-construction	0x8e3b4c	test   al,al
+reference	task-choice-construction	0x8e3b7f	test   al,al
+reference	task-choice-construction	0x8e3baf	test   al,al
+reference	task-choice-construction	0x8e3c01	cmp    r12,rax
+reference	task-choice-construction	0x8e3c1e	test   rax,rax
+reference	task-choice-construction	0x8e3c5c	test   al,al
+reference	task-choice-construction	0x8e3c8f	test   al,al
+reference	task-choice-construction	0x8e3cbf	test   al,al
+reference	task-choice-construction	0x8e3d11	cmp    r12,rax
+reference	task-choice-construction	0x8e3d2e	test   rax,rax
+reference	task-choice-construction	0x8e3d6c	test   al,al
+reference	task-choice-construction	0x8e3d9f	test   al,al
+reference	task-choice-construction	0x8e3dcf	test   al,al
+reference	task-choice-construction	0x8e3e21	cmp    r12,rax
+reference	task-choice-construction	0x8e3e63	cmp    r13d,ebx
+reference	task-choice-construction	0x8e3e76	test   rax,rax
+reference	task-choice-construction	0x8e3ec6	cmp    rdi,rax
+reference	task-choice-construction	0x8e3f0b	cmp    eax,0x5
+reference	task-choice-construction	0x8e3f21	test   r15,r15
+reference	task-choice-construction	0x8e3f3d	test   rax,rax
+reference	task-choice-construction	0x8e3f7c	test   al,al
+reference	task-choice-construction	0x8e3fc7	cmp    r13,rax
+reference	task-choice-construction	0x8e3fe4	test   rax,rax
+reference	task-choice-construction	0x8e402c	test   al,al
+reference	task-choice-construction	0x8e4048	cmp    eax,r12d
+reference	task-choice-construction	0x8e4094	cmp    r13,rax
+reference	task-choice-construction	0x8e40b4	test   rax,rax
+reference	task-choice-construction	0x8e40ec	test   al,al
+reference	task-choice-construction	0x8e4137	cmp    r15,rax
+reference	task-choice-construction	0x8e4152	test   r15,r15
+reference	task-choice-construction	0x8e416f	test   rax,rax
+reference	task-choice-construction	0x8e41ac	test   al,al
+reference	task-choice-construction	0x8e4202	cmp    r13,rax
+reference	task-choice-construction	0x8e421d	test   rax,rax
+reference	task-choice-construction	0x8e425c	test   al,al
+reference	task-choice-construction	0x8e42b2	cmp    r13,rax
+reference	task-choice-construction	0x8e42cd	test   rax,rax
+reference	task-choice-construction	0x8e430c	test   al,al
+reference	task-choice-construction	0x8e4362	cmp    r13,rax
+reference	task-choice-construction	0x8e437d	test   rax,rax
+reference	task-choice-construction	0x8e43bc	test   al,al
+reference	task-choice-construction	0x8e4412	cmp    r13,rax
+reference	task-choice-construction	0x8e442d	test   rax,rax
+reference	task-choice-construction	0x8e446c	test   al,al
+reference	task-choice-construction	0x8e44c2	cmp    r13,rax
+reference	task-choice-construction	0x8e453d	cmp    rax,rcx
+reference	task-choice-construction	0x8e485a	test   r15,r15
+reference	task-choice-construction	0x8e4875	test   rax,rax
+reference	task-choice-construction	0x8e48b2	test   al,al
+reference	task-choice-construction	0x8e48fd	cmp    rdi,rax
+reference	task-choice-construction	0x8e4926	test   al,al
+reference	task-choice-construction	0x8e4987	test   r15,r15
+reference	task-choice-construction	0x8e49a6	test   rax,rax
+reference	task-choice-construction	0x8e49ec	test   al,al
+reference	task-choice-construction	0x8e4a3e	cmp    r15,rax
+reference	task-choice-construction	0x8e4a67	test   al,al
+reference	task-choice-construction	0x8e4a9c	test   al,al
+reference	task-choice-construction	0x8e4b30	test   r15,r15
+reference	task-choice-construction	0x8e4b48	test   rax,rax
+reference	task-choice-construction	0x8e4b83	test   al,al
+reference	task-choice-construction	0x8e4bb3	test   al,al
+reference	task-choice-construction	0x8e4bfe	cmp    r15,rax
+reference	task-choice-construction	0x8e4db5	test   al,al
+reference	task-choice-construction	0x8e4de8	test   al,al
+reference	task-choice-construction	0x8e4e3b	test   al,al
+reference	material-caption	0x14eabd0	cmp    QWORD PTR [rdx+0x18],0xf
+reference	material-caption	0x14eabdd	cmp    esi,0xffffffff
+reference	material-caption	0x14eabed	test   al,0x1
+reference	material-caption	0x14eac0d	bt     eax,0xc
+reference	material-caption	0x14eac2f	test   al,0x82
+reference	material-caption	0x14eac37	test   al,0x4
+reference	material-caption	0x14eac57	test   al,0x8
+reference	material-caption	0x14eac77	test   al,0x20
+reference	material-caption	0x14eac97	test   al,0x10
+reference	material-caption	0x14eacb7	test   al,0x40
+reference	material-caption	0x14eacd7	bt     eax,0x8
+reference	material-caption	0x14eacf9	bt     eax,0x9
+reference	material-caption	0x14ead1b	bt     eax,0xa
+reference	material-caption	0x14ead3d	bt     eax,0xb
+reference	material-caption	0x14ead72	test   al,al
+reference	material-caption	0x14eadaa	cmp    ax,cx
+reference	material-caption	0x14eadc8	test   r9,r9
+reference	material-caption	0x14eadd1	cmp    esi,0xffffffff
+reference	material-caption	0x14eadfd	cmp    DWORD PTR [rdi+0xe0],esi
+reference	material-caption	0x14eae15	cmp    edx,r9d
+reference	material-caption	0x14eae1f	test   rdi,rdi
+reference	material-caption	0x14eae28	cmp    BYTE PTR [rdi+0xaa],r14b
+reference	material-caption	0x14eae58	test   rax,rax
+reference	material-caption	0x14eae61	test   rax,rax
+reference	material-caption	0x14eae69	cmp    edx,0xffffffff
+reference	material-caption	0x14eae7a	test   rax,rax
+reference	material-caption	0x14eae8d	test   rax,rax
+reference	material-caption	0x14eae92	cmp    BYTE PTR [rax+0x72],0x0
+reference	material-caption	0x14eaeba	cmp    rbp,0xf
+reference	material-caption	0x14eaeea	cmp    rdx,0xf
+reference	material-caption	0x14eaefb	cmp    rdx,0x1000
+reference	material-caption	0x14eaf13	cmp    rax,0x1f
+reference	material-caption	0x14eaf37	test   rax,rax
+reference	material-caption	0x14eaf3c	cmp    QWORD PTR [rax+0x530],0x0
+reference	material-caption	0x14eaf51	cmp    QWORD PTR [rdx+0x18],0xf
+reference	material-caption	0x14eaf7f	cmp    BYTE PTR [rsp+0xc8],0x0
+reference	material-caption	0x14eaf9a	cmp    QWORD PTR [rdx+0x18],0xf
+reference	queued-job-render-loop	0x187586	test   eax,eax
+reference	queued-job-render-loop	0x18761b	cmp    rax,rcx
+reference	queued-job-render-loop	0x187640	cmp    DWORD PTR [rsp+0x984],0x0
+reference	queued-job-render-loop	0x187666	cmp    DWORD PTR [rsp+0x984],0x3
+reference	queued-job-render-loop	0x187704	cmp    DWORD PTR [rsp+0x988],0x7
+reference	queued-job-render-loop	0x187738	cmp    DWORD PTR [rsp+0xc8],eax
+reference	queued-job-render-loop	0x18774f	cmp    DWORD PTR [rsp+0xc8],eax
+reference	queued-job-render-loop	0x187763	cmp    DWORD PTR [rsp+0xc4],eax
+reference	queued-job-render-loop	0x18777a	cmp    DWORD PTR [rsp+0xc4],eax
+reference	queued-job-render-loop	0x187795	cmp    DWORD PTR [rsp+0x13b4],0x6
+reference	queued-job-render-loop	0x1877d6	test   eax,eax
+reference	queued-job-render-loop	0x18781f	test   eax,eax
+reference	queued-job-render-loop	0x187848	test   eax,eax
+reference	queued-job-render-loop	0x18789d	test   eax,eax
+reference	queued-job-render-loop	0x1878eb	cmp    rax,0x2
+reference	queued-job-render-loop	0x1878f1	cmp    DWORD PTR [rsp+0xc68],0x1
+reference	queued-job-render-loop	0x18793d	test   eax,eax
+reference	queued-job-render-loop	0x187981	test   eax,eax
+reference	queued-job-render-loop	0x1879fa	cmp    DWORD PTR [rsp+0x228],0x3
+reference	queued-job-render-loop	0x187a1a	cmp    eax,DWORD PTR [rsp+0x144]
+reference	queued-job-render-loop	0x187a39	cmp    eax,DWORD PTR [rsp+0x5a4]
+reference	queued-job-render-loop	0x187a63	cmp    DWORD PTR [rsp+0x288],0x3
+reference	queued-job-render-loop	0x187ab5	cmp    DWORD PTR [rsp+0x13b8],0x6
+reference	queued-job-render-loop	0x187af6	test   eax,eax
+reference	queued-job-render-loop	0x187b54	test   eax,eax
+reference	queued-job-render-loop	0x187bb0	test   eax,eax
+reference	queued-job-render-loop	0x187c4a	test   eax,eax
+reference	queued-job-render-loop	0x187cdd	cmp    rax,0x2
+reference	queued-job-render-loop	0x187ce3	cmp    DWORD PTR [rsp+0xc68],0x1
+reference	queued-job-render-loop	0x187d44	test   eax,eax
+reference	queued-job-render-loop	0x187da0	test   eax,eax
+classic	job-object-caption	0xd17c94	cmp    r8w,ax
+classic	job-object-caption	0xd17d18	cmp    QWORD PTR [rdx+0x18],0xf
+classic	job-object-caption	0xd17d28	test   ecx,ecx
+classic	job-object-caption	0xd17d36	cmp    ecx,0x1
+classic	job-caption	0xd17e4e	cmp    QWORD PTR [rdx+0x18],r12
+classic	job-caption	0xd17e5e	cmp    eax,0xf7
+classic	job-caption	0xd17ef3	cmp    ax,cx
+classic	job-caption	0xd17f70	cmp    ax,cx
+classic	job-caption	0xd17ff5	test   rdi,rdi
+classic	job-caption	0xd18008	cmp    rbx,rdi
+classic	job-caption	0xd18016	cmp    eax,0xe
+classic	job-caption	0xd1802d	test   rax,rax
+classic	job-caption	0xd18094	test   rdi,rdi
+classic	job-caption	0xd180a7	cmp    rbx,rdi
+classic	job-caption	0xd180b5	cmp    eax,0x1b
+classic	job-caption	0xd180cc	test   rax,rax
+classic	job-caption	0xd1813d	cmp    ax,cx
+classic	job-caption	0xd181c9	cmp    ax,cx
+classic	job-caption	0xd18288	cmp    ecx,0x1
+classic	job-caption	0xd182e1	cmp    ax,cx
+classic	job-caption	0xd1838a	test   rdi,rdi
+classic	job-caption	0xd183a0	cmp    rbx,rdi
+classic	job-caption	0xd183ae	cmp    eax,0x14
+classic	job-caption	0xd183c5	test   rax,rax
+classic	job-caption	0xd1843e	test   rdi,rdi
+classic	job-caption	0xd18451	cmp    rbx,rdi
+classic	job-caption	0xd1845f	cmp    eax,0x45
+classic	job-caption	0xd18476	test   rax,rax
+classic	job-caption	0xd184dd	test   rdi,rdi
+classic	job-caption	0xd184f4	cmp    rbx,rdi
+classic	job-caption	0xd18506	cmp    eax,0x14
+classic	job-caption	0xd1851d	test   rax,rax
+classic	job-caption	0xd185be	test   rdi,rdi
+classic	job-caption	0xd185d5	cmp    rbx,rdi
+classic	job-caption	0xd185e7	cmp    eax,0x14
+classic	job-caption	0xd185fe	test   rax,rax
+classic	job-caption	0xd18732	test   rdi,rdi
+classic	job-caption	0xd18750	cmp    rbx,rdi
+classic	job-caption	0xd18762	cmp    eax,0x14
+classic	job-caption	0xd18779	test   rax,rax
+classic	job-caption	0xd187f0	test   rdi,rdi
+classic	job-caption	0xd18807	cmp    rbx,rdi
+classic	job-caption	0xd18819	cmp    eax,0x14
+classic	job-caption	0xd18830	test   rax,rax
+classic	job-caption	0xd18922	test   rdi,rdi
+classic	job-caption	0xd18940	cmp    rbx,rdi
+classic	job-caption	0xd1894e	cmp    eax,0x14
+classic	job-caption	0xd18965	test   rax,rax
+classic	job-caption	0xd189e7	test   rdi,rdi
+classic	job-caption	0xd18a00	cmp    rbx,rdi
+classic	job-caption	0xd18a12	cmp    eax,0x1a
+classic	job-caption	0xd18a29	test   rax,rax
+classic	job-caption	0xd18a8e	test   rdi,rdi
+classic	job-caption	0xd18aa5	cmp    rbx,rdi
+classic	job-caption	0xd18ab7	cmp    eax,0x3b
+classic	job-caption	0xd18ace	test   rax,rax
+classic	job-caption	0xd18b33	test   rdi,rdi
+classic	job-caption	0xd18b50	cmp    rbx,rdi
+classic	job-caption	0xd18b62	cmp    eax,0x14
+classic	job-caption	0xd18b79	test   rax,rax
+classic	job-caption	0xd18bed	test   rdi,rdi
+classic	job-caption	0xd18c04	cmp    rbx,rdi
+classic	job-caption	0xd18c16	cmp    eax,0xf
+classic	job-caption	0xd18c2d	test   rax,rax
+classic	job-caption	0xd18cd2	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd18d47	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd18dbc	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd18e31	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd18ea6	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd18f1b	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd18f90	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19005	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1907a	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd190ef	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19122	cmp    r14w,0xffff
+classic	job-caption	0xd1916f	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd191a5	cmp    r14w,0xffff
+classic	job-caption	0xd191f2	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19222	cmp    r14w,0xffff
+classic	job-caption	0xd1924a	cmp    r14d,0xffffffff
+classic	job-caption	0xd19265	test   rdx,rdx
+classic	job-caption	0xd1927c	cmp    DWORD PTR [rdi+0xe0],r14d
+classic	job-caption	0xd19293	cmp    ebx,edx
+classic	job-caption	0xd192a9	test   rdi,rdi
+classic	job-caption	0xd192ae	cmp    BYTE PTR [rdi+0xaa],0x0
+classic	job-caption	0xd19305	test   rax,rax
+classic	job-caption	0xd193f2	bt     r14d,0xa
+classic	job-caption	0xd1940e	test   r14b,0x4
+classic	job-caption	0xd19429	test   r14b,0x40
+classic	job-caption	0xd19461	cmp    r8w,0xffff
+classic	job-caption	0xd19497	bt     r14d,0xa
+classic	job-caption	0xd194b3	test   r14b,0x4
+classic	job-caption	0xd194ce	test   r14b,0x40
+classic	job-caption	0xd19506	cmp    r8w,0xffff
+classic	job-caption	0xd1953f	bt     r14d,0xa
+classic	job-caption	0xd1955b	test   r14b,0x4
+classic	job-caption	0xd19576	test   r14b,0x40
+classic	job-caption	0xd195ae	cmp    r8w,0xffff
+classic	job-caption	0xd19634	test   r15b,0x2
+classic	job-caption	0xd1964d	test   rax,rax
+classic	job-caption	0xd19652	cmp    DWORD PTR [rax+0x298],0x7
+classic	job-caption	0xd19662	test   BYTE PTR [rax+0x7],0x10
+classic	job-caption	0xd1966e	test   al,al
+classic	job-caption	0xd196b3	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1974a	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19779	test   rax,rax
+classic	job-caption	0xd1977e	cmp    DWORD PTR [rax+0x298],0x6
+classic	job-caption	0xd1978e	test   BYTE PTR [rax+0x6],0x2
+classic	job-caption	0xd1979a	test   al,al
+classic	job-caption	0xd1980c	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19881	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd198f6	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1996b	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd199f2	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19a67	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19adc	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19b51	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19bc6	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19c3b	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19cb3	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19cde	test   rax,rax
+classic	job-caption	0xd19ce3	cmp    DWORD PTR [rax+0x298],0x6
+classic	job-caption	0xd19cf3	test   BYTE PTR [rax+0x6],0x2
+classic	job-caption	0xd19cff	test   al,al
+classic	job-caption	0xd19d15	test   bx,bx
+classic	job-caption	0xd19d31	test   al,al
+classic	job-caption	0xd19da7	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19e21	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19e4a	cmp    ax,cx
+classic	job-caption	0xd19e4f	test   r14d,0x1003
+classic	job-caption	0xd19e73	test   al,al
+classic	job-caption	0xd19efa	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd19f20	cmp    bx,cx
+classic	job-caption	0xd19f25	test   r14d,0x1003
+classic	job-caption	0xd19f6f	test   rax,rax
+classic	job-caption	0xd19f74	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd19f84	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd19f90	test   al,al
+classic	job-caption	0xd19fcd	cmp    DWORD PTR [rip+0xb9e248],0x0        # 0x1418b821c
+classic	job-caption	0xd19fd6	cmp    r14d,0xffffffff
+classic	job-caption	0xd19fe4	cmp    r14d,r9d
+classic	job-caption	0xd1a006	cmp    eax,0x1
+classic	job-caption	0xd1a064	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1a0ac	cmp    QWORD PTR [rdx+0x18],0xf
+classic	job-caption	0xd1a0ec	test   rax,rax
+classic	job-caption	0xd1a0f1	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1a101	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1a10d	test   al,al
+classic	job-caption	0xd1a14a	cmp    DWORD PTR [rip+0xb9e0cb],0x0        # 0x1418b821c
+classic	job-caption	0xd1a153	cmp    r14d,0xffffffff
+classic	job-caption	0xd1a161	cmp    r14d,r9d
+classic	job-caption	0xd1a183	cmp    eax,0x1
+classic	job-caption	0xd1a1e1	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1a229	cmp    QWORD PTR [rdx+0x18],0xf
+classic	job-caption	0xd1a257	test   rax,rax
+classic	job-caption	0xd1a25c	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1a26c	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1a278	test   al,al
+classic	job-caption	0xd1a2d1	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1a334	test   rax,rax
+classic	job-caption	0xd1a339	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1a349	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1a355	test   al,al
+classic	job-caption	0xd1a3ae	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1a3da	test   rax,rax
+classic	job-caption	0xd1a3df	cmp    DWORD PTR [rax+0x298],0x6
+classic	job-caption	0xd1a3ef	test   BYTE PTR [rax+0x6],0x2
+classic	job-caption	0xd1a3fb	test   al,al
+classic	job-caption	0xd1a43e	test   rax,rax
+classic	job-caption	0xd1a443	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1a453	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1a45f	test   al,al
+classic	job-caption	0xd1a4b8	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1a4d1	test   bl,0x2
+classic	job-caption	0xd1a4e8	test   bl,0x8
+classic	job-caption	0xd1a4fb	cmp    r14w,cx
+classic	job-caption	0xd1a501	test   ebx,0x1015
+classic	job-caption	0xd1a54a	test   rax,rax
+classic	job-caption	0xd1a54f	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1a55f	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1a56b	test   al,al
+classic	job-caption	0xd1a5d9	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1a5f2	test   bl,0x10
+classic	job-caption	0xd1a61c	test   rax,rax
+classic	job-caption	0xd1a621	cmp    DWORD PTR [rax+0x298],0x6
+classic	job-caption	0xd1a631	test   BYTE PTR [rax+0x6],0x2
+classic	job-caption	0xd1a63d	test   al,al
+classic	job-caption	0xd1a684	test   rax,rax
+classic	job-caption	0xd1a689	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1a699	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1a6a5	test   al,al
+classic	job-caption	0xd1a713	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1a73d	cmp    ax,cx
+classic	job-caption	0xd1a742	test   ebx,0x1003
+classic	job-caption	0xd1a74a	test   r14w,r14w
+classic	job-caption	0xd1a767	test   al,al
+classic	job-caption	0xd1a7c0	test   rax,rax
+classic	job-caption	0xd1a7c5	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1a7d5	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1a7e1	test   al,al
+classic	job-caption	0xd1a83a	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1a884	cmp    WORD PTR [rax+0x28],r14w
+classic	job-caption	0xd1a8d6	test   r14,r14
+classic	job-caption	0xd1a8f2	cmp    QWORD PTR [r14+0x18],0xf
+classic	job-caption	0xd1a906	cmp    rbx,rdi
+classic	job-caption	0xd1a90f	cmp    rbx,0xf
+classic	job-caption	0xd1a92e	cmp    rax,rdi
+classic	job-caption	0xd1a93c	cmp    rax,r8
+classic	job-caption	0xd1a973	cmp    r12,0xf
+classic	job-caption	0xd1a9b1	test   rax,rax
+classic	job-caption	0xd1a9b6	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1a9c6	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1a9d2	test   al,al
+classic	job-caption	0xd1aa2b	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1aa71	test   rax,rax
+classic	job-caption	0xd1aa76	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1aa86	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1aa92	test   al,al
+classic	job-caption	0xd1aaeb	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1ab31	test   rax,rax
+classic	job-caption	0xd1ab36	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1ab46	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1ab52	test   al,al
+classic	job-caption	0xd1abab	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1abf1	test   rax,rax
+classic	job-caption	0xd1abf6	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1ac06	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1ac12	test   al,al
+classic	job-caption	0xd1ac6b	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1ac97	test   rax,rax
+classic	job-caption	0xd1ac9c	cmp    DWORD PTR [rax+0x298],0x6
+classic	job-caption	0xd1acac	test   BYTE PTR [rax+0x6],0x2
+classic	job-caption	0xd1acb8	test   al,al
+classic	job-caption	0xd1acfb	test   rax,rax
+classic	job-caption	0xd1ad00	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1ad10	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1ad1c	test   al,al
+classic	job-caption	0xd1ad75	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1adea	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1ae5f	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1aed4	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1af1a	test   rax,rax
+classic	job-caption	0xd1af1f	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1af2f	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1af3b	test   al,al
+classic	job-caption	0xd1af63	cmp    DWORD PTR [rip+0xb9d2b2],0x0        # 0x1418b821c
+classic	job-caption	0xd1af6c	cmp    r14d,0xffffffff
+classic	job-caption	0xd1af7a	cmp    r14d,r9d
+classic	job-caption	0xd1af9c	cmp    eax,0x1
+classic	job-caption	0xd1affa	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b05b	test   rax,rax
+classic	job-caption	0xd1b060	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1b070	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1b07c	test   al,al
+classic	job-caption	0xd1b0a4	cmp    DWORD PTR [rip+0xb9d171],0x0        # 0x1418b821c
+classic	job-caption	0xd1b0ad	cmp    r14d,0xffffffff
+classic	job-caption	0xd1b0bb	cmp    r14d,r9d
+classic	job-caption	0xd1b0dd	cmp    eax,0x1
+classic	job-caption	0xd1b13b	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b1a2	cmp    ecx,0x1
+classic	job-caption	0xd1b202	test   rax,rax
+classic	job-caption	0xd1b207	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1b217	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1b223	test   al,al
+classic	job-caption	0xd1b24b	cmp    DWORD PTR [rip+0xb9cfca],0x0        # 0x1418b821c
+classic	job-caption	0xd1b254	cmp    r14d,0xffffffff
+classic	job-caption	0xd1b262	cmp    r14d,r9d
+classic	job-caption	0xd1b284	cmp    eax,0x1
+classic	job-caption	0xd1b2e2	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b343	test   rax,rax
+classic	job-caption	0xd1b348	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1b358	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1b364	test   al,al
+classic	job-caption	0xd1b3bd	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b420	test   rax,rax
+classic	job-caption	0xd1b425	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1b435	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1b441	test   al,al
+classic	job-caption	0xd1b49a	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b50f	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b572	test   rax,rax
+classic	job-caption	0xd1b577	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1b587	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1b593	test   al,al
+classic	job-caption	0xd1b5c5	test   r14b,0x20
+classic	job-caption	0xd1b618	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b678	test   r14b,0x2
+classic	job-caption	0xd1b6c3	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b706	test   rax,rax
+classic	job-caption	0xd1b70b	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1b71b	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1b727	test   al,al
+classic	job-caption	0xd1b768	cmp    QWORD PTR [rdx+0xb8],0x0
+classic	job-caption	0xd1b77d	cmp    QWORD PTR [rdx+0x18],0xf
+classic	job-caption	0xd1b7d5	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b876	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b8bd	test   r14b,0x2
+classic	job-caption	0xd1b908	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1b94c	test   r14b,0x2
+classic	job-caption	0xd1b997	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1ba0c	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1ba65	cmp    ax,cx
+classic	job-caption	0xd1ba71	test   r14b,0x3
+classic	job-caption	0xd1bb16	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1bb8b	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1bc00	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1bc75	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1bcbc	test   rdi,rdi
+classic	job-caption	0xd1bcd3	cmp    rbx,rdi
+classic	job-caption	0xd1bce5	cmp    eax,0xf
+classic	job-caption	0xd1bcfc	test   rax,rax
+classic	job-caption	0xd1bd82	test   rdi,rdi
+classic	job-caption	0xd1bda0	cmp    rbx,rdi
+classic	job-caption	0xd1bdb2	cmp    eax,0xf
+classic	job-caption	0xd1bdc9	test   rax,rax
+classic	job-caption	0xd1be4f	test   rdi,rdi
+classic	job-caption	0xd1be66	cmp    rbx,rdi
+classic	job-caption	0xd1be78	cmp    eax,0xf
+classic	job-caption	0xd1be8f	test   rax,rax
+classic	job-caption	0xd1bf06	cmp    QWORD PTR [r15+0x18],0xf
+classic	job-caption	0xd1bf29	test   r14,r14
+classic	job-caption	0xd1bf37	cmp    QWORD PTR [rax+0x18],0xf
+classic	job-caption	0xd1bf41	cmp    r15,QWORD PTR [rax+0x10]
+classic	job-caption	0xd1bf52	test   eax,eax
+classic	job-caption	0xd1bf5f	cmp    rax,r14
+classic	job-caption	0xd1bf7e	test   rdx,rdx
+classic	job-caption	0xd1bf9e	cmp    QWORD PTR [rbp-0x40],0xf
+classic	job-caption	0xd1c00d	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1c05c	cmp    r14d,0xffffffff
+classic	job-caption	0xd1c066	cmp    r13d,0xffffffff
+classic	job-caption	0xd1c070	cmp    r15d,0xffffffff
+classic	job-caption	0xd1c13d	cmp    r14d,0xffffffff
+classic	job-caption	0xd1c143	cmp    r13d,0xffffffff
+classic	job-caption	0xd1c149	cmp    r15d,0xffffffff
+classic	job-caption	0xd1c1c0	cmp    r14d,0xffffffff
+classic	job-caption	0xd1c1c6	cmp    r13d,0xffffffff
+classic	job-caption	0xd1c1cc	cmp    r15d,0xffffffff
+classic	job-caption	0xd1c24e	test   edi,edi
+classic	job-caption	0xd1c267	cmp    rdi,rax
+classic	job-caption	0xd1c2a0	cmp    r13d,0xffffffff
+classic	job-caption	0xd1c2aa	cmp    r15d,0xffffffff
+classic	job-caption	0xd1c2c3	test   r13d,r13d
+classic	job-caption	0xd1c2dd	cmp    r13,rax
+classic	job-caption	0xd1c301	test   r15d,r15d
+classic	job-caption	0xd1c31f	cmp    r15,rax
+classic	job-caption	0xd1c387	cmp    QWORD PTR [rsp+0x60],0xf
+classic	job-caption	0xd1c3dd	test   rax,rax
+classic	job-caption	0xd1c3e2	cmp    DWORD PTR [rax+0x298],0x5
+classic	job-caption	0xd1c3f2	cmp    BYTE PTR [rax+0x5],0x0
+classic	job-caption	0xd1c3fe	test   al,al
+classic	job-caption	0xd1c402	test   bx,bx
+classic	job-caption	0xd1c407	cmp    edi,0xffffffff
+classic	job-caption	0xd1c429	test   al,0x8
+classic	job-caption	0xd1c436	bt     eax,0xc
+classic	job-caption	0xd1c452	cmp    DWORD PTR [rbp+0x280],0x0
+classic	job-caption	0xd1c990	cmp    rdx,0xf
+classic	job-caption	0xd1c9a1	cmp    rdx,0x1000
+classic	job-caption	0xd1c9b9	cmp    rax,0x1f
+classic	memorial-language-name	0xaaa95d	cmp    BYTE PTR [rcx+0x72],0x0
+classic	memorial-language-name	0xaaa974	cmp    eax,0xa
+classic	memorial-language-name	0xaaa98b	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-language-name	0xaaa998	cmp    QWORD PTR [rcx+0x30],r12
+classic	memorial-language-name	0xaaa99e	test   r14d,0xfffffffd
+classic	memorial-language-name	0xaaa9b8	cmp    QWORD PTR [rbx+0x18],0xf
+classic	memorial-language-name	0xaaa9f7	cmp    QWORD PTR [rbp-0x18],0xf
+classic	memorial-language-name	0xaaaa1a	test   rbx,rbx
+classic	memorial-language-name	0xaaaa25	cmp    QWORD PTR [rdi+0x30],0x0
+classic	memorial-language-name	0xaaaa2c	cmp    r14d,0x1
+classic	memorial-language-name	0xaaaa32	test   r15b,r15b
+classic	memorial-language-name	0xaaaa5a	cmp    QWORD PTR [rbx+0x18],0xf
+classic	memorial-language-name	0xaaaa7c	cmp    QWORD PTR [rdi+0x30],0x0
+classic	memorial-language-name	0xaaaa83	cmp    r14d,0x2
+classic	memorial-language-name	0xaaaa96	cmp    eax,0xffffffff
+classic	memorial-language-name	0xaaaa9b	cmp    DWORD PTR [rdi+0x44],eax
+classic	memorial-language-name	0xaaaabb	test   eax,eax
+classic	memorial-language-name	0xaaaad4	cmp    r8,rax
+classic	memorial-language-name	0xaaaad9	test   ecx,ecx
+classic	memorial-language-name	0xaaaaf2	cmp    rcx,rax
+classic	memorial-language-name	0xaaab0a	cmp    rcx,r8
+classic	memorial-language-name	0xaaab17	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-language-name	0xaaab39	test   eax,eax
+classic	memorial-language-name	0xaaab52	cmp    r8,rax
+classic	memorial-language-name	0xaaab57	test   ecx,ecx
+classic	memorial-language-name	0xaaab69	cmp    rcx,rax
+classic	memorial-language-name	0xaaab81	cmp    rcx,r8
+classic	memorial-language-name	0xaaab8e	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-language-name	0xaaaba1	cmp    QWORD PTR [rbp-0x20],0x0
+classic	memorial-language-name	0xaaaba8	test   r15b,r15b
+classic	memorial-language-name	0xaaabcf	cmp    QWORD PTR [rbp-0x18],0xf
+classic	memorial-language-name	0xaaabf1	cmp    DWORD PTR [rdi+0x54],0xffffffff
+classic	memorial-language-name	0xaaabf7	cmp    DWORD PTR [rdi+0x48],0xffffffff
+classic	memorial-language-name	0xaaabfd	cmp    DWORD PTR [rdi+0x4c],0xffffffff
+classic	memorial-language-name	0xaaac22	test   eax,eax
+classic	memorial-language-name	0xaaac3b	cmp    r8,rax
+classic	memorial-language-name	0xaaac40	test   ecx,ecx
+classic	memorial-language-name	0xaaac59	cmp    rcx,rax
+classic	memorial-language-name	0xaaac71	cmp    rcx,r8
+classic	memorial-language-name	0xaaac7e	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-language-name	0xaaaca0	test   eax,eax
+classic	memorial-language-name	0xaaacb9	cmp    r8,rax
+classic	memorial-language-name	0xaaacbe	test   ecx,ecx
+classic	memorial-language-name	0xaaacd0	cmp    rcx,rax
+classic	memorial-language-name	0xaaace8	cmp    rcx,r8
+classic	memorial-language-name	0xaaacf5	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-language-name	0xaaad17	test   eax,eax
+classic	memorial-language-name	0xaaad30	cmp    r8,rax
+classic	memorial-language-name	0xaaad35	test   ecx,ecx
+classic	memorial-language-name	0xaaad47	cmp    rcx,rax
+classic	memorial-language-name	0xaaad5f	cmp    rcx,r8
+classic	memorial-language-name	0xaaad6c	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-language-name	0xaaad8e	test   eax,eax
+classic	memorial-language-name	0xaaada7	cmp    r8,rax
+classic	memorial-language-name	0xaaadac	test   ecx,ecx
+classic	memorial-language-name	0xaaadbe	cmp    rcx,rax
+classic	memorial-language-name	0xaaadd6	cmp    rcx,r8
+classic	memorial-language-name	0xaaade3	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-language-name	0xaaadfd	cmp    QWORD PTR [rbp-0x20],0x0
+classic	memorial-language-name	0xaaae04	test   r15b,r15b
+classic	memorial-language-name	0xaaae2b	cmp    QWORD PTR [rbp-0x18],0xf
+classic	memorial-language-name	0xaaae4f	cmp    rax,0xf
+classic	memorial-language-name	0xaaae60	cmp    rdx,0x1000
+classic	memorial-language-name	0xaaae78	cmp    rax,0x1f
+classic	memorial-language-name	0xaaae95	cmp    eax,0xffffffff
+classic	memorial-language-name	0xaaaeb5	test   eax,eax
+classic	memorial-language-name	0xaaaed2	cmp    r8,rax
+classic	memorial-language-name	0xaaaedb	test   ecx,ecx
+classic	memorial-language-name	0xaaaef1	cmp    rcx,rax
+classic	memorial-language-name	0xaaaf09	cmp    rcx,r8
+classic	memorial-language-name	0xaaaf16	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-language-name	0xaaaf29	cmp    QWORD PTR [rbp-0x20],0x0
+classic	memorial-language-name	0xaaaf30	test   r15b,r15b
+classic	memorial-language-name	0xaaaf57	cmp    QWORD PTR [rbp-0x18],0xf
+classic	memorial-language-name	0xaaaf71	cmp    rbx,0xf
+classic	memorial-language-name	0xaaaf82	cmp    rdx,0x1000
+classic	memorial-language-name	0xaaaf9a	cmp    rax,0x1f
+classic	memorial-unit-identity	0x13442cd	cmp    eax,0x1
+classic	memorial-unit-identity	0x13442fd	test   rax,rax
+classic	memorial-unit-identity	0x1344309	test   rax,rax
+classic	memorial-unit-identity	0x1344317	test   rcx,rcx
+classic	memorial-unit-identity	0x1344324	cmp    edx,0xffffffff
+classic	memorial-unit-identity	0x134433d	test   r14,r14
+classic	memorial-unit-identity	0x134435d	cmp    QWORD PTR [rbx+0x18],0xf
+classic	memorial-unit-identity	0x1344377	cmp    BYTE PTR [r12+0x72],0x0
+classic	memorial-unit-identity	0x1344383	cmp    DWORD PTR [rip+0x573e8e],r13d        # 0x1418b8218
+classic	memorial-unit-identity	0x13443a2	test   rax,rax
+classic	memorial-unit-identity	0x13443b2	test   rdx,rdx
+classic	memorial-unit-identity	0x13443db	test   rax,rax
+classic	memorial-unit-identity	0x13443ea	cmp    ecx,edi
+classic	memorial-unit-identity	0x13443f5	test   rdx,rdx
+classic	memorial-unit-identity	0x13443fa	cmp    QWORD PTR [rdx+0x60],0x0
+classic	memorial-unit-identity	0x134440a	test   rax,rax
+classic	memorial-unit-identity	0x134440f	test   BYTE PTR [rax+0x4],0x1
+classic	memorial-unit-identity	0x1344419	test   r14,r14
+classic	memorial-unit-identity	0x1344439	cmp    BYTE PTR [rbp-0x31],0x0
+classic	memorial-unit-identity	0x134444a	cmp    eax,edi
+classic	memorial-unit-identity	0x1344462	cmp    r8d,edi
+classic	memorial-unit-identity	0x134446e	test   rax,rax
+classic	memorial-unit-identity	0x1344477	test   rdx,rdx
+classic	memorial-unit-identity	0x1344494	cmp    BYTE PTR [rbp-0x31],0x0
+classic	memorial-unit-identity	0x134449d	cmp    eax,edi
+classic	memorial-unit-identity	0x13444a7	test   r14b,r14b
+classic	memorial-unit-identity	0x13444fc	cmp    QWORD PTR [rbp-0x11],0xf
+classic	memorial-unit-identity	0x1344512	cmp    BYTE PTR [rbp-0x49],0x0
+classic	memorial-unit-identity	0x1344524	test   ax,ax
+classic	memorial-unit-identity	0x1344545	cmp    rdx,rax
+classic	memorial-unit-identity	0x1344552	cmp    DWORD PTR [rax+0x1b0],0x8
+classic	memorial-unit-identity	0x1344566	test   BYTE PTR [rax+0x8],0x4
+classic	memorial-unit-identity	0x134457a	cmp    DWORD PTR [rip+0x573c9b],0x0        # 0x1418b821c
+classic	memorial-unit-identity	0x1344583	test   r14,r14
+classic	memorial-unit-identity	0x1344596	test   rdx,rdx
+classic	memorial-unit-identity	0x13445a6	test   rax,rax
+classic	memorial-unit-identity	0x13445ab	test   BYTE PTR [rax+0x4],0x8
+classic	memorial-unit-identity	0x13445ef	cmp    QWORD PTR [rbp+0xf],0xf
+classic	memorial-unit-identity	0x1344605	test   r12b,r12b
+classic	memorial-unit-identity	0x1344642	test   al,al
+classic	memorial-unit-identity	0x134464a	cmp    BYTE PTR [rsi+0x12e],0x0
+classic	memorial-unit-identity	0x1344670	test   DWORD PTR [rsi+0x118],0x10000000
+classic	memorial-unit-identity	0x1344690	test   DWORD PTR [rsi+0x118],0x10000000
+classic	memorial-unit-identity	0x13446a6	cmp    BYTE PTR [rsi+0x12e],0x1
+classic	memorial-unit-identity	0x13446cc	test   DWORD PTR [rsi+0x118],0x10000000
+classic	memorial-unit-identity	0x13446ec	test   DWORD PTR [rsi+0x118],0x10000000
+classic	memorial-unit-identity	0x1344702	test   DWORD PTR [rsi+0x110],0x4000000
+classic	memorial-unit-identity	0x1344732	cmp    eax,0x7
+classic	memorial-unit-identity	0x1344793	cmp    BYTE PTR [rax+r8*1],0x0
+classic	memorial-unit-identity	0x13447c3	cmp    BYTE PTR [rax+rdi*1],0x0
+classic	memorial-unit-identity	0x13447e3	cmp    BYTE PTR [rax+r8*1],0x0
+classic	memorial-unit-identity	0x1344813	cmp    BYTE PTR [rax+rdi*1],0x0
+classic	memorial-unit-identity	0x134485d	cmp    rdx,0xf
+classic	memorial-unit-identity	0x134486d	cmp    rdx,0x1000
+classic	memorial-unit-identity	0x1344885	cmp    rax,0x1f
+classic	memorial-unit-identity	0x13448a0	test   rdx,rdx
+classic	memorial-unit-identity	0x13448a5	cmp    QWORD PTR [rdx+0x30],0x0
+classic	memorial-unit-identity	0x13448b6	cmp    rbx,rdx
+classic	memorial-unit-identity	0x13448bb	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-race-caste	0xaba4e5	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-race-caste	0xaba505	cmp    r9w,0xffff
+classic	memorial-race-caste	0xaba510	test   r8b,r8b
+classic	memorial-race-caste	0xaba519	test   si,si
+classic	memorial-race-caste	0xaba533	cmp    rsi,rax
+classic	memorial-race-caste	0xaba538	test   r9w,r9w
+classic	memorial-race-caste	0xaba55f	cmp    r8,rax
+classic	memorial-race-caste	0xaba570	cmp    rdi,rdx
+classic	memorial-race-caste	0xaba575	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-race-caste	0xaba592	cmp    QWORD PTR [rdi+0x10],0x0
+classic	memorial-race-caste	0xaba5aa	test   si,si
+classic	memorial-race-caste	0xaba5bd	cmp    rsi,rax
+classic	memorial-race-caste	0xaba5c2	test   r9w,r9w
+classic	memorial-race-caste	0xaba5e5	cmp    r8,rax
+classic	memorial-race-caste	0xaba5f2	cmp    rdi,rdx
+classic	memorial-race-caste	0xaba5f7	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-race-caste	0xaba614	cmp    QWORD PTR [rdi+0x10],0x0
+classic	memorial-race-caste	0xaba61e	test   si,si
+classic	memorial-race-caste	0xaba631	cmp    rbx,rax
+classic	memorial-race-caste	0xaba63e	cmp    rdi,rdx
+classic	memorial-race-caste	0xaba643	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-race-caste	0xaba66c	test   r8b,r8b
+classic	memorial-race-caste	0xaba671	test   si,si
+classic	memorial-race-caste	0xaba684	cmp    rbx,rax
+classic	memorial-unit-role	0x1343019	test   rdx,rdx
+classic	memorial-unit-role	0x134301e	cmp    QWORD PTR [rdx+0x30],0x0
+classic	memorial-unit-role	0x1343037	cmp    eax,0x1
+classic	memorial-unit-role	0x1343069	test   rax,rax
+classic	memorial-unit-role	0x1343079	test   rcx,rcx
+classic	memorial-unit-role	0x1343086	test   rax,rax
+classic	memorial-unit-role	0x1343092	cmp    edx,0xffffffff
+classic	memorial-unit-role	0x13430aa	test   rbx,rbx
+classic	memorial-unit-role	0x13430ba	cmp    r11d,0xffffffff
+classic	memorial-unit-role	0x13430d9	test   r10,r10
+classic	memorial-unit-role	0x13430fd	cmp    DWORD PTR [rdx+0xe0],r11d
+classic	memorial-unit-role	0x1343117	cmp    r8d,r10d
+classic	memorial-unit-role	0x134311e	test   rdx,rdx
+classic	memorial-unit-role	0x1343123	cmp    DWORD PTR [rdx+0xd0],0x0
+classic	memorial-unit-role	0x1343133	test   BYTE PTR [rax],0x4
+classic	memorial-unit-role	0x134314a	test   BYTE PTR [rax],0x8
+classic	memorial-unit-role	0x1343168	cmp    ax,0xffff
+classic	memorial-unit-role	0x134319b	cmp    QWORD PTR [rdi+0xd80],0x0
+classic	memorial-unit-role	0x13431a5	cmp    BYTE PTR [rdi+0x838],0x0
+classic	memorial-unit-role	0x13431e9	test   rbx,rbx
+classic	memorial-unit-role	0x13431f2	cmp    WORD PTR [rbx+0xac],0xffff
+classic	memorial-unit-role	0x134321f	test   rax,rax
+classic	memorial-unit-role	0x134324b	test   rax,rax
+classic	memorial-unit-role	0x1343254	test   r13,r13
+classic	memorial-unit-role	0x1343262	cmp    BYTE PTR [rbp-0x40],0x0
+classic	memorial-unit-role	0x1343268	test   ecx,ecx
+classic	memorial-unit-role	0x134326c	cmp    ecx,0x1
+classic	memorial-unit-role	0x134327a	cmp    QWORD PTR [rax+0x1e8],0x0
+classic	memorial-unit-role	0x1343296	cmp    QWORD PTR [rax+0x1a8],0x0
+classic	memorial-unit-role	0x13432b2	test   ecx,ecx
+classic	memorial-unit-role	0x13432b6	cmp    ecx,0x1
+classic	memorial-unit-role	0x13432c4	cmp    QWORD PTR [rax+0x128],0x0
+classic	memorial-unit-role	0x13432e0	cmp    QWORD PTR [rax+0xe8],0x0
+classic	memorial-unit-role	0x13432fc	cmp    rax,rdx
+classic	memorial-unit-role	0x1343305	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-unit-role	0x1343318	cmp    WORD PTR [rbx+0x2c8],0x0
+classic	memorial-unit-role	0x134335f	test   rax,rax
+classic	memorial-unit-role	0x134337b	test   ax,ax
+classic	memorial-unit-role	0x1343389	cmp    ax,0x1
+classic	memorial-unit-role	0x134338f	cmp    QWORD PTR [rbp-0x18],0x0
+classic	memorial-unit-role	0x13433b5	cmp    r14,0x5
+classic	memorial-unit-role	0x13433bf	cmp    r14,0xf
+classic	memorial-unit-role	0x13433fa	cmp    r14,rax
+classic	memorial-unit-role	0x134340d	cmp    rax,rbx
+classic	memorial-unit-role	0x1343442	cmp    r14,0xf
+classic	memorial-unit-role	0x1343453	cmp    rdx,0x1000
+classic	memorial-unit-role	0x134346b	cmp    rax,0x1f
+classic	memorial-unit-role	0x134349f	test   rax,rax
+classic	memorial-unit-role	0x13434b7	test   ax,ax
+classic	memorial-unit-role	0x13434d5	test   rax,rax
+classic	memorial-unit-role	0x13434f1	test   ax,ax
+classic	memorial-unit-role	0x13434ff	cmp    r12w,0x1
+classic	memorial-unit-role	0x1343506	cmp    QWORD PTR [rbp-0x18],0x0
+classic	memorial-unit-role	0x134352c	cmp    rbx,0x8
+classic	memorial-unit-role	0x1343536	cmp    rbx,0xf
+classic	memorial-unit-role	0x1343569	cmp    rbx,rax
+classic	memorial-unit-role	0x1343578	cmp    rax,r15
+classic	memorial-unit-role	0x13435a8	cmp    rbx,0xf
+classic	memorial-unit-role	0x13435b9	cmp    rdx,0x1000
+classic	memorial-unit-role	0x13435d1	cmp    rax,0x1f
+classic	memorial-unit-role	0x13435ea	cmp    QWORD PTR [rdi+0x90],0x0
+classic	memorial-unit-role	0x13435f4	cmp    BYTE PTR [rbp-0x3f],0x0
+classic	memorial-unit-role	0x1343605	cmp    rax,rdx
+classic	memorial-unit-role	0x134360e	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-unit-role	0x134362f	cmp    QWORD PTR [rsi+0x18],0xf
+classic	memorial-unit-role	0x134364f	test   al,al
+classic	memorial-unit-role	0x1343657	cmp    DWORD PTR [rdi+0x3bc],0xffffffff
+classic	memorial-unit-role	0x1343660	test   DWORD PTR [rdi+0x110],0x4000000
+classic	memorial-unit-role	0x1343680	test   rax,0xfffffffffffffff8
+classic	memorial-unit-role	0x1343688	cmp    ecx,0xffffffff
+classic	memorial-unit-role	0x1343699	test   rax,rax
+classic	memorial-unit-role	0x13436a2	cmp    DWORD PTR [rax+0x3a8],0x7
+classic	memorial-unit-role	0x13436b2	test   BYTE PTR [rax+0x7],0x10
+classic	memorial-unit-role	0x13436d4	test   al,al
+classic	memorial-unit-role	0x13436dc	test   DWORD PTR [rdi+0x11c],0x1000
+classic	memorial-unit-role	0x13436fd	test   DWORD PTR [rdi+0x118],0x1000
+classic	memorial-unit-role	0x1343709	cmp    BYTE PTR [rdi+0x838],0x0
+classic	memorial-unit-role	0x1343712	test   r14b,r14b
+classic	memorial-unit-role	0x1343717	cmp    QWORD PTR [rsi+0x10],0x0
+classic	memorial-unit-role	0x134374d	cmp    BYTE PTR [rdi+0x838],0x0
+classic	memorial-unit-role	0x1343756	cmp    QWORD PTR [rdi+0x850],0x0
+classic	memorial-unit-role	0x1343760	cmp    QWORD PTR [rdi+0x890],0x0
+classic	memorial-unit-role	0x1343775	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-unit-role	0x13437a0	cmp    QWORD PTR [rbp-0x10],0xf
+classic	memorial-unit-role	0x13437b6	cmp    BYTE PTR [rdi+0x838],0x0
+classic	memorial-unit-role	0x13437bf	cmp    QWORD PTR [rdi+0x850],0x0
+classic	memorial-unit-role	0x13437c9	cmp    QWORD PTR [rsi+0x10],0x0
+classic	memorial-unit-role	0x13437f0	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-unit-role	0x1343802	cmp    QWORD PTR [rdi+0xd80],0x0
+classic	memorial-unit-role	0x134380f	cmp    QWORD PTR [rsi+0x10],0x0
+classic	memorial-unit-role	0x134383c	cmp    rdx,0xf
+classic	memorial-unit-role	0x134384c	cmp    rdx,0x1000
+classic	memorial-unit-role	0x1343864	cmp    rax,0x1f
+classic	memorial-unit-role	0x134387c	cmp    rsi,rdx
+classic	memorial-unit-role	0x1343881	cmp    QWORD PTR [rdx+0x18],0xf
+classic	memorial-choice-refresh	0x8d8d80	cmp    DWORD PTR [rcx+0x48],0xd3
+classic	memorial-choice-refresh	0x8d8da9	test   r8,r8
+classic	memorial-choice-refresh	0x8d8db2	cmp    r11d,0xffffffff
+classic	memorial-choice-refresh	0x8d8ddd	cmp    DWORD PTR [r10+0xe0],r11d
+classic	memorial-choice-refresh	0x8d8df6	cmp    edx,r8d
+classic	memorial-choice-refresh	0x8d8e00	test   r10,r10
+classic	memorial-choice-refresh	0x8d8e25	test   r8d,r8d
+classic	memorial-choice-refresh	0x8d8e2e	cmp    r11d,0xffffffff
+classic	memorial-choice-refresh	0x8d8e4d	cmp    DWORD PTR [rdi+0x130],r11d
+classic	memorial-choice-refresh	0x8d8e66	cmp    edx,eax
+classic	memorial-choice-refresh	0x8d8e6c	test   rdi,rdi
+classic	memorial-choice-refresh	0x8d8e89	test   rax,rax
+classic	memorial-choice-refresh	0x8d8ea0	cmp    rax,rcx
+classic	memorial-choice-refresh	0x8d8ea8	cmp    WORD PTR [r8+0x10c],0x0
+classic	memorial-choice-refresh	0x8d8eb9	cmp    DWORD PTR [r8+0x108],edx
+classic	memorial-choice-refresh	0x8d8eca	test   ebx,ebx
+classic	memorial-choice-refresh	0x8d8eed	cmp    ebx,0x2
+classic	memorial-choice-refresh	0x8d8f73	cmp    rdx,0xf
+classic	memorial-choice-refresh	0x8d8f87	cmp    rdx,0x1000
+classic	memorial-choice-refresh	0x8d8fa3	cmp    rax,0x1f
+classic	memorial-choice-refresh	0x8d9020	cmp    rdx,0xf
+classic	memorial-choice-refresh	0x8d9030	cmp    rdx,0x1000
+classic	memorial-choice-refresh	0x8d9048	cmp    rax,0x1f
+classic	memorial-choice-refresh	0x8d9074	test   bl,bl
+classic	memorial-choice-refresh	0x8d907c	test   al,al
+classic	memorial-choice-refresh	0x8d908b	test   rax,rax
+classic	memorial-choice-refresh	0x8d9094	test   BYTE PTR [rax+0x1c],0x1
+classic	memorial-choice-refresh	0x8d90f0	cmp    rdx,0xf
+classic	memorial-choice-refresh	0x8d9101	cmp    rdx,0x1000
+classic	memorial-choice-refresh	0x8d911c	cmp    rax,0x1f
+classic	memorial-choice-refresh	0x8d923b	test   al,al
+classic	memorial-choice-refresh	0x8d929b	cmp    rdx,0xf
+classic	memorial-choice-refresh	0x8d92ab	cmp    rdx,0x1000
+classic	memorial-choice-refresh	0x8d92c7	cmp    rax,0x1f
+classic	task-choice-construction	0x8dc715	test   al,al
+classic	task-choice-construction	0x8dc73f	cmp    eax,0x17
+classic	task-choice-construction	0x8dc768	test   al,al
+classic	task-choice-construction	0x8dc86e	test   al,al
+classic	task-choice-construction	0x8dc8a3	test   al,al
+classic	task-choice-construction	0x8dc8b7	test   rax,rax
+classic	task-choice-construction	0x8dc93f	test   al,al
+classic	task-choice-construction	0x8dc984	test   al,al
+classic	task-choice-construction	0x8dc9c9	test   al,al
+classic	task-choice-construction	0x8dca9f	test   al,al
+classic	task-choice-construction	0x8dcabf	cmp    edi,0xffffffff
+classic	task-choice-construction	0x8dcaff	test   al,al
+classic	task-choice-construction	0x8dcb33	cmp    ax,0x1
+classic	task-choice-construction	0x8dcb39	cmp    dx,bx
+classic	task-choice-construction	0x8dcb42	cmp    ecx,0xffffffff
+classic	task-choice-construction	0x8dcb8d	cmp    eax,0x9
+classic	task-choice-construction	0x8dcbab	cmp    eax,0xb
+classic	task-choice-construction	0x8dcc51	test   al,al
+classic	task-choice-construction	0x8dcc6b	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dcc98	test   al,al
+classic	task-choice-construction	0x8dccb7	test   r12d,r12d
+classic	task-choice-construction	0x8dccd0	cmp    ebx,DWORD PTR [rip+0xfe0a8a]        # 0x1418bd760
+classic	task-choice-construction	0x8dccdc	test   r13d,r13d
+classic	task-choice-construction	0x8dccee	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dcd02	cmp    r15d,DWORD PTR [rip+0xfe0a57]        # 0x1418bd760
+classic	task-choice-construction	0x8dcd0f	cmp    ebx,r15d
+classic	task-choice-construction	0x8dcd18	test   r13d,r13d
+classic	task-choice-construction	0x8dcd29	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dcd34	cmp    r13d,0x1
+classic	task-choice-construction	0x8dcd47	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dcd58	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dcd96	cmp    DWORD PTR [rbp+rax*4+0x110],ecx
+classic	task-choice-construction	0x8dcda2	cmp    rax,0x7
+classic	task-choice-construction	0x8dcddc	test   r13d,r13d
+classic	task-choice-construction	0x8dcdfe	cmp    ebx,DWORD PTR [rax]
+classic	task-choice-construction	0x8dce4b	cmp    r15d,eax
+classic	task-choice-construction	0x8dce67	cmp    ebx,r12d
+classic	task-choice-construction	0x8dce73	cmp    r13d,0x2
+classic	task-choice-construction	0x8dceaf	cmp    dx,ax
+classic	task-choice-construction	0x8dceb8	cmp    ecx,0xffffffff
+classic	task-choice-construction	0x8dced7	test   eax,eax
+classic	task-choice-construction	0x8dcee7	cmp    ebx,ecx
+classic	task-choice-construction	0x8dcef3	cmp    r15d,r12d
+classic	task-choice-construction	0x8dcf05	cmp    r15d,ecx
+classic	task-choice-construction	0x8dcf17	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dcf28	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dcf2d	cmp    r13d,0x1
+classic	task-choice-construction	0x8dcf33	test   r13d,r13d
+classic	task-choice-construction	0x8dcf70	cmp    DWORD PTR [rbp+rax*4+0x110],ecx
+classic	task-choice-construction	0x8dcf7c	cmp    rax,0x7
+classic	task-choice-construction	0x8dcfb0	test   r13d,r13d
+classic	task-choice-construction	0x8dcfd1	cmp    DWORD PTR [rax],ebx
+classic	task-choice-construction	0x8dd024	cmp    r15d,eax
+classic	task-choice-construction	0x8dd044	cmp    ebx,eax
+classic	task-choice-construction	0x8dd04f	cmp    r13d,0x2
+classic	task-choice-construction	0x8dd070	cmp    eax,0x2
+classic	task-choice-construction	0x8dd079	cmp    ecx,0x8
+classic	task-choice-construction	0x8dd0af	test   eax,eax
+classic	task-choice-construction	0x8dd0d3	cmp    ecx,r12d
+classic	task-choice-construction	0x8dd0ec	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dd101	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dd135	cmp    eax,r15d
+classic	task-choice-construction	0x8dd13a	cmp    eax,edi
+classic	task-choice-construction	0x8dd13e	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd165	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd190	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd1b1	cmp    eax,r15d
+classic	task-choice-construction	0x8dd1b6	cmp    eax,edi
+classic	task-choice-construction	0x8dd1ba	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd1e1	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd20c	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd22d	cmp    eax,r15d
+classic	task-choice-construction	0x8dd232	cmp    eax,edi
+classic	task-choice-construction	0x8dd236	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd25d	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd288	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd2a9	cmp    eax,r15d
+classic	task-choice-construction	0x8dd2ae	cmp    eax,edi
+classic	task-choice-construction	0x8dd2b2	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd2d9	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd304	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd325	cmp    eax,r15d
+classic	task-choice-construction	0x8dd32a	cmp    eax,edi
+classic	task-choice-construction	0x8dd32e	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd355	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd380	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd3a1	cmp    eax,r15d
+classic	task-choice-construction	0x8dd3a6	cmp    eax,edi
+classic	task-choice-construction	0x8dd3aa	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd3d1	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd3fc	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd41d	cmp    eax,r15d
+classic	task-choice-construction	0x8dd422	cmp    eax,edi
+classic	task-choice-construction	0x8dd426	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd44d	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd478	cmp    DWORD PTR [rax],ecx
+classic	task-choice-construction	0x8dd498	cmp    edi,r12d
+classic	task-choice-construction	0x8dd4b2	cmp    ecx,esi
+classic	task-choice-construction	0x8dd4d7	test   r12d,r12d
+classic	task-choice-construction	0x8dd4f0	cmp    DWORD PTR [rax],0x0
+classic	task-choice-construction	0x8dd4f5	cmp    r13d,0x1
+classic	task-choice-construction	0x8dd4fb	test   r13d,r13d
+classic	task-choice-construction	0x8dd522	test   al,al
+classic	task-choice-construction	0x8dd53f	test   r13d,r13d
+classic	task-choice-construction	0x8dd58d	cmp    ebx,r12d
+classic	task-choice-construction	0x8dd59c	cmp    r13d,0x2
+classic	task-choice-construction	0x8dd693	cmp    eax,0x9
+classic	task-choice-construction	0x8dd6b1	cmp    eax,0xb
+classic	task-choice-construction	0x8dd75d	test   al,al
+classic	task-choice-construction	0x8dd777	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd7a3	test   al,al
+classic	task-choice-construction	0x8dd7cf	test   r12d,r12d
+classic	task-choice-construction	0x8dd7ec	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dd800	cmp    r15d,edi
+classic	task-choice-construction	0x8dd815	cmp    DWORD PTR [rax],r14d
+classic	task-choice-construction	0x8dd838	cmp    ebx,DWORD PTR [rax]
+classic	task-choice-construction	0x8dd876	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd87b	cmp    eax,r15d
+classic	task-choice-construction	0x8dd880	cmp    eax,edi
+classic	task-choice-construction	0x8dd896	cmp    DWORD PTR [rax],ebx
+classic	task-choice-construction	0x8dd8b2	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd8b7	cmp    eax,r15d
+classic	task-choice-construction	0x8dd8bc	cmp    eax,edi
+classic	task-choice-construction	0x8dd8d2	cmp    DWORD PTR [rax],ebx
+classic	task-choice-construction	0x8dd8ee	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd8f3	cmp    eax,r15d
+classic	task-choice-construction	0x8dd8f8	cmp    eax,edi
+classic	task-choice-construction	0x8dd90e	cmp    DWORD PTR [rax],ebx
+classic	task-choice-construction	0x8dd92a	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd92f	cmp    eax,r15d
+classic	task-choice-construction	0x8dd934	cmp    eax,edi
+classic	task-choice-construction	0x8dd94a	cmp    DWORD PTR [rax],ebx
+classic	task-choice-construction	0x8dd966	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd96b	cmp    eax,r15d
+classic	task-choice-construction	0x8dd970	cmp    eax,edi
+classic	task-choice-construction	0x8dd986	cmp    DWORD PTR [rax],ebx
+classic	task-choice-construction	0x8dd9a2	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd9a7	cmp    eax,r15d
+classic	task-choice-construction	0x8dd9ac	cmp    eax,edi
+classic	task-choice-construction	0x8dd9c2	cmp    DWORD PTR [rax],ebx
+classic	task-choice-construction	0x8dd9de	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8dd9e3	cmp    eax,r15d
+classic	task-choice-construction	0x8dd9e8	cmp    eax,edi
+classic	task-choice-construction	0x8dd9fe	cmp    DWORD PTR [rax],ebx
+classic	task-choice-construction	0x8dda18	cmp    edi,r12d
+classic	task-choice-construction	0x8dda27	cmp    r15d,r12d
+classic	task-choice-construction	0x8dda4a	test   rdi,rdi
+classic	task-choice-construction	0x8dda64	cmp    DWORD PTR [rax+r12*4],0x0
+classic	task-choice-construction	0x8dda6b	cmp    r13d,0x1
+classic	task-choice-construction	0x8dda71	test   r13d,r13d
+classic	task-choice-construction	0x8dda8c	cmp    ecx,0x9
+classic	task-choice-construction	0x8dda9f	cmp    ecx,0xb
+classic	task-choice-construction	0x8ddac3	test   r13d,r13d
+classic	task-choice-construction	0x8ddb5b	cmp    r12,rdi
+classic	task-choice-construction	0x8ddb6a	cmp    r13d,0x2
+classic	task-choice-construction	0x8ddb8a	test   rdi,rdi
+classic	task-choice-construction	0x8ddb98	cmp    DWORD PTR [rax+r13*4],0x0
+classic	task-choice-construction	0x8ddb9f	cmp    r12d,0x1
+classic	task-choice-construction	0x8ddba5	test   r12d,r12d
+classic	task-choice-construction	0x8ddbc0	cmp    eax,0x9
+classic	task-choice-construction	0x8ddbcd	cmp    eax,0xb
+classic	task-choice-construction	0x8ddbe7	test   r12d,r12d
+classic	task-choice-construction	0x8ddc4d	cmp    eax,0x9
+classic	task-choice-construction	0x8ddc61	cmp    eax,0xb
+classic	task-choice-construction	0x8ddca8	cmp    r13,rdi
+classic	task-choice-construction	0x8ddcb7	cmp    r12d,0x2
+classic	task-choice-construction	0x8ddd07	test   al,al
+classic	task-choice-construction	0x8ddd44	test   al,al
+classic	task-choice-construction	0x8dddd3	test   al,al
+classic	task-choice-construction	0x8ddddb	cmp    DWORD PTR [rip+0xfdf96a],0x7        # 0x1418bd74c
+classic	task-choice-construction	0x8dde59	test   al,al
+classic	task-choice-construction	0x8dde6e	cmp    DWORD PTR [rbx+0xc30],0xffffffff
+classic	task-choice-construction	0x8dde7b	test   BYTE PTR [rbx+0x110],0x2
+classic	task-choice-construction	0x8dde84	test   DWORD PTR [rbx+0x118],0x1000
+classic	task-choice-construction	0x8ddea6	test   rax,rax
+classic	task-choice-construction	0x8ddeb1	cmp    DWORD PTR [rax+0xd4],ecx
+classic	task-choice-construction	0x8ddebf	cmp    DWORD PTR [rax+0xe0],ecx
+classic	task-choice-construction	0x8ddec7	test   BYTE PTR [rax+0xec],0x3
+classic	task-choice-construction	0x8ddee6	test   rax,rax
+classic	task-choice-construction	0x8ddf2f	test   al,al
+classic	task-choice-construction	0x8ddf40	cmp    WORD PTR [rcx+0x10c],0x0
+classic	task-choice-construction	0x8ddf5d	cmp    DWORD PTR [rax+0x108],ecx
+classic	task-choice-construction	0x8ddf8d	test   al,al
+classic	task-choice-construction	0x8ddfbd	test   al,al
+classic	task-choice-construction	0x8ddfcf	test   al,al
+classic	task-choice-construction	0x8ddfea	test   rax,rax
+classic	task-choice-construction	0x8de00e	cmp    DWORD PTR [rbx+0x140],eax
+classic	task-choice-construction	0x8de050	test   al,al
+classic	task-choice-construction	0x8de0a6	test   al,al
+classic	task-choice-construction	0x8de0e1	test   rax,rax
+classic	task-choice-construction	0x8de0ff	test   rax,rax
+classic	task-choice-construction	0x8de14b	test   al,al
+classic	task-choice-construction	0x8de15d	cmp    WORD PTR [rcx+0x10c],r14w
+classic	task-choice-construction	0x8de17b	cmp    DWORD PTR [rcx+0x108],eax
+classic	task-choice-construction	0x8de1ad	test   al,al
+classic	task-choice-construction	0x8de1cf	test   r13b,r13b
+classic	task-choice-construction	0x8de1d4	test   al,al
+classic	task-choice-construction	0x8de1df	test   rcx,rcx
+classic	task-choice-construction	0x8de212	test   al,al
+classic	task-choice-construction	0x8de247	test   ebx,ebx
+classic	task-choice-construction	0x8de24b	cmp    ebx,0x2
+classic	task-choice-construction	0x8de291	cmp    BYTE PTR [rsp+0x50],r14b
+classic	task-choice-construction	0x8de298	cmp    BYTE PTR [rbp-0x68],r14b
+classic	task-choice-construction	0x8de29e	test   r12b,r12b
+classic	task-choice-construction	0x8de2b7	test   al,al
+classic	task-choice-construction	0x8de2be	test   ebx,ebx
+classic	task-choice-construction	0x8de2ca	test   r13,r13
+classic	task-choice-construction	0x8de2cf	test   ebx,ebx
+classic	task-choice-construction	0x8de2db	test   ebx,ebx
+classic	task-choice-construction	0x8de2ef	test   al,al
+classic	task-choice-construction	0x8de304	test   r13,r13
+classic	task-choice-construction	0x8de33c	test   al,al
+classic	task-choice-construction	0x8de4ee	test   r15,r15
+classic	task-choice-construction	0x8de509	test   rax,rax
+classic	task-choice-construction	0x8de544	test   al,al
+classic	task-choice-construction	0x8de578	test   al,al
+classic	task-choice-construction	0x8de5ab	test   al,al
+classic	task-choice-construction	0x8de5de	test   al,al
+classic	task-choice-construction	0x8de61a	cmp    rdi,rax
+classic	task-choice-construction	0x8de634	test   al,al
+classic	task-choice-construction	0x8de679	test   al,al
+classic	task-choice-construction	0x8de689	test   r15,r15
+classic	task-choice-construction	0x8de6a8	test   rax,rax
+classic	task-choice-construction	0x8de6ed	cmp    r13,rax
+classic	task-choice-construction	0x8de70d	test   rax,rax
+classic	task-choice-construction	0x8de759	cmp    r13,rax
+classic	task-choice-construction	0x8de8ef	test   r15,r15
+classic	task-choice-construction	0x8de90b	test   rax,rax
+classic	task-choice-construction	0x8de950	test   al,al
+classic	task-choice-construction	0x8de99c	cmp    r12,rax
+classic	task-choice-construction	0x8de9b4	test   rax,rax
+classic	task-choice-construction	0x8de9ef	test   al,al
+classic	task-choice-construction	0x8dea23	test   al,al
+classic	task-choice-construction	0x8dea56	test   al,al
+classic	task-choice-construction	0x8dea89	test   al,al
+classic	task-choice-construction	0x8deac6	cmp    r15,rax
+classic	task-choice-construction	0x8deb1e	test   al,al
+classic	task-choice-construction	0x8deb26	test   r15,r15
+classic	task-choice-construction	0x8deb41	test   rax,rax
+classic	task-choice-construction	0x8deb7a	test   al,al
+classic	task-choice-construction	0x8debe7	cmp    r15,rax
+classic	task-choice-construction	0x8dec01	test   al,al
+classic	task-choice-construction	0x8dec50	test   r15,r15
+classic	task-choice-construction	0x8dec82	test   rax,rax
+classic	task-choice-construction	0x8dec93	test   ebx,ebx
+classic	task-choice-construction	0x8decb7	test   al,al
+classic	task-choice-construction	0x8decd2	test   al,al
+classic	task-choice-construction	0x8ded0b	cmp    r15d,ebx
+classic	task-choice-construction	0x8ded50	cmp    r12,rax
+classic	task-choice-construction	0x8ded6e	test   al,al
+classic	task-choice-construction	0x8ded76	test   r15,r15
+classic	task-choice-construction	0x8ded91	test   rax,rax
+classic	task-choice-construction	0x8dedd3	test   al,al
+classic	task-choice-construction	0x8dee19	cmp    rdi,rax
+classic	task-choice-construction	0x8dee2d	test   rax,rax
+classic	task-choice-construction	0x8dee73	test   al,al
+classic	task-choice-construction	0x8deeb9	cmp    rdi,rax
+classic	task-choice-construction	0x8deecd	test   rax,rax
+classic	task-choice-construction	0x8def13	test   al,al
+classic	task-choice-construction	0x8def59	cmp    rdi,rax
+classic	task-choice-construction	0x8defa0	cmp    DWORD PTR [rax+0xf0],r14d
+classic	task-choice-construction	0x8defb0	test   BYTE PTR [rax],0x20
+classic	task-choice-construction	0x8df00a	cmp    rdx,rax
+classic	task-choice-construction	0x8df040	cmp    DWORD PTR [rax+0xf0],r14d
+classic	task-choice-construction	0x8df050	test   BYTE PTR [rax],0x20
+classic	task-choice-construction	0x8df098	cmp    rax,rcx
+classic	task-choice-construction	0x8df0f4	cmp    rax,rcx
+classic	task-choice-construction	0x8df179	test   al,al
+classic	task-choice-construction	0x8df181	cmp    WORD PTR [rip+0xfde5c7],0xffff        # 0x1418bd750
+classic	task-choice-construction	0x8df18b	cmp    DWORD PTR [rip+0xfde5c6],0x0        # 0x1418bd758
+classic	task-choice-construction	0x8df1d4	test   r15,r15
+classic	task-choice-construction	0x8df1ec	test   rax,rax
+classic	task-choice-construction	0x8df230	test   al,al
+classic	task-choice-construction	0x8df28f	cmp    rdi,rax
+classic	task-choice-construction	0x8df2a7	test   rax,rax
+classic	task-choice-construction	0x8df2f0	test   al,al
+classic	task-choice-construction	0x8df34f	cmp    rdi,rax
+classic	task-choice-construction	0x8df367	test   rax,rax
+classic	task-choice-construction	0x8df3b0	test   al,al
+classic	task-choice-construction	0x8df40f	cmp    rdi,rax
+classic	task-choice-construction	0x8df450	cmp    DWORD PTR [rax+0xf0],r14d
+classic	task-choice-construction	0x8df460	test   BYTE PTR [rax],0x1
+classic	task-choice-construction	0x8df4d3	cmp    rdx,rax
+classic	task-choice-construction	0x8df510	cmp    DWORD PTR [rax+0xf0],r14d
+classic	task-choice-construction	0x8df520	test   BYTE PTR [rax],0x1
+classic	task-choice-construction	0x8df581	cmp    rax,rcx
+classic	task-choice-construction	0x8df64b	test   al,al
+classic	task-choice-construction	0x8df660	cmp    DWORD PTR [rip+0xfde0e5],0xffffffff        # 0x1418bd74c
+classic	task-choice-construction	0x8df66d	cmp    cx,0xffff
+classic	task-choice-construction	0x8df677	test   eax,eax
+classic	task-choice-construction	0x8df73f	test   eax,eax
+classic	task-choice-construction	0x8df764	test   al,al
+classic	task-choice-construction	0x8df782	cmp    ebx,edi
+classic	task-choice-construction	0x8df797	test   r14d,r14d
+classic	task-choice-construction	0x8df7b9	cmp    r14d,0x1
+classic	task-choice-construction	0x8df7e3	cmp    r14d,0x2
+classic	task-choice-construction	0x8df80d	cmp    r14d,0x3
+classic	task-choice-construction	0x8df834	cmp    r14d,edi
+classic	task-choice-construction	0x8df85a	cmp    r14d,0x5
+classic	task-choice-construction	0x8df881	cmp    r14d,0x6
+classic	task-choice-construction	0x8df8ec	test   ebx,0xe62
+classic	task-choice-construction	0x8df94c	test   ebx,0x622
+classic	task-choice-construction	0x8df96d	cmp    r14d,0x7
+classic	task-choice-construction	0x8df992	cmp    eax,0x2
+classic	task-choice-construction	0x8df9cf	test   r15,r15
+classic	task-choice-construction	0x8df9ee	test   rax,rax
+classic	task-choice-construction	0x8dfa39	cmp    r13,rax
+classic	task-choice-construction	0x8dfa55	test   rax,rax
+classic	task-choice-construction	0x8dfa90	test   al,al
+classic	task-choice-construction	0x8dfac4	test   al,al
+classic	task-choice-construction	0x8dfaf7	test   al,al
+classic	task-choice-construction	0x8dfb2a	test   al,al
+classic	task-choice-construction	0x8dfb67	cmp    r15,rax
+classic	task-choice-construction	0x8dfc25	cmp    eax,0x20
+classic	task-choice-construction	0x8dfc31	test   r15,r15
+classic	task-choice-construction	0x8dfc45	test   rax,rax
+classic	task-choice-construction	0x8dfc94	cmp    r12,rax
+classic	task-choice-construction	0x8dfccd	test   r15,r15
+classic	task-choice-construction	0x8dfcee	test   rax,rax
+classic	task-choice-construction	0x8dfd30	test   al,al
+classic	task-choice-construction	0x8dfd80	cmp    r12,rax
+classic	task-choice-construction	0x8dfd9c	test   rax,rax
+classic	task-choice-construction	0x8dfde0	test   al,al
+classic	task-choice-construction	0x8dfe30	cmp    r12,rax
+classic	task-choice-construction	0x8dfe4c	test   rax,rax
+classic	task-choice-construction	0x8dfe90	test   al,al
+classic	task-choice-construction	0x8dfee0	cmp    r12,rax
+classic	task-choice-construction	0x8dff20	cmp    DWORD PTR [rax+0xf0],r14d
+classic	task-choice-construction	0x8dff30	test   BYTE PTR [rax],0x8
+classic	task-choice-construction	0x8dff8d	cmp    rdx,rax
+classic	task-choice-construction	0x8dffd0	cmp    DWORD PTR [rax+0xf0],r14d
+classic	task-choice-construction	0x8dffe0	test   BYTE PTR [rax],0x8
+classic	task-choice-construction	0x8e002b	cmp    rax,rcx
+classic	task-choice-construction	0x8e0060	cmp    DWORD PTR [rdx+0xb0],0x2
+classic	task-choice-construction	0x8e0070	test   BYTE PTR [rax+0x2],0x2
+classic	task-choice-construction	0x8e0076	test   BYTE PTR [rax+0x2],0x1
+classic	task-choice-construction	0x8e007c	test   BYTE PTR [rax+0x1],0x1
+classic	task-choice-construction	0x8e00c9	cmp    rax,rcx
+classic	task-choice-construction	0x8e01a3	cmp    eax,0x40
+classic	task-choice-construction	0x8e01e3	test   r15,r15
+classic	task-choice-construction	0x8e0204	test   rax,rax
+classic	task-choice-construction	0x8e0240	test   al,al
+classic	task-choice-construction	0x8e0290	cmp    r12,rax
+classic	task-choice-construction	0x8e02ac	test   rax,rax
+classic	task-choice-construction	0x8e02f0	test   al,al
+classic	task-choice-construction	0x8e0340	cmp    r12,rax
+classic	task-choice-construction	0x8e035c	test   rax,rax
+classic	task-choice-construction	0x8e03a0	test   al,al
+classic	task-choice-construction	0x8e03f0	cmp    r12,rax
+classic	task-choice-construction	0x8e040c	test   rax,rax
+classic	task-choice-construction	0x8e0450	test   al,al
+classic	task-choice-construction	0x8e04a0	cmp    r12,rax
+classic	task-choice-construction	0x8e04fc	test   al,al
+classic	task-choice-construction	0x8e0547	cmp    r12,rax
+classic	task-choice-construction	0x8e0586	cmp    eax,0x2
+classic	task-choice-construction	0x8e0592	test   BYTE PTR [rax+0x2],0x2
+classic	task-choice-construction	0x8e059a	cmp    eax,0x1
+classic	task-choice-construction	0x8e05aa	test   cl,cl
+classic	task-choice-construction	0x8e05ae	test   cl,0x1
+classic	task-choice-construction	0x8e0603	cmp    r12,rax
+classic	task-choice-construction	0x8e06c7	test   cx,cx
+classic	task-choice-construction	0x8e071b	test   r15,r15
+classic	task-choice-construction	0x8e0733	test   rax,rax
+classic	task-choice-construction	0x8e0770	test   al,al
+classic	task-choice-construction	0x8e07b4	cmp    rdi,rax
+classic	task-choice-construction	0x8e07cb	test   rax,rax
+classic	task-choice-construction	0x8e080f	test   al,al
+classic	task-choice-construction	0x8e0843	test   al,al
+classic	task-choice-construction	0x8e0876	test   al,al
+classic	task-choice-construction	0x8e08a9	test   al,al
+classic	task-choice-construction	0x8e08f4	cmp    rdi,rax
+classic	task-choice-construction	0x8e0a52	test   al,al
+classic	task-choice-construction	0x8e0a61	cmp    eax,0xffffffff
+classic	task-choice-construction	0x8e0af7	cmp    WORD PTR [rip+0xfdcc51],0xffff        # 0x1418bd750
+classic	task-choice-construction	0x8e0b05	cmp    DWORD PTR [rip+0xfdcc4c],0x0        # 0x1418bd758
+classic	task-choice-construction	0x8e0b31	cmp    eax,0x6
+classic	task-choice-construction	0x8e0b59	test   eax,eax
+classic	task-choice-construction	0x8e0b87	test   al,al
+classic	task-choice-construction	0x8e0ba6	test   al,al
+classic	task-choice-construction	0x8e0bc1	test   al,al
+classic	task-choice-construction	0x8e0bdc	test   al,al
+classic	task-choice-construction	0x8e0bf4	test   al,al
+classic	task-choice-construction	0x8e0c22	cmp    ebx,r15d
+classic	task-choice-construction	0x8e0c41	test   eax,eax
+classic	task-choice-construction	0x8e0c67	test   al,al
+classic	task-choice-construction	0x8e0c82	test   al,al
+classic	task-choice-construction	0x8e0cb0	cmp    ebx,edi
+classic	task-choice-construction	0x8e0cca	test   eax,eax
+classic	task-choice-construction	0x8e0ce9	test   al,al
+classic	task-choice-construction	0x8e0d04	test   al,al
+classic	task-choice-construction	0x8e0d32	cmp    ebx,edi
+classic	task-choice-construction	0x8e0d4c	test   eax,eax
+classic	task-choice-construction	0x8e0d6b	test   al,al
+classic	task-choice-construction	0x8e0d86	test   al,al
+classic	task-choice-construction	0x8e0db4	cmp    ebx,edi
+classic	task-choice-construction	0x8e0dce	test   eax,eax
+classic	task-choice-construction	0x8e0df7	test   al,al
+classic	task-choice-construction	0x8e0e12	test   al,al
+classic	task-choice-construction	0x8e0e40	cmp    ebx,edi
+classic	task-choice-construction	0x8e0e5a	test   eax,eax
+classic	task-choice-construction	0x8e0e79	test   al,al
+classic	task-choice-construction	0x8e0e94	test   al,al
+classic	task-choice-construction	0x8e0ec2	cmp    ebx,edi
+classic	task-choice-construction	0x8e0ee0	test   eax,eax
+classic	task-choice-construction	0x8e0f07	test   al,al
+classic	task-choice-construction	0x8e0f26	test   al,al
+classic	task-choice-construction	0x8e0f2e	test   r15,r15
+classic	task-choice-construction	0x8e0f4b	test   rax,rax
+classic	task-choice-construction	0x8e0f8c	test   al,al
+classic	task-choice-construction	0x8e0fbf	test   al,al
+classic	task-choice-construction	0x8e0fef	test   al,al
+classic	task-choice-construction	0x8e1041	cmp    r12,rax
+classic	task-choice-construction	0x8e105e	test   rax,rax
+classic	task-choice-construction	0x8e109c	test   al,al
+classic	task-choice-construction	0x8e10cf	test   al,al
+classic	task-choice-construction	0x8e10ff	test   al,al
+classic	task-choice-construction	0x8e1151	cmp    r12,rax
+classic	task-choice-construction	0x8e116e	test   rax,rax
+classic	task-choice-construction	0x8e11ac	test   al,al
+classic	task-choice-construction	0x8e11df	test   al,al
+classic	task-choice-construction	0x8e120f	test   al,al
+classic	task-choice-construction	0x8e1261	cmp    r12,rax
+classic	task-choice-construction	0x8e127e	test   rax,rax
+classic	task-choice-construction	0x8e12bc	test   al,al
+classic	task-choice-construction	0x8e12ef	test   al,al
+classic	task-choice-construction	0x8e131f	test   al,al
+classic	task-choice-construction	0x8e1371	cmp    r12,rax
+classic	task-choice-construction	0x8e138e	test   rax,rax
+classic	task-choice-construction	0x8e13cc	test   al,al
+classic	task-choice-construction	0x8e13ff	test   al,al
+classic	task-choice-construction	0x8e142f	test   al,al
+classic	task-choice-construction	0x8e1481	cmp    r12,rax
+classic	task-choice-construction	0x8e14c3	cmp    r13d,ebx
+classic	task-choice-construction	0x8e14d6	test   rax,rax
+classic	task-choice-construction	0x8e1526	cmp    rdi,rax
+classic	task-choice-construction	0x8e156b	cmp    eax,0x5
+classic	task-choice-construction	0x8e1581	test   r15,r15
+classic	task-choice-construction	0x8e159d	test   rax,rax
+classic	task-choice-construction	0x8e15dc	test   al,al
+classic	task-choice-construction	0x8e1627	cmp    r13,rax
+classic	task-choice-construction	0x8e1644	test   rax,rax
+classic	task-choice-construction	0x8e168c	test   al,al
+classic	task-choice-construction	0x8e16a8	cmp    eax,r12d
+classic	task-choice-construction	0x8e16f4	cmp    r13,rax
+classic	task-choice-construction	0x8e1714	test   rax,rax
+classic	task-choice-construction	0x8e174c	test   al,al
+classic	task-choice-construction	0x8e1797	cmp    r15,rax
+classic	task-choice-construction	0x8e17b2	test   r15,r15
+classic	task-choice-construction	0x8e17cf	test   rax,rax
+classic	task-choice-construction	0x8e180c	test   al,al
+classic	task-choice-construction	0x8e1862	cmp    r13,rax
+classic	task-choice-construction	0x8e187d	test   rax,rax
+classic	task-choice-construction	0x8e18bc	test   al,al
+classic	task-choice-construction	0x8e1912	cmp    r13,rax
+classic	task-choice-construction	0x8e192d	test   rax,rax
+classic	task-choice-construction	0x8e196c	test   al,al
+classic	task-choice-construction	0x8e19c2	cmp    r13,rax
+classic	task-choice-construction	0x8e19dd	test   rax,rax
+classic	task-choice-construction	0x8e1a1c	test   al,al
+classic	task-choice-construction	0x8e1a72	cmp    r13,rax
+classic	task-choice-construction	0x8e1a8d	test   rax,rax
+classic	task-choice-construction	0x8e1acc	test   al,al
+classic	task-choice-construction	0x8e1b22	cmp    r13,rax
+classic	task-choice-construction	0x8e1b9d	cmp    rax,rcx
+classic	task-choice-construction	0x8e1eba	test   r15,r15
+classic	task-choice-construction	0x8e1ed5	test   rax,rax
+classic	task-choice-construction	0x8e1f12	test   al,al
+classic	task-choice-construction	0x8e1f5d	cmp    rdi,rax
+classic	task-choice-construction	0x8e1f86	test   al,al
+classic	task-choice-construction	0x8e1fe7	test   r15,r15
+classic	task-choice-construction	0x8e2006	test   rax,rax
+classic	task-choice-construction	0x8e204c	test   al,al
+classic	task-choice-construction	0x8e209e	cmp    r15,rax
+classic	task-choice-construction	0x8e20c7	test   al,al
+classic	task-choice-construction	0x8e20fc	test   al,al
+classic	task-choice-construction	0x8e2190	test   r15,r15
+classic	task-choice-construction	0x8e21a8	test   rax,rax
+classic	task-choice-construction	0x8e21e3	test   al,al
+classic	task-choice-construction	0x8e2213	test   al,al
+classic	task-choice-construction	0x8e225e	cmp    r15,rax
+classic	task-choice-construction	0x8e2415	test   al,al
+classic	task-choice-construction	0x8e2448	test   al,al
+classic	task-choice-construction	0x8e249b	test   al,al
+classic	material-caption	0x14e5920	cmp    QWORD PTR [rdx+0x18],0xf
+classic	material-caption	0x14e592d	cmp    esi,0xffffffff
+classic	material-caption	0x14e593d	test   al,0x1
+classic	material-caption	0x14e595d	bt     eax,0xc
+classic	material-caption	0x14e597f	test   al,0x82
+classic	material-caption	0x14e5987	test   al,0x4
+classic	material-caption	0x14e59a7	test   al,0x8
+classic	material-caption	0x14e59c7	test   al,0x20
+classic	material-caption	0x14e59e7	test   al,0x10
+classic	material-caption	0x14e5a07	test   al,0x40
+classic	material-caption	0x14e5a27	bt     eax,0x8
+classic	material-caption	0x14e5a49	bt     eax,0x9
+classic	material-caption	0x14e5a6b	bt     eax,0xa
+classic	material-caption	0x14e5a8d	bt     eax,0xb
+classic	material-caption	0x14e5ac2	test   al,al
+classic	material-caption	0x14e5afa	cmp    ax,cx
+classic	material-caption	0x14e5b18	test   r9,r9
+classic	material-caption	0x14e5b21	cmp    esi,0xffffffff
+classic	material-caption	0x14e5b4d	cmp    DWORD PTR [rdi+0xe0],esi
+classic	material-caption	0x14e5b65	cmp    edx,r9d
+classic	material-caption	0x14e5b6f	test   rdi,rdi
+classic	material-caption	0x14e5b78	cmp    BYTE PTR [rdi+0xaa],r14b
+classic	material-caption	0x14e5ba8	test   rax,rax
+classic	material-caption	0x14e5bb1	test   rax,rax
+classic	material-caption	0x14e5bb9	cmp    edx,0xffffffff
+classic	material-caption	0x14e5bca	test   rax,rax
+classic	material-caption	0x14e5bdd	test   rax,rax
+classic	material-caption	0x14e5be2	cmp    BYTE PTR [rax+0x72],0x0
+classic	material-caption	0x14e5c0a	cmp    rbp,0xf
+classic	material-caption	0x14e5c3a	cmp    rdx,0xf
+classic	material-caption	0x14e5c4b	cmp    rdx,0x1000
+classic	material-caption	0x14e5c63	cmp    rax,0x1f
+classic	material-caption	0x14e5c87	test   rax,rax
+classic	material-caption	0x14e5c8c	cmp    QWORD PTR [rax+0x530],0x0
+classic	material-caption	0x14e5ca1	cmp    QWORD PTR [rdx+0x18],0xf
+classic	material-caption	0x14e5ccf	cmp    BYTE PTR [rsp+0xc8],0x0
+classic	material-caption	0x14e5cea	cmp    QWORD PTR [rdx+0x18],0xf
+classic	queued-job-render-loop	0x187516	test   eax,eax
+classic	queued-job-render-loop	0x1875ab	cmp    rax,rcx
+classic	queued-job-render-loop	0x1875d0	cmp    DWORD PTR [rsp+0x984],0x0
+classic	queued-job-render-loop	0x1875f6	cmp    DWORD PTR [rsp+0x984],0x3
+classic	queued-job-render-loop	0x187694	cmp    DWORD PTR [rsp+0x988],0x7
+classic	queued-job-render-loop	0x1876c8	cmp    DWORD PTR [rsp+0xc8],eax
+classic	queued-job-render-loop	0x1876df	cmp    DWORD PTR [rsp+0xc8],eax
+classic	queued-job-render-loop	0x1876f3	cmp    DWORD PTR [rsp+0xc4],eax
+classic	queued-job-render-loop	0x18770a	cmp    DWORD PTR [rsp+0xc4],eax
+classic	queued-job-render-loop	0x187725	cmp    DWORD PTR [rsp+0x13b4],0x6
+classic	queued-job-render-loop	0x187766	test   eax,eax
+classic	queued-job-render-loop	0x1877af	test   eax,eax
+classic	queued-job-render-loop	0x1877d8	test   eax,eax
+classic	queued-job-render-loop	0x18782d	test   eax,eax
+classic	queued-job-render-loop	0x18787b	cmp    rax,0x2
+classic	queued-job-render-loop	0x187881	cmp    DWORD PTR [rsp+0xc68],0x1
+classic	queued-job-render-loop	0x1878cd	test   eax,eax
+classic	queued-job-render-loop	0x187911	test   eax,eax
+classic	queued-job-render-loop	0x18798a	cmp    DWORD PTR [rsp+0x228],0x3
+classic	queued-job-render-loop	0x1879aa	cmp    eax,DWORD PTR [rsp+0x144]
+classic	queued-job-render-loop	0x1879c9	cmp    eax,DWORD PTR [rsp+0x5a4]
+classic	queued-job-render-loop	0x1879f3	cmp    DWORD PTR [rsp+0x288],0x3
+classic	queued-job-render-loop	0x187a45	cmp    DWORD PTR [rsp+0x13b8],0x6
+classic	queued-job-render-loop	0x187a86	test   eax,eax
+classic	queued-job-render-loop	0x187ae4	test   eax,eax
+classic	queued-job-render-loop	0x187b40	test   eax,eax
+classic	queued-job-render-loop	0x187bda	test   eax,eax
+classic	queued-job-render-loop	0x187c6d	cmp    rax,0x2
+classic	queued-job-render-loop	0x187c73	cmp    DWORD PTR [rsp+0xc68],0x1
+classic	queued-job-render-loop	0x187cd4	test   eax,eax
+classic	queued-job-render-loop	0x187d30	test   eax,eax

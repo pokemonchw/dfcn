@@ -1,8 +1,42 @@
-// These wrappers belong to the native task chooser's title field. Their
-// subjects have different native suppliers: a memorial selects a figure's
-// language_name, a unit description or a race/caste fallback; a material
-// menu selects a complete material category/name. Keep those subjects out of
-// the old dwarf-only menu rule and preserve authored identity spelling.
+// Both queued jobs and chooser titles use this same native job-caption arm.
+// PE 53.17 d1c42a..d1c56a (Classic d1924a..d1938a) selects language_name,
+// unit identity or race/caste before appending the invariant action. The
+// original complete suppliers and all branches are in workshop-queue-5317.
+TranslationResult Overlay::translate_memorial_activity_display(
+        std::string_view source) const {
+    constexpr std::string_view suffix = " (engrave memorial)";
+    const bool empty_subject = source.size() == suffix.size() - 1 &&
+        lower(std::string(source)) == suffix.substr(1);
+    if (!empty_subject && (source.size() < suffix.size() ||
+            lower(std::string(source.substr(source.size() - suffix.size()))) != suffix))
+        return {};
+    const auto label = exact_literal_translation("Workshop task choice: suffix (engrave memorial)");
+    if (!label || !item_display_target_valid(*label)) return {};
+    const auto subject = source.substr(0, empty_subject ? 0 : source.size() - suffix.size());
+    TranslationStateScope state;
+    TranslationWorkScope work;
+    auto identity = subject.empty() ? TranslationResult::translated(subject, {}, "person")
+                                    : preserved_item_field(subject, "person");
+    try {
+        TranslationWorkFrame frame("memorial identity", subject);
+        if (!subject.empty())
+            if (const auto target = translate_unit_identity(subject, true))
+                identity = TranslationResult::translated(subject, *target, "person");
+    } catch (const TranslationWorkLimit &) {
+        if (!work.owns_budget()) throw;
+        identity = preserved_item_field(subject, "person", TranslationStatus::WorkLimited);
+    }
+    // Empty/invalid native name or race data can leave only the suffix.
+    // Unknown authored text keeps its spelling; neither case can suppress
+    // the independently known action, and no replacement identity is made up.
+    identity.append(TranslationResult::translated(source.substr(subject.size()),
+        *label, "activity-action"), subject.size());
+    finish_item_display_result(identity, std::string(source), "activity");
+    return identity;
+}
+
+// Material menus select a complete material/category subject. Memorial
+// titles share the activity entry above, including their partial results.
 TranslationResult Overlay::translate_workshop_choice_title(
         std::string_view raw_source) const {
     TranslationStateScope state;
@@ -11,6 +45,8 @@ TranslationResult Overlay::translate_workshop_choice_title(
     if (source.empty()) return {};
     try {
         TranslationWorkFrame frame("workshop choice title", source);
+        if (auto memorial = translate_memorial_activity_display(source); memorial.usable())
+            return memorial;
         const std::string folded = lower(source);
         const auto wrap = [&](std::string_view suffix,
                               TranslationResult subject) -> TranslationResult {
@@ -32,20 +68,6 @@ TranslationResult Overlay::translate_workshop_choice_title(
             finish_item_display_result(subject, source, "workshop-choice");
             return subject;
         };
-        constexpr std::string_view memorial = " (engrave memorial)";
-        if (folded.ends_with(memorial) && source.size() > memorial.size()) {
-            // PE 53.16 d0473a..d0487a selects a94030, 1330c30 or aa3bd0
-            // before appending this suffix. The shared identity entry first
-            // consumes captured native semantics, then complete creature,
-            // profession and personal-name fields. Unknown authored names
-            // retain their bytes rather than acquiring guessed pronunciation.
-            const auto subject = std::string_view(source).substr(0, source.size() - memorial.size());
-            if (trim_view(subject).empty()) return preserved_item_field(source, "workshop-choice");
-            const auto identity = translate_unit_identity(subject, true);
-            return wrap(memorial, identity
-                ? TranslationResult::translated(subject, *identity, "person")
-                : preserved_item_field(subject, "person"));
-        }
         constexpr std::string_view menu = " (opens menu)";
         if (folded.ends_with(menu) && source.size() > menu.size()) {
             // The existing whole menu productions own all fixed categories

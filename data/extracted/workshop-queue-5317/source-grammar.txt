@@ -1,0 +1,111 @@
+Windows 53.17 workshop queued-job text sources, 2026-11-15
+
+These are offline source artifacts, not in-game observations. The adjacent
+pe-*.c files are actual Ghidra 12.1.4 output, not handwritten pseudocode.
+pe-functions.tsv records both configured PE image paths, identities, SHA256
+digests and original unwind extents. pe-ghidra-functions.tsv separates code
+from trailing RVA tables. Original branches, conditions, calls, literals and
+all selector aliases remain in pe-*.tsv and the per-body assembly files.
+
+Queue ownership
+  Steam 187524..187e7b / Classic 1874b4..187e0b is the per-job drawing region
+  inside the building sheet. The enclosing iterator increment and other
+  building panels are external exits, retained as edges in pe-branches.tsv.
+  Every visible job passes through job-object-caption at d1ae60 / d17c80.
+  Its complete result is locally shortened and may receive an ellipsis,
+  then submitted once to addst at 1876e1 / 187671. The existing native queue
+  capture recovers the complete source using that same original job object.
+  Seven following action controls select sprite IDs; they do not concatenate
+  labels or job-state words into the title. A worker icon is also separate.
+
+Complete caption domain
+  job-object-caption forwards job type, material, subtype, reaction token,
+  historical figure, object and sizing fields to job-caption d1afa0 / d17dc0.
+  Job type 0xa9 is special: its subtypes 1/2/3 emit Stop Bleeding / Repair
+  Compound Fracture / Remove Rotten Tissue; zero and default emit Surgery.
+  All four already have scoped Fortress activity translations.
+  The full job-caption switch has selectors 0x00..0xf7 (248 values), including
+  aliases, empty/default arms and non-workshop jobs shared with other views.
+  This does not mean a stoneworker can offer every one of those 248 jobs.
+  Its finite string operands have no additions relative to the retained
+  53.16 full source in ../workshop-task-choice. Their existing activity,
+  task, material, item and RAW-reaction translators remain the owners.
+  Material-bearing forms, number/size variants, Make/Forge, all target flags,
+  reaction/instrument names and missing-material fallbacks are detailed in
+  ../workshop-task-choice/pe-decompiled-productions.txt. Current complete C,
+  literals and selector targets are retained here rather than copying that
+  older document's addresses onto the new executable.
+
+Memorial caption (selector 0xd3)
+  Steam d1c42a..d1c56a / Classic d1924a..d1938a:
+  1. Missing/negative figure ID, empty figure vector, unsuccessful ID lookup
+     or null figure -> Engrave memorial slab.
+  2. Figure name.has_name at figure+aa -> language_name at figure+38.
+  3. Unnamed figure with a resolvable unit_id at figure+d8 -> unit identity,
+     with include-sex argument false.
+  4. Unnamed figure without that unit -> singular caste name, falling back
+     to singular creature name. Invalid/empty RAW data can return no text.
+  Arms 2-4 then append the same literal ' (engrave memorial)', even when the
+  selected identity formatter returned an empty string.
+
+Language-name source aadad0 / aaa930
+  All optional native groups are retained: first name, authored nickname,
+  compound words 0/1, title words 2/3/4/5, and final word 6. The name-display
+  preference selects first name, nickname replacement, nickname addition,
+  or nickname-only continuation. Words come from the figure's language,
+  not from an assumption that every figure is a dwarf. Missing first name
+  does not remove the remaining groups: a bare compound is a complete name.
+  The screenshot's Eserilrom is supported by actual installed RAW fields:
+    data/vanilla/vanilla_languages/objects/language_DWARF.txt:
+      [T_WORD:GLITTER:eser] at line 1174
+      [T_WORD:PEAK:ilrom] at line 1671
+    language_words.txt gives GLITTER front-compound and PEAK rear-compound
+    noun roles. These use the shared native-name grammar/pronunciation data;
+    no literal Eserilrom replacement is added.
+
+Unit source 1349540 / 1344290 and role source 1348290 / 1342fe0
+  Current identity can select a stored name/nickname, assumed identity,
+  quoted identity, native language name and a complete profession/caste
+  descriptor. The role supplier retains authored profession, office/caste,
+  Slave, Prisoner, Agitated, Fierce, Stray, Corpse, Ghostly, Ghost, force and
+  deity branches. Training flags append Semi-Wild, Trained, -Trained-,
+  +Trained+, *Trained*, CP437 quality-marked Trained, or Tame. Existing
+  unit/creature identity handling owns these complete forms. Sex-glyph code
+  is retained in the complete function but is not enabled by this caller.
+  race/caste source abd670 / aba4d0 keeps caste-to-creature fallback and
+  invalid-index/empty-name returns. Its plural arm is retained in the
+  complete function but this memorial caller requests singular form.
+
+Memorial chooser state and count
+  task-choice-construction and memorial-choice-refresh retain both forms:
+  Ghost / Not memorialized / Entombed / Entombed and memorialized /
+  Memorialized, plus no slabs engraved / slab engraved / N slabs engraved.
+  Refresh also emits capitalized No slabs engraved / Slab engraved.
+  Construction joins nonempty state and count with ', '; refresh draws
+  its fields separately. All have existing workshop-recipe scoped entries.
+  Other chooser availability forms use N available, At least N available,
+  and dye/thread/cloth/leather availability. Counts remain native values.
+
+Translation ownership correction
+  translate_memorial_activity_display now owns the complete 0xd3 production
+  in both translate_fortress_activity[_display] and the task chooser. The
+  queued list previously reached ::menu's dwarf_language-only production,
+  bypassing the chooser's complete identity handler. The shared entry now
+  resolves every native identity source before that legacy menu rule.
+  The action suffix is independent of the identity, including empty source
+  and whitespace-normalized empty source. Unknown authored/mod names retain
+  their bytes while the known action is translated. Generated identities,
+  reaction NAME fields and mod material names are open inputs, not a finite
+  list that can be exhausted by adding observed screenshot strings.
+
+Reproduction
+  Run tools/extract_workshop_queue_sources.py using the fixed project Python.
+  For each configured edition, import its actual image with the installed
+  ghidra_12.1.4_PUBLIC/support/analyzeHeadless.bat and jdk-25.0.4.1+1:
+    PROJECT_DIR PROJECT -import IMAGE -noanalysis -scriptPath D:/workspace/dfcn/tools
+    -postScript DecompileWorkshopTasksPE.java D:/workspace/dfcn/data/extracted/workshop-queue-5317 EDITION -deleteProject
+  Project directories must have no dot-prefixed components. Separate Ghidra
+  settings/cache directories were used for the two images. The native
+  'string too long' supplier is marked noreturn from the current manifest;
+  this prevents exceptional paths from decoding the trailing switch table
+  as executable code. No UI automation or runtime display simulation is used.

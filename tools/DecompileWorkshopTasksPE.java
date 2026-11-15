@@ -95,6 +95,10 @@ public class DecompileWorkshopTasksPE extends GhidraScript {
                 function.setBody(body);
                 function.setName("workshop_" + fields[2].replace('-', '_'), SourceType.USER_DEFINED);
             }
+            // Current-image manifests can identify this throwing supplier
+            // from its native "string too long" literal. The 53.16 address
+            // above does not identify the relocated 53.17 function.
+            if (fields[2].equals("string-length-error")) function.setNoReturn(true);
         }
         Map<Address, ArrayList<Address>> switches = new LinkedHashMap<>();
         for (String row : Files.readAllLines(directory.resolve("pe-switches.tsv"))) {

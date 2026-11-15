@@ -1,0 +1,1013 @@
+edition	role	instruction_rva	operand	kind	text
+reference	job-object-caption	0xd1af21	0x1417259d8	cstring	Remove Rotten Tissue
+reference	job-object-caption	0xd1af3d	0x141725990	cstring	Repair Compound Fracture
+reference	job-object-caption	0xd1af59	0x1417259b0	cstring	Stop Bleeding
+reference	job-object-caption	0xd1af75	0x1416c5d70	cstring	Surgery
+reference	job-caption	0xd1b062	0x1417259c0	cstring	Construct building
+reference	job-caption	0xd1b06e	0x141725a08	cstring	Destroy building
+reference	job-caption	0xd1b080	0x1417259f0	cstring	Butcher an animal
+reference	job-caption	0xd1b08f	0x141725a38	cstring	Catch live fish
+reference	job-caption	0xd1b0a1	0x141725a20	cstring	Catch live land animal
+reference	job-caption	0xd1b0b3	0x141725a50	cstring	Prepare a raw fish
+reference	job-caption	0xd1b0db	0x141725a48	cstring	Mill 
+reference	job-caption	0xd1b130	0x141725a78	cstring	Mill plants
+reference	job-caption	0xd1b158	0x141725a68	cstring	Process 
+reference	job-caption	0xd1b1ad	0x141725a90	cstring	Process plants
+reference	job-caption	0xd1b1bf	0x141725a84	cstring	Milk 
+reference	job-caption	0xd1b24c	0x1416c189c	cstring	animal
+reference	job-caption	0xd1b25e	0x141725aac	cstring	Shear 
+reference	job-caption	0xd1b2eb	0x141725aa0	cstring	Spin thread
+reference	job-caption	0xd1b2fd	0x141725ac0	cstring	Make cheese
+reference	job-caption	0xd1b325	0x141725a68	cstring	Process 
+reference	job-caption	0xd1b364	0x141725ab8	cstring	 (vial)
+reference	job-caption	0xd1b389	0x141725ae0	cstring	Process plants (vial)
+reference	job-caption	0xd1b3b1	0x141725a68	cstring	Process 
+reference	job-caption	0xd1b3f0	0x141725ad0	cstring	 (barrel)
+reference	job-caption	0xd1b415	0x141725b08	cstring	Process plants (barrel)
+reference	job-caption	0xd1b427	0x141725af8	cstring	Make lye
+reference	job-caption	0xd1b439	0x141725b38	cstring	Make potash from lye
+reference	job-caption	0xd1b44b	0x141725b20	cstring	Make potash from ash
+reference	job-caption	0xd1b471	0x141725b90	cstring	Prepare lavish meal
+reference	job-caption	0xd1b485	0x141725b50	cstring	Prepare fine meal
+reference	job-caption	0xd1b499	0x141725b68	cstring	Prepare easy meal
+reference	job-caption	0xd1b4c9	0x141725b80	cstring	Extract from 
+reference	job-caption	0xd1b51e	0x141725bc0	cstring	Extract from plants
+reference	job-caption	0xd1b530	0x141725ba8	cstring	Extract from raw fish
+reference	job-caption	0xd1b542	0x141725be0	cstring	Extract from land animal
+reference	job-caption	0xd1b554	0x141725bd8	cstring	Handle 
+reference	job-caption	0xd1b5e4	0x141725c10	cstring	a large animal
+reference	job-caption	0xd1b5f6	0x141725c00	cstring	Unchain pet
+reference	job-caption	0xd1b608	0x141725c30	cstring	Interrogate 
+reference	job-caption	0xd1b695	0x14168e058	cstring	subject
+reference	job-caption	0xd1b6a7	0x141725c20	cstring	Release 
+reference	job-caption	0xd1b740	0x141725c58	cstring	Release pet
+reference	job-caption	0xd1b752	0x141725c40	cstring	Release small creature
+reference	job-caption	0xd1b764	0x141725578	cstring	Handle small creature
+reference	job-caption	0xd1b776	0x141725568	cstring	Recover pet
+reference	job-caption	0xd1b788	0x1417255a0	cstring	Cage 
+reference	job-caption	0xd1b81e	0x141725590	cstring	Recover wounded
+reference	job-caption	0xd1b82a	0x1417255c0	cstring	Diagnose patient
+reference	job-caption	0xd1b836	0x1417255a8	cstring	Immobilize break
+reference	job-caption	0xd1b848	0x1417255e8	cstring	Apply cast
+reference	job-caption	0xd1b85a	0x1417255d8	cstring	Bring crutch
+reference	job-caption	0xd1b86c	0x141725608	cstring	Dress wound
+reference	job-caption	0xd1b87e	0x1417255f8	cstring	Clean patient
+reference	job-caption	0xd1b890	0x1416c5d70	cstring	Surgery
+reference	job-caption	0xd1b8a2	0x141725624	cstring	Suture
+reference	job-caption	0xd1b8b4	0x141725618	cstring	Set bone
+reference	job-caption	0xd1b8c6	0x141725648	cstring	Place in traction
+reference	job-caption	0xd1b8d8	0x141725630	cstring	Put item on display
+reference	job-caption	0xd1b8ea	0x141725670	cstring	Cage small animal
+reference	job-caption	0xd1b8fc	0x141725660	cstring	Pit/pond 
+reference	job-caption	0xd1b9a8	0x141725698	cstring	Pit/pond small animal
+reference	job-caption	0xd1b9ba	0x141725688	cstring	Pen/pasture 
+reference	job-caption	0xd1ba5f	0x1417256c0	cstring	Pen/pasture small animal
+reference	job-caption	0xd1ba71	0x1417256b0	cstring	Drain aquarium
+reference	job-caption	0xd1ba83	0x1417256f0	cstring	Fill aquarium
+reference	job-caption	0xd1ba95	0x1417256e0	cstring	Fill pond
+reference	job-caption	0xd1baa7	0x141725710	cstring	Give water
+reference	job-caption	0xd1bab9	0x141725700	cstring	Give food
+reference	job-caption	0xd1bacb	0x141725740	cstring	Manage work orders
+reference	job-caption	0xd1badd	0x141725720	cstring	Update stockpile records
+reference	job-caption	0xd1baef	0x141725760	cstring	Trade at depot
+reference	job-caption	0xd1bb4a	0x141725754	cstring	Chain 
+reference	job-caption	0xd1bb9f	0x141725780	cstring	Put in chains
+reference	job-caption	0xd1bbb1	0x141725770	cstring	Slaughter 
+reference	job-caption	0xd1bc58	0x141725798	cstring	Geld 
+reference	job-caption	0xd1bcfd	0x141725790	cstring	Unchain
+reference	job-caption	0xd1bd62	0x1416039f0	cstring	 
+reference	job-caption	0xd1bdb7	0x1417257b4	cstring	Tame 
+reference	job-caption	0xd1be5c	0x1417257a0	cstring	Tame a small animal
+reference	job-caption	0xd1be6e	0x141657b40	cstring	Make 
+reference	job-caption	0xd1bed1	0x141703998	cstring	 crafts
+reference	job-caption	0xd1bee3	0x141657b40	cstring	Make 
+reference	job-caption	0xd1bf46	0x1417257c8	cstring	 figurine
+reference	job-caption	0xd1bf58	0x141657b40	cstring	Make 
+reference	job-caption	0xd1bfbb	0x1417257c0	cstring	 amulet
+reference	job-caption	0xd1bfcd	0x141657b40	cstring	Make 
+reference	job-caption	0xd1c030	0x1417257e0	cstring	 scepter
+reference	job-caption	0xd1c042	0x141657b40	cstring	Make 
+reference	job-caption	0xd1c0a5	0x1417257d4	cstring	 crown
+reference	job-caption	0xd1c0b7	0x141657b40	cstring	Make 
+reference	job-caption	0xd1c11a	0x1417257fc	cstring	 ring
+reference	job-caption	0xd1c12c	0x141657b40	cstring	Make 
+reference	job-caption	0xd1c18f	0x1417257f0	cstring	 earring
+reference	job-caption	0xd1c1a1	0x141657b40	cstring	Make 
+reference	job-caption	0xd1c204	0x141725818	cstring	 bracelet
+reference	job-caption	0xd1c216	0x141725808	cstring	Make large 
+reference	job-caption	0xd1c279	0x1416f06c0	cstring	 gem
+reference	job-caption	0xd1c28b	0x14172582c	cstring	Mint 
+reference	job-caption	0xd1c2ee	0x141725824	cstring	 coins
+reference	job-caption	0xd1c30f	0x141725844	cstring	Cut 
+reference	job-caption	0xd1c368	0x141725838	cstring	Cut gems
+reference	job-caption	0xd1c392	0x141725844	cstring	Cut 
+reference	job-caption	0xd1c3e8	0x141725858	cstring	Cut raw glass into gems
+reference	job-caption	0xd1c40f	0x141725850	cstring	Polish 
+reference	job-caption	0xd1c418	0x141725888	cstring	Polish stones
+reference	job-caption	0xd1c47d	0x1416df300	cstring	Engrave memorial slab
+reference	job-caption	0xd1c55b	0x141725870	cstring	 (engrave memorial)
+reference	job-caption	0xd1c575	0x1417258a8	cstring	Decorate with 
+reference	job-caption	0xd1c597	0x141725898	cstring	Stud with 
+reference	job-caption	0xd1c5bc	0x1417258c8	cstring	Encrust 
+reference	job-caption	0xd1c5df	0x1417258b8	cstring	finished goods
+reference	job-caption	0xd1c5fa	0x1417258e8	cstring	furniture
+reference	job-caption	0xd1c615	0x1416eafbc	cstring	ammo
+reference	job-caption	0xd1c62a	0x141609848	cstring	 with 
+reference	job-caption	0xd1c64f	0x14161cef8	cstring	cut gems
+reference	job-caption	0xd1c661	0x1417258c8	cstring	Encrust 
+reference	job-caption	0xd1c684	0x1417258b8	cstring	finished goods
+reference	job-caption	0xd1c69f	0x1417258e8	cstring	furniture
+reference	job-caption	0xd1c6ba	0x1416eafbc	cstring	ammo
+reference	job-caption	0xd1c6cf	0x141609848	cstring	 with 
+reference	job-caption	0xd1c6f7	0x1417258d8	cstring	cut glass
+reference	job-caption	0xd1c709	0x1417258c8	cstring	Encrust 
+reference	job-caption	0xd1c72c	0x1417258b8	cstring	finished goods
+reference	job-caption	0xd1c747	0x1417258e8	cstring	furniture
+reference	job-caption	0xd1c762	0x1416eafbc	cstring	ammo
+reference	job-caption	0xd1c777	0x141609848	cstring	 with 
+reference	job-caption	0xd1c79c	0x141725908	cstring	polished stones
+reference	job-caption	0xd1c7ae	0x1417258f8	cstring	Collect sand
+reference	job-caption	0xd1c7c0	0x141725930	cstring	Collect clay
+reference	job-caption	0xd1c7d2	0x141725918	cstring	Install colony in hive
+reference	job-caption	0xd1c7e4	0x141725948	cstring	Collect hive products
+reference	job-caption	0xd1c7f6	0x141657b40	cstring	Make 
+reference	job-caption	0xd1c858	0x141725940	cstring	four 
+reference	job-caption	0xd1c8b2	0x141725970	cstring	 blocks
+reference	job-caption	0xd1c8c4	0x141725960	cstring	Make raw 
+reference	job-caption	0xd1c8e6	0x141657b40	cstring	Make 
+reference	job-caption	0xd1c984	0x1417260d8	cstring	 Portal
+reference	job-caption	0xd1c996	0x1416ea7a4	cstring	 door
+reference	job-caption	0xd1c9a8	0x141657b40	cstring	Make 
+reference	job-caption	0xd1ca0b	0x1417260c8	cstring	 floodgate
+reference	job-caption	0xd1ca1d	0x141657b40	cstring	Make 
+reference	job-caption	0xd1ca80	0x1417260e8	cstring	 hatch cover
+reference	job-caption	0xd1ca92	0x141657b40	cstring	Make 
+reference	job-caption	0xd1caf5	0x1417260e0	cstring	 grate
+reference	job-caption	0xd1cb07	0x141657b40	cstring	Make 
+reference	job-caption	0xd1cb6a	0x14172610c	cstring	 table
+reference	job-caption	0xd1cb7c	0x1417260f8	cstring	Make traction bench
+reference	job-caption	0xd1cb8e	0x141657b40	cstring	Make 
+reference	job-caption	0xd1cbf1	0x141726120	cstring	 splint
+reference	job-caption	0xd1cc03	0x141657b40	cstring	Make 
+reference	job-caption	0xd1cc66	0x141726118	cstring	 crutch
+reference	job-caption	0xd1cc78	0x141657b40	cstring	Make 
+reference	job-caption	0xd1ccdb	0x141726138	cstring	 cabinet
+reference	job-caption	0xd1cced	0x141657b40	cstring	Make 
+reference	job-caption	0xd1cd50	0x141726128	cstring	 weapon rack
+reference	job-caption	0xd1cd62	0x141657b40	cstring	Make 
+reference	job-caption	0xd1cdc5	0x141726150	cstring	 armor stand
+reference	job-caption	0xd1cdd7	0x141657b40	cstring	Make 
+reference	job-caption	0xd1ce3a	0x141726144	cstring	 bin
+reference	job-caption	0xd1ce4c	0x141657b40	cstring	Make 
+reference	job-caption	0xd1cee9	0x141726168	cstring	 box
+reference	job-caption	0xd1cf15	0x141726160	cstring	 coffer
+reference	job-caption	0xd1cf29	0x141726178	cstring	 chest
+reference	job-caption	0xd1cf43	0x141657b40	cstring	Make 
+reference	job-caption	0xd1cfa6	0x141726170	cstring	 bag
+reference	job-caption	0xd1cfb8	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d057	0x141726180	cstring	 sarcophagus
+reference	job-caption	0xd1d068	0x1417261a0	cstring	 coffin
+reference	job-caption	0xd1d07f	0x141726190	cstring	 casket
+reference	job-caption	0xd1d091	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d10e	0x1417261b0	cstring	 throne
+reference	job-caption	0xd1d128	0x141726198	cstring	 chair
+reference	job-caption	0xd1d17a	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1d189	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d19e	0x1417261c8	cstring	pair of 
+reference	job-caption	0xd1d1eb	0x141666420	cstring	large 
+reference	job-caption	0xd1d1fc	0x1416a5df4	cstring	small 
+reference	job-caption	0xd1d263	0x1416039f0	cstring	 
+reference	job-caption	0xd1d2a5	0x1417261b8	cstring	Make totem
+reference	job-caption	0xd1d2f7	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1d306	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d31b	0x1417261c8	cstring	pair of 
+reference	job-caption	0xd1d368	0x141666420	cstring	large 
+reference	job-caption	0xd1d379	0x1416a5df4	cstring	small 
+reference	job-caption	0xd1d3e0	0x1416039f0	cstring	 
+reference	job-caption	0xd1d462	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1d471	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d4d0	0x1416039f0	cstring	 
+reference	job-caption	0xd1d53f	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1d54e	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d5e5	0x1417261e0	cstring	 terrarium
+reference	job-caption	0xd1d5f7	0x1417261d4	cstring	 cage
+reference	job-caption	0xd1d649	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1d658	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d6bc	0x1417261f4	cstring	 chain
+reference	job-caption	0xd1d6e9	0x1417261f4	cstring	 chain
+reference	job-caption	0xd1d703	0x1417261ec	cstring	 rope
+reference	job-caption	0xd1d755	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1d764	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d779	0x14172620c	cstring	three 
+reference	job-caption	0xd1d7dd	0x141726200	cstring	 waterskins
+reference	job-caption	0xd1d821	0x14172621c	cstring	 vials
+reference	job-caption	0xd1d835	0x1417039f8	cstring	 flasks
+reference	job-caption	0xd1d88f	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1d89e	0x141657b40	cstring	Make 
+reference	job-caption	0xd1d8b3	0x14172620c	cstring	three 
+reference	job-caption	0xd1d94b	0x141726234	cstring	 mugs
+reference	job-caption	0xd1d95f	0x141726228	cstring	 goblets
+reference	job-caption	0xd1d979	0x141726214	cstring	 cups
+reference	job-caption	0xd1d9cb	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1d9da	0x141657b40	cstring	Make 
+reference	job-caption	0xd1da79	0x1416039f0	cstring	 
+reference	job-caption	0xd1da8e	0x1416eaf24	cstring	tool
+reference	job-caption	0xd1daa7	0x1416039f0	cstring	 
+reference	job-caption	0xd1dbbc	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1dbcb	0x141657b40	cstring	Make 
+reference	job-caption	0xd1dc2a	0x141726250	cstring	 toy
+reference	job-caption	0xd1dc7c	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1dc8b	0x141657b40	cstring	Make 
+reference	job-caption	0xd1dcea	0x141726240	cstring	 animal trap
+reference	job-caption	0xd1dd3c	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1dd4b	0x141657b40	cstring	Make 
+reference	job-caption	0xd1ddaa	0x141726260	cstring	 barrel
+reference	job-caption	0xd1ddfc	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1de0b	0x141657b40	cstring	Make 
+reference	job-caption	0xd1dea2	0x141726258	cstring	 tube
+reference	job-caption	0xd1deb4	0x141726270	cstring	 pipe section
+reference	job-caption	0xd1df06	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1df15	0x141657b40	cstring	Make 
+reference	job-caption	0xd1df74	0x1416db260	cstring	 bucket
+reference	job-caption	0xd1df86	0x141657b40	cstring	Make 
+reference	job-caption	0xd1dfe9	0x141726268	cstring	 window
+reference	job-caption	0xd1dffb	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e05e	0x141726288	cstring	 backpack
+reference	job-caption	0xd1e070	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e0d3	0x141726280	cstring	 quiver
+reference	job-caption	0xd1e125	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1e134	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e181	0x141666420	cstring	large 
+reference	job-caption	0xd1e192	0x1416a5df4	cstring	small 
+reference	job-caption	0xd1e1f9	0x1416039f0	cstring	 
+reference	job-caption	0xd1e266	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1e275	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e2c2	0x141666420	cstring	large 
+reference	job-caption	0xd1e2d3	0x1416a5df4	cstring	small 
+reference	job-caption	0xd1e33a	0x1416039f0	cstring	 
+reference	job-caption	0xd1e364	0x1417262b0	cstring	Bait trap with 
+reference	job-caption	0xd1e38b	0x1416c19a0	cstring	fish
+reference	job-caption	0xd1e39f	0x1416f0a8c	cstring	meat
+reference	job-caption	0xd1e3b3	0x1416316ac	cstring	gem
+reference	job-caption	0xd1e40d	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1e41c	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e469	0x141666420	cstring	large 
+reference	job-caption	0xd1e47a	0x1416a5df4	cstring	small 
+reference	job-caption	0xd1e4e1	0x1416039f0	cstring	 
+reference	job-caption	0xd1e54e	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1e55d	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e5bc	0x1416039f0	cstring	 
+reference	job-caption	0xd1e62b	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1e63a	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e699	0x141726298	cstring	 ballista arrow head
+reference	job-caption	0xd1e6ab	0x1417262c8	cstring	Assemble 
+reference	job-caption	0xd1e70e	0x1416039f0	cstring	 
+reference	job-caption	0xd1e77d	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1e78c	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e7b1	0x1417262c0	cstring	five 
+reference	job-caption	0xd1e7c0	0x1417262e0	cstring	twenty-five 
+reference	job-caption	0xd1e817	0x1416039f0	cstring	 
+reference	job-caption	0xd1e842	0x1417262d4	cstring	Make
+reference	job-caption	0xd1e864	0x1416039f0	cstring	 
+reference	job-caption	0xd1e8bf	0x141726300	cstring	 catapult parts
+reference	job-caption	0xd1e911	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1e920	0x141657b40	cstring	Make 
+reference	job-caption	0xd1e975	0x1416039f0	cstring	 
+reference	job-caption	0xd1e9d4	0x1416039f0	cstring	 
+reference	job-caption	0xd1e9fd	0x1417262d4	cstring	Make
+reference	job-caption	0xd1ea12	0x1416039f0	cstring	 
+reference	job-caption	0xd1ea75	0x1417262f0	cstring	 mechanisms
+reference	job-caption	0xd1ea87	0x1417262d4	cstring	Make
+reference	job-caption	0xd1eaa9	0x1416039f0	cstring	 
+reference	job-caption	0xd1eb04	0x141726328	cstring	 ballista parts
+reference	job-caption	0xd1eb16	0x1417262d4	cstring	Make
+reference	job-caption	0xd1eb38	0x1416039f0	cstring	 
+reference	job-caption	0xd1eb96	0x141726310	cstring	 bolt thrower parts
+reference	job-caption	0xd1eba8	0x1417261a8	cstring	Forge 
+reference	job-caption	0xd1ec0b	0x141726340	cstring	 anvil
+reference	job-caption	0xd1ec1d	0x1417262d4	cstring	Make
+reference	job-caption	0xd1ec57	0x1416039f0	cstring	 
+reference	job-caption	0xd1eca0	0x141726338	cstring	 bed
+reference	job-caption	0xd1ecb2	0x141657b40	cstring	Make 
+reference	job-caption	0xd1ed15	0x141726350	cstring	 statue
+reference	job-caption	0xd1ed27	0x141657b40	cstring	Make 
+reference	job-caption	0xd1ed8a	0x141726348	cstring	 slab
+reference	job-caption	0xd1ed9c	0x141657b40	cstring	Make 
+reference	job-caption	0xd1edff	0x141726364	cstring	 quern
+reference	job-caption	0xd1ee11	0x141657b40	cstring	Make 
+reference	job-caption	0xd1ee74	0x141726358	cstring	 millstone
+reference	job-caption	0xd1ee86	0x14172637c	cstring	Train 
+reference	job-caption	0xd1ef13	0x141726370	cstring	 to hunt
+reference	job-caption	0xd1ef3a	0x141726398	cstring	hunting animal
+reference	job-caption	0xd1ef4c	0x14172637c	cstring	Train 
+reference	job-caption	0xd1efe0	0x141726388	cstring	 for war
+reference	job-caption	0xd1f007	0x1417263b8	cstring	war animal
+reference	job-caption	0xd1f019	0x14172637c	cstring	Train 
+reference	job-caption	0xd1f0be	0x1417263a8	cstring	Make charcoal
+reference	job-caption	0xd1f0d0	0x141725c78	cstring	Make ash
+reference	job-caption	0xd1f14a	0x141725c68	cstring	Reaction
+reference	job-caption	0xd1f1a9	0x141725c8c	cstring	Smelt 
+reference	job-caption	0xd1f20c	0x141725c84	cstring	 ore
+reference	job-caption	0xd1f21e	0x141725cb0	cstring	Melt a metal object
+reference	job-caption	0xd1f230	0x141725c98	cstring	Extract metal strands
+reference	job-caption	0xd1f25a	0x1416315c4	cstring	Tint 
+reference	job-caption	0xd1f280	0x141725cd8	cstring	 thread 
+reference	job-caption	0xd1f2a6	0x1416315f0	cstring	 using 
+reference	job-caption	0xd1f2cc	0x1416315e8	cstring	 dye
+reference	job-caption	0xd1f2e6	0x141725cc8	cstring	Dye thread 
+reference	job-caption	0xd1f309	0x141725cf0	cstring	Dye thread
+reference	job-caption	0xd1f32f	0x1416315c4	cstring	Tint 
+reference	job-caption	0xd1f355	0x141725ce8	cstring	 cloth 
+reference	job-caption	0xd1f361	0x141725d10	cstring	Dye cloth 
+reference	job-caption	0xd1f38c	0x141725d00	cstring	Dye cloth
+reference	job-caption	0xd1f3b2	0x1416315c4	cstring	Tint 
+reference	job-caption	0xd1f3d8	0x141725d30	cstring	 leather 
+reference	job-caption	0xd1f3e4	0x141725d20	cstring	Dye leather 
+reference	job-caption	0xd1f40d	0x141725d40	cstring	Dye leather
+reference	job-caption	0xd1f41f	0x14163171c	cstring	Mix 
+reference	job-caption	0xd1f45c	0x1416039f0	cstring	 
+reference	job-caption	0xd1f471	0x141725d3c	cstring	dye
+reference	job-caption	0xd1f494	0x1416315f0	cstring	 using 
+reference	job-caption	0xd1f4d2	0x14160438c	cstring	 and 
+reference	job-caption	0xd1f523	0x141725d54	cstring	Sew 
+reference	job-caption	0xd1f586	0x141725d4c	cstring	 image
+reference	job-caption	0xd1f598	0x141725d78	cstring	Collect webs
+reference	job-caption	0xd1f5f2	0x141725d60	cstring	Weave metal cloth
+reference	job-caption	0xd1f60d	0x141725da0	cstring	Weave thread into silk
+reference	job-caption	0xd1f61a	0x141725d88	cstring	Weave yarn into cloth
+reference	job-caption	0xd1f623	0x141725dc8	cstring	Weave thread into cloth
+reference	job-caption	0xd1f645	0x141725db8	cstring	 (dyed only)
+reference	job-caption	0xd1f657	0x141725df0	cstring	Harvest plants
+reference	job-caption	0xd1f669	0x141725de0	cstring	Plant seeds
+reference	job-caption	0xd1f678	0x141725e10	cstring	Fertilize field
+reference	job-caption	0xd1f68a	0x141725e00	cstring	Pull the lever
+reference	job-caption	0xd1f69c	0x141725e38	cstring	Link a building to trigger
+reference	job-caption	0xd1f6ae	0x141725e20	cstring	Carve fortification
+reference	job-caption	0xd1f6c0	0x141725e68	cstring	Smooth wall
+reference	job-caption	0xd1f6d2	0x141725e58	cstring	Smooth floor
+reference	job-caption	0xd1f6e4	0x141725e88	cstring	Detail wall
+reference	job-caption	0xd1f6f6	0x141725e78	cstring	Detail floor
+reference	job-caption	0xd1f708	0x141725eb0	cstring	Carve track
+reference	job-caption	0xd1f71a	0x1416c13e4	cstring	Dig
+reference	job-caption	0xd1f72c	0x141725e98	cstring	Remove stairs/ramps
+reference	job-caption	0xd1f73e	0x141725ed8	cstring	Remove construction
+reference	job-caption	0xd1f750	0x141725ec0	cstring	Carve upward staircase
+reference	job-caption	0xd1f762	0x141725f08	cstring	Carve downward staircase
+reference	job-caption	0xd1f774	0x141725ef0	cstring	Carve up/down staircase
+reference	job-caption	0xd1f786	0x141725f38	cstring	Carve ramp
+reference	job-caption	0xd1f798	0x141725f28	cstring	Dig channel
+reference	job-caption	0xd1f7aa	0x141725f58	cstring	Fell tree
+reference	job-caption	0xd1f7bc	0x141725f48	cstring	Gather plants
+reference	job-caption	0xd1f7ce	0x141725f80	cstring	Bring item to shop
+reference	job-caption	0xd1f7e0	0x141725f68	cstring	Bring item to depot
+reference	job-caption	0xd1f7f2	0x1416bf818	cstring	Eat
+reference	job-caption	0xd1f804	0x141725fa8	cstring	Get provisions
+reference	job-caption	0xd1f816	0x141725f98	cstring	Clean self
+reference	job-caption	0xd1f828	0x14164bb30	cstring	Drink
+reference	job-caption	0xd1f83a	0x141725fc0	cstring	Fill waterskin
+reference	job-caption	0xd1f84c	0x141725fb8	cstring	Sleep
+reference	job-caption	0xd1f85e	0x14161dd1c	cstring	Fish
+reference	job-caption	0xd1f870	0x141725fd8	cstring	Kidnap
+reference	job-caption	0xd1f882	0x14161b640	cstring	Cause trouble
+reference	job-caption	0xd1f894	0x141725fd0	cstring	No job
+reference	job-caption	0xd1f8a6	0x141725ff0	cstring	No activity
+reference	job-caption	0xd1f8b8	0x141725fe0	cstring	Report crime
+reference	job-caption	0xd1f8ca	0x141726014	cstring	Hunt
+reference	job-caption	0xd1f8dc	0x141726000	cstring	Starting fist fight
+reference	job-caption	0xd1f8ee	0x141726038	cstring	Beat criminal
+reference	job-caption	0xd1f900	0x141726020	cstring	Place track vehicle
+reference	job-caption	0xd1f912	0x141726060	cstring	Push track vehicle
+reference	job-caption	0xd1f91e	0x141726048	cstring	Execute criminal
+reference	job-caption	0xd1f930	0x141726088	cstring	Hunt for small creature
+reference	job-caption	0xd1f942	0x141726078	cstring	Collect taxes
+reference	job-caption	0xd1f954	0x1417260b0	cstring	Guard tax collector
+reference	job-caption	0xd1f966	0x1417260a0	cstring	Return kill
+reference	job-caption	0xd1f978	0x1417263d8	cstring	Go shopping
+reference	job-caption	0xd1f98a	0x1417263c8	cstring	Seek artifact
+reference	job-caption	0xd1f99c	0x141726400	cstring	Seek infant
+reference	job-caption	0xd1f9a8	0x1417263e8	cstring	Store owned item
+reference	job-caption	0xd1f9ba	0x141726428	cstring	Place item in tomb
+reference	job-caption	0xd1f9cc	0x141726410	cstring	Store item in stockpile
+reference	job-caption	0xd1f9de	0x141726458	cstring	Store item in bag
+reference	job-caption	0xd1f9f0	0x141726440	cstring	Store item in barrel
+reference	job-caption	0xd1fa02	0x141726488	cstring	Store item in bin
+reference	job-caption	0xd1fa14	0x141726470	cstring	Store item in vehicle
+reference	job-caption	0xd1fa26	0x1417264b0	cstring	Store weapon
+reference	job-caption	0xd1fa38	0x1417264a0	cstring	Store armor
+reference	job-caption	0xd1fa4a	0x1417264d8	cstring	Store item in location
+reference	job-caption	0xd1fa5c	0x1417264c0	cstring	Store squad equipment
+reference	job-caption	0xd1fa6e	0x1416c10f8	cstring	Clean
+reference	job-caption	0xd1fa80	0x1416c161c	cstring	Rest
+reference	job-caption	0xd1fa8c	0x141726500	cstring	Pickup equipment
+reference	job-caption	0xd1fa9e	0x1417264f0	cstring	Dump item
+reference	job-caption	0xd1fab0	0x1416bef38	cstring	Strange mood
+reference	job-caption	0xd1fac2	0x141726528	cstring	Clean trap
+reference	job-caption	0xd1fad4	0x141726518	cstring	Load catapult
+reference	job-caption	0xd1fae6	0x141726550	cstring	Load ballista
+reference	job-caption	0xd1faf5	0x141726538	cstring	Load bolt thrower
+reference	job-caption	0xd1fb04	0x141726570	cstring	Fire catapult
+reference	job-caption	0xd1fb13	0x141726560	cstring	Fire ballista
+reference	job-caption	0xd1fb22	0x141726590	cstring	Fire bolt thrower
+reference	job-caption	0xd1fb31	0x141726580	cstring	Operate pump
+reference	job-caption	0xd1fb40	0x1417265b8	cstring	Load cage trap
+reference	job-caption	0xd1fb4c	0x1417265a8	cstring	Load stone trap
+reference	job-caption	0xd1fb55	0x1417265c8	cstring	Load weapon trap
+reference	memorial-language-name	0xaadbdd	0x1416039f0	cstring	 
+reference	memorial-language-name	0xaadd53	0x1416039f0	cstring	 
+reference	memorial-language-name	0xaadfaf	0x1416039f0	cstring	 
+reference	memorial-language-name	0xaae0db	0x1416039f0	cstring	 
+reference	memorial-unit-identity	0x134976d	0x141604394	cstring	, 
+reference	memorial-unit-identity	0x1349868	0x1416049cc	cstring	""""
+reference	memorial-unit-identity	0x13498bd	0x1416049cc	cstring	""""
+reference	memorial-unit-identity	0x13498d2	0x141604394	cstring	, 
+reference	memorial-unit-identity	0x1349911	0x141604394	cstring	, 
+reference	memorial-unit-identity	0x134996d	0x141604394	cstring	, 
+reference	memorial-unit-identity	0x13499c8	0x1416312f0	cstring	 (
+reference	memorial-unit-identity	0x1349a04	0x1417a31a8	cstring	Trained
+reference	memorial-unit-identity	0x1349a10	0x1417a31b0	cstring	-Trained-
+reference	memorial-unit-identity	0x1349a1c	0x1417a31f0	cstring	+Trained+
+reference	memorial-unit-identity	0x1349a28	0x1417a3200	cstring	*Trained*
+reference	memorial-unit-identity	0x1349a5c	0x1417a31a8	cstring	Trained
+reference	memorial-unit-identity	0x1349aac	0x1417a31a8	cstring	Trained
+reference	memorial-unit-identity	0x1349ad8	0x1417a31d4	cstring	Tame
+reference	memorial-unit-identity	0x1349ae1	0x1417a31e0	cstring	Semi-Wild
+reference	memorial-unit-identity	0x1349af9	0x141631330	cstring	)
+reference	memorial-unit-role	0x13483ee	0x14168285c	cstring	deity
+reference	memorial-unit-role	0x1348405	0x14168e354	cstring	force
+reference	memorial-unit-role	0x134864c	0x1417a3250	cstring	 Slave
+reference	memorial-unit-role	0x1348686	0x14161c928	cstring	Slave
+reference	memorial-unit-role	0x13486dc	0x14161c928	cstring	Slave
+reference	memorial-unit-role	0x13486e4	0x14161c92c	cstring	e
+reference	memorial-unit-role	0x13487c3	0x1417a3258	cstring	 Prisoner
+reference	memorial-unit-role	0x13487f7	0x72656e6f73697250	inline	Prisoner
+reference	memorial-unit-role	0x1348847	0x72656e6f73697250	inline	Prisoner
+reference	memorial-unit-role	0x1348976	0x1417a3248	cstring	Stray 
+reference	memorial-unit-role	0x134897d	0x1417a3240	cstring	Fierce 
+reference	memorial-unit-role	0x134899e	0x1417a31c0	cstring	Agitated 
+reference	memorial-unit-role	0x13489d4	0x1416df4d4	cstring	Ghost
+reference	memorial-unit-role	0x13489ee	0x1416458f0	cstring	Ghostly 
+reference	memorial-unit-role	0x1348a3d	0x1416039f0	cstring	 
+reference	memorial-unit-role	0x1348a86	0x1416039f0	cstring	 
+reference	memorial-unit-role	0x1348acc	0x1417a31cc	cstring	Corpse
+reference	memorial-unit-role	0x1348adb	0x141645910	cstring	 Corpse
+reference	memorial-choice-refresh	0x8db8a3	0x1416df550	cstring	 slabs engraved
+reference	memorial-choice-refresh	0x8db8bd	0x1416df560	cstring	Slab engraved
+reference	memorial-choice-refresh	0x8db8ca	0x1416df568	cstring	raved
+reference	memorial-choice-refresh	0x8db8d3	0x1416df56c	cstring	d
+reference	memorial-choice-refresh	0x8db990	0x1416df518/16	vector	No slabs engrave
+reference	memorial-choice-refresh	0x8db99a	0x1416df528	cstring	d
+reference	memorial-choice-refresh	0x8dba62	0x1416df4d4	cstring	Ghost
+reference	memorial-choice-refresh	0x8dba6b	0x1416df4d8	cstring	t
+reference	memorial-choice-refresh	0x8dbaf5	0x1416df4e0/16	vector	Not memorialized
+reference	memorial-choice-refresh	0x8dbb4e	0x1416df4e0/16	vector	Not memorialized
+reference	memorial-choice-refresh	0x8dbb99	0x6465626d6f746e45	inline	Entombed
+reference	memorial-choice-refresh	0x8dbbfe	0x1416df530/16	vector	Entombed and mem
+reference	memorial-choice-refresh	0x8dbc08	0x1416df540	cstring	orialized
+reference	memorial-choice-refresh	0x8dbc15	0x1416df548	cstring	d
+reference	memorial-choice-refresh	0x8dbc85	0x1416df4f8	cstring	Memorialized
+reference	memorial-choice-refresh	0x8dbc92	0x1416df500	cstring	ized
+reference	task-choice-construction	0x8df7c0	0x141631610	cstring	 available
+reference	task-choice-construction	0x8df993	0x141631610	cstring	 available
+reference	task-choice-construction	0x8dfeb3	0x141631770	cstring	CLEAR
+reference	task-choice-construction	0x8dfee4	0x141631640	cstring	At least 
+reference	task-choice-construction	0x8dff0c	0x141631610	cstring	 available
+reference	task-choice-construction	0x8e046e	0x141631640	cstring	At least 
+reference	task-choice-construction	0x8e04ca	0x1416df280	cstring	 dye available
+reference	task-choice-construction	0x8e0596	0x141631640	cstring	At least 
+reference	task-choice-construction	0x8e05f8	0x1416df290	cstring	 cloth/dye available
+reference	task-choice-construction	0x8e060c	0x1416df250	cstring	 leather/dye available
+reference	task-choice-construction	0x8e061b	0x1416df268	cstring	 thread/dye available
+reference	task-choice-construction	0x8e0b8c	0x1416df4d4	cstring	Ghost
+reference	task-choice-construction	0x8e0b93	0x1416df4e0	cstring	Not memorialized
+reference	task-choice-construction	0x8e0ba0	0x1416df4e0	cstring	Not memorialized
+reference	task-choice-construction	0x8e0ba9	0x1416df508	cstring	Entombed
+reference	task-choice-construction	0x8e0bb4	0x1416df530	cstring	Entombed and memorialized
+reference	task-choice-construction	0x8e0bbd	0x1416df4f8	cstring	Memorialized
+reference	task-choice-construction	0x8e0bd8	0x141604394	cstring	, 
+reference	task-choice-construction	0x8e0bfa	0x1416df550	cstring	 slabs engraved
+reference	task-choice-construction	0x8e0c03	0x1416df228	cstring	slab engraved
+reference	task-choice-construction	0x8e0c0c	0x1416df238	cstring	no slabs engraved
+reference	task-choice-construction	0x8e48a6	0x14167dff0	cstring	BALLISTA
+reference	string-length-error	0x66ec4	0x1416031d8	cstring	string too long
+reference	material-caption	0x14eabf7	0x141630b04	cstring	plant
+reference	material-caption	0x14eac19	0x141631664	cstring	yarn
+reference	material-caption	0x14eac41	0x141631654	cstring	cloth
+reference	material-caption	0x14eac61	0x14163165c	cstring	silk
+reference	material-caption	0x14eac81	0x141631674	cstring	bone
+reference	material-caption	0x14eaca1	0x141631480	cstring	leather
+reference	material-caption	0x14eacc1	0x14163166c	cstring	shell
+reference	material-caption	0x14eace3	0x141631684	cstring	soap
+reference	material-caption	0x14ead05	0x1417a98a0	cstring	ivory/tooth
+reference	material-caption	0x14ead27	0x141631694	cstring	horn
+reference	material-caption	0x14ead49	0x14163168c	cstring	pearl
+reference	material-caption	0x14ead78	0x141631488	cstring	wood
+reference	material-caption	0x14ead7f	0x1416c1be4	cstring	wooden
+reference	material-caption	0x14eaed5	0x141608da4	cstring	's 
+reference	material-caption	0x14eaf69	0x1416039f0	cstring	 
+reference	material-caption	0x14eafba	0x1417a9888	cstring	unknown material
+classic	job-object-caption	0xd17d41	0x1417203b8	cstring	Remove Rotten Tissue
+classic	job-object-caption	0xd17d5d	0x1417203d0	cstring	Repair Compound Fracture
+classic	job-object-caption	0xd17d79	0x141720390	cstring	Stop Bleeding
+classic	job-object-caption	0xd17d95	0x1416c0c78	cstring	Surgery
+classic	job-caption	0xd17e82	0x141720408	cstring	Construct building
+classic	job-caption	0xd17e8e	0x1417203f0	cstring	Destroy building
+classic	job-caption	0xd17ea0	0x141720430	cstring	Butcher an animal
+classic	job-caption	0xd17eaf	0x141720420	cstring	Catch live fish
+classic	job-caption	0xd17ec1	0x141720460	cstring	Catch live land animal
+classic	job-caption	0xd17ed3	0x141720448	cstring	Prepare a raw fish
+classic	job-caption	0xd17efb	0x141720484	cstring	Mill 
+classic	job-caption	0xd17f50	0x141720478	cstring	Mill plants
+classic	job-caption	0xd17f78	0x1417204a0	cstring	Process 
+classic	job-caption	0xd17fcd	0x141720490	cstring	Process plants
+classic	job-caption	0xd17fdf	0x1417204b4	cstring	Milk 
+classic	job-caption	0xd1806c	0x1416bc7cc	cstring	animal
+classic	job-caption	0xd1807e	0x1417204ac	cstring	Shear 
+classic	job-caption	0xd1810b	0x1417204d0	cstring	Spin thread
+classic	job-caption	0xd1811d	0x1417204c0	cstring	Make cheese
+classic	job-caption	0xd18145	0x1417204a0	cstring	Process 
+classic	job-caption	0xd18184	0x1417204f8	cstring	 (vial)
+classic	job-caption	0xd181a9	0x1417204e0	cstring	Process plants (vial)
+classic	job-caption	0xd181d1	0x1417204a0	cstring	Process 
+classic	job-caption	0xd18210	0x141720518	cstring	 (barrel)
+classic	job-caption	0xd18235	0x141720500	cstring	Process plants (barrel)
+classic	job-caption	0xd18247	0x141720540	cstring	Make lye
+classic	job-caption	0xd18259	0x141720528	cstring	Make potash from lye
+classic	job-caption	0xd1826b	0x141720568	cstring	Make potash from ash
+classic	job-caption	0xd18291	0x141720580	cstring	Prepare lavish meal
+classic	job-caption	0xd182a5	0x141720598	cstring	Prepare fine meal
+classic	job-caption	0xd182b9	0x141720550	cstring	Prepare easy meal
+classic	job-caption	0xd182e9	0x1417205c8	cstring	Extract from 
+classic	job-caption	0xd1833e	0x1417205b0	cstring	Extract from plants
+classic	job-caption	0xd18350	0x1417205f8	cstring	Extract from raw fish
+classic	job-caption	0xd18362	0x1417205d8	cstring	Extract from land animal
+classic	job-caption	0xd18374	0x141720620	cstring	Handle 
+classic	job-caption	0xd18404	0x141720610	cstring	a large animal
+classic	job-caption	0xd18416	0x141720638	cstring	Unchain pet
+classic	job-caption	0xd18428	0x141720628	cstring	Interrogate 
+classic	job-caption	0xd184b5	0x1416904c8	cstring	subject
+classic	job-caption	0xd184c7	0x141720658	cstring	Release 
+classic	job-caption	0xd18560	0x141720648	cstring	Release pet
+classic	job-caption	0xd18572	0x141720680	cstring	Release small creature
+classic	job-caption	0xd18584	0x141720668	cstring	Handle small creature
+classic	job-caption	0xd18596	0x1417206a0	cstring	Recover pet
+classic	job-caption	0xd185a8	0x141720698	cstring	Cage 
+classic	job-caption	0xd1863e	0x1417206c8	cstring	Recover wounded
+classic	job-caption	0xd1864a	0x1417206b0	cstring	Diagnose patient
+classic	job-caption	0xd18656	0x1417206e8	cstring	Immobilize break
+classic	job-caption	0xd18668	0x1417206d8	cstring	Apply cast
+classic	job-caption	0xd1867a	0x141720a28	cstring	Bring crutch
+classic	job-caption	0xd1868c	0x141720a18	cstring	Dress wound
+classic	job-caption	0xd1869e	0x141720a40	cstring	Clean patient
+classic	job-caption	0xd186b0	0x1416c0c78	cstring	Surgery
+classic	job-caption	0xd186c2	0x141720a38	cstring	Suture
+classic	job-caption	0xd186d4	0x141720a68	cstring	Set bone
+classic	job-caption	0xd186e6	0x141720a50	cstring	Place in traction
+classic	job-caption	0xd186f8	0x141720a90	cstring	Put item on display
+classic	job-caption	0xd1870a	0x141720a78	cstring	Cage small animal
+classic	job-caption	0xd1871c	0x141720ac0	cstring	Pit/pond 
+classic	job-caption	0xd187c8	0x141720aa8	cstring	Pit/pond small animal
+classic	job-caption	0xd187da	0x141720af0	cstring	Pen/pasture 
+classic	job-caption	0xd1887f	0x141720ad0	cstring	Pen/pasture small animal
+classic	job-caption	0xd18891	0x141720b10	cstring	Drain aquarium
+classic	job-caption	0xd188a3	0x141720b00	cstring	Fill aquarium
+classic	job-caption	0xd188b5	0x141720b30	cstring	Fill pond
+classic	job-caption	0xd188c7	0x141720b20	cstring	Give water
+classic	job-caption	0xd188d9	0x141720b58	cstring	Give food
+classic	job-caption	0xd188eb	0x141720b40	cstring	Manage work orders
+classic	job-caption	0xd188fd	0x141720b78	cstring	Update stockpile records
+classic	job-caption	0xd1890f	0x141720b68	cstring	Trade at depot
+classic	job-caption	0xd1896a	0x141720ba8	cstring	Chain 
+classic	job-caption	0xd189bf	0x141720b98	cstring	Put in chains
+classic	job-caption	0xd189d1	0x141720bb8	cstring	Slaughter 
+classic	job-caption	0xd18a78	0x141720bb0	cstring	Geld 
+classic	job-caption	0xd18b1d	0x141720bd0	cstring	Unchain
+classic	job-caption	0xd18b82	0x1415fe96c	cstring	 
+classic	job-caption	0xd18bd7	0x141720bc4	cstring	Tame 
+classic	job-caption	0xd18c7c	0x141720be8	cstring	Tame a small animal
+classic	job-caption	0xd18c8e	0x141652d2c	cstring	Make 
+classic	job-caption	0xd18cf1	0x1416fe790	cstring	 crafts
+classic	job-caption	0xd18d03	0x141652d2c	cstring	Make 
+classic	job-caption	0xd18d66	0x141720bd8	cstring	 figurine
+classic	job-caption	0xd18d78	0x141652d2c	cstring	Make 
+classic	job-caption	0xd18ddb	0x141720c10	cstring	 amulet
+classic	job-caption	0xd18ded	0x141652d2c	cstring	Make 
+classic	job-caption	0xd18e50	0x141720c00	cstring	 scepter
+classic	job-caption	0xd18e62	0x141652d2c	cstring	Make 
+classic	job-caption	0xd18ec5	0x141720c20	cstring	 crown
+classic	job-caption	0xd18ed7	0x141652d2c	cstring	Make 
+classic	job-caption	0xd18f3a	0x141720c18	cstring	 ring
+classic	job-caption	0xd18f4c	0x141652d2c	cstring	Make 
+classic	job-caption	0xd18faf	0x141720c38	cstring	 earring
+classic	job-caption	0xd18fc1	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19024	0x141720c28	cstring	 bracelet
+classic	job-caption	0xd19036	0x141720c50	cstring	Make large 
+classic	job-caption	0xd19099	0x1416eb9e0	cstring	 gem
+classic	job-caption	0xd190ab	0x141720c44	cstring	Mint 
+classic	job-caption	0xd1910e	0x141720c64	cstring	 coins
+classic	job-caption	0xd1912f	0x141720c5c	cstring	Cut 
+classic	job-caption	0xd19188	0x141720c88	cstring	Cut gems
+classic	job-caption	0xd191b2	0x141720c5c	cstring	Cut 
+classic	job-caption	0xd19208	0x141720c70	cstring	Cut raw glass into gems
+classic	job-caption	0xd1922f	0x141720ca8	cstring	Polish 
+classic	job-caption	0xd19238	0x141720c98	cstring	Polish stones
+classic	job-caption	0xd1929d	0x1416da5d0	cstring	Engrave memorial slab
+classic	job-caption	0xd1937b	0x141720cc0	cstring	 (engrave memorial)
+classic	job-caption	0xd19395	0x141720cb0	cstring	Decorate with 
+classic	job-caption	0xd193b7	0x141720ce8	cstring	Stud with 
+classic	job-caption	0xd193dc	0x141720cd8	cstring	Encrust 
+classic	job-caption	0xd193ff	0x141720d08	cstring	finished goods
+classic	job-caption	0xd1941a	0x141720cf8	cstring	furniture
+classic	job-caption	0xd19435	0x1416e603c	cstring	ammo
+classic	job-caption	0xd1944a	0x1416047e8	cstring	 with 
+classic	job-caption	0xd1946f	0x141617fb8	cstring	cut gems
+classic	job-caption	0xd19481	0x141720cd8	cstring	Encrust 
+classic	job-caption	0xd194a4	0x141720d08	cstring	finished goods
+classic	job-caption	0xd194bf	0x141720cf8	cstring	furniture
+classic	job-caption	0xd194da	0x1416e603c	cstring	ammo
+classic	job-caption	0xd194ef	0x1416047e8	cstring	 with 
+classic	job-caption	0xd19517	0x141720d28	cstring	cut glass
+classic	job-caption	0xd19529	0x141720cd8	cstring	Encrust 
+classic	job-caption	0xd1954c	0x141720d08	cstring	finished goods
+classic	job-caption	0xd19567	0x141720cf8	cstring	furniture
+classic	job-caption	0xd19582	0x1416e603c	cstring	ammo
+classic	job-caption	0xd19597	0x1416047e8	cstring	 with 
+classic	job-caption	0xd195bc	0x141720d18	cstring	polished stones
+classic	job-caption	0xd195ce	0x141720d48	cstring	Collect sand
+classic	job-caption	0xd195e0	0x141720d38	cstring	Collect clay
+classic	job-caption	0xd195f2	0x141720d70	cstring	Install colony in hive
+classic	job-caption	0xd19604	0x141720d58	cstring	Collect hive products
+classic	job-caption	0xd19616	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19678	0x141720d90	cstring	four 
+classic	job-caption	0xd196d2	0x141720d88	cstring	 blocks
+classic	job-caption	0xd196e4	0x141720da0	cstring	Make raw 
+classic	job-caption	0xd19706	0x141652d2c	cstring	Make 
+classic	job-caption	0xd197a4	0x141720d98	cstring	 Portal
+classic	job-caption	0xd197b6	0x1416e581c	cstring	 door
+classic	job-caption	0xd197c8	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1982b	0x141720dc0	cstring	 floodgate
+classic	job-caption	0xd1983d	0x141652d2c	cstring	Make 
+classic	job-caption	0xd198a0	0x141720db0	cstring	 hatch cover
+classic	job-caption	0xd198b2	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19915	0x141720dd4	cstring	 grate
+classic	job-caption	0xd19927	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1998a	0x141720dcc	cstring	 table
+classic	job-caption	0xd1999c	0x141720de8	cstring	Make traction bench
+classic	job-caption	0xd199ae	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19a11	0x141720de0	cstring	 splint
+classic	job-caption	0xd19a23	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19a86	0x141720710	cstring	 crutch
+classic	job-caption	0xd19a98	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19afb	0x141720700	cstring	 cabinet
+classic	job-caption	0xd19b0d	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19b70	0x141720728	cstring	 weapon rack
+classic	job-caption	0xd19b82	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19be5	0x141720718	cstring	 armor stand
+classic	job-caption	0xd19bf7	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19c5a	0x141720740	cstring	 bin
+classic	job-caption	0xd19c6c	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19d09	0x141720738	cstring	 box
+classic	job-caption	0xd19d35	0x141720750	cstring	 coffer
+classic	job-caption	0xd19d49	0x141720748	cstring	 chest
+classic	job-caption	0xd19d63	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19dc6	0x141720760	cstring	 bag
+classic	job-caption	0xd19dd8	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19e77	0x141720770	cstring	 sarcophagus
+classic	job-caption	0xd19e88	0x141720768	cstring	 coffin
+classic	job-caption	0xd19e9f	0x141720758	cstring	 casket
+classic	job-caption	0xd19eb1	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19f2e	0x141720780	cstring	 throne
+classic	job-caption	0xd19f48	0x141720788	cstring	 chair
+classic	job-caption	0xd19f9a	0x14172079c	cstring	Forge 
+classic	job-caption	0xd19fa9	0x141652d2c	cstring	Make 
+classic	job-caption	0xd19fbe	0x141720790	cstring	pair of 
+classic	job-caption	0xd1a00b	0x1416611e8	cstring	large 
+classic	job-caption	0xd1a01c	0x1416a0834	cstring	small 
+classic	job-caption	0xd1a083	0x1415fe96c	cstring	 
+classic	job-caption	0xd1a0c5	0x1417207b8	cstring	Make totem
+classic	job-caption	0xd1a117	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1a126	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1a13b	0x141720790	cstring	pair of 
+classic	job-caption	0xd1a188	0x1416611e8	cstring	large 
+classic	job-caption	0xd1a199	0x1416a0834	cstring	small 
+classic	job-caption	0xd1a200	0x1415fe96c	cstring	 
+classic	job-caption	0xd1a282	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1a291	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1a2f0	0x1415fe96c	cstring	 
+classic	job-caption	0xd1a35f	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1a36e	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1a405	0x1417207a8	cstring	 terrarium
+classic	job-caption	0xd1a417	0x1417207cc	cstring	 cage
+classic	job-caption	0xd1a469	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1a478	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1a4dc	0x1417207c4	cstring	 chain
+classic	job-caption	0xd1a509	0x1417207c4	cstring	 chain
+classic	job-caption	0xd1a523	0x1417207dc	cstring	 rope
+classic	job-caption	0xd1a575	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1a584	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1a599	0x1417207d4	cstring	three 
+classic	job-caption	0xd1a5fd	0x1417207f0	cstring	 waterskins
+classic	job-caption	0xd1a641	0x1417207e4	cstring	 vials
+classic	job-caption	0xd1a655	0x1416fe7f0	cstring	 flasks
+classic	job-caption	0xd1a6af	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1a6be	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1a6d3	0x1417207d4	cstring	three 
+classic	job-caption	0xd1a76b	0x1417207fc	cstring	 mugs
+classic	job-caption	0xd1a77f	0x141720818	cstring	 goblets
+classic	job-caption	0xd1a799	0x141720804	cstring	 cups
+classic	job-caption	0xd1a7eb	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1a7fa	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1a899	0x1415fe96c	cstring	 
+classic	job-caption	0xd1a8ae	0x1416e5fe4	cstring	tool
+classic	job-caption	0xd1a8c7	0x1415fe96c	cstring	 
+classic	job-caption	0xd1a9dc	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1a9eb	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1aa4a	0x14172080c	cstring	 toy
+classic	job-caption	0xd1aa9c	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1aaab	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1ab0a	0x141720830	cstring	 animal trap
+classic	job-caption	0xd1ab5c	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1ab6b	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1abca	0x141720828	cstring	 barrel
+classic	job-caption	0xd1ac1c	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1ac2b	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1acc2	0x141720850	cstring	 tube
+classic	job-caption	0xd1acd4	0x141720840	cstring	 pipe section
+classic	job-caption	0xd1ad26	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1ad35	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1ad94	0x1416d6270	cstring	 bucket
+classic	job-caption	0xd1ada6	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1ae09	0x141720868	cstring	 window
+classic	job-caption	0xd1ae1b	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1ae7e	0x141720858	cstring	 backpack
+classic	job-caption	0xd1ae90	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1aef3	0x141720880	cstring	 quiver
+classic	job-caption	0xd1af45	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1af54	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1afa1	0x1416611e8	cstring	large 
+classic	job-caption	0xd1afb2	0x1416a0834	cstring	small 
+classic	job-caption	0xd1b019	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b086	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1b095	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1b0e2	0x1416611e8	cstring	large 
+classic	job-caption	0xd1b0f3	0x1416a0834	cstring	small 
+classic	job-caption	0xd1b15a	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b184	0x141720870	cstring	Bait trap with 
+classic	job-caption	0xd1b1ab	0x1416bc76c	cstring	fish
+classic	job-caption	0xd1b1bf	0x1416ebde0	cstring	meat
+classic	job-caption	0xd1b1d3	0x14162c454	cstring	gem
+classic	job-caption	0xd1b22d	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1b23c	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1b289	0x1416611e8	cstring	large 
+classic	job-caption	0xd1b29a	0x1416a0834	cstring	small 
+classic	job-caption	0xd1b301	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b36e	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1b37d	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1b3dc	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b44b	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1b45a	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1b4b9	0x141720898	cstring	 ballista arrow head
+classic	job-caption	0xd1b4cb	0x141720888	cstring	Assemble 
+classic	job-caption	0xd1b52e	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b59d	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1b5ac	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1b5d1	0x1417208c0	cstring	five 
+classic	job-caption	0xd1b5e0	0x1417208b0	cstring	twenty-five 
+classic	job-caption	0xd1b637	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b662	0x1417208d8	cstring	Make
+classic	job-caption	0xd1b684	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b6df	0x1417208c8	cstring	 catapult parts
+classic	job-caption	0xd1b731	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1b740	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1b795	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b7f4	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b81d	0x1417208d8	cstring	Make
+classic	job-caption	0xd1b832	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b895	0x1417208f0	cstring	 mechanisms
+classic	job-caption	0xd1b8a7	0x1417208d8	cstring	Make
+classic	job-caption	0xd1b8c9	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b924	0x1417208e0	cstring	 ballista parts
+classic	job-caption	0xd1b936	0x1417208d8	cstring	Make
+classic	job-caption	0xd1b958	0x1415fe96c	cstring	 
+classic	job-caption	0xd1b9b6	0x141720908	cstring	 bolt thrower parts
+classic	job-caption	0xd1b9c8	0x14172079c	cstring	Forge 
+classic	job-caption	0xd1ba2b	0x1417208fc	cstring	 anvil
+classic	job-caption	0xd1ba3d	0x1417208d8	cstring	Make
+classic	job-caption	0xd1ba77	0x1415fe96c	cstring	 
+classic	job-caption	0xd1bac0	0x141720928	cstring	 bed
+classic	job-caption	0xd1bad2	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1bb35	0x141720920	cstring	 statue
+classic	job-caption	0xd1bb47	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1bbaa	0x141720938	cstring	 slab
+classic	job-caption	0xd1bbbc	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1bc1f	0x141720930	cstring	 quern
+classic	job-caption	0xd1bc31	0x141652d2c	cstring	Make 
+classic	job-caption	0xd1bc94	0x141720948	cstring	 millstone
+classic	job-caption	0xd1bca6	0x141720940	cstring	Train 
+classic	job-caption	0xd1bd33	0x141720968	cstring	 to hunt
+classic	job-caption	0xd1bd5a	0x141720958	cstring	hunting animal
+classic	job-caption	0xd1bd6c	0x141720940	cstring	Train 
+classic	job-caption	0xd1be00	0x141720988	cstring	 for war
+classic	job-caption	0xd1be27	0x141720978	cstring	war animal
+classic	job-caption	0xd1be39	0x141720940	cstring	Train 
+classic	job-caption	0xd1bede	0x1417209a8	cstring	Make charcoal
+classic	job-caption	0xd1bef0	0x141720998	cstring	Make ash
+classic	job-caption	0xd1bf6a	0x1417209c0	cstring	Reaction
+classic	job-caption	0xd1bfc9	0x1417209b8	cstring	Smelt 
+classic	job-caption	0xd1c02c	0x1417209e4	cstring	 ore
+classic	job-caption	0xd1c03e	0x1417209d0	cstring	Melt a metal object
+classic	job-caption	0xd1c050	0x141720a00	cstring	Extract metal strands
+classic	job-caption	0xd1c07a	0x14162c684	cstring	Tint 
+classic	job-caption	0xd1c0a0	0x1417209f0	cstring	 thread 
+classic	job-caption	0xd1c0c6	0x14162c6b0	cstring	 using 
+classic	job-caption	0xd1c0ec	0x14162c6a8	cstring	 dye
+classic	job-caption	0xd1c106	0x141720f98	cstring	Dye thread 
+classic	job-caption	0xd1c129	0x141720f88	cstring	Dye thread
+classic	job-caption	0xd1c14f	0x14162c684	cstring	Tint 
+classic	job-caption	0xd1c175	0x141720fb8	cstring	 cloth 
+classic	job-caption	0xd1c181	0x141720fa8	cstring	Dye cloth 
+classic	job-caption	0xd1c1ac	0x141720fd0	cstring	Dye cloth
+classic	job-caption	0xd1c1d2	0x14162c684	cstring	Tint 
+classic	job-caption	0xd1c1f8	0x141720fc0	cstring	 leather 
+classic	job-caption	0xd1c204	0x141720ff0	cstring	Dye leather 
+classic	job-caption	0xd1c22d	0x141720fe0	cstring	Dye leather
+classic	job-caption	0xd1c23f	0x14162c5a4	cstring	Mix 
+classic	job-caption	0xd1c27c	0x1415fe96c	cstring	 
+classic	job-caption	0xd1c291	0x141721008	cstring	dye
+classic	job-caption	0xd1c2b4	0x14162c6b0	cstring	 using 
+classic	job-caption	0xd1c2f2	0x1415ff340	cstring	 and 
+classic	job-caption	0xd1c343	0x141721000	cstring	Sew 
+classic	job-caption	0xd1c3a6	0x141721020	cstring	 image
+classic	job-caption	0xd1c3b8	0x141721010	cstring	Collect webs
+classic	job-caption	0xd1c412	0x141721040	cstring	Weave metal cloth
+classic	job-caption	0xd1c42d	0x141721028	cstring	Weave thread into silk
+classic	job-caption	0xd1c43a	0x141721070	cstring	Weave yarn into cloth
+classic	job-caption	0xd1c443	0x141721058	cstring	Weave thread into cloth
+classic	job-caption	0xd1c465	0x141721098	cstring	 (dyed only)
+classic	job-caption	0xd1c477	0x141721088	cstring	Harvest plants
+classic	job-caption	0xd1c489	0x1417210b8	cstring	Plant seeds
+classic	job-caption	0xd1c498	0x1417210a8	cstring	Fertilize field
+classic	job-caption	0xd1c4aa	0x1417210e8	cstring	Pull the lever
+classic	job-caption	0xd1c4bc	0x1417210c8	cstring	Link a building to trigger
+classic	job-caption	0xd1c4ce	0x141721108	cstring	Carve fortification
+classic	job-caption	0xd1c4e0	0x1417210f8	cstring	Smooth wall
+classic	job-caption	0xd1c4f2	0x141721130	cstring	Smooth floor
+classic	job-caption	0xd1c504	0x141721120	cstring	Detail wall
+classic	job-caption	0xd1c516	0x141721150	cstring	Detail floor
+classic	job-caption	0xd1c528	0x141721140	cstring	Carve track
+classic	job-caption	0xd1c53a	0x1416bc534	cstring	Dig
+classic	job-caption	0xd1c54c	0x141721178	cstring	Remove stairs/ramps
+classic	job-caption	0xd1c55e	0x141721160	cstring	Remove construction
+classic	job-caption	0xd1c570	0x1417211b0	cstring	Carve upward staircase
+classic	job-caption	0xd1c582	0x141721190	cstring	Carve downward staircase
+classic	job-caption	0xd1c594	0x1417211d8	cstring	Carve up/down staircase
+classic	job-caption	0xd1c5a6	0x1417211c8	cstring	Carve ramp
+classic	job-caption	0xd1c5b8	0x141721200	cstring	Dig channel
+classic	job-caption	0xd1c5ca	0x1417211f0	cstring	Fell tree
+classic	job-caption	0xd1c5dc	0x141721228	cstring	Gather plants
+classic	job-caption	0xd1c5ee	0x141721210	cstring	Bring item to shop
+classic	job-caption	0xd1c600	0x141721248	cstring	Bring item to depot
+classic	job-caption	0xd1c612	0x1416ba9b8	cstring	Eat
+classic	job-caption	0xd1c624	0x141721238	cstring	Get provisions
+classic	job-caption	0xd1c636	0x141721270	cstring	Clean self
+classic	job-caption	0xd1c648	0x141646ad8	cstring	Drink
+classic	job-caption	0xd1c65a	0x141721260	cstring	Fill waterskin
+classic	job-caption	0xd1c66c	0x141721284	cstring	Sleep
+classic	job-caption	0xd1c67e	0x141618ae4	cstring	Fish
+classic	job-caption	0xd1c690	0x14172127c	cstring	Kidnap
+classic	job-caption	0xd1c6a2	0x1416166a0	cstring	Cause trouble
+classic	job-caption	0xd1c6b4	0x14172129c	cstring	No job
+classic	job-caption	0xd1c6c6	0x141721290	cstring	No activity
+classic	job-caption	0xd1c6d8	0x1417212b0	cstring	Report crime
+classic	job-caption	0xd1c6ea	0x1417212a4	cstring	Hunt
+classic	job-caption	0xd1c6fc	0x1417212d0	cstring	Starting fist fight
+classic	job-caption	0xd1c70e	0x1417212c0	cstring	Beat criminal
+classic	job-caption	0xd1c720	0x141721300	cstring	Place track vehicle
+classic	job-caption	0xd1c732	0x1417212e8	cstring	Push track vehicle
+classic	job-caption	0xd1c73e	0x141721330	cstring	Execute criminal
+classic	job-caption	0xd1c750	0x141721318	cstring	Hunt for small creature
+classic	job-caption	0xd1c762	0x141721360	cstring	Collect taxes
+classic	job-caption	0xd1c774	0x141721348	cstring	Guard tax collector
+classic	job-caption	0xd1c786	0x141721380	cstring	Return kill
+classic	job-caption	0xd1c798	0x141721370	cstring	Go shopping
+classic	job-caption	0xd1c7aa	0x1417213a0	cstring	Seek artifact
+classic	job-caption	0xd1c7bc	0x141721390	cstring	Seek infant
+classic	job-caption	0xd1c7c8	0x1417213c8	cstring	Store owned item
+classic	job-caption	0xd1c7da	0x1417213b0	cstring	Place item in tomb
+classic	job-caption	0xd1c7ec	0x1417213f8	cstring	Store item in stockpile
+classic	job-caption	0xd1c7fe	0x1417213e0	cstring	Store item in bag
+classic	job-caption	0xd1c810	0x141720e18	cstring	Store item in barrel
+classic	job-caption	0xd1c822	0x141720e00	cstring	Store item in bin
+classic	job-caption	0xd1c834	0x141720e40	cstring	Store item in vehicle
+classic	job-caption	0xd1c846	0x141720e30	cstring	Store weapon
+classic	job-caption	0xd1c858	0x141720e70	cstring	Store armor
+classic	job-caption	0xd1c86a	0x141720e58	cstring	Store item in location
+classic	job-caption	0xd1c87c	0x141720e98	cstring	Store squad equipment
+classic	job-caption	0xd1c88e	0x1416bc2a0	cstring	Clean
+classic	job-caption	0xd1c8a0	0x1416bc51c	cstring	Rest
+classic	job-caption	0xd1c8ac	0x141720e80	cstring	Pickup equipment
+classic	job-caption	0xd1c8be	0x141720ec0	cstring	Dump item
+classic	job-caption	0xd1c8d0	0x1416b9e38	cstring	Strange mood
+classic	job-caption	0xd1c8e2	0x141720eb0	cstring	Clean trap
+classic	job-caption	0xd1c8f4	0x141720ee0	cstring	Load catapult
+classic	job-caption	0xd1c906	0x141720ed0	cstring	Load ballista
+classic	job-caption	0xd1c915	0x141720f00	cstring	Load bolt thrower
+classic	job-caption	0xd1c924	0x141720ef0	cstring	Fire catapult
+classic	job-caption	0xd1c933	0x141720f30	cstring	Fire ballista
+classic	job-caption	0xd1c942	0x141720f18	cstring	Fire bolt thrower
+classic	job-caption	0xd1c951	0x141720f50	cstring	Operate pump
+classic	job-caption	0xd1c960	0x141720f40	cstring	Load cage trap
+classic	job-caption	0xd1c96c	0x141720f78	cstring	Load stone trap
+classic	job-caption	0xd1c975	0x141720f60	cstring	Load weapon trap
+classic	memorial-language-name	0xaaaa3d	0x1415fe96c	cstring	 
+classic	memorial-language-name	0xaaabb3	0x1415fe96c	cstring	 
+classic	memorial-language-name	0xaaae0f	0x1415fe96c	cstring	 
+classic	memorial-language-name	0xaaaf3b	0x1415fe96c	cstring	 
+classic	memorial-unit-identity	0x13444bd	0x1415ff308	cstring	, 
+classic	memorial-unit-identity	0x13445b8	0x1415ff948	cstring	""""
+classic	memorial-unit-identity	0x134460d	0x1415ff948	cstring	""""
+classic	memorial-unit-identity	0x1344622	0x1415ff308	cstring	, 
+classic	memorial-unit-identity	0x1344661	0x1415ff308	cstring	, 
+classic	memorial-unit-identity	0x13446bd	0x1415ff308	cstring	, 
+classic	memorial-unit-identity	0x1344718	0x14162bff0	cstring	 (
+classic	memorial-unit-identity	0x1344754	0x14179d260	cstring	Trained
+classic	memorial-unit-identity	0x1344760	0x14179d350	cstring	-Trained-
+classic	memorial-unit-identity	0x134476c	0x14179d360	cstring	+Trained+
+classic	memorial-unit-identity	0x1344778	0x14179d338	cstring	*Trained*
+classic	memorial-unit-identity	0x13447ac	0x14179d260	cstring	Trained
+classic	memorial-unit-identity	0x13447fc	0x14179d260	cstring	Trained
+classic	memorial-unit-identity	0x1344828	0x14179d344	cstring	Tame
+classic	memorial-unit-identity	0x1344831	0x14179d390	cstring	Semi-Wild
+classic	memorial-unit-identity	0x1344849	0x14162c030	cstring	)
+classic	memorial-unit-role	0x134313e	0x14167ddb8	cstring	deity
+classic	memorial-unit-role	0x1343155	0x141691264	cstring	force
+classic	memorial-unit-role	0x134339c	0x14179d24c	cstring	 Slave
+classic	memorial-unit-role	0x13433d6	0x1416179a8	cstring	Slave
+classic	memorial-unit-role	0x134342c	0x1416179a8	cstring	Slave
+classic	memorial-unit-role	0x1343434	0x1416179ac	cstring	e
+classic	memorial-unit-role	0x1343513	0x14179d228	cstring	 Prisoner
+classic	memorial-unit-role	0x1343547	0x72656e6f73697250	inline	Prisoner
+classic	memorial-unit-role	0x1343597	0x72656e6f73697250	inline	Prisoner
+classic	memorial-unit-role	0x13436c6	0x14179d268	cstring	Stray 
+classic	memorial-unit-role	0x13436cd	0x14179d238	cstring	Fierce 
+classic	memorial-unit-role	0x13436ee	0x14179d270	cstring	Agitated 
+classic	memorial-unit-role	0x1343724	0x1416da554	cstring	Ghost
+classic	memorial-unit-role	0x134373e	0x141640878	cstring	Ghostly 
+classic	memorial-unit-role	0x134378d	0x1415fe96c	cstring	 
+classic	memorial-unit-role	0x13437d6	0x1415fe96c	cstring	 
+classic	memorial-unit-role	0x134381c	0x14179d254	cstring	Corpse
+classic	memorial-unit-role	0x134382b	0x141640870	cstring	 Corpse
+classic	memorial-choice-refresh	0x8d8f03	0x1416da7d8	cstring	 slabs engraved
+classic	memorial-choice-refresh	0x8d8f1d	0x1416da7a0	cstring	Slab engraved
+classic	memorial-choice-refresh	0x8d8f2a	0x1416da7a8	cstring	raved
+classic	memorial-choice-refresh	0x8d8f33	0x1416da7ac	cstring	d
+classic	memorial-choice-refresh	0x8d8ff0	0x1416da7b0/16	vector	No slabs engrave
+classic	memorial-choice-refresh	0x8d8ffa	0x1416da7c0	cstring	d
+classic	memorial-choice-refresh	0x8d90c2	0x1416da554	cstring	Ghost
+classic	memorial-choice-refresh	0x8d90cb	0x1416da558	cstring	t
+classic	memorial-choice-refresh	0x8d9155	0x1416da520/16	vector	Not memorialized
+classic	memorial-choice-refresh	0x8d91ae	0x1416da520/16	vector	Not memorialized
+classic	memorial-choice-refresh	0x8d91f9	0x6465626d6f746e45	inline	Entombed
+classic	memorial-choice-refresh	0x8d925e	0x1416da770/16	vector	Entombed and mem
+classic	memorial-choice-refresh	0x8d9268	0x1416da780	cstring	orialized
+classic	memorial-choice-refresh	0x8d9275	0x1416da788	cstring	d
+classic	memorial-choice-refresh	0x8d92e5	0x1416da790	cstring	Memorialized
+classic	memorial-choice-refresh	0x8d92f2	0x1416da798	cstring	ized
+classic	task-choice-construction	0x8dce20	0x14162c6d0	cstring	 available
+classic	task-choice-construction	0x8dcff3	0x14162c6d0	cstring	 available
+classic	task-choice-construction	0x8dd513	0x14162c5f8	cstring	CLEAR
+classic	task-choice-construction	0x8dd544	0x14162c568	cstring	At least 
+classic	task-choice-construction	0x8dd56c	0x14162c6d0	cstring	 available
+classic	task-choice-construction	0x8ddace	0x14162c568	cstring	At least 
+classic	task-choice-construction	0x8ddb2a	0x1416da418	cstring	 dye available
+classic	task-choice-construction	0x8ddbf6	0x14162c568	cstring	At least 
+classic	task-choice-construction	0x8ddc58	0x1416da3d8	cstring	 cloth/dye available
+classic	task-choice-construction	0x8ddc6c	0x1416da3f0	cstring	 leather/dye available
+classic	task-choice-construction	0x8ddc7b	0x1416da4b0	cstring	 thread/dye available
+classic	task-choice-construction	0x8de1ec	0x1416da554	cstring	Ghost
+classic	task-choice-construction	0x8de1f3	0x1416da520	cstring	Not memorialized
+classic	task-choice-construction	0x8de200	0x1416da520	cstring	Not memorialized
+classic	task-choice-construction	0x8de209	0x1416da548	cstring	Entombed
+classic	task-choice-construction	0x8de214	0x1416da770	cstring	Entombed and memorialized
+classic	task-choice-construction	0x8de21d	0x1416da790	cstring	Memorialized
+classic	task-choice-construction	0x8de238	0x1415ff308	cstring	, 
+classic	task-choice-construction	0x8de25a	0x1416da7d8	cstring	 slabs engraved
+classic	task-choice-construction	0x8de263	0x1416da4c8	cstring	slab engraved
+classic	task-choice-construction	0x8de26c	0x1416da470	cstring	no slabs engraved
+classic	task-choice-construction	0x8e1f06	0x141678e98	cstring	BALLISTA
+classic	string-length-error	0x66e54	0x1415fe178	cstring	string too long
+classic	material-caption	0x14e5947	0x14162ba6c	cstring	plant
+classic	material-caption	0x14e5969	0x14162c410	cstring	yarn
+classic	material-caption	0x14e5991	0x14162c400	cstring	cloth
+classic	material-caption	0x14e59b1	0x14162c408	cstring	silk
+classic	material-caption	0x14e59d1	0x14162c420	cstring	bone
+classic	material-caption	0x14e59f1	0x14162c3e8	cstring	leather
+classic	material-caption	0x14e5a11	0x14162c418	cstring	shell
+classic	material-caption	0x14e5a33	0x14162c430	cstring	soap
+classic	material-caption	0x14e5a55	0x1417a3378	cstring	ivory/tooth
+classic	material-caption	0x14e5a77	0x14162c440	cstring	horn
+classic	material-caption	0x14e5a99	0x14162c438	cstring	pearl
+classic	material-caption	0x14e5ac8	0x14162c3f0	cstring	wood
+classic	material-caption	0x14e5acf	0x1416bc8ac	cstring	wooden
+classic	material-caption	0x14e5c25	0x141603dc8	cstring	's 
+classic	material-caption	0x14e5cb9	0x1415fe96c	cstring	 
+classic	material-caption	0x14e5d0a	0x1417a3418	cstring	unknown material

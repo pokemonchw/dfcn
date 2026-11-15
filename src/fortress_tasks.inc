@@ -177,6 +177,11 @@ void Overlay::layout_work_order_fields(SDL_Renderer *renderer) {
 std::optional<std::string> Overlay::translate_fortress_activity(
         const std::string &source, bool typed_only) const {
     if (auto target = exact_literal_translation("Fortress activity: " + source)) return target;
+    // The queued job and its chooser both use the native job-caption 0xd3
+    // arm. Resolve every identity supplier before the old menu namespace's
+    // dwarf-only production can reject a valid complete memorial caption.
+    if (const auto memorial = translate_memorial_activity_display(source); memorial.usable())
+        return memorial.target;
     // Header captions can follow identity titles without a blank separator.
     // There, only an activity production proves the field's role; an ordinary
     // translated noun or title must not qualify through the generic fallbacks.
@@ -340,7 +345,9 @@ TranslationResult Overlay::translate_fortress_activity_display(
     auto result = preserved_item_field(source, "activity");
     try {
         TranslationWorkFrame frame("activity display", source);
-        if (auto target = translate_fortress_activity(source, typed_only))
+        if (auto memorial = translate_memorial_activity_display(source); memorial.usable())
+            result = std::move(memorial);
+        else if (auto target = translate_fortress_activity(source, typed_only))
             result = TranslationResult::translated(source, *target, "activity");
         else {
             const std::string folded = lower(source);
