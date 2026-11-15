@@ -133,7 +133,13 @@ TranslationResult Overlay::translate_template_captures_display(const Rule &rule,
         } else {
             std::optional<std::string> target;
             try {
-                if (rule.help_prose || rule.ui_message || rule.tooltip_prose)
+                if (fortress_ore_use_template(rule.source) && field == 0) {
+                    // Keep the strict material role even when display must
+                    // preserve an unknown metal; never retry its color sense.
+                    if (config_.compositional_rules)
+                        target = RULESETS.translate_material_state(
+                            lower(native_text_to_utf8(value)));
+                } else if (rule.help_prose || rule.ui_message || rule.tooltip_prose)
                     target = translate_ui_catalog_capture(rule, field, value);
                 else if (auto exact = exact_literal_translation(value)) target = std::move(exact);
                 else if (rule.source == "Needs {s}" || rule.source == "No access to {s}" ||

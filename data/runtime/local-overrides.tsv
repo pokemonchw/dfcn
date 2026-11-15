@@ -1226,6 +1226,7 @@ Stone material: pyrite	黄铁石	wi
 Stone material: pyrites	黄铁石	wi
 Stone material: pyrolusite	软锰石	wi
 Stone material: stibnite	辉锑石	wi
+# Ore-use metal captures use the material-state vocabulary, not color senses.
 Ore of {s} ({d}%)	{s}矿石（{d}%）	witx
 Ore of {s}	{s}矿石	witx
 Make steel bars	制作钢锭	wi

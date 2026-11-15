@@ -6,7 +6,8 @@ std::optional<std::string> Overlay::translate_fortress_material_use(
     if (const auto target = exact_literal_translation("Material use: " + source)) return target;
     if (const auto target = exact_literal_translation(source)) return target;
     // Keep the metal name, its order and any percentage in TSV templates.
-    // Do not pass "Ore of ..." to generated-name or item-word guessing.
+    // The shared template resolver treats the metal capture as a material
+    // state, never a color, generated name or independently guessed word.
     if (source.starts_with("Ore of ")) {
         for (int index : template_rules_) {
             const Rule &rule = rules_[static_cast<size_t>(index)];

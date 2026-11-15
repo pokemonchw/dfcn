@@ -12884,6 +12884,10 @@ static bool fortress_squad_reference_template(std::string_view source) {
         source == "Assigned to {e}, position {d}";
 }
 
+static bool fortress_ore_use_template(std::string_view source) {
+    return source == "Ore of {s}" || source == "Ore of {s} ({d}%)";
+}
+
 #include "adventure_divine_guidance.inc"
 #include "adventure_barter.inc"
 
@@ -13421,6 +13425,21 @@ std::string Overlay::translate_template_captures(
         const Rule &rule, const std::vector<std::string> &captures,
         bool *all_string_captures_translated) const {
     std::vector<std::optional<std::string>> resolved;
+    if (fortress_ore_use_template(rule.source)) {
+        // Item Uses and Stone use both name the ore's output metal here.
+        // Resolve its complete material state, without generic dictionary
+        // overrides that can turn silver/gold/copper into appearance colors.
+        resolved.resize(captures.size());
+        if (config_.compositional_rules && !captures.empty())
+            resolved[0] = RULESETS.translate_material_state(
+                lower(native_text_to_utf8(captures[0])));
+        if (captures.empty() || captures.size() != rule.template_kinds.size() || !resolved[0]) {
+            if (all_string_captures_translated) *all_string_captures_translated = false;
+            return {};
+        }
+        return fill_template(rule, captures, nullptr,
+            all_string_captures_translated, &resolved);
+    }
     if (fortress_squad_reference_template(rule.source) && !captures.empty()) {
         resolved.resize(captures.size());
         resolved[0] = translate_fortress_squad_name(captures[0]);
