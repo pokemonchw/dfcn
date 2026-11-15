@@ -2698,7 +2698,7 @@ static bool native_character_header_activity_source(const NativeString *source,
 // The component's native producer already establishes ownership. Retain only
 // its submitted text and the exact interval written by this addst; no map,
 // widget-tree, button-skin or other page discovery belongs in this path.
-template<bool Character, bool Notification, typename Draw>
+template<bool Character, bool Notification, bool Stocks = false, typename Draw>
 static void capture_native_owned_caption(graphicst *graphics,
         const NativeString *source, int width, bool top_layer,
         uintptr_t native_caller, Draw &&draw) {
@@ -2712,7 +2712,7 @@ static void capture_native_owned_caption(graphicst *graphics,
         epoch = g_embark_item_capture_epoch.load(std::memory_order_acquire);
         bool busy = false;
         PendingNativeField shortened;
-        if constexpr (!Notification) {
+        if constexpr (!Notification && !Stocks) {
             auto &pending = Character ? native_character_clipped_pending() : native_squads_clipped_pending();
             if (pending.epoch != epoch) {
                 pending.fields.clear(); pending.epoch = epoch;
@@ -2727,7 +2727,8 @@ static void capture_native_owned_caption(graphicst *graphics,
             }
         }
         std::string_view submitted;
-        if (!busy && graphics && graphics == (Notification ? g_native_notification_write_graphics :
+        if (!busy && graphics && graphics == (Stocks ? g_native_stocks_write_graphics :
+                Notification ? g_native_notification_write_graphics :
                 Character ? g_native_character_write_graphics : g_native_squads_write_graphics) &&
                 width >= 0 && graphics->dimx > 0 && graphics->dimx <= 1000 &&
                 graphics->dimy > 0 && graphics->dimy <= 1000 &&
@@ -2746,6 +2747,17 @@ static void capture_native_owned_caption(graphicst *graphics,
                 row.editable_text = NativeEditableTextScope::owns(native_caller) ||
                     (g_native_textbox_widget_binding.text_return_address &&
                         native_caller == g_native_textbox_widget_binding.text_return_address);
+            if constexpr (Stocks) {
+                // The owned row is published after addst, with its identity
+                // already frozen while the Stocks producer frame is live.
+                // Generic resize/row registration cannot replace this snapshot.
+                row.editable_text = row.editable_text || NativeEditableTextScope::active ||
+                    native_caller == g_native_stocks_filter_caller;
+                row.trade_item_caption = capture_native_stocks_item_caption(
+                    native_caller, row.address, submitted);
+                if (row.trade_item_caption)
+                    row.complete_source = row.trade_item_caption->source;
+            }
             if constexpr (Character) {
                 row.character_header_activity =
                     native_character_header_activity_source(source, native_caller);
@@ -2787,7 +2799,7 @@ static void capture_native_owned_caption(graphicst *graphics,
                     row.info_title_right = right;
                 }
             }
-            if constexpr (!Notification) {
+            if constexpr (!Notification && !Stocks) {
                 row.squad_alias_target = native_squad_alias_source_target(
                     row.complete_source, row.address);
                 row.squad_generated_name = native_squad_generated_source_name(
@@ -2808,7 +2820,7 @@ static void capture_native_owned_caption(graphicst *graphics,
                 capture_native_character_relation_row(row, graphics, source, native_caller);
             x = graphics->screenx; y = graphics->screeny;
             dimx = graphics->dimx; dimy = graphics->dimy;
-            if constexpr (!Character && !Notification)
+            if constexpr (!Character && !Notification && !Stocks)
                 row.squad_list_right = capture_native_squad_list_right(
                     native_caller, row.address, x);
             clip = {graphics->clipx[0], graphics->clipx[1],
@@ -2845,9 +2857,9 @@ static void capture_native_owned_caption(graphicst *graphics,
             if (!ch) return;
             row.source.push_back(static_cast<char>(ch));
         }
-        if constexpr (Notification) {
-            // The report wrap owns the complete NativeString, including a
-            // suffix clipped by the floating panel. Keep that exact address /
+        if constexpr (Notification || Stocks) {
+            // The producer owns the complete NativeString, including a
+            // suffix clipped by its panel. Keep that exact address /
             // source proof after confirming all cells this call wrote.
             if (width == 0 && x >= 0 &&
                     static_cast<size_t>(last - x) <= row.complete_source.size() &&
@@ -2893,7 +2905,7 @@ static void capture_native_owned_caption(graphicst *graphics,
         if (positions.contains(position))
             std::erase_if(rows, [&](const NativeDrawnTextRow &previous) {
                 if (previous.x != row.x || previous.y != y) return false;
-                if constexpr (Character || Notification) {
+                if constexpr (Character || Notification || Stocks) {
                     if (previous.source != row.source && g_native_overwritten_text_rows.size() < 4096)
                         g_native_overwritten_text_rows.push_back(previous);
                 }
@@ -2904,6 +2916,14 @@ static void capture_native_owned_caption(graphicst *graphics,
         rows.push_back(std::move(row));
         positions.insert(position);
     } catch (...) {}
+}
+
+template<typename Draw>
+static void capture_native_stocks_caption(graphicst *graphics,
+        const NativeString *source, int width, bool top_layer,
+        uintptr_t native_caller, Draw &&draw) {
+    capture_native_owned_caption<false, false, true>(graphics, source, width, top_layer,
+        native_caller, std::forward<Draw>(draw));
 }
 
 template<typename Draw>

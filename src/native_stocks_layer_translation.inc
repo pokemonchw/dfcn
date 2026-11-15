@@ -19,9 +19,6 @@ std::vector<Match> Overlay::find_native_stocks_matches() const {
         native_texture_button_stocks_hide(*gps_), native_texture_button_stocks_hide_active(*gps_),
         native_texture_button_stocks_recenter(*gps_), native_texture_button_stocks_view_item(*gps_),
     };
-    // item_type::WOOD = 5 in the native enum. It remains authoritative when
-    // the selected Logs category has scrolled out of the category column.
-    const bool wood_context = g_native_stocks_current_type == 5;
     for (const auto &plane : draws) for (const auto &draw : plane) {
         if (draw.y < 0 || draw.y >= gps_->dimy || draw.x < 0 || draw.x >= gps_->dimx ||
                 draw.source.empty() || draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
@@ -93,13 +90,23 @@ std::vector<Match> Overlay::find_native_stocks_matches() const {
             if (!target) target = exact_literal_translation(complete);
             if (!target) target = translate_fortress_item_caption(complete);
         } else if (item_caption) {
-            translated = translate_fortress_item_caption_display(complete);
-            if (translated.usable()) target = translated.target;
-            if (const auto wood = translate_wood_item_caption(
-                    complete, group, wood_context, wood_context)) {
-                target = *wood;
-                translated = TranslationResult::translated(complete, *wood, "stocks-wood-caption");
+            // Every row owns the identity that produced this exact string.
+            // BAR/ASH and plant WOOD may both say "Ash", including headers
+            // with counts. Do not cache or choose their sense by English text.
+            const auto &identity = draw.trade_item_caption;
+            translated = preserve_native_translation(complete, "stocks-item-identity");
+            if (identity && identity->typed_identity) {
+                const bool builtin = identity->type == 0 && identity->subtype == -1 &&
+                    identity->material >= 1 && identity->material <= 18 &&
+                    identity->material != 7 && identity->material_index == -1;
+                if (!builtin || !identity->material_id.empty())
+                    translated = translate_native_trade_item_caption_display(*identity);
+                if (identity->type == 5 &&
+                        !(identity->flags & (0x40000u | 0x08000000u | 0x40u)))
+                    if (const auto wood = translate_wood_item_caption(complete, group, true, true))
+                        translated = TranslationResult::translated(complete, *wood, "stocks-wood-caption");
             }
+            if (translated.usable()) target = translated.target;
             if (!target) target = native_text_to_utf8(complete);
         } else {
             target = exact_literal_translation(complete);

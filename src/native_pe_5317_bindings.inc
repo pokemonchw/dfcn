@@ -42,6 +42,10 @@
 // Civilization details and trade agreements retain unique 96-byte original
 // instruction contexts around all 24 addst returns. Bind these consumed
 // return bytes explicitly; the complete world renderer changed in 53.17.
+// Stocks' group formatter retains RBP+98 and its type/subtype/material/count
+// arguments; the concrete item formatter retains [RBX], RBP+78 and mode -1.
+// Their complete CALLs are separate resources: the 53.17 renderer no longer
+// matches the frozen whole-function pattern around these two producers.
 inline constexpr Range kSteam5317Ranges[] = {
     {0xb9d10, 0xb9d11, 0xbb340},
     {0xc3e3e, 0xc3e3f, 0xc546e},
@@ -120,6 +124,8 @@ inline constexpr Range kSteam5317Ranges[] = {
     {0x22c130, 0x22c135, 0x22f500},
     {0x2311b2, 0x2311b7, 0x234a02},
     {0x271dd4, 0x271dd5, 0x275d04},
+    {0x3a263a, 0x3a263f, 0x3ab71a},
+    {0x3a2b6f, 0x3a2b74, 0x3abc4f},
     {0x3b1c96, 0x3b1c9c, 0x3bad76},
     {0x3b1e67, 0x3b1e6d, 0x3baf47},
     {0x3b26ee, 0x3b26f4, 0x3bb7ce},
@@ -385,6 +391,12 @@ inline constexpr Byte kSteam5317Bytes[] = {
     {0x2311b3, 0x09, 0x99},
     {0x2311b4, 0xf7, 0x4e},
     {0x2311b5, 0x1d, 0x1f},
+    {0x3a263b, 0xd1, 0x91},
+    {0x3a263c, 0x05, 0x0f},
+    {0x3a263d, 0x6e, 0x6f},
+    {0x3a2b70, 0xdc, 0xec},
+    {0x3a2b71, 0x28, 0x14},
+    {0x3a2b72, 0x8c, 0x8d},
     {0x3b1c97, 0xc5, 0x85},
     {0x3b1c98, 0x7c, 0x86},
     {0x3b1c99, 0x72, 0x73},

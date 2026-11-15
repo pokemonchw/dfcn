@@ -2624,6 +2624,7 @@ static bool native_notification_write_active(const graphicst *gps) noexcept {
 static thread_local bool g_native_info_foreground = false;
 static bool native_info_background_cell_hidden(const graphicst *, int, int) noexcept;
 static bool native_stocks_background_view(const graphicst *) noexcept;
+static bool native_stocks_layer_hook_active();
 static bool native_stocks_background_cell_hidden(const graphicst *, int, int) noexcept;
 static bool native_stocks_background_copy_hidden(SDL_Renderer *, const SDL_Rect *) noexcept;
 static bool native_display_background_view(const graphicst *) noexcept;
@@ -2631,6 +2632,8 @@ static bool native_display_background_cell_hidden(const graphicst *, int, int) n
 static bool native_display_background_copy_hidden(SDL_Renderer *, const SDL_Rect *) noexcept;
 static std::optional<NativeTradeItemCaption> capture_native_display_item_caption(
     uintptr_t string_owner, std::string_view shortened);
+static std::optional<NativeTradeItemCaption> capture_native_stocks_item_caption(
+    uintptr_t caller, uintptr_t string_owner, std::string_view shortened);
 static bool native_squads_background_cell_hidden(const graphicst *, int, int) noexcept;
 static bool native_squads_layer_hook_active();
 static void native_squads_prepare_text();
@@ -2937,6 +2940,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
     if (native_private_ui_write_active(graphics)) return;
     const bool character = graphics && graphics == g_native_character_write_graphics;
     const bool display = graphics && graphics == g_native_display_write_graphics;
+    const bool stocks = graphics && graphics == g_native_stocks_write_graphics;
     if (display && !trade_item_caption)
         trade_item_caption = capture_native_display_item_caption(address, source);
     // Copy the producer's frame and unshortened building name while the
@@ -3111,7 +3115,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         if (row.fortress_labor_caption) row.caption_source = true;
         row.trade_item_caption = std::move(trade_item_caption);
         if (row.trade_item_caption) row.caption_source = true;
-        if (display && row.trade_item_caption)
+        if ((display || stocks) && row.trade_item_caption)
             complete_source = row.trade_item_caption->source;
         row.mission_title = mission_title;
         row.mission_title_right = mission_title_right;
@@ -28451,7 +28455,8 @@ bool Overlay::prepare_immediate_row(bool top_layer, int y) {
                             static_cast<int32_t>(item.flags2),
                             static_cast<int32_t>(item.left),
                             static_cast<int32_t>(item.right),
-                            static_cast<int32_t>(item.semantic_name)}) {
+                            static_cast<int32_t>(item.semantic_name),
+                            static_cast<int32_t>(item.typed_identity)}) {
                         hash ^= static_cast<uint32_t>(value);
                         hash *= 1099511628211ULL;
                     }
@@ -43822,7 +43827,7 @@ std::shared_ptr<NativeTooltipPage> Overlay::prepare_frame_layout(SDL_Renderer *r
         layout_fortress_building_status(renderer);
         layout_fortress_depot(renderer);
         layout_fortress_economy(renderer);
-        layout_fortress_stocks(renderer);
+        if (!native_stocks_layer_hook_active()) layout_fortress_stocks(renderer);
         layout_fortress_item_captions(renderer);
         // Crop names can also enter through the typed item-caption reader.
         // Their farm row owns the final inset after both generic passes.
