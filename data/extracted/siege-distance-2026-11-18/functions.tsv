@@ -1,0 +1,9 @@
+fire_140a2eb80	0x140a2eb80	0x140a2faf0
+fire_140a2faf0	0x140a2faf0	0x140a30a44
+fire_140a30a50	0x140a30a50	0x140a32534
+projectile_hit	0x140663940	0x14066cca2
+projectile_base_init	0x140ebf110	0x140ebf23a
+proj_movement	0x140ec0e90	0x140ec5d78
+projectile_step_effects	0x140ebf240	0x140ebf471
+siege_hit_rating	0x1413812a0	0x141383f60
+projectile_update_all	0x140ecc5e0	0x140ecc6b9
