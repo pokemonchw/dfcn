@@ -1,5 +1,22 @@
 # Complete native status reports, shared by hover, expanded alerts and report history.
 # scope	source	target	field scopes	native provenance
+# ANIMAL_TRAINING_KNOWLEDGE (160) uses the shared announcement dispatcher.
+# 53.17 Steam regions a16355..a16650 / dc6921..dc6c22 and Classic
+# a13965..a13c60 / dc1671..dc1972 all append the same four predicates.
+# The subject uses the entity's plural race NAME and English language_name.
+# The animal uses singular race NAME. Both race calls pass caste = -1.
+training-community	{s} of {s}	{s2}的{s1}	$creature,$name	Steam abd670(plural), aae180(English); Classic aba4d0, aaafe0
+training-community	{s} of	{s1}	$creature	Empty formatted entity name leaves the literal of separator
+training-community	of {s}	{s1}的居民	$name	Empty plural race NAME; entity name still appended
+training-community	of	当地居民		Both subject fields empty; of remains
+adventure-announcement	The {s} now know a few facts about {s} training.	{s1}对驯养{s2}有了一点了解。	training-community,$creature	Level 1; Steam a1656b / dc6b4c; Classic a13b7b / dc189c
+adventure-announcement	The {s} have attained a general familiarity with {s} training methods.	{s1}已大致掌握{s2}的驯养方法。	training-community,$creature	Level 2; Steam a16523 / dc6b04; Classic a13b33 / dc1854
+adventure-announcement	The {s} are now quite knowledgeable {s} trainers.	{s1}对驯养{s2}已颇有心得。	training-community,$creature	Level 3; Steam a1651a / dc6afb; Classic a13b2a / dc184b; branches to shared trainers suffix
+adventure-announcement	The {s} are now expert {s} trainers.	{s1}如今已成为驯养{s2}的专家。	training-community,$creature	Level 4; Steam a164cf / dc6ab0; Classic a13adf / dc1800
+adventure-announcement	The {s} now know a few facts about training.	{s1}对这种动物的驯养有了一点了解。	training-community	Level 1; empty singular NAME before training.
+adventure-announcement	The {s} have attained a general familiarity with training methods.	{s1}已大致掌握这种动物的驯养方法。	training-community	Level 2; empty singular NAME before training methods.
+adventure-announcement	The {s} are now quite knowledgeable trainers.	{s1}对这种动物的驯养已颇有心得。	training-community	Level 3; empty singular NAME before trainers.
+adventure-announcement	The {s} are now expert trainers.	{s1}如今已成为驯养这种动物的专家。	training-community	Level 4; empty singular NAME before trainers.
 # NOBLE (7): the complete appointment/election productions use separate
 # personal identity, RAW office and native site/entity fields. In particular
 # the rival introduction in 14644c0 is optional, not an unconditional prefix.

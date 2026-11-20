@@ -4213,10 +4213,14 @@ owner_rva	role	complete_source_production	grammar_scope	typed_fields	source_cata
 0x12bdf0	producer-12bdf0	The {s} of {e} has been founded {s} and looks to your thriving economy for its future prosperity.			data\extracted\announcement-world-sources.tsv	0x14012bdf0
 0x12bdf0	producer-12bdf0	The {s} of {e}, {s}, has been conquered and now looks to your thriving economy for its future prosperity.			data\extracted\announcement-world-sources.tsv	0x14012bdf0
 0x12bdf0	producer-12bdf0	The {s} of {e}, {s}, looks to your thriving economy for its future prosperity.			data\extracted\announcement-world-sources.tsv	0x14012bdf0
-0x9eb8a0	producer-9eb8a0	The {s} of {e} are now expert {s} trainers.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0
-0x9eb8a0	producer-9eb8a0	The {s} of {e} are now quite knowledgeable {s} training methods.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0
-0x9eb8a0	producer-9eb8a0	The {s} of {e} have attained a general familiarity with {s} training methods.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0
-0x9eb8a0	producer-9eb8a0	The {s} of {e} now know a few facts about {s} training.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0
+0x9eb8a0	producer-9eb8a0	The {s} of {e} are now expert {s} trainers.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0+0x140dac290
+0xdac290	producer-dac290	The {s} of {e} are now expert {s} trainers.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0+0x140dac290
+0x9eb8a0	producer-9eb8a0	The {s} of {e} are now quite knowledgeable {s} trainers.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0+0x140dac290
+0xdac290	producer-dac290	The {s} of {e} are now quite knowledgeable {s} trainers.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0+0x140dac290
+0x9eb8a0	producer-9eb8a0	The {s} of {e} have attained a general familiarity with {s} training methods.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0+0x140dac290
+0xdac290	producer-dac290	The {s} of {e} have attained a general familiarity with {s} training methods.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0+0x140dac290
+0x9eb8a0	producer-9eb8a0	The {s} of {e} now know a few facts about {s} training.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0+0x140dac290
+0xdac290	producer-dac290	The {s} of {e} now know a few facts about {s} training.			data\extracted\announcement-world-sources.tsv	0x1409eb8a0+0x140dac290
 0xa0b4a0	producer-a0b4a0	An animal has become a {s}.			data\extracted\announcement-world-sources.tsv	0x140a0b4a0
 0xa0b4a0	producer-a0b4a0	{p} has become a {s}.			data\extracted\announcement-world-sources.tsv	0x140a0b4a0
 0xac5b30	producer-ac5b30	{e} and the surrounding lands have been made an official land of the realm.			data\extracted\announcement-world-sources.tsv	0x140ac5b30

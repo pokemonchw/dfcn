@@ -3653,6 +3653,7 @@ A {s} caravan from {e} has arrived. Your status as a minor land has attracted a 
 Announcement combat adventure-announcement [$unit,$conflict-caste]: {s} has been cursed to assume the form of a {s}-like monster every fool moon!	{s1}受到了诅咒，每逢满月都会变成{s2}般的怪物！	l
 Announcement combat adventure-announcement []: Some migrants have decided to brave this terrifying place, knowing it may be their miserable tomb.	一些移民决定勇闯这片恐怖之地，明知这里可能成为他们悲惨的坟墓。	l
 Announcement combat adventure-announcement []: You've finally got your equipment together, such as it is. Now it's time for action and adventure!	你终于把装备凑齐了，虽然算不上多好。现在正是行动与冒险之时！	l
+Announcement combat adventure-announcement [training-community,$creature]: The {s} have attained a general familiarity with {s} training methods.	{s1}已大致掌握{s2}的驯养方法。	l
 Announcement combat agreement-title-core [agreement-party-list,agreement-item,$name,$name]: the request by that {s} retrieve {s} from {s} for {s}	请{s1}为{s4}从{s3}处取回{s2}的请求	l
 Announcement combat agreement-title-core [agreement-party-list,agreement-item,$name,$name]: the request by {s} that retrieve {s} from {s} for {s}	{s1}请为{s4}从{s3}处取回{s2}的请求	l
 Announcement combat agreement-title-core [agreement-party-list,agreement-party-list]: the agreement by {s} to establish a grand guildhall for {s}	{s1}为{s2}建造大行会大厅的协议	l
@@ -5190,6 +5191,7 @@ A medium-sized animal living in grass and woodland. It has a large snout with fo
 A small tree-dwelling mammal with distinctive color. It rears up on its hind legs when cornered. It uses its front paws like hands.	一种颜色鲜明的小型树栖哺乳动物。它在被逼到走投无路时会用它的后足腾跃而起。它前爪用得像手一般。	lP
 A {s} caravan from {e} has arrived. Trade relations remain strengthened by recent negotiations. Overall trade sentiments are great.	来自{e1}的{s1}商队已抵达。近期谈判对贸易关系的促进作用仍在持续。总体贸易意愿很高。	hPt
 Announcement combat adventure-announcement [$unit,$announcement-item,$announcement-item]: You prepare to shoot {s} with {s} in {s}.	你准备朝{s1}发射装在{s3}里的{s2}。	l
+Announcement combat adventure-announcement [training-community]: The {s} have attained a general familiarity with training methods.	{s1}已大致掌握这种动物的驯养方法。	l
 Announcement combat agreement-title-core [$name]: the agreement between and to entertain the citizenry and become a resident of {s}	与达成的居留协议：成为{s1}的居民，以便为居民表演	l
 Announcement combat agreement-title-core [agreement-party-list,agreement-item,$name]: the request by that {s} retrieve {s} from {s}	请{s1}从{s3}处取回{s2}的请求	l
 Announcement combat agreement-title-core [agreement-party-list,agreement-item,$name]: the request by {s} that retrieve {s} from {s}	{s1}请从{s3}处取回{s2}的请求	l
@@ -6123,6 +6125,7 @@ the bestowal of the title of {s} in {p} after serving in combat, slaying {d} ene
 {a} recognized {a} as a capable and connected lieutenant with more autonomy to act on plots in the web of intrigue within {p}	{a1}在{p1}认可{a2}作为副手的能力和人脉，让其在错综复杂的阴谋中有更大的自主权	ht
 A medium-sized snake that lives in the trees. It eats prey much larger than itself and slays them by crushing them to death.	一种生活在树上的中型蛇，它能吃掉比自己大得多的猎物。蟒蛇能用身体缠绕猎物，将它们压死。	lP
 Along with combat, conversations are where most of the events in play happen. You can obtain quests, followers, information,	除了战斗，游戏中大多数事件都发生在交谈中。与世界里的居民交谈，可以获得任务、追随者、信息，	hq
+Announcement combat adventure-announcement [training-community,$creature]: The {s} are now quite knowledgeable {s} trainers.	{s1}对驯养{s2}已颇有心得。	l
 Announcement combat agreement-core [$office,$name]: began passing a portion of corruptly-obtained funds as the {s} of {s} to	以{s2}的{s1}身份开始将部分非法所得转交给	l
 Announcement combat agreement-title-core [agreement-party-list,$name,$name]: the plot of {s} to induce a war of {s} upon {s}	{s1}挑起{s2}对{s3}战争的阴谋	l
 Announcement combat agreement-title-core [agreement-party-list,agreement-crime]: the plot of {s} to frame for {s} by fooling	{s1}用{s2}的罪名栽赃他人的阴谋	l
@@ -6257,6 +6260,7 @@ A strange shapeless life form with an orange leathery skin containing a liquid i
 Announcement combat adventure-announcement [$announcement-item,$announcement-item]: You prepare to shoot {s} nocked in {s}.	你准备射出搭在{s2}上的{s1}。	l
 Announcement combat adventure-announcement [$announcement-item,$announcement-substance]: Your {s} is already full with {s}.	你的{s1}已经装满了{s2}。	l
 Announcement combat adventure-announcement []: Only a hero such as yourself can travel at night. The bogeyman would get me.	只有像你这样的英雄才能在夜间出行。换成我，就会被夜魔抓走。	l
+Announcement combat adventure-announcement [training-community,$creature]: The {s} now know a few facts about {s} training.	{s1}对驯养{s2}有了一点了解。	l
 Announcement combat agreement-core [agreement-party-list,agreement-party-list,$name]: {s} joined with {s} as a guide to {s}	{s1}与{s2}同行，担任向导前往{s3}	l
 Announcement combat agreement-core [agreement-party-list,agreement-party-list]: {s} agreed to establish a guildhall for {s}	{s1}同意为{s2}建造行会大厅	l
 Announcement combat agreement-title-core [$historical-actor,$historical-actor]: the plot of to frame {s} for by fooling {s}	欺骗{s2}、栽赃{s1}的阴谋	l
@@ -8110,6 +8114,7 @@ Announcement combat adventure-announcement []: A migrant has arrived at this unh
 Announcement combat adventure-announcement []: One must always carefully consider the correct course of action.	做事之前，总应慎重考虑怎样才妥当。	l
 Announcement combat adventure-announcement []: Their strength has been challenged, and their hold has loosened.	他们遭到挑战，对这里的控制已经松动了。	l
 Announcement combat adventure-announcement []: They consider you an infamous villain among those opposing them.	他们把你视为反对者中臭名昭著的恶人。	l
+Announcement combat adventure-announcement [training-community,$creature]: The {s} are now expert {s} trainers.	{s1}如今已成为驯养{s2}的专家。	l
 Announcement combat agreement-conclusion-core [$historical-actor,agreement-conclusion-title]: {s} concluded {s}	{s1}结束了{s2}	l
 Announcement combat agreement-core [$historical-actor,agreement-crime]: plotted to frame {s} for {s} by fooling	密谋用{s2}的罪名栽赃{s1}	l
 Announcement combat agreement-core [agreement-crime,$historical-actor]: plotted to frame for {s} by fooling {s}	密谋欺骗{s2}，制造{s1}的栽赃阴谋	l
@@ -8279,6 +8284,7 @@ Absent alcohol and in warmer weather, you can designate a Water Source from the 
 Announcement combat adventure-announcement [$unit]: {s} has been cursed to prowl the night in search of blood!	{s1}受到诅咒，将在黑夜里游荡寻血！	l
 Announcement combat adventure-announcement [$unit]: {s} has been infected with a contagious ghoulish condition	{s1}染上了会传染的食尸鬼病症	l
 Announcement combat adventure-announcement []: A migrant has decided to brave this terrifying miserable place.	一名移民决定勇闯这个恐怖而悲惨的地方。	l
+Announcement combat adventure-announcement [training-community]: The {s} are now quite knowledgeable trainers.	{s1}对这种动物的驯养已颇有心得。	l
 Announcement combat agreement-conclusion-core [agreement-conclusion-core,agreement-conclusion-reason]: {s} {s}	{s1}，{s2}	l
 Announcement combat agreement-core [agreement-party-list,agreement-party-list]: {s} joined with {s} as a guide	{s1}与{s2}同行，担任向导	l
 Announcement combat agreement-core [agreement-party-list,agreement-party-list]: {s} made an agreement with {s}	{s1}与{s2}达成协议	l
@@ -8444,6 +8450,7 @@ Announcement combat adventure-announcement []: Probably on the move or deep unde
 Announcement combat adventure-announcement []: Reveal what you have been scheming or suffer the consequences.	交代你的阴谋，否则后果自负。	l
 Announcement combat adventure-announcement []: Try building a butcher's shop and slaughtering some livestock.	试着建造屠宰场，宰杀一些牲畜。	l
 Announcement combat adventure-announcement []: Your most trusted local companions are meeting you here today.	你最信任的本地同伴今天将在这里与你会合。	l
+Announcement combat adventure-announcement [training-community]: The {s} now know a few facts about training.	{s1}对这种动物的驯养有了一点了解。	l
 Announcement combat agreement-core [$description]: aided in becoming a permanent part of the living world {s}	帮助永远留在生者的世界，{s1}	l
 Announcement combat agreement-core [agreement-target,$name]: plotted to sabotage the activities of {s} at {s}	密谋破坏{s1}在{s2}的活动	l
 Announcement combat agreement-title-core [agreement-party-list]: the embezzlement conspiracy concocted by {s}	{s1}策划的挪用资金阴谋	l
@@ -10864,6 +10871,7 @@ Announcement combat adventure-announcement []: They must be stopped by any means
 Announcement combat adventure-announcement []: You will learn something you did not want to know.	你将得知某件你不愿知道的事。	l
 Announcement combat adventure-announcement []: and the surrounding lands have been made a barony.	此地及其周边地区已晋升为男爵领。	l
 Announcement combat adventure-announcement []: and the surrounding lands have been made a county.	此地及其周边地区已晋升为伯爵领。	l
+Announcement combat adventure-announcement [training-community]: The {s} are now expert trainers.	{s1}如今已成为驯养这种动物的专家。	l
 Announcement combat agreement-core [agreement-party-list,$name]: joined with {s} to oust {s} from	与{s1}同行，协助驱逐{s2}	l
 Announcement combat agreement-core [agreement-party-list,$name]: {s} joined with to oust {s} from	{s1}与同行，协助驱逐{s2}	l
 Announcement combat agreement-core [agreement-party-list]: joined with {s} to entertain the world	与{s1}同行，为世人表演	l
@@ -22036,6 +22044,7 @@ Announcement combat spoken-sentence [boast-victim]: I am the of {s}!	击败{s1}�
 Announcement combat spoken-sentence [dialogue-object]: Where is {s}?	{s1}在哪里？	l
 Announcement combat spoken-sentence [greeting-state]: I'm doing {s}.	我过得{s1}。	l
 Announcement combat spoken-sentence [greeting-state]: I've been {s}.	我最近过得{s1}。	l
+Announcement combat training-community [$creature,$name]: {s} of {s}	{s2}的{s1}	l
 Announcement combat visitor-statement []: were will be speaking to .	当时将正在说话。	l
 Announcement combat visitor-statement-emotion []: feeling admiration	心怀钦佩	l
 Announcement combat visitor-statement-emotion []: feeling ambivalent	没什么特别的感觉	l
@@ -24446,7 +24455,6 @@ The moon is rising in the west hardly visible behind the clouds.	月亮正从西
 The performers are in the middle of the musical composition {b}.	表演者们正在演奏乐曲《{b1}》。	hPt
 The steam around the vegetation stops you from setting the fire.	植被周围的蒸汽使你无法点火。	hP
 The struggle for power must be balanced by other considerations.	争取权力时，也必须顾及其他事情。	hPD
-The {s} of {e} are now quite knowledgeable {s} training methods.	{e1}的{s1}已相当熟悉{s2}的驯养方法。	hPt
 Their strength has been challenged, and their hold has loosened.	他们遭到挑战，对这里的控制已经松动了。	hPD
 These people carrying on about romance should be more practical.	这些满口爱情的人，该实际一点。	hPD
 They consider you an infamous villain among those opposing them.	他们把你视为反对者中臭名昭著的恶人。	hPD
@@ -28799,6 +28807,7 @@ Announcement combat spoken-sentence []: Well, let's see...	嗯，让我看看…
 Announcement combat spoken-sentence []: Why should I help?	我为什么要帮忙？	l
 Announcement combat spoken-sentence [memory-sentence]: {s}	{s1}	l
 Announcement combat threat-crimes [threat-crime]: {s}, and	{s1}，还犯下了两项罪行（细节不明）	l
+Announcement combat training-community [$creature]: {s} of	{s1}	l
 Announcement combat travel-empty-caste-actor []: a ghostly	幽灵	l
 Announcement combat visitor-statement []: am speaking to .	正在说话。	l
 Announcement combat visitor-statement []: are destroying .	正在毁灭。	l
@@ -31126,6 +31135,7 @@ The moon is rising in the west bright behind the clouds.	月亮正从西方升�
 The world generator is having trouble placing mountains.	世界生成器无法放置山地。	l
 The written portion consists of a {d} page entitled {b}.	文字部分为《{b1}》，作品类型未注明，共{d1}页。	ht
 The written portion consists of a {d} page untitled {s}.	文字部分为无题{s1}，共{d1}页。	ht
+The {s} of {e} are now quite knowledgeable {s} trainers.	{e1}的{s1}对驯养{s2}已颇有心得。	hPt
 There is nothing to catch in the northeastern magma sea.	东北部的岩浆海中没有可捕捉的东西。	hP
 There is nothing to catch in the northwestern magma sea.	西北部的岩浆海中没有可捕捉的东西。	hP
 There is nothing to catch in the southeastern magma sea.	东南部的岩浆海中没有可捕捉的东西。	hP
@@ -32929,6 +32939,7 @@ Announcement combat spoken-sentence []: Vile creature!	卑劣的生物！	l
 Announcement combat spoken-sentence []: You are right.	你说得对。	l
 Announcement combat spoken-sentence [rumor-event]: {s}	{s1}	l
 Announcement combat threat-victim [speech-person]: {s}	{s1}	l
+Announcement combat training-community [$name]: of {s}	{s1}的居民	l
 Announcement combat visitor-statement []: am burning .	正在燃烧。	l
 Announcement combat visitor-statement []: am flooding.	正在泛滥。	l
 Announcement combat visitor-statement []: am speaking.	正在说话。	l
@@ -46000,6 +46011,7 @@ Announcement combat threat-crime []: profaned	亵渎了建筑（名称不明）	
 Announcement combat threat-possessive []: her	她	l
 Announcement combat threat-possessive []: his	他	l
 Announcement combat threat-possessive []: its	它	l
+Announcement combat training-community []: of	当地居民	l
 Announcement combat work-ordinal []: eleventh	11	l
 Announcement distance: inaccessible from here	此处无法到达的地方	l
 Announcement distance: to the north-northeast	在北东北方	l

@@ -97,10 +97,10 @@ shared-world	0x14012bdf0	The {s} of {e}, {s}, has been incorporated into your ho
 shared-world	0x14012bdf0	The {s} of {e} has been founded {s} and looks to your thriving economy for its future prosperity.
 shared-world	0x14012bdf0	The {s} of {e}, {s}, has been conquered and now looks to your thriving economy for its future prosperity.
 shared-world	0x14012bdf0	The {s} of {e}, {s}, looks to your thriving economy for its future prosperity.
-shared-world	0x1409eb8a0	The {s} of {e} are now expert {s} trainers.
-shared-world	0x1409eb8a0	The {s} of {e} are now quite knowledgeable {s} training methods.
-shared-world	0x1409eb8a0	The {s} of {e} have attained a general familiarity with {s} training methods.
-shared-world	0x1409eb8a0	The {s} of {e} now know a few facts about {s} training.
+shared-world	0x1409eb8a0+0x140dac290	The {s} of {e} are now expert {s} trainers.
+shared-world	0x1409eb8a0+0x140dac290	The {s} of {e} are now quite knowledgeable {s} trainers.
+shared-world	0x1409eb8a0+0x140dac290	The {s} of {e} have attained a general familiarity with {s} training methods.
+shared-world	0x1409eb8a0+0x140dac290	The {s} of {e} now know a few facts about {s} training.
 shared-world	0x140a0b4a0	An animal has become a {s}.
 shared-world	0x140a0b4a0	{p} has become a {s}.
 shared-world	0x140ac5b30	{e} and the surrounding lands have been made an official land of the realm.
