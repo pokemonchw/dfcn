@@ -2,4 +2,7 @@ base = "materials::dwarvemon_beta"
 
 [[rulesets]]
 [rulesets.rules]
+# Bare silver is a metal here. Keep the item's color qualifier scoped to
+# complete item names such as Silver Gummi instead of exporting it as a metal.
+"silver" = "银"
 "{::items::dwarvemon_beta}" = "{::items::dwarvemon_beta}"
