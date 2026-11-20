@@ -133,13 +133,26 @@ try {
     # Other game images retain the runtime's existing address discovery path.
     $seedHash = (Get-FileHash -LiteralPath (Join-Path $projectRoot 'data/runtime/native-addresses/pe-seed.bin') -Algorithm SHA256).Hash.ToLowerInvariant()
     $cacheRoot = Join-Path $projectRoot 'data/runtime/native-addresses/cache'
+    $catalogs = @{}
     if ([IO.Directory]::Exists($cacheRoot)) {
         $cachePattern = '^[0-9a-f]{64}-' + $seedHash + '\.bin$'
-        foreach ($file in ([IO.Directory]::GetFiles($cacheRoot, '*.bin') | Sort-Object)) {
-            if ([IO.Path]::GetFileName($file) -cnotmatch $cachePattern) { continue }
-            $relative = $file.Substring($projectRoot.Length + 1).Replace('\', '/')
-            Add-RuntimeFile $file ('dfcn/' + $relative)
+        foreach ($file in [IO.Directory]::GetFiles($cacheRoot, '*.bin')) {
+            $name = [IO.Path]::GetFileName($file)
+            if ($name -cmatch $cachePattern) { $catalogs[$name] = $file }
         }
+    }
+    # Separate installations write their catalogs beside the deployed core.
+    foreach ($imagePath in (@($imageConfig.game, $imageConfig.reference, $imageConfig.classic) | Sort-Object -Unique)) {
+        if ([string]::IsNullOrWhiteSpace($imagePath)) { continue }
+        $image = [IO.Path]::GetFullPath([IO.Path]::Combine($projectRoot, $imagePath))
+        if (-not [IO.File]::Exists($image)) { continue }
+        $imageHash = (Get-FileHash -LiteralPath $image -Algorithm SHA256).Hash.ToLowerInvariant()
+        $name = "$imageHash-$seedHash.bin"
+        $file = Join-Path ([IO.Path]::GetDirectoryName($image)) "dfcn/data/runtime/native-addresses/cache/$name"
+        if ([IO.File]::Exists($file) -and -not $catalogs.ContainsKey($name)) { $catalogs[$name] = $file }
+    }
+    foreach ($name in ($catalogs.Keys | Sort-Object)) {
+        Add-RuntimeFile $catalogs[$name] ('dfcn/data/runtime/native-addresses/cache/' + $name)
     }
 
     $rulesRoot = Join-Path $projectRoot 'data\runtime\rulesets'
