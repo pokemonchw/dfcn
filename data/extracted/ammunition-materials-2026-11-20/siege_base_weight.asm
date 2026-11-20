@@ -1,0 +1,2 @@
+0x14028dcb0: mov    eax,0xbb8
+0x14028dcb5: ret

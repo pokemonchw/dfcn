@@ -1,0 +1,13 @@
+tissue_damage	0x1413d49d0	0x1413d5f90
+sharpness	0x1400fe770	0x1400fe777
+ammo_set_edge	0x140ccadd0	0x140ccaeca
+siege_set_edge	0x140ccac10	0x140ccaccd
+ammo_base_weight	0x14028e130	0x14028e13e
+siege_base_weight	0x14028dcb0	0x14028dcb6
+boulder_base_weight	0x1409ff160	0x1409ff166
+item_weight_calculate	0x1400fd210	0x1400fd258
+ranged_141377970	0x141377970	0x14137884d
+effective_volume	0x1400fd420	0x1400fd484
+mass_from_volume	0x1400fcf60	0x1400fd0aa
+quality_hit_modifier	0x141380430	0x141380614
+material_collision	0x140d7f5e0	0x140d80151
