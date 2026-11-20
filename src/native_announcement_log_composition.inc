@@ -485,9 +485,10 @@ std::optional<std::string> Overlay::compose_native_announcement_log_record(
         std::optional<std::string> agreed;
         for (auto identity : field.units) {
             const bool authored = identity.form == NativeUnitIdentityForm::NameOnly &&
-                identity.name.language < 0 && std::all_of(identity.name.words.begin(), identity.name.words.end(),
+                !identity.name.uses_native_pronunciation() &&
+                std::all_of(identity.name.words.begin(), identity.name.words.end(),
                     [](const auto &word) { return word.id.empty(); });
-            if (identity.form == NativeUnitIdentityForm::NameOnly && identity.name.language >= 0)
+            if (identity.form == NativeUnitIdentityForm::NameOnly && identity.name.uses_native_pronunciation())
                 identity.english_name = false;
             auto target = authored ? std::optional<std::string>(native_text_to_utf8(identity.native_name))
                 : translate_native_unit_identity(identity);

@@ -227,13 +227,14 @@ static void native_announcement_unit_render(NativeAnnouncementUnitRecord &record
             dfcn::translation_work_step();
             const auto &identity = option.identity;
             const bool authored = identity.form == NativeUnitIdentityForm::NameOnly &&
-                identity.name.language < 0 && std::all_of(identity.name.words.begin(), identity.name.words.end(),
+                !identity.name.uses_native_pronunciation() &&
+                std::all_of(identity.name.words.begin(), identity.name.words.end(),
                     [](const auto &word) { return word.id.empty(); });
             auto phonetic = identity;
             // EnglishName supplies the pet's visible caption, while its
             // original-language WORD slots supply pronunciation. Rendering
             // this typed name must not split the English caption into roots.
-            if (phonetic.form == NativeUnitIdentityForm::NameOnly && phonetic.name.language >= 0)
+            if (phonetic.form == NativeUnitIdentityForm::NameOnly && phonetic.name.uses_native_pronunciation())
                 phonetic.english_name = false;
             auto target = authored ? std::optional<std::string>(native_text_to_utf8(identity.native_name)) :
                 g_overlay.translate_native_unit_identity(phonetic);

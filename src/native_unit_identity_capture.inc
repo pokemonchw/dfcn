@@ -59,6 +59,25 @@ static bool native_unit_identity_flag(uintptr_t object, size_t offset,
     return true;
 }
 
+static bool capture_native_unit_personal_name(uintptr_t base, uintptr_t unit,
+        uintptr_t address, NativeHistoryName &name, std::array<int32_t, 7> &indices) {
+    if (!capture_native_history_name(base, address, name, &indices)) return false;
+    // Only the unit's own first_name inherits its species' naming method.
+    // A selected disguise or another named object can belong to a different race.
+    if (!name.has_name || name.first_name.empty() || name.language >= 0 ||
+            address != native_history_object_member(unit, "unit", "name.first_name")) return true;
+    int32_t race = -1;
+    NativeBorrowedVector<uintptr_t> creatures;
+    if (native_history_copy(native_history_object_member(unit, "unit", "race"), race) &&
+            race >= 0 && native_history_read_vector(native_history_global(0x24eca68), creatures)) {
+        const uintptr_t creature = native_history_vector_at(creatures, static_cast<size_t>(race));
+        // creature_raw_flags::HAS_ANY_UTTERANCES is bit 88.
+        if (creature) native_unit_identity_flag(creature, 0x1a8, 88,
+            name.utterance_first_name, "creature_raw");
+    }
+    return true;
+}
+
 static bool capture_native_unit_identity(uintptr_t unit, NativeUnitIdentity &out) {
     // Reference parts already contain the game's final RAW/office, species,
     // curse and visibility decisions. Only the explicit authored role field

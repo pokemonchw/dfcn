@@ -26,8 +26,8 @@ std::optional<std::string> Overlay::translate_native_justice_organization_initia
     std::string result;
     const bool given = !name.first_name.empty();
     if (given) {
-        const std::string target = name.language < 0
-            ? native_text_to_utf8(name.first_name) : phonetic_word(name.first_name);
+        const std::string target = name.uses_native_pronunciation()
+            ? phonetic_word(name.first_name) : native_text_to_utf8(name.first_name);
         const auto initial = first_glyph(target);
         if (!initial) return std::nullopt;
         result += *initial;
@@ -131,6 +131,7 @@ static std::string native_unit_identity_cache_key(const NativeUnitIdentity &unit
         scalar(value.nickname_mode);
         scalar(value.type);
         scalar(value.has_name);
+        scalar(value.utterance_first_name);
         scalar(value.entity_type);
         scalar(value.entity_id);
         scalar(value.entity_name_current);
@@ -321,7 +322,7 @@ std::optional<std::string> Overlay::translate_native_unit_identity(
                     // a nickname which DF did not reveal on this branch.
                     if (const auto numbered = translate_numbered_creature_name(part.source))
                         value = *numbered;
-                    else if (part.name.language < 0 || contains_cjk_utf8(part.source))
+                    else if (!part.name.uses_native_pronunciation() || contains_cjk_utf8(part.source))
                         value = native_text_to_utf8(part.source);
                     else {
                         value = config_.native_language_original
@@ -562,20 +563,21 @@ std::optional<std::string> Overlay::translate_native_unit_identity(
                     }
                     value = translate_history_name(captured, true);
                 }
+            } else if (unit.name.uses_native_pronunciation()) {
+                value = phonetic_name();
             }
-            // Numbered creature first names are generated labels even without
-            // a language or WORD slots; other literal names keep their spelling.
-            else if (unit.name.language < 0 && unit.name.nickname.empty() &&
+            // A numbered creature label can also lack both a language and WORDs.
+            else if (unit.name.nickname.empty() &&
                     std::all_of(unit.name.words.begin(), unit.name.words.end(),
                         [](const auto &word) { return word.id.empty(); })) {
                 value = translate_numbered_creature_name(unit.name.first_name);
                 if (!value) value = native_text_to_utf8(unit.name.first_name);
-            } else if (unit.name.language < 0) {
+            } else {
                 value = translate_english_character_name(unit.native_name);
                 if (!translation_complete_with_native_nicknames(value, unit.native_name) &&
                         translate_numbered_creature_name(unit.name.first_name))
                     value = translate_history_name(unit.name, true);
-            } else value = phonetic_name();
+            }
             std::string result = value && !value->empty() ? *value : native_text_to_utf8(unit.native_name);
             if (unit.name_quoted) result = "“" + result + "”";
             return result;

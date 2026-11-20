@@ -78,6 +78,9 @@ struct NativeHistoryName {
     int32_t nickname_mode = 1;
     int16_t type = -1;
     bool has_name = false;
+    // A unit's own UTTERANCES first_name can have no language table or WORDs.
+    bool utterance_first_name = false;
+    bool uses_native_pronunciation() const { return language >= 0 || utterance_first_name; }
     // Object provenance is separate from language_name_type: migrating
     // groups also use EntitySite names, while utterance names have no type.
     int16_t entity_type = -1;

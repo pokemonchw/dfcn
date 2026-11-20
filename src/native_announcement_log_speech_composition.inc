@@ -155,7 +155,7 @@ std::optional<std::string> Overlay::compose_native_announcement_log_speech(
         if (name_only) {
             identity.form = NativeUnitIdentityForm::NameOnly;
             identity.native_name.assign(captured);
-            if (identity.name.language >= 0) identity.english_name = false;
+            if (identity.name.uses_native_pronunciation()) identity.english_name = false;
         }
         return translate_native_unit_identity(identity);
     };
@@ -177,8 +177,8 @@ std::optional<std::string> Overlay::compose_native_announcement_log_speech(
             if (key.ends_with(":FIRST_NAME]")) {
                 const auto &name = (**person).name;
                 if (name.first_name.empty()) return std::nullopt;
-                return name.language < 0 ? native_text_to_utf8(name.first_name)
-                    : transliterate_native_language_word(name.first_name);
+                return name.uses_native_pronunciation() ? transliterate_native_language_word(name.first_name)
+                    : native_text_to_utf8(name.first_name);
             }
             return identity_target(**person, value, true);
         }

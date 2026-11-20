@@ -127,7 +127,8 @@ static std::optional<std::string> publish_native_unit_identity_snapshot(
         return translated;
     }
     const bool authored = snapshot.form == NativeUnitIdentityForm::NameOnly &&
-        !snapshot.english_name && snapshot.name.language < 0 && snapshot.name.nickname.empty() &&
+        !snapshot.english_name && !snapshot.name.uses_native_pronunciation() &&
+        snapshot.name.nickname.empty() &&
         std::all_of(snapshot.name.words.begin(), snapshot.name.words.end(),
             [](const auto &word) { return word.id.empty(); });
     // These unquoted NameOnly publications belong to a captured unit. The
@@ -230,8 +231,8 @@ static void capture_native_unit_identity_name_fields(const void *name,
         NativeHistoryName snapshot;
         std::array<int32_t, 7> indices;
         if (!native_string_view(output, &source, 262144) ||
-            !capture_native_history_name(g_native_unit_identity_hooks.base,
-                reinterpret_cast<uintptr_t>(name), snapshot, &indices)) {
+            !capture_native_unit_personal_name(g_native_unit_identity_hooks.base, call->unit,
+                reinterpret_cast<uintptr_t>(name), snapshot, indices)) {
             call->name_failed = true;
             return;
         }
@@ -366,8 +367,9 @@ static void capture_native_unit_header_english_name(const void *name,
         // a unit TLS scope. Its separate addchar calls own the outer quotes.
         // This dedicated formatter already proves an English character name.
         // Optional native metadata must not block translation of that text.
-        if (capture_native_history_name(g_native_unit_identity_hooks.base,
-                reinterpret_cast<uintptr_t>(name), snapshot.name, &indices))
+        if (capture_native_unit_personal_name(g_native_unit_identity_hooks.base,
+                reinterpret_cast<uintptr_t>(unit), reinterpret_cast<uintptr_t>(name),
+                snapshot.name, indices))
             snapshot.native_name_words_valid = capture_native_unit_identity_name_words(
                 reinterpret_cast<uintptr_t>(name), snapshot.name,
                 snapshot.native_name_words, &indices);
@@ -713,8 +715,8 @@ static void capture_native_unit_reference_selected_name(uintptr_t address) noexc
     call->name_seen = true;
     try {
         std::array<int32_t, 7> indices;
-        if (!capture_native_history_name(g_native_unit_identity_hooks.base,
-                address, call->name, &indices)) {
+        if (!capture_native_unit_personal_name(g_native_unit_identity_hooks.base, call->unit,
+                address, call->name, indices)) {
             call->name_failed = true;
             return;
         }

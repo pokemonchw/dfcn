@@ -83,7 +83,7 @@ static void native_announcement_log_visit_owned_units(
             auto identity = **person;
             identity.form = NativeUnitIdentityForm::NameOnly;
             identity.native_name.assign(trim_view(token.source));
-            if (identity.name.language >= 0) identity.english_name = false;
+            if (identity.name.uses_native_pronunciation()) identity.english_name = false;
             visit(identity);
         }
     }
@@ -95,7 +95,7 @@ static void native_announcement_log_visit_owned_units(
                 // language WORD pronunciation without changing its source
                 // snapshot. Freeze that exact reachable rendering mode too.
                 if (identity.form == NativeUnitIdentityForm::NameOnly &&
-                        identity.name.language >= 0 && identity.english_name) {
+                        identity.name.uses_native_pronunciation() && identity.english_name) {
                     auto phonetic = identity; phonetic.english_name = false;
                     visit(phonetic);
                 }
@@ -143,7 +143,7 @@ static void native_announcement_log_collect_owned_unit_dependencies(
         for (const auto &field : inputs->unit_record->fields)
             for (const auto &option : field.options) {
                 auto identity = option.identity;
-                if (identity.form == NativeUnitIdentityForm::NameOnly && identity.name.language >= 0)
+                if (identity.form == NativeUnitIdentityForm::NameOnly && identity.name.uses_native_pronunciation())
                     identity.english_name = false;
                 collect(identity);
             }
