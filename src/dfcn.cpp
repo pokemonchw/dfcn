@@ -5373,6 +5373,7 @@ private:
         std::vector<Match> &matches, int only_y) const;
     void append_work_order_condition_fields(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
+    TranslationResult translate_work_order_condition_caption(const NativeWorkOrderConditionCaption &caption) const;
     TranslationResult translate_native_job_item_material(const NativeJobItemCaption &caption) const;
     void append_fortress_task_rows(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
@@ -7991,11 +7992,13 @@ bool Overlay::initialize() {
         return false;
     }
     load_untranslated_index();
-    load_rules();
+    // A reactivated image can still own a previous catalog when the new
+    // mapping fails to load. Report failure to the resident loader.
+    if (!load_rules()) return false;
     load_generated_instrument_names();
     load_procedural_terms();
-    load_compositional_rules();
-    load_font();
+    const bool loaded_composition = load_compositional_rules();
+    if ((!loaded_composition && config_.compositional_rules) || !load_font()) return false;
     log_line("INFO", "DFCN overlay initialized; graphicst ABI size=" +
                          std::to_string(sizeof(graphicst)));
     start_dfhack_translation_worker();
@@ -19013,6 +19016,12 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     screen_rows.reserve(static_cast<size_t>(gps_->dimy));
     for (int row_y = 0; row_y < gps_->dimy; ++row_y)
         screen_rows.push_back(read_row(row_y));
+    // The conditions dialog can also draw directly into the game grid.
+    // Reserve its captured fields before individual UI words are matched.
+    if (std::any_of(screen_rows.begin(), screen_rows.end(), [](const std::string &row) {
+            return row.find("Amount of ") != std::string::npos;
+        }))
+        append_work_order_condition_fields(screen_rows, result, only_y);
     append_fortress_hospital_card_names(screen_rows, result, only_y);
     if (g_native_reports_layer.ready &&
             gps_->screen == g_native_reports_layer.foreground.graphics()->screen) {

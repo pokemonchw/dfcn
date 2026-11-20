@@ -239,6 +239,9 @@ Workshop recipe: items	物品	l
 Workshop recipe: milk item	奶	l
 Workshop recipe: milk items	奶	l
 Workshop recipe: cloth	布匹	l
+# THREAD, collected, ANY_PLANT_MATERIAL, full dimension, no selected plant.
+# The native formatter inserts the PLANT_1 placeholder into this requirement.
+Workshop recipe: unused collected plant unknown frozen plant substance thread	未使用且已收集的植物线	l
 Workshop recipe: yarn thread	纱线	l
 Workshop recipe: yarn threads	纱线	l
 Workshop recipe: stone boulders	石块	l

@@ -3939,6 +3939,18 @@ static void capture_native_clipped_draw(graphicst *graphics, const NativeString 
     NativeEditableTextScope input_scope(
         textbox_text || NativeEditableTextScope::owns(caller) || native_legacy_editable_draw(caller,source) ||
         native_adventure_barter_field(caller) == NativeAdventureBarterField::Editable);
+#ifdef _WIN32
+    // The stored condition item is submitted at row_left + 10 with a
+    // 71-cell width. Both next-check branches start at row_left + 50.
+    // Give addst its actual column and leave the two blank cells used by
+    // template_fragment_end. The existing clipped-draw capture keeps the
+    // complete NativeString alongside the glyphs addst actually writes.
+    constexpr int stored_item_width = 50 - 10 - 2;
+    if (width > stored_item_width &&
+            caller == native_pe_address(native_history_profile_base(), 0x390e7d) &&
+            g_overlay.translation_enabled())
+        width = stored_item_width;
+#endif
     const auto kind = native_info_title_kind(caller);
     const bool authored = native_info_title_authored(kind, source, caller);
     const auto civilization_field = native_civilization_caption_field(caller);
