@@ -30,7 +30,7 @@ static bool capture_native_history_subject_title_fields(const void *event,
         const int32_t id = title.fields.at(name).front();
         if (id >= 0) title.references.emplace_back(kind, id);
     };
-    if (type == 44 || type == 95 || type == 98) {
+    if (type == 2 || type == 44 || type == 95 || type == 98) {
         auto fields = snapshot_native_history_event(event, context);
         if (!fields || fields->fields.contains("snapshot.incomplete")) return false;
         title = std::move(*fields);

@@ -67,7 +67,7 @@ static bool capture_civilization_reference_identity(uintptr_t base, uintptr_t en
     const bool has_title = indices[2] >= 0 || indices[3] >= 0 || indices[5] >= 0;
     const bool has_native_words = !nickname_only && (indices[0] >= 0 ||
         indices[1] >= 0 || has_title || indices[6] >= 0);
-    std::array<std::string, 7> english, native;
+    std::array<std::string, 7> native;
     NativeBorrowedVector<uintptr_t> translated_words;
     bool native_available = !has_native_words || copy.name.language >= 0;
     if (has_native_words && native_available) {
@@ -82,7 +82,6 @@ static bool capture_civilization_reference_identity(uintptr_t base, uintptr_t en
         if (indices[i] < 0) continue;
         const auto &word = copy.name.words[i];
         if (word.part_of_speech < 0 || word.part_of_speech > 8) return false;
-        english[i] = word.english_form;
         if (has_native_words && native_available) {
             const uintptr_t spelling = native_history_vector_at(translated_words,
                 static_cast<size_t>(indices[i]));
@@ -105,23 +104,10 @@ static bool capture_civilization_reference_identity(uintptr_t base, uintptr_t en
         if (!name.empty()) name += ' ';
         name += group;
     };
-    copy.english = prefix();
-    if (native_available) copy.native = copy.english;
-    if (!nickname_only) {
-        append(copy.english, english[0] + english[1]);
-        if (has_title) {
-            std::string title;
-            append(title, english[2]);
-            append(title, english[3]);
-            if (!english[4].empty()) {
-                append(title, english[4]);
-                title += '-';
-                title += english[5];
-            } else append(title, english[5]);
-            if (!title.empty()) append(copy.english, "the " + title);
-        }
-        if (!english[6].empty()) append(copy.english, "of " + english[6]);
-        if (native_available) {
+    copy.english = reconstruct_site_english_name(copy.name).value_or(std::string{});
+    if (native_available) {
+        copy.native = prefix();
+        if (!nickname_only) {
             append(copy.native, native[0] + native[1]);
             if (has_title)
                 append(copy.native, native[2] + native[3] + native[4] + native[5]);

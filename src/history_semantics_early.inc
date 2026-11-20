@@ -77,6 +77,9 @@ case 2: { // created_site
     auto creation = apply(key, arguments);
     if (!creation) return std::nullopt;
     join(result, *creation);
+    // The story title has the same founder, site, beneficiary and date
+    // as the narrative, but it can be embedded inside another sentence.
+    if (event.fields.contains("native_story_title")) return result;
     translated = true;
     break;
 }

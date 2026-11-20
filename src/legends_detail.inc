@@ -1585,6 +1585,22 @@ std::optional<std::string> Overlay::translate_legends_participant(
         return it->second;
     const auto cycle_revision = active_translation_work->cycle_revision;
     auto resolve = [&]() -> std::optional<std::string> {
+    // A story title prints each entity's complete English name. Both the
+    // government's name and its polity's name can contain their own " of ".
+    // Resolve whole entities before the participant grammar splits modifiers.
+    if (auto entity = translate_civilization_reference(value)) return entity;
+    constexpr std::string_view of = " of ";
+    std::optional<std::string> affiliation;
+    for (size_t at = value.find(of); at != std::string_view::npos;
+            at = value.find(of, at + of.size())) {
+        const auto local = translate_civilization_reference(value.substr(0, at));
+        if (!local) continue;
+        const auto polity = translate_civilization_reference(value.substr(at + of.size()), true);
+        if (!polity) continue;
+        if (affiliation) return std::nullopt;
+        affiliation = *polity + "的" + *local;
+    }
+    if (affiliation) return affiliation;
     // Uncolored event summaries can contain several participants just like
     // linked paragraphs. Reuse their reviewed ownership/list grammar.
     for (int index : legends_participant_rules_)
