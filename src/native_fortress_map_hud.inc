@@ -6,6 +6,9 @@ static bool native_fortress_map_hud_page() {
     const uintptr_t screen = native_current_viewscreen();
     if (!base || !screen || !native_history_object_is(screen, "viewscreen_dwarfmodest"))
         return false;
+    uint8_t recenter_open = 0;
+    if (recenter_panel_state() &&
+            (!native_history_copy(recenter_panel_state(), recenter_open) || recenter_open)) return false;
     uint8_t submenu = 1;
     int16_t mode = -1;
     int32_t game_type = -1, selection = -1;

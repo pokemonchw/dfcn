@@ -2410,6 +2410,15 @@ struct NativeArenaTreeCaption {
 static std::optional<NativeArenaTreeCaption> capture_native_arena_tree_caption(
     uintptr_t caller, uintptr_t source);
 
+#ifdef _WIN32
+struct NativeRecenterFollow {
+    std::string name;
+    bool marked = false; // The renderer appends (hidden) or (not possible).
+    std::optional<NativeTradeItemCaption> item;
+    std::optional<NativeUnitIdentitySource> unit;
+};
+enum class RecenterName { Authored, Unnamed, Wagon };
+#endif
 struct NativeDrawnTextRow {
     int x = 0, y = 0;
     std::string source;
@@ -2486,6 +2495,10 @@ struct NativeDrawnTextRow {
     std::shared_ptr<const NativeVolcanoNameFact> volcano_name{};
     // The actual addst return address identifies document-specific row writers.
     uintptr_t native_caller = 0;
+#ifdef _WIN32
+    RecenterName recenter_name = RecenterName::Authored;
+    std::shared_ptr<const NativeRecenterFollow> recenter_follow{};
+#endif
     std::optional<NativeJusticeOrganizationCaption> justice_organization{};
     std::optional<NativeJusticePlotCaption> justice_plot{};
     NativeAdventureCraftingRole adventure_crafting_role = NativeAdventureCraftingRole::None;
@@ -2509,6 +2522,9 @@ struct NativeDrawnTextRow {
     // the columns beyond this edge for its recenter/view controls.
     int character_relation_right = -1;
 };
+#ifdef _WIN32
+static void capture_recenter_draw(NativeDrawnTextRow &row);
+#endif
 static std::mutex g_native_drawn_text_mutex;
 static std::vector<NativeDrawnTextRow> g_native_drawn_text_rows;
 static uint64_t g_native_drawn_text_sequence = 0;
@@ -3097,6 +3113,9 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
             row.caption_source = true;
         }
         row.native_caller = native_caller;
+#ifdef _WIN32
+        capture_recenter_draw(row);
+#endif
         row.justice_organization = std::move(justice_organization);
         if (row.justice_organization) row.caption_source = true;
         if (!character && native_caller)
@@ -5388,6 +5407,10 @@ private:
     void append_fortress_unit_chooser_rows(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, bool raw_layer) const;
     void layout_fortress_unit_chooser(SDL_Renderer *renderer);
+#ifdef _WIN32
+    void append_recenter_rows(std::vector<std::string> &rows, std::vector<Match> &matches,
+        int only_y, const unsigned char *screen_override) const;
+#endif
     void append_fortress_elevation_rows(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, bool raw_layer) const;
     void append_fortress_kitchen_rows(std::vector<std::string> &rows,
@@ -18224,6 +18247,9 @@ static NativeKeybindingScope capture_native_keybinding_scope(const graphicst &gp
 #include "fortress_labor.inc"
 #include "fortress_unit_chooser.inc"
 #include "fortress_elevation.inc"
+#ifdef _WIN32
+#include "fortress_recenter.inc"
+#endif
 #include "fortress_kitchen.inc"
 #include "fortress_stone.inc"
 #include "fortress_monthly_schedule.inc"
@@ -19003,6 +19029,10 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         }
     }
     append_native_arena_tree_rows(screen_rows, result, only_y, screen_override);
+#ifdef _WIN32
+    std::vector<Match> recenter_fields;
+    append_recenter_rows(screen_rows, recenter_fields, only_y, screen_override);
+#endif
     // Windows sends the retained hover document directly to its private
     // tooltip layer. The parent page owns the list choices and biography;
     // changing the hovered practice must not retranslate that parent page.
@@ -19851,6 +19881,18 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         });
         result.insert(result.end(), std::make_move_iterator(text_input_utf8.begin()),
             std::make_move_iterator(text_input_utf8.end()));
+#ifdef _WIN32
+        if (!recenter_fields.empty()) {
+            std::erase_if(result, [&](const Match &match) {
+                return std::any_of(recenter_fields.begin(), recenter_fields.end(), [&](const Match &field) {
+                    return field.y == match.y && match.x < field.x + field.length &&
+                        field.x < match.x + match.length;
+                });
+            });
+            for (auto &field : recenter_fields)
+                if (!field.target.empty()) result.push_back(std::move(field));
+        }
+#endif
         // Captured/raw page readers can bypass the reserved work buffer.
         // Remove their name fragments before either suppression mask is built.
         if (mod_list) {

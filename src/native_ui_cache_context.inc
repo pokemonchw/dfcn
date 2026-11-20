@@ -244,6 +244,9 @@ public:
     }
     bool row_cacheable(const NativeDrawnTextRow &captured) {
         const auto &input = resolved_row(captured);
+#ifdef _WIN32
+        if (input.recenter_follow) return false;
+#endif
         return !input.trade_item_caption && !input.reclaim_history &&
             !input.world_site_entity_fact && !input.justice_organization &&
             !input.justice_plot && !input.fortress_zone_caption &&
@@ -253,6 +256,10 @@ public:
     }
     void row(const NativeDrawnTextRow &captured, uint64_t epoch) {
         const auto &input = resolved_row(captured);
+#ifdef _WIN32
+        if (input.recenter_follow) { complete = false; return; }
+        value(input.recenter_name);
+#endif
         // These records contain further typed object graphs, not just a
         // visible spelling. A normal redraw is safer than an incomplete key.
         if (input.trade_item_caption ||

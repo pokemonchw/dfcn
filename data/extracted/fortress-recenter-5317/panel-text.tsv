@@ -1,0 +1,42 @@
+字段	原生分支	原文或格式	中文显示	Steam_RVA	Classic_RVA
+名称	第一个固定槽在开局时写入默认货车名	Wagon arrival location	货车抵达地点	0xe7b4d4	0xe76224
+名称	非编辑行，已保存的名称非空	{slot.name}	保留原名	0x1df61a	0x1df5aa
+名称	非编辑行，已保存的名称为空	Unnamed recenter location	未命名的重新居中位置	0x1df4d8	0x1df468
+编辑	正在编辑此槽，计时器每秒前半段	{slot.name}_	原名加闪烁下划线，空名称只显示下划线	0x1df5cc	0x1df55c
+编辑	正在编辑此槽，计时器每秒后半段	{slot.name}	原名，空名称留空	0x1df5bd	0x1df54d
+编辑	固定槽从内联数组取名，新增槽从向量取名，均交给同一个文本编辑器	{slot.name}	原样编辑	0x8d2c7b	0x8d02db
+编辑	编辑索引无效或收到结束编辑的按键	∅	退出编辑并恢复普通名称显示	0x8d2c97	0x8d02f7
+状态	类型非 0、1、2，包括空槽 -1	Not yet assigned	尚未指定	0x1df6b1	0x1df641
+坐标	类型 0，连续两次绘制	Recenter to {coordinates}	定位到{坐标说明}	0x1dfc8a	0x1dfc1a
+坐标	坐标说明，z = 保存层 + region_z - 100，x 和 y 均为保存值 + 1	elevation {z}, position {x},{y}	海拔 {z}，坐标 {x},{y}	0x1dfeb6	0x1dfe46
+生物	类型 1，ID 为 -1、列表为空或查找失败	Unknown creature	未知生物	0x1dfa97	0x1dfa27
+生物	已找到单位，+0x110 位 1 未置位，且可跟随	{unit caption}	按该单位的身份、名称和头衔显示	0x1dfb31	0x1dfac1
+生物	已找到单位，+0x110 位 1 置位，或可见性函数返回真	{unit caption} (not possible)	无法跟随：{生物名称}	0x1dfb42	0x1dfad2
+生物	原生格式化后超过行宽，缩短并在空间足够时写入三个点	{shortened unit caption}...	使用截短前的名称和状态，按可见宽度省略	0x1dfbc4	0x1dfb54
+物品	类型 2，ID 为 -1、列表为空或查找失败	Unknown item	未知物品	0x1df6f7	0x1df687
+物品	已找到物品，+0x10 位 4 未置位，所在格未隐藏，或无法取得有效格	{item caption}	按该物品的原生名称和属性显示	0x1df98e	0x1df91e
+物品	已找到物品，+0x10 位 4 置位	{item caption} (hidden)	已隐藏：{物品名称}	0x1df993	0x1df923
+物品	已找到物品，实际位置的地图格 designation 含 0x200	{item caption} (hidden)	已隐藏：{物品名称}	0x1df977	0x1df907
+物品	原生格式化后超过行宽，缩短并在空间足够时写入三个点	{shortened item caption}...	使用截短前的名称和状态，按可见宽度省略	0x1dfa21	0x1df9b1
+快捷键	固定槽 0 至 15，按键 ID 为 0x25c 加槽索引	Hotkey: {key}	快捷键：{当前绑定}	0x1e0330	0x1e02c0
+快捷键	使用当前绑定的第一项显示名称	{bound key}	沿用当前按键和按键颜色	0xc5123f	0xc4e05f
+快捷键	默认绑定 D_HOTKEY1 至 D_HOTKEY8，重新绑定时使用实际键名	F1…F8	F1 至 F8	0x1e033a	0x1e02ca
+快捷键	默认绑定 D_HOTKEY9 至 D_HOTKEY16，重新绑定时使用实际键名	Shift+F1…Shift+F8	Shift+F1 至 Shift+F8	0x1e033a	0x1e02ca
+快捷键	无绑定记录或绑定列表为空	?	?	0x9068a0	0x903eb0
+快捷键	新增槽，索引大于等于 16	∅	不绘制快捷键行	0x1e02db	0x1e026b
+确认	已指定且目标与当前视图不同，请求覆盖	Really overwrite?	确认覆盖？	0x1df1f2	0x1df182
+确认	请求清除已指定固定槽，或删除已指定新增槽	Really clear?	确认清除？	0x1df278	0x1df208
+确认	确认按钮，执行对应的覆盖、清除或删除	Yes	是	0x1dfff1	0x1dff81
+确认	取消按钮，回到该槽普通显示	No	否	0x1e00d7	0x1e0067
+输入	未指定槽直接保存当前视图，无确认文案	∅	无提示	0x1e0db8	0x1e0d48
+输入	已指定地图槽与当前视图相同	∅	保持当前显示	0x1e0d94	0x1e0d24
+输入	未指定固定槽直接清除，固定槽保留	∅	回到空名称和未指定状态	0x1e0e3d	0x1e0dcd
+输入	未指定新增槽直接删除，列表移除该行	∅	移除该行	0x1e0c77	0x1e0c07
+新增	列表底部，追加一个空白的可编辑槽	Add new recenter location	添加新的重新居中位置	0x1e04f6	0x1e0486
+提示	0x176，打开快捷位置编辑面板	Edit the recenter hotkey locations.	编辑重新居中热键的位置。	0x40b42d	0x408dcd
+提示	0x177，定位至地表	Recenter on the surface at this location.	将视图重新居中到此位置的地表。	0x40b45e	0x408dfe
+提示	0x178，定位至已发现的最深区域	Recenter on the deepest discovered area at this location.	将视图重新居中到此位置已发现的最深区域。	0x40b48f	0x408e2f
+提示	0x179，行内定位按钮	Recenter on this location.	将视图重新居中到此位置。	0x40b4c0	0x408e60
+提示	0x17a，行内设置按钮	Set this entry to recenter on the current view.	将此条目设为重新居中到当前视图的位置。	0x40b4f1	0x408e91
+提示	0x17b，固定槽清除按钮	Clear this recenter hotkey location.	清除此重新居中热键的位置。	0x40b522	0x408ec2
+提示	0x17c，新增槽删除按钮	Delete this recenter location.	删除此重新居中位置。	0x40b553	0x408ef3

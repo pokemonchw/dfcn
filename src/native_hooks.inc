@@ -95,6 +95,9 @@ static bool native_history_war_selection(uintptr_t collection, int32_t &category
 #include "native_journal_artifact_hooks.inc"
 #include "native_trade_item_fields.inc"
 #include "native_trade_item_hooks.inc"
+#ifdef _WIN32
+#include "native_recenter_capture.inc"
+#endif
 #include "native_workshop_recipe_hooks.inc"
 #include "native_rich_hooks.inc"
 #include "native_adventure_hover_hooks.inc"
@@ -182,6 +185,9 @@ static bool install_sdl_hooks() {
         {"Complete trade reply capture", install_native_trade_paragraph_hooks},
         {"Complete journal event source", install_native_journal_event_hooks},
         {"Trade item memory capture", install_native_trade_item_hooks},
+#ifdef _WIN32
+        {"Recenter follow captions", install_recenter_follow_hooks},
+#endif
         {"Complete workshop requirement capture", install_native_workshop_recipe_hooks},
         {"Rich-text capture", install_native_rich_hooks},
         {"Native attribute and skill tooltip layer", install_native_adventure_hover_hook},
@@ -275,6 +281,9 @@ static void uninstall_sdl_hooks() {
     uninstall_native_workshop_recipe_hooks();
     uninstall_native_trade_paragraph_hooks();
     uninstall_native_journal_event_hooks();
+#ifdef _WIN32
+    if (native_callbacks_idle()) g_recenter_calls.uninstall("Recenter follow captions");
+#endif
     uninstall_native_trade_item_hooks();
     uninstall_native_paragraph_hook();
     uninstall_native_overview_quote_hooks();
@@ -347,6 +356,9 @@ static bool native_hooks_detached() {
         !native_trade_paragraph_hooks_active() &&
         !native_journal_event_hooks_active() &&
         !native_trade_item_hooks_active() &&
+#ifdef _WIN32
+        !g_recenter_calls.active() &&
+#endif
         !native_workshop_recipe_hooks_active() &&
         !native_caption_hooks_active() && !native_conversation_search_hook_active() &&
         !native_character_relations_hook_active() &&
