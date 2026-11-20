@@ -113,8 +113,9 @@ static CoreLoadResult load_core(bool enable) {
     // Validate the new library and transfer only data before dismantling the
     // current hooks. Neither a partial build nor an ABI mismatch disables
     // the resident keyboard handler; the next Shift+F5 can always retry.
-    auto prepared = dfcn::module::PreparedCore::prepare(
-        dfcn::module::library_path(reinterpret_cast<void *>(&loader_anchor)), log);
+    const auto path = dfcn::module::library_path(reinterpret_cast<void *>(&loader_anchor));
+    if (dfcn::module::release_pending(path)) return CoreLoadResult::Deferred;
+    auto prepared = dfcn::module::PreparedCore::prepare(path, log);
     if (!prepared) return CoreLoadResult::Failed;
     auto next = std::make_unique<CoreImage>();
     if (prepared->has_image()) {
@@ -134,6 +135,7 @@ static CoreLoadResult load_core(bool enable) {
         const auto stopped = stop_core();
         if (stopped != CoreStopResult::Stopped)
             return stopped == CoreStopResult::Deferred ? CoreLoadResult::Deferred : CoreLoadResult::Failed;
+        if (prepared->wait_for_previous_image()) return CoreLoadResult::Deferred;
         next->module = prepared->acquire();
         if (!bind_api(*next)) return CoreLoadResult::Failed;
     }
@@ -158,8 +160,7 @@ static CoreLoadResult load_core(bool enable) {
     std::vector<unsigned char>().swap(pending_captures);
     ++generation;
     if (core->module->reactivated()) {
-        log("WARN", "Detached core reactivated with refreshed configuration and data; "
-            "the runtime still retains this code image, so any deployed code changes remain pending");
+        log("INFO", "Reinitialized the same deployed core image with refreshed configuration and data");
     } else {
         log("INFO", "Core " + std::string(enable ? "hot-reloaded" : "loaded") +
             "; generation=" + std::to_string(generation) + "; build=" + core->api->build);
@@ -223,7 +224,7 @@ static void finish_reload_request(CoreLoadResult result, bool enable) {
         log("ERROR", "Cannot schedule deferred core reload: " + std::string(error.what()));
         return;
     }
-    log("INFO", "Core reload pending native hook retirement; completion is scheduled on the SDL event thread");
+    log("INFO", "Waiting for the previous core to be released; reload will continue on the SDL event thread");
 }
 
 static void retry_core_load() {

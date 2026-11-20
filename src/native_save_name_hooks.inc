@@ -94,7 +94,14 @@ struct Pending {
     uint64_t size = 0;
     NativeSaveNameSource source;
 };
-static thread_local Pending pending;
+// Each native list reader owns its entry until its callbacks finish. Keep the
+// strings and shared ownership in the core so a game thread cannot pin the DLL
+// with a thread-exit destructor. Map references survive inserts by other readers.
+static std::unordered_map<std::thread::id, Pending> pending_reads;
+static Pending &list_pending() {
+    std::lock_guard lock(streams_mutex);
+    return pending_reads[std::this_thread::get_id()];
+}
 
 static std::string capture_header_key(const void *output, int32_t version,
         NativeSaveNameSource &source) {
@@ -436,23 +443,25 @@ static void *capture_output_close(void *filebuf) {
 static bool capture_list_open(void *stream, const NativeString *path, bool reading) {
     NativeInputCallbackScope callback;
     const bool result = callback.call_native([&] { return open(stream, path, reading); });
-    pending = {};
     try {
+        auto &pending = list_pending();
+        pending = {};
         std::lock_guard lock(streams_mutex);
         streams.erase(stream);
         if (result && reading) {
             pending.stream = stream;
             pending.size = file_size(stream);
         }
-    } catch (...) { pending = {}; }
+    } catch (...) {}
     return result;
 }
 static bool capture_list_header(void *output, void *stream, int32_t version) {
     NativeInputCallbackScope callback;
     const bool result = callback.call_native([&] { return header(output, stream, version); });
     try {
+        auto &pending = list_pending();
+        pending.header = nullptr;
         if (!result || stream != pending.stream || !pending.size) return result;
-        pending.header = output;
         const auto key = capture_header_key(output, version, pending.source);
         if (key.empty()) return result;
         // The 53.17 crash at game+15469F4 came through this list's former
@@ -460,20 +469,23 @@ static bool capture_list_header(void *output, void *stream, int32_t version) {
         // that full reader safe here. Missing/stale indexes leave the name
         // identity absent; normal world loads/saves can publish it later.
         auto record = read_index(index_path(key, pending.size));
-        if (read_indexed_record(stream, pending.size, record))
+        if (read_indexed_record(stream, pending.size, record)) {
             pending.source.identity = std::make_shared<NativeHistoryName>(std::move(record.name));
-    } catch (...) { pending.source.identity.reset(); }
+            pending.header = output;
+        }
+    } catch (...) {}
     return result;
 }
 static void capture_copy(void *output, const void *input) {
     NativeInputCallbackScope callback;
     callback.call_native([&] { copy(output, input); });
     try {
+        const auto &pending = list_pending();
         std::lock_guard lock(g_native_save_name_mutex);
         const uintptr_t address = reinterpret_cast<uintptr_t>(output);
         if (g_native_save_header_names.size() >= 131072) g_native_save_header_names.clear();
         g_native_save_header_names.erase(address);
-        if (input == pending.header && pending.source.identity)
+        if (pending.header && input == pending.header && pending.source.identity)
             g_native_save_header_names.insert_or_assign(address, pending.source);
     } catch (...) {}
 }
@@ -496,7 +508,7 @@ static void uninstall_native_save_name_hook() {
     if (!hook.uninstall("Native save-list name slots") ||
             !raw_read_hook.uninstall("Native save read position") ||
             !raw_write_hook.uninstall("Native save write position")) return;
-    { std::lock_guard lock(streams_mutex); streams.clear(); loaded.reset(); }
+    { std::lock_guard lock(streams_mutex); streams.clear(); loaded.reset(); pending_reads.clear(); }
     { std::lock_guard lock(recovered_mutex); recovered.clear(); }
 #endif
     std::lock_guard lock(g_native_save_name_mutex);

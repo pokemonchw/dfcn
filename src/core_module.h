@@ -58,6 +58,7 @@ inline std::filesystem::path resident_path(void *anchor) {
 struct Source {
     HANDLE file = INVALID_HANDLE_VALUE;
     std::filesystem::path path;
+    BY_HANDLE_FILE_INFORMATION identity{};
 
     ~Source() {
         if (file != INVALID_HANDLE_VALUE) CloseHandle(file);
@@ -69,6 +70,8 @@ struct Source {
 // FreeLibrary; never adopt an unrelated module found by pathname alone.
 struct DetachedCore {
     HMODULE handle = nullptr;
+    BY_HANDLE_FILE_INFORMATION identity{};
+    HMODULE releasing = nullptr; // Non-owning, never used to call into the image.
 
     ~DetachedCore() { reset(); }
     void reset(HMODULE next = nullptr) {
@@ -78,8 +81,33 @@ struct DetachedCore {
 };
 inline DetachedCore detached_core;
 
+inline bool release_pending(const std::filesystem::path &path) {
+    if (!detached_core.releasing) return false;
+    HMODULE mapped = nullptr;
+    if (GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, path.c_str(), &mapped) &&
+            mapped == detached_core.releasing) return true;
+    detached_core.releasing = nullptr;
+    return false;
+}
+
+inline bool wait_for_previous_image(const Source &source) {
+    if (detached_core.handle) {
+        const auto &old = detached_core.identity;
+        const auto &next = source.identity;
+        // Deployment replaces the file atomically. Only reuse a detached image
+        // if this validated source is still the very same filesystem object.
+        if ((old.nFileIndexHigh || old.nFileIndexLow) && old.dwVolumeSerialNumber == next.dwVolumeSerialNumber &&
+                old.nFileIndexHigh == next.nFileIndexHigh && old.nFileIndexLow == next.nFileIndexLow)
+            return false;
+        detached_core.releasing = detached_core.handle;
+        detached_core.reset();
+    }
+    return release_pending(source.path);
+}
+
 struct Image {
     HMODULE handle = nullptr;
+    BY_HANDLE_FILE_INFORMATION identity{};
     bool reactivated = false;
 
     bool close(Report report, bool allow_reactivation = false) {
@@ -97,8 +125,10 @@ struct Image {
             HMODULE remaining = nullptr;
             if (GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,
                     reinterpret_cast<LPCWSTR>(released), &remaining)) {
-                if (remaining == released) detached_core.reset(remaining);
-                else FreeLibrary(remaining);
+                if (remaining == released) {
+                    detached_core.reset(remaining);
+                    detached_core.identity = identity;
+                } else FreeLibrary(remaining);
             }
         }
         return true;
@@ -121,6 +151,8 @@ inline std::unique_ptr<Source> prepare(const std::filesystem::path &path, Report
         report("ERROR", "Cannot open deployed core: system error " + std::to_string(GetLastError()));
         return {};
     }
+    BY_HANDLE_FILE_INFORMATION identity{};
+    if (GetFileInformationByHandle(source->file, &identity)) source->identity = identity;
     LARGE_INTEGER size{};
     if (!GetFileSizeEx(source->file, &size) || size.QuadPart <= 0 || size.QuadPart > 512 * 1024 * 1024) {
         report("ERROR", "Core is not a readable library of a supported size");
@@ -142,6 +174,7 @@ inline std::unique_ptr<Source> prepare(const std::filesystem::path &path, Report
 }
 
 inline bool load(Source &source, Image &image, Report report) {
+    image.identity = source.identity;
     HMODULE existing = nullptr;
     if (GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
                           source.path.c_str(), &existing)) {
@@ -186,6 +219,9 @@ inline std::filesystem::path resident_path(void *anchor) {
 struct Source {
     Descriptor image;
 };
+
+inline bool release_pending(const std::filesystem::path &) { return false; }
+inline bool wait_for_previous_image(const Source &) { return false; }
 
 struct Image {
     Descriptor image;
@@ -305,6 +341,7 @@ inline bool load(Source &source, Image &image, Report report) {
 } // namespace native
 
 using native::local_time;
+using native::release_pending;
 inline NativeProcessGuard loader_guard{NativeGuardRole::Loader};
 inline bool acquire_guard(Report report) { return loader_guard.acquire(report); }
 inline void release_guard() { loader_guard.release(); }
@@ -372,6 +409,7 @@ public:
     }
 
     bool has_image() const { return static_cast<bool>(module); }
+    bool wait_for_previous_image() const { return native::wait_for_previous_image(*source); }
 
     std::unique_ptr<CoreModule> acquire() {
         if (!module && !load()) return {};
