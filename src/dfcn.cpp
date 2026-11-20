@@ -5256,6 +5256,8 @@ private:
         std::vector<Match> &matches, int only_y, bool raw_layer) const;
     void append_fortress_zone_details(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, bool raw_layer) const;
+    void append_fortress_hospital_card_names(std::vector<std::string> &rows,
+        std::vector<Match> &matches, int only_y) const;
     void append_fortress_stockpile_types(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, bool raw_layer) const;
     void append_fortress_stockpile_settings(std::vector<std::string> &rows,
@@ -5828,6 +5830,8 @@ private:
         std::vector<Match> &matches, int only_y) const;
     std::optional<std::string> translate_world_landform_heading(std::string_view source) const;
     std::optional<std::string> translate_world_region_heading(std::string_view source) const;
+    std::optional<std::string> translate_fortress_hospital_reference(
+        std::string_view source, bool hospital_label = false) const;
     std::optional<std::string> region_name_gloss(std::string_view noun) const;
     struct ProceduralNameHead {
         std::string_view source;
@@ -12280,7 +12284,8 @@ std::optional<std::string> Overlay::translate_procedural_fragment(
     // The caller supplies the complete English field of a place. Enter its
     // title/compound/of grammar directly, before native or personal-name
     // recognition can reinterpret any English component as a given name.
-    if (english_site_name) return translate_name(screen_text);
+    if (english_site_name || (non_entity_name && !name_head.gloss.empty()))
+        return translate_name(screen_text);
 
     if (book_title) {
         // A subject can be a historical figure: its native given name and
@@ -19008,6 +19013,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     screen_rows.reserve(static_cast<size_t>(gps_->dimy));
     for (int row_y = 0; row_y < gps_->dimy; ++row_y)
         screen_rows.push_back(read_row(row_y));
+    append_fortress_hospital_card_names(screen_rows, result, only_y);
     if (g_native_reports_layer.ready &&
             gps_->screen == g_native_reports_layer.foreground.graphics()->screen) {
         for (const auto &tab : g_native_reports_tabs) {

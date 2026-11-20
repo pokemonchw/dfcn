@@ -231,6 +231,26 @@ static std::string render_civilization_name_head(
     return std::string(term);
 }
 
+// BUILDING_HOSPITAL draws only these WORD/POS pairs for slot 5. The
+// same WORDs can also name libraries and temples.
+static constexpr struct {
+    std::string_view id, singular, plural, target;
+} hospital_name_heads[] = {
+    {"HOME", "Home", "Homes", "疗养院"},
+    {"HOUSE", "House", "Houses", "医舍"},
+    {"SANCTUARY", "Sanctuary", "", "救护所"},
+};
+
+static std::string_view hospital_name_head(const NativeHistoryName &name, bool hospital_owner = false) {
+    if ((!hospital_owner && name.type != 54) || !name.first_name.empty() || !name.nickname.empty())
+        return {};
+    const auto &word = name.words[5];
+    for (const auto &head : hospital_name_heads)
+        if (word.id == head.id && word.has_form && (word.part_of_speech == 0 ||
+                (word.part_of_speech == 1 && !head.plural.empty()))) return head.target;
+    return {};
+}
+
 std::optional<std::string> Overlay::translate_history_name(
         const NativeHistoryName &name, bool character, bool polity_role,
         bool government_role, const NativeSiteGovernmentContext *government_context) const {
@@ -587,6 +607,13 @@ std::optional<std::string> Overlay::translate_history_name(
             roles[slot] = kNameVerb;
             break;
         default: return std::nullopt;
+        }
+        if (slot == 5) {
+            const auto hospital = hospital_name_head(name);
+            if (!hospital.empty()) {
+                glosses[slot] = hospital;
+                continue;
+            }
         }
         if (!entity_terms[slot].empty()) {
             glosses[slot] = entity_terms[slot];

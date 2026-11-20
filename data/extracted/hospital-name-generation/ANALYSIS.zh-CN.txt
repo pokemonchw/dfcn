@@ -1,0 +1,201 @@
+要塞医院的随机名称　Dwarf Fortress 53.17（Steam Windows）
+2026-11-20
+
+原版矮人要塞新建医院时，专名的中心词只有 HOME、HOUSE 和 SANCTUARY。
+英文中心词有 Home、Homes、House、Houses、Sanctuary 五种。修饰词取自
+建造方文明。矮人有 175 个可用修饰词条，按词形和位置组合成十种句式。
+按游戏正常接受的条件计数，矮人医院共有 60,757,135 种不同的完整英文拼写。
+
+一、在游戏程序中定位到的医院命名调用
+
+研究对象为 D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe。
+PE 标识为 PE:6aea05a1:02734000，SHA-256 为
+3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16。
+下文地址均为此映像的 VA，基址为 0x140000000。数据来自同一安装的 data/vanilla。
+
+0x140339033 处理新地点菜单的医院项（索引 4）。0x14033906d 创建医院对象，
+随后初始化物资数量并登记地点。0x140339248 起按当前文明 ID 查找实体；
+找到时，0x14033928b 调用地点命名函数 0x1409aa010，把 hospital + 0xb8
+作为 language_name 输出地址，名称类型传入 0x36（54，BUILDING_HOSPITAL）。
+查不到文明实体时，此处跳过命名。物资数量、患者、医师和地点价值均未传入命名函数。
+
+0x1409aa010 根据文明 raw 的 translation_token 取得语言索引。名称类型
+54 经过位于 0x1409aa3c4 的跳表，进入 0x1409aa1b0。0x1409aa1cd 的实参为
+
+    generate(name, language, 54, global_hospital_major, entity_raw.major_selector[MAIN])
+
+第一个选词器位于 0x142514798，等于全局 major 表起点 0x14250fc38 加
+67 × 0x120。67 是医院的默认词表类别。第二个选词器位于文明 raw + 0x3d0，
+即第 0 个 major_selector（MAIN，也称 OTHER）。全局的医院 minor 表和文明的
+HOSPITAL minor 表都没有传给这次调用。
+
+地点详情 0x1403ba882 从地点对象取得名字，0x1403ba8dc 用英文格式化器
+0x140aae180 输出完整名，界面随后按宽度裁短。另一个位置 0x1403ba9db
+读取固定类别标签 “Hospital”。游戏另有 “Rename this location.” 入口
+（提示文字引用于 0x14040a1fe）。以下词形与数量只描述自动生成时的完整专名。
+
+二、中心词与修饰词的来源
+
+0x140d44930 构建全局类别词表，第 67 项在 0x140d49e6d 将
+NAME_BUILDING_HOSPITAL 加入 major 包含列表。本机 language_SYM.txt
+第 3366–3369 行依次给出 HOME、HOUSE、SANCTUARY。中心名词池只接受
+具有 THE_NOUN_SING 或 THE_NOUN_PLUR 标志的词形。
+
+    词条        可作中心的英文名词     矮人语     language_words.txt 定义行
+    HOME        home / homes           bom        3864
+    HOUSE       house / houses         zoden      12560
+    SANCTUARY   sanctuary              rovol      14354
+
+SANCTUARY 的原始复数是 sanctuaries，但它只有 THE_NOUN_SING，没有
+THE_NOUN_PLUR，所以中心位只能出现 sanctuary。五个合法 (WORD, POS) 项
+在初抽时各约占 1/5。以词根合计，HOME 和 HOUSE 各约 2/5，SANCTUARY 约 1/5。
+
+矮人文明 MOUNTAIN 在 entity_default.txt 第 96–105 行显式配置 HOSPITAL，
+又对 REMAINING 选择 ARTIFICE 和 EARTH。MAIN 没有单独的 SELECT 条目，因此
+接收这两个主题。原始并集有 228 个词条。对 MAIN 应用 CULL_SYMBOL:ALL，
+剔除 DOMESTIC、SUBORDINATE、EVIL、FLOWERY、NEGATIVE、UGLY、NEGATOR 后
+留下 175 个。每个至少有一个可用修饰位置。例如 HOUSE 同时属于 ARTIFICE
+和 DOMESTIC，因此不能作矮人医院的修饰词，但全局医院中心词池仍保留它。
+
+解析 REMAINING 的循环在 0x140946d90，CULL 的 ALL 循环在 0x140947033。
+0x14094d982 逐类构建文明词表；0x140d4eb70 合并包含组，剔除排除组，
+再由 0x140d4d220 按位置和词性展开。未指定包含组时从全体 WORD 开始。
+原版各文明若经同一个地点命名入口，得到以下词形数。N、A、H、Q 的单位
+均为 (WORD, POS) 候选项；第二列是至少能在一个修饰位置使用的不同 WORD 数。
+
+    文明                         修饰词条       N       A       H       Q
+    MOUNTAIN 矮人                    175       5      30     127     218
+    FOREST 精灵                      272       5      94     173     299
+    PLAINS 人类                     1643       5     624     898    2042
+    EVIL 地精                         62       5      31      43      60
+    SUBTERRANEAN_ANIMAL_PEOPLES     2191       5     849    1228    2658
+
+FOREST 的 MAIN 包含 NATURE、FLOWERY，EVIL 的 MAIN 包含 EVIL，均再应用
+各自的 CULL。PLAINS 从全体 WORD 开始应用五个 CULL。地下动物人原版 raw
+没有这些包含和排除项。此表描述这些 raw 提供的命名能力；常规玩家要塞对应
+MOUNTAIN。无翻译标记且种族具有 HAS_ANY_UTTERANCES 时，0x1409aa088
+转入 0x14094b310，再走 0x14094a690 的拟声拼写分支。原版狗头人
+SKULKING 的 KOBOLD 具有 UTTERANCES，因而没有列为一套医院修饰词池。
+普通分支若未匹配到语言索引，生成器从最多 20 个未标记 generated 的
+翻译表中选择语言；原版 MOUNTAIN 已显式指定 DWARF。
+
+三、句式、抽选概率与重抽
+
+0x140aac300 是通用名称生成器。名称类型 54 的跳表分支起点为 0x140aad227。
+以下是依据该分支整理的伪代码。pick 抽取一个 (WORD, POS)，写入指定位置。
+
+    N = pick(全局医院词表, 2)
+    模式 = random(3)                     // 0、1、2
+    如果 random(50) != 0，模式 = random(2)
+    如果模式为 0 或 2，Q  = pick(文明 MAIN, 5)
+    如果模式为 1 或 2，A1 = pick(文明 MAIN, 3)
+    如果已抽到 A1 且 random(100) == 0，A2 = pick(文明 MAIN, 3)
+    如果 random(100) == 0，H = pick(文明 MAIN, 4)
+
+完整英文依次输出 The、A1、A2、H-N、of Q，省略空位置。The 和 of 是
+格式化器添加的固定词。必须有 A1 或 Q，有 A2 必有 A1。该分支使用 2 至 5
+个 WORD，语言结构的前后连写复合槽 0 和 1 均留空。H 在中心词前带连字符。
+按抽选规则可组成 The Golden Sanctuary、The House of Axes、
+The Silvery Arrow-Home of Books。这三个是由词表推导的例子。
+
+A 接受非空 ADJ。H 接受具有 THE_COMPOUND 标志的单数、复数、形容词或前缀；
+在当前矮人池里分别有 97、19、11、0 项。Q 接受 OF_NOUN_SING、
+OF_NOUN_PLUR 以及非空动名词，在矮人池里分别有 35、152、31 项。
+抽词函数 0x140d4dbd0 对候选数组取随机下标，再取同一位置的词条和词性。
+
+初抽时，只抽 Q、只抽 A1 的概率各约 49.67%，两者兼有约 0.67%。
+上述“只”指三种基础模式；第二形容词和连字符另行抽取。伪随机入口为
+0x140ece790，整数缩放使这些百分比存在微小偏差。
+
+生成后两个形容词按 ADJ_DIST 降序排，相等时保留抽取顺序。如果任意两个槽
+使用相同 WORD（即使词性不同），或 N 与 Q 同为复数名词，就重抽整名。
+例如 The House of Axes 合法，The Houses of Axes 触发双复数重抽。
+矮人 Q 中复数较多，因此正常接受的名字中，按等概率词形项近似计算，
+仅 Q、仅 A、A 与 Q 兼有三类约占 41.67%、57.77%、0.55%。
+
+四、原版矮人医院的完整英文组合范围
+
+下表给出正常通过冲突筛选后，每种句式能表示的不同完整英文字符串数。
+例如只带一个形容词时有 30 × 5 = 150 种。只带 of 补语时，三个单数中心
+各有 217 种不同补语拼写，两个复数中心各有 66 种，合计 783 种。
+
+    英文句式                  不同拼写数
+    The N of Q                      783
+    The H-N of Q                 98,042
+    The A1 N                        150
+    The A1 H-N                   18,765
+    The A1 A2 N                   2,990
+    The A1 A2 H-N               371,255
+    The A1 N of Q                23,312
+    The A1 H-N of Q           2,898,021
+    The A1 A2 N of Q            461,030
+    The A1 A2 H-N of Q       56,882,787
+    合计                     60,757,135
+
+计数按中心词形与已经排序的形容词逐组进行。先从 H 和 Q 中排除已用词根，
+再按 N 的单复数过滤 Q。两个位置都启用时，从两池大小的乘积中减去 H 和 Q
+同根的配对。若按 (WORD, POS) 区分，合计为 61,476,645 个结构。若按英文
+拼写区分，在 H、Q 各自池内先合并同根同拼写的单复数 tongs，再做同样
+计算。当前矮人各槽词形只含字母，空格、连字符和 of 可以区分这十种句式。
+
+生成器最多尝试 100 轮。若连续 100 轮均有冲突，它保留最后一轮。所以
+60,757,135 是通过冲突筛选的拼写数。若给最后一轮放开同根与双复数限制，
+仍执行形容词排序，十种句式总共容纳 91,224,735 种拼写。这是词表和语法
+给出的理论上界，没有逐个枚举游戏随机种子。建筑改名、模组替换 raw、
+界面裁短均不计入这两个数字。模组使某个位置词池为空时，选词函数另有
+“Impoverished Word Selector”分支，从所有 WORD 和九种词性中随机取值。
+
+五、提取资料
+
+hospital-words.tsv 为 UTF-8、制表符分隔。每行是一项槽位、WORD、词性与
+英文词形。前 380 条数据为原版矮人医院可用项；也可按 MOUNTAIN=1 筛选。
+其余文明列的 1 表示该文明在此位置也能取该词形。DWARF、ELF、HUMAN、
+GOBLIN 列保留游戏语言词根。word_line 和 eligibility_line 对应当前安装
+data/vanilla/vanilla_languages/objects/language_words.txt 的行号。
+
+pe-hospital.asm 保存从当前 PE 提取的建院、词表选择、随机分支和地点显示指令。
+pe-location-name-dispatch.c、pe-entity-name-dispatch.c 为本次用 Ghidra 12.1.4
+从该 PE 导出的反编译 C。前者的 case 0x21 是 (54 - 21) 的跳表索引。
+同一映像的共用函数已保存在相邻的 ../volcano-name-generation/ 中，
+pe-name-generate.c 的 case 2（跳表重映射值）对应医院，pe-switches.tsv
+记录类型 54 的实际跳转；pe-build-selector.c、pe-fill-word-slots.c、
+pe-select-word.c、pe-english-format.c 分别对应建池、按位置展开、抽词及
+英文显示。这里使用同一通用函数，医院的输入词表来自上述地点调用。
+
+六、医院专名中三个中心词的中文译法
+
+建议将 Home / Homes 统一作「疗养院」，House / Houses 作「医舍」，
+Sanctuary 作「救护所」。三个后缀都能独立表明医疗用途，仅用于医院随机专名。
+游戏另外显示类别 Hospital（医院）。中心词采用单数或复数时都指同一处
+命名地点，中文专名可沿用同一后缀。
+
+HOME 取伤病者能住下来、得到照料并恢复的含义。香港防痨心脏及胸病协会的
+Freni Memorial Convalescent Home 中文名为「傅麗儀療養院」，曾收住康复期病人。
+现实院名里 convalescent 明说了休养用途；游戏只写 Home，「疗养」取自医院
+语境。这是一种命名意象，同一要塞医院仍可处理急伤。
+来源　香港防痨心脏及胸病协会中、英文院史
+https://www.antitb.org.hk/tc/about_us.php?cid=1
+https://antitb.org.hk/en/about_us.php
+
+HOUSE 着重于收治病人的屋舍。牛津 Helen House 的院史说明，其创立构想是
+给重病儿童一处家庭式照护场所。温州市中医院记录，瑞安利济医院筹建时，
+孙衣言题额曾用「医舍」，最终匾额改用「医院」。游戏译名「医舍」中的
+「舍」保留 House 的建筑意象，「医」取自要塞医院的用途。
+来源　Helen & Douglas House 院史；温州市中医院《历史的传承》
+https://www.helenanddouglas.org.uk/about-us/our-history/
+https://www.wzszyy.cn/news/show-31499.html
+
+SANCTUARY 在游戏词表中同时属于 PROTECT 和 HOLY。医院专名选取保护伤病者
+这一义，用「救护所」体现接应伤者和施救的用途。英国 NHS 将 sanctuary
+描述为危机中可以获得安全环境和支持的地方；中文医学史中也有「救护所」
+这一名称，上海市医学会收录了有关淞沪抗战救护所的红十字会证书。两例
+分别说明英文意象和中文用词。「救护所」带有比原词更强的应急救伤意味，
+是针对要塞医院所作的意译。
+来源　英国 NHS 社区危机服务定义、上海市医学会医学人文史料
+https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/mental-health-services-data-set/submit-data/urgent-and-emergency-mental-health-care-pathways/appendix
+https://www.shsma.org.cn/web/humanity?nc_id=1103&type=gg_list
+
+同一个补语 SILVER 可以生成以下三个名字。
+    The Home of Silver         白银疗养院
+    The House of Silver        白银医舍
+    The Sanctuary of Silver    白银救护所

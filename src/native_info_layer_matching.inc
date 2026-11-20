@@ -333,6 +333,7 @@ std::vector<Match> Overlay::find_native_info_background_matches(int only_y,
     NativePanelReadScope panels(gps_);
     // The map remains behind management components. A real terrain draw
     // keeps its own field grammar in this reduced background reader too.
+    append_fortress_hospital_card_names(rows, result, only_y);
     append_native_map_hover_phrases(rows, result, only_y, NativeMapHoverKind::Terrain);
     append_fortress_site_name(rows, result, only_y, screen_override != nullptr);
     append_fortress_elevation_rows(rows, result, only_y, screen_override != nullptr);

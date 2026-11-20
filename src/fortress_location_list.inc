@@ -289,7 +289,9 @@ void Overlay::append_fortress_location_list_matches(std::vector<std::string> &ro
                 std::optional<std::string> target;
                 switch (kind) {
                 case NativeLocationPickerField::Name:
-                    target = contains_cjk_utf8(complete)
+                    target = translate_fortress_hospital_reference(complete,
+                        fortress_hospital_label_below(context, draw.x, draw.y));
+                    if (!target) target = contains_cjk_utf8(complete)
                         ? std::optional<std::string>(native_text_to_utf8(complete))
                         : translate_procedural_fragment(complete, false, false, {},
                             ProceduralFragmentContext::generated_name);
@@ -440,7 +442,9 @@ void Overlay::append_fortress_location_list_matches(std::vector<std::string> &ro
             if (!name || !detail || name->x != left || detail->x != left) continue;
             const auto type = description(detail->complete);
             if (!type && !picker) continue;
-            auto title = contains_cjk_utf8(name->complete)
+            auto title = type && type->kind == "Hospital"
+                ? translate_fortress_hospital_reference(name->complete, true) : std::nullopt;
+            if (!title) title = contains_cjk_utf8(name->complete)
                 ? std::optional<std::string>(native_text_to_utf8(name->complete))
                 : translate_procedural_fragment(name->complete, false, false, {},
                     ProceduralFragmentContext::generated_name);

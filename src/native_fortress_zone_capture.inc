@@ -6,6 +6,20 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
     const uintptr_t base = native_history_profile_base();
     if (!base || !caller || !source) return std::nullopt;
     using Kind = NativeFortressZoneCaption::Kind;
+    // This literal is drawn only by the selected location's Hospital
+    // (getType() == 13) branch. The same location that supplied the name
+    // one row above is still at rbp-0x70; this string is at rbp+0x1ad0.
+    if (caller == native_reference_address(base, 0x3e9b32)) {
+        NativeFortressZoneCaption caption{Kind::LocationDescription, false};
+        caption.detail = true;
+        uintptr_t location = 0;
+        NativeHistoryName name;
+        if (source >= 0x1b40 && native_history_copy(source - 0x1b40, location) &&
+                location && capture_native_history_name(base, native_history_object_member(
+                    location, "abstract_building_hospitalst", "name.first_name"), name) && name.has_name)
+            caption.location_name = std::make_shared<const NativeHistoryName>(std::move(name));
+        return caption;
+    }
     const auto variable_row_caption = [&](Kind kind, int following_line = 0) {
         NativeFortressZoneCaption caption{kind, false};
         // These callers use r13/rsp+0x54. The renderer selects row_top+1

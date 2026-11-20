@@ -890,6 +890,89 @@ void Overlay::append_fortress_zone_holder_matches(std::vector<std::string> &rows
     }
 }
 
+// The selected Meeting Area draws the location's English name and its
+// Hospital type on consecutive rows at the same x. The native formatter
+// gives the name 22 cells and replaces the last three with dots on overflow.
+void Overlay::append_fortress_hospital_card_names(std::vector<std::string> &rows,
+        std::vector<Match> &matches, int only_y) const {
+    if (!gps_ || rows.size() != static_cast<size_t>(gps_->dimy)) return;
+    constexpr std::string_view kind = "Hospital";
+    constexpr int width = 22;
+    const int first = only_y < 0 ? 0 : only_y;
+    const int end = only_y < 0 ? gps_->dimy - 1 : std::min(only_y + 1, gps_->dimy - 1);
+    for (int y = first; y < end; ++y) {
+        auto &row = rows[y];
+        for (size_t x = row.find("The "); x != std::string::npos; x = row.find("The ", x + 4)) {
+            if (x + width > row.size()) continue;
+            const int left = static_cast<int>(x);
+            bool hospital = true;
+            for (int i = 0; i < static_cast<int>(kind.size()); ++i)
+                if (visible_char_at(left + i, y + 1) != kind[i]) { hospital = false; break; }
+            if (!hospital) continue;
+            // Other windows can contain hospital-related prose. Require the
+            // complete standalone type in the native name column.
+            for (int i = static_cast<int>(kind.size()); i < width; ++i) {
+                const auto ch = visible_char_at(left + i, y + 1);
+                if (ch && ch != ' ') { hospital = false; break; }
+            }
+            if (!hospital) continue;
+            const std::string visible(trim_view(std::string_view(row).substr(x, width)));
+            if (!visible.starts_with("The ")) continue;
+            const auto displays = [&](std::string_view full) {
+                return full.size() <= width ? full == visible :
+                    visible.size() == width && visible.ends_with("...") &&
+                    full.substr(0, width - 3) == std::string_view(visible).substr(0, width - 3);
+            };
+            std::string complete = visible;
+            const NativeHistoryName *identity = nullptr;
+            bool detail_field = false;
+            const auto base = captured_native_drawn_text_snapshot();
+            const auto top = captured_native_drawn_text_snapshot(true);
+            for (const auto *layer : {base.get(), top.get()}) {
+                for (const auto &draw : *layer) {
+                    if (draw.x != left || draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
+                            (draw.y != y && draw.y != y + 1)) continue;
+                    const bool title = draw.y == y && draw.source == visible;
+                    const bool label = draw.y == y + 1 && draw.source == kind;
+                    if (title && displays(draw.complete_source)) complete = draw.complete_source;
+                    if ((!title && !label) || !draw.fortress_zone_caption ||
+                            !draw.fortress_zone_caption->detail) continue;
+                    detail_field = true;
+                    const auto &name = draw.fortress_zone_caption->location_name;
+                    if (!name) continue;
+                    const auto english = reconstruct_site_english_name(*name);
+                    if (english && displays(*english)) {
+                        complete = *english;
+                        identity = name.get();
+                    }
+                }
+            }
+            if (!detail_field && !native_main_button_at(*gps_, left - 5, y, 167, true) &&
+                    !native_main_button_at(*gps_, left + width, y, 161) &&
+                    !native_textbox_rect_at(*gps_, left - 5, y - 4)) continue;
+            if (identity && (!identity->first_name.empty() || !identity->nickname.empty())) continue;
+            if (complete.ends_with("...")) {
+                const auto clips = captured_clipped_caption_snapshot();
+                for (const auto &clip : *clips)
+                    if (clip.x == left && clip.y == y && clip.visible == visible && displays(clip.complete)) {
+                        complete = clip.complete;
+                        break;
+                    }
+            }
+            auto target = identity && !hospital_name_head(*identity).empty()
+                ? translate_history_name(*identity) : std::nullopt;
+            if (!target) target = translate_fortress_hospital_reference(complete, true);
+            if (!target) continue;
+            Match match{left, y, static_cast<int>(visible.size()), kFortressLocationListRule, *target, visible};
+            match.native_picture_caption_source = complete;
+            match.native_picture_caption_box = SDL_Rect{left, y, width, 1};
+            match.layout_left = true;
+            matches.push_back(std::move(match));
+            std::fill_n(row.begin() + left, visible.size(), ' ');
+        }
+    }
+}
+
 // The selected Meeting Area draws the associated location's name and guild
 // description as separate native strings. The shared resize capture retains
 // each original before the game replaces its suffix with dots; screen words
@@ -946,6 +1029,7 @@ void Overlay::append_fortress_zone_details(std::vector<std::string> &rows,
         std::optional<std::string> target;
         if (!description && caption.location_name && caption.location_name->has_name)
             target = translate_history_name(*caption.location_name);
+        if (description && complete == "Hospital") target = exact_literal_translation(complete);
         if (description) {
             for (const std::string_view suffix : {
                     " grand guildhall", " guildhall", " meeting place"}) {

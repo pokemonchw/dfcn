@@ -1,3 +1,13 @@
+// Location headers and chooser cards draw their type one row below the name.
+static bool fortress_hospital_label_below(const std::vector<std::string> &rows, int x, int y) {
+    if (y + 1 >= static_cast<int>(rows.size())) return false;
+    const std::string_view row(rows[y + 1]);
+    constexpr std::string_view kind = "Hospital";
+    if (row.substr(x, kind.size()) != kind) return false;
+    const size_t end = x + kind.size();
+    return end == row.size() || row[end] == ' ' || is_cp437_box_separator(row, end);
+}
+
 // A location's complete labels must precede UI-message matching: the Dance
 // action otherwise consumes the first word of "Dance floor in common area:".
 // Keep quantities and coloured status values separate from dictionary labels.
@@ -161,7 +171,9 @@ void Overlay::append_fortress_location_matches(std::vector<std::string> &rows,
             std::string whole = complete;
             switch (kind) {
             case NativeLocationPickerField::DetailName:
-                target = detail_identity(complete);
+                target = translate_fortress_hospital_reference(complete,
+                    fortress_hospital_label_below(context, draw.x, draw.y));
+                if (!target) target = detail_identity(complete);
                 break;
             case NativeLocationPickerField::DetailKind:
                 target = exact_literal_translation(complete);
@@ -338,7 +350,7 @@ void Overlay::append_fortress_location_matches(std::vector<std::string> &rows,
         }
     }
     static constexpr std::string_view location_kinds[] = {
-        "Temple Complex", "Temple complex", "Temple", "Shrine", "Tavern",
+        "Temple Complex", "Temple complex", "Temple", "Shrine", "Tavern", "Hospital",
     };
     const auto is_location_kind = [](std::string_view text) {
         return std::find(std::begin(location_kinds), std::end(location_kinds), text) !=
@@ -473,7 +485,10 @@ void Overlay::append_fortress_location_matches(std::vector<std::string> &rows,
                 for (const auto &name : split_text_fields(context[name_y])) {
                     if (name.start != field.start || name.end > right || is_location_kind(name.text))
                         continue;
-                    const auto translated = translate_identity(complete_source(name, name_y));
+                    const auto source = complete_source(name, name_y);
+                    auto translated = field.text == "Hospital"
+                        ? translate_fortress_hospital_reference(source, true) : std::nullopt;
+                    if (!translated) translated = translate_identity(source);
                     if (translated) append(name.start, name_y, name.end - name.start,
                         kFortressLocationTextRule, *translated);
                 }

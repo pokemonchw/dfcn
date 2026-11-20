@@ -70,34 +70,138 @@ static bool capture_site_reference_identity(uintptr_t base, uintptr_t site,
     return true;
 }
 
-bool Overlay::capture_current_fortress_site_name(NativeHistoryName &name,
-        std::string &english) const {
-    const uintptr_t base = native_history_profile_base();
-    uintptr_t site = 0;
+static uintptr_t current_fortress_site_address(uintptr_t base, int32_t &expected_id) {
+    expected_id = -1;
 #ifdef _WIN32
     // The two HUD producers (3f3033/3f30ab) read main.fortress_site,
     // not the independently retained plotinfo.site_id. Use their owner.
-    if (!base || !native_history_copy(native_reference_address(base,
-            0x239a1f0), site) || !site) return false;
+    uintptr_t site = 0;
+    return base && native_history_copy(native_reference_address(base, 0x239a1f0), site) ? site : 0;
 #else
     const uintptr_t plotinfo = base ? native_reference_address(base,
         native_history_layout::plotinfo_rva) : 0;
-    int32_t id = -1;
     if (!plotinfo || !native_history_copy(native_history_object_field(
-            plotinfo, "plotinfost", 0x2444, sizeof(id)), id) || id < 0)
-        return false;
-    site = native_history_find_subject(base, NativeHistoryObjectKind::Site, id);
+            plotinfo, "plotinfost", 0x2444, sizeof(expected_id)), expected_id) || expected_id < 0)
+        return 0;
+    return native_history_find_subject(base, NativeHistoryObjectKind::Site, expected_id);
 #endif
+}
+
+bool Overlay::capture_current_fortress_site_name(NativeHistoryName &name,
+        std::string &english) const {
+    const uintptr_t base = native_history_profile_base();
+    int32_t expected_id;
+    const auto site = current_fortress_site_address(base, expected_id);
     SiteReferenceIdentity identity;
-    if (!site || !capture_site_reference_identity(base, site, identity))
-        return false;
-#ifndef _WIN32
-    if (identity.id != id) return false;
-#endif
+    if (!site || !capture_site_reference_identity(base, site, identity) ||
+            (expected_id >= 0 && identity.id != expected_id)) return false;
     name = std::move(identity.name);
     name.site_label = "player fortress";
     english = std::move(identity.english);
     return true;
+}
+
+// Some location captions carry only the formatted string. Resolve the
+// complete name against the fortress's actual locations before giving its
+// head a medical sense. One snapshot serves all rows and layers in a draw.
+std::optional<std::string> Overlay::translate_fortress_hospital_reference(
+        std::string_view source, bool hospital_label) const {
+    if (!source.starts_with("The ")) return std::nullopt;
+    // The selected zone writes precisely 19 bytes and three dots for a
+    // name longer than 22. Only a Hospital label permits this lookup.
+    const bool shortened = source.ends_with("...");
+    if (shortened && (!hospital_label || source.size() != 22)) return std::nullopt;
+    const auto title_head = [](std::string_view text) -> ProceduralNameHead {
+        if (!text.starts_with("The ")) return {};
+        const auto body = text.substr(4);
+        const auto title = body.substr(0, body.find(" of "));
+        const auto last = title.find_last_of(" -");
+        const auto noun = title.substr(last == std::string_view::npos ? 0 : last + 1);
+        for (const auto &entry : hospital_name_heads)
+            if (!noun.empty() && (noun == entry.singular || noun == entry.plural))
+                return {noun, entry.target};
+        return {};
+    };
+    const auto render_title = [&](std::string_view english) -> std::optional<std::string> {
+        const auto head = title_head(english);
+        if (head.gloss.empty() || !generated_title_shape(english)) return std::nullopt;
+        const std::string folded = lower(std::string(head.source));
+        return translate_procedural_fragment(std::string(english), false, false, {folded, head.gloss},
+            ProceduralFragmentContext::non_entity_name);
+    };
+    if (!shortened && title_head(source).gloss.empty()) return std::nullopt;
+    const auto from_label = [&]() -> std::optional<std::string> {
+        return hospital_label && !shortened ? render_title(source) : std::nullopt;
+    };
+
+    struct Entry {
+        std::optional<std::string> hospital;
+        bool other_location = false;
+    };
+    struct Locations {
+        uintptr_t site = 0;
+        uint64_t epoch = 0;
+        std::unordered_map<std::string, Entry> names;
+    };
+    dfhack_require_world_read();
+    const uintptr_t base = native_history_profile_base();
+    int32_t expected_id;
+    const auto site = current_fortress_site_address(base, expected_id);
+    if (!site) return from_label();
+    auto &locations = reloadable_thread_state<Locations, struct HospitalLocationsTag>();
+    if (locations.site != site || locations.epoch != draw_epoch_) {
+        NativeBorrowedVector<uintptr_t> buildings;
+        if (!native_history_read_vector(native_history_object_member(
+                site, "world_site", "buildings", sizeof(buildings)), buildings)) return from_label();
+        locations = {site, draw_epoch_, {}};
+        for (size_t i = 0; i < buildings.size(); ++i) {
+            const auto building = native_history_vector_at(buildings, i);
+            const auto *layout = building ? native_history_dynamic_layout(building) : nullptr;
+            if (!layout) continue;
+            const auto profile = std::find_if(std::begin(kNativeHistoryStructureProfiles),
+                std::end(kNativeHistoryStructureProfiles),
+                [&](const auto &p) { return std::string_view(layout->name) == p.name; });
+            // Only temples, taverns, libraries, guildhalls and hospitals
+            // participate in these fortress location lists.
+            if (profile == std::end(kNativeHistoryStructureProfiles) ||
+                    (profile->type != 2 && profile->type != 8 && profile->type != 9 &&
+                     profile->type != 11 && profile->type != 13)) continue;
+            NativeHistoryName name;
+            if (!capture_native_history_name(base, native_history_object_field(
+                    building, {}, profile->name_offset), name)) continue;
+            const auto english = reconstruct_site_english_name(name);
+            if (!english) continue;
+            auto &entry = locations.names[*english];
+            if (profile->type != 13) {
+                entry.other_location = true;
+                continue;
+            }
+            std::optional<std::string> target;
+            if (!hospital_name_head(name, true).empty()) {
+                if (name.type == 54) target = translate_history_name(name);
+                if (!target) target = render_title(*english);
+            }
+            // An authored name or conflicting WORD meanings cannot select
+            // a generated translation through the shared English spelling.
+            if (!entry.hospital) entry.hospital = target.value_or("");
+            else if (entry.hospital != target) entry.hospital = "";
+        }
+    }
+    if (shortened) {
+        const auto prefix = source.substr(0, 19);
+        std::optional<std::string> result;
+        for (const auto &[english, entry] : locations.names) {
+            if (!entry.hospital || english.size() <= 22 || !english.starts_with(prefix)) continue;
+            if (entry.hospital->empty() || (result && result != entry.hospital)) return std::nullopt;
+            result = entry.hospital;
+        }
+        return result;
+    }
+    const auto found = locations.names.find(std::string(source));
+    if (found == locations.names.end()) return from_label();
+    if ((found->second.other_location && !hospital_label) ||
+            !found->second.hospital || found->second.hospital->empty()) return std::nullopt;
+    return found->second.hospital;
 }
 
 static void index_site_reference_source(SiteReferenceCache &cache, size_t index) {
