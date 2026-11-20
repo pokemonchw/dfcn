@@ -169,6 +169,7 @@ Workshop recipe: state bag-processable	可加工并装袋	l
 Workshop recipe: state fermentable	可发酵	l
 Workshop recipe: material clay	黏土	l
 Workshop recipe: material glaze	釉料	l
+Workshop recipe: state zinc-bearing	含锌	l
 Workshop recipe: state honey-bearing	含蜂蜜	l
 Workshop recipe: state parchment-producing	可制作兽皮纸	l
 Workshop recipe: state oil-bearing	含油	l
