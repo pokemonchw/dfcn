@@ -1150,14 +1150,20 @@ std::vector<WorkshopTaskCard> Overlay::capture_workshop_task_rows(
         // word matching can split Abli bows or centre each translated piece
         // in its own English span. The search owns the common column, even
         // after the first entry scrolls away or a query narrows the list.
-        int amount_y = -1, availability_y = -1;
+        int availability_y = -1;
         for (int y = tabs_y + 1; y + 3 <= bottom; ++y) {
             for (const auto &field : split_text_fields(rows[y])) {
                 if (field.start < panel->x || field.end > right ||
+                    !field.text.starts_with("available is ") ||
                     !current(field.start, y, field.text)) continue;
-                if (field.text.starts_with("Amount of ")) amount_y = y;
-                if (field.text.starts_with("available is ") && amount_y >= 0 &&
-                    y > amount_y && y <= amount_y + 3) availability_y = y;
+                // The condition translator can already own the entire Amount
+                // line in rows. Both headers start in the same native column.
+                for (int above = y - 1; above > tabs_y && above >= y - 3; --above) {
+                    if (current(field.start, above, "Amount of ")) {
+                        availability_y = y;
+                        break;
+                    }
+                }
             }
             if (availability_y < 0 || y <= availability_y) continue;
             for (int x = panel->x; x < right; ++x) {
