@@ -986,6 +986,102 @@ std::vector<WorkshopTaskCard> Overlay::capture_workshop_task_rows(
         return draw.caption_source && !draw.editable_text &&
             native_workshop_choice_field(draw.native_caller) != NativeWorkshopChoiceField::None;
     };
+    // Capture the cells written by one native list caption, even when its
+    // complete string extends beyond the text column or uses two font halves.
+    const auto capture_choice_draw = [&](const NativeDrawnTextRow &draw, int right,
+            int bottom) -> std::optional<NativeTextCard> {
+        const int y = draw.y;
+        if (draw.editable_text || draw.source.empty() || draw.x < 0 || y < 0 ||
+                draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
+                !draw.draw_grid) return std::nullopt;
+        right = std::min(right, gps_->dimx);
+        bottom = std::min(bottom, gps_->dimy);
+        if (draw.draw_clip) {
+            if (draw.x < draw.draw_clip->x || y < draw.draw_clip->y) return std::nullopt;
+            right = std::min(right, draw.draw_clip->x + draw.draw_clip->w);
+            bottom = std::min(bottom, draw.draw_clip->y + draw.draw_clip->h);
+        }
+        if (right <= draw.x || y >= bottom) return std::nullopt;
+        const auto visible = std::string_view(draw.source).substr(0, right - draw.x);
+        NativeTextCard card;
+        constexpr uint32_t upper = 1u << 3, lower = 1u << 4;
+        bool split = false;
+        for (int row_y = y; row_y <= y + (split ? 1 : 0) && row_y < bottom; ++row_y) {
+            if (row_y >= static_cast<int>(rows.size()) ||
+                    static_cast<size_t>(draw.x) >= rows[row_y].size() ||
+                    rows[row_y].compare(draw.x, visible.size(), visible) != 0) break;
+            NativeTextCardRow row{draw.x, row_y, std::string(visible), {}};
+            bool half = true, ink = false;
+            for (size_t i = 0; i < visible.size(); ++i) {
+                const int x = draw.x + static_cast<int>(i);
+                bool top = false;
+                const auto *cell = cell_at(x, row_y, &top);
+                const size_t at = static_cast<size_t>(x) * gps_->dimy + row_y;
+                const auto expected = static_cast<unsigned char>(visible[i]);
+                if (!cell || (cell[0] ? cell[0] : ' ') != expected) break;
+                if (expected != ' ') {
+                    const auto origin = native_text_grid_origin(*gps_, at, top);
+                    if (origin.grid != draw.draw_grid || origin.top_layer != draw.top_layer) break;
+                    const auto *flags = top ? gps_->screentexpos_top_flag : gps_->screentexpos_flag;
+                    half = half && flags && (flags[at] & (upper | lower)) ==
+                        (row_y == y ? upper : lower);
+                    ink = true;
+                }
+                row.foregrounds.push_back((cell[1] << 16) | (cell[2] << 8) | cell[3]);
+            }
+            if (row.foregrounds.size() != visible.size() || !ink || (row_y != y && !half)) break;
+            row.complete_source = draw.complete_source.empty() ? draw.source : draw.complete_source;
+            card.rows.push_back(std::move(row));
+            if (row_y == y) split = half;
+        }
+        if (card.rows.empty()) return std::nullopt;
+        card.interior = {draw.x, y, right - draw.x, static_cast<int>(card.rows.size())};
+        return card;
+    };
+
+    // The trait renderer submits the record's display_string directly. Use
+    // the addst call sequence already identified by the material-search
+    // profile; the surrounding tabs, condition header and search skin can
+    // be claimed separately before this pass.
+    const uintptr_t base = native_history_profile_base();
+#ifdef _WIN32
+    const uintptr_t trait_site = native_reference_address(base, 0x38f03b);
+    const uintptr_t trait_return = trait_site + 0x13;
+#else
+    const uintptr_t trait_site = native_reference_address(base, 0x98e3d3);
+    const uintptr_t trait_return = trait_site + 0x25;
+#endif
+    if (trait_site) {
+        for (const bool top_layer : {false, true}) {
+            for (const auto &draw : captured_native_drawn_text_view(top_layer)) {
+                if (draw.native_caller != trait_return || draw.x < 0 ||
+                        draw.x >= gps_->dimx || draw.y < 1 || draw.y + 1 >= gps_->dimy) continue;
+                // With the checkbox obscured, use only the proven text span.
+                int right = draw.x + static_cast<int>(draw.source.size());
+                for (int x = draw.x + 1; x + 4 <= gps_->dimx; ++x) {
+                    if (native_main_button_at(*gps_, x, draw.y,
+                                INTERFACE_BUTTON_MAIN_WORK_ORDERS_ADJECTIVE_SELECTED) ||
+                            native_main_button_at(*gps_, x, draw.y,
+                                INTERFACE_BUTTON_MAIN_WORK_ORDERS_ADJECTIVE_NOT_SELECTED)) {
+                        right = x;
+                        break;
+                    }
+                }
+                auto card = capture_choice_draw(draw, right, draw.y + 2);
+                if (!card) continue;
+                card->button_box = SDL_Rect{draw.x, draw.y - 1, card->interior.w, 3};
+                card->interior = *card->button_box;
+                if (card->interior.w > 2) {
+                    card->interior.x += 2;
+                    card->interior.w -= 2;
+                }
+                choices.emplace_back(std::move(*card));
+                choices.back().condition_choice = true;
+            }
+        }
+        if (!choices.empty()) return choices;
+    }
+
     const auto append_candidates = [&](const SDL_Rect &search, int right, int bottom,
                                         int minimum_right, bool condition = false) {
         const int content_y = search.y + search.h;
@@ -999,63 +1095,10 @@ std::vector<WorkshopTaskCard> Overlay::capture_workshop_task_rows(
                 });
                 if (owned) continue;
                 for (const auto &draw : drawn) {
-                    if (draw.y != y || !task_choice_draw(draw) || draw.x < search.x ||
-                        draw.x >= right || draw.source.empty() ||
-                        draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
-                        !draw.draw_grid)
-                        continue;
-                    int text_right = std::min(right - 1, gps_->dimx);
-                    int text_bottom = std::min(bottom, gps_->dimy);
-                    if (draw.draw_clip) {
-                        if (draw.x < draw.draw_clip->x || y < draw.draw_clip->y) continue;
-                        text_right = std::min(text_right, draw.draw_clip->x + draw.draw_clip->w);
-                        text_bottom = std::min(text_bottom, draw.draw_clip->y + draw.draw_clip->h);
-                    }
-                    if (text_right <= draw.x || y >= text_bottom) continue;
-                    const size_t length = std::min(draw.source.size(),
-                        static_cast<size_t>(text_right - draw.x));
-                    const auto visible = std::string_view(draw.source).substr(0, length);
-                    NativeTextCard card;
-                    card.interior = {draw.x, y, text_right - draw.x, 1};
-                    constexpr uint32_t upper = 1u << 3, lower = 1u << 4;
-                    bool split = false;
-                    for (int row_y = y; row_y <= y + (split ? 1 : 0) && row_y < text_bottom; ++row_y) {
-                        if (row_y >= static_cast<int>(rows.size())) break;
-                        NativeTextCardRow row{draw.x, row_y, std::string(visible), {}};
-                        bool intact = true, half = true, ink = false;
-                        for (size_t i = 0; i < length; ++i) {
-                            const int x = draw.x + static_cast<int>(i);
-                            bool top = false;
-                            const auto *cell = cell_at(x, row_y, &top);
-                            const size_t at = static_cast<size_t>(x) * gps_->dimy + row_y;
-                            const auto origin = native_text_grid_origin(*gps_, at, top);
-                            const unsigned char expected = static_cast<unsigned char>(visible[i]);
-                            if (!cell || x >= static_cast<int>(rows[row_y].size()) ||
-                                    rows[row_y][x] != static_cast<char>(expected) ||
-                                    (cell[0] ? cell[0] : ' ') != expected ||
-                                    (expected != ' ' && (origin.grid != draw.draw_grid ||
-                                        origin.top_layer != draw.top_layer))) {
-                                intact = false;
-                                break;
-                            }
-                            row.foregrounds.push_back((cell[1] << 16) | (cell[2] << 8) | cell[3]);
-                            if (expected == ' ') continue;
-                            const auto *flags = top ? gps_->screentexpos_top_flag : gps_->screentexpos_flag;
-                            half = half && flags && (flags[at] & (upper | lower)) ==
-                                (row_y == y ? upper : lower);
-                            ink = true;
-                        }
-                        if (!intact || !ink || (row_y != y && !half)) break;
-                        // Both physical halves retain one complete native
-                        // source. The compositor suppresses the duplicate;
-                        // the neighboring title/status never joins this row.
-                        row.complete_source = draw.complete_source.empty() ? draw.source : draw.complete_source;
-                        card.rows.push_back(std::move(row));
-                        if (row_y == y) split = half;
-                    }
-                    if (card.rows.empty()) continue;
-                    card.interior.h = static_cast<int>(card.rows.size());
-                    WorkshopTaskCard choice(std::move(card));
+                    if (draw.y != y || !task_choice_draw(draw) || draw.x < search.x) continue;
+                    auto card = capture_choice_draw(draw, right - 1, bottom);
+                    if (!card) continue;
+                    WorkshopTaskCard choice(std::move(*card));
                     choice.condition_choice = native_workshop_choice_field(draw.native_caller) !=
                         NativeWorkshopChoiceField::Title;
                     choice.native_choice_title = !choice.condition_choice;
