@@ -780,8 +780,8 @@ memory-sentence	I was near to {s}.	靠近过{s1}。	$creature	ELF 53.16 0x101b7f
 memory-sentence	I was pestered by {s}.	被{s1}缠上了。	$creature	ELF 53.16 0x101b7f0..0x1020794 event-memory constructor
 memory-sentence	I was accosted by {s}.	{s1}来找我麻烦了。	memory-person	ELF 53.16 0x101b7f0..0x1020794 event-memory constructor
 memory-sentence	I am now part of {s}.	我现在也是{s1}的一员了。	$name	ELF 53.16 0x101b7f0..0x1020794 event-memory constructor
-memory-sentence	I can now reside in {s}.	现在能住在{s1}了。	$name	ELF 53.16 0x101b7f0..0x1020794 event-memory constructor
-memory-sentence	I was denied residency in {s}.	没获准住在{s1}。	$name	ELF 53.16 0x101b7f0..0x1020794 event-memory constructor
+memory-sentence	I can now reside in {s}.	现在能住在{s1}了。	$travel-site	0x1406716f6 -> 0x14067170e -> 0x140b93930; residence site EnglishName
+memory-sentence	I was denied residency in {s}.	没获准住在{s1}。	$travel-site	0x140671748 -> 0x14067170e -> 0x140b93930; residence site EnglishName
 memory-sentence	There was a performance in {s}.	{s1}办了场表演。	$name	ELF 53.16 0x101b7f0..0x1020794 event-memory constructor
 memory-sentence	There was a scholarly lecture in {s}.	{s1}办了场学术讲座。	$name	ELF 53.16 0x101b7f0..0x1020794 event-memory constructor
 memory-sentence	I must pray to {s}.	得向{s1}祈祷了。	speech-person	ELF 53.16 0x101b7f0..0x1020794 event-memory constructor

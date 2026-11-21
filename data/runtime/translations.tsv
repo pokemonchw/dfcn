@@ -15685,6 +15685,7 @@ Announcement combat memory-performance [memory-performance-core,$name]: {s} at {
 Announcement combat memory-performance-core [memory-sermon-topic]: preached on {s}	未具名者讲了关于{s1}的道理	l
 Announcement combat memory-possession-core [agreement-item]: would not give {s} to	未具名者不肯把{s1}交给未具名者	l
 Announcement combat memory-sentence [$name]: There was a scholarly lecture in {s}.	{s1}办了场学术讲座。	l
+Announcement combat memory-sentence [$travel-site]: I was denied residency in {s}.	没获准住在{s1}。	l
 Announcement combat memory-sentence [memory-person,memory-person]: {s} killed {s}.	{s1}杀死了{s2}。	l
 Announcement combat memory-sentence [memory-person]: demanded submission from {s}.	未具名者要{s1}服从。	l
 Announcement combat memory-sentence [memory-relation]: I am reunited with my {s} .	跟我的{s1}未具名者重逢了。	l
@@ -18122,6 +18123,7 @@ Announcement combat justice-interrogation-response []: was overcome by greed	被
 Announcement combat justice-intrigue-response []: valued the law and refused	重视法律，因而拒绝了	l
 Announcement combat memorial-death []: Died after colliding with an obstacle	撞上障碍物而死	l
 Announcement combat memory-sentence [$name]: There was a performance in {s}.	{s1}办了场表演。	l
+Announcement combat memory-sentence [$travel-site]: I can now reside in {s}.	现在能住在{s1}了。	l
 Announcement combat memory-sentence [memory-entity]: self-identified to {s}.	未具名者向{s1}报上了自己的名字。	l
 Announcement combat memory-sentence [memory-furniture]: I was near to a {s}.	靠近过一个{s1}。	l
 Announcement combat memory-sentence [memory-knowledge]: I learned about {s}.	学到了关于{s1}的知识。	l
@@ -18547,7 +18549,6 @@ Announcement combat memorial-clause [$digits]: Went missing in the year {s}	于{
 Announcement combat memorial-inscription [memorial-name]: In memory of {s}.	谨以此纪念{s1}。	l
 Announcement combat memory-performance-core [memory-poem]: I saw recite {s}	我听未具名者朗诵了{s1}	l
 Announcement combat memory-sentence [$creature]: I was near to a caged {s}.	靠近过关在笼子里的{s1}。	l
-Announcement combat memory-sentence [$name]: I was denied residency in {s}.	没获准住在{s1}。	l
 Announcement combat memory-sentence [$name]: Our time in {s} is so brief...	我们在{s1}的一生太短暂了……	l
 Announcement combat memory-sentence []: The body of decayed without burial.	未具名者的尸体没人埋，都烂了。	l
 Announcement combat memory-sentence [agreement-item]: I saw {s} on display.	看到了展出的{s1}。	l
@@ -21467,7 +21468,6 @@ Announcement combat memorial-killer-death [memorial-killer-verb]: {s}	被{s1}	l
 Announcement combat memorial-weapon-death [memorial-weapon-verb]: {s}	被{s1}	l
 Announcement combat memory-location []: an unknown underground region	一个不知名的地下区域	l
 Announcement combat memory-performance [memory-performance-core]: {s}	{s1}	l
-Announcement combat memory-sentence [$name]: I can now reside in {s}.	现在能住在{s1}了。	l
 Announcement combat memory-sentence [$name]: {s} has been recognized.	{s1}得到了认可。	l
 Announcement combat memory-sentence []: I got into an argument with .	跟未具名者吵了一架。	l
 Announcement combat memory-sentence []: I put on a well-crafted item.	穿上了一件做得不错的衣物。	l
