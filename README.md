@@ -42,6 +42,10 @@ Windows 同时安装 **DFHack 53.16-r2 / r3、53.17-r1** 时，可按 **Shift+F1
 
 已支持汉化搜索的界面可使用中文、英文、拼音全拼与首字母，并提供输入容错和物品类别匹配。需要近义匹配时，可订阅[独立离线语义搜索模型](https://steamcommunity.com/sharedfiles/filedetails/?id=3823451988)。核心在启动时自动识别模型，无需联网或在世界模组列表中启用；未安装模型时，普通文字、拼音与容错搜索仍可使用。
 
+## 统计植物信息
+
+订阅并下载扩展后，在要塞中打开 **Shift+F1 → 统计植物信息**。游戏的 **日志 → 环境** 会列出地图上每种植物的总数、地表数量、六项用途，以及能否在地表农田种植。树木和作物按株计，草按覆盖格数计。扩展适用于 Windows x64，需要 DFCN 工坊版 53.17-20261121.3 或更新版本。[订阅统计植物信息](https://steamcommunity.com/sharedfiles/filedetails/?id=3843377047)
+
 ## 骑兵模组
 
 [骑兵 / Fortress Cavalry](https://steamcommunity.com/sharedfiles/filedetails/?id=3828843073) 是独立的创意工坊模组，适用于 Windows x64 Steam 版 Dwarf Fortress 53.16，需要 DFCN v53.16-20261028.2 或更新版本。支持坐骑分配、日常与军务骑乘、坐骑跟随、骑术成长、共同负重及飞行坐骑寻路。
@@ -96,8 +100,7 @@ Linux 宿主打包已有的 Windows 交叉编译产物时，使用固定 Python 
 Windows 工坊包和六个公开扩展 ZIP，不编译或生成数据。
 工坊发布工具 `tools/publish-workshop.py` 支持 Linux 已安装的 Steamworks 库及现有登录会话。
 
-当前 Windows 发布版本为 **v53.17-20261121.2**，变化见
-[更新日志](docs/releases/v53.17-20261121.2.md)。
+当前 Windows 创意工坊版本为 **v53.17-20261121.3**。[更新日志](docs/releases/v53.17-20261121.3.md)
 
 ## Linux 交叉编译 Windows x64
 

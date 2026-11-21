@@ -1,0 +1,12 @@
+{
+  "appid": 975370,
+  "title": "DFCN · 统计植物信息 / Plant Survey",
+  "description_file": "workshop/plant-survey/description.bbcode.txt",
+  "content_folder": "workshop/plant-survey/content",
+  "preview_file": "workshop/preview.png",
+  "tags": ["mod", "UI"],
+  "visibility": 0,
+  "required_items": [3811193379],
+  "release_tag": "1.0",
+  "changelog": "首次发布植物统计扩展。"
+}

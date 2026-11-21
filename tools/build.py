@@ -47,6 +47,11 @@ def edition_destinations():
     return tuple(dict.fromkeys(directory for directory in destinations if directory != ROOT))
 
 
+def local_survey_directories():
+    return tuple(game / "dfcn-local-mods" / "dfcn-plant-survey" / "dfcn"
+                 for game in native_game_directories())
+
+
 def translation_extension_sources():
     """Keep independently published data mods outside the core runtime."""
     packages = []
@@ -118,19 +123,19 @@ def package_translation_extensions() -> None:
         print(f"Independent translation data mod packaged: {archive}", flush=True)
 
 
-def package_map_preview(module: Path) -> None:
+def package_native_mod(module: Path, name: str) -> None:
     """Prepare the independent Workshop mod without installing it in a game."""
-    package = ROOT / "workshop/map-preview"
+    package = ROOT / "workshop" / name
     content = package / "content"
-    manifest = content / "dfcn-map-preview.toml"
+    identity = f"dfcn-{name}"
+    manifest = content / f"{identity}.toml"
     metadata = tomllib.loads(manifest.read_text(encoding="utf-8-sig"))
-    if (metadata.get("schema") != 1 or metadata.get("id") != "dfcn-map-preview"
-            or metadata.get("module") != "dfcn/dfcn_map_preview.dll"):
-        raise RuntimeError(f"Unsupported map preview mod manifest: {manifest}")
-    identity = metadata["id"]
+    if (metadata.get("schema") != 1 or metadata.get("id") != identity
+            or metadata.get("module") != f"dfcn/{module.name}"):
+        raise RuntimeError(f"Unsupported native mod manifest: {manifest}")
     info = (content / "info.txt").read_text(encoding="utf-8-sig")
     if re.findall(r"(?m)^\s*\[ID:([A-Za-z0-9_-]+)\]\s*$", info) != [identity]:
-        raise RuntimeError(f"Map preview mod identity does not match: {content / 'info.txt'}")
+        raise RuntimeError(f"Native mod identity does not match: {content / 'info.txt'}")
     destination = content / metadata["module"]
     license_destination = content / "LICENSE"
     archive = package / f"{identity}.zip"
@@ -140,7 +145,7 @@ def package_map_preview(module: Path) -> None:
     for path in (package.parent, package, content, destination.parent,
                  destination, candidate, license_destination, license_candidate, archive, staged_archive):
         if path.is_symlink() or path.resolve() != path.absolute():
-            raise RuntimeError(f"Refusing map preview packaging through a symlink: {path}")
+            raise RuntimeError(f"Refusing native mod packaging through a symlink: {path}")
     destination.parent.mkdir(parents=True, exist_ok=True)
     try:
         shutil.copyfile(module, candidate)
@@ -150,7 +155,7 @@ def package_map_preview(module: Path) -> None:
         with zipfile.ZipFile(staged_archive, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
             for source in sorted(content.rglob("*")):
                 if source.is_symlink():
-                    raise RuntimeError(f"Refusing map preview packaging through a symlink: {source}")
+                    raise RuntimeError(f"Refusing native mod packaging through a symlink: {source}")
                 if source.is_file():
                     bundle.write(source, Path(identity) / source.relative_to(content))
         os.replace(staged_archive, archive)
@@ -158,8 +163,8 @@ def package_map_preview(module: Path) -> None:
         candidate.unlink(missing_ok=True)
         license_candidate.unlink(missing_ok=True)
         staged_archive.unlink(missing_ok=True)
-    print(f"Independent map preview mod prepared: {content}\n"
-          f"Independent map preview mod packaged: {archive}", flush=True)
+    print(f"Independent {name} mod prepared: {content}\n"
+          f"Independent {name} mod packaged: {archive}", flush=True)
 
 
 def add_missing_language_settings(content: bytes) -> bytes:
@@ -305,6 +310,7 @@ NATIVE_ABIS = {
         "dfhack_switch": "dfcn_dfhack_switch.dll",
         "mouse_coordinates": "dfcn_mouse_coordinates.dll",
         "map_preview": "dfcn_map_preview.dll",
+        "plant_survey": "dfcn_plant_survey.dll",
         "riding": "dfcn_riding.dll",
         "compiler": "g++.exe",
         "compiler_hint": TEMP / "codex-world-compute-w64devkit/extracted/w64devkit/bin",
@@ -539,7 +545,10 @@ def module_inputs(source: str) -> list[Path]:
 
 def checked_path(path: Path) -> Path:
     absolute = path.absolute()
-    if absolute.parent not in (ROOT, GAME, *native_game_directories(), *edition_destinations()) or absolute.is_symlink():
+    allowed = absolute.parent in (ROOT, GAME, *native_game_directories(), *edition_destinations())
+    if not allowed and absolute.parent in local_survey_directories():
+        allowed = absolute.parent.resolve() == absolute.parent
+    if not allowed or absolute.is_symlink():
         raise RuntimeError(f"Refusing file operation outside build destinations: {absolute}")
     if absolute.exists() and not stat.S_ISREG(absolute.lstat().st_mode):
         raise RuntimeError(f"Expected a regular build file: {absolute}")
@@ -861,6 +870,7 @@ def build_windows_cross(args: argparse.Namespace) -> int:
             switch_candidate = staging / abi["dfhack_switch"]
             mouse_candidate = staging / abi["mouse_coordinates"]
             preview_candidate = staging / abi["map_preview"]
+            survey_candidate = staging / abi["plant_survey"]
             riding_candidate = staging / abi["riding"]
             build_hour = datetime.now().strftime("%Y.%m.%d.%H")
             print("Cross-compiling the Windows core...", flush=True)
@@ -882,12 +892,15 @@ def build_windows_cross(args: argparse.Namespace) -> int:
             print("Cross-compiling the independent map preview mod...", flush=True)
             run([*compiler, *compile_flags, "-o", str(preview_candidate),
                  "src/mods/map_preview.cpp", *link_flags], env, cwd=snapshot)
+            print("Cross-compiling the independent plant survey mod...", flush=True)
+            run([*compiler, *compile_flags, "-o", str(survey_candidate),
+                 "src/mods/plant_survey.cpp", *link_flags], env, cwd=snapshot)
             print("Cross-compiling the independent fortress riding mod...", flush=True)
             run([*compiler, *compile_flags, "-o", str(riding_candidate),
                  "src/mods/riding.cpp", *link_flags], env, cwd=snapshot)
             # Leave the previous outputs untouched if any compiler fails.
             for candidate in (core_candidate, loader_candidate, switch_candidate,
-                              mouse_candidate, preview_candidate, riding_candidate):
+                              mouse_candidate, preview_candidate, survey_candidate, riding_candidate):
                 os.replace(candidate, output / candidate.name)
         if args.deploy_project:
             # Native publish() only accepts inputs in native destination
@@ -903,7 +916,8 @@ def build_windows_cross(args: argparse.Namespace) -> int:
                     atomic_replace(staged, destination)
                 finally:
                     remove_file(staged)
-        package_map_preview(output / abi["map_preview"])
+        package_native_mod(output / abi["map_preview"], "map-preview")
+        package_native_mod(output / abi["plant_survey"], "plant-survey")
     print(f"Windows cross-build completed:\n{output / abi['core']}\n{output / abi['loader']}\n"
           f"{output / abi['dfhack_switch']}\n"
           f"{output / abi['mouse_coordinates']}\n{output / abi['map_preview']}\n{output / abi['riding']}",
@@ -950,6 +964,8 @@ def main() -> int:
     mouse_candidate = mouse_mod.with_name(mouse_mod.stem + ".candidate" + mouse_mod.suffix) if mouse_mod else None
     preview_mod = ROOT / abi["map_preview"] if "map_preview" in abi else None
     preview_candidate = preview_mod.with_name(preview_mod.stem + ".candidate" + preview_mod.suffix) if preview_mod else None
+    survey_mod = ROOT / abi["plant_survey"] if "plant_survey" in abi else None
+    survey_candidate = survey_mod.with_suffix(".candidate.dll") if survey_mod else None
     riding_mod = ROOT / abi["riding"] if "riding" in abi else None
     riding_candidate = riding_mod.with_name(riding_mod.stem + ".candidate" + riding_mod.suffix) if riding_mod else None
     staging = [core_candidate, loader_candidate,
@@ -960,6 +976,8 @@ def main() -> int:
         staging.append(mouse_candidate)
     if preview_candidate:
         staging.extend([preview_candidate, preview_mod.with_name(preview_mod.name + ".publish")])
+    if survey_candidate:
+        staging.extend([survey_candidate, survey_mod.with_name(survey_mod.name + ".publish")])
     if riding_candidate:
         staging.extend([riding_candidate, riding_mod.with_name(riding_mod.name + ".publish")])
     bootstrap_candidate = ROOT / "dfhooks.candidate.dll"
@@ -1124,11 +1142,13 @@ def main() -> int:
             [SCRIPT, ROOT / "src/mods/mouse_coordinates.cpp", ROOT / "src/mouse_coordinates_api.h"]))
         rebuild_preview = preview_mod and (configured_build or needs_update([preview_mod],
             [SCRIPT, ROOT / "src/mods/map_preview.cpp", ROOT / "src/map_preview_api.h"]))
+        rebuild_survey = survey_mod and (configured_build or needs_update([survey_mod],
+            [SCRIPT, ROOT / "src/mods/plant_survey.cpp", ROOT / "src/journal_action_api.h"]))
         rebuild_riding = riding_mod and (configured_build or needs_update([riding_mod],
             [SCRIPT, ROOT / "src/mods/riding.cpp", ROOT / "src/mods/riding_render.inc",
              ROOT / "src/mods/riding_mechanics.inc", ROOT / "src/mods/riding_flight.inc",
              ROOT / "src/riding_api.h"]))
-        if rebuild_core or rebuild_loader or rebuild_switch or rebuild_mouse or rebuild_preview or rebuild_riding:
+        if rebuild_core or rebuild_loader or rebuild_switch or rebuild_mouse or rebuild_preview or rebuild_riding or rebuild_survey:
             # Both core translation units and the loader must see the same
             # shared headers even when this checkout is edited during a long
             # compile. Copy once; relative includes and the Linux export map
@@ -1166,6 +1186,10 @@ def main() -> int:
                     print("Building the independent map preview mod...", flush=True)
                     run([*compiler, *compile_flags, "-o", str(preview_candidate),
                          "src/mods/map_preview.cpp", *link_flags], env, cwd=snapshot)
+                if rebuild_survey:
+                    print("Building the independent plant survey mod...", flush=True)
+                    run([*compiler, *compile_flags, "-o", str(survey_candidate),
+                         "src/mods/plant_survey.cpp", *link_flags], env, cwd=snapshot)
                 if rebuild_riding:
                     print("Building the independent fortress riding mod...", flush=True)
                     run([*compiler, *compile_flags, "-o", str(riding_candidate),
@@ -1204,7 +1228,19 @@ def main() -> int:
             # install this optional mod or expose its menu switch by itself.
             if rebuild_preview:
                 publish_ready(preview_candidate, preview_mod)
-            package_map_preview(preview_mod)
+            package_native_mod(preview_mod, "map-preview")
+        if survey_mod:
+            if rebuild_survey:
+                publish_ready(survey_candidate, survey_mod)
+            package_native_mod(survey_mod, "plant-survey")
+            # Update existing standalone local installations through the same
+            # atomic DLL publisher. Building DFCN does not opt new games in.
+            for directory in local_survey_directories():
+                destination = directory / survey_mod.name
+                manifest = directory.parent / "dfcn-plant-survey.toml"
+                if destination.is_file() and manifest.is_file() and destination.read_bytes() != survey_mod.read_bytes():
+                    staging.append(destination.with_name(destination.name + ".publish"))
+                    publish_ready(survey_mod, destination, keep_candidate=True)
         if rebuild_core:
             for directory in edition_destinations():
                 directory.mkdir(parents=True, exist_ok=True)

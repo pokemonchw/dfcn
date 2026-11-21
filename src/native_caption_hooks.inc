@@ -1304,6 +1304,13 @@ struct NativeMultilineCapture {
 // NativeImportHook/NativeInputCallbackScope protect the callback lifetime.
 static thread_local NativeMultilineCapture *g_native_multiline_capture = nullptr;
 
+static uintptr_t native_multiline_row_owner(uintptr_t caller, uintptr_t address) {
+    const auto *capture = g_native_multiline_capture;
+    if (!capture || capture->invalid || caller != g_native_multiline_widget_binding.row_return_address ||
+            capture->addresses.empty() || capture->addresses.back() != address) return 0;
+    return reinterpret_cast<uintptr_t>(capture->widget);
+}
+
 static void wrap_native_multiline_announcement(const NativeString *source, void *unused, int width) {
     NativeInputCallbackScope callback;
     if (!g_native_multiline_wrap) return;

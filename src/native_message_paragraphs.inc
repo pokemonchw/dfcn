@@ -389,22 +389,23 @@ void Overlay::append_native_message_paragraphs(std::vector<std::string> &screen_
         int x, y;
         std::string source;
         uintptr_t address;
+        uintptr_t multiline_owner;
     };
     std::vector<MessageDraw> native_draws;
     std::vector<MessageDraw> date_occluded_draws;
     {
         std::lock_guard<std::mutex> lock(g_native_drawn_text_mutex);
         native_draws.reserve(g_native_drawn_text_rows.size());
-        // Paragraph identity uses these four fields only. Picture frame and
+        // Paragraph identity uses these fields only. Picture frame and
         // unit-caption metadata can contain large vectors unrelated to prose.
         for (const auto &draw : g_native_drawn_text_rows)
-            if (draw.address) native_draws.push_back({draw.x, draw.y, draw.source, draw.address});
+            if (draw.address) native_draws.push_back({draw.x, draw.y, draw.source, draw.address, draw.multiline_owner});
         // These are overwritten base-layer draws, not current screen rows.
         // Only the strict Date recovery below may use their old identity.
         if (announcements_only && (!screen_override || screen_override != gps_->screen_top)) {
             date_occluded_draws.reserve(g_native_date_occluded_text_rows[0].size());
             for (const auto &draw : g_native_date_occluded_text_rows[0])
-                date_occluded_draws.push_back({draw.x, draw.y, draw.source, draw.address});
+                date_occluded_draws.push_back({draw.x, draw.y, draw.source, draw.address, draw.multiline_owner});
         }
     }
     std::unordered_multimap<uintptr_t, const MessageDraw *> draws_by_address;
@@ -440,8 +441,10 @@ void Overlay::append_native_message_paragraphs(std::vector<std::string> &screen_
                 source.size() > static_cast<size_t>(right - row_x) ||
                 visible.compare(row_x, source.size(), source) != 0 ||
                 (x > 0 && ascii_word_byte(visible[x - 1]))) return std::nullopt;
+            const auto draw = draws_by_position.find({x, row_y});
+            if (draw != draws_by_position.end() && draw->second->multiline_owner &&
+                    draw->second->multiline_owner != capture.owner) return std::nullopt;
             if (addressed && !source.empty()) {
-                const auto draw = draws_by_position.find({x, row_y});
                 if (draw == draws_by_position.end() ||
                     draw->second->address != capture.row_addresses[line] ||
                     draw->second->source != native_source) return std::nullopt;
@@ -503,7 +506,8 @@ void Overlay::append_native_message_paragraphs(std::vector<std::string> &screen_
             if (date_end <= row_x || date_end >= source_end ||
                 visible.compare(row_x, source.size(), source) == 0) return std::nullopt;
             const auto same_draw = [&](const MessageDraw &draw) {
-                return draw.x == x && draw.y == row_y &&
+                return (!draw.multiline_owner || draw.multiline_owner == capture.owner) &&
+                    draw.x == x && draw.y == row_y &&
                     draw.address == capture.row_addresses[line] && draw.source == native_source;
             };
             const auto current_draw = draws_by_position.find({x, row_y});

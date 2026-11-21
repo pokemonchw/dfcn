@@ -275,6 +275,7 @@ class Steam:
     def owned_items(self):
         items = []
         page = 1
+        seen = 0
         while True:
             handle = self.dll.SteamAPI_ISteamUGC_CreateQueryUserUGCRequest(
                 self.ugc, self.steam_id & 0xFFFFFFFF, 0, -1, 0, 0, self.appid, page
@@ -293,14 +294,19 @@ class Steam:
                     ):
                         raise RuntimeError("Steam could not read a published-item query result")
                     result_ok(details.result, "Read published item")
-                    if details.owner != self.steam_id or details.consumer_appid != self.appid:
-                        raise RuntimeError("Steam returned an item outside the current owner/app query")
+                    if details.consumer_appid != self.appid:
+                        raise RuntimeError("Steam returned an item for a different app")
+                    # A user's published list can include another owner's item.
+                    # Only the current owner's entries can select an upload target.
+                    if details.owner != self.steam_id:
+                        continue
                     items.append({
                         "publishedfileid": str(details.item_id),
                         "title": bytes(details.title).decode("utf-8", errors="replace"),
                         "creator_appid": details.creator_appid,
                     })
-                if len(items) >= completed.total:
+                seen += completed.returned
+                if seen >= completed.total:
                     return items
                 if completed.returned == 0:
                     raise RuntimeError("Steam returned an incomplete published-items list")

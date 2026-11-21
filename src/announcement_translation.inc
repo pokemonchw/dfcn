@@ -225,6 +225,11 @@ std::optional<std::string> Overlay::translate_complete_announcement(
     const auto translate_block = [&](std::string_view block, const std::vector<int> &colors,
             std::vector<int> &translated_colors) -> std::optional<std::string> {
         translated_colors.clear();
+        if (auto target = native_journal_translation(block)) {
+            for (unsigned char ch : *target)
+                if ((ch & 0xc0) != 0x80) translated_colors.push_back(colors.front());
+            return target;
+        }
         // COMBAT_* is the native producer, not a hint for a prose fallback.
         // e56a0 (classic e5630) owns the attack verb, target, equipment and
         // every damage continuation. An unresolved field must stay in that

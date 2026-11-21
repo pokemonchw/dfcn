@@ -76,6 +76,7 @@
 #include "native_trade_item_caption.h"
 #include "core_api.h"
 #include "riding_api.h"
+#include "journal_action_api.h"
 #include "runtime_paths.h"
 #include "dfhack_switch_client.h"
 #include "search_semantic_model.h"
@@ -2521,6 +2522,8 @@ struct NativeDrawnTextRow {
     // The relation name writer owns a complete two-row record and reserves
     // the columns beyond this edge for its recenter/view controls.
     int character_relation_right = -1;
+    // A multiline widget reuses the game's shared row buffer on each draw.
+    uintptr_t multiline_owner = 0;
 };
 #ifdef _WIN32
 static void capture_recenter_draw(NativeDrawnTextRow &row);
@@ -2931,7 +2934,9 @@ struct NativeDateOccludedTextRow {
     int x, y;
     std::string source;
     uintptr_t address;
+    uintptr_t multiline_owner = 0;
 };
+static uintptr_t native_multiline_row_owner(uintptr_t caller, uintptr_t address);
 // A report's date can replace its final wrap draw at the same origin. Keep
 // only that overwritten identity for the strict date-overlap proof, never
 // in the ordinary current-draw registries.
@@ -3012,7 +3017,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
             }
             if (date_overlap && row.address && overwritten.size() < 4096) {
                 try {
-                    overwritten.push_back({row.x, row.y, row.source, row.address});
+                    overwritten.push_back({row.x, row.y, row.source, row.address, row.multiline_owner});
                 } catch (...) {
                     // Optional evidence must not interrupt the original
                     // replacement or leave its coordinate index out of sync.
@@ -3038,6 +3043,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         draws.size() < 4096) {
         NativeDrawnTextRow row{x, y, std::string(source), address,
             is_native_prose_source(source) || short_caption};
+        row.multiline_owner = native_multiline_row_owner(native_caller, address);
         row.work_order_shop_caption = std::move(work_order_shop_caption);
         row.work_order_condition_caption = std::move(work_order_condition_caption);
         row.fortress_zone_caption = std::move(fortress_zone_caption);
@@ -8382,6 +8388,11 @@ static bool native_map_preview_enabled();
 static void native_map_preview_toggle();
 static void native_map_preview_load();
 static void native_map_preview_refresh(bool force = false);
+static const DfcnJournalAction *native_journal_action();
+static void native_journal_refresh(bool force = false);
+static void native_journal_release();
+static bool native_journal_run(std::string &error);
+static std::optional<std::string> native_journal_translation(std::string_view source);
 static void native_map_preview_prepare();
 static void native_map_preview_reset();
 static void native_map_preview_release();
@@ -44998,6 +45009,7 @@ static void native_settings_menu_release();
 #include "native_hooks.inc"
 #include "native_blueprint_export.inc"
 #include "native_settings_menu.inc"
+#include "native_journal_action.inc"
 #include "native_mouse_coordinates.inc"
 #include "native_map_preview.inc"
 #include "native_riding.inc"
@@ -45047,6 +45059,7 @@ DFCN_EXPORT void dfhooks_init() {
     dfcn::start_native_identity_translation_jobs();
     dfcn::native_mouse_coordinates_load();
     dfcn::native_map_preview_load();
+    dfcn::native_journal_refresh(true);
     dfcn::native_riding_load();
     if (!dfcn::install_sdl_hooks()) {
         dfcn::stop_reloadable_core();

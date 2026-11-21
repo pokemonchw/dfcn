@@ -436,6 +436,7 @@ static bool stop_reloadable_core() {
     native_settings_menu_release();
     native_mouse_coordinates_release();
     native_map_preview_release();
+    native_journal_release();
     native_riding_release();
     if (g_plugin_active.load()) {
         g_native_squads_overlay.release_native_squads_resources();

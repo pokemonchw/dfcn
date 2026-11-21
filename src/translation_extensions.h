@@ -331,11 +331,10 @@ inline fs::path resource_path(const fs::path& root, std::string_view value) {
     return within(root, resolved) ? resolved : fs::path{};
 }
 
-inline std::vector<fs::path> subscribed_native_modules(const SteamSubscriptions& steam,
+inline std::vector<fs::path> native_module_candidates(const SteamSubscriptions& steam,
         std::string_view package_id, std::string_view library,
-        Snapshot* snapshot = nullptr) {
+        Snapshot* snapshot = nullptr, const fs::path& local_package = {}) {
     std::vector<fs::path> modules;
-    if (!steam.available || !steam.current) return modules;
     const auto watch = [&](const fs::path& path) {
         if (snapshot) snapshot->resources.push_back(stamp(path));
     };
@@ -345,22 +344,18 @@ inline std::vector<fs::path> subscribed_native_modules(const SteamSubscriptions&
     };
     std::vector<std::pair<int64_t, fs::path>> candidates;
     std::set<fs::path> visited;
-    // GetItemInstallInfo ties each actual installed directory to a subscribed
-    // item. A copied info.txt cannot substitute an unrelated subscribed ID,
-    // and neither game/mods nor an appworkshop cache grants this feature.
-    for (const auto& [item, directory] : steam.directories) {
-        if (!item || !steam.ids.contains(item)) continue;
+    const auto add_package = [&](const fs::path& directory, std::optional<uint64_t> item) {
         const auto root = canonical_path(directory);
-        if (root.empty() || !visited.insert(root).second) continue;
+        if (root.empty() || !visited.insert(root).second) return;
         const auto manifest = root / (std::string(package_id) + ".toml");
         watch(root);
         watch(manifest);
         std::error_code error;
         if (!within(root, manifest) || !fs::is_regular_file(manifest, error) || error)
-            continue;
+            return;
         const auto info_path = root / "info.txt";
         watch(info_path);
-        if (!within(root, info_path)) continue;
+        if (!within(root, info_path)) return;
         const auto info = text(info_path);
         const auto info_id = info ? info_value(*info, "ID") : std::nullopt;
         const auto declared_version = info ? info_value(*info, "NUMERIC_VERSION") : std::nullopt;
@@ -368,19 +363,19 @@ inline std::vector<fs::path> subscribed_native_modules(const SteamSubscriptions&
         const auto declared_item = info ? info_value(*info, "STEAM_FILE_ID") : std::nullopt;
         const auto linked_item = declared_item ? number<uint64_t>(*declared_item) : std::nullopt;
         if (!info_id || *info_id != package_id || !version || *version < 0 ||
-                (declared_item && (!linked_item || (*linked_item && *linked_item != item)))) {
+                (declared_item && (!linked_item || (*linked_item && item && *linked_item != *item)))) {
             diagnose(manifest, "invalid native mod identity, version or Workshop item");
-            continue;
+            return;
         }
         const auto data = text(manifest);
         if (!data) {
             diagnose(manifest, "cannot read native mod manifest");
-            continue;
+            return;
         }
         const auto parsed = toml::parse(*data, runtime::utf8(manifest));
         if (!parsed) {
             diagnose(manifest, parsed.error().description());
-            continue;
+            return;
         }
         const auto schema = parsed["schema"].value<int64_t>();
         const auto id = parsed["id"].value<std::string>();
@@ -388,21 +383,28 @@ inline std::vector<fs::path> subscribed_native_modules(const SteamSubscriptions&
         if (!schema || *schema != 1 || !id || *id != package_id ||
                 !module || *module != library) {
             diagnose(manifest, "invalid native mod manifest");
-            continue;
+            return;
         }
         const auto module_path = resource_path(root, *module);
         if (module_path.empty()) {
             diagnose(manifest, "native module path is outside its package");
-            continue;
+            return;
         }
         watch(module_path);
         error.clear();
         if (!fs::is_regular_file(module_path, error) || error) {
             diagnose(manifest, "missing native module");
-            continue;
+            return;
         }
         candidates.emplace_back(*version, module_path);
+    };
+    if (steam.available && steam.current) {
+        for (const auto& [item, directory] : steam.directories)
+            if (item && steam.ids.contains(item)) add_package(directory, item);
     }
+    // Local installation is explicit. Never infer it from Steam caches or
+    // the game's installed_mods copies, which can survive unsubscription.
+    if (candidates.empty() && !local_package.empty()) add_package(local_package, std::nullopt);
     std::sort(candidates.begin(), candidates.end(), [](const auto& left, const auto& right) {
         if (left.first != right.first) return left.first > right.first;
         return left.second < right.second;
@@ -413,17 +415,23 @@ inline std::vector<fs::path> subscribed_native_modules(const SteamSubscriptions&
 
 inline std::vector<fs::path> map_preview_modules(const SteamSubscriptions& steam,
                                                 Snapshot* snapshot = nullptr) {
-    return subscribed_native_modules(steam, "dfcn-map-preview",
+    return native_module_candidates(steam, "dfcn-map-preview",
         "dfcn/dfcn_map_preview.dll", snapshot);
 }
 
 inline std::vector<fs::path> riding_modules(const SteamSubscriptions& steam,
                                           Snapshot* snapshot = nullptr) {
-    return subscribed_native_modules(steam, "dfcn-riding",
+    return native_module_candidates(steam, "dfcn-riding",
         "dfcn/dfcn_riding.dll", snapshot);
 }
 
 } // namespace detail
+
+inline std::vector<fs::path> discover_plant_survey_modules() {
+    return detail::native_module_candidates(detail::subscriptions(), "dfcn-plant-survey",
+        "dfcn/dfcn_plant_survey.dll", nullptr,
+        runtime::game_directory() / "dfcn-local-mods" / "dfcn-plant-survey");
+}
 
 // This path only reads the small mod manifests; it does not fingerprint DLLs
 // or translation resources. The render producer can poll it for subscriptions

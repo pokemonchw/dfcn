@@ -115,9 +115,7 @@ public:
     }
 };
 
-static constexpr size_t kNativeSettingsMenuOptionCount = 9;
-static constexpr int kNativeSettingsMenuHeight =
-    4 + 3 * static_cast<int>(kNativeSettingsMenuOptionCount);
+static constexpr size_t kNativeSettingsMenuOptionCount = 10;
 
 struct NativeSettingsMenuCaption {
     SDL_Rect box{};
@@ -128,6 +126,7 @@ struct NativeSettingsMenuState {
     bool open = false, f1_consumed = false, hits_ready = false;
     bool riding = false;
     bool export_pending = false, export_result = false, export_success = false;
+    bool journal_pending = false, journal_error = false;
     std::string export_message, export_filename;
     std::vector<NativeSettingsMenuCaption> captions;
     uint32_t consumed_buttons = 0;
@@ -139,16 +138,18 @@ struct NativeSettingsMenuState {
     double input_offset_x = 0, input_offset_y = 0;
     size_t row_count() const {
         if (riding) return std::min<size_t>(native_riding_menu_snapshot().count,kNativeSettingsMenuOptionCount);
-        return export_result ? 1 : 6 + (native_mouse_coordinates_available() ? 1 : 0) +
-            (native_map_preview_available() ? 1 : 0) + (native_riding_available() ? 1 : 0);
+        return (export_result || journal_error) ? 1 : 6 + (native_mouse_coordinates_available() ? 1 : 0) +
+            (native_map_preview_available() ? 1 : 0) + (native_riding_available() ? 1 : 0) +
+            (native_journal_action() ? 1 : 0);
     }
     int row_action(size_t row) const {
-        if (export_result || row >= row_count()) return -1;
+        if (export_result || journal_error || row >= row_count()) return -1;
         if (row < 6) return static_cast<int>(row);
         size_t next = 6;
         if (native_mouse_coordinates_available() && row == next++) return 6;
         if (native_map_preview_available() && row == next++) return 7;
-        return 8;
+        if (native_riding_available() && row == next++) return 8;
+        return 9;
     }
 };
 static NativeSettingsMenuState g_native_settings_menu;
@@ -171,6 +172,7 @@ static void native_settings_menu_close() {
     menu.hits_ready = false;
     menu.export_pending = false;
     menu.export_result = false;
+    menu.journal_pending = menu.journal_error = false;
     g_native_settings_menu_layer.ready = false;
 }
 
@@ -187,6 +189,17 @@ static void native_settings_menu_prepare() try {
     TranslationStateScope translation;
     auto &menu = g_native_settings_menu;
     if (!menu.open) return;
+    native_journal_refresh(menu.journal_pending || !menu.hits_ready);
+    if (menu.journal_pending) {
+        menu.journal_pending = false;
+        if (native_journal_run(menu.export_message)) {
+            native_settings_menu_close();
+            return;
+        }
+        menu.journal_error = true;
+        menu.hovered = -1;
+        menu.hits_ready = false;
+    }
     // The SDL input callback only queues this action. The native producer
     // owns the world here, before UI detachment.
     if (menu.export_pending) {
@@ -205,8 +218,9 @@ static void native_settings_menu_prepare() try {
     const auto &bindings = native_settings_menu_bindings();
     const auto ui = native_ui_settings();
     // Share adjacent button borders on short grids as optional mods add rows.
-    const int row_stride = owner && owner->dimy < kNativeSettingsMenuHeight ? 2 : 3;
-    const int height = menu.export_result ? 13
+    const int row_stride = owner && owner->dimy < 4 + 3 * static_cast<int>(menu.row_count()) ? 2 : 3;
+    const bool result_page = menu.export_result || menu.journal_error;
+    const int height = result_page ? 13
         : 7 + row_stride * (static_cast<int>(menu.row_count()) - 1);
     if (!owner || !owner->screen || !owner->screen_top ||
             owner->dimx < 36 || owner->dimx > 1000 ||
@@ -228,7 +242,7 @@ static void native_settings_menu_prepare() try {
     menu.panel = {(owner->dimx - width) / 2, (owner->dimy - height) / 2, width, height};
     for (size_t i = 0; i < menu.row_count(); ++i)
         menu.rows[i] = {menu.panel.x + 2,
-            menu.panel.y + (menu.export_result ? 9 : 3 + static_cast<int>(i) * row_stride),
+            menu.panel.y + (result_page ? 9 : 3 + static_cast<int>(i) * row_stride),
             menu.panel.w - 4, 3};
     layer.frames = {menu.panel};
     layer.native_renderer = g_native_help_layer.native_renderer;
@@ -261,9 +275,13 @@ static void native_settings_menu_prepare() try {
     };
     caption({menu.panel.x + 1, menu.panel.y + 1, menu.panel.w - 2, 1},
         menu.riding ? native_riding_menu_snapshot().english :
-            menu.export_result ? "Terrain blueprint export" : kNativeSettingsMenuSources[0],
+            menu.journal_error ? "Journal" : menu.export_result ? "Terrain blueprint export" : kNativeSettingsMenuSources[0],
         menu.riding ? native_riding_menu_snapshot().chinese :
-            menu.export_result ? "地形蓝图导出" : kNativeSettingsMenuLabels[0]);
+            menu.journal_error ? "游戏日志" : menu.export_result ? "地形蓝图导出" : kNativeSettingsMenuLabels[0]);
+    if (menu.journal_error) {
+        caption({menu.panel.x + 2, menu.panel.y + 5, menu.panel.w - 4, 1},
+            "Journal entry unavailable", menu.export_message);
+    }
     if (menu.export_result) {
         caption({menu.panel.x + 2, menu.panel.y + 3, menu.panel.w - 4, 1},
             menu.export_success ? "Blueprint exported" : "Blueprint export failed", menu.export_message);
@@ -288,6 +306,11 @@ static void native_settings_menu_prepare() try {
             continue;
         }
         const int action = menu.row_action(i);
+        if (action == 9) {
+            const auto *extension = native_journal_action();
+            caption({row.x + 1,row.y + 1,row.w - 2,1},extension->english,extension->chinese);
+            continue;
+        }
         const bool coordinates = action == 6;
         const bool preview = action == 7;
         caption({row.x + 1, row.y + 1, row.w - 2, 1},
@@ -295,12 +318,12 @@ static void native_settings_menu_prepare() try {
                 ? "Mouse coordinates: ON" : "Mouse coordinates: OFF") :
             preview ? (native_map_preview_enabled()
                 ? "Map preview: ON" : "Map preview: OFF") :
-            menu.export_result ? "Close" : kNativeSettingsMenuSources[action + 1],
+            result_page ? "Close" : kNativeSettingsMenuSources[action + 1],
             coordinates ? (native_mouse_coordinates_enabled()
                 ? "鼠标坐标显示：开" : "鼠标坐标显示：关") :
             preview ? (native_map_preview_enabled()
                 ? "地图预览：开" : "地图预览：关") :
-            menu.export_result ? "关闭" : kNativeSettingsMenuLabels[action + 1]);
+            result_page ? "关闭" : kNativeSettingsMenuLabels[action + 1]);
     }
     grid->top_in_use = owner->top_in_use;
     layer.ready = true;
@@ -381,6 +404,11 @@ bool Overlay::settings_menu_event(const SDL_Event &event) {
                 return true;
             }
             const int action = row >= 0 ? menu.row_action(static_cast<size_t>(row)) : -1;
+            if (action == 9) {
+                menu.journal_pending = true;
+                menu.hits_ready = false;
+                return true;
+            }
             if (!menu.export_result && action == 5) {
                 menu.export_pending = true;
                 menu.hits_ready = false;
