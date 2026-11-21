@@ -71,6 +71,8 @@ std::optional<std::string> Overlay::translate_legends_artifact_identity(
         return translate_legends_term("an unknown artifact");
     if (folded == "untitled") return translate_legends_term("Untitled");
     const auto repeated = split_repeated_title_identity(source);
+    if (!repeated)
+        if (auto artifact = translate_world_artifact_name(source)) return artifact;
     const auto title = repeated.value_or(source);
     // Native single-name figures also repeat their names. Only an actual
     // BOOK_ART/BOOK_INSTRUCTION production selects semantic book parsing for
@@ -289,8 +291,11 @@ bool Overlay::append_legends_typed_list_matches(std::vector<std::string> &rows,
             // opened chronicle. Never reinterpret Age as a person's age.
             if (ages) return translate_legends_event(source);
             if (structures) return translate_procedural_fragment(source);
-            return split_generated_name_identity(source) || split_repeated_title_identity(source)
-                ? translate_legends_artifact_identity(source) : translate_legends_book(source);
+            if (split_generated_name_identity(source) || split_repeated_title_identity(source))
+                return translate_legends_artifact_identity(source);
+            if (artifacts)
+                if (auto artifact = translate_world_artifact_name(source)) return artifact;
+            return translate_legends_book(source);
         };
         auto type_translation = [&](const std::string &source) -> std::optional<std::string> {
             if (ages) {

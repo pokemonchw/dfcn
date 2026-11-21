@@ -10,13 +10,13 @@ static void native_announcement_log_record_reference_request(
             })) requests->push_back(std::move(request));
     }
 }
-static std::optional<std::string> native_announcement_log_worker_entity_target(
+static std::optional<std::string> native_announcement_log_worker_name_target(
         const NativeAnnouncementLogReferenceRequest &request) {
     const auto *inputs = g_native_announcement_log_worker_inputs;
     if (inputs && inputs->unit_targets_resources == RULESETS.resource_revision() &&
             inputs->unit_targets_catalog == g_overlay.native_identity_translation_catalog_generation()) {
-        if (const auto found = inputs->entity_targets.find(request.key());
-                found != inputs->entity_targets.end()) return found->second;
+        if (const auto found = inputs->name_targets.find(request.key());
+                found != inputs->name_targets.end()) return found->second;
     }
     native_announcement_log_record_reference_request(request);
     throw NativeAnnouncementLogNeedsDependency{};
@@ -115,7 +115,7 @@ static void native_announcement_log_collect_owned_unit_dependencies(
         request.kind = NativeAnnouncementLogReferenceRequest::Kind::EntityId;
         request.entity_id = name.entity_id;
         auto key = request.key();
-        if ((current_targets && inputs->entity_targets.contains(key)) || !missing.insert(key).second)
+        if ((current_targets && inputs->name_targets.contains(key)) || !missing.insert(key).second)
             return;
         requests.push_back(std::move(request));
     };
@@ -233,8 +233,8 @@ static void native_announcement_log_finish_worker_inputs(NativeAnnouncementLogWo
         text(identity); value(target.has_value());
         if (target) text(*target);
     }
-    value(inputs.entity_targets.size());
-    for (const auto &[request, target] : inputs.entity_targets) {
+    value(inputs.name_targets.size());
+    for (const auto &[request, target] : inputs.name_targets) {
         text(request); value(target.has_value());
         if (target) text(*target);
     }
@@ -406,7 +406,7 @@ native_announcement_log_freeze_worker_inputs(const NativeAnnouncementLogDocument
     if (document.worker_inputs &&
             document.worker_inputs->unit_targets_resources == inputs->unit_targets_resources &&
             document.worker_inputs->unit_targets_catalog == inputs->unit_targets_catalog) {
-        inputs->entity_targets = document.worker_inputs->entity_targets;
+        inputs->name_targets = document.worker_inputs->name_targets;
         inputs->site_identities = document.worker_inputs->site_identities;
         // Actual worker requests can select additional exact formatter modes
         // beyond the eager speech/fragment enumeration. They remain owned by
@@ -1027,12 +1027,13 @@ static void native_announcement_log_preheat_dependencies(uintptr_t world,
             for (const auto &request : dependency.references) {
                 if (resolved && std::chrono::steady_clock::now() >= deadline) break;
                 const auto key = request.key();
-                if (request.kind == NativeAnnouncementLogReferenceRequest::Kind::Entity ||
+                if (request.kind == NativeAnnouncementLogReferenceRequest::Kind::Artifact ||
+                        request.kind == NativeAnnouncementLogReferenceRequest::Kind::Entity ||
                         request.kind == NativeAnnouncementLogReferenceRequest::Kind::EntityId) {
-                    if (inputs->entity_targets.contains(key)) continue;
-                    auto target = g_overlay.native_announcement_log_capture_entity_reference(request);
+                    if (inputs->name_targets.contains(key)) continue;
+                    auto target = g_overlay.native_announcement_log_capture_name_reference(request);
                     dfcn::translation_work_step(0);
-                    inputs->entity_targets.emplace(key, std::move(target));
+                    inputs->name_targets.emplace(key, std::move(target));
                 } else if (request.kind == NativeAnnouncementLogReferenceRequest::Kind::Site) {
                     if (inputs->site_identities.contains(key)) continue;
                     auto identity = g_overlay.native_announcement_log_capture_site_reference(

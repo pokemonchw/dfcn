@@ -15,9 +15,8 @@ static uintptr_t native_name_search_field(uintptr_t creator, size_t coordinate,
     return native_history_object_field(creator, "name_creator_interfacest", coordinate, width);
 }
 
-static std::optional<NativeHistoryName> capture_native_place_editor_name(
+static std::optional<NativeHistoryName> capture_native_editor_name(
         int32_t expected_context) {
-    if (expected_context != 0 && expected_context != 1) return std::nullopt;
     const uintptr_t base = native_history_profile_base();
     // name_creator_interfacest::render receives game.main_interface.name_creator
     // at reference RVA 0x18a2cf8 (render caller 0x627fb3). Edition bindings

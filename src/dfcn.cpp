@@ -111,7 +111,7 @@ static std::vector<NativeHistoryUnboundDraw> captured_native_history_unbound_dra
 static std::optional<NativeActivityDetailDocument> native_activity_detail_document(
     const std::unordered_set<uintptr_t> &visible_words);
 static uintptr_t native_history_profile_base();
-static std::optional<NativeHistoryName> capture_native_place_editor_name(int32_t expected_context);
+static std::optional<NativeHistoryName> capture_native_editor_name(int32_t expected_context);
 static bool refresh_native_journal_event_sources(const graphicst *graphics);
 static bool refresh_native_journal_artifact_sources(const graphicst *graphics);
 static bool native_history_copy_bytes(uintptr_t address, void *destination, size_t size);
@@ -3830,8 +3830,10 @@ public:
     std::optional<std::string> translate_native_announcement_log_record(const NativeAnnouncementLogDocument &document,
         std::string_view source, int foreground, std::vector<int> &target_colors) const;
     bool native_announcement_log_viewport_complete();
-    std::optional<std::string> native_announcement_log_capture_entity_reference(
+    std::optional<std::string> native_announcement_log_capture_name_reference(
         const NativeAnnouncementLogReferenceRequest &request) const {
+        if (request.kind == NativeAnnouncementLogReferenceRequest::Kind::Artifact)
+            return translate_world_artifact_name(request.source);
         if (request.kind == NativeAnnouncementLogReferenceRequest::Kind::EntityId)
             return translate_history_entity_name(NativeHistoryName{}, request.entity_id);
         return translate_entity_reference(request.source, request.polity_role,
@@ -4246,8 +4248,9 @@ private:
     std::optional<std::string> translate_site_display(
         const NativeHistoryName &name, std::string_view source) const;
     std::string site_name_core(const NativeHistoryName &name) const;
-    std::optional<std::string> localize_site_name(const NativeHistoryName &name,
+    std::optional<std::string> localize_name_slots(const NativeHistoryName &name,
         std::string_view suffix = {}) const;
+    std::optional<std::string> translate_world_artifact_name(std::string_view source) const;
     std::string site_name_full_transliteration(const NativeHistoryName &name) const;
     std::vector<std::string> site_name_search_aliases(const NativeHistoryName &name) const;
     std::string translate_river_name(const RiverNameIdentity &identity,
@@ -45000,6 +45003,7 @@ static void native_settings_menu_release();
 #include "native_riding.inc"
 #include "civilization_names.inc"
 #include "site_references.inc"
+#include "artifact_names.inc"
 #include "adventure_home_translation.inc"
 #include "native_save_names.inc"
 #include "native_graphics_toggle.inc"

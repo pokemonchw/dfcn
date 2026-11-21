@@ -246,7 +246,8 @@ void Overlay::append_fortress_object_rows(std::vector<std::string> &rows,
             claim(*title, right, title_target);
         }
         if (!quote_target && !gloss.empty()) {
-            const auto target = memoize_identity_translation('B', gloss, [&] {
+            auto target = title ? std::nullopt : translate_world_artifact_name(gloss);
+            if (!target) target = memoize_identity_translation('B', gloss, [&] {
                 return translate_legends_book(gloss);
             });
             if (target) quote_target = "“" + *target + "”";

@@ -203,6 +203,7 @@ bool Overlay::append_world_artifact_rows(std::vector<std::string> &rows,
                         } else {
                             if (split_generated_name_identity(source) || split_repeated_title_identity(source))
                                 target = translate_legends_artifact_identity(source);
+                            else target = translate_world_artifact_name(source);
                             // This list mixes ordinary artifacts with written works.
                             // Resolve the shared BOOK_ART/BOOK_INSTRUCTION grammar
                             // before the proper-name fallback, just like Codices and

@@ -157,7 +157,7 @@ struct SiteReferenceIdentity;
 struct NativeAnnouncementLogReferenceRequest {
     enum class Kind : uint8_t {
         Entity, Site, Unit, EntityId,
-        RawCreatureLabels, RawCreatureAdjectives, InstrumentNames
+        RawCreatureLabels, RawCreatureAdjectives, InstrumentNames, Artifact
     };
     Kind kind = Kind::Entity;
     std::string source;
@@ -206,7 +206,7 @@ struct NativeAnnouncementLogWorkerInputs {
     std::shared_ptr<const NativeAnnouncementUnitRecord> unit_record;
     std::shared_ptr<const NativeAnnouncementKinshipRecord> kinship_record;
     std::map<std::string, std::optional<std::string>> unit_targets;
-    std::map<std::string, std::optional<std::string>> entity_targets;
+    std::map<std::string, std::optional<std::string>> name_targets;
     std::map<std::string, std::shared_ptr<const SiteReferenceIdentity>> site_identities;
     uint64_t unit_targets_resources = 0, unit_targets_catalog = 0;
 };
@@ -315,7 +315,7 @@ static std::optional<std::string> native_announcement_log_worker_original_speech
     std::string_view rendered);
 static std::optional<std::string> native_announcement_log_worker_unit_target(
     const NativeUnitIdentity &unit);
-static std::optional<std::string> native_announcement_log_worker_entity_target(
+static std::optional<std::string> native_announcement_log_worker_name_target(
     const NativeAnnouncementLogReferenceRequest &request);
 static std::shared_ptr<const SiteReferenceIdentity> native_announcement_log_worker_site_identity(
     const NativeAnnouncementLogReferenceRequest &request);

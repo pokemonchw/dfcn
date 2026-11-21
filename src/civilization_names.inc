@@ -181,7 +181,7 @@ std::optional<std::string> Overlay::translate_entity_reference(
         request.polity_role = polity_role;
         request.government_field = government_field;
         request.entity_type = entity_type;
-        return native_announcement_log_worker_entity_target(request);
+        return native_announcement_log_worker_name_target(request);
     }
     dfhack_require_world_read();
     source = trim_view(source);
@@ -469,7 +469,7 @@ std::optional<std::string> Overlay::translate_history_entity_name(
         NativeAnnouncementLogReferenceRequest request;
         request.kind = NativeAnnouncementLogReferenceRequest::Kind::EntityId;
         request.entity_id = id;
-        return native_announcement_log_worker_entity_target(request);
+        return native_announcement_log_worker_name_target(request);
     }
     // A retained per-draw result still depends on live entity naming state.
     // Closed announcement item proofs cannot inherit it before a world read.

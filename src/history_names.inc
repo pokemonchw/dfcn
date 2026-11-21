@@ -260,6 +260,9 @@ std::optional<std::string> Overlay::translate_history_name(
     // owned context marks the inner rendering call and avoids recapturing it.
     if (!character && name.entity_id >= 0 && name.entity_type >= 0 && !government_context)
         return translate_history_entity_name(name, name.entity_id);
+    if (!character && name.entity_type < 0 && name.type == 1) { // language_name_type::Artifact
+        if (auto localized = localize_name_slots(name)) return localized;
+    }
     NativeSiteGovernmentContext identity_government_context;
     if (!character && (!polity_role || name.entity_type == 1 || government_role) &&
             !government_context &&

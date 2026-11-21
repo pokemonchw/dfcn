@@ -159,7 +159,7 @@ class NativeAnnouncementLogTranslationService {
             }
             return true;
         };
-        return retains(a.unit_targets, b.unit_targets) && retains(a.entity_targets, b.entity_targets) &&
+        return retains(a.unit_targets, b.unit_targets) && retains(a.name_targets, b.name_targets) &&
             retains(a.site_identities, b.site_identities);
     }
     void replace_version_locked(Report &report, Document &document,

@@ -33,6 +33,7 @@ std::optional<std::string> Overlay::translate_journal_title(std::string_view sou
                 lower(normalize_utterance(source)) == "untitled" ||
                 lower(normalize_utterance(source)) == "an unknown artifact")
             target = translate_legends_artifact_identity(source);
+        else target = translate_world_artifact_name(source);
         if (!target) target = translate_legends_book(source);
         if (!target) target = translate_legends_item(source);
         if (!target) target = translate_legends_name(source, false);
@@ -217,8 +218,12 @@ bool Overlay::translated_legends_search_matches(std::string_view source,
             } else if (written) {
                 // Exactly the two-column artifact/book display strategy:
                 // repeated book titles use book grammar, not creature names.
-                title = split_generated_name_identity(source) || split_repeated_title_identity(source)
-                    ? translate_legends_artifact_identity(source) : translate_legends_book(source);
+                if (split_generated_name_identity(source) || split_repeated_title_identity(source))
+                    title = translate_legends_artifact_identity(source);
+                else {
+                    if (kind == LegendsSearchKind::Artifact) title = translate_world_artifact_name(source);
+                    if (!title) title = translate_legends_book(source);
+                }
             } else if (kind == LegendsSearchKind::Population) {
                 // Population rows display an English entity gloss or the
                 // existing species/region participant phrase, not a paired

@@ -180,17 +180,15 @@ bool Overlay::capture_name_word_forms(NativeHistoryName &name) const {
     return true;
 }
 
-std::optional<std::string> Overlay::localize_site_name(const NativeHistoryName &name,
+std::optional<std::string> Overlay::localize_name_slots(const NativeHistoryName &name,
         std::string_view suffix) const {
     if (!name.has_name || !name.first_name.empty() ||
             !name.nickname.empty()) return std::nullopt;
     NativeHistoryName visible = name;
     if (name.words[2].id.empty() && name.words[3].id.empty() && name.words[5].id.empty())
         visible.words[4] = {};
-    // Site/local-government provenance is supplied by the caller, including
-    // the embark editor before either object exists. Share the river
-    // compositor's WORD/POS choices and compound fallback with the same
-    // group order and the caller's type suffix.
+    // Sites, their governments and artifacts use the same WORD/POS grammar.
+    // The owner supplies any type suffix. Artifacts have no place suffix.
     auto result = localize_river_name(visible, RiverNames::InputKind::SiteSlots).display(suffix);
     return result.empty() ? std::nullopt : std::optional<std::string>(std::move(result));
 }
@@ -483,7 +481,7 @@ std::optional<std::string> Overlay::translate_english_site_name(
         const auto captured = reconstruct_site_english_name(*identity);
         if (captured && lower(native_text_to_utf8(*captured)) ==
                 lower(native_text_to_utf8(english))) {
-            if (auto localized = localize_site_name(*identity, suffix)) return localized;
+            if (auto localized = localize_name_slots(*identity, suffix)) return localized;
         }
     }
     // The surface string cannot distinguish modifier slots from title slots

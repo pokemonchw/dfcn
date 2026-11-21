@@ -302,6 +302,7 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
     int heading_y = -1;
     bool settlement_preview = false;
     bool government_preview = false;
+    bool item_preview = false;
     for (size_t y = 0; y < context.size(); ++y) {
         const auto fields = fields_in(context[y], static_cast<int>(y));
         size_t table_begin = fields.size();
@@ -337,6 +338,7 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
                     heading_y = field.y;
                     settlement_preview = field.source == "Name your settlement";
                     government_preview = field.source == "Name your group";
+                    item_preview = field.source.starts_with("Name the ");
                 }
             } else if (field.y < signature.first_slot_y &&
                        field.x > signature.front_x &&
@@ -397,7 +399,9 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
             false);
     }
     const auto place_name = settlement_preview || government_preview
-        ? capture_native_place_editor_name(government_preview ? 1 : 0) : std::nullopt;
+        ? capture_native_editor_name(government_preview ? 1 : 0) : std::nullopt;
+    // ADVENTURER_INVENTORY_ITEM has live slots even before this item is named.
+    const auto item_name = item_preview ? capture_native_editor_name(6) : std::nullopt;
     NativeHistoryName unresolved_government;
     unresolved_government.entity_type = 1;
     const std::string place_suffix = government_preview
@@ -421,6 +425,9 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
             } else {
                 target = transliterate_site_spelling(preview.source);
             }
+        } else if (quoted && item_name) {
+            target = translate_english_site_name(preview.source, &*item_name);
+            if (target) *target = "“" + *target + "”";
         } else {
             target = quoted ? translate_procedural_fragment(preview.source) :
                 translate_procedural_fragment(preview.source, true);
@@ -528,7 +535,7 @@ void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
                 ? government_heading_caller : settlement_heading_caller) ||
                 (!government && heading.source != "Name your settlement") ||
                 !current(heading)) continue;
-        const auto place_name = capture_native_place_editor_name(government ? 1 : 0);
+        const auto place_name = capture_native_editor_name(government ? 1 : 0);
         NativeHistoryName unresolved_government;
         unresolved_government.entity_type = 1;
         const std::string suffix = government
