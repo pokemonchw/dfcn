@@ -1004,7 +1004,7 @@ static void capture_native_field_resize(PendingNativeField &pending,
             pending.visible.replace(width - 3, 3, "...");
     } catch (...) { pending = {}; }
 }
-enum class NativeFieldKind { EmbarkItem, Origin, BookTitle, BookType };
+enum class NativeFieldKind { EmbarkItem, EmbarkSelected, EmbarkChoice, Origin, BookTitle, BookType };
 static void capture_native_field_draw(PendingNativeField &storage, graphicst *graphics,
         const NativeString *source, NativeFieldKind kind) {
     auto pending = std::move(storage);

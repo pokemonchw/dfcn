@@ -1,0 +1,801 @@
+image	function	instruction_rva	operand_va	encoding	text
+reference	category	0x768c27	0x141645a20	cstring	Leather
+reference	category	0x768c39	0x14164617c	cstring	Sheet
+reference	category	0x768c4b	0x1416c01b8	cstring	Cloth (Plant)
+reference	category	0x768c5d	0x1416c01e0	cstring	Cloth (Silk)
+reference	category	0x768c6f	0x1416c01d0	cstring	Cloth (Yarn)
+reference	category	0x768c81	0x141648728	cstring	Crafts
+reference	category	0x768c93	0x141645aa4	cstring	Wood
+reference	category	0x768ca5	0x1416c0084	cstring	Pets
+reference	category	0x768cb7	0x1416c007c	cstring	Drinks
+reference	category	0x768cc9	0x1416c0098	cstring	Cheeses
+reference	category	0x768cdb	0x1416c0090	cstring	Powders
+reference	category	0x768ced	0x1416c00a8	cstring	Extracts
+reference	category	0x768cff	0x14161dd24	cstring	Meat
+reference	category	0x768d11	0x14161dd1c	cstring	Fish
+reference	category	0x768d23	0x1416c00a0	cstring	Eggs
+reference	category	0x768d35	0x141646098	cstring	Plants
+reference	category	0x768d47	0x1416c00d0	cstring	Fruit and Nuts
+reference	category	0x768d53	0x1416c00b8	cstring	Garden Vegetables
+reference	category	0x768d65	0x1416c00f0	cstring	Meat/Fish Recipes
+reference	category	0x768d7d	0x1416c00e0	cstring	Other Recipes
+reference	category	0x768d8f	0x1416c0118	cstring	Metal Bars
+reference	category	0x768da1	0x1416c0108	cstring	Small Cut Gems
+reference	category	0x768db3	0x1416c0138	cstring	Large Cut Gems
+reference	category	0x768dc5	0x1416c0128	cstring	Stone Blocks
+reference	category	0x768dd7	0x1416460c0	cstring	Seeds
+reference	category	0x768de9	0x1416c015c	cstring	Anvils
+reference	category	0x768dfb	0x141646678	cstring	Weapons
+reference	category	0x768e0d	0x1416c0148	cstring	Training Weapons
+reference	category	0x768e1f	0x1416bffb0	cstring	Bodywear
+reference	category	0x768e31	0x141645e20	cstring	Ammo
+reference	category	0x768e43	0x1416bffa0	cstring	Trap Components
+reference	category	0x768e55	0x1416bffd0	cstring	Digging Implements
+reference	category	0x768e67	0x1416bffc0	cstring	Headwear
+reference	category	0x768e79	0x1416bfff8	cstring	Handwear
+reference	category	0x768e8b	0x1416bffe8	cstring	Footwear
+reference	category	0x768e9d	0x1416c0010	cstring	Legwear
+reference	category	0x768eaf	0x1416c0008	cstring	Shields
+reference	category	0x768ec1	0x1416c0020	cstring	Toys
+reference	category	0x768ed3	0x1416c0018	cstring	Tools
+reference	category	0x768ee5	0x1416c0030	cstring	Instruments
+reference	category	0x768ef7	0x141645e28	cstring	Stone
+reference	category	0x768f09	0x141647548	cstring	Sand
+reference	category	0x768f1b	0x141646264	cstring	Clay
+reference	category	0x768f2d	0x14167df6c	cstring	Glass
+reference	category	0x768f3f	0x1416c0028	cstring	Cages
+reference	category	0x768f51	0x1416c0050	cstring	Bags (Leather)
+reference	category	0x768f63	0x1416c0040	cstring	Bags (Plant)
+reference	category	0x768f75	0x1416c0070	cstring	Bags (Silk)
+reference	category	0x768f87	0x1416c0060	cstring	Bags (Yarn)
+reference	category	0x768f99	0x1416c06d8	cstring	Thread (Plant)
+reference	category	0x768fab	0x1416c06c8	cstring	Thread (Silk)
+reference	category	0x768fbd	0x1416c06f8	cstring	Thread (Yarn)
+reference	category	0x768fcf	0x1416c06e8	cstring	Ropes (Plant)
+reference	category	0x768fe1	0x1416c0718	cstring	Ropes (Silk)
+reference	category	0x768ff3	0x1416c0708	cstring	Ropes (Yarn)
+reference	category	0x769005	0x1416c0738	cstring	Barrels
+reference	category	0x769017	0x1416c0728	cstring	Miscellaneous
+reference	category	0x769023	0x1416c0748	cstring	Flasks/Waterskins
+reference	category	0x76903b	0x1416c0740	cstring	Quivers
+reference	category	0x76904d	0x1416c0768	cstring	Backpacks
+reference	category	0x76905f	0x1416c0760	cstring	Buckets
+reference	category	0x769071	0x1416c0788	cstring	Splints
+reference	category	0x769083	0x1416c0778	cstring	Crutches
+reference	category	0x76908f	0x1416c07a8	cstring	Cups/Mugs/Goblets
+reference	item-name	0xa9c7c7	0x1416660ac	cstring	large
+reference	item-name	0xa9c7d0	0x1416660b0	cstring	e
+reference	item-name	0xa9c7d9	0x1416a5e90	cstring	small
+reference	item-name	0xa9c7e2	0x1416a5e94	cstring	l
+reference	item-name	0xa9c82c	0x1416ec2cc	cstring	grown 
+reference	item-name	0xa9c906	0x14169c7a4	cstring	logs
+reference	item-name	0xa9c978	0x1416f03f0	cstring	branch
+reference	item-name	0xa9c99d	0x1416f03f8	cstring	es
+reference	item-name	0xa9c9bd	0x14161cf38	cstring	rough gems
+reference	item-name	0xa9c9d6	0x1416f0400	cstring	raw green glass
+reference	item-name	0xa9c9ef	0x1416f0410	cstring	raw clear glass
+reference	item-name	0xa9ca08	0x1416f03b0	cstring	raw crystal glass
+reference	item-name	0xa9ca2a	0x14161cf38	cstring	rough gems
+reference	item-name	0xa9ca48	0x1416ecb08	cstring	rough 
+reference	item-name	0xa9cae7	0x1416a5df4	cstring	small 
+reference	item-name	0xa9cafe	0x1416a5df4	cstring	small 
+reference	item-name	0xa9cbde	0x1416f03c4	cstring	rock
+reference	item-name	0xa9cbfe	0x1416f03d0	cstring	small rock
+reference	item-name	0xa9cc57	0x1416f03e0	cstring	stone boulders
+reference	item-name	0xa9cc7d	0x1416f0380	cstring	boulders
+reference	item-name	0xa9cd5a	0x1416f0360	cstring	bars
+reference	item-name	0xa9cd73	0x1416f03a0	cstring	charcoal
+reference	item-name	0xa9cd89	0x1416f0348	cstring	coke
+reference	item-name	0xa9cd92	0x1416f0350	cstring	refined coal
+reference	item-name	0xa9cdab	0x1416597e8	cstring	metal
+reference	item-name	0xa9cdba	0x1416f0398	cstring	 bars
+reference	item-name	0xa9ce6a	0x1416f0390	cstring	 wafers
+reference	item-name	0xa9cf58	0x14161cef8	cstring	cut gems
+reference	item-name	0xa9cf71	0x1416f0368	cstring	cut green glass gems
+reference	item-name	0xa9cf8a	0x1416f0308	cstring	cut clear glass gems
+reference	item-name	0xa9cfa0	0x1416f0320	cstring	cut crystal glass gems
+reference	item-name	0xa9cfbb	0x1416f0338	cstring	gems
+reference	item-name	0xa9d0f8	0x1416f0340	cstring	blocks
+reference	item-name	0xa9d10f	0x1416f0340	cstring	blocks
+reference	item-name	0xa9d1bd	0x1416f02e0	cstring	door
+reference	item-name	0xa9d1c4	0x1416f02d8	cstring	portal
+reference	item-name	0xa9d23a	0x1416f02e8	cstring	floodgate
+reference	item-name	0xa9d2aa	0x1416f02f8	cstring	hatch cover
+reference	item-name	0xa9d31a	0x1416f02c4	cstring	grate
+reference	item-name	0xa9d38a	0x14164bc44	cstring	table
+reference	item-name	0xa9d3fa	0x141657c20	cstring	cabinet
+reference	item-name	0xa9d46a	0x141657c10	cstring	weapon rack
+reference	item-name	0xa9d4da	0x141657c00	cstring	armor stand
+reference	item-name	0xa9d54a	0x1416f02cc	cstring	bin
+reference	item-name	0xa9d5f1	0x1416f02d0	cstring	box
+reference	item-name	0xa9d60a	0x1416f02d4	cstring	e
+reference	item-name	0xa9d633	0x1416f02a4	cstring	coffer
+reference	item-name	0xa9d642	0x141657c28	cstring	chest
+reference	item-name	0xa9d663	0x1416f02ac	cstring	boxe
+reference	item-name	0xa9d678	0x1416044f0	cstring	s
+reference	item-name	0xa9d68c	0x1416f02d0	cstring	box
+reference	item-name	0xa9d704	0x1416f02b4	cstring	bag
+reference	item-name	0xa9d79f	0x1416f02b8	cstring	backpack
+reference	item-name	0xa9d85c	0x1416f028c	cstring	cast
+reference	item-name	0xa9d868	0x1416f0280	cstring	limb/body 
+reference	item-name	0xa9d877	0x1416f028c	cstring	cast
+reference	item-name	0xa9d8d7	0x1416f0280	cstring	limb/body 
+reference	item-name	0xa9d8e6	0x1416f028c	cstring	cast
+reference	item-name	0xa9d956	0x1416f0294	cstring	splint
+reference	item-name	0xa9d9c0	0x1416f029c	cstring	crutch
+reference	item-name	0xa9da5b	0x1416f0254	cstring	quiver
+reference	item-name	0xa9dada	0x1416f025c	cstring	casket
+reference	item-name	0xa9db25	0x1416f0268	cstring	sarcophag
+reference	item-name	0xa9db34	0x14165def0	cstring	us
+reference	item-name	0xa9db3b	0x1416e980c	cstring	i
+reference	item-name	0xa9db57	0x14164bc38	cstring	coffin
+reference	item-name	0xa9dc74	0x1416f0974	cstring	chain
+reference	item-name	0xa9dc88	0x1416f0274	cstring	rope
+reference	item-name	0xa9ddc8	0x1416f098c	cstring	vial
+reference	item-name	0xa9ddd9	0x1416f0994	cstring	flask
+reference	item-name	0xa9ddf0	0x1416f0980	cstring	waterskin
+reference	item-name	0xa9de99	0x1416f0948	cstring	musical instrument
+reference	item-name	0xa9df7b	0x1416f0960	cstring	unglazed 
+reference	item-name	0xa9e0e3	0x1416039f0	cstring	 
+reference	item-name	0xa9e0fd	0x1416eaf24	cstring	tool
+reference	item-name	0xa9e19d	0x1416eaffc	cstring	toy
+reference	item-name	0xa9e24d	0x1416f096c	cstring	cup
+reference	item-name	0xa9e281	0x1416f0970	cstring	mug
+reference	item-name	0xa9e29b	0x1416f091c	cstring	goblet
+reference	item-name	0xa9e30b	0x1416f0924	cstring	window
+reference	item-name	0xa9e3ba	0x1416f093c	cstring	cage
+reference	item-name	0xa9e3c1	0x1416f0930	cstring	terrarium
+reference	item-name	0xa9e435	0x1416f08f4	cstring	barrel
+reference	item-name	0xa9e4a5	0x1416f08fc	cstring	bucket
+reference	item-name	0xa9e515	0x1416f0908	cstring	animal trap
+reference	item-name	0xa9e591	0x14164bc30	cstring	chair
+reference	item-name	0xa9e5ab	0x1416f0914	cstring	throne
+reference	item-name	0xa9e661	0x1416f08d0	cstring	web
+reference	item-name	0xa9e6ac	0x1416f08d8	cstring	strands
+reference	item-name	0xa9e6df	0x141631664	cstring	yarn
+reference	item-name	0xa9e6f0	0x14163164c	cstring	thread
+reference	item-name	0xa9e765	0x141631654	cstring	cloth
+reference	item-name	0xa9e86f	0x1416f08e0	cstring	sheet
+reference	item-name	0xa9e892	0x1416f08e8	cstring	tanned hide
+reference	item-name	0xa9e8f5	0x1416f08b0	cstring	totem
+reference	item-name	0xa9e95e	0x1416f08b8	cstring	-bound 
+reference	item-name	0xa9e97a	0x1416f08c8	cstring	codex
+reference	item-name	0xa9e981	0x1416f08c0	cstring	codices
+reference	item-name	0xa9ea00	0x1416f0888	cstring	figurine
+reference	item-name	0xa9ea1e	0x1416f0898	cstring	rotten 
+reference	item-name	0xa9ea43	0x1416706c0	cstring	drink
+reference	item-name	0xa9ea86	0x1416f0898	cstring	rotten 
+reference	item-name	0xa9ec6b	0x1416f08a0	cstring	filthy 
+reference	item-name	0xa9ec84	0x1416f08a8	cstring	sticky 
+reference	item-name	0xa9eca3	0x1416f0860	cstring	vomitous 
+reference	item-name	0xa9ecbf	0x1416f086c	cstring	slimy 
+reference	item-name	0xa9ecd8	0x1416dab38	cstring	stagnant 
+reference	item-name	0xa9ecf4	0x1416f0874	cstring	dirty 
+reference	item-name	0xa9ed10	0x1416f087c	cstring	gooey 
+reference	item-name	0xa9ed29	0x1416f0830	cstring	purulent 
+reference	item-name	0xa9ed42	0x1416f0840	cstring	ichorous 
+reference	item-name	0xa9ed5b	0x1416f0850	cstring	bloody 
+reference	item-name	0xa9ed9a	0x1416c6750	cstring	liquid
+reference	item-name	0xa9eedc	0x1416f0858	cstring	 paste
+reference	item-name	0xa9ef31	0x1416f07fc	cstring	glob
+reference	item-name	0xa9f132	0x1416f0808	cstring	 laced with 
+reference	item-name	0xa9f1a6	0x141604394	cstring	, 
+reference	item-name	0xa9f1b6	0x14160438c	cstring	 and 
+reference	item-name	0xa9f21b	0x1416f0898	cstring	rotten 
+reference	item-name	0xa9f2b8	0x1416f0818	cstring	 dye mix
+reference	item-name	0xa9f2dc	0x1416f0824	cstring	powder
+reference	item-name	0xa9f336	0x1416f0898	cstring	rotten 
+reference	item-name	0xa9f358	0x1416f07c0	cstring	cheese
+reference	item-name	0xa9f3e0	0x1416f07c8	cstring	catapult parts
+reference	item-name	0xa9f458	0x1416f07d8	cstring	bolt thrower parts
+reference	item-name	0xa9f4d0	0x1416f07f0	cstring	mechanisms
+reference	item-name	0xa9f57f	0x1416f0784	cstring	tube
+reference	item-name	0xa9f599	0x1416f0790	cstring	pipe section
+reference	item-name	0xa9f637	0x1416f07a0	cstring	trap component
+reference	item-name	0xa9f668	0x1416039f0	cstring	 
+reference	item-name	0xa9f74a	0x1416f07b0	cstring	ballista parts
+reference	item-name	0xa9f7c2	0x1416f0750	cstring	anvil
+reference	item-name	0xa9f832	0x1416f0758	cstring	amulet
+reference	item-name	0xa9f8a2	0x1416f0760	cstring	ballista arrow head
+reference	item-name	0xa9f949	0x1416f0778	cstring	siege ammo
+reference	item-name	0xa9fa93	0x1416f0728	cstring	ammunition
+reference	item-name	0xa9fb0b	0x1416f0738	cstring	scepter
+reference	item-name	0xa9fb7b	0x1416f0740	cstring	crown
+reference	item-name	0xa9fbe5	0x1416f0748	cstring	coin
+reference	item-name	0xa9fc04	0x1416f06e8	cstring	perfect 
+reference	item-name	0xa9fc13	0x141666420	cstring	large 
+reference	item-name	0xa9fcfb	0x1416f06f8	cstring	green glass 
+reference	item-name	0xa9fd11	0x1416f0708	cstring	clear glass 
+reference	item-name	0xa9fd27	0x1416f0718	cstring	crystal glass 
+reference	item-name	0xa9fd43	0x1416316ac	cstring	gem
+reference	item-name	0xa9fdfb	0x1416f06c0	cstring	 gem
+reference	item-name	0xa9fed6	0x1416f06c8	cstring	ring
+reference	item-name	0xa9ff46	0x1416f06d0	cstring	earring
+reference	item-name	0xa9ffb6	0x1416f06d8	cstring	bracelet
+reference	item-name	0xaa0026	0x14164bc40	cstring	bed
+reference	item-name	0xaa0096	0x1416f0df0	cstring	traction bench
+reference	item-name	0xaa0106	0x1416f0e00	cstring	quern
+reference	item-name	0xaa0176	0x1416f0e08	cstring	millstone
+reference	item-name	0xaa01e6	0x1416f0e14	cstring	statue
+reference	item-name	0xaa02f2	0x1416f0d98	cstring	memorial
+reference	item-name	0xaa0306	0x1416f0da8	cstring	food imports sign
+reference	item-name	0xaa031a	0x1416f0dc0	cstring	clothing imports sign
+reference	item-name	0xaa032e	0x1416f0dd8	cstring	general imports sign
+reference	item-name	0xaa0342	0x1416f0d30	cstring	cloth shop sign
+reference	item-name	0xaa0356	0x1416f0d40	cstring	leather shop sign
+reference	item-name	0xaa036a	0x1416f0d58	cstring	woven clothing shop sign
+reference	item-name	0xaa037e	0x1416f0d78	cstring	leather clothing shop sign
+reference	item-name	0xaa0392	0x1416f0cd0	cstring	bone carver's shop sign
+reference	item-name	0xaa03a6	0x1416f0ce8	cstring	gem cutter's shop sign
+reference	item-name	0xaa03ba	0x1416f0d00	cstring	weaponsmith's shop sign
+reference	item-name	0xaa03ce	0x1416f0d18	cstring	bowyer's shop sign
+reference	item-name	0xaa03e2	0x1416f0c70	cstring	blacksmith's shop sign
+reference	item-name	0xaa03f6	0x1416f0c88	cstring	armorsmith's shop sign
+reference	item-name	0xaa040a	0x1416f0ca0	cstring	metal craft shop sign
+reference	item-name	0xaa041e	0x1416f0cb8	cstring	leather goods shop sign
+reference	item-name	0xaa0432	0x1416f0c08	cstring	carpenter's shop sign
+reference	item-name	0xaa0446	0x1416f0c20	cstring	stone furniture shop sign
+reference	item-name	0xaa045a	0x1416f0c40	cstring	metal furniture shop sign
+reference	item-name	0xaa046e	0x1416f0c60	cstring	tavern sign
+reference	item-name	0xaa0482	0x1416f0be0	cstring	slab
+reference	item-name	0xaa0496	0x1416f0be0	cstring	slab
+reference	item-name	0xaa04b4	0x1416f0898	cstring	rotten 
+reference	item-name	0xaa04c9	0x1416f0be8	cstring	corpse
+reference	item-name	0xaa04e7	0x1416f0898	cstring	rotten 
+reference	item-name	0xaa050b	0x14163167c	cstring	tooth
+reference	item-name	0xaa051c	0x1416f0bf0	cstring	teeth
+reference	item-name	0xaa0531	0x141631674	cstring	bone
+reference	item-name	0xaa0549	0x14163166c	cstring	shell
+reference	item-name	0xaa0561	0x1416f0bf8	cstring	plant part
+reference	item-name	0xaa0579	0x1416f0b90	cstring	silk body part
+reference	item-name	0xaa0591	0x1416f0ba0	cstring	leather body part
+reference	item-name	0xaa05a9	0x1416f0bb8	cstring	wooden body part
+reference	item-name	0xaa05c3	0x1416f0bd0	cstring	soap body part
+reference	item-name	0xaa05dd	0x141631694	cstring	horn
+reference	item-name	0xaa05f7	0x14163168c	cstring	pearl
+reference	item-name	0xaa0611	0x1416f0b58	cstring	yarn body part
+reference	item-name	0xaa0629	0x1416f0b68	cstring	strand body part
+reference	item-name	0xaa0632	0x1416a0ac0	cstring	body part
+reference	item-name	0xaa065b	0x1416f0b80	cstring	Rotten 
+reference	item-name	0xaa07c2	0x14169ebd0	cstring	remains
+reference	item-name	0xaa0821	0x1416f0b88	cstring	seeds
+reference	item-name	0xaa0892	0x1416f0b18	cstring	withered 
+reference	item-name	0xaa0906	0x1416f0b28	cstring	leaves and fruit
+reference	item-name	0xaa0917	0x1416f0b40	cstring	leaf or fruit
+reference	item-name	0xaa094a	0x1416f0b18	cstring	withered 
+reference	item-name	0xaa099d	0x141630b04	cstring	plant
+reference	item-name	0xaa09b6	0x1416044f0	cstring	s
+reference	item-name	0xaa09dc	0x1416f0898	cstring	rotten 
+reference	item-name	0xaa09f4	0x1416f0b50	cstring	raw 
+reference	item-name	0xaa0b75	0x141604394	cstring	, 
+reference	item-name	0xaa0b8b	0x141604394	cstring	, 
+reference	item-name	0xaa0ba4	0x1416c19a0	cstring	fish
+reference	item-name	0xaa0bca	0x1416f0898	cstring	rotten 
+reference	item-name	0xaa0cf1	0x1416039f0	cstring	 
+reference	item-name	0xaa0d06	0x1416f0aec	cstring	egg
+reference	item-name	0xaa0d2c	0x1416f0898	cstring	rotten 
+reference	item-name	0xaa0e2b	0x1416c19a0	cstring	fish
+reference	item-name	0xaa0e48	0x1416f0af0	cstring	live 
+reference	item-name	0xaa0e81	0x1416f0af8	cstring	small live animal
+reference	item-name	0xaa0e9b	0x1416f0b0c	cstring	tame 
+reference	item-name	0xaa0ea4	0x1416f0ab0	cstring	small tame animal
+reference	item-name	0xaa0ebb	0x1416f0ac8	cstring	prepared meal
+reference	item-name	0xaa0ed5	0x1416f0898	cstring	rotten 
+reference	item-name	0xaa0eea	0x1416f0ad8	cstring	preserved 
+reference	item-name	0xaa0fac	0x1416f0ae4	cstring	 chops
+reference	item-name	0xaa0fbd	0x1416f0a84	cstring	 chop
+reference	item-name	0xaa0ff6	0x1416f0a8c	cstring	meat
+reference	item-name	0xaa1010	0x1416f0a8c	cstring	meat
+reference	item-name	0xaa10a2	0x1416eb054	cstring	weapon
+reference	item-name	0xaa10db	0x1416039f0	cstring	 
+reference	item-name	0xaa1207	0x1416f0aa0	cstring	suits of 
+reference	item-name	0xaa1216	0x1416eb05c	cstring	armor
+reference	item-name	0xaa127c	0x1416039f0	cstring	 
+reference	item-name	0xaa1326	0x1416f0a94	cstring	chain 
+reference	item-name	0xaa1435	0x141656244	cstring	right 
+reference	item-name	0xaa1455	0x1416561e0	cstring	left 
+reference	item-name	0xaa149e	0x1416f0a94	cstring	chain 
+reference	item-name	0xaa14ff	0x1416039f0	cstring	 
+reference	item-name	0xaa1513	0x1416f0a48	cstring	handwear
+reference	item-name	0xaa15b7	0x1416eafe4	cstring	shield
+reference	item-name	0xaa15d6	0x1416f0a58	cstring	/buckler
+reference	item-name	0xaa15ea	0x1416f0a58	cstring	/buckler
+reference	item-name	0xaa1727	0x1416039f0	cstring	 
+reference	item-name	0xaa1757	0x1416f0a68	cstring	footwear
+reference	item-name	0xaa1848	0x1416f0a78	cstring	headwear
+reference	item-name	0xaa188c	0x1416039f0	cstring	 
+reference	item-name	0xaa1948	0x1416f09f8	cstring	legwear
+reference	item-name	0xaa19cc	0x1416039f0	cstring	 
+reference	item-name	0xaa1ae6	0x141618d48	cstring	item
+reference	item-name	0xaa1b17	0x141637c6c	cstring	 [
+reference	item-name	0xaa1b37	0x141619408	cstring	]
+reference	prepare	0x10714e6	0x141769478/16	vector	  Prepare for th
+reference	prepare	0x10714f0	0x141769488/16	vector	e Expedition to 
+reference	prepare	0x107153d	0x1417694a0/16	vector	  Prepare for th
+reference	prepare	0x1071547	0x1417694b0	cstring	e Journey to 
+reference	prepare	0x1071554	0x1417694b8	cstring	y to 
+reference	prepare	0x107155d	0x1417694bc	cstring	 
+reference	prepare	0x10715cc	0x141618e28	cstring	  
+reference	prepare	0x1071ca4	0x141632050	cstring	Custom settings
+reference	prepare	0x1071ec3	0x1416201d0	cstring	Done
+reference	prepare	0x107208d	0x141631f48	cstring	Range: 
+reference	prepare	0x107210e	0x141608834	cstring	 to 
+reference	prepare	0x1072424	0x141607b1c	cstring	_
+reference	prepare	0x10728e4	0x1417694c0	cstring	Play now!
+reference	prepare	0x107292a	0x1417694d0	cstring	Start immediately with the default skills, equipment, and animals.
+reference	prepare	0x1072a08	0x141769518	cstring	Prepare for the journey carefully
+reference	prepare	0x1072a4d	0x141769658	cstring	Choose your own skills, equipment, and animals.
+reference	prepare	0x1072ab3	0x141769688	cstring	Prepare using a saved embark profile:
+reference	prepare	0x1072de1	0x14163514c	cstring	Delete
+reference	prepare	0x1072ed4	0x141632060	cstring	Enemies:
+reference	prepare	0x1073172	0x141632044	cstring	Off
+reference	prepare	0x1073373	0x141632048	cstring	Normal
+reference	prepare	0x1073572	0x141632098	cstring	Hard
+reference	prepare	0x10735da	0x1416320a0	cstring	(Custom)
+reference	prepare	0x1073632	0x141632070	cstring	Economy:
+reference	prepare	0x107382c	0x141632048	cstring	Normal
+reference	prepare	0x1073a2c	0x141632098	cstring	Hard
+reference	prepare	0x1073a94	0x1416320a0	cstring	(Custom)
+reference	prepare	0x1073be3	0x141632050	cstring	Custom settings
+reference	prepare	0x1073d63	0x1417695a8	cstring	Preparing map...
+reference	prepare	0x1073e88	0x1417696b0	cstring	Embark preparations were not completed.
+reference	prepare	0x107415e	0x1417696d8	cstring	Fortress Name
+reference	prepare	0x1074167	0x1417696e8	cstring	Group Name
+reference	prepare	0x1074170	0x1417696f8	cstring	Group Symbol
+reference	prepare	0x1074179	0x141769708	cstring	Problems
+reference	prepare	0x1074182	0x141769718	cstring	Save Profile
+reference	prepare	0x107418b	0x1417695d8	cstring	Embark!
+reference	prepare	0x1074606	0x141645e98	cstring	Animals
+reference	prepare	0x107460f	0x14161a434	cstring	Items
+reference	prepare	0x1074652	0x1417695e0	cstring	Citizens
+reference	prepare	0x1074863	0x1417695f0	cstring	Your Citizens
+reference	prepare	0x10748d2	0x141769600	cstring	Available Skills
+reference	prepare	0x1074a1a	0x141769618	cstring	skill picks left
+reference	prepare	0x1074a4d	0x141769630	cstring	skill pick left
+reference	prepare	0x1075249	0x141612f9c	cstring	Skills
+reference	prepare	0x1075279	0x1416312f0	cstring	 (
+reference	prepare	0x10752b1	0x141631330	cstring	)
+reference	prepare	0x10754ba	0x141619f60	cstring	View
+reference	prepare	0x10758fa	0x14163245c	cstring	Other
+reference	prepare	0x1075903	0x141612ea8	cstring	Combat
+reference	prepare	0x107590c	0x141612eb0	cstring	Labor
+reference	prepare	0x1075915	0x141769640	cstring	Crucial
+reference	prepare	0x1075cfe	0x141613080	cstring	Not
+reference	prepare	0x1075d36	0x1416039f0	cstring	 
+reference	prepare	0x1076787	0x141682b08	cstring	Your Items
+reference	prepare	0x107681c	0x141769648	cstring	Points Left: 
+reference	prepare	0x10768a4	0x141682b18	cstring	Available Items
+reference	prepare	0x1077055	0x1416039f0	cstring	 
+reference	prepare	0x1077230	0x141681290	cstring	 pts
+reference	prepare	0x1077b44	0x141607ab0	cstring	...
+reference	prepare	0x1077b87	0x141607b1c	cstring	_
+reference	prepare	0x1077f5f	0x141681290	cstring	 pts
+reference	prepare	0x1078649	0x1417697a8	cstring	Your Animals
+reference	prepare	0x10786b8	0x141769648	cstring	Points Left: 
+reference	prepare	0x10789f7	0x1416039f0	cstring	 
+reference	prepare	0x1078a8f	0x141604394	cstring	, 
+reference	prepare	0x1078b76	0x141681290	cstring	 pts
+reference	prepare	0x107901c	0x1417697b8	cstring	Available Animals
+reference	prepare	0x10794fd	0x1416039f0	cstring	 
+reference	prepare	0x1079603	0x141604394	cstring	, 
+reference	prepare	0x1079719	0x141681290	cstring	 pts
+reference	prepare	0x1079c87	0x1417697d0	cstring	Warning!  The following embark profile name is already in use:
+reference	prepare	0x1079e14	0x141769810	cstring	Overwrite
+reference	prepare	0x1079f7e	0x141769820	cstring	Go back
+reference	prepare	0x107a01f	0x141769828	cstring	To save these settings, choose a name for this embark profile:
+reference	prepare	0x107a1e6	0x141621010	cstring	Save
+reference	prepare	0x107a343	0x1416566f4	cstring	Abort
+reference	prepare	0x107a479	0x141769868	cstring	Are you sure?
+reference	prepare	0x107a4d3	0x141618e28	cstring	  
+reference	prepare	0x107a4fa	0x141769878	cstring	 point
+reference	prepare	0x107a517	0x1416044f0	cstring	s
+reference	prepare	0x107a52a	0x141769728	cstring	 remain
+reference	prepare	0x107a547	0x1416044f0	cstring	s
+reference	prepare	0x107a55a	0x1416096b8	cstring	!
+reference	prepare	0x107a5bd	0x141618e28	cstring	  
+reference	prepare	0x107a5df	0x141769730	cstring	 unpicked skill
+reference	prepare	0x107a5f7	0x1416044f0	cstring	s
+reference	prepare	0x107a60a	0x1416096b8	cstring	!
+reference	prepare	0x107a6f8	0x141769740	cstring	I am ready!
+reference	prepare	0x107a8bf	0x141769820	cstring	Go back
+reference	prepare	0x107aa43	0x1417695a8	cstring	Preparing map...
+classic	category	0x766427	0x141640a40	cstring	Leather
+classic	category	0x766439	0x141640e34	cstring	Sheet
+classic	category	0x76644b	0x1416bb140	cstring	Cloth (Plant)
+classic	category	0x76645d	0x1416bb168	cstring	Cloth (Silk)
+classic	category	0x76646f	0x1416bb158	cstring	Cloth (Yarn)
+classic	category	0x766481	0x141643698	cstring	Crafts
+classic	category	0x766493	0x141640770	cstring	Wood
+classic	category	0x7664a5	0x1416bb180	cstring	Pets
+classic	category	0x7664b7	0x1416bb178	cstring	Drinks
+classic	category	0x7664c9	0x1416bb190	cstring	Cheeses
+classic	category	0x7664db	0x1416bb188	cstring	Powders
+classic	category	0x7664ed	0x1416bb1a0	cstring	Extracts
+classic	category	0x7664ff	0x141618aec	cstring	Meat
+classic	category	0x766511	0x141618ae4	cstring	Fish
+classic	category	0x766523	0x1416bb198	cstring	Eggs
+classic	category	0x766535	0x141641070	cstring	Plants
+classic	category	0x766547	0x1416bb1c8	cstring	Fruit and Nuts
+classic	category	0x766553	0x1416bb1b0	cstring	Garden Vegetables
+classic	category	0x766565	0x1416bb1e8	cstring	Meat/Fish Recipes
+classic	category	0x76657d	0x1416bb1d8	cstring	Other Recipes
+classic	category	0x76658f	0x1416bb210	cstring	Metal Bars
+classic	category	0x7665a1	0x1416bb200	cstring	Small Cut Gems
+classic	category	0x7665b3	0x1416bb070	cstring	Large Cut Gems
+classic	category	0x7665c5	0x1416bb060	cstring	Stone Blocks
+classic	category	0x7665d7	0x141641000	cstring	Seeds
+classic	category	0x7665e9	0x1416bb094	cstring	Anvils
+classic	category	0x7665fb	0x1416410d0	cstring	Weapons
+classic	category	0x76660d	0x1416bb080	cstring	Training Weapons
+classic	category	0x76661f	0x1416bb0b0	cstring	Bodywear
+classic	category	0x766631	0x141640e88	cstring	Ammo
+classic	category	0x766643	0x1416bb0a0	cstring	Trap Components
+classic	category	0x766655	0x1416bb0d0	cstring	Digging Implements
+classic	category	0x766667	0x1416bb0c0	cstring	Headwear
+classic	category	0x766679	0x1416bb0f8	cstring	Handwear
+classic	category	0x76668b	0x1416bb0e8	cstring	Footwear
+classic	category	0x76669d	0x1416bb110	cstring	Legwear
+classic	category	0x7666af	0x1416bb108	cstring	Shields
+classic	category	0x7666c1	0x1416bb120	cstring	Toys
+classic	category	0x7666d3	0x1416bb118	cstring	Tools
+classic	category	0x7666e5	0x1416bb130	cstring	Instruments
+classic	category	0x7666f7	0x141640e70	cstring	Stone
+classic	category	0x766709	0x141642760	cstring	Sand
+classic	category	0x76671b	0x141641264	cstring	Clay
+classic	category	0x76672d	0x141679150	cstring	Glass
+classic	category	0x76673f	0x1416bb128	cstring	Cages
+classic	category	0x766751	0x1416baf80	cstring	Bags (Leather)
+classic	category	0x766763	0x1416baf70	cstring	Bags (Plant)
+classic	category	0x766775	0x1416bafa0	cstring	Bags (Silk)
+classic	category	0x766787	0x1416baf90	cstring	Bags (Yarn)
+classic	category	0x766799	0x1416bafc0	cstring	Thread (Plant)
+classic	category	0x7667ab	0x1416bafb0	cstring	Thread (Silk)
+classic	category	0x7667bd	0x1416bafe0	cstring	Thread (Yarn)
+classic	category	0x7667cf	0x1416bafd0	cstring	Ropes (Plant)
+classic	category	0x7667e1	0x1416bb000	cstring	Ropes (Silk)
+classic	category	0x7667f3	0x1416baff0	cstring	Ropes (Yarn)
+classic	category	0x766805	0x1416bb020	cstring	Barrels
+classic	category	0x766817	0x1416bb010	cstring	Miscellaneous
+classic	category	0x766823	0x1416bb030	cstring	Flasks/Waterskins
+classic	category	0x76683b	0x1416bb028	cstring	Quivers
+classic	category	0x76684d	0x1416bb050	cstring	Backpacks
+classic	category	0x76685f	0x1416bb048	cstring	Buckets
+classic	category	0x766871	0x1416bb650	cstring	Splints
+classic	category	0x766883	0x1416bb640	cstring	Crutches
+classic	category	0x76688f	0x1416bb670	cstring	Cups/Mugs/Goblets
+classic	item-name	0xa99627	0x141660b0c	cstring	large
+classic	item-name	0xa99630	0x141660b10	cstring	e
+classic	item-name	0xa99639	0x1416a0bfc	cstring	small
+classic	item-name	0xa99642	0x1416a0c00	cstring	l
+classic	item-name	0xa9968c	0x1416e721c	cstring	grown 
+classic	item-name	0xa99766	0x1416977c8	cstring	logs
+classic	item-name	0xa997d8	0x1416ea988	cstring	branch
+classic	item-name	0xa997fd	0x1416ea8ec	cstring	es
+classic	item-name	0xa9981d	0x141617d98	cstring	rough gems
+classic	item-name	0xa99836	0x1416ea8f0	cstring	raw green glass
+classic	item-name	0xa9984f	0x1416ea900	cstring	raw clear glass
+classic	item-name	0xa99868	0x1416ea910	cstring	raw crystal glass
+classic	item-name	0xa9988a	0x141617d98	cstring	rough gems
+classic	item-name	0xa998a8	0x1416e7998	cstring	rough 
+classic	item-name	0xa99947	0x1416a0834	cstring	small 
+classic	item-name	0xa9995e	0x1416a0834	cstring	small 
+classic	item-name	0xa99a3e	0x1416ea8b4	cstring	rock
+classic	item-name	0xa99a5e	0x1416ea8c0	cstring	small rock
+classic	item-name	0xa99ab7	0x1416ea8d0	cstring	stone boulders
+classic	item-name	0xa99add	0x1416ea8e0	cstring	boulders
+classic	item-name	0xa99bba	0x1416ea858	cstring	bars
+classic	item-name	0xa99bd3	0x1416ea8a0	cstring	charcoal
+classic	item-name	0xa99be9	0x1416ea8ac	cstring	coke
+classic	item-name	0xa99bf2	0x1416ea848	cstring	refined coal
+classic	item-name	0xa99c0b	0x141654418	cstring	metal
+classic	item-name	0xa99c1a	0x1416ea898	cstring	 bars
+classic	item-name	0xa99cca	0x1416ea890	cstring	 wafers
+classic	item-name	0xa99db8	0x141617fb8	cstring	cut gems
+classic	item-name	0xa99dd1	0x1416ea860	cstring	cut green glass gems
+classic	item-name	0xa99dea	0x1416ea878	cstring	cut clear glass gems
+classic	item-name	0xa99e00	0x1416eb650	cstring	cut crystal glass gems
+classic	item-name	0xa99e1b	0x1416eb668	cstring	gems
+classic	item-name	0xa99f58	0x1416eb670	cstring	blocks
+classic	item-name	0xa99f6f	0x1416eb670	cstring	blocks
+classic	item-name	0xa9a01d	0x1416eb620	cstring	door
+classic	item-name	0xa9a024	0x1416eb678	cstring	portal
+classic	item-name	0xa9a09a	0x1416eb628	cstring	floodgate
+classic	item-name	0xa9a10a	0x1416eb638	cstring	hatch cover
+classic	item-name	0xa9a17a	0x1416eb644	cstring	grate
+classic	item-name	0xa9a1ea	0x1416468d4	cstring	table
+classic	item-name	0xa9a25a	0x141652d18	cstring	cabinet
+classic	item-name	0xa9a2ca	0x141652d08	cstring	weapon rack
+classic	item-name	0xa9a33a	0x141652cf8	cstring	armor stand
+classic	item-name	0xa9a3aa	0x1416eb60c	cstring	bin
+classic	item-name	0xa9a451	0x1416eb610	cstring	box
+classic	item-name	0xa9a46a	0x1416eb614	cstring	e
+classic	item-name	0xa9a493	0x1416eb618	cstring	coffer
+classic	item-name	0xa9a4a2	0x141652904	cstring	chest
+classic	item-name	0xa9a4c3	0x1416eb5e4	cstring	boxe
+classic	item-name	0xa9a4d8	0x1415ff4c8	cstring	s
+classic	item-name	0xa9a4ec	0x1416eb610	cstring	box
+classic	item-name	0xa9a564	0x1416eb5ec	cstring	bag
+classic	item-name	0xa9a5ff	0x1416eb5f0	cstring	backpack
+classic	item-name	0xa9a6bc	0x1416eb5c4	cstring	cast
+classic	item-name	0xa9a6c8	0x1416eb600	cstring	limb/body 
+classic	item-name	0xa9a6d7	0x1416eb5c4	cstring	cast
+classic	item-name	0xa9a737	0x1416eb600	cstring	limb/body 
+classic	item-name	0xa9a746	0x1416eb5c4	cstring	cast
+classic	item-name	0xa9a7b6	0x1416eb5cc	cstring	splint
+classic	item-name	0xa9a820	0x1416eb5d4	cstring	crutch
+classic	item-name	0xa9a8bb	0x1416eb5dc	cstring	quiver
+classic	item-name	0xa9a93a	0x1416eb59c	cstring	casket
+classic	item-name	0xa9a985	0x1416eb5a8	cstring	sarcophag
+classic	item-name	0xa9a994	0x141658d00	cstring	us
+classic	item-name	0xa9a99b	0x1416e4944	cstring	i
+classic	item-name	0xa9a9b7	0x1416468b0	cstring	coffin
+classic	item-name	0xa9aad4	0x1416eb5bc	cstring	chain
+classic	item-name	0xa9aae8	0x1416eb5b4	cstring	rope
+classic	item-name	0xa9ac28	0x1416eb574	cstring	vial
+classic	item-name	0xa9ac39	0x1416eb57c	cstring	flask
+classic	item-name	0xa9ac50	0x1416eb568	cstring	waterskin
+classic	item-name	0xa9acf9	0x1416eb588	cstring	musical instrument
+classic	item-name	0xa9addb	0x1416eb548	cstring	unglazed 
+classic	item-name	0xa9af43	0x1415fe96c	cstring	 
+classic	item-name	0xa9af5d	0x1416e5fe4	cstring	tool
+classic	item-name	0xa9affd	0x1416e5fd4	cstring	toy
+classic	item-name	0xa9b0ad	0x1416eb554	cstring	cup
+classic	item-name	0xa9b0e1	0x1416eb558	cstring	mug
+classic	item-name	0xa9b0fb	0x1416eb55c	cstring	goblet
+classic	item-name	0xa9b16b	0x1416eb520	cstring	window
+classic	item-name	0xa9b21a	0x1416eb534	cstring	cage
+classic	item-name	0xa9b221	0x1416eb528	cstring	terrarium
+classic	item-name	0xa9b295	0x1416eb53c	cstring	barrel
+classic	item-name	0xa9b305	0x1416eb4fc	cstring	bucket
+classic	item-name	0xa9b375	0x1416eb508	cstring	animal trap
+classic	item-name	0xa9b3f1	0x1416468dc	cstring	chair
+classic	item-name	0xa9b40b	0x1416eb514	cstring	throne
+classic	item-name	0xa9b4c1	0x1416eb51c	cstring	web
+classic	item-name	0xa9b50c	0x1416eb4d8	cstring	strands
+classic	item-name	0xa9b53f	0x14162c410	cstring	yarn
+classic	item-name	0xa9b550	0x14162c3f8	cstring	thread
+classic	item-name	0xa9b5c5	0x14162c400	cstring	cloth
+classic	item-name	0xa9b6cf	0x1416eb4e0	cstring	sheet
+classic	item-name	0xa9b6f2	0x1416eb4e8	cstring	tanned hide
+classic	item-name	0xa9b755	0x1416eb4f4	cstring	totem
+classic	item-name	0xa9b7be	0x1416eb4b0	cstring	-bound 
+classic	item-name	0xa9b7da	0x1416eb4c0	cstring	codex
+classic	item-name	0xa9b7e1	0x1416eb4b8	cstring	codices
+classic	item-name	0xa9b860	0x1416eb4c8	cstring	figurine
+classic	item-name	0xa9b87e	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9b8a3	0x14166b4a4	cstring	drink
+classic	item-name	0xa9b8e6	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9bacb	0x1416eb490	cstring	filthy 
+classic	item-name	0xa9bae4	0x1416eb498	cstring	sticky 
+classic	item-name	0xa9bb03	0x1416eb4a0	cstring	vomitous 
+classic	item-name	0xa9bb1f	0x1416eb460	cstring	slimy 
+classic	item-name	0xa9bb38	0x1416d5c78	cstring	stagnant 
+classic	item-name	0xa9bb54	0x1416eb468	cstring	dirty 
+classic	item-name	0xa9bb70	0x1416eb470	cstring	gooey 
+classic	item-name	0xa9bb89	0x1416eb478	cstring	purulent 
+classic	item-name	0xa9bba2	0x1416eb438	cstring	ichorous 
+classic	item-name	0xa9bbbb	0x1416eb448	cstring	bloody 
+classic	item-name	0xa9bbfa	0x1416c1808	cstring	liquid
+classic	item-name	0xa9bd3c	0x1416eb450	cstring	 paste
+classic	item-name	0xa9bd91	0x1416eb458	cstring	glob
+classic	item-name	0xa9bf92	0x1416eb408	cstring	 laced with 
+classic	item-name	0xa9c006	0x1415ff308	cstring	, 
+classic	item-name	0xa9c016	0x1415ff340	cstring	 and 
+classic	item-name	0xa9c07b	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9c118	0x1416eb418	cstring	 dye mix
+classic	item-name	0xa9c13c	0x1416eb424	cstring	powder
+classic	item-name	0xa9c196	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9c1b8	0x1416eb42c	cstring	cheese
+classic	item-name	0xa9c240	0x1416eba88	cstring	catapult parts
+classic	item-name	0xa9c2b8	0x1416eba98	cstring	bolt thrower parts
+classic	item-name	0xa9c330	0x1416ebab0	cstring	mechanisms
+classic	item-name	0xa9c3df	0x1416ebabc	cstring	tube
+classic	item-name	0xa9c3f9	0x1416eba50	cstring	pipe section
+classic	item-name	0xa9c497	0x1416eba60	cstring	trap component
+classic	item-name	0xa9c4c8	0x1415fe96c	cstring	 
+classic	item-name	0xa9c5aa	0x1416eba70	cstring	ballista parts
+classic	item-name	0xa9c622	0x1416eba80	cstring	anvil
+classic	item-name	0xa9c692	0x1416eba0c	cstring	amulet
+classic	item-name	0xa9c702	0x1416eba18	cstring	ballista arrow head
+classic	item-name	0xa9c7a9	0x1416eba30	cstring	siege ammo
+classic	item-name	0xa9c8f3	0x1416eba40	cstring	ammunition
+classic	item-name	0xa9c96b	0x1416eb9e8	cstring	scepter
+classic	item-name	0xa9c9db	0x1416eb9f0	cstring	crown
+classic	item-name	0xa9ca45	0x1416eb9f8	cstring	coin
+classic	item-name	0xa9ca64	0x1416eba00	cstring	perfect 
+classic	item-name	0xa9ca73	0x1416611e8	cstring	large 
+classic	item-name	0xa9cb5b	0x1416eb9b0	cstring	green glass 
+classic	item-name	0xa9cb71	0x1416eb9c0	cstring	clear glass 
+classic	item-name	0xa9cb87	0x1416eb9d0	cstring	crystal glass 
+classic	item-name	0xa9cba3	0x14162c454	cstring	gem
+classic	item-name	0xa9cc5b	0x1416eb9e0	cstring	 gem
+classic	item-name	0xa9cd36	0x1416eb97c	cstring	ring
+classic	item-name	0xa9cda6	0x1416eb988	cstring	earring
+classic	item-name	0xa9ce16	0x1416eb990	cstring	bracelet
+classic	item-name	0xa9ce86	0x141646898	cstring	bed
+classic	item-name	0xa9cef6	0x1416eb9a0	cstring	traction bench
+classic	item-name	0xa9cf66	0x1416eb950	cstring	quern
+classic	item-name	0xa9cfd6	0x1416eb958	cstring	millstone
+classic	item-name	0xa9d046	0x1416eb964	cstring	statue
+classic	item-name	0xa9d152	0x1416eb970	cstring	memorial
+classic	item-name	0xa9d166	0x1416eb8f8	cstring	food imports sign
+classic	item-name	0xa9d17a	0x1416eb910	cstring	clothing imports sign
+classic	item-name	0xa9d18e	0x1416eb928	cstring	general imports sign
+classic	item-name	0xa9d1a2	0x1416eb940	cstring	cloth shop sign
+classic	item-name	0xa9d1b6	0x1416eb888	cstring	leather shop sign
+classic	item-name	0xa9d1ca	0x1416eb8a0	cstring	woven clothing shop sign
+classic	item-name	0xa9d1de	0x1416eb8c0	cstring	leather clothing shop sign
+classic	item-name	0xa9d1f2	0x1416eb8e0	cstring	bone carver's shop sign
+classic	item-name	0xa9d206	0x1416eb828	cstring	gem cutter's shop sign
+classic	item-name	0xa9d21a	0x1416eb840	cstring	weaponsmith's shop sign
+classic	item-name	0xa9d22e	0x1416eb858	cstring	bowyer's shop sign
+classic	item-name	0xa9d242	0x1416eb870	cstring	blacksmith's shop sign
+classic	item-name	0xa9d256	0x1416eb7c8	cstring	armorsmith's shop sign
+classic	item-name	0xa9d26a	0x1416eb7e0	cstring	metal craft shop sign
+classic	item-name	0xa9d27e	0x1416eb7f8	cstring	leather goods shop sign
+classic	item-name	0xa9d292	0x1416eb810	cstring	carpenter's shop sign
+classic	item-name	0xa9d2a6	0x1416eb770	cstring	stone furniture shop sign
+classic	item-name	0xa9d2ba	0x1416eb790	cstring	metal furniture shop sign
+classic	item-name	0xa9d2ce	0x1416eb7b0	cstring	tavern sign
+classic	item-name	0xa9d2e2	0x1416eb7bc	cstring	slab
+classic	item-name	0xa9d2f6	0x1416eb7bc	cstring	slab
+classic	item-name	0xa9d314	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9d329	0x1416eb740	cstring	corpse
+classic	item-name	0xa9d347	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9d36b	0x14162c428	cstring	tooth
+classic	item-name	0xa9d37c	0x1416eb748	cstring	teeth
+classic	item-name	0xa9d391	0x14162c420	cstring	bone
+classic	item-name	0xa9d3a9	0x14162c418	cstring	shell
+classic	item-name	0xa9d3c1	0x1416eb750	cstring	plant part
+classic	item-name	0xa9d3d9	0x1416eb760	cstring	silk body part
+classic	item-name	0xa9d3f1	0x1416eb6f0	cstring	leather body part
+classic	item-name	0xa9d409	0x1416eb708	cstring	wooden body part
+classic	item-name	0xa9d423	0x1416eb720	cstring	soap body part
+classic	item-name	0xa9d43d	0x14162c440	cstring	horn
+classic	item-name	0xa9d457	0x14162c438	cstring	pearl
+classic	item-name	0xa9d471	0x1416eb730	cstring	yarn body part
+classic	item-name	0xa9d489	0x1416eb6b8	cstring	strand body part
+classic	item-name	0xa9d492	0x14169b880	cstring	body part
+classic	item-name	0xa9d4bb	0x1416eb6d0	cstring	Rotten 
+classic	item-name	0xa9d622	0x1416999b8	cstring	remains
+classic	item-name	0xa9d681	0x1416eb6d8	cstring	seeds
+classic	item-name	0xa9d6f2	0x1416eb6e0	cstring	withered 
+classic	item-name	0xa9d766	0x1416eb680	cstring	leaves and fruit
+classic	item-name	0xa9d777	0x1416eb698	cstring	leaf or fruit
+classic	item-name	0xa9d7aa	0x1416eb6e0	cstring	withered 
+classic	item-name	0xa9d7fd	0x14162ba6c	cstring	plant
+classic	item-name	0xa9d816	0x1415ff4c8	cstring	s
+classic	item-name	0xa9d83c	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9d854	0x1416eb6a8	cstring	raw 
+classic	item-name	0xa9d9d5	0x1415ff308	cstring	, 
+classic	item-name	0xa9d9eb	0x1415ff308	cstring	, 
+classic	item-name	0xa9da04	0x1416bc76c	cstring	fish
+classic	item-name	0xa9da2a	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9db51	0x1415fe96c	cstring	 
+classic	item-name	0xa9db66	0x1416eb6b0	cstring	egg
+classic	item-name	0xa9db8c	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9dc8b	0x1416bc76c	cstring	fish
+classic	item-name	0xa9dca8	0x1416ebe3c	cstring	live 
+classic	item-name	0xa9dce1	0x1416ebe48	cstring	small live animal
+classic	item-name	0xa9dcfb	0x1416ebe5c	cstring	tame 
+classic	item-name	0xa9dd04	0x1416ebe68	cstring	small tame animal
+classic	item-name	0xa9dd1b	0x1416ebe10	cstring	prepared meal
+classic	item-name	0xa9dd35	0x1416eb488	cstring	rotten 
+classic	item-name	0xa9dd4a	0x1416ebe20	cstring	preserved 
+classic	item-name	0xa9de0c	0x1416ebe2c	cstring	 chops
+classic	item-name	0xa9de1d	0x1416ebe34	cstring	 chop
+classic	item-name	0xa9de56	0x1416ebde0	cstring	meat
+classic	item-name	0xa9de70	0x1416ebde0	cstring	meat
+classic	item-name	0xa9df02	0x1416e602c	cstring	weapon
+classic	item-name	0xa9df3b	0x1415fe96c	cstring	 
+classic	item-name	0xa9e067	0x1416ebdf0	cstring	suits of 
+classic	item-name	0xa9e076	0x1416e6034	cstring	armor
+classic	item-name	0xa9e0dc	0x1415fe96c	cstring	 
+classic	item-name	0xa9e186	0x1416ebde8	cstring	chain 
+classic	item-name	0xa9e295	0x141651498	cstring	right 
+classic	item-name	0xa9e2b5	0x1416514a0	cstring	left 
+classic	item-name	0xa9e2fe	0x1416ebde8	cstring	chain 
+classic	item-name	0xa9e35f	0x1415fe96c	cstring	 
+classic	item-name	0xa9e373	0x1416ebe00	cstring	handwear
+classic	item-name	0xa9e417	0x1416e5fbc	cstring	shield
+classic	item-name	0xa9e436	0x1416ebda8	cstring	/buckler
+classic	item-name	0xa9e44a	0x1416ebda8	cstring	/buckler
+classic	item-name	0xa9e587	0x1415fe96c	cstring	 
+classic	item-name	0xa9e5b7	0x1416ebdb8	cstring	footwear
+classic	item-name	0xa9e6a8	0x1416ebdc8	cstring	headwear
+classic	item-name	0xa9e6ec	0x1415fe96c	cstring	 
+classic	item-name	0xa9e7a8	0x1416ebdd8	cstring	legwear
+classic	item-name	0xa9e82c	0x1415fe96c	cstring	 
+classic	item-name	0xa9e946	0x141613ce8	cstring	item
+classic	item-name	0xa9e977	0x141632ad4	cstring	 [
+classic	item-name	0xa9e997	0x141614398	cstring	]
+classic	prepare	0x106c236	0x1417635b8/16	vector	  Prepare for th
+classic	prepare	0x106c240	0x1417635c8/16	vector	e Expedition to 
+classic	prepare	0x106c28d	0x1417635e0/16	vector	  Prepare for th
+classic	prepare	0x106c297	0x1417635f0	cstring	e Journey to 
+classic	prepare	0x106c2a4	0x1417635f8	cstring	y to 
+classic	prepare	0x106c2ad	0x1417635fc	cstring	 
+classic	prepare	0x106c31c	0x141613d10	cstring	  
+classic	prepare	0x106c9f4	0x14162cf28	cstring	Custom settings
+classic	prepare	0x106cc13	0x14161b160	cstring	Done
+classic	prepare	0x106cddd	0x14162cf38	cstring	Range: 
+classic	prepare	0x106ce5e	0x141603794	cstring	 to 
+classic	prepare	0x106d174	0x141602a6c	cstring	_
+classic	prepare	0x106d634	0x141763600	cstring	Play now!
+classic	prepare	0x106d67a	0x141763610	cstring	Start immediately with the default skills, equipment, and animals.
+classic	prepare	0x106d758	0x141763658	cstring	Prepare for the journey carefully
+classic	prepare	0x106d79d	0x141763680	cstring	Choose your own skills, equipment, and animals.
+classic	prepare	0x106d803	0x1417636b0	cstring	Prepare using a saved embark profile:
+classic	prepare	0x106db31	0x14162ff7c	cstring	Delete
+classic	prepare	0x106dc24	0x14162cf00	cstring	Enemies:
+classic	prepare	0x106dec2	0x14162cf0c	cstring	Off
+classic	prepare	0x106e0c3	0x14162d38c	cstring	Normal
+classic	prepare	0x106e2c2	0x14162d394	cstring	Hard
+classic	prepare	0x106e32a	0x14162d370	cstring	(Custom)
+classic	prepare	0x106e382	0x14162d380	cstring	Economy:
+classic	prepare	0x106e57c	0x14162d38c	cstring	Normal
+classic	prepare	0x106e77c	0x14162d394	cstring	Hard
+classic	prepare	0x106e7e4	0x14162d370	cstring	(Custom)
+classic	prepare	0x106e933	0x14162cf28	cstring	Custom settings
+classic	prepare	0x106eab3	0x141764090	cstring	Preparing map...
+classic	prepare	0x106ebd8	0x141763518	cstring	Embark preparations were not completed.
+classic	prepare	0x106eeae	0x141763540	cstring	Fortress Name
+classic	prepare	0x106eeb7	0x141763550	cstring	Group Name
+classic	prepare	0x106eec0	0x141763560	cstring	Group Symbol
+classic	prepare	0x106eec9	0x141763570	cstring	Problems
+classic	prepare	0x106eed2	0x141763580	cstring	Save Profile
+classic	prepare	0x106eedb	0x141763590	cstring	Embark!
+classic	prepare	0x106f356	0x141640e48	cstring	Animals
+classic	prepare	0x106f35f	0x141615454	cstring	Items
+classic	prepare	0x106f3a2	0x141763598	cstring	Citizens
+classic	prepare	0x106f5b3	0x1417637a0	cstring	Your Citizens
+classic	prepare	0x106f622	0x1417637b0	cstring	Available Skills
+classic	prepare	0x106f76a	0x1417637c8	cstring	skill picks left
+classic	prepare	0x106f79d	0x1417637e0	cstring	skill pick left
+classic	prepare	0x106ff99	0x14160df08	cstring	Skills
+classic	prepare	0x106ffc9	0x14162bff0	cstring	 (
+classic	prepare	0x1070001	0x14162c030	cstring	)
+classic	prepare	0x107020a	0x141614da0	cstring	View
+classic	prepare	0x107064a	0x14162d15c	cstring	Other
+classic	prepare	0x1070653	0x14160de5c	cstring	Combat
+classic	prepare	0x107065c	0x14160dde4	cstring	Labor
+classic	prepare	0x1070665	0x1417637f0	cstring	Crucial
+classic	prepare	0x1070a4e	0x14160dfd0	cstring	Not
+classic	prepare	0x1070a86	0x1415fe96c	cstring	 
+classic	prepare	0x10714d7	0x14167d240	cstring	Your Items
+classic	prepare	0x107156c	0x1417637f8	cstring	Points Left: 
+classic	prepare	0x10715f4	0x14167d250	cstring	Available Items
+classic	prepare	0x1071da5	0x1415fe96c	cstring	 
+classic	prepare	0x1071f80	0x14167c120	cstring	 pts
+classic	prepare	0x1072894	0x141602aa0	cstring	...
+classic	prepare	0x10728d7	0x141602a6c	cstring	_
+classic	prepare	0x1072caf	0x14167c120	cstring	 pts
+classic	prepare	0x1073399	0x141763808	cstring	Your Animals
+classic	prepare	0x1073408	0x1417637f8	cstring	Points Left: 
+classic	prepare	0x1073747	0x1415fe96c	cstring	 
+classic	prepare	0x10737df	0x1415ff308	cstring	, 
+classic	prepare	0x10738c6	0x14167c120	cstring	 pts
+classic	prepare	0x1073d6c	0x141763818	cstring	Available Animals
+classic	prepare	0x107424d	0x1415fe96c	cstring	 
+classic	prepare	0x1074353	0x1415ff308	cstring	, 
+classic	prepare	0x1074469	0x14167c120	cstring	 pts
+classic	prepare	0x10749d7	0x1417636d8	cstring	Warning!  The following embark profile name is already in use:
+classic	prepare	0x1074b64	0x141763718	cstring	Overwrite
+classic	prepare	0x1074cce	0x141763728	cstring	Go back
+classic	prepare	0x1074d6f	0x141763730	cstring	To save these settings, choose a name for this embark profile:
+classic	prepare	0x1074f36	0x14161bf80	cstring	Save
+classic	prepare	0x1075093	0x141651260	cstring	Abort
+classic	prepare	0x10751c9	0x141763770	cstring	Are you sure?
+classic	prepare	0x1075223	0x141613d10	cstring	  
+classic	prepare	0x107524a	0x141763780	cstring	 point
+classic	prepare	0x1075267	0x1415ff4c8	cstring	s
+classic	prepare	0x107527a	0x141763788	cstring	 remain
+classic	prepare	0x1075297	0x1415ff4c8	cstring	s
+classic	prepare	0x10752aa	0x14160469c	cstring	!
+classic	prepare	0x107530d	0x141613d10	cstring	  
+classic	prepare	0x107532f	0x141763790	cstring	 unpicked skill
+classic	prepare	0x1075347	0x1415ff4c8	cstring	s
+classic	prepare	0x107535a	0x14160469c	cstring	!
+classic	prepare	0x1075448	0x1417638c8	cstring	I am ready!
+classic	prepare	0x107560f	0x141763728	cstring	Go back
+classic	prepare	0x1075793	0x141764090	cstring	Preparing map...

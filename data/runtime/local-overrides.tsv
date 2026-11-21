@@ -3685,7 +3685,9 @@ Save Profile	保存配置
 Embark!	启程！
 Points Left: {d}	剩余点数：{d}	wt
 # Fortress embark confirmation: counts vary with the current preparation.
+1 point remains!	还有 1 点未使用！	w
 {d} points remain!	还有 {d} 点未使用！	wt
+1 unpicked skill!	还有 1 个技能选择点未分配！	w
 {d} unpicked skills!	还有 {d} 个技能选择点未分配！	wt
 I am ready!	准备好了！	w
 

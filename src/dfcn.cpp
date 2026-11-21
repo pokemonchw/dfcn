@@ -10,6 +10,7 @@
 #include "dfhack_interpose.h"
 
 #include <algorithm>
+#include <charconv>
 #include <array>
 #include <atomic>
 #include <cerrno>
@@ -112,6 +113,10 @@ static std::vector<NativeHistoryUnboundDraw> captured_native_history_unbound_dra
 static std::optional<NativeActivityDetailDocument> native_activity_detail_document(
     const std::unordered_set<uintptr_t> &visible_words);
 static uintptr_t native_history_profile_base();
+static uintptr_t native_current_viewscreen();
+#ifdef _WIN32
+static uintptr_t native_fortress_embark_items_view();
+#endif
 static std::optional<NativeHistoryName> capture_native_editor_name(int32_t expected_context);
 static bool refresh_native_journal_event_sources(const graphicst *graphics);
 static bool refresh_native_journal_artifact_sources(const graphicst *graphics);
@@ -1056,6 +1061,7 @@ static constexpr int kFortressBuildPlacementStatusRule = -169;
 static constexpr int kConversationToneRule = -170;
 static constexpr int kAdventureActionPanelRule = -171;
 static constexpr int kArenaTreePlantRule = -172;
+static constexpr int kNativeEmbarkItemRule = -173;
 
 static bool is_fortress_noble_symbol_field(const Match &match) {
     return match.rule == kFortressNobleSymbolNameRule ||
@@ -1547,11 +1553,7 @@ static void append_direct_utf8_matches(const std::string &row, int y,
     }
 }
 
-// Prepare-for-embark renders the middle item-category column as graphical
-// buttons, but leaves only the English caption runs in the logical grid. Keep
-// this finite UI vocabulary as complete phrases: generic word rules would
-// otherwise split captions such as `Small Cut Gems` into independently
-// centred fragments.
+// The embark category supplier has 64 cases, in entity_sell_category order.
 static constexpr auto embark_available_item_categories = std::to_array<
     std::pair<std::string_view, std::string_view>>({
     {"Leather", "皮革"},
@@ -1576,6 +1578,48 @@ static constexpr auto embark_available_item_categories = std::to_array<
     {"Footwear", "足部装备"},
     {"Legwear", "腿部装备"},
     {"Shields", "盾牌"},
+    {"Toys", "玩具"},
+    {"Instruments", "乐器"},
+    {"Pets", "宠物"},
+    {"Drinks", "饮料"},
+    {"Cheeses", "奶酪"},
+    {"Powders", "粉末"},
+    {"Extracts", "提取物"},
+    {"Meat", "肉"},
+    {"Fish", "鱼"},
+    {"Plants", "植物"},
+    {"Fruit and Nuts", "果实与坚果"},
+    {"Garden Vegetables", "农作物"},
+    {"Meat/Fish Recipes", "肉类和鱼类料理"},
+    {"Other Recipes", "其他料理"},
+    {"Stone", "石材"},
+    {"Cages", "笼"},
+    {"Bags (Leather)", "皮革袋子"},
+    {"Bags (Plant)", "植物纤维袋"},
+    {"Bags (Silk)", "丝袋子"},
+    {"Thread (Plant)", "线（植物纤维）"},
+    {"Thread (Silk)", "线（丝）"},
+    {"Ropes (Plant)", "绳索（植物纤维）"},
+    {"Ropes (Silk)", "绳索（丝）"},
+    {"Barrels", "桶"},
+    {"Flasks/Waterskins", "酒壶/水袋"},
+    {"Quivers", "箭袋"},
+    {"Backpacks", "背包"},
+    {"Sand", "沙"},
+    {"Glass", "玻璃"},
+    {"Miscellaneous", "杂项"},
+    {"Buckets", "提桶"},
+    {"Splints", "夹板"},
+    {"Crutches", "拐杖"},
+    {"Eggs", "蛋"},
+    {"Bags (Yarn)", "袋子（毛线）"},
+    {"Ropes (Yarn)", "绳索（毛线）"},
+    {"Cloth (Yarn)", "布（毛线）"},
+    {"Thread (Yarn)", "线（毛线）"},
+    {"Tools", "工具"},
+    {"Clay", "黏土"},
+    {"Sheet", "纸张"},
+    {"Cups/Mugs/Goblets", "杯子/马克杯/高脚杯"},
 });
 
 static std::optional<std::string_view> translate_embark_item_category(
@@ -2420,6 +2464,12 @@ struct NativeRecenterFollow {
 };
 enum class RecenterName { Authored, Unnamed, Wagon };
 #endif
+struct NativeEmbarkListItem {
+    int32_t type = -1, subtype = -1, material = -1, material_index = -1;
+    int32_t count = 1;
+    std::string name;
+    std::string builtin_solid_id;
+};
 struct NativeDrawnTextRow {
     int x = 0, y = 0;
     std::string source;
@@ -2432,6 +2482,7 @@ struct NativeDrawnTextRow {
     std::string complete_source{};
     // The trade formatter supplies the actual item, before name clipping.
     std::optional<NativeTradeItemCaption> trade_item_caption{};
+    std::optional<NativeEmbarkListItem> embark_list_item{};
     // Bound to the formatter's actual NativeString owner before clipping.
     // This remains distinct even when a custom name equals a RAW label.
     std::optional<std::string> unit_identity_target{};
@@ -2957,7 +3008,8 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         NativeTravelBuildingField travel_building_field = NativeTravelBuildingField::None,
         uintptr_t native_caller = 0,
         std::optional<std::string> squad_alias_target = std::nullopt,
-        std::optional<NativeTradeItemCaption> trade_item_caption = std::nullopt) {
+        std::optional<NativeTradeItemCaption> trade_item_caption = std::nullopt,
+        std::optional<NativeEmbarkListItem> embark_list_item = std::nullopt) {
     if (native_private_ui_write_active(graphics)) return;
     const bool character = graphics && graphics == g_native_character_write_graphics;
     const bool display = graphics && graphics == g_native_display_write_graphics;
@@ -3049,6 +3101,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         row.fortress_zone_caption = std::move(fortress_zone_caption);
         row.workshop_task_caption = std::move(workshop_task_caption);
         row.arena_tree_caption = std::move(arena_tree_caption);
+        row.embark_list_item = std::move(embark_list_item);
         row.uniform_member_right = capture_native_uniform_member_right(native_caller, address, x);
         if (row.workshop_task_caption || row.arena_tree_caption ||
                 native_workshop_choice_field(native_caller) != NativeWorkshopChoiceField::None)
@@ -6004,6 +6057,11 @@ private:
     std::optional<std::string> translate_embark_equipment_item_uncached(
         const std::string &item_source, const std::string &quantity,
         bool captured_memory_source) const;
+#ifdef _WIN32
+    bool native_embark_item_list_matches(uintptr_t view, int only_y, const unsigned char *screen_override,
+            std::vector<Match> &matches) const;
+    std::optional<std::string> translate_embark_list_item(const NativeEmbarkListItem &item) const;
+#endif
     std::optional<std::string> translate_captured_embark_item_segments(
         std::string_view complete_source) const;
     std::optional<std::string> translate_embark_equipment_fields(
@@ -18994,11 +19052,26 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     CellReadCacheScope cell_reads(*this);
     FortressRosterTranslationScope roster_translations(gps_);
     const auto tooltip_widget = captured_native_tooltip_widget(*gps_);
+    std::vector<Match> native_embark_list_matches;
+#ifdef _WIN32
+    const uintptr_t native_embark_tab = native_fortress_embark_items_view();
+    const bool native_embark_lists = native_embark_tab && native_embark_item_list_matches(
+        native_embark_tab, only_y, screen_override, native_embark_list_matches);
+#else
+    constexpr bool native_embark_tab = false;
+    constexpr bool native_embark_lists = false;
+#endif
+    // The native lists use three tiles per entry and reserve 17 rows for
+    // the surrounding controls. Their search text belongs to the player.
+    const int embark_list_end = 8 + 3 * std::max(0, (gps_->dimy - 17) / 3);
     auto read_row = [&](int row_y) {
         std::string rendered(static_cast<size_t>(gps_->dimx), ' ');
         if (row_y < 0 || row_y >= gps_->dimy) return rendered;
         for (int x = 0; x < gps_->dimx; ++x) {
             const size_t tile = static_cast<size_t>(x) * gps_->dimy + row_y;
+            if (native_embark_lists && row_y >= 8 && row_y < embark_list_end &&
+                    (screen_override == gps_->screen || (!screen_override &&
+                    !native_ui_top_layer_at(*gps_, tile)))) continue;
             if (native_info_background_cell_hidden(gps_, x, row_y)) continue;
             const unsigned char ch = screen_override
                                          ? screen_override[tile * 8]
@@ -20023,6 +20096,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         }
         result.insert(result.end(), std::make_move_iterator(adventure_background_cards.begin()),
             std::make_move_iterator(adventure_background_cards.end()));
+        result.insert(result.end(), std::make_move_iterator(native_embark_list_matches.begin()),
+            std::make_move_iterator(native_embark_list_matches.end()));
         return std::move(result);
     };
 
@@ -23766,8 +23841,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         }
         return signature.complete();
     };
-    bool embark_items_context = has_embark_items_signature(screen_rows);
-    if (!embark_items_context && screen_override) {
+    bool embark_items_context = !native_embark_tab && has_embark_items_signature(screen_rows);
+    if (!native_embark_tab && !embark_items_context && screen_override) {
         std::vector<std::string> composed_rows;
         composed_rows.reserve(static_cast<size_t>(gps_->dimy));
         for (int row_y = 0; row_y < gps_->dimy; ++row_y) {
@@ -29595,6 +29670,9 @@ int Overlay::layout_embark_named_item_rows(std::vector<Match> &matches,
                                             int tile_pixel_y,
                                             int font_pixels) const {
     (void)screen_columns;
+    if (std::any_of(matches.begin(), matches.end(), [](const Match &m) {
+            return m.rule == kNativeEmbarkItemRule;
+        })) return 0;
     int available_items_x = -1;
     ItemPickerSignature signature;
     for (const Match &match : matches) {
@@ -29604,6 +29682,9 @@ int Overlay::layout_embark_named_item_rows(std::vector<Match> &matches,
         }
     }
     if (available_items_x < 0 || !signature.complete()) return 0;
+#ifdef _WIN32
+    if (native_fortress_embark_items_view()) return 0;
+#endif
 
     int rebuilt = 0;
     const int visual_height = std::min(tile_pixel_y, font_pixels + 1);
@@ -30335,6 +30416,10 @@ static std::string normalize_arena_equipment_specification(
     }
     return target;
 }
+
+#ifdef _WIN32
+#include "embark_item_list.inc"
+#endif
 
 static std::optional<std::string> lookup_item_material_rule(
         std::string_view source, std::string_view context) {
@@ -35858,7 +35943,7 @@ void Overlay::prepare_frame() {
             }
             captured_embark_item_suppress_.assign(cells, 0);
             for (const Match &match : prepared_matches_) {
-                if (match.rule != kEmbarkComposedCapturedItemRule ||
+                if ((match.rule != kEmbarkComposedCapturedItemRule && match.rule != kNativeEmbarkItemRule) ||
                     match.y < 0 || match.y >= gps_->dimy) {
                     continue;
                 }
@@ -35883,7 +35968,12 @@ void Overlay::prepare_frame() {
                     match.source == "Save Profile" ||
                     match.source == "Embark!";
             }
-            if (available_items_heading && available_items_landmark) {
+            if (available_items_heading && available_items_landmark &&
+#ifdef _WIN32
+                    !native_fortress_embark_items_view() &&
+#endif
+                    std::none_of(prepared_matches_.begin(), prepared_matches_.end(),
+                        [](const Match &m) { return m.rule == kNativeEmbarkItemRule; })) {
                 auto normalize_embark_field_sequence = [](std::string_view source) {
                     std::string normalized;
                     normalized.reserve(source.size());

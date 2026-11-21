@@ -1,0 +1,16 @@
+field	Steam 53.17 RVA	Classic 53.17 RVA	native source
+category name supplier	0x768c00	0x766400	entity_sell_category switch, 0..63; other values leave the string empty
+item description supplier	0xa9c6b0	0xa99510	item_type switch, 0..92; default emits an optional material and the generic item noun
+candidate name supplier	0x8db530	0x8d8b90	type +0, subtype +2, material type +4, material index +8; passes plural/default form -1
+selected heading	0x10767af	0x10714ff	Your Items
+selected category	0x1076c97	0x10719e7	category of the selected-item vector at screen+0x1250
+selected category upper half	0x1076ccb	0x1071a1b	same category, draw flag 8
+selected category lower half	0x1076d06	0x1071a56	same category, draw flag 16
+selected description	0x107710c	0x1071e5c	item pointer from the selected vector iterator at RBP-0x10; virtual slots 0, 8, 0x10, 0x18 supply the type/subtype/material/index; slot 0x478 gives stack size
+selected name draw	0x10771b7	0x1071f07	noun from RBP+0x4c8 appended to the count at RBP+0x268 before clipping
+selected cost	0x107726b	0x1071fbb	complete decimal and pts suffix
+available category	0x107793f	0x107268f	category of the choice vector at screen+0x800; only categories with eligible choices are offered
+available description	0x1077e5f	0x1072baf	screen+0x1cc8 selects the category; the renderer consumes the filtered choice's native tuple
+available name draw	0x1077ef3	0x1072c43	choice description from RBP+0x2a8 before width clipping
+available cost digits	0x1077f5a	0x1072caa	decimal cost of the same native tuple
+available cost suffix	0x1077f83	0x1072cd3	space and pts drawn after the cost digits

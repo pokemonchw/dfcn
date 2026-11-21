@@ -356,6 +356,10 @@ public:
             address(caption.picker); address(caption.plant);
             text(caption.name); value(caption.right);
         });
+        optional(input.embark_list_item, [&](const auto &item) {
+            value(item.type); value(item.subtype); value(item.material);
+            value(item.material_index); value(item.count); text(item.name); text(item.builtin_solid_id);
+        });
         // Vector traversal preserves relative native draw order. Absolute
         // sequence/epoch numbers are scheduling, not semantic content.
     }

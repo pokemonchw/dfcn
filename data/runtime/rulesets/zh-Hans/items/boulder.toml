@@ -4,6 +4,7 @@ base = "items::boulder"
 [rulesets.rules]
 "stones" = "石头"
 "stone boulders" = "石块"
+"boulders" = "石材"
 "{::materials}" = "{::materials}"
 "gold nuggets" = "金块"
 "silver nuggets" = "银块"

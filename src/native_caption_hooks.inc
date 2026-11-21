@@ -4287,6 +4287,10 @@ static PendingNativeField &native_caption_pending() {
     else return pending_native_book();
 }
 
+#ifdef _WIN32
+#include "native_embark_item_rows.inc"
+#endif
+
 template<NativeFieldKind Kind>
 static void capture_native_caption_resize(NativeString *text, size_t width, char fill) {
     if (g_native_tooltip_write) {
@@ -4389,8 +4393,16 @@ static void capture_native_caption_draw(graphicst *graphics, const NativeString 
         });
         return;
     }
-    if (!native_private_ui_write_active(graphics))
+    if (!native_private_ui_write_active(graphics)) {
+#ifdef _WIN32
+        if constexpr (Kind == NativeFieldKind::EmbarkSelected || Kind == NativeFieldKind::EmbarkChoice) {
+            const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
+            draw_native_embark_list_item(graphics, text, just, width, caller);
+            return;
+        }
+#endif
         capture_native_field_draw(native_caption_pending<Kind>(), graphics, text, Kind);
+    }
     if (g_native_caption_hooks.draw) g_native_caption_hooks.draw(graphics, text, just, width);
 }
 
@@ -4496,6 +4508,27 @@ static bool install_native_caption_hooks() {
         switch (site.kind) {
         case NativeFieldKind::EmbarkItem:
             append_native_caption_calls<NativeFieldKind::EmbarkItem>(calls, profile, site); break;
+#ifdef _WIN32
+        case NativeFieldKind::EmbarkSelected:
+            calls.push_back({native_pe_rva(0x105ee9c), native_pe_rva(0xa82c10),
+                reinterpret_cast<const void *>(&capture_embark_selected_name)});
+            g_embark_selected_name = reinterpret_cast<NativeHistoryItemFn>(
+                native_pe_address(profile.base, 0xa82c10));
+            calls.push_back({site.draw, profile.draw_target,
+                reinterpret_cast<const void *>(&capture_native_caption_draw<NativeFieldKind::EmbarkSelected>)});
+            break;
+        case NativeFieldKind::EmbarkChoice:
+            calls.push_back({native_pe_rva(0x105fbef), native_pe_rva(0x8c1b50),
+                reinterpret_cast<const void *>(&capture_embark_choice_name)});
+            g_embark_choice_name = reinterpret_cast<EmbarkChoiceNameFn>(
+                native_pe_address(profile.base, 0x8c1b50));
+            calls.push_back({site.draw, profile.draw_target,
+                reinterpret_cast<const void *>(&capture_native_caption_draw<NativeFieldKind::EmbarkChoice>)});
+            break;
+#else
+        case NativeFieldKind::EmbarkSelected:
+        case NativeFieldKind::EmbarkChoice: break;
+#endif
         case NativeFieldKind::Origin:
             append_native_caption_calls<NativeFieldKind::Origin>(calls, profile, site); break;
         case NativeFieldKind::BookTitle:

@@ -678,8 +678,8 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
          {0x48,0x03,0x51,0x10}, true}};
     profile.sites = {
         {0x105cda3,0x105ce01,NativeFieldKind::EmbarkItem},
-        {0x105eee9,0x105ef47,NativeFieldKind::EmbarkItem},
-        {0x105fc25,0x105fc83,NativeFieldKind::EmbarkItem},
+        {0x105eee9,0x105ef47,NativeFieldKind::EmbarkSelected},
+        {0x105fc25,0x105fc83,NativeFieldKind::EmbarkChoice},
         {0x1060878,0x10608d9,NativeFieldKind::EmbarkItem},
         {0x10613f2,0x1061450,NativeFieldKind::EmbarkItem},
         // Adventure equipment uses separate selected/available item loops.
