@@ -120367,7 +120367,7 @@ Recenter on this location.	将视图重新居中到此位置。	wl
 Refuse request to join {e}	拒绝加入{e1}的请求	hPt
 Reject the attempt to calm	拒绝安抚	hP
 Related Historical Figures	相关历史人物	h
-Retake hatch to forbid it.	先夺回舱盖，才能将其禁用。	hP
+Retake hatch to forbid it.	夺回地板活盖后才能禁止通行。	hP
 Routine:Staggered training	日程：轮换训练	wl
 Save list mode: Adventurer	冒险模式	h
 Save list status: Portable	便携模式	h
@@ -122509,6 +122509,7 @@ Rampage of {a} within {p}	在{p1}，{a1}的肆虐事件	htEi
 Rampage of {n} in in {p}.	{n1}在{p1}的肆虐事件。	htEi
 Related Historical Events	相关历史事件	h
 Respected for heroic acts	因为英雄之举被尊敬	w
+Retake door to forbid it.	夺回这扇门后才能禁止通行。	w
 Routine:Constant training	日程：持续训练	wl
 Save and continue playing	保存并继续	w
 Save to timeline folder: 	保存到时间线文件夹：	w
@@ -126497,6 +126498,7 @@ Gladiatory Games in {p}	在{p1}，角斗比赛	htEi
 Glaze clay/stone statue	为黏土/石质雕像上釉	wi
 Good analytical ability	良好的分析能力	w
 Gremlin triggered plate	小精怪触发压力板	w
+HATCH TAKEN BY INVADERS	地板活盖已被入侵者占领	w
 Handling light aquifers	处理轻含水层	hq
 Handling light aquifers	处理轻含水层	w
 Hang from {s} ({s}/Air)	悬挂于{s1}（{s2}／空气）	hPt
@@ -128606,6 +128608,7 @@ DFHack help: view_id =	view_id =	l
 DFHack help: woodtools	木工具	l
 DFHack help: workorder	workorder	l
 DFHack help: zone ====	zone ====	l
+DOOR TAKEN BY INVADERS	门已被入侵者占领	w
 Date: {d}nd Slate, {d}	日期：第{d2}年板岩月{d1}日	hPt
 Date: {d}rd Slate, {d}	日期：第{d2}年板岩月{d1}日	hPt
 Date: {d}st Slate, {d}	日期：第{d2}年板岩月{d1}日	hPt
@@ -128640,6 +128643,7 @@ Get {s} from {s} ({s})	从{s2}处拿取{s1}（{s3}）	hPt
 Glaze clay/stone craft	为黏土/石质工艺品上釉	wi
 Grand guild unit count	大行会成员人数要求
 Grant sleep permission	允许留宿	hP
+HATCH USED BY INTRUDER	潜入者使用过这个地板活盖	w
 Hatches can be placed 	盖板可放置在楼梯井顶部或斜坡	w
 He is a perfectionist.	他是个完美主义者。	l
 He is quite ambitious.	他颇有雄心壮志。	l
@@ -128770,6 +128774,7 @@ Open the world screen.	打开世界界面。	hj
 Open the world screen.	打开世界界面。	w
 Open tree-felling mode	打开伐木模式	hqO
 Open tree-felling mode	打开砍树模式	w
+Operated by Mechanisms	由机关控制	w
 Ornamental.  Demanded 	装饰品。部分贵族有需求。	w
 Other Vegetation: None	其他植被:无	w
 Overwhelmed by horror!	被恐怖笼罩了！	hP
@@ -130762,6 +130767,7 @@ DFHack help: woodammo	木弹	l
 DFHack help: work-now	work-now	l
 DFHack help: workflow	workflow	l
 DFHack help: wrecked:	失事：	l
+DOOR USED BY INTRUDER	潜入者使用过这扇门	w
 Dance Competition of.	舞蹈比赛。	hEi
 Dance Performance of.	舞蹈表演。	hEi
 Date: {d}nd Opal, {d}	日期：第{d2}年蛋白石月{d1}日	hPt
@@ -152305,6 +152311,7 @@ Fish Dissectors	剖鱼工	wi
 Fishery Workers	渔业工人	wi
 Fishing/Related	捕鱼及相关劳动	wi
 Food and drinks	食物与饮品	wi
+Forbidden, Open	禁止通行，已开启	w
 Former prisoner	前囚徒	w
 Found a feature	发现地质特征	w
 Glowing Barrier	发光的屏障	wi
@@ -157260,6 +157267,7 @@ Other Objects:	其他物品：	w
 Outdoor access	通向户外的路径	w
 Over a hundred	一百多个
 Partially numb	局部麻木
+Passable, Open	可通行，已开启	w
 Performance of	表演	hEi
 Pets/Livestock	宠物/牲畜	w
 Pick {s} ({s})	采摘{s1}（{s2}）	hPt

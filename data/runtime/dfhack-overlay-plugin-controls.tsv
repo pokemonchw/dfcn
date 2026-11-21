@@ -161,6 +161,34 @@ DFHack GUI Overlay control: Unlink mode|Free local mechanism|I|1|-1|1	断开连�
 DFHack GUI Overlay control: Unlink mode|Free target mechanism|I|1|-1|1	断开连接方式|释放目标机件	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/buildingplan/unlink_mechanisms.lua:203-216 [buildingplan.mechanism_unlink]
 DFHack GUI Overlay control: Unlink mode|Free local and target|I|1|-1|1	断开连接方式|释放双方机件	l
+# buildingplan/unlink_mechanisms.lua. Pull status and lever direction share a Label.
+DFHack GUI Mechanism button: Pull	拉动	l
+DFHack GUI Mechanism button: Pulling	拉动中	l
+DFHack GUI Mechanism button: Queued	已排队	l
+DFHack GUI Mechanism button: Unlink	断开	l
+DFHack GUI Mechanism button: Unlink all	全部断开	l
+DFHack GUI Mechanism button: Free	取出	l
+DFHack GUI Mechanism button: Free all	全部取出	l
+DFHack GUI Mechanism dialog: Unlink mechanism	断开机件连接	l
+DFHack GUI Mechanism dialog: Unlink	断开全部连接	l
+DFHack GUI Mechanism dialog: Free mechanism	取出机件	l
+DFHack GUI Mechanism dialog: Free all mechanisms	取出全部机件	l
+DFHack GUI Mechanism prompt: Unlink mechanism?	要断开这个机件的连接吗？	l
+DFHack GUI Mechanism prompt: Unlink all mechanisms?	要断开所有机件的连接吗？	l
+DFHack GUI Mechanism prompt: Mechanism:	机件：	l
+DFHack GUI Mechanism prompt: This mechanism:	机件：	l
+DFHack GUI Mechanism prompt: Target building:	目标建筑：	l
+DFHack GUI Mechanism prompt: This mechanism will be freed and moved to the ground.	本建筑的机件将被取出并放到地上。	l
+DFHack GUI Mechanism prompt: This mechanism will be kept in the building. You can free it later.	本建筑的机件将留在原处，之后可以取出。	l
+DFHack GUI Mechanism prompt: Mechanism in target will be freed and moved to the ground.	目标建筑的机件将被取出并放到地上。	l
+DFHack GUI Mechanism prompt: Mechanism in target will be kept in the building. You can free it later.	目标建筑的机件将留在原处，之后可以取出。	l
+DFHack GUI Mechanism prompt: These mechanisms will be freed and moved to the ground.	本建筑的这些机件将被取出并放到地上。	l
+DFHack GUI Mechanism prompt: These mechanisms will be kept in the building. You can free them later.	本建筑的这些机件将留在原处，之后可以取出。	l
+DFHack GUI Mechanism prompt: Mechanisms in linked buildings will be freed and moved to the ground.	相连建筑的机件将被取出并放到地上。	l
+DFHack GUI Mechanism prompt: Mechanisms in linked buildings will be kept in the buildings. You can free them later.	相连建筑的机件将留在原处，之后可以取出。	l
+DFHack GUI Mechanism prompt: Free mechanism and move it to the ground?	要取出这个机件并放到地上吗？	l
+DFHack GUI Mechanism prompt: Free all mechanisms and move them to the ground?	要取出所有未连接的机件并放到地上吗？	l
+DFHack GUI Mechanism prompt: This will recover all unlinked mechanisms from the building for reuse.	这样可以回收建筑中所有未连接的机件，供再次使用。	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/burrow.lua:67-77 [burrow.designation]
 DFHack GUI Overlay control: Flood fill on double click:|Off|I|1|-1|1	双击填充：|关闭	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/burrow.lua:67-77 [burrow.designation]

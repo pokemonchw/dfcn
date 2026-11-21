@@ -35,14 +35,12 @@ std::vector<Match> dfhack_auxiliary_matches;
             (gps_->screen_pixel_y - gps_->dimy * th) / 2 + box.y * th,
             box.w * tw, box.h * th};
     };
-    const auto auxiliary_literal = [&](int x, int y, std::string_view source, int right,
-            bool centered = false, std::string_view scope = "DFHack help: ") {
-        if (x < 0 || y < 0 || y >= gps_->dimy || right > gps_->dimx ||
+    const auto auxiliary_field = [&](int x, int y, std::string_view source, int right,
+            const std::optional<std::string> &target, bool centered = false) {
+        if (!target || x < 0 || y < 0 || y >= gps_->dimy || right > gps_->dimx ||
             x + static_cast<int>(source.size()) > right) return;
         const auto raw = read_row(y);
         if (raw.compare(x, source.size(), source) != 0) return;
-        const auto target = exact_literal_translation(std::string(scope) + std::string(source));
-        if (!target) return;
         dfhack_auxiliary_regions.push_back({x, y, static_cast<int>(source.size()), 1});
         if (only_y >= 0 && only_y != y) return;
         Match match{x, y, static_cast<int>(source.size()), kDfhackHotkeysHintRule,
@@ -52,6 +50,11 @@ std::vector<Match> dfhack_auxiliary_matches;
         match.layout_left = !centered;
         match.layout_clip_right = right;
         dfhack_auxiliary_matches.push_back(std::move(match));
+    };
+    const auto auxiliary_literal = [&](int x, int y, std::string_view source, int right,
+            bool centered = false, std::string_view scope = "DFHack help: ") {
+        auxiliary_field(x, y, source, right,
+            exact_literal_translation(std::string(scope) + std::string(source)), centered);
     };
     const auto gui_literal = [&](int x, int y, std::string_view source, int right,
             std::string_view role, bool centered = false) {

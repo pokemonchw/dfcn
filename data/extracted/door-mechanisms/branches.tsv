@@ -1,0 +1,104 @@
+# Dwarf Fortress 53.17 Windows；地址为本次安装映像 VA。提示地址引用各 ID 的初始化文本。
+# DFHack 脚本采用随安装提供的 Lua 源码。unlink_mechanisms.lua SHA-256 6611afd04d6e079b996b3ee3e43a61e5002f96a7c9634e38efafbcc91a902b92
+区域	显示条件	英文原文或动态值	中文或显示方式	Steam VA	Classic VA	来源
+door	door_flags 0x20	Operated by Mechanisms	由机关控制	0x140195408	0x140195398	Dwarf Fortress.exe
+door	door_flags !0x20 && 0x01	Forbidden	禁止通行	0x1401954b5	0x140195445	Dwarf Fortress.exe
+door	door_flags !0x20 && !0x01	Passable	可通行	0x14019550c	0x14019549c	Dwarf Fortress.exe
+door	!0x20 && 0x04	DOOR TAKEN BY INVADERS	门已被入侵者占领	0x1401955b7	0x140195547	Dwarf Fortress.exe
+door	!0x20 && !0x04 && 0x08	DOOR USED BY INTRUDER	潜入者使用过这扇门	0x1401956f6	0x140195686	Dwarf Fortress.exe
+door	上述任一警告的下一行	Retake door to forbid it.	夺回这扇门后才能禁止通行。	0x140195646 / 0x140195785	0x1401955d6 / 0x140195715	Dwarf Fortress.exe
+door	!0x20 && !0x04 && !0x08	通行状态控制图标；无附加文字	—			door()
+hatch	door_flags 0x20	Operated by Mechanisms	由机关控制	0x140195aa8	0x140195a38	Dwarf Fortress.exe
+hatch	door_flags !0x20 && 0x01	Forbidden	禁止通行	0x140195b55	0x140195ae5	Dwarf Fortress.exe
+hatch	door_flags !0x20 && !0x01	Passable	可通行	0x140195bac	0x140195b3c	Dwarf Fortress.exe
+hatch	!0x20 && !0x10，接在 Forbidden 或 Passable 后	, 	，	0x140195c1d	0x140195bad	Dwarf Fortress.exe
+hatch	!0x20 && !0x10，接在 Forbidden 或 Passable 后	Open	已开启（与通行状态组合）	0x140195c72	0x140195c02	Dwarf Fortress.exe
+hatch	!0x20 && 0x04	HATCH TAKEN BY INVADERS	地板活盖已被入侵者占领	0x140195d1d	0x140195cad	Dwarf Fortress.exe
+hatch	!0x20 && !0x04 && 0x08	HATCH USED BY INTRUDER	潜入者使用过这个地板活盖	0x140195e5c	0x140195dec	Dwarf Fortress.exe
+hatch	上述任一警告的下一行	Retake hatch to forbid it.	夺回地板活盖后才能禁止通行。	0x140195dac / 0x140195eeb	0x140195d3c / 0x140195e7b	Dwarf Fortress.exe
+hatch	!0x20 && !0x04 && !0x08	通行状态控制图标；无附加文字	—			hatch()
+door_name	building.name 非空	{自定义建筑名}	原样显示			door_name()
+door_name	材质所有者存在	's 	所有者名称＋的	0x1405698d8	0x1405670d8	Dwarf Fortress.exe
+door_name	材质带前缀	 	材质前缀与材质名称组合	0x140569970	0x140567170	Dwarf Fortress.exe
+door_name	材质查询失败	unknown material	未知材料	0x140569997	0x140567197	Dwarf Fortress.exe
+door_name	组合材质与建筑类型	 Door	门	0x1405699cd	0x1405671cd	Dwarf Fortress.exe
+hatch_name	building.name 非空	{自定义建筑名}	原样显示			hatch_name()
+hatch_name	材质所有者存在	's 	所有者名称＋的	0x140569c08	0x140567408	Dwarf Fortress.exe
+hatch_name	材质带前缀	 	材质前缀与材质名称组合	0x140569ca0	0x1405674a0	Dwarf Fortress.exe
+hatch_name	材质查询失败	unknown material	未知材料	0x140569cc7	0x1405674c7	Dwarf Fortress.exe
+hatch_name	组合材质与建筑类型	 Floor Hatch	地板活盖	0x140569cfd	0x1405674fd	Dwarf Fortress.exe
+header	命名编辑中且光标可见	_	_	0x140181bde	0x140181b6e	Dwarf Fortress.exe
+header	建筑永久物品被禁用；标题区上下两行	*** Forbidden ***	*** 已禁用 ***	0x140181c78 / 0x140181cdc	0x140181c08 / 0x140181c6c	Dwarf Fortress.exe
+removal	有拆除任务	Slated for removal	已指定拆除	0x14018229e	0x14018222e	Dwarf Fortress.exe
+removal	拆除任务暂停	Removal suspended.	拆除暂停。	0x1401823bd	0x14018234d	Dwarf Fortress.exe
+removal	拆除任务未暂停、尚未启动	Removal inactive.	拆除任务未启动。	0x140182443	0x1401823d3	Dwarf Fortress.exe
+removal	拆除任务可取消	Cancel removal	取消拆除	0x14018263b	0x1401825cb	Dwarf Fortress.exe
+construction	进度为零	Waiting for construction...	等待建造……	0x140182b31	0x140182ac1	Dwarf Fortress.exe
+construction	进度大于零且低于 0.33	Construction initiated.	建造已开始。	0x140182b8b	0x140182b1b	Dwarf Fortress.exe
+construction	进度在 [0.33, 0.66)	Partially constructed.	已完成部分建造。	0x140182be5	0x140182b75	Dwarf Fortress.exe
+construction	剩余未完工阶段	Construction nearly done.	建造即将完成。	0x140182c25	0x140182bb5	Dwarf Fortress.exe
+construction	建造任务暂停	Construction suspended.	建造暂停。	0x140182d3c	0x140182ccc	Dwarf Fortress.exe
+construction	建造任务未暂停、尚未启动	Construction inactive.	建造任务未启动。	0x140182dc2	0x140182d52	Dwarf Fortress.exe
+construction	暂停时	Resume construction	恢复建造	0x140182fc6	0x140182f56	Dwarf Fortress.exe
+construction	未暂停时	Suspend construction	暂停建造	0x140183006	0x140182f96	Dwarf Fortress.exe
+construction	建造阶段为零	Cancel construction	取消建造	0x14018321d	0x1401831ad	Dwarf Fortress.exe
+construction	建造阶段非零	Remove building	拆除建筑	0x14018325d	0x1401831ed	Dwarf Fortress.exe
+contents	存在机关连接，第一个页签	Show linked buildings	显示已连接建筑	0x14019cfb5	0x14019cf45	Dwarf Fortress.exe
+contents	存在机关连接，第二个页签	Show items	显示物品	0x14019d000	0x14019cf90	Dwarf Fortress.exe
+contents	连接页，解析 BUILDING_TRIGGER 或 BUILDING_TRIGGERTARGET 引用；目标存在	{目标建筑名}	建筑名称规则			contents()，目标建筑虚函数 +0x188；超宽时截短并可追加 ...
+contents	物品页、无连接或建造/拆除视图	{物品描述}	物品描述规则			contents()，原生物品描述；超宽时截短并可追加 ...
+contents	门或活盖没有可解析的触发器/目标建筑引用	无连接行	—			header() 与 contents()
+tooltip	名称羽毛按钮	Name this building.	为此建筑命名。	0x14040a634	0x140407fd4	Dwarf Fortress.exe，提示 ID 0x12d
+tooltip	拆除按钮	Remove this building.	移除此建筑。	0x14040a665	0x140408005	Dwarf Fortress.exe，提示 ID 0x12e
+tooltip	连接行，重新居中	Recenter on the linked building.	将视图重新居中到已连接的建筑。	0x14040a8e2	0x140408282	Dwarf Fortress.exe，提示 ID 0x13b
+tooltip	在任务中	This item is tagged by a task and will not be used by other tasks.	此物品已被某项任务占用，不会用于其他任务。	0x14040a355	0x140407cf5	Dwarf Fortress.exe，提示 ID 0x11e
+tooltip	in_building 且 use_mode == 2	This item is a permanent part of the building.  Forbid and visibility tags set here affect the whole building.	此物品是建筑的永久组成部分。在此设置的禁用和可见性标记会影响整座建筑。	0x14040a944	0x1404082e4	Dwarf Fortress.exe，提示 ID 0x13d
+tooltip	其他安装在门/活盖内的物品	This item is a semi-permanent part of the building, like an item on display.	此物品是建筑的半固定组成部分，例如正在展示的物品。	0x14040aa6a	0x14040840a	Dwarf Fortress.exe，提示 ID 0x143
+tooltip	查看物品	View this item's sheet.	查看此物品的详情页。	0x14040aa9b	0x14040843b	Dwarf Fortress.exe，提示 ID 0x144
+tooltip	切换禁用标记，两态	Toggle the forbidden status of the item.  Citizens will not use forbidden items or buildings.  If a permanent building item is forbidden, citizens will not perform tasks there!	切换物品的禁用状态。居民不会使用被禁用的物品或建筑。如果禁用建筑的永久组成物品，居民就不会在那里执行任务！	0x14040aacc	0x14040846c	Dwarf Fortress.exe，提示 ID 0x145
+tooltip	可倾倒，两态	Toggle the dump status of the item.  Items are dumped in dumping zones.	切换物品的倾倒状态。物品会被运到物品倾倒区。	0x14040aafd	0x14040849d	Dwarf Fortress.exe，提示 ID 0x146
+tooltip	可熔化，两态	Toggle the melt status of the item.  Items are melted at any smelter.	切换物品的熔化状态。物品可在任意熔炉中熔化。	0x14040ab2e	0x1404084ce	Dwarf Fortress.exe，提示 ID 0x147
+tooltip	切换可见性，两态	Toggle the visibility of the item.  Hidden items cannot be seen but citizens will still use them.  If a permanent building item is invisible, the building will be too!	切换物品的可见性。隐藏物品不可见，但居民仍会使用。如果隐藏建筑的永久组成物品，整座建筑也会隐藏！	0x14040ab5f	0x1404084ff	Dwarf Fortress.exe，提示 ID 0x148
+buildingplan	目标是控制杆；无拉杆任务	Pull	拉动			plugins/buildingplan/unlink_mechanisms.lua:66
+buildingplan	目标是控制杆；有拉杆任务，无执行者	Queued	已排队			plugins/buildingplan/unlink_mechanisms.lua:70
+buildingplan	目标是控制杆；有拉杆任务，已有执行者	Pulling	拉动中			plugins/buildingplan/unlink_mechanisms.lua:68
+buildingplan	图形模式，状态 0 / 非零	/ 或反斜杠	保留方向符号			plugins/buildingplan/unlink_mechanisms.lua:57
+buildingplan	字符模式，状态 0 / 非零	CP437 0x95 或 0xA2	保留方向符号			plugins/buildingplan/unlink_mechanisms.lua:59
+buildingplan	可见连接行	Unlink	断开			plugins/buildingplan/unlink_mechanisms.lua:289
+buildingplan	批量操作；无链接时禁用	Unlink all	全部断开			plugins/buildingplan/unlink_mechanisms.lua:222
+buildingplan	断开方式选择器	Unlink mode	断开连接方式			plugins/buildingplan/unlink_mechanisms.lua:207
+buildingplan	物品页，可回收的未连接机件行	Free	取出			plugins/buildingplan/unlink_mechanisms.lua:558
+buildingplan	物品页，至少一个可回收机件	Free all	全部取出			plugins/buildingplan/unlink_mechanisms.lua:534
+buildingplan	断开方式 0	Don't auto free	不自动释放			plugins/buildingplan/unlink_mechanisms.lua:211
+buildingplan	断开方式 1	Free local mechanism	释放本地机件			plugins/buildingplan/unlink_mechanisms.lua:212
+buildingplan	断开方式 2	Free target mechanism	释放目标机件			plugins/buildingplan/unlink_mechanisms.lua:213
+buildingplan	断开方式 3	Free local and target	释放双方机件			plugins/buildingplan/unlink_mechanisms.lua:214
+buildingplan	单项断开确认框标题	Unlink mechanism	断开机件连接			plugins/buildingplan/unlink_mechanisms.lua:327
+buildingplan	批量断开确认框标题	Unlink	断开全部连接			plugins/buildingplan/unlink_mechanisms.lua:401
+buildingplan	单项回收确认框标题	Free mechanism	取出机件			plugins/buildingplan/unlink_mechanisms.lua:586
+buildingplan	批量回收确认框标题	Free all mechanisms	取出全部机件			plugins/buildingplan/unlink_mechanisms.lua:602
+buildingplan	确认框首行	Unlink mechanism?	要断开这个机件的连接吗？			plugins/buildingplan/unlink_mechanisms.lua:315
+buildingplan	确认框首行	Unlink all mechanisms?	要断开所有机件的连接吗？			plugins/buildingplan/unlink_mechanisms.lua:393
+buildingplan	标签；后接物品 getDescription	Mechanism:	机件：			plugins/buildingplan/unlink_mechanisms.lua:317
+buildingplan	标签；后接物品 getDescription	This mechanism:	机件：			plugins/buildingplan/unlink_mechanisms.lua:584
+buildingplan	标签；后接建筑 getName	Target building:	目标建筑：			plugins/buildingplan/unlink_mechanisms.lua:319
+buildingplan	本端取出	This mechanism will be freed and moved to the ground.	本建筑的机件将被取出并放到地上。			plugins/buildingplan/unlink_mechanisms.lua:321
+buildingplan	本端保留	This mechanism will be kept in the building. You can free it later.	本建筑的机件将留在原处，之后可以取出。			plugins/buildingplan/unlink_mechanisms.lua:322
+buildingplan	目标端取出	Mechanism in target will be freed and moved to the ground.	目标建筑的机件将被取出并放到地上。			plugins/buildingplan/unlink_mechanisms.lua:324
+buildingplan	目标端保留	Mechanism in target will be kept in the building. You can free it later.	目标建筑的机件将留在原处，之后可以取出。			plugins/buildingplan/unlink_mechanisms.lua:325
+buildingplan	本端取出	These mechanisms will be freed and moved to the ground.	本建筑的这些机件将被取出并放到地上。			plugins/buildingplan/unlink_mechanisms.lua:395
+buildingplan	本端保留	These mechanisms will be kept in the building. You can free them later.	本建筑的这些机件将留在原处，之后可以取出。			plugins/buildingplan/unlink_mechanisms.lua:396
+buildingplan	目标端取出	Mechanisms in linked buildings will be freed and moved to the ground.	相连建筑的机件将被取出并放到地上。			plugins/buildingplan/unlink_mechanisms.lua:398
+buildingplan	目标端保留	Mechanisms in linked buildings will be kept in the buildings. You can free them later.	相连建筑的机件将留在原处，之后可以取出。			plugins/buildingplan/unlink_mechanisms.lua:399
+buildingplan	确认框首行	Free mechanism and move it to the ground?	要取出这个机件并放到地上吗？			plugins/buildingplan/unlink_mechanisms.lua:582
+buildingplan	确认框首行	Free all mechanisms and move them to the ground?	要取出所有未连接的机件并放到地上吗？			plugins/buildingplan/unlink_mechanisms.lua:598
+buildingplan	批量回收说明	This will recover all unlinked mechanisms from the building for reuse.	这样可以回收建筑中所有未连接的机件，供再次使用。			plugins/buildingplan/unlink_mechanisms.lua:600
+dialog	显示确认框；快捷键使用当前绑定	Pause this confirmation	暂停此确认			gui/dialogs.lua:148
+dialog	显示确认框；快捷键使用当前绑定	Yes, proceed	确认继续			gui/dialogs.lua:166
+dialog	该操作类别已选择暂停确认	无弹窗，直接执行	—			plugins/buildingplan/unlink_mechanisms.lua:147
+buildingplan	可见连接的目标为压力板等非控制杆建筑	仅显示断开按钮	—			plugins/buildingplan/unlink_mechanisms.lua:446-465
+buildingplan	拉杆已有任务时再次点击	取消拉动任务；无确认框	—			plugins/buildingplan/unlink_mechanisms.lua:379-388
+buildingplan	单项或批量断开后，门或活盖已没有连接	切回物品页	—			plugins/buildingplan/unlink_mechanisms.lua:329-331,425-427
+buildingplan	建筑主体、仍在连接或已分配给任务的机件	不显示单项取出按钮	—			plugins/buildingplan/unlink_mechanisms.lua:623-630
+buildingplan	没有可回收的机件	不显示批量取出按钮	—			plugins/buildingplan/unlink_mechanisms.lua:635-648
+dialog	DFHack 窗口显示强制暂停标记	PAUSE FORCED	强制暂停			gui.lua:1338

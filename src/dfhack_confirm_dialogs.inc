@@ -4,6 +4,61 @@
 // conviction prompt contains the selected unit's actual visible name, while
 // order removal appends a separately wrapped material/job description.
 {
+    // buildingplan uses a plain Label with separate item/building tokens and
+    // passes only the pause callback to showYesNoPrompt. Label does not wrap.
+    const auto mechanism_title = action == "Yes, proceed" ?
+        translate_dfhack_console_owned_literal("DFHack GUI Mechanism dialog: ", title) : std::nullopt;
+    if (mechanism_title) {
+        const int body_right = right - 1;
+        dfhack_auxiliary_regions.push_back(*frame);
+        auxiliary_field(at, title_y, title, title_end, mechanism_title, true);
+        const auto fields = native_dfhack_overlay_texts(gps_);
+        const auto complete_field = [&](int x, int y, std::string_view visible) {
+            for (const auto &field : fields)
+                if (field.role == NativeDfhackOverlayTextRole::Text && field.view_id == "label" &&
+                        field.full_x == x && field.y == y && field.visible.starts_with(visible) &&
+                        field.full.starts_with(visible)) return std::string_view(field.full);
+            return visible;
+        };
+        for (int y = top; y <= footer_y - 4; ++y) {
+            const auto band = std::string_view(dfhack_context_rows[y]).substr(left, body_right - left);
+            const auto row = trim_view(band);
+            if (row.empty()) continue;
+            int x = left + static_cast<int>(row.data() - band.data());
+            // The spaces before these separately colored values are part
+            // of the producer's label. Keep the blue value in its own column.
+            size_t value_offset = 0;
+            for (std::string_view prefix : {"Mechanism:       ", "Target building: ", "This mechanism: "}) {
+                if (!row.starts_with(prefix)) continue;
+                const auto label = trim_view(prefix);
+                auxiliary_field(x, y, label, x + static_cast<int>(prefix.size()),
+                    translate_dfhack_console_owned_literal("DFHack GUI Mechanism prompt: ", label));
+                value_offset = prefix.size();
+                break;
+            }
+            if (value_offset) {
+                x += static_cast<int>(value_offset);
+                const auto visible = row.substr(value_offset);
+                const auto source = complete_field(x, y, visible);
+                const auto kind = row.starts_with("Target building: ") ?
+                    NativeInfoTitleKind::Building : NativeInfoTitleKind::ItemList;
+                auxiliary_field(x, y, visible, body_right, translate_info_panel_title(kind, source));
+            } else {
+                auxiliary_field(x, y, row, body_right, translate_dfhack_console_owned_literal(
+                    "DFHack GUI Mechanism prompt: ", trim_view(complete_field(x, y, row))));
+            }
+        }
+        constexpr std::string_view pause = "Pause this confirmation";
+        const int controls_y = footer_y - 2;
+        const auto controls = std::string_view(dfhack_context_rows[controls_y]).substr(left, body_right - left);
+        const auto pause_at = controls.find(": ");
+        if (pause_at != std::string_view::npos && trim_view(controls.substr(pause_at + 2)) == pause)
+            auxiliary_field(left + static_cast<int>(pause_at + 2), controls_y, pause, body_right,
+                translate_dfhack_console_owned_literal("DFHack GUI Confirmation control: ", pause));
+        gui_literal(action_x, footer_y, action, body_right, "Confirmation action");
+        gui_literal(frame->x + 3, bottom, "PAUSE FORCED", frame->x + 15, "Frame status");
+        continue;
+    }
     const auto confirm_dialog = [&]() -> bool {
         if (!confirm_action || action != "Yes, proceed") return false;
         using ConfirmPair = std::pair<std::string_view, std::string_view>;

@@ -11587,9 +11587,17 @@ Retracted Spikes	缩回的尖刺	w
 Retracted Spears/Spikes	缩回的长矛/尖刺	w
 # Shared building-detail forbidden banner at PE 0x1401805d8/0x14018063c.
 *** Forbidden ***	*** 已禁用 ***	w
-# Door passage states: use the UI meaning before procedural name fallback.
+# Door and floor hatch passage states, Windows 53.17. The hatch appends ", Open".
+Operated by Mechanisms	由机关控制	w
 Passable	可通行	w
 Forbidden	禁止通行	w
+Passable, Open	可通行，已开启	w
+Forbidden, Open	禁止通行，已开启	w
+DOOR TAKEN BY INVADERS	门已被入侵者占领	w
+DOOR USED BY INTRUDER	潜入者使用过这扇门	w
+Retake door to forbid it.	夺回这扇门后才能禁止通行。	w
+HATCH TAKEN BY INVADERS	地板活盖已被入侵者占领	w
+HATCH USED BY INTRUDER	潜入者使用过这个地板活盖	w
 # Engraving info header: native 0x1401a9e66/0x1401a9ec4 fallback title.
 Untitled	无题	w
 

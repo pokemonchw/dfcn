@@ -188,7 +188,29 @@
         const int last_y = only_y < 0 ? gps_->dimy : std::min(gps_->dimy, only_y + 1);
         for (const auto &text : source_texts) {
             if (text.y < first_y || text.y >= last_y || text.option_name) continue;
-            if (text.overlay_name == "spectate.tooltip") {
+            if ((text.overlay_name == "buildingplan.mechanism_unlink" ||
+                    text.overlay_name == "buildingplan.mechanism_free") &&
+                    text.role == NativeDfhackOverlayTextRole::Text && text.full == text.caption) {
+                // get_pull_label pads the status to eight tiles. The ninth is the
+                // lever itself, rendered with a different glyph in ASCII mode.
+                std::string_view label = text.full;
+                if (label.size() == 9 && std::string_view("/\\\x95\xa2").find(label.back()) !=
+                        std::string_view::npos)
+                    label = trim_view(label.substr(0, 8));
+                const auto target = translate_dfhack_console_owned_literal(
+                    "DFHack GUI Mechanism button: ", label);
+                if (target) {
+                    const int end = text.x + static_cast<int>(text.visible.size());
+                    const int word_end = text.full_x + static_cast<int>(label.size());
+                    const int right = label.size() == text.full.size() ? end :
+                        std::min(end, text.full_x + 8);
+                    const int length = std::min(end, word_end) - text.x;
+                    if (length > 0) {
+                        dfhack_auxiliary_regions.push_back({text.x, text.y, length, 1});
+                        emit(text.x, text.y, length, *target, right);
+                    }
+                }
+            } else if (text.overlay_name == "spectate.tooltip") {
                 // Both the direct unit banner and MouseTooltip's Label retain
                 // their actual GetUnitInfoText fields. Resolve complete jobs
                 // with the activity grammar; never interpret a name or a
