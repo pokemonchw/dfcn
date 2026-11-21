@@ -143007,8 +143007,8 @@ yellow spessartine	橙榴石	wi
 {b} When It Counts	关键时刻的{b}	hbti
 {b} Without Limits	无界的{b}	hbti
 {c} bundles of {s}	{c1}捆{s1}	hIit
-{c} {s} (\x0B) in {p}	在{p}的{c}只{s}（♂）	ht
-{c} {s} (\x0C) in {p}	在{p}的{c}只{s}（♀）	ht
+{c} {s} (\x0B) in {p}	{p}：{s}（♂） × {c}	ht
+{c} {s} (\x0C) in {p}	{p}：{s}（♀） × {c}	ht
 {d} assigned items	已指定{d}件物品	wlt
 {d} pig tail cloth	{d} 块猪尾草布	wtl
 {d} pig tail seeds	{d} 份猪尾草种子	wtl
@@ -161912,7 +161912,7 @@ youngest child	最小的孩子	h
 {b} is an {s}.	《{b}》是一部{s}。	ht
 {b}: The Truth	{b}：真相	hbti
 {c} Other Kill	其他击杀数：{c}	ht
-{c} {s} in {p}	在{p}的{c}只{s}	ht
+{c} {s} in {p}	{p}：{s} × {c}	ht
 {d} imprisoned	已囚禁 {d}	wtl
 {d} to harvest	待收获{d}	wtl
 {d} to present	{d1}年至今	ht

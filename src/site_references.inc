@@ -468,7 +468,7 @@ std::optional<std::string> Overlay::translate_world_artifact_location(
             source.find_first_of("\r\n") != std::string_view::npos) return std::nullopt;
     // These are complete native fallback/type labels, rather than generated
     // names. Keep their existing scoped wording before any name compositor.
-    for (const std::string_view label : {"an unknown site", "an unknown region",
+    for (const std::string_view label : {"the wilds", "an unknown site", "an unknown region",
             "an unknown underground region", "the depths of the world",
             "the magma sea", "the Underworld"})
         if (source == label) return translate_legends_term(source);

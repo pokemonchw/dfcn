@@ -8535,11 +8535,11 @@ by	由	h
 ,	，	h
 :	：	h
 ;	；	h
-{c} {s} (\x0B) in {p}	在{p}的{c}只{s}（♂）	ht
+{c} {s} (\x0B) in {p}	{p}：{s}（♂） × {c}	ht
 {c} {s} (\x0B)	{c} {s}（♂）	ht
-{c} {s} (\x0C) in {p}	在{p}的{c}只{s}（♀）	ht
+{c} {s} (\x0C) in {p}	{p}：{s}（♀） × {c}	ht
 {c} {s} (\x0C)	{c} {s}（♀）	ht
-{c} {s} in {p}	在{p}的{c}只{s}	ht
+{c} {s} in {p}	{p}：{s} × {c}	ht
 {n} settled in {p}.	{n}在{p}安顿下来。	ht
 {n} attacked {p} at {p}.	在{p2}，{n}攻击了{p1}。	ht
 {n} struck down {n} in {p}.	在{p}，{n1}击杀了{n2}。	ht

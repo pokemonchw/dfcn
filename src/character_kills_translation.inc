@@ -35,16 +35,19 @@ std::optional<std::string> Overlay::translate_character_kill_record(
         if (!source.ends_with(suffix)) continue;
         const auto count = adventure_location_count(lower(std::string(
             trim_view(source.substr(0, source.size() - suffix.size())))));
-        if (!count) return std::nullopt;
-        return apply("{c}" + std::string(suffix), {std::to_string(*count)});
+        if (count) return apply("{c}" + std::string(suffix), {std::to_string(*count)});
+        break;
     }
 
     // A notable victim is NAME the SPECIES, d. YEAR, or an unnamed caste.
     // Dates are complete fields: do not feed them to generated-name fallback.
-    const size_t date_at = source.find(", ");
-    if (date_at != std::string_view::npos) {
+    const size_t date_at = source.rfind(", ");
+    const auto date_field = date_at == std::string_view::npos
+        ? std::string_view{} : trim_view(source.substr(date_at + 2));
+    if (date_field.starts_with("b. ") || date_field.starts_with("d. ") ||
+            date_field.starts_with("died in ")) {
         const auto identity = trim_view(source.substr(0, date_at));
-        std::string dates(trim_view(source.substr(date_at + 2)));
+        std::string dates(date_field);
         if (dates.starts_with("died in ")) dates.replace(0, 8, "d. ");
         if (dates.ends_with('.')) dates.pop_back();
         std::optional<std::string> date;
@@ -104,7 +107,10 @@ std::optional<std::string> Overlay::translate_character_kill_record(
             const auto species = translate_creature_descriptor(
                 trim_view(counted_species.substr(split + 1)), true);
             if (!species) continue;
-            const auto place = translate_legends_name(place_source, false);
+            // The kill summary requests EnglishName for sites and regions.
+            // Resolve the complete location with the same site, geography
+            // and underground rules used by other world-location fields.
+            const auto place = translate_world_artifact_location(place_source);
             if (!place) continue;
             return apply("{c} {s} in {p}", {std::to_string(*count), *species + sex, *place});
         }
