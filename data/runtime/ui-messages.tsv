@@ -264,6 +264,10 @@ Click an icon to add a new zone.	点击图标添加新区域。
 Click a tile to position the stop.	点击格子设置停靠点的位置。
 You can recenter on certain announcements. Right click to close.	部分公告可以定位到相关位置。右键点击关闭。
 Left click for recenter and expand options. Right click to dismiss.	左键点击可定位并展开选项。右键点击关闭。
+# Fortress follow bar (Steam addst returns 0x3fb8f1 and 0x3fbc69).
+# The unit formatter includes its profession. The job is a separate draw.
+Following {n}	正在跟随{n1}
+Following {i}	正在跟随{i1}
 # Fortress report summaries: one typed unit label plus the complete status.
 # Keep the article inside {n}; shared unit parsing owns species, names and statuses.
 {n} is fighting!	{n1}正在战斗！
