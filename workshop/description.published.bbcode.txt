@@ -3,12 +3,12 @@
 DFCN 是 Byayoi 同人社区的《Dwarf Fortress（矮人要塞）》汉化作品，结合社区译文与本地修订，翻译游戏界面、人物信息、物品描述和传说故事，支持简体中文与台湾正体中文。
 
 [b]适配 Windows x64 的 Dwarf Fortress Steam 53.17 / 53.16 与官网免费版 53.17 / 53.16。[/b]
-当前版本：[b]53.17-20261121.2[/b]（2026-11-21）。
+当前工坊版本 [b]53.17-20261121.3[/b]（2026-11-21）。
 游戏内按 [b]Shift+F1[/b] 打开汉化设置菜单，可切换中英文、繁简体、四族语言原文／音译，开关已安装的 DFHack，或重新载入汉化。
-更新内容见改动说明与订阅目录中的 CHANGELOG.txt。
+更新内容见 CHANGELOG.txt。
 
 [url=https://github.com/pokemonchw/dfcn]GitHub 项目主页[/url]
-[url=https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261121.2]Windows 汉化下载[/url]
+[url=https://github.com/pokemonchw/dfcn/releases/latest]GitHub 发行包[/url]
 [url=https://byayoi.org/]Byayoi 同人社区[/url]
 
 [h1]Windows 工坊安装[/h1]
@@ -54,11 +54,10 @@ Real Book 汉化扩展翻译阅读界面、书名和生成的书籍正文，并�
 没有完整译文的模组名称及内容保留原文，用户自定义小队名称始终原样显示。扩展不修改原始模组 RAW 或世界规则。
 
 
-[h1]鼠标地图坐标[/h1]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825218095]鼠标坐标模组[/url]在要塞模式显示 X、Y 坐标，支持图形与 ASCII 模式，可在 Shift+F1 菜单中开关。
-
-[h1]地图预览[/h1]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825995422]独立地图预览模组[/url]显示要塞选址处的高程、水系和地貌。订阅并下载后，Shift+F1 显示“地图预览”开关，默认关闭并保存选择。预览精度为选址格。
+[h1]Shift+F1 独立扩展[/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3843377047]统计植物信息[/url]将地图植物的数量、用途和地表种植条件写入“日志 → 环境”。
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825218095]鼠标地图坐标[/url]显示要塞 X、Y 坐标，支持图形与 ASCII 模式。
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825995422]地图预览[/url]按选址格显示高程、水系和地貌，默认关闭并保存选择。
 
 [h1]搜索与可选语义模型[/h1]
 
