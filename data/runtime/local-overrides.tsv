@@ -58,6 +58,8 @@ SIEGE	围攻	w
 Squad creation: New squad	新建{position}的小队	l
 Squad creation: Existing squad	{position}的小队	l
 Squad creation: appointed by	由{position}任命	l
+# Close button in creature activity details.
+Close	关闭	w
 # Squad disband confirmation: this is an action button, not a generated name.
 Disband	解散	w
 # Unit expulsion confirmation (ELF 0x13e96dc): keep the action out of name transliteration.
