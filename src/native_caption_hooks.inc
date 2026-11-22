@@ -2279,18 +2279,22 @@ static void capitalize_native_character_group_role(std::string &text) {
     }
 }
 
-static bool remember_native_character_group_resize(NativeString *source,
+static bool remember_native_character_row_resize(NativeString *source,
         size_t width, char fill, uintptr_t caller) {
     const auto *graphics = native_graphics();
     if (!g_native_character_write_graphics ||
             graphics != g_native_character_write_graphics) return false;
     const uintptr_t base = native_history_profile_base();
-    // Groups shortens only its entity-name and relationship fields here.
-    // The following native stores replace the final three bytes iff the
-    // retained length exceeds three; smaller lengths stay plain prefixes.
-    // These exact return addresses cover both supported PE editions.
-    if (!base || (caller != native_ui_semantic_address(0x179439) &&
-            caller != native_ui_semantic_address(0x17aabe))) return false;
+    if (!base) return false;
+    bool expulsion = false;
+#ifdef _WIN32
+    const auto menu = character_expulsion_rva(caller);
+    expulsion = menu == 0x15f7b7 || menu == 0x1604e2;
+#endif
+    // Groups and expulsion both retain a plain prefix at widths 1..3 and
+    // overwrite the last three bytes with dots at larger widths.
+    if (!expulsion && caller != native_ui_semantic_address(0x179439) &&
+            caller != native_ui_semantic_address(0x17aabe)) return false;
     auto &state = native_character_clipped_pending();
     if (state.busy) return true;
     struct CaptureScope {
@@ -2337,7 +2341,7 @@ static void capture_native_clipped_resize(NativeString *source, size_t width, ch
         g_native_petitions_write_graphics &&
         native_graphics() == g_native_petitions_write_graphics;
     const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
-    if (remember_native_character_group_resize(source, width, fill, caller)) {
+    if (remember_native_character_row_resize(source, width, fill, caller)) {
         if (g_native_clipped_caption_hooks.resize)
             g_native_clipped_caption_hooks.resize(source, width, fill);
         return;
@@ -2766,6 +2770,22 @@ static void capture_native_owned_caption(graphicst *graphics,
                     row.complete_source = row.trade_item_caption->source;
             }
             if constexpr (Character) {
+#ifdef _WIN32
+                if (character_expulsion_rva(native_caller) == 0x15f838 &&
+                        row.complete_source.starts_with("Send to ")) {
+                    // The row string is at rsp+3a60. The site's lookup result
+                    // stays at rsp+1e48 until this draw, including after resize.
+                    uintptr_t site = 0;
+                    NativeHistoryName name;
+                    const auto base = native_history_profile_base();
+                    constexpr uintptr_t distance = 0x3a60 - 0x1e48;
+                    if (row.address >= distance && native_history_copy(row.address - distance, site) &&
+                            site && capture_native_history_name(base,
+                                native_history_object_field(site, "world_site", 0), name) &&
+                            capture_native_history_site_name_context(base, site, name, true))
+                        row.site_name = std::make_shared<NativeHistoryName>(std::move(name));
+                }
+#endif
                 row.character_header_activity =
                     native_character_header_activity_source(source, native_caller);
                 row.editable_text = row.editable_text || NativeEditableTextScope::active;

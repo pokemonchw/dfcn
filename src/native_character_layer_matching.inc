@@ -62,6 +62,9 @@ std::vector<Match> Overlay::find_native_character_matches() const {
     // Proven authored squad aliases keep their native spelling, including
     // English, digits and Chinese. This reads only this layer's draw records.
     append_fortress_squad_alias_rows(screen_rows, result, only_y, nullptr);
+#ifdef _WIN32
+    append_character_expulsion_rows(screen_rows, result);
+#endif
     int room_tabs_y = -1;
     for (int y = sheet_top; y < sheet_bottom && room_tabs_y < 0; ++y)
         if (!character_information_tab_fields(background_rows[y]).empty()) room_tabs_y = y;

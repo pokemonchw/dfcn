@@ -1,0 +1,25 @@
+阶段	原生条件	英文文本或动态字段	中文或显示行为	Steam RVA	Classic RVA
+入口	悬停于派遣或驱逐按钮	Send this creature to a linked site, or expel this creature entirely.	将此生物派往相连的聚居地，或将其彻底驱逐。	0x40a419	0x407db9
+入口	驱逐菜单未打开	—	继续绘制人物页	0x15edb9	0x15ed49
+受限	存在拒绝原因	Cannot expel or send away:	无法驱逐或派走：	0x15ee2a	0x15edba
+受限	原因 0	Nobility	贵族	0x15ef23	0x15eeb3
+受限	原因 1	Holds elected office	担任民选职位	0x15ef87	0x15ef17
+受限	原因 2	Does the expelling	负责执行驱逐	0x15eebf	0x15ee4f
+受限	原因 3	Spouse is not present	配偶不在此地	0x15f04f	0x15efdf
+受限	原因 4	Spouse is nobility	配偶是贵族	0x15f0b3	0x15f043
+受限	原因 5	Spouse is elected	配偶担任民选职位	0x15f117	0x15f0a7
+受限	原因 6	Spouse does the expelling	配偶负责执行驱逐	0x15efeb	0x15ef7b
+受限	原因 7	Child is not present	子女不在此地	0x15f1df	0x15f16f
+受限	原因 8	Child is nobility	子女是贵族	0x15f243	0x15f1d3
+受限	原因 9	Child is elected	子女担任民选职位	0x15f2a4	0x15f234
+受限	原因 10	Child does the expelling	子女负责执行驱逐	0x15f17b	0x15f10b
+受限	原因超出 0–10	—	只显示拒绝提示标题	0x15ee7d	0x15ee0d
+目的地	目的地列表非空，当前地点 ID 查找结果为空	Expel	驱逐	0x15f6ad	0x15f63d
+目的地	当前地点 ID 对应一个聚居地	Send to {English site name}	派往{聚居地中文名}	0x15f6c4	0x15f654
+目的地	地点行长于文字栏	{destination row}	按栏宽截短，保留长度大于 3 时原生绘制三个点	0x15f7b2	0x15f742
+确认	目的地列表为空，已选地点 ID 为 -1	Expel	驱逐	0x15fbf6	0x15fb86
+确认	目的地列表为空，已选地点 ID 不为 -1	Send away	派走	0x15fc5a	0x15fbea
+确认	两种确认操作均可取消	Cancel	取消	0x15fe24	0x15fdb4
+确认	逐个读取人员 ID 和对应单位	{full fortress unit caption}	按人物身份显示完整称谓	0x160449	0x1603d9
+确认	人员栏容纳不下完整称谓	{unit caption}	按栏宽截短，保留长度大于 3 时原生绘制三个点	0x1604dd	0x16046d
+确认	人员列表为空	—	只显示确认和取消操作	0x15ff1d	0x15fead

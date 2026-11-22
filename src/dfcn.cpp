@@ -5197,6 +5197,10 @@ private:
     void layout_character_relation_rows(SDL_Renderer *renderer);
     void append_character_work_animal_rows(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
+#ifdef _WIN32
+    void append_character_expulsion_rows(std::vector<std::string> &rows,
+        std::vector<Match> &matches) const;
+#endif
     void layout_character_work_animal_rows(SDL_Renderer *renderer);
     void append_character_overview_identities(const std::vector<NativeTextCard> &cards,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const;
@@ -18697,6 +18701,9 @@ static void native_ui_paint_grid(NativeUiLayerStorage &layer, SDL_Renderer *rend
 #include "native_resolution_layer_translation.inc"
 #include "native_help_layer_translation.inc"
 #include "native_info_layer_matching.inc"
+#ifdef _WIN32
+#include "character_expulsion.inc"
+#endif
 #include "native_character_layer_matching.inc"
 #include "fortress_map_matching.inc"
 #include "native_notification_layer_matching.inc"
