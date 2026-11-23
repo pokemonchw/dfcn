@@ -13265,6 +13265,7 @@ Announcement combat rumor-event []: A beast from the wilds has been harassing ou
 Announcement combat rumor-event []: A ferocious wild animal has been set on us by nature.	大自然派来一头凶猛的野兽袭击我们。	l
 Announcement combat rumor-event [rumor-position,rumor-person]: became {s}, replacing {s}.	未具名者取代{s2}，成为了{s1}。	l
 Announcement combat rumor-identity [speech-person,rumor-identity-descriptor]: {s} the {s}	{s2}{s1}	l
+Announcement combat sentence [$digits,$buildingplan-item]: Work order queued for {s} {s}.	已下达生产订单：{s1} 件{s2}。	l
 Announcement combat sentence [$name,description-building]: Search first in {s}, {s} here.	先在这里的{s2}{s1}找找。	l
 Announcement combat sentence [boast-victim,boast-slain-clause]: I am the foe of {s}, {s}!	我就是{s1}的敌人，{s2}！	l
 Announcement combat sentence [dialogue-family-indef,speech-person]: I have {s} named {s}.	我有{s1}，名叫{s2}。	l

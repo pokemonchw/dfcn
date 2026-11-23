@@ -915,6 +915,10 @@ std::optional<std::string> Overlay::translate_announcement_combat(
                 return finish(std::move(closed.target));
             return finish(parse_item());
         }
+        if (scope == "$buildingplan-item") {
+            if (input == "item") return finish("物品");
+            return finish(exact_literal_translation("DFHack GUI Buildingplan item: " + std::string(input)));
+        }
         if (scope == "$read-item") {
             // READ_ITEM owns this whole e68020/c65450 field. Native title
             // productions precede ordinary item parsing here, including

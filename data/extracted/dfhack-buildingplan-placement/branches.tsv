@@ -1,0 +1,43 @@
+来源	条件或选择器	显示文本或格式
+Steam 0x3c9d10 / 官网 0x3c76b0	build_square 0–4，或同类错误已记录	无新增文本
+同上	5	Needs to be anchored on edge
+同上	6	Blocked at this location
+同上	7	Hidden, cannot build at this location
+同上	8	Needs adjacent wall
+同上	9	Off map
+同上	10	Water at this location
+同上	11	Lava/Magma at this location
+同上	12	Building present
+同上	13	Must be inside
+同上	14	Too close to edge
+同上	15	Must be outside
+同上	16	Needs open space
+同上	17	Surrounded by empty space
+同上	18	Cannot build at highest level
+同上	19	Must remove construction
+同上	20	Need soil or mud at location
+同上	21	Need soil at location
+同上	连接失败；压力板未选触发方式；无可通行周边；需要地面或机械连接	Disconnected | Need trigger type | Needs walkable perimeter | Needs ground or near machine
+同上	农田缺少可耕种土层，依次写入 warnings，不会被 get_placement_errors 枚举	No mud/soil for farm | Mud is left by water
+Steam 0xacab50 / 官网 0xac79b0	可达集合为空；或某项材料可达数量不足	No access | No access to {job item}
+dfhack/buildings.lua:get_inputs_by_type	建筑、工坊、熔炉、陷阱、攻城器械、普通或加固构造、自定义建筑 RAW	各输入独立进入 get_desc；无输入与类型不支持是不同分支
+buildingplan.lua:get_desc	按从高到低的优先级取工具用途、螺旋杆、物品类型、任务物品组、建筑材料、未指定	{tool_uses} | Screw | {item_type} | {job_item_vector_id} | Magma-safe material | Fire-safe material | Building material | Unknown
+同上	枚举改写大小写，以空格替换下划线，删除末尾 s，再替换七种别称	Trappart → Mechanism | Wood → Log | Any weapon → Weapon | Any spike → Spike | Ballistapart → Ballista part | Catapultpart → Catapult part | Smallgem → Small, cut gem
+planneroverlay.lua:get_quantity	压力板触发器数；陷阱武器数；按面积、楼层计数；框选可建地格、空心、重建；固定数量	{quantity}，允许 0
+ItemLine:get_item_line_text	每种当前建筑最多四行；数量等于 1 / 其余数量	{quantity} {desc} | {quantity} {desc}s
+同上	available ≥ quantity / 0 ≤ available < quantity / available < 0	└ {d} available now | └ Will link next (need to make {d}) | └ Will link later (need to make {d})
+ItemLine:get_filter_text / filter_string	无筛选 / 零种满足筛选 / 一种材料 / 多种材料、一种类别 / 多个类别	[any material] | [impossible filter] | [{material}] | [{category}] | [{d} mat. categories]
+compress	不超过 17 个字节 / 去掉小写元音后能放下 / 仍然太长	原名 | 去元音 | 前 14 字节加 ...
+PlannerOverlay:init	展开或收起、无物品、可清除筛选、多个输入	 hide Planner  |  show Planner  | No items required. | [clear] | : Prev/ | next item
+同上	陷阱武器、空心、三种楼梯设置	Number of weapons: (1)…(10) | Hollow area: No/Yes | Top stair type: Auto/UpDown/Down | Bottom Stair Type: Auto/UpDown/Up | Single level stair: Up/UpDown/Down
+同上	雕刻、空置、优先建造、材料耐热	Engraved only: On/Off | Empty only: On/Off | Do now: On/Off | Building safety: Any/Magma/Fire
+同上	缺料、是否已有筛选、选择方式	Queue order | Set filter | Edit filter | Delete filter | Choose items: With filters / Last used (pick manually) / Last used ({item}) / Manually
+同上 / QuickFilter	收藏槽状态、收藏编辑、自定义标签、切换和应用	Show favorites | Hide favorites | empty | {saved label} | [x] | next/previous slot | set/apply selected | Shift+click to edit the label of a favorite
+get_placement_errors	零个错误 / 一个或多个错误	OK to build | 按 buildreq.errors 原顺序逐条输出，换行并按面板宽度折行
+PlannerOverlay:queue_order / place_building	发出生产订单 / 物品已丢失或无法分配	Work order queued for {missing} {desc or item}. | item no longer available: {id} | cannot attach item: {id}
+filterselection.lua:QualityAndMaterialsPage	当前筛选摘要及材料类别	Any / Fire safe / Magma safe + {desc} + 可选 [engraved, empty] + 可选 of {materials}；Stone / Wood / Metal / Glass / Gem / Clay / Cloth / Silk / Yarn
+filterselection.lua:FilterSelectionScreen	品质和材料 / 全局设置	Choose filters | Quality and materials | Global settings；控件文字和所有枚举选项见 dfhack-overlay-plugin-controls.tsv
+itemselection.lua:ItemSelection	手动、自动、已选数量，数量为一或复数；机件专用标题	Choose items | {desc} / {desc}s | Any mechanism / Fire safe mechanism / Magma safe mechanism | Select up to {d} item(s) ({d} selected)
+同上	排序、选择数量、返回、继续	Search: | Sort by: Recently used/Amount/Value/Name | Autoselect | Continue | Use one | Use one fewer | Use all/none | Go back
+buildingplan.plug.dll 0x37620 / 0x383f0；InspectorLine	无效；有效的任务数量、一个或多个可替代物品；队列位置非正或为正	INVALID | {quantity} {desc} [or {desc}…] | Item attached | Position in line: {d}
+inspectoroverlay.lua:InspectorOverlay	已规划建筑的检查面板	Waiting for items: | make top priority | adjust filters（本版控件隐藏）

@@ -142,7 +142,7 @@ DFHack GUI Overlay control: Choose items:|With filters|B|3|-1|1	选择物品：|
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/buildingplan/planneroverlay.lua:878-899 [buildingplan.planner]
 DFHack GUI Overlay control: Choose items:|Last used (pick manually)|B|3|-1|1	选择物品：|上次使用（手动选择）	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/buildingplan/planneroverlay.lua:878-899 [buildingplan.planner]
-DFHack GUI Overlay control: Choose items:|Last used ({material})|B|3|-1|1	选择物品：|上次使用（{material}）	l
+DFHack GUI Overlay control: Choose items:|Last used ({item})|B|3|-1|1	选择物品：|上次使用（{item}）	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/buildingplan/planneroverlay.lua:878-899 [buildingplan.planner]
 DFHack GUI Overlay control: Choose items:|Manually|B|3|-1|1	选择物品：|手动选择	l
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/buildingplan/planneroverlay.lua:900-914 [buildingplan.planner]
@@ -726,6 +726,193 @@ DFHack GUI Overlay control: |  constructed floors/ramps when using box select.|I
 # Source: D:/program/steam/steamapps/common/DFHack/hack/lua/plugins/buildingplan/planneroverlay.lua:610-616 [QuickFilter:get_label_text]
 # Only the unassigned-slot sentinel is translated; authored favorite labels stay verbatim.
 DFHack GUI Buildingplan favorite: empty	空位	l
+# PlannerOverlay and ItemSelectionScreen fixed fields.
+DFHack GUI Buildingplan label: No items required.	无需物品。	l
+DFHack GUI Buildingplan label: OK to build	可以建造	l
+DFHack GUI Buildingplan label: Disconnected	未连通	l
+DFHack GUI Buildingplan label: Queue order	添加生产订单	l
+DFHack GUI Buildingplan label: [clear]	[清除]	l
+DFHack GUI Buildingplan label: : Prev/	：上一项／	l
+DFHack GUI Buildingplan label: next item	下一项	l
+DFHack GUI Buildingplan label: Search:	搜索：	l
+DFHack GUI Buildingplan label: Type	类别	l
+DFHack GUI Buildingplan label: Material	材料	l
+DFHack GUI Buildingplan label: Done	完成	l
+DFHack GUI Buildingplan label: Waiting for items:	等待物品：	l
+DFHack GUI Buildingplan label: Item attached	物品已分配	l
+DFHack GUI Buildingplan label: make top priority	设为最高优先级	l
+DFHack GUI Buildingplan label: adjust filters	调整筛选条件	l
+DFHack GUI Buildingplan label: INVALID	无效的建造需求	l
+DFHack GUI Buildingplan picker: Any mechanism	任意机件	l
+DFHack GUI Buildingplan picker: Fire safe mechanism	防火机件	l
+DFHack GUI Buildingplan picker: Magma safe mechanism	岩浆安全机件	l
+# buildingplan.get_desc uses the DF item, job-vector and tool-use enum names, including
+# custom workshop inputs. It strips one final s before applying seven display aliases.
+DFHack GUI Buildingplan item: Ammo	弹药	l
+DFHack GUI Buildingplan item: Amulet	护身符	l
+DFHack GUI Buildingplan item: Animaltrap	动物陷阱	l
+DFHack GUI Buildingplan item: Anvil	铁砧	l
+DFHack GUI Buildingplan item: Any	任意物品	l
+DFHack GUI Buildingplan item: Any armor glove	防护手套	l
+DFHack GUI Buildingplan item: Any armor helm	防护头盔	l
+DFHack GUI Buildingplan item: Any armor pant	防护裤	l
+DFHack GUI Buildingplan item: Any armor shoe	防护鞋靴	l
+DFHack GUI Buildingplan item: Any artifact	神器	l
+DFHack GUI Buildingplan item: Any auto clean	可自动清理的物品	l
+DFHack GUI Buildingplan item: Any butcherable	可屠宰的动物	l
+DFHack GUI Buildingplan item: Any cage or trap	笼子或捕兽夹	l
+DFHack GUI Buildingplan item: Any can rot	易腐物品	l
+DFHack GUI Buildingplan item: Any cookable	可烹饪的食材	l
+DFHack GUI Buildingplan item: Any corpse	尸体	l
+DFHack GUI Buildingplan item: Any critter	小动物	l
+DFHack GUI Buildingplan item: Any dead dwarf	矮人遗体	l
+DFHack GUI Buildingplan item: Any drink	饮品	l
+DFHack GUI Buildingplan item: Any edible bonecarn	食骨动物可食用的食物	l
+DFHack GUI Buildingplan item: Any edible carnivore	食肉动物可食用的食物	l
+DFHack GUI Buildingplan item: Any edible raw	可生食的食物	l
+DFHack GUI Buildingplan item: Any edible vermin	可食用的小动物	l
+DFHack GUI Buildingplan item: Any edible vermin box	装有可食用小动物的容器	l
+DFHack GUI Buildingplan item: Any encased	被包裹的物品	l
+DFHack GUI Buildingplan item: Any extractable	可提取原料的物品	l
+DFHack GUI Buildingplan item: Any furniture	家具	l
+DFHack GUI Buildingplan item: Any glassable	可用于制玻璃的原料	l
+DFHack GUI Buildingplan item: Any goes in armorstand	可放在盔甲架上的物品	l
+DFHack GUI Buildingplan item: Any goes in cabinet	可放入柜中的物品	l
+DFHack GUI Buildingplan item: Any goes in chest	可放入箱中的物品	l
+DFHack GUI Buildingplan item: Any goes in weaponrack	可放在武器架上的物品	l
+DFHack GUI Buildingplan item: Any good food	可食用的食物	l
+DFHack GUI Buildingplan item: Any in construction	用于建造的物品	l
+DFHack GUI Buildingplan item: Any melt designated	已指定熔炼的物品	l
+DFHack GUI Buildingplan item: Any murdered	遇害者遗体	l
+DFHack GUI Buildingplan item: Any recently dropped	刚放下的物品	l
+DFHack GUI Buildingplan item: Any refuse	废弃物	l
+DFHack GUI Buildingplan item: Any true armor	护甲	l
+DFHack GUI Buildingplan item: Any web	蛛网	l
+DFHack GUI Buildingplan item: Armor	盔甲	l
+DFHack GUI Buildingplan item: Armorstand	盔甲架	l
+DFHack GUI Buildingplan item: Backpack	背包	l
+DFHack GUI Buildingplan item: Bag	袋子	l
+DFHack GUI Buildingplan item: Ballista part	弩炮部件	l
+DFHack GUI Buildingplan item: Ballistaarrowhead	弩炮箭头	l
+DFHack GUI Buildingplan item: Bar	锭	l
+DFHack GUI Buildingplan item: Barrel	圆桶	l
+DFHack GUI Buildingplan item: Bed	床	l
+DFHack GUI Buildingplan item: Bin	储物箱	l
+DFHack GUI Buildingplan item: Block	砌块	l
+DFHack GUI Buildingplan item: Bolt thrower part	弩箭投射器部件	l
+DFHack GUI Buildingplan item: Book	书籍	l
+DFHack GUI Buildingplan item: Bookcase	书架	l
+DFHack GUI Buildingplan item: Boulder	石块	l
+DFHack GUI Buildingplan item: Box	箱子	l
+DFHack GUI Buildingplan item: Bracelet	手镯	l
+DFHack GUI Buildingplan item: Branch	树枝	l
+DFHack GUI Buildingplan item: Bucket	水桶	l
+DFHack GUI Buildingplan item: Building material	建筑材料	l
+DFHack GUI Buildingplan item: Cabinet	柜子	l
+DFHack GUI Buildingplan item: Cage	笼子	l
+DFHack GUI Buildingplan item: Catapult part	投石机部件	l
+DFHack GUI Buildingplan item: Chain	链条	l
+DFHack GUI Buildingplan item: Chair	椅子	l
+DFHack GUI Buildingplan item: Cheese	奶酪	l
+DFHack GUI Buildingplan item: Cloth	布料	l
+DFHack GUI Buildingplan item: Coffin	棺材	l
+DFHack GUI Buildingplan item: Coin	钱币	l
+DFHack GUI Buildingplan item: Contain writing	书写载体	l
+DFHack GUI Buildingplan item: Corpse	尸体	l
+DFHack GUI Buildingplan item: Corpsepiece	尸块	l
+DFHack GUI Buildingplan item: Crown	王冠	l
+DFHack GUI Buildingplan item: Crutch	拐杖	l
+DFHack GUI Buildingplan item: Display object	展示器具	l
+DFHack GUI Buildingplan item: Divination	占卜器具	l
+DFHack GUI Buildingplan item: Door	门	l
+DFHack GUI Buildingplan item: Drink	饮品	l
+DFHack GUI Buildingplan item: Earring	耳环	l
+DFHack GUI Buildingplan item: Egg	蛋	l
+DFHack GUI Buildingplan item: Figurine	小雕像	l
+DFHack GUI Buildingplan item: Fire-safe material	防火材料	l
+DFHack GUI Buildingplan item: Fish	鱼	l
+DFHack GUI Buildingplan item: Fish raw	生鱼	l
+DFHack GUI Buildingplan item: Flask	携带瓶	l
+DFHack GUI Buildingplan item: Floodgate	闸门	l
+DFHack GUI Buildingplan item: Food	食物	l
+DFHack GUI Buildingplan item: Food storage	食品储具	l
+DFHack GUI Buildingplan item: Games of chance	博具	l
+DFHack GUI Buildingplan item: Gem	宝石	l
+DFHack GUI Buildingplan item: Glob	团块	l
+DFHack GUI Buildingplan item: Glove	手套	l
+DFHack GUI Buildingplan item: Goblet	酒杯	l
+DFHack GUI Buildingplan item: Grate	格栅	l
+DFHack GUI Buildingplan item: Grind powder grinder	研杵	l
+DFHack GUI Buildingplan item: Grind powder receptacle	研钵	l
+DFHack GUI Buildingplan item: Hatch cover	活动盖板	l
+DFHack GUI Buildingplan item: Heavy object hauling	重物搬运工具	l
+DFHack GUI Buildingplan item: Helm	头盔	l
+DFHack GUI Buildingplan item: Hive	蜂箱	l
+DFHack GUI Buildingplan item: Hold meat for carving	切肉固定器具	l
+DFHack GUI Buildingplan item: In play	场上物品	l
+DFHack GUI Buildingplan item: Instrument	乐器	l
+DFHack GUI Buildingplan item: Instrument stationary	固定式乐器	l
+DFHack GUI Buildingplan item: Liquid container	液体容器	l
+DFHack GUI Buildingplan item: Liquid cooking	烹煮液体的器具	l
+DFHack GUI Buildingplan item: Liquid misc	液体	l
+DFHack GUI Buildingplan item: Liquid scoop	液体舀具	l
+DFHack GUI Buildingplan item: Log	原木	l
+DFHack GUI Buildingplan item: Magical	魔法物品	l
+DFHack GUI Buildingplan item: Magma-safe material	岩浆安全材料	l
+DFHack GUI Buildingplan item: Meal container	餐具	l
+DFHack GUI Buildingplan item: Meat	肉	l
+DFHack GUI Buildingplan item: Meat boning	剔骨刀	l
+DFHack GUI Buildingplan item: Meat carving	切肉刀	l
+DFHack GUI Buildingplan item: Meat cleaving	砍肉刀	l
+DFHack GUI Buildingplan item: Meat slicing	切片刀	l
+DFHack GUI Buildingplan item: Mechanism	机件	l
+DFHack GUI Buildingplan item: Millstone	磨盘	l
+DFHack GUI Buildingplan item: Nest box	巢箱	l
+DFHack GUI Buildingplan item: Orthopedic cast	矫形石膏	l
+DFHack GUI Buildingplan item: Pant	裤子	l
+DFHack GUI Buildingplan item: Pet	宠物	l
+DFHack GUI Buildingplan item: Pipe section	管段	l
+DFHack GUI Buildingplan item: Place offering	供奉器具	l
+DFHack GUI Buildingplan item: Plant	植物	l
+DFHack GUI Buildingplan item: Plant growth	植物生长物	l
+DFHack GUI Buildingplan item: Possible container	可用作容器的物品	l
+DFHack GUI Buildingplan item: Powder misc	粉末	l
+DFHack GUI Buildingplan item: Protect folded sheet	书封	l
+DFHack GUI Buildingplan item: Quern	手推磨	l
+DFHack GUI Buildingplan item: Quiver	箭袋	l
+DFHack GUI Buildingplan item: Remain	残骸	l
+DFHack GUI Buildingplan item: Ring	戒指	l
+DFHack GUI Buildingplan item: Rock	小石块	l
+DFHack GUI Buildingplan item: Roll up sheet	卷轴滚杆	l
+DFHack GUI Buildingplan item: Rough	未切割宝石	l
+DFHack GUI Buildingplan item: Scepter	权杖	l
+DFHack GUI Buildingplan item: Screw	螺旋杆	l
+DFHack GUI Buildingplan item: Seed	种子	l
+DFHack GUI Buildingplan item: Sheet	书页	l
+DFHack GUI Buildingplan item: Shield	盾牌	l
+DFHack GUI Buildingplan item: Shoe	鞋	l
+DFHack GUI Buildingplan item: Siegeammo	攻城弹药	l
+DFHack GUI Buildingplan item: Skin tanned	鞣制皮革	l
+DFHack GUI Buildingplan item: Slab	石碑	l
+DFHack GUI Buildingplan item: Small object storage	小物件储具	l
+DFHack GUI Buildingplan item: Small, cut gem	小型切割宝石	l
+DFHack GUI Buildingplan item: Spike	尖刺	l
+DFHack GUI Buildingplan item: Splint	夹板	l
+DFHack GUI Buildingplan item: Stand and work above	工作台面	l
+DFHack GUI Buildingplan item: Statue	雕像	l
+DFHack GUI Buildingplan item: Table	桌子	l
+DFHack GUI Buildingplan item: Thread	线	l
+DFHack GUI Buildingplan item: Tool	工具	l
+DFHack GUI Buildingplan item: Totem	图腾	l
+DFHack GUI Buildingplan item: Toy	玩具	l
+DFHack GUI Buildingplan item: Track cart	矿车	l
+DFHack GUI Buildingplan item: Traction bench	牵引床	l
+DFHack GUI Buildingplan item: Trapcomp	陷阱部件	l
+DFHack GUI Buildingplan item: Unknown	未知物品	l
+DFHack GUI Buildingplan item: Vermin	小动物	l
+DFHack GUI Buildingplan item: Weapon	武器	l
+DFHack GUI Buildingplan item: Weaponrack	武器架	l
+DFHack GUI Buildingplan item: Window	窗户	l
 DFHack GUI Buildingplan category: Stone	石材	l
 DFHack GUI Buildingplan category: Wood	木材	l
 DFHack GUI Buildingplan category: Metal	金属	l

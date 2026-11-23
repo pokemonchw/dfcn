@@ -1,5 +1,6 @@
 # Complete native status reports, shared by hover, expanded alerts and report history.
 # scope	source	target	field scopes	native provenance
+sentence	Work order queued for {s} {s}.	已下达生产订单：{s1} 件{s2}。	$digits,$buildingplan-item	buildingplan/planneroverlay.lua:1134-1199; missing count plus singular cached get_desc or item
 # ANIMAL_TRAINING_KNOWLEDGE (160) uses the shared announcement dispatcher.
 # 53.17 Steam regions a16355..a16650 / dc6921..dc6c22 and Classic
 # a13965..a13c60 / dc1671..dc1972 all append the same four predicates.

@@ -14,6 +14,11 @@ struct NativeDfhackSitemapLuaApi {
     int (*rawequal)(NativeDfhackLuaState *, int, int) = nullptr;
     int (*toboolean)(NativeDfhackLuaState *, int) = nullptr;
     const char *(*getupvalue)(NativeDfhackLuaState *, int, int) = nullptr;
+    int (*loadbuffer)(NativeDfhackLuaState *, const char *, size_t, const char *, const char *) = nullptr;
+    int (*pcall)(NativeDfhackLuaState *, int, int, int, intptr_t,
+        int (*)(NativeDfhackLuaState *, int, intptr_t)) = nullptr;
+    void (*pushvalue)(NativeDfhackLuaState *, int) = nullptr;
+    void (*rawset)(NativeDfhackLuaState *, int) = nullptr;
     NativeDfhackLuaCFunction paint_string = nullptr;
     std::string painter_source, list_source, filtered_source, sitemap_source, notify_source, zone_source;
     std::string label_source, cycle_source, overlay_source, asyncexport_source, prioritize_source;
@@ -200,7 +205,7 @@ static uint64_t native_dfhack_text_capture_key(const graphicst *gps) {
         scalar(text.option_dynamic); scalar(text.option_name); scalar(text.option_idx);
         scalar(text.plant_growth);
         scalar(text.widget_id);
-        string(text.overlay_name); string(text.view_id); string(text.caption);
+        string(text.overlay_name); string(text.view_id); string(text.caption); string(text.planner_summary);
         string(text.material_source); string(text.material_category); scalar(text.material_offset);
         scalar(text.quick_filter_id); scalar(text.quick_filter_label);
         scalar(text.quick_filter_clear); scalar(text.quick_filter_clear_visible);
@@ -750,6 +755,60 @@ static bool native_dfhack_overlay_mechanism_item(NativeDfhackLuaState *state,
     return source && native_dfhack_lua_source_key(*source) == api.mechanisms_source;
 }
 
+// filter_string() removes vowels and can discard the tail. Different RAW
+// materials can produce identical bytes. Read the selected filter by the same
+// building and input index, only on a potentially abbreviated single material.
+static void native_dfhack_planner_material(NativeDfhackLuaState *state,
+        int widget, NativeDfhackOverlayText &result) {
+    const auto &api = g_native_dfhack_sitemap_lua_api;
+    const auto &stack = api.stack;
+    const std::string_view shown = result.full;
+    if (!api.loadbuffer || !api.pcall || !api.pushvalue || !api.rawset ||
+            shown.size() < 3 || shown.front() != '[' || shown.back() != ']' ||
+            shown.find_first_of("aeiou") != std::string_view::npos) return;
+    NativeDfhackOverlayLuaStackRestore restore{state, stack.gettop(state)};
+    if (!native_dfhack_sitemap_raw_field(state, widget, "parent_view") ||
+            stack.type(state, -1) != 5) return;
+    const int parent = stack.gettop(state);
+    constexpr int registry = -1001000; // LUA_REGISTRYINDEX in DFHack Lua 5.3
+    constexpr char key[] = "dfcn.buildingplan.single-material.v1";
+    api.pushstring(state, key);
+    api.rawget(state, registry);
+    if (stack.type(state, -1) != 6) {
+        stack.settop(state, parent);
+        constexpr char reader[] = R"lua(
+            local row, shown = ...
+            local p = require('plugins.buildingplan')
+            local b = df.global.buildreq
+            local t, s, c, i = b.building_type, b.building_subtype, b.custom_type, row.idx - 1
+            local cats = p.getMaterialMaskFilter(t,s,c,i)
+            local only
+            for name, props in pairs(p.getMaterialFilter(t,s,c,i)) do
+                if props.enabled == 'true' and cats[props.category] then
+                    if only then return end
+                    only = name
+                end
+            end
+            if only and #only > 17 then
+                local short = only:gsub('[aeiou]', '')
+                if #short > 17 then short = short:sub(1,14)..'...' end
+                if shown == '['..short..']' then return only end
+            end
+        )lua";
+        if (api.loadbuffer(state, reader, sizeof(reader)-1, "=dfcn-buildingplan-material", "t") != 0)
+            return;
+        api.pushstring(state, key);
+        api.pushvalue(state, -2);
+        api.rawset(state, registry);
+    }
+    api.pushvalue(state, parent);
+    api.pushstring(state, result.full.c_str());
+    if (api.pcall(state, 2, 1, 0, 0, nullptr) == 0) {
+        if (const auto name = native_dfhack_overlay_lua_string(state, -1))
+            result.material_source = *name;
+    }
+}
+
 static void native_dfhack_overlay_quick_filter(NativeDfhackLuaState *state,
         int token, int widget, NativeDfhackOverlayText &result) {
     const auto &api = g_native_dfhack_sitemap_lua_api;
@@ -903,10 +962,24 @@ static std::optional<NativeDfhackOverlayText> native_dfhack_overlay_label_text(
             result.overlay_name = string_field(parent, "name");
             break;
         }
+        if (const auto focus = string_field(parent, "focus_path"); !focus.empty()) {
+            if (focus == "dwarfmode/Building/Placement/dfhack/lua/buildingplan/itemselection")
+                result.overlay_name = "buildingplan.itemselection";
+            else if (focus == "dwarfmode/Building/Placement/dfhack/lua/buildingplan/filterselection")
+                result.overlay_name = "buildingplan.filterselection";
+            if (!result.overlay_name.empty()) break;
+        }
         if (!native_dfhack_sitemap_raw_field(state, parent, "parent_view") ||
                 stack.type(state, -1) != 5) break;
         parent = stack.gettop(state);
     }
+    stack.settop(state, token);
+    // The red WrappedLabel and the green success Label are siblings in
+    // PlannerOverlay.errors. Both have an anonymous view_id of their own.
+    if (result.overlay_name == "buildingplan.planner" && result.view_id.empty() &&
+            native_dfhack_sitemap_raw_field(state, widget, "parent_view") &&
+            stack.type(state, -1) == 5 && string_field(stack.gettop(state), "view_id") == "errors")
+        result.view_id = "placement_status";
     stack.settop(state, token);
     bool text_draw = render.currentline == 190 || render.currentline == 197 ||
         render.currentline == 203;
@@ -940,7 +1013,32 @@ static std::optional<NativeDfhackOverlayText> native_dfhack_overlay_label_text(
         native_dfhack_spectate_label_text(state, widget, render, token, result);
         return result;
     }
+    if (result.overlay_name == "buildingplan.itemselection" &&
+            native_dfhack_sitemap_raw_field(state, widget, "parent_view") &&
+            stack.type(state, -1) == 5 && string_field(stack.gettop(state), "view_id") == "header" &&
+            native_dfhack_sitemap_raw_field(state, stack.gettop(state), "parent_view") &&
+            stack.type(state, -1) == 5) {
+        const int window = stack.gettop(state);
+        if (native_dfhack_overlay_class_method(state, window, "init", api.itemselection_source, 83) &&
+                string_field(window, "desc") == result.full)
+            result.view_id = "picker_desc";
+    }
+    stack.settop(state, token);
+    if (result.overlay_name == "buildingplan.filterselection" &&
+            native_dfhack_sitemap_raw_field(state, widget, "text_to_wrap") &&
+            stack.type(state, -1) == 6) {
+        // QualityAndMaterialsPage stores the complete summary before the
+        // two-row WrappedLabel clips the selected materials list.
+        const char *upvalue = api.getupvalue(state, -1, 1);
+        if (upvalue && !std::strcmp(upvalue, "self") && stack.type(state, -1) == 5 &&
+                native_dfhack_overlay_class_method(state, stack.gettop(state), "refresh",
+                    api.filterselection_source, 291))
+            result.planner_summary = string_field(stack.gettop(state), "summary");
+    }
+    stack.settop(state, token);
     if (result.option_dynamic) {
+        if (result.overlay_name == "buildingplan.planner" && result.view_id == "item_filter")
+            native_dfhack_planner_material(state, widget, result);
         if (native_dfhack_codex_heading(state, token, widget, result)) return result;
         if (auto complete = native_dfhack_overlay_dynamic_text(state, token,
                 result.overlay_name, painted_full)) result.full = std::move(*complete);
@@ -1599,6 +1697,14 @@ static bool bind_native_dfhack_sitemap_lua(HMODULE module) {
         "?lua_pushstring@@YAPEBDPEAUlua_State@@PEBD@Z"));
     api.rawget = reinterpret_cast<decltype(api.rawget)>(GetProcAddress(lua,
         "?lua_rawget@@YAHPEAUlua_State@@H@Z"));
+    api.loadbuffer = reinterpret_cast<decltype(api.loadbuffer)>(GetProcAddress(lua,
+        "?luaL_loadbufferx@@YAHPEAUlua_State@@PEBD_K11@Z"));
+    api.pcall = reinterpret_cast<decltype(api.pcall)>(GetProcAddress(lua,
+        "?lua_pcallk@@YAHPEAUlua_State@@HHH_JP6AH0H1@Z@Z"));
+    api.pushvalue = reinterpret_cast<decltype(api.pushvalue)>(GetProcAddress(lua,
+        "?lua_pushvalue@@YAXPEAUlua_State@@H@Z"));
+    api.rawset = reinterpret_cast<decltype(api.rawset)>(GetProcAddress(lua,
+        "?lua_rawset@@YAXPEAUlua_State@@H@Z"));
     api.rawgeti = reinterpret_cast<decltype(api.rawgeti)>(GetProcAddress(lua,
         "?lua_rawgeti@@YAHPEAUlua_State@@H_J@Z"));
     api.rawlen = reinterpret_cast<decltype(api.rawlen)>(GetProcAddress(lua,

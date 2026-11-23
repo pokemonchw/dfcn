@@ -45,6 +45,7 @@ struct NativeDfhackOverlayText {
     int option_idx = 0;
     uintptr_t widget_id = 0;
     std::string overlay_name, view_id, caption;
+    std::string planner_summary;
     // Buildingplan List rows retain their native count/separator separately
     // from the complete material name and its RAW category.
     std::string material_source, material_category;

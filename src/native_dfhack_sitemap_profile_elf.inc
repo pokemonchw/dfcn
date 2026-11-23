@@ -5,6 +5,10 @@ static bool bind_native_dfhack_sitemap_lua(void *entry_pointer) {
     const auto symbol = [](const char *name) { return dlsym(RTLD_DEFAULT, name); };
     api.pushstring = reinterpret_cast<decltype(api.pushstring)>(symbol("_Z14lua_pushstringP9lua_StatePKc"));
     api.rawget = reinterpret_cast<decltype(api.rawget)>(symbol("_Z10lua_rawgetP9lua_Statei"));
+    api.loadbuffer = reinterpret_cast<decltype(api.loadbuffer)>(symbol("_Z16luaL_loadbufferxP9lua_StatePKcmS2_S2_"));
+    api.pcall = reinterpret_cast<decltype(api.pcall)>(symbol("_Z10lua_pcallkP9lua_StateiiilPFiS0_ilE"));
+    api.pushvalue = reinterpret_cast<decltype(api.pushvalue)>(symbol("_Z13lua_pushvalueP9lua_Statei"));
+    api.rawset = reinterpret_cast<decltype(api.rawset)>(symbol("_Z10lua_rawsetP9lua_Statei"));
     api.rawgeti = reinterpret_cast<decltype(api.rawgeti)>(symbol("_Z11lua_rawgetiP9lua_Stateix"));
     api.rawlen = reinterpret_cast<decltype(api.rawlen)>(symbol("_Z10lua_rawlenP9lua_Statei"));
     api.getmetatable = reinterpret_cast<decltype(api.getmetatable)>(symbol("_Z16lua_getmetatableP9lua_Statei"));

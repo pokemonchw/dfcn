@@ -8,7 +8,6 @@
     if (catalog) {
         // Controls belong to the committed DFHack graphics object used by
         // this independent layer's translation pass.
-        const auto source_texts = native_dfhack_overlay_texts(gps_);
         const auto *draw_gps = native_dfhack_present_graphics();
         const auto drawn_span = [&](const SDL_Rect &span) {
             return NativeDfhackForegroundScope::active && draw_gps == gps_ &&
@@ -67,7 +66,7 @@
                     const size_t digits = cursor;
                     while (cursor < row.size() && row[cursor] >= '0' && row[cursor] <= '9') ++cursor;
                     if (cursor == digits) return std::nullopt;
-                } else if (token == "*" || token == "{material}" || token == "{job}" ||
+                } else if (token == "*" || token == "{material}" || token == "{item}" || token == "{job}" ||
                         token == "{book}" || token == "{suspension}") {
                     const size_t next_marker = pattern.find_first_of("{*", token_end + 1);
                     const auto suffix = pattern.substr(token_end + 1,
@@ -98,8 +97,8 @@
                 } else return std::nullopt;
                 const auto value = row.substr(begin, cursor - begin);
                 std::string replacement = native_text_to_utf8(value);
-                if (token == "{material}" || token == "{job}") {
-                    const auto kind = token == "{material}" ? "material" : "job";
+                if (token == "{material}" || token == "{item}" || token == "{job}") {
+                    const auto kind = token.substr(1, token.size() - 2);
                     if (const auto translated = translate_dfhack_caption(kind, value))
                         replacement = *translated;
                 } else if (token == "{book}") {
@@ -188,7 +187,11 @@
         const int last_y = only_y < 0 ? gps_->dimy : std::min(gps_->dimy, only_y + 1);
         for (const auto &text : source_texts) {
             if (text.y < first_y || text.y >= last_y || text.option_name) continue;
-            if ((text.overlay_name == "buildingplan.mechanism_unlink" ||
+            if (const auto target = buildingplan_field(text)) {
+                const int length = static_cast<int>(text.visible.size());
+                dfhack_auxiliary_regions.push_back({text.x, text.y, length, 1});
+                emit(text.x, text.y, length, *target, text.x + length);
+            } else if ((text.overlay_name == "buildingplan.mechanism_unlink" ||
                     text.overlay_name == "buildingplan.mechanism_free") &&
                     text.role == NativeDfhackOverlayTextRole::Text && text.full == text.caption) {
                 // get_pull_label pads the status to eight tiles. The ninth is the
