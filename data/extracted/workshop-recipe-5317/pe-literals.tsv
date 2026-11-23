@@ -1,0 +1,835 @@
+edition	role	instruction_rva	operand	kind	text
+reference	task-choice-tooltip	0x8dc7e2	0x1416df3a8	cstring	Produces:
+reference	task-choice-tooltip	0x8dc7ef	0x1416df3b0	cstring	:
+reference	task-choice-tooltip	0x8dc946	0x1416039f0	cstring	 
+reference	task-choice-tooltip	0x8dceeb	0x1416df3b8	cstring	Requires:
+reference	task-choice-tooltip	0x8dcef8	0x1416df3c0	cstring	:
+reference	task-choice-tooltip	0x8dd217	0x1416039f0	cstring	 
+reference	task-availability-and-requirement	0x8de212	0x1416df380	cstring	[Requires fuel]
+reference	task-availability-and-requirement	0x8de2c0	0x1416df2a8	cstring	[Requires ore]
+reference	task-availability-and-requirement	0x8de2e0	0x1416df390	cstring	[Requires ore, fuel]
+reference	task-availability-and-requirement	0x8de2ef	0x1416df380	cstring	[Requires fuel]
+reference	task-availability-and-requirement	0x8de68f	0x1416df380	cstring	[Requires fuel]
+reference	task-availability-and-requirement	0x8de820	0x1416df2b8	cstring	[Requires 
+reference	task-availability-and-requirement	0x8de863	0x141619408	cstring	]
+reference	job-item-requirement	0xa44986	0x1416eb950	cstring	unused 
+reference	job-item-requirement	0xa449a1	0x1416eb940	cstring	improvable 
+reference	job-item-requirement	0xa449bd	0x1416ebe88	cstring	butcherable 
+reference	job-item-requirement	0xa449d9	0x1416ebe78	cstring	millable 
+reference	job-item-requirement	0xa449f5	0x1416ebea8	cstring	possibly buriable 
+reference	job-item-requirement	0xa44a11	0x1416ebe98	cstring	unrotten 
+reference	job-item-requirement	0xa44a2d	0x1416ebed0	cstring	undisturbed 
+reference	job-item-requirement	0xa44a4a	0x1416ebec0	cstring	collected 
+reference	job-item-requirement	0xa44a6e	0x1416ebee8	cstring	sharpenable 
+reference	job-item-requirement	0xa44a8d	0x141694a00	cstring	murdered 
+reference	job-item-requirement	0xa44aac	0x1416ebee0	cstring	empty 
+reference	job-item-requirement	0xa44acb	0x1416ebdd8	cstring	processable 
+reference	job-item-requirement	0xa44aea	0x1416ebdc8	cstring	cookable 
+reference	job-item-requirement	0xa44b09	0x1416ebe00	cstring	solid 
+reference	job-item-requirement	0xa44b2b	0x1416ebde8	cstring	extract-bearing plant 
+reference	job-item-requirement	0xa44b4a	0x1416ebe28	cstring	extract-bearing fish 
+reference	job-item-requirement	0xa44b69	0x1416ebe08	cstring	extract-bearing small creature 
+reference	job-item-requirement	0xa44b85	0x1416ebe60	cstring	processable (to vial) 
+reference	job-item-requirement	0xa44ba4	0x1416ebe40	cstring	processable (to barrel) 
+reference	job-item-requirement	0xa44bc3	0x1416ebd60	cstring	tameable small creature 
+reference	job-item-requirement	0xa44be2	0x14167e030	cstring	nearby 
+reference	job-item-requirement	0xa44c01	0x1416ebd50	cstring	sand-bearing 
+reference	job-item-requirement	0xa44c20	0x1416ebd90	cstring	glass 
+reference	job-item-requirement	0xa44c3b	0x1416ebd80	cstring	lye-bearing 
+reference	job-item-requirement	0xa44c5a	0x1416ebda4	cstring	milk 
+reference	job-item-requirement	0xa44c79	0x1416ebd98	cstring	milkable 
+reference	job-item-requirement	0xa44c98	0x1416ebdb8	cstring	finished good 
+reference	job-item-requirement	0xa44cb7	0x1416ebdac	cstring	ammo 
+reference	job-item-requirement	0xa44cd6	0x1416ebce0	cstring	furniture 
+reference	job-item-requirement	0xa44d30	0x1416039f0	cstring	 
+reference	job-item-requirement	0xa44d45	0x1416ebcd4	cstring	dye 
+reference	job-item-requirement	0xa44d61	0x1416ebd00	cstring	dyeable 
+reference	job-item-requirement	0xa44d80	0x1416ebcf0	cstring	totemable 
+reference	job-item-requirement	0xa44d9c	0x1416ebd18	cstring	glass-making 
+reference	job-item-requirement	0xa44db8	0x1416ebd0c	cstring	dyed 
+reference	job-item-requirement	0xa44dd7	0x1416ebd38	cstring	melt-designated 
+reference	job-item-requirement	0xa44dfd	0x1416ebd28	cstring	deep material 
+reference	job-item-requirement	0xa44e19	0x1416ebc70	cstring	sewn-imageless 
+reference	job-item-requirement	0xa44e35	0x1416ebc64	cstring	screw 
+reference	job-item-requirement	0xa44e5c	0x1416ebc90	cstring	fire-safe 
+reference	job-item-requirement	0xa44e7b	0x1416ebc80	cstring	magma-safe 
+reference	job-item-requirement	0xa44e97	0x1416ebcb0	cstring	building material 
+reference	job-item-requirement	0xa44eb6	0x1416ebca0	cstring	non-economic 
+reference	job-item-requirement	0xa44ed5	0x1416ebccc	cstring	plant 
+reference	job-item-requirement	0xa44ef4	0x1416ebcc4	cstring	silk 
+reference	job-item-requirement	0xa44f0f	0x1416ebc14	cstring	yarn 
+reference	job-item-requirement	0xa44f2e	0x1416ebc08	cstring	leather 
+reference	job-item-requirement	0xa44f4d	0x1416ebc2c	cstring	bone 
+reference	job-item-requirement	0xa44f6c	0x1416ebc20	cstring	hair/wool 
+reference	job-item-requirement	0xa44f8b	0x1416ebc3c	cstring	shell 
+reference	job-item-requirement	0xa44faa	0x1416ebc34	cstring	horn 
+reference	job-item-requirement	0xa44fc9	0x1416ebc5c	cstring	pearl 
+reference	job-item-requirement	0xa44fe8	0x1416ebc48	cstring	plaster-containing 
+reference	job-item-requirement	0xa4500e	0x1416ebba8	cstring	soap 
+reference	job-item-requirement	0xa4502d	0x1416ebb98	cstring	ivory/tooth 
+reference	job-item-requirement	0xa4504c	0x1416ebbb8	cstring	lye/milk-free 
+reference	job-item-requirement	0xa4506b	0x1416ebbb0	cstring	blunt 
+reference	job-item-requirement	0xa4508a	0x1416ebbd8	cstring	unengraved 
+reference	job-item-requirement	0xa450a5	0x1416ebbc8	cstring	unimproved 
+reference	job-item-requirement	0xa450c4	0x1416ebbf8	cstring	written-on 
+reference	job-item-requirement	0xa450e0	0x1416ebbe8	cstring	non-absorbent 
+reference	job-item-requirement	0xa450fc	0x1416ebb50	cstring	food storage 
+reference	job-item-requirement	0xa45118	0x1416ebb40	cstring	non-pressed 
+reference	job-item-requirement	0xa4513e	0x1416ebb68	cstring	woven 
+reference	job-item-requirement	0xa4515a	0x1416ebb60	cstring	hard 
+reference	job-item-requirement	0xa45179	0x1416ebb78	cstring	metal 
+reference	job-item-requirement	0xa45198	0x1416ebb70	cstring	sand 
+reference	job-item-requirement	0xa451b7	0x1416ebb8c	cstring	edged 
+reference	job-item-requirement	0xa451d6	0x1416ebb80	cstring	on-ground 
+reference	job-item-requirement	0xa451f5	0x1416ec290	cstring	divine 
+reference	job-item-requirement	0xa45214	0x1416ec280	cstring	artifact 
+reference	job-item-requirement	0xa45233	0x1416ec2a0	cstring	non-artifact 
+reference	job-item-requirement	0xa45252	0x1416ec298	cstring	wooden 
+reference	job-item-requirement	0xa45271	0x1416ec2b8	cstring	stone 
+reference	job-item-requirement	0xa45290	0x1416ec2b0	cstring	gem 
+reference	job-item-requirement	0xa452af	0x1416ec2cc	cstring	grown 
+reference	job-item-requirement	0xa4533c	0x1416039f0	cstring	 
+reference	job-item-requirement	0xa45363	0x1417a9888	cstring	unknown material
+reference	job-item-requirement	0xa45402	0x1416ec2c0	cstring	-bearing 
+reference	job-item-requirement	0xa45410	0x1416ec2c8	cstring	 
+reference	job-item-requirement	0xa454ef	0x1416ec230	cstring	CALCIUM_CARBONATE
+reference	job-item-requirement	0xa45505	0x1416ec210	cstring	calcite/limestone/chalk/marble 
+reference	job-item-requirement	0xa4552b	0x1416ec258	cstring	CAN_GLAZE
+reference	job-item-requirement	0xa45541	0x1416ec248	cstring	glazable 
+reference	job-item-requirement	0xa45573	0x1416ec26c	cstring	FAT
+reference	job-item-requirement	0xa45589	0x1416ec264	cstring	fat 
+reference	job-item-requirement	0xa455b3	0x1416458b4	cstring	FLUX
+reference	job-item-requirement	0xa455c9	0x1416ec278	cstring	flux 
+reference	job-item-requirement	0xa455fb	0x1416ec270	cstring	GYPSUM
+reference	job-item-requirement	0xa45611	0x1416ec1b8	cstring	gypsum 
+reference	job-item-requirement	0xa4563b	0x1416df460	cstring	PAPER_PLANT
+reference	job-item-requirement	0xa45651	0x1416ec1a8	cstring	paper-making 
+reference	job-item-requirement	0xa45683	0x1416df450	cstring	PAPER_SLURRY
+reference	job-item-requirement	0xa45699	0x1416ec1c8	cstring	paper-slurry 
+reference	job-item-requirement	0xa456c3	0x1416ec1c0	cstring	TALLOW
+reference	job-item-requirement	0xa456d9	0x1416ec1e0	cstring	tallow 
+reference	job-item-requirement	0xa45702	0x14167e80c	cstring	WAX
+reference	job-item-requirement	0xa45718	0x1416ec1d8	cstring	wax 
+reference	job-item-requirement	0xa45789	0x1416ec200	cstring	BAG_ITEM
+reference	job-item-requirement	0xa4579f	0x1416ec1e8	cstring	bag-processable 
+reference	job-item-requirement	0xa457c5	0x141657d88	cstring	DRINK_MAT
+reference	job-item-requirement	0xa457de	0x1416ec130	cstring	fermentable 
+reference	job-item-requirement	0xa45810	0x1416458a8	cstring	FIRED_MAT
+reference	job-item-requirement	0xa45826	0x1416ec124	cstring	clay 
+reference	job-item-requirement	0xa45850	0x1416ec148	cstring	GLAZE_MAT
+reference	job-item-requirement	0xa45866	0x1416ec140	cstring	glaze 
+reference	job-item-requirement	0xa45898	0x1416ec168	cstring	HONEYCOMB_PRESS_MAT
+reference	job-item-requirement	0xa458ae	0x1416ec158	cstring	honey-bearing 
+reference	job-item-requirement	0xa458d8	0x1416ec198	cstring	PARCHMENT_MAT
+reference	job-item-requirement	0xa458ee	0x1416ec180	cstring	parchment-producing 
+reference	job-item-requirement	0xa45920	0x1416ec0b0	cstring	PRESS_LIQUID_MAT
+reference	job-item-requirement	0xa45936	0x1416ec0a0	cstring	oil-bearing 
+reference	job-item-requirement	0xa45960	0x1416ec0e0	cstring	PRESS_PAPER_MAT
+reference	job-item-requirement	0xa45976	0x1416ec0c8	cstring	paper-slurryable 
+reference	job-item-requirement	0xa459a8	0x1416ec100	cstring	RENDER_MAT
+reference	job-item-requirement	0xa459be	0x1416ec0f0	cstring	renderable 
+reference	job-item-requirement	0xa459e8	0x1416ec118	cstring	SOAP_MAT
+reference	job-item-requirement	0xa459fe	0x1416ec10c	cstring	fatty 
+reference	job-item-requirement	0xa45a30	0x14167d828	cstring	TAN_MAT
+reference	job-item-requirement	0xa45a46	0x1416ec028	cstring	tannable 
+reference	job-item-requirement	0xa45adf	0x1416ec018	cstring	-producing 
+reference	job-item-requirement	0xa45aed	0x1416ec020	cstring	ng 
+reference	job-item-requirement	0xa45afa	0x1416ec022	cstring	 
+reference	job-item-requirement	0xa45be0	0x1416ec040	cstring	-containing 
+reference	job-item-requirement	0xa45c23	0x1416ec034	cstring	color 
+reference	job-item-requirement	0xa45c66	0x1416039f0	cstring	 
+reference	job-item-requirement	0xa45ca6	0x1416ec060	cstring	liquid cooking
+reference	job-item-requirement	0xa45cb8	0x1416ec050	cstring	liquid scoop
+reference	job-item-requirement	0xa45cca	0x1416ec080	cstring	powder grinding receptacle
+reference	job-item-requirement	0xa45cd6	0x1416ec070	cstring	powder grinding
+reference	job-item-requirement	0xa45ce8	0x1416ebf98	cstring	meat carving
+reference	job-item-requirement	0xa45cfa	0x1416ebf88	cstring	meat boning
+reference	job-item-requirement	0xa45d0c	0x1416ebfb8	cstring	meat slicing
+reference	job-item-requirement	0xa45d1e	0x1416ebfa8	cstring	meat cleaving
+reference	job-item-requirement	0xa45d30	0x1416ebfd8	cstring	meat-carving holder
+reference	job-item-requirement	0xa45d42	0x1416ebfc8	cstring	meal container
+reference	job-item-requirement	0xa45d54	0x1416ec000	cstring	liquid container
+reference	job-item-requirement	0xa45d66	0x1416ebff0	cstring	food storage
+reference	job-item-requirement	0xa45d78	0x1416ebf04	cstring	hive
+reference	job-item-requirement	0xa45d8a	0x1416ebef8	cstring	nest box
+reference	job-item-requirement	0xa45d99	0x1416ebf20	cstring	small object container
+reference	job-item-requirement	0xa45dab	0x1416ebf10	cstring	track cart
+reference	job-item-requirement	0xa45dbd	0x1416ebf48	cstring	heavy object hauler
+reference	job-item-requirement	0xa45dcf	0x1416ebf38	cstring	stand-and-work
+reference	job-item-requirement	0xa45dde	0x1416ebf78	cstring	sheet roller
+reference	job-item-requirement	0xa45dea	0x1416ebf60	cstring	folded sheet protector
+reference	job-item-requirement	0xa45df9	0x1416ec2e8	cstring	writing container
+reference	job-item-requirement	0xa45e08	0x1416ec2d8	cstring	bookcase
+reference	job-item-requirement	0xa45e17	0x1416ec318	cstring	display object
+reference	job-item-requirement	0xa45e26	0x1416ec300	cstring	offering placement
+reference	job-item-requirement	0xa45e35	0x1416ec338	cstring	divination
+reference	job-item-requirement	0xa45e3e	0x1416ec328	cstring	games of chance
+reference	job-item-requirement	0xa45e6e	0x1416039f0	cstring	 
+reference	job-item-requirement	0xa45e83	0x1416a0ac0	cstring	body part
+reference	job-item-requirement	0xa45ec2	0x1416039f0	cstring	 
+reference	job-item-requirement	0xa45fa4	0x1416ec368	cstring	 that isn't a bin
+reference	requirement-item-noun	0xa9c7c7	0x1416660ac	cstring	large
+reference	requirement-item-noun	0xa9c7d0	0x1416660b0	cstring	e
+reference	requirement-item-noun	0xa9c7d9	0x1416a5e90	cstring	small
+reference	requirement-item-noun	0xa9c7e2	0x1416a5e94	cstring	l
+reference	requirement-item-noun	0xa9c82c	0x1416ec2cc	cstring	grown 
+reference	requirement-item-noun	0xa9c906	0x14169c7a4	cstring	logs
+reference	requirement-item-noun	0xa9c978	0x1416f03f0	cstring	branch
+reference	requirement-item-noun	0xa9c99d	0x1416f03f8	cstring	es
+reference	requirement-item-noun	0xa9c9bd	0x14161cf38	cstring	rough gems
+reference	requirement-item-noun	0xa9c9d6	0x1416f0400	cstring	raw green glass
+reference	requirement-item-noun	0xa9c9ef	0x1416f0410	cstring	raw clear glass
+reference	requirement-item-noun	0xa9ca08	0x1416f03b0	cstring	raw crystal glass
+reference	requirement-item-noun	0xa9ca2a	0x14161cf38	cstring	rough gems
+reference	requirement-item-noun	0xa9ca48	0x1416ecb08	cstring	rough 
+reference	requirement-item-noun	0xa9cae7	0x1416a5df4	cstring	small 
+reference	requirement-item-noun	0xa9cafe	0x1416a5df4	cstring	small 
+reference	requirement-item-noun	0xa9cbde	0x1416f03c4	cstring	rock
+reference	requirement-item-noun	0xa9cbfe	0x1416f03d0	cstring	small rock
+reference	requirement-item-noun	0xa9cc57	0x1416f03e0	cstring	stone boulders
+reference	requirement-item-noun	0xa9cc7d	0x1416f0380	cstring	boulders
+reference	requirement-item-noun	0xa9cd5a	0x1416f0360	cstring	bars
+reference	requirement-item-noun	0xa9cd73	0x1416f03a0	cstring	charcoal
+reference	requirement-item-noun	0xa9cd89	0x1416f0348	cstring	coke
+reference	requirement-item-noun	0xa9cd92	0x1416f0350	cstring	refined coal
+reference	requirement-item-noun	0xa9cdab	0x1416597e8	cstring	metal
+reference	requirement-item-noun	0xa9cdba	0x1416f0398	cstring	 bars
+reference	requirement-item-noun	0xa9ce6a	0x1416f0390	cstring	 wafers
+reference	requirement-item-noun	0xa9cf58	0x14161cef8	cstring	cut gems
+reference	requirement-item-noun	0xa9cf71	0x1416f0368	cstring	cut green glass gems
+reference	requirement-item-noun	0xa9cf8a	0x1416f0308	cstring	cut clear glass gems
+reference	requirement-item-noun	0xa9cfa0	0x1416f0320	cstring	cut crystal glass gems
+reference	requirement-item-noun	0xa9cfbb	0x1416f0338	cstring	gems
+reference	requirement-item-noun	0xa9d0f8	0x1416f0340	cstring	blocks
+reference	requirement-item-noun	0xa9d10f	0x1416f0340	cstring	blocks
+reference	requirement-item-noun	0xa9d1bd	0x1416f02e0	cstring	door
+reference	requirement-item-noun	0xa9d1c4	0x1416f02d8	cstring	portal
+reference	requirement-item-noun	0xa9d23a	0x1416f02e8	cstring	floodgate
+reference	requirement-item-noun	0xa9d2aa	0x1416f02f8	cstring	hatch cover
+reference	requirement-item-noun	0xa9d31a	0x1416f02c4	cstring	grate
+reference	requirement-item-noun	0xa9d38a	0x14164bc44	cstring	table
+reference	requirement-item-noun	0xa9d3fa	0x141657c20	cstring	cabinet
+reference	requirement-item-noun	0xa9d46a	0x141657c10	cstring	weapon rack
+reference	requirement-item-noun	0xa9d4da	0x141657c00	cstring	armor stand
+reference	requirement-item-noun	0xa9d54a	0x1416f02cc	cstring	bin
+reference	requirement-item-noun	0xa9d5f1	0x1416f02d0	cstring	box
+reference	requirement-item-noun	0xa9d60a	0x1416f02d4	cstring	e
+reference	requirement-item-noun	0xa9d633	0x1416f02a4	cstring	coffer
+reference	requirement-item-noun	0xa9d642	0x141657c28	cstring	chest
+reference	requirement-item-noun	0xa9d663	0x1416f02ac	cstring	boxe
+reference	requirement-item-noun	0xa9d678	0x1416044f0	cstring	s
+reference	requirement-item-noun	0xa9d68c	0x1416f02d0	cstring	box
+reference	requirement-item-noun	0xa9d704	0x1416f02b4	cstring	bag
+reference	requirement-item-noun	0xa9d79f	0x1416f02b8	cstring	backpack
+reference	requirement-item-noun	0xa9d85c	0x1416f028c	cstring	cast
+reference	requirement-item-noun	0xa9d868	0x1416f0280	cstring	limb/body 
+reference	requirement-item-noun	0xa9d877	0x1416f028c	cstring	cast
+reference	requirement-item-noun	0xa9d8d7	0x1416f0280	cstring	limb/body 
+reference	requirement-item-noun	0xa9d8e6	0x1416f028c	cstring	cast
+reference	requirement-item-noun	0xa9d956	0x1416f0294	cstring	splint
+reference	requirement-item-noun	0xa9d9c0	0x1416f029c	cstring	crutch
+reference	requirement-item-noun	0xa9da5b	0x1416f0254	cstring	quiver
+reference	requirement-item-noun	0xa9dada	0x1416f025c	cstring	casket
+reference	requirement-item-noun	0xa9db25	0x1416f0268	cstring	sarcophag
+reference	requirement-item-noun	0xa9db34	0x14165def0	cstring	us
+reference	requirement-item-noun	0xa9db3b	0x1416e980c	cstring	i
+reference	requirement-item-noun	0xa9db57	0x14164bc38	cstring	coffin
+reference	requirement-item-noun	0xa9dc74	0x1416f0974	cstring	chain
+reference	requirement-item-noun	0xa9dc88	0x1416f0274	cstring	rope
+reference	requirement-item-noun	0xa9ddc8	0x1416f098c	cstring	vial
+reference	requirement-item-noun	0xa9ddd9	0x1416f0994	cstring	flask
+reference	requirement-item-noun	0xa9ddf0	0x1416f0980	cstring	waterskin
+reference	requirement-item-noun	0xa9de99	0x1416f0948	cstring	musical instrument
+reference	requirement-item-noun	0xa9df7b	0x1416f0960	cstring	unglazed 
+reference	requirement-item-noun	0xa9e0e3	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xa9e0fd	0x1416eaf24	cstring	tool
+reference	requirement-item-noun	0xa9e19d	0x1416eaffc	cstring	toy
+reference	requirement-item-noun	0xa9e24d	0x1416f096c	cstring	cup
+reference	requirement-item-noun	0xa9e281	0x1416f0970	cstring	mug
+reference	requirement-item-noun	0xa9e29b	0x1416f091c	cstring	goblet
+reference	requirement-item-noun	0xa9e30b	0x1416f0924	cstring	window
+reference	requirement-item-noun	0xa9e3ba	0x1416f093c	cstring	cage
+reference	requirement-item-noun	0xa9e3c1	0x1416f0930	cstring	terrarium
+reference	requirement-item-noun	0xa9e435	0x1416f08f4	cstring	barrel
+reference	requirement-item-noun	0xa9e4a5	0x1416f08fc	cstring	bucket
+reference	requirement-item-noun	0xa9e515	0x1416f0908	cstring	animal trap
+reference	requirement-item-noun	0xa9e591	0x14164bc30	cstring	chair
+reference	requirement-item-noun	0xa9e5ab	0x1416f0914	cstring	throne
+reference	requirement-item-noun	0xa9e661	0x1416f08d0	cstring	web
+reference	requirement-item-noun	0xa9e6ac	0x1416f08d8	cstring	strands
+reference	requirement-item-noun	0xa9e6df	0x141631664	cstring	yarn
+reference	requirement-item-noun	0xa9e6f0	0x14163164c	cstring	thread
+reference	requirement-item-noun	0xa9e765	0x141631654	cstring	cloth
+reference	requirement-item-noun	0xa9e86f	0x1416f08e0	cstring	sheet
+reference	requirement-item-noun	0xa9e892	0x1416f08e8	cstring	tanned hide
+reference	requirement-item-noun	0xa9e8f5	0x1416f08b0	cstring	totem
+reference	requirement-item-noun	0xa9e95e	0x1416f08b8	cstring	-bound 
+reference	requirement-item-noun	0xa9e97a	0x1416f08c8	cstring	codex
+reference	requirement-item-noun	0xa9e981	0x1416f08c0	cstring	codices
+reference	requirement-item-noun	0xa9ea00	0x1416f0888	cstring	figurine
+reference	requirement-item-noun	0xa9ea1e	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xa9ea43	0x1416706c0	cstring	drink
+reference	requirement-item-noun	0xa9ea86	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xa9ec6b	0x1416f08a0	cstring	filthy 
+reference	requirement-item-noun	0xa9ec84	0x1416f08a8	cstring	sticky 
+reference	requirement-item-noun	0xa9eca3	0x1416f0860	cstring	vomitous 
+reference	requirement-item-noun	0xa9ecbf	0x1416f086c	cstring	slimy 
+reference	requirement-item-noun	0xa9ecd8	0x1416dab38	cstring	stagnant 
+reference	requirement-item-noun	0xa9ecf4	0x1416f0874	cstring	dirty 
+reference	requirement-item-noun	0xa9ed10	0x1416f087c	cstring	gooey 
+reference	requirement-item-noun	0xa9ed29	0x1416f0830	cstring	purulent 
+reference	requirement-item-noun	0xa9ed42	0x1416f0840	cstring	ichorous 
+reference	requirement-item-noun	0xa9ed5b	0x1416f0850	cstring	bloody 
+reference	requirement-item-noun	0xa9ed9a	0x1416c6750	cstring	liquid
+reference	requirement-item-noun	0xa9eedc	0x1416f0858	cstring	 paste
+reference	requirement-item-noun	0xa9ef31	0x1416f07fc	cstring	glob
+reference	requirement-item-noun	0xa9f132	0x1416f0808	cstring	 laced with 
+reference	requirement-item-noun	0xa9f1a6	0x141604394	cstring	, 
+reference	requirement-item-noun	0xa9f1b6	0x14160438c	cstring	 and 
+reference	requirement-item-noun	0xa9f21b	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xa9f2b8	0x1416f0818	cstring	 dye mix
+reference	requirement-item-noun	0xa9f2dc	0x1416f0824	cstring	powder
+reference	requirement-item-noun	0xa9f336	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xa9f358	0x1416f07c0	cstring	cheese
+reference	requirement-item-noun	0xa9f3e0	0x1416f07c8	cstring	catapult parts
+reference	requirement-item-noun	0xa9f458	0x1416f07d8	cstring	bolt thrower parts
+reference	requirement-item-noun	0xa9f4d0	0x1416f07f0	cstring	mechanisms
+reference	requirement-item-noun	0xa9f57f	0x1416f0784	cstring	tube
+reference	requirement-item-noun	0xa9f599	0x1416f0790	cstring	pipe section
+reference	requirement-item-noun	0xa9f637	0x1416f07a0	cstring	trap component
+reference	requirement-item-noun	0xa9f668	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xa9f74a	0x1416f07b0	cstring	ballista parts
+reference	requirement-item-noun	0xa9f7c2	0x1416f0750	cstring	anvil
+reference	requirement-item-noun	0xa9f832	0x1416f0758	cstring	amulet
+reference	requirement-item-noun	0xa9f8a2	0x1416f0760	cstring	ballista arrow head
+reference	requirement-item-noun	0xa9f949	0x1416f0778	cstring	siege ammo
+reference	requirement-item-noun	0xa9fa93	0x1416f0728	cstring	ammunition
+reference	requirement-item-noun	0xa9fb0b	0x1416f0738	cstring	scepter
+reference	requirement-item-noun	0xa9fb7b	0x1416f0740	cstring	crown
+reference	requirement-item-noun	0xa9fbe5	0x1416f0748	cstring	coin
+reference	requirement-item-noun	0xa9fc04	0x1416f06e8	cstring	perfect 
+reference	requirement-item-noun	0xa9fc13	0x141666420	cstring	large 
+reference	requirement-item-noun	0xa9fcfb	0x1416f06f8	cstring	green glass 
+reference	requirement-item-noun	0xa9fd11	0x1416f0708	cstring	clear glass 
+reference	requirement-item-noun	0xa9fd27	0x1416f0718	cstring	crystal glass 
+reference	requirement-item-noun	0xa9fd43	0x1416316ac	cstring	gem
+reference	requirement-item-noun	0xa9fdfb	0x1416f06c0	cstring	 gem
+reference	requirement-item-noun	0xa9fed6	0x1416f06c8	cstring	ring
+reference	requirement-item-noun	0xa9ff46	0x1416f06d0	cstring	earring
+reference	requirement-item-noun	0xa9ffb6	0x1416f06d8	cstring	bracelet
+reference	requirement-item-noun	0xaa0026	0x14164bc40	cstring	bed
+reference	requirement-item-noun	0xaa0096	0x1416f0df0	cstring	traction bench
+reference	requirement-item-noun	0xaa0106	0x1416f0e00	cstring	quern
+reference	requirement-item-noun	0xaa0176	0x1416f0e08	cstring	millstone
+reference	requirement-item-noun	0xaa01e6	0x1416f0e14	cstring	statue
+reference	requirement-item-noun	0xaa02f2	0x1416f0d98	cstring	memorial
+reference	requirement-item-noun	0xaa0306	0x1416f0da8	cstring	food imports sign
+reference	requirement-item-noun	0xaa031a	0x1416f0dc0	cstring	clothing imports sign
+reference	requirement-item-noun	0xaa032e	0x1416f0dd8	cstring	general imports sign
+reference	requirement-item-noun	0xaa0342	0x1416f0d30	cstring	cloth shop sign
+reference	requirement-item-noun	0xaa0356	0x1416f0d40	cstring	leather shop sign
+reference	requirement-item-noun	0xaa036a	0x1416f0d58	cstring	woven clothing shop sign
+reference	requirement-item-noun	0xaa037e	0x1416f0d78	cstring	leather clothing shop sign
+reference	requirement-item-noun	0xaa0392	0x1416f0cd0	cstring	bone carver's shop sign
+reference	requirement-item-noun	0xaa03a6	0x1416f0ce8	cstring	gem cutter's shop sign
+reference	requirement-item-noun	0xaa03ba	0x1416f0d00	cstring	weaponsmith's shop sign
+reference	requirement-item-noun	0xaa03ce	0x1416f0d18	cstring	bowyer's shop sign
+reference	requirement-item-noun	0xaa03e2	0x1416f0c70	cstring	blacksmith's shop sign
+reference	requirement-item-noun	0xaa03f6	0x1416f0c88	cstring	armorsmith's shop sign
+reference	requirement-item-noun	0xaa040a	0x1416f0ca0	cstring	metal craft shop sign
+reference	requirement-item-noun	0xaa041e	0x1416f0cb8	cstring	leather goods shop sign
+reference	requirement-item-noun	0xaa0432	0x1416f0c08	cstring	carpenter's shop sign
+reference	requirement-item-noun	0xaa0446	0x1416f0c20	cstring	stone furniture shop sign
+reference	requirement-item-noun	0xaa045a	0x1416f0c40	cstring	metal furniture shop sign
+reference	requirement-item-noun	0xaa046e	0x1416f0c60	cstring	tavern sign
+reference	requirement-item-noun	0xaa0482	0x1416f0be0	cstring	slab
+reference	requirement-item-noun	0xaa0496	0x1416f0be0	cstring	slab
+reference	requirement-item-noun	0xaa04b4	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xaa04c9	0x1416f0be8	cstring	corpse
+reference	requirement-item-noun	0xaa04e7	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xaa050b	0x14163167c	cstring	tooth
+reference	requirement-item-noun	0xaa051c	0x1416f0bf0	cstring	teeth
+reference	requirement-item-noun	0xaa0531	0x141631674	cstring	bone
+reference	requirement-item-noun	0xaa0549	0x14163166c	cstring	shell
+reference	requirement-item-noun	0xaa0561	0x1416f0bf8	cstring	plant part
+reference	requirement-item-noun	0xaa0579	0x1416f0b90	cstring	silk body part
+reference	requirement-item-noun	0xaa0591	0x1416f0ba0	cstring	leather body part
+reference	requirement-item-noun	0xaa05a9	0x1416f0bb8	cstring	wooden body part
+reference	requirement-item-noun	0xaa05c3	0x1416f0bd0	cstring	soap body part
+reference	requirement-item-noun	0xaa05dd	0x141631694	cstring	horn
+reference	requirement-item-noun	0xaa05f7	0x14163168c	cstring	pearl
+reference	requirement-item-noun	0xaa0611	0x1416f0b58	cstring	yarn body part
+reference	requirement-item-noun	0xaa0629	0x1416f0b68	cstring	strand body part
+reference	requirement-item-noun	0xaa0632	0x1416a0ac0	cstring	body part
+reference	requirement-item-noun	0xaa065b	0x1416f0b80	cstring	Rotten 
+reference	requirement-item-noun	0xaa07c2	0x14169ebd0	cstring	remains
+reference	requirement-item-noun	0xaa0821	0x1416f0b88	cstring	seeds
+reference	requirement-item-noun	0xaa0892	0x1416f0b18	cstring	withered 
+reference	requirement-item-noun	0xaa0906	0x1416f0b28	cstring	leaves and fruit
+reference	requirement-item-noun	0xaa0917	0x1416f0b40	cstring	leaf or fruit
+reference	requirement-item-noun	0xaa094a	0x1416f0b18	cstring	withered 
+reference	requirement-item-noun	0xaa099d	0x141630b04	cstring	plant
+reference	requirement-item-noun	0xaa09b6	0x1416044f0	cstring	s
+reference	requirement-item-noun	0xaa09dc	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xaa09f4	0x1416f0b50	cstring	raw 
+reference	requirement-item-noun	0xaa0b75	0x141604394	cstring	, 
+reference	requirement-item-noun	0xaa0b8b	0x141604394	cstring	, 
+reference	requirement-item-noun	0xaa0ba4	0x1416c19a0	cstring	fish
+reference	requirement-item-noun	0xaa0bca	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xaa0cf1	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xaa0d06	0x1416f0aec	cstring	egg
+reference	requirement-item-noun	0xaa0d2c	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xaa0e2b	0x1416c19a0	cstring	fish
+reference	requirement-item-noun	0xaa0e48	0x1416f0af0	cstring	live 
+reference	requirement-item-noun	0xaa0e81	0x1416f0af8	cstring	small live animal
+reference	requirement-item-noun	0xaa0e9b	0x1416f0b0c	cstring	tame 
+reference	requirement-item-noun	0xaa0ea4	0x1416f0ab0	cstring	small tame animal
+reference	requirement-item-noun	0xaa0ebb	0x1416f0ac8	cstring	prepared meal
+reference	requirement-item-noun	0xaa0ed5	0x1416f0898	cstring	rotten 
+reference	requirement-item-noun	0xaa0eea	0x1416f0ad8	cstring	preserved 
+reference	requirement-item-noun	0xaa0fac	0x1416f0ae4	cstring	 chops
+reference	requirement-item-noun	0xaa0fbd	0x1416f0a84	cstring	 chop
+reference	requirement-item-noun	0xaa0ff6	0x1416f0a8c	cstring	meat
+reference	requirement-item-noun	0xaa1010	0x1416f0a8c	cstring	meat
+reference	requirement-item-noun	0xaa10a2	0x1416eb054	cstring	weapon
+reference	requirement-item-noun	0xaa10db	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xaa1207	0x1416f0aa0	cstring	suits of 
+reference	requirement-item-noun	0xaa1216	0x1416eb05c	cstring	armor
+reference	requirement-item-noun	0xaa127c	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xaa1326	0x1416f0a94	cstring	chain 
+reference	requirement-item-noun	0xaa1435	0x141656244	cstring	right 
+reference	requirement-item-noun	0xaa1455	0x1416561e0	cstring	left 
+reference	requirement-item-noun	0xaa149e	0x1416f0a94	cstring	chain 
+reference	requirement-item-noun	0xaa14ff	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xaa1513	0x1416f0a48	cstring	handwear
+reference	requirement-item-noun	0xaa15b7	0x1416eafe4	cstring	shield
+reference	requirement-item-noun	0xaa15d6	0x1416f0a58	cstring	/buckler
+reference	requirement-item-noun	0xaa15ea	0x1416f0a58	cstring	/buckler
+reference	requirement-item-noun	0xaa1727	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xaa1757	0x1416f0a68	cstring	footwear
+reference	requirement-item-noun	0xaa1848	0x1416f0a78	cstring	headwear
+reference	requirement-item-noun	0xaa188c	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xaa1948	0x1416f09f8	cstring	legwear
+reference	requirement-item-noun	0xaa19cc	0x1416039f0	cstring	 
+reference	requirement-item-noun	0xaa1ae6	0x141618d48	cstring	item
+reference	requirement-item-noun	0xaa1b17	0x141637c6c	cstring	 [
+reference	requirement-item-noun	0xaa1b37	0x141619408	cstring	]
+reference	string-length-error	0x66ec4	0x1416031d8	cstring	string too long
+reference	tooltip-paragraph-list-splitter	0x901017	0x1416039f0	cstring	 
+classic	task-choice-tooltip	0x8d9e42	0x1416da580	cstring	Produces:
+classic	task-choice-tooltip	0x8d9e4f	0x1416da588	cstring	:
+classic	task-choice-tooltip	0x8d9fa6	0x1415fe96c	cstring	 
+classic	task-choice-tooltip	0x8da54b	0x1416da450	cstring	Requires:
+classic	task-choice-tooltip	0x8da558	0x1416da458	cstring	:
+classic	task-choice-tooltip	0x8da877	0x1415fe96c	cstring	 
+classic	task-availability-and-requirement	0x8db872	0x1416da460	cstring	[Requires fuel]
+classic	task-availability-and-requirement	0x8db920	0x1416da440	cstring	[Requires ore]
+classic	task-availability-and-requirement	0x8db940	0x1416da428	cstring	[Requires ore, fuel]
+classic	task-availability-and-requirement	0x8db94f	0x1416da460	cstring	[Requires fuel]
+classic	task-availability-and-requirement	0x8dbcef	0x1416da460	cstring	[Requires fuel]
+classic	task-availability-and-requirement	0x8dbe80	0x1416da408	cstring	[Requires 
+classic	task-availability-and-requirement	0x8dbec3	0x141614398	cstring	]
+classic	job-item-requirement	0xa41f96	0x1416e6f58	cstring	unused 
+classic	job-item-requirement	0xa41fb1	0x1416e6f60	cstring	improvable 
+classic	job-item-requirement	0xa41fcd	0x1416e6f70	cstring	butcherable 
+classic	job-item-requirement	0xa41fe9	0x1416e6f80	cstring	millable 
+classic	job-item-requirement	0xa42005	0x1416e6f90	cstring	possibly buriable 
+classic	job-item-requirement	0xa42021	0x1416e6fa8	cstring	unrotten 
+classic	job-item-requirement	0xa4203d	0x1416e6e98	cstring	undisturbed 
+classic	job-item-requirement	0xa4205a	0x1416e6ea8	cstring	collected 
+classic	job-item-requirement	0xa4207e	0x1416e6eb8	cstring	sharpenable 
+classic	job-item-requirement	0xa4209d	0x14167eda8	cstring	murdered 
+classic	job-item-requirement	0xa420bc	0x1416e6ec8	cstring	empty 
+classic	job-item-requirement	0xa420db	0x1416e6ed0	cstring	processable 
+classic	job-item-requirement	0xa420fa	0x1416e6ee0	cstring	cookable 
+classic	job-item-requirement	0xa42119	0x1416e6eec	cstring	solid 
+classic	job-item-requirement	0xa4213b	0x1416e6ef8	cstring	extract-bearing plant 
+classic	job-item-requirement	0xa4215a	0x1416e7500	cstring	extract-bearing fish 
+classic	job-item-requirement	0xa42179	0x1416e7518	cstring	extract-bearing small creature 
+classic	job-item-requirement	0xa42195	0x1416e7538	cstring	processable (to vial) 
+classic	job-item-requirement	0xa421b4	0x1416e7550	cstring	processable (to barrel) 
+classic	job-item-requirement	0xa421d3	0x1416e7570	cstring	tameable small creature 
+classic	job-item-requirement	0xa421f2	0x141678fc0	cstring	nearby 
+classic	job-item-requirement	0xa42211	0x1416e7590	cstring	sand-bearing 
+classic	job-item-requirement	0xa42230	0x1416e75a0	cstring	glass 
+classic	job-item-requirement	0xa4224b	0x1416e75a8	cstring	lye-bearing 
+classic	job-item-requirement	0xa4226a	0x1416e7494	cstring	milk 
+classic	job-item-requirement	0xa42289	0x1416e74a0	cstring	milkable 
+classic	job-item-requirement	0xa422a8	0x1416e74b0	cstring	finished good 
+classic	job-item-requirement	0xa422c7	0x1416e74c0	cstring	ammo 
+classic	job-item-requirement	0xa422e6	0x1416e74c8	cstring	furniture 
+classic	job-item-requirement	0xa42340	0x1415fe96c	cstring	 
+classic	job-item-requirement	0xa42355	0x1416e74d4	cstring	dye 
+classic	job-item-requirement	0xa42371	0x1416e74e0	cstring	dyeable 
+classic	job-item-requirement	0xa42390	0x1416e74f0	cstring	totemable 
+classic	job-item-requirement	0xa423ac	0x1416e7420	cstring	glass-making 
+classic	job-item-requirement	0xa423c8	0x1416e7430	cstring	dyed 
+classic	job-item-requirement	0xa423e7	0x1416e7438	cstring	melt-designated 
+classic	job-item-requirement	0xa4240d	0x1416e7450	cstring	deep material 
+classic	job-item-requirement	0xa42429	0x1416e7460	cstring	sewn-imageless 
+classic	job-item-requirement	0xa42445	0x1416e7470	cstring	screw 
+classic	job-item-requirement	0xa4246c	0x1416e7478	cstring	fire-safe 
+classic	job-item-requirement	0xa4248b	0x1416e7488	cstring	magma-safe 
+classic	job-item-requirement	0xa424a7	0x1416e73b8	cstring	building material 
+classic	job-item-requirement	0xa424c6	0x1416e73d0	cstring	non-economic 
+classic	job-item-requirement	0xa424e5	0x1416e73e0	cstring	plant 
+classic	job-item-requirement	0xa42504	0x1416e73e8	cstring	silk 
+classic	job-item-requirement	0xa4251f	0x1416e73f0	cstring	yarn 
+classic	job-item-requirement	0xa4253e	0x1416e73f8	cstring	leather 
+classic	job-item-requirement	0xa4255d	0x1416e7404	cstring	bone 
+classic	job-item-requirement	0xa4257c	0x1416e7410	cstring	hair/wool 
+classic	job-item-requirement	0xa4259b	0x1416e7358	cstring	shell 
+classic	job-item-requirement	0xa425ba	0x1416e7360	cstring	horn 
+classic	job-item-requirement	0xa425d9	0x1416e7368	cstring	pearl 
+classic	job-item-requirement	0xa425f8	0x1416e7370	cstring	plaster-containing 
+classic	job-item-requirement	0xa4261e	0x1416e7384	cstring	soap 
+classic	job-item-requirement	0xa4263d	0x1416e7390	cstring	ivory/tooth 
+classic	job-item-requirement	0xa4265c	0x1416e73a0	cstring	lye/milk-free 
+classic	job-item-requirement	0xa4267b	0x1416e73b0	cstring	blunt 
+classic	job-item-requirement	0xa4269a	0x1416e72e8	cstring	unengraved 
+classic	job-item-requirement	0xa426b5	0x1416e72f8	cstring	unimproved 
+classic	job-item-requirement	0xa426d4	0x1416e7308	cstring	written-on 
+classic	job-item-requirement	0xa426f0	0x1416e7318	cstring	non-absorbent 
+classic	job-item-requirement	0xa4270c	0x1416e7328	cstring	food storage 
+classic	job-item-requirement	0xa42728	0x1416e7338	cstring	non-pressed 
+classic	job-item-requirement	0xa4274e	0x1416e7348	cstring	woven 
+classic	job-item-requirement	0xa4276a	0x1416e7350	cstring	hard 
+classic	job-item-requirement	0xa42789	0x1416e728c	cstring	metal 
+classic	job-item-requirement	0xa427a8	0x1416e7294	cstring	sand 
+classic	job-item-requirement	0xa427c7	0x1416e729c	cstring	edged 
+classic	job-item-requirement	0xa427e6	0x1416e72a8	cstring	on-ground 
+classic	job-item-requirement	0xa42805	0x1416e72b8	cstring	divine 
+classic	job-item-requirement	0xa42824	0x1416e72c0	cstring	artifact 
+classic	job-item-requirement	0xa42843	0x1416e72d0	cstring	non-artifact 
+classic	job-item-requirement	0xa42862	0x1416e72e0	cstring	wooden 
+classic	job-item-requirement	0xa42881	0x1416e720c	cstring	stone 
+classic	job-item-requirement	0xa428a0	0x1416e7214	cstring	gem 
+classic	job-item-requirement	0xa428bf	0x1416e721c	cstring	grown 
+classic	job-item-requirement	0xa4294c	0x1415fe96c	cstring	 
+classic	job-item-requirement	0xa42973	0x1417a3418	cstring	unknown material
+classic	job-item-requirement	0xa42a12	0x1416e7228	cstring	-bearing 
+classic	job-item-requirement	0xa42a20	0x1416e7230	cstring	 
+classic	job-item-requirement	0xa42aff	0x1416e7238	cstring	CALCIUM_CARBONATE
+classic	job-item-requirement	0xa42b15	0x1416e7250	cstring	calcite/limestone/chalk/marble 
+classic	job-item-requirement	0xa42b3b	0x1416e7270	cstring	CAN_GLAZE
+classic	job-item-requirement	0xa42b51	0x1416e7280	cstring	glazable 
+classic	job-item-requirement	0xa42b83	0x1416e7944	cstring	FAT
+classic	job-item-requirement	0xa42b99	0x1416e7948	cstring	fat 
+classic	job-item-requirement	0xa42bc3	0x1416406a4	cstring	FLUX
+classic	job-item-requirement	0xa42bd9	0x1416e7950	cstring	flux 
+classic	job-item-requirement	0xa42c0b	0x1416e7958	cstring	GYPSUM
+classic	job-item-requirement	0xa42c21	0x1416e7960	cstring	gypsum 
+classic	job-item-requirement	0xa42c4b	0x1416da7e8	cstring	PAPER_PLANT
+classic	job-item-requirement	0xa42c61	0x1416e7968	cstring	paper-making 
+classic	job-item-requirement	0xa42c93	0x1416da628	cstring	PAPER_SLURRY
+classic	job-item-requirement	0xa42ca9	0x1416e7978	cstring	paper-slurry 
+classic	job-item-requirement	0xa42cd3	0x1416e7988	cstring	TALLOW
+classic	job-item-requirement	0xa42ce9	0x1416e78e0	cstring	tallow 
+classic	job-item-requirement	0xa42d12	0x1416796a4	cstring	WAX
+classic	job-item-requirement	0xa42d28	0x1416e78e8	cstring	wax 
+classic	job-item-requirement	0xa42d99	0x1416e78f0	cstring	BAG_ITEM
+classic	job-item-requirement	0xa42daf	0x1416e7900	cstring	bag-processable 
+classic	job-item-requirement	0xa42dd5	0x141652a30	cstring	DRINK_MAT
+classic	job-item-requirement	0xa42dee	0x1416e7918	cstring	fermentable 
+classic	job-item-requirement	0xa42e20	0x141640698	cstring	FIRED_MAT
+classic	job-item-requirement	0xa42e36	0x1416e7928	cstring	clay 
+classic	job-item-requirement	0xa42e60	0x1416e7930	cstring	GLAZE_MAT
+classic	job-item-requirement	0xa42e76	0x1416e793c	cstring	glaze 
+classic	job-item-requirement	0xa42ea8	0x1416e7840	cstring	HONEYCOMB_PRESS_MAT
+classic	job-item-requirement	0xa42ebe	0x1416e7858	cstring	honey-bearing 
+classic	job-item-requirement	0xa42ee8	0x1416e7868	cstring	PARCHMENT_MAT
+classic	job-item-requirement	0xa42efe	0x1416e7878	cstring	parchment-producing 
+classic	job-item-requirement	0xa42f30	0x1416e7890	cstring	PRESS_LIQUID_MAT
+classic	job-item-requirement	0xa42f46	0x1416e78a8	cstring	oil-bearing 
+classic	job-item-requirement	0xa42f70	0x1416e78b8	cstring	PRESS_PAPER_MAT
+classic	job-item-requirement	0xa42f86	0x1416e78c8	cstring	paper-slurryable 
+classic	job-item-requirement	0xa42fb8	0x1416e77d0	cstring	RENDER_MAT
+classic	job-item-requirement	0xa42fce	0x1416e77e0	cstring	renderable 
+classic	job-item-requirement	0xa42ff8	0x1416e77f0	cstring	SOAP_MAT
+classic	job-item-requirement	0xa4300e	0x1416e77fc	cstring	fatty 
+classic	job-item-requirement	0xa43040	0x1416786c0	cstring	TAN_MAT
+classic	job-item-requirement	0xa43056	0x1416e7808	cstring	tannable 
+classic	job-item-requirement	0xa430ef	0x1416e7818	cstring	-producing 
+classic	job-item-requirement	0xa430fd	0x1416e7820	cstring	ng 
+classic	job-item-requirement	0xa4310a	0x1416e7822	cstring	 
+classic	job-item-requirement	0xa431f0	0x1416e7828	cstring	-containing 
+classic	job-item-requirement	0xa43233	0x1416e7838	cstring	color 
+classic	job-item-requirement	0xa43276	0x1415fe96c	cstring	 
+classic	job-item-requirement	0xa432b6	0x1416e7740	cstring	liquid cooking
+classic	job-item-requirement	0xa432c8	0x1416e7750	cstring	liquid scoop
+classic	job-item-requirement	0xa432da	0x1416e7760	cstring	powder grinding receptacle
+classic	job-item-requirement	0xa432e6	0x1416e7780	cstring	powder grinding
+classic	job-item-requirement	0xa432f8	0x1416e7790	cstring	meat carving
+classic	job-item-requirement	0xa4330a	0x1416e77a0	cstring	meat boning
+classic	job-item-requirement	0xa4331c	0x1416e77b0	cstring	meat slicing
+classic	job-item-requirement	0xa4332e	0x1416e77c0	cstring	meat cleaving
+classic	job-item-requirement	0xa43340	0x1416e76b0	cstring	meat-carving holder
+classic	job-item-requirement	0xa43352	0x1416e76c8	cstring	meal container
+classic	job-item-requirement	0xa43364	0x1416e76d8	cstring	liquid container
+classic	job-item-requirement	0xa43376	0x1416e76f0	cstring	food storage
+classic	job-item-requirement	0xa43388	0x1416e7700	cstring	hive
+classic	job-item-requirement	0xa4339a	0x1416e7708	cstring	nest box
+classic	job-item-requirement	0xa433a9	0x1416e7718	cstring	small object container
+classic	job-item-requirement	0xa433bb	0x1416e7730	cstring	track cart
+classic	job-item-requirement	0xa433cd	0x1416e7610	cstring	heavy object hauler
+classic	job-item-requirement	0xa433df	0x1416e7628	cstring	stand-and-work
+classic	job-item-requirement	0xa433ee	0x1416e7638	cstring	sheet roller
+classic	job-item-requirement	0xa433fa	0x1416e7648	cstring	folded sheet protector
+classic	job-item-requirement	0xa43409	0x1416e7660	cstring	writing container
+classic	job-item-requirement	0xa43418	0x1416e7678	cstring	bookcase
+classic	job-item-requirement	0xa43427	0x1416e7688	cstring	display object
+classic	job-item-requirement	0xa43436	0x1416e7698	cstring	offering placement
+classic	job-item-requirement	0xa43445	0x1416e75b8	cstring	divination
+classic	job-item-requirement	0xa4344e	0x1416e75c8	cstring	games of chance
+classic	job-item-requirement	0xa4347e	0x1415fe96c	cstring	 
+classic	job-item-requirement	0xa43493	0x14169b880	cstring	body part
+classic	job-item-requirement	0xa434d2	0x1415fe96c	cstring	 
+classic	job-item-requirement	0xa435b4	0x1416e75d8	cstring	 that isn't a bin
+classic	requirement-item-noun	0xa99627	0x141660b0c	cstring	large
+classic	requirement-item-noun	0xa99630	0x141660b10	cstring	e
+classic	requirement-item-noun	0xa99639	0x1416a0bfc	cstring	small
+classic	requirement-item-noun	0xa99642	0x1416a0c00	cstring	l
+classic	requirement-item-noun	0xa9968c	0x1416e721c	cstring	grown 
+classic	requirement-item-noun	0xa99766	0x1416977c8	cstring	logs
+classic	requirement-item-noun	0xa997d8	0x1416ea988	cstring	branch
+classic	requirement-item-noun	0xa997fd	0x1416ea8ec	cstring	es
+classic	requirement-item-noun	0xa9981d	0x141617d98	cstring	rough gems
+classic	requirement-item-noun	0xa99836	0x1416ea8f0	cstring	raw green glass
+classic	requirement-item-noun	0xa9984f	0x1416ea900	cstring	raw clear glass
+classic	requirement-item-noun	0xa99868	0x1416ea910	cstring	raw crystal glass
+classic	requirement-item-noun	0xa9988a	0x141617d98	cstring	rough gems
+classic	requirement-item-noun	0xa998a8	0x1416e7998	cstring	rough 
+classic	requirement-item-noun	0xa99947	0x1416a0834	cstring	small 
+classic	requirement-item-noun	0xa9995e	0x1416a0834	cstring	small 
+classic	requirement-item-noun	0xa99a3e	0x1416ea8b4	cstring	rock
+classic	requirement-item-noun	0xa99a5e	0x1416ea8c0	cstring	small rock
+classic	requirement-item-noun	0xa99ab7	0x1416ea8d0	cstring	stone boulders
+classic	requirement-item-noun	0xa99add	0x1416ea8e0	cstring	boulders
+classic	requirement-item-noun	0xa99bba	0x1416ea858	cstring	bars
+classic	requirement-item-noun	0xa99bd3	0x1416ea8a0	cstring	charcoal
+classic	requirement-item-noun	0xa99be9	0x1416ea8ac	cstring	coke
+classic	requirement-item-noun	0xa99bf2	0x1416ea848	cstring	refined coal
+classic	requirement-item-noun	0xa99c0b	0x141654418	cstring	metal
+classic	requirement-item-noun	0xa99c1a	0x1416ea898	cstring	 bars
+classic	requirement-item-noun	0xa99cca	0x1416ea890	cstring	 wafers
+classic	requirement-item-noun	0xa99db8	0x141617fb8	cstring	cut gems
+classic	requirement-item-noun	0xa99dd1	0x1416ea860	cstring	cut green glass gems
+classic	requirement-item-noun	0xa99dea	0x1416ea878	cstring	cut clear glass gems
+classic	requirement-item-noun	0xa99e00	0x1416eb650	cstring	cut crystal glass gems
+classic	requirement-item-noun	0xa99e1b	0x1416eb668	cstring	gems
+classic	requirement-item-noun	0xa99f58	0x1416eb670	cstring	blocks
+classic	requirement-item-noun	0xa99f6f	0x1416eb670	cstring	blocks
+classic	requirement-item-noun	0xa9a01d	0x1416eb620	cstring	door
+classic	requirement-item-noun	0xa9a024	0x1416eb678	cstring	portal
+classic	requirement-item-noun	0xa9a09a	0x1416eb628	cstring	floodgate
+classic	requirement-item-noun	0xa9a10a	0x1416eb638	cstring	hatch cover
+classic	requirement-item-noun	0xa9a17a	0x1416eb644	cstring	grate
+classic	requirement-item-noun	0xa9a1ea	0x1416468d4	cstring	table
+classic	requirement-item-noun	0xa9a25a	0x141652d18	cstring	cabinet
+classic	requirement-item-noun	0xa9a2ca	0x141652d08	cstring	weapon rack
+classic	requirement-item-noun	0xa9a33a	0x141652cf8	cstring	armor stand
+classic	requirement-item-noun	0xa9a3aa	0x1416eb60c	cstring	bin
+classic	requirement-item-noun	0xa9a451	0x1416eb610	cstring	box
+classic	requirement-item-noun	0xa9a46a	0x1416eb614	cstring	e
+classic	requirement-item-noun	0xa9a493	0x1416eb618	cstring	coffer
+classic	requirement-item-noun	0xa9a4a2	0x141652904	cstring	chest
+classic	requirement-item-noun	0xa9a4c3	0x1416eb5e4	cstring	boxe
+classic	requirement-item-noun	0xa9a4d8	0x1415ff4c8	cstring	s
+classic	requirement-item-noun	0xa9a4ec	0x1416eb610	cstring	box
+classic	requirement-item-noun	0xa9a564	0x1416eb5ec	cstring	bag
+classic	requirement-item-noun	0xa9a5ff	0x1416eb5f0	cstring	backpack
+classic	requirement-item-noun	0xa9a6bc	0x1416eb5c4	cstring	cast
+classic	requirement-item-noun	0xa9a6c8	0x1416eb600	cstring	limb/body 
+classic	requirement-item-noun	0xa9a6d7	0x1416eb5c4	cstring	cast
+classic	requirement-item-noun	0xa9a737	0x1416eb600	cstring	limb/body 
+classic	requirement-item-noun	0xa9a746	0x1416eb5c4	cstring	cast
+classic	requirement-item-noun	0xa9a7b6	0x1416eb5cc	cstring	splint
+classic	requirement-item-noun	0xa9a820	0x1416eb5d4	cstring	crutch
+classic	requirement-item-noun	0xa9a8bb	0x1416eb5dc	cstring	quiver
+classic	requirement-item-noun	0xa9a93a	0x1416eb59c	cstring	casket
+classic	requirement-item-noun	0xa9a985	0x1416eb5a8	cstring	sarcophag
+classic	requirement-item-noun	0xa9a994	0x141658d00	cstring	us
+classic	requirement-item-noun	0xa9a99b	0x1416e4944	cstring	i
+classic	requirement-item-noun	0xa9a9b7	0x1416468b0	cstring	coffin
+classic	requirement-item-noun	0xa9aad4	0x1416eb5bc	cstring	chain
+classic	requirement-item-noun	0xa9aae8	0x1416eb5b4	cstring	rope
+classic	requirement-item-noun	0xa9ac28	0x1416eb574	cstring	vial
+classic	requirement-item-noun	0xa9ac39	0x1416eb57c	cstring	flask
+classic	requirement-item-noun	0xa9ac50	0x1416eb568	cstring	waterskin
+classic	requirement-item-noun	0xa9acf9	0x1416eb588	cstring	musical instrument
+classic	requirement-item-noun	0xa9addb	0x1416eb548	cstring	unglazed 
+classic	requirement-item-noun	0xa9af43	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9af5d	0x1416e5fe4	cstring	tool
+classic	requirement-item-noun	0xa9affd	0x1416e5fd4	cstring	toy
+classic	requirement-item-noun	0xa9b0ad	0x1416eb554	cstring	cup
+classic	requirement-item-noun	0xa9b0e1	0x1416eb558	cstring	mug
+classic	requirement-item-noun	0xa9b0fb	0x1416eb55c	cstring	goblet
+classic	requirement-item-noun	0xa9b16b	0x1416eb520	cstring	window
+classic	requirement-item-noun	0xa9b21a	0x1416eb534	cstring	cage
+classic	requirement-item-noun	0xa9b221	0x1416eb528	cstring	terrarium
+classic	requirement-item-noun	0xa9b295	0x1416eb53c	cstring	barrel
+classic	requirement-item-noun	0xa9b305	0x1416eb4fc	cstring	bucket
+classic	requirement-item-noun	0xa9b375	0x1416eb508	cstring	animal trap
+classic	requirement-item-noun	0xa9b3f1	0x1416468dc	cstring	chair
+classic	requirement-item-noun	0xa9b40b	0x1416eb514	cstring	throne
+classic	requirement-item-noun	0xa9b4c1	0x1416eb51c	cstring	web
+classic	requirement-item-noun	0xa9b50c	0x1416eb4d8	cstring	strands
+classic	requirement-item-noun	0xa9b53f	0x14162c410	cstring	yarn
+classic	requirement-item-noun	0xa9b550	0x14162c3f8	cstring	thread
+classic	requirement-item-noun	0xa9b5c5	0x14162c400	cstring	cloth
+classic	requirement-item-noun	0xa9b6cf	0x1416eb4e0	cstring	sheet
+classic	requirement-item-noun	0xa9b6f2	0x1416eb4e8	cstring	tanned hide
+classic	requirement-item-noun	0xa9b755	0x1416eb4f4	cstring	totem
+classic	requirement-item-noun	0xa9b7be	0x1416eb4b0	cstring	-bound 
+classic	requirement-item-noun	0xa9b7da	0x1416eb4c0	cstring	codex
+classic	requirement-item-noun	0xa9b7e1	0x1416eb4b8	cstring	codices
+classic	requirement-item-noun	0xa9b860	0x1416eb4c8	cstring	figurine
+classic	requirement-item-noun	0xa9b87e	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9b8a3	0x14166b4a4	cstring	drink
+classic	requirement-item-noun	0xa9b8e6	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9bacb	0x1416eb490	cstring	filthy 
+classic	requirement-item-noun	0xa9bae4	0x1416eb498	cstring	sticky 
+classic	requirement-item-noun	0xa9bb03	0x1416eb4a0	cstring	vomitous 
+classic	requirement-item-noun	0xa9bb1f	0x1416eb460	cstring	slimy 
+classic	requirement-item-noun	0xa9bb38	0x1416d5c78	cstring	stagnant 
+classic	requirement-item-noun	0xa9bb54	0x1416eb468	cstring	dirty 
+classic	requirement-item-noun	0xa9bb70	0x1416eb470	cstring	gooey 
+classic	requirement-item-noun	0xa9bb89	0x1416eb478	cstring	purulent 
+classic	requirement-item-noun	0xa9bba2	0x1416eb438	cstring	ichorous 
+classic	requirement-item-noun	0xa9bbbb	0x1416eb448	cstring	bloody 
+classic	requirement-item-noun	0xa9bbfa	0x1416c1808	cstring	liquid
+classic	requirement-item-noun	0xa9bd3c	0x1416eb450	cstring	 paste
+classic	requirement-item-noun	0xa9bd91	0x1416eb458	cstring	glob
+classic	requirement-item-noun	0xa9bf92	0x1416eb408	cstring	 laced with 
+classic	requirement-item-noun	0xa9c006	0x1415ff308	cstring	, 
+classic	requirement-item-noun	0xa9c016	0x1415ff340	cstring	 and 
+classic	requirement-item-noun	0xa9c07b	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9c118	0x1416eb418	cstring	 dye mix
+classic	requirement-item-noun	0xa9c13c	0x1416eb424	cstring	powder
+classic	requirement-item-noun	0xa9c196	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9c1b8	0x1416eb42c	cstring	cheese
+classic	requirement-item-noun	0xa9c240	0x1416eba88	cstring	catapult parts
+classic	requirement-item-noun	0xa9c2b8	0x1416eba98	cstring	bolt thrower parts
+classic	requirement-item-noun	0xa9c330	0x1416ebab0	cstring	mechanisms
+classic	requirement-item-noun	0xa9c3df	0x1416ebabc	cstring	tube
+classic	requirement-item-noun	0xa9c3f9	0x1416eba50	cstring	pipe section
+classic	requirement-item-noun	0xa9c497	0x1416eba60	cstring	trap component
+classic	requirement-item-noun	0xa9c4c8	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9c5aa	0x1416eba70	cstring	ballista parts
+classic	requirement-item-noun	0xa9c622	0x1416eba80	cstring	anvil
+classic	requirement-item-noun	0xa9c692	0x1416eba0c	cstring	amulet
+classic	requirement-item-noun	0xa9c702	0x1416eba18	cstring	ballista arrow head
+classic	requirement-item-noun	0xa9c7a9	0x1416eba30	cstring	siege ammo
+classic	requirement-item-noun	0xa9c8f3	0x1416eba40	cstring	ammunition
+classic	requirement-item-noun	0xa9c96b	0x1416eb9e8	cstring	scepter
+classic	requirement-item-noun	0xa9c9db	0x1416eb9f0	cstring	crown
+classic	requirement-item-noun	0xa9ca45	0x1416eb9f8	cstring	coin
+classic	requirement-item-noun	0xa9ca64	0x1416eba00	cstring	perfect 
+classic	requirement-item-noun	0xa9ca73	0x1416611e8	cstring	large 
+classic	requirement-item-noun	0xa9cb5b	0x1416eb9b0	cstring	green glass 
+classic	requirement-item-noun	0xa9cb71	0x1416eb9c0	cstring	clear glass 
+classic	requirement-item-noun	0xa9cb87	0x1416eb9d0	cstring	crystal glass 
+classic	requirement-item-noun	0xa9cba3	0x14162c454	cstring	gem
+classic	requirement-item-noun	0xa9cc5b	0x1416eb9e0	cstring	 gem
+classic	requirement-item-noun	0xa9cd36	0x1416eb97c	cstring	ring
+classic	requirement-item-noun	0xa9cda6	0x1416eb988	cstring	earring
+classic	requirement-item-noun	0xa9ce16	0x1416eb990	cstring	bracelet
+classic	requirement-item-noun	0xa9ce86	0x141646898	cstring	bed
+classic	requirement-item-noun	0xa9cef6	0x1416eb9a0	cstring	traction bench
+classic	requirement-item-noun	0xa9cf66	0x1416eb950	cstring	quern
+classic	requirement-item-noun	0xa9cfd6	0x1416eb958	cstring	millstone
+classic	requirement-item-noun	0xa9d046	0x1416eb964	cstring	statue
+classic	requirement-item-noun	0xa9d152	0x1416eb970	cstring	memorial
+classic	requirement-item-noun	0xa9d166	0x1416eb8f8	cstring	food imports sign
+classic	requirement-item-noun	0xa9d17a	0x1416eb910	cstring	clothing imports sign
+classic	requirement-item-noun	0xa9d18e	0x1416eb928	cstring	general imports sign
+classic	requirement-item-noun	0xa9d1a2	0x1416eb940	cstring	cloth shop sign
+classic	requirement-item-noun	0xa9d1b6	0x1416eb888	cstring	leather shop sign
+classic	requirement-item-noun	0xa9d1ca	0x1416eb8a0	cstring	woven clothing shop sign
+classic	requirement-item-noun	0xa9d1de	0x1416eb8c0	cstring	leather clothing shop sign
+classic	requirement-item-noun	0xa9d1f2	0x1416eb8e0	cstring	bone carver's shop sign
+classic	requirement-item-noun	0xa9d206	0x1416eb828	cstring	gem cutter's shop sign
+classic	requirement-item-noun	0xa9d21a	0x1416eb840	cstring	weaponsmith's shop sign
+classic	requirement-item-noun	0xa9d22e	0x1416eb858	cstring	bowyer's shop sign
+classic	requirement-item-noun	0xa9d242	0x1416eb870	cstring	blacksmith's shop sign
+classic	requirement-item-noun	0xa9d256	0x1416eb7c8	cstring	armorsmith's shop sign
+classic	requirement-item-noun	0xa9d26a	0x1416eb7e0	cstring	metal craft shop sign
+classic	requirement-item-noun	0xa9d27e	0x1416eb7f8	cstring	leather goods shop sign
+classic	requirement-item-noun	0xa9d292	0x1416eb810	cstring	carpenter's shop sign
+classic	requirement-item-noun	0xa9d2a6	0x1416eb770	cstring	stone furniture shop sign
+classic	requirement-item-noun	0xa9d2ba	0x1416eb790	cstring	metal furniture shop sign
+classic	requirement-item-noun	0xa9d2ce	0x1416eb7b0	cstring	tavern sign
+classic	requirement-item-noun	0xa9d2e2	0x1416eb7bc	cstring	slab
+classic	requirement-item-noun	0xa9d2f6	0x1416eb7bc	cstring	slab
+classic	requirement-item-noun	0xa9d314	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9d329	0x1416eb740	cstring	corpse
+classic	requirement-item-noun	0xa9d347	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9d36b	0x14162c428	cstring	tooth
+classic	requirement-item-noun	0xa9d37c	0x1416eb748	cstring	teeth
+classic	requirement-item-noun	0xa9d391	0x14162c420	cstring	bone
+classic	requirement-item-noun	0xa9d3a9	0x14162c418	cstring	shell
+classic	requirement-item-noun	0xa9d3c1	0x1416eb750	cstring	plant part
+classic	requirement-item-noun	0xa9d3d9	0x1416eb760	cstring	silk body part
+classic	requirement-item-noun	0xa9d3f1	0x1416eb6f0	cstring	leather body part
+classic	requirement-item-noun	0xa9d409	0x1416eb708	cstring	wooden body part
+classic	requirement-item-noun	0xa9d423	0x1416eb720	cstring	soap body part
+classic	requirement-item-noun	0xa9d43d	0x14162c440	cstring	horn
+classic	requirement-item-noun	0xa9d457	0x14162c438	cstring	pearl
+classic	requirement-item-noun	0xa9d471	0x1416eb730	cstring	yarn body part
+classic	requirement-item-noun	0xa9d489	0x1416eb6b8	cstring	strand body part
+classic	requirement-item-noun	0xa9d492	0x14169b880	cstring	body part
+classic	requirement-item-noun	0xa9d4bb	0x1416eb6d0	cstring	Rotten 
+classic	requirement-item-noun	0xa9d622	0x1416999b8	cstring	remains
+classic	requirement-item-noun	0xa9d681	0x1416eb6d8	cstring	seeds
+classic	requirement-item-noun	0xa9d6f2	0x1416eb6e0	cstring	withered 
+classic	requirement-item-noun	0xa9d766	0x1416eb680	cstring	leaves and fruit
+classic	requirement-item-noun	0xa9d777	0x1416eb698	cstring	leaf or fruit
+classic	requirement-item-noun	0xa9d7aa	0x1416eb6e0	cstring	withered 
+classic	requirement-item-noun	0xa9d7fd	0x14162ba6c	cstring	plant
+classic	requirement-item-noun	0xa9d816	0x1415ff4c8	cstring	s
+classic	requirement-item-noun	0xa9d83c	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9d854	0x1416eb6a8	cstring	raw 
+classic	requirement-item-noun	0xa9d9d5	0x1415ff308	cstring	, 
+classic	requirement-item-noun	0xa9d9eb	0x1415ff308	cstring	, 
+classic	requirement-item-noun	0xa9da04	0x1416bc76c	cstring	fish
+classic	requirement-item-noun	0xa9da2a	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9db51	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9db66	0x1416eb6b0	cstring	egg
+classic	requirement-item-noun	0xa9db8c	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9dc8b	0x1416bc76c	cstring	fish
+classic	requirement-item-noun	0xa9dca8	0x1416ebe3c	cstring	live 
+classic	requirement-item-noun	0xa9dce1	0x1416ebe48	cstring	small live animal
+classic	requirement-item-noun	0xa9dcfb	0x1416ebe5c	cstring	tame 
+classic	requirement-item-noun	0xa9dd04	0x1416ebe68	cstring	small tame animal
+classic	requirement-item-noun	0xa9dd1b	0x1416ebe10	cstring	prepared meal
+classic	requirement-item-noun	0xa9dd35	0x1416eb488	cstring	rotten 
+classic	requirement-item-noun	0xa9dd4a	0x1416ebe20	cstring	preserved 
+classic	requirement-item-noun	0xa9de0c	0x1416ebe2c	cstring	 chops
+classic	requirement-item-noun	0xa9de1d	0x1416ebe34	cstring	 chop
+classic	requirement-item-noun	0xa9de56	0x1416ebde0	cstring	meat
+classic	requirement-item-noun	0xa9de70	0x1416ebde0	cstring	meat
+classic	requirement-item-noun	0xa9df02	0x1416e602c	cstring	weapon
+classic	requirement-item-noun	0xa9df3b	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9e067	0x1416ebdf0	cstring	suits of 
+classic	requirement-item-noun	0xa9e076	0x1416e6034	cstring	armor
+classic	requirement-item-noun	0xa9e0dc	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9e186	0x1416ebde8	cstring	chain 
+classic	requirement-item-noun	0xa9e295	0x141651498	cstring	right 
+classic	requirement-item-noun	0xa9e2b5	0x1416514a0	cstring	left 
+classic	requirement-item-noun	0xa9e2fe	0x1416ebde8	cstring	chain 
+classic	requirement-item-noun	0xa9e35f	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9e373	0x1416ebe00	cstring	handwear
+classic	requirement-item-noun	0xa9e417	0x1416e5fbc	cstring	shield
+classic	requirement-item-noun	0xa9e436	0x1416ebda8	cstring	/buckler
+classic	requirement-item-noun	0xa9e44a	0x1416ebda8	cstring	/buckler
+classic	requirement-item-noun	0xa9e587	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9e5b7	0x1416ebdb8	cstring	footwear
+classic	requirement-item-noun	0xa9e6a8	0x1416ebdc8	cstring	headwear
+classic	requirement-item-noun	0xa9e6ec	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9e7a8	0x1416ebdd8	cstring	legwear
+classic	requirement-item-noun	0xa9e82c	0x1415fe96c	cstring	 
+classic	requirement-item-noun	0xa9e946	0x141613ce8	cstring	item
+classic	requirement-item-noun	0xa9e977	0x141632ad4	cstring	 [
+classic	requirement-item-noun	0xa9e997	0x141614398	cstring	]
+classic	string-length-error	0x66e54	0x1415fe178	cstring	string too long
+classic	tooltip-paragraph-list-splitter	0x8fe667	0x1415fe96c	cstring	 

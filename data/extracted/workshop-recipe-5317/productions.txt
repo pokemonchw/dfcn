@@ -1,0 +1,50 @@
+DF 53.17 工坊任务预览与缺料提示
+
+pe-reference.c 来自 Steam PE，pe-classic.c 来自官网 PE。每个函数头记录映像标识和 RVA。
+pe-branches.tsv 保留直接跳转，pe-switches.tsv 保留跳转表的每个选择值及其目标。
+pe-literals.tsv 记录指令引用的文本及内联片段。raw-fields.tsv 按文件、行和列记录配方原始字段。
+
+预览的文本来源
+
+类别分支读取 CATEGORY_DESCRIPTION。游戏还为乐器类别生成以下完整说明。
+  Make instrument pieces which can be used to assemble complete musical instruments.
+    Steam VA 0x141756c90，官网 VA 0x1417513c0
+  Assemble complete musical instruments and construct single-piece instruments.
+    Steam VA 0x1417563c0，官网 VA 0x1417515a0
+
+任务分支分别枚举产物和原料。产物非空时输出 Produces: 和各个产物，原料非空时输出
+Requires: 和各个原料。两侧使用同一物品描述函数。每个产物各调用一次段落函数，
+每个原料在循环内单独折行，英文宽度均为 29 字节。数量由原生函数按物品类型换算，
+经换算显示的数字原样保留。原始数量为一时没有数字前缀。
+
+反应还可追加 DESCRIPTION 原文、USE_TOOL 引用的工具说明和 USE_INSTRUMENT 引用的
+乐器说明。各段与已有内容之间有空行。运行时生成的乐器名、部件名和说明取自对应定义。
+
+原料与产物描述的组合
+
+数量、独立条件、材料和用途共同修饰物品名。反应类别和产物可选择内置别名，
+也可输出 RAW 类别代码或“产物代码-producing”。矿物约束输出“材料-bearing”。
+染料分支可在 dye 之前输出颜色，其他颜色约束在颜色名称前输出 color。
+用途分支有 26 个选择值，可单独作为工具名称，也可与物品名组合。
+物品名可来自种类、子类型、材料或生物定义，以及 body part 分支。排除储物箱时再追加
+“ that isn't a bin”。具体条件及选取顺序见两份 C 文件的 workshop_job_item_requirement。
+
+CONTAINS 的循环
+
+有效反应中，函数逐个读取包含关系的原料索引，经反应 +0x50 的原料表找到对象，
+从对象 +0x08 读取完整 REAGENT 代码，依次追加代码和“-containing ”。空列表不追加
+文字，多个索引各自生成一个条件。Steam 引用后缀的 RVA 为 0xa45be0，官网为 0xa431f0。
+
+本机两个游戏安装的原版 RAW 使用以下五个代码。
+  honey          蜂蜜
+  lye            碱液
+  milk of lime   石灰乳
+  oil            植物油
+  quicklime      生石灰
+
+MAKE_PARCHMENT 的产物为 SHEET。第一项要求由 UNROTTEN、USE_BODY_COMPONENT 和
+PARCHMENT_MAT 组成。另一项由 lime container 的 CONTAINS 指向 milk of lime，
+生成 Milk of lime-containing item。制革任务 TAN_A_HIDE 的生皮条件使用 TAN_MAT。
+
+任务列表缺料提示另有 [Requires fuel]、[Requires ore]、[Requires ore, fuel] 三个固定
+分支。反应缺料分支取首个缺少的适用原料，由原料描述方法组装 [Requires {原料描述}]。

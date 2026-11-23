@@ -73,6 +73,16 @@ std::optional<std::string> Overlay::translate_workshop_recipe_source(
         if (value.empty() || depth > 64) return std::nullopt;
         const std::string key(value), folded = lower(key);
         if (const auto found = memo.find(key); found != memo.end()) return found->second;
+        const auto suffix_label = [&](std::string_view suffix, std::string_view field,
+                                      bool allow_composition) -> std::optional<std::string> {
+            if (suffix == "-producing") return raw_restriction("reaction product ", field);
+            if (suffix == "-containing") {
+                if (auto reagent = raw_restriction("reagent ", field)) return reagent;
+                if (auto named = exact_literal_translation(field); complete(named)) return named;
+            }
+            if (auto material = translate_material_name(field); complete(material)) return material;
+            return allow_composition ? self(self, field, depth + 1) : std::nullopt;
+        };
         const auto resolve = [&]() -> std::optional<std::string> {
             if (auto target = scoped("", folded); complete(target)) return target;
             // The chooser's additional field is independent of its red
@@ -179,10 +189,10 @@ std::optional<std::string> Overlay::translate_workshop_recipe_source(
                 const std::string remainder = lower(std::string(value.substr(noun_at)));
                 if (RULESETS.is_item_material(remainder)) break;
                 bool consumed = false;
-                // Native flag prefixes are independent constraints. Resolve
-                // the reviewed prefixes before dynamic suffixes so e.g.
-                // "non-pressed oil-bearing" cannot turn the oil itself into
-                // a non-pressed material inside one -bearing modifier.
+                // Match the longest known field, including a suffixed RAW
+                // code such as "milk of lime-containing", before "milk".
+                // Compose unknown labels only after trying independent flags
+                // so "non-pressed" still qualifies the oil-bearing item.
                 for (const bool allow_dynamic : {false, true}) {
                     for (size_t end = value.rfind(' '); end != std::string_view::npos && end > noun_at;
                          end = value.rfind(' ', end - 1)) {
@@ -200,31 +210,25 @@ std::optional<std::string> Overlay::translate_workshop_recipe_source(
                                 modifier.material = std::move(category);
                                 modifier.material_category = true;
                             }
-                        // Runtime reaction classes/products and CONTAINS are
-                        // distinct RAW fields. A class fallback has no suffix;
-                        // product tokens use -producing, and CONTAINS names the
-                        // referenced reagent rather than its material filter.
-                        if (allow_dynamic && !complete(modifier.state) && !complete(modifier.material) &&
+                        // DYE emits "[descriptor ]dye"; the other color
+                        // filter emits "color <descriptor>" later in the row.
+                        if (!reaction_class && modifier.source.ends_with(" dye")) {
+                            auto color = translate_legends_color(std::string_view(part).substr(0, part.size() - 4));
+                            if (complete(color)) {
+                                modifier.state = std::move(color);
+                                modifier.kind = scoped("kind ", "dye");
+                            }
+                        }
+                        if (!complete(modifier.state) && !complete(modifier.material) &&
                             !complete(modifier.kind)) {
                             for (std::string_view suffix : {"-bearing", "-producing", "-containing"}) {
-                                if (complete(modifier.state)) break;
                                 if (!modifier.source.ends_with(suffix) || part.size() <= suffix.size()) continue;
                                 const auto field = std::string_view(part).substr(0, part.size() - suffix.size());
-                                auto label = suffix == "-producing"
-                                    ? raw_restriction("reaction product ", field)
-                                    : suffix == "-containing"
-                                        ? raw_restriction("reagent ", field)
-                                        : self(self, field, depth + 1);
-                                // An established noun can spell a reagent NAME
-                                // (water, milk of lime). Typed authored names win;
-                                // unknown RAW class/product tokens never acquire
-                                // a coincidentally spelled material/item meaning.
-                                if (!label && suffix == "-containing") label = self(self, field, depth + 1);
-                                if (label) modifier.state = format("state " + std::string(suffix),
-                                    {{"{s}", *label}});
+                                if (auto label = suffix_label(suffix, field, allow_dynamic))
+                                    modifier.state = format("state " + std::string(suffix), {{"{s}", *label}});
                                 break;
                             }
-                            if (!modifier.state && modifier.source.starts_with("color "))
+                            if (allow_dynamic && !modifier.state && modifier.source.starts_with("color "))
                                 modifier.state = translate_legends_color(std::string_view(part).substr(6));
                         }
                         if (!complete(modifier.state) && !complete(modifier.material) &&
@@ -360,18 +364,13 @@ std::optional<std::string> Overlay::translate_workshop_recipe_source(
 
             // The suffix itself proves each dynamic field's native role.
             // -bearing carries a material, -producing an opaque RAW product
-            // token, and -containing the referenced reagent's authored NAME.
+            // token, and -containing the referenced reagent's RAW code.
             for (std::string_view marker : {"-bearing ", "-producing ", "-containing "}) {
                 for (size_t at = folded.find(marker); at != std::string::npos;
                      at = folded.find(marker, at + 1)) {
                     if (!at || at + marker.size() >= value.size()) continue;
                     const auto field = value.substr(0, at);
-                    auto label = marker == "-producing "
-                        ? raw_restriction("reaction product ", field)
-                        : marker == "-containing "
-                            ? raw_restriction("reagent ", field)
-                            : self(self, field, depth + 1);
-                    if (!label && marker == "-containing ") label = self(self, field, depth + 1);
+                    const auto label = suffix_label(trim_view(marker), field, true);
                     const auto item = self(self, value.substr(at + marker.size()), depth + 1);
                     if (label && item)
                         if (auto target = format(trim(std::string(marker)),
@@ -430,11 +429,12 @@ std::optional<std::string> Overlay::translate_workshop_recipe_source(
                     if (auto target = format(trim(std::string(marker)),
                             {{"{s1}", *first}, {"{s2}", *second}})) return target;
             }
-            for (std::string_view suffix : {" dye mix", " paste", " powder"}) {
+            for (std::string_view suffix : {" dye mix", " paste", " powder", " chop", " chops"}) {
                 if (!folded.ends_with(suffix) || value.size() <= suffix.size()) continue;
                 const auto material = self(self, value.substr(0, value.size() - suffix.size()), depth + 1);
                 if (material)
-                    if (auto target = format(trim(std::string(suffix)), {{"{s}", *material}})) return target;
+                    if (auto target = format(suffix == " chops" ? "chop" : trim_view(suffix),
+                            {{"{s}", *material}})) return target;
             }
             for (std::string_view separator : {", ", " or ", " and ", "/"}) {
                 for (size_t at = folded.find(separator); at != std::string::npos;

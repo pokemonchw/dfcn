@@ -81510,6 +81510,7 @@ Workshop recipe: body substance stone	石材	l
 Workshop recipe: format available dye	可用染料：{d}	l
 Workshop recipe: format material noun	{s1}{s2}	l
 Workshop recipe: material ivory/tooth	长牙或牙齿	l
+Workshop recipe: reagent milk of lime	石灰乳	l
 Workshop recipe: state display object	用于展示物品	l
 Workshop recipe: state liquid cooking	用于烹煮液体	l
 Workshop recipe: state meal container	用于盛装餐食	l
@@ -97309,6 +97310,7 @@ Workshop recipe: format -producing	可产出{s1}的{s2}	l
 Workshop recipe: format laced with	掺有{s2}的{s1}	l
 Workshop recipe: memorial entombed	已安葬	l
 Workshop recipe: no slabs engraved	尚未雕刻石碑	l
+Workshop recipe: reagent quicklime	生石灰	l
 Workshop recipe: state butcherable	可屠宰	l
 Workshop recipe: state fermentable	可发酵	l
 Workshop recipe: state lye-bearing	含碱液	l
@@ -110556,6 +110558,7 @@ Workshop recipe: material silk	丝质	l
 Workshop recipe: material soap	肥皂	l
 Workshop recipe: material yarn	纱线	l
 Workshop recipe: meat cleaving	劈肉用具	l
+Workshop recipe: reagent honey	蜂蜜	l
 Workshop recipe: slab engraved	已雕刻石碑	l
 Workshop recipe: state dyeable	可染色	l
 Workshop recipe: state perfect	完美	l
@@ -115690,7 +115693,10 @@ What have you been scheming?	你在谋划什么？	hPD
 What's so special about art?	艺术有什么特别的？	hPD
 Where is your identity from?	你所采用的身份来自哪里？	hP
 Workshop mood material: ..."	……	l
+Workshop recipe: format chop	{s}肉排	l
 Workshop recipe: meat boning	剔骨用具	l
+Workshop recipe: reagent lye	碱液	l
+Workshop recipe: reagent oil	植物油	l
 Workshop recipe: sarcophagus	华棺	l
 Workshop recipe: small rocks	小石子	l
 Workshop recipe: state blunt	钝头	l

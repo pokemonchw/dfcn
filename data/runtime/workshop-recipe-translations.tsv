@@ -54,6 +54,7 @@ Workshop recipe: format laced with	掺有{s2}的{s1}	l
 Workshop recipe: format dye mix	{s}混合染料	l
 Workshop recipe: format paste	{s}糊	l
 Workshop recipe: format powder	{s}粉末	l
+Workshop recipe: format chop	{s}肉排	l
 Workshop recipe: format join ,	{s1}、{s2}	l
 Workshop recipe: format join or	{s1}或{s2}	l
 Workshop recipe: format join and	{s1}和{s2}	l
@@ -153,7 +154,13 @@ Workshop recipe: state grown	生长而成	l
 # Unknown RAW class identifiers are emitted verbatim before a space; unknown
 # product identifiers precede -producing. Their typed lookup scopes are
 # reaction class / reaction product, preserving the identifier's case.
-# CONTAINS uses the referenced reagent NAME, not its item/material filter.
+# CONTAINS appends each referenced REAGENT code (reaction_reagent + 8).
+# Both installed 53.17 editions use these five codes in their reaction RAWs.
+Workshop recipe: reagent honey	蜂蜜	l
+Workshop recipe: reagent lye	碱液	l
+Workshop recipe: reagent milk of lime	石灰乳	l
+Workshop recipe: reagent oil	植物油	l
+Workshop recipe: reagent quicklime	生石灰	l
 # Vanilla special aliases are listed here exactly as emitted.
 Workshop recipe: unknown material	未知材质	l
 Workshop recipe: material calcite/limestone/chalk/marble	方解石/石灰岩/白垩岩/大理石	l

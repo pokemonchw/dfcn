@@ -1,6 +1,13 @@
 // Workshop previews contain whole recipe fields followed by optional RAW
 // description paragraphs. Recover the native field boundary before translating
 // it; neither the English wrap width nor a short translated prefix defines it.
+static bool workshop_recipe_rows_fit_together(std::string_view previous, std::string_view next) {
+    // The producer only wraps when a 30th byte arrives. If even the next
+    // whole word fits with room to spare, it started a new item instead.
+    const size_t word = next.substr(0, next.find(' ')).size();
+    return !previous.empty() && word && previous.size() + 1 + word < 29;
+}
+
 void Overlay::append_workshop_recipe_card(const NativeTextCard &card,
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y) const {
     if (card.rows.empty()) return;
@@ -85,13 +92,16 @@ void Overlay::append_workshop_recipe_card(const NativeTextCard &card,
         if (recipe.usable() && recipe.changed()) return recipe;
         return prose.usable() && prose.changed() ? prose : recipe;
     };
+    bool recipe_section = false;
     for (size_t begin = 0; begin < logical.size();) {
         const auto &first = card.rows[logical[begin].first];
+        if (begin && first.y != card.rows[logical[begin - 1].last].y + 1) recipe_section = false;
         size_t end = begin + 1;
         std::string source = first.source;
         TranslationResult translation;
         bool native_boundary = false;
         if (heading(source)) {
+            recipe_section = true;
             const auto exact = exact_literal_translation(source);
             translation = exact ? TranslationResult::translated(source, *exact, "recipe-heading")
                 : preserved_item_field(source, "recipe-heading");
@@ -117,8 +127,12 @@ void Overlay::append_workshop_recipe_card(const NativeTextCard &card,
                 size_t next = begin;
                 for (; next < logical.size(); ++next) {
                     const auto &row = card.rows[logical[next].first];
-                    if (heading(row.source) || (next > begin &&
-                        (counted(row.source) || row.y != card.rows[logical[next - 1].last].y + 1))) break;
+                    if (heading(row.source)) break;
+                    if (next > begin) {
+                        const auto &previous = card.rows[logical[next - 1].last];
+                        if (row.y != previous.y + 1 || (recipe_section && (counted(row.source) ||
+                                workshop_recipe_rows_fit_together(previous.source, row.source)))) break;
+                    }
                     if (!candidate.empty()) candidate += ' ';
                     candidate += row.source;
                 }
@@ -256,14 +270,26 @@ dfcn::TranslationResult Overlay::translate_workshop_tooltip_document(
                         capture.sequence > previous->sequence))))
             bound[begin] = &capture;
     }
-    struct Field { size_t begin, end; std::string source; const NativeJobItemCaption *item; };
+    struct Field {
+        size_t begin, end;
+        std::string source;
+        const NativeJobItemCaption *item;
+        bool recipe_section;
+    };
     std::vector<Field> fields;
+    bool recipe_section = false;
     for (size_t begin = 0; begin < lines.size();) {
-        if (lines[begin].text.empty()) { ++begin; continue; }
+        if (lines[begin].text.empty()) {
+            // The producer separates each DESCRIPTION from items with a blank row.
+            recipe_section = false;
+            ++begin;
+            continue;
+        }
         size_t end = begin + 1;
         std::string source;
         const NativeJobItemCaption *item = nullptr;
         if (heading(lines[begin].text)) {
+            recipe_section = true;
             source = lines[begin].text;
         } else if (const auto *capture = bound[begin]) {
             source = capture->source;
@@ -275,14 +301,15 @@ dfcn::TranslationResult Overlay::translate_workshop_tooltip_document(
             // units; a translatable opening alone never ends a field.
             end = begin;
             while (end < lines.size() && !lines[end].text.empty()) {
-                if (end > begin && (heading(lines[end].text) ||
-                        (counted(lines[begin].text) && counted(lines[end].text)) || bound[end])) break;
+                if (end > begin && (heading(lines[end].text) || bound[end] ||
+                        (recipe_section && (counted(lines[end].text) ||
+                            workshop_recipe_rows_fit_together(lines[end - 1].text, lines[end].text))))) break;
                 if (!source.empty()) source += ' ';
                 source += lines[end].text;
                 ++end;
             }
         }
-        fields.push_back({lines[begin].begin, lines[end - 1].end, std::move(source), item});
+        fields.push_back({lines[begin].begin, lines[end - 1].end, std::move(source), item, recipe_section});
         begin = end;
     }
     const auto translate = [&](const Field &field) -> TranslationResult {
@@ -300,9 +327,8 @@ dfcn::TranslationResult Overlay::translate_workshop_tooltip_document(
             return TranslationResult::translated(source, *target, "recipe");
         auto prose = translate_toolbar_tooltip_result(source, true);
         if (prose.strict_target()) return prose;
-        // A numeric recipe field permits typed partial translation of its
-        // constraints and item. Unknown prose remains one complete field.
-        if (counted(trim_view(source))) {
+        // The native formatter omits the count for a single item.
+        if (field.item || field.recipe_section) {
             auto recipe = translate_workshop_recipe_source_display(source);
             if (recipe.usable()) return recipe;
         }
