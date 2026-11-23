@@ -1,0 +1,136 @@
+profession_id	number_flag_zero	number_flag_nonzero	selection_after_raw_override	steam_case_rva	classic_case_rva
+0	miner	miners	nonzero number flag appends s	0x13455f5	0x1340345
+1	woodworker	woodworkers	nonzero number flag appends s	0x134560f	0x134035f
+2	carpenter	carpenters	nonzero number flag appends s	0x1345629	0x1340379
+3	bowyer	bowyers	nonzero number flag appends s	0x1345643	0x1340393
+4	woodcutter	woodcutters	nonzero number flag appends s	0x134565d	0x13403ad
+5	stoneworker	stoneworkers	nonzero number flag appends s	0x1345677	0x13403c7
+6	stonecutter	stonecutters	nonzero number flag appends s	0x13456ab	0x13403fb
+7	stone carver	stone carvers	nonzero number flag appends s	0x13456c5	0x1340415
+8	engraver	engravers	nonzero number flag appends s	0x1345691	0x13403e1
+9	mason	masons	nonzero number flag appends s	0x13456df	0x134042f
+10	ranger	rangers	nonzero number flag appends s	0x13456f9	0x1340449
+11	animal caretaker	animal caretakers	nonzero number flag appends s	0x1345713	0x1340463
+12	animal trainer	animal trainers	nonzero number flag appends s	0x134572d	0x134047d
+13	hunter	hunters	nonzero number flag appends s	0x1345747	0x1340497
+14	trapper	trappers	nonzero number flag appends s	0x1345761	0x13404b1
+15	animal dissector	animal dissectors	nonzero number flag appends s	0x134577b	0x13404cb
+16	metalsmith	metalsmiths	nonzero number flag appends s	0x1345795	0x13404e5
+17	furnace operator	furnace operators	nonzero number flag appends s	0x13457af	0x13404ff
+18	weaponsmith	weaponsmiths	nonzero number flag appends s	0x13457c9	0x1340519
+19	armorer	armorers	nonzero number flag appends s	0x13457e3	0x1340533
+20	blacksmith	blacksmiths	nonzero number flag appends s	0x13457fd	0x134054d
+21	metalcrafter	metalcrafters	nonzero number flag appends s	0x1345817	0x1340567
+22	jeweler	jewelers	nonzero number flag appends s	0x1345831	0x1340581
+23	gem cutter	gem cutters	nonzero number flag appends s	0x134584b	0x134059b
+24	gem setter	gem setters	nonzero number flag appends s	0x1345865	0x13405b5
+25	craftsman	craftsmen	literal pair, no appended s	0x134587f	0x13405cf
+26	woodcrafter	woodcrafters	nonzero number flag appends s	0x134589f	0x13405ef
+27	stonecrafter	stonecrafters	nonzero number flag appends s	0x134593b	0x134068b
+28	leatherworker	leatherworkers	nonzero number flag appends s	0x1345955	0x13406a5
+29	bone carver	bone carvers	nonzero number flag appends s	0x134596f	0x13406bf
+30	weaver	weavers	nonzero number flag appends s	0x1345989	0x13406d9
+31	clothier	clothiers	nonzero number flag appends s	0x13459a3	0x13406f3
+32	glassmaker	glassmakers	nonzero number flag appends s	0x13459bd	0x134070d
+33	potter	potters	nonzero number flag appends s	0x13458ed	0x134063d
+34	glazer	glazers	nonzero number flag appends s	0x1345907	0x1340657
+35	wax worker	wax workers	nonzero number flag appends s	0x1345921	0x1340671
+36	strand extractor	strand extractors	nonzero number flag appends s	0x13459d7	0x1340727
+37	fishery worker	fishery workers	nonzero number flag appends s	0x13459f1	0x1340741
+38	fisherman	fishermen	literal pair, no appended s	0x1345a0b	0x134075b
+39	fish dissector	fish dissectors	nonzero number flag appends s	0x1345a2b	0x134077b
+40	fish cleaner	fish cleaners	nonzero number flag appends s	0x1345a45	0x1340795
+41	farmer	farmers	nonzero number flag appends s	0x1345a5f	0x13407af
+42	cheesemaker	cheesemakers	nonzero number flag appends s	0x1345a79	0x13407c9
+43	milker	milkers	nonzero number flag appends s	0x1345a93	0x13407e3
+44	cook	cooks	nonzero number flag appends s	0x1345afb	0x134084b
+45	thresher	threshers	nonzero number flag appends s	0x1345b15	0x1340865
+46	miller	millers	nonzero number flag appends s	0x1345b2f	0x134087f
+47	butcher	butchers	nonzero number flag appends s	0x1345b49	0x1340899
+48	tanner	tanners	nonzero number flag appends s	0x1345b63	0x13408b3
+49	dyer	dyers	nonzero number flag appends s	0x1345b7d	0x13408cd
+50	planter	planters	nonzero number flag appends s	0x1345bcb	0x134091b
+51	herbalist	herbalists	nonzero number flag appends s	0x1345be5	0x1340935
+52	brewer	brewers	nonzero number flag appends s	0x1345bff	0x134094f
+53	soap maker	soap makers	nonzero number flag appends s	0x1345c19	0x1340969
+54	potash maker	potash makers	nonzero number flag appends s	0x1345c33	0x1340983
+55	lye maker	lye makers	nonzero number flag appends s	0x1345c4d	0x134099d
+56	wood burner	wood burners	nonzero number flag appends s	0x1345c67	0x13409b7
+57	shearer	shearers	nonzero number flag appends s	0x1345ac7	0x1340817
+58	spinner	spinners	nonzero number flag appends s	0x1345ae1	0x1340831
+59	presser	pressers	nonzero number flag appends s	0x1345b97	0x13408e7
+60	beekeeper	beekeepers	nonzero number flag appends s	0x1345bb1	0x1340901
+61	engineer	engineers	nonzero number flag appends s	0x1345c81	0x13409d1
+62	mechanic	mechanics	nonzero number flag appends s	0x1345c9b	0x13409eb
+63	siege engineer	siege engineers	nonzero number flag appends s	0x1345cb5	0x1340a05
+64	siege operator	siege operators	nonzero number flag appends s	0x1345ccf	0x1340a1f
+65	pump operator	pump operators	nonzero number flag appends s	0x1345ce9	0x1340a39
+66	clerk	clerks	nonzero number flag appends s	0x1345d03	0x1340a53
+67	administrator	administrators	nonzero number flag appends s	0x1345d1d	0x1340a6d
+68	trader	traders	nonzero number flag appends s	0x1345d37	0x1340a87
+69	doctor	doctors	nonzero number flag appends s	0x1345ded	0x1340b3d
+70	diagnostician	diagnosticians	nonzero number flag appends s	0x1345e07	0x1340b57
+71	bone doctor	bone doctors	nonzero number flag appends s	0x1345e21	0x1340b71
+72	suturer	suturers	nonzero number flag appends s	0x1345e3b	0x1340b8b
+73	surgeon	surgeons	nonzero number flag appends s	0x1345e55	0x1340ba5
+74	merchant	merchants	nonzero number flag appends s	0x1345e6f	0x1340bbf
+75	hammerman	hammermen	literal pair, no appended s	0x1345ea3	0x1340bf3
+76	Hammer Lord	Hammer Lords	nonzero number flag appends s	0x1345ec3	0x1340c13
+77	spearman	spearmen	literal pair, no appended s	0x1345edd	0x1340c2d
+78	Spearmaster	Spearmasters	nonzero number flag appends s	0x1345efd	0x1340c4d
+79	crossbowman	crossbowmen	literal pair, no appended s	0x1345f17	0x1340c67
+80	Elite Crossbowmen	Elite Crossbowman	literal pair, no appended s	0x1345f37	0x1340c87
+81	wrestler	wrestlers	nonzero number flag appends s	0x1345f57	0x1340ca7
+82	Elite Wrestler	Elite Wrestlers	nonzero number flag appends s	0x1345f71	0x1340cc1
+83	axeman	axemen	literal pair, no appended s	0x1345f8b	0x1340cdb
+84	Axe Lord	Axe Lords	nonzero number flag appends s	0x1345fab	0x1340cfb
+85	swordsman	swordsmen	literal pair, no appended s	0x1345fc5	0x1340d15
+86	Swordmaster	Swordmasters	nonzero number flag appends s	0x1345fe5	0x1340d35
+87	maceman	macemen	literal pair, no appended s	0x1345fff	0x1340d4f
+88	Mace Lord	Mace Lords	nonzero number flag appends s	0x134601f	0x1340d6f
+89	pikeman	pikemen	literal pair, no appended s	0x1346039	0x1340d89
+90	Pikemaster	Pikemasters	nonzero number flag appends s	0x1346059	0x1340da9
+91	bowman	bowmen	literal pair, no appended s	0x1346073	0x1340dc3
+92	Elite Bowman	Elite Bowmen	literal pair, no appended s	0x1346093	0x1340de3
+93	blowgunner	blowgunners	nonzero number flag appends s	0x13460b3	0x1340e03
+94	Master Blowgunner	Master Blowgunners	nonzero number flag appends s	0x13460cd	0x1340e1d
+95	lasher	lashers	nonzero number flag appends s	0x13460e7	0x1340e37
+96	Master Lasher	Master Lashers	nonzero number flag appends s	0x1346101	0x1340e51
+97	recruit	recruits	nonzero number flag appends s	0x134611b	0x1340e6b
+98	hunting	hunting	training prefix before caste/species	0x1346135	0x1340e85
+99	war	war	training prefix before caste/species	0x134614a	0x1340e9a
+100	Master Thief	Master Thiefs	nonzero number flag appends s	0x134615f	0x1340eaf
+101	thief	thiefs	nonzero number flag appends s	0x1346179	0x1340ec9
+102	peasant	peasants	empty career; base supplies peasant for same race or caste/species alone	0x1346757	0x13414a7
+103	child	children	caste age name, species age name, then built-in	0x13463ad	0x13410fd
+104	baby	babies	caste age name, species age name, then built-in	0x134657d	0x13412cd
+105	drunk	drunks	nonzero number flag appends s	0x1345e89	0x1340bd9
+106	monster slayer	monster slayers	nonzero number flag appends s	0x1346193	0x1340ee3
+107	scout	scouts	nonzero number flag appends s	0x13461ad	0x1340efd
+108	beast hunter	beast hunters	nonzero number flag appends s	0x13461c7	0x1340f17
+109	snatcher	snatchers	nonzero number flag appends s	0x13461e1	0x1340f31
+110	mercenaries	mercenary	literal pair, no appended s	0x13461fb	0x1340f4b
+111	gelder	gelders	nonzero number flag appends s	0x1345aad	0x13407fd
+112	performer	performers	nonzero number flag appends s	0x1345d9f	0x1340aef
+113	poet	poets	nonzero number flag appends s	0x1345d51	0x1340aa1
+114	bard	bards	nonzero number flag appends s	0x1345d6b	0x1340abb
+115	dancer	dancers	nonzero number flag appends s	0x1345d85	0x1340ad5
+116	sage	sages	nonzero number flag appends s	0x1346227	0x1340f77
+117	scholar	scholars	nonzero number flag appends s	0x1346241	0x1340f91
+118	philosopher	philosophers	nonzero number flag appends s	0x134625b	0x1340fab
+119	mathematician	mathematicians	nonzero number flag appends s	0x1346275	0x1340fc5
+120	historian	historians	nonzero number flag appends s	0x134628f	0x1340fdf
+121	astronomer	astronomers	nonzero number flag appends s	0x13462a9	0x1340ff9
+122	naturalist	naturalists	nonzero number flag appends s	0x13462c3	0x1341013
+123	chemist	chemists	nonzero number flag appends s	0x13462dd	0x134102d
+124	geographer	geographers	nonzero number flag appends s	0x13462f7	0x1341047
+125	scribe	scribes	nonzero number flag appends s	0x1345db9	0x1340b09
+126	papermaker	papermakers	nonzero number flag appends s	0x13458b9	0x1340609
+127	bookbinder	bookbinders	nonzero number flag appends s	0x13458d3	0x1340623
+128	tavern keeper	tavern keepers	nonzero number flag appends s	0x1345dd3	0x1340b23
+129	criminal	criminals	nonzero number flag appends s	0x1346311	0x1341061
+130	peddler	peddlers	nonzero number flag appends s	0x134632b	0x134107b
+131	prophet	prophets	nonzero number flag appends s	0x1346345	0x1341095
+132	pilgrim	pilgrims	nonzero number flag appends s	0x134635f	0x13410af
+133	monk	monks	nonzero number flag appends s	0x1346379	0x13410c9
+134	messenger	messengers	nonzero number flag appends s	0x1346393	0x13410e3

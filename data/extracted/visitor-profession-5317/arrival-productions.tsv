@@ -1,0 +1,23 @@
+edition	type_301_selection	native_template	suffix_instruction_rva	optional_two_spaces_then_history_rva	name_source
+reference	one new visitor; first history information type is 1	{unit} has arrived.	0x10ff54		complete visitor identity; empty output leaves bare suffix
+reference	one new visitor; no matching history information or type differs	{unit} is visiting.	0x10ff5d		complete visitor identity; empty output leaves bare suffix
+reference	multiple new visitors without one common performance troupe; emitted once per unit; first history information type is 1	{unit} has arrived.	0x1101d9		complete visitor identity; empty output leaves bare suffix
+reference	multiple new visitors without one common performance troupe; emitted once per unit; no matching history information or type differs	{unit} is visiting.	0x1101e2		complete visitor identity; empty output leaves bare suffix
+reference	multiple new visitors with common performance troupe; first history information type is 1	{entity}, the performance troupe, has arrived.	0x11006e		entity name; empty output retains comma
+reference	multiple new visitors with common performance troupe; no matching history information or type differs	{entity}, a performance troupe, is visiting.	0x110077		entity name; empty output retains comma
+reference	one returning squad in squad branch	{squad} have returned.	0x10f21e	0x10f2a5	nonempty squad.alias verbatim, else generated EnglishName; generated name may be empty
+reference	multiple returning squads in squad branch	{squad} and others have returned.	0x10f3c5	0x10f44c	first squad; same alias/name selection
+reference	one returning unit in unit branch	{unit} has returned.	0x10f5e8	0x10f66f	complete unit identity, possibly empty
+reference	two returning units in unit branch	{unit1} and {unit2} have returned.	0x10f5c6	0x10f66f	each complete identity can independently be empty
+reference	three or more returning units in unit branch	{unit} and others have returned.	0x10f552	0x10f66f	first complete unit identity, possibly empty
+classic	one new visitor; first history information type is 1	{unit} has arrived.	0x10fee4		complete visitor identity; empty output leaves bare suffix
+classic	one new visitor; no matching history information or type differs	{unit} is visiting.	0x10feed		complete visitor identity; empty output leaves bare suffix
+classic	multiple new visitors without one common performance troupe; emitted once per unit; first history information type is 1	{unit} has arrived.	0x110169		complete visitor identity; empty output leaves bare suffix
+classic	multiple new visitors without one common performance troupe; emitted once per unit; no matching history information or type differs	{unit} is visiting.	0x110172		complete visitor identity; empty output leaves bare suffix
+classic	multiple new visitors with common performance troupe; first history information type is 1	{entity}, the performance troupe, has arrived.	0x10fffe		entity name; empty output retains comma
+classic	multiple new visitors with common performance troupe; no matching history information or type differs	{entity}, a performance troupe, is visiting.	0x110007		entity name; empty output retains comma
+classic	one returning squad in squad branch	{squad} have returned.	0x10f1ae	0x10f235	nonempty squad.alias verbatim, else generated EnglishName; generated name may be empty
+classic	multiple returning squads in squad branch	{squad} and others have returned.	0x10f355	0x10f3dc	first squad; same alias/name selection
+classic	one returning unit in unit branch	{unit} has returned.	0x10f578	0x10f5ff	complete unit identity, possibly empty
+classic	two returning units in unit branch	{unit1} and {unit2} have returned.	0x10f556	0x10f5ff	each complete identity can independently be empty
+classic	three or more returning units in unit branch	{unit} and others have returned.	0x10f4e2	0x10f5ff	first complete unit identity, possibly empty
