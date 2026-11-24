@@ -4,6 +4,7 @@
 std::set<std::pair<int, int>> native_unit_header_captions;
 for (bool top_layer : {false, true}) {
     for (const auto &draw : captured_native_drawn_text_view(top_layer)) {
+        if (is_bare_pike(draw.source) && (draw.trade_item_caption || draw.embark_list_item)) continue;
         if (map_hover && std::any_of(map_hover->rows.begin(), map_hover->rows.end(),
                 [&](const NativeTextCardRow &row) {
                     return row.x == draw.x && row.y == draw.y &&

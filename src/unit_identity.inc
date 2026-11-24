@@ -2,6 +2,7 @@
 // row. Keep occupation, office, territory and rated skills in the same parser.
 std::optional<std::string> Overlay::translate_unit_profession(
         std::string_view raw, bool typed) const {
+    if (is_bare_pike(trim_view(raw))) return std::nullopt;
     if (const auto identity = native_unit_identity_source_target(raw)) return identity;
     const std::string source = normalize_utterance(raw);
     if (source.empty() || source.ends_with("...")) return std::nullopt;
@@ -246,6 +247,8 @@ std::optional<std::string> Overlay::translate_unit_profession(
 
 std::optional<std::string> Overlay::translate_unit_identity(
         std::string_view raw, bool typed) const {
+    if (is_bare_pike(trim_view(raw)))
+        return typed ? std::optional<std::string>(native_text_to_utf8(raw)) : std::nullopt;
     if (const auto identity = native_unit_identity_source_target(raw)) return identity;
     // Sex markers are printable CP437 bytes, not whitespace to normalize.
     const std::string source(trim_view(raw));

@@ -26,6 +26,15 @@ static std::optional<NativeJobItemCaption> native_trade_builtin_material_caption
 std::optional<std::string> Overlay::translate_native_trade_item_caption(
         const NativeTradeItemCaption &caption) const {
     TranslationStateScope state;
+    if (is_bare_pike(caption.source)) {
+        if (caption.typed_identity && caption.type == 24 && caption.definition_id == "ITEM_WEAPON_PIKE" &&
+                !(caption.flags & (0x40000u | 0x08000000u))) {
+            std::vector<size_t> origins;
+            if (auto term = RULESETS.translate_with_origins(caption.raw_name,
+                    "::items::weapon::singular::main", origins)) return term;
+        }
+        return native_text_to_utf8(caption.source);
+    }
     const auto fallback = [&]() {
         return caption.source.empty() ? std::optional<std::string>{} :
             translate_fortress_item_caption(caption.source);

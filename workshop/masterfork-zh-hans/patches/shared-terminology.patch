@@ -126,10 +126,9 @@ diff --git a/dfcn/rulesets/zh-Hans/creatures/name/masterfork.toml b/dfcn/ruleset
  "piglet" = "猪幼崽"
  "piglets" = "猪幼崽"
  "pigs" = "家猪"
--"pike" = "狗鱼"
+ "pike" = "狗鱼"
 -"pike fry" = "狗鱼幼崽"
-+"pike" = "长枪"
-+"pike fry" = "长枪幼崽"
++"pike fry" = "狗鱼幼鱼"
  "pile of dust" = "一堆尘土"
  "pileated gibbon" = "羽冠长臂猿"
  "pileated gibbons" = "羽冠长臂猿"
@@ -294,10 +293,9 @@ diff --git a/dfcn/rulesets/zh-Hans/creatures/name/masterfork.toml b/dfcn/ruleset
  "piglet" = "猪幼崽"
  "piglets" = "猪幼崽"
  "pigs" = "家猪"
--"pike" = "狗鱼"
+ "pike" = "狗鱼"
 -"pike fry" = "狗鱼幼崽"
-+"pike" = "长枪"
-+"pike fry" = "长枪幼崽"
++"pike fry" = "狗鱼幼鱼"
  "pile of dust" = "一堆尘土"
  "pileated gibbon" = "羽冠长臂猿"
  "pileated gibbons" = "羽冠长臂猿"
@@ -26430,7 +26428,7 @@ diff --git a/dfcn/translations.tsv b/dfcn/translations.tsv
  pike elf	精灵长枪手	l
  pike elves	精灵长枪手	l
 -pike fry	狗鱼幼崽	l
-+pike fry	长枪幼崽	l
++pike fry	狗鱼幼鱼	l
  pikedwarf	矮人长枪手	l
  pikedwarves	矮人长枪手	l
  pikegoblin	哥布林长枪手	l
@@ -28465,8 +28463,8 @@ diff --git a/dfcn/translations.tsv b/dfcn/translations.tsv
  Tigerfish Fry	虎鱼幼崽	l
 -Pike fry	狗鱼幼崽	l
 -Pike Fry	狗鱼幼崽	l
-+Pike fry	长枪幼崽	l
-+Pike Fry	长枪幼崽	l
++Pike fry	狗鱼幼鱼	l
++Pike Fry	狗鱼幼鱼	l
  Platypus	鸭嘴兽	l
  Platypuses	鸭嘴兽	l
  Baby platypus	鸭嘴兽幼崽	l

@@ -267,6 +267,11 @@ static std::string trim(std::string s) {
 static std::string_view trim_view(std::string_view text);
 static unsigned char fold_ascii(unsigned char ch);
 
+static bool is_bare_pike(std::string_view text) {
+    return text.size() == 4 && fold_ascii(text[0]) == 'p' && fold_ascii(text[1]) == 'i' &&
+        fold_ascii(text[2]) == 'k' && fold_ascii(text[3]) == 'e';
+}
+
 static bool native_prose_space(unsigned char ch) {
     // CP437 0x0b/0x0c are the game's male/female glyphs, not prose padding.
     return ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n';
@@ -9649,6 +9654,7 @@ static size_t find_manufacturing_activity_separator(
 }
 
 std::optional<std::string> Overlay::translate_compositional(const std::string &screen_text) const {
+    if (is_bare_pike(trim_view(screen_text))) return std::nullopt;
     const uint64_t source_context = native_identity_translation_context();
     const std::string cache_key = std::to_string(source_context) +
         '\x1f' + screen_text;
@@ -9895,6 +9901,7 @@ std::optional<std::string> Overlay::translate_creature_label(
         std::string_view source, bool *shortened, bool authored_name_slot,
         bool static_only) const {
     if (shortened) *shortened = false;
+    if (is_bare_pike(trim_view(source))) return std::nullopt;
     if (!static_only)
         if (const auto identity = native_unit_identity_source_target(source)) return identity;
     source = trim_view(source);
@@ -11012,6 +11019,8 @@ std::optional<std::string> Overlay::translate_procedural_fragment(
     ProceduralFragmentContext context, bool allow_native_original) const {
     TranslationWorkFrame work_frame("generated name", screen_text);
     if (screen_text.empty()) return std::nullopt;
+    if (context == ProceduralFragmentContext::general_text && is_bare_pike(trim_view(screen_text)))
+        return std::nullopt;
 
     // DFHack also emits its brand as ordinary HUD text, outside the captured
     // graphical logo. It is not a native-language name: the single-token
@@ -25601,6 +25610,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
                     }
                     return fragment;
                 }();
+                if (is_bare_pike(translation_source)) continue;
                 // Keep authored names out of procedural transliteration, but
                 // let the shared activity entry consume the COMPLETE caption,
                 // including role, restraint and order-failure wrappers.
@@ -28614,7 +28624,7 @@ bool Overlay::prepare_immediate_row(bool top_layer, int y) {
                         hash *= 1099511628211ULL;
                     }
                     for (const auto *part : {&item.source, &item.raw_name,
-                            &item.raw_adjective, &item.size_adjective, &item.material_id, &item.material_prefix,
+                            &item.definition_id, &item.raw_adjective, &item.size_adjective, &item.material_id, &item.material_prefix,
                             &item.material_state}) {
                         for (const unsigned char ch : *part) {
                             hash ^= ch;
@@ -31789,6 +31799,7 @@ static std::optional<std::string> translate_arena_equipment_source_phrase(
         std::string_view source) {
     TranslationWorkScope work;
     source = trim_view(source);
+    if (is_bare_pike(source)) return std::nullopt;
     // This entry is also reached through generated-name fallbacks. A failed
     // art-form sentence can otherwise send the entire remaining paragraph
     // through every equipment/material split on the SDL thread. Equipment

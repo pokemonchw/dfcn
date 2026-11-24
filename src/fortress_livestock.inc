@@ -148,7 +148,8 @@ void Overlay::append_fortress_creature_activities(std::vector<std::string> &rows
     const int boundary = sorts.size() == 5 ? sorts[4] : gps_->dimx;
     const auto captures = captured_clipped_captions();
     const auto complete_caption = [&](int x, int y, int right,
-                                      const std::string &visible) {
+                                      const std::string &visible,
+                                      std::optional<std::string> *unit_target = nullptr) {
         if (right <= x) return visible;
         bool top = false;
         cell_at(x, y, &top);
@@ -167,6 +168,16 @@ void Overlay::append_fortress_creature_activities(std::vector<std::string> &rows
             return mate_half == (half == (1u << 3) ? (1u << 4) : (1u << 3)) &&
                 native_rows[mate].compare(x, visible.size(), visible) == 0;
         };
+        if (unit_target && is_bare_pike(visible)) {
+            for (const auto &draw : captured_native_drawn_text_view(top)) {
+                if (draw.x == x && same_draw_row(draw.y) && draw.source == visible &&
+                        draw.unit_identity_owner && draw.unit_identity_ready &&
+                        draw.unit_identity_target && !draw.unit_identity_target->empty()) {
+                    *unit_target = *draw.unit_identity_target;
+                    break;
+                }
+            }
+        }
         for (const auto &capture : captures) {
             if (capture.x != x) continue;
             // The widget can draw past this column's next native control.
@@ -262,7 +273,8 @@ void Overlay::append_fortress_creature_activities(std::vector<std::string> &rows
             while (end > first && native_rows[y][end - 1] == ' ') --end;
             if (first == end) continue;
             const std::string visible = native_rows[y].substr(first, end - first);
-            const std::string source = complete_caption(first, y, name_right, visible);
+            std::optional<std::string> unit_target;
+            const std::string source = complete_caption(first, y, name_right, visible, &unit_target);
             // Indented animal status captions use complete glossary entries.
             // The typed name fallback preserves unknown text and would consume
             // "Grazer: requires pasture" before ordinary dictionary matching.
@@ -270,7 +282,8 @@ void Overlay::append_fortress_creature_activities(std::vector<std::string> &rows
             // Only the second independent line of a proved identity grants
             // the custom-profession grammar; statuses never establish identity.
             const bool profession = !status && preceding_identity && source != identity_source;
-            auto target = status ? exact_literal_translation(source)
+            auto target = is_bare_pike(source) ? std::optional(unit_target.value_or(source))
+                : status ? exact_literal_translation(source)
                 : profession ? translate_unit_profession(source, true)
                 : translate_unit_identity(source, true);
             const bool identity = !status && !profession && target.has_value();

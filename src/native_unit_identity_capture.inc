@@ -79,6 +79,26 @@ static bool capture_native_unit_personal_name(uintptr_t base, uintptr_t unit,
 }
 
 static bool capture_native_unit_identity(uintptr_t unit, NativeUnitIdentity &out) {
+    uintptr_t creature = 0;
+    const auto read_creature = [&]() {
+        if (creature) return true;
+        NativeBorrowedVector<uintptr_t> creatures;
+        if (!unit || !native_history_copy(native_history_object_member(unit, "unit", "race", 4), out.race) ||
+                out.race < 0 || !native_history_read_vector(native_history_global(0x24eca68), creatures))
+            return false;
+        creature = native_history_vector_at(creatures, static_cast<size_t>(out.race));
+        return creature != 0;
+    };
+    // The name widget's formatter receives the unit pointer. Only record this
+    // homonym for a species/ordinary role field, never for a personal name.
+    if (is_bare_pike(out.native_role) || std::any_of(out.reference_parts.begin(),
+            out.reference_parts.end(), [](const NativeUnitReferencePart &part) {
+                return (part.kind == NativeUnitReferencePartKind::Species ||
+                    part.kind == NativeUnitReferencePartKind::Role) && is_bare_pike(part.source);
+            })) {
+        if (read_creature()) native_history_copy_string(native_history_object_member(
+            creature, "creature_raw", "creature_id", sizeof(NativeString)), out.creature_id);
+    }
     // Reference parts already contain the game's final RAW/office, species,
     // curse and visibility decisions. Only the explicit authored role field
     // needs classification; do not reapply the ordinary formatter modifiers.
@@ -140,16 +160,6 @@ static bool capture_native_unit_identity(uintptr_t unit, NativeUnitIdentity &out
         if (result.include_status && result.tame &&
                 !native_history_copy(native_history_object_field(unit, "unit", 0x138), result.training_level)) return false;
     }
-    uintptr_t creature = 0;
-    const auto read_creature = [&]() {
-        if (creature) return true;
-        NativeBorrowedVector<uintptr_t> creatures;
-        if (!native_history_copy(native_history_object_field(unit, "unit", 0xa4), result.race) || result.race < 0 ||
-                !native_history_read_vector(native_history_global(0x24eca68), creatures))
-            return false;
-        creature = native_history_vector_at(creatures, static_cast<size_t>(result.race));
-        return creature != 0;
-    };
     bool gender_suffix = false;
     if (result.show_gender) {
         if (!native_history_copy(native_history_object_field(unit, "unit", 0x12e), result.sex)) return false;

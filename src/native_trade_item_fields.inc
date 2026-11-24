@@ -29,6 +29,7 @@ static bool populate_native_trade_item_fields(uintptr_t object,
     caption.semantic_name = false;
     caption.typed_identity = false;
     caption.material_id.clear();
+    caption.definition_id.clear();
     if (!object || !native_history_item_scalar(object, 0, caption.type, 2) ||
             caption.type < 0 || caption.type > 92 ||
             !native_history_item_scalar(object, 8, caption.subtype, 2) ||
@@ -122,6 +123,8 @@ static bool populate_native_trade_item_fields(uintptr_t object,
                 !native_history_copy_string(field(definition, caption.count == 1 ? 0x68 : 0x88, sizeof(NativeString)), caption.raw_name) ||
                 (adjective_offset && !native_history_copy_string(
                     field(definition, adjective_offset, sizeof(NativeString)), caption.raw_adjective))) return true;
+        if (caption.type == 24 && is_bare_pike(caption.raw_name))
+            native_history_copy_string(field(definition, 8, sizeof(NativeString)), caption.definition_id);
         if (caption.type == 29 &&
                 (!flag_fields(native_history_object_field(object, item_class, 0xf0, 8),
                     native_history_object_field(object, item_class, 0xf8, 4), 0, caption.right) ||

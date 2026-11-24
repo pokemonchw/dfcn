@@ -249,6 +249,11 @@ std::optional<std::string> Overlay::translate_native_unit_identity(
             if (auto target = exact_literal_translation(source)) return *target;
             return native_text_to_utf8(source);
         };
+        const auto species_pike = [&](std::string_view original) {
+            if (!unit.creature_id.empty())
+                if (auto term = exact_literal_translation("Creature RAW: " + unit.creature_id)) return *term;
+            return native_text_to_utf8(original);
+        };
         const auto entity_name = [&](const NativeHistoryName &name) -> std::optional<std::string> {
             if (name.entity_id >= 0)
                 return translate_history_entity_name(name, name.entity_id);
@@ -332,7 +337,8 @@ std::optional<std::string> Overlay::translate_native_unit_identity(
                     }
                     break;
                 case NativeUnitReferencePartKind::Species:
-                    if (auto target = translate_creature_descriptor(part.source, true)) value = *target;
+                    if (is_bare_pike(part.source)) value = species_pike(part.source);
+                    else if (auto target = translate_creature_descriptor(part.source, true)) value = *target;
                     else value = field_text(part.source);
                     break;
                 case NativeUnitReferencePartKind::Curse:
@@ -367,7 +373,8 @@ std::optional<std::string> Overlay::translate_native_unit_identity(
                             part.entity_source.empty() ? "无名势力" : native_text_to_utf8(part.entity_source);
                         value = territory +
                             "的" + reference_role(reference_role, role);
-                    } else value = reference_role(reference_role, part.source);
+                    } else if (is_bare_pike(part.source)) value = species_pike(part.source);
+                    else value = reference_role(reference_role, part.source);
                     break;
                 case NativeUnitReferencePartKind::Title: {
                     // The native reference formatter uses this part for an
@@ -411,6 +418,8 @@ std::optional<std::string> Overlay::translate_native_unit_identity(
                 return numbered ? *numbered : native_text_to_utf8(unit.native_role);
             }
             if (!unit.use_custom || unit.custom_profession.empty()) {
+                if (is_bare_pike(unit.native_role) && !unit.curse_named)
+                    return species_pike(unit.native_role);
                 // This is the game's actual RAW/occupation formatter result. Its
                 // source type is known even if it happens to equal a custom name.
                 const auto occupation = [&](std::string_view source) -> std::optional<std::string> {

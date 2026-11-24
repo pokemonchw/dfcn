@@ -13,6 +13,6 @@ struct NativeTradeItemCaption {
     int32_t quality = 0, wear = 0;
     bool right = false, left = false, semantic_name = false;
     bool typed_identity = false;
-    std::string source, raw_name, raw_adjective, size_adjective;
+    std::string source, raw_name, raw_adjective, size_adjective, definition_id;
     std::string material_id, material_prefix, material_state;
 };

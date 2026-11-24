@@ -2042,6 +2042,10 @@ def build(args: argparse.Namespace) -> tuple[list[Entry], collections.Counter[st
     ui_conflicts: list[str] = []
     stats: collections.Counter[str] = collections.Counter()
     for order, entry in enumerate(candidates):
+        # Both a creature RAW and a weapon RAW supply this literal. Only
+        # the object-specific dictionaries can translate the bare caption.
+        if entry.source.lower() == "pike":
+            continue
         # The older row-based dictionary erases continuation rows after
         # translating an opening row. Those empty replacements cannot be
         # reused as independent substring rules: they silently delete prose.

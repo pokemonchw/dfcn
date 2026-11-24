@@ -34,6 +34,7 @@ bool Overlay::load_rules() {
             bool source_ok = false;
             bool target_ok = false;
             std::string source = unescape_tsv(std::string_view(line).substr(0, tab), &source_ok);
+            if (is_bare_pike(source)) continue;
             const size_t target_length = flags_tab == std::string::npos
                                              ? std::string::npos
                                              : flags_tab - tab - 1;
@@ -698,6 +699,10 @@ void Overlay::build_trie(std::function<void()>* catalog_publication) {
             const auto folded = lower_native_name(material_rule.source);
             if (folded.front() != material_rule.source.front() &&
                     native_name_language_masks_.contains(folded)) continue;
+        }
+        if (material_rule.source.starts_with("Creature RAW: ")) {
+            index_capture_literal(material_rule);
+            continue;
         }
         if (material_rule.source.starts_with("DFHack help: ") ||
                 material_rule.source.starts_with("DFHack GUI ")) {

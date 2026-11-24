@@ -174,6 +174,7 @@ static void remember_native_unit_identity_locked(uintptr_t owner, std::string_vi
     g_native_unit_identity_revision.fetch_add(1, std::memory_order_release);
     uint64_t context = g_native_unit_identity_context.load(std::memory_order_relaxed);
     const auto remember_source = [&](const std::string &key) {
+        if (is_bare_pike(key)) return;
         if (g_native_unit_identity_sources.size() >= 16384 &&
                 !g_native_unit_identity_sources.contains(key)) return;
         const auto [entry, inserted] = g_native_unit_identity_sources.try_emplace(
@@ -344,6 +345,8 @@ static std::optional<NativeUnitIdentitySource> prepare_native_unit_identity_sour
 
 static std::optional<std::string> native_unit_identity_source_target(
         std::string_view source, uintptr_t owner = 0) {
+    // A unit and a weapon can publish identical bytes in the same frame.
+    if (!owner && is_bare_pike(source)) return std::nullopt;
     if (native_unit_identity_rendering()) return std::nullopt;
     if (auto *field = g_native_announcement_log_item_field_bindings) {
         if (owner) native_announcement_log_item_field_needs_world();

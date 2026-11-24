@@ -959,6 +959,7 @@ static std::optional<std::string> finish_native_unit_identity_call(NativeUnitIde
         if (typed) {
             if (call.publish && !call.parent)
                 remember_native_announcement_log_speech_identity(call.unit, snapshot, original);
+            if (is_bare_pike(original) && !snapshot.creature_id.empty()) name_unit = call.unit;
             if (call.publish)
                 translated = publish_native_unit_identity_snapshot(std::move(snapshot),
                     reinterpret_cast<uintptr_t>(output), original, name_unit, english_name);

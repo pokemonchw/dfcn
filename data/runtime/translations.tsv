@@ -126262,6 +126262,7 @@ Conversation mood: Free	自由自在	l
 Conversation mood: Glum	忧郁	l
 Copper-bearing boulders	含铜矿石	wi
 Crawling around crazed!	发疯般四处爬行！	hP
+Creature RAW: FISH_PIKE	狗鱼	l
 Credits: Anthony Drawdy	Anthony Drawdy	wl
 Credits: Audio Director	音频总监	wl
 Credits: Bernard Helyer	Bernard Helyer	wl
@@ -181666,7 +181667,7 @@ phantoms	幻影	wi
 phyllite	千枚岩	wi
 pig iron	生铁	wi
 pig tail	猪尾草	wi
-pike fry	长枪幼崽	wi
+pike fry	狗鱼幼鱼	wi
 pine log	针松原木	wi
 pinnacle	顶峰	wi
 platypus	鸭嘴兽	wi
@@ -187538,7 +187539,6 @@ pelt	毛皮	wi
 pets	宠物	wi
 pick	鹤嘴锄	wi
 pigs	猪	wi
-pike	长枪	wi
 pink	粉色	wi
 pits	深坑	hv
 pits	深坑	wi
