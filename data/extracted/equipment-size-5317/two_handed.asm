@@ -1,0 +1,4 @@
+0xfe8c0: mov    rax,QWORD PTR [rcx+0xe8]
+0xfe8c7: cmp    edx,DWORD PTR [rax+0xf8]
+0xfe8cd: setle  al
+0xfe8d0: ret
