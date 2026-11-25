@@ -115,7 +115,8 @@ static std::optional<NativeActivityDetailDocument> native_activity_detail_docume
 static uintptr_t native_history_profile_base();
 static uintptr_t native_current_viewscreen();
 #ifdef _WIN32
-static uintptr_t native_fortress_embark_items_view();
+struct NativeEmbarkItemFrame;
+static const NativeEmbarkItemFrame *native_embark_item_frame(const graphicst *graphics);
 #endif
 static std::optional<NativeHistoryName> capture_native_editor_name(int32_t expected_context);
 static bool refresh_native_journal_event_sources(const graphicst *graphics);
@@ -255,6 +256,7 @@ static std::mutex g_log_mutex;
 // frame's visibility detector.
 static thread_local bool g_drawing_overlay = false;
 static thread_local bool g_native_ui_input_masked = false;
+static thread_local bool g_drawing_replacement_text = false;
 static std::atomic_bool g_logged_direct_utf8_input{false};
 
 static std::string trim(std::string s) {
@@ -3912,6 +3914,10 @@ public:
     void invalidate_render_resources();
     void render(SDL_Renderer *renderer);
     bool prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *renderer);
+#ifdef _WIN32
+    void draw_native_embark_item_text(SDL_Renderer *renderer);
+    void replace_native_embark_tab_glyphs(NativeUiLayerGrid &input);
+#endif
     bool native_ui_copy_passthrough() const noexcept {
         return native_ui_frame_ready_ && native_ui_copy_passthrough_;
     }
@@ -3957,7 +3963,6 @@ public:
     void release_native_map_hover_resources();
     void render_native_fortress_layer(SDL_Renderer *renderer, NativeFortressLayerKind kind);
     void queue_dfhack_layer_translation();
-    bool native_frame_submitted() const noexcept { return native_frame_submitted_; }
     void render_ime_popup(SDL_Renderer *renderer);
     int intercept_glyph_copy(SDL_Renderer *renderer, SDL_Texture *texture,
                              const SDL_Rect *source, const SDL_Rect *dest,
@@ -4860,6 +4865,7 @@ private:
     // The main UI owns one match/layout result from raster entry to Present.
     bool native_ui_input_read_ = false;
     bool native_ui_frame_ready_ = false;
+    bool native_ui_text_drawn_ = false;
     std::array<std::shared_ptr<NativePreparedUiFrame>, 2> native_prepared_ui_frame_;
     std::shared_ptr<NativeTooltipPage> native_ui_layout_page_;
     std::optional<NativeToolbarTooltip> native_ui_toolbar_tooltip_;
@@ -6067,7 +6073,8 @@ private:
         const std::string &item_source, const std::string &quantity,
         bool captured_memory_source) const;
 #ifdef _WIN32
-    bool native_embark_item_list_matches(uintptr_t view, int only_y, const unsigned char *screen_override,
+    bool uses_native_embark_item_text() const;
+    bool native_embark_item_list_matches(const NativeEmbarkItemFrame &frame, int only_y, const unsigned char *screen_override,
             std::vector<Match> &matches) const;
     std::optional<std::string> translate_embark_list_item(const NativeEmbarkListItem &item) const;
 #endif
@@ -8135,6 +8142,7 @@ void Overlay::reset_render_state() {
     destroy_textures();
     frame_prepared_ = false;
     native_ui_frame_ready_ = false;
+    native_ui_text_drawn_ = false;
     native_prepared_ui_frame_ = {};
     native_ui_layout_page_.reset();
     native_ui_toolbar_tooltip_.reset();
@@ -19070,9 +19078,9 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     const auto tooltip_widget = captured_native_tooltip_widget(*gps_);
     std::vector<Match> native_embark_list_matches;
 #ifdef _WIN32
-    const uintptr_t native_embark_tab = native_fortress_embark_items_view();
+    const auto *native_embark_tab = native_embark_item_frame(gps_);
     const bool native_embark_lists = native_embark_tab && native_embark_item_list_matches(
-        native_embark_tab, only_y, screen_override, native_embark_list_matches);
+        *native_embark_tab, only_y, screen_override, native_embark_list_matches);
 #else
     constexpr bool native_embark_tab = false;
     constexpr bool native_embark_lists = false;
@@ -29700,7 +29708,7 @@ int Overlay::layout_embark_named_item_rows(std::vector<Match> &matches,
     }
     if (available_items_x < 0 || !signature.complete()) return 0;
 #ifdef _WIN32
-    if (native_fortress_embark_items_view()) return 0;
+    if (native_embark_item_frame(gps_)) return 0;
 #endif
 
     int rebuilt = 0;
@@ -35988,7 +35996,7 @@ void Overlay::prepare_frame() {
             }
             if (available_items_heading && available_items_landmark &&
 #ifdef _WIN32
-                    !native_fortress_embark_items_view() &&
+                    !native_embark_item_frame(gps_) &&
 #endif
                     std::none_of(prepared_matches_.begin(), prepared_matches_.end(),
                         [](const Match &m) { return m.rule == kNativeEmbarkItemRule; })) {
@@ -36248,7 +36256,11 @@ void Overlay::prepare_frame() {
             // Synthesize the visible captions at the widget's 16-column pitch
             // only on that page, and let draw_match sample each tab's live fill to
             // choose active/inactive text colour and erase the baked English ink.
-            if (!recovered_embark_tabs && embark_page && gps_->dimx >= 160) {
+            if (!recovered_embark_tabs && embark_page && gps_->dimx >= 160
+#ifdef _WIN32
+                    && !native_embark_item_frame(gps_)
+#endif
+                    ) {
                 // The primary group is anchored to the left edge, while the
                 // skill group is anchored to the centre divider.  Treating the
                 // latter as right-aligned happens to work at a 174-column grid,
@@ -42604,9 +42616,9 @@ void Overlay::draw_match(SDL_Renderer *renderer, const Match &match) {
         }
         return;
     }
-    const bool clear_only = match.target.empty() &&
-        match.graphical_clear_width > 0 &&
-        match.graphical_clear_height > 0;
+    const bool clear_graphics = !g_drawing_replacement_text &&
+        match.graphical_clear_width > 0 && match.graphical_clear_height > 0;
+    const bool clear_only = match.target.empty() && clear_graphics;
     if (match.target.empty() && !clear_only) return;
     if (match.rule >= 0 && static_cast<size_t>(match.rule) >= rules_.size()) return;
     const int tile_w = gps_->tile_pixel_x;
@@ -42646,8 +42658,7 @@ void Overlay::draw_match(SDL_Renderer *renderer, const Match &match) {
                                       std::string_view kind) {
         return read_overlay_pixels(renderer, rect, pixels, pitch, kind, &match);
     };
-    if (match.graphical_clear_width > 0 &&
-        match.graphical_clear_height > 0) {
+    if (clear_graphics) {
         // Read the completed widget instead of its transparent logical
         // background. A native popup owns its whole flat body; other widgets
         // erase only bitmap-font pixels on the background/foreground line,
@@ -42895,7 +42906,7 @@ void Overlay::draw_match(SDL_Renderer *renderer, const Match &match) {
             }
         }
     }
-    if (match.graphical_clear_width > 0 && match.graphical_clear_height > 0) {
+    if (clear_graphics) {
         note_graphical_clear_write(renderer, {
             origin_x + match.graphical_clear_x * tile_w,
             origin_y + match.graphical_clear_y * tile_h,
@@ -42923,7 +42934,7 @@ void Overlay::draw_match(SDL_Renderer *renderer, const Match &match) {
     // them. Recover that control's colour from nearby blank cells so clearing
     // the byte glyphs does not leave an opaque black rectangle in the field.
     std::optional<std::array<Uint8, 3>> direct_utf8_graphical_background;
-    if (match.rule == -8 && graphical_rect_epoch_ == composite_read_epoch_) {
+    if (!g_drawing_replacement_text && match.rule == -8 && graphical_rect_epoch_ == composite_read_epoch_) {
         const int match_left = origin_x + match.x * tile_w;
         const int match_right = match_left + match.length * tile_w;
         const int row_top = origin_y + match.y * tile_h;
@@ -42990,8 +43001,8 @@ void Overlay::draw_match(SDL_Renderer *renderer, const Match &match) {
             }
         }
     }
-    if (match.rule == -8 ||
-        (config_.clear_background && !g_copy_hook_active && !match.native_dfhack_foreground)) {
+    if (!g_drawing_replacement_text && (match.rule == -8 ||
+        (config_.clear_background && !g_copy_hook_active && !match.native_dfhack_foreground))) {
         RenderTimingScope clear_timing(render_timings_, config_.trace_render_timing,
             RenderTimingStage::DrawClearPixels);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
@@ -44174,6 +44185,7 @@ bool Overlay::prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *re
     NativeCapturedTextReadScope captured_text_reads;
     NativeAdventureBackgroundReadScope adventure_background_reads;
     native_ui_frame_ready_ = false;
+    native_ui_text_drawn_ = false;
     native_ui_copy_passthrough_ = false;
     native_ui_layout_page_.reset();
     native_ui_toolbar_tooltip_.reset();
@@ -44259,6 +44271,9 @@ bool Overlay::prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *re
     // before any English copy, rather than appearing only at Present.
     mask_native_ui_matches(input);
     native_ui_toolbar_tooltip_ = g_native_toolbar_tooltip;
+#ifdef _WIN32
+    replace_native_embark_tab_glyphs(input);
+#endif
     native_ui_frame_ready_ = true;
     // Every page has now resolved layout and masked its exact source glyphs.
     // Copy interception is only needed when recovery owns additional pixels,
@@ -44276,6 +44291,11 @@ bool Overlay::prepare_native_ui_input(NativeUiLayerGrid &input, SDL_Renderer *re
                         !(match.rule == kAdventureBackgroundDescriptionRule &&
                             match.layout_native_clip && match.graphical_clear_background_rgb >= 0));
             });
+#ifdef _WIN32
+    // The item page already replaced both character and atlas inputs.
+    // Let SDL paint the native backgrounds without a second per-copy fill.
+    if (uses_native_embark_item_text()) native_ui_copy_passthrough_ = true;
+#endif
     // Keep both native buffer variants at this shared input boundary. Each
     // retains its exact ownership context, translation/layout and source arrays;
     // dynamic ownership or pixel recovery continues through the full path.
@@ -44563,7 +44583,7 @@ void Overlay::render(SDL_Renderer *renderer) {
         for (const Match &match : prepared_matches_) {
             if (is_embark_pause_foreground(match)) draw_match(renderer, match);
         }
-    } else {
+    } else if (!native_ui_text_drawn_) {
         RenderTimingScope part_timing(render_timings_, config_.trace_render_timing,
             RenderTimingStage::DrawWorkOrder);
         if (!main_menu_frame_ && !settings_video_frame_ && !fortress_map_frame_ &&
@@ -45071,10 +45091,6 @@ extern "C" void dfcn_render_present(SDL_Renderer *renderer) {
         g_overlay.render_settings_menu(renderer);
         // This independent fortress HUD remains visible above modal pages.
         native_mouse_coordinates_present(renderer);
-        // Only a newly drawn native frame consumes the caption generation.
-        // Repeated Present calls retain the last actual native writer evidence.
-        if (g_overlay.native_frame_submitted()) advance_embark_item_capture_epoch();
-        boundary.checkpoint("capture_epoch");
     }
     if (g_real_present) g_real_present(renderer);
     boundary.checkpoint("native_present");

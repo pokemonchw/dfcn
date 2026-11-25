@@ -212,8 +212,8 @@ static std::optional<NativeAdventureHomeCache> frame_native_adventure_home_cache
 }
 
 static uint64_t captured_native_drawn_text_epoch() {
-    // Present advances the next writer's generation even while display keeps
-    // the last native page. Readers belong to the last actual caption batch.
+    // A producer pass can contain no captions. Read the generation that
+    // actually supplied the retained rows.
     std::lock_guard<std::mutex> lock(g_native_drawn_text_mutex);
     return g_native_drawn_text_epoch;
 }

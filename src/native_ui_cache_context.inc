@@ -356,12 +356,15 @@ public:
             address(caption.picker); address(caption.plant);
             text(caption.name); value(caption.right);
         });
-        optional(input.embark_list_item, [&](const auto &item) {
-            value(item.type); value(item.subtype); value(item.material);
-            value(item.material_index); value(item.count); text(item.name); text(item.builtin_solid_id);
-        });
+        embark_item(input.embark_list_item);
         // Vector traversal preserves relative native draw order. Absolute
         // sequence/epoch numbers are scheduling, not semantic content.
+    }
+    void embark_item(const std::optional<NativeEmbarkListItem> &item) {
+        optional(item, [&](const auto &i) {
+            value(i.type); value(i.subtype); value(i.material);
+            value(i.material_index); value(i.count); text(i.name); text(i.builtin_solid_id);
+        });
     }
     void chooser(const NativeUnitChooserRecord &input) {
         rect(input.box); rect(input.viewport); rect(input.panel);
@@ -1086,6 +1089,15 @@ static std::optional<std::string> native_main_ui_cache_context() {
     NativeUiCacheContextWriter key;
     if (!key.common()) return std::nullopt;
     key.graphics(native_graphics());
+#ifdef _WIN32
+    key.optional(native_embark_item_frame(native_graphics()), [&](const auto &frame) {
+        key.value(frame.modal);
+        key.range(frame.rows, [&](const auto &row) {
+            key.value(row.field); key.value(row.x); key.value(row.y); key.text(row.source);
+            key.embark_item(row.item);
+        });
+    });
+#endif
     key.knowledge_sources();
     key.text("main"); key.current();
     key.value(g_native_save_name_revision.load(std::memory_order_acquire));

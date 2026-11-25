@@ -161,6 +161,9 @@ static void native_help_produce_frame() {
     TranslationStateScope translation;
     const auto original = reinterpret_cast<void (*)()>(g_native_help_producer_hook.original);
     if (!original) return;
+    // A caption batch belongs to the render that writes it. SDL can present
+    // one grid repeatedly or present it after the next batch was produced.
+    advance_embark_item_capture_epoch();
     // swap_arrays and render_things are separate calls on the producer
     // thread. Reset and rebuild the layers under one lock, so Present sees
     // either the previous completed output or this complete frame, including
@@ -186,6 +189,10 @@ static void native_help_produce_frame() {
         } finish_notifications;
         callback.call_native([&] { original(); });
     }
+#ifdef _WIN32
+    try { capture_native_embark_item_frame(native_graphics()); }
+    catch (...) { /* The next completed item frame can supply its fields. */ }
+#endif
     try { native_announcement_log_preheat(4, false); }
     catch (...) {}
     // Dependency completion publishes replacements directly into the exact

@@ -195,6 +195,34 @@ static void native_map_clear(void *renderer) {
     if (!NativeMapGpuFrame::clear_native_target(renderer, clear)) clear();
 }
 
+#ifdef _WIN32
+void Overlay::draw_native_embark_item_text(SDL_Renderer *renderer) {
+    if (!native_ui_frame_ready_ || !uses_native_embark_item_text()) return;
+    NativeUiLayerSdlState state(renderer);
+    if (!state.bind_composite(gps_->screen_pixel_x, gps_->screen_pixel_y)) return;
+
+    // The tile pass consumed the replacement input: widget artwork and
+    // colours, with the matched English glyphs removed before rasterization.
+    // Submit only translated ink to the same SDL target, inside update_all.
+    struct TextPass {
+        bool previous_drawing = std::exchange(g_drawing_overlay, true);
+        bool previous_replacement = std::exchange(g_drawing_replacement_text, true);
+        ~TextPass() {
+            g_drawing_replacement_text = previous_replacement;
+            g_drawing_overlay = previous_drawing;
+        }
+    } text_pass;
+    const auto help_frames = native_text_overlay_frames(*gps_);
+    auto *background = gps_;
+    NativeTooltipPageScope background_view(background, native_ui_layout_page_, nullptr, false);
+    for (const auto &match : prepared_matches_) {
+        if (!match.target.empty())
+            draw_help_clipped_match(renderer, match, help_frames, native_ui_layout_page_, background);
+    }
+    native_ui_text_drawn_ = true;
+}
+#endif
+
 static void native_map_ui_draw(void *renderer) {
     NativeInputCallbackScope callback;
     TranslationStateScope translation;
@@ -233,6 +261,9 @@ static void native_map_ui_draw(void *renderer) {
     source->refresh_buffer_val = input->refresh_buffer_val;
     source->force_full_display_count = input->force_full_display_count;
     source->last_display_background = input->last_display_background;
+#ifdef _WIN32
+    g_overlay.draw_native_embark_item_text(sdl_renderer);
+#endif
 }
 
 static bool install_native_map_layer_hook() {
