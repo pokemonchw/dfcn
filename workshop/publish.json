@@ -10,8 +10,8 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[h2]DFCN v53.17-20261123.2[/h2]\n[list]\n[*]访客身份与来访公告补全了职业称谓。佣兵、怪物猎手、吟游诗人和学者等访客使用复数职业名时也能显示中文，佣兵的单复数称谓统一为“佣兵”。\n[*]修复工坊配方预览中多词原料漏译、相邻原料被合并的问题。配方现在能区分石灰乳和生石灰，正确显示蜂蜜、碱液、植物油等容器内容物，并能按肉类名称显示肉排。\n[*]补全 DFHack 建造规划器的放置、材料筛选和手动选物界面。所需物品与数量、可替代物品、建造位置受限的原因和排队顺位均有中文提示，添加生产订单后的公告也会显示数量和物品名称。\n[/list]\n",
-  "release_tag": "v53.17-20261123.2",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261123.2",
+  "changelog": "[h2]DFCN v53.17-20261126[/h2]\n[list]\n[*]修正 Pike 的译名。鱼类显示为“狗鱼”，幼鱼显示为“狗鱼幼鱼”，同名武器显示为“长枪”。\n[*]修复出发准备界面物品页的英文残留和中英文重叠。物品名称、类别、点数费用以及“物品”“动物”等页签现在会在原位置显示中文。\n[/list]\n",
+  "release_tag": "v53.17-20261126",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261126",
   "github_url": "https://github.com/pokemonchw/dfcn"
 }
