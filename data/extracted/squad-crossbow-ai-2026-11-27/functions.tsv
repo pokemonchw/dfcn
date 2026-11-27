@@ -1,0 +1,40 @@
+file	function_or_branch	start_va	end_va_exclusive	kind
+station.c	squad_order_movest::follow_order	0x141106b70	0x141106be7	Ghidra decompilation
+station.c	SQUAD_ORDER_MOVE in FUN_14150ce70	0x14151075a	0x1415109d3	Ghidra excerpt from function or case
+station.asm	squad_order_movest::follow_order (vtable 0x141649e28 + 0x38)	0x141106b70	0x141106be7	assembly range
+station.asm	SQUAD_ORDER_MOVE / per-member station assignment	0x14151075a	0x1415109d3	assembly range
+station.asm	write station coordinates, threshold and type	0x141391170	0x1413911d4	assembly range
+kill-list-order.c	squad_order_kill_listst::follow_order	0x141106c50	0x141106ef2	Ghidra decompilation
+kill-list-order.c	SQUAD_ORDER_KILL_LIST in FUN_14150ce70	0x1415109d3	0x141510a02	Ghidra excerpt from function or case
+kill-list-order.asm	squad_order_kill_listst::follow_order (vtable 0x14165a728 + 0x38)	0x141106c50	0x141106ef2	assembly range
+kill-list-order.asm	squad_order_kill_listst::getTargetUnits (same vtable + 0x58)	0x14042a300	0x14042a305	assembly range
+kill-list-order.asm	set station using kill-list destination	0x1415109d3	0x141510a02	assembly range
+target-selection.c	dungeon context and conflict target selection	0x1414fe070	0x14150061c	Ghidra decompilation
+target-selection.asm	wrestle opponents, conflict participants, candidate scores and selected target	0x1414ffcd7	0x1415005d4	assembly range
+combat.c	resolve conflict, including ranged combat and pursuit	0x14151b9f0	0x14151e8e2	Ghidra decompilation
+combat.asm	RESOLVE_CONFLICT and flee action dispatcher	0x141511654	0x141511682	assembly range
+combat.asm	current target visibility and incapacitation gates	0x14151b9f0	0x14151bb01	assembly range
+combat.asm	ranged weapon, ammunition, reposition, trajectory, aim and queued action	0x14151c903	0x14151d813	assembly range
+combat.asm	chase and loss of a path to the target	0x14151dfa9	0x14151e31d	assembly range
+combat.asm	truncated three-dimensional Euclidean distance	0x140073810	0x14007385e	assembly range
+line-of-fire.c	line traversal, fortification modes and recorded map coordinates	0x140aa8e50	0x140aa95c9	Ghidra decompilation
+line-of-fire.asm	line traversal and fortification modes	0x140aa8e50	0x140aa95c9	assembly range
+fortification-tile.asm	six tile IDs accepted by the fortification predicate	0x1402c6cb0	0x1402c6ce2	assembly range
+weapon-selection.c	select wielded weapon	0x141356c40	0x141356e9f	Ghidra decompilation
+ammo-selection.c	resolve ammunition and loaded state	0x141357e20	0x1413584ce	Ghidra decompilation
+ranged-actions.c	post-shot recovery countdown in FUN_14151ec30	0x14151f324	0x14151f33c	Ghidra excerpt from function or case
+ranged-actions.c	load and shoot cases in FUN_14151ec30	0x141522662	0x1415233ef	Ghidra excerpt from function or case
+ranged-actions.c	continuations of the same load and shoot cases	0x141522662	0x1415233ef	Ghidra excerpt from function or case
+ranged-actions.asm	dispatch unit actions by type	0x14151ecb6	0x14151ecec	assembly range
+ranged-actions.asm	shared countdown for post-shot recovery	0x14151f324	0x14151f33c	assembly range
+ranged-actions.asm	load, convert to shooting, re-resolve items and target, call projectile creation	0x141522662	0x1415233ef	assembly range
+load-time.c	compute load delay from weapon parameters and skill	0x1406712f0	0x1406713c2	Ghidra decompilation
+weapon-timing.asm	initiate-shot time from weapon definition	0x1406712b0	0x1406712e7	assembly range
+weapon-timing.asm	skill-dependent load time	0x1406712f0	0x1406713c2	assembly range
+weapon-timing.asm	choose melee or ranged skill for the effective skill query	0x141357010	0x14135705a	assembly range
+map-helpers.c	candidate tile eligibility for movement	0x14137f170	0x14137f1e4	Ghidra decompilation
+map-helpers.c	read tile type	0x1400695b0	0x14006963f	Ghidra decompilation
+map-helpers.c	read tile occupancy	0x140069640	0x1400696d0	Ghidra decompilation
+weapon-skill.c	select skill for weapon, including decompiled tail target	0x141357010	0x14135705a	Ghidra decompilation
+weapon-skill.c	effective skill tail target	0x1413570b0	0x1413573dd	Ghidra decompilation
+weapon-timing.asm	effective skill tail target	0x1413570b0	0x1413573dd	assembly range

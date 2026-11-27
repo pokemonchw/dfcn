@@ -1,0 +1,15 @@
+executable=Dwarf Fortress.exe
+distribution=Steam Windows x64
+game_version=53.17
+pe_signature=PE:6aea05a1:02734000
+sha256=3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16
+image_base=0x140000000
+address_format=Preferred-image virtual address, end exclusive.
+decompiler=Ghidra 12.1.2 PUBLIC x86:LE:64:default:windows
+disassembly=GNU objdump x86-64 Intel syntax
+order_vtable_move=0x141649e28
+order_vtable_kill_list=0x14165a728
+action_switch_table=0x141523664 (32-bit image-relative entries)
+action_24_load=0x141522662
+action_25_shoot=0x141523172
+action_27_recover=0x14151f324
