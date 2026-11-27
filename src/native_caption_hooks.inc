@@ -3894,6 +3894,9 @@ static void capture_native_world_site_entity_fact(graphicst *graphics,
 }
 
 #include "native_site_name_draws.inc"
+#ifdef _WIN32
+#include "native_talk_target_capture.inc"
+#endif
 #include "native_river_names.inc"
 #include "native_volcano_names.inc"
 #include "native_geography_names_elf.inc"
@@ -4635,6 +4638,7 @@ static bool install_native_caption_hooks() {
     calls.insert(calls.end(), entity_fact_calls.begin(), entity_fact_calls.end());
 #endif
 #ifdef _WIN32
+    append_native_talk_target_calls(profile.base, calls);
     if (!append_native_site_name_draw_calls(calls)) return false;
     if (!append_native_river_name_calls(calls)) return false;
     if (!append_native_volcano_name_calls(calls)) return false;

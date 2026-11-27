@@ -2477,6 +2477,21 @@ struct NativeEmbarkListItem {
     std::string name;
     std::string builtin_solid_id;
 };
+#ifdef _WIN32
+struct NativeTalkParticipant {
+    std::string source;
+    uintptr_t string_owner = 0;
+    std::optional<NativeUnitIdentitySource> unit;
+    std::optional<NativeHistoryName> figure_name;
+};
+struct NativeTalkTargetCaption {
+    std::string source;
+    std::vector<NativeTalkParticipant> participants;
+    int width = 0;
+};
+static std::shared_ptr<const NativeTalkTargetCaption> native_talk_target_caption(
+    uintptr_t caller, uintptr_t string_owner);
+#endif
 struct NativeDrawnTextRow {
     int x = 0, y = 0;
     std::string source;
@@ -2558,6 +2573,7 @@ struct NativeDrawnTextRow {
     uintptr_t native_caller = 0;
 #ifdef _WIN32
     RecenterName recenter_name = RecenterName::Authored;
+    std::shared_ptr<const NativeTalkTargetCaption> talk_target{};
     std::shared_ptr<const NativeRecenterFollow> recenter_follow{};
 #endif
     std::optional<NativeJusticeOrganizationCaption> justice_organization{};
@@ -3182,6 +3198,8 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         }
         row.native_caller = native_caller;
 #ifdef _WIN32
+        row.talk_target = native_talk_target_caption(native_caller, address);
+        if (row.talk_target) row.caption_source = true;
         capture_recenter_draw(row);
 #endif
         row.justice_organization = std::move(justice_organization);
@@ -20296,6 +20314,9 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         mask_native_knowledge(context);
 #include "adventure_conversation_portrait.inc"
 #include "adventure_conversation_tone.inc"
+#ifdef _WIN32
+#include "adventure_talk_target_rows.inc"
+#endif
         enum class ChoiceKind { Action, Conversation, NativeSite };
         struct ChoicePanel {
             SDL_Rect bounds;

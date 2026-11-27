@@ -1,0 +1,16 @@
+branch	steam_53.17_owner_rva	classic_53.17_owner_rva	original	selection_or_source	zh_CN
+instruction	0x881540	0x87eba0	Click a creature to start a new conversation	Target picker is open, including an empty option vector	点击一个生物，开始新的交谈。
+cancel	0x881540	0x87eba0	Cancel	Target picker is open	取消
+start.unit	0x6d0b90	0x6ce390	Start new conversation with {unit}	Option unit ID resolves, use the full native unit reference	与{unit}开始新的交谈
+start.identity	0x6d0b90	0x6ce390	Start new conversation with {name}	Unit unavailable, historical figure has an active identity, use the name selected by the game	与{name}开始新的交谈
+start.figure	0x6d0b90	0x6ce390	Start new conversation with {name}	Unit unavailable, historical figure has an ordinary name	与{name}开始新的交谈
+start.void	0x6d0b90	0x6ce390	Start new conversation with the Void	No usable unit or named historical identity, inline native string 0x64696f5620656874	与虚空开始新的交谈
+start.empty	0x6d0b90	0x6ce390	Start new conversation with 	Selected name formatter emits no text	开始新的交谈
+continue.shouting	0x6d0670	0x6cde70	Continue shouting	Conversation event flags at +0x16c have bit 1 set	继续喊话
+continue.people	0x6d0670	0x6cde70	Continue conversation with {participants}	Event bit 1 clear, retain native order and skip the player. Each other entry selects a unit reference or the historical figure name at +0x38	继续与{participants}交谈
+continue.separator	0x6d0670	0x6cde70	, 	Nonfinal list separator, omit separators without an emitted name on both sides	、
+continue.last_separator	0x6d0670	0x6cde70	 and 	Final list separator between emitted names	和
+continue.empty	0x6d0670	0x6cde70	Continue conversation with 	No participant supplies a nonempty name	继续交谈
+shout	0x6d0f80	0x6ce780	Shout out to everybody	New shout option when the player has no active shout	向所有人喊话
+identity	0x6d0fa0	0x6ce7a0	Assume an identity	Assume identity option	采用一个身份
+display.ellipsis	0x881540	0x87eba0	...	Width clipping after vtable +8 returns. Render a fitted Chinese caption from the earlier full native string	…
