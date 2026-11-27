@@ -814,6 +814,29 @@ static int capture_native_uniform_member_right(uintptr_t caller, uintptr_t sourc
 #endif
 }
 
+// The roster heading writer draws either the saved name or a temporary copy
+// of squad_nickname_str with a blinking underscore. Only the edit branch
+// owns that buffer. Native shortening can split a UTF-8 character in the copy.
+static void capture_native_squad_heading(NativeDrawnTextRow &row) {
+#ifdef _WIN32
+    constexpr size_t entering_offset = 0x68, text_offset = 0x70;
+#else
+    using Squads = native_history_layout::f_squads_interfacest;
+    constexpr size_t entering_offset = offsetof(Squads, f_entering_squad_nickname);
+    constexpr size_t text_offset = offsetof(Squads, f_squad_nickname_str);
+#endif
+    uint8_t entering = 0;
+    if (!g_native_squads_owner ||
+            !native_history_copy(g_native_squads_owner + entering_offset, entering) ||
+            entering != 1) return;
+    row.editable_text = true;
+    std::string draft;
+    if (!native_history_copy_string(g_native_squads_owner + text_offset, draft)) return;
+    if (row.complete_source.size() == draft.size() + 1 && row.complete_source.ends_with('_'))
+        draft += '_';
+    row.complete_source = std::move(draft);
+}
+
 static int capture_native_squad_list_right(uintptr_t caller, uintptr_t source, int x) {
 #ifdef _WIN32
     const uintptr_t base = native_history_profile_base();
@@ -2853,9 +2876,16 @@ static void capture_native_owned_caption(graphicst *graphics,
                 capture_native_character_relation_row(row, graphics, source, native_caller);
             x = graphics->screenx; y = graphics->screeny;
             dimx = graphics->dimx; dimy = graphics->dimy;
-            if constexpr (!Character && !Notification && !Stocks)
-                row.squad_list_right = capture_native_squad_list_right(
-                    native_caller, row.address, x);
+            if constexpr (!Character && !Notification && !Stocks) {
+                if (native_caller && native_caller == g_native_squads_heading_caller) {
+                    capture_native_squad_heading(row);
+                    // The divider before the quill is five cells left of
+                    // the sidebar's inclusive right edge.
+                    row.squad_list_right = g_native_squads_panel.x + g_native_squads_panel.w - 6;
+                } else {
+                    row.squad_list_right = capture_native_squad_list_right(native_caller, row.address, x);
+                }
+            }
             clip = {graphics->clipx[0], graphics->clipx[1],
                 graphics->clipy[0], graphics->clipy[1]};
             if (y >= 0 && y < dimy && y >= clip[2] && y <= clip[3])

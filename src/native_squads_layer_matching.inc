@@ -73,7 +73,8 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
             first = std::max(first, draw.draw_clip->x);
             last = std::min(last, draw.draw_clip->x + draw.draw_clip->w);
         }
-        while (first < last && draw.source[first - draw.x] == ' ') ++first;
+        if (!draw.editable_text && !draw.squad_alias_target)
+            while (first < last && draw.source[first - draw.x] == ' ') ++first;
         while (last > first && draw.source[last - draw.x - 1] == ' ') --last;
         if (first >= last) continue;
         // Keep the complete producer string for translation. The scrollbar
@@ -125,8 +126,8 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
         match.layout_native_clip = SDL_Rect{
             origin_x + first * gps->tile_pixel_x, origin_y + top * gps->tile_pixel_y,
             (panel_right - 1 - first) * gps->tile_pixel_x, rows * gps->tile_pixel_y};
-        Field field{&draw, std::move(match),
-            trim(draw.complete_source.empty() ? draw.source : draw.complete_source)};
+        const auto &complete = draw.complete_source.empty() ? draw.source : draw.complete_source;
+        Field field{&draw, std::move(match), draw.editable_text ? complete : trim(complete)};
         field.generated_name = static_cast<bool>(draw.squad_generated_name);
         for (size_t index = 0; index < g_native_squads_equipment_callers.size(); ++index)
             if (g_native_squads_equipment_callers[index] &&
@@ -286,16 +287,22 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
             continue;
         }
         std::optional<std::string> target;
-        if (draw.squad_alias_target) {
-            target = *draw.squad_alias_target;
-            auto translated = TranslationResult::translated(field.complete, *target, "squad.alias");
+        if (draw.editable_text || draw.squad_alias_target) {
+            if (draw.editable_text) {
+                if (!contains_cjk_utf8(field.complete)) continue;
+                std::vector<uint32_t> codepoints;
+                target = decode_utf8(field.complete, codepoints)
+                    ? field.complete : native_text_to_utf8(field.complete);
+            } else {
+                target = *draw.squad_alias_target;
+            }
+            auto translated = TranslationResult::translated(field.complete, *target,
+                draw.editable_text ? "input" : "squad.alias");
             translated.status = TranslationStatus::PreservedAuthored;
             for (auto &fragment : translated.fragments) fragment.status = translated.status;
             match.translation_result = std::make_shared<const TranslationResult>(std::move(translated));
         } else if (draw.unit_identity_target) {
             target = *draw.unit_identity_target;
-        } else if (draw.editable_text) {
-            if (contains_cjk_utf8(field.complete)) target = native_text_to_utf8(field.complete);
         } else {
             std::string key = (field.generated_name ? "n" : "t") + field.complete;
             key += static_cast<char>(field.equipment);

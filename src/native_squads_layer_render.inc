@@ -17,7 +17,6 @@ static void native_squads_member_elf(const NativeInlineRegisters *r) noexcept {
     } catch (...) {}
 }
 #endif
-static uintptr_t g_native_squads_owner = 0;
 using NativeSquadsDrawFn = void (*)(void *, uint32_t, int32_t, int32_t);
 using NativeSquadsCursorFn = void (*)(graphicst *, int32_t, int32_t);
 static NativeSquadsCursorFn g_native_squads_member_cursor_original = nullptr;
@@ -168,6 +167,7 @@ static bool install_native_squads_layer_hook() {
         native_reference_address(base, 0x446625) + 5,
         native_reference_address(base, 0x446669) + 5,
     };
+    g_native_squads_heading_caller = native_reference_address(base, 0x444010) + 5;
     g_native_squads_member_name_caller = native_reference_address(base, 0x444605) + 5;
     g_native_squads_member_order_caller = native_reference_address(base, 0x44475b) + 5;
     g_native_squads_equipment_callers = {
@@ -200,6 +200,7 @@ static bool install_native_squads_layer_hook() {
     g_native_squads_footer_callers = {native_elf_5317_address(0x16e879e),
         native_elf_5317_address(0x16e8806), native_elf_5317_address(0x16e8867),
         native_elf_5317_address(0x16e88c3)};
+    g_native_squads_heading_caller = native_elf_5317_address(0x16e48cd);
     g_native_squads_member_name_caller = native_elf_5317_address(0x16e43a6);
     g_native_squads_member_order_caller = native_elf_5317_address(0x16e44bf);
     g_native_squads_equipment_callers = {native_elf_5317_address(0x16d4ae3),
@@ -225,6 +226,7 @@ static void uninstall_native_squads_layer_hook() {
     g_native_squads_member_cursor_hook.uninstall("Native Squads member column source restore");
     if (!g_native_squads_draw_hook.active() && !g_native_squads_member_cursor_hook.active()) {
         g_native_squads_owner = 0;
+        g_native_squads_heading_caller = 0;
         g_native_squads_member_cursor_original = nullptr;
         g_native_squads_member_name_caller = 0;
         g_native_squads_member_order_caller = 0;

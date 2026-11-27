@@ -14,6 +14,8 @@ static std::array<uintptr_t, 4> g_native_squads_footer_callers{};
 // Producer-owned member text columns stop at the selection control. These
 // bounds are submitted by its native cursor calls, never found in a grid.
 static std::vector<SDL_Rect> g_native_squads_member_columns;
+static uintptr_t g_native_squads_owner = 0;
+static uintptr_t g_native_squads_heading_caller = 0;
 static uintptr_t g_native_squads_member_name_caller = 0;
 static uintptr_t g_native_squads_member_order_caller = 0;
 enum class NativeSquadsEquipmentField { None, Type, Material, Color, Item };
