@@ -453,7 +453,7 @@ std::optional<std::string> Overlay::translate_legends_name(
     // compound in every event while translating it in the figure heading.
     const bool single_person = person && name.find(' ') == std::string::npos;
     if (single_person && native_name_language_masks_.contains(lower_native_name(name)))
-        return translate_procedural_fragment(name, true);
+        return native_language_word_display(name);
     // Named animals can omit the given-name field and display only a native
     // two-root surname. Require its complete same-language WORD/POS grammar
     // before treating it as an English name gloss; otherwise that literal
@@ -507,21 +507,27 @@ static bool written_work_form_rule(const Rule &rule) {
         rule.source == "{b} is an example of {p}.";
 }
 
+static bool written_work_genre_capture(const Rule &rule, size_t field) {
+    if (field >= rule.template_kinds.size() || rule.template_kinds[field] != 's')
+        return false;
+    const std::string_view source = rule.source;
+    return source.starts_with("{b} is a {s}") || source.starts_with("{b} is an {s}") ||
+        source.starts_with("This is an untitled {s}") ||
+        source.starts_with("The written portion consists of a {d} page ") ||
+        source.starts_with("Written on the item is ");
+}
+
+static bool valid_legends_capture(const Rule &rule, size_t field, std::string_view value) {
+    // A biography and a work can both open with "X is a Y." Only the
+    // native written-content genres authorize the book-title interpretation.
+    return !written_work_genre_capture(rule, field) || is_written_work_genre(value);
+}
+
 static bool written_work_description_capture(const Rule &rule, size_t field) {
     if (field >= rule.template_kinds.size() || rule.template_kinds[field] != 's')
         return false;
-    // Native Knowledge and written-item carriers share the same 26-way
-    // genre selector. Its labels, and all 18 styles' strength/quality
-    // predicates, belong to the reviewed hv description namespace. An
-    // ordinary term lookup cannot see that namespace (and can read play as
-    // the UI action instead of the literary genre).
+    if (written_work_genre_capture(rule, field)) return true;
     const std::string_view source = rule.source;
-    if (source.starts_with("{b} is a {s}") ||
-            source.starts_with("{b} is an {s}") ||
-            source.starts_with("This is an untitled {s}") ||
-            source.starts_with("The written portion consists of a {d} page ") ||
-            source.starts_with("Written on the item is "))
-        return true;
     return source == "The writing {s}." ||
         source == "The writing {s} and it {s}." ||
         source == "The writing {s} yet it {s}." ||
@@ -1168,7 +1174,8 @@ std::optional<std::string> Overlay::translate_legends_nested(
                 ? value.substr(at, stop - at)
                 : original_value.substr(source_origins[at],
                     source_origins[stop - 1] + 1 - source_origins[at]));
-            if (part.empty() || part.size() >= original_value.size()) continue;
+            if (part.empty() || part.size() >= original_value.size() ||
+                    !valid_legends_capture(rule, field, part)) continue;
             const auto &mode = capture_modes[field];
             const std::string capture_active_key = "legends capture:" +
                 std::to_string(reinterpret_cast<std::uintptr_t>(this)) + ":" +
@@ -1783,31 +1790,32 @@ std::optional<std::string> Overlay::translate_legends_book(
 }
 
 std::optional<std::string> Overlay::translate_legends_text(
-        std::string_view raw, bool link, bool person) const {
+        std::string_view raw, bool link, bool person, bool figure_biography) const {
     return legends_translation_work([&]() -> std::optional<std::string> {
     TranslationWorkFrame work_frame;
-    const std::string source = normalize_utterance(raw);
-    if (!link)
+    const std::string source = figure_biography ? normalize_art_utterance(raw) : normalize_utterance(raw);
+    if (!link && !figure_biography)
         if (const auto fact = translate_world_site_entity_fact(source)) return fact;
-    const std::string key = std::string(link ? (person ? "P:" : "L:") : "T:") + source;
+    const std::string key = std::string(figure_biography ? "F:" : link ? (person ? "P:" : "L:") : "T:") + source;
     if (const auto found = legends_translation_cache_.find(key);
         found != legends_translation_cache_.end()) return found->second;
     const auto cycle_revision = active_translation_work->cycle_revision;
     const auto matching_rules = matching_legends_rules(source);
     auto resolve = [&]() -> std::optional<std::string> {
-        if (!link)
+        if (!link && !figure_biography)
             if (auto event = translate_announcement_combat(source, "historical-event-paragraph"))
                 return event;
         // Item descriptions share the same complete grammar in Legends and
         // symbol pickers, before generic clauses can separate their materials,
         // decoration lists, inscriptions and image relationships.
-        if (!link)
+        if (!link && !figure_biography)
             if (auto item = translate_item_description_source(source)) return item;
         // Exact colors do not necessarily coincide with grammar boundaries:
         // a run can contain several sentences, or just a verb between links.
         // h rules are a separate TSV namespace and never replace global `was`,
         // `in`, or English syllables inside generated proper names.
         std::string output;
+        std::string subject, subject_target, given, given_target;
         size_t cursor = 0;
         while (cursor < source.size()) {
             if (source[cursor] == ' ') { ++cursor; continue; }
@@ -1816,6 +1824,11 @@ std::optional<std::string> Overlay::translate_legends_text(
             const auto feature_argument_end = legends_feature_argument_end(source, cursor);
             for (int index : matching_rules) {
                 const Rule &rule = rules_[static_cast<size_t>(index)];
+                // The native figure picker supplies a biography. Its opening
+                // subject belongs to the actor grammar even when a place or
+                // book with the same spelling would also fit the sentence.
+                if (figure_biography && cursor == 0 &&
+                    (rule.source.starts_with("{p}") || rule.source.starts_with("{b}"))) continue;
                 if (!rule.legends_match_anchor.empty() &&
                     find_template_literal(source, rule.legends_match_anchor, cursor,
                                           rule.case_insensitive) == std::string::npos) continue;
@@ -1881,6 +1894,19 @@ std::optional<std::string> Overlay::translate_legends_text(
                     case 'a': translated[i] = translate_legends_participant(captures[i],
                         link ? std::optional<bool>(person) : std::nullopt); break;
                     case 'n':
+                        if (figure_biography && cursor == 0 && i == 0 &&
+                                captures[i] != "This nameless being") {
+                            translated[i] = translate_figure_gloss(captures[i]);
+                            break;
+                        }
+                        if (!subject.empty() && captures[i] == subject) {
+                            translated[i] = subject_target;
+                            break;
+                        }
+                        if (!given.empty() && captures[i] == given) {
+                            translated[i] = given_target;
+                            break;
+                        }
                         // Both native artifact producers own a complete HF
                         // caption, including an empty caste and curse/status.
                         // Reuse the shared typed actor and empty-caste grammar.
@@ -1931,9 +1957,12 @@ std::optional<std::string> Overlay::translate_legends_text(
                             }
                         }
                         break;
-                    case 's': translated[i] = translate_legends_term(captures[i],
-                        written_work_description_capture(rule, i) ||
-                        creature_description_capture(rule, i)); break;
+                    case 's':
+                        if (valid_legends_capture(rule, i, captures[i]))
+                            translated[i] = translate_legends_term(captures[i],
+                                written_work_description_capture(rule, i) ||
+                                creature_description_capture(rule, i));
+                        break;
                     case 'q': translated[i] = translate_legends_color(captures[i]); break;
                     case 't': translated[i] = translate_legends_anatomy(captures[i]); break;
                     case 'i': translated[i] = translate_legends_item(captures[i]); break;
@@ -1964,6 +1993,26 @@ std::optional<std::string> Overlay::translate_legends_text(
                 best = captures.empty() ? rule.target :
                     fill_template(rule, captures, &capture_translations_, nullptr, &translated);
                 best_end = end;
+                if (figure_biography && cursor == 0) {
+                    subject.clear();
+                    given.clear();
+                    if (!captures.empty() && rule.source.starts_with("{n}")) {
+                        subject = captures.front();
+                        subject_target = *translated.front();
+                        // Bind the shortened reference only if the complete
+                        // translation actually used this first-name group.
+                        const auto space = subject.find(' ');
+                        if (space != std::string::npos) {
+                            const auto first = subject.substr(0, space);
+                            const auto phonetic = transliterate_native_language_word(first);
+                            if (subject_target.starts_with(phonetic + "·") ||
+                                    subject_target.starts_with(phonetic + "“")) {
+                                given = first;
+                                given_target = phonetic;
+                            }
+                        }
+                    }
+                }
             }
             if (!best && !link) {
                 if (const auto end = legends_feature_item_end(source, cursor)) {
@@ -3443,7 +3492,8 @@ std::shared_ptr<LegendsTextFlow> Overlay::translate_legends_flow(
                                 *it + literal.size(), source.size(), false)) continue;
                         if (i + 1 == captures.size() &&
                             !capture_shape(rule.template_kinds[i], at, *it)) continue;
-                        if (!suffix_possible(i + 1, *it + literal.size())) continue;
+                        if (!valid_legends_capture(rule, i, std::string_view(source).substr(at, *it - at)) ||
+                            !suffix_possible(i + 1, *it + literal.size())) continue;
                         const auto part = capture(rule.template_kinds[i], at, *it);
                         if (!part) continue;
                         captures[i] = *part;

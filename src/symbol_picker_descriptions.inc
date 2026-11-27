@@ -2,7 +2,7 @@
 // supplies one complete paragraph. Its site/entity branches are finite typed
 // productions, separate from the item, image, RAW and biography paragraphs.
 std::optional<std::string> Overlay::translate_symbol_picker_description(
-        std::string_view raw_source, bool artwork_context) const {
+        std::string_view raw_source, SymbolPickerOption option) const {
     TranslationStateScope translation_scope;
     std::string source = normalize_art_utterance(raw_source);
     for (char &ch : source)
@@ -14,6 +14,8 @@ std::optional<std::string> Overlay::translate_symbol_picker_description(
     // Full RAW DESCRIPTION entries have precedence over all generated prose.
     // No sentence/word replacement is performed when a complete source fails.
     if (auto target = exact_literal_translation(source); complete(target)) return target;
+    if (symbol_figure_catalog(option))
+        return translate_legends_text(source, false, false, true);
 
     // Grant the item-only grammar an explicit context only after its entire
     // opening noun resolves. A biography or an unknown RAW paragraph must not
@@ -26,7 +28,7 @@ std::optional<std::string> Overlay::translate_symbol_picker_description(
     // can still append qualities, actions, history and an entity relation.
     // Its native category authorizes the complete shared art grammar without
     // treating unrelated biographies or RAW paragraphs as item descriptions.
-    bool item_context = artwork_context;
+    bool item_context = option == SymbolPickerOption::ExistingImage;
     if (!introduction.empty()) {
         bool quoted = false;
         for (size_t at = introduction.size(); at < source.size(); ++at) {

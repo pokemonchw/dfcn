@@ -1,3 +1,12 @@
+// Both the picker gloss and the biography subject are EnglishName fields.
+// In particular, a standalone given name must use the same pronunciation
+// as the given group of a full name, before native compound segmentation.
+std::optional<std::string> Overlay::translate_figure_gloss(std::string_view name) const {
+    if (auto target = translate_english_character_name(name);
+            translation_complete_with_native_nicknames(target, name)) return target;
+    return translate_legends_actor(name);
+}
+
 // Catalog display and search use the same typed caption entry. The native
 // filter supplies complete sources, not clipped rows or translated guesses.
 std::optional<std::string> Overlay::translate_symbol_candidate(
@@ -25,7 +34,15 @@ std::optional<std::string> Overlay::translate_symbol_candidate(
     case SymbolCaptionKind::Item:
         if (auto target = exact_literal_translation(source)) return target;
         return translate_embark_instrument_item(std::string(source), false, instrument_catalog);
-    case SymbolCaptionKind::Figure:
+    case SymbolCaptionKind::Figure: {
+        const auto pair = split_legends_figure_identity(source);
+        if (!pair) return translate_figure_gloss(source);
+        const auto native = translate_procedural_fragment(std::string(pair->native_name), true);
+        // The biography prints the same English gloss as its {n} subject.
+        const auto gloss = translate_figure_gloss(pair->gloss);
+        return native.value_or(native_text_to_utf8(pair->native_name)) + "，“" +
+            gloss.value_or(native_text_to_utf8(pair->gloss)) + "”";
+    }
     case SymbolCaptionKind::Artifact:
         if (source == "Untitled/unnamed") return exact_literal_translation(source);
         return translate_legends_artifact_identity(source);

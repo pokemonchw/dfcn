@@ -3929,6 +3929,31 @@ enum class StockpileCaptionKind { Label, Value, Color, Wood, ItemType };
 #include "native_stockpile_caption_kind.inc"
 
 enum class SymbolCaptionKind { Creature, Plant, Shape, Item, Figure, Artifact, Action };
+enum class SymbolPickerOption : int32_t {
+    Unknown = -1, RelatedFigure = 1, ExistingImage = 5, Figure = 8, Artifact = 13
+};
+
+static bool symbol_figure_catalog(SymbolPickerOption option) {
+    return option == SymbolPickerOption::RelatedFigure || option == SymbolPickerOption::Figure;
+}
+
+static bool native_symbol_picker_option(SymbolPickerOption &option) {
+#ifdef _WIN32
+    // The render caller passes this independently relocated subobject (53.17
+    // Steam 0x18c4f98, classic 0x18bef68). The enclosing gamest has no
+    // whole-object binding on either edition.
+    const auto editor = native_reference_address(native_history_profile_base(), 0x18a2f48);
+    const auto option_address = editor ? editor + 0x28 : 0;
+#else
+    const auto editor = native_history_named_global("gamest", "main_interface.image_creator.open", 1);
+    const auto option_address = native_history_named_global("gamest", "main_interface.image_creator.current_option", 4);
+#endif
+    uint8_t open = 0;
+    if (!editor || !native_history_copy(editor, open) || open != 1) return false;
+    SymbolPickerOption current{};
+    if (native_history_copy(option_address, current)) option = current;
+    return true;
+}
 
 enum class JournalSearchKind {
     Event, Agreement, Person, Site, Group, Region, Creature, Artifact,
@@ -4175,6 +4200,7 @@ private:
         NativeJournalAgreementField kind) const;
     std::optional<std::string> translate_symbol_candidate(std::string_view source,
         SymbolCaptionKind kind, bool instrument_catalog = true) const;
+    std::optional<std::string> translate_figure_gloss(std::string_view name) const;
     mutable std::unordered_map<std::string, std::optional<std::string>> material_name_cache_;
     mutable std::deque<std::string> material_name_cache_order_;
     mutable size_t material_name_cache_bytes_ = 0;
@@ -4580,7 +4606,7 @@ private:
     std::optional<std::string> translate_symbol_description_source(
         std::string_view source) const;
     std::optional<std::string> translate_symbol_picker_description(
-        std::string_view raw_source, bool artwork_context = false) const;
+        std::string_view raw_source, SymbolPickerOption option) const;
     std::optional<std::string> translate_overview_quote(
         std::string_view source, std::vector<size_t> *origins = nullptr) const;
     std::optional<std::string> translate_overview_quote_uncached(
@@ -6046,7 +6072,7 @@ private:
     std::optional<std::string> translate_legends_participant(
         std::string_view value, std::optional<bool> person = std::nullopt, unsigned depth = 0) const;
     std::optional<std::string> translate_legends_text(
-        std::string_view source, bool link, bool person) const;
+        std::string_view source, bool link, bool person, bool figure_biography = false) const;
     void append_legends_detail_matches(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y,
         const unsigned char *screen_override) const;
@@ -8776,8 +8802,7 @@ static bool is_character_knowledge_subject(std::string_view source) {
     return std::find(forms.begin(), forms.end(), folded) != forms.end();
 }
 
-static bool is_character_knowledge_kind(std::string_view source) {
-    if (is_character_knowledge_subject(source)) return true;
+static bool is_written_work_genre(std::string_view source) {
     static constexpr auto kinds = std::to_array<std::string_view>({
         "guide", "manual", "chronicle", "short story", "novel", "biography",
         "autobiography", "poem", "play", "letter", "essay", "dialog",
@@ -8788,6 +8813,10 @@ static bool is_character_knowledge_kind(std::string_view source) {
     });
     const std::string folded = lower(std::string(source));
     return std::find(kinds.begin(), kinds.end(), folded) != kinds.end();
+}
+
+static bool is_character_knowledge_kind(std::string_view source) {
+    return is_character_knowledge_subject(source) || is_written_work_genre(source);
 }
 
 static bool written_work_content_sentence_start(std::string_view value) {
@@ -8829,8 +8858,7 @@ static bool is_written_work_description(std::string_view source) {
         const auto kind = source.substr(untitled.size(), end - untitled.size());
         // The native 26-way genre switch has an empty-label default.
         // Its title/author and the complete work body are still emitted.
-        return (kind.empty() || is_character_knowledge_kind(kind)) &&
-            !is_character_knowledge_subject(kind);
+        return kind.empty() || is_written_work_genre(kind);
     }
     // The native author lookup is optional. A missing figure still produces
     // the complete title/kind sentence, with exactly the same 26 kind values.
@@ -8842,8 +8870,7 @@ static bool is_written_work_description(std::string_view source) {
                 identity + article.size() > end) continue;
             const auto kind = source.substr(identity + article.size(),
                 end - identity - article.size());
-            if ((kind.empty() || is_character_knowledge_kind(kind)) &&
-                !is_character_knowledge_subject(kind)) return true;
+            if (kind.empty() || is_written_work_genre(kind)) return true;
         }
         if (author != std::string_view::npos) break;
     }
@@ -9239,27 +9266,13 @@ static std::optional<std::pair<size_t, size_t>> legends_native_nickname_span(
     return std::pair{open, close};
 }
 
-static std::optional<LegendsFigureRecord> split_legends_figure_record(
+static std::optional<GeneratedNameIdentity> split_legends_figure_identity(
         std::string_view source) {
-    // DF emits native name, quoted English gloss, then sex/species. Parse
-    // delimiters before looking up words: both names can contain spaces and
-    // accented CP437 letters, and authored nicknames can contain commas and
-    // double quotes. The final quote closes the gloss, outside either name.
-    const size_t quote = source.rfind('"');
-    if (quote == std::string_view::npos) return std::nullopt;
-    LegendsFigureRecord record;
-    auto tail = trim_view(source.substr(quote + 1));
-    if (tail.empty() || tail.front() != ',') return std::nullopt;
-    record.species = trim_view(tail.substr(1));
-    for (std::string_view sex : {"female", "male"}) {
-        if (record.species.starts_with(sex) &&
-            record.species.size() > sex.size() &&
-            record.species[sex.size()] == ' ') {
-            record.sex = sex;
-            record.species = trim_view(record.species.substr(sex.size()));
-            break;
-        }
-    }
+    // The picker ends at the closing gloss quote. Authored nicknames can
+    // contain commas and quotes inside either name field.
+    source = trim_view(source);
+    if (!source.ends_with('"')) return std::nullopt;
+    source.remove_suffix(1);
     auto name_shape = [](std::string_view name) {
         std::string generated;
         if (name.find('`') != std::string_view::npos) {
@@ -9280,6 +9293,34 @@ static std::optional<LegendsFigureRecord> split_legends_figure_record(
                 is_cp437_latin_letter_byte(ch) || ch == ' ' || ch == '-' || ch == '\'';
         });
     };
+    for (size_t comma = source.find(','); comma != std::string_view::npos;
+         comma = source.find(',', comma + 1)) {
+        const auto native = trim_view(source.substr(0, comma));
+        const auto quoted = trim_view(source.substr(comma + 1));
+        if (!quoted.starts_with('"')) continue;
+        const auto gloss = trim_view(quoted.substr(1));
+        if (name_shape(native) && name_shape(gloss)) return GeneratedNameIdentity{native, gloss};
+    }
+    return std::nullopt;
+}
+
+static std::optional<LegendsFigureRecord> split_legends_figure_record(
+        std::string_view source) {
+    const size_t quote = source.rfind('"');
+    if (quote == std::string_view::npos) return std::nullopt;
+    LegendsFigureRecord record;
+    auto tail = trim_view(source.substr(quote + 1));
+    if (tail.empty() || tail.front() != ',') return std::nullopt;
+    record.species = trim_view(tail.substr(1));
+    for (std::string_view sex : {"female", "male"}) {
+        if (record.species.starts_with(sex) &&
+            record.species.size() > sex.size() &&
+            record.species[sex.size()] == ' ') {
+            record.sex = sex;
+            record.species = trim_view(record.species.substr(sex.size()));
+            break;
+        }
+    }
     if (record.species.empty() ||
         !std::all_of(record.species.begin(), record.species.end(), [](unsigned char ch) {
             // Angels and experiments can include a capitalized creator's
@@ -9290,15 +9331,11 @@ static std::optional<LegendsFigureRecord> split_legends_figure_record(
                 (ch >= '0' && ch <= '9') || is_cp437_latin_letter_byte(ch) ||
                 ch == ' ' || ch == '-' || ch == '\'';
         })) return std::nullopt;
-    for (size_t comma = source.find(','); comma < quote;
-         comma = source.find(',', comma + 1)) {
-        record.native_name = trim_view(source.substr(0, comma));
-        const auto gloss = trim_view(source.substr(comma + 1, quote - comma - 1));
-        if (gloss.empty() || gloss.front() != '"') continue;
-        record.gloss = trim_view(gloss.substr(1));
-        if (name_shape(record.native_name) && name_shape(record.gloss)) return record;
-    }
-    return std::nullopt;
+    const auto identity = split_legends_figure_identity(source.substr(0, quote + 1));
+    if (!identity) return std::nullopt;
+    record.native_name = identity->native_name;
+    record.gloss = identity->gloss;
+    return record;
 }
 
 static std::string_view legends_figure_identity_before_dates(std::string_view source) {
@@ -12512,6 +12549,12 @@ std::optional<std::string> Overlay::translate_procedural_fragment(
             ProceduralFragmentContext::general_text, false) : native;
         if (!phonetic) return std::nullopt;
         const auto given = native_name.substr(0, native_name.find(' '));
+        if (given != "The" && given != "Of" &&
+                source_gloss != native_name && source_gloss.starts_with(given) &&
+                source_gloss.size() > given.size() && source_gloss[given.size()] == ' ') {
+            const auto gloss = translate_figure_gloss(source_gloss);
+            return *native + "，“" + gloss.value_or(native_text_to_utf8(source_gloss)) + "”";
+        }
         if (character && source_gloss != native_name) {
             const auto given_target = trim_view(std::string_view(*phonetic).substr(0,
                 std::min(phonetic->find("·"), phonetic->find("“"))));
@@ -12525,32 +12568,6 @@ std::optional<std::string> Overlay::translate_procedural_fragment(
             // A single-name creature repeats its untranslated given name
             // inside quotes. It is not an English dictionary word.
             gloss = *phonetic;
-        } else if (source_gloss.starts_with(given) &&
-                   source_gloss.size() > given.size() &&
-                   source_gloss[given.size()] == ' ') {
-            // Reuse the given name already rendered in the native full
-            // identity. In isolation the same word can also segment as a
-            // compound, so resolving it again can produce two different
-            // transliterations for one person on the same row.
-            gloss = phonetic->substr(0, phonetic->find("·"));
-            auto rest = trim_view(source_gloss.substr(given.size()));
-            std::string_view surname, title;
-            if (rest.starts_with("the ")) {
-                title = rest.substr(4);
-            } else {
-                const size_t titled = rest.find(" the ");
-                surname = rest.substr(0, titled);
-                if (titled != std::string_view::npos)
-                    title = rest.substr(titled + 5);
-            }
-            if (!surname.empty()) {
-                const auto compound = translate_generated_surname(
-                    lower(std::string(surname)));
-                gloss += "·" + (compound ? *compound :
-                    translate_phrase(std::string(surname)));
-            }
-            if (!title.empty())
-                gloss += "·" + translate_name("The " + std::string(title));
         } else {
             gloss = translate_name(std::string(source_gloss));
         }
@@ -21840,13 +21857,9 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         bool historical_figures = false, artifacts = false;
         bool related_figure = false, related_site = false, related_group = false, existing_image = false;
         std::optional<Match> image_header;
-        uint8_t image_creator_open = 0;
-        const bool native_image_creator = native_history_copy(native_history_named_global(
-            "gamest", "main_interface.image_creator.open", 1), image_creator_open) && image_creator_open == 1;
-        int32_t image_creator_option = -1;
-        if (native_image_creator)
-            native_history_copy(native_history_named_global("gamest",
-                "main_interface.image_creator.current_option", 4), image_creator_option);
+        auto image_creator_option = SymbolPickerOption::Unknown;
+        const bool native_image_creator = native_symbol_picker_option(image_creator_option);
+        const bool figure_catalog = symbol_figure_catalog(image_creator_option);
         for (int y = 0; y < gps_->dimy; ++y) {
             for (const auto &field : split_text_fields(context[y])) {
                 if (!image_header && (field.text == "Image information" ||
@@ -21901,7 +21914,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         }
         const bool related_picker = related_figure && related_site && related_group && existing_image;
         const bool image_editor = action && deletion && creature_y >= 0;
-        const bool full_width_picker = image_header && !image_editor && !related_picker;
+        const bool full_width_picker = (image_header || figure_catalog) && !image_editor && !related_picker;
         // Every category belongs to the same editor, while individual buttons
         // and the right-hand list have their own frames. A rectangle spanning
         // all category rows can only be enclosed by the editor's outer frame.
@@ -21923,11 +21936,11 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         const int editor_right = editor_interior
             ? editor_interior->x + editor_interior->w : gps_->dimx - 3;
         const int editor_bottom = editor_interior
-            ? editor_interior->y + editor_interior->h : creature_y + 1;
+            ? editor_interior->y + editor_interior->h : figure_catalog ? gps_->dimy : creature_y + 1;
         // Related-to and existing-image pickers put their buttons across the
         // top; the new-image editor puts its categories in a left sidebar.
         // Their shared yellow footer retains each mode's own text origin.
-        const int footer_anchor_y = full_width_picker ? image_header->y
+        const int footer_anchor_y = full_width_picker ? (image_header ? image_header->y : -1)
             : related_picker ? controls_bottom - 1 : creature_y;
         const int footer_left = full_width_picker
             ? (editor_interior ? editor_interior->x : 0) : related_picker
@@ -22208,16 +22221,18 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
             }
         }
         std::vector<int> identity_rows;
-        bool artifact_list = false;
+        bool artifact_list = image_creator_option == SymbolPickerOption::Artifact;
         auto unnamed_artifact = [&](std::string_view source) {
             return artifacts && source == "Untitled/unnamed";
         };
         auto identity_candidate = [&](std::string_view source) {
+            if (figure_catalog) return split_legends_figure_identity(source).has_value();
             return unnamed_artifact(source) || split_generated_name_identity(source).has_value() ||
                 (artifacts && split_repeated_title_identity(source).has_value());
         };
-        if (action && deletion && !deleting && (historical_figures || artifacts) && creature_y >= 0 &&
-            number_y < 0 && !role_prompt) {
+        const bool catalog_page = ((image_editor && !deleting) || related_picker || full_width_picker) && !role_prompt;
+        if (catalog_page && number_y < 0 &&
+                (figure_catalog || (image_editor && (historical_figures || artifacts)))) {
             // Historical figures AND artifacts have NO Number input. Named
             // entries use native-name + quoted-gloss records; unnamed artifacts
             // use a fixed placeholder instead. The category captions alone
@@ -22229,13 +22244,13 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
             int left = gps_->dimx;
             int right = editor_right; // leave the outer frame and scrollbar
             const int list_bottom = editor_interior ? editor_bottom : gps_->dimy;
-            for (int y = creature_y + 1; y < list_bottom; ++y) {
-                const auto row = picker_text(context[y], y, controls_right);
+            for (int y = footer_anchor_y + 1; y < list_bottom; ++y) {
+                const auto row = picker_text(context[y], y, footer_left);
                 if (!row || !identity_candidate(row->source)) continue;
                 identity_rows.push_back(y);
-                artifact_list = artifact_list || unnamed_artifact(row->source) ||
-                    (split_repeated_title_identity(row->source) &&
-                     !split_generated_name_identity(row->source));
+                if (image_creator_option == SymbolPickerOption::Unknown &&
+                    (unnamed_artifact(row->source) || (split_repeated_title_identity(row->source) &&
+                        !split_generated_name_identity(row->source)))) artifact_list = true;
                 left = std::min(left, row->x);
                 for (int x = row->x + row->length; x < right; ++x) {
                     if (is_cp437_box_separator(context[y], static_cast<size_t>(x))) {
@@ -22254,7 +22269,6 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         // A hovered description is a separate native paragraph. It remains
         // valid when the search has no recognizable identity rows, and the
         // same footer is used by every catalog category.
-        const bool catalog_page = ((image_editor && !deleting) || related_picker || full_width_picker) && !role_prompt;
         if (numbered_list || catalog_page) {
             if (list_left < 0) list_left = footer_left;
             if (hint_right < 0) hint_right = editor_right;
@@ -22370,13 +22384,16 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
                 footer_right = captured_right;
                 footer_floor = std::min(footer_floor, description.front().y - 1);
             }
-            if (description.empty() && (numbered_list || editor_interior)) {
-                // Closed-frame recovery stays inside the editor even when a
-                // complex logical layer did not expose native row identities.
-                // Its yellow paragraph is independent of all candidate names.
+            const bool figure_rows = figure_catalog && !identity_rows.empty();
+            if (description.empty() && (numbered_list || editor_interior || figure_rows)) {
+                // Both native figure options draw the biography one column
+                // left of their names. Starting at list_left loses the first
+                // letter of its subject on every uncaptured paragraph.
+                const int prose_left = figure_rows ? std::max(0, list_left - 1) : list_left;
                 for (int y = footer_bottom - 1; y > footer_floor; --y) {
-                    auto row = picker_text(screen_rows[y], y, list_left, true);
-                    if (!row || !footer_row_color(*row)) {
+                    auto row = picker_text(screen_rows[y], y, prose_left, true);
+                    if (!row || (!editor_interior && figure_rows && row->x != prose_left) ||
+                            !footer_row_color(*row)) {
                         if (!description.empty()) break;
                         continue;
                     }
@@ -22410,11 +22427,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
             // RAW spacing and native wraps are grammatical whitespace, while
             // authored nicknames keep their exact internal spaces and quotes.
             source = normalize_art_utterance(source);
-            // Named-only artifact pages share the identity format with the
-            // figure page. Their native item introduction distinguishes the
-            // layout kind; translation still uses the same shared name parser.
-            artifact_list = artifact_list || (!numbered_list && artifacts &&
-                (source.starts_with("This is a ") || source.starts_with("This is an ")));
+            if (image_creator_option == SymbolPickerOption::Unknown && !numbered_list && artifacts &&
+                (source.starts_with("This is a ") || source.starts_with("This is an "))) artifact_list = true;
             const bool instrument_footer = source.find("stringed instrument") != std::string::npos ||
                 source.find("percussion instrument") != std::string::npos ||
                 source.find("wind instrument") != std::string::npos ||
@@ -22436,8 +22450,8 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
                 ? description.front().y : number_y;
             if (prose) {
                 const bool already_resolved = legends_translation_cache_.contains(
-                    "T:" + normalize_utterance(source));
-                auto target = translate_symbol_picker_description(source, image_creator_option == 5);
+                    figure_catalog ? "F:" + source : "T:" + normalize_utterance(source));
+                auto target = translate_symbol_picker_description(source, image_creator_option);
                 if (!target && !already_resolved)
                     log_line("WARN", "Symbol description not translated: " + cp437_to_utf8(source));
                 // An item parser can preserve unsupported sentences beside
@@ -22506,10 +22520,10 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
             for (int y : identity_rows) {
                 auto row = picker_row(y);
                 if (!row || !identity_candidate(row->source)) continue;
-                // Reuse the established native/semantic name translation,
-                // but own the WHOLE identity before generic word matching.
+                // Only the native figure options establish a personal gloss.
+                // An untyped pair keeps the shared artifact/name fallback.
                 const auto target = translate_symbol_candidate(row->source,
-                    artifact_list ? SymbolCaptionKind::Artifact : SymbolCaptionKind::Figure);
+                    figure_catalog ? SymbolCaptionKind::Figure : SymbolCaptionKind::Artifact);
                 if (!target) continue;
                 row->rule = artifact_list ? kSymbolArtifactCandidateRule : kSymbolCandidateRule;
                 row->target = *target;
