@@ -7,6 +7,6 @@
   "tags": ["mod", "UI"],
   "visibility": 0,
   "required_items": [3811193379],
-  "release_tag": "1.0",
-  "changelog": "首次发布植物统计扩展。"
+  "release_tag": "1.1",
+  "changelog": "植物统计 1.1\n中文日志只列每种植物可用的加工用途。能在地表农田播种的植物会标注“地表农田可种”。已有统计记录也按新格式显示。"
 }

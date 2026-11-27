@@ -328,18 +328,14 @@ bool translate(const char *data, size_t size, DfcnJournalPart emit, void *ctx) n
     const auto quantity_unit = unit=="tiles" ? " 格" : " 株";
     std::string result = "　" + std::string(total) + quantity_unit +
         "（地表 " + std::string(surface) + quantity_unit + "）";
-    result += yes.back() ? "　地表农田可种" : "　地表农田不可种";
-    std::string available, unavailable;
+    if (yes.back()) result += "　地表农田可种";
+    std::string available;
     for (size_t i=0; i<labels.size(); ++i) {
-        auto &list = yes[i] ? available : unavailable;
-        if (!list.empty()) list += "、";
-        list += labels[i];
+        if (!yes[i]) continue;
+        if (!available.empty()) available += "、";
+        available += labels[i];
     }
-    if (available.empty()) result += "　六项用途均不可用";
-    else {
-        result += "　可" + available;
-        if (!unavailable.empty()) result += "　不可" + unavailable;
-    }
+    if (!available.empty()) result += "　可" + available;
     emit(ctx,name.data(),name.size(),true);
     emit(ctx,result.data(),result.size(),false);
     return true;
