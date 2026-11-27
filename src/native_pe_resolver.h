@@ -330,10 +330,9 @@ public:
         if (!GetProcessTimes(GetCurrentProcess(), &birth, &exit, &kernel, &user)) return;
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
         const auto digest = hex_digest(seed);
-        // Revision 11 adds the two Stocks formatter bindings. The seed can
-        // remain identical, so a cached failed scan must not hide these newly
-        // reviewed instruction mappings on the next initialization.
-        name_ = L"Local\\DFCN.NativeAddresses.11." + std::to_wstring(GetCurrentProcessId()) + L"." +
+        // The squad and mission roster supplements can change with the
+        // same seed. Discard earlier in-process results missing those sites.
+        name_ = L"Local\\DFCN.NativeAddresses.12." + std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
             std::wstring(digest.begin(), digest.end());

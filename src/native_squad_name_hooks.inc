@@ -133,7 +133,7 @@ static void capture_native_squad_return_generated(const void *name,
     } catch (...) {}
 }
 
-static void capture_native_squad_confirmation_generated(const void *name,
+static void capture_native_squad_generated(const void *name,
         NativeString *output, bool first, bool second) {
     NativeInputCallbackScope callback;
     try { forget_native_squad_alias(reinterpret_cast<uintptr_t>(output)); }
@@ -394,24 +394,28 @@ static bool install_native_squad_name_hooks() {
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
         {0x17b877, 0x6f5a0, // Character Military -> Squad, rsp+3980.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x1c6f1d, 0x6f5a0, // Mission roster, squad.alias -> rbp+1450.
+            reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x1c6f35, 0xa946e0, // The alternate branch formats squad.name.
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
         {0x3e9e17, 0x6f5a0, // Zone sidebar's single assigned squad, rbp+1c30.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
         {0x427065, 0x6f8d0, // Nobles' squad subtitle, actual alias bytes, rbp+140.
             reinterpret_cast<const void *>(&capture_native_squad_alias_assign)},
         {0x42707d, 0xa946e0, // Nobles' subtitle, actual squad.name branch.
-            reinterpret_cast<const void *>(&capture_native_squad_confirmation_generated)},
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
         {0x4270a6, 0xede350, // Generated subtitle's article removal before clipping.
             reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x44198f, 0x6f5a0, // Squad selectors, rbp+d0.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
         {0x4419a7, 0xa946e0, // Disband confirmation, actual squad.name branch.
-            reinterpret_cast<const void *>(&capture_native_squad_confirmation_generated)},
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
         {0x4419f3, 0xede350, // Generated confirmation name's article removal.
             reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x441b4e, 0x6f5a0,
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
         {0x441b66, 0xa946e0, // Compact disband list, actual squad.name branch.
-            reinterpret_cast<const void *>(&capture_native_squad_confirmation_generated)},
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
         {0x441bb2, 0xede350, // Compact generated name's article removal.
             reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x4423aa, 0x6f5a0, // Selected squad detail, rbp+130.
@@ -432,6 +436,8 @@ static bool install_native_squad_name_hooks() {
         {0x17bc55, 0x67e30,
             reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
         {0x17bc68, 0x67e30,
+            reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
+        {0x1c6fe1, 0x67e30,
             reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
         {0x3e9eb7, 0x67e30,
             reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},

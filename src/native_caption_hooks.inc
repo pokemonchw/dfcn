@@ -3931,6 +3931,44 @@ static void capture_native_world_site_entity_fact(graphicst *graphics,
 #include "native_volcano_names.inc"
 #include "native_geography_names_elf.inc"
 
+#ifdef _WIN32
+static void capture_native_mission_roster(graphicst *graphics, const NativeString *source,
+        int width, uintptr_t caller) {
+    std::string_view full;
+    if (!graphics || !graphics->screen || width < 0 ||
+            !native_string_view(source, &full, 4096) || full.empty() ||
+            graphics->screeny < 0 || graphics->screeny < graphics->clipy[0] ||
+            graphics->screeny >= graphics->dimy || graphics->screeny > graphics->clipy[1]) return;
+    const int x = graphics->screenx;
+    const int first = std::max<int>({0, x, static_cast<int>(graphics->clipx[0])});
+    const int right = static_cast<int>(std::min<int64_t>(graphics->dimx,
+        int64_t(graphics->clipx[1]) + 1));
+    if (first >= right) return;
+    // addst copies the NativeString and abbreviates that copy for the
+    // 24-column names. Obtain exactly those mask bytes in game string memory.
+    // The unabridged argument is the only translation source.
+    std::string_view ink = full;
+    std::optional<NativeHistoryPageString> shortened;
+    if (width && full.size() > static_cast<size_t>(width)) {
+        const auto base = native_history_profile_base();
+        using Assign = NativeString *(*)(NativeString *, const NativeString *);
+        const auto assign = reinterpret_cast<Assign>(native_pe_address(base, 0x6f5a0));
+        const auto shorten = reinterpret_cast<NativeCaptionTruncateFn>(native_pe_address(base, 0x52d910));
+        if (!assign || !shorten) return;
+        shortened.emplace();
+        assign(&shortened->value, source);
+        shorten(&shortened->value, width);
+        if (!native_string_view(&shortened->value, &ink, width)) return;
+    }
+    const auto offset = static_cast<size_t>(int64_t(first) - x);
+    if (offset >= ink.size()) return;
+    remember_native_drawn_text_row(first, graphics->screeny, ink.substr(offset, right - first),
+        reinterpret_cast<uintptr_t>(source), graphics, false, full, NativeInfoTitleKind::None,
+        0, -1, NativeCivilizationField::None, false, -1, std::nullopt, 0, {},
+        NativeLocationPickerField::None, std::nullopt, std::nullopt, NativeTravelBuildingField::None, caller);
+}
+#endif
+
 static void capture_native_clipped_draw(graphicst *graphics, const NativeString *source,
         NativeJustification just, int width) {
     if (graphics && graphics == g_native_notification_write_graphics) {
@@ -3997,6 +4035,14 @@ static void capture_native_clipped_draw(graphicst *graphics, const NativeString 
         return;
     }
     const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
+#ifdef _WIN32
+    if (native_mission_roster_field(caller) != NativeMissionRosterField::None) {
+        try { capture_native_mission_roster(graphics, source, width, caller); } catch (...) {}
+        if (const auto original = g_native_clipped_caption_hooks.draw)
+            original(graphics, source, just, width);
+        return;
+    }
+#endif
     // This call inside textbox::render draws only its owned edit string's
     // temporary copy. It remains input even when native code reaches render
     // directly instead of dispatching through the hooked widget vtable.

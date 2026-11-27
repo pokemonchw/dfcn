@@ -324,6 +324,9 @@ void Overlay::append_fortress_squad_alias_rows(std::vector<std::string> &rows,
     for (bool top : {false, true}) {
         if (raw && raw != (top ? gps_->screen_top : gps_->screen)) continue;
         for (const auto &draw : captured_native_drawn_text_view(top)) {
+#ifdef _WIN32
+            if (draw.mission_roster_owner.screen) continue;
+#endif
             if ((!draw.squad_alias_target && !draw.squad_generated_name) ||
                     draw.source.empty() || draw.x < 0 ||
                     draw.x >= gps_->dimx || draw.y < 0 || draw.y >= gps_->dimy ||

@@ -2251,6 +2251,37 @@ enum class NativeCivilizationField {
     AgreementQuota, AgreementPrice, AgreementCommodity, AgreementPending
 };
 
+#ifdef _WIN32
+struct NativeMissionRosterOwner {
+    uintptr_t screen = 0, mission = 0;
+    int32_t mode = -1;
+    bool operator==(const NativeMissionRosterOwner &) const = default;
+};
+static NativeMissionRosterOwner native_world_mission_roster_owner();
+enum class NativeMissionRosterField { None, Empty, Count, DetailEmpty, DetailCount, Squad, Messenger, Hint };
+
+static NativeMissionRosterField native_mission_roster_field(uintptr_t caller) {
+    // The four reviewed PE renderers have the same instruction offsets from
+    // the first count draw. 53.17 Steam starts at 1c9a70, Classic at 1c9a00.
+    using Field = NativeMissionRosterField;
+    if (!caller) return Field::None;
+    static const uintptr_t first = native_pe_address(native_history_profile_base(), 0x1c6d00);
+    if (!first || caller < first || caller - first > 0x1c951b - 0x1c6d00) return Field::None;
+    switch (caller - first + 0x1c6d00) {
+    case 0x1c6d00: case 0x1c716c: return Field::Empty;
+    case 0x1c6e63: case 0x1c72c8: return Field::Count;
+    case 0x1c90d4: case 0x1c93c2: return Field::DetailEmpty;
+    case 0x1c922d: case 0x1c951b: return Field::DetailCount;
+    case 0x1c6f56: return Field::Squad;
+    case 0x1c73fb: return Field::Messenger;
+    case 0x1c6fcc: case 0x1c746d: // overflow in either list
+    case 0x1c7507: case 0x1c756c: // locked / editable footer
+        return Field::Hint;
+    }
+    return NativeMissionRosterField::None;
+}
+#endif
+
 enum class NativeLocationPickerField {
     None, Prompt, Action, Name, Faith, Guild, Kind,
     FaithChoice, FaithStatus, FaithCount, FaithWorship, FaithDeity, FaithSphere,
@@ -2572,6 +2603,7 @@ struct NativeDrawnTextRow {
     // The actual addst return address identifies document-specific row writers.
     uintptr_t native_caller = 0;
 #ifdef _WIN32
+    NativeMissionRosterOwner mission_roster_owner{};
     RecenterName recenter_name = RecenterName::Authored;
     std::shared_ptr<const NativeTalkTargetCaption> talk_target{};
     std::shared_ptr<const NativeRecenterFollow> recenter_follow{};
@@ -3055,6 +3087,16 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         capture_native_arena_tree_caption(native_caller, address);
     auto caravan_entity_name = character ? std::shared_ptr<const NativeHistoryName>{} :
         capture_native_caravan_entity_name(native_caller, address);
+#ifdef _WIN32
+    const auto roster_field = native_mission_roster_field(native_caller);
+    NativeMissionRosterOwner roster_owner;
+    if (roster_field != NativeMissionRosterField::None) {
+        roster_owner = native_world_mission_roster_owner();
+        const bool detail = roster_field == NativeMissionRosterField::DetailCount ||
+            roster_field == NativeMissionRosterField::DetailEmpty;
+        if (!roster_owner.mission || roster_owner.mode != (detail ? 3 : 2)) return;
+    }
+#endif
     const auto civilization_owner = civilization_field != NativeCivilizationField::None &&
             civilization_field != NativeCivilizationField::FortressRank &&
             civilization_field != NativeCivilizationField::FortressPositionLabel
@@ -3198,6 +3240,11 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         }
         row.native_caller = native_caller;
 #ifdef _WIN32
+        row.mission_roster_owner = roster_owner;
+        if (roster_owner.screen) {
+            row.complete_source.assign(complete_source);
+            row.caption_source = true;
+        }
         row.talk_target = native_talk_target_caption(native_caller, address);
         if (row.talk_target) row.caption_source = true;
         capture_recenter_draw(row);
@@ -3268,6 +3315,9 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
             complete_source.find_first_of("\r\n") == std::string_view::npos)
             row.complete_source.assign(complete_source);
         if (row.caption_source && graphics && !top_layer && !character &&
+#ifdef _WIN32
+                !row.mission_roster_owner.screen &&
+#endif
                 !row.workshop_task_caption && !row.arena_tree_caption)
             row.picture_frame = capture_native_picture_caption_frame(*graphics, x, y);
         positions.insert(position);
@@ -5262,7 +5312,12 @@ private:
         std::vector<std::string> &rows, std::vector<Match> &matches, int only_y,
         bool action_control = false, bool reclaim_history = false) const;
     std::optional<std::string> translate_world_mission_title(std::string_view source) const;
+#ifdef _WIN32
+    void append_world_mission_roster(std::vector<std::string> &rows, std::vector<Match> &matches,
+        int only_y, const unsigned char *screen_override) const;
+#else
     std::optional<NativeTextCard> capture_world_mission_summary_card() const;
+#endif
     void append_world_mission_titles(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
     void append_world_mission_reports(std::vector<std::string> &rows,
@@ -19151,6 +19206,10 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     screen_rows.reserve(static_cast<size_t>(gps_->dimy));
     for (int row_y = 0; row_y < gps_->dimy; ++row_y)
         screen_rows.push_back(read_row(row_y));
+#ifdef _WIN32
+    if (!local_fortress_hud && !fortress_gameplay)
+        append_world_mission_roster(screen_rows, result, only_y, screen_override);
+#endif
     // The conditions dialog can also draw directly into the game grid.
     // Reserve its captured fields before individual UI words are matched.
     if (std::any_of(screen_rows.begin(), screen_rows.end(), [](const std::string &row) {
@@ -19779,8 +19838,10 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     }
     for (const auto &action : world_site_actions)
         append_world_site_phrases(action, screen_rows, result, only_y, true);
+#ifndef _WIN32
     const auto world_mission_summary = local_fortress_hud || fortress_gameplay ? std::optional<NativeTextCard>{}
         : capture_world_mission_summary_card();
+#endif
     if (!local_fortress_hud) {
     append_fortress_squad_creation(screen_rows, result, only_y, screen_override != nullptr);
     if (!native_squads_layer_hook_active())
@@ -19945,8 +20006,10 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
         if (embark_site) compose_native_text_rows(
             *embark_site, result, only_y, kEmbarkSiteRowRule, true);
         if (world_site) compose_native_text_rows(*world_site, result, only_y, kWorldSiteRowRule);
+#ifndef _WIN32
         if (world_mission_summary) compose_native_text_rows(
             *world_mission_summary, result, only_y, kWorldSiteRowRule);
+#endif
         for (const auto &action : world_site_actions)
             compose_native_text_rows(action, result, only_y, kWorldSiteRowRule, false, true);
         for (const auto &choice : workshop_choices)

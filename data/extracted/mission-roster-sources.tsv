@@ -1,0 +1,25 @@
+# Ghidra decompilation of viewscreen_worldst::render, Windows 53.17 (Steam RVA 0x1c4550, Classic RVA 0x1c44e0).
+# MISSIONS_LIST (view_mode 2) uses the hovered army_controller; MISSION_DETAILS (3) reads army_controller[selected_ac].
+# Goals 19 and 25 use messengers. Other displayed goals use squad commanders. The formatter capitalizes the assembled count line.
+# CommanderCount(0/1/n>1) = 'no commanders' / '1 commander' / decimal(n) + ' commanders'.
+# MessengerCount(0/1/n>1) = 'no messengers' / '1 messenger' / decimal(n) + ' messengers'.
+# For each role the zero/zero pair uses its dedicated literal. The other eight count pairs use the whole-line templates in data/runtime/local-overrides.tsv.
+# A missing squad, entity, or position assignment skips its roster entry. An unresolved assigned figure submits an empty string.
+field	steam_draw_return_rva	classic_draw_return_rva	branch	native_source
+overview.empty_commanders	0x1c9a70	0x1c9a00	here + traveling == 0	No commanders
+overview.commanders	0x1c9bd3	0x1c9b63	here + traveling > 0	CommanderCount(here) + ' here, ' + CommanderCount(traveling) + ' traveling'
+overview.squad	0x1c9cc6	0x1c9c56	squad.alias.size() > 0	squad.alias
+overview.squad	0x1c9cc6	0x1c9c56	squad.alias.empty()	EnglishName(squad.name)
+overview.squads_overflow	0x1c9d3c	0x1c9ccc	seven rows filled and further squad indices remain	and more...
+overview.empty_messengers	0x1c9edc	0x1c9e6c	here + traveling == 0	No messengers
+overview.messengers	0x1ca038	0x1c9fc8	here + traveling > 0	MessengerCount(here) + ' here, ' + MessengerCount(traveling) + ' traveling'
+overview.messenger	0x1ca16b	0x1ca0fb	position.histfig == -1	Messenger (unfilled)
+overview.messenger	0x1ca16b	0x1ca0fb	position.histfig resolves	EnglishName(historical_figure.name)
+overview.messenger	0x1ca16b	0x1ca0fb	historical figure lookup fails	empty string
+overview.messengers_overflow	0x1ca1dd	0x1ca16d	seven rows filled and further messenger indices remain	and more...
+overview.footer	0x1ca277	0x1ca207	traveling > 0 and here == 0	This mission cannot be altered now.
+overview.footer	0x1ca2dc	0x1ca26c	traveling == 0 or here > 0	Click for assignments and details
+detail.empty_commanders	0x1cbe44	0x1cbdd4	here + traveling == 0	No commanders
+detail.commanders	0x1cbf9d	0x1cbf2d	here + traveling > 0	CommanderCount(here) + ' here, ' + CommanderCount(traveling) + ' traveling'
+detail.empty_messengers	0x1cc132	0x1cc0c2	here + traveling == 0	No messengers
+detail.messengers	0x1cc28b	0x1cc21b	here + traveling > 0	MessengerCount(here) + ' here, ' + MessengerCount(traveling) + ' traveling'

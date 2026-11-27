@@ -1210,6 +1210,103 @@ void Overlay::append_world_site_phrases(const NativeTextCard &card,
     }
 }
 
+#ifdef _WIN32
+void Overlay::append_world_mission_roster(std::vector<std::string> &rows,
+        std::vector<Match> &matches, int only_y, const unsigned char *screen_override) const {
+    using Field = NativeMissionRosterField;
+    std::optional<NativeMissionRosterOwner> current_owner;
+    const auto translate = [&](Field field, const NativeDrawnTextRow &draw) -> std::optional<std::string> {
+        const auto &source = draw.complete_source;
+        if (field == Field::Squad) {
+            if (draw.squad_alias_target) return draw.squad_alias_target;
+            if (draw.squad_generated_name) return translate_history_name(*draw.squad_generated_name);
+            return std::nullopt;
+        }
+        if (field == Field::Messenger && source != "Messenger (unfilled)")
+            return translate_legends_name(source, true);
+        if (field == Field::Count || field == Field::DetailCount) {
+            // The game capitalizes the assembled line after choosing each
+            // side's zero, singular or plural phrase. Match both counts at once.
+            const std::string folded = lower(source);
+            for (const int index : candidate_template_rules(folded)) {
+                const auto &rule = rules_[static_cast<size_t>(index)];
+                if (!rule.numeric_template || !rule.source.ends_with(" traveling")) continue;
+                size_t end = 0;
+                std::vector<std::string> counts;
+                if (match_template(rule, folded, 0, &end, &counts) && end == folded.size())
+                    return fill_template(rule, counts);
+            }
+            return std::nullopt;
+        }
+        std::vector<int> colors;
+        return translate_help_paragraph(source, std::vector<int>(source.size(), draw.foreground_rgb),
+            colors, true, -1, true);
+    };
+
+    for (bool top : {false, true}) {
+        for (const auto &draw : captured_native_drawn_text_view(top)) {
+            if (!draw.mission_roster_owner.screen || draw.complete_source.empty() || draw.source.empty() ||
+                    draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
+                    draw.x < 0 || draw.x >= gps_->dimx || draw.y < 0 || draw.y >= gps_->dimy ||
+                    (only_y >= 0 && std::abs(only_y - draw.y) > 1)) continue;
+            if (!current_owner) current_owner = native_world_mission_roster_owner();
+            if (draw.mission_roster_owner != *current_owner) continue;
+            const auto field = native_mission_roster_field(draw.native_caller);
+            int right = gps_->dimx;
+            if (draw.draw_clip) right = std::min(right, draw.draw_clip->x + draw.draw_clip->w);
+            const bool name = field == Field::Squad || field == Field::Messenger;
+            if (name) right = std::min(right, draw.x + 24);
+            const int length = std::min(right - draw.x, static_cast<int>(draw.source.size()));
+            if (length <= 0) continue;
+            const auto visible = std::string_view(draw.source).substr(0, length);
+            const auto *flags = top ? gps_->screentexpos_top_flag : gps_->screentexpos_flag;
+            constexpr uint32_t upper = 1u << 3, lower_half = 1u << 4;
+            const auto half_at = [&](int y) {
+                return flags ? flags[static_cast<size_t>(draw.x) * gps_->dimy + y] & (upper | lower_half) : 0u;
+            };
+            const auto half = half_at(draw.y);
+            const int mate = half == upper ? draw.y + 1 : half == lower_half ? draw.y - 1 : -1;
+            const bool paired = mate >= 0 && mate < gps_->dimy && half_at(mate) == (half == upper ? lower_half : upper);
+            std::optional<std::string> target;
+            for (int y : {draw.y, paired ? mate : -1}) {
+                if (y < 0 || (only_y >= 0 && only_y != y)) continue;
+                // Only layer ownership and font geometry are relevant here.
+                // All text and coordinates came from the active UI object.
+                bool current = true;
+                for (int i = 0; current && i < length; ++i) {
+                    if (visible[i] == ' ') continue;
+                    const size_t at = static_cast<size_t>(draw.x + i) * gps_->dimy + y;
+                    const bool layer = screen_override ? screen_override == gps_->screen_top
+                        : native_ui_top_layer_at(*gps_, at);
+                    const auto origin = native_text_grid_origin(*gps_, at, layer);
+                    current = origin.grid == draw.draw_grid && origin.top_layer == top;
+                }
+                if (!current) continue;
+                if (!target) target = translate(field, draw).value_or(native_text_to_utf8(draw.complete_source));
+                Match match{draw.x, y, length, kWorldSiteRowRule, *target, std::string(visible)};
+                if (field == Field::Squad && draw.squad_alias_target) {
+                    auto alias = TranslationResult::translated(draw.complete_source, *target, "squad.alias");
+                    alias.status = TranslationStatus::PreservedAuthored;
+                    alias.fragments.front().status = alias.status;
+                    match.translation_result = std::make_shared<TranslationResult>(std::move(alias));
+                }
+                match.layout_x = draw.x;
+                match.layout_length = name ? right - draw.x : length;
+                match.layout_clip_right = draw.x + match.layout_length;
+                match.layout_left = true;
+                match.layout_prepared = true;
+                match.layout_foreground_rgb = draw.foreground_rgb;
+                if (paired) {
+                    match.native_split_text = true;
+                    match.native_split_top_y = std::min(draw.y, mate);
+                }
+                matches.push_back(std::move(match));
+                std::fill_n(rows[y].begin() + draw.x, length, ' ');
+            }
+        }
+    }
+}
+#else
 // The mission overview is a read-only roster, separate from the checkbox
 // selector and the site-description card. Its native names share a left
 // margin; centering each translation in its English span staggers the list.
@@ -1251,6 +1348,7 @@ std::optional<NativeTextCard> Overlay::capture_world_mission_summary_card() cons
     }
     return std::nullopt;
 }
+#endif
 
 // The member selector overlays selected/unselected button_main skins
 // 450/451 on a rectangle's last four columns. In graphical mode add_tile

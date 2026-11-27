@@ -83,6 +83,32 @@ static bool native_world_map_screen() {
     return screen && native_history_object_is(screen, "viewscreen_worldst");
 }
 
+#ifdef _WIN32
+static NativeMissionRosterOwner native_world_mission_roster_owner() {
+    NativeMissionRosterOwner owner;
+    const auto screen = native_current_viewscreen();
+    if (!screen || !native_history_object_is(screen, "viewscreen_worldst")) return {};
+    const auto member = [&](std::string_view name, size_t bytes) {
+        return native_history_object_member(screen, "viewscreen_worldst", name, bytes);
+    };
+    if (!native_history_copy(member("view_mode", sizeof(owner.mode)), owner.mode)) return {};
+    if (owner.mode == 2) {
+        // MISSIONS_LIST renders the card inside the hovered army-controller row.
+        if (!native_history_copy(member("last_hover_ac", sizeof(owner.mission)), owner.mission)) return {};
+    } else if (owner.mode == 3) {
+        // MISSION_DETAILS uses the selected index in this viewscreen's vector.
+        int32_t index = -1;
+        NativeBorrowedVector<uintptr_t> missions;
+        if (!native_history_copy(member("selected_ac", sizeof(index)), index) || index < 0 ||
+                !native_history_read_vector(member("army_controller", sizeof(missions)), missions)) return {};
+        owner.mission = native_history_vector_at(missions, static_cast<size_t>(index));
+    }
+    if (!owner.mission) return {};
+    owner.screen = screen;
+    return owner;
+}
+#endif
+
 static std::pair<uintptr_t, uintptr_t> native_world_civilization_owner() {
     const uintptr_t screen = native_current_viewscreen();
     int32_t mode = -1;

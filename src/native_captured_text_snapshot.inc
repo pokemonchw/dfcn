@@ -26,6 +26,15 @@ static void bind_native_drawn_text_frame(const graphicst &graphics) {
         if (!grid || !row.draw_grid || row.draw_grid == grid ||
                 row.draw_dimx != graphics.dimx || row.draw_dimy != graphics.dimy ||
                 row.y < 0 || row.y >= graphics.dimy || row.source.empty()) return;
+#ifdef _WIN32
+        if (row.mission_roster_owner.screen) {
+            // Presentation rotates the backing buffer. Roster ownership is
+            // revalidated against the world viewscreen and mission at layout.
+            row.draw_grid = grid;
+            changed = true;
+            return;
+        }
+#endif
         // A save's independently drawn status can replace the middle of a
         // long header name. Its actual string field, later status draw and
         // every surviving visible byte prove the retained source together.

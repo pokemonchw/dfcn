@@ -1809,13 +1809,14 @@ Diplomacy	外交	wi
 Remove	移除	wi
 No commanders	没有指挥官	wliP
 No messengers	没有信使	wliP
+and more...	还有更多……	wliP
 # Assignment captions beside the native checkbox and the final action button.
 No specific orders	无具体命令	wliP
 On this mission	已加入此任务	wliP
 Messenger (unfilled)	信使（空缺）	wliP
 Done assigning	完成指派	wliP
 No notable skills	无显著技能	wliP
-# Native Windows mission summaries (PE 0x1602fc0..0x1603010): each side
+# Native mission summaries: each side
 # selects no / singular / plural, then appends here / traveling. When both
 # counts are zero the native branch uses No messengers / No commanders.
 # Translate the entire line so number, role and location stay together.

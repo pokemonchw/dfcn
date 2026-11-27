@@ -323,6 +323,12 @@ public:
             rect(caption.box); text(caption.source);
         });
         value(input.mission_title); value(input.mission_title_right);
+#ifdef _WIN32
+        if (input.mission_roster_owner.screen) {
+            address(input.mission_roster_owner.screen); address(input.mission_roster_owner.mission);
+            value(input.mission_roster_owner.mode);
+        }
+#endif
         value(rank(row_sequence_ranks_, input.sequence));
         value(input.top_layer); value(input.foreground_rgb);
         optional(input.draw_clip, [&](const auto &box) { rect(box); });
