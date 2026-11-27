@@ -15,6 +15,7 @@ name = "main"
 [rulesets.rules]
 "fish" = "鱼"
 "{::creatures::caste::singular}" = "{::creatures::caste::singular}"
+"{::creatures::name::singular}" = "{::creatures::name::singular}"
 "{::creatures::caste::singular}, F" = "{::creatures::caste::singular}，♀"
 "{::creatures::caste::singular}, M" = "{::creatures::caste::singular}，♂"
 "{::creatures::caste::singular}, ♀" = "{::creatures::caste::singular}，♀"

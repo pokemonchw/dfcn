@@ -16,12 +16,14 @@ name = "main"
 "{type}" = "{type}"
 "{ingredient} {type}" = "{ingredient}{type}"
 
-# ITEM_FOOD names come from vanilla_items/objects/item_food.txt. The final
-# ingredient supplies the prefix; it is a food/material noun, not a finished
-# equipment qualifier. Quantities and quality marks stay in data/runtime/rulesets/zh-Hans/items/index.toml.
+# ITEM_FOOD names come from vanilla_items/objects/item_food.txt. Tuple zero
+# supplies the heading's food noun and appears last in the ingredient list.
+# Quantities and quality marks belong to the enclosing item caption.
 [[rulesets]]
 name = "type"
 [rulesets.rules]
+# The title getter copies "Prepared Food" when the subtype is missing.
+"prepared food" = "熟食"
 "biscuit" = "饼干"
 "biscuits" = "饼干"
 "stew" = "炖菜"
@@ -36,6 +38,12 @@ name = "ingredient"
 "{::items::plant_growth}" = "{::items::plant_growth}"
 "{::items::meat}" = "{::items::meat}"
 "{::items::fish}" = "{::items::fish}"
+"{::items::fish_raw}" = "{::items::fish_raw}"
+"{::items::vermin::main}" = "{::items::vermin::main}"
 "{::items::egg}" = "{::items::egg}"
 "{::items::seeds}" = "{::items::seeds}"
+"{::items::drink}" = "{::items::drink}"
+"{::items::cheese}" = "{::items::cheese}"
+"{::items::powder_misc}" = "{::items::powder_misc}"
+"{::items::liquid_glob}" = "{::items::liquid_glob}"
 "{::materials}" = "{::materials}"

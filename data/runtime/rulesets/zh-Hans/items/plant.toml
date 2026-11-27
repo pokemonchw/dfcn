@@ -13,6 +13,7 @@ optional = true
 [[rulesets]]
 name = "main"
 [rulesets.rules]
+"plant" = "植物"
 "plants" = "植物"
 "{::plants::name::singular}" = "{::plants::name::singular}"
 "{::plants::name::plural}" = "{::plants::name::plural}"

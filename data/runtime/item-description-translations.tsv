@@ -140,6 +140,7 @@ predicate	spattered with {s}	溅有{s1}
 predicate	coated with {s}	覆有{s1}
 
 # Prepared ingredients, thread/material coloration and dye output.
+sentence	The ingredients are	未列出食材。
 sentence	The ingredients are {s}.	所用食材为{s1}。
 term	masterfully minced {l}	以精湛技艺搅匀的{l1}
 term	masterfully minced {f}	以精湛技艺切碎的{f1}

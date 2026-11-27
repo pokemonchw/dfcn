@@ -56,7 +56,8 @@ const auto item_base_description = [&]() -> std::optional<Pieces> {
 };
 const auto item_food_description = [&]() -> std::optional<Pieces> {
     const auto &ingredients = numbers("item.ingredients");
-    if (ingredients.empty()) return Pieces{};
+    if (ingredients.empty()) return number("item.type") == 72
+        ? item_improvement_apply("sentence", "The ingredients are", {}) : Pieces{};
     Pieces list;
     for (int index : ingredients) {
         const std::string role = "ingredient." + std::to_string(index);
@@ -72,7 +73,7 @@ const auto item_food_description = [&]() -> std::optional<Pieces> {
                 ? (liquid ? "minced {l}" : "minced {f}") : "cooked {s}");
         label = item_improvement_apply("term", key, {*label});
         if (!label) return std::nullopt;
-        if (!list.empty()) list.push_back(piece("、", neutral));
+        if (!list.empty()) list.push_back(piece(index == ingredients.back() ? "和" : "、", neutral));
         join(list, *label);
     }
     return item_improvement_apply("sentence", "The ingredients are {s}.", {list});

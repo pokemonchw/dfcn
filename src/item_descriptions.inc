@@ -3,6 +3,7 @@ bool Overlay::is_liquid_food_ingredient(std::string_view source, int native_type
     // DRINK and LIQUID_MISC are shared item_type values, not host ABI policy.
     if (native_type >= 0) return native_type == 69 || native_type == 73;
     const std::string name = lower(trim(native_text_to_utf8(source)));
+    if (name == "drink" || name == "liquid") return true;
     if (liquid_material_names_.contains(name)) return true;
     // Templates can retain a generic state name behind an independently
     // supplied animal/plant prefix. Require that complete existing prefix
@@ -416,6 +417,89 @@ static std::optional<std::string> translate_complete_item_description_rule(
 #include "item_color_descriptions.inc"
 #include "item_craft_descriptions.inc"
 
+static constexpr std::string_view meal_ingredient_sentence = "The ingredients are {s}.";
+static constexpr std::array<std::string_view, 6> meal_ingredient_grades = {
+    "", "well-", "finely ", "superiorly ", "exceptionally ", "masterfully "
+};
+
+// The writer emits one grade and one preparation before *every* tuple.
+// A comma before a caste glyph, or "and" inside a RAW name, belongs to the noun.
+static std::string_view meal_preparation_prefix(std::string_view source) {
+    for (auto grade : meal_ingredient_grades) {
+        if (!source.starts_with(grade)) continue;
+        const auto rest = source.substr(grade.size());
+        for (std::string_view verb : {"minced ", "cooked "})
+            if (rest.starts_with(verb)) return source.substr(0, grade.size() + verb.size());
+    }
+    return {};
+}
+
+std::optional<std::string> Overlay::translate_meal_ingredient_name(std::string_view source) const {
+    // The fish reader accepts both native CP437 bytes and already displayed
+    // sex glyphs. Give it the original bytes before converting a RAW name.
+    if (source.find(", ") != std::string_view::npos)
+        if (auto fish = translate_embark_food_item({std::string(source)});
+            item_description_translation_complete(fish)) return fish;
+    if (auto material = translate_material_name(source);
+        item_description_translation_complete(material)) return material;
+    std::vector<size_t> origins;
+    if (auto food = RULESETS.translate_with_origins(lower(native_text_to_utf8(source)),
+            "::items::food::ingredient", origins); item_description_translation_complete(food))
+        return food;
+    if (auto literal = exact_literal_translation(source);
+        item_description_translation_complete(literal)) return literal;
+    // The native formatter accepts an item tuple, including forms supplied
+    // by other RAWs. Use the same complete item noun as the selected heading.
+    auto item = translate_item_caption_grammar(source);
+    return translation_complete_with_native_nicknames(item, source) ? item : std::nullopt;
+}
+
+TranslationResult Overlay::translate_meal_ingredient_list(std::string_view source) const {
+    TranslationResult list;
+    size_t begin = 0;
+    while (begin < source.size()) {
+        const auto prefix = meal_preparation_prefix(source.substr(begin));
+        if (prefix.empty()) return {};
+        const size_t noun_begin = begin + prefix.size();
+        size_t end = noun_begin;
+        std::string_view separator;
+        for (; end < source.size(); ++end) {
+            const auto tail = source.substr(end);
+            if (tail.starts_with(", ")) separator = ", ";
+            else if (tail.starts_with(" and ")) separator = " and ";
+            else continue;
+            if (!meal_preparation_prefix(tail.substr(separator.size())).empty()) break;
+            separator = {};
+        }
+        const auto noun = source.substr(noun_begin, end - noun_begin);
+        const char slot = prefix.ends_with("cooked ") ? 's' :
+            is_liquid_food_ingredient(noun) ? 'l' : 'f';
+        const auto element = source.substr(begin, end - begin);
+        TranslationResult prepared;
+        for (int index : item_description_term_rules_) {
+            const Rule &rule = rules_[index];
+            if (rule.template_kinds.size() != 1 || rule.template_kinds[0] != slot ||
+                rule.template_literals.front() != prefix || !rule.template_literals.back().empty())
+                continue;
+            prepared = translate_item_display_rule(rule, element,
+                [&](char, std::string_view field) {
+                    if (auto name = translate_meal_ingredient_name(field))
+                        return TranslationResult::translated(field, *name, "ingredient");
+                    return preserved_item_field(field, "ingredient");
+                }, "prepared-ingredient");
+            break;
+        }
+        if (!prepared.usable()) return {};
+        list.append(prepared, begin);
+        if (!separator.empty())
+            list.append(TranslationResult::translated(separator,
+                separator == ", " ? "、" : "和", "ingredient-separator"), end);
+        begin = end + separator.size();
+    }
+    if (list.usable()) finish_item_display_result(list, source, "ingredient-list");
+    return list;
+}
+
 std::optional<std::string> Overlay::translate_item_description_term(
         std::string_view raw_source, bool predicate) const {
     const std::string source = normalize_art_utterance(raw_source);
@@ -563,12 +647,7 @@ std::optional<std::string> Overlay::translate_item_description_term(
                         case 'f': case 'l': {
                             if ((kind == 'l') != is_liquid_food_ingredient(part))
                                 return std::nullopt;
-                            if (auto ingredient = translate_material_name(part);
-                                item_description_translation_complete(ingredient)) return ingredient;
-                            std::vector<size_t> origins;
-                            return RULESETS.translate_with_origins(
-                                lower(native_text_to_utf8(part)),
-                                "::items::food::ingredient", origins);
+                            return translate_meal_ingredient_name(part);
                         }
                         // Only recursive captures must be shorter. An atomic
                         // number can occupy the complete noun (a die's upward
@@ -797,6 +876,17 @@ std::optional<std::string> Overlay::translate_item_description_source(
         }
     }
     auto sentence = [&](std::string_view value) -> std::optional<std::string> {
+        // An empty vector writes just the opening, without a terminating
+        // period. A following wear/contamination sentence starts immediately.
+        constexpr std::string_view ingredients = "The ingredients are ";
+        if (value.starts_with(ingredients)) {
+            auto next = value.substr(ingredients.size());
+            if (item_description_sentence_start(next)) {
+                auto empty = translate_item_description_source(trim_view(ingredients), true);
+                auto following = translate_item_description_source(next, true);
+                if (empty && following) return *empty + *following;
+            }
+        }
         // art_image::getDescription calls the event's d8 title and then the
         // collection's 30 title. This wrapper owns a historical event, not
         // the item grammar's e predicate. Enter the shared typed rule before
@@ -841,7 +931,10 @@ std::optional<std::string> Overlay::translate_item_description_source(
                 [&](char kind, std::string_view part) -> std::optional<std::string> {
                     if (part.size() >= value.size()) return std::nullopt;
                     switch (kind) {
-                    case 's': return translate_item_description_term(part);
+                    case 's':
+                        if (rule.source == meal_ingredient_sentence)
+                            return translate_meal_ingredient_list(part).strict_target();
+                        return translate_item_description_term(part);
                     case 'i':
                         // Native instrument improvement kind 11 supplies a
                         // RAW component name, including unqualified bellows.
@@ -896,6 +989,8 @@ std::optional<std::string> Overlay::translate_item_description_source(
                     }
                 });
             if (target) return target;
+            if (rule.source == meal_ingredient_sentence && value.starts_with(ingredients))
+                return std::nullopt;
         }
         // Existing quality, powers, writing and historical sentences remain
         // authoritative before generic art-element/name parsing. The native
@@ -1117,7 +1212,7 @@ TranslationResult Overlay::translate_item_description_term_display(
                             break;
                         case 'f': case 'l':
                             if ((kind == 'l') != is_liquid_food_ingredient(part)) return {};
-                            target = translate_material_name(part);
+                            target = translate_meal_ingredient_name(part);
                             break;
                         case 'k':
                             if (const auto word = procedural_terms_.find(lower(std::string(part)));
@@ -1178,7 +1273,10 @@ TranslationResult Overlay::translate_item_description_source_display(
                         [&](char kind, std::string_view part) -> TranslationResult {
                             std::optional<std::string> translated;
                             switch (kind) {
-                            case 's': return translate_item_description_term_display(part);
+                            case 's':
+                                if (rule.source == meal_ingredient_sentence)
+                                    return translate_meal_ingredient_list(part);
+                                return translate_item_description_term_display(part);
                             case 'i':
                                 if (rule.source == "The {i} is made from {s}." ||
                                     rule.source == "The {i} are made from {s}.")

@@ -1,0 +1,581 @@
+edition	field	object	tag	raw_value	source_file	line
+reference+classic	growth noun	PLANT:ABACA	GROWTH_NAME	abaca flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	53
+reference+classic	growth noun	PLANT:ABACA	GROWTH_NAME	abaca leaf:abaca leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	46
+reference+classic	growth noun	PLANT:ACACIA	GROWTH_NAME	acacia flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1283
+reference+classic	growth noun	PLANT:ACACIA	GROWTH_NAME	acacia leaf:acacia leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	1276
+reference+classic	growth noun	PLANT:ACACIA	GROWTH_NAME	acacia seed pod:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1290
+reference+classic	growth noun	PLANT:ALDER	GROWTH_NAME	alder cone:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2142
+reference+classic	growth noun	PLANT:ALDER	GROWTH_NAME	alder leaf:alder leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	2116
+reference+classic	growth noun	PLANT:ALDER	GROWTH_NAME	alder pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2128
+reference+classic	growth noun	PLANT:ALDER	GROWTH_NAME	alder seed catkin:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2135
+reference+classic	growth noun	PLANT:ALFALFA	GROWTH_NAME	alfalfa flower cluster:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	402
+reference+classic	growth noun	PLANT:ALFALFA	GROWTH_NAME	alfalfa leaf:alfalfa leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	397
+reference+classic	growth noun	PLANT:ALMOND	GROWTH_NAME	almond flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2120
+reference+classic	growth noun	PLANT:ALMOND	GROWTH_NAME	almond leaf:almond leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2108
+reference+classic	growth noun	PLANT:ALMOND	GROWTH_NAME	almond:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2127
+reference+classic	growth noun	PLANT:APPLE	GROWTH_NAME	apple flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2213
+reference+classic	growth noun	PLANT:APPLE	GROWTH_NAME	apple leaf:apple leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2201
+reference+classic	growth noun	PLANT:APPLE	GROWTH_NAME	apple:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2220
+reference+classic	growth noun	PLANT:APRICOT	GROWTH_NAME	apricot flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2313
+reference+classic	growth noun	PLANT:APRICOT	GROWTH_NAME	apricot leaf:apricot leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2301
+reference+classic	growth noun	PLANT:APRICOT	GROWTH_NAME	apricot:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2320
+reference+classic	growth noun	PLANT:ARTICHOKE	GROWTH_NAME	artichoke flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	56
+reference+classic	growth noun	PLANT:ARTICHOKE	GROWTH_NAME	artichoke heart:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	50
+reference+classic	growth noun	PLANT:ARTICHOKE	GROWTH_NAME	artichoke leaf:artichoke leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	45
+reference+classic	growth noun	PLANT:ASH	GROWTH_NAME	ash flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2282
+reference+classic	growth noun	PLANT:ASH	GROWTH_NAME	ash leaf:ash leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	2270
+reference+classic	growth noun	PLANT:ASH	GROWTH_NAME	ash samara:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2289
+reference+classic	growth noun	PLANT:ASPARAGUS	GROWTH_NAME	asparagus berry:asparagus berries	data/vanilla/vanilla_plants/objects/plant_garden.txt	101
+reference+classic	growth noun	PLANT:ASPARAGUS	GROWTH_NAME	asparagus flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	95
+reference+classic	growth noun	PLANT:ASPARAGUS	GROWTH_NAME	asparagus leaf:asparagus leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	90
+reference+classic	growth noun	PLANT:AVOCADO	GROWTH_NAME	avocado flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	907
+reference+classic	growth noun	PLANT:AVOCADO	GROWTH_NAME	avocado leaf:avocado leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	900
+reference+classic	growth noun	PLANT:AVOCADO	GROWTH_NAME	avocado:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	914
+reference+classic	growth noun	PLANT:BABY TOES SUCCULENT	GROWTH_NAME	baby toes succulent bud:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	238
+reference+classic	growth noun	PLANT:BABY TOES SUCCULENT	GROWTH_NAME	baby toes succulent flower:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	244
+reference+classic	growth noun	PLANT:BAMBARA_GROUNDNUT	GROWTH_NAME	bambara groundnut flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	138
+reference+classic	growth noun	PLANT:BAMBARA_GROUNDNUT	GROWTH_NAME	bambara groundnut leaf:bambara groundnut leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	133
+reference+classic	growth noun	PLANT:BAMBARA_GROUNDNUT	GROWTH_NAME	bambara groundnut pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	144
+reference+classic	growth noun	PLANT:BANANA	GROWTH_NAME	banana flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	119
+reference+classic	growth noun	PLANT:BANANA	GROWTH_NAME	banana leaf:banana leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	112
+reference+classic	growth noun	PLANT:BANANA	GROWTH_NAME	banana:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	126
+reference+classic	growth noun	PLANT:BARLEY	GROWTH_NAME	barley leaf:barley leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	276
+reference+classic	growth noun	PLANT:BAYBERRY	GROWTH_NAME	bayberry leaf:bayberry leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2394
+reference+classic	growth noun	PLANT:BAYBERRY	GROWTH_NAME	bayberry pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2401
+reference+classic	growth noun	PLANT:BAYBERRY	GROWTH_NAME	bayberry seed catkin:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2408
+reference+classic	growth noun	PLANT:BAYBERRY	GROWTH_NAME	bayberry:bayberries	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2415
+reference+classic	growth noun	PLANT:BEET	GROWTH_NAME	beet flower spike:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	276
+reference+classic	growth noun	PLANT:BEET	GROWTH_NAME	beet leaf:beet leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	271
+reference+classic	growth noun	PLANT:BERRIES_STRAW	GROWTH_NAME	strawberry:strawberries	data/vanilla/vanilla_plants/objects/plant_standard.txt	440
+reference+classic	growth noun	PLANT:BILBERRY	GROWTH_NAME	bilberry flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2482
+reference+classic	growth noun	PLANT:BILBERRY	GROWTH_NAME	bilberry leaf:bilberry leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2477
+reference+classic	growth noun	PLANT:BILBERRY	GROWTH_NAME	bilberry:bilberries	data/vanilla/vanilla_plants/objects/plant_garden.txt	2488
+reference+classic	growth noun	PLANT:BIRCH	GROWTH_NAME	birch leaf:birch leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	2199
+reference+classic	growth noun	PLANT:BIRCH	GROWTH_NAME	birch pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2211
+reference+classic	growth noun	PLANT:BIRCH	GROWTH_NAME	birch seed catkin:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2218
+reference+classic	growth noun	PLANT:BITTER_MELON	GROWTH_NAME	bitter melon flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	315
+reference+classic	growth noun	PLANT:BITTER_MELON	GROWTH_NAME	bitter melon leaf:bitter melon leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	310
+reference+classic	growth noun	PLANT:BITTER_MELON	GROWTH_NAME	bitter melon:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	321
+reference+classic	growth noun	PLANT:BITTER_ORANGE	GROWTH_NAME	bitter orange flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1254
+reference+classic	growth noun	PLANT:BITTER_ORANGE	GROWTH_NAME	bitter orange leaf:bitter orange leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1247
+reference+classic	growth noun	PLANT:BITTER_ORANGE	GROWTH_NAME	bitter orange:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1261
+reference+classic	growth noun	PLANT:BITTER_VETCH	GROWTH_NAME	bitter vetch flower:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	762
+reference+classic	growth noun	PLANT:BITTER_VETCH	GROWTH_NAME	bitter vetch leaf:bitter vetch leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	757
+reference+classic	growth noun	PLANT:BITTER_VETCH	GROWTH_NAME	bitter vetch pod:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	768
+reference+classic	growth noun	PLANT:BLACKBERRY	GROWTH_NAME	blackberry flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2614
+reference+classic	growth noun	PLANT:BLACKBERRY	GROWTH_NAME	blackberry leaf:blackberry leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2609
+reference+classic	growth noun	PLANT:BLACKBERRY	GROWTH_NAME	blackberry:blackberries	data/vanilla/vanilla_plants/objects/plant_garden.txt	2620
+reference+classic	growth noun	PLANT:BLOOD_AMARANTH	GROWTH_NAME	blood amaranth inflorescence:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	886
+reference+classic	growth noun	PLANT:BLOOD_AMARANTH	GROWTH_NAME	blood amaranth leaf:blood amaranth leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	881
+reference+classic	growth noun	PLANT:BLUEBERRY	GROWTH_NAME	blueberry flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2548
+reference+classic	growth noun	PLANT:BLUEBERRY	GROWTH_NAME	blueberry leaf:blueberry leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2543
+reference+classic	growth noun	PLANT:BLUEBERRY	GROWTH_NAME	blueberry:blueberries	data/vanilla/vanilla_plants/objects/plant_garden.txt	2554
+reference+classic	growth noun	PLANT:BROAD_BEAN	GROWTH_NAME	broad bean flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	221
+reference+classic	growth noun	PLANT:BROAD_BEAN	GROWTH_NAME	broad bean leaf:broad bean leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	216
+reference+classic	growth noun	PLANT:BROAD_BEAN	GROWTH_NAME	broad bean pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	227
+reference+classic	growth noun	PLANT:BUCKWHEAT	GROWTH_NAME	buckwheat flower:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	330
+reference+classic	growth noun	PLANT:BUCKWHEAT	GROWTH_NAME	buckwheat leaf:buckwheat leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	325
+reference+classic	growth noun	PLANT:BUSH_QUARRY	GROWTH_NAME	quarry bush leaf:quarry bush leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	270
+reference+classic	growth noun	PLANT:CABBAGE	GROWTH_NAME	cabbage flower spike:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	359
+reference+classic	growth noun	PLANT:CABBAGE	GROWTH_NAME	cabbage leaf:cabbage leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	354
+reference+classic	growth noun	PLANT:CACAO	GROWTH_NAME	cacao flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2544
+reference+classic	growth noun	PLANT:CACAO	GROWTH_NAME	cacao leaf:cacao leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	2537
+reference+classic	growth noun	PLANT:CACAO	GROWTH_NAME	cacao pod:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2551
+reference+classic	growth noun	PLANT:CANDLENUT	GROWTH_NAME	candlenut flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2356
+reference+classic	growth noun	PLANT:CANDLENUT	GROWTH_NAME	candlenut leaf:candlenut leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	2349
+reference+classic	growth noun	PLANT:CANDLENUT	GROWTH_NAME	candlenut:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2363
+reference+classic	growth noun	PLANT:CAPER	GROWTH_NAME	caper berry:caper berries	data/vanilla/vanilla_plants/objects/plant_garden.txt	423
+reference+classic	growth noun	PLANT:CAPER	GROWTH_NAME	caper flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	417
+reference+classic	growth noun	PLANT:CAPER	GROWTH_NAME	caper leaf:caper leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	406
+reference+classic	growth noun	PLANT:CAPER	GROWTH_NAME	caper:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	411
+reference+classic	growth noun	PLANT:CARAMBOLA	GROWTH_NAME	carambola flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	214
+reference+classic	growth noun	PLANT:CARAMBOLA	GROWTH_NAME	carambola leaf:carambola leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	207
+reference+classic	growth noun	PLANT:CARAMBOLA	GROWTH_NAME	carambola:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	221
+reference+classic	growth noun	PLANT:CASHEW	GROWTH_NAME	cashew apple:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	289
+reference+classic	growth noun	PLANT:CASHEW	GROWTH_NAME	cashew flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	282
+reference+classic	growth noun	PLANT:CASHEW	GROWTH_NAME	cashew leaf:cashew leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	275
+reference+classic	growth noun	PLANT:CASSAVA	GROWTH_NAME	cassava flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	532
+reference+classic	growth noun	PLANT:CASSAVA	GROWTH_NAME	cassava leaf:cassava leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	527
+reference+classic	growth noun	PLANT:CEDAR	GROWTH_NAME	cedar pollen cone:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1076
+reference+classic	growth noun	PLANT:CEDAR	GROWTH_NAME	cedar scale-leaf:cedar scale-leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	1060
+reference+classic	growth noun	PLANT:CEDAR	GROWTH_NAME	cedar seed cone:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1068
+reference+classic	growth noun	PLANT:CELERY	GROWTH_NAME	celery leaf:celery leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	562
+reference+classic	growth noun	PLANT:CELERY	GROWTH_NAME	celery umbel:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	567
+reference+classic	growth noun	PLANT:CHERRY	GROWTH_NAME	cherry flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2510
+reference+classic	growth noun	PLANT:CHERRY	GROWTH_NAME	cherry leaf:cherry leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2498
+reference+classic	growth noun	PLANT:CHERRY	GROWTH_NAME	cherry:cherries	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2518
+reference+classic	growth noun	PLANT:CHESTNUT	GROWTH_NAME	chestnut burr:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2052
+reference+classic	growth noun	PLANT:CHESTNUT	GROWTH_NAME	chestnut leaf:chestnut leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	2026
+reference+classic	growth noun	PLANT:CHESTNUT	GROWTH_NAME	chestnut pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2038
+reference+classic	growth noun	PLANT:CHESTNUT	GROWTH_NAME	chestnut seed catkin:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2045
+reference+classic	growth noun	PLANT:CHICKPEA	GROWTH_NAME	chickpea flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	603
+reference+classic	growth noun	PLANT:CHICKPEA	GROWTH_NAME	chickpea leaf:chickpea leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	598
+reference+classic	growth noun	PLANT:CHICKPEA	GROWTH_NAME	chickpea pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	609
+reference+classic	growth noun	PLANT:CHICORY	GROWTH_NAME	chicory flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	645
+reference+classic	growth noun	PLANT:CHICORY	GROWTH_NAME	chicory leaf:chicory leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	640
+reference+classic	growth noun	PLANT:CITRON	GROWTH_NAME	citron flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1118
+reference+classic	growth noun	PLANT:CITRON	GROWTH_NAME	citron leaf:citron leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1111
+reference+classic	growth noun	PLANT:CITRON	GROWTH_NAME	citron:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1125
+reference+classic	growth noun	PLANT:CLOUDBERRY	GROWTH_NAME	cloudberry bud:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	500
+reference+classic	growth noun	PLANT:CLOUDBERRY	GROWTH_NAME	cloudberry flower:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	506
+reference+classic	growth noun	PLANT:COFFEE	GROWTH_NAME	coffee cherry:coffee cherries	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	356
+reference+classic	growth noun	PLANT:COFFEE	GROWTH_NAME	coffee flower cluster:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	349
+reference+classic	growth noun	PLANT:COFFEE	GROWTH_NAME	coffee leaf:coffee leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	342
+reference+classic	growth noun	PLANT:COTTON	GROWTH_NAME	cotton flower:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	1551
+reference+classic	growth noun	PLANT:COTTON	GROWTH_NAME	cotton leaf:cotton leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1546
+reference+classic	growth noun	PLANT:COTTONGRASS	GROWTH_NAME	cottongrass bud:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	437
+reference+classic	growth noun	PLANT:COTTONGRASS	GROWTH_NAME	cottongrass tuft:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	443
+reference+classic	growth noun	PLANT:COWPEA	GROWTH_NAME	cowpea flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	681
+reference+classic	growth noun	PLANT:COWPEA	GROWTH_NAME	cowpea leaf:cowpea leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	676
+reference+classic	growth noun	PLANT:COWPEA	GROWTH_NAME	cowpea pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	687
+reference+classic	growth noun	PLANT:CRANBERRY	GROWTH_NAME	cranberry flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2416
+reference+classic	growth noun	PLANT:CRANBERRY	GROWTH_NAME	cranberry leaf:cranberry leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2411
+reference+classic	growth noun	PLANT:CRANBERRY	GROWTH_NAME	cranberry:cranberries	data/vanilla/vanilla_plants/objects/plant_garden.txt	2422
+reference+classic	growth noun	PLANT:CUCUMBER	GROWTH_NAME	cucumber flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	726
+reference+classic	growth noun	PLANT:CUCUMBER	GROWTH_NAME	cucumber leaf:cucumber leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	721
+reference+classic	growth noun	PLANT:CUCUMBER	GROWTH_NAME	cucumber:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	732
+reference+classic	growth noun	PLANT:CUSTARD-APPLE	GROWTH_NAME	custard-apple flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1607
+reference+classic	growth noun	PLANT:CUSTARD-APPLE	GROWTH_NAME	custard-apple leaf:custard-apple leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1600
+reference+classic	growth noun	PLANT:CUSTARD-APPLE	GROWTH_NAME	custard-apple:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1614
+reference+classic	growth noun	PLANT:DATE_PALM	GROWTH_NAME	date palm flower stalk:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1693
+reference+classic	growth noun	PLANT:DATE_PALM	GROWTH_NAME	date palm frond blade:date palm frond blades	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1685
+reference+classic	growth noun	PLANT:DATE_PALM	GROWTH_NAME	date:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1701
+reference+classic	growth noun	PLANT:DESERT_LIME	GROWTH_NAME	desert lime flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1458
+reference+classic	growth noun	PLANT:DESERT_LIME	GROWTH_NAME	desert lime leaf:desert lime leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1451
+reference+classic	growth noun	PLANT:DESERT_LIME	GROWTH_NAME	desert lime:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1465
+reference+classic	growth noun	PLANT:DURIAN	GROWTH_NAME	durian flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	440
+reference+classic	growth noun	PLANT:DURIAN	GROWTH_NAME	durian leaf:durian leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	433
+reference+classic	growth noun	PLANT:DURIAN	GROWTH_NAME	durian:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	447
+reference+classic	growth noun	PLANT:EGGPLANT	GROWTH_NAME	eggplant flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	775
+reference+classic	growth noun	PLANT:EGGPLANT	GROWTH_NAME	eggplant leaf:eggplant leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	770
+reference+classic	growth noun	PLANT:EGGPLANT	GROWTH_NAME	eggplant:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	781
+reference+classic	growth noun	PLANT:ELEPHANT-HEAD_AMARANTH	GROWTH_NAME	elephant-head amaranth inflorescence:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	1030
+reference+classic	growth noun	PLANT:ELEPHANT-HEAD_AMARANTH	GROWTH_NAME	elephant-head amaranth leaf:elephant-head amaranth leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1025
+reference+classic	growth noun	PLANT:FEATHER	GROWTH_NAME	feather tree down:feather tree down	data/vanilla/vanilla_plants/objects/plant_standard.txt	1851
+reference+classic	growth noun	PLANT:FEATHER	GROWTH_NAME	feather tree egg:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1858
+reference+classic	growth noun	PLANT:FINGER_LIME	GROWTH_NAME	finger lime flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1322
+reference+classic	growth noun	PLANT:FINGER_LIME	GROWTH_NAME	finger lime leaf:finger lime leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1315
+reference+classic	growth noun	PLANT:FINGER_LIME	GROWTH_NAME	finger lime:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1329
+reference+classic	growth noun	PLANT:FINGER_MILLET	GROWTH_NAME	finger millet leaf:finger millet leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1169
+reference+classic	growth noun	PLANT:FLAX	GROWTH_NAME	flax flower:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	1380
+reference+classic	growth noun	PLANT:FLAX	GROWTH_NAME	flax leaf:flax leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1375
+reference+classic	growth noun	PLANT:FONIO	GROWTH_NAME	fonio leaf:fonio leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1261
+reference+classic	growth noun	PLANT:FOXTAIL_MILLET	GROWTH_NAME	foxtail millet leaf:foxtail millet leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1215
+reference+classic	growth noun	PLANT:GARDEN_CRESS	GROWTH_NAME	garden cress leaf:garden cress leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	824
+reference+classic	growth noun	PLANT:GARDEN_CRESS	GROWTH_NAME	garden cress raceme:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	829
+reference+classic	growth noun	PLANT:GARLIC	GROWTH_NAME	garlic bulb:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	874
+reference+classic	growth noun	PLANT:GARLIC	GROWTH_NAME	garlic flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	868
+reference+classic	growth noun	PLANT:GARLIC	GROWTH_NAME	garlic leaf:garlic leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	863
+reference+classic	growth noun	PLANT:GINKGO	GROWTH_NAME	ginkgo leaf:ginkgo leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2580
+reference+classic	growth noun	PLANT:GINKGO	GROWTH_NAME	ginkgo pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2590
+reference+classic	growth noun	PLANT:GINKGO	GROWTH_NAME	ginkgo seed:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2597
+reference+classic	growth noun	PLANT:GRAPE	GROWTH_NAME	grape inflorescence:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2350
+reference+classic	growth noun	PLANT:GRAPE	GROWTH_NAME	grape leaf:grape leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2345
+reference+classic	growth noun	PLANT:GRAPE	GROWTH_NAME	grape:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2356
+reference+classic	growth noun	PLANT:GUAVA	GROWTH_NAME	guava flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	522
+reference+classic	growth noun	PLANT:GUAVA	GROWTH_NAME	guava leaf:guava leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	515
+reference+classic	growth noun	PLANT:GUAVA	GROWTH_NAME	guava:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	529
+reference+classic	growth noun	PLANT:HARD_WHEAT	GROWTH_NAME	hard wheat leaf:hard wheat leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	184
+reference+classic	growth noun	PLANT:HAZEL	GROWTH_NAME	hazel leaf:hazel leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2652
+reference+classic	growth noun	PLANT:HAZEL	GROWTH_NAME	hazel nut:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2671
+reference+classic	growth noun	PLANT:HAZEL	GROWTH_NAME	hazel pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2664
+reference+classic	growth noun	PLANT:HEMP	GROWTH_NAME	hemp leaf:hemp leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1487
+reference+classic	growth noun	PLANT:HIGHWOOD	GROWTH_NAME	highwood flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1907
+reference+classic	growth noun	PLANT:HIGHWOOD	GROWTH_NAME	highwood leaf:highwood leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	1900
+reference+classic	growth noun	PLANT:HORNED_MELON	GROWTH_NAME	horned melon flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	913
+reference+classic	growth noun	PLANT:HORNED_MELON	GROWTH_NAME	horned melon leaf:horned melon leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	908
+reference+classic	growth noun	PLANT:HORNED_MELON	GROWTH_NAME	horned melon:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	919
+reference+classic	growth noun	PLANT:JUTE	GROWTH_NAME	jute flower:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	1421
+reference+classic	growth noun	PLANT:JUTE	GROWTH_NAME	jute leaf:jute leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1416
+reference+classic	growth noun	PLANT:KANIWA	GROWTH_NAME	kaniwa flower:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	723
+reference+classic	growth noun	PLANT:KANIWA	GROWTH_NAME	kaniwa leaf:kaniwa leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	718
+reference+classic	growth noun	PLANT:KAPOK	GROWTH_NAME	kapok flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1351
+reference+classic	growth noun	PLANT:KAPOK	GROWTH_NAME	kapok fruit:kapok fruit	data/vanilla/vanilla_plants/objects/plant_standard.txt	1358
+reference+classic	growth noun	PLANT:KAPOK	GROWTH_NAME	kapok leaf:kapok leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	1344
+reference+classic	growth noun	PLANT:KENAF	GROWTH_NAME	kenaf flower:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	1648
+reference+classic	growth noun	PLANT:KENAF	GROWTH_NAME	kenaf leaf:kenaf leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1643
+reference+classic	growth noun	PLANT:KUMQUAT	GROWTH_NAME	kumquat flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1526
+reference+classic	growth noun	PLANT:KUMQUAT	GROWTH_NAME	kumquat leaf:kumquat leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1519
+reference+classic	growth noun	PLANT:KUMQUAT	GROWTH_NAME	kumquat:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1533
+reference+classic	growth noun	PLANT:LARCH	GROWTH_NAME	larch needle:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1948
+reference+classic	growth noun	PLANT:LARCH	GROWTH_NAME	larch pollen cone:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1966
+reference+classic	growth noun	PLANT:LARCH	GROWTH_NAME	larch seed cone:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1958
+reference+classic	growth noun	PLANT:LEEK	GROWTH_NAME	leek flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	956
+reference+classic	growth noun	PLANT:LEEK	GROWTH_NAME	leek leaf:leek leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	951
+reference+classic	growth noun	PLANT:LENTIL	GROWTH_NAME	lentil flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	992
+reference+classic	growth noun	PLANT:LENTIL	GROWTH_NAME	lentil leaf:lentil leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	987
+reference+classic	growth noun	PLANT:LENTIL	GROWTH_NAME	lentil pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	998
+reference+classic	growth noun	PLANT:LESSER_YAM	GROWTH_NAME	lesser yam flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2137
+reference+classic	growth noun	PLANT:LESSER_YAM	GROWTH_NAME	lesser yam leaf:lesser yam leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2132
+reference+classic	growth noun	PLANT:LETTUCE	GROWTH_NAME	lettuce flower stalk:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1038
+reference+classic	growth noun	PLANT:LETTUCE	GROWTH_NAME	lettuce leaf:lettuce leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1033
+reference+classic	growth noun	PLANT:LIME	GROWTH_NAME	lime flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	982
+reference+classic	growth noun	PLANT:LIME	GROWTH_NAME	lime leaf:lime leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	975
+reference+classic	growth noun	PLANT:LIME	GROWTH_NAME	lime:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	989
+reference+classic	growth noun	PLANT:LONG_YAM	GROWTH_NAME	long yam flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2172
+reference+classic	growth noun	PLANT:LONG_YAM	GROWTH_NAME	long yam leaf:long yam leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2167
+reference+classic	growth noun	PLANT:LYCHEE	GROWTH_NAME	lychee flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1776
+reference+classic	growth noun	PLANT:LYCHEE	GROWTH_NAME	lychee leaf:lychee leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1769
+reference+classic	growth noun	PLANT:LYCHEE	GROWTH_NAME	lychee:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1783
+reference+classic	growth noun	PLANT:MACADAMIA	GROWTH_NAME	macadamia leaf:macadamia leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1834
+reference+classic	growth noun	PLANT:MACADAMIA	GROWTH_NAME	macadamia nut:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1848
+reference+classic	growth noun	PLANT:MACADAMIA	GROWTH_NAME	macadamia raceme:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1841
+reference+classic	growth noun	PLANT:MAHOGANY	GROWTH_NAME	mahogany flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1208
+reference+classic	growth noun	PLANT:MAHOGANY	GROWTH_NAME	mahogany fruit:mahogany fruit	data/vanilla/vanilla_plants/objects/plant_standard.txt	1215
+reference+classic	growth noun	PLANT:MAHOGANY	GROWTH_NAME	mahogany leaf:mahogany leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	1201
+reference+classic	growth noun	PLANT:MAIZE	GROWTH_NAME	maize leaf:maize leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	614
+reference+classic	growth noun	PLANT:MANGO	GROWTH_NAME	mango flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2438
+reference+classic	growth noun	PLANT:MANGO	GROWTH_NAME	mango leaf:mango leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	2431
+reference+classic	growth noun	PLANT:MANGO	GROWTH_NAME	mango:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2445
+reference+classic	growth noun	PLANT:MANGROVE	GROWTH_NAME	mangrove flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	873
+reference+classic	growth noun	PLANT:MANGROVE	GROWTH_NAME	mangrove fruit:mangrove fruit	data/vanilla/vanilla_plants/objects/plant_standard.txt	880
+reference+classic	growth noun	PLANT:MANGROVE	GROWTH_NAME	mangrove leaf:mangrove leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	866
+reference+classic	growth noun	PLANT:MAPLE	GROWTH_NAME	maple flower cluster:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1418
+reference+classic	growth noun	PLANT:MAPLE	GROWTH_NAME	maple leaf:maple leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	1406
+reference+classic	growth noun	PLANT:MAPLE	GROWTH_NAME	maple samara:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1425
+reference+classic	growth noun	PLANT:MARSH THISTLE	GROWTH_NAME	marsh thistle bud:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	380
+reference+classic	growth noun	PLANT:MARSH THISTLE	GROWTH_NAME	marsh thistle flower:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	386
+reference+classic	growth noun	PLANT:MEADOWSWEET	GROWTH_NAME	meadowsweet bud:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	334
+reference+classic	growth noun	PLANT:MEADOWSWEET	GROWTH_NAME	meadowsweet flower:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	340
+reference+classic	growth noun	PLANT:MOUNTAIN AVENS	GROWTH_NAME	mountain avens bud:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	475
+reference+classic	growth noun	PLANT:MOUNTAIN AVENS	GROWTH_NAME	mountain avens flower:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	481
+reference+classic	growth noun	PLANT:MUNG_BEAN	GROWTH_NAME	mung bean flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1072
+reference+classic	growth noun	PLANT:MUNG_BEAN	GROWTH_NAME	mung bean leaf:mung bean leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1067
+reference+classic	growth noun	PLANT:MUNG_BEAN	GROWTH_NAME	mung bean pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1078
+reference+classic	growth noun	PLANT:MUSKMELON	GROWTH_NAME	muskmelon flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1117
+reference+classic	growth noun	PLANT:MUSKMELON	GROWTH_NAME	muskmelon leaf:muskmelon leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1112
+reference+classic	growth noun	PLANT:MUSKMELON	GROWTH_NAME	muskmelon:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1123
+reference+classic	growth noun	PLANT:OAK	GROWTH_NAME	acorn:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1147
+reference+classic	growth noun	PLANT:OAK	GROWTH_NAME	oak flower cluster:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1140
+reference+classic	growth noun	PLANT:OAK	GROWTH_NAME	oak leaf:oak leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	1128
+reference+classic	growth noun	PLANT:OATS	GROWTH_NAME	oat leaf:oat leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	365
+reference+classic	growth noun	PLANT:OLIVE	GROWTH_NAME	olive leaf:olive leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1920
+reference+classic	growth noun	PLANT:OLIVE	GROWTH_NAME	olive raceme:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1927
+reference+classic	growth noun	PLANT:OLIVE	GROWTH_NAME	olive:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1934
+reference+classic	growth noun	PLANT:ONION	GROWTH_NAME	onion leaf:onion leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1156
+reference+classic	growth noun	PLANT:ONION	GROWTH_NAME	onion umbel:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1161
+reference+classic	growth noun	PLANT:ONION	GROWTH_NAME	onion:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1167
+reference+classic	growth noun	PLANT:ORANGE	GROWTH_NAME	orange flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1186
+reference+classic	growth noun	PLANT:ORANGE	GROWTH_NAME	orange leaf:orange leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1179
+reference+classic	growth noun	PLANT:ORANGE	GROWTH_NAME	orange:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1193
+reference+classic	growth noun	PLANT:PALM	GROWTH_NAME	coconut palm frond blade:coconut palm frond blades	data/vanilla/vanilla_plants/objects/plant_standard.txt	2599
+reference+classic	growth noun	PLANT:PALM	GROWTH_NAME	coconut palm spathe:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2607
+reference+classic	growth noun	PLANT:PALM	GROWTH_NAME	coconut:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	2616
+reference+classic	growth noun	PLANT:PAPAYA	GROWTH_NAME	papaya flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	616
+reference+classic	growth noun	PLANT:PAPAYA	GROWTH_NAME	papaya leaf:papaya leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	609
+reference+classic	growth noun	PLANT:PAPAYA	GROWTH_NAME	papaya:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	623
+reference+classic	growth noun	PLANT:PAPYRUS_SEDGE	GROWTH_NAME	papyrus flower cluster:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	1683
+reference+classic	growth noun	PLANT:PAPYRUS_SEDGE	GROWTH_NAME	papyrus leaf:papyrus leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1678
+reference+classic	growth noun	PLANT:PARADISE_NUT	GROWTH_NAME	paradise nut fruit:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	691
+reference+classic	growth noun	PLANT:PARADISE_NUT	GROWTH_NAME	paradise nut leaf:paradise nut leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	677
+reference+classic	growth noun	PLANT:PARADISE_NUT	GROWTH_NAME	paradise nut raceme:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	684
+reference+classic	growth noun	PLANT:PARSNIP	GROWTH_NAME	parsnip leaf:parsnip leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1220
+reference+classic	growth noun	PLANT:PARSNIP	GROWTH_NAME	parsnip umbel:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1225
+reference+classic	growth noun	PLANT:PASSION_FRUIT	GROWTH_NAME	passion fruit flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2291
+reference+classic	growth noun	PLANT:PASSION_FRUIT	GROWTH_NAME	passion fruit leaf:passion fruit leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2286
+reference+classic	growth noun	PLANT:PASSION_FRUIT	GROWTH_NAME	passion fruit:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2297
+reference+classic	growth noun	PLANT:PEA	GROWTH_NAME	pea flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1261
+reference+classic	growth noun	PLANT:PEA	GROWTH_NAME	pea leaf:pea leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1256
+reference+classic	growth noun	PLANT:PEA	GROWTH_NAME	pea pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1267
+reference+classic	growth noun	PLANT:PEACH	GROWTH_NAME	peach flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2763
+reference+classic	growth noun	PLANT:PEACH	GROWTH_NAME	peach leaf:peach leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2751
+reference+classic	growth noun	PLANT:PEACH	GROWTH_NAME	peach:peaches	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2770
+reference+classic	growth noun	PLANT:PEANUT	GROWTH_NAME	peanut flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1303
+reference+classic	growth noun	PLANT:PEANUT	GROWTH_NAME	peanut leaf:peanut leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1298
+reference+classic	growth noun	PLANT:PEANUT	GROWTH_NAME	peanut pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1309
+reference+classic	growth noun	PLANT:PEAR	GROWTH_NAME	pear flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2857
+reference+classic	growth noun	PLANT:PEAR	GROWTH_NAME	pear leaf:pear leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2845
+reference+classic	growth noun	PLANT:PEAR	GROWTH_NAME	pear:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2864
+reference+classic	growth noun	PLANT:PEARL_MILLET	GROWTH_NAME	pearl millet leaf:pearl millet leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1077
+reference+classic	growth noun	PLANT:PEBBLE PLANTS	GROWTH_NAME	pebble plant bud:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	262
+reference+classic	growth noun	PLANT:PEBBLE PLANTS	GROWTH_NAME	pebble plant flower:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	268
+reference+classic	growth noun	PLANT:PECAN	GROWTH_NAME	pecan leaf:pecan leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2926
+reference+classic	growth noun	PLANT:PECAN	GROWTH_NAME	pecan pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2938
+reference+classic	growth noun	PLANT:PECAN	GROWTH_NAME	pecan:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2945
+reference+classic	growth noun	PLANT:PENDANT_AMARANTH	GROWTH_NAME	pendant amaranth inflorescence:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	826
+reference+classic	growth noun	PLANT:PENDANT_AMARANTH	GROWTH_NAME	pendant amaranth leaf:pendant amaranth leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	821
+reference+classic	growth noun	PLANT:PEPPER	GROWTH_NAME	pepper flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1356
+reference+classic	growth noun	PLANT:PEPPER	GROWTH_NAME	pepper leaf:pepper leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1351
+reference+classic	growth noun	PLANT:PEPPER	GROWTH_NAME	pepper:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1362
+reference+classic	growth noun	PLANT:PERSIMMON	GROWTH_NAME	persimmon flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3023
+reference+classic	growth noun	PLANT:PERSIMMON	GROWTH_NAME	persimmon leaf:persimmon leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3011
+reference+classic	growth noun	PLANT:PERSIMMON	GROWTH_NAME	persimmon:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3030
+reference+classic	growth noun	PLANT:PINE	GROWTH_NAME	pine needle:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	996
+reference+classic	growth noun	PLANT:PINE	GROWTH_NAME	pine pollen cone:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1013
+reference+classic	growth noun	PLANT:PINE	GROWTH_NAME	pine seed cone:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1005
+reference+classic	growth noun	PLANT:PINEAPPLE	GROWTH_NAME	pineapple flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2749
+reference+classic	growth noun	PLANT:PINEAPPLE	GROWTH_NAME	pineapple leaf:pineapple leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2744
+reference+classic	growth noun	PLANT:PINEAPPLE	GROWTH_NAME	pineapple:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2756
+reference+classic	growth noun	PLANT:PLUM	GROWTH_NAME	plum flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3116
+reference+classic	growth noun	PLANT:PLUM	GROWTH_NAME	plum leaf:plum leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3104
+reference+classic	growth noun	PLANT:PLUM	GROWTH_NAME	plum:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3123
+reference+classic	growth noun	PLANT:POMEGRANATE	GROWTH_NAME	pomegranate flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2028
+reference+classic	growth noun	PLANT:POMEGRANATE	GROWTH_NAME	pomegranate leaf:pomegranate leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2016
+reference+classic	growth noun	PLANT:POMEGRANATE	GROWTH_NAME	pomegranate:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2035
+reference+classic	growth noun	PLANT:POMELO	GROWTH_NAME	pomelo flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1050
+reference+classic	growth noun	PLANT:POMELO	GROWTH_NAME	pomelo leaf:pomelo leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1043
+reference+classic	growth noun	PLANT:POMELO	GROWTH_NAME	pomelo:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1057
+reference+classic	growth noun	PLANT:POTATO	GROWTH_NAME	potato flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1412
+reference+classic	growth noun	PLANT:POTATO	GROWTH_NAME	potato leaf:potato leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1407
+reference+classic	growth noun	PLANT:PURPLE_AMARANTH	GROWTH_NAME	purple amaranth inflorescence:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	946
+reference+classic	growth noun	PLANT:PURPLE_AMARANTH	GROWTH_NAME	purple amaranth leaf:purple amaranth leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	941
+reference+classic	growth noun	PLANT:PURPLE_YAM	GROWTH_NAME	purple yam flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2206
+reference+classic	growth noun	PLANT:PURPLE_YAM	GROWTH_NAME	purple yam leaf:purple yam leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2201
+reference+classic	growth noun	PLANT:QUINOA	GROWTH_NAME	quinoa flower:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	668
+reference+classic	growth noun	PLANT:QUINOA	GROWTH_NAME	quinoa leaf:quinoa leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	663
+reference+classic	growth noun	PLANT:RADISH	GROWTH_NAME	radish leaf:radish leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1462
+reference+classic	growth noun	PLANT:RADISH	GROWTH_NAME	radish raceme:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1467
+reference+classic	growth noun	PLANT:RAMBUTAN	GROWTH_NAME	rambutan flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	766
+reference+classic	growth noun	PLANT:RAMBUTAN	GROWTH_NAME	rambutan leaf:rambutan leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	759
+reference+classic	growth noun	PLANT:RAMBUTAN	GROWTH_NAME	rambutan:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	773
+reference+classic	growth noun	PLANT:RAMIE	GROWTH_NAME	ramie leaf:ramie leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1584
+reference+classic	growth noun	PLANT:RASPBERRY	GROWTH_NAME	raspberry flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2680
+reference+classic	growth noun	PLANT:RASPBERRY	GROWTH_NAME	raspberry leaf:raspberry leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2675
+reference+classic	growth noun	PLANT:RASPBERRY	GROWTH_NAME	raspberry:raspberries	data/vanilla/vanilla_plants/objects/plant_garden.txt	2686
+reference+classic	growth noun	PLANT:RED_BEAN	GROWTH_NAME	red bean flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1508
+reference+classic	growth noun	PLANT:RED_BEAN	GROWTH_NAME	red bean leaf:red bean leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1503
+reference+classic	growth noun	PLANT:RED_BEAN	GROWTH_NAME	red bean pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1514
+reference+classic	growth noun	PLANT:RED_SPINACH	GROWTH_NAME	red spinach inflorescence:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	984
+reference+classic	growth noun	PLANT:RED_SPINACH	GROWTH_NAME	red spinach leaf:red spinach leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	979
+reference+classic	growth noun	PLANT:RHUBARB	GROWTH_NAME	rhubarb inflorescence:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1552
+reference+classic	growth noun	PLANT:RHUBARB	GROWTH_NAME	rhubarb leaf:rhubarb leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1547
+reference+classic	growth noun	PLANT:RICE	GROWTH_NAME	rice leaf:rice leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	559
+reference+classic	growth noun	PLANT:ROUND_LIME	GROWTH_NAME	round lime flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1390
+reference+classic	growth noun	PLANT:ROUND_LIME	GROWTH_NAME	round lime leaf:round lime leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1383
+reference+classic	growth noun	PLANT:ROUND_LIME	GROWTH_NAME	round lime:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1397
+reference+classic	growth noun	PLANT:RUBBER	GROWTH_NAME	rubber leaf:rubber leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	2487
+reference+classic	growth noun	PLANT:RUSH	GROWTH_NAME	rush bud:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	357
+reference+classic	growth noun	PLANT:RUSH	GROWTH_NAME	rush flower:STP	data/vanilla/vanilla_plants/objects/plant_grasses.txt	363
+reference+classic	growth noun	PLANT:RYE	GROWTH_NAME	rye leaf:rye leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	449
+reference+classic	growth noun	PLANT:SAGUARO	GROWTH_NAME	saguaro flower:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	944
+reference+classic	growth noun	PLANT:SAGUARO	GROWTH_NAME	saguaro fruit:saguaro fruit	data/vanilla/vanilla_plants/objects/plant_standard.txt	951
+reference+classic	growth noun	PLANT:SAND_PEAR	GROWTH_NAME	sand pear flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3209
+reference+classic	growth noun	PLANT:SAND_PEAR	GROWTH_NAME	sand pear leaf:sand pear leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3197
+reference+classic	growth noun	PLANT:SAND_PEAR	GROWTH_NAME	sand pear:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3216
+reference+classic	growth noun	PLANT:SINGLE-GRAIN_WHEAT	GROWTH_NAME	single-grain wheat leaf:single-grain wheat leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	46
+reference+classic	growth noun	PLANT:SOFT_WHEAT	GROWTH_NAME	soft wheat leaf:soft wheat leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	138
+reference+classic	growth noun	PLANT:SORGHUM	GROWTH_NAME	sorghum flower cluster:STP	data/vanilla/vanilla_plants/objects/plant_crops.txt	505
+reference+classic	growth noun	PLANT:SORGHUM	GROWTH_NAME	sorghum leaf:sorghum leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	500
+reference+classic	growth noun	PLANT:SOYBEAN	GROWTH_NAME	soybean flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1594
+reference+classic	growth noun	PLANT:SOYBEAN	GROWTH_NAME	soybean leaf:soybean leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1589
+reference+classic	growth noun	PLANT:SOYBEAN	GROWTH_NAME	soybean pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1600
+reference+classic	growth noun	PLANT:SPELT	GROWTH_NAME	spelt leaf:spelt leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	230
+reference+classic	growth noun	PLANT:SPINACH	GROWTH_NAME	spinach flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1636
+reference+classic	growth noun	PLANT:SPINACH	GROWTH_NAME	spinach leaf:spinach leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1631
+reference+classic	growth noun	PLANT:SQUASH	GROWTH_NAME	squash flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1681
+reference+classic	growth noun	PLANT:SQUASH	GROWTH_NAME	squash leaf:squash leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1676
+reference+classic	growth noun	PLANT:SQUASH	GROWTH_NAME	squash:squashes	data/vanilla/vanilla_plants/objects/plant_garden.txt	1687
+reference+classic	growth noun	PLANT:STRING_BEAN	GROWTH_NAME	string bean flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	180
+reference+classic	growth noun	PLANT:STRING_BEAN	GROWTH_NAME	string bean leaf:string bean leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	175
+reference+classic	growth noun	PLANT:STRING_BEAN	GROWTH_NAME	string bean pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	186
+reference+classic	growth noun	PLANT:SWEET_POTATO	GROWTH_NAME	sweet potato flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1737
+reference+classic	growth noun	PLANT:SWEET_POTATO	GROWTH_NAME	sweet potato leaf:sweet potato leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1732
+reference+classic	growth noun	PLANT:TARO	GROWTH_NAME	taro flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1777
+reference+classic	growth noun	PLANT:TARO	GROWTH_NAME	taro leaf:taro leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1772
+reference+classic	growth noun	PLANT:TEA	GROWTH_NAME	tea flower:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	832
+reference+classic	growth noun	PLANT:TEA	GROWTH_NAME	tea leaf:tea leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	825
+reference+classic	growth noun	PLANT:TEA	GROWTH_NAME	tea tree capsule:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	839
+reference+classic	growth noun	PLANT:TEFF	GROWTH_NAME	teff leaf:teff leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1307
+reference+classic	growth noun	PLANT:TOMATILLO	GROWTH_NAME	tomatillo flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1900
+reference+classic	growth noun	PLANT:TOMATILLO	GROWTH_NAME	tomatillo leaf:tomatillo leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1895
+reference+classic	growth noun	PLANT:TOMATILLO	GROWTH_NAME	tomatillo:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1906
+reference+classic	growth noun	PLANT:TOMATO	GROWTH_NAME	tomato flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1831
+reference+classic	growth noun	PLANT:TOMATO	GROWTH_NAME	tomato leaf:tomato leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1826
+reference+classic	growth noun	PLANT:TOMATO	GROWTH_NAME	tomato:tomatoes	data/vanilla/vanilla_plants/objects/plant_garden.txt	1837
+reference+classic	growth noun	PLANT:TURNIP	GROWTH_NAME	turnip flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1956
+reference+classic	growth noun	PLANT:TURNIP	GROWTH_NAME	turnip leaf:turnip leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1951
+reference+classic	growth noun	PLANT:TWO-GRAIN_WHEAT	GROWTH_NAME	two-grain wheat leaf:two-grain wheat leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	92
+reference+classic	growth noun	PLANT:URAD_BEAN	GROWTH_NAME	urad bean flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	1997
+reference+classic	growth noun	PLANT:URAD_BEAN	GROWTH_NAME	urad bean leaf:urad bean leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	1992
+reference+classic	growth noun	PLANT:URAD_BEAN	GROWTH_NAME	urad bean pod:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2003
+reference+classic	growth noun	PLANT:WALNUT	GROWTH_NAME	walnut flower cluster:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3284
+reference+classic	growth noun	PLANT:WALNUT	GROWTH_NAME	walnut leaf:walnut leaves	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3265
+reference+classic	growth noun	PLANT:WALNUT	GROWTH_NAME	walnut pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3277
+reference+classic	growth noun	PLANT:WALNUT	GROWTH_NAME	walnut:STP	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3291
+reference+classic	growth noun	PLANT:WATERMELON	GROWTH_NAME	watermelon flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2042
+reference+classic	growth noun	PLANT:WATERMELON	GROWTH_NAME	watermelon leaf:watermelon leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2037
+reference+classic	growth noun	PLANT:WATERMELON	GROWTH_NAME	watermelon:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2048
+reference+classic	growth noun	PLANT:WHITE_MILLET	GROWTH_NAME	white millet leaf:white millet leaves	data/vanilla/vanilla_plants/objects/plant_crops.txt	1123
+reference+classic	growth noun	PLANT:WHITE_YAM	GROWTH_NAME	white yam flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2240
+reference+classic	growth noun	PLANT:WHITE_YAM	GROWTH_NAME	white yam leaf:white yam leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2235
+reference+classic	growth noun	PLANT:WILD_CARROT	GROWTH_NAME	carrot leaf:carrot leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	471
+reference+classic	growth noun	PLANT:WILD_CARROT	GROWTH_NAME	carrot umbel:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	476
+reference+classic	growth noun	PLANT:WILLOW	GROWTH_NAME	willow fruit:willow fruit	data/vanilla/vanilla_plants/objects/plant_standard.txt	1508
+reference+classic	growth noun	PLANT:WILLOW	GROWTH_NAME	willow leaf:willow leaves	data/vanilla/vanilla_plants/objects/plant_standard.txt	1487
+reference+classic	growth noun	PLANT:WILLOW	GROWTH_NAME	willow pollen catkin:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1494
+reference+classic	growth noun	PLANT:WILLOW	GROWTH_NAME	willow seed catkin:STP	data/vanilla/vanilla_plants/objects/plant_standard.txt	1501
+reference+classic	growth noun	PLANT:WINTER_MELON	GROWTH_NAME	winter melon flower:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2095
+reference+classic	growth noun	PLANT:WINTER_MELON	GROWTH_NAME	winter melon leaf:winter melon leaves	data/vanilla/vanilla_plants/objects/plant_garden.txt	2090
+reference+classic	growth noun	PLANT:WINTER_MELON	GROWTH_NAME	winter melon:STP	data/vanilla/vanilla_plants/objects/plant_garden.txt	2101
+reference+classic	meal subtype	ITEM_FOOD:ITEM_FOOD_BISCUITS	NAME	biscuits	data/vanilla/vanilla_items/objects/item_food.txt	6
+reference+classic	meal subtype	ITEM_FOOD:ITEM_FOOD_ROAST	NAME	roast	data/vanilla/vanilla_items/objects/item_food.txt	14
+reference+classic	meal subtype	ITEM_FOOD:ITEM_FOOD_STEW	NAME	stew	data/vanilla/vanilla_items/objects/item_food.txt	10
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:BRAIN_TEMPLATE	MEAT_NAME	prepared:brain:brain	data/vanilla/vanilla_materials/objects/material_template_default.txt	822
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:EYE_TEMPLATE	MEAT_NAME	prepared:eye:eye	data/vanilla/vanilla_materials/objects/material_template_default.txt	724
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:GIZZARD_TEMPLATE	MEAT_NAME	prepared:gizzard:gizzard	data/vanilla/vanilla_materials/objects/material_template_default.txt	1134
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:GUT_TEMPLATE	MEAT_NAME	prepared:intestines:intestines	data/vanilla/vanilla_materials/objects/material_template_default.txt	1030
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:HEART_TEMPLATE	MEAT_NAME	prepared:heart:heart	data/vanilla/vanilla_materials/objects/material_template_default.txt	926
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:KIDNEY_TEMPLATE	MEAT_NAME	prepared:kidney:kidney	data/vanilla/vanilla_materials/objects/material_template_default.txt	1290
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:LIVER_TEMPLATE	MEAT_NAME	chopped:liver:liver	data/vanilla/vanilla_materials/objects/material_template_default.txt	978
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:LUNG_TEMPLATE	MEAT_NAME	prepared:lung:lung	data/vanilla/vanilla_materials/objects/material_template_default.txt	874
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:MUSCLE_TEMPLATE	MEAT_NAME	NONE:meat:meat	data/vanilla/vanilla_materials/objects/material_template_default.txt	306
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:PANCREAS_TEMPLATE	MEAT_NAME	NONE:sweetbread:sweetbread	data/vanilla/vanilla_materials/objects/material_template_default.txt	1186
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:SPLEEN_TEMPLATE	MEAT_NAME	prepared:spleen:spleen	data/vanilla/vanilla_materials/objects/material_template_default.txt	1238
+reference+classic	meat prefix, singular and plural	MATERIAL_TEMPLATE:STOMACH_TEMPLATE	MEAT_NAME	NONE:tripe:tripe	data/vanilla/vanilla_materials/objects/material_template_default.txt	1082
+reference+classic	seed noun	PLANT:ABACA	SEED	abaca seed:abaca seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	29
+reference+classic	seed noun	PLANT:ACACIA	SEED	acacia seed:acacia seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	1254
+reference+classic	seed noun	PLANT:ALFALFA	SEED	alfalfa seed:alfalfa seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	392
+reference+classic	seed noun	PLANT:ALMOND	SEED	almond:almonds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2089
+reference+classic	seed noun	PLANT:APPLE	SEED	apple seed:apple seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2182
+reference+classic	seed noun	PLANT:APRICOT	SEED	apricot pit:apricot pits:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2282
+reference+classic	seed noun	PLANT:ARTICHOKE	SEED	artichoke seed:artichoke seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	40
+reference+classic	seed noun	PLANT:ASPARAGUS	SEED	asparagus seed:asparagus seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	85
+reference+classic	seed noun	PLANT:AVOCADO	SEED	avocado pit:avocado pits:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	881
+reference+classic	seed noun	PLANT:BAMBARA_GROUNDNUT	SEED	bambara groundnut:bambara groundnuts:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	128
+reference+classic	seed noun	PLANT:BANANA	SEED	banana seed:banana seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	95
+reference+classic	seed noun	PLANT:BARLEY	SEED	barley seed:barley seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	271
+reference+classic	seed noun	PLANT:BAYBERRY	SEED	bayberry seed:bayberry seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2374
+reference+classic	seed noun	PLANT:BEET	SEED	beet seed:beet seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	266
+reference+classic	seed noun	PLANT:BERRIES_FISHER	SEED	fisher berry seed:fisher berry seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	576
+reference+classic	seed noun	PLANT:BERRIES_PRICKLE	SEED	prickle berry seed:prickle berry seeds:2:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	396
+reference+classic	seed noun	PLANT:BERRIES_STRAW	SEED	strawberry seed:strawberry seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	435
+reference+classic	seed noun	PLANT:BERRY_SUN	SEED	sun berry seed:sun berry seeds:4:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	768
+reference+classic	seed noun	PLANT:BILBERRY	SEED	bilberry seed:bilberry seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2472
+reference+classic	seed noun	PLANT:BITTER_MELON	SEED	bitter melon seed:bitter melon seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	305
+reference+classic	seed noun	PLANT:BITTER_ORANGE	SEED	bitter orange seed:bitter orange seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1228
+reference+classic	seed noun	PLANT:BITTER_VETCH	SEED	bitter vetch seed:bitter vetch seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	752
+reference+classic	seed noun	PLANT:BLACKBERRY	SEED	blackberry seed:blackberry seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2604
+reference+classic	seed noun	PLANT:BLOOD_AMARANTH	SEED	blood amaranth seed:blood amaranth seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	876
+reference+classic	seed noun	PLANT:BLUEBERRY	SEED	blueberry seed:blueberry seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2538
+reference+classic	seed noun	PLANT:BROAD_BEAN	SEED	broad bean:broad beans:2:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	211
+reference+classic	seed noun	PLANT:BUCKWHEAT	SEED	buckwheat seed:buckwheat seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	320
+reference+classic	seed noun	PLANT:BUSH_QUARRY	SEED	rock nut:rock nuts:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	257
+reference+classic	seed noun	PLANT:CABBAGE	SEED	cabbage seed:cabbage seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	349
+reference+classic	seed noun	PLANT:CACAO	SEED	cacao bean:cacao beans:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	2518
+reference+classic	seed noun	PLANT:CANDLENUT	SEED	candlenut:candlenuts:2:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	2330
+reference+classic	seed noun	PLANT:CAPER	SEED	caper seed:caper seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	401
+reference+classic	seed noun	PLANT:CARAMBOLA	SEED	carambola seed:carambola seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	188
+reference+classic	seed noun	PLANT:CASHEW	SEED	cashew:cashews:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	256
+reference+classic	seed noun	PLANT:CASSAVA	SEED	cassava seed:cassava seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	522
+reference+classic	seed noun	PLANT:CELERY	SEED	celery seed:celery seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	557
+reference+classic	seed noun	PLANT:CHERRY	SEED	cherry pit:cherry pits:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2478
+reference+classic	seed noun	PLANT:CHESTNUT	SEED	chestnut:chestnuts:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	2004
+reference+classic	seed noun	PLANT:CHICKPEA	SEED	chickpea:chickpeas:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	593
+reference+classic	seed noun	PLANT:CHICORY	SEED	chicory seed:chicory seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	635
+reference+classic	seed noun	PLANT:CITRON	SEED	citron seed:citron seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1092
+reference+classic	seed noun	PLANT:COFFEE	SEED	coffee bean:coffee beans:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	323
+reference+classic	seed noun	PLANT:COTTON	SEED	cotton seed:cotton seeds:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1532
+reference+classic	seed noun	PLANT:COWPEA	SEED	cowpea:cowpeas:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	671
+reference+classic	seed noun	PLANT:CRANBERRY	SEED	cranberry seed:cranberry seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2406
+reference+classic	seed noun	PLANT:CUCUMBER	SEED	cucumber seed:cucumber seeds:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	716
+reference+classic	seed noun	PLANT:CUSTARD-APPLE	SEED	custard-apple seed:custard-apple seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1581
+reference+classic	seed noun	PLANT:DATE_PALM	SEED	date palm seed:date palm seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1668
+reference+classic	seed noun	PLANT:DESERT_LIME	SEED	desert lime seed:desert lime seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1432
+reference+classic	seed noun	PLANT:DURIAN	SEED	durian seed:durian seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	414
+reference+classic	seed noun	PLANT:EGGPLANT	SEED	eggplant seed:eggplant seeds:7:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	765
+reference+classic	seed noun	PLANT:ELEPHANT-HEAD_AMARANTH	SEED	elephant-head amaranth seed:elephant-head amaranth seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1012
+reference+classic	seed noun	PLANT:FINGER_LIME	SEED	finger lime seed:finger lime seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1296
+reference+classic	seed noun	PLANT:FINGER_MILLET	SEED	finger millet:finger millet:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1164
+reference+classic	seed noun	PLANT:FLAX	SEED	flax seed:flax seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1361
+reference+classic	seed noun	PLANT:FONIO	SEED	fonio:fonio:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1256
+reference+classic	seed noun	PLANT:FOXTAIL_MILLET	SEED	foxtail millet:foxtail millet:7:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1210
+reference+classic	seed noun	PLANT:GARDEN_CRESS	SEED	garden cress seed:garden cress seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	819
+reference+classic	seed noun	PLANT:GARLIC	SEED	garlic seed:garlic seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	858
+reference+classic	seed noun	PLANT:GINKGO	SEED	ginkgo seed:ginkgo seeds:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2562
+reference+classic	seed noun	PLANT:GRAPE	SEED	grape seed:grape seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2340
+reference+classic	seed noun	PLANT:GRASS_LONGLAND	SEED	Longland grass seed:Longland grass seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	484
+reference+classic	seed noun	PLANT:GRASS_TAIL_PIG	SEED	pig tail seed:pig tail seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	90
+reference+classic	seed noun	PLANT:GRASS_WHEAT_CAVE	SEED	cave wheat seed:cave wheat seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	146
+reference+classic	seed noun	PLANT:GUAVA	SEED	guava seed:guava seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	496
+reference+classic	seed noun	PLANT:HARD_WHEAT	SEED	hard wheat seed:hard wheat seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	179
+reference+classic	seed noun	PLANT:HAZEL	SEED	hazel nut:hazel nuts:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2633
+reference+classic	seed noun	PLANT:HEMP	SEED	hemp seed:hemp seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1473
+reference+classic	seed noun	PLANT:HORNED_MELON	SEED	horned melon seed:horned melon seeds:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	903
+reference+classic	seed noun	PLANT:JUTE	SEED	jute seed:jute seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1402
+reference+classic	seed noun	PLANT:KANIWA	SEED	kaniwa seed:kaniwa seeds:4:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	713
+reference+classic	seed noun	PLANT:KENAF	SEED	kenaf seed:kenaf seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1629
+reference+classic	seed noun	PLANT:KUMQUAT	SEED	kumquat seed:kumquat seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1500
+reference+classic	seed noun	PLANT:LEEK	SEED	leek seed:leek seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	946
+reference+classic	seed noun	PLANT:LENTIL	SEED	lentil:lentils:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	982
+reference+classic	seed noun	PLANT:LESSER_YAM	SEED	lesser yam seed:lesser yam seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2127
+reference+classic	seed noun	PLANT:LETTUCE	SEED	lettuce seed:lettuce seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1028
+reference+classic	seed noun	PLANT:LIME	SEED	lime seed:lime seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	956
+reference+classic	seed noun	PLANT:LONG_YAM	SEED	long yam seed:long yam seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2162
+reference+classic	seed noun	PLANT:LYCHEE	SEED	lychee seed:lychee seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1750
+reference+classic	seed noun	PLANT:MACADAMIA	SEED	macadamia nut:macadamia nuts:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1815
+reference+classic	seed noun	PLANT:MAIZE	SEED	maize:maize:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	607
+reference+classic	seed noun	PLANT:MANGO	SEED	mango pit:mango pits:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	2412
+reference+classic	seed noun	PLANT:MUNG_BEAN	SEED	mung bean:mung beans:2:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1062
+reference+classic	seed noun	PLANT:MUSHROOM_CUP_DIMPLE	SEED	dimple cup spawn:dimple cup spawn:5:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	637
+reference+classic	seed noun	PLANT:MUSHROOM_HELMET_PLUMP	SEED	plump helmet spawn:plump helmet spawn:4:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	52
+reference+classic	seed noun	PLANT:MUSKMELON	SEED	muskmelon seed:muskmelon seeds:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1107
+reference+classic	seed noun	PLANT:OAK	SEED	acorn:acorns:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	1109
+reference+classic	seed noun	PLANT:OATS	SEED	oat seed:oat seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	360
+reference+classic	seed noun	PLANT:OLIVE	SEED	olive pit:olive pits:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1901
+reference+classic	seed noun	PLANT:ONION	SEED	onion seed:onion seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1151
+reference+classic	seed noun	PLANT:ORANGE	SEED	orange seed:orange seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1160
+reference+classic	seed noun	PLANT:PAPAYA	SEED	papaya seed:papaya seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	591
+reference+classic	seed noun	PLANT:PAPYRUS_SEDGE	SEED	papyrus seed:papyrus seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1673
+reference+classic	seed noun	PLANT:PARADISE_NUT	SEED	paradise nut:paradise nuts:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	658
+reference+classic	seed noun	PLANT:PARSNIP	SEED	parsnip seed:parsnip seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1215
+reference+classic	seed noun	PLANT:PASSION_FRUIT	SEED	passion fruit seed:passion fruit seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2281
+reference+classic	seed noun	PLANT:PEA	SEED	pea:peas:2:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1251
+reference+classic	seed noun	PLANT:PEACH	SEED	peach pit:peach pits:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2732
+reference+classic	seed noun	PLANT:PEANUT	SEED	peanut:peanuts:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1293
+reference+classic	seed noun	PLANT:PEAR	SEED	pear seed:pear seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2826
+reference+classic	seed noun	PLANT:PEARL_MILLET	SEED	pearl millet:pearl millet:7:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1072
+reference+classic	seed noun	PLANT:PECAN	SEED	pecan:pecans:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2907
+reference+classic	seed noun	PLANT:PENDANT_AMARANTH	SEED	pendant amaranth seed:pendant amaranth seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	816
+reference+classic	seed noun	PLANT:PEPPER	SEED	pepper seed:pepper seeds:7:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1346
+reference+classic	seed noun	PLANT:PERSIMMON	SEED	persimmon seed:persimmon seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	2992
+reference+classic	seed noun	PLANT:PINEAPPLE	SEED	pineapple seed:pineapple seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2739
+reference+classic	seed noun	PLANT:PLUM	SEED	plum pit:plum pits:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3085
+reference+classic	seed noun	PLANT:POD_SWEET	SEED	sweet pod seed:sweet pod seeds:2:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	205
+reference+classic	seed noun	PLANT:POMEGRANATE	SEED	pomegranate seed:pomegranate seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1997
+reference+classic	seed noun	PLANT:POMELO	SEED	pomelo seed:pomelo seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1024
+reference+classic	seed noun	PLANT:POTATO	SEED	potato seed:potato seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1402
+reference+classic	seed noun	PLANT:PURPLE_AMARANTH	SEED	purple amaranth seed:purple amaranth seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	929
+reference+classic	seed noun	PLANT:PURPLE_YAM	SEED	purple yam seed:purple yam seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2196
+reference+classic	seed noun	PLANT:QUINOA	SEED	quinoa seed:quinoa seeds:4:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	658
+reference+classic	seed noun	PLANT:RADISH	SEED	radish seed:radish seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1457
+reference+classic	seed noun	PLANT:RAMBUTAN	SEED	rambutan seed:rambutan seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	740
+reference+classic	seed noun	PLANT:RAMIE	SEED	ramie seed:ramie seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1570
+reference+classic	seed noun	PLANT:RASPBERRY	SEED	raspberry seed:raspberry seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2670
+reference+classic	seed noun	PLANT:RED_BEAN	SEED	red bean:red beans:2:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1498
+reference+classic	seed noun	PLANT:RED_SPINACH	SEED	red spinach seed:red spinach seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	967
+reference+classic	seed noun	PLANT:REED_ROPE	SEED	rope reed seed:rope reed seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	616
+reference+classic	seed noun	PLANT:RHUBARB	SEED	rhubarb seed:rhubarb seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1542
+reference+classic	seed noun	PLANT:RICE	SEED	rice:rice:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	554
+reference+classic	seed noun	PLANT:ROOT_HIDE	SEED	hide root seed:hide root seeds:4:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	698
+reference+classic	seed noun	PLANT:ROOT_MUCK	SEED	muck root seed:muck root seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	299
+reference+classic	seed noun	PLANT:ROUND_LIME	SEED	round lime seed:round lime seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	1364
+reference+classic	seed noun	PLANT:RYE	SEED	rye seed:rye seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	444
+reference+classic	seed noun	PLANT:SAND_PEAR	SEED	sand pear seed:sand pear seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3178
+reference+classic	seed noun	PLANT:SINGLE-GRAIN_WHEAT	SEED	single-grain wheat seed:single-grain wheat seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	41
+reference+classic	seed noun	PLANT:SLIVER_BARB	SEED	sliver barb seed:sliver barb seeds:4:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	735
+reference+classic	seed noun	PLANT:SOFT_WHEAT	SEED	soft wheat seed:soft wheat seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	133
+reference+classic	seed noun	PLANT:SORGHUM	SEED	sorghum seed:sorghum seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	494
+reference+classic	seed noun	PLANT:SOYBEAN	SEED	soybean:soybeans:7:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1583
+reference+classic	seed noun	PLANT:SPELT	SEED	spelt seed:spelt seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	225
+reference+classic	seed noun	PLANT:SPINACH	SEED	spinach seed:spinach seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1626
+reference+classic	seed noun	PLANT:SQUASH	SEED	squash seed:squash seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1671
+reference+classic	seed noun	PLANT:STRING_BEAN	SEED	string bean:string beans:2:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	170
+reference+classic	seed noun	PLANT:SWEET_POTATO	SEED	sweet potato seed:sweet potato seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1727
+reference+classic	seed noun	PLANT:TARO	SEED	taro seed:taro seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1767
+reference+classic	seed noun	PLANT:TEA	SEED	tea seed:tea seeds:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	805
+reference+classic	seed noun	PLANT:TEFF	SEED	teff:teff:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1302
+reference+classic	seed noun	PLANT:TOMATILLO	SEED	tomatillo seed:tomatillo seeds:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1890
+reference+classic	seed noun	PLANT:TOMATO	SEED	tomato seed:tomato seeds:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1821
+reference+classic	seed noun	PLANT:TUBER_BLOATED	SEED	bloated tuber seed:bloated tuber seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	330
+reference+classic	seed noun	PLANT:TURNIP	SEED	turnip seed:turnip seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1946
+reference+classic	seed noun	PLANT:TWO-GRAIN_WHEAT	SEED	two-grain wheat seed:two-grain wheat seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	87
+reference+classic	seed noun	PLANT:URAD_BEAN	SEED	urad bean:urad beans:2:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	1987
+reference+classic	seed noun	PLANT:VINE_WHIP	SEED	whip vine seed:whip vine seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	806
+reference+classic	seed noun	PLANT:WALNUT	SEED	walnut:walnuts:6:0:0:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_new_trees.txt	3246
+reference+classic	seed noun	PLANT:WATERMELON	SEED	watermelon seed:watermelon seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2032
+reference+classic	seed noun	PLANT:WEED_BLADE	SEED	blade weed seed:blade weed seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	673
+reference+classic	seed noun	PLANT:WEED_RAT	SEED	rat weed seed:rat weed seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_standard.txt	543
+reference+classic	seed noun	PLANT:WHITE_MILLET	SEED	white millet:white millet:7:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_crops.txt	1118
+reference+classic	seed noun	PLANT:WHITE_YAM	SEED	white yam seed:white yam seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2230
+reference+classic	seed noun	PLANT:WILD_CARROT	SEED	carrot seed:carrot seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	466
+reference+classic	seed noun	PLANT:WINTER_MELON	SEED	winter melon seed:winter melon seeds:0:0:1:LOCAL_PLANT_MAT:SEED	data/vanilla/vanilla_plants/objects/plant_garden.txt	2085

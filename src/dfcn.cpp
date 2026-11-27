@@ -4407,6 +4407,8 @@ private:
     std::unordered_set<std::string> liquid_material_names_;
     void load_raw_material_names();
     bool is_liquid_food_ingredient(std::string_view source, int native_type = -1) const;
+    std::optional<std::string> translate_meal_ingredient_name(std::string_view source) const;
+    TranslationResult translate_meal_ingredient_list(std::string_view source) const;
     std::optional<std::string> translate_item_color_pattern(std::string_view source) const;
     std::optional<std::string> translate_item_dye_materials(std::string_view source) const;
     TranslationResult translate_item_color_pattern_display(std::string_view source) const;

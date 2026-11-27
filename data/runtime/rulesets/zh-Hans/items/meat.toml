@@ -49,6 +49,7 @@ optional = true
 [[rulesets]]
 name = "singular::main"
 [rulesets.rules]
+"{::materials::state} chop" = "{::materials::state}肉排"
 "{::materials::state}" = "{::materials::state}"
 "meat" = "肉"
 "eye" = "眼"
