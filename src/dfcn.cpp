@@ -2511,7 +2511,9 @@ struct NativeDrawnTextRow {
     // temporary is destroyed; standalone confirmation names have no Routine row.
     std::shared_ptr<const NativeHistoryName> squad_generated_name{};
     NativeInfoTitleKind info_title_kind = NativeInfoTitleKind::None;
-    bool info_title_authored = false;
+    // Zero for generated titles, npos for a wholly authored field. Named
+    // occupied cages expose the byte boundary before their generated suffix.
+    size_t info_title_authored_bytes = 0;
     int info_title_right = -1; // exclusive native draw clip boundary
     NativeCivilizationField civilization_field = NativeCivilizationField::None;
     std::pair<uintptr_t, uintptr_t> civilization_owner{};
@@ -3004,7 +3006,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         uintptr_t address, const graphicst *graphics, bool top_layer = false,
         std::string_view complete_source = {},
         NativeInfoTitleKind info_title_kind = NativeInfoTitleKind::None,
-        bool info_title_authored = false, int info_title_right = -1,
+        size_t info_title_authored_bytes = 0, int info_title_right = -1,
         NativeCivilizationField civilization_field = NativeCivilizationField::None,
         bool mission_title = false, int mission_title_right = -1,
         std::optional<std::array<long, 4>> original_clip = std::nullopt,
@@ -3154,7 +3156,7 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
         // draw, before scrolling or input can replace the menu entry.
         if (!character) row.performance_choice = capture_native_performance_choice(address);
         row.info_title_kind = info_title_kind;
-        row.info_title_authored = info_title_authored;
+        row.info_title_authored_bytes = info_title_authored_bytes;
         row.info_title_right = info_title_right;
         row.civilization_field = civilization_field;
         row.civilization_owner = civilization_owner;

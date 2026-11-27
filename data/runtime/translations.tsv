@@ -131131,6 +131131,7 @@ Tropical Conif Forest	热带针叶林
 Uniform material: gem	宝石	l
 Unit profession: head	首领	li
 Unnamed archery range	未命名射箭场	wi
+Unnamed memorial hall	未命名纪念堂	wi
 Upper left back teeth	左上臼齿	w
 Upright Spears/Spikes	直立的长矛/尖刺	w
 Vanilla Items {d}.{d}	原版物品 {d}.{d}	wt
@@ -132913,6 +132914,7 @@ Argue nuances of law	争辩法律的复杂之处	hP
 Ask about the beasts	询问那些凶兽	hP
 Ask about the deaths	询问这些死亡事件	hP
 Ask to be made a {s}	请求担任{s1}	hPt
+Assigned and chained	已指定并拴住	hP
 Attained Social Rank	已经出人头地	w
 Attempted {e} at {p}	在{p1}，未遂的{e1}	htEi
 Attempted {e} in {d}	{d1}年的未遂的{e1}	htEi
@@ -157391,6 +157393,7 @@ Trader Profit:	商人利润：	hP
 Transformation	变身	w
 Tropical Ocean	热带海洋
 Uncovering {b}	揭开{b}	hbti
+Unnamed museum	未命名博物馆	wi
 Unnamed office	未命名办公室	wi
 Unusable armor	不可用盔甲	wi
 Upright Spears	直立的长矛	w
@@ -171302,6 +171305,7 @@ Unconscious	无意识	w
 Unhappiness	不快乐	w
 Unknown Age	未知时代	hi
 Unknown {b}	未知的{b}	hbti
+Unnamed zoo	未命名动物园	wi
 Unusual {b}	非凡的{b}	hbti
 Vacant Shop	空置商店	wi
 Vermin bite	害虫叮咬	w
@@ -181991,6 +181995,7 @@ Captain	负责人	w
 Caravan	商队到来	w
 Cave-in	塌方	w
 Ceshfot	塞佛特	wi
+Chained	已拴住	hP
 Cheeses	奶酪
 Chemist	化学家	wi
 Citizen	居民	w

@@ -75,39 +75,47 @@ void Overlay::append_native_split_ui_messages(std::vector<std::string> &screen_r
             }
             return colors;
         };
-        // The coffin's no-room branch writes three fixed addst rows, not a
-        // wrapped paragraph. Its sheet may be open at the viewport bottom,
-        // so the generic closed-panel message reader cannot join these rows.
-        // Keep the complete catalog sentence and its native producer/layer
-        // boundaries; no English-sized fragment translations are needed.
-        // Original PE cases and supplier branches: extracted/coffin-detail.
-        const uintptr_t coffin_base = native_history_profile_base();
+        // Furniture sheets issue three separate addst calls for a missing
+        // room. Cages and chains use identical text at different call sites.
+        const uintptr_t base = native_history_profile_base();
+        using DrawSites = std::array<uintptr_t, 3>;
+        using Lines = std::array<std::string_view, 3>;
+        constexpr Lines burial{"You must designate a tomb", "before this coffin will",
+            "be used for burial."};
+        constexpr Lines imprisonment{"You must designate a dungeon", "before this restraint will",
+            "be used for imprisonment."};
+        struct Notice { DrawSites callers; const Lines &lines; };
+        const Notice notices[] = {
 #ifdef _WIN32
-        const std::array<uintptr_t, 3> coffin_callers{
-            native_pe_address(coffin_base, 0x194c4e),
-            native_pe_address(coffin_base, 0x194ccd),
-            native_pe_address(coffin_base, 0x194d4c)};
+            {{native_pe_address(base, 0x194c4e), native_pe_address(base, 0x194ccd),
+                native_pe_address(base, 0x194d4c)}, burial},
+            {{native_pe_address(base, 0x18ef1f), native_pe_address(base, 0x18ef9e),
+                native_pe_address(base, 0x18f01d)}, imprisonment},
+            {{native_pe_address(base, 0x190c38), native_pe_address(base, 0x190cb7),
+                native_pe_address(base, 0x190d36)}, imprisonment},
 #else
-        const std::array<uintptr_t, 3> coffin_callers{
-            native_reference_address(coffin_base, 0x13e1654),
-            native_reference_address(coffin_base, 0x13e16d9),
-            native_reference_address(coffin_base, 0x13e1742)};
+            {{native_reference_address(base, 0x13e1654), native_reference_address(base, 0x13e16d9),
+                native_reference_address(base, 0x13e1742)}, burial},
+            {{native_reference_address(base, 0x13deb5d), native_reference_address(base, 0x13debe2),
+                native_reference_address(base, 0x13dec4b)}, imprisonment},
+            {{native_reference_address(base, 0x13e2675), native_reference_address(base, 0x13e26fa),
+                native_reference_address(base, 0x13e2763)}, imprisonment},
 #endif
-        constexpr std::array<std::string_view, 3> coffin_lines{
-            "You must designate a tomb", "before this coffin will", "be used for burial."};
+        };
         for (const auto &first : draws) {
-            if (!coffin_base || !coffin_callers.front() ||
-                    first.native_caller != coffin_callers.front() ||
-                    first.source != coffin_lines.front()) continue;
+            if (!first.native_caller) continue;
+            const auto notice = std::find_if(std::begin(notices), std::end(notices),
+                [&](const Notice &n) { return first.native_caller == n.callers.front(); });
+            if (notice == std::end(notices) || first.source != notice->lines.front()) continue;
             std::vector<Match> rows;
             std::string source;
             std::vector<int> source_colors;
             int source_right = first.x;
-            for (size_t i = 0; i < coffin_lines.size(); ++i) {
+            for (size_t i = 0; i < notice->lines.size(); ++i) {
                 const auto at = positions.find({first.x, first.y + static_cast<int>(i)});
-                if (at == positions.end() || !coffin_callers[i] ||
-                        at->second->native_caller != coffin_callers[i] ||
-                        at->second->source != coffin_lines[i]) break;
+                if (at == positions.end() || !notice->callers[i] ||
+                        at->second->native_caller != notice->callers[i] ||
+                        at->second->source != notice->lines[i]) break;
                 const auto row = current_draw(*at->second);
                 if (!row) break;
                 if (!source.empty()) {
@@ -120,7 +128,7 @@ void Overlay::append_native_split_ui_messages(std::vector<std::string> &screen_r
                 source_right = std::max(source_right, row->x + row->length);
                 rows.push_back(*row);
             }
-            if (rows.size() != coffin_lines.size()) continue;
+            if (rows.size() != notice->lines.size()) continue;
             std::vector<int> target_colors;
             const auto target = translate_help_paragraph(source, source_colors, target_colors, true);
             if (!target || target->empty()) continue;

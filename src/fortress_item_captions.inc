@@ -492,11 +492,27 @@ void Overlay::append_native_info_panel_titles(std::vector<std::string> &rows,
             }
             if (!current) continue;
             const auto &complete = draw.complete_source.empty() ? draw.source : draw.complete_source;
-            auto target = draw.info_title_authored ?
-                std::optional<std::string>(native_text_to_utf8(complete)) :
-                draw.trade_item_caption && draw.trade_item_caption->source == complete ?
-                    translate_native_trade_item_caption(*draw.trade_item_caption) :
-                    translate_info_panel_title(draw.info_title_kind, complete);
+            std::optional<std::string> target;
+            if (draw.info_title_authored_bytes) {
+                const std::string_view title = complete;
+                target = native_text_to_utf8(title);
+                if (draw.info_title_authored_bytes < title.size() && config_.compositional_rules) {
+                    const auto suffix = title.substr(draw.info_title_authored_bytes);
+                    if (suffix.size() > 3 && suffix.starts_with(" (") && suffix.ends_with(')')) {
+                        std::vector<size_t> origins;
+                        const auto occupants = RULESETS.translate_with_origins(
+                            native_text_to_utf8(suffix.substr(2, suffix.size() - 3)),
+                            "::items::cage::occupants", origins);
+                        if (occupants && !occupants->empty())
+                            target = native_text_to_utf8(title.substr(0, draw.info_title_authored_bytes)) +
+                                "（" + *occupants + "）";
+                    }
+                }
+            } else if (draw.trade_item_caption && draw.trade_item_caption->source == complete) {
+                target = translate_native_trade_item_caption(*draw.trade_item_caption);
+            } else {
+                target = translate_info_panel_title(draw.info_title_kind, complete);
+            }
             const bool translated = target.has_value();
             if (!target) target = native_text_to_utf8(complete);
             if (target->empty() || target->find_first_of("\r\n") != std::string::npos) continue;

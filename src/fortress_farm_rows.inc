@@ -266,7 +266,7 @@ void Overlay::append_fortress_farm_rows(std::vector<std::string> &rows,
         if (top != draw.top_layer) continue;
         std::optional<std::string> target;
         if (name) {
-            if (!draw.info_title_authored && (complete == "Farm Plot" || complete == "Farm plot"))
+            if (!draw.info_title_authored_bytes && (complete == "Farm Plot" || complete == "Farm plot"))
                 target = exact_literal_translation("Farm plot");
             if (!target) target = native_text_to_utf8(complete);
         } else {

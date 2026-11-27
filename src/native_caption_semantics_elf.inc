@@ -35,7 +35,9 @@ static bool resolve_native_caption_semantics_elf(NativeCaptionProfile &profile) 
         {native_reference_address(base,0xfce851),NativeInfoTitleKind::Item},
         {native_reference_address(base,0xfcbb88),NativeInfoTitleKind::ItemList},
         {native_reference_address(base,0xfcf98c),NativeInfoTitleKind::Building},
-        {native_reference_address(base,0x13e1c9b),NativeInfoTitleKind::Building},
+        {native_reference_address(base,0x13e3100),NativeInfoTitleKind::Building, 0, true},
+        {native_reference_address(base,0x13e3696),NativeInfoTitleKind::Building, 0, true},
+        {native_reference_address(base,0x13e1c9b),NativeInfoTitleKind::Building, 0, true},
         {native_reference_address(base,0xfcaf40),NativeInfoTitleKind::Engraving},
         {native_reference_address(base,0xfcc9af),NativeInfoTitleKind::Terrain},
         {native_reference_address(base,0xfcb1b9),NativeInfoTitleKind::PlannedEngraving},
@@ -46,6 +48,7 @@ static bool resolve_native_caption_semantics_elf(NativeCaptionProfile &profile) 
     profile.info_titles.building_slot = -0x140;
     profile.info_titles.sheet_slot = -0x158;
     profile.info_titles.building_name = 0xd0;
+    profile.info_titles.cage_vtable = native_reference_address(base, 0x24831e0);
     profile.info_titles.editing_name = 0x1d69;
     // Item lists use the shared pre-resize width to recover their name
     // column; no MSVC frame coordinate is read on this native ABI.

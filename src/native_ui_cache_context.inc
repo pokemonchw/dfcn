@@ -311,7 +311,7 @@ public:
         optional(input.squad_alias_target, [&](const auto &target) { text(target); });
         optional(input.squad_generated_name, [&](const auto &generated) { name(generated); });
         value(input.squad_list_right);
-        value(input.info_title_kind); value(input.info_title_authored);
+        value(input.info_title_kind); value(input.info_title_authored_bytes);
         value(input.info_title_right); value(input.civilization_field);
         address(input.civilization_owner.first); address(input.civilization_owner.second);
         value(input.character_relation_right);

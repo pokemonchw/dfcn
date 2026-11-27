@@ -126,7 +126,7 @@ std::vector<SDL_Rect> Overlay::preserve_mod_workshop_names(
         const auto &draw = *draw_source;
         if (draw.draw_epoch != epoch || draw.draw_dimx != gps_->dimx ||
                 draw.draw_dimy != gps_->dimy || draw.unit_identity_owner ||
-                draw.info_title_authored || draw.fortress_labor_caption) continue;
+                draw.info_title_authored_bytes || draw.fortress_labor_caption) continue;
         const auto source = trim_view(draw.source);
         const auto complete = draw.complete_source.empty()
             ? source : trim_view(draw.complete_source);

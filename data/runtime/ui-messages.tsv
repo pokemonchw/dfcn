@@ -32,6 +32,8 @@ Assigned	已指定
 # These are complete status captions below a unit, not personal names.
 Occupant	笼内生物
 Unassigned occupant	未分配的笼内生物
+Assigned and chained	已指定并拴住
+Chained	已拴住
 
 # Legends initialization: the era, both counters and status are one addst
 # record. {v} reuses the historical-title grammar, including named/numbered

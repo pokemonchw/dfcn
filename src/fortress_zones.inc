@@ -396,7 +396,7 @@ void Overlay::append_fortress_place_names(std::vector<std::string> &rows,
             // hovered tab has temporarily changed another caption's colour.
             const bool farm_name = y == button->y + 1 && (farm_plots ||
                 std::any_of(drawn.begin(), drawn.end(), [&](const auto &draw) {
-                    return draw.info_title_authored &&
+                    return draw.info_title_authored_bytes &&
                         draw.info_title_kind == NativeInfoTitleKind::None &&
                         draw.x == field.start && draw.y == y && !draw.source.empty() &&
                         draw.source.size() <= static_cast<size_t>(right - field.start) &&
@@ -486,7 +486,7 @@ void Overlay::append_fortress_place_names(std::vector<std::string> &rows,
                     context[y].compare(field.start, draw.source.size(), draw.source) == 0) {
                     source = draw.source;
                     complete = draw.complete_source;
-                    authored_name = draw.info_title_authored;
+                    authored_name = draw.info_title_authored_bytes;
                     break;
                 }
             }

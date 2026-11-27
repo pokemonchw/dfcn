@@ -1,0 +1,94 @@
+分支	显示条件	英文或动态字段	译文或处理方式	Steam 53.17 RVA 或脚本	Classic 53.17 RVA
+cage	囚犯模式	Prisoner	囚犯	0x18f7ee	0x18f77e
+cage	已指定，尚未到位	Assigned	已指定	0x18f858	0x18f7e8
+cage	在笼内且与分配记录相符	Occupant	笼内生物	0x18fa16	0x18f9a6
+cage	在笼内且无对应分配	Unassigned occupant	未分配的笼内生物	0x18fa6d	0x18f9fd
+cage	笼具允许切换用途	Terrarium	玻璃缸	0x190140	0x1900d0
+cage	笼具允许切换用途	Aquarium	水族缸	0x190412	0x1903a2
+cage	没有房间通过筛选，依次绘制三行	You must designate a dungeon | before this restraint will | be used for imprisonment.	必须先划定监牢，才能用这件束缚器具关押囚犯。	0x190590, 0x19060f, 0x19068e	0x190520, 0x19059f, 0x19061e
+cage	相连且通过区域类型筛选的房间多于一个	This furniture is a part of multiple rooms.	此家具属于多个房间。	0x190720	0x1906b0
+cage	只有一个房间通过筛选	This furniture is a part of	此家具属于：	0x190843	0x1907d3
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed water source	未命名取水区	0x1911c5	0x191155
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed dump	未命名物品倾倒区	0x191208	0x191198
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed sand collection area	未命名采沙区	0x19124b	0x1911db
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed fishing area	未命名捕鱼区	0x19128e	0x19121e
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed pit/pond	未命名坑洞／池塘	0x1912d1	0x191261
+cage	未命名集会区内有棺材或石碑	Unnamed memorial hall	未命名纪念堂	0x1914de	0x19146e
+cage	未命名集会区内无棺材或石碑，雕像数大于笼具与锁链总数，且大于展示家具数	Unnamed sculpture garden	未命名雕塑园	0x191541	0x1914d1
+cage	未命名集会区排除纪念堂和雕塑园后，笼具与锁链总数大于展示家具数	Unnamed zoo	未命名动物园	0x191594	0x191524
+cage	未命名集会区排除纪念堂、雕塑园、动物园后，仍有展示家具	Unnamed museum	未命名博物馆	0x1915e1	0x191571
+cage	未命名集会区不满足任何专用场馆条件	Unnamed meeting hall	未命名集会区	0x191621	0x1915b1
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed pen/pasture	未命名畜栏／牧场	0x191664	0x1915f4
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed clay collection area	未命名黏土采集区	0x1916a7	0x191637
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed animal training area	未命名驯兽区	0x1916ea	0x19167a
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed plant gathering area	未命名植物采集区	0x19172d	0x1916bd
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed bedroom	未命名卧室	0x191770	0x191700
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed office	未命名办公室	0x1917b3	0x191743
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed archery range	未命名射箭场	0x1917f6	0x191786
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed barracks	未命名兵营	0x191839	0x1917c9
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed dungeon	未命名监牢	0x19187c	0x19180c
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed dormitory	未命名公共宿舍	0x1918bf	0x19184f
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed dining hall	未命名餐厅	0x191902	0x191892
+cage	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed tomb	未命名墓地	0x191942	0x1918d2
+cage	名称分派的默认项；当前区域筛选已排除此项	Unnamed zone	未命名区域	0x191982	0x191912
+chain	指定对象与拴住的对象相同	Assigned and chained	已指定并拴住	0x191df4	0x191d84
+chain	已指定，尚未到位	Assigned	已指定	0x191e34	0x191dc4
+chain	已拴住的对象与指定对象不同	Chained	已拴住	0x191e74	0x191e04
+chain	没有房间通过筛选，依次绘制三行	You must designate a dungeon | before this restraint will | be used for imprisonment.	必须先划定监牢，才能用这件束缚器具关押囚犯。	0x1922a9, 0x192328, 0x1923a7	0x192239, 0x1922b8, 0x192337
+chain	相连且通过区域类型筛选的房间多于一个	This furniture is a part of multiple rooms.	此家具属于多个房间。	0x192439	0x1923c9
+chain	只有一个房间通过筛选	This furniture is a part of	此家具属于：	0x19255c	0x1924ec
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed water source	未命名取水区	0x192ede	0x192e6e
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed dump	未命名物品倾倒区	0x192f21	0x192eb1
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed sand collection area	未命名采沙区	0x192f64	0x192ef4
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed fishing area	未命名捕鱼区	0x192fa7	0x192f37
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed pit/pond	未命名坑洞／池塘	0x192fea	0x192f7a
+chain	未命名集会区内有棺材或石碑	Unnamed memorial hall	未命名纪念堂	0x1931f7	0x193187
+chain	未命名集会区内无棺材或石碑，雕像数大于笼具与锁链总数，且大于展示家具数	Unnamed sculpture garden	未命名雕塑园	0x19325a	0x1931ea
+chain	未命名集会区排除纪念堂和雕塑园后，笼具与锁链总数大于展示家具数	Unnamed zoo	未命名动物园	0x1932ad	0x19323d
+chain	未命名集会区排除纪念堂、雕塑园、动物园后，仍有展示家具	Unnamed museum	未命名博物馆	0x1932fa	0x19328a
+chain	未命名集会区不满足任何专用场馆条件	Unnamed meeting hall	未命名集会区	0x19333a	0x1932ca
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed pen/pasture	未命名畜栏／牧场	0x19337d	0x19330d
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed clay collection area	未命名黏土采集区	0x1933c0	0x193350
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed animal training area	未命名驯兽区	0x193403	0x193393
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed plant gathering area	未命名植物采集区	0x193446	0x1933d6
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed bedroom	未命名卧室	0x193489	0x193419
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed office	未命名办公室	0x1934cc	0x19345c
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed archery range	未命名射箭场	0x19350f	0x19349f
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed barracks	未命名兵营	0x193552	0x1934e2
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed dungeon	未命名监牢	0x193595	0x193525
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed dormitory	未命名公共宿舍	0x1935d8	0x193568
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed dining hall	未命名餐厅	0x19361b	0x1935ab
+chain	单房间，名称显示开启，存储名称为空；依区域类型或集会区内建筑组成选择	Unnamed tomb	未命名墓地	0x19365b	0x1935eb
+chain	名称分派的默认项；当前区域筛选已排除此项	Unnamed zone	未命名区域	0x19369b	0x19362b
+cage	笼内或已指定单位	{unit caption}	单位名称与驯化状态	0x18f653	0x18f5e3
+cage	笼内或已指定物品（含小动物）	{item caption}	物品名称与材质	0x18f674	0x18f604
+chain	已指定单位或实际拴住的单位	{unit caption}	单位名称；相同对象只显示一次	0x191d96	0x191d26
+cage	单房间，名称显示开启且存储名称非空	{room name}	原样显示	0x191169	0x1910f9
+chain	单房间，名称显示开启且存储名称非空	{room name}	原样显示	0x192e82	0x192e12
+cage / chain	单房间，名称显示关闭		仅绘制区域图标		
+zone_filter	类型 0x4f 至 0x61，排除 0x51；其他值跳过		按通过筛选的区域数选择提示	0x564ff0	0x5627f0
+cage_name	建筑材质及容器模式	Cage / Terrarium / Aquarium	笼子／玻璃缸／水族缸	0x56b190	0x568990
+cage_name	住户字段	{creature}{gender} / Shared	生物名及性别、绝育标记／合住	0x56b190	0x568990
+cage_name	按内容物与自定义名称组合	{material} {type} / {occupants} {type} ({material}) / {stored name} ({occupants}) / {stored name}	未命名时翻译容器、住户和材质；自定义名称原样显示，附加住户单独翻译。	0x56b190	0x568990
+chain_name	有存储名称时直接返回，否则按材质生成	{stored name} / {material} Rope / {material} Chain	自定义名称／材质＋绳索或链条；缺失材质为“未知材料”	0x56ad60	0x568560
+DFHack	CageChainOverlay，目标建筑有效	DFHack assign	DFHack 分配	plugins/zone.lua:1200	
+shared.header	命名编辑中且光标可见	_	_	0x181bde	0x181b6e
+shared.header	建筑永久物品被禁用；标题区上下两行	*** Forbidden ***	*** 已禁用 ***	0x181c78 / 0x181cdc	0x181c08 / 0x181c6c
+shared.removal	有拆除任务	Slated for removal	已指定拆除	0x18229e	0x18222e
+shared.removal	拆除任务暂停	Removal suspended.	拆除暂停。	0x1823bd	0x18234d
+shared.removal	拆除任务未暂停、尚未启动	Removal inactive.	拆除任务未启动。	0x182443	0x1823d3
+shared.removal	拆除任务可取消	Cancel removal	取消拆除	0x18263b	0x1825cb
+shared.construction	进度为零	Waiting for construction...	等待建造……	0x182b31	0x182ac1
+shared.construction	进度大于零且低于 0.33	Construction initiated.	建造已开始。	0x182b8b	0x182b1b
+shared.construction	进度在 [0.33, 0.66)	Partially constructed.	已完成部分建造。	0x182be5	0x182b75
+shared.construction	剩余未完工阶段	Construction nearly done.	建造即将完成。	0x182c25	0x182bb5
+shared.construction	建造任务暂停	Construction suspended.	建造暂停。	0x182d3c	0x182ccc
+shared.construction	建造任务未暂停、尚未启动	Construction inactive.	建造任务未启动。	0x182dc2	0x182d52
+shared.construction	暂停时	Resume construction	恢复建造	0x182fc6	0x182f56
+shared.construction	未暂停时	Suspend construction	暂停建造	0x183006	0x182f96
+shared.construction	建造阶段为零	Cancel construction	取消建造	0x18321d	0x1831ad
+shared.construction	建造阶段非零	Remove building	拆除建筑	0x18325d	0x1831ed
+shared.contents	存在机关连接，第一个页签	Show linked buildings	显示已连接建筑	0x19cfb5	0x19cf45
+shared.contents	存在机关连接，第二个页签	Show items	显示物品	0x19d000	0x19cf90
+shared.contents	连接页，解析 BUILDING_TRIGGER 或 BUILDING_TRIGGERTARGET 引用；目标存在	{目标建筑名}	建筑名称规则		
+shared.contents	物品页、无连接或建造/拆除视图	{物品描述}	物品描述规则		

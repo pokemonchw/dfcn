@@ -89,8 +89,10 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
         {native_pe_address(profile.base, 0x426057), NativeInfoTitleKind::NobleSymbolValue, 7},
         {native_pe_address(profile.base, 0x4260af), NativeInfoTitleKind::NobleSymbolAmount},
         {native_pe_address(profile.base, 0x18057a), NativeInfoTitleKind::Building},
-        // Coffin details draw the associated tomb's stored name directly.
-        {native_pe_address(profile.base, 0x195db5), NativeInfoTitleKind::Building},
+        // Cage, chain and coffin details draw the linked room's stored name.
+        {native_pe_address(profile.base, 0x18face), NativeInfoTitleKind::Building, 0, true},
+        {native_pe_address(profile.base, 0x1917e7), NativeInfoTitleKind::Building, 0, true},
+        {native_pe_address(profile.base, 0x195db5), NativeInfoTitleKind::Building, 0, true},
         {native_pe_address(profile.base, 0x158a79), NativeInfoTitleKind::Engraving},
         {native_pe_address(profile.base, 0x158af4), NativeInfoTitleKind::Terrain},
         {native_pe_address(profile.base, 0x158f72), NativeInfoTitleKind::PlannedEngraving},
@@ -211,6 +213,7 @@ static bool resolve_native_caption_profile(NativeCaptionProfile &profile) {
     profile.info_titles.building_slot = -0x3830;
     profile.info_titles.sheet_slot = 0x7960;
     profile.info_titles.building_name = 0xd0;
+    profile.info_titles.cage_vtable = native_pe_address(profile.base, 0x16531e0);
     profile.info_titles.editing_name = 0x1d59;
     // ITEM_LIST's title is at rsp+0x3d60; rsp+0x788 holds the inclusive
     // button right. Its text starts at L+7 and resizes to R-L-15 bytes,

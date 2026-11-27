@@ -57,6 +57,7 @@ struct NativeInfoTitleSite {
     uintptr_t return_address = 0;
     NativeInfoTitleKind kind = NativeInfoTitleKind::None;
     int caption_width = 0;
+    bool stored_name = false;
 };
 struct NativeCivilizationCaptionSite {
     uintptr_t return_address = 0;
@@ -90,6 +91,7 @@ struct NativeInfoTitleBinding {
     // Only the verified building draw uses these object/field bindings.
     ptrdiff_t building_slot = 0, sheet_slot = 0;
     size_t building_name = 0, editing_name = 0;
+    uintptr_t cage_vtable = 0;
     ptrdiff_t item_list_right_slot = 0;
     int item_list_right_inset = 0;
     // Places' farm caption has its own caller frame, with the same native
@@ -1037,48 +1039,52 @@ static NativeMapHoverContext native_map_hover_context(uintptr_t caller,
     return context;
 }
 
-static bool native_info_title_authored(NativeInfoTitleKind kind,
+static size_t native_info_title_authored_bytes(NativeInfoTitleKind kind,
         const NativeString *source, uintptr_t caller) {
-    // The coffin's linked-room caption passes the nonempty stored name at
-    // room+0xd0 itself, not the title's temporary stack string. Preserve it
-    // by provenance before attempting the title-specific frame offsets.
-    if (kind == NativeInfoTitleKind::Building) {
-        const uintptr_t base = native_history_profile_base();
-#ifdef _WIN32
-        if (base && caller == native_pe_address(base, 0x195db5)) return true;
-#else
-        if (base && caller == native_reference_address(base, 0x13e1c9b)) return true;
-#endif
-    }
     const auto &binding = g_native_info_title_binding;
+    // Linked-room draws pass room+0xd0 directly. Only the generated building
+    // title uses the stack frame read below.
+    if (kind == NativeInfoTitleKind::Building && caller)
+        for (const auto &site : binding.sites)
+            if (site.return_address == caller && site.stored_name) return std::string_view::npos;
     const bool farm_name = binding.farm_name_return_address &&
         caller == binding.farm_name_return_address;
-    if (!farm_name && kind != NativeInfoTitleKind::Building) return false;
+    if (!farm_name && kind != NativeInfoTitleKind::Building) return 0;
     const ptrdiff_t building_slot = farm_name ? binding.farm_building_slot : binding.building_slot;
     if (!source || !building_slot || !binding.building_name ||
-        (!farm_name && (!binding.sheet_slot || !binding.editing_name))) return true;
+        (!farm_name && (!binding.sheet_slot || !binding.editing_name))) return std::string_view::npos;
     // Each profiled draw passes its stack-owned string directly. Its frame
     // holds the live building and, for information titles, the sheet; no
     // string comparison can confuse an authored name with a default label.
     const auto *bytes = reinterpret_cast<const unsigned char *>(source);
     const unsigned char *building = nullptr;
-    if (!native_info_title_memory_readable(bytes + building_slot, sizeof(building))) return true;
+    if (!native_info_title_memory_readable(bytes + building_slot, sizeof(building))) return std::string_view::npos;
     std::memcpy(&building, bytes + building_slot, sizeof(building));
     if (!native_info_title_memory_readable(building,
-            binding.building_name + sizeof(NativeString))) return true;
+            binding.building_name + sizeof(NativeString))) return std::string_view::npos;
     if (!farm_name) {
         const unsigned char *sheet = nullptr;
-        if (!native_info_title_memory_readable(bytes + binding.sheet_slot, sizeof(sheet))) return true;
+        if (!native_info_title_memory_readable(bytes + binding.sheet_slot, sizeof(sheet))) return std::string_view::npos;
         std::memcpy(&sheet, bytes + binding.sheet_slot, sizeof(sheet));
-        if (!native_info_title_memory_readable(sheet, binding.editing_name + 1)) return true;
+        if (!native_info_title_memory_readable(sheet, binding.editing_name + 1)) return std::string_view::npos;
         unsigned char editing = 0;
         std::memcpy(&editing, sheet + binding.editing_name, sizeof(editing));
-        if (editing) return true;
+        if (editing) return std::string_view::npos;
     }
     std::string_view name;
     if (!native_string_view(reinterpret_cast<const NativeString *>(
-            building + binding.building_name), &name, 4096)) return true;
-    return !name.empty();
+            building + binding.building_name), &name, 4096)) return std::string_view::npos;
+    if (name.empty()) return 0;
+    uintptr_t vtable = 0;
+    std::memcpy(&vtable, building, sizeof(vtable));
+    std::string_view title;
+    if (vtable && vtable == binding.cage_vtable &&
+            native_string_view(source, &title, 4096) && title.starts_with(name)) {
+        const auto suffix = title.substr(name.size());
+        if (suffix.size() > 3 && suffix.starts_with(" (") && suffix.ends_with(')'))
+            return name.size();
+    }
+    return std::string_view::npos;
 }
 
 static bool native_multiline_announcement_source(std::string_view source) {
@@ -2439,7 +2445,7 @@ static void discard_native_clipped_draw_source(const NativeString *source) {
 static PendingNativeField remember_native_clipped_draw(graphicst *graphics, const NativeString *source,
         NativeJustification, int width, bool top_layer = false,
         NativeInfoTitleKind info_title_kind = NativeInfoTitleKind::None,
-        bool info_title_authored = false, int info_title_right = -1,
+        size_t info_title_authored_bytes = 0, int info_title_right = -1,
         NativeCivilizationField civilization_field = NativeCivilizationField::None,
         bool mission_title = false, int mission_title_right = -1,
         NativeMapHoverContext map_hover = {},
@@ -2462,7 +2468,7 @@ static PendingNativeField remember_native_clipped_draw(graphicst *graphics, cons
                 const auto epoch = g_embark_item_capture_epoch.load(std::memory_order_acquire);
                 remember_native_drawn_text_row(graphics->screenx, graphics->screeny, visible,
                     reinterpret_cast<uintptr_t>(source), graphics, top_layer, {},
-                    info_title_kind, info_title_authored, info_title_right,
+                    info_title_kind, info_title_authored_bytes, info_title_right,
                     civilization_field, mission_title, mission_title_right, capture_clip, epoch,
                     map_hover, location_picker_field, location_picker_box, fortress_labor_caption,
                     travel_building_field, native_caller);
@@ -2512,7 +2518,7 @@ static PendingNativeField remember_native_clipped_draw(graphicst *graphics, cons
                 if (width == 0) {
                     remember_native_drawn_text_row(graphics->screenx, graphics->screeny, visible,
                         reinterpret_cast<uintptr_t>(source), graphics,
-                        top_layer, complete, info_title_kind, info_title_authored, info_title_right,
+                        top_layer, complete, info_title_kind, info_title_authored_bytes, info_title_right,
                         civilization_field, mission_title, mission_title_right, capture_clip, epoch,
                         map_hover, location_picker_field, location_picker_box, fortress_labor_caption,
                         travel_building_field, native_caller);
@@ -2790,7 +2796,7 @@ static void capture_native_owned_caption(graphicst *graphics,
                     native_character_header_activity_source(source, native_caller);
                 row.editable_text = row.editable_text || NativeEditableTextScope::active;
                 row.info_title_kind = native_info_title_kind(native_caller);
-                row.info_title_authored = native_info_title_authored(
+                row.info_title_authored_bytes = native_info_title_authored_bytes(
                     row.info_title_kind, source, native_caller);
                 if (row.info_title_kind != NativeInfoTitleKind::None) {
                     int right = static_cast<int>(std::clamp<int64_t>(
@@ -3127,7 +3133,7 @@ template<typename Draw>
 static void capture_native_limited_caption_draw(graphicst *graphics, const NativeString *source,
         NativeJustification just, int width, Draw &&draw, bool top_layer = false,
         NativeInfoTitleKind info_title_kind = NativeInfoTitleKind::None,
-        bool info_title_authored = false,
+        size_t info_title_authored_bytes = 0,
         std::shared_ptr<const NativeEmbarkReclaimHistoryParagraph> reclaim_history = {},
         bool reclaim_history_draw = false,
         NativeCivilizationField civilization_field = NativeCivilizationField::None,
@@ -3253,7 +3259,7 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
         }
     } catch (...) {}
     const auto captured_source = remember_native_clipped_draw(graphics, source, just, width, top_layer,
-        info_title_kind, info_title_authored, info_title_right, civilization_field,
+        info_title_kind, info_title_authored_bytes, info_title_right, civilization_field,
         mission_title, mission_title_right, map_hover,
         location_picker_field, location_picker_box, fortress_labor_caption, travel_building_field,
         native_caller, capture_clip);
@@ -3369,7 +3375,7 @@ static void capture_native_limited_caption_draw(graphicst *graphics, const Nativ
                 reinterpret_cast<uintptr_t>(source), graphics, top_layer,
                 first == x ? std::string_view(complete) : std::string_view{},
                 first == x ? info_title_kind : NativeInfoTitleKind::None,
-                info_title_authored, info_title_right, civilization_field,
+                info_title_authored_bytes, info_title_right, civilization_field,
                 first == x && mission_title, mission_title_right, draw_clip, epoch,
                 map_hover, location_picker_field, location_picker_box, fortress_labor_caption,
                 travel_building_field, native_caller,
@@ -3979,7 +3985,7 @@ static void capture_native_clipped_draw(graphicst *graphics, const NativeString 
         width = stored_item_width;
 #endif
     const auto kind = native_info_title_kind(caller);
-    const bool authored = native_info_title_authored(kind, source, caller);
+    const size_t authored_bytes = native_info_title_authored_bytes(kind, source, caller);
     const auto civilization_field = native_civilization_caption_field(caller);
     const auto location_picker_field = native_location_picker_field(caller);
     const auto travel_building_field = native_travel_building_field(caller);
@@ -4018,7 +4024,7 @@ static void capture_native_clipped_draw(graphicst *graphics, const NativeString 
     capture_native_limited_caption_draw(graphics, source, just, width, [&] {
         if (g_native_clipped_caption_hooks.draw)
             g_native_clipped_caption_hooks.draw(graphics, source, just, width);
-    }, false, kind, authored, std::move(reclaim_history), history_lock.owns_lock(),
+    }, false, kind, authored_bytes, std::move(reclaim_history), history_lock.owns_lock(),
         civilization_field, mission_title, map_hover, location_picker_field, travel_building_field, caller);
 }
 
