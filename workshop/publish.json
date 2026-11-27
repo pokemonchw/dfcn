@@ -10,8 +10,8 @@
     "Chinese"
   ],
   "visibility": 0,
-  "changelog": "[h2]DFCN v53.17-20261126.2[/h2]\n[list]\n[*]自动生成名称中的 gut 和 guts 原先误译为“剧情”，现已修正为“内脏”。\n[/list]\n",
-  "release_tag": "v53.17-20261126.2",
-  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261126.2",
+  "changelog": "[h2]DFCN v53.17-20261127[/h2]\n[list]\n[*]笼具和锁链详情页现在会用中文提示须先划定监牢才能关押囚犯，锁链状态也会显示为“已拴住”或“已指定并拴住”。\n[*]给笼具起名后，标题保留玩家输入的名称，括号里的笼内生物名称会单独翻译。笼具和锁链详情中关联房间的自定义名称也会原样显示。\n[*]补全了未命名纪念堂、动物园和博物馆的默认名称，以及 bars 的译文“条”。\n[/list]\n",
+  "release_tag": "v53.17-20261127",
+  "release_url": "https://github.com/pokemonchw/dfcn/releases/tag/v53.17-20261127",
   "github_url": "https://github.com/pokemonchw/dfcn"
 }
