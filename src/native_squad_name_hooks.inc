@@ -1,5 +1,5 @@
 // DF selects alias versus generated language_name inline at each squad field.
-// Retain verified aliases, disband confirmation's generated names and the
+// Retain verified aliases, generated names from their formatter, and the
 // branch-owned fields of traveller returns; native strings remain unchanged.
 #ifdef _WIN32
 using NativeSquadAliasCopyFn = NativeString *(*)(NativeString *, const NativeString *);
@@ -105,10 +105,8 @@ static void capture_native_squad_generated_abbreviate(NativeString *source) {
     callback.call_native([&] { g_native_squad_name_hooks.abbreviate(source); });
     try {
         std::string_view after;
-        // Nobles and disband confirmation remove the article before their
-        // ordinary resize/ellipsis path. Carry the captured language_name
-        // through that actual change so the draw can resolve it from its
-        // current, complete native text.
+        // Several squad fields drop the article before resizing. Rebind the
+        // same name to the bytes that the resize or draw will actually see.
         if (name && native_string_view(source, &after, 65536))
             remember_native_squad_generated(reinterpret_cast<uintptr_t>(source), after, *name);
     } catch (...) {}
@@ -344,7 +342,7 @@ static bool install_native_squad_name_hooks() {
     if (!hooks.copy || !hooks.assign || !hooks.destroy || !hooks.destroy_direct || !hooks.abbreviate ||
             !hooks.return_append || !hooks.return_name) return false;
     // PE 53.16: alias sources are squad.alias (+0x80), selected only when
-    // nonempty. Confirmation's bound alternatives format squad.name (+0x8).
+    // nonempty. The alternate branches format squad.name (+0x8).
     // Keep literal NativeCall sites so the normal build collects coordinates
     // for both Windows editions without a separate address inventory.
     std::vector<NativeCall> calls{
@@ -392,14 +390,22 @@ static bool install_native_squad_name_hooks() {
             reinterpret_cast<const void *>(&capture_native_squad_alias_destroy<>)},
         {0x16712b, 0x6f5a0, // Character Overview, rsp+41e0.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x16710a, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
         {0x17b877, 0x6f5a0, // Character Military -> Squad, rsp+3980.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x17b89c, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
+        {0x17b905, 0xede350,
+            reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x1c6f1d, 0x6f5a0, // Mission roster, squad.alias -> rbp+1450.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
         {0x1c6f35, 0xa946e0, // The alternate branch formats squad.name.
             reinterpret_cast<const void *>(&capture_native_squad_generated)},
         {0x3e9e17, 0x6f5a0, // Zone sidebar's single assigned squad, rbp+1c30.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x3e9e2f, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
         {0x427065, 0x6f8d0, // Nobles' squad subtitle, actual alias bytes, rbp+140.
             reinterpret_cast<const void *>(&capture_native_squad_alias_assign)},
         {0x42707d, 0xa946e0, // Nobles' subtitle, actual squad.name branch.
@@ -420,14 +426,32 @@ static bool install_native_squad_name_hooks() {
             reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x4423aa, 0x6f5a0, // Selected squad detail, rbp+130.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x4423c2, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
+        {0x44240f, 0xede350,
+            reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x443f2f, 0x6f5a0, // Member sidebar's squad heading, rbp+d0.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x443f48, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
+        {0x443f92, 0xede350,
+            reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x4455db, 0x6f5a0, // Main three-line squad record, rbp+130.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x4455f3, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
+        {0x44563b, 0xede350,
+            reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x44ab51, 0x6f5a0, // Monthly squad schedule heading, rbp+48.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x44ab66, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
+        {0x44ab89, 0xede350,
+            reinterpret_cast<const void *>(&capture_native_squad_generated_abbreviate)},
         {0x451daf, 0x6f5a0, // Equipment manager's squad heading, rbp+4c8.
             reinterpret_cast<const void *>(&capture_native_squad_alias_copy)},
+        {0x451dc7, 0xa946e0,
+            reinterpret_cast<const void *>(&capture_native_squad_generated)},
         // The draw registry freezes the target before these native string
         // lifetimes end. Clearing prevents a later same-address/same-text
         // label from inheriting the preceding squad's authored classification.

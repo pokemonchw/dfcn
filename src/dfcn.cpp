@@ -5209,7 +5209,7 @@ private:
     bool append_name_editor_matches(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> *owned_regions = nullptr) const;
-    void append_native_place_name_previews(std::vector<std::string> &rows,
+    void append_native_name_editor_previews(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> &owned_regions) const;
     bool layout_name_editor(SDL_Renderer *renderer);
@@ -20347,7 +20347,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
     // for immediate glyph suppression, not just the final overlay pass.
     append_name_editor_matches(screen_rows, name_editor_matches, only_y,
         screen_override, &name_editor_regions);
-    append_native_place_name_previews(screen_rows, name_editor_matches,
+    append_native_name_editor_previews(screen_rows, name_editor_matches,
         only_y, screen_override, name_editor_regions);
 
     context_detail.checkpoint(RenderTimingStage::Tooltips);

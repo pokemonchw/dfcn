@@ -51,13 +51,17 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
         const NativeDrawnTextRow *draw;
         Match match;
         std::string complete;
-        bool generated_name = false;
         NativeSquadsEquipmentField equipment = NativeSquadsEquipmentField::None;
         int footer = -1;
         bool paragraph = false;
     };
     std::vector<Field> fields;
     auto captured_rows = g_native_squads_text.rows;
+#ifdef _WIN32
+    static const auto list_name_caller = native_reference_address(native_history_profile_base(), 0x4456b9) + 5;
+#else
+    static const auto list_name_caller = native_elf_5317_address(0x16e7703);
+#endif
     for (auto &plane : captured_rows)
         for (auto &draw : plane) refresh_native_unit_identity_draw(draw);
     for (const auto &plane : captured_rows) for (const auto &draw : plane) {
@@ -128,7 +132,6 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
             (panel_right - 1 - first) * gps->tile_pixel_x, rows * gps->tile_pixel_y};
         const auto &complete = draw.complete_source.empty() ? draw.source : draw.complete_source;
         Field field{&draw, std::move(match), draw.editable_text ? complete : trim(complete)};
-        field.generated_name = static_cast<bool>(draw.squad_generated_name);
         for (size_t index = 0; index < g_native_squads_equipment_callers.size(); ++index)
             if (g_native_squads_equipment_callers[index] &&
                     draw.native_caller == g_native_squads_equipment_callers[index])
@@ -195,18 +198,6 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
         field.match.layout_clip_right = right;
         field.match.layout_length = std::max(1, right - field.match.x);
         field.match.layout_native_clip->w = field.match.layout_length * gps->tile_pixel_x;
-        if (!field.complete.starts_with("Routine:")) continue;
-        Field *order = nullptr, *name = nullptr;
-        for (auto &before : owned)
-            if (before.match.x == field.match.x && before.match.layout_y < field.match.layout_y &&
-                    (!order || before.match.layout_y > order->match.layout_y)) order = &before;
-        if (order) for (auto &before : owned)
-            if (before.match.x == order->match.x && before.match.layout_y < order->match.layout_y &&
-                    (!name || before.match.layout_y > name->match.layout_y)) name = &before;
-        // Alias provenance still takes priority. Only the producer's actual
-        // name/order/routine record arrangement grants generated-name context.
-        if (name && !name->draw->squad_alias_target && !name->draw->editable_text &&
-                !name->draw->unit_identity_target) name->generated_name = true;
     }
 
     constexpr std::string_view footer_source =
@@ -271,7 +262,7 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
         const auto &draw = *field.draw;
         auto &match = field.match;
         if (draw.unit_identity_target && !draw.unit_identity_ready &&
-                !draw.squad_alias_target && !draw.editable_text) {
+                !draw.squad_alias_target && !draw.squad_generated_name && !draw.editable_text) {
             // Keep the exact captured source mask before native tile paint.
             // An unresolved typed identity cannot fall back to Latin ink.
             match.target.clear();
@@ -301,10 +292,15 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
             translated.status = TranslationStatus::PreservedAuthored;
             for (auto &fragment : translated.fragments) fragment.status = translated.status;
             match.translation_result = std::make_shared<const TranslationResult>(std::move(translated));
-        } else if (draw.unit_identity_target) {
+        } else if (!draw.squad_generated_name && draw.native_caller &&
+                (draw.native_caller == list_name_caller || draw.native_caller == g_native_squads_heading_caller)) {
+            // The writer owns a squad field, but only a captured alias or
+            // language_name establishes its origin.
+            target = native_text_to_utf8(field.complete);
+        } else if (draw.unit_identity_target && !draw.squad_generated_name) {
             target = *draw.unit_identity_target;
         } else {
-            std::string key = (field.generated_name ? "n" : "t") + field.complete;
+            std::string key = (draw.squad_generated_name ? "n" : "t") + field.complete;
             key += static_cast<char>(field.equipment);
             key += std::to_string(RULESETS.resource_revision());
             if (draw.squad_generated_name) {
@@ -323,6 +319,7 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
                 append(std::to_string(name.nickname_mode)); append(std::to_string(name.has_name));
                 for (const auto &word : name.words) {
                     append(word.id); append(std::to_string(word.part_of_speech));
+                    append(word.english_form);
                     append(std::to_string(word.has_form));
                 }
             }
@@ -336,9 +333,10 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
                 // The original caller establishes the entire field's type.
                 // RAW sword/knife/color names must not inherit homonymous
                 // skill, creature or material meanings from UI literals.
-                if (!field.generated_name &&
-                        (field.equipment == NativeSquadsEquipmentField::Type ||
-                         field.equipment == NativeSquadsEquipmentField::Item)) {
+                if (draw.squad_generated_name) {
+                    target = translate_history_name(*draw.squad_generated_name);
+                } else if (field.equipment == NativeSquadsEquipmentField::Type ||
+                         field.equipment == NativeSquadsEquipmentField::Item) {
                     const std::string_view source = field.complete;
                     constexpr std::array<std::string_view, 11> choices{
                         "specific armor", "specific helm", "specific pants",
@@ -369,21 +367,15 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
                                 std::move(translated));
                         }
                     }
-                } else if (!field.generated_name &&
-                        field.equipment == NativeSquadsEquipmentField::Material) {
+                } else if (field.equipment == NativeSquadsEquipmentField::Material) {
                     target = exact_literal_translation("Uniform material: " + field.complete);
                     if (!target && config_.compositional_rules)
                         target = translate_material_name(field.complete);
-                } else if (!field.generated_name &&
-                        field.equipment == NativeSquadsEquipmentField::Color) {
+                } else if (field.equipment == NativeSquadsEquipmentField::Color) {
                     target = translate_color_picker_caption(field.complete);
                 }
-                if (!target) target = exact_literal_translation(field.complete);
-                if (field.generated_name) {
-                    if (!target && draw.squad_generated_name)
-                        target = translate_history_name(*draw.squad_generated_name);
-                    if (!target) target = translate_legends_name(field.complete, false);
-                } else {
+                if (!draw.squad_generated_name) {
+                    if (!target) target = exact_literal_translation(field.complete);
                     // UI prose literals (hP) live outside the ordinary exact
                     // dictionary. Probe only this complete submitted field;
                     // literal_only excludes suffix/template paragraph searches.

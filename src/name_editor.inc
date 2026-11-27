@@ -302,6 +302,7 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
     int heading_y = -1;
     bool settlement_preview = false;
     bool government_preview = false;
+    bool squad_preview = false;
     bool item_preview = false;
     for (size_t y = 0; y < context.size(); ++y) {
         const auto fields = fields_in(context[y], static_cast<int>(y));
@@ -338,10 +339,12 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
                     heading_y = field.y;
                     settlement_preview = field.source == "Name your settlement";
                     government_preview = field.source == "Name your group";
-                    item_preview = field.source.starts_with("Name the ");
+                    squad_preview = field.source == "Name the squad";
+                    item_preview = !squad_preview && field.source.starts_with("Name the ");
                 }
             } else if (field.y < signature.first_slot_y &&
-                       field.x > signature.front_x &&
+                       (field.x > signature.front_x ||
+                        (squad_preview && field.source.starts_with('"') && field.source.ends_with('"'))) &&
                        (contains_cjk_utf8(field.source) ||
                         std::any_of(field.source.begin(), field.source.end(),
                             [](unsigned char ch) {
@@ -402,6 +405,7 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
         ? capture_native_editor_name(government_preview ? 1 : 0) : std::nullopt;
     // ADVENTURER_INVENTORY_ITEM has live slots even before this item is named.
     const auto item_name = item_preview ? capture_native_editor_name(6) : std::nullopt;
+    const auto squad_name = squad_preview ? capture_native_editor_name(4) : std::nullopt;
     NativeHistoryName unresolved_government;
     unresolved_government.entity_type = 1;
     const std::string place_suffix = government_preview
@@ -425,6 +429,9 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
             } else {
                 target = transliterate_site_spelling(preview.source);
             }
+        } else if (quoted && squad_preview) {
+            if (squad_name) target = translate_history_name(*squad_name);
+            if (target) *target = "“" + *target + "”";
         } else if (quoted && item_name) {
             target = translate_english_site_name(preview.source, &*item_name);
             if (target) *target = "“" + *target + "”";
@@ -490,7 +497,7 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
     return true;
 }
 
-void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
+void Overlay::append_native_name_editor_previews(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, const unsigned char *raw_layer,
         std::vector<SDL_Rect> &owned_regions) const {
     // name_creator_interfacest::render does not draw an enclosing frame in
@@ -503,8 +510,7 @@ void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
     const uintptr_t government_heading_caller = native_ui_semantic_address(0x1fc9d8);
     const uintptr_t native_caller = native_ui_semantic_address(0x1fcd29);
     const uintptr_t english_caller = native_ui_semantic_address(0x1fcde4);
-    if (!settlement_heading_caller || !government_heading_caller ||
-            !native_caller || !english_caller) return;
+    if (!native_caller || !english_caller) return;
     const auto draws = captured_native_drawn_text_view();
     const auto current = [&](const NativeDrawnTextRow &draw) {
         if (draw.draw_grid != gps_->screen || draw.top_layer ||
@@ -531,15 +537,18 @@ void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
     };
     for (const auto &heading : draws) {
         const bool government = heading.source == "Name your group";
-        if (heading.native_caller != (government
-                ? government_heading_caller : settlement_heading_caller) ||
-                (!government && heading.source != "Name your settlement") ||
-                !current(heading)) continue;
-        const auto place_name = capture_native_editor_name(government ? 1 : 0);
+        const bool squad = heading.source == "Name the squad";
+        if (!squad && !(government && government_heading_caller &&
+                heading.native_caller == government_heading_caller) &&
+                !(heading.source == "Name your settlement" && settlement_heading_caller &&
+                heading.native_caller == settlement_heading_caller)) continue;
+        if (!current(heading)) continue;
+        const auto editor_name = capture_native_editor_name(squad ? 4 : government ? 1 : 0);
+        if (squad && !editor_name) continue;
         NativeHistoryName unresolved_government;
         unresolved_government.entity_type = 1;
         const std::string suffix = government
-            ? site_government_name_suffix(place_name ? *place_name : unresolved_government) : "堡";
+            ? site_government_name_suffix(editor_name ? *editor_name : unresolved_government) : "堡";
         for (const auto &draw : draws) {
             const bool english = draw.native_caller == english_caller;
             if ((!english && draw.native_caller != native_caller) ||
@@ -548,9 +557,14 @@ void Overlay::append_native_place_name_previews(std::vector<std::string> &rows,
             if (raw_layer && raw_layer != draw.draw_grid) continue;
             if (english && (draw.source.size() < 2 ||
                     draw.source.front() != '"' || draw.source.back() != '"')) continue;
-            auto target = english ? translate_english_site_name(draw.source,
-                place_name ? &*place_name : nullptr, suffix) :
-                std::optional<std::string>(transliterate_site_spelling(draw.source));
+            std::optional<std::string> target;
+            if (squad) {
+                target = english ? translate_history_name(*editor_name)
+                    : translate_procedural_fragment(draw.source, true);
+            } else {
+                target = english ? translate_english_site_name(draw.source,
+                    editor_name ? &*editor_name : nullptr, suffix) : transliterate_site_spelling(draw.source);
+            }
             if (!target || target->empty()) continue;
             if (english) *target = "“" + *target + "”";
             const int length = static_cast<int>(draw.source.size());

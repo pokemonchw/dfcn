@@ -155,7 +155,7 @@ std::optional<std::string> Overlay::translate_fortress_squad_name(
     if (x < 0 || y < 0) return native_text_to_utf8(source);
     for (bool top : {false, true})
         for (const auto &draw : captured_native_drawn_text_view(top)) {
-            if (!draw.squad_alias_target || draw.x != x ||
+            if ((!draw.squad_alias_target && !draw.squad_generated_name) || draw.x != x ||
                     draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
                     draw.draw_grid != (top ? gps_->screen_top : gps_->screen) ||
                     draw.source.empty() || x >= gps_->dimx || y >= gps_->dimy) continue;
@@ -188,11 +188,10 @@ std::optional<std::string> Overlay::translate_fortress_squad_name(
                 current = cell && layer == top && (cell[0] ? cell[0] : ' ') ==
                     static_cast<unsigned char>(visible[offset]);
             }
-            if (current) return draw.squad_alias_target;
+            if (current) return draw.squad_alias_target ? draw.squad_alias_target
+                : translate_history_name(*draw.squad_generated_name);
         }
-    auto target = exact_literal_translation(source);
-    if (!target) target = translate_legends_name(source, false);
-    return target;
+    return native_text_to_utf8(source);
 }
 
 std::optional<std::string> Overlay::translate_fortress_squad_reference(
@@ -202,12 +201,13 @@ std::optional<std::string> Overlay::translate_fortress_squad_reference(
     const auto label = exact_literal_translation("Character overview: Squad");
     if (!label) return std::nullopt;
     const auto value = trim_view(source.substr(prefix.size()));
-    // A separately colored alias draw proves this field even when its text
-    // is literally "None" or the grid has shortened it inside a UTF-8 byte.
+    // The separately colored name draw also owns aliases such as "None"
+    // and names the grid has shortened inside a UTF-8 byte.
     if (x >= 0 && y >= 0) {
         for (bool top : {false, true})
             for (const auto &draw : captured_native_drawn_text_view(top)) {
-                if (!draw.squad_alias_target || draw.y < 0 || draw.y >= gps_->dimy ||
+                if ((!draw.squad_alias_target && !draw.squad_generated_name) ||
+                        draw.y < 0 || draw.y >= gps_->dimy ||
                         draw.x < x + static_cast<int>(prefix.size()) ||
                         draw.x >= x + static_cast<int>(source.size())) continue;
                 if (draw.y != y) {
@@ -225,8 +225,11 @@ std::optional<std::string> Overlay::translate_fortress_squad_reference(
                 }
                 const size_t offset = static_cast<size_t>(draw.x - x);
                 if (source.substr(offset).starts_with(draw.source) ||
-                        draw.source.starts_with(source.substr(offset)))
-                    return *label + "：" + *draw.squad_alias_target;
+                        draw.source.starts_with(source.substr(offset))) {
+                    const auto name = draw.squad_alias_target ? draw.squad_alias_target
+                        : translate_history_name(*draw.squad_generated_name);
+                    if (name) return *label + "：" + *name;
+                }
             }
     }
     const auto name = value == "None" ? exact_literal_translation(value)

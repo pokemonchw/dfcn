@@ -623,10 +623,10 @@ std::optional<std::string> Overlay::translate_history_name(
             continue;
         }
         const auto found = procedural_word_senses_.find(word.id + "\t" + part);
-        // Ordinary names keep the existing WORD/POS support boundary. Entity
-        // names resolve a missing slot alone, retaining every reviewed term.
+        // Resolve missing entity and squad senses one slot at a time using
+        // the English form of the same native WORD and part of speech.
         if (found == procedural_word_senses_.end() || found->second.empty()) {
-            if (!polity && !site_government) return std::nullopt;
+            if (!polity && !site_government && name.type != 3) return std::nullopt;
             std::string form = word.english_form;
             if (form.empty()) {
                 const auto english = history_english_name_forms_.find(word.id);
