@@ -509,7 +509,7 @@ static bool capture_native_history_original_name(uintptr_t base, uintptr_t addre
 
 static bool capture_native_history_name(uintptr_t base, uintptr_t address,
         NativeHistoryName &result, std::array<int32_t, 7> *native_indices = nullptr,
-        bool include_hidden_words = false) {
+        bool include_hidden_words = false, bool *english_title_group = nullptr) {
     // The fields are contiguous in both supported name layouts. Read them
     // once instead of issuing separate process-memory calls for seven WORD
     // indices, seven POS values and each scalar/string header. Generated
@@ -540,6 +540,11 @@ static bool capture_native_history_name(uintptr_t base, uintptr_t address,
     std::memcpy(indices.data(), snapshot.data() + fields[2].native, sizeof(indices));
     std::memcpy(parts_of_speech.data(), snapshot.data() + fields[3].native, sizeof(parts_of_speech));
     if (native_indices) *native_indices = indices;
+    // EnglishName opens the title group from the indices before its word
+    // helper omits unsupported selectors. Its caller can still display H-
+    // when the selected A or N contributes no bytes.
+    if (english_title_group)
+        *english_title_group = indices[2] != -1 || indices[3] != -1 || indices[5] != -1;
     if (!copy.nickname.empty()) {
         int32_t game_mode = -1;
         const uintptr_t mode_address = native_reference_address(base, native_history_layout::gametype_rva);
@@ -564,7 +569,11 @@ static bool capture_native_history_name(uintptr_t base, uintptr_t address,
         auto &word = copy.words[slot];
         word.part_of_speech = parts_of_speech[slot];
         if (index == -1) continue;
-        if (index < 0 || word.part_of_speech < 0 || word.part_of_speech > 8) return false;
+        if (index < 0 || static_cast<size_t>(index) >= words.size() ||
+                word.part_of_speech < 0 || word.part_of_speech > 8) {
+            if (english_title_group) continue;
+            return false;
+        }
         const uintptr_t raw = native_history_vector_at(words, static_cast<size_t>(index));
         // language_word.word at +0 is its stable WORD_ID. The nine English
         // forms at +0x20 are deliberately not parsed to recover that ID.
@@ -583,7 +592,7 @@ static bool native_history_site_type(uintptr_t site, NativeHistoryEventData &out
     const std::string &prefix);
 
 static bool capture_native_history_site_name_context(uintptr_t base, uintptr_t site,
-        NativeHistoryName &name, bool identity_validated = false) {
+        NativeHistoryName &name, bool identity_validated = false, bool include_original = true) {
     int32_t id = -1;
     if (!base || !site || !native_history_copy(native_history_object_field(
             site, "world_site", 0x88, sizeof(id)), id) || id < 0 ||
@@ -604,7 +613,7 @@ static bool capture_native_history_site_name_context(uintptr_t base, uintptr_t s
             label == classified.texts.end()) return false;
 
     std::string original;
-    if (name.has_name) {
+    if (include_original && name.has_name) {
         // Copy the same OriginalName spelling as native page/list producers
         // through guarded fields. English WORD forms cannot supply the site's
         // native pronunciation, and a live formatter cannot own this read.

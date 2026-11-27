@@ -1,0 +1,44 @@
+field	selection	visible English production	Steam VA	Classic VA
+title	resolved artifact with a nonempty EnglishName	{artifact EnglishName}	0x1401d4b52	0x1401d4ae2
+title	empty EnglishName and item type 0x59, type 0x57 or written flag 0x14	Untitled	0x140bac0c0	0x140ba8ee0
+title	empty EnglishName, other item	{item identity with quality}	0x140bac0c0	0x140ba8ee0
+title	unresolved artifact ID	an unknown artifact	0x140bac39e	0x140ba91be
+status	1. rumor.hfid != -1	Last held by {holder}	0x1401d4c57	0x1401d4be7
+holder	unresolved ID	an unknown creature	0x140bab59c	0x140ba83bc
+holder	named, descriptor disabled	{EnglishName}	0x140baabd0	0x140ba79f0
+holder	named, descriptor enabled, no transformation	the [zombie ][ghostly ]{singular caste or creature} {EnglishName}	0x140baabd0	0x140ba79f0
+holder	named, descriptor enabled, transformed	the [zombie ]{singular caste or creature} {transformation} {EnglishName}	0x140baabd0	0x140ba79f0
+holder	unnamed, no transformation	a [zombie ][ghostly ]{singular caste or creature}	0x140baabd0	0x140ba79f0
+holder	unnamed, transformed	a [zombie ]{singular caste or creature} {transformation}	0x140baabd0	0x140ba79f0
+holder	empty name, caste or transformation	remaining article and modifiers, or bare Last held by	0x140baabd0	0x140ba79f0
+status	2. no holder and rumor.stid != -1	Last in {site EnglishName}	0x1401d4d35	0x1401d4cc5
+site	unresolved ID	an unknown site	0x140bab71e	0x140ba853e
+status	3. no holder or site and rumor.srid != -1	Last in {surface region EnglishName}	0x1401d4e19	0x1401d4da9
+region	unresolved ID	an unknown region	0x140bac82b	0x140ba964b
+site or region	existing object with no visible name	Last in	0x140aae180	0x140aaafe0
+status	4. no holder, site or surface region and rumor.flid != -1	Last in {underground label}	0x1401d4efd	0x1401d4e8d
+underground	unresolved ID	an unknown underground region	0x140bac6d7	0x140ba94f7
+underground	unnamed, type 0	the depths of the world	0x140bac6af	0x140ba94cf
+underground	unnamed, type 1	the magma sea	0x140bac6a0	0x140ba94c0
+underground	unnamed, type 2	the Underworld	0x140bac691	0x140ba94b1
+underground	named, or unnamed with another type	empty label (bare Last in)	0x140bac600	0x140ba9420
+status	5. no holder, site, surface region or underground layer	Location unknown	0x1401d4faa	0x1401d4f3a
+EnglishName	has_name=false	empty	0x140aae180	0x140aaafe0
+EnglishName	no nickname, or nickname mode 1	{capitalized first name} [`{nickname}']	0x140aae180	0x140aaafe0
+EnglishName	nickname mode 0 or 2	`{nickname}' (mode 2 returns immediately)	0x140aae180	0x140aaafe0
+EnglishName	front and/or rear present	{WORD0}{WORD1} (joined before capitalization)	0x140aae180	0x140aaafe0
+EnglishName	any of slots 2, 3, 5 present, first nonempty title component	{The|the} [WORD2] [WORD3] [WORD4-][WORD5]	0x140aae180	0x140aaafe0
+EnglishName	nonempty slot 6	{Of|of} {WORD6} (no space after a still-open WORD4 hyphen)	0x140aae180	0x140aaafe0
+WORD0..6	independent POS 0..8 for each slot	noun | plural noun | adjective | prefix | verb | 3rd person | past | participle | gerund	0x140d4488c	0x140d416ac
+WORD0..6	missing/out-of-range word, unsupported POS or empty selected RAW form	no bytes for that form	0x140d44840	0x140d41660
+clipping	title or status exceeds its row budget	resized field, final three bytes replaced by dots when width permits	0x1401d4b52	0x1401d4ae2
+popup	no hovered artifact	no popup	0x1401c4550	0x1401c44e0
+popup body	hovered artifact	{complete item description}, wrapped at 53 source bytes, first eight rows drawn. Body productions in ../popup-text-productions.tsv, current body in ../../image-information-current/pe-{edition}-selected-item-description.c	0x1401dcef9	0x1401dce89
+claim	local entity claim	Claimed by your local government	0x1401d52f3	0x1401d5283
+claim	no entity claim and local personal holding	Claimed by local {historical figure display}	0x1401d5363	0x1401d52f3
+claim holder	HF formatter modes 1/1	named: EnglishName without a race prefix; unnamed: creature/caste with applicable state or transformation; missing: an unknown creature	0x1401d53e8	0x1401d5378
+claim	no entity or personal claim and local family holding	Claimed by local family	0x1401d5442	0x1401d53d2
+claim	no applicable claim	no ownership line	0x1401dcd60	0x1401dccf0
+footer	both leader pointers null	Cannot order mission without leader	0x1401d54b8	0x1401d5448
+footer	leader present and location reachable	Click to recover (creates new mission)	0x1401d5542	0x1401d54d2
+footer	leader present and location inaccessible	Inaccessible mission location	0x1401d559c	0x1401d552c

@@ -18,12 +18,15 @@ static std::string site_name_decision_key(std::string_view native_name,
     return key;
 }
 
+static void capitalize_native_history_original_name(std::string &value);
+
 static std::optional<std::string> reconstruct_site_english_name(
-        const NativeHistoryName &name) {
+        const NativeHistoryName &name, std::optional<bool> title_group) {
     if (!name.has_name) return std::nullopt;
     const auto capitalized = [](std::string value) {
-        if (!value.empty() && value.front() >= 'a' && value.front() <= 'z')
-            value.front() -= 'a' - 'A';
+        // EnglishName and OriginalName call the same native capitalizer,
+        // including for multiword RAW forms and the literal first name.
+        capitalize_native_history_original_name(value);
         return value;
     };
     const auto append = [](std::string &result, const std::string &group) {
@@ -36,7 +39,7 @@ static std::optional<std::string> reconstruct_site_english_name(
     if (nickname && (name.nickname_mode == 0 || name.nickname_mode == 2))
         english = "`" + name.nickname + "'";
     else {
-        english = name.first_name;
+        english = capitalized(name.first_name);
         if (nickname) append(english, "`" + name.nickname + "'");
     }
     if (nickname && name.nickname_mode == 2) return english;
@@ -53,8 +56,8 @@ static std::optional<std::string> reconstruct_site_english_name(
     // Reproduce the native English formatter, including its hidden slot 4
     // rule and compound title. This is input text, never a Chinese gloss.
     bool open_title_compound = false;
-    if (!name.words[2].id.empty() || !name.words[3].id.empty() ||
-            !name.words[5].id.empty()) {
+    if (title_group.value_or(!name.words[2].id.empty() || !name.words[3].id.empty() ||
+            !name.words[5].id.empty())) {
         std::string title;
         append(title, capitalized(forms[2]));
         append(title, capitalized(forms[3]));

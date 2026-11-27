@@ -1,3 +1,45 @@
+// viewscreen_worldst::render indexes artifact and artifact_arl with the
+// same clamped scroll position. An artifact's own storage_site predates
+// rumor updates and can describe a different place from the displayed row.
+static bool native_world_artifact_row_place(int row_offset, int panel_height,
+        NativeHistoryObjectKind &kind, NativeHistoryName &name, bool &title_group) {
+    const int capacity = panel_height / 3;
+    if (row_offset < 0 || row_offset % 3 || row_offset / 3 >= capacity) return false;
+    dfhack_require_world_read();
+    const uintptr_t base = native_history_profile_base();
+    const uintptr_t screen = native_current_viewscreen();
+    if (!base || !screen || !native_history_object_is(screen, "viewscreen_worldst")) return false;
+    const auto field = [&](std::string_view member, size_t size) {
+        return native_history_object_member(screen, "viewscreen_worldst", member, size);
+    };
+    int32_t mode = -1, scroll = 0;
+    NativeBorrowedVector<uintptr_t> artifacts, rumors;
+    if (!native_history_copy(field("view_mode", sizeof(mode)), mode) || mode != 7 ||
+            !native_history_copy(field("scroll_position_artifacts", sizeof(scroll)), scroll) ||
+            !native_history_read_vector(field("artifact", sizeof(artifacts)), artifacts) ||
+            !native_history_read_vector(field("artifact_arl", sizeof(rumors)), rumors))
+        return false;
+    const int first = std::clamp<int>(scroll, 0, std::max(0, int(artifacts.size()) - capacity));
+    const size_t index = static_cast<size_t>(first + row_offset / 3);
+    const uintptr_t artifact = native_history_vector_at(artifacts, index);
+    // Leading fields of artifact_rumor_locationst in both x64 ABIs.
+    struct {
+        uintptr_t artifact;
+        int32_t site, structure, holder, region;
+    } location{};
+    if (!artifact || !native_history_copy(native_history_vector_at(rumors, index), location) ||
+            location.artifact != artifact || location.holder != -1) return false;
+    kind = location.site != -1 ? NativeHistoryObjectKind::Site : NativeHistoryObjectKind::Region;
+    const int32_t id = kind == NativeHistoryObjectKind::Site ? location.site : location.region;
+    if (id < 0) return false; // Underground labels and empty fields have no EnglishName.
+    const uintptr_t object = native_history_find_subject(base, kind, id);
+    if (!object || !capture_native_history_name(base, object, name, nullptr, false, &title_group) ||
+            !name.has_name) return false;
+    if (kind == NativeHistoryObjectKind::Site)
+        capture_native_history_site_name_context(base, object, name, true, false);
+    return true;
+}
+
 // Read-only access to the native world-map artifact paragraph cache. The
 // caller must prove the current hover frame and match its visible text before
 // using any of these owned lines; a cached paragraph alone does not own UI.

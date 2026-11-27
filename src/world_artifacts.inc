@@ -170,11 +170,13 @@ bool Overlay::append_world_artifact_rows(std::vector<std::string> &rows,
                 }
                 const std::string complete = complete_source(row.x, row.y, row.source);
                 const std::string source = normalize_utterance(complete);
-                // The row is a complete native field. Keep its final result,
-                // including an unsupported name, across raw/composite passes
-                // and subsequent frames. The book parser's work memo belongs
-                // to one call and cannot provide that reuse on its own.
-                auto target = memoize_item_translation(
+                // Identical Last in strings can come from distinct sites or
+                // regions. Resolve the visible rumor before the text-only cache.
+                std::optional<std::string> target;
+                if (index == 1 && source.starts_with("Last in "))
+                    target = translate_world_artifact_row_location(source,
+                        button->y - panel->y, panel->h);
+                if (!target) target = memoize_item_translation(
                     std::string(index == 1 ? "world-artifact-status:" : "world-artifact-title:") + source,
                     [&]() -> std::optional<std::string> {
                         TranslationWorkScope work;
@@ -185,6 +187,10 @@ bool Overlay::append_world_artifact_rows(std::vector<std::string> &rows,
                             // Native Linux 53.16 uses resize at 0x1431cc5 followed
                             // by addst at 0x142fee6, already served by shared hooks.
                             target = translate_legends_text("World artifact: " + source, false, false);
+                        } else if (source == "Untitled" || source == "an unknown artifact") {
+                            // Both are complete title-supplier literals; the
+                            // item parser strips the article from the latter.
+                            target = translate_legends_term(source);
                         } else if (const size_t species_at = source.rfind(" the ");
                                    species_at != std::string::npos && species_at > 0 &&
                                    translate_creature_descriptor(

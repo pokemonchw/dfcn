@@ -4340,6 +4340,8 @@ private:
     std::optional<std::string> localize_name_slots(const NativeHistoryName &name,
         std::string_view suffix = {}) const;
     std::optional<std::string> translate_world_artifact_name(std::string_view source) const;
+    std::optional<std::string> translate_world_artifact_row_location(
+        std::string_view status, int row_offset, int panel_height) const;
     std::string site_name_full_transliteration(const NativeHistoryName &name) const;
     std::vector<std::string> site_name_search_aliases(const NativeHistoryName &name) const;
     std::string translate_river_name(const RiverNameIdentity &identity,
@@ -10795,7 +10797,7 @@ std::optional<std::string> Overlay::translate_english_character_name(
 }
 
 static std::optional<std::string> reconstruct_site_english_name(
-    const NativeHistoryName &name);
+    const NativeHistoryName &name, std::optional<bool> title_group = std::nullopt);
 
 #include "history_names.inc"
 #include "site_names.inc"

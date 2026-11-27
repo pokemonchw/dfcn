@@ -481,6 +481,73 @@ std::optional<std::string> Overlay::translate_world_artifact_location(
     return translate_legends_place(source, true);
 }
 
+std::optional<std::string> Overlay::translate_world_artifact_row_location(
+        std::string_view status, int row_offset, int panel_height) const {
+    constexpr std::string_view prefix = "Last in ";
+    if (!status.starts_with(prefix)) return std::nullopt;
+    NativeHistoryObjectKind kind;
+    NativeHistoryName name;
+    bool title_group = false;
+    if (!native_world_artifact_row_place(row_offset, panel_height, kind, name, title_group))
+        return std::nullopt;
+    const auto english = reconstruct_site_english_name(name, title_group);
+    if (!english) return std::nullopt;
+    const auto shown = status.substr(prefix.size());
+    const auto full = normalize_utterance(*english);
+    if (shown != full && !(shown.ends_with("...") && full.size() > shown.size() &&
+            full.starts_with(shown.substr(0, shown.size() - 3)))) return std::nullopt;
+
+    const bool site = kind == NativeHistoryObjectKind::Site;
+    const auto suffix = site && name.site_id >= 0 ? site_name_attribute_suffix(name) : "";
+    const auto key = site_name_decision_key(full, name.type, name.words);
+    return memoize_item_translation(std::string(site ? "artifact-row-site:" : "artifact-row-region:") +
+            key + '\t' + suffix, [&]() -> std::optional<std::string> {
+        const auto entry = history_semantic_templates_.find("World artifact: Last in {p}");
+        if (entry == history_semantic_templates_.end()) return std::nullopt;
+        // Render only visible WORD slots. A literal first name or nickname
+        // can coexist with a generated compound, title and Of complement.
+        auto words = name;
+        words.site_id = -1;
+        words.first_name.clear();
+        words.nickname.clear();
+        if (!title_group) words.words[4] = {};
+        for (auto &word : words.words)
+            if (!word.has_form) word = {};
+
+        NativeHistoryName literal = name;
+        literal.words = {};
+        std::string place = native_text_to_utf8(reconstruct_site_english_name(literal).value_or(""));
+        const bool has_head = std::any_of(words.words.begin(), words.words.begin() + 6,
+            [](const auto &word) { return !word.id.empty(); });
+        if (!has_head) {
+            const auto &owner = words.words[6];
+            if (!owner.id.empty()) {
+                // A bare Of complement qualifies the literal group, or the
+                // place type when neither a first name nor a nickname is shown.
+                auto complement = translate_history_name(words);
+                if (!complement) complement = english_name_transliterator_.word(
+                    owner.english_form, owner.part_of_speech) + "之";
+                place = *complement + place;
+            }
+            place += suffix;
+        } else {
+            std::optional<std::string> generated;
+            if (!site && !words.words[5].id.empty()) generated = translate_history_name(words);
+            if (!generated) {
+                auto localized = localize_river_name(words, RiverNames::InputKind::SiteSlots).display(suffix);
+                if (!localized.empty()) generated = std::move(localized);
+            }
+            if (!generated) return std::nullopt;
+            if (!place.empty()) place += "·";
+            place += *generated;
+        }
+        if (place.empty()) return std::nullopt;
+        const std::vector<std::optional<std::string>> resolved{std::move(place)};
+        return fill_template(rules_[static_cast<size_t>(entry->second)], {*english},
+            nullptr, nullptr, &resolved);
+    });
+}
+
 std::vector<std::string> Overlay::site_reference_search_aliases(std::string_view source) const {
     const auto identity = resolve_site_reference_identity(source, draw_epoch_,
         [&](const NativeHistoryName &name) { return site_name_search_aliases(name); });
