@@ -206,6 +206,65 @@ std::optional<std::string> Overlay::translate_fortress_location_reference(
     return !result && tavern ? from_label() : result;
 }
 
+// Visitor Overview names abstract buildings. Rumours use plotinfo.site_id,
+// while every itinerary entry carries its own site and building IDs.
+std::optional<std::string> Overlay::translate_visitor_overview_location(
+        std::string_view source, std::optional<int32_t> itinerary_reason) const {
+    dfhack_require_world_read();
+    const auto base = native_history_profile_base();
+    const auto building_target = [&](int32_t site_id, int32_t building_id)
+            -> std::optional<std::string> {
+        NativeHistorySubject building;
+        if (site_id < 0 || building_id < 0 ||
+                !capture_native_history_structure(base, site_id, building_id, building))
+            return std::nullopt;
+        const auto english = reconstruct_site_english_name(building.name);
+        if (!english || normalize_utterance(*english) != source) return std::nullopt;
+        return translate_history_name(building.name);
+    };
+
+    int32_t unit_id = -1;
+    uintptr_t unit = 0, travel_log = 0;
+    if (base && native_character_open() &&
+            native_history_copy(native_history_object_member(g_native_character_owner,
+                "view_sheets_interfacest", "active_id", 4), unit_id) && unit_id >= 0 &&
+            native_history_material_find_id(native_history_global(0x23e50b0), 0x130, unit_id, unit) && unit &&
+            native_history_copy(native_history_object_member(unit, "unit", "enemy.travel_log", 8),
+                travel_log) && travel_log) {
+        if (itinerary_reason) {
+            NativeBorrowedVector<uintptr_t> entries;
+            if (native_history_read_vector(travel_log, entries)) {
+                std::optional<std::string> result;
+                for (size_t i = 0; i < entries.size(); ++i) {
+                    struct { int32_t reason, site_id, building_id; } entry;
+                    if (!native_history_copy(native_history_vector_at(entries, i), entry)) continue;
+                    // Unrecognized reasons contribute only "at <location>".
+                    if ((entry.reason >= 0 && entry.reason <= 10 ? entry.reason : -1) != *itinerary_reason)
+                        continue;
+                    if (auto target = building_target(entry.site_id, entry.building_id)) {
+                        if (result && *result != *target) return native_text_to_utf8(source);
+                        result = std::move(target);
+                    }
+                }
+                if (result) return result;
+            }
+        } else {
+            int32_t site_id = -1, building_id = -1;
+            // travel_logst.original_goal_ab_id follows original_reason (+0x2c).
+            if (native_history_copy(native_history_named_global("plotinfost", "site_id", 4), site_id) &&
+                    native_history_copy(travel_log + 0x30, building_id))
+                if (auto target = building_target(site_id, building_id)) return target;
+        }
+    }
+    // A retained rumour paragraph still refers to the current fortress.
+    // Its location cards already resolve unambiguous full names by building type.
+    if (!itinerary_reason) {
+        if (auto target = translate_fortress_location_reference(source)) return target;
+        return translate_legends_name(source, false);
+    }
+    return translate_legends_place(source);
+}
+
 static void index_site_reference_source(SiteReferenceCache &cache, size_t index) {
     for (const auto &source : {cache.identities[index].native,
             cache.identities[index].english}) {

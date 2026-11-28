@@ -347,6 +347,10 @@ std::optional<std::string> Overlay::translate_help_paragraph_uncached(
                         }
                         break;
                     case 'e':
+                        if (visitor_overview_capture(rule, i)) {
+                            translated = translate_ui_catalog_capture(rule, i, captures[i]);
+                            break;
+                        }
                         if (captures[i].empty() && adventure_divine_building_capture(rule, i)) {
                             translated = std::string{};
                             break;
@@ -629,13 +633,14 @@ std::optional<std::string> Overlay::translate_help_paragraph_uncached(
 template <typename Cache>
 static dfcn::TranslationResult cache_native_display_translation(Cache &cache, size_t &bytes,
         const std::string &key, const std::vector<int> &source_colors,
-        const std::vector<int> &target_colors, dfcn::TranslationResult result) {
+        const std::vector<int> &target_colors, dfcn::TranslationResult result, bool cacheable) {
     result.resource_revision = RULESETS.resource_revision();
     if (result.usable()) {
         result.consumed = result.source.size();
         result.policy = dfcn::TranslationPolicy::Display;
     }
-    if (!key.starts_with(std::to_string(native_identity_translation_context()) + '\x1f')) return result;
+    if (!cacheable || !key.starts_with(std::to_string(native_identity_translation_context()) + '\x1f'))
+        return result;
     typename Cache::mapped_type entry{source_colors, target_colors, result};
     entry.bytes = key.size() + entry.result.source.capacity() + entry.result.target.capacity() +
         entry.result.origins.capacity() * sizeof(size_t) +
@@ -742,8 +747,12 @@ dfcn::TranslationResult Overlay::translate_help_paragraph_result(
     const std::string cache_key = std::to_string(context) + '\x1f' +
         std::string(ui_message ? "ui-message:" : "help:") +
         std::to_string(required_rule) + ":" + std::string(raw_source);
+    // Identical visitor text can refer to different buildings in another
+    // visitor's travel log. Only the per-record translation memo is shared.
+    const bool cacheable = !ui_message ||
+        !catalog_literal_end(raw_source, 0, "This visitor has come ", false);
     if (const auto found = native_display_translation_cache_.find(cache_key);
-            found != native_display_translation_cache_.end() &&
+            cacheable && found != native_display_translation_cache_.end() &&
             found->second.result.resource_revision == RULESETS.resource_revision() &&
             found->second.source_colors == raw_foregrounds) {
         target_foregrounds = found->second.target_colors;
@@ -764,7 +773,7 @@ dfcn::TranslationResult Overlay::translate_help_paragraph_result(
         result.owner = ui_message ? "native-ui-message" : "native-help-document";
         return cache_native_display_translation(native_display_translation_cache_,
             native_display_translation_cache_bytes_, cache_key, raw_foregrounds, target_foregrounds,
-            std::move(result));
+            std::move(result), cacheable);
     };
     try {
         if (const auto complete = translate_help_paragraph(raw_source, raw_foregrounds,

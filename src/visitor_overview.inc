@@ -66,11 +66,10 @@ std::optional<std::string> Overlay::translate_visitor_overview_purposes(
         starts.push_back(at + width);
     }
 
-    std::map<std::string_view, std::optional<std::string>> place_targets;
-    const auto place_target = [&](std::string_view place) -> std::optional<std::string> {
-        auto found = place_targets.find(place);
-        if (found == place_targets.end())
-            found = place_targets.emplace(place, translate_legends_place(place)).first;
+    std::map<std::pair<int32_t, std::string_view>, std::optional<std::string>> place_targets;
+    const auto place_target = [&](std::string_view place, int32_t reason) -> std::optional<std::string> {
+        auto [found, added] = place_targets.try_emplace(std::pair{reason, place});
+        if (added) found->second = translate_visitor_overview_location(place, reason);
         return found->second;
     };
     const auto item = [&](size_t begin, size_t end) -> std::optional<std::string> {
@@ -80,7 +79,7 @@ std::optional<std::string> Overlay::translate_visitor_overview_purposes(
         // entries so the native list's arity can still be established.
         if (value.empty() || value == "at") return std::string{};
         if (value.starts_with("at ")) {
-            const auto place = place_target(value.substr(3));
+            const auto place = place_target(value.substr(3), -1);
             if (!place) return std::nullopt;
             return apply("Visitor overview purpose location: {e}", {*place});
         }
@@ -90,7 +89,7 @@ std::optional<std::string> Overlay::translate_visitor_overview_purposes(
             const auto suffix = value.substr(purposes[purpose].size());
             if (suffix.empty() || suffix == " at") return purpose_targets[purpose];
             if (!suffix.starts_with(" at ")) return std::nullopt;
-            const auto place = place_target(suffix.substr(4));
+            const auto place = place_target(suffix.substr(4), static_cast<int32_t>(purpose));
             if (!place) return std::nullopt;
             return apply("Visitor overview purpose at {s}: {e}",
                 {*purpose_targets[purpose], *place});

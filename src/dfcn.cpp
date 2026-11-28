@@ -5839,6 +5839,8 @@ private:
         bool preserve_empty_divine_building = false, bool display_fields = false) const;
     std::optional<std::string> translate_visitor_overview_purposes(
         std::string_view source) const;
+    std::optional<std::string> translate_visitor_overview_location(
+        std::string_view source, std::optional<int32_t> itinerary_reason = std::nullopt) const;
     std::optional<std::string> translate_ui_catalog_capture(
         const Rule &rule, size_t index, std::string_view source) const;
     std::optional<std::string> translate_adventure_divine_capture(
@@ -13157,6 +13159,12 @@ static bool fortress_squad_reference_template(std::string_view source) {
         source == "Assigned to {e}, position {d}";
 }
 
+static bool visitor_overview_capture(const Rule &rule, size_t index) {
+    return rule.ui_message && rule.source.starts_with("This visitor has come ") &&
+        index < rule.template_kinds.size() &&
+        (rule.template_kinds[index] == 's' || rule.template_kinds[index] == 'e');
+}
+
 static bool fortress_ore_use_template(std::string_view source) {
     return source == "Ore of {s}" || source == "Ore of {s} ({d}%)";
 }
@@ -13216,11 +13224,11 @@ std::optional<std::string> Overlay::translate_ui_catalog_capture(
     // when it happens to be an ordinary dictionary word or generated title.
     if (index == 0 && fortress_squad_reference_template(rule.source))
         return translate_fortress_squad_name(source);
-    // The native visitor constructor walks an itinerary vector. Its first
-    // field is a complete list of purposes, each with an optional named place.
-    if (rule.ui_message && index == 0 &&
-            rule.source.starts_with("This visitor has come {s}."))
-        return translate_visitor_overview_purposes(source);
+    if (visitor_overview_capture(rule, index)) {
+        const auto field = normalize_utterance(source);
+        return rule.template_kinds[index] == 's' ? translate_visitor_overview_purposes(field)
+                                                : translate_visitor_overview_location(field);
+    }
     // Trade pane titles store the civilization/fortress native-language
     // name as one field. Reuse settlement-name transliteration, without
     // interpreting a native root as an unrelated English UI word.
@@ -13698,6 +13706,17 @@ std::string Overlay::translate_template_captures(
         const Rule &rule, const std::vector<std::string> &captures,
         bool *all_string_captures_translated) const {
     std::vector<std::optional<std::string>> resolved;
+    if (visitor_overview_capture(rule, 0) && captures.size() == rule.template_kinds.size()) {
+        resolved.resize(captures.size());
+        for (size_t i = 0; i < captures.size(); ++i) {
+            if (!visitor_overview_capture(rule, i)) continue;
+            resolved[i] = translate_ui_catalog_capture(rule, i, captures[i]);
+            if (!resolved[i]) {
+                if (all_string_captures_translated) *all_string_captures_translated = false;
+                return {};
+            }
+        }
+    }
     if (fortress_ore_use_template(rule.source)) {
         // Item Uses and Stone use both name the ore's output metal here.
         // Resolve its complete material state, without generic dictionary
@@ -17207,7 +17226,7 @@ static std::string normalize_art_utterance(std::string_view source);
 template <typename Cache>
 static TranslationResult cache_native_display_translation(Cache &cache, size_t &bytes,
     const std::string &key, const std::vector<int> &source_colors,
-    const std::vector<int> &target_colors, TranslationResult result);
+    const std::vector<int> &target_colors, TranslationResult result, bool cacheable = true);
 
 #include "character_thoughts.inc"
 
