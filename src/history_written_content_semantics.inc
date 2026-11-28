@@ -178,7 +178,7 @@ const auto written_content = [&](const std::string &prefix, int carrier) -> std:
         } else key = titled ? "Written on the item is a {s}" : "Written on the item is an untitled {s}";
         fields.push_back(*form);
         if (titled) {
-            const auto title = translate_legends_book(text(prefix + ".title"));
+            const auto title = translate_creative_title(text(prefix + ".title"));
             if (!title) return std::nullopt;
             fields.push_back(Pieces{piece(*title, neutral)}); key += " entitled {b}";
         }

@@ -49,9 +49,8 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
             return translated;
         return accept(translate_procedural_fragment(value, true));
     };
-    // Both the form overview and passage voicing can recite a specific work
-    // directly, without `a composition of` or `the words of`. Keep that title
-    // in the existing reference grammar and share the material parsing.
+    // Both loops read poetic_form.name with or without "a composition of".
+    // Only "the words of" copies written_content.title.
     auto translate_recited_material = [&](std::string_view raw)
             -> std::optional<std::string> {
         raw = trim_view(raw);
@@ -61,20 +60,17 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
         if (raw == "a composition of") return "吟诵体式未注明的诗作";
         if (raw == "the words of") return "吟诵题名未注明的作品中的词句";
         if (raw.starts_with("a composition of ")) {
-            const auto work = translate_reference(raw.substr(17));
+            const auto work = translate_creative_title(raw.substr(17));
             if (!work) return std::nullopt;
             return "吟诵“" + *work + "”体的诗作";
         }
         if (raw.starts_with("the words of ")) {
-            const auto work = translate_reference(raw.substr(13));
+            const auto work = translate_creative_title(raw.substr(13));
             if (!work) return std::nullopt;
             return "吟诵《" + *work + "》中的词句";
         }
-        if (raw.starts_with("The ")) {
-            const auto work = translate_reference(raw);
-            if (!work) return std::nullopt;
-            return "吟诵《" + *work + "》";
-        }
+        if (const auto form = translate_creative_title(raw))
+            return "吟诵“" + *form + "”";
         return std::nullopt;
     };
     // Scale degrees, beat names and their spoken abbreviations are words from
@@ -1213,7 +1209,7 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
             size_t provenance_at = std::string::npos;
             const Provenance *provenance = nullptr;
             for (const auto &entry : provenances) {
-                const size_t at = sentence.find(entry.marker);
+                const size_t at = character_preference_boundary(sentence, entry.marker);
                 if (at == std::string::npos ||
                     (at + entry.marker.size() < sentence.size() &&
                      sentence[at + entry.marker.size()] != ' ')) continue;
@@ -1231,7 +1227,7 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
             } else if (identity.starts_with("is a ")) {
                 kind = identity.substr(5);
             } else {
-                const size_t at = identity.find(" is a");
+                const size_t at = character_preference_boundary(identity, " is a");
                 if (at == std::string_view::npos || at == 0 ||
                     (at + 5 < identity.size() && identity[at + 5] != ' '))
                     return std::nullopt;
@@ -1270,7 +1266,7 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
             }
             std::optional<std::string> title;
             if (!raw_title.empty()) {
-                title = translate_reference(raw_title);
+                title = translate_creative_title(raw_title);
                 if (!title) return std::nullopt;
             }
             std::string result = title
@@ -2057,15 +2053,18 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
 
         // Overall form structure.
         for (const std::string_view marker : {
-                 std::string_view(" has the following structure: "),
-                 std::string_view(" has a well-defined multi-passage structure: "),
-                 std::string_view(" has a simple structure: "),
+                 std::string_view("has the following structure: "),
+                 std::string_view("has a well-defined multi-passage structure: "),
+                 std::string_view("has a simple structure: "),
              }) {
-            const size_t at = sentence.find(marker);
-            if (at == std::string::npos) continue;
-            const auto title = translate_reference(
-                std::string_view(sentence).substr(0, at));
-            if (!title) return std::nullopt;
+            const size_t at = sentence.rfind(marker);
+            if (at == std::string::npos || (at && sentence[at - 1] != ' ')) continue;
+            std::string subject = "这首乐曲";
+            if (at) {
+                const auto title = translate_creative_title(std::string_view(sentence).substr(0, at - 1));
+                if (!title) return std::nullopt;
+                subject = "“" + *title + "”";
+            }
             std::string_view body = std::string_view(sentence).substr(at + marker.size());
             std::string_view repeat_count;
             std::string_view trailing_body;
@@ -2182,7 +2181,7 @@ TranslationResult Overlay::translate_musical_form_paragraph_result(
                 trailing_passages = translate_passage_list(trailing_body);
                 if (!trailing_passages) return std::nullopt;
             }
-            std::string result = "“" + *title + "”的段落依次为：" +
+            std::string result = subject + "的段落依次为：" +
                                  join_chinese(*passages);
             if (repeated) {
                 if (!repeat_count.empty()) {

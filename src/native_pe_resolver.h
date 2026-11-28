@@ -13,6 +13,7 @@
 #include <map>
 #include <memory>
 #include <set>
+#include <span>
 #include <sstream>
 #include <stdexcept>
 #include <unordered_map>
@@ -133,9 +134,9 @@ inline std::vector<std::pair<uint32_t, uint32_t>> read_required(Reader &reader) 
     return spans;
 }
 
-inline Catalog load_catalog(Reader reader) {
+inline Catalog load_catalog(Reader reader, const std::array<unsigned char, 32> &digest) {
     Catalog catalog;
-    catalog.digest = sha256(reader.data().data(), reader.data().size());
+    catalog.digest = digest;
     catalog.required = read_required(reader);
     catalog.known.resize(reader.count(32));
     for (auto &profile : catalog.known) {
@@ -177,10 +178,6 @@ inline Catalog load_catalog(Reader reader) {
     }
     reader.finish();
     return catalog;
-}
-
-inline Catalog load_catalog(const std::filesystem::path &path) {
-    return load_catalog(Reader(path));
 }
 
 enum class ReviewedBuild { Unknown, Steam5317, Classic5317 };
@@ -294,15 +291,41 @@ inline State scan(const Image &image, const Catalog &catalog) {
 inline void write_number(std::ostream &output, uint32_t value) {
     output.write(reinterpret_cast<const char *>(&value), sizeof(value));
 }
-inline void write_bindings(std::ostream &output, const State &state) {
-    write_number(output, static_cast<uint32_t>(state.ranges.size()));
-    for (const auto &range : state.ranges) {
+inline void write_bindings(std::ostream &output, std::span<const Range> ranges, std::span<const Byte> bytes) {
+    write_number(output, static_cast<uint32_t>(ranges.size()));
+    for (const auto &range : ranges) {
         write_number(output, range.begin); write_number(output, range.end); write_number(output, range.native);
     }
-    write_number(output, static_cast<uint32_t>(state.bytes.size()));
-    for (const auto &byte : state.bytes) {
+    write_number(output, static_cast<uint32_t>(bytes.size()));
+    for (const auto &byte : bytes) {
         write_number(output, byte.address); output.put(static_cast<char>(byte.reference)); output.put(static_cast<char>(byte.native));
     }
+}
+
+// Both caches hold scan results for the on-disk seed AND the compiled
+// supplements. A missing address can be resolved by changing either input.
+inline std::array<unsigned char, 32> catalog_digest(const Reader &seed) {
+    const auto seed_hash = sha256(seed.data().data(), seed.data().size());
+    std::ostringstream evidence(std::ios::binary | std::ios::out);
+    evidence.exceptions(std::ios::badbit | std::ios::failbit);
+    evidence.write(reinterpret_cast<const char *>(seed_hash.data()), seed_hash.size());
+    write_bindings(evidence, kSteam5317Ranges, kSteam5317Bytes);
+    write_bindings(evidence, kClassic5317Ranges, kClassic5317Bytes);
+    for (const auto &[reference, name] : kSupplementalVtableTypes) {
+        write_number(evidence, reference);
+        evidence.write(name, std::strlen(name) + 1);
+    }
+    const auto bytes = evidence.str();
+    return sha256(reinterpret_cast<const unsigned char *>(bytes.data()), bytes.size());
+}
+
+inline Catalog load_catalog(Reader reader) {
+    const auto digest = catalog_digest(reader);
+    return load_catalog(std::move(reader), digest);
+}
+
+inline Catalog load_catalog(const std::filesystem::path &path) {
+    return load_catalog(Reader(path));
 }
 
 // Windows unloads the core on Shift+F5 reactivation. Keep only a sealed byte
@@ -324,14 +347,12 @@ class ProcessCache {
     static constexpr uint32_t maximum_size = 128 * 1024 * 1024;
 public:
     ProcessCache(uintptr_t base, uint32_t timestamp, uint32_t size,
-                 const std::array<unsigned char, 32> &seed)
+                 const std::array<unsigned char, 32> &catalog_hash)
         : base_(base), timestamp_(timestamp), size_(size) {
         FILETIME birth{}, exit{}, kernel{}, user{};
         if (!GetProcessTimes(GetCurrentProcess(), &birth, &exit, &kernel, &user)) return;
         const uint64_t created = (uint64_t(birth.dwHighDateTime) << 32) | birth.dwLowDateTime;
-        const auto digest = hex_digest(seed);
-        // The squad and mission roster supplements can change with the
-        // same seed. Discard earlier in-process results missing those sites.
+        const auto digest = hex_digest(catalog_hash);
         name_ = L"Local\\DFCN.NativeAddresses.12." + std::to_wstring(GetCurrentProcessId()) + L"." +
             std::to_wstring(created) + L"." + std::to_wstring(base_) + L"." +
             std::to_wstring(timestamp_) + L"." + std::to_wstring(size_) + L"." +
@@ -392,7 +413,7 @@ public:
             write_number(output, timestamp_); write_number(output, size_);
             write_number(output, state.edition); write_number(output, state.complete ? 1 : 0);
             write_number(output, state.ui_settings_tail_shift);
-            write_bindings(output, state);
+            write_bindings(output, state.ranges, state.bytes);
             write_number(output, static_cast<uint32_t>(state.missing.size()));
             for (const auto reference : state.missing) write_number(output, reference);
             write_number(output, static_cast<uint32_t>(state.message.size()));
@@ -431,7 +452,7 @@ inline void save_cache(const std::filesystem::path &path, const Image &image,
         output.write(reinterpret_cast<const char *>(image.digest.data()), image.digest.size());
         write_number(output, image.size);
         write_number(output, state.ui_settings_tail_shift);
-        write_bindings(output, state);
+        write_bindings(output, state.ranges, state.bytes);
         if (!output) throw std::runtime_error("Cannot finish address cache");
         const auto payload = output.str();
         const auto digest = sha256(reinterpret_cast<const unsigned char *>(payload.data()), payload.size());
@@ -485,9 +506,9 @@ inline State prepare() {
             nt->FileHeader.Machine != IMAGE_FILE_MACHINE_AMD64 || !nt->OptionalHeader.SizeOfImage)
             throw std::runtime_error("Invalid running game PE64 image");
         Reader seed(runtime::data_path() / "native-addresses/pe-seed.bin");
-        const auto seed_digest = sha256(seed.data().data(), seed.data().size());
+        const auto digest = catalog_digest(seed);
         ProcessCache process_cache(reinterpret_cast<uintptr_t>(base), nt->FileHeader.TimeDateStamp,
-            nt->OptionalHeader.SizeOfImage, seed_digest);
+            nt->OptionalHeader.SizeOfImage, digest);
         if (process_cache.load(state)) {
             Catalog current;
             current.required = read_required(seed);
@@ -498,7 +519,7 @@ inline State prepare() {
         // Use the same seed bytes for the process key and discovery, even if a
         // new package is published while this core is being initialized.
         seed.rewind();
-        auto catalog = load_catalog(std::move(seed));
+        auto catalog = load_catalog(std::move(seed), digest);
         std::vector<wchar_t> filename(32768);
         const auto length = GetModuleFileNameW(nullptr, filename.data(), static_cast<DWORD>(filename.size()));
         if (!length || length >= filename.size()) throw std::runtime_error("Cannot locate the running game executable");

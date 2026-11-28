@@ -170,6 +170,11 @@ static std::vector<FormDescriptionSentence> form_description_sentences(
     char quote = 0;
     for (size_t at = 0; at < source.size(); ++at) {
         const char ch = source[at];
+        if (!quote && ch == '`' && at + 1 < source.size() &&
+                !std::isspace(static_cast<unsigned char>(source[at + 1]))) {
+            const size_t close = character_preference_nickname_end(source, at);
+            if (close != std::string_view::npos) { at = close; continue; }
+        }
         if (quote) {
             if (ch == quote && (at == 0 || source[at - 1] != '\\')) quote = 0;
             continue;
@@ -358,10 +363,9 @@ std::optional<std::string> Overlay::translate_poetic_form_description_unit(
             at = end;
         }
     }
-    // A stale background list can precede the active widget in a merged
-    // logical layer. Recover the real generated-title boundary from the
-    // finite form identity itself instead of allowing an unrelated resident
-    // name to become part of the poem title.
+    // A work can precede its poetic form in the same document. Only a
+    // complete work paragraph proves the split. "The " can occur inside
+    // the form's own first name, nickname or WORD sequence.
     std::string work_introduction;
     for (const std::string_view marker : {
              std::string_view(" is a dramatic poetic form"),
@@ -373,23 +377,17 @@ std::optional<std::string> Overlay::translate_poetic_form_description_unit(
              std::string_view(" is a poetic riddle"),
              std::string_view(" is a poetic form"),
          }) {
-        const size_t identity_at = source.find(marker);
+        const size_t identity_at = character_preference_boundary(source, marker);
         if (identity_at == std::string::npos) continue;
-        // With name.has_name == false a946e0 appends nothing. After a
-        // complete work introduction this identity begins directly at "is".
-        const size_t title_at = identity_at > 0 && source[identity_at - 1] == '.'
-            ? identity_at + 1 : source.rfind("The ", identity_at);
-        if (title_at != std::string::npos && title_at > 0) {
-            const std::string_view prefix(source.data(), title_at);
-            // A work's introduction precedes its poetic form in the same
-            // document. Preserve that complete paragraph before removing the
-            // prefix used by the form parser; it is not stale list content.
-            if (is_written_work_description(prefix)) {
-                const auto introduction = translate_written_work_paragraph(prefix);
-                if (!introduction || introduction->empty()) return std::nullopt;
+        for (size_t at = source.rfind(". ", identity_at); at != std::string::npos;
+             at = at ? source.rfind(". ", at - 1) : std::string::npos) {
+            const std::string_view prefix(source.data(), at + 1);
+            if (!is_written_work_description(prefix)) continue;
+            if (const auto introduction = translate_written_work_paragraph(prefix)) {
                 work_introduction = *introduction;
+                source.erase(0, at + 2);
+                break;
             }
-            source.erase(0, title_at);
         }
         break;
     }
@@ -2077,16 +2075,16 @@ std::optional<std::string> Overlay::translate_poetic_form_description_unit(
     const size_t opening_end = opening_spans.front().content_end;
     if (opening_end >= source.size() || source[opening_end] != '.') return std::nullopt;
     const std::string_view opening(source.data(), opening_end);
-    size_t provenance_at = opening.find(origin_marker);
+    size_t provenance_at = character_preference_boundary(opening, origin_marker);
     std::string_view provenance_marker = origin_marker;
     bool performance_origin = false, creator_origin = false;
     if (provenance_at == std::string_view::npos) {
-        provenance_at = opening.find(performance_origin_marker);
+        provenance_at = character_preference_boundary(opening, performance_origin_marker);
         provenance_marker = performance_origin_marker;
         performance_origin = provenance_at != std::string_view::npos;
     }
     if (provenance_at == std::string_view::npos) {
-        provenance_at = opening.find(creator_marker);
+        provenance_at = character_preference_boundary(opening, creator_marker);
         provenance_marker = creator_marker;
         creator_origin = provenance_at != std::string_view::npos;
     }
@@ -2145,9 +2143,9 @@ std::optional<std::string> Overlay::translate_poetic_form_description_unit(
             if (!candidate.source.starts_with("A ")) continue;
             const std::string marker =
                 " is a " + std::string(candidate.source.substr(2));
-            const size_t marker_at = identity.find(marker);
+            const size_t marker_at = character_preference_boundary(identity, marker);
             if (marker_at == std::string_view::npos || marker_at == 0) continue;
-            const auto translated_title = translate_generated_reference(
+            const auto translated_title = translate_creative_title(
                 identity.substr(0, marker_at));
             if (!translated_title) continue;
             // Preserve the English referent before normalizing the opening.

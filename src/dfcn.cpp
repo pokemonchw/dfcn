@@ -174,6 +174,7 @@ static std::pair<uintptr_t, uintptr_t> native_world_civilization_owner();
 static uintptr_t native_elf_5317_address(uintptr_t address);
 #endif
 static uintptr_t native_ui_semantic_address(uintptr_t reference);
+static void capitalize_native_initial(std::string &text);
 #ifndef _WIN32
 static bool native_conversation_portrait_caller(uintptr_t caller, size_t kind);
 static bool native_conversation_tone_odds(uintptr_t caller);
@@ -6125,6 +6126,7 @@ private:
             std::string_view paragraph) const;
     std::optional<std::string> translate_character_preference_term(
         std::string_view source, bool form_title = false) const;
+    std::optional<std::string> translate_creative_title(std::string_view source) const;
     std::optional<std::string> translate_character_need_sentence(
         const std::string &source) const;
     std::optional<std::string> translate_poetic_form_description(
@@ -7411,15 +7413,15 @@ bool Overlay::load_compositional_rules() {
                     return target;
             }
             if (kind == "book") {
-                if (auto title = complete(translate_legends_book(*native))) return title;
+                if (auto title = complete(translate_creative_title(*native))) return title;
                 // The book narrator folds DF's accented title to ASCII in its
                 // body. Recover only an unambiguous actual work's full title;
                 // ordinary names keep their native spelling requirements.
                 if (const auto original = native_book_title_ascii_original(source))
-                    return complete(translate_legends_book(*original));
+                    return complete(translate_creative_title(*original));
                 return std::nullopt;
             }
-            if (kind == "form") return complete(translate_legends_book(*native));
+            if (kind == "form") return complete(translate_creative_title(*native));
             if (auto target = complete(exact_literal_translation(*native))) return target;
             if (kind == "topic") {
                 if (auto target = complete(translate_legends_term(*native))) return target;
@@ -16333,6 +16335,29 @@ static std::optional<std::string_view> character_preference_likes_body(
     return std::nullopt;
 }
 
+// Knowledge renders the same name on its own, in a sentence, and after a
+// cross-reference. Some dance branches print a form name and a stored work
+// title with identical surrounding text. Give the complete title the same
+// reading in each position; the caller supplies its role and punctuation.
+std::optional<std::string> Overlay::translate_creative_title(std::string_view raw) const {
+    raw = trim_view(raw);
+    if (raw.empty()) return std::nullopt;
+    std::string title(raw);
+    // 53.17 list and structure headings apply 546b30 after formatting.
+    // Run the same initial-capital rule on embedded and standalone titles.
+    capitalize_native_initial(title);
+    // Backtick-delimited nicknames are authored spans in language_name.
+    // Keep their spelling before trying any productive title templates.
+    if (title.find('`') != std::string::npos)
+        if (auto name = translate_character_preference_term(title, true)) return name;
+    if (auto literal = exact_literal_translation(title)) return literal;
+    if (title.ends_with("...")) return std::nullopt;
+    if (auto name = translate_legends_book(title)) return name;
+    if (auto name = translate_character_preference_term(title, true)) return name;
+    return translate_procedural_fragment(title, false, false, {},
+        ProceduralFragmentContext::generated_name);
+}
+
 std::optional<std::string> Overlay::translate_character_preference_term(
         std::string_view raw_term, bool form_title) const {
     // The native material writer emits an optional historical owner, a RAW
@@ -16633,9 +16658,12 @@ std::optional<std::string> Overlay::translate_character_preference_term(
         for (const auto &[prefix, suffix] : cultural_prefixes) {
             if (!source.starts_with(prefix) || source.size() <= prefix.size())
                 continue;
-            if (const auto title = translate_cultural_title(
-                    std::string_view(source).substr(prefix.size()))) {
-                return "《" + *title + "》" + std::string(suffix);
+            const auto field = std::string_view(source).substr(prefix.size());
+            // In a preference list the following "and ..." may begin the
+            // next preference. Keep the existing title boundary constraint.
+            if (const auto parsed = translate_cultural_title(field)) {
+                const auto title = translate_creative_title(field);
+                return "《" + title.value_or(*parsed) + "》" + std::string(suffix);
             }
             return std::nullopt;
         }

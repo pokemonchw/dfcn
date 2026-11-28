@@ -2271,7 +2271,7 @@ static void remember_native_clipped_resize(NativeString *source, size_t width, c
     }
 }
 
-static void capitalize_native_character_group_role(std::string &text) {
+static void capitalize_native_initial(std::string &text) {
     // 52d650 changes the first eligible byte, skipping bracket controls and
     // the same leading spaces/quotes. Preserve its CP437 case pairs too.
     int brackets = 0;
@@ -2315,14 +2315,16 @@ static bool remember_native_character_row_resize(NativeString *source,
             graphics != g_native_character_write_graphics) return false;
     const uintptr_t base = native_history_profile_base();
     if (!base) return false;
-    bool expulsion = false;
+    bool private_title = false;
 #ifdef _WIN32
     const auto menu = character_expulsion_rva(caller);
-    expulsion = menu == 0x15f7b7 || menu == 0x1604e2;
+    // The Knowledge title is capitalized before the bound resize call.
+    const auto knowledge = native_knowledge_title_sites().resize_return;
+    private_title = caller == knowledge || menu == 0x15f7b7 || menu == 0x1604e2;
 #endif
-    // Groups and expulsion both retain a plain prefix at widths 1..3 and
-    // overwrite the last three bytes with dots at larger widths.
-    if (!expulsion && caller != native_ui_semantic_address(0x179439) &&
+    // All these fields retain a plain prefix at widths 1..3 and overwrite
+    // the last three bytes with dots at larger widths.
+    if (!private_title && caller != native_ui_semantic_address(0x179439) &&
             caller != native_ui_semantic_address(0x17aabe)) return false;
     auto &state = native_character_clipped_pending();
     if (state.busy) return true;
@@ -2345,8 +2347,8 @@ static bool remember_native_character_row_resize(NativeString *source,
             if (caller == native_ui_semantic_address(0x17aabe)) {
                 // Role capitalization follows the dot stores at 17ab2d;
                 // entity-name capitalization already preceded its resize.
-                capitalize_native_character_group_role(pending.visible);
-                capitalize_native_character_group_role(pending.complete);
+                capitalize_native_initial(pending.visible);
+                capitalize_native_initial(pending.complete);
             }
             // The private Character draw consumes this only for the same
             // owner, epoch and exact bytes after the native dot stores.

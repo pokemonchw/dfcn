@@ -1,9 +1,9 @@
 # scope	source	target	semantic field scopes	native construction evidence
 # All general_ref +0x90 implementations are recorded in tools/announcement-reference-source-inventory.tsv.
 # This namespace supplements the existing shared knowledge, item, creature, historical-event and generated-name parsers.
-work-reference	{s} as a poetic form	诗歌形式{s1}	$name	0x140edfd50:0x140edfdae+0x140edfde1; existing Poetic form term
-work-reference	{s} as a musical form	音乐形式{s1}	$name	0x140edfe50:0x140edff36+0x140edff69; existing Musical form term
-work-reference	{s} as a dance form	舞蹈形式{s1}	$name	0x140edffe0:0x140ee00c6+0x140ee00f9; existing Dance form term
+work-reference	{s} as a poetic form	诗歌形式{s1}	$art-form	0x140edfd50:0x140edfdae+0x140edfde1; poetic_form.name
+work-reference	{s} as a musical form	音乐形式{s1}	$art-form	0x140edfe50:0x140edff36+0x140edff69; musical_form.name
+work-reference	{s} as a dance form	舞蹈形式{s1}	$art-form	0x140edffe0:0x140ee00c6+0x140ee00f9; dance_form.name
 work-reference	the {s} language	{s1}语	$term	0x140ee02b0:0x140ee02df+0x140ee0302..0x140ee0335+0x140ee0340; complete raw language label
 work-reference	the worthlessness of {s}	{s1}毫无价值这一观点	reference-value	0x140ee0380:0x140ee0398+0x140ee03d6+native 33-value switch
 work-reference	the value of {s}	{s1}的价值	reference-value	0x140ee0380:0x140ee03ac+0x140ee03d6+native 33-value switch
@@ -28,7 +28,7 @@ reference-kind	ghostly {s}	幽灵形态的{s1}	$creature	0x140ef0690:0x140ef08f5
 reference-kind	deity	神祇		0x140ef079a; existing deity term
 reference-kind	force	自然之灵		0x140ef07e3; regional FORCE historical figure, shared with relationship caption
 work-reference	{s}	{s1}	$sphere	0x140ef14a0 tail-calls shared sphere formatter 0x140756690
-work-reference	{s}	{s1}	$book	0x140ee0170:0x140ee021e; existing complete written-content title, including lowercased initial The
+work-reference	{s}	{s1}	$work-title	0x140ee0170:0x140ee021e; existing complete written-content title, including lowercased initial The
 work-reference	the {s} {s}	{s1}{s2}	$item,$book	0x140eec6b0:0x140eec786+0x140eec839; complete artifact type and artifact name
 work-reference	a {s}	{s1}	$item	0x140ef4e41+0x140ef4e9c; item type/subtype/material/index through a82c10, including native punctuation within item names
 inscription	the secrets of life and death	生死秘密		0x1400b3f54; active vanilla_procedural/scripts/generators/interactions/secret.lua:127 IS_NAME; existing data/runtime/legends-events.tsv term

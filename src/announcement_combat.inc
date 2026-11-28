@@ -628,8 +628,8 @@ std::optional<std::string> Overlay::translate_announcement_combat(
             return finish(translation_complete_with_native_nicknames(result, input)
                 ? std::move(result) : std::nullopt);
         }
-        if (scope == "$memorial-form") {
-            auto result = translate_character_preference_term(input, true);
+        if (scope == "$art-form" || scope == "$memorial-form" || scope == "$work-title") {
+            auto result = translate_creative_title(input);
             return finish(translation_complete_with_native_nicknames(result, input)
                 ? std::move(result) : std::nullopt);
         }

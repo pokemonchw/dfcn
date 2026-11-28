@@ -1,0 +1,75 @@
+edition	image	role	start_rva	code_end_rva	assembly	ghidra_c
+reference	PE:6aea05a1:02734000	reference-description:general_refst	0x738b0	0x738d0	reference-738b0.asm	
+reference	PE:6aea05a1:02734000	knowledge-list	0x1704cf	0x1717f1	reference-knowledge-list.asm	pe-reference-knowledge-list.c
+reference	PE:6aea05a1:02734000	knowledge-selection	0x1b5bff	0x1b6491	reference-knowledge-selection.asm	pe-reference-knowledge-selection.c
+reference	PE:6aea05a1:02734000	dance-movement-description	0x4f3980	0x4f4664	reference-4f3980.asm	pe-reference-dance-movement-description.c
+reference	PE:6aea05a1:02734000	knowledge-dance-form	0x4f47b0	0x4f8564	reference-4f47b0.asm	pe-reference-knowledge-dance-form.c
+reference	PE:6aea05a1:02734000	list-capitalizer	0x546b30	0x546d9c	reference-list-capitalizer.asm	pe-reference-list-capitalizer.c
+reference	PE:6aea05a1:02734000	chapter-cardinal	0x547840	0x547fdc	reference-547840.asm	
+reference	PE:6aea05a1:02734000	chapter-ordinal	0x548050	0x548520	reference-548050.asm	
+reference	PE:6aea05a1:02734000	reference-sphere-selector	0x76fc80	0x770764	reference-76fc80.asm	
+reference	PE:6aea05a1:02734000	generated-form-name	0xaae180	0xaae942	reference-aae180.asm	pe-reference-generated-form-name.c
+reference	PE:6aea05a1:02734000	written-work-style	0xcdd210	0xcdd9f8	reference-cdd210.asm	pe-reference-written-work-style.c
+reference	PE:6aea05a1:02734000	written-work-content	0xcdda40	0xcde690	reference-cdda40.asm	pe-reference-written-work-content.c
+reference	PE:6aea05a1:02734000	musical-register-selector	0xdecaa0	0xdecb5c	reference-decaa0.asm	
+reference	PE:6aea05a1:02734000	knowledge-musical-form	0xded9d0	0xdf49f4	reference-ded9d0.asm	pe-reference-knowledge-musical-form.c
+reference	PE:6aea05a1:02734000	poetic-topic	0xe8df60	0xe8e288	reference-e8df60.asm	pe-reference-poetic-topic.c
+reference	PE:6aea05a1:02734000	knowledge-poetic-form	0xe8e2e0	0xe94740	reference-e8e2e0.asm	pe-reference-knowledge-poetic-form.c
+reference	PE:6aea05a1:02734000	reference-description:general_ref_poetic_formst	0xef7c30	0xef7d24	reference-ef7c30.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_musical_formst	0xef7d30	0xef7eb1	reference-ef7d30.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_dance_formst	0xef7ec0	0xef8041	reference-ef7ec0.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_written_contentst	0xef8050	0xef818a	reference-ef8050.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_languagest	0xef8190	0xef8252	reference-ef8190.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_value_levelst	0xef8260	0xef8688	reference-ef8260.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_knowledge_scholar_flagst	0xef8b80	0xefaf4c	reference-ef8b80.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_interactionst	0xefb440	0xefb4c6	reference-efb440.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_artifactst	0xf04590	0xf0480d	reference-f04590.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_abstract_buildingst	0xf05290	0xf056c4	reference-f05290.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_historical_eventst	0xf05c20	0xf05c91	reference-f05c20.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_historical_figurest	0xf08570	0xf0896e	reference-f08570.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_spherest	0xf09380	0xf093b0	reference-f09380.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_sitest	0xf09650	0xf09886	reference-f09650.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_subregionst	0xf0ac40	0xf0ad98	reference-f0ac40.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_feature_layerst	0xf0c230	0xf0c3e3	reference-f0c230.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_entity_popst	0xf0c880	0xf0c9a0	reference-f0c880.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_creaturest	0xf0caf0	0xf0cba6	reference-f0caf0.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_item_typest	0xf0ccf0	0xf0cd93	reference-f0ccf0.asm	
+reference	PE:6aea05a1:02734000	reference-description:general_ref_entityst	0xf0d160	0xf0d300	reference-f0d160.asm	
+reference	PE:6aea05a1:02734000	short-topic	0xf10e90	0xf13104	reference-short-topic.asm	pe-reference-short-topic.c
+classic	PE:6aea11a5:0272d000	reference-description:general_refst	0x73840	0x73860	classic-73840.asm	
+classic	PE:6aea11a5:0272d000	knowledge-list	0x17045f	0x171781	classic-knowledge-list.asm	pe-classic-knowledge-list.c
+classic	PE:6aea11a5:0272d000	knowledge-selection	0x1b5b8f	0x1b6421	classic-knowledge-selection.asm	pe-classic-knowledge-selection.c
+classic	PE:6aea11a5:0272d000	dance-movement-description	0x4f1320	0x4f2004	classic-4f1320.asm	pe-classic-dance-movement-description.c
+classic	PE:6aea11a5:0272d000	knowledge-dance-form	0x4f2150	0x4f5f04	classic-4f2150.asm	pe-classic-knowledge-dance-form.c
+classic	PE:6aea11a5:0272d000	list-capitalizer	0x544330	0x54459c	classic-list-capitalizer.asm	pe-classic-list-capitalizer.c
+classic	PE:6aea11a5:0272d000	chapter-cardinal	0x545040	0x5457dc	classic-545040.asm	
+classic	PE:6aea11a5:0272d000	chapter-ordinal	0x545850	0x545d20	classic-545850.asm	
+classic	PE:6aea11a5:0272d000	reference-sphere-selector	0x76d480	0x76df64	classic-76d480.asm	
+classic	PE:6aea11a5:0272d000	generated-form-name	0xaaafe0	0xaab7a2	classic-aaafe0.asm	pe-classic-generated-form-name.c
+classic	PE:6aea11a5:0272d000	written-work-style	0xcda030	0xcda818	classic-cda030.asm	pe-classic-written-work-style.c
+classic	PE:6aea11a5:0272d000	written-work-content	0xcda860	0xcdb4b0	classic-cda860.asm	pe-classic-written-work-content.c
+classic	PE:6aea11a5:0272d000	musical-register-selector	0xde77f0	0xde78ac	classic-de77f0.asm	
+classic	PE:6aea11a5:0272d000	knowledge-musical-form	0xde8720	0xdef744	classic-de8720.asm	pe-classic-knowledge-musical-form.c
+classic	PE:6aea11a5:0272d000	poetic-topic	0xe88cb0	0xe88fd8	classic-e88cb0.asm	pe-classic-poetic-topic.c
+classic	PE:6aea11a5:0272d000	knowledge-poetic-form	0xe89030	0xe8f490	classic-e89030.asm	pe-classic-knowledge-poetic-form.c
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_poetic_formst	0xef2980	0xef2a74	classic-ef2980.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_musical_formst	0xef2a80	0xef2c01	classic-ef2a80.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_dance_formst	0xef2c10	0xef2d91	classic-ef2c10.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_written_contentst	0xef2da0	0xef2eda	classic-ef2da0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_languagest	0xef2ee0	0xef2fa2	classic-ef2ee0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_value_levelst	0xef2fb0	0xef33d8	classic-ef2fb0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_knowledge_scholar_flagst	0xef38d0	0xef5c9c	classic-ef38d0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_interactionst	0xef6190	0xef6216	classic-ef6190.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_artifactst	0xeff2e0	0xeff55d	classic-eff2e0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_abstract_buildingst	0xefffe0	0xf00414	classic-efffe0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_historical_eventst	0xf00970	0xf009e1	classic-f00970.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_historical_figurest	0xf032c0	0xf036be	classic-f032c0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_spherest	0xf040d0	0xf04100	classic-f040d0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_sitest	0xf043a0	0xf045d6	classic-f043a0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_subregionst	0xf05990	0xf05ae8	classic-f05990.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_feature_layerst	0xf06f80	0xf07133	classic-f06f80.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_entity_popst	0xf075d0	0xf076f0	classic-f075d0.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_creaturest	0xf07840	0xf078f6	classic-f07840.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_item_typest	0xf07a40	0xf07ae3	classic-f07a40.asm	
+classic	PE:6aea11a5:0272d000	reference-description:general_ref_entityst	0xf07eb0	0xf08050	classic-f07eb0.asm	
+classic	PE:6aea11a5:0272d000	short-topic	0xf0bbe0	0xf0de54	classic-short-topic.asm	pe-classic-short-topic.c

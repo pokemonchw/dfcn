@@ -297,7 +297,7 @@ std::optional<std::vector<LegendsTextPiece>> Overlay::translate_history_event(
             // Book/scroll titles occupy language_name.first_name, while
             // ordinary artifacts use its WORD slots. Preserve any separate
             // nickname/WORD components through the same native name renderer.
-            name = translate_legends_book(found->name.first_name);
+            name = translate_creative_title(found->name.first_name);
             if (!name) name = preserve_field(found->name.first_name, "artifact-title");
             NativeHistoryName remaining = found->name;
             remaining.first_name.clear();
@@ -344,7 +344,13 @@ std::optional<std::vector<LegendsTextPiece>> Overlay::translate_history_event(
             // An existing written work may have no title. Missing works
             // already use label_key above; a blank title is not a failed name.
             name = translate_legends_term("Untitled");
-        } else if (!found->raw_title.empty()) name = translate_legends_book(found->raw_title);
+        } else if (!found->raw_title.empty()) name = translate_creative_title(found->raw_title);
+        else if (kind == NativeHistoryObjectKind::Poem || kind == NativeHistoryObjectKind::Music ||
+                kind == NativeHistoryObjectKind::Dance) {
+            if (const auto english = reconstruct_site_english_name(found->name))
+                name = translate_creative_title(*english);
+            if (!name) name = translate_history_name(found->name);
+        }
         else if (kind == NativeHistoryObjectKind::Entity && !found->name.has_name) {
             // EntityName emits no name for an existing unnamed entity. This
             // is an intentionally empty field, not an untranslated name:

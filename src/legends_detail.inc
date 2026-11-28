@@ -507,6 +507,14 @@ static bool written_work_form_rule(const Rule &rule) {
         rule.source == "{b} is an example of {p}.";
 }
 
+static bool written_work_title_rule(const Rule &rule) {
+    return rule.source.starts_with("{b} is a ") || rule.source.starts_with("{b} is an ") ||
+        rule.source == "For lyrics, the composer has selected {b}." ||
+        ((rule.source.starts_with("The written portion consists of ") ||
+          rule.source.starts_with("Written on the item is ")) &&
+         rule.source.find(" entitled {b}") != std::string::npos);
+}
+
 static bool written_work_genre_capture(const Rule &rule, size_t field) {
     if (field >= rule.template_kinds.size() || rule.template_kinds[field] != 's')
         return false;
@@ -1087,6 +1095,9 @@ std::optional<std::string> Overlay::translate_legends_nested(
     for (size_t field = 0; field < rule.template_kinds.size(); ++field) {
         std::string mode(1, rule.template_kinds[field]);
         switch (rule.template_kinds[field]) {
+        case 'b':
+            if (written_work_title_rule(rule)) mode += ":work-title";
+            break;
         case 'n':
             if (rule.legends_identity && rule.source == "\"{n}\"") mode += ":identity";
             break;
@@ -1200,7 +1211,7 @@ std::optional<std::string> Overlay::translate_legends_nested(
                     // Written works name poetry, music or dance forms here.
                     // Share their semantic title grammar with preferences;
                     // a place field can legitimately preserve English text.
-                    target = translate_character_preference_term(part, true);
+                    target = translate_creative_title(part);
                 } else if (mode == "p:experiment-site") {
                     target = translate_site_reference(part, true);
                     if (!translation_complete_with_native_nicknames(target, part))
@@ -1295,7 +1306,10 @@ std::optional<std::string> Overlay::translate_legends_nested(
                 if (!target) target = translate_legends_event(part, depth + 1);
                 break;
             }
-            case 'b': target = translate_legends_book(part, depth + 1); break;
+            case 'b':
+                target = mode == "b:work-title" ? translate_creative_title(part)
+                    : translate_legends_book(part, depth + 1);
+                break;
             case 'i': target = translate_legends_item(part); break;
             case 't': target = translate_legends_anatomy(part); break;
             case 'r': target = translate_deity_spheres(part); break;

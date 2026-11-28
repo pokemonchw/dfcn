@@ -1,4 +1,4 @@
-Character -> Skills -> Knowledge native source reconstruction
+Character -> Skills -> Knowledge native source reconstruction (53.16)
 
 This is an offline decompilation of the configured PE instruction bodies and
 immutable selector tables. Symbolic names below describe recovered behavior;
@@ -17,7 +17,9 @@ SOURCE ROOTS
   reference form roots: dance 0x4ea820; music 0xdd5ce0; poetry 0xe76400
   classic   form roots: dance 0x4e83e0; music 0xdd0c50; poetry 0xe71370
 
-functions.tsv gives each complete source extent and its current-image identity.
+functions.tsv gives each complete source extent and its 53.16 image identity.
+The 53.17 list, selection and text suppliers are indexed in
+../character-knowledge-53.17/sources.tsv.
 branches.tsv contains both destinations of every decoded conditional branch.
 conditions.tsv retains cmp/test/bt operands. switches.tsv contains every input
 selector, optional byte remap, and actual DWORD destination. calls.tsv retains
@@ -26,12 +28,12 @@ including separator strings, substring loads and inline packed fragments.
 
 KNOWLEDGE SELECTION DISPATCH
   selected entry type is stored separately from selected entry ID.
-  Type 14: resolve dance form; absent -> exit without a document; present ->
-           [C:7:0:1] + complete dance-form description.
+  Type 14: resolve poetic form; absent -> exit without a document; present ->
+           [C:7:0:1] + complete poetic-form description.
   Type 15: resolve musical form; absent -> exit; present ->
            [C:7:0:1] + complete musical-form description.
-  Type 16: resolve poetic form; absent -> exit; present ->
-           [C:7:0:1] + complete poetic-form description.
+  Type 16: resolve dance form; absent -> exit; present ->
+           [C:7:0:1] + complete dance-form description.
   Type 17: resolve written content; absent -> exit; present -> work document.
   All other values leave this document-building branch without constructing a
   new text. Scholarly topics additionally occur as general_ref subjects below.

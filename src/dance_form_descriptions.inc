@@ -675,7 +675,7 @@ TranslationResult Overlay::translate_dance_form_paragraph_result(
             size_t provenance_at = std::string::npos;
             const Provenance *provenance = nullptr;
             for (const auto &entry : provenances) {
-                const size_t at = sentence.find(entry.marker);
+                const size_t at = character_preference_boundary(sentence, entry.marker);
                 if (at == std::string::npos ||
                     (at + entry.marker.size() < sentence.size() &&
                      sentence[at + entry.marker.size()] != ' ')) continue;
@@ -693,7 +693,7 @@ TranslationResult Overlay::translate_dance_form_paragraph_result(
             std::string_view raw_title;
             std::string_view dance_identity;
             constexpr std::string_view anonymous_prefix = "A ";
-            const size_t is_a = identity.find(" is a ");
+            const size_t is_a = character_preference_boundary(identity, " is a ");
             if (is_a != std::string_view::npos && is_a > 0) {
                 raw_title = identity.substr(0, is_a);
                 dance_identity = identity.substr(is_a + 6);
@@ -716,7 +716,7 @@ TranslationResult Overlay::translate_dance_form_paragraph_result(
 
             std::optional<std::string> title;
             if (!raw_title.empty()) {
-                title = translate_reference(raw_title);
+                title = translate_creative_title(raw_title);
                 if (!title) return std::nullopt;
             }
             std::string result = title
@@ -820,7 +820,7 @@ TranslationResult Overlay::translate_dance_form_paragraph_result(
                 if (music.empty()) {
                     accompaniment = composition ? "体式未注明的乐曲" : "题名未注明的乐曲";
                 } else {
-                    const auto translated = translate_reference(music);
+                    const auto translated = translate_creative_title(music);
                     if (!translated) return std::nullopt;
                     accompaniment = composition
                         ? "按“" + *translated + "”曲式谱写的" +
@@ -856,7 +856,15 @@ TranslationResult Overlay::translate_dance_form_paragraph_result(
                 if (acted.empty()) {
                     enacted = "未注明的内容";
                 } else {
-                    const auto work = translate_reference(acted);
+                    // The story branch names a figure; a bare field can
+                    // also be a history event's own description (+0xd8).
+                    std::optional<std::string> work;
+                    if (kind == "的故事") work = translate_reference(acted);
+                    else {
+                        if (kind.empty()) work = translate_legends_event(acted, 0, false);
+                        if (!work) work = translate_creative_title(acted);
+                        if (!work) work = translate_reference(acted);
+                    }
                     if (!work) return std::nullopt;
                     enacted = "“" + *work + "”" + kind;
                 }

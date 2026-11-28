@@ -1,3 +1,12 @@
+#ifdef _WIN32
+struct KnowledgeTitleSites { uintptr_t resize_return, draw_return; };
+
+static KnowledgeTitleSites native_knowledge_title_sites() {
+    const auto base = native_history_profile_base();
+    return {native_reference_address(base, 0x16f32b), native_reference_address(base, 0x16f3ac)};
+}
+#endif
+
 // Knowledge is a sequence of complete title/kind records. The kind selects
 // the short academic topic vocabulary or the generated book/art title grammar;
 // claim the complete record before ordinary word rules can split its fields.
@@ -71,20 +80,55 @@ void Overlay::append_character_knowledge_matches(std::vector<std::string> &rows,
         uint32_t half = 0;
         std::string source;
     };
+    // The title producer owns one complete string even when it contains
+    // punctuation or multiple spaces that usually separate screen fields.
+    struct NativeTitle {
+        LogicalTextField visible;
+        std::string complete;
+    };
+    std::vector<std::optional<NativeTitle>> native_titles(bottom);
+#ifdef _WIN32
+    const auto title_draw = native_knowledge_title_sites().draw_return;
+    for (bool top : {false, true}) {
+        for (const auto &draw : captured_native_drawn_text_view(top)) {
+            if (!title_draw || draw.native_caller != title_draw || draw.source.empty() ||
+                    draw.draw_grid != (top ? gps_->screen_top : gps_->screen) ||
+                    draw.draw_dimx != gps_->dimx || draw.draw_dimy != gps_->dimy ||
+                    draw.y <= tab_y || draw.y >= bottom || draw.x < left || draw.x >= right ||
+                    draw.source.size() > static_cast<size_t>(right - draw.x) ||
+                    context[draw.y].compare(draw.x, draw.source.size(), draw.source) != 0) continue;
+            native_titles[draw.y] = NativeTitle{{draw.x,
+                draw.x + static_cast<int>(draw.source.size()), draw.source}, draw.complete_source};
+            const auto *flags = top ? gps_->screentexpos_top_flag : gps_->screentexpos_flag;
+            const size_t ink = draw.source.find_first_not_of(' ');
+            if (!flags || ink == std::string::npos) continue;
+            const size_t cell = (static_cast<size_t>(draw.x) + ink) * gps_->dimy;
+            const auto half = flags[cell + draw.y] & half_mask;
+            if (half != top_half && half != bottom_half) continue;
+            const int other = draw.y + (half == top_half ? 1 : -1);
+            if (other > tab_y && other < bottom &&
+                    (flags[cell + other] & half_mask) == (half_mask ^ half) &&
+                    context[other].compare(draw.x, draw.source.size(), draw.source) == 0)
+                native_titles[other] = native_titles[draw.y];
+        }
+    }
+#endif
     const auto physical_field = [&](int y) -> std::optional<Field> {
         if (y <= tab_y || y >= bottom) return std::nullopt;
         // View buttons and the scrollbar share the title's physical row.
         // Keep the first complete text field inside this pane, stopping at
         // native frame bytes or padded field boundaries. Single spaces stay
         // inside the title, including every BOOK_ART fixed phrase.
-        const auto fields = split_text_fields(context[y]);
-        const LogicalTextField *text = nullptr;
+        const auto &native = native_titles[y];
+        std::vector<LogicalTextField> fields;
+        if (!native) fields = split_text_fields(context[y]);
+        const LogicalTextField *text = native ? &native->visible : nullptr;
         for (const auto &field : fields) {
             if (field.start < left || field.end > right ||
-                !std::any_of(field.text.begin(), field.text.end(), [](unsigned char ch) {
-                    return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') ||
-                        is_cp437_latin_letter_byte(ch);
-                }) ||
+                (!contains_cjk_utf8(field.text) &&
+                 !std::any_of(field.text.begin(), field.text.end(), [](unsigned char ch) {
+                    return ascii_word_byte(ch) || is_cp437_latin_letter_byte(ch);
+                })) ||
                 std::any_of(field.text.begin(), field.text.end(), [](unsigned char ch) {
                     return ch < 0x20;
                 }) || native_button_text_rect(*gps_, field.start, field.end, y)) continue;
@@ -139,7 +183,10 @@ void Overlay::append_character_knowledge_matches(std::vector<std::string> &rows,
         // Reviewed knowledge subjects may contain punctuation. Preserve their
         // complete literals before resolving generated BOOK_ART/name grammar.
         std::string complete = title->source;
-        if (complete.ends_with("...")) {
+        const auto &draw = native_titles[title->y];
+        if (draw && !draw->complete.empty() && draw->complete != title->source) {
+            complete = draw->complete;
+        } else if (complete.size() <= 3 || complete.ends_with("...")) {
             std::optional<std::string> captured;
             bool ambiguous = false;
             for (const auto &capture : captures) {
@@ -161,8 +208,7 @@ void Overlay::append_character_knowledge_matches(std::vector<std::string> &rows,
         const bool topic_kind = is_character_knowledge_discipline(kind->source);
         auto title_target = topic_kind
             ? RULESETS.compose_bound_rule("::activities::topic", lower(complete))
-            : exact_literal_translation(complete);
-        if (!title_target && !topic_kind) title_target = translate_legends_book(complete);
+            : translate_creative_title(complete);
         const bool subject_kind = is_character_knowledge_subject(kind->source);
         auto kind_target = subject_kind ? exact_literal_translation(kind->source)
             : translate_legends_description_term(lower(kind->source));
@@ -173,7 +219,7 @@ void Overlay::append_character_knowledge_matches(std::vector<std::string> &rows,
             kind_target = translate_legends_term(lower(kind->source));
         const bool title_unknown = !title_target || title_target->empty();
         const bool kind_unknown = !kind_target || kind_target->empty();
-        if (title_unknown) title_target = cp437_to_utf8(complete);
+        if (title_unknown) title_target = native_text_to_utf8(complete);
         if (kind_unknown) kind_target = cp437_to_utf8(kind->source);
         const int column = std::min(title->x, kind->x);
         const auto claim = [&](const Field &field, int rule,

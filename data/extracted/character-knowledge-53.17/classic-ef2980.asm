@@ -1,0 +1,59 @@
+; classic PE:6aea11a5:0272d000; reference-description:general_ref_poetic_formst; RVA 0xef2980..0xef2a74; code ends 0xef2a74
+0x00ef2980: rex push rbx
+0x00ef2982: sub    rsp,0x50
+0x00ef2986: mov    rax,QWORD PTR [rip+0x9c56b3]        # 0x1418b8040
+0x00ef298d: xor    rax,rsp
+0x00ef2990: mov    QWORD PTR [rsp+0x40],rax
+0x00ef2995: mov    rbx,rdx
+0x00ef2998: mov    edx,DWORD PTR [rcx+0x8]
+0x00ef299b: lea    rcx,[rip+0x16118a6]        # 0x142504248
+0x00ef29a2: call   0x140073b30
+0x00ef29a7: test   rax,rax
+0x00ef29aa: je     0x140ef2a61
+0x00ef29b0: xorps  xmm0,xmm0
+0x00ef29b3: movups XMMWORD PTR [rsp+0x20],xmm0
+0x00ef29b8: mov    QWORD PTR [rsp+0x30],0x0
+0x00ef29c1: mov    QWORD PTR [rsp+0x38],0xf
+0x00ef29ca: mov    BYTE PTR [rsp+0x20],0x0
+0x00ef29cf: lea    rcx,[rax+0x8]
+0x00ef29d3: xor    r9d,r9d
+0x00ef29d6: mov    r8b,0x1
+0x00ef29d9: lea    rdx,[rsp+0x20]
+0x00ef29de: call   0x140aaafe0
+0x00ef29e3: lea    rax,[rsp+0x20]
+0x00ef29e8: cmp    rbx,rax
+0x00ef29eb: je     0x140ef2a0b
+0x00ef29ed: lea    rdx,[rsp+0x20]
+0x00ef29f2: cmp    QWORD PTR [rsp+0x38],0xf
+0x00ef29f8: cmova  rdx,QWORD PTR [rsp+0x20]
+0x00ef29fe: mov    r8,QWORD PTR [rsp+0x30]
+0x00ef2a03: mov    rcx,rbx
+0x00ef2a06: call   0x140070e90
+0x00ef2a0b: mov    r8d,0x11
+0x00ef2a11: lea    rdx,[rip+0x8606a0]        # 0x1417530b8 ; literal=" as a poetic form"
+0x00ef2a18: mov    rcx,rbx
+0x00ef2a1b: call   0x140070fd0
+0x00ef2a20: nop
+0x00ef2a21: mov    rdx,QWORD PTR [rsp+0x38]
+0x00ef2a26: cmp    rdx,0xf
+0x00ef2a2a: jbe    0x140ef2a61
+0x00ef2a2c: inc    rdx
+0x00ef2a2f: mov    rcx,QWORD PTR [rsp+0x20]
+0x00ef2a34: mov    rax,rcx
+0x00ef2a37: cmp    rdx,0x1000
+0x00ef2a3e: jb     0x140ef2a5c
+0x00ef2a40: add    rdx,0x27
+0x00ef2a44: mov    rcx,QWORD PTR [rcx-0x8]
+0x00ef2a48: sub    rax,rcx
+0x00ef2a4b: add    rax,0xfffffffffffffff8
+0x00ef2a4f: cmp    rax,0x1f
+0x00ef2a53: jbe    0x140ef2a5c
+0x00ef2a55: call   QWORD PTR [rip+0x70906d]        # 0x1415fbac8
+0x00ef2a5b: int3
+0x00ef2a5c: call   0x14154de20
+0x00ef2a61: mov    rcx,QWORD PTR [rsp+0x40]
+0x00ef2a66: xor    rcx,rsp
+0x00ef2a69: call   0x14154de00
+0x00ef2a6e: add    rsp,0x50
+0x00ef2a72: pop    rbx
+0x00ef2a73: ret

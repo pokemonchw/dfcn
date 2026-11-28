@@ -75,6 +75,9 @@ inline constexpr Range kSteam5317Ranges[] = {
     // Character overview formats squad.name into rsp+41e0 when the alias is empty.
     {0x16710a, 0x16710f, 0x1687aa},
     {0x16712b, 0x167130, 0x1687cb},
+    // Knowledge list: returns after resizing and drawing the title in rsp+3920.
+    {0x16f32b, 0x16f32c, 0x1709cb},
+    {0x16f3ac, 0x16f3ad, 0x170a4c},
     // Military sheet drops the article from the generated name at rsp+3980.
     {0x17b905, 0x17b90a, 0x17cfa5},
     // Cage and chain addst returns for the three-line notice and stored room name.

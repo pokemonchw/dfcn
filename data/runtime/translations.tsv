@@ -21538,6 +21538,7 @@ Announcement combat spoken-sentence [speech-place]: I'm going to {s}.	我正前�
 Announcement combat threat-crime [threat-building]: prayed inside {s}	在{s1}中祈祷	l
 Announcement combat threat-killing [threat-victim]: even murdered {s}	甚至杀害了{s1}	l
 Announcement combat visitor-statement-reference [$speech-person]: {s}	{s1}	l
+Announcement combat work-reference [$art-form]: {s} as a musical form	音乐形式{s1}	l
 Announcement combat work-reference [$creature]: a animated {s} corpse	复活的{s1}尸体	l
 Announcement music passage: a series of variations on the first theme	第一主题变奏组	w
 Archery targets are used in archery range zones for training archers.	射箭靶用于射箭场区域内的弓弩手训练。	hj
@@ -22052,6 +22053,7 @@ Announcement combat visitor-statement-emotion []: feeling admiration	心怀钦�
 Announcement combat visitor-statement-emotion []: feeling ambivalent	没什么特别的感觉	l
 Announcement combat visitor-statement-emotion []: feeling tenderness	满怀温柔	l
 Announcement combat visitor-statement-emotion []: feeling triumphant	洋洋得意	l
+Announcement combat work-reference [$art-form]: {s} as a poetic form	诗歌形式{s1}	l
 Announcement combat work-reference []: the fiery bowels of the earth	大地的炽热深处	l
 Announcement combat work-reference [reference-value]: nuances of {s}	{s1}的微妙之处	l
 Announcement combat work-reference-list [work-reference-list]: , {s}	未注明的主题、{s1}	l
@@ -22591,6 +22593,7 @@ Announcement combat visitor-statement-emotion []: feeling ferocious	心生凶意
 Announcement combat visitor-statement-emotion []: feeling gratitude	满怀感激	l
 Announcement combat visitor-statement-emotion []: feeling self-pity	心生自怜	l
 Announcement combat visitor-statement-reference []: an unknown site	未知地点	l
+Announcement combat work-reference [$art-form]: {s} as a dance form	舞蹈形式{s1}	l
 Announcement combat work-sentence []: The overall text emphasizes .	全文着重强调的主题未注明。	l
 Announcement distance: nearly a day's travel to the north-northeast	距此近一天路程的北东北方	l
 Announcement distance: nearly a day's travel to the north-northwest	距此近一天路程的北西北方	l
@@ -23759,7 +23762,6 @@ Announcement combat visitor-statement []: were will be rewarding.	当时将正�
 Announcement combat visitor-statement-emotion []: feeling dislike	感到不喜欢	l
 Announcement combat visitor-statement-emotion []: feeling servile	觉得自己卑躬屈膝	l
 Announcement combat work-reference [$name]: the dark fortress {s}	黑暗要塞{s1}	l
-Announcement combat work-reference [$name]: {s} as a musical form	音乐形式{s1}	l
 Announcement combat work-reference-list [work-reference]: and {s}	未注明的主题和{s1}	l
 Announcement combat work-reference-list [work-reference]: {s} and	{s1}和未注明的主题	l
 Announcement distance: a half day's travel to the north-northeast	距此半天路程的北东北方	l
@@ -24284,7 +24286,6 @@ Announcement combat visitor-statement []: were will be speaking.	当时将正在
 Announcement combat visitor-statement-emotion []: feeling caring	心怀关爱	l
 Announcement combat visitor-statement-emotion []: feeling gaiety	感到欢快	l
 Announcement combat visitor-statement-emotion []: feeling guilty	感到内疚	l
-Announcement combat work-reference [$name]: {s} as a poetic form	诗歌形式{s1}	l
 Announcement combat work-reference []: a ghostly animated corpse	种类未注明的幽灵形态复活尸体	l
 Announcement distance: a half day's travel to the east-northeast	距此半天路程的东东北方	l
 Announcement distance: a half day's travel to the east-southeast	距此半天路程的东东南方	l
@@ -24901,7 +24902,6 @@ Announcement combat visitor-statement-emotion []: disillusioned	感到幻灭	l
 Announcement combat visitor-statement-emotion []: feeling empty	感到空虚	l
 Announcement combat visitor-statement-emotion []: in acceptance	心怀接纳	l
 Announcement combat work-reference [$event,$digits]: {s} in {s}	{s2}年的{s1}	l
-Announcement combat work-reference [$name]: {s} as a dance form	舞蹈形式{s1}	l
 Announcement music passage: a recapitulation of the first theme	第一主题再现部	w
 Announcement music passage: a series of variations on the theme	主题变奏组	w
 Ask favor, place request, make demand or issue order (new menu)	请求帮助、提出请求、索求或下令（新菜单）	hP
@@ -34111,6 +34111,7 @@ Announcement combat visitor-statement []: will speak.	将说话。	l
 Announcement combat visitor-statement []: will spoke.	将已说话。	l
 Announcement combat visitor-statement-emotion []: sad	感到悲伤	l
 Announcement combat visitor-statement-subject []: you	你	l
+Announcement combat work-reference [$work-title]: {s}	{s1}	l
 Announcement combat work-sentence [$description]: {s}	{s1}	l
 Argue the worthlessness of commerce (not your values)	争辩商业毫无价值（并非你的价值观）	hP
 Argue the worthlessness of fairness (not your values)	争辩公道毫无价值（并非你的价值观）	hP
@@ -42456,7 +42457,6 @@ Announcement combat work-ordinal []: eighteenth	18	l
 Announcement combat work-ordinal []: fourteenth	14	l
 Announcement combat work-ordinal []: nineteenth	19	l
 Announcement combat work-ordinal []: thirteenth	13	l
-Announcement combat work-reference [$book]: {s}	{s1}	l
 Announcement combat work-reference-list []: and	未注明的主题和未注明的主题	l
 Announcement distance: a short walk to the east	步行不远即可到达的东方	l
 Announcement distance: a short walk to the west	步行不远即可到达的西方	l

@@ -1014,14 +1014,15 @@ std::optional<std::string> Overlay::translate_item_description_source(
                     case 'n': return translate_legends_actor(part);
                     case 'p':
                         return written_work_form_rule(rule)
-                            ? translate_character_preference_term(part, true)
+                            ? translate_creative_title(part)
                             : translate_legends_place(part);
                     case 's': return translate_legends_term(part, true);
                     case 'q': return translate_legends_color(part);
                     case 't': return translate_legends_anatomy(part);
                     case 'i': return translate_item_description_term(part);
                     case 'e': return translate_legends_event(part);
-                    case 'b': return translate_legends_book(part);
+                    case 'b': return written_work_title_rule(rule)
+                        ? translate_creative_title(part) : translate_legends_book(part);
                     case 'r': return translate_deity_spheres(part);
                     case 'd': return std::string(part);
                     case 'c':
