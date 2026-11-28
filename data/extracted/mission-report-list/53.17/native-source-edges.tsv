@@ -1,0 +1,1638 @@
+# Offline disassembly source evidence; addresses are RVAs. No game code or translation executed.
+edition	record	source	owner_rva	instruction_rva	target_rva	literal_or_edge
+reference	report-prefix-source	all-native-report-prefixes	0x10c7f0	0x111054	0x0	Spoils Report: 
+reference	report-prefix-source	all-native-report-prefixes	0x2c00a0	0x2c0135	0x0	Interrogation Report: 
+reference	report-prefix-source	all-native-report-prefixes	0x9f8fe0	0x9f93ba	0x0	Mission Report: 
+reference	report-prefix-source	all-native-report-prefixes	0xa22d70	0xa231ee	0x0	Tribute Report: 
+reference	branch	mission-title	0x9f8fe0	0x9f937d	0x9f938c	jle 0x1409f938c
+reference	branch	mission-title	0x9f8fe0	0x9f9386	0x9f96bf	jl 0x1409f96bf
+reference	branch	mission-title	0x9f8fe0	0x9f9398	0x9f96bf	jne 0x1409f96bf
+reference	call	mission-title	0x9f8fe0	0x9f93a3	0x15530e0	call 0x1415530e0
+reference	call	mission-title	0x9f8fe0	0x9f93b2	0x13f150	call 0x14013f150
+reference	literal	mission-title	0x9f8fe0	0x9f93ba	0x16eb240	Mission Report: 
+reference	call	mission-title	0x9f8fe0	0x9f93c5	0x70bb0	call 0x140070bb0
+reference	call	mission-title	0x9f8fe0	0x9f93d3	0x76740	call 0x140076740
+reference	branch	mission-title	0x9f8fe0	0x9f93db	0x9f9532	je 0x1409f9532
+reference	branch	mission-title	0x9f8fe0	0x9f93e4	0x9f94f7	je 0x1409f94f7
+reference	branch	mission-title	0x9f8fe0	0x9f93ed	0x9f94a0	je 0x1409f94a0
+reference	branch	mission-title	0x9f8fe0	0x9f93f6	0x9f9494	je 0x1409f9494
+reference	branch	mission-title	0x9f8fe0	0x9f93ff	0x9f95c4	jne 0x1409f95c4
+reference	call	mission-title	0x9f8fe0	0x9f940c	0x70cc0	call 0x140070cc0
+reference	call	mission-title	0x9f8fe0	0x9f9429	0x1bdc00	call 0x1401bdc00
+reference	call	mission-title	0x9f8fe0	0x9f9439	0xbb340	call 0x1400bb340
+reference	literal	mission-title	0x9f8fe0	0x9f943e	0x161e0c4	 at 
+reference	call	mission-title	0x9f8fe0	0x9f9449	0x70b90	call 0x140070b90
+reference	call	mission-title	0x9f8fe0	0x9f9469	0xbab5f0	call 0x140bab5f0
+reference	call	mission-title	0x9f8fe0	0x9f9476	0x69460	call 0x140069460
+reference	branch	mission-title	0x9f8fe0	0x9f947b	0x9f95c4	jmp 0x1409f95c4
+reference	call	mission-title	0x9f8fe0	0x9f9485	0xfcf20	call 0x1400fcf20
+reference	branch	mission-title	0x9f8fe0	0x9f948f	0x9f9378	jmp 0x1409f9378
+reference	literal	mission-title	0x9f8fe0	0x9f9494	0x161fd78	Request workers from 
+reference	branch	mission-title	0x9f8fe0	0x9f949b	0x9f959b	jmp 0x1409f959b
+reference	literal	mission-title	0x9f8fe0	0x9f94a0	0x16095a0	Rescue 
+reference	call	mission-title	0x9f8fe0	0x9f94ab	0x70b90	call 0x140070b90
+reference	call	mission-title	0x9f8fe0	0x9f94b7	0x736b0	call 0x1400736b0
+reference	call	mission-title	0x9f8fe0	0x9f94ed	0xbaabd0	call 0x140baabd0
+reference	branch	mission-title	0x9f8fe0	0x9f94f2	0x9f95c4	jmp 0x1409f95c4
+reference	literal	mission-title	0x9f8fe0	0x9f94f7	0x161fdf0	Recover 
+reference	call	mission-title	0x9f8fe0	0x9f9502	0x70b90	call 0x140070b90
+reference	call	mission-title	0x9f8fe0	0x9f9528	0xbac0c0	call 0x140bac0c0
+reference	branch	mission-title	0x9f8fe0	0x9f952d	0x9f95c4	jmp 0x1409f95c4
+reference	branch	mission-title	0x9f8fe0	0x9f9548	0x9f9594	ja 0x1409f9594
+reference	branch	mission-title	0x9f8fe0	0x9f955c	0x0	jmp rcx
+reference	literal	mission-title	0x9f8fe0	0x9f955e	0x161fd90	Explore 
+reference	branch	mission-title	0x9f8fe0	0x9f9565	0x9f959b	jmp 0x1409f959b
+reference	literal	mission-title	0x9f8fe0	0x9f9567	0x161fda0	Pillage 
+reference	branch	mission-title	0x9f8fe0	0x9f956e	0x9f959b	jmp 0x1409f959b
+reference	literal	mission-title	0x9f8fe0	0x9f9570	0x161fdb0	Demand tribute from 
+reference	branch	mission-title	0x9f8fe0	0x9f9577	0x9f959b	jmp 0x1409f959b
+reference	literal	mission-title	0x9f8fe0	0x9f9579	0x161fdc8	Raze 
+reference	branch	mission-title	0x9f8fe0	0x9f9580	0x9f959b	jmp 0x1409f959b
+reference	literal	mission-title	0x9f8fe0	0x9f9582	0x161fdd0	Take over 
+reference	branch	mission-title	0x9f8fe0	0x9f9589	0x9f959b	jmp 0x1409f959b
+reference	literal	mission-title	0x9f8fe0	0x9f958b	0x161fddc	Seize 
+reference	branch	mission-title	0x9f8fe0	0x9f9592	0x9f959b	jmp 0x1409f959b
+reference	literal	mission-title	0x9f8fe0	0x9f9594	0x161fde4	Raid 
+reference	call	mission-title	0x9f8fe0	0x9f959f	0x70b90	call 0x140070b90
+reference	call	mission-title	0x9f8fe0	0x9f95bf	0xbab5f0	call 0x140bab5f0
+reference	literal	mission-title	0x9f8fe0	0x9f95c4	0x16eb258	 (Set out 
+reference	call	mission-title	0x9f8fe0	0x9f95cf	0x70b90	call 0x140070b90
+reference	branch	mission-title	0x9f8fe0	0x9f95dd	0x9f9609	je 0x1409f9609
+reference	branch	mission-title	0x9f8fe0	0x9f95e2	0x9f9600	je 0x1409f9600
+reference	branch	mission-title	0x9f8fe0	0x9f95e7	0x9f95f7	je 0x1409f95f7
+reference	branch	mission-title	0x9f8fe0	0x9f95ec	0x9f9619	jne 0x1409f9619
+reference	literal	mission-title	0x9f8fe0	0x9f95ee	0x1618fa8	Winter
+reference	branch	mission-title	0x9f8fe0	0x9f95f5	0x9f9610	jmp 0x1409f9610
+reference	literal	mission-title	0x9f8fe0	0x9f95f7	0x1618ddc	Autumn
+reference	branch	mission-title	0x9f8fe0	0x9f95fe	0x9f9610	jmp 0x1409f9610
+reference	literal	mission-title	0x9f8fe0	0x9f9600	0x1618dd4	Summer
+reference	branch	mission-title	0x9f8fe0	0x9f9607	0x9f9610	jmp 0x1409f9610
+reference	literal	mission-title	0x9f8fe0	0x9f9609	0x1618dcc	Spring
+reference	call	mission-title	0x9f8fe0	0x9f9614	0x70b90	call 0x140070b90
+reference	literal	mission-title	0x9f8fe0	0x9f9619	0x16039f0	 
+reference	call	mission-title	0x9f8fe0	0x9f9624	0x70b90	call 0x140070b90
+reference	call	mission-title	0x9f8fe0	0x9f9633	0x545610	call 0x140545610
+reference	literal	mission-title	0x9f8fe0	0x9f9638	0x1631330	)
+reference	call	mission-title	0x9f8fe0	0x9f9643	0x70b90	call 0x140070b90
+reference	range	mission-title	0x9f8fe0	0x9f936d	0x9f966a	reviewed native source block
+reference	call	spoils-title	0x10c7f0	0x11100d	0x70480	call 0x140070480
+reference	branch	spoils-title	0x10c7f0	0x111015	0x11102c	jne 0x14011102c
+reference	call	spoils-title	0x10c7f0	0x11101e	0x709a0	call 0x1400709a0
+reference	branch	spoils-title	0x10c7f0	0x111026	0x11175c	je 0x14011175c
+reference	branch	spoils-title	0x10c7f0	0x11102f	0x1114aa	je 0x1401114aa
+reference	call	spoils-title	0x10c7f0	0x11103a	0x15530e0	call 0x1415530e0
+reference	call	spoils-title	0x10c7f0	0x111049	0xffcc0	call 0x1400ffcc0
+reference	literal	spoils-title	0x10c7f0	0x111054	0x1618db0	Spoils Report: 
+reference	call	spoils-title	0x10c7f0	0x11105e	0x70bb0	call 0x140070bb0
+reference	call	spoils-title	0x10c7f0	0x11106a	0x70480	call 0x140070480
+reference	branch	spoils-title	0x10c7f0	0x111072	0x1110fe	je 0x1401110fe
+reference	call	spoils-title	0x10c7f0	0x11107f	0x70cc0	call 0x140070cc0
+reference	call	spoils-title	0x10c7f0	0x11108e	0x70850	call 0x140070850
+reference	call	spoils-title	0x10c7f0	0x1110a7	0xaae180	call 0x140aae180
+reference	call	spoils-title	0x10c7f0	0x1110b8	0xbb340	call 0x1400bb340
+reference	call	spoils-title	0x10c7f0	0x1110c4	0x70480	call 0x140070480
+reference	branch	spoils-title	0x10c7f0	0x1110cd	0x1110e0	jb 0x1401110e0
+reference	literal	spoils-title	0x10c7f0	0x1110cf	0x1618dc0	 and others
+reference	call	spoils-title	0x10c7f0	0x1110db	0x70b90	call 0x140070b90
+reference	literal	spoils-title	0x10c7f0	0x1110e0	0x1604394	, 
+reference	call	spoils-title	0x10c7f0	0x1110ec	0x70b90	call 0x140070b90
+reference	call	spoils-title	0x10c7f0	0x1110f9	0x69460	call 0x140069460
+reference	branch	spoils-title	0x10c7f0	0x111107	0x111133	je 0x140111133
+reference	branch	spoils-title	0x10c7f0	0x11110c	0x11112a	je 0x14011112a
+reference	branch	spoils-title	0x10c7f0	0x111111	0x111121	je 0x140111121
+reference	branch	spoils-title	0x10c7f0	0x111116	0x111144	jne 0x140111144
+reference	literal	spoils-title	0x10c7f0	0x111118	0x1618fa8	Winter
+reference	branch	spoils-title	0x10c7f0	0x11111f	0x11113a	jmp 0x14011113a
+reference	literal	spoils-title	0x10c7f0	0x111121	0x1618ddc	Autumn
+reference	branch	spoils-title	0x10c7f0	0x111128	0x11113a	jmp 0x14011113a
+reference	literal	spoils-title	0x10c7f0	0x11112a	0x1618dd4	Summer
+reference	branch	spoils-title	0x10c7f0	0x111131	0x11113a	jmp 0x14011113a
+reference	literal	spoils-title	0x10c7f0	0x111133	0x1618dcc	Spring
+reference	call	spoils-title	0x10c7f0	0x11113f	0x70b90	call 0x140070b90
+reference	literal	spoils-title	0x10c7f0	0x111144	0x16039f0	 
+reference	call	spoils-title	0x10c7f0	0x111150	0x70b90	call 0x140070b90
+reference	call	spoils-title	0x10c7f0	0x111160	0x545610	call 0x140545610
+reference	call	spoils-title	0x10c7f0	0x11119d	0xbafb0	call 0x1400bafb0
+reference	range	spoils-title	0x10c7f0	0x111006	0x1111a2	reviewed native source block
+reference	call	tribute-title	0xa22d70	0xa230f1	0x678f643b	call 0x1a78f643b
+reference	branch	tribute-title	0xa22d70	0xa23106	0xa23707	jae 0x140a23707
+reference	branch	tribute-title	0xa22d70	0xa23114	0xa236fe	jne 0x140a236fe
+reference	branch	tribute-title	0xa22d70	0xa2311d	0xa232d2	jne 0x140a232d2
+reference	call	tribute-title	0xa22d70	0xa23128	0x15530e0	call 0x1415530e0
+reference	literal	tribute-title	0xa22d70	0xa231ee	0x16eb9b0	Tribute Report: 
+reference	call	tribute-title	0xa22d70	0xa231f8	0x70f00	call 0x140070f00
+reference	call	tribute-title	0xa22d70	0xa23207	0xbaa5c0	call 0x140baa5c0
+reference	literal	tribute-title	0xa22d70	0xa23212	0x1604394	, 
+reference	call	tribute-title	0xa22d70	0xa2321c	0x71040	call 0x140071040
+reference	branch	tribute-title	0xa22d70	0xa2322a	0xa23256	je 0x140a23256
+reference	branch	tribute-title	0xa22d70	0xa2322f	0xa2324d	je 0x140a2324d
+reference	branch	tribute-title	0xa22d70	0xa23234	0xa23244	je 0x140a23244
+reference	branch	tribute-title	0xa22d70	0xa23239	0xa23268	jne 0x140a23268
+reference	literal	tribute-title	0xa22d70	0xa2323b	0x1618fa8	Winter
+reference	branch	tribute-title	0xa22d70	0xa23242	0xa2325d	jmp 0x140a2325d
+reference	literal	tribute-title	0xa22d70	0xa23244	0x1618ddc	Autumn
+reference	branch	tribute-title	0xa22d70	0xa2324b	0xa2325d	jmp 0x140a2325d
+reference	literal	tribute-title	0xa22d70	0xa2324d	0x1618dd4	Summer
+reference	branch	tribute-title	0xa22d70	0xa23254	0xa2325d	jmp 0x140a2325d
+reference	literal	tribute-title	0xa22d70	0xa23256	0x1618dcc	Spring
+reference	call	tribute-title	0xa22d70	0xa23263	0x71040	call 0x140071040
+reference	literal	tribute-title	0xa22d70	0xa2326e	0x16039f0	 
+reference	call	tribute-title	0xa22d70	0xa23278	0x71040	call 0x140071040
+reference	call	tribute-title	0xa22d70	0xa23286	0x545610	call 0x140545610
+reference	branch	tribute-title	0xa22d70	0xa232b2	0xa232c1	je 0x140a232c1
+reference	branch	tribute-title	0xa22d70	0xa232bf	0xa232d2	jmp 0x140a232d2
+reference	call	tribute-title	0xa22d70	0xa232cd	0xbc360	call 0x1400bc360
+reference	range	tribute-title	0xa22d70	0xa230e3	0xa232d2	reviewed native source block
+reference	call	report-list-consumer	0x1c4550	0x1d38b9	0x709a0	call 0x1400709a0
+reference	call	report-list-consumer	0x1c4550	0x1d38c8	0x709a0	call 0x1400709a0
+reference	branch	report-list-consumer	0x1c4550	0x1d38e6	0x1d3c51	jle 0x1401d3c51
+reference	branch	report-list-consumer	0x1c4550	0x1d391a	0x1d3bd0	jge 0x1401d3bd0
+reference	branch	report-list-consumer	0x1c4550	0x1d3939	0x1d3bcc	jge 0x1401d3bcc
+reference	call	report-list-consumer	0x1c4550	0x1d394a	0x709a0	call 0x1400709a0
+reference	branch	report-list-consumer	0x1c4550	0x1d3954	0x1d3976	jge 0x1401d3976
+reference	call	report-list-consumer	0x1c4550	0x1d3959	0x70990	call 0x140070990
+reference	call	report-list-consumer	0x1c4550	0x1d3968	0x70850	call 0x140070850
+reference	branch	report-list-consumer	0x1c4550	0x1d3974	0x1d39bc	jmp 0x1401d39bc
+reference	call	report-list-consumer	0x1c4550	0x1d3976	0x709a0	call 0x1400709a0
+reference	call	report-list-consumer	0x1c4550	0x1d3985	0x709a0	call 0x1400709a0
+reference	branch	report-list-consumer	0x1c4550	0x1d398d	0x1d39bc	jae 0x1401d39bc
+reference	call	report-list-consumer	0x1c4550	0x1d3992	0x709a0	call 0x1400709a0
+reference	call	report-list-consumer	0x1c4550	0x1d39a1	0x70990	call 0x140070990
+reference	call	report-list-consumer	0x1c4550	0x1d39b0	0x70850	call 0x140070850
+reference	call	report-list-consumer	0x1c4550	0x1d39ce	0xbc760	call 0x1400bc760
+reference	branch	report-list-consumer	0x1c4550	0x1d39d9	0x1d3a83	jg 0x1401d3a83
+reference	branch	report-list-consumer	0x1c4550	0x1d39f5	0x1d3a69	jge 0x1401d3a69
+reference	call	report-list-consumer	0x1c4550	0x1d3a0d	0xbc750	call 0x1400bc750
+reference	branch	report-list-consumer	0x1c4550	0x1d3a15	0x1d3a1c	jne 0x1401d3a1c
+reference	branch	report-list-consumer	0x1c4550	0x1d3a1a	0x1d3a28	jmp 0x1401d3a28
+reference	branch	report-list-consumer	0x1c4550	0x1d3a1f	0x1d3a25	jne 0x1401d3a25
+reference	branch	report-list-consumer	0x1c4550	0x1d3a23	0x1d3a28	jmp 0x1401d3a28
+reference	call	report-list-consumer	0x1c4550	0x1d3a2f	0xaf4570	call 0x140af4570
+reference	call	report-list-consumer	0x1c4550	0x1d3a3d	0x735c0	call 0x1400735c0
+reference	branch	report-list-consumer	0x1c4550	0x1d3a44	0x1d3a57	je 0x1401d3a57
+reference	call	report-list-consumer	0x1c4550	0x1d3a52	0xbc7c0	call 0x1400bc7c0
+reference	branch	report-list-consumer	0x1c4550	0x1d3a60	0x1d3a01	jl 0x1401d3a01
+reference	branch	report-list-consumer	0x1c4550	0x1d3a71	0x1d39f0	jle 0x1401d39f0
+reference	call	report-list-consumer	0x1c4550	0x1d3a93	0xbc750	call 0x1400bc750
+reference	call	report-list-consumer	0x1c4550	0x1d3a9f	0x70cc0	call 0x140070cc0
+reference	branch	report-list-consumer	0x1c4550	0x1d3aac	0x1d3adf	je 0x1401d3adf
+reference	branch	report-list-consumer	0x1c4550	0x1d3ac1	0x1d3ad1	je 0x1401d3ad1
+reference	call	report-list-consumer	0x1c4550	0x1d3ac6	0xbc760	call 0x1400bc760
+reference	branch	report-list-consumer	0x1c4550	0x1d3acf	0x1d3b0d	jmp 0x1401d3b0d
+reference	call	report-list-consumer	0x1c4550	0x1d3ad4	0xbc760	call 0x1400bc760
+reference	branch	report-list-consumer	0x1c4550	0x1d3add	0x1d3b0d	jmp 0x1401d3b0d
+reference	branch	report-list-consumer	0x1c4550	0x1d3ae6	0x1d3b27	je 0x1401d3b27
+reference	branch	report-list-consumer	0x1c4550	0x1d3afb	0x1d3b02	je 0x1401d3b02
+reference	branch	report-list-consumer	0x1c4550	0x1d3b00	0x1d3b05	jmp 0x1401d3b05
+reference	call	report-list-consumer	0x1c4550	0x1d3b05	0xbc760	call 0x1400bc760
+reference	call	report-list-consumer	0x1c4550	0x1d3b22	0xaf3400	call 0x140af3400
+reference	call	report-list-consumer	0x1c4550	0x1d3b2e	0x70960	call 0x140070960
+reference	branch	report-list-consumer	0x1c4550	0x1d3b37	0x1d3b89	jb 0x1401d3b89
+reference	call	report-list-consumer	0x1c4550	0x1d3b48	0xe2860	call 0x1400e2860
+reference	call	report-list-consumer	0x1c4550	0x1d3b59	0xfcbe0	call 0x1400fcbe0
+reference	call	report-list-consumer	0x1c4550	0x1d3b6d	0xfcbe0	call 0x1400fcbe0
+reference	call	report-list-consumer	0x1c4550	0x1d3b81	0xfcbe0	call 0x1400fcbe0
+reference	call	report-list-consumer	0x1c4550	0x1d3b9d	0xaf3400	call 0x140af3400
+reference	call	report-list-consumer	0x1c4550	0x1d3baf	0x69460	call 0x140069460
+reference	branch	report-list-consumer	0x1c4550	0x1d3bc6	0x1d3936	jl 0x1401d3936
+reference	branch	report-list-consumer	0x1c4550	0x1d3bd3	0x1c8dd3	jle 0x1401c8dd3
+reference	call	report-list-consumer	0x1c4550	0x1d3beb	0xbc990	call 0x1400bc990
+reference	call	report-list-consumer	0x1c4550	0x1d3c1b	0xbc9b0	call 0x1400bc9b0
+reference	call	report-list-consumer	0x1c4550	0x1d3c47	0x14284b0	call 0x1414284b0
+reference	branch	report-list-consumer	0x1c4550	0x1d3c4c	0x1c8dd8	jmp 0x1401c8dd8
+reference	call	report-list-consumer	0x1c4550	0x1d3c63	0xbc760	call 0x1400bc760
+reference	call	report-list-consumer	0x1c4550	0x1d3c78	0xbc750	call 0x1400bc750
+reference	literal	report-list-consumer	0x1c4550	0x1d3c7d	0x1620310	No reports available
+reference	call	report-list-consumer	0x1c4550	0x1d3c8b	0x69780	call 0x140069780
+reference	call	report-list-consumer	0x1c4550	0x1d3ca5	0xaf3400	call 0x140af3400
+reference	branch	report-list-consumer	0x1c4550	0x1d3cb2	0x1c8dce	jmp 0x1401c8dce
+reference	range	report-list-consumer	0x1c4550	0x1d389d	0x1d3cb7	reviewed native source block
+reference	call	spoils-detail-heading	0x1c4550	0x1d3451	0x70c00	call 0x140070c00
+reference	call	spoils-detail-heading	0x1c4550	0x1d3460	0x70960	call 0x140070960
+reference	branch	spoils-detail-heading	0x1c4550	0x1d346e	0x1d34d2	jb 0x1401d34d2
+reference	branch	spoils-detail-heading	0x1c4550	0x1d3475	0x1d348d	js 0x1401d348d
+reference	call	spoils-detail-heading	0x1c4550	0x1d3488	0xe2860	call 0x1400e2860
+reference	branch	spoils-detail-heading	0x1c4550	0x1d3490	0x1d34d2	jle 0x1401d34d2
+reference	call	spoils-detail-heading	0x1c4550	0x1d34a0	0xfcbe0	call 0x1400fcbe0
+reference	call	spoils-detail-heading	0x1c4550	0x1d34b5	0xfcbe0	call 0x1400fcbe0
+reference	call	spoils-detail-heading	0x1c4550	0x1d34ca	0xfcbe0	call 0x1400fcbe0
+reference	call	spoils-detail-heading	0x1c4550	0x1d34e6	0xaf3400	call 0x140af3400
+reference	range	spoils-detail-heading	0x1c4550	0x1d343e	0x1d34eb	reviewed native source block
+reference	branch	spoils-squad-source	0x10c7f0	0x10cc57	0x10cc8a	je 0x14010cc8a
+reference	call	spoils-squad-source	0x10c7f0	0x10cc60	0x76b30	call 0x140076b30
+reference	branch	spoils-squad-source	0x10c7f0	0x10cc68	0x10cc8a	je 0x14010cc8a
+reference	branch	spoils-squad-source	0x10c7f0	0x10cc76	0x10cc8a	jne 0x14010cc8a
+reference	call	spoils-squad-source	0x10c7f0	0x10cc85	0x13e160	call 0x14013e160
+reference	range	spoils-squad-source	0x10c7f0	0x10cc49	0x10cc8a	reviewed native source block
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c00f1	0x2c0117	jne 0x1402c0117
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c00f8	0x15530e0	call 0x1415530e0
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c0104	0xbd390	call 0x1400bd390
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c011c	0x15530e0	call 0x1415530e0
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c0128	0x2ba3d0	call 0x1402ba3d0
+reference	literal	separate-interrogation-storage	0x2c00a0	0x2c0135	0x1644f38	Interrogation Report: 
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c013f	0x70bb0	call 0x140070bb0
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c015e	0x70cc0	call 0x140070cc0
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c0171	0x1349540	call 0x141349540
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c0180	0xbb340	call 0x1400bb340
+reference	literal	separate-interrogation-storage	0x2c00a0	0x2c0185	0x1604394	, 
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c018f	0x70b90	call 0x140070b90
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c019d	0x2c01c9	je 0x1402c01c9
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c01a2	0x2c01c0	je 0x1402c01c0
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c01a7	0x2c01b7	je 0x1402c01b7
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c01ac	0x2c01d8	jne 0x1402c01d8
+reference	literal	separate-interrogation-storage	0x2c00a0	0x2c01ae	0x1618fa8	Winter
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c01b5	0x2c01d0	jmp 0x1402c01d0
+reference	literal	separate-interrogation-storage	0x2c00a0	0x2c01b7	0x1618ddc	Autumn
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c01be	0x2c01d0	jmp 0x1402c01d0
+reference	literal	separate-interrogation-storage	0x2c00a0	0x2c01c0	0x1618dd4	Summer
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c01c7	0x2c01d0	jmp 0x1402c01d0
+reference	literal	separate-interrogation-storage	0x2c00a0	0x2c01c9	0x1618dcc	Spring
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c01d3	0x70b90	call 0x140070b90
+reference	literal	separate-interrogation-storage	0x2c00a0	0x2c01d8	0x16039f0	 
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c01e2	0x70b90	call 0x140070b90
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c01f0	0x545610	call 0x140545610
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c01ff	0x1349540	call 0x141349540
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c0219	0x13cc010	call 0x1413cc010
+reference	branch	separate-interrogation-storage	0x2c00a0	0x2c0221	0x2c022b	je 0x1402c022b
+reference	call	separate-interrogation-storage	0x2c00a0	0x2c023e	0xbafb0	call 0x1400bafb0
+reference	range	separate-interrogation-storage	0x2c00a0	0x2c00a0	0x2c0243	reviewed native source block
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc13	0x1bdc43	jae 0x1401bdc43
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc1a	0x1bdc22	je 0x1401bdc22
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc20	0x1bdc10	jmp 0x1401bdc10
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc2c	0x1bdc43	je 0x1401bdc43
+reference	literal	diplomatic-proposal	0x1bdc00	0x1bdc2e	0x161f218	Demand surrender
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc3e	0x70f00	jmp 0x140070f00
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc49	0x1bdc77	jae 0x1401bdc77
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc4f	0x1bdc57	je 0x1401bdc57
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc55	0x1bdc46	jmp 0x1401bdc46
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc60	0x1bdc77	je 0x1401bdc77
+reference	literal	diplomatic-proposal	0x1bdc00	0x1bdc62	0x161f230	Make peace
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc72	0x70f00	jmp 0x140070f00
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc83	0x1bdcb1	jae 0x1401bdcb1
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc89	0x1bdc91	je 0x1401bdc91
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc8f	0x1bdc80	jmp 0x1401bdc80
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdc9a	0x1bdcb1	je 0x1401bdcb1
+reference	literal	diplomatic-proposal	0x1bdc00	0x1bdc9c	0x161f240	Declare war
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdcac	0x70f00	jmp 0x140070f00
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdcb7	0x1bdce5	jae 0x1401bdce5
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdcbd	0x1bdcc5	je 0x1401bdcc5
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdcc3	0x1bdcb4	jmp 0x1401bdcb4
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdcce	0x1bdce5	je 0x1401bdce5
+reference	literal	diplomatic-proposal	0x1bdc00	0x1bdcd0	0x161f250	Seek alliance
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdce0	0x70f00	jmp 0x140070f00
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdceb	0x1bdd19	jae 0x1401bdd19
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdcf1	0x1bdcf9	je 0x1401bdcf9
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdcf7	0x1bdce8	jmp 0x1401bdce8
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdd02	0x1bdd19	je 0x1401bdd19
+reference	literal	diplomatic-proposal	0x1bdc00	0x1bdd04	0x161f260	Make contact
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdd14	0x70f00	jmp 0x140070f00
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdd23	0x1bdd53	jae 0x1401bdd53
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdd2a	0x1bdd32	je 0x1401bdd32
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdd30	0x1bdd20	jmp 0x1401bdd20
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdd3c	0x1bdd53	je 0x1401bdd53
+reference	literal	diplomatic-proposal	0x1bdc00	0x1bdd3e	0x161f270	Improve trade
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdd4e	0x70f00	jmp 0x140070f00
+reference	literal	diplomatic-proposal	0x1bdc00	0x1bdd53	0x161f280	Diplomacy
+reference	branch	diplomatic-proposal	0x1bdc00	0x1bdd63	0x70f00	jmp 0x140070f00
+reference	range	diplomatic-proposal	0x1bdc00	0x1bdc00	0x1bdd70	reviewed native source block
+reference	range	mission-goal-getter	0x76740	0x76740	0x76750	reviewed native source block
+reference	call	year-decimal	0x545610	0x54564c	0x545790	call 0x140545790
+reference	call	year-decimal	0x545610	0x54566a	0x71040	call 0x140071040
+reference	branch	year-decimal	0x545610	0x545679	0x5456b0	jbe 0x1405456b0
+reference	branch	year-decimal	0x545610	0x54568d	0x5456ab	jb 0x1405456ab
+reference	branch	year-decimal	0x545610	0x5456a2	0x5456ab	jbe 0x1405456ab
+reference	import-call	year-decimal	0x545610	0x5456a4	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	year-decimal	0x545610	0x5456a4	0x0	call QWORD PTR [rip+0x10bb496]        # 0x141600b40
+reference	call	year-decimal	0x545610	0x5456ab	0x15530d0	call 0x1415530d0
+reference	call	year-decimal	0x545610	0x5456b8	0x15530b0	call 0x1415530b0
+reference	range	year-decimal	0x545610	0x545610	0x5456c3	reviewed native source block
+reference	call	site-name	0xbab5f0	0xbab61e	0x7f150	call 0x14007f150
+reference	branch	site-name	0xbab5f0	0xbab629	0xbab718	je 0x140bab718
+reference	branch	site-name	0xbab5f0	0xbab632	0xbab66c	je 0x140bab66c
+reference	literal	site-name	0xbab5f0	0xbab63a	0x1704810	[LPAGE:SITE:
+reference	call	site-name	0xbab5f0	0xbab644	0x71040	call 0x140071040
+reference	call	site-name	0xbab5f0	0xbab652	0x545610	call 0x140545610
+reference	literal	site-name	0xbab5f0	0xbab65d	0x1619408	]
+reference	call	site-name	0xbab5f0	0xbab667	0x71040	call 0x140071040
+reference	call	site-name	0xbab5f0	0xbab699	0xaae180	call 0x140aae180
+reference	call	site-name	0xbab5f0	0xbab6b7	0x71040	call 0x140071040
+reference	branch	site-name	0xbab5f0	0xbab6be	0xbab6d6	je 0x140bab6d6
+reference	literal	site-name	0xbab5f0	0xbab6c6	0x1619918	[/LPAGE]
+reference	call	site-name	0xbab5f0	0xbab6d0	0x71040	call 0x140071040
+reference	branch	site-name	0xbab5f0	0xbab6df	0xbab72d	jbe 0x140bab72d
+reference	branch	site-name	0xbab5f0	0xbab6f3	0xbab711	jb 0x140bab711
+reference	branch	site-name	0xbab5f0	0xbab708	0xbab711	jbe 0x140bab711
+reference	import-call	site-name	0xbab5f0	0xbab70a	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	site-name	0xbab5f0	0xbab70a	0x0	call QWORD PTR [rip+0xa55430]        # 0x141600b40
+reference	call	site-name	0xbab5f0	0xbab711	0x15530d0	call 0x1415530d0
+reference	branch	site-name	0xbab5f0	0xbab716	0xbab72d	jmp 0x140bab72d
+reference	literal	site-name	0xbab5f0	0xbab71e	0x17047d8	an unknown site
+reference	call	site-name	0xbab5f0	0xbab728	0x71040	call 0x140071040
+reference	call	site-name	0xbab5f0	0xbab735	0x15530b0	call 0x1415530b0
+reference	range	site-name	0xbab5f0	0xbab5f0	0xbab74a	reviewed native source block
+reference	call	rescue-figure	0xbaabd0	0xbaac12	0x693f0	call 0x1400693f0
+reference	branch	rescue-figure	0xbaabd0	0xbaac1d	0xbab596	je 0x140bab596
+reference	branch	rescue-figure	0xbaabd0	0xbaac2a	0xbaade0	je 0x140baade0
+reference	branch	rescue-figure	0xbaabd0	0xbaac37	0xbaac6d	je 0x140baac6d
+reference	branch	rescue-figure	0xbaabd0	0xbaac42	0xbaac56	jne 0x140baac56
+reference	literal	rescue-figure	0xbaabd0	0xbaac4a	0x1704838	interrogator
+reference	branch	rescue-figure	0xbaabd0	0xbaac51	0xbab5bf	jmp 0x140bab5bf
+reference	branch	rescue-figure	0xbaabd0	0xbaac59	0xbaac6d	jne 0x140baac6d
+reference	literal	rescue-figure	0xbaabd0	0xbaac61	0x168e058	subject
+reference	branch	rescue-figure	0xbaabd0	0xbaac68	0xbab5bf	jmp 0x140bab5bf
+reference	call	rescue-figure	0xbaabd0	0xbaac73	0xbb3f0	call 0x1400bb3f0
+reference	branch	rescue-figure	0xbaabd0	0xbaac7b	0xbaadce	je 0x140baadce
+reference	branch	rescue-figure	0xbaabd0	0xbaac85	0xbaad3f	je 0x140baad3f
+reference	branch	rescue-figure	0xbaabd0	0xbaac92	0xbaad2d	je 0x140baad2d
+reference	call	rescue-figure	0xbaabd0	0xbaacc3	0xaae180	call 0x140aae180
+reference	call	rescue-figure	0xbaabd0	0xbaacdf	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbaaced	0xbab5ab	jbe 0x140bab5ab
+reference	branch	rescue-figure	0xbaabd0	0xbaad05	0xbaad23	jb 0x140baad23
+reference	branch	rescue-figure	0xbaabd0	0xbaad1a	0xbaad23	jbe 0x140baad23
+reference	import-call	rescue-figure	0xbaabd0	0xbaad1c	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	rescue-figure	0xbaabd0	0xbaad1c	0x0	call QWORD PTR [rip+0xa55e1e]        # 0x141600b40
+reference	call	rescue-figure	0xbaabd0	0xbaad23	0x15530d0	call 0x1415530d0
+reference	branch	rescue-figure	0xbaabd0	0xbaad28	0xbab5ab	jmp 0x140bab5ab
+reference	literal	rescue-figure	0xbaabd0	0xbaad33	0x1644ea0	Nameless
+reference	branch	rescue-figure	0xbaabd0	0xbaad3a	0xbab5a3	jmp 0x140bab5a3
+reference	branch	rescue-figure	0xbaabd0	0xbaad57	0xbaadce	je 0x140baadce
+reference	call	rescue-figure	0xbaabd0	0xbaad62	0x73ba0	call 0x140073ba0
+reference	branch	rescue-figure	0xbaabd0	0xbaad6a	0xbaad2d	je 0x140baad2d
+reference	branch	rescue-figure	0xbaabd0	0xbaad70	0xbaad2d	je 0x140baad2d
+reference	call	rescue-figure	0xbaabd0	0xbaad9d	0xaae180	call 0x140aae180
+reference	call	rescue-figure	0xbaabd0	0xbaadb9	0x71040	call 0x140071040
+reference	call	rescue-figure	0xbaabd0	0xbaadc4	0x70e80	call 0x140070e80
+reference	branch	rescue-figure	0xbaabd0	0xbaadc9	0xbab5ab	jmp 0x140bab5ab
+reference	literal	rescue-figure	0xbaabd0	0xbaadce	0x17047f0	an unidentified creature
+reference	branch	rescue-figure	0xbaabd0	0xbaaddb	0xbab5a3	jmp 0x140bab5a3
+reference	branch	rescue-figure	0xbaabd0	0xbaadeb	0xbaae22	je 0x140baae22
+reference	literal	rescue-figure	0xbaabd0	0xbaadf3	0x1619908	[LPAGE:HF:
+reference	call	rescue-figure	0xbaabd0	0xbaadfd	0x71040	call 0x140071040
+reference	call	rescue-figure	0xbaabd0	0xbaae0b	0x545610	call 0x140545610
+reference	literal	rescue-figure	0xbaabd0	0xbaae13	0x1619408	]
+reference	call	rescue-figure	0xbaabd0	0xbaae1d	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbaae2d	0xbaae43	jle 0x140baae43
+reference	branch	rescue-figure	0xbaabd0	0xbaae39	0xbaae40	jne 0x140baae40
+reference	branch	rescue-figure	0xbaabd0	0xbaae3e	0xbaae43	je 0x140baae43
+reference	call	rescue-figure	0xbaabd0	0xbaae4a	0x693f0	call 0x1400693f0
+reference	call	rescue-figure	0xbaabd0	0xbaae59	0x693f0	call 0x1400693f0
+reference	branch	rescue-figure	0xbaabd0	0xbaae64	0xbaae6e	jne 0x140baae6e
+reference	branch	rescue-figure	0xbaabd0	0xbaae6c	0xbaae7e	je 0x140baae7e
+reference	branch	rescue-figure	0xbaabd0	0xbaae88	0xbaaeb3	je 0x140baaeb3
+reference	branch	rescue-figure	0xbaabd0	0xbaae91	0xbaaeb6	je 0x140baaeb6
+reference	branch	rescue-figure	0xbaabd0	0xbaaeb1	0xbaaeb6	jmp 0x140baaeb6
+reference	branch	rescue-figure	0xbaabd0	0xbaaebf	0xbaaec7	je 0x140baaec7
+reference	branch	rescue-figure	0xbaabd0	0xbaaec5	0xbaaeca	jne 0x140baaeca
+reference	branch	rescue-figure	0xbaabd0	0xbaaef6	0xbaafaa	jne 0x140baafaa
+reference	branch	rescue-figure	0xbaabd0	0xbaaf02	0xbaaf8c	je 0x140baaf8c
+reference	branch	rescue-figure	0xbaabd0	0xbaaf0b	0xbaaf64	je 0x140baaf64
+reference	branch	rescue-figure	0xbaabd0	0xbaaf10	0xbaaf37	je 0x140baaf37
+reference	branch	rescue-figure	0xbaabd0	0xbaaf15	0xbaaf8c	jne 0x140baaf8c
+reference	literal	rescue-figure	0xbaabd0	0xbaaf1d	0x1694408	myself
+reference	literal	rescue-figure	0xbaabd0	0xbaaf26	0x169440c	lf
+reference	branch	rescue-figure	0xbaabd0	0xbaaf35	0xbaaf92	jmp 0x140baaf92
+reference	call	rescue-figure	0xbaabd0	0xbaaf5a	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbaaf5f	0xbab513	jmp 0x140bab513
+reference	call	rescue-figure	0xbaabd0	0xbaaf82	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbaaf87	0xbab513	jmp 0x140bab513
+reference	call	rescue-figure	0xbaabd0	0xbaafa0	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbaafa5	0xbab513	jmp 0x140bab513
+reference	branch	rescue-figure	0xbaabd0	0xbaafb4	0xbab401	je 0x140bab401
+reference	branch	rescue-figure	0xbaabd0	0xbaafbd	0xbab1ac	je 0x140bab1ac
+reference	branch	rescue-figure	0xbaabd0	0xbaafc6	0xbab1ac	je 0x140bab1ac
+reference	branch	rescue-figure	0xbaabd0	0xbaafcf	0xbab1ac	jne 0x140bab1ac
+reference	literal	rescue-figure	0xbaabd0	0xbaafdb	0x1604104	the 
+reference	call	rescue-figure	0xbaabd0	0xbaafe5	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbaafed	0xbab00e	je 0x140bab00e
+reference	branch	rescue-figure	0xbaabd0	0xbaaff7	0xbab00e	je 0x140bab00e
+reference	literal	rescue-figure	0xbaabd0	0xbaafff	0x169d6b0	zombie 
+reference	call	rescue-figure	0xbaabd0	0xbab009	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab015	0xbab046	jle 0x140bab046
+reference	branch	rescue-figure	0xbaabd0	0xbab021	0xbab046	jge 0x140bab046
+reference	branch	rescue-figure	0xbaabd0	0xbab026	0xbab031	je 0x140bab031
+reference	branch	rescue-figure	0xbaabd0	0xbab02f	0xbab046	jne 0x140bab046
+reference	literal	rescue-figure	0xbaabd0	0xbab037	0x1619930	ghostly 
+reference	call	rescue-figure	0xbaabd0	0xbab041	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab06a	0xbab0e6	je 0x140bab0e6
+reference	branch	rescue-figure	0xbaabd0	0xbab070	0xbab132	js 0x140bab132
+reference	branch	rescue-figure	0xbaabd0	0xbab08e	0xbab0ec	jae 0x140bab0ec
+reference	branch	rescue-figure	0xbaabd0	0xbab093	0xbab0ec	js 0x140bab0ec
+reference	branch	rescue-figure	0xbaabd0	0xbab0b1	0xbab0ec	jae 0x140bab0ec
+reference	branch	rescue-figure	0xbaabd0	0xbab0c2	0xbab0ec	je 0x140bab0ec
+reference	branch	rescue-figure	0xbaabd0	0xbab0cd	0xbab0d2	jbe 0x140bab0d2
+reference	call	rescue-figure	0xbaabd0	0xbab0d6	0x70f00	call 0x140070f00
+reference	branch	rescue-figure	0xbaabd0	0xbab0e2	0xbab132	jne 0x140bab132
+reference	branch	rescue-figure	0xbaabd0	0xbab0e4	0xbab0ec	jmp 0x140bab0ec
+reference	branch	rescue-figure	0xbaabd0	0xbab0ea	0xbab132	js 0x140bab132
+reference	branch	rescue-figure	0xbaabd0	0xbab104	0xbab132	jae 0x140bab132
+reference	branch	rescue-figure	0xbaabd0	0xbab115	0xbab132	je 0x140bab132
+reference	branch	rescue-figure	0xbaabd0	0xbab120	0xbab125	jbe 0x140bab125
+reference	call	rescue-figure	0xbaabd0	0xbab129	0x70f00	call 0x140070f00
+reference	call	rescue-figure	0xbaabd0	0xbab143	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab14b	0xbab185	je 0x140bab185
+reference	branch	rescue-figure	0xbaabd0	0xbab154	0xbab185	je 0x140bab185
+reference	literal	rescue-figure	0xbaabd0	0xbab159	0x16039f0	 
+reference	call	rescue-figure	0xbaabd0	0xbab163	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab178	0xbab17d	jbe 0x140bab17d
+reference	call	rescue-figure	0xbaabd0	0xbab180	0x71040	call 0x140071040
+reference	literal	rescue-figure	0xbaabd0	0xbab188	0x16039f0	 
+reference	call	rescue-figure	0xbaabd0	0xbab192	0x71040	call 0x140071040
+reference	call	rescue-figure	0xbaabd0	0xbab19c	0x70e80	call 0x140070e80
+reference	call	rescue-figure	0xbaabd0	0xbab1c4	0xaae180	call 0x140aae180
+reference	call	rescue-figure	0xbaabd0	0xbab1de	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab1f1	0xbab513	je 0x140bab513
+reference	branch	rescue-figure	0xbaabd0	0xbab1fa	0xbab513	je 0x140bab513
+reference	branch	rescue-figure	0xbaabd0	0xbab205	0xbab513	jne 0x140bab513
+reference	literal	rescue-figure	0xbaabd0	0xbab211	0x1604818	 the 
+reference	call	rescue-figure	0xbaabd0	0xbab21b	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab223	0xbab244	je 0x140bab244
+reference	branch	rescue-figure	0xbaabd0	0xbab22d	0xbab244	je 0x140bab244
+reference	literal	rescue-figure	0xbaabd0	0xbab235	0x169d6b0	zombie 
+reference	call	rescue-figure	0xbaabd0	0xbab23f	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab24b	0xbab27c	jle 0x140bab27c
+reference	branch	rescue-figure	0xbaabd0	0xbab257	0xbab27c	jge 0x140bab27c
+reference	branch	rescue-figure	0xbaabd0	0xbab25c	0xbab267	je 0x140bab267
+reference	branch	rescue-figure	0xbaabd0	0xbab265	0xbab27c	jne 0x140bab27c
+reference	literal	rescue-figure	0xbaabd0	0xbab26d	0x1619930	ghostly 
+reference	call	rescue-figure	0xbaabd0	0xbab277	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab29d	0xbab318	je 0x140bab318
+reference	branch	rescue-figure	0xbaabd0	0xbab2a2	0xbab363	js 0x140bab363
+reference	branch	rescue-figure	0xbaabd0	0xbab2c0	0xbab31d	jae 0x140bab31d
+reference	branch	rescue-figure	0xbaabd0	0xbab2c5	0xbab31d	js 0x140bab31d
+reference	branch	rescue-figure	0xbaabd0	0xbab2e3	0xbab31d	jae 0x140bab31d
+reference	branch	rescue-figure	0xbaabd0	0xbab2f4	0xbab31d	je 0x140bab31d
+reference	branch	rescue-figure	0xbaabd0	0xbab2ff	0xbab304	jbe 0x140bab304
+reference	call	rescue-figure	0xbaabd0	0xbab308	0x70f00	call 0x140070f00
+reference	branch	rescue-figure	0xbaabd0	0xbab314	0xbab363	jne 0x140bab363
+reference	branch	rescue-figure	0xbaabd0	0xbab316	0xbab31d	jmp 0x140bab31d
+reference	branch	rescue-figure	0xbaabd0	0xbab31b	0xbab363	js 0x140bab363
+reference	branch	rescue-figure	0xbaabd0	0xbab335	0xbab363	jae 0x140bab363
+reference	branch	rescue-figure	0xbaabd0	0xbab346	0xbab363	je 0x140bab363
+reference	branch	rescue-figure	0xbaabd0	0xbab351	0xbab356	jbe 0x140bab356
+reference	call	rescue-figure	0xbaabd0	0xbab35a	0x70f00	call 0x140070f00
+reference	call	rescue-figure	0xbaabd0	0xbab377	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab37f	0xbab3ba	je 0x140bab3ba
+reference	branch	rescue-figure	0xbaabd0	0xbab388	0xbab3ba	je 0x140bab3ba
+reference	literal	rescue-figure	0xbaabd0	0xbab38d	0x16039f0	 
+reference	call	rescue-figure	0xbaabd0	0xbab397	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab3ac	0xbab3b1	jbe 0x140bab3b1
+reference	call	rescue-figure	0xbaabd0	0xbab3b4	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab3c2	0xbab513	jbe 0x140bab513
+reference	branch	rescue-figure	0xbaabd0	0xbab3d9	0xbab3f7	jb 0x140bab3f7
+reference	branch	rescue-figure	0xbaabd0	0xbab3ee	0xbab3f7	jbe 0x140bab3f7
+reference	import-call	rescue-figure	0xbaabd0	0xbab3f0	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	rescue-figure	0xbaabd0	0xbab3f0	0x0	call QWORD PTR [rip+0xa5574a]        # 0x141600b40
+reference	call	rescue-figure	0xbaabd0	0xbab3f7	0x15530d0	call 0x1415530d0
+reference	branch	rescue-figure	0xbaabd0	0xbab3fc	0xbab513	jmp 0x140bab513
+reference	literal	rescue-figure	0xbaabd0	0xbab40e	0x16088a0	a 
+reference	literal	rescue-figure	0xbaabd0	0xbab415	0x1604104	the 
+reference	call	rescue-figure	0xbaabd0	0xbab423	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab42b	0xbab44c	je 0x140bab44c
+reference	branch	rescue-figure	0xbaabd0	0xbab435	0xbab44c	je 0x140bab44c
+reference	literal	rescue-figure	0xbaabd0	0xbab43d	0x169d6b0	zombie 
+reference	call	rescue-figure	0xbaabd0	0xbab447	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab453	0xbab484	jle 0x140bab484
+reference	branch	rescue-figure	0xbaabd0	0xbab45f	0xbab484	jge 0x140bab484
+reference	branch	rescue-figure	0xbaabd0	0xbab464	0xbab46f	je 0x140bab46f
+reference	branch	rescue-figure	0xbaabd0	0xbab46d	0xbab484	jne 0x140bab484
+reference	literal	rescue-figure	0xbaabd0	0xbab475	0x1619930	ghostly 
+reference	call	rescue-figure	0xbaabd0	0xbab47f	0x71040	call 0x140071040
+reference	call	rescue-figure	0xbaabd0	0xbab4aa	0xabd670	call 0x140abd670
+reference	call	rescue-figure	0xbaabd0	0xbab4c6	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab4ce	0xbab509	je 0x140bab509
+reference	branch	rescue-figure	0xbaabd0	0xbab4d7	0xbab509	je 0x140bab509
+reference	literal	rescue-figure	0xbaabd0	0xbab4dc	0x16039f0	 
+reference	call	rescue-figure	0xbaabd0	0xbab4e6	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab4fb	0xbab500	jbe 0x140bab500
+reference	call	rescue-figure	0xbaabd0	0xbab503	0x71040	call 0x140071040
+reference	call	rescue-figure	0xbaabd0	0xbab50e	0x70e80	call 0x140070e80
+reference	branch	rescue-figure	0xbaabd0	0xbab518	0xbab536	jne 0x140bab536
+reference	branch	rescue-figure	0xbaabd0	0xbab51f	0xbab536	jne 0x140bab536
+reference	literal	rescue-figure	0xbaabd0	0xbab527	0x16044e4	's
+reference	call	rescue-figure	0xbaabd0	0xbab531	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab53e	0xbab556	je 0x140bab556
+reference	literal	rescue-figure	0xbaabd0	0xbab546	0x1619918	[/LPAGE]
+reference	call	rescue-figure	0xbaabd0	0xbab550	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab55e	0xbab5c7	jbe 0x140bab5c7
+reference	branch	rescue-figure	0xbaabd0	0xbab571	0xbab58f	jb 0x140bab58f
+reference	branch	rescue-figure	0xbaabd0	0xbab586	0xbab58f	jbe 0x140bab58f
+reference	import-call	rescue-figure	0xbaabd0	0xbab588	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	rescue-figure	0xbaabd0	0xbab588	0x0	call QWORD PTR [rip+0xa555b2]        # 0x141600b40
+reference	call	rescue-figure	0xbaabd0	0xbab58f	0x15530d0	call 0x1415530d0
+reference	branch	rescue-figure	0xbaabd0	0xbab594	0xbab5c7	jmp 0x140bab5c7
+reference	literal	rescue-figure	0xbaabd0	0xbab59c	0x1694f20	an unknown creature
+reference	call	rescue-figure	0xbaabd0	0xbab5a6	0x71040	call 0x140071040
+reference	branch	rescue-figure	0xbaabd0	0xbab5b0	0xbab5c7	jne 0x140bab5c7
+reference	literal	rescue-figure	0xbaabd0	0xbab5b2	0x16044e4	's
+reference	call	rescue-figure	0xbaabd0	0xbab5c2	0x71040	call 0x140071040
+reference	call	rescue-figure	0xbaabd0	0xbab5ce	0x15530b0	call 0x1415530b0
+reference	range	rescue-figure	0xbaabd0	0xbaabd0	0xbab5e7	reviewed native source block
+reference	branch	recover-artifact	0xbac0c0	0xbac0ff	0xbac136	je 0x140bac136
+reference	branch	recover-artifact	0xbac0c0	0xbac105	0xbac136	je 0x140bac136
+reference	branch	recover-artifact	0xbac0c0	0xbac10d	0xbac136	js 0x140bac136
+reference	branch	recover-artifact	0xbac0c0	0xbac120	0xbac138	je 0x140bac138
+reference	branch	recover-artifact	0xbac0c0	0xbac134	0xbac110	jle 0x140bac110
+reference	branch	recover-artifact	0xbac0c0	0xbac13b	0xbac398	je 0x140bac398
+reference	branch	recover-artifact	0xbac0c0	0xbac14c	0xbac1c2	je 0x140bac1c2
+reference	call	recover-artifact	0xbac0c0	0xbac154	0x0	call QWORD PTR [rax]
+reference	branch	recover-artifact	0xbac0c0	0xbac15a	0xbac18e	je 0x140bac18e
+reference	call	recover-artifact	0xbac0c0	0xbac167	0x0	call QWORD PTR [rax+0xe0]
+reference	branch	recover-artifact	0xbac0c0	0xbac16f	0xbac18e	jne 0x140bac18e
+reference	call	recover-artifact	0xbac0c0	0xbac177	0x0	call QWORD PTR [rax]
+reference	branch	recover-artifact	0xbac0c0	0xbac17d	0xbac18e	je 0x140bac18e
+reference	literal	recover-artifact	0xbac0c0	0xbac17f	0x16197f0	[LPAGE:ARTIFACT:
+reference	branch	recover-artifact	0xbac0c0	0xbac18c	0xbac19b	jmp 0x140bac19b
+reference	literal	recover-artifact	0xbac0c0	0xbac18e	0x1704600	[LPAGE:BOOK:
+reference	call	recover-artifact	0xbac0c0	0xbac19e	0x71040	call 0x140071040
+reference	call	recover-artifact	0xbac0c0	0xbac1a8	0x545610	call 0x140545610
+reference	literal	recover-artifact	0xbac0c0	0xbac1b3	0x1619408	]
+reference	call	recover-artifact	0xbac0c0	0xbac1bd	0x71040	call 0x140071040
+reference	call	recover-artifact	0xbac0c0	0xbac1f0	0xaae180	call 0x140aae180
+reference	branch	recover-artifact	0xbac0c0	0xbac1fb	0xbac31d	jne 0x140bac31d
+reference	call	recover-artifact	0xbac0c0	0xbac207	0x0	call QWORD PTR [rax]
+reference	branch	recover-artifact	0xbac0c0	0xbac20d	0xbac24d	je 0x140bac24d
+reference	call	recover-artifact	0xbac0c0	0xbac21a	0x0	call QWORD PTR [rax+0xe0]
+reference	branch	recover-artifact	0xbac0c0	0xbac222	0xbac24d	jne 0x140bac24d
+reference	call	recover-artifact	0xbac0c0	0xbac22a	0x0	call QWORD PTR [rax]
+reference	branch	recover-artifact	0xbac0c0	0xbac230	0xbac24d	je 0x140bac24d
+reference	call	recover-artifact	0xbac0c0	0xbac243	0xc7d140	call 0x140c7d140
+reference	branch	recover-artifact	0xbac0c0	0xbac248	0xbac31d	jmp 0x140bac31d
+reference	branch	recover-artifact	0xbac0c0	0xbac256	0xbac286	jb 0x140bac286
+reference	inline-immediate	recover-artifact	0xbac0c0	0xbac270	0x0	Untitled
+reference	branch	recover-artifact	0xbac0c0	0xbac281	0xbac31d	jmp 0x140bac31d
+reference	branch	recover-artifact	0xbac0c0	0xbac29f	0xbac2b1	ja 0x140bac2b1
+reference	call	recover-artifact	0xbac0c0	0xbac2b5	0x71e00	call 0x140071e00
+reference	inline-immediate	recover-artifact	0xbac0c0	0xbac2cb	0x0	Untitled
+reference	branch	recover-artifact	0xbac0c0	0xbac2e0	0xbac318	jbe 0x140bac318
+reference	branch	recover-artifact	0xbac0c0	0xbac2f5	0xbac313	jb 0x140bac313
+reference	branch	recover-artifact	0xbac0c0	0xbac30a	0xbac313	jbe 0x140bac313
+reference	import-call	recover-artifact	0xbac0c0	0xbac30c	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	recover-artifact	0xbac0c0	0xbac30c	0x0	call QWORD PTR [rip+0xa5482e]        # 0x141600b40
+reference	call	recover-artifact	0xbac0c0	0xbac313	0x15530d0	call 0x1415530d0
+reference	call	recover-artifact	0xbac0c0	0xbac336	0x71040	call 0x140071040
+reference	branch	recover-artifact	0xbac0c0	0xbac33e	0xbac356	je 0x140bac356
+reference	literal	recover-artifact	0xbac0c0	0xbac346	0x1619918	[/LPAGE]
+reference	call	recover-artifact	0xbac0c0	0xbac350	0x71040	call 0x140071040
+reference	branch	recover-artifact	0xbac0c0	0xbac35f	0xbac3ad	jbe 0x140bac3ad
+reference	branch	recover-artifact	0xbac0c0	0xbac373	0xbac391	jb 0x140bac391
+reference	branch	recover-artifact	0xbac0c0	0xbac388	0xbac391	jbe 0x140bac391
+reference	import-call	recover-artifact	0xbac0c0	0xbac38a	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	recover-artifact	0xbac0c0	0xbac38a	0x0	call QWORD PTR [rip+0xa547b0]        # 0x141600b40
+reference	call	recover-artifact	0xbac0c0	0xbac391	0x15530d0	call 0x1415530d0
+reference	branch	recover-artifact	0xbac0c0	0xbac396	0xbac3ad	jmp 0x140bac3ad
+reference	literal	recover-artifact	0xbac0c0	0xbac39e	0x17045c8	an unknown artifact
+reference	call	recover-artifact	0xbac0c0	0xbac3a8	0x71040	call 0x140071040
+reference	call	recover-artifact	0xbac0c0	0xbac3b5	0x15530b0	call 0x1415530b0
+reference	range	recover-artifact	0xbac0c0	0xbac0c0	0xbac3d0	reviewed native source block
+reference	branch	squad-language-name	0xaae180	0xaae1c7	0xaae90f	je 0x140aae90f
+reference	branch	squad-language-name	0xaae180	0xaae1da	0xaae1e7	ja 0x140aae1e7
+reference	branch	squad-language-name	0xaae180	0xaae1f3	0xaae1f8	jbe 0x140aae1f8
+reference	branch	squad-language-name	0xaae180	0xaae20e	0xaae24e	je 0x140aae24e
+reference	branch	squad-language-name	0xaae180	0xaae217	0xaae24e	jne 0x140aae24e
+reference	call	squad-language-name	0xaae180	0xaae21e	0xbb1b0	call 0x1400bb1b0
+reference	branch	squad-language-name	0xaae180	0xaae230	0xaae235	jbe 0x140aae235
+reference	call	squad-language-name	0xaae180	0xaae238	0x71040	call 0x140071040
+reference	call	squad-language-name	0xaae180	0xaae242	0xbb1b0	call 0x1400bb1b0
+reference	branch	squad-language-name	0xaae180	0xaae249	0xaae32c	jmp 0x140aae32c
+reference	branch	squad-language-name	0xaae180	0xaae269	0xaae26e	jbe 0x140aae26e
+reference	branch	squad-language-name	0xaae180	0xaae271	0xaae93c	ja 0x140aae93c
+reference	branch	squad-language-name	0xaae180	0xaae27b	0xaae29a	ja 0x140aae29a
+reference	branch	squad-language-name	0xaae180	0xaae298	0xaae2da	jmp 0x140aae2da
+reference	branch	squad-language-name	0xaae180	0xaae2a4	0xaae2ab	jbe 0x140aae2ab
+reference	branch	squad-language-name	0xaae180	0xaae2a9	0xaae2b2	jmp 0x140aae2b2
+reference	call	squad-language-name	0xaae180	0xaae2b6	0x71e00	call 0x140071e00
+reference	call	squad-language-name	0xaae180	0xaae2d4	0x155454e	call 0x14155454e
+reference	branch	squad-language-name	0xaae180	0xaae2de	0xaae2f5	je 0x140aae2f5
+reference	call	squad-language-name	0xaae180	0xaae2e4	0x5468a0	call 0x1405468a0
+reference	call	squad-language-name	0xaae180	0xaae307	0x71040	call 0x140071040
+reference	call	squad-language-name	0xaae180	0xaae314	0x70e80	call 0x140070e80
+reference	branch	squad-language-name	0xaae180	0xaae331	0xaae393	je 0x140aae393
+reference	branch	squad-language-name	0xaae180	0xaae337	0xaae382	jne 0x140aae382
+reference	branch	squad-language-name	0xaae180	0xaae33b	0xaae352	je 0x140aae352
+reference	literal	squad-language-name	0xaae180	0xaae343	0x16039f0	 
+reference	call	squad-language-name	0xaae180	0xaae34d	0x71040	call 0x140071040
+reference	call	squad-language-name	0xaae180	0xaae357	0xbb1b0	call 0x1400bb1b0
+reference	branch	squad-language-name	0xaae180	0xaae369	0xaae36e	jbe 0x140aae36e
+reference	call	squad-language-name	0xaae180	0xaae371	0x71040	call 0x140071040
+reference	call	squad-language-name	0xaae180	0xaae37b	0xbb1b0	call 0x1400bb1b0
+reference	branch	squad-language-name	0xaae180	0xaae387	0xaae393	je 0x140aae393
+reference	branch	squad-language-name	0xaae180	0xaae38d	0xaae90f	je 0x140aae90f
+reference	branch	squad-language-name	0xaae180	0xaae399	0xaae3a4	jne 0x140aae3a4
+reference	branch	squad-language-name	0xaae180	0xaae39e	0xaae475	je 0x140aae475
+reference	branch	squad-language-name	0xaae180	0xaae3a6	0xaae3b1	je 0x140aae3b1
+reference	branch	squad-language-name	0xaae180	0xaae3ab	0xaae475	jne 0x140aae475
+reference	call	squad-language-name	0xaae180	0xaae3d4	0xd44840	call 0x140d44840
+reference	call	squad-language-name	0xaae180	0xaae3e8	0xd44840	call 0x140d44840
+reference	branch	squad-language-name	0xaae180	0xaae3f2	0xaae437	je 0x140aae437
+reference	branch	squad-language-name	0xaae180	0xaae3f6	0xaae40d	je 0x140aae40d
+reference	literal	squad-language-name	0xaae180	0xaae3fe	0x16039f0	 
+reference	call	squad-language-name	0xaae180	0xaae408	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae410	0xaae41b	je 0x140aae41b
+reference	call	squad-language-name	0xaae180	0xaae416	0x5468a0	call 0x1405468a0
+reference	call	squad-language-name	0xaae180	0xaae430	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae43f	0xaae475	jbe 0x140aae475
+reference	branch	squad-language-name	0xaae180	0xaae452	0xaae470	jb 0x140aae470
+reference	branch	squad-language-name	0xaae180	0xaae467	0xaae470	jbe 0x140aae470
+reference	import-call	squad-language-name	0xaae180	0xaae469	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	squad-language-name	0xaae180	0xaae469	0x0	call QWORD PTR [rip+0xb526d1]        # 0x141600b40
+reference	call	squad-language-name	0xaae180	0xaae470	0x15530d0	call 0x1415530d0
+reference	branch	squad-language-name	0xaae180	0xaae479	0xaae48b	jne 0x140aae48b
+reference	branch	squad-language-name	0xaae180	0xaae47f	0xaae48b	jne 0x140aae48b
+reference	branch	squad-language-name	0xaae180	0xaae485	0xaae84d	je 0x140aae84d
+reference	branch	squad-language-name	0xaae180	0xaae48d	0xaae498	je 0x140aae498
+reference	branch	squad-language-name	0xaae180	0xaae492	0xaae84d	jne 0x140aae84d
+reference	call	squad-language-name	0xaae180	0xaae4c1	0xd44840	call 0x140d44840
+reference	branch	squad-language-name	0xaae180	0xaae4cb	0xaae569	je 0x140aae569
+reference	branch	squad-language-name	0xaae180	0xaae4d3	0xaae4ea	je 0x140aae4ea
+reference	literal	squad-language-name	0xaae180	0xaae4db	0x16039f0	 
+reference	call	squad-language-name	0xaae180	0xaae4e5	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae4ef	0xaae512	jne 0x140aae512
+reference	branch	squad-language-name	0xaae180	0xaae4f5	0xaae512	jne 0x140aae512
+reference	literal	squad-language-name	0xaae180	0xaae4fd	0x1608c3c	The 
+reference	call	squad-language-name	0xaae180	0xaae507	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae510	0xaae52f	jmp 0x140aae52f
+reference	literal	squad-language-name	0xaae180	0xaae518	0x1604104	the 
+reference	call	squad-language-name	0xaae180	0xaae522	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae52d	0xaae538	je 0x140aae538
+reference	call	squad-language-name	0xaae180	0xaae533	0x5468a0	call 0x1405468a0
+reference	call	squad-language-name	0xaae180	0xaae54d	0x71040	call 0x140071040
+reference	call	squad-language-name	0xaae180	0xaae578	0xd44840	call 0x140d44840
+reference	branch	squad-language-name	0xaae180	0xaae582	0xaae611	je 0x140aae611
+reference	branch	squad-language-name	0xaae180	0xaae58a	0xaae5a1	je 0x140aae5a1
+reference	literal	squad-language-name	0xaae180	0xaae592	0x16039f0	 
+reference	call	squad-language-name	0xaae180	0xaae59c	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae5a4	0xaae5d2	jne 0x140aae5d2
+reference	branch	squad-language-name	0xaae180	0xaae5ab	0xaae5ba	jne 0x140aae5ba
+reference	literal	squad-language-name	0xaae180	0xaae5b1	0x1608c3c	The 
+reference	branch	squad-language-name	0xaae180	0xaae5b8	0xaae5c1	je 0x140aae5c1
+reference	literal	squad-language-name	0xaae180	0xaae5ba	0x1604104	the 
+reference	call	squad-language-name	0xaae180	0xaae5ca	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae5d5	0xaae5e0	je 0x140aae5e0
+reference	call	squad-language-name	0xaae180	0xaae5db	0x5468a0	call 0x1405468a0
+reference	call	squad-language-name	0xaae180	0xaae5f5	0x71040	call 0x140071040
+reference	call	squad-language-name	0xaae180	0xaae620	0xd44840	call 0x140d44840
+reference	branch	squad-language-name	0xaae180	0xaae62a	0xaae796	je 0x140aae796
+reference	branch	squad-language-name	0xaae180	0xaae632	0xaae649	je 0x140aae649
+reference	literal	squad-language-name	0xaae180	0xaae63a	0x16039f0	 
+reference	call	squad-language-name	0xaae180	0xaae644	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae64c	0xaae67a	jne 0x140aae67a
+reference	branch	squad-language-name	0xaae180	0xaae653	0xaae662	jne 0x140aae662
+reference	literal	squad-language-name	0xaae180	0xaae659	0x1608c3c	The 
+reference	branch	squad-language-name	0xaae180	0xaae660	0xaae669	je 0x140aae669
+reference	literal	squad-language-name	0xaae180	0xaae662	0x1604104	the 
+reference	call	squad-language-name	0xaae180	0xaae672	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae67d	0xaae688	je 0x140aae688
+reference	call	squad-language-name	0xaae180	0xaae683	0x5468a0	call 0x1405468a0
+reference	branch	squad-language-name	0xaae180	0xaae6a0	0xaae936	jb 0x140aae936
+reference	branch	squad-language-name	0xaae180	0xaae6cf	0xaae703	jbe 0x140aae703
+reference	branch	squad-language-name	0xaae180	0xaae6db	0xaae6e2	jbe 0x140aae6e2
+reference	branch	squad-language-name	0xaae180	0xaae6e0	0xaae6ef	jmp 0x140aae6ef
+reference	call	squad-language-name	0xaae180	0xaae6f3	0x71e00	call 0x140071e00
+reference	call	squad-language-name	0xaae180	0xaae714	0x155454e	call 0x14155454e
+reference	call	squad-language-name	0xaae180	0xaae738	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae746	0xaae77c	jbe 0x140aae77c
+reference	branch	squad-language-name	0xaae180	0xaae759	0xaae777	jb 0x140aae777
+reference	branch	squad-language-name	0xaae180	0xaae76e	0xaae777	jbe 0x140aae777
+reference	import-call	squad-language-name	0xaae180	0xaae770	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	squad-language-name	0xaae180	0xaae770	0x0	call QWORD PTR [rip+0xb523ca]        # 0x141600b40
+reference	call	squad-language-name	0xaae180	0xaae777	0x15530d0	call 0x1415530d0
+reference	call	squad-language-name	0xaae180	0xaae7a5	0xd44840	call 0x140d44840
+reference	branch	squad-language-name	0xaae180	0xaae7af	0xaae83d	je 0x140aae83d
+reference	branch	squad-language-name	0xaae180	0xaae7b7	0xaae7ce	je 0x140aae7ce
+reference	literal	squad-language-name	0xaae180	0xaae7bf	0x16039f0	 
+reference	call	squad-language-name	0xaae180	0xaae7c9	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae7d6	0xaae811	jne 0x140aae811
+reference	branch	squad-language-name	0xaae180	0xaae7dd	0xaae7fc	jne 0x140aae7fc
+reference	branch	squad-language-name	0xaae180	0xaae7e3	0xaae7fc	jne 0x140aae7fc
+reference	literal	squad-language-name	0xaae180	0xaae7eb	0x1608c3c	The 
+reference	call	squad-language-name	0xaae180	0xaae7f5	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae7fa	0xaae816	jmp 0x140aae816
+reference	literal	squad-language-name	0xaae180	0xaae802	0x1604104	the 
+reference	call	squad-language-name	0xaae180	0xaae80c	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae814	0xaae81f	je 0x140aae81f
+reference	call	squad-language-name	0xaae180	0xaae81a	0x5468a0	call 0x1405468a0
+reference	call	squad-language-name	0xaae180	0xaae834	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae83b	0xaae842	jmp 0x140aae842
+reference	call	squad-language-name	0xaae180	0xaae846	0x70e80	call 0x140070e80
+reference	branch	squad-language-name	0xaae180	0xaae84b	0xaae852	jmp 0x140aae852
+reference	branch	squad-language-name	0xaae180	0xaae858	0xaae90f	je 0x140aae90f
+reference	branch	squad-language-name	0xaae180	0xaae860	0xaae86c	je 0x140aae86c
+reference	branch	squad-language-name	0xaae180	0xaae866	0xaae90f	jne 0x140aae90f
+reference	call	squad-language-name	0xaae180	0xaae893	0xd44840	call 0x140d44840
+reference	branch	squad-language-name	0xaae180	0xaae89d	0xaae906	je 0x140aae906
+reference	branch	squad-language-name	0xaae180	0xaae8a1	0xaae8b8	je 0x140aae8b8
+reference	literal	squad-language-name	0xaae180	0xaae8a9	0x16039f0	 
+reference	call	squad-language-name	0xaae180	0xaae8b3	0x71040	call 0x140071040
+reference	literal	squad-language-name	0xaae180	0xaae8b8	0x16f09a0	of 
+reference	literal	squad-language-name	0xaae180	0xaae8bf	0x16f099c	Of 
+reference	call	squad-language-name	0xaae180	0xaae8d8	0x71040	call 0x140071040
+reference	branch	squad-language-name	0xaae180	0xaae8e0	0xaae8eb	je 0x140aae8eb
+reference	call	squad-language-name	0xaae180	0xaae8e6	0x5468a0	call 0x1405468a0
+reference	call	squad-language-name	0xaae180	0xaae900	0x71040	call 0x140071040
+reference	call	squad-language-name	0xaae180	0xaae90a	0x70e80	call 0x140070e80
+reference	call	squad-language-name	0xaae180	0xaae916	0x15530b0	call 0x1415530b0
+reference	call	squad-language-name	0xaae180	0xaae936	0x66ec0	call 0x140066ec0
+reference	call	squad-language-name	0xaae180	0xaae93c	0x66ec0	call 0x140066ec0
+reference	range	squad-language-name	0xaae180	0xaae180	0xaae942	reviewed native source block
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa5f8	0xbaa614	je 0x140baa614
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa5fe	0xbaa614	je 0x140baa614
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa60a	0xbb6d0	call 0x1400bb6d0
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa612	0xbaa616	jmp 0x140baa616
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa619	0xbaa706	je 0x140baa706
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa622	0xbaa659	je 0x140baa659
+reference	literal	tribute-entity-name	0xbaa5c0	0xbaa62a	0x167ee20	[LPAGE:ENT:
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa634	0x71040	call 0x140071040
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa63f	0x545610	call 0x140545610
+reference	literal	tribute-entity-name	0xbaa5c0	0xbaa64a	0x1619408	]
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa654	0x71040	call 0x140071040
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa687	0xaae180	call 0x140aae180
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa6a5	0x71040	call 0x140071040
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa6ac	0xbaa6c4	je 0x140baa6c4
+reference	literal	tribute-entity-name	0xbaa5c0	0xbaa6b4	0x1619918	[/LPAGE]
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa6be	0x71040	call 0x140071040
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa6cd	0xbaa71b	jbe 0x140baa71b
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa6e1	0xbaa6ff	jb 0x140baa6ff
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa6f6	0xbaa6ff	jbe 0x140baa6ff
+reference	import-call	tribute-entity-name	0xbaa5c0	0xbaa6f8	0x1600b40	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa6f8	0x0	call QWORD PTR [rip+0xa56442]        # 0x141600b40
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa6ff	0x15530d0	call 0x1415530d0
+reference	branch	tribute-entity-name	0xbaa5c0	0xbaa704	0xbaa71b	jmp 0x140baa71b
+reference	literal	tribute-entity-name	0xbaa5c0	0xbaa70c	0x1704820	an unknown civilization
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa716	0x71040	call 0x140071040
+reference	call	tribute-entity-name	0xbaa5c0	0xbaa723	0x15530b0	call 0x1415530b0
+reference	range	tribute-entity-name	0xbaa5c0	0xbaa5c0	0xbaa738	reviewed native source block
+reference	branch	squad-vector-owner	0x13e160	0x13e18e	0x13e1ce	jle 0x14013e1ce
+reference	branch	squad-vector-owner	0x13e160	0x13e1b1	0x13e1c6	jge 0x14013e1c6
+reference	branch	squad-vector-owner	0x13e160	0x13e1c4	0x13e1c9	jmp 0x14013e1c9
+reference	branch	squad-vector-owner	0x13e160	0x13e1cc	0x13e1a0	jg 0x14013e1a0
+reference	branch	squad-vector-owner	0x13e160	0x13e1d1	0x13e1f1	je 0x14013e1f1
+reference	branch	squad-vector-owner	0x13e160	0x13e1da	0x13e1f1	jne 0x14013e1f1
+reference	branch	squad-vector-owner	0x13e160	0x13e1f5	0x13e22c	je 0x14013e22c
+reference	branch	squad-vector-owner	0x13e160	0x13e1fa	0x13e206	jne 0x14013e206
+reference	branch	squad-vector-owner	0x13e160	0x13e204	0x13e23c	jmp 0x14013e23c
+reference	call	squad-vector-owner	0x13e160	0x13e222	0x155486a	call 0x14155486a
+reference	branch	squad-vector-owner	0x13e160	0x13e22a	0x13e23c	jmp 0x14013e23c
+reference	call	squad-vector-owner	0x13e160	0x13e237	0x72200	call 0x140072200
+reference	range	squad-vector-owner	0x13e160	0x13e160	0x13e255	reviewed native source block
+reference	branch	english-word-form	0xd44840	0xd44845	0xd4490b	js 0x140d4490b
+reference	branch	english-word-form	0xd44840	0xd44866	0xd4490b	jae 0x140d4490b
+reference	branch	english-word-form	0xd44840	0xd44874	0xd4490b	ja 0x140d4490b
+reference	branch	english-word-form	0xd44840	0xd4488c	0x0	jmp rcx
+reference	branch	english-word-form	0xd44840	0xd44896	0xd448f5	jmp 0x140d448f5
+reference	branch	english-word-form	0xd44840	0xd448a0	0xd448f5	jmp 0x140d448f5
+reference	branch	english-word-form	0xd44840	0xd448aa	0xd448f5	jmp 0x140d448f5
+reference	branch	english-word-form	0xd44840	0xd448b4	0xd448f5	jmp 0x140d448f5
+reference	branch	english-word-form	0xd44840	0xd448c1	0xd448f5	jmp 0x140d448f5
+reference	branch	english-word-form	0xd44840	0xd448ce	0xd448f5	jmp 0x140d448f5
+reference	branch	english-word-form	0xd44840	0xd448db	0xd448f5	jmp 0x140d448f5
+reference	branch	english-word-form	0xd44840	0xd448e8	0xd448f5	jmp 0x140d448f5
+reference	branch	english-word-form	0xd44840	0xd448fe	0xd44903	jbe 0x140d44903
+reference	branch	english-word-form	0xd44840	0xd44906	0x71040	jmp 0x140071040
+reference	range	english-word-form	0xd44840	0xd44840	0xd4490c	reviewed native source block
+reference	call	year-decimal-core	0x545790	0x5457b9	0x248110	call 0x140248110
+reference	import-call	year-decimal-core	0x545790	0x5457c6	0x16004e8	MSVCP140.dll!??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+reference	call	year-decimal-core	0x545790	0x5457c6	0x0	call QWORD PTR [rip+0x10bad1c]        # 0x1416004e8
+reference	call	year-decimal-core	0x545790	0x5457d9	0x2483e0	call 0x1402483e0
+reference	call	year-decimal-core	0x545790	0x5457e9	0x1fc980	call 0x1401fc980
+reference	call	year-decimal-core	0x545790	0x5457f6	0x70e80	call 0x140070e80
+reference	call	year-decimal-core	0x545790	0x545829	0x248020	call 0x140248020
+reference	import-call	year-decimal-core	0x545790	0x545833	0x16003b0	MSVCP140.dll!??1?$basic_ostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+reference	call	year-decimal-core	0x545790	0x545833	0x0	call QWORD PTR [rip+0x10bab77]        # 0x1416003b0
+reference	import-call	year-decimal-core	0x545790	0x545841	0x1600598	MSVCP140.dll!??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ
+reference	call	year-decimal-core	0x545790	0x545841	0x0	call QWORD PTR [rip+0x10bad51]        # 0x141600598
+reference	call	year-decimal-core	0x545790	0x545852	0x15530b0	call 0x1415530b0
+reference	range	year-decimal-core	0x545790	0x545790	0x545868	reviewed native source block
+reference	switch-case	mission-raid-type	0x9f8fe0	0x9fd17c	0x9f9579	goal=2; raid.type=0
+reference	switch-case	mission-raid-type	0x9f8fe0	0x9fd180	0x9f9582	goal=2; raid.type=1
+reference	switch-case	mission-raid-type	0x9f8fe0	0x9fd184	0x9f958b	goal=2; raid.type=2
+reference	switch-case	mission-raid-type	0x9f8fe0	0x9fd188	0x9f9570	goal=2; raid.type=3
+reference	switch-case	mission-raid-type	0x9f8fe0	0x9fd18c	0x9f9594	goal=2; raid.type=4
+reference	switch-case	mission-raid-type	0x9f8fe0	0x9fd190	0x9f955e	goal=2; raid.type=5
+reference	switch-case	mission-raid-type	0x9f8fe0	0x9fd194	0x9f9567	goal=2; raid.type=6
+reference	switch-case	word-POS	0xd44840	0xd4490c	0xd4488e	part_of_speech=0
+reference	switch-case	word-POS	0xd44840	0xd44910	0xd44898	part_of_speech=1
+reference	switch-case	word-POS	0xd44840	0xd44914	0xd448ac	part_of_speech=2
+reference	switch-case	word-POS	0xd44840	0xd44918	0xd448a2	part_of_speech=3
+reference	switch-case	word-POS	0xd44840	0xd4491c	0xd448b6	part_of_speech=4
+reference	switch-case	word-POS	0xd44840	0xd44920	0xd448c3	part_of_speech=5
+reference	switch-case	word-POS	0xd44840	0xd44924	0xd448d0	part_of_speech=6
+reference	switch-case	word-POS	0xd44840	0xd44928	0xd448dd	part_of_speech=7
+reference	switch-case	word-POS	0xd44840	0xd4492c	0xd448ea	part_of_speech=8
+classic	report-prefix-source	all-native-report-prefixes	0x10c780	0x110fe4	0x0	Spoils Report: 
+classic	report-prefix-source	all-native-report-prefixes	0x2bda40	0x2bdad5	0x0	Interrogation Report: 
+classic	report-prefix-source	all-native-report-prefixes	0x9f65f0	0x9f69ca	0x0	Mission Report: 
+classic	report-prefix-source	all-native-report-prefixes	0xa20380	0xa207fe	0x0	Tribute Report: 
+classic	branch	mission-title	0x9f65f0	0x9f698d	0x9f699c	jle 0x1409f699c
+classic	branch	mission-title	0x9f65f0	0x9f6996	0x9f6ccf	jl 0x1409f6ccf
+classic	branch	mission-title	0x9f65f0	0x9f69a8	0x9f6ccf	jne 0x1409f6ccf
+classic	call	mission-title	0x9f65f0	0x9f69b3	0x154de30	call 0x14154de30
+classic	call	mission-title	0x9f65f0	0x9f69c2	0x13f0e0	call 0x14013f0e0
+classic	literal	mission-title	0x9f65f0	0x9f69ca	0x16e62b0	Mission Report: 
+classic	call	mission-title	0x9f65f0	0x9f69d5	0x70b40	call 0x140070b40
+classic	call	mission-title	0x9f65f0	0x9f69e3	0x766d0	call 0x1400766d0
+classic	branch	mission-title	0x9f65f0	0x9f69eb	0x9f6b42	je 0x1409f6b42
+classic	branch	mission-title	0x9f65f0	0x9f69f4	0x9f6b07	je 0x1409f6b07
+classic	branch	mission-title	0x9f65f0	0x9f69fd	0x9f6ab0	je 0x1409f6ab0
+classic	branch	mission-title	0x9f65f0	0x9f6a06	0x9f6aa4	je 0x1409f6aa4
+classic	branch	mission-title	0x9f65f0	0x9f6a0f	0x9f6bd4	jne 0x1409f6bd4
+classic	call	mission-title	0x9f65f0	0x9f6a1c	0x70c50	call 0x140070c50
+classic	call	mission-title	0x9f65f0	0x9f6a39	0x1bdb90	call 0x1401bdb90
+classic	call	mission-title	0x9f65f0	0x9f6a49	0xbb2d0	call 0x1400bb2d0
+classic	literal	mission-title	0x9f65f0	0x9f6a4e	0x1618dcc	 at 
+classic	call	mission-title	0x9f65f0	0x9f6a59	0x70b20	call 0x140070b20
+classic	call	mission-title	0x9f65f0	0x9f6a79	0xba8410	call 0x140ba8410
+classic	call	mission-title	0x9f65f0	0x9f6a86	0x693f0	call 0x1400693f0
+classic	branch	mission-title	0x9f65f0	0x9f6a8b	0x9f6bd4	jmp 0x1409f6bd4
+classic	call	mission-title	0x9f65f0	0x9f6a95	0xfceb0	call 0x1400fceb0
+classic	branch	mission-title	0x9f65f0	0x9f6a9f	0x9f6988	jmp 0x1409f6988
+classic	literal	mission-title	0x9f65f0	0x9f6aa4	0x161ad10	Request workers from 
+classic	branch	mission-title	0x9f65f0	0x9f6aab	0x9f6bab	jmp 0x1409f6bab
+classic	literal	mission-title	0x9f65f0	0x9f6ab0	0x16044f8	Rescue 
+classic	call	mission-title	0x9f65f0	0x9f6abb	0x70b20	call 0x140070b20
+classic	call	mission-title	0x9f65f0	0x9f6ac7	0x73640	call 0x140073640
+classic	call	mission-title	0x9f65f0	0x9f6afd	0xba79f0	call 0x140ba79f0
+classic	branch	mission-title	0x9f65f0	0x9f6b02	0x9f6bd4	jmp 0x1409f6bd4
+classic	literal	mission-title	0x9f65f0	0x9f6b07	0x161ad88	Recover 
+classic	call	mission-title	0x9f65f0	0x9f6b12	0x70b20	call 0x140070b20
+classic	call	mission-title	0x9f65f0	0x9f6b38	0xba8ee0	call 0x140ba8ee0
+classic	branch	mission-title	0x9f65f0	0x9f6b3d	0x9f6bd4	jmp 0x1409f6bd4
+classic	branch	mission-title	0x9f65f0	0x9f6b58	0x9f6ba4	ja 0x1409f6ba4
+classic	branch	mission-title	0x9f65f0	0x9f6b6c	0x0	jmp rcx
+classic	literal	mission-title	0x9f65f0	0x9f6b6e	0x161ad28	Explore 
+classic	branch	mission-title	0x9f65f0	0x9f6b75	0x9f6bab	jmp 0x1409f6bab
+classic	literal	mission-title	0x9f65f0	0x9f6b77	0x161ad38	Pillage 
+classic	branch	mission-title	0x9f65f0	0x9f6b7e	0x9f6bab	jmp 0x1409f6bab
+classic	literal	mission-title	0x9f65f0	0x9f6b80	0x161ad48	Demand tribute from 
+classic	branch	mission-title	0x9f65f0	0x9f6b87	0x9f6bab	jmp 0x1409f6bab
+classic	literal	mission-title	0x9f65f0	0x9f6b89	0x161ad60	Raze 
+classic	branch	mission-title	0x9f65f0	0x9f6b90	0x9f6bab	jmp 0x1409f6bab
+classic	literal	mission-title	0x9f65f0	0x9f6b92	0x161ad68	Take over 
+classic	branch	mission-title	0x9f65f0	0x9f6b99	0x9f6bab	jmp 0x1409f6bab
+classic	literal	mission-title	0x9f65f0	0x9f6b9b	0x161ad74	Seize 
+classic	branch	mission-title	0x9f65f0	0x9f6ba2	0x9f6bab	jmp 0x1409f6bab
+classic	literal	mission-title	0x9f65f0	0x9f6ba4	0x161ad7c	Raid 
+classic	call	mission-title	0x9f65f0	0x9f6baf	0x70b20	call 0x140070b20
+classic	call	mission-title	0x9f65f0	0x9f6bcf	0xba8410	call 0x140ba8410
+classic	literal	mission-title	0x9f65f0	0x9f6bd4	0x16e6168	 (Set out 
+classic	call	mission-title	0x9f65f0	0x9f6bdf	0x70b20	call 0x140070b20
+classic	branch	mission-title	0x9f65f0	0x9f6bed	0x9f6c19	je 0x1409f6c19
+classic	branch	mission-title	0x9f65f0	0x9f6bf2	0x9f6c10	je 0x1409f6c10
+classic	branch	mission-title	0x9f65f0	0x9f6bf7	0x9f6c07	je 0x1409f6c07
+classic	branch	mission-title	0x9f65f0	0x9f6bfc	0x9f6c29	jne 0x1409f6c29
+classic	literal	mission-title	0x9f65f0	0x9f6bfe	0x161401c	Winter
+classic	branch	mission-title	0x9f65f0	0x9f6c05	0x9f6c20	jmp 0x1409f6c20
+classic	literal	mission-title	0x9f65f0	0x9f6c07	0x1614014	Autumn
+classic	branch	mission-title	0x9f65f0	0x9f6c0e	0x9f6c20	jmp 0x1409f6c20
+classic	literal	mission-title	0x9f65f0	0x9f6c10	0x161400c	Summer
+classic	branch	mission-title	0x9f65f0	0x9f6c17	0x9f6c20	jmp 0x1409f6c20
+classic	literal	mission-title	0x9f65f0	0x9f6c19	0x1614004	Spring
+classic	call	mission-title	0x9f65f0	0x9f6c24	0x70b20	call 0x140070b20
+classic	literal	mission-title	0x9f65f0	0x9f6c29	0x15fe96c	 
+classic	call	mission-title	0x9f65f0	0x9f6c34	0x70b20	call 0x140070b20
+classic	call	mission-title	0x9f65f0	0x9f6c43	0x542fb0	call 0x140542fb0
+classic	literal	mission-title	0x9f65f0	0x9f6c48	0x162c030	)
+classic	call	mission-title	0x9f65f0	0x9f6c53	0x70b20	call 0x140070b20
+classic	range	mission-title	0x9f65f0	0x9f697d	0x9f6c7a	reviewed native source block
+classic	call	spoils-title	0x10c780	0x110f9d	0x70410	call 0x140070410
+classic	branch	spoils-title	0x10c780	0x110fa5	0x110fbc	jne 0x140110fbc
+classic	call	spoils-title	0x10c780	0x110fae	0x70930	call 0x140070930
+classic	branch	spoils-title	0x10c780	0x110fb6	0x1116ec	je 0x1401116ec
+classic	branch	spoils-title	0x10c780	0x110fbf	0x11143a	je 0x14011143a
+classic	call	spoils-title	0x10c780	0x110fca	0x154de30	call 0x14154de30
+classic	call	spoils-title	0x10c780	0x110fd9	0xffc50	call 0x1400ffc50
+classic	literal	spoils-title	0x10c780	0x110fe4	0x1613fe8	Spoils Report: 
+classic	call	spoils-title	0x10c780	0x110fee	0x70b40	call 0x140070b40
+classic	call	spoils-title	0x10c780	0x110ffa	0x70410	call 0x140070410
+classic	branch	spoils-title	0x10c780	0x111002	0x11108e	je 0x14011108e
+classic	call	spoils-title	0x10c780	0x11100f	0x70c50	call 0x140070c50
+classic	call	spoils-title	0x10c780	0x11101e	0x707e0	call 0x1400707e0
+classic	call	spoils-title	0x10c780	0x111037	0xaaafe0	call 0x140aaafe0
+classic	call	spoils-title	0x10c780	0x111048	0xbb2d0	call 0x1400bb2d0
+classic	call	spoils-title	0x10c780	0x111054	0x70410	call 0x140070410
+classic	branch	spoils-title	0x10c780	0x11105d	0x111070	jb 0x140111070
+classic	literal	spoils-title	0x10c780	0x11105f	0x1613ff8	 and others
+classic	call	spoils-title	0x10c780	0x11106b	0x70b20	call 0x140070b20
+classic	literal	spoils-title	0x10c780	0x111070	0x15ff308	, 
+classic	call	spoils-title	0x10c780	0x11107c	0x70b20	call 0x140070b20
+classic	call	spoils-title	0x10c780	0x111089	0x693f0	call 0x1400693f0
+classic	branch	spoils-title	0x10c780	0x111097	0x1110c3	je 0x1401110c3
+classic	branch	spoils-title	0x10c780	0x11109c	0x1110ba	je 0x1401110ba
+classic	branch	spoils-title	0x10c780	0x1110a1	0x1110b1	je 0x1401110b1
+classic	branch	spoils-title	0x10c780	0x1110a6	0x1110d4	jne 0x1401110d4
+classic	literal	spoils-title	0x10c780	0x1110a8	0x161401c	Winter
+classic	branch	spoils-title	0x10c780	0x1110af	0x1110ca	jmp 0x1401110ca
+classic	literal	spoils-title	0x10c780	0x1110b1	0x1614014	Autumn
+classic	branch	spoils-title	0x10c780	0x1110b8	0x1110ca	jmp 0x1401110ca
+classic	literal	spoils-title	0x10c780	0x1110ba	0x161400c	Summer
+classic	branch	spoils-title	0x10c780	0x1110c1	0x1110ca	jmp 0x1401110ca
+classic	literal	spoils-title	0x10c780	0x1110c3	0x1614004	Spring
+classic	call	spoils-title	0x10c780	0x1110cf	0x70b20	call 0x140070b20
+classic	literal	spoils-title	0x10c780	0x1110d4	0x15fe96c	 
+classic	call	spoils-title	0x10c780	0x1110e0	0x70b20	call 0x140070b20
+classic	call	spoils-title	0x10c780	0x1110f0	0x542fb0	call 0x140542fb0
+classic	call	spoils-title	0x10c780	0x11112d	0xbaf40	call 0x1400baf40
+classic	range	spoils-title	0x10c780	0x110f96	0x111132	reviewed native source block
+classic	call	tribute-title	0xa20380	0xa20701	0x678f3a4b	call 0x1a78f3a4b
+classic	branch	tribute-title	0xa20380	0xa20716	0xa20d17	jae 0x140a20d17
+classic	branch	tribute-title	0xa20380	0xa20724	0xa20d0e	jne 0x140a20d0e
+classic	branch	tribute-title	0xa20380	0xa2072d	0xa208e2	jne 0x140a208e2
+classic	call	tribute-title	0xa20380	0xa20738	0x154de30	call 0x14154de30
+classic	literal	tribute-title	0xa20380	0xa207fe	0x16e7180	Tribute Report: 
+classic	call	tribute-title	0xa20380	0xa20808	0x70e90	call 0x140070e90
+classic	call	tribute-title	0xa20380	0xa20817	0xba73e0	call 0x140ba73e0
+classic	literal	tribute-title	0xa20380	0xa20822	0x15ff308	, 
+classic	call	tribute-title	0xa20380	0xa2082c	0x70fd0	call 0x140070fd0
+classic	branch	tribute-title	0xa20380	0xa2083a	0xa20866	je 0x140a20866
+classic	branch	tribute-title	0xa20380	0xa2083f	0xa2085d	je 0x140a2085d
+classic	branch	tribute-title	0xa20380	0xa20844	0xa20854	je 0x140a20854
+classic	branch	tribute-title	0xa20380	0xa20849	0xa20878	jne 0x140a20878
+classic	literal	tribute-title	0xa20380	0xa2084b	0x161401c	Winter
+classic	branch	tribute-title	0xa20380	0xa20852	0xa2086d	jmp 0x140a2086d
+classic	literal	tribute-title	0xa20380	0xa20854	0x1614014	Autumn
+classic	branch	tribute-title	0xa20380	0xa2085b	0xa2086d	jmp 0x140a2086d
+classic	literal	tribute-title	0xa20380	0xa2085d	0x161400c	Summer
+classic	branch	tribute-title	0xa20380	0xa20864	0xa2086d	jmp 0x140a2086d
+classic	literal	tribute-title	0xa20380	0xa20866	0x1614004	Spring
+classic	call	tribute-title	0xa20380	0xa20873	0x70fd0	call 0x140070fd0
+classic	literal	tribute-title	0xa20380	0xa2087e	0x15fe96c	 
+classic	call	tribute-title	0xa20380	0xa20888	0x70fd0	call 0x140070fd0
+classic	call	tribute-title	0xa20380	0xa20896	0x542fb0	call 0x140542fb0
+classic	branch	tribute-title	0xa20380	0xa208c2	0xa208d1	je 0x140a208d1
+classic	branch	tribute-title	0xa20380	0xa208cf	0xa208e2	jmp 0x140a208e2
+classic	call	tribute-title	0xa20380	0xa208dd	0xbc2f0	call 0x1400bc2f0
+classic	range	tribute-title	0xa20380	0xa206f3	0xa208e2	reviewed native source block
+classic	call	report-list-consumer	0x1c44e0	0x1d3849	0x70930	call 0x140070930
+classic	call	report-list-consumer	0x1c44e0	0x1d3858	0x70930	call 0x140070930
+classic	branch	report-list-consumer	0x1c44e0	0x1d3876	0x1d3be1	jle 0x1401d3be1
+classic	branch	report-list-consumer	0x1c44e0	0x1d38aa	0x1d3b60	jge 0x1401d3b60
+classic	branch	report-list-consumer	0x1c44e0	0x1d38c9	0x1d3b5c	jge 0x1401d3b5c
+classic	call	report-list-consumer	0x1c44e0	0x1d38da	0x70930	call 0x140070930
+classic	branch	report-list-consumer	0x1c44e0	0x1d38e4	0x1d3906	jge 0x1401d3906
+classic	call	report-list-consumer	0x1c44e0	0x1d38e9	0x70920	call 0x140070920
+classic	call	report-list-consumer	0x1c44e0	0x1d38f8	0x707e0	call 0x1400707e0
+classic	branch	report-list-consumer	0x1c44e0	0x1d3904	0x1d394c	jmp 0x1401d394c
+classic	call	report-list-consumer	0x1c44e0	0x1d3906	0x70930	call 0x140070930
+classic	call	report-list-consumer	0x1c44e0	0x1d3915	0x70930	call 0x140070930
+classic	branch	report-list-consumer	0x1c44e0	0x1d391d	0x1d394c	jae 0x1401d394c
+classic	call	report-list-consumer	0x1c44e0	0x1d3922	0x70930	call 0x140070930
+classic	call	report-list-consumer	0x1c44e0	0x1d3931	0x70920	call 0x140070920
+classic	call	report-list-consumer	0x1c44e0	0x1d3940	0x707e0	call 0x1400707e0
+classic	call	report-list-consumer	0x1c44e0	0x1d395e	0xbc6f0	call 0x1400bc6f0
+classic	branch	report-list-consumer	0x1c44e0	0x1d3969	0x1d3a13	jg 0x1401d3a13
+classic	branch	report-list-consumer	0x1c44e0	0x1d3985	0x1d39f9	jge 0x1401d39f9
+classic	call	report-list-consumer	0x1c44e0	0x1d399d	0xbc6e0	call 0x1400bc6e0
+classic	branch	report-list-consumer	0x1c44e0	0x1d39a5	0x1d39ac	jne 0x1401d39ac
+classic	branch	report-list-consumer	0x1c44e0	0x1d39aa	0x1d39b8	jmp 0x1401d39b8
+classic	branch	report-list-consumer	0x1c44e0	0x1d39af	0x1d39b5	jne 0x1401d39b5
+classic	branch	report-list-consumer	0x1c44e0	0x1d39b3	0x1d39b8	jmp 0x1401d39b8
+classic	call	report-list-consumer	0x1c44e0	0x1d39bf	0xaf1390	call 0x140af1390
+classic	call	report-list-consumer	0x1c44e0	0x1d39cd	0x73550	call 0x140073550
+classic	branch	report-list-consumer	0x1c44e0	0x1d39d4	0x1d39e7	je 0x1401d39e7
+classic	call	report-list-consumer	0x1c44e0	0x1d39e2	0xbc750	call 0x1400bc750
+classic	branch	report-list-consumer	0x1c44e0	0x1d39f0	0x1d3991	jl 0x1401d3991
+classic	branch	report-list-consumer	0x1c44e0	0x1d3a01	0x1d3980	jle 0x1401d3980
+classic	call	report-list-consumer	0x1c44e0	0x1d3a23	0xbc6e0	call 0x1400bc6e0
+classic	call	report-list-consumer	0x1c44e0	0x1d3a2f	0x70c50	call 0x140070c50
+classic	branch	report-list-consumer	0x1c44e0	0x1d3a3c	0x1d3a6f	je 0x1401d3a6f
+classic	branch	report-list-consumer	0x1c44e0	0x1d3a51	0x1d3a61	je 0x1401d3a61
+classic	call	report-list-consumer	0x1c44e0	0x1d3a56	0xbc6f0	call 0x1400bc6f0
+classic	branch	report-list-consumer	0x1c44e0	0x1d3a5f	0x1d3a9d	jmp 0x1401d3a9d
+classic	call	report-list-consumer	0x1c44e0	0x1d3a64	0xbc6f0	call 0x1400bc6f0
+classic	branch	report-list-consumer	0x1c44e0	0x1d3a6d	0x1d3a9d	jmp 0x1401d3a9d
+classic	branch	report-list-consumer	0x1c44e0	0x1d3a76	0x1d3ab7	je 0x1401d3ab7
+classic	branch	report-list-consumer	0x1c44e0	0x1d3a8b	0x1d3a92	je 0x1401d3a92
+classic	branch	report-list-consumer	0x1c44e0	0x1d3a90	0x1d3a95	jmp 0x1401d3a95
+classic	call	report-list-consumer	0x1c44e0	0x1d3a95	0xbc6f0	call 0x1400bc6f0
+classic	call	report-list-consumer	0x1c44e0	0x1d3ab2	0xaf0220	call 0x140af0220
+classic	call	report-list-consumer	0x1c44e0	0x1d3abe	0x708f0	call 0x1400708f0
+classic	branch	report-list-consumer	0x1c44e0	0x1d3ac7	0x1d3b19	jb 0x1401d3b19
+classic	call	report-list-consumer	0x1c44e0	0x1d3ad8	0xe27f0	call 0x1400e27f0
+classic	call	report-list-consumer	0x1c44e0	0x1d3ae9	0xfcb70	call 0x1400fcb70
+classic	call	report-list-consumer	0x1c44e0	0x1d3afd	0xfcb70	call 0x1400fcb70
+classic	call	report-list-consumer	0x1c44e0	0x1d3b11	0xfcb70	call 0x1400fcb70
+classic	call	report-list-consumer	0x1c44e0	0x1d3b2d	0xaf0220	call 0x140af0220
+classic	call	report-list-consumer	0x1c44e0	0x1d3b3f	0x693f0	call 0x1400693f0
+classic	branch	report-list-consumer	0x1c44e0	0x1d3b56	0x1d38c6	jl 0x1401d38c6
+classic	branch	report-list-consumer	0x1c44e0	0x1d3b63	0x1c8d63	jle 0x1401c8d63
+classic	call	report-list-consumer	0x1c44e0	0x1d3b7b	0xbc920	call 0x1400bc920
+classic	call	report-list-consumer	0x1c44e0	0x1d3bab	0xbc940	call 0x1400bc940
+classic	call	report-list-consumer	0x1c44e0	0x1d3bd7	0x1423200	call 0x141423200
+classic	branch	report-list-consumer	0x1c44e0	0x1d3bdc	0x1c8d68	jmp 0x1401c8d68
+classic	call	report-list-consumer	0x1c44e0	0x1d3bf3	0xbc6f0	call 0x1400bc6f0
+classic	call	report-list-consumer	0x1c44e0	0x1d3c08	0xbc6e0	call 0x1400bc6e0
+classic	literal	report-list-consumer	0x1c44e0	0x1d3c0d	0x161b298	No reports available
+classic	call	report-list-consumer	0x1c44e0	0x1d3c1b	0x69710	call 0x140069710
+classic	call	report-list-consumer	0x1c44e0	0x1d3c35	0xaf0220	call 0x140af0220
+classic	branch	report-list-consumer	0x1c44e0	0x1d3c42	0x1c8d5e	jmp 0x1401c8d5e
+classic	range	report-list-consumer	0x1c44e0	0x1d382d	0x1d3c47	reviewed native source block
+classic	call	spoils-detail-heading	0x1c44e0	0x1d33e1	0x70b90	call 0x140070b90
+classic	call	spoils-detail-heading	0x1c44e0	0x1d33f0	0x708f0	call 0x1400708f0
+classic	branch	spoils-detail-heading	0x1c44e0	0x1d33fe	0x1d3462	jb 0x1401d3462
+classic	branch	spoils-detail-heading	0x1c44e0	0x1d3405	0x1d341d	js 0x1401d341d
+classic	call	spoils-detail-heading	0x1c44e0	0x1d3418	0xe27f0	call 0x1400e27f0
+classic	branch	spoils-detail-heading	0x1c44e0	0x1d3420	0x1d3462	jle 0x1401d3462
+classic	call	spoils-detail-heading	0x1c44e0	0x1d3430	0xfcb70	call 0x1400fcb70
+classic	call	spoils-detail-heading	0x1c44e0	0x1d3445	0xfcb70	call 0x1400fcb70
+classic	call	spoils-detail-heading	0x1c44e0	0x1d345a	0xfcb70	call 0x1400fcb70
+classic	call	spoils-detail-heading	0x1c44e0	0x1d3476	0xaf0220	call 0x140af0220
+classic	range	spoils-detail-heading	0x1c44e0	0x1d33ce	0x1d347b	reviewed native source block
+classic	branch	spoils-squad-source	0x10c780	0x10cbe7	0x10cc1a	je 0x14010cc1a
+classic	call	spoils-squad-source	0x10c780	0x10cbf0	0x76ac0	call 0x140076ac0
+classic	branch	spoils-squad-source	0x10c780	0x10cbf8	0x10cc1a	je 0x14010cc1a
+classic	branch	spoils-squad-source	0x10c780	0x10cc06	0x10cc1a	jne 0x14010cc1a
+classic	call	spoils-squad-source	0x10c780	0x10cc15	0x13e0f0	call 0x14013e0f0
+classic	range	spoils-squad-source	0x10c780	0x10cbd9	0x10cc1a	reviewed native source block
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bda91	0x2bdab7	jne 0x1402bdab7
+classic	call	separate-interrogation-storage	0x2bda40	0x2bda98	0x154de30	call 0x14154de30
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdaa4	0xbd320	call 0x1400bd320
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdabc	0x154de30	call 0x14154de30
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdac8	0x2b7d70	call 0x1402b7d70
+classic	literal	separate-interrogation-storage	0x2bda40	0x2bdad5	0x163ffb0	Interrogation Report: 
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdadf	0x70b40	call 0x140070b40
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdafe	0x70c50	call 0x140070c50
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdb11	0x1344290	call 0x141344290
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdb20	0xbb2d0	call 0x1400bb2d0
+classic	literal	separate-interrogation-storage	0x2bda40	0x2bdb25	0x15ff308	, 
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdb2f	0x70b20	call 0x140070b20
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bdb3d	0x2bdb69	je 0x1402bdb69
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bdb42	0x2bdb60	je 0x1402bdb60
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bdb47	0x2bdb57	je 0x1402bdb57
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bdb4c	0x2bdb78	jne 0x1402bdb78
+classic	literal	separate-interrogation-storage	0x2bda40	0x2bdb4e	0x161401c	Winter
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bdb55	0x2bdb70	jmp 0x1402bdb70
+classic	literal	separate-interrogation-storage	0x2bda40	0x2bdb57	0x1614014	Autumn
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bdb5e	0x2bdb70	jmp 0x1402bdb70
+classic	literal	separate-interrogation-storage	0x2bda40	0x2bdb60	0x161400c	Summer
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bdb67	0x2bdb70	jmp 0x1402bdb70
+classic	literal	separate-interrogation-storage	0x2bda40	0x2bdb69	0x1614004	Spring
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdb73	0x70b20	call 0x140070b20
+classic	literal	separate-interrogation-storage	0x2bda40	0x2bdb78	0x15fe96c	 
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdb82	0x70b20	call 0x140070b20
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdb90	0x542fb0	call 0x140542fb0
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdb9f	0x1344290	call 0x141344290
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdbb9	0x13c6d60	call 0x1413c6d60
+classic	branch	separate-interrogation-storage	0x2bda40	0x2bdbc1	0x2bdbcb	je 0x1402bdbcb
+classic	call	separate-interrogation-storage	0x2bda40	0x2bdbde	0xbaf40	call 0x1400baf40
+classic	range	separate-interrogation-storage	0x2bda40	0x2bda40	0x2bdbe3	reviewed native source block
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdba3	0x1bdbd3	jae 0x1401bdbd3
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdbaa	0x1bdbb2	je 0x1401bdbb2
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdbb0	0x1bdba0	jmp 0x1401bdba0
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdbbc	0x1bdbd3	je 0x1401bdbd3
+classic	literal	diplomatic-proposal	0x1bdb90	0x1bdbbe	0x161a1a8	Demand surrender
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdbce	0x70e90	jmp 0x140070e90
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdbd9	0x1bdc07	jae 0x1401bdc07
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdbdf	0x1bdbe7	je 0x1401bdbe7
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdbe5	0x1bdbd6	jmp 0x1401bdbd6
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdbf0	0x1bdc07	je 0x1401bdc07
+classic	literal	diplomatic-proposal	0x1bdb90	0x1bdbf2	0x161a1c0	Make peace
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc02	0x70e90	jmp 0x140070e90
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc13	0x1bdc41	jae 0x1401bdc41
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc19	0x1bdc21	je 0x1401bdc21
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc1f	0x1bdc10	jmp 0x1401bdc10
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc2a	0x1bdc41	je 0x1401bdc41
+classic	literal	diplomatic-proposal	0x1bdb90	0x1bdc2c	0x161a1d0	Declare war
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc3c	0x70e90	jmp 0x140070e90
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc47	0x1bdc75	jae 0x1401bdc75
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc4d	0x1bdc55	je 0x1401bdc55
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc53	0x1bdc44	jmp 0x1401bdc44
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc5e	0x1bdc75	je 0x1401bdc75
+classic	literal	diplomatic-proposal	0x1bdb90	0x1bdc60	0x161a1e0	Seek alliance
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc70	0x70e90	jmp 0x140070e90
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc7b	0x1bdca9	jae 0x1401bdca9
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc81	0x1bdc89	je 0x1401bdc89
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc87	0x1bdc78	jmp 0x1401bdc78
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdc92	0x1bdca9	je 0x1401bdca9
+classic	literal	diplomatic-proposal	0x1bdb90	0x1bdc94	0x161a1f0	Make contact
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdca4	0x70e90	jmp 0x140070e90
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdcb3	0x1bdce3	jae 0x1401bdce3
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdcba	0x1bdcc2	je 0x1401bdcc2
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdcc0	0x1bdcb0	jmp 0x1401bdcb0
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdccc	0x1bdce3	je 0x1401bdce3
+classic	literal	diplomatic-proposal	0x1bdb90	0x1bdcce	0x161a200	Improve trade
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdcde	0x70e90	jmp 0x140070e90
+classic	literal	diplomatic-proposal	0x1bdb90	0x1bdce3	0x161a210	Diplomacy
+classic	branch	diplomatic-proposal	0x1bdb90	0x1bdcf3	0x70e90	jmp 0x140070e90
+classic	range	diplomatic-proposal	0x1bdb90	0x1bdb90	0x1bdd00	reviewed native source block
+classic	range	mission-goal-getter	0x766d0	0x766d0	0x766e0	reviewed native source block
+classic	call	year-decimal	0x542fb0	0x542fec	0x543070	call 0x140543070
+classic	call	year-decimal	0x542fb0	0x54300a	0x70fd0	call 0x140070fd0
+classic	branch	year-decimal	0x542fb0	0x543019	0x543050	jbe 0x140543050
+classic	branch	year-decimal	0x542fb0	0x54302d	0x54304b	jb 0x14054304b
+classic	branch	year-decimal	0x542fb0	0x543042	0x54304b	jbe 0x14054304b
+classic	import-call	year-decimal	0x542fb0	0x543044	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	year-decimal	0x542fb0	0x543044	0x0	call QWORD PTR [rip+0x10b8a7e]        # 0x1415fbac8
+classic	call	year-decimal	0x542fb0	0x54304b	0x154de20	call 0x14154de20
+classic	call	year-decimal	0x542fb0	0x543058	0x154de00	call 0x14154de00
+classic	range	year-decimal	0x542fb0	0x542fb0	0x543063	reviewed native source block
+classic	call	site-name	0xba8410	0xba843e	0x7f0e0	call 0x14007f0e0
+classic	branch	site-name	0xba8410	0xba8449	0xba8538	je 0x140ba8538
+classic	branch	site-name	0xba8410	0xba8452	0xba848c	je 0x140ba848c
+classic	literal	site-name	0xba8410	0xba845a	0x16ff5f0	[LPAGE:SITE:
+classic	call	site-name	0xba8410	0xba8464	0x70fd0	call 0x140070fd0
+classic	call	site-name	0xba8410	0xba8472	0x542fb0	call 0x140542fb0
+classic	literal	site-name	0xba8410	0xba847d	0x1614398	]
+classic	call	site-name	0xba8410	0xba8487	0x70fd0	call 0x140070fd0
+classic	call	site-name	0xba8410	0xba84b9	0xaaafe0	call 0x140aaafe0
+classic	call	site-name	0xba8410	0xba84d7	0x70fd0	call 0x140070fd0
+classic	branch	site-name	0xba8410	0xba84de	0xba84f6	je 0x140ba84f6
+classic	literal	site-name	0xba8410	0xba84e6	0x16148b8	[/LPAGE]
+classic	call	site-name	0xba8410	0xba84f0	0x70fd0	call 0x140070fd0
+classic	branch	site-name	0xba8410	0xba84ff	0xba854d	jbe 0x140ba854d
+classic	branch	site-name	0xba8410	0xba8513	0xba8531	jb 0x140ba8531
+classic	branch	site-name	0xba8410	0xba8528	0xba8531	jbe 0x140ba8531
+classic	import-call	site-name	0xba8410	0xba852a	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	site-name	0xba8410	0xba852a	0x0	call QWORD PTR [rip+0xa53598]        # 0x1415fbac8
+classic	call	site-name	0xba8410	0xba8531	0x154de20	call 0x14154de20
+classic	branch	site-name	0xba8410	0xba8536	0xba854d	jmp 0x140ba854d
+classic	literal	site-name	0xba8410	0xba853e	0x16ff5b8	an unknown site
+classic	call	site-name	0xba8410	0xba8548	0x70fd0	call 0x140070fd0
+classic	call	site-name	0xba8410	0xba8555	0x154de00	call 0x14154de00
+classic	range	site-name	0xba8410	0xba8410	0xba856a	reviewed native source block
+classic	call	rescue-figure	0xba79f0	0xba7a32	0x69380	call 0x140069380
+classic	branch	rescue-figure	0xba79f0	0xba7a3d	0xba83b6	je 0x140ba83b6
+classic	branch	rescue-figure	0xba79f0	0xba7a4a	0xba7c00	je 0x140ba7c00
+classic	branch	rescue-figure	0xba79f0	0xba7a57	0xba7a8d	je 0x140ba7a8d
+classic	branch	rescue-figure	0xba79f0	0xba7a62	0xba7a76	jne 0x140ba7a76
+classic	literal	rescue-figure	0xba79f0	0xba7a6a	0x16ff618	interrogator
+classic	branch	rescue-figure	0xba79f0	0xba7a71	0xba83df	jmp 0x140ba83df
+classic	branch	rescue-figure	0xba79f0	0xba7a79	0xba7a8d	jne 0x140ba7a8d
+classic	literal	rescue-figure	0xba79f0	0xba7a81	0x16904c8	subject
+classic	branch	rescue-figure	0xba79f0	0xba7a88	0xba83df	jmp 0x140ba83df
+classic	call	rescue-figure	0xba79f0	0xba7a93	0xbb380	call 0x1400bb380
+classic	branch	rescue-figure	0xba79f0	0xba7a9b	0xba7bee	je 0x140ba7bee
+classic	branch	rescue-figure	0xba79f0	0xba7aa5	0xba7b5f	je 0x140ba7b5f
+classic	branch	rescue-figure	0xba79f0	0xba7ab2	0xba7b4d	je 0x140ba7b4d
+classic	call	rescue-figure	0xba79f0	0xba7ae3	0xaaafe0	call 0x140aaafe0
+classic	call	rescue-figure	0xba79f0	0xba7aff	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7b0d	0xba83cb	jbe 0x140ba83cb
+classic	branch	rescue-figure	0xba79f0	0xba7b25	0xba7b43	jb 0x140ba7b43
+classic	branch	rescue-figure	0xba79f0	0xba7b3a	0xba7b43	jbe 0x140ba7b43
+classic	import-call	rescue-figure	0xba79f0	0xba7b3c	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	rescue-figure	0xba79f0	0xba7b3c	0x0	call QWORD PTR [rip+0xa53f86]        # 0x1415fbac8
+classic	call	rescue-figure	0xba79f0	0xba7b43	0x154de20	call 0x14154de20
+classic	branch	rescue-figure	0xba79f0	0xba7b48	0xba83cb	jmp 0x140ba83cb
+classic	literal	rescue-figure	0xba79f0	0xba7b53	0x163fda0	Nameless
+classic	branch	rescue-figure	0xba79f0	0xba7b5a	0xba83c3	jmp 0x140ba83c3
+classic	branch	rescue-figure	0xba79f0	0xba7b77	0xba7bee	je 0x140ba7bee
+classic	call	rescue-figure	0xba79f0	0xba7b82	0x73b30	call 0x140073b30
+classic	branch	rescue-figure	0xba79f0	0xba7b8a	0xba7b4d	je 0x140ba7b4d
+classic	branch	rescue-figure	0xba79f0	0xba7b90	0xba7b4d	je 0x140ba7b4d
+classic	call	rescue-figure	0xba79f0	0xba7bbd	0xaaafe0	call 0x140aaafe0
+classic	call	rescue-figure	0xba79f0	0xba7bd9	0x70fd0	call 0x140070fd0
+classic	call	rescue-figure	0xba79f0	0xba7be4	0x70e10	call 0x140070e10
+classic	branch	rescue-figure	0xba79f0	0xba7be9	0xba83cb	jmp 0x140ba83cb
+classic	literal	rescue-figure	0xba79f0	0xba7bee	0x16ff5d0	an unidentified creature
+classic	branch	rescue-figure	0xba79f0	0xba7bfb	0xba83c3	jmp 0x140ba83c3
+classic	branch	rescue-figure	0xba79f0	0xba7c0b	0xba7c42	je 0x140ba7c42
+classic	literal	rescue-figure	0xba79f0	0xba7c13	0x16148a8	[LPAGE:HF:
+classic	call	rescue-figure	0xba79f0	0xba7c1d	0x70fd0	call 0x140070fd0
+classic	call	rescue-figure	0xba79f0	0xba7c2b	0x542fb0	call 0x140542fb0
+classic	literal	rescue-figure	0xba79f0	0xba7c33	0x1614398	]
+classic	call	rescue-figure	0xba79f0	0xba7c3d	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7c4d	0xba7c63	jle 0x140ba7c63
+classic	branch	rescue-figure	0xba79f0	0xba7c59	0xba7c60	jne 0x140ba7c60
+classic	branch	rescue-figure	0xba79f0	0xba7c5e	0xba7c63	je 0x140ba7c63
+classic	call	rescue-figure	0xba79f0	0xba7c6a	0x69380	call 0x140069380
+classic	call	rescue-figure	0xba79f0	0xba7c79	0x69380	call 0x140069380
+classic	branch	rescue-figure	0xba79f0	0xba7c84	0xba7c8e	jne 0x140ba7c8e
+classic	branch	rescue-figure	0xba79f0	0xba7c8c	0xba7c9e	je 0x140ba7c9e
+classic	branch	rescue-figure	0xba79f0	0xba7ca8	0xba7cd3	je 0x140ba7cd3
+classic	branch	rescue-figure	0xba79f0	0xba7cb1	0xba7cd6	je 0x140ba7cd6
+classic	branch	rescue-figure	0xba79f0	0xba7cd1	0xba7cd6	jmp 0x140ba7cd6
+classic	branch	rescue-figure	0xba79f0	0xba7cdf	0xba7ce7	je 0x140ba7ce7
+classic	branch	rescue-figure	0xba79f0	0xba7ce5	0xba7cea	jne 0x140ba7cea
+classic	branch	rescue-figure	0xba79f0	0xba7d16	0xba7dca	jne 0x140ba7dca
+classic	branch	rescue-figure	0xba79f0	0xba7d22	0xba7dac	je 0x140ba7dac
+classic	branch	rescue-figure	0xba79f0	0xba7d2b	0xba7d84	je 0x140ba7d84
+classic	branch	rescue-figure	0xba79f0	0xba7d30	0xba7d57	je 0x140ba7d57
+classic	branch	rescue-figure	0xba79f0	0xba7d35	0xba7dac	jne 0x140ba7dac
+classic	literal	rescue-figure	0xba79f0	0xba7d3d	0x167e764	myself
+classic	literal	rescue-figure	0xba79f0	0xba7d46	0x167e768	lf
+classic	branch	rescue-figure	0xba79f0	0xba7d55	0xba7db2	jmp 0x140ba7db2
+classic	call	rescue-figure	0xba79f0	0xba7d7a	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7d7f	0xba8333	jmp 0x140ba8333
+classic	call	rescue-figure	0xba79f0	0xba7da2	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7da7	0xba8333	jmp 0x140ba8333
+classic	call	rescue-figure	0xba79f0	0xba7dc0	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7dc5	0xba8333	jmp 0x140ba8333
+classic	branch	rescue-figure	0xba79f0	0xba7dd4	0xba8221	je 0x140ba8221
+classic	branch	rescue-figure	0xba79f0	0xba7ddd	0xba7fcc	je 0x140ba7fcc
+classic	branch	rescue-figure	0xba79f0	0xba7de6	0xba7fcc	je 0x140ba7fcc
+classic	branch	rescue-figure	0xba79f0	0xba7def	0xba7fcc	jne 0x140ba7fcc
+classic	literal	rescue-figure	0xba79f0	0xba7dfb	0x15ff078	the 
+classic	call	rescue-figure	0xba79f0	0xba7e05	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7e0d	0xba7e2e	je 0x140ba7e2e
+classic	branch	rescue-figure	0xba79f0	0xba7e17	0xba7e2e	je 0x140ba7e2e
+classic	literal	rescue-figure	0xba79f0	0xba7e1f	0x16986e8	zombie 
+classic	call	rescue-figure	0xba79f0	0xba7e29	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7e35	0xba7e66	jle 0x140ba7e66
+classic	branch	rescue-figure	0xba79f0	0xba7e41	0xba7e66	jge 0x140ba7e66
+classic	branch	rescue-figure	0xba79f0	0xba7e46	0xba7e51	je 0x140ba7e51
+classic	branch	rescue-figure	0xba79f0	0xba7e4f	0xba7e66	jne 0x140ba7e66
+classic	literal	rescue-figure	0xba79f0	0xba7e57	0x1614850	ghostly 
+classic	call	rescue-figure	0xba79f0	0xba7e61	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7e8a	0xba7f06	je 0x140ba7f06
+classic	branch	rescue-figure	0xba79f0	0xba7e90	0xba7f52	js 0x140ba7f52
+classic	branch	rescue-figure	0xba79f0	0xba7eae	0xba7f0c	jae 0x140ba7f0c
+classic	branch	rescue-figure	0xba79f0	0xba7eb3	0xba7f0c	js 0x140ba7f0c
+classic	branch	rescue-figure	0xba79f0	0xba7ed1	0xba7f0c	jae 0x140ba7f0c
+classic	branch	rescue-figure	0xba79f0	0xba7ee2	0xba7f0c	je 0x140ba7f0c
+classic	branch	rescue-figure	0xba79f0	0xba7eed	0xba7ef2	jbe 0x140ba7ef2
+classic	call	rescue-figure	0xba79f0	0xba7ef6	0x70e90	call 0x140070e90
+classic	branch	rescue-figure	0xba79f0	0xba7f02	0xba7f52	jne 0x140ba7f52
+classic	branch	rescue-figure	0xba79f0	0xba7f04	0xba7f0c	jmp 0x140ba7f0c
+classic	branch	rescue-figure	0xba79f0	0xba7f0a	0xba7f52	js 0x140ba7f52
+classic	branch	rescue-figure	0xba79f0	0xba7f24	0xba7f52	jae 0x140ba7f52
+classic	branch	rescue-figure	0xba79f0	0xba7f35	0xba7f52	je 0x140ba7f52
+classic	branch	rescue-figure	0xba79f0	0xba7f40	0xba7f45	jbe 0x140ba7f45
+classic	call	rescue-figure	0xba79f0	0xba7f49	0x70e90	call 0x140070e90
+classic	call	rescue-figure	0xba79f0	0xba7f63	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7f6b	0xba7fa5	je 0x140ba7fa5
+classic	branch	rescue-figure	0xba79f0	0xba7f74	0xba7fa5	je 0x140ba7fa5
+classic	literal	rescue-figure	0xba79f0	0xba7f79	0x15fe96c	 
+classic	call	rescue-figure	0xba79f0	0xba7f83	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba7f98	0xba7f9d	jbe 0x140ba7f9d
+classic	call	rescue-figure	0xba79f0	0xba7fa0	0x70fd0	call 0x140070fd0
+classic	literal	rescue-figure	0xba79f0	0xba7fa8	0x15fe96c	 
+classic	call	rescue-figure	0xba79f0	0xba7fb2	0x70fd0	call 0x140070fd0
+classic	call	rescue-figure	0xba79f0	0xba7fbc	0x70e10	call 0x140070e10
+classic	call	rescue-figure	0xba79f0	0xba7fe4	0xaaafe0	call 0x140aaafe0
+classic	call	rescue-figure	0xba79f0	0xba7ffe	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba8011	0xba8333	je 0x140ba8333
+classic	branch	rescue-figure	0xba79f0	0xba801a	0xba8333	je 0x140ba8333
+classic	branch	rescue-figure	0xba79f0	0xba8025	0xba8333	jne 0x140ba8333
+classic	literal	rescue-figure	0xba79f0	0xba8031	0x15ff79c	 the 
+classic	call	rescue-figure	0xba79f0	0xba803b	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba8043	0xba8064	je 0x140ba8064
+classic	branch	rescue-figure	0xba79f0	0xba804d	0xba8064	je 0x140ba8064
+classic	literal	rescue-figure	0xba79f0	0xba8055	0x16986e8	zombie 
+classic	call	rescue-figure	0xba79f0	0xba805f	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba806b	0xba809c	jle 0x140ba809c
+classic	branch	rescue-figure	0xba79f0	0xba8077	0xba809c	jge 0x140ba809c
+classic	branch	rescue-figure	0xba79f0	0xba807c	0xba8087	je 0x140ba8087
+classic	branch	rescue-figure	0xba79f0	0xba8085	0xba809c	jne 0x140ba809c
+classic	literal	rescue-figure	0xba79f0	0xba808d	0x1614850	ghostly 
+classic	call	rescue-figure	0xba79f0	0xba8097	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba80bd	0xba8138	je 0x140ba8138
+classic	branch	rescue-figure	0xba79f0	0xba80c2	0xba8183	js 0x140ba8183
+classic	branch	rescue-figure	0xba79f0	0xba80e0	0xba813d	jae 0x140ba813d
+classic	branch	rescue-figure	0xba79f0	0xba80e5	0xba813d	js 0x140ba813d
+classic	branch	rescue-figure	0xba79f0	0xba8103	0xba813d	jae 0x140ba813d
+classic	branch	rescue-figure	0xba79f0	0xba8114	0xba813d	je 0x140ba813d
+classic	branch	rescue-figure	0xba79f0	0xba811f	0xba8124	jbe 0x140ba8124
+classic	call	rescue-figure	0xba79f0	0xba8128	0x70e90	call 0x140070e90
+classic	branch	rescue-figure	0xba79f0	0xba8134	0xba8183	jne 0x140ba8183
+classic	branch	rescue-figure	0xba79f0	0xba8136	0xba813d	jmp 0x140ba813d
+classic	branch	rescue-figure	0xba79f0	0xba813b	0xba8183	js 0x140ba8183
+classic	branch	rescue-figure	0xba79f0	0xba8155	0xba8183	jae 0x140ba8183
+classic	branch	rescue-figure	0xba79f0	0xba8166	0xba8183	je 0x140ba8183
+classic	branch	rescue-figure	0xba79f0	0xba8171	0xba8176	jbe 0x140ba8176
+classic	call	rescue-figure	0xba79f0	0xba817a	0x70e90	call 0x140070e90
+classic	call	rescue-figure	0xba79f0	0xba8197	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba819f	0xba81da	je 0x140ba81da
+classic	branch	rescue-figure	0xba79f0	0xba81a8	0xba81da	je 0x140ba81da
+classic	literal	rescue-figure	0xba79f0	0xba81ad	0x15fe96c	 
+classic	call	rescue-figure	0xba79f0	0xba81b7	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba81cc	0xba81d1	jbe 0x140ba81d1
+classic	call	rescue-figure	0xba79f0	0xba81d4	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba81e2	0xba8333	jbe 0x140ba8333
+classic	branch	rescue-figure	0xba79f0	0xba81f9	0xba8217	jb 0x140ba8217
+classic	branch	rescue-figure	0xba79f0	0xba820e	0xba8217	jbe 0x140ba8217
+classic	import-call	rescue-figure	0xba79f0	0xba8210	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	rescue-figure	0xba79f0	0xba8210	0x0	call QWORD PTR [rip+0xa538b2]        # 0x1415fbac8
+classic	call	rescue-figure	0xba79f0	0xba8217	0x154de20	call 0x14154de20
+classic	branch	rescue-figure	0xba79f0	0xba821c	0xba8333	jmp 0x140ba8333
+classic	literal	rescue-figure	0xba79f0	0xba822e	0x1603888	a 
+classic	literal	rescue-figure	0xba79f0	0xba8235	0x15ff078	the 
+classic	call	rescue-figure	0xba79f0	0xba8243	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba824b	0xba826c	je 0x140ba826c
+classic	branch	rescue-figure	0xba79f0	0xba8255	0xba826c	je 0x140ba826c
+classic	literal	rescue-figure	0xba79f0	0xba825d	0x16986e8	zombie 
+classic	call	rescue-figure	0xba79f0	0xba8267	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba8273	0xba82a4	jle 0x140ba82a4
+classic	branch	rescue-figure	0xba79f0	0xba827f	0xba82a4	jge 0x140ba82a4
+classic	branch	rescue-figure	0xba79f0	0xba8284	0xba828f	je 0x140ba828f
+classic	branch	rescue-figure	0xba79f0	0xba828d	0xba82a4	jne 0x140ba82a4
+classic	literal	rescue-figure	0xba79f0	0xba8295	0x1614850	ghostly 
+classic	call	rescue-figure	0xba79f0	0xba829f	0x70fd0	call 0x140070fd0
+classic	call	rescue-figure	0xba79f0	0xba82ca	0xaba4d0	call 0x140aba4d0
+classic	call	rescue-figure	0xba79f0	0xba82e6	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba82ee	0xba8329	je 0x140ba8329
+classic	branch	rescue-figure	0xba79f0	0xba82f7	0xba8329	je 0x140ba8329
+classic	literal	rescue-figure	0xba79f0	0xba82fc	0x15fe96c	 
+classic	call	rescue-figure	0xba79f0	0xba8306	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba831b	0xba8320	jbe 0x140ba8320
+classic	call	rescue-figure	0xba79f0	0xba8323	0x70fd0	call 0x140070fd0
+classic	call	rescue-figure	0xba79f0	0xba832e	0x70e10	call 0x140070e10
+classic	branch	rescue-figure	0xba79f0	0xba8338	0xba8356	jne 0x140ba8356
+classic	branch	rescue-figure	0xba79f0	0xba833f	0xba8356	jne 0x140ba8356
+classic	literal	rescue-figure	0xba79f0	0xba8347	0x15ff490	's
+classic	call	rescue-figure	0xba79f0	0xba8351	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba835e	0xba8376	je 0x140ba8376
+classic	literal	rescue-figure	0xba79f0	0xba8366	0x16148b8	[/LPAGE]
+classic	call	rescue-figure	0xba79f0	0xba8370	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba837e	0xba83e7	jbe 0x140ba83e7
+classic	branch	rescue-figure	0xba79f0	0xba8391	0xba83af	jb 0x140ba83af
+classic	branch	rescue-figure	0xba79f0	0xba83a6	0xba83af	jbe 0x140ba83af
+classic	import-call	rescue-figure	0xba79f0	0xba83a8	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	rescue-figure	0xba79f0	0xba83a8	0x0	call QWORD PTR [rip+0xa5371a]        # 0x1415fbac8
+classic	call	rescue-figure	0xba79f0	0xba83af	0x154de20	call 0x14154de20
+classic	branch	rescue-figure	0xba79f0	0xba83b4	0xba83e7	jmp 0x140ba83e7
+classic	literal	rescue-figure	0xba79f0	0xba83bc	0x167f6e8	an unknown creature
+classic	call	rescue-figure	0xba79f0	0xba83c6	0x70fd0	call 0x140070fd0
+classic	branch	rescue-figure	0xba79f0	0xba83d0	0xba83e7	jne 0x140ba83e7
+classic	literal	rescue-figure	0xba79f0	0xba83d2	0x15ff490	's
+classic	call	rescue-figure	0xba79f0	0xba83e2	0x70fd0	call 0x140070fd0
+classic	call	rescue-figure	0xba79f0	0xba83ee	0x154de00	call 0x14154de00
+classic	range	rescue-figure	0xba79f0	0xba79f0	0xba8407	reviewed native source block
+classic	branch	recover-artifact	0xba8ee0	0xba8f1f	0xba8f56	je 0x140ba8f56
+classic	branch	recover-artifact	0xba8ee0	0xba8f25	0xba8f56	je 0x140ba8f56
+classic	branch	recover-artifact	0xba8ee0	0xba8f2d	0xba8f56	js 0x140ba8f56
+classic	branch	recover-artifact	0xba8ee0	0xba8f40	0xba8f58	je 0x140ba8f58
+classic	branch	recover-artifact	0xba8ee0	0xba8f54	0xba8f30	jle 0x140ba8f30
+classic	branch	recover-artifact	0xba8ee0	0xba8f5b	0xba91b8	je 0x140ba91b8
+classic	branch	recover-artifact	0xba8ee0	0xba8f6c	0xba8fe2	je 0x140ba8fe2
+classic	call	recover-artifact	0xba8ee0	0xba8f74	0x0	call QWORD PTR [rax]
+classic	branch	recover-artifact	0xba8ee0	0xba8f7a	0xba8fae	je 0x140ba8fae
+classic	call	recover-artifact	0xba8ee0	0xba8f87	0x0	call QWORD PTR [rax+0xe0]
+classic	branch	recover-artifact	0xba8ee0	0xba8f8f	0xba8fae	jne 0x140ba8fae
+classic	call	recover-artifact	0xba8ee0	0xba8f97	0x0	call QWORD PTR [rax]
+classic	branch	recover-artifact	0xba8ee0	0xba8f9d	0xba8fae	je 0x140ba8fae
+classic	literal	recover-artifact	0xba8ee0	0xba8f9f	0x16148d8	[LPAGE:ARTIFACT:
+classic	branch	recover-artifact	0xba8ee0	0xba8fac	0xba8fbb	jmp 0x140ba8fbb
+classic	literal	recover-artifact	0xba8ee0	0xba8fae	0x16ff3e0	[LPAGE:BOOK:
+classic	call	recover-artifact	0xba8ee0	0xba8fbe	0x70fd0	call 0x140070fd0
+classic	call	recover-artifact	0xba8ee0	0xba8fc8	0x542fb0	call 0x140542fb0
+classic	literal	recover-artifact	0xba8ee0	0xba8fd3	0x1614398	]
+classic	call	recover-artifact	0xba8ee0	0xba8fdd	0x70fd0	call 0x140070fd0
+classic	call	recover-artifact	0xba8ee0	0xba9010	0xaaafe0	call 0x140aaafe0
+classic	branch	recover-artifact	0xba8ee0	0xba901b	0xba913d	jne 0x140ba913d
+classic	call	recover-artifact	0xba8ee0	0xba9027	0x0	call QWORD PTR [rax]
+classic	branch	recover-artifact	0xba8ee0	0xba902d	0xba906d	je 0x140ba906d
+classic	call	recover-artifact	0xba8ee0	0xba903a	0x0	call QWORD PTR [rax+0xe0]
+classic	branch	recover-artifact	0xba8ee0	0xba9042	0xba906d	jne 0x140ba906d
+classic	call	recover-artifact	0xba8ee0	0xba904a	0x0	call QWORD PTR [rax]
+classic	branch	recover-artifact	0xba8ee0	0xba9050	0xba906d	je 0x140ba906d
+classic	call	recover-artifact	0xba8ee0	0xba9063	0xc79f60	call 0x140c79f60
+classic	branch	recover-artifact	0xba8ee0	0xba9068	0xba913d	jmp 0x140ba913d
+classic	branch	recover-artifact	0xba8ee0	0xba9076	0xba90a6	jb 0x140ba90a6
+classic	inline-immediate	recover-artifact	0xba8ee0	0xba9090	0x0	Untitled
+classic	branch	recover-artifact	0xba8ee0	0xba90a1	0xba913d	jmp 0x140ba913d
+classic	branch	recover-artifact	0xba8ee0	0xba90bf	0xba90d1	ja 0x140ba90d1
+classic	call	recover-artifact	0xba8ee0	0xba90d5	0x71d90	call 0x140071d90
+classic	inline-immediate	recover-artifact	0xba8ee0	0xba90eb	0x0	Untitled
+classic	branch	recover-artifact	0xba8ee0	0xba9100	0xba9138	jbe 0x140ba9138
+classic	branch	recover-artifact	0xba8ee0	0xba9115	0xba9133	jb 0x140ba9133
+classic	branch	recover-artifact	0xba8ee0	0xba912a	0xba9133	jbe 0x140ba9133
+classic	import-call	recover-artifact	0xba8ee0	0xba912c	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	recover-artifact	0xba8ee0	0xba912c	0x0	call QWORD PTR [rip+0xa52996]        # 0x1415fbac8
+classic	call	recover-artifact	0xba8ee0	0xba9133	0x154de20	call 0x14154de20
+classic	call	recover-artifact	0xba8ee0	0xba9156	0x70fd0	call 0x140070fd0
+classic	branch	recover-artifact	0xba8ee0	0xba915e	0xba9176	je 0x140ba9176
+classic	literal	recover-artifact	0xba8ee0	0xba9166	0x16148b8	[/LPAGE]
+classic	call	recover-artifact	0xba8ee0	0xba9170	0x70fd0	call 0x140070fd0
+classic	branch	recover-artifact	0xba8ee0	0xba917f	0xba91cd	jbe 0x140ba91cd
+classic	branch	recover-artifact	0xba8ee0	0xba9193	0xba91b1	jb 0x140ba91b1
+classic	branch	recover-artifact	0xba8ee0	0xba91a8	0xba91b1	jbe 0x140ba91b1
+classic	import-call	recover-artifact	0xba8ee0	0xba91aa	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	recover-artifact	0xba8ee0	0xba91aa	0x0	call QWORD PTR [rip+0xa52918]        # 0x1415fbac8
+classic	call	recover-artifact	0xba8ee0	0xba91b1	0x154de20	call 0x14154de20
+classic	branch	recover-artifact	0xba8ee0	0xba91b6	0xba91cd	jmp 0x140ba91cd
+classic	literal	recover-artifact	0xba8ee0	0xba91be	0x16ff3a8	an unknown artifact
+classic	call	recover-artifact	0xba8ee0	0xba91c8	0x70fd0	call 0x140070fd0
+classic	call	recover-artifact	0xba8ee0	0xba91d5	0x154de00	call 0x14154de00
+classic	range	recover-artifact	0xba8ee0	0xba8ee0	0xba91f0	reviewed native source block
+classic	branch	squad-language-name	0xaaafe0	0xaab027	0xaab76f	je 0x140aab76f
+classic	branch	squad-language-name	0xaaafe0	0xaab03a	0xaab047	ja 0x140aab047
+classic	branch	squad-language-name	0xaaafe0	0xaab053	0xaab058	jbe 0x140aab058
+classic	branch	squad-language-name	0xaaafe0	0xaab06e	0xaab0ae	je 0x140aab0ae
+classic	branch	squad-language-name	0xaaafe0	0xaab077	0xaab0ae	jne 0x140aab0ae
+classic	call	squad-language-name	0xaaafe0	0xaab07e	0xbb140	call 0x1400bb140
+classic	branch	squad-language-name	0xaaafe0	0xaab090	0xaab095	jbe 0x140aab095
+classic	call	squad-language-name	0xaaafe0	0xaab098	0x70fd0	call 0x140070fd0
+classic	call	squad-language-name	0xaaafe0	0xaab0a2	0xbb140	call 0x1400bb140
+classic	branch	squad-language-name	0xaaafe0	0xaab0a9	0xaab18c	jmp 0x140aab18c
+classic	branch	squad-language-name	0xaaafe0	0xaab0c9	0xaab0ce	jbe 0x140aab0ce
+classic	branch	squad-language-name	0xaaafe0	0xaab0d1	0xaab79c	ja 0x140aab79c
+classic	branch	squad-language-name	0xaaafe0	0xaab0db	0xaab0fa	ja 0x140aab0fa
+classic	branch	squad-language-name	0xaaafe0	0xaab0f8	0xaab13a	jmp 0x140aab13a
+classic	branch	squad-language-name	0xaaafe0	0xaab104	0xaab10b	jbe 0x140aab10b
+classic	branch	squad-language-name	0xaaafe0	0xaab109	0xaab112	jmp 0x140aab112
+classic	call	squad-language-name	0xaaafe0	0xaab116	0x71d90	call 0x140071d90
+classic	call	squad-language-name	0xaaafe0	0xaab134	0x154f29e	call 0x14154f29e
+classic	branch	squad-language-name	0xaaafe0	0xaab13e	0xaab155	je 0x140aab155
+classic	call	squad-language-name	0xaaafe0	0xaab144	0x5440a0	call 0x1405440a0
+classic	call	squad-language-name	0xaaafe0	0xaab167	0x70fd0	call 0x140070fd0
+classic	call	squad-language-name	0xaaafe0	0xaab174	0x70e10	call 0x140070e10
+classic	branch	squad-language-name	0xaaafe0	0xaab191	0xaab1f3	je 0x140aab1f3
+classic	branch	squad-language-name	0xaaafe0	0xaab197	0xaab1e2	jne 0x140aab1e2
+classic	branch	squad-language-name	0xaaafe0	0xaab19b	0xaab1b2	je 0x140aab1b2
+classic	literal	squad-language-name	0xaaafe0	0xaab1a3	0x15fe96c	 
+classic	call	squad-language-name	0xaaafe0	0xaab1ad	0x70fd0	call 0x140070fd0
+classic	call	squad-language-name	0xaaafe0	0xaab1b7	0xbb140	call 0x1400bb140
+classic	branch	squad-language-name	0xaaafe0	0xaab1c9	0xaab1ce	jbe 0x140aab1ce
+classic	call	squad-language-name	0xaaafe0	0xaab1d1	0x70fd0	call 0x140070fd0
+classic	call	squad-language-name	0xaaafe0	0xaab1db	0xbb140	call 0x1400bb140
+classic	branch	squad-language-name	0xaaafe0	0xaab1e7	0xaab1f3	je 0x140aab1f3
+classic	branch	squad-language-name	0xaaafe0	0xaab1ed	0xaab76f	je 0x140aab76f
+classic	branch	squad-language-name	0xaaafe0	0xaab1f9	0xaab204	jne 0x140aab204
+classic	branch	squad-language-name	0xaaafe0	0xaab1fe	0xaab2d5	je 0x140aab2d5
+classic	branch	squad-language-name	0xaaafe0	0xaab206	0xaab211	je 0x140aab211
+classic	branch	squad-language-name	0xaaafe0	0xaab20b	0xaab2d5	jne 0x140aab2d5
+classic	call	squad-language-name	0xaaafe0	0xaab234	0xd41660	call 0x140d41660
+classic	call	squad-language-name	0xaaafe0	0xaab248	0xd41660	call 0x140d41660
+classic	branch	squad-language-name	0xaaafe0	0xaab252	0xaab297	je 0x140aab297
+classic	branch	squad-language-name	0xaaafe0	0xaab256	0xaab26d	je 0x140aab26d
+classic	literal	squad-language-name	0xaaafe0	0xaab25e	0x15fe96c	 
+classic	call	squad-language-name	0xaaafe0	0xaab268	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab270	0xaab27b	je 0x140aab27b
+classic	call	squad-language-name	0xaaafe0	0xaab276	0x5440a0	call 0x1405440a0
+classic	call	squad-language-name	0xaaafe0	0xaab290	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab29f	0xaab2d5	jbe 0x140aab2d5
+classic	branch	squad-language-name	0xaaafe0	0xaab2b2	0xaab2d0	jb 0x140aab2d0
+classic	branch	squad-language-name	0xaaafe0	0xaab2c7	0xaab2d0	jbe 0x140aab2d0
+classic	import-call	squad-language-name	0xaaafe0	0xaab2c9	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	squad-language-name	0xaaafe0	0xaab2c9	0x0	call QWORD PTR [rip+0xb507f9]        # 0x1415fbac8
+classic	call	squad-language-name	0xaaafe0	0xaab2d0	0x154de20	call 0x14154de20
+classic	branch	squad-language-name	0xaaafe0	0xaab2d9	0xaab2eb	jne 0x140aab2eb
+classic	branch	squad-language-name	0xaaafe0	0xaab2df	0xaab2eb	jne 0x140aab2eb
+classic	branch	squad-language-name	0xaaafe0	0xaab2e5	0xaab6ad	je 0x140aab6ad
+classic	branch	squad-language-name	0xaaafe0	0xaab2ed	0xaab2f8	je 0x140aab2f8
+classic	branch	squad-language-name	0xaaafe0	0xaab2f2	0xaab6ad	jne 0x140aab6ad
+classic	call	squad-language-name	0xaaafe0	0xaab321	0xd41660	call 0x140d41660
+classic	branch	squad-language-name	0xaaafe0	0xaab32b	0xaab3c9	je 0x140aab3c9
+classic	branch	squad-language-name	0xaaafe0	0xaab333	0xaab34a	je 0x140aab34a
+classic	literal	squad-language-name	0xaaafe0	0xaab33b	0x15fe96c	 
+classic	call	squad-language-name	0xaaafe0	0xaab345	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab34f	0xaab372	jne 0x140aab372
+classic	branch	squad-language-name	0xaaafe0	0xaab355	0xaab372	jne 0x140aab372
+classic	literal	squad-language-name	0xaaafe0	0xaab35d	0x1603c34	The 
+classic	call	squad-language-name	0xaaafe0	0xaab367	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab370	0xaab38f	jmp 0x140aab38f
+classic	literal	squad-language-name	0xaaafe0	0xaab378	0x15ff078	the 
+classic	call	squad-language-name	0xaaafe0	0xaab382	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab38d	0xaab398	je 0x140aab398
+classic	call	squad-language-name	0xaaafe0	0xaab393	0x5440a0	call 0x1405440a0
+classic	call	squad-language-name	0xaaafe0	0xaab3ad	0x70fd0	call 0x140070fd0
+classic	call	squad-language-name	0xaaafe0	0xaab3d8	0xd41660	call 0x140d41660
+classic	branch	squad-language-name	0xaaafe0	0xaab3e2	0xaab471	je 0x140aab471
+classic	branch	squad-language-name	0xaaafe0	0xaab3ea	0xaab401	je 0x140aab401
+classic	literal	squad-language-name	0xaaafe0	0xaab3f2	0x15fe96c	 
+classic	call	squad-language-name	0xaaafe0	0xaab3fc	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab404	0xaab432	jne 0x140aab432
+classic	branch	squad-language-name	0xaaafe0	0xaab40b	0xaab41a	jne 0x140aab41a
+classic	literal	squad-language-name	0xaaafe0	0xaab411	0x1603c34	The 
+classic	branch	squad-language-name	0xaaafe0	0xaab418	0xaab421	je 0x140aab421
+classic	literal	squad-language-name	0xaaafe0	0xaab41a	0x15ff078	the 
+classic	call	squad-language-name	0xaaafe0	0xaab42a	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab435	0xaab440	je 0x140aab440
+classic	call	squad-language-name	0xaaafe0	0xaab43b	0x5440a0	call 0x1405440a0
+classic	call	squad-language-name	0xaaafe0	0xaab455	0x70fd0	call 0x140070fd0
+classic	call	squad-language-name	0xaaafe0	0xaab480	0xd41660	call 0x140d41660
+classic	branch	squad-language-name	0xaaafe0	0xaab48a	0xaab5f6	je 0x140aab5f6
+classic	branch	squad-language-name	0xaaafe0	0xaab492	0xaab4a9	je 0x140aab4a9
+classic	literal	squad-language-name	0xaaafe0	0xaab49a	0x15fe96c	 
+classic	call	squad-language-name	0xaaafe0	0xaab4a4	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab4ac	0xaab4da	jne 0x140aab4da
+classic	branch	squad-language-name	0xaaafe0	0xaab4b3	0xaab4c2	jne 0x140aab4c2
+classic	literal	squad-language-name	0xaaafe0	0xaab4b9	0x1603c34	The 
+classic	branch	squad-language-name	0xaaafe0	0xaab4c0	0xaab4c9	je 0x140aab4c9
+classic	literal	squad-language-name	0xaaafe0	0xaab4c2	0x15ff078	the 
+classic	call	squad-language-name	0xaaafe0	0xaab4d2	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab4dd	0xaab4e8	je 0x140aab4e8
+classic	call	squad-language-name	0xaaafe0	0xaab4e3	0x5440a0	call 0x1405440a0
+classic	branch	squad-language-name	0xaaafe0	0xaab500	0xaab796	jb 0x140aab796
+classic	branch	squad-language-name	0xaaafe0	0xaab52f	0xaab563	jbe 0x140aab563
+classic	branch	squad-language-name	0xaaafe0	0xaab53b	0xaab542	jbe 0x140aab542
+classic	branch	squad-language-name	0xaaafe0	0xaab540	0xaab54f	jmp 0x140aab54f
+classic	call	squad-language-name	0xaaafe0	0xaab553	0x71d90	call 0x140071d90
+classic	call	squad-language-name	0xaaafe0	0xaab574	0x154f29e	call 0x14154f29e
+classic	call	squad-language-name	0xaaafe0	0xaab598	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab5a6	0xaab5dc	jbe 0x140aab5dc
+classic	branch	squad-language-name	0xaaafe0	0xaab5b9	0xaab5d7	jb 0x140aab5d7
+classic	branch	squad-language-name	0xaaafe0	0xaab5ce	0xaab5d7	jbe 0x140aab5d7
+classic	import-call	squad-language-name	0xaaafe0	0xaab5d0	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	squad-language-name	0xaaafe0	0xaab5d0	0x0	call QWORD PTR [rip+0xb504f2]        # 0x1415fbac8
+classic	call	squad-language-name	0xaaafe0	0xaab5d7	0x154de20	call 0x14154de20
+classic	call	squad-language-name	0xaaafe0	0xaab605	0xd41660	call 0x140d41660
+classic	branch	squad-language-name	0xaaafe0	0xaab60f	0xaab69d	je 0x140aab69d
+classic	branch	squad-language-name	0xaaafe0	0xaab617	0xaab62e	je 0x140aab62e
+classic	literal	squad-language-name	0xaaafe0	0xaab61f	0x15fe96c	 
+classic	call	squad-language-name	0xaaafe0	0xaab629	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab636	0xaab671	jne 0x140aab671
+classic	branch	squad-language-name	0xaaafe0	0xaab63d	0xaab65c	jne 0x140aab65c
+classic	branch	squad-language-name	0xaaafe0	0xaab643	0xaab65c	jne 0x140aab65c
+classic	literal	squad-language-name	0xaaafe0	0xaab64b	0x1603c34	The 
+classic	call	squad-language-name	0xaaafe0	0xaab655	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab65a	0xaab676	jmp 0x140aab676
+classic	literal	squad-language-name	0xaaafe0	0xaab662	0x15ff078	the 
+classic	call	squad-language-name	0xaaafe0	0xaab66c	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab674	0xaab67f	je 0x140aab67f
+classic	call	squad-language-name	0xaaafe0	0xaab67a	0x5440a0	call 0x1405440a0
+classic	call	squad-language-name	0xaaafe0	0xaab694	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab69b	0xaab6a2	jmp 0x140aab6a2
+classic	call	squad-language-name	0xaaafe0	0xaab6a6	0x70e10	call 0x140070e10
+classic	branch	squad-language-name	0xaaafe0	0xaab6ab	0xaab6b2	jmp 0x140aab6b2
+classic	branch	squad-language-name	0xaaafe0	0xaab6b8	0xaab76f	je 0x140aab76f
+classic	branch	squad-language-name	0xaaafe0	0xaab6c0	0xaab6cc	je 0x140aab6cc
+classic	branch	squad-language-name	0xaaafe0	0xaab6c6	0xaab76f	jne 0x140aab76f
+classic	call	squad-language-name	0xaaafe0	0xaab6f3	0xd41660	call 0x140d41660
+classic	branch	squad-language-name	0xaaafe0	0xaab6fd	0xaab766	je 0x140aab766
+classic	branch	squad-language-name	0xaaafe0	0xaab701	0xaab718	je 0x140aab718
+classic	literal	squad-language-name	0xaaafe0	0xaab709	0x15fe96c	 
+classic	call	squad-language-name	0xaaafe0	0xaab713	0x70fd0	call 0x140070fd0
+classic	literal	squad-language-name	0xaaafe0	0xaab718	0x16ebcec	of 
+classic	literal	squad-language-name	0xaaafe0	0xaab71f	0x16ebda4	Of 
+classic	call	squad-language-name	0xaaafe0	0xaab738	0x70fd0	call 0x140070fd0
+classic	branch	squad-language-name	0xaaafe0	0xaab740	0xaab74b	je 0x140aab74b
+classic	call	squad-language-name	0xaaafe0	0xaab746	0x5440a0	call 0x1405440a0
+classic	call	squad-language-name	0xaaafe0	0xaab760	0x70fd0	call 0x140070fd0
+classic	call	squad-language-name	0xaaafe0	0xaab76a	0x70e10	call 0x140070e10
+classic	call	squad-language-name	0xaaafe0	0xaab776	0x154de00	call 0x14154de00
+classic	call	squad-language-name	0xaaafe0	0xaab796	0x66e50	call 0x140066e50
+classic	call	squad-language-name	0xaaafe0	0xaab79c	0x66e50	call 0x140066e50
+classic	range	squad-language-name	0xaaafe0	0xaaafe0	0xaab7a2	reviewed native source block
+classic	branch	tribute-entity-name	0xba73e0	0xba7418	0xba7434	je 0x140ba7434
+classic	branch	tribute-entity-name	0xba73e0	0xba741e	0xba7434	je 0x140ba7434
+classic	call	tribute-entity-name	0xba73e0	0xba742a	0xbb660	call 0x1400bb660
+classic	branch	tribute-entity-name	0xba73e0	0xba7432	0xba7436	jmp 0x140ba7436
+classic	branch	tribute-entity-name	0xba73e0	0xba7439	0xba7526	je 0x140ba7526
+classic	branch	tribute-entity-name	0xba73e0	0xba7442	0xba7479	je 0x140ba7479
+classic	literal	tribute-entity-name	0xba73e0	0xba744a	0x1679c98	[LPAGE:ENT:
+classic	call	tribute-entity-name	0xba73e0	0xba7454	0x70fd0	call 0x140070fd0
+classic	call	tribute-entity-name	0xba73e0	0xba745f	0x542fb0	call 0x140542fb0
+classic	literal	tribute-entity-name	0xba73e0	0xba746a	0x1614398	]
+classic	call	tribute-entity-name	0xba73e0	0xba7474	0x70fd0	call 0x140070fd0
+classic	call	tribute-entity-name	0xba73e0	0xba74a7	0xaaafe0	call 0x140aaafe0
+classic	call	tribute-entity-name	0xba73e0	0xba74c5	0x70fd0	call 0x140070fd0
+classic	branch	tribute-entity-name	0xba73e0	0xba74cc	0xba74e4	je 0x140ba74e4
+classic	literal	tribute-entity-name	0xba73e0	0xba74d4	0x16148b8	[/LPAGE]
+classic	call	tribute-entity-name	0xba73e0	0xba74de	0x70fd0	call 0x140070fd0
+classic	branch	tribute-entity-name	0xba73e0	0xba74ed	0xba753b	jbe 0x140ba753b
+classic	branch	tribute-entity-name	0xba73e0	0xba7501	0xba751f	jb 0x140ba751f
+classic	branch	tribute-entity-name	0xba73e0	0xba7516	0xba751f	jbe 0x140ba751f
+classic	import-call	tribute-entity-name	0xba73e0	0xba7518	0x15fbac8	api-ms-win-crt-runtime-l1-1-0.dll!_invalid_parameter_noinfo_noreturn
+classic	call	tribute-entity-name	0xba73e0	0xba7518	0x0	call QWORD PTR [rip+0xa545aa]        # 0x1415fbac8
+classic	call	tribute-entity-name	0xba73e0	0xba751f	0x154de20	call 0x14154de20
+classic	branch	tribute-entity-name	0xba73e0	0xba7524	0xba753b	jmp 0x140ba753b
+classic	literal	tribute-entity-name	0xba73e0	0xba752c	0x16ff600	an unknown civilization
+classic	call	tribute-entity-name	0xba73e0	0xba7536	0x70fd0	call 0x140070fd0
+classic	call	tribute-entity-name	0xba73e0	0xba7543	0x154de00	call 0x14154de00
+classic	range	tribute-entity-name	0xba73e0	0xba73e0	0xba7558	reviewed native source block
+classic	branch	squad-vector-owner	0x13e0f0	0x13e11e	0x13e15e	jle 0x14013e15e
+classic	branch	squad-vector-owner	0x13e0f0	0x13e141	0x13e156	jge 0x14013e156
+classic	branch	squad-vector-owner	0x13e0f0	0x13e154	0x13e159	jmp 0x14013e159
+classic	branch	squad-vector-owner	0x13e0f0	0x13e15c	0x13e130	jg 0x14013e130
+classic	branch	squad-vector-owner	0x13e0f0	0x13e161	0x13e181	je 0x14013e181
+classic	branch	squad-vector-owner	0x13e0f0	0x13e16a	0x13e181	jne 0x14013e181
+classic	branch	squad-vector-owner	0x13e0f0	0x13e185	0x13e1bc	je 0x14013e1bc
+classic	branch	squad-vector-owner	0x13e0f0	0x13e18a	0x13e196	jne 0x14013e196
+classic	branch	squad-vector-owner	0x13e0f0	0x13e194	0x13e1cc	jmp 0x14013e1cc
+classic	call	squad-vector-owner	0x13e0f0	0x13e1b2	0x154f5ba	call 0x14154f5ba
+classic	branch	squad-vector-owner	0x13e0f0	0x13e1ba	0x13e1cc	jmp 0x14013e1cc
+classic	call	squad-vector-owner	0x13e0f0	0x13e1c7	0x72190	call 0x140072190
+classic	range	squad-vector-owner	0x13e0f0	0x13e0f0	0x13e1e5	reviewed native source block
+classic	branch	english-word-form	0xd41660	0xd41665	0xd4172b	js 0x140d4172b
+classic	branch	english-word-form	0xd41660	0xd41686	0xd4172b	jae 0x140d4172b
+classic	branch	english-word-form	0xd41660	0xd41694	0xd4172b	ja 0x140d4172b
+classic	branch	english-word-form	0xd41660	0xd416ac	0x0	jmp rcx
+classic	branch	english-word-form	0xd41660	0xd416b6	0xd41715	jmp 0x140d41715
+classic	branch	english-word-form	0xd41660	0xd416c0	0xd41715	jmp 0x140d41715
+classic	branch	english-word-form	0xd41660	0xd416ca	0xd41715	jmp 0x140d41715
+classic	branch	english-word-form	0xd41660	0xd416d4	0xd41715	jmp 0x140d41715
+classic	branch	english-word-form	0xd41660	0xd416e1	0xd41715	jmp 0x140d41715
+classic	branch	english-word-form	0xd41660	0xd416ee	0xd41715	jmp 0x140d41715
+classic	branch	english-word-form	0xd41660	0xd416fb	0xd41715	jmp 0x140d41715
+classic	branch	english-word-form	0xd41660	0xd41708	0xd41715	jmp 0x140d41715
+classic	branch	english-word-form	0xd41660	0xd4171e	0xd41723	jbe 0x140d41723
+classic	branch	english-word-form	0xd41660	0xd41726	0x70fd0	jmp 0x140070fd0
+classic	range	english-word-form	0xd41660	0xd41660	0xd4172c	reviewed native source block
+classic	call	year-decimal-core	0x543070	0x543099	0x2480a0	call 0x1402480a0
+classic	import-call	year-decimal-core	0x543070	0x5430a6	0x15fb4a8	MSVCP140.dll!??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+classic	call	year-decimal-core	0x543070	0x5430a6	0x0	call QWORD PTR [rip+0x10b83fc]        # 0x1415fb4a8
+classic	call	year-decimal-core	0x543070	0x5430b9	0x248370	call 0x140248370
+classic	call	year-decimal-core	0x543070	0x5430c9	0x1fc910	call 0x1401fc910
+classic	call	year-decimal-core	0x543070	0x5430d6	0x70e10	call 0x140070e10
+classic	call	year-decimal-core	0x543070	0x543109	0x247fb0	call 0x140247fb0
+classic	import-call	year-decimal-core	0x543070	0x543113	0x15fb428	MSVCP140.dll!??1?$basic_ostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+classic	call	year-decimal-core	0x543070	0x543113	0x0	call QWORD PTR [rip+0x10b830f]        # 0x1415fb428
+classic	import-call	year-decimal-core	0x543070	0x543121	0x15fb558	MSVCP140.dll!??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ
+classic	call	year-decimal-core	0x543070	0x543121	0x0	call QWORD PTR [rip+0x10b8431]        # 0x1415fb558
+classic	call	year-decimal-core	0x543070	0x543132	0x154de00	call 0x14154de00
+classic	range	year-decimal-core	0x543070	0x543070	0x543148	reviewed native source block
+classic	switch-case	mission-raid-type	0x9f65f0	0x9fa78c	0x9f6b89	goal=2; raid.type=0
+classic	switch-case	mission-raid-type	0x9f65f0	0x9fa790	0x9f6b92	goal=2; raid.type=1
+classic	switch-case	mission-raid-type	0x9f65f0	0x9fa794	0x9f6b9b	goal=2; raid.type=2
+classic	switch-case	mission-raid-type	0x9f65f0	0x9fa798	0x9f6b80	goal=2; raid.type=3
+classic	switch-case	mission-raid-type	0x9f65f0	0x9fa79c	0x9f6ba4	goal=2; raid.type=4
+classic	switch-case	mission-raid-type	0x9f65f0	0x9fa7a0	0x9f6b6e	goal=2; raid.type=5
+classic	switch-case	mission-raid-type	0x9f65f0	0x9fa7a4	0x9f6b77	goal=2; raid.type=6
+classic	switch-case	word-POS	0xd41660	0xd4172c	0xd416ae	part_of_speech=0
+classic	switch-case	word-POS	0xd41660	0xd41730	0xd416b8	part_of_speech=1
+classic	switch-case	word-POS	0xd41660	0xd41734	0xd416cc	part_of_speech=2
+classic	switch-case	word-POS	0xd41660	0xd41738	0xd416c2	part_of_speech=3
+classic	switch-case	word-POS	0xd41660	0xd4173c	0xd416d6	part_of_speech=4
+classic	switch-case	word-POS	0xd41660	0xd41740	0xd416e3	part_of_speech=5
+classic	switch-case	word-POS	0xd41660	0xd41744	0xd416f0	part_of_speech=6
+classic	switch-case	word-POS	0xd41660	0xd41748	0xd416fd	part_of_speech=7
+classic	switch-case	word-POS	0xd41660	0xd4174c	0xd4170a	part_of_speech=8

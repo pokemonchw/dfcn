@@ -555,7 +555,9 @@ static bool capture_native_history_name(uintptr_t base, uintptr_t address,
         if (game_mode >= 0 && game_mode <= 10 &&
             !native_history_copy(policy_address + size_t(game_mode) * 4,
                 copy.nickname_mode)) return false;
-        if (copy.nickname_mode < 0 || copy.nickname_mode > 2) return false;
+        // EnglishName ignores the nickname for all other policy values.
+        // Other native consumers require one of the three defined policies.
+        if (!english_title_group && (copy.nickname_mode < 0 || copy.nickname_mode > 2)) return false;
         if (copy.nickname_mode == 2 && !include_hidden_words) {
             result = std::move(copy);
             return true;

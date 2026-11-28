@@ -1,3 +1,82 @@
+// The Reports detail renderer resizes a copy before addst. A clipped title
+// can only be expanded from the matching selected record on this page.
+static std::optional<std::string> native_selected_report_title(std::string_view visible) {
+    const uintptr_t screen = native_current_viewscreen();
+    int32_t mode = -1;
+    if (!screen || !native_history_object_is(screen, "viewscreen_worldst") ||
+            !native_history_copy(native_history_object_member(screen, "viewscreen_worldst",
+                "view_mode"), mode) || mode != 5) return std::nullopt;
+    const bool mission = visible.starts_with("Mission Report:");
+    uintptr_t record = 0;
+    if (!native_history_copy(native_history_object_member(screen, "viewscreen_worldst",
+            mission ? "active_mission_report" : "active_tribute_report"), record) || !record)
+        return std::nullopt;
+    std::string title;
+    // mission_report starts with a vector and four int32s; the loot title
+    // is the first field. Both are the same strings used for list rows.
+    if (!native_history_copy_string(record + (mission ? 0x28 : 0), title)) return std::nullopt;
+    if (visible.ends_with("...")) visible.remove_suffix(3);
+    return title.starts_with(visible) ? std::optional(std::move(title)) : std::nullopt;
+}
+
+static const NativeHistoryName *native_report_squad_name(std::string_view english, uint64_t epoch) {
+    // 53.17 Steam 1110a7 / Classic 111037 format squads[0]->name (+8).
+    // The saved title retains neither the pointer nor the ID. Compare the
+    // complete EnglishName output of the same world.squads.all collection.
+    struct Candidate {
+        uintptr_t squad;
+        NativeHistoryName name;
+    };
+    struct Cache {
+        uint64_t epoch = UINT64_MAX;
+        const void *begin = nullptr, *end = nullptr;
+        int32_t group = -1;
+        std::unordered_map<std::string, Candidate> names;
+    };
+    auto &cache = reloadable_thread_state<Cache, struct WorldReportSquadNamesTag>();
+    const uintptr_t base = native_history_profile_base();
+    NativeBorrowedVector<uintptr_t> squads;
+    int32_t group = -1;
+    if (!base || !native_history_copy(native_history_object_member(
+            native_reference_address(base, native_history_layout::plotinfo_rva),
+            "plotinfost", "group_id", sizeof(group)), group) ||
+            !native_history_read_vector(native_history_global(0x24e37c0), squads)) return nullptr;
+    if (cache.epoch != epoch || cache.begin != squads.begin ||
+            cache.end != squads.end || cache.group != group) {
+        cache = {epoch, squads.begin, squads.end, group, {}};
+        for (size_t index = 0; index < squads.size(); ++index) {
+            const uintptr_t squad = native_history_vector_at(squads, index);
+            // Steam 10cc70, Classic 10cc00 and ELF 1811fe3.
+            int32_t owner = -1;
+            if (!squad || !native_history_copy(squad + 0x1c4, owner) || owner != group) continue;
+            NativeHistoryName name;
+            bool title = false;
+            if (!capture_native_history_name(base, squad + 8, name, nullptr,
+                    true, &title) || !name.has_name) continue;
+            // An old caption retains the nickname display policy at creation.
+            const int modes = name.nickname.empty() ? 1 : 4;
+            for (int mode = 0; mode < modes; ++mode) {
+                name.nickname_mode = mode;
+                if (mode == 3) name.nickname.clear(); // native default ignores the nickname
+                if (auto full = reconstruct_site_english_name(name, title)) {
+                    auto [it, added] = cache.names.try_emplace(std::move(*full), squad, name);
+                    if (!added && it->second.squad && it->second.squad != squad) {
+                        // Distinct squads can share the same generated name.
+                        // Use their slots only if both snapshots agree.
+                        const auto &other = it->second.name;
+                        if (other.first_name != name.first_name || other.nickname != name.nickname ||
+                                site_name_decision_key({}, other.type, other.words) !=
+                                site_name_decision_key({}, name.type, name.words))
+                            it->second.squad = 0;
+                    }
+                }
+            }
+        }
+    }
+    const auto found = cache.names.find(std::string(english));
+    return found != cache.names.end() && found->second.squad ? &found->second.name : nullptr;
+}
+
 // The world report does not dispatch on mission kind. Its three producers
 // (1bff9d, 1c09f6, 1d3cfb) resolve campaign.event_id[] and call the complete
 // history_event getSentence virtual at +d0. They use context constructor

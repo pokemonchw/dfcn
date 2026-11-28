@@ -114,6 +114,8 @@ static std::optional<NativeActivityDetailDocument> native_activity_detail_docume
     const std::unordered_set<uintptr_t> &visible_words);
 static uintptr_t native_history_profile_base();
 static uintptr_t native_current_viewscreen();
+static std::optional<std::string> native_selected_report_title(std::string_view visible);
+static const NativeHistoryName *native_report_squad_name(std::string_view english, uint64_t epoch);
 #ifdef _WIN32
 struct NativeEmbarkItemFrame;
 static const NativeEmbarkItemFrame *native_embark_item_frame(const graphicst *graphics);

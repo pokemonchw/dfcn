@@ -1,0 +1,18 @@
+[
+  {
+    "edition": "reference",
+    "path": "D:\\program\\steam\\steamapps\\common\\Dwarf Fortress\\Dwarf Fortress.exe",
+    "sha256": "3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16",
+    "image_base": "0x140000000",
+    "timestamp": "0x6aea05a1",
+    "size_of_image": "0x2734000"
+  },
+  {
+    "edition": "classic",
+    "path": "C:\\Users\\WIN11\\Downloads\\df_53_17_win\\Dwarf Fortress.exe",
+    "sha256": "4f833c9d92136e266e56202987dce40845a41990811413c7766fd526a08a0d8f",
+    "image_base": "0x140000000",
+    "timestamp": "0x6aea11a5",
+    "size_of_image": "0x272d000"
+  }
+]

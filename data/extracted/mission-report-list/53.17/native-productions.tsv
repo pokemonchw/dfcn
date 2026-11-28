@@ -1,0 +1,93 @@
+# 53.17 report titles. RVAs identify the start of the source block; instruction operands, switch entries and literals are in native-source-edges.tsv.
+family	selector_or_condition	native_production	source_block	steam_rva	classic_rva
+mission	goal=2; raid.type=0	Mission Report: Raze {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=2; raid.type=1	Mission Report: Take over {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=2; raid.type=2	Mission Report: Seize {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=2; raid.type=3	Mission Report: Demand tribute from {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=2; raid.type=4	Mission Report: Raid {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=2; raid.type=5	Mission Report: Explore {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=2; raid.type=6	Mission Report: Pillage {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=2; raid.type outside 0..6	Mission Report: Raid {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=17	Mission Report: Recover {artifact} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=18	Mission Report: Rescue {figure} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=19	Mission Report: Request workers from {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	goal=25	Mission Report: {proposal} at {site} (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+mission	other goal	Mission Report:  (Set out {season} {year})	mission-title	0x9f936d	0x9f697d
+proposal	contains clause10	Demand surrender	diplomatic-proposal	0x1bdc00	0x1bdb90
+proposal	no clause10; contains1	Make peace	diplomatic-proposal	0x1bdc00	0x1bdb90
+proposal	no earlier match; contains13	Declare war	diplomatic-proposal	0x1bdc00	0x1bdb90
+proposal	no earlier match; contains14	Seek alliance	diplomatic-proposal	0x1bdc00	0x1bdb90
+proposal	no earlier match; contains15	Make contact	diplomatic-proposal	0x1bdc00	0x1bdb90
+proposal	no earlier match; contains16	Improve trade	diplomatic-proposal	0x1bdc00	0x1bdb90
+proposal	no recognized clause	Diplomacy	diplomatic-proposal	0x1bdc00	0x1bdb90
+participant	army.squad_id == -1, lookup misses, or squad.entity_id != plotinfo.group_id	{no participating squad contributed}	spoils-squad-source	0x10cc49	0x10cbd9
+participant	matching squad owner	insert squad pointer sorted by squad.id; omit duplicates	squad-vector-owner	0x13e160	0x13e0f0
+participant	first participating squad	EnglishName(squad+8, capitalize=true, shorten=false)	spoils-title	0x111006	0x110f96
+spoils	participating squads=0	Spoils Report: {season} {year}	spoils-title	0x111006	0x110f96
+spoils	participating squads=1	Spoils Report: {squad_generated_name}, {season} {year}	spoils-title	0x111006	0x110f96
+spoils	participating squads>=2	Spoils Report: {squad_generated_name} and others, {season} {year}	spoils-title	0x111006	0x110f96
+tribute	entity present	Tribute Report: {entity_generated_name}, {season} {year}	tribute-title	0xa230e3	0xa206f3
+tribute	entity missing	Tribute Report: an unknown civilization, {season} {year}	tribute-entity-name	0xbaa5c0	0xba73e0
+season	0	Spring	spoils-title	0x111006	0x110f96
+season	1	Summer	spoils-title	0x111006	0x110f96
+season	2	Autumn	spoils-title	0x111006	0x110f96
+season	3	Winter	spoils-title	0x111006	0x110f96
+season	outside0..3	{empty}	spoils-title	0x111006	0x110f96
+year	int32 value	signed decimal	year-decimal-core	0x545790	0x543070
+site	missing	an unknown site	site-name	0xbab5f0	0xba8410
+figure	missing	an unknown creature	rescue-figure	0xbaabd0	0xba79f0
+artifact	missing	an unknown artifact	recover-artifact	0xbac0c0	0xba8ee0
+artifact	language name nonempty	{generated_artifact_name}	recover-artifact	0xbac0c0	0xba8ee0
+artifact	empty name; type89/use20/type87	Untitled	recover-artifact	0xbac0c0	0xba8ee0
+artifact	empty name; other item	{item_description}	recover-artifact	0xbac0c0	0xba8ee0
+name	has_name=0	{empty}	squad-language-name	0xaae180	0xaaafe0
+name	has_name!=0	clear output and compose fields	squad-language-name	0xaae180	0xaaafe0
+name	game_type in0..10	nickname mode from nickname_display[game_type]	squad-language-name	0xaae180	0xaaafe0
+name	game_type outside0..10	use nickname mode0	squad-language-name	0xaae180	0xaaafe0
+name	nickname nonempty; mode0	`{authored_nickname}' + {generated_groups}	squad-language-name	0xaae180	0xaaafe0
+name	nickname nonempty; mode1	{titlecased_first_name} `{authored_nickname}' + {generated_groups}	squad-language-name	0xaae180	0xaaafe0
+name	nickname nonempty; mode2	`{authored_nickname}'	squad-language-name	0xaae180	0xaaafe0
+name	nickname nonempty; other mode	{titlecased_first_name} + {generated_groups}	squad-language-name	0xaae180	0xaaafe0
+name	nickname empty; any mode	{titlecased_first_name} + {generated_groups}	squad-language-name	0xaae180	0xaaafe0
+name	first_name empty and no replacement nickname	{empty prefix}	squad-language-name	0xaae180	0xaaafe0
+name	first_name nonempty and no replacement nickname	{NativeTitlecase(first_name)}	squad-language-name	0xaae180	0xaaafe0
+name	FrontCompound or RearCompound id!=-1; nonempty forms	{C(W0+W1)}	squad-language-name	0xaae180	0xaaafe0
+name	FrontCompound and RearCompound both absent or resolved empty	{no compound}	squad-language-name	0xaae180	0xaaafe0
+name	TheX/FirstAdjective/SecondAdjective all ids=-1	{no title group}	squad-language-name	0xaae180	0xaaafe0
+name	any TheX/FirstAdjective/SecondAdjective id!=-1	compose W2,W3,W4,W5 in order	squad-language-name	0xaae180	0xaaafe0
+name	first nonempty title form and empty prior output	The {C(part)}	squad-language-name	0xaae180	0xaaafe0
+name	first nonempty title form and nonempty prior output	 the {C(part)}	squad-language-name	0xaae180	0xaaafe0
+name	later nonempty ordinary title form	 {C(part)}	squad-language-name	0xaae180	0xaaafe0
+name	visible HyphenCompound form	{C(W4)}-	squad-language-name	0xaae180	0xaaafe0
+name	visible HyphenCompound; empty or missing TheX	{C(W4)}-	squad-language-name	0xaae180	0xaaafe0
+name	empty intermediate title form	{no bytes for that component}	squad-language-name	0xaae180	0xaaafe0
+name	OfX present/nonempty; no earlier output	Of {C(W6)}	squad-language-name	0xaae180	0xaaafe0
+name	OfX present/nonempty; earlier output	 of {C(W6)}	squad-language-name	0xaae180	0xaaafe0
+name	OfX id=-1 or resolved empty	{no Of phrase}	squad-language-name	0xaae180	0xaaafe0
+name	has_name!=0; every reachable field empty	{empty final name}	squad-language-name	0xaae180	0xaaafe0
+name-word	WORD ID<0 or ID>=words.size()	{empty}	english-word-form	0xd44840	0xd41660
+name-word	POS outside0..8	{empty}	english-word-form	0xd44840	0xd41660
+name-word	POS0	{whole Noun form}	english-word-form	0xd44840	0xd41660
+name-word	POS1	{whole NounPlural form}	english-word-form	0xd44840	0xd41660
+name-word	POS2	{whole Adjective form}	english-word-form	0xd44840	0xd41660
+name-word	POS3	{whole Prefix form}	english-word-form	0xd44840	0xd41660
+name-word	POS4	{whole Verb form}	english-word-form	0xd44840	0xd41660
+name-word	POS5	{whole Verb3rdPerson form}	english-word-form	0xd44840	0xd41660
+name-word	POS6	{whole VerbPast form}	english-word-form	0xd44840	0xd41660
+name-word	POS7	{whole VerbPassive form}	english-word-form	0xd44840	0xd41660
+name-word	POS8	{whole VerbGerund form}	english-word-form	0xd44840	0xd41660
+name-delimiter	nickname opening	`	squad-language-name	0xaae180	0xaaafe0
+name-delimiter	nickname closing	'	squad-language-name	0xaae180	0xaaafe0
+name-delimiter	hyphen compound	-	squad-language-name	0xaae180	0xaaafe0
+name-policy	mode2 standalone authored nickname	preserve nickname inner bytes; translate report structure	squad-language-name	0xaae180	0xaaafe0
+list	mission record present	stored mission_report+28 title	report-list-consumer	0x1d389d	0x1d382d
+list	loot record present	stored loot_report+0 title	report-list-consumer	0x1d389d	0x1d382d
+list	nonempty index lists but invalid slot	{no caption}	report-list-consumer	0x1d389d	0x1d382d
+list	both index lists empty	No reports available	report-list-consumer	0x1d389d	0x1d382d
+detail	selected loot caption fits	{complete stored title}	spoils-detail-heading	0x1d343e	0x1d33ce
+detail	selected loot caption exceeds width	{truncated stored title with optional ellipsis}	spoils-detail-heading	0x1d343e	0x1d33ce
+site	found	{EnglishName(site.name)}	site-name	0xbab5f0	0xba8410
+figure	found; named; default report context	{EnglishName(historical_figure.name)}	rescue-figure	0xbaabd0	0xba79f0
+figure	found; unnamed; default report context	a {optional zombie }{optional ghostly }{species/caste}{optional space and curse name}	rescue-figure	0xbaabd0	0xba79f0
+name	HyphenCompound ends title; missing head; OfX nonempty	{title ending in hyphen}of {C(W6)}	squad-language-name	0xaae180	0xaaafe0
+list	read flag	{same stored caption, alternate brightness}	report-list-consumer	0x1d389d	0x1d382d

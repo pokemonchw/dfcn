@@ -1522,7 +1522,7 @@ std::optional<std::string> Overlay::translate_world_mission_title(
         } else if (title->starts_with("Rescue ")) {
             target = translate_legends_actor(destination);
         } else {
-            target = translate_legends_place(destination);
+            target = translate_legends_place(destination, true);
             if (!target) target = translate_legends_term(destination, false);
         }
         // An authored/modded target may have no dictionary entry. Preserve
@@ -1772,6 +1772,9 @@ void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
                 else if (complete == source) complete = draw.source;
                 break;
             }
+        if (complete.ends_with("...") || complete == source) {
+            if (auto stored = native_selected_report_title(complete)) complete = std::move(*stored);
+        }
         const auto heading = translate_legends_text(prefix, false, false);
         std::optional<std::string> target;
         if (prefix == prefixes.front()) {
@@ -1793,7 +1796,10 @@ void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
             // party, separated by the final comma. Spoils without a squad
             // starts directly with that date. Parse from the right so name
             // punctuation remains part of the complete name field.
-            const auto body = trim_view(std::string_view(complete).substr(prefix.size()));
+            auto body = std::string_view(complete).substr(prefix.size());
+            // Only the first space belongs to the prefix. Preserve the
+            // name's bytes when comparing it with the native EnglishName.
+            if (body.starts_with(' ')) body.remove_prefix(1);
             const size_t comma = body.rfind(", ");
             auto party = comma == std::string_view::npos ? std::string_view{}
                 : body.substr(0, comma);
@@ -1816,10 +1822,8 @@ void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
                 const auto date = translate_legends_text("World report date: " +
                     std::string(raw_date), false, false);
                 constexpr std::string_view others = " and others";
-                const bool multiple = prefix == prefixes[1] &&
-                    (party.ends_with(others) || party == trim_view(others));
-                if (multiple) party = party == trim_view(others) ? std::string_view{}
-                    : party.substr(0, party.size() - others.size());
+                const bool multiple = prefix == prefixes[1] && party.ends_with(others);
+                if (multiple) party.remove_suffix(others.size());
                 const auto suffix = multiple
                     ? translate_legends_text("World report participants: and others", false, false)
                     : std::optional<std::string>("");
@@ -1829,7 +1833,8 @@ void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
                 // the respective generated-name and organization contexts;
                 // an unresolved name retains its bytes without losing the UI.
                 const auto name = party.empty() ? std::optional<std::string>("")
-                    : prefix == prefixes[1] ? translate_generated_squad_name(nullptr, party)
+                    : prefix == prefixes[1] ? translate_generated_squad_name(
+                        native_report_squad_name(party, draw_epoch_), party)
                     : translate_legends_name(party, false, true);
                 if (date && suffix) target = *heading +
                     (name ? *name : native_text_to_utf8(party)) + *suffix + *date;

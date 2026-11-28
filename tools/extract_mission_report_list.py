@@ -61,6 +61,20 @@ def owner(image: NativeImage, rva: int) -> int:
 
 def extract(image_path: Path, edition: str, objdump: Path, destination: Path):
     image = NativeImage(image_path)
+    pe = struct.unpack_from("<I", image.raw, 0x3C)[0]
+    timestamp = struct.unpack_from("<I", image.raw, pe + 8)[0]
+    # Each reviewed block has the same internal instruction layout in these
+    # builds. Locate its start independently; helpers below follow actual calls.
+    offsets = {
+        ("reference", 0x6A70A6D9): (0, 0, 0, 0, 0),
+        ("classic", 0x6A70B91C): (0, 0, 0, 0, 0),
+        ("reference", 0x6AEA05A1): (0x19AB0, 0x16A0, 0x19AB0, 0x2D70, 0x3E50),
+        ("classic", 0x6AEA11A5): (0x19890, 0x16A0, 0x19890, 0x2D70, 0x3C30),
+    }
+    mission, spoils, tribute, display, interrogation = offsets[edition, timestamp]
+    shifts = {"mission-title": mission, "spoils-title": spoils, "tribute-title": tribute,
+              "report-list-consumer": display, "spoils-detail-heading": display,
+              "spoils-squad-source": spoils, "separate-interrogation-storage": interrogation}
     records = []
     all_instructions = {}
     for address, function, end, disk, value in image.references():
@@ -135,13 +149,13 @@ def extract(image_path: Path, edition: str, objdump: Path, destination: Path):
         return instructions
 
     for label, bounds in RANGES[edition].items():
-        read(label, *bounds)
+        read(label, bounds[0] + shifts[label], bounds[1] + shifts[label])
 
     def called(label, pc):
         row = next(row for row in all_instructions[label] if row[0] == pc and row[1] == "call")
         return int(DIRECT.match(row[2])[1], 16) - image.base
 
-    delta = 0 if edition == "reference" else -0x27D0
+    delta = mission + (0 if edition == "reference" else -0x27D0)
     mission_call = lambda pc: called("mission-title", pc + delta)
     suppliers = {
         "diplomatic-proposal": mission_call(0x9DF979),
@@ -150,9 +164,9 @@ def extract(image_path: Path, edition: str, objdump: Path, destination: Path):
         "site-name": mission_call(0x9DF9B9),
         "rescue-figure": mission_call(0x9DFA3D),
         "recover-artifact": mission_call(0x9DFA78),
-        "squad-language-name": called("spoils-title", 0x10FA07 if edition == "reference" else 0x10F997),
-        "tribute-entity-name": called("tribute-title", 0xA09757 if edition == "reference" else 0xA06F87),
-        "squad-vector-owner": called("spoils-squad-source", 0x10B5E5 if edition == "reference" else 0x10B575),
+        "squad-language-name": called("spoils-title", spoils + (0x10FA07 if edition == "reference" else 0x10F997)),
+        "tribute-entity-name": called("tribute-title", tribute + (0xA09757 if edition == "reference" else 0xA06F87)),
+        "squad-vector-owner": called("spoils-squad-source", spoils + (0x10B5E5 if edition == "reference" else 0x10B575)),
     }
     for label, entry in suppliers.items():
         begin = owner(image, entry)
@@ -163,16 +177,26 @@ def extract(image_path: Path, edition: str, objdump: Path, destination: Path):
             end = next(address for address in image.starts if address > begin)
         read(label, begin, end)
 
+    # EnglishName uses the same WORD/POS leaf for each component. The leaf
+    # ends in RET immediately before its nine-entry RVA table on both builds.
+    name = suppliers["squad-language-name"]
+    word = called("squad-language-name", name + 0x254)
+    read("english-word-form", word, word + 0xCC)
     decimal_call = next(row for row in all_instructions["year-decimal"] if row[1] == "call")
     decimal_entry = int(DIRECT.match(decimal_call[2])[1], 16) - image.base
     read("year-decimal-core", decimal_entry, image.function_ends[decimal_entry])
 
-    table = 0x9E36CC if edition == "reference" else 0x9E0EFC
-    for selector in range(7):
-        target = struct.unpack_from("<I", image.raw, image.offset(table + selector * 4))[0]
-        records.append(("switch-case", "mission-raid-type", owner(image, RANGES[edition]["mission-title"][0]),
-                        table + selector * 4, target, f"goal=2; raid.type={selector}"))
-    pe = struct.unpack_from("<I", image.raw, 0x3C)[0]
+    for label, switch, count, selector_name in (
+            ("mission-title", "mission-raid-type", 7, "goal=2; raid.type"),
+            ("english-word-form", "word-POS", 9, "part_of_speech")):
+        instructions = all_instructions[label]
+        table = next(int(match[1], 16) for _, _, operands in instructions
+                     if (match := re.search(r"r8\+r[ac]x\*4\+(0x[0-9a-f]+)\]", operands)))
+        for selector in range(count):
+            slot = table + selector * 4
+            target = struct.unpack_from("<I", image.raw, image.offset(slot))[0]
+            records.append(("switch-case", switch, owner(image, instructions[0][0]),
+                            slot, target, f"{selector_name}={selector}"))
     metadata = {
         "edition": edition, "path": str(image_path), "sha256": hashlib.sha256(image.raw).hexdigest(),
         "image_base": f"0x{image.base:x}", "timestamp": f"0x{struct.unpack_from('<I', image.raw, pe + 8)[0]:x}",
@@ -185,9 +209,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--images", type=Path, default=ROOT / "data/runtime/native-pe-images.json")
     parser.add_argument("--objdump", type=Path, required=True)
-    parser.add_argument("--output", type=Path, default=ROOT / "data/extracted/mission-report-list")
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     paths = json.loads(args.images.read_text(encoding="utf-8"))
+    if args.output is None:
+        args.output = ROOT / "data/extracted/mission-report-list"
+        with Path(paths["reference"]).open("rb") as stream:
+            stream.seek(0x3C)
+            stream.seek(struct.unpack("<I", stream.read(4))[0] + 8)
+            if struct.unpack("<I", stream.read(4))[0] == 0x6AEA05A1:
+                args.output /= "53.17"
     args.output.mkdir(parents=True, exist_ok=True)
     metadata, entries = [], []
     for edition in ("reference", "classic"):
