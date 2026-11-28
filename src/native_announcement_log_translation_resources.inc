@@ -91,6 +91,7 @@ NativeAnnouncementLogTranslator Overlay::make_native_announcement_log_translator
     ANNOUNCEMENT_COPY_RESOURCE(volcano_names_);
     ANNOUNCEMENT_COPY_RESOURCE(site_name_decisions_);
     ANNOUNCEMENT_COPY_RESOURCE(site_name_imagery_);
+    ANNOUNCEMENT_COPY_RESOURCE(tavern_food_heads_);
     ANNOUNCEMENT_COPY_RESOURCE(civilization_name_terms_);
     ANNOUNCEMENT_COPY_RESOURCE(civilization_name_modifiers_);
     ANNOUNCEMENT_COPY_RESOURCE(site_government_parent_suffixes_);

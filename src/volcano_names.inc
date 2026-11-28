@@ -70,7 +70,8 @@ std::optional<VolcanoNames::Structure> VolcanoNames::structure(const NativeHisto
     return std::nullopt;
 }
 
-std::optional<NativeHistoryName> VolcanoNames::resolve_surface(std::string_view source) const {
+std::optional<VolcanoNames::TitleSlots> VolcanoNames::parse_title_slots(std::string_view source,
+        const std::function<bool(const NativeHistoryWord &)> &eligible_head) const {
     source = trim_view(source);
     if (source.empty() || source.size() > 256 ||
             !std::all_of(source.begin(), source.end(), [](unsigned char ch) {
@@ -79,10 +80,7 @@ std::optional<NativeHistoryName> VolcanoNames::resolve_surface(std::string_view 
             })) return std::nullopt;
     const std::string text = folded(source);
     if (!text.starts_with("the ")) return std::nullopt;
-    if (const auto cached = surface_cache_.find(text); cached != surface_cache_.end())
-        return cached->second;
-
-    using Slots = std::array<NativeHistoryWord, 7>;
+    using Slots = TitleSlots;
     using Parses = std::vector<Slots>;
     const auto same = [](const Slots &a, const Slots &b) {
         for (size_t slot = 0; slot < a.size(); ++slot) {
@@ -109,7 +107,7 @@ std::optional<NativeHistoryName> VolcanoNames::resolve_surface(std::string_view 
         const auto found = forms_.find(std::string(value));
         if (found != forms_.end()) for (const auto &word : found->second)
             if ((allowed & (1u << unsigned(word.part_of_speech))) &&
-                    (!head || suffixes_.contains(word.id))) result.push_back(&word);
+                    (!head || eligible_head(word))) result.push_back(&word);
         return result;
     };
     const auto nucleus = [&](std::string_view value, bool hyphenated) {
@@ -182,12 +180,24 @@ std::optional<NativeHistoryName> VolcanoNames::resolve_surface(std::string_view 
             }
         }
     }
+    if (candidates.size() == 1) return std::move(candidates.front());
+    return std::nullopt;
+}
+
+std::optional<NativeHistoryName> VolcanoNames::resolve_surface(std::string_view source) const {
+    source = trim_view(source);
+    if (source.size() > 256) return std::nullopt;
+    const std::string text = folded(source);
+    if (!text.starts_with("the ")) return std::nullopt;
+    if (const auto cached = surface_cache_.find(text); cached != surface_cache_.end())
+        return cached->second;
     std::optional<NativeHistoryName> result;
-    if (candidates.size() == 1) {
+    if (auto slots = parse_title_slots(text,
+            [&](const NativeHistoryWord &word) { return suffixes_.contains(word.id); })) {
         NativeHistoryName name;
         name.has_name = true;
         name.type = 19;
-        name.words = std::move(candidates.front());
+        name.words = std::move(*slots);
         if (structure(name)) result = std::move(name);
     }
     if (surface_cache_.size() >= 4096) surface_cache_.clear();

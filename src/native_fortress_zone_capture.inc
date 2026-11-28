@@ -100,8 +100,7 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
             caption.detail = true;
             if (detail_location_name) {
                 NativeHistoryName name;
-                if (capture_native_history_name(base, native_history_object_field(
-                        location, {}, profile.name_offset), name) && name.has_name)
+                if (capture_native_structure_name(base, location, profile, name) && name.has_name)
                     caption.location_name = std::make_shared<const NativeHistoryName>(
                         std::move(name));
             }
@@ -128,8 +127,7 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
             for (const auto &profile : kNativeHistoryStructureProfiles) {
                 if (std::string_view(layout->name) != profile.name) continue;
                 NativeHistoryName name;
-                if (capture_native_history_name(base, native_history_object_field(
-                        location, {}, profile.name_offset), name) && name.has_name)
+                if (capture_native_structure_name(base, location, profile, name) && name.has_name)
                     caption.location_name = std::make_shared<const NativeHistoryName>(
                         std::move(name));
                 break;
@@ -178,8 +176,7 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
                 for (const auto &profile : kNativeHistoryStructureProfiles) {
                     if (std::string_view(layout->name) != profile.name) continue;
                     NativeHistoryName name;
-                    if (capture_native_history_name(base, native_history_object_field(
-                            location, {}, profile.name_offset), name))
+                    if (capture_native_structure_name(base, location, profile, name))
                         caption.location_name = std::make_shared<const NativeHistoryName>(
                             std::move(name));
                     break;
@@ -297,8 +294,7 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
             caption.detail = true;
             if (detail_name) {
                 NativeHistoryName name;
-                if (capture_native_history_name(base, native_history_object_field(location, {},
-                        profile.name_offset), name) && name.has_name)
+                if (capture_native_structure_name(base, location, profile, name) && name.has_name)
                     caption.location_name = std::make_shared<const NativeHistoryName>(std::move(name));
             }
             return caption;
@@ -334,7 +330,7 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
             if (layout) for (const auto &profile : kNativeHistoryStructureProfiles) {
                 if (std::string_view(layout->name) != profile.name) continue;
                 NativeHistoryName name;
-                if (capture_native_history_name(base, native_history_object_field(location, {}, profile.name_offset), name) && name.has_name)
+                if (capture_native_structure_name(base, location, profile, name) && name.has_name)
                     caption.location_name = std::make_shared<const NativeHistoryName>(std::move(name));
                 break;
             }
@@ -362,7 +358,7 @@ static std::optional<NativeFortressZoneCaption> capture_native_fortress_zone_cap
             if (layout) for (const auto &profile : kNativeHistoryStructureProfiles) {
                 if (std::string_view(layout->name) != profile.name) continue;
                 NativeHistoryName name;
-                if (capture_native_history_name(base, native_history_object_field(location, {}, profile.name_offset), name) && name.has_name)
+                if (capture_native_structure_name(base, location, profile, name) && name.has_name)
                     caption.location_name = std::make_shared<const NativeHistoryName>(std::move(name));
                 break;
             }

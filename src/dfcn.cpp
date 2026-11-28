@@ -4684,6 +4684,12 @@ private:
         std::string roles, head, modifier;
     };
     std::unordered_map<std::string, SiteNameImagery> site_name_imagery_;
+    struct TavernFoodHead {
+        std::string meaning;
+        std::string sign;
+        bool allows_plural;
+    };
+    std::unordered_map<std::string, TavernFoodHead> tavern_food_heads_;
     fs::file_time_type site_name_imagery_mtime_{};
     RiverNames river_names_;
     VolcanoNames volcano_names_;
@@ -5231,6 +5237,7 @@ private:
     bool load_procedural_word_senses();
     bool load_site_name_decisions();
     bool load_site_name_imagery();
+    bool load_tavern_food_heads();
     bool load_river_names();
     bool load_civilization_name_terms();
     bool load_site_government_name_terms();
@@ -5474,7 +5481,7 @@ private:
         std::vector<Match> &matches, int only_y, bool raw_layer) const;
     void append_fortress_zone_details(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, bool raw_layer) const;
-    void append_fortress_hospital_card_names(std::vector<std::string> &rows,
+    void append_fortress_location_card_names(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const;
     void append_fortress_stockpile_types(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y, bool raw_layer) const;
@@ -6049,8 +6056,10 @@ private:
         std::vector<Match> &matches, int only_y) const;
     std::optional<std::string> translate_world_landform_heading(std::string_view source) const;
     std::optional<std::string> translate_world_region_heading(std::string_view source) const;
-    std::optional<std::string> translate_fortress_hospital_reference(
-        std::string_view source, bool hospital_label = false) const;
+    std::optional<std::string> translate_fortress_location_reference(
+        std::string_view source, std::string_view kind = {}) const;
+    std::optional<std::string> translate_tavern_title(std::string_view source) const;
+    std::string translate_tavern_identity(std::string_view native, std::string_view gloss) const;
     std::optional<std::string> region_name_gloss(std::string_view noun) const;
     struct ProceduralNameHead {
         std::string_view source;
@@ -7877,6 +7886,8 @@ bool Overlay::load_procedural_terms() {
         log_line("ERROR", "Cannot load reviewed site name decisions");
     if (!load_site_name_imagery())
         log_line("ERROR", "Cannot load site name imagery relations");
+    if (!load_tavern_food_heads())
+        log_line("ERROR", "Cannot load tavern food head meanings");
     if (!load_river_names())
         log_line("ERROR", "Cannot load river naming resources: " + river_names_.error());
     if (!volcano_names_.load(runtime::data_path()))
@@ -12632,8 +12643,9 @@ std::optional<std::string> Overlay::translate_procedural_fragment(
         const std::string site_reference = site ? std::string(record->native_name) +
             ", \"" + std::string(record->gloss) + "\"" : std::string{};
         if (site) return translate_legends_place(site_reference);
-        auto identity = translate_name_identity(
-            record->native_name, record->gloss, !site && !building);
+        auto identity = building == "a tavern"
+            ? std::optional(translate_tavern_identity(record->native_name, record->gloss))
+            : translate_name_identity(record->native_name, record->gloss, !site && !building);
         if (!identity) return std::nullopt;
         std::string result = *identity + "，" +
             kind.value_or(cp437_to_utf8(record->species));
@@ -19296,7 +19308,7 @@ std::vector<Match> Overlay::find_native_matches(int only_y,
             return row.find("Amount of ") != std::string::npos;
         }))
         append_work_order_condition_fields(screen_rows, result, only_y);
-    append_fortress_hospital_card_names(screen_rows, result, only_y);
+    append_fortress_location_card_names(screen_rows, result, only_y);
     if (g_native_reports_layer.ready &&
             gps_->screen == g_native_reports_layer.foreground.graphics()->screen) {
         for (const auto &tab : g_native_reports_tabs) {

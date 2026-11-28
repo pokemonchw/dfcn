@@ -1,0 +1,259 @@
+要塞酒馆怎样取名
+Dwarf Fortress 53.17 · Steam Windows · 原版数据
+
+截图中的专名最符合 The Lime of Torches。按原版抽词来源，中心词 Lime
+取自食物主题，Torches 是矮人文明提供的复数补语。新版把中心词写成
+酒馆招牌，完整译名为「火把之青柠酒盏」。下一行 Tavern 单独标识地点类别。
+面板上方的「未命名集会区」是关联区域的名称，这三个字段各有用途。
+
+一、从“新建酒馆”到名称记录
+
+本次读取的 Dwarf Fortress.exe 的 SHA-256 为
+3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16。
+以下地址为该映像的虚拟地址，基址为 0x140000000。
+
+0x1403c4764 引用菜单项 “New inn/tavern”。处理点击时，0x140338abf
+判断第 0 项，0x140338af9 分配酒馆对象。登记对象后，游戏以当前文明 ID
+查找实体，找到时执行下列指令。若查找为空，会跳过这次命名。
+
+    0x140338c89  add  rax,0xb8          酒馆对象的 language_name 字段
+    0x140338c8f  mov  r8w,0x1c          名称类型 28
+    0x140338c94  mov  rdx,rax           名称输出地址
+    0x140338c97  mov  rcx,[rsp+0x39d8]  当前文明实体
+    0x140338c9f  call 0x1409aa010      地点起名
+
+类型 28 在 language_name_type 中称为 FoodStore / BUILDING_STORE_FOOD。
+枚举里另有 MeadHall（23），本次创建酒馆的调用传入的是 28。地点分派函数
+先取得文明语言索引。普通矮人文明指定 DWARF，然后在 0x1409aa357 准备
+两张选词表，于 0x1409aa374 调用 0x140aac300。
+
+    generate(酒馆.name, 文明语言, 28, 全局主要表[50], 文明主要表[MAIN])
+
+全局主要表[50] 的地址是 0x142513478。它等于全局主要表起点 0x14250fc38
+加 50 × 0x120。文明 MAIN 的地址是文明 raw + 0x3d0。这里第 50 项是词表
+类别，第 28 项是名称类型，属于两个不同的枚举。酒水库存、菜单、家具数量
+和访客策略均未传入这次调用。
+
+详情面板在 0x1403ba8dc 调用英文名称格式化器 0x140aae180，酒馆类别分支
+在 0x1403bae47 单独引用 “Tavern”。酒馆的两个显示位置可以读取同一个地点名。
+
+二、原版词表怎样缩小到可抽的词
+
+中心名词 N　全局第 50 项在 0x140d4b143 引用 FOOD。游戏从
+language_SYM.txt 第 3055 行的 65 个成员开始，剔除同时属于 EVIL、HOLY、
+UGLY、SUBORDINATE 或 NEGATIVE 的词。本机原版因此去掉 FAMINE、FAT、
+GLUTTON、HUNGER、SALT、STARVE、BITTER，共 7 项。余下 58 项中，DINE、
+GORGE_VERB、MUNCH、MINT 缺少中心名词标记。最终有 54 个可用词条。
+
+每个 THE_NOUN_SING 和 THE_NOUN_PLUR 标记分别提供一个候选。54 个单数
+加 31 个复数，共 85 项。抽的是“词条与词性”的组合。APPLE 有 apple 和
+apples 两张机会，LIME 只有 lime 一张，初抽权重约为 2 比 1。原始词条虽写
+lime/limes，缺少 THE_NOUN_PLUR 使 limes 无法作酒馆中心名词。还有些词条
+的名词跟标识符拼写不同，例如 BAKE 在这个位置读作 Baker，EAT 读作 Eater。
+
+修饰词 A、H、Q　取自建造方文明的 MAIN 表。原版 MOUNTAIN 矮人的
+entity_default.txt 第 97–105 行对剩余类别选 ARTIFICE（工艺）、EARTH
+（大地），再从并集中剔除 DOMESTIC、SUBORDINATE、EVIL、FLOWERY、
+NEGATIVE、UGLY、NEGATOR。由此得到 175 个有可用修饰位置的不同词条。
+一个词可以出现在多个位置，或用不同词性进入同一位置。
+
+    位置    英文作用                   矮人候选数    入池依据
+    N       必有的中心名词                   85    54 单数、31 复数
+    A       第一或第二形容词                 30    非空 ADJ
+    H       紧贴中心名词的连字符修饰词      127    THE_COMPOUND 系列标记
+    Q       of 后的补语                     218    OF 名词标记或非空动名词
+
+H 的 127 项含 97 个单数名词、19 个复数名词和 11 个形容词。该位置也支持
+THE_COMPOUND_PREFIX，原版矮人池里有 0 项。Q 的 218 项含 35 个单数名词、
+152 个复数名词和 31 个动名词。这解释了为什么后缀常见诸如 of Axes、
+of Torches 的复数，而有些名字可以用动作作补语。
+
+附表 tavern-words.tsv 给出原版普通命名分支的完整候选。筛选 MOUNTAIN=1
+即为上述矮人池，再按 slot 选择 N、A、H 或 Q。word、pos、english 为词条、
+词性和抽中后使用的英文。food_head_zh 是本次按食物语境给出的中心词中文释义。
+单复数共享中文释义。adj_dist 是形容词排序值。eligibility、word_line、
+eligibility_line、symbol_memberships 给出入池依据和原版出处。DWARF、ELF、
+HUMAN、GOBLIN 四列给出各语言的原版词根，原版 raw 按 CP437 读取。
+
+同一入口若由其他原版文明调用，中心池相同，修饰池随文明变化。下表以
+“词条、词性”为候选单位，“不同词条”列只统计可用修饰词。
+
+    文明                       不同修饰词条       A       H       Q
+    MOUNTAIN 矮人                        175      30     127     218
+    FOREST 精灵                          272      94     173     299
+    PLAINS 人类                         1643     624     898    2042
+    EVIL 地精                             62      31      43      60
+    SUBTERRANEAN_ANIMAL_PEOPLES         2191     849    1228    2658
+
+无翻译标记且种族具有 HAS_ANY_UTTERANCES 时，地点分派函数会转入
+0x14094b310，经 0x14094a690 生成拟声拼写。原版狗头人 SKULKING 属于此例。
+
+三、随机步骤、句式和概率
+
+通用生成器 0x140aac300 的类型跳表把 28 送到 0x140aad227。rand(n) 在下文
+表示从 0 到 n−1 的游戏整数抽选。普通原版矮人池的各位置都有候选。
+
+    N = 从全局 FOOD 的名词池抽一项
+    模式 = rand(3)
+    如果 rand(50) 不为 0，模式 = rand(2)
+    模式为 0 或 2 时，从文明 MAIN 的 Q 池抽一个补语
+    模式为 1 或 2 时，从文明 MAIN 的 A 池抽一个形容词
+        另有约 1% 机会从同一 A 池抽第二个形容词
+    每种模式另有约 1% 机会从文明 MAIN 的 H 池抽一个连字符修饰词
+
+模式 0 只要求 Q，初抽约 49.67%。模式 1 只要求 A，初抽也约 49.67%。
+模式 2 同时要求 A 和 Q，初抽约 0.67%。第二个形容词只在前面已抽 A 时
+参与。两个形容词按 ADJ_DIST 从大到小排，相等时保留抽取顺序。
+
+游戏把选出的词条编号和词性保存在 language_name。英文格式化时的顺序为
+The [A1] [A2] [H-]N [of Q]，方括号代表可选成分。A1 和 Q 至少有一个。
+一次使用 2 至 5 个词条，实际有 10 种句式。H 之后的连字符，以及 The 和
+of，均由格式化器添加。下列名字均可用原版矮人词表组成。
+
+    The Golden Apple               A + N              Golden 修饰 Apple
+    The Lime of Torches            N + of Q           Lime 是主体，Torches 属于补语
+    The Golden Honey of Axes       A + N + of Q       形容词和补语并存
+    The Arrow-Honey of Axes        H-N + of Q         Arrow 与 Honey 之间有连字符
+
+整名的任意两个槽位抽到同一个 WORD，或 N 和 Q 同为复数名词，会触发整名
+重抽。即使词性不同，同一个 WORD 仍算重复。例如 The Apple of Torches
+能通过，The Apples of Torches 会触发双复数重抽。计数器起始为 100，
+第 100 次用尽仍有冲突时返回当次结果。前述百分比是重抽前的模式概率。
+按每个候选项等概率、各次抽取独立近似，在原版矮人池上合计各句式中满足
+冲突条件的组合并扣除，单轮接受率约为 87.59%。正常接受的名称中，只要求 Q、
+只要求 A、两者都要求三类约占 42.75%、56.68%、0.57%（各含相应可选成分）。
+
+抽词函数 0x140d4dbd0 以同一个随机下标读取 word 和 part_of_speech 两个
+平行数组。多个候选时，等价的下标公式为
+    (原始无符号随机数 % 2147483647) / (floor(2147483647 / 候选数) + 1)
+最后一步为整数除法。单元素池直接取下标 0。0x140ece790 使用含 624 个
+32 位字的 MT19937 状态递推，跨度 397，常数 0x9908b0df。该入口直接返回
+状态字，常见标准库 MT19937 输出前的 tempering 步骤在此入口未出现。
+整数缩放会产生极小的偏差。概率按原版词池计算，未使用游戏内抽样。
+
+四、还原截图中的名字
+
+    名称槽     原版词条与词性        原版英文     矮人语词根    抽取来源
+    5（N）     LIME  / Noun          Lime         rômab         FOOD
+    6（Q）     TORCH / NounPlural    Torches      litast        MOUNTAIN → ARTIFICE
+
+LIME 的原版定义在 language_words.txt 第 19252–19258 行，同时属于 NATURE、
+DOMESTIC、COLOR、FOOD。这里是 FOOD 把它送入中心位。TORCH 定义在
+第 11021–11028 行，原版允许 OF_NOUN_PLUR，恰好组成 of Torches。按截图
+可见的两个词和普通矮人酒馆的槽位规则，两者的先后与单复数均可推得。
+所附图片仅显示中文，The Lime of Torches 是从这些证据还原的英文。
+
+截图对应的旧版汉化在集会区地点名分支调用 translate_history_name，也可
+回退到通用程序名解析。程序词义表 procedural-word-senses.tsv 第 3196 行
+把 LIME/NOUN 写为「黄绿」。地点详情的 detail_identity 则曾尝试
+translate_legends_name(source, true)。该入口可把 The … of … 交给人物称号
+解析，character-name-lexicon.tsv 第 3842 行把 lime 写为「莱姆绿」。
+TORCH 在两条路径都能得到「火把」。这解释了截图左右两种中文的来源。
+
+现行汉化让酒馆通过 localize_name_slots 与要塞共用词槽组合算法。
+data/runtime/tavern-name-heads.tsv 为同一个中心词保存食物语境原义和招牌用词。
+组名时先以食物原义选择搭配，再将中心名词展开为店招。连字符左边的词、
+独立形容词和补语都保留各自的位置与词义。因此 The Lime of Torches 译为
+「火把之青柠酒盏」，地点类别单列「酒馆」。此处说明代码行为，未观察实机画面。
+
+五、可回溯的材料
+
+本次酒馆专属调用取自本机 Dwarf Fortress.exe。仓库已保存同一 SHA-256
+的共用函数反编译，以下相对路径从当前目录算起。
+
+    ../hospital-name-generation/pe-location-name-dispatch.c   地点分派 case 7
+    ../volcano-name-generation/pe-switches.tsv                名称类型 28 的实际跳转
+    ../volcano-name-generation/pe-word-tables.c               case 0x32 的 FOOD 和五个排除组
+    ../volcano-name-generation/pe-build-selector.c            组合主题与剔除词条
+    ../volcano-name-generation/pe-fill-word-slots.c           按可用位置展开词形
+    ../volcano-name-generation/pe-select-word.c               依下标取词条与词性
+    ../volcano-name-generation/pe-name-generate.c             case 2、形容词排序、冲突重抽
+    ../volcano-name-generation/pe-english-format.c            英文拼接
+    ../hospital-name-generation/hospital-words.tsv            同一文明 MAIN 修饰池，本附表复用 A/H/Q 行
+
+本机原版数据在游戏安装目录 data/vanilla 下。vanilla_languages/objects 中的
+language_SYM.txt、language_words.txt 和各 language_<语言>.txt 分别给出主题、
+词形及语言词根。vanilla_entities/objects/entity_default.txt 给出文明选词条件。
+汉化代码见 src/fortress_zones.inc、src/history_names.inc、src/fortress_locations.inc
+和 src/legends_detail.inc。分析基于静态程序、原版 raw、现行源码及用户截图。
+
+六、从历史店招到酒馆中心词
+
+项目的 civilization-name-terms.tsv 把 ANVIL 的锻造取象转成「砧议会」，
+把 BELL 召人集合的用途转成「钟议会」。这里沿用同一种造词思路，让每个
+中心词保有一眼能辨的形象，再用酒馆里的器物、人物或款待方式给它取名。
+例如 BAKE 抽到的名词是 baker，于是店招画「醉面包师」；BREAD 抽到的是
+面包，便给它配上一杯麦酒。两者相近，但挂出来的是两块不同的招牌。
+
+本次查阅的历史实例
+
+· 牛津 Three Tuns 以三只大酒桶为名。阿什莫林博物馆记载其租期自 1639 年
+  至 1748 年，并收藏该店酒瓶。它给「燕麦酒桶」「大肚酒桶」提供了用酒器
+  做整块招牌的参照。 https://britisharchaeology.ashmus.ox.ac.uk/highlights/bottlesandseals.html
+· 布鲁克莱恩的 Punch Bowl 招牌把结了果的柠檬树、调酒钵与长勺画在一起。
+  「柠檬酒钵」直接借用这样的构图；「青柠酒盏」另取杯沿青柠一瓣，让两种
+  柑橘各有可辨的形象。 https://www.brooklinema.gov/DocumentCenter/View/23303/Gateway-East-Presentation---162021-Discussion-with-Boylston-Street-Study-Committee?bidId=
+· 英格兰遗产名录保存法纳姆一家酒馆的旧名 The Jolly Farmers。把农人写进
+  店号的做法，为「持镰酒客」提供了人物招牌的参照。 https://historicengland.org.uk/listing/the-list/list-entry/1044674
+· 孟元老《东京梦华录》卷二记汴京酒店有乳酪张家、八仙楼等，也记酒客席间
+  所食果品与下酒小菜。由此取「团子酒家」「佐酒小碟」一类中文店号和席面意象。
+  https://zh.wikisource.org/wiki/東京夢華錄/卷二#酒樓
+
+以下 54 项是本次为游戏拟定的中文招牌。单复数共用同一招牌；词形的原版
+资格见运行词表最后一列。器物、饮品和店主形象用于取名，并不描述酒馆库存。
+
+原版词条　食物语境原义　酒馆中心词　取象
+APPLE	苹果	苹果酒窖	压榨后的苹果酒存入地窖，取让客人循香下阶的窖门。
+BAKE	面包师	醉面包师	画一位满身面粉、下工举杯的面包师。
+BERRY	浆果	野莓酒瓮	瓮沿垂一串野莓，把果丛与盛酒的大瓮画在一起。
+BREAD	面包	面包与麦酒	一条面包配一杯麦酒，像门前招呼旅客的一顿饭。
+BREAKFAST	早餐	早粥酒铺	晨间揭锅、烫酒，粥与酒都赶在开工前上桌。
+BRUNCH	早午餐	早午小酌	把两餐合成的一席写成晚起客人的小酌。
+BUTTER	黄油	黄油暖酒壶	让一块黄油在温热的酒面上融化。
+CAKE	蛋糕	蛋糕与酒杯	用一角蛋糕和一只高脚杯作对景招牌。
+CANDY	糖果	糖串酒旗	在酒旗上缀一串糖，远处也认得是哪家。
+COOK	厨师	醉厨子	灶前的厨子一手举勺、一手举杯。
+DATE_FRUIT	椰枣	椰枣酿坊	用压开的椰枣取甜汁，门内的人正忙着酿酒。
+DEVOURER	吞食者	饕客酒肆	以能吃善饮的大肚饕客招呼同好。
+DINNER	正餐	开宴酒楼	把正餐将要开席的一刻写进店号。
+DUMPLING	团子	团子酒家	以一笼团子配一壶酒待客。
+EAT	食客	酒桌常客	把泛称的食客写成总坐在同一张酒桌旁的熟客。
+FRUIT	水果	百果酿坊	让各色鲜果同入一坊，和只挂一种果子的店号区分。
+GARLIC	大蒜	蒜辫酒肆	用整串编好的蒜辫标出酒肆门楣。
+GARNISH	配菜	佐酒小碟	让配菜坐在酒盏旁，一只小碟便能指认它。
+HARVEST	收成	丰收酒窖	新粮入仓，新酒入窖，写的是一季的收成。
+HARVEST_VERB	收割者	持镰酒客	留下收割者手里的镰刀，写割罢来饮的人。
+HONEY	蜂蜜	蜂巢蜜酿	蜂巢滴蜜到酒杯里，取蜂蜜酿酒的画面。
+LUNCH	午餐	午歇酒棚	赶路人在晌午停下，入棚用饭喝酒。
+MEAL_DOM	餐食	一饭一壶	一餐配一壶，写门前许给过客的日常款待。
+MOUTH	嘴	大嘴酒徒	给夸口豪饮的酒徒画一张特别醒目的大嘴。
+MUFFIN	松饼	松饼酒铺	热松饼送到柜前，客人就饼饮酒。
+MUSHROOM	蘑菇	伞菇酒棚	把菌盖当作酒棚的轮廓，远看便能认出。
+NUT	坚果	坚果酒碟	一碟带壳坚果放在酒桌中间，饮客边剥边聊。
+OAT	燕麦	燕麦酒桶	桶箍上插一穗燕麦，让酒桶带着谷物的标识。
+ONION	洋葱	洋葱酒家	门口悬起紫皮洋葱，认这串葱就能找到酒家。
+PEACH	桃子	醉桃坞	以酒渍的桃子作图记，借坞字收作一处落脚地。
+PEPPER	胡椒	胡椒暖酒	黑胡椒撒入温酒，一杯入口既热且辛。
+SNACK	点心	小食酒摊	三两口小吃配散酒，写街边可以停脚的一摊。
+SPICE	香料	香料煮酒炉	招牌画守在炉上的酒锅，香料随热气飘出。
+SUGAR	糖	霜糖酒坊	以一块结晶的霜糖标记酒坊，留下糖本身的形态。
+SUPPER	晚餐	晚炊酒舍	取酒舍傍晚起炊烟、留客吃晚饭的景象。
+SWEET	甜味	甘醴亭	用味甘的酒承接甜味，以亭点出小酌之处。
+SYRUP	糖浆	糖浆酒勺	一勺稠糖浆流入酒碗，招牌画的是这把长勺。
+TONGUE	舌头	尝酒金舌	把善辨酒味的舌头夸作金舌。
+TOOTH	牙齿	豁牙酒客	让咧嘴笑的饮客露出牙豁，取一眼能画出的肖像。
+DESSERT	甜点	甜点与酒盏	托盘里留下席末的一碟甜点和最后一盏酒。
+FRAGRANCE	香气	闻香酒肆	用引人入店的酒香来写无形的香气。
+BELLY	肚腹	大肚酒桶	把圆鼓鼓的腹部移到木桶上，连桶箍也可画出。
+TUMMY	肚皮	暖肚酒铺	取一口热酒下肚的暖意，留下原词亲昵的口气。
+SOUR	酸味	酸酿小馆	以酸味鲜明的一瓮酒作本店的招牌。
+CHESTNUT	栗子	烤栗酒家	让炉边烤栗与案上热酒共用一处火。
+CHOCOLATE	巧克力	可可酒屋	以巧克力的可可香作酒屋的招徕。
+CINNAMON	肉桂	桂皮温酒炉	卷起的桂皮搭在温酒炉旁，取其形与香。
+OLIVE	橄榄	橄榄酒碟	一碟橄榄放在杯旁，取供饮客佐酒的果实。
+LEMON	柠檬	柠檬酒钵	把黄柠檬与盛调酒的大钵画在一处。
+LIME	青柠	青柠酒盏	杯沿搁一瓣青柠，果肉、酒盏都能认出。
+ORANGE	橙子	橙皮酒壶	一缕卷曲的橙皮绕着壶口，以果皮辨认甜橙。
+PLUM	李子	醉李亭	摘李浸酒，以醉李得名，保留李子的本义。
+PUMPKIN	南瓜	南瓜酒桶	把圆胖带棱的南瓜画成带龙头的酒桶。
+SAFFRON	藏红花	藏红花酒盅	几缕红色的花丝落入小酒盅，以花丝辨香料。

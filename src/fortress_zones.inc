@@ -219,6 +219,7 @@ void Overlay::append_fortress_place_names(std::vector<std::string> &rows,
         case Kind::LocationName:
             if (caption.location_name && caption.location_name->has_name)
                 translated = translate_history_name(*caption.location_name);
+            if (!translated) translated = translate_fortress_location_reference(complete);
             if (!translated && complete == "Unnamed location")
                 translated = exact_literal_translation(complete);
             if (!translated) translated = contains_cjk_utf8(complete)
@@ -891,12 +892,11 @@ void Overlay::append_fortress_zone_holder_matches(std::vector<std::string> &rows
 }
 
 // The selected Meeting Area draws the location's English name and its
-// Hospital type on consecutive rows at the same x. The native formatter
+// location type on consecutive rows at the same x. The native formatter
 // gives the name 22 cells and replaces the last three with dots on overflow.
-void Overlay::append_fortress_hospital_card_names(std::vector<std::string> &rows,
+void Overlay::append_fortress_location_card_names(std::vector<std::string> &rows,
         std::vector<Match> &matches, int only_y) const {
     if (!gps_ || rows.size() != static_cast<size_t>(gps_->dimy)) return;
-    constexpr std::string_view kind = "Hospital";
     constexpr int width = 22;
     const int first = only_y < 0 ? 0 : only_y;
     const int end = only_y < 0 ? gps_->dimy - 1 : std::min(only_y + 1, gps_->dimy - 1);
@@ -905,17 +905,18 @@ void Overlay::append_fortress_hospital_card_names(std::vector<std::string> &rows
         for (size_t x = row.find("The "); x != std::string::npos; x = row.find("The ", x + 4)) {
             if (x + width > row.size()) continue;
             const int left = static_cast<int>(x);
-            bool hospital = true;
-            for (int i = 0; i < static_cast<int>(kind.size()); ++i)
-                if (visible_char_at(left + i, y + 1) != kind[i]) { hospital = false; break; }
-            if (!hospital) continue;
-            // Other windows can contain hospital-related prose. Require the
-            // complete standalone type in the native name column.
-            for (int i = static_cast<int>(kind.size()); i < width; ++i) {
+            const auto first_char = visible_char_at(left, y + 1);
+            if (first_char != 'H' && first_char != 'T') continue;
+            const std::string_view kind = first_char == 'H' ? "Hospital" : "Tavern";
+            bool matches_kind = true;
+            for (int i = 0; i < width; ++i) {
                 const auto ch = visible_char_at(left + i, y + 1);
-                if (ch && ch != ' ') { hospital = false; break; }
+                if ((ch ? ch : ' ') != (i < static_cast<int>(kind.size()) ? kind[i] : ' ')) {
+                    matches_kind = false;
+                    break;
+                }
             }
-            if (!hospital) continue;
+            if (!matches_kind) continue;
             const std::string visible(trim_view(std::string_view(row).substr(x, width)));
             if (!visible.starts_with("The ")) continue;
             const auto displays = [&](std::string_view full) {
@@ -959,9 +960,9 @@ void Overlay::append_fortress_hospital_card_names(std::vector<std::string> &rows
                         break;
                     }
             }
-            auto target = identity && !hospital_name_head(*identity).empty()
+            auto target = identity && (identity->tavern_name || !hospital_name_head(*identity).empty())
                 ? translate_history_name(*identity) : std::nullopt;
-            if (!target) target = translate_fortress_hospital_reference(complete, true);
+            if (!target) target = translate_fortress_location_reference(complete, kind);
             if (!target) continue;
             Match match{left, y, static_cast<int>(visible.size()), kFortressLocationListRule, *target, visible};
             match.native_picture_caption_source = complete;
@@ -1029,6 +1030,7 @@ void Overlay::append_fortress_zone_details(std::vector<std::string> &rows,
         std::optional<std::string> target;
         if (!description && caption.location_name && caption.location_name->has_name)
             target = translate_history_name(*caption.location_name);
+        if (!description && !target) target = translate_fortress_location_reference(complete);
         if (description && complete == "Hospital") target = exact_literal_translation(complete);
         if (description) {
             for (const std::string_view suffix : {

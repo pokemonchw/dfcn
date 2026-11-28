@@ -37,6 +37,12 @@ public:
     const std::string &error() const { return error_; }
     void set_forms(const EnglishForms &forms);
 
+    // Volcano and tavern English titles use the same ten A/H/N/Q layouts.
+    // The caller supplies the eligible head words for the known owner.
+    using TitleSlots = std::array<NativeHistoryWord, 7>;
+    std::optional<TitleSlots> parse_title_slots(std::string_view source,
+        const std::function<bool(const NativeHistoryWord &)> &eligible_head) const;
+
     // Both entry points require a volcano-owned field at the call site.
     // Surface parsing recovers grammar only, never object provenance.
     std::optional<NativeHistoryName> resolve_surface(std::string_view source) const;

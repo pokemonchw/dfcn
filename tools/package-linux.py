@@ -25,7 +25,7 @@ RUNTIME_FILES = (
     "data/runtime/site-name-decisions.tsv", "data/runtime/site-name-imagery.tsv",
     "data/runtime/river-name-imagery.tsv", "data/runtime/river-name-constructions.tsv",
     "data/runtime/river-name-generics.tsv", "data/runtime/river-name-decisions.tsv",
-    "data/runtime/volcano-name-heads.tsv",
+    "data/runtime/volcano-name-heads.tsv", "data/runtime/tavern-name-heads.tsv",
     "data/runtime/site-government-parent-suffixes.tsv",
     "data/runtime/site-government-name-terms.tsv",
     "data/runtime/site-government-independent-suffixes.tsv",

@@ -78,6 +78,8 @@ struct NativeHistoryName {
     int32_t nickname_mode = 1;
     int16_t type = -1;
     bool has_name = false;
+    // FoodStore is a shared name type. Only an inn/tavern object owns its food head.
+    bool tavern_name = false;
     // A unit's own UTTERANCES first_name can have no language table or WORDs.
     bool utterance_first_name = false;
     bool uses_native_pronunciation() const { return language >= 0 || utterance_first_name; }

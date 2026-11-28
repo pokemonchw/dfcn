@@ -7,7 +7,14 @@ bool Overlay::load_river_names() {
 
 RiverNames::Result Overlay::localize_river_name(const NativeHistoryName &name,
         RiverNames::InputKind kind) const {
-    return river_names_.semantic(name, english_character_names_,
+    const TavernFoodHead *tavern_head = nullptr;
+    const auto &head = name.words[5];
+    if (kind == RiverNames::InputKind::SiteSlots && name.tavern_name &&
+            (head.part_of_speech == 0 || head.part_of_speech == 1)) {
+        const auto food = tavern_food_heads_.find(head.id);
+        if (food != tavern_food_heads_.end()) tavern_head = &food->second;
+    }
+    auto result = river_names_.semantic(name, english_character_names_,
         [&](const NativeHistoryWord &word) -> std::string {
             const int pos = word.part_of_speech;
             const char *part = pos == 0 || pos == 1 ? "NOUN" : pos == 2 ? "ADJ" :
@@ -32,7 +39,14 @@ RiverNames::Result Overlay::localize_river_name(const NativeHistoryName &name,
             token.roots = {{left.english_form, left.part_of_speech},
                 {right.english_form, right.part_of_speech}};
             return english_name_transliterator_.name(token.spelling, {token});
-        }, kind);
+        }, kind, tavern_head ? std::string_view(tavern_head->meaning) : std::string_view{});
+    // The site grammar selects H, A and Q against the food sense at their normal
+    // lexical widths. N is the final, direct root of the nominal (including H-N).
+    // Expand only that root to the tavern's sign, before the title is assembled.
+    if (tavern_head && result.head.ends_with(tavern_head->meaning))
+        result.head.replace(result.head.size() - tavern_head->meaning.size(),
+            tavern_head->meaning.size(), tavern_head->sign);
+    return result;
 }
 
 std::string Overlay::translate_river_text(std::string_view source, RiverSize category) const {

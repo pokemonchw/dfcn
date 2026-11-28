@@ -286,10 +286,16 @@ bool Overlay::append_legends_typed_list_matches(std::vector<std::string> &rows,
             if (only_y < 0 || only_y == y) matches.push_back(std::move(match));
             return true;
         };
-        auto title_translation = [&](const std::string &source) {
+        auto title_translation = [&](const std::string &source, std::string_view type)
+                -> std::optional<std::string> {
             // Catalog ages have the same complete event titles as their
             // opened chronicle. Never reinterpret Age as a person's age.
             if (ages) return translate_legends_event(source);
+            if (structures && legends_structure_caption_key(type) == "a tavern") {
+                if (const auto pair = split_generated_name_identity(source))
+                    return translate_tavern_identity(pair->native_name, pair->gloss);
+                return translate_tavern_title(source);
+            }
             if (structures) return translate_procedural_fragment(source);
             if (split_generated_name_identity(source) || split_repeated_title_identity(source))
                 return translate_legends_artifact_identity(source);
@@ -349,7 +355,7 @@ bool Overlay::append_legends_typed_list_matches(std::vector<std::string> &rows,
             // part of the title or match a different row's clipped prefix.
             if (context[y].compare(name.x, prefix.size(), prefix) != 0 ||
                 context[y].compare(item->x, type.size(), type) != 0) continue;
-            const std::string title_target = title_translation(name.complete)
+            const std::string title_target = title_translation(name.complete, item->complete)
                 .value_or(cp437_to_utf8(name.complete));
             const std::string type_target = type_translation(item->complete)
                 .value_or(cp437_to_utf8(item->complete));
@@ -397,7 +403,7 @@ bool Overlay::append_legends_typed_list_matches(std::vector<std::string> &rows,
              (!full_type.ends_with("...") && generated_title_shape(full_type)));
         if (!type_target && !type.ends_with("...") && !named_identity && !named_type) continue;
         claim(left, name, kLegendsListNameRule,
-            title_translation(full_name).value_or(cp437_to_utf8(full_name)));
+            title_translation(full_name, full_type).value_or(cp437_to_utf8(full_name)));
         claim(gap_right, type, kLegendsListTypeRule,
             type_target.value_or(cp437_to_utf8(full_type)));
     }

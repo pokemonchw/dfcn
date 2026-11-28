@@ -30,6 +30,14 @@ static bool native_history_find_structure_id(uintptr_t vector, size_t id_offset,
     return true;
 }
 
+static bool capture_native_structure_name(uintptr_t base, uintptr_t building,
+        const NativeHistoryStructureProfile &profile, NativeHistoryName &name) {
+    if (!capture_native_history_name(base, native_history_object_field(
+            building, {}, profile.name_offset), name)) return false;
+    name.tavern_name = profile.type == 8;
+    return true;
+}
+
 static bool capture_native_history_structure(uintptr_t base, int32_t site_id,
         int32_t building_id, NativeHistorySubject &result, bool *found = nullptr) {
     if (found) *found = false;
@@ -60,8 +68,7 @@ static bool capture_native_history_structure(uintptr_t base, int32_t site_id,
     const NativeHistoryStructureProfile *profile = nullptr;
     for (const auto &candidate : kNativeHistoryStructureProfiles)
         if (std::string_view(layout->name) == candidate.name) { profile = &candidate; break; }
-    if (!profile || !capture_native_history_name(base,
-            native_history_object_field(building, {}, profile->name_offset), copy.name)) return false;
+    if (!profile || !capture_native_structure_name(base, building, *profile, copy.name)) return false;
     copy.label_key = profile->label;
     copy.native_type = profile->type;
     if (profile->type == 6) {

@@ -371,7 +371,7 @@ int surname_compound_naturalness(const SurnameContextWord &first,
     return score;
 }
 Part surname_context_combine(const Part &left, const Part &right, bool entity = false,
-    ComposePolicy policy = ComposePolicy::FullSurname) const {
+    ComposePolicy policy = ComposePolicy::FullSurname, std::string_view required_head = {}) const {
     // Both source orders visit the same complete set of surface patterns.
     // Equal root widths are mandatory before any scoring: AB/BA,
     // AABB/BBAA, A之B/B之A and AA之BB/BB之AA compete together.
@@ -463,6 +463,9 @@ Part surname_context_combine(const Part &left, const Part &right, bool entity = 
                         if (entity && (!pattern.link.empty() ||
                             pattern.first_width != pattern.second_width)) continue;
                         for (const auto &x : first) for (const auto &y : second) {
+                            if (!required_head.empty() &&
+                                    (y.text != required_head || y.interpretation != "direct" ||
+                                     !rule.ending.empty())) continue;
                             // Registered bound forms and property images can
                             // coordinate in a surname. Only a genuinely
                             // restricted use blocks this construction.
@@ -558,7 +561,7 @@ Part surname_context_combine(const Part &left, const Part &right, bool entity = 
             }
     };
     compose(left, right, false);
-    if (!actor && !fixed_relation) compose(right, left, true);
+    if (!actor && !fixed_relation && required_head.empty()) compose(right, left, true);
     if (best.known) return best;
     return unlicensed();
 }

@@ -14,7 +14,7 @@ static bool native_slot_pos(size_t slot, int16_t pos) {
 
 Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexicon,
     const WordRenderer &meaning, const CompoundRenderer &phonetic,
-    InputKind kind = InputKind::NativeSlots) const {
+    InputKind kind = InputKind::NativeSlots, std::string_view required_head = {}) const {
     Result out;
     out.source = name;
     out.structure.kind = kind;
@@ -55,7 +55,7 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
                 !native_slot_pos(slot, word.part_of_speech)) {
             issue(Status::InvalidSlots, {slot}, "POS is not licensed for this native slot"); return out;
         }
-        meanings[slot] = meaning(word);
+        meanings[slot] = slot == 5 && !required_head.empty() ? std::string(required_head) : meaning(word);
         out.senses[slot] = lexicon.resolve_native_senses(word.id, word.part_of_speech,
             word.english_form, meanings[slot]);
     }
@@ -73,7 +73,8 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
     const auto source_word = [&](size_t slot) { return name.words[slot].english_form; };
     const auto select_compound = [&](Compound node, Policy policy) {
         return Selection{{node.left, node.right}, policy,
-            lexicon.surname_compose_typed(out.senses[node.left], out.senses[node.right], policy)};
+            lexicon.surname_compose_typed(out.senses[node.left], out.senses[node.right], policy,
+                node.right == 5 ? required_head : std::string_view{})};
     };
     // Only a compound used as a river name can reach the phonetic callback.
     // Titles and independent adjectives select their forms separately below.
@@ -81,6 +82,11 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
         auto selected = select_compound(node, Policy::FullSurname);
         std::string result;
         if (selected.composition.classified()) result = selected.composition.text;
+        else if (node.right == 5 && !required_head.empty()) {
+            // Unlicensed H-N pair: keep the modifier and the owner's noun meaning.
+            result = (meanings[node.left].empty() ? source_word(node.left) : meanings[node.left])
+                + meanings[5];
+        }
         else {
             selected.transliterated = true;
             result = phonetic(name.words[node.left], name.words[node.right]);
@@ -163,7 +169,8 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
                 std::erase_if(head_senses, [&](const auto &sense) { return sense.key != native_head; });
             }
         }
-        auto selected = lexicon.surname_compose_typed(out.senses[6], head_senses, Policy::Title22z);
+        auto selected = lexicon.surname_compose_typed(out.senses[6], head_senses, Policy::Title22z,
+            context_slot == 5 ? required_head : std::string_view{});
         out.site_complement = selected.classified() ? selected.left_word :
             meanings[6].empty() ? source_word(6) : meanings[6];
         if (selected.classified() && !compound_head && !adjective_only) {
@@ -250,7 +257,7 @@ Result semantic(const NativeHistoryName &name, const EnglishCharacterNames &lexi
     } else if (!nominal.compound) {
         const size_t nearest = present(3) ? 3 : 2;
         auto selected = lexicon.surname_compose_typed(out.senses[nearest], out.senses[head_slot],
-            Policy::AdjectiveHeadDouble);
+            Policy::AdjectiveHeadDouble, head_slot == 5 ? required_head : std::string_view{});
         if (selected.classified()) {
             out.head = selected.right_word;
             out.head_source = Result::HeadSource::ContextDouble;

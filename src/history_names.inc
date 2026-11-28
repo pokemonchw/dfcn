@@ -255,6 +255,11 @@ std::optional<std::string> Overlay::translate_history_name(
         const NativeHistoryName &name, bool character, bool polity_role,
         bool government_role, const NativeSiteGovernmentContext *government_context) const {
     if (!name.has_name) return std::nullopt;
+    if (!character && name.tavern_name) {
+        if (auto localized = localize_name_slots(name)) return localized;
+        const auto english = reconstruct_site_english_name(name);
+        return english ? std::optional<std::string>(native_text_to_utf8(*english)) : std::nullopt;
+    }
     if (!character && name.site_id >= 0) return translate_site_name(name);
     // All real entity names share their own complete naming identity. The
     // owned context marks the inner rendering call and avoids recapturing it.

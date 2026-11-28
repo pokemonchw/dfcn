@@ -183,6 +183,48 @@ bool Overlay::capture_name_word_forms(NativeHistoryName &name) const {
     return true;
 }
 
+bool Overlay::load_tavern_food_heads() {
+    std::ifstream input(runtime::data_path() / "tavern-name-heads.tsv", std::ios::binary);
+    std::string line;
+    tavern_food_heads_.clear();
+    while (std::getline(input, line)) {
+        if (!line.empty() && line.back() == '\r') line.pop_back();
+        if (line.empty() || line.front() == '#') continue;
+        const auto first = line.find('\t');
+        if (first == std::string::npos || !first) continue;
+        const auto second = line.find('\t', first + 1);
+        const auto last = line.rfind('\t');
+        if (second == std::string::npos || second == first + 1 || last <= second + 1) continue;
+        const auto number = std::string_view(line).substr(last + 1);
+        if (number == "singular" || number == "both")
+            tavern_food_heads_.insert_or_assign(line.substr(0, first),
+                TavernFoodHead{line.substr(first + 1, second - first - 1),
+                    line.substr(second + 1, last - second - 1), number == "both"});
+    }
+    return !tavern_food_heads_.empty();
+}
+
+std::optional<std::string> Overlay::translate_tavern_title(std::string_view source) const {
+    auto slots = volcano_names_.parse_title_slots(source, [&](const NativeHistoryWord &word) {
+        const auto food = tavern_food_heads_.find(word.id);
+        return food != tavern_food_heads_.end() &&
+            (word.part_of_speech == 0 || (word.part_of_speech == 1 && food->second.allows_plural));
+    });
+    if (!slots) return std::nullopt;
+    NativeHistoryName name;
+    name.has_name = true;
+    name.tavern_name = true;
+    name.type = 28;
+    name.words = std::move(*slots);
+    return localize_name_slots(name);
+}
+
+std::string Overlay::translate_tavern_identity(std::string_view native, std::string_view gloss) const {
+    const auto title = translate_tavern_title(gloss).value_or(native_text_to_utf8(gloss));
+    const auto spelling = native == gloss ? title : transliterate_site_spelling(native);
+    return spelling + "，“" + title + "”";
+}
+
 std::optional<std::string> Overlay::localize_name_slots(const NativeHistoryName &name,
         std::string_view suffix) const {
     if (!name.has_name || !name.first_name.empty() ||

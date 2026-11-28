@@ -32,10 +32,10 @@ NativeSenses resolve_native_senses(std::string_view word, int16_t pos,
 }
 
 Composition surname_compose_typed(const NativeSenses &left, const NativeSenses &right,
-    ComposePolicy policy = ComposePolicy::FullSurname) const {
+    ComposePolicy policy = ComposePolicy::FullSurname, std::string_view required_head = {}) const {
     Part best;
     for (const auto &a : native_parts(left)) for (const auto &b : native_parts(right)) {
-        auto candidate = surname_combine(a, b, false, policy);
+        auto candidate = surname_context_combine(a, b, false, policy, required_head);
         // Keep the existing cross-sense completeness/score/order selection.
         if (candidate.composition.classified() != best.composition.classified()) {
             if (candidate.composition.classified()) best = std::move(candidate);

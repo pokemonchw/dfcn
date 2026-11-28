@@ -166,7 +166,9 @@
                     std::optional<std::string> target;
                     if (name_field) {
                         const auto following = trim_view(remaining.substr(width));
-                        target = translate_fortress_hospital_reference(field, following.starts_with("(Hospital)"));
+                        target = translate_fortress_location_reference(field,
+                            following.starts_with("(Hospital)") ? "Hospital" :
+                            following.starts_with("(Tavern)") || following.starts_with("(Inn/Tavern)") ? "Tavern" : "");
                         if (!target) target = translate_legends_name(field, false);
                         if (!target) target = native_text_to_utf8(field);
                         name_field = false;

@@ -173,7 +173,7 @@ public:
             text(word.english_form);
         }
         value(input.language); value(input.nickname_mode); value(input.type);
-        value(input.has_name); value(input.entity_type); value(input.entity_id);
+        value(input.has_name); value(input.tavern_name); value(input.entity_type); value(input.entity_id);
         value(input.entity_name_current); text(input.parent_word_id);
         value(input.parent_word_pos); value(input.site_id); value(input.site_type);
         value(input.site_subtype); text(input.site_label); text(input.native_name);
