@@ -129,13 +129,13 @@ try {
         Add-RuntimeFile (Join-Path $projectRoot ('third_party/' + $name)) ('dfcn/data/runtime/' + $name)
     }
 
-    # Include production address catalogs for this seed.
+    # Include production address catalogs for the packaged seed and bindings.
     # Other game images retain the runtime's existing address discovery path.
-    $seedHash = (Get-FileHash -LiteralPath (Join-Path $projectRoot 'data/runtime/native-addresses/pe-seed.bin') -Algorithm SHA256).Hash.ToLowerInvariant()
+    $catalogHash = Get-WindowsCatalogHash $projectRoot
     $cacheRoot = Join-Path $projectRoot 'data/runtime/native-addresses/cache'
     $catalogs = @{}
     if ([IO.Directory]::Exists($cacheRoot)) {
-        $cachePattern = '^[0-9a-f]{64}-' + $seedHash + '\.bin$'
+        $cachePattern = '^[0-9a-f]{64}-' + $catalogHash + '\.bin$'
         foreach ($file in [IO.Directory]::GetFiles($cacheRoot, '*.bin')) {
             $name = [IO.Path]::GetFileName($file)
             if ($name -cmatch $cachePattern) { $catalogs[$name] = $file }
@@ -147,7 +147,7 @@ try {
         $image = [IO.Path]::GetFullPath([IO.Path]::Combine($projectRoot, $imagePath))
         if (-not [IO.File]::Exists($image)) { continue }
         $imageHash = (Get-FileHash -LiteralPath $image -Algorithm SHA256).Hash.ToLowerInvariant()
-        $name = "$imageHash-$seedHash.bin"
+        $name = "$imageHash-$catalogHash.bin"
         $file = Join-Path ([IO.Path]::GetDirectoryName($image)) "dfcn/data/runtime/native-addresses/cache/$name"
         if ([IO.File]::Exists($file) -and -not $catalogs.ContainsKey($name)) { $catalogs[$name] = $file }
     }
