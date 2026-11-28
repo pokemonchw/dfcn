@@ -115292,6 +115292,7 @@ Greatly feared as a murderer	令人闻风丧胆的谋杀犯	w
 Gremlin unshackled something	小精怪解开了束缚	w
 Hang from {s} ({s} from {s})	悬挂于{s1}（{s2}，从{s3}）	hPt
 Hang from {s} ({s}/Air/Lava)	悬挂于{s1}（{s2}／空气／熔岩）	hPt
+Has Servant's Burial Chamber	已有仆役墓室	wl
 Have you written a new poem?	你写新诗了吗？	hPD
 He is a friendly individual.	他是个友善的人。	l
 He is our family's ancestor.	他是我们家族的祖先。	hPD
@@ -126510,6 +126511,7 @@ HATCH TAKEN BY INVADERS	地板活盖已被入侵者占领	w
 Handling light aquifers	处理轻含水层	hq
 Handling light aquifers	处理轻含水层	w
 Hang from {s} ({s}/Air)	悬挂于{s1}（{s2}／空气）	hPt
+Has Opulent Throne Room	已有奢华王座厅	wl
 Her feathers are black.	她的羽毛是黑色的。	l
 High analytical ability	分析能力高	wil
 High disease resistance	抗病能力高	wil
@@ -128652,6 +128654,9 @@ Glaze clay/stone craft	为黏土/石质工艺品上釉	wi
 Grand guild unit count	大行会成员人数要求
 Grant sleep permission	允许留宿	hP
 HATCH USED BY INTRUDER	潜入者使用过这个地板活盖	w
+Has Decent Dining Room	已有像样餐厅	wl
+Has Meager Dining Room	已有简陋餐厅	wl
+Has Modest Dining Room	已有普通餐厅	wl
 Hatches can be placed 	盖板可放置在楼梯井顶部或斜坡	w
 He is a perfectionist.	他是个完美主义者。	l
 He is quite ambitious.	他颇有雄心壮志。	l
@@ -130816,6 +130821,10 @@ Gold-bearing boulders	含金矿石	wi
 Grant {p} work as {s}	准许{p1}从事{s1}工作	hPt
 Growing vegetation...	正在生成植被……
 Handle small creature	照料小型生物	wi
+Has Grand Dining Room	已有豪华餐厅	wl
+Has Great Dining Room	已有宽敞餐厅	wl
+Has Royal Dining Room	已有皇家餐厅	wl
+Has Royal Throne Room	已有皇家王座厅	wl
 He is generally quite	他通常颇为	l
 He is quick to anger.	他很容易发怒。	l
 He is rarely happy or	他很少感到快乐或	l
@@ -133138,6 +133147,7 @@ Glaze clay/stone jug	为黏土/石质壶上釉	wi
 Gremlin pulled lever	小精怪拉动拉杆	w
 Happiness and stress	幸福与压力	hq
 Happiness and stress	幸福与压力	w
+Has Fine Dining Room	已有精致餐厅	wl
 Have grand guildhall	已有大行会大厅	wli
 He has a tendency to	他倾向于	l
 Heavy combat (heard)	激烈战斗声（听到）	wl
@@ -136041,6 +136051,11 @@ Gladiatory Games of	角斗比赛	hEi
 Gremlin opened cage	小精怪打开笼子	w
 Guard tax collector	保护税务官	wi
 Hang from {s} ({s})	悬挂于{s1}（{s2}）	hPt
+Has Decent Quarters	已有像样卧室	wl
+Has Grand Mausoleum	已有宏伟陵寝	wl
+Has Meager Quarters	已有简陋卧室	wl
+Has Modest Quarters	已有普通卧室	wl
+Has Royal Mausoleum	已有皇家陵寝	wl
 Have temple complex	已有神殿建筑群	wli
 He has a low voice.	他嗓音低沉。	l
 He has a {s} voice.	他嗓音{s}。	wtlx
@@ -139424,6 +139439,8 @@ Gargantuan Profile	身形庞大无比	hP
 Goblets (Desired):	高脚杯（期望数量）：	wl
 Good spatial sense	良好的空间感	w
 Good with language	能言善辩	w
+Has Burial Chamber	已有墓室	wl
+Has Splendid Study	已有华美书房	wl
 Have meeting place	已有集会场所	wli
 He generally finds	他通常认为
 Her hair is curly.	她的头发卷曲。	l
@@ -143360,6 +143377,10 @@ Graphical FPS cap	图形FPS上限	w
 Great Dining Room	宽敞餐厅	w
 Grim Satisfaction	冷酷的满足	w
 Hammerer's Office	锤刑官办公室	wli
+Has Fine Quarters	已有舒适卧室	wl
+Has Grand Bedroom	已有豪华卧室	wl
+Has Great Bedroom	已有宽敞卧室	wl
+Has Royal Bedroom	已有皇家卧室	wl
 Her eyes are {s}.	她的眼睛是{s}。	wt
 Her hair is buff.	她的头发是浅黄褐色。	l
 High recuperation	恢复能力高	wil
@@ -147744,6 +147765,9 @@ Guard Cpt Dining	卫队统领餐厅	wli
 Guard Cpt Office	卫队统领办公室	wli
 Guide {s} to {s}	引导{s1}至{s2}	hPt
 Guild unit count	行会成员人数要求
+Has Decent Study	已有像样书房	wl
+Has Meager Study	已有简陋书房	wl
+Has Modest Study	已有普通书房	wl
 Has been sutured	已经缝合	w
 He is assertive.	他很果断。
 Her skin is {s}.	她的皮肤是{s}。	wt
@@ -152333,6 +152357,8 @@ Grand guildhall	大行会大厅	wi
 Gypsum boulders	石膏岩块	wi
 HILLS REJECTION	丘陵不符合要求	hP
 Hard difficulty	困难难度
+Has Dining Room	已有餐厅	wl
+Has Throne Room	已有王座厅	wl
 Hawk your wares	叫卖你的货物	hP
 High creativity	创造力高	wil
 High musicality	乐感高	wil
@@ -162145,6 +162171,8 @@ Great Bedroom	宽敞卧室	w
 Guest arrives	访客到来	w
 Guild founded	行会成立	w
 Hang from {s}	悬挂于{s1}	hPt
+Has Fine Tomb	已有华美陵墓	wl
+Has Mausoleum	已有陵寝	wl
 Hauling: Stop	站点	li
 He can handle	他能够承受
 He has a calm	他性情平静，
@@ -166788,6 +166816,7 @@ Great hunter	伟大的猎人	w
 Group Symbol	势力徽记	i
 Group symbol	势力徽记	wl
 Hammer Lords	战锤之主	wi
+Has Quarters	已有卧室	wl
 He generally	他通常	l
 Hematite {d}	第{d}年 赤铁矿月	wt
 High agility	敏捷高	wil
@@ -178463,6 +178492,8 @@ Hammerers	锤刑官	wi
 Hammerman	战锤手	wi
 Hammermen	战锤手	wi
 Happiness	快乐	w
+Has Grave	已有坟墓	wl
+Has Study	已有书房	wl
 Herbalism	草药学	wi
 Herbalist	草药师	wi
 Historian	历史学家	wi
@@ -180704,6 +180735,7 @@ Goodbye.	再见。	hPD
 Gracious	知恩图报	w
 Hammerer	锤刑官	wi
 Harrowed	耙	w
+Has Tomb	已有陵墓	wl
 He finds	他能够
 Hellooo!	你——好！	hPD
 Hey {p}.	嘿，{p1}。	hPtD

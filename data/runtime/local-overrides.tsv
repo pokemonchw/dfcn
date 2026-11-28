@@ -5851,6 +5851,40 @@ Needs Fine Tomb	需要华美陵墓	wl
 Needs Mausoleum	需要陵寝	wl
 Needs Grand Mausoleum	需要宏伟陵寝	wl
 Needs Royal Mausoleum	需要皇家陵寝	wl
+# Room assignment picker, Windows 53.17. The native row draws "Has " and
+# the best owned room's grade together. A unit with no matching room draws nothing.
+Has Meager Study	已有简陋书房	wl
+Has Modest Study	已有普通书房	wl
+Has Study	已有书房	wl
+Has Decent Study	已有像样书房	wl
+Has Splendid Study	已有华美书房	wl
+Has Throne Room	已有王座厅	wl
+Has Opulent Throne Room	已有奢华王座厅	wl
+Has Royal Throne Room	已有皇家王座厅	wl
+Has Meager Quarters	已有简陋卧室	wl
+Has Modest Quarters	已有普通卧室	wl
+Has Quarters	已有卧室	wl
+Has Decent Quarters	已有像样卧室	wl
+Has Fine Quarters	已有舒适卧室	wl
+Has Great Bedroom	已有宽敞卧室	wl
+Has Grand Bedroom	已有豪华卧室	wl
+Has Royal Bedroom	已有皇家卧室	wl
+Has Meager Dining Room	已有简陋餐厅	wl
+Has Modest Dining Room	已有普通餐厅	wl
+Has Dining Room	已有餐厅	wl
+Has Decent Dining Room	已有像样餐厅	wl
+Has Fine Dining Room	已有精致餐厅	wl
+Has Great Dining Room	已有宽敞餐厅	wl
+Has Grand Dining Room	已有豪华餐厅	wl
+Has Royal Dining Room	已有皇家餐厅	wl
+Has Grave	已有坟墓	wl
+Has Servant's Burial Chamber	已有仆役墓室	wl
+Has Burial Chamber	已有墓室	wl
+Has Tomb	已有陵墓	wl
+Has Fine Tomb	已有华美陵墓	wl
+Has Mausoleum	已有陵寝	wl
+Has Grand Mausoleum	已有宏伟陵寝	wl
+Has Royal Mausoleum	已有皇家陵寝	wl
 View all alerts.	查看全部警报。	w
 Hotkey: N	快捷键：N	w
 

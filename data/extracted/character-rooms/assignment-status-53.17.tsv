@@ -1,0 +1,25 @@
+# Fortress room assignment picker, green status above the candidate's name.
+# Ghidra decompilation of the 53.17 x64 PE images. Addresses below are RVAs.
+# Steam PE:6aea05a1:02734000   row 0x3b1810..0x3b1e66   grade 0xace9c0..0xaced70
+# Classic PE:6aea11a5:0272d000 row 0x3af1b0..0x3af806   grade 0xacb820..0xacbbd0
+# The row reads the assignment mode at +0x10 and iterates the unit's owned
+# buildings. For each matching building type it takes the maximum room value,
+# with a minimum of 1. No matching building or any other mode skips the draw.
+# Each of the four arms initializes a string with 0x20736148 ("Has "), appends
+# the grade, then draws it once at the widget's x, y-2.
+# mode / building type / grade type / Steam draw / Classic draw:
+# 2 / 0x5c / 1 / 0x3b1daa / 0x3af74a  (bedroom)
+# 3 / 0x5d / 0 / 0x3b1c32 / 0x3af5d2  (office)
+# 4 / 0x50 / 2 / 0x3b1ac1 / 0x3af461  (dining room)
+# 5 / 0x61 / 3 / 0x3b194d / 0x3af2ed  (tomb)
+# The grade helper also has a value <= 0 branch for each type. The four
+# no-room literals are unreachable from this row because it requires value > 0.
+minimum_value	office	bedroom	dining_room	tomb
+1	Has Meager Study	Has Meager Quarters	Has Meager Dining Room	Has Grave
+100	Has Modest Study	Has Modest Quarters	Has Modest Dining Room	Has Servant's Burial Chamber
+250	Has Study	Has Quarters	Has Dining Room	Has Burial Chamber
+500	Has Decent Study	Has Decent Quarters	Has Decent Dining Room	Has Tomb
+1000	Has Splendid Study	Has Fine Quarters	Has Fine Dining Room	Has Fine Tomb
+1500	Has Throne Room	Has Great Bedroom	Has Great Dining Room	Has Mausoleum
+2500	Has Opulent Throne Room	Has Grand Bedroom	Has Grand Dining Room	Has Grand Mausoleum
+10000	Has Royal Throne Room	Has Royal Bedroom	Has Royal Dining Room	Has Royal Mausoleum
