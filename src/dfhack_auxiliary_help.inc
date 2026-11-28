@@ -635,6 +635,7 @@ std::vector<Match> dfhack_auxiliary_matches;
 #include "dfhack_quickfort.inc"
 #include "dfhack_teleport.inc"
 #include "dfhack_trade_goods.inc"
+#include "dfhack_display_items.inc"
 #include "dfhack_animal_assignment.inc"
 #include "dfhack_preserve_rooms.inc"
     const auto source_texts = native_dfhack_overlay_texts(gps_);

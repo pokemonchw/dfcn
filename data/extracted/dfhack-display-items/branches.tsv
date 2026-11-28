@@ -1,0 +1,56 @@
+# Installed Windows DFHack 53.17-r1. Fields below are outputs or output families of this window.
+# pedestal.lua SHA-256 e5f0a6c136b162c8c7604f8408a9245dfb9e3ac2b248571e1e6f37e3c580bcfa
+# dfhack.dll SHA-256 7a3aa11229a82f2e4783f2479848e34c9f74b308e426569736a16022957692f9
+# Lua source distributed with DFHack was loaded (without execution) by its lua53.dll, dumped with debug data, and decompiled by unluac. Native RVAs below are relative to dfhack.dll.
+producer	condition	source
+caravan.displayitemselector	unfinished or unselected building	no button
+caravan.displayitemselector	finished display furniture	DFHack assign
+PedestalOverlay.desc	overlay description	Adds link to the display furniture building panel to launch the DFHack display assignment UI.
+AssignItems.init	selection lost or not display furniture	No display furniture selected
+AssignItems.ATTRS	opened	Assign items for display
+AssignItems.sort	criterion and direction	Sort by: <status|value|name><0x1f|0x1e>
+AssignItems.search	editable	Search: <query>
+AssignItems.quality	both limits	Min quality: | Max quality:
+AssignItems.quality	each independent limit, 0..6	Ordinary | -Well Crafted- | +Finely Crafted+ | *Superior* | 0xf0 Exceptional 0xf0 | 0x0f Masterful 0x0f | Artifact
+AssignItems.quality	crossed bounds	other bound moves to the same stop
+AssignItems.hide_unreachable	unreachable via walking	Hide unreachable items: <Yes|No>
+AssignItems.hide_forbidden	item.flags.forbid	Hide forbidden items: <Yes|No>
+AssignItems.hide_written	book or tool with CONTAIN_WRITING	Hide written items: <Yes|No>
+AssignItems.inside_containers	off: container rows, including contained-item descriptions in search keys	See inside containers: No
+AssignItems.inside_containers	on: individual contents; skip containers with non-liquid/powder contents	See inside containers: Yes
+AssignItems.sort_status / sort_value / sort_name	inactive or either active direction	status | value | name, each bare or followed by 0x1f/0x1e
+AssignItems.sort_noop	header marker cycles before sorting; internal error if called	sort_noop should not be called
+FilteredList.not_found	empty choices or no search matches	No matches
+make_choice_text.status	defined sentinel (0)	Unknown
+make_choice_text.status	display furniture reference points here (1)	Assigned here
+make_choice_text.status	reference points elsewhere (2)	Assigned elsewhere
+make_choice_text.status	no display furniture reference (3)	empty
+make_choice_text.value / total	value < broker threshold T	formatInt(value)
+make_choice_text.value / total	T <= value <= T+50	~<nearest 10, at least 10>
+make_choice_text.value / total	T+50 < value <= 3*(T+50)	~<nearest 100, at least 100>
+make_choice_text.value / total	3*(T+50) < value <= 30*(T+50)	~<nearest 1000, at least 1000>
+make_choice_text.value / total	value > 30*(T+50)	<30*(T+50) rounded up to the next 1000>?
+make_choice_text.desc	each visible item	getReadableDescription(item)
+getReadableBase (0xa02050)	book or writing tool with a nonempty title	book title
+getBookTitle (0x9ff5a0)	book has explicit title	item_bookst.title
+firstImprovementTitle (0xa053c0) / firstContentTitle (0xa05340)	untitled book or writing tool	first nonempty written_content.title in pages/writing improvements
+getReadableBase (0xa02050)	named artifact without book title	<native name>, <English name> (<capitalized item type/subtype>)
+artifactType (0xa02710)	Trapparts	Mechanism
+getReadableBase (0xa02050)	ordinary item or unavailable artifact name	getDescription(item, 0, true)
+getDescription (0x9ffb90)	concrete item formatter	actual native item noun, including material, generated subtype, qualifiers and stack count as emitted
+formatQuality (0x9fd210)	quality 1..5; other values add nothing	- - | + + | * * | 0xf0 0xf0 | 0x0f 0x0f
+getDescription (0x9ffb90)	magic and improvements	0x11 ... 0x10 | 0xae ... 0xaf, optionally with an outer improvement-quality pair
+getDescription (0x9ffb90)	game mode and item flags	{...} | (...)
+getDescription (0x9ffb90)	wear 1, 2, 3	x...x | X...X | XX...XX
+getDescription (0x9ffb90)	item flags & 0x400000	0x13 ... 0x13
+getDescription (0x9ffb90)	game mode 1 and item reference 0x1f	$...$
+getReadableDescription (0xa00f50)	no contained unit or unresolved unit	base description
+getReadableDescription (0xa00f50)	contained unit	base description [<readable unit name>]
+getReadableDescription (0xa00f50)	contained unit is an invader or opposed to life	base description [<readable unit name> (hostile)]
+AssignItems.total	always; includes assigned items waiting for delivery	Total value of assigned items: <formatted value>
+get_expected_location_tier	not associated with a guildhall or temple	empty; entire Expected location tier: row hidden
+get_expected_location_tier	guildhall; below both thresholds / ordinary / grand	Expected location tier: Meeting Hall | Guildhall | Grand Guildhall
+get_expected_location_tier	temple; below both thresholds / ordinary / complex	Expected location tier: Meeting Hall | Temple | Temple Complex
+AssignItems.toggle_visible	visible choices	Select all/none
+AssignItems.instructions	single or range selection	Click to assign/unassign. Shift click to assign/unassign a range.
+gui.paint_frame	modal footer	PAUSE FORCED (blinks) | DFHack

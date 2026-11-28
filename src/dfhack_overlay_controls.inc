@@ -169,6 +169,9 @@
         };
         const auto emit = [&](int x, int y, int length, const std::string &target, int right,
                 bool preserved_name = false, const std::vector<int> &colors = std::vector<int>{}) {
+            for (const auto &window : display_item_windows)
+                if (y >= window.y && y < window.y + window.h && x >= window.x &&
+                        x < window.x + window.w) return;
             if (length <= 0 || target.empty() || !contains_cjk_utf8(target) ||
                     (only_y >= 0 && only_y != y) || existing_field(x, y, length) ||
                     (!preserved_name && named_source(x, y, length))) return;
@@ -187,7 +190,11 @@
         const int last_y = only_y < 0 ? gps_->dimy : std::min(gps_->dimy, only_y + 1);
         for (const auto &text : source_texts) {
             if (text.y < first_y || text.y >= last_y || text.option_name) continue;
-            if (const auto target = buildingplan_field(text)) {
+            if (text.overlay_name == "caravan.displayitemselector" && text.full == "DFHack assign") {
+                const int length = static_cast<int>(text.visible.size());
+                if (const auto target = exact_literal_translation("DFHack GUI Display items: DFHack assign"))
+                    emit(text.x, text.y, length, *target, text.x + length);
+            } else if (const auto target = buildingplan_field(text)) {
                 const int length = static_cast<int>(text.visible.size());
                 dfhack_auxiliary_regions.push_back({text.x, text.y, length, 1});
                 emit(text.x, text.y, length, *target, text.x + length);

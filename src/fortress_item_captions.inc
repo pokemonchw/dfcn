@@ -1,3 +1,68 @@
+// DFHack's readable artifact format omits the quotes used by the game's
+// bilingual name formatter. The final parentheses contain the item type.
+std::optional<std::string> Overlay::translate_dfhack_named_artifact(std::string_view item) const {
+    const auto type_at = item.rfind(" (");
+    if (type_at == std::string_view::npos || !item.ends_with(')')) return std::nullopt;
+    const auto type = translate_fortress_item_caption(item.substr(type_at + 2, item.size() - type_at - 3));
+    if (!type) return std::nullopt;
+    const auto name = item.substr(0, type_at);
+    const auto comma = name.rfind(", ");
+    const auto identity = translate_legends_artifact_identity(comma == std::string_view::npos
+        ? std::string(name) : std::string(name.substr(0, comma)) + ", \"" +
+            std::string(name.substr(comma + 2)) + "\"");
+    if (!identity) return std::nullopt;
+    return *identity + "（" + *type + "）";
+}
+
+TranslationResult Overlay::translate_dfhack_display_item(std::string_view source,
+        const NativeDfhackDisplayItem *item) const {
+    if (item && item->book_title) {
+        if (const auto title = translate_written_item_caption(source, true, true))
+            return TranslationResult::translated(source, *title, "book-title");
+        return preserved_item_field(source, "book-title");
+    }
+    auto base = source;
+    std::string_view unit;
+    std::optional<std::string> captive;
+    constexpr std::string_view hostile = " (hostile)";
+    bool enemy = false;
+    const auto bracket = source.rfind(" [");
+    if (bracket != std::string_view::npos && source.ends_with(']')) {
+        auto name = source.substr(bracket + 2, source.size() - bracket - 3);
+        // Stack quantities and the DFHack captive suffix share delimiters.
+        if (!name.empty() && name.find_first_not_of("0123456789") != std::string_view::npos) {
+            enemy = name.ends_with(hostile);
+            if (enemy) name.remove_suffix(hostile.size());
+            captive = translate_dfhack_readable_unit_name(name);
+            if (captive || (item && item->type == 16)) {
+                unit = name;
+                base = source.substr(0, bracket);
+            }
+        }
+    }
+    TranslationResult result;
+    if (!item || (item->flags & 0x40000u)) {
+        if (const auto artifact = translate_dfhack_named_artifact(base))
+            result = TranslationResult::translated(base, *artifact, "artifact");
+    }
+    if (!result.usable()) {
+        if (item) {
+            auto caption = static_cast<const NativeTradeItemCaption &>(*item);
+            caption.source = base;
+            result = translate_native_trade_item_caption_display(caption);
+        } else result = translate_fortress_item_caption_display(base);
+    }
+    if (!unit.empty()) {
+        result.append(TranslationResult::translated(" [", " [", "delimiter"), bracket);
+        result.append(captive ? TranslationResult::translated(unit, *captive, "unit-name") :
+            preserved_item_field(unit, "unit-name"), bracket + 2);
+        if (enemy) result.append(TranslationResult::translated(hostile, "（敌对）", "unit-status"),
+            bracket + 2 + unit.size());
+        result.append(TranslationResult::translated("]", "]", "delimiter"), source.size() - 1);
+    }
+    return result;
+}
+
 // A written item can be named by its work alone. Share the same title grammar
 // between inventory/Stocks captions and activities, preserving item wrappers.
 std::optional<std::string> Overlay::translate_written_item_caption(

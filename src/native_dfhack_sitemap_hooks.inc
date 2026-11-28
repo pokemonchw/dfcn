@@ -24,14 +24,16 @@ struct NativeDfhackSitemapLuaApi {
     std::string label_source, cycle_source, overlay_source, asyncexport_source, prioritize_source;
     std::string filterselection_source, planner_source, mechanisms_source, itemselection_source;
     std::string wrapped_source, control_panel_source, movegoods_source, spectate_source;
-    std::string autotraining_source, autofarm_source;
+    std::string autotraining_source, autofarm_source, pedestal_source;
+    void *(*get_df_object)(NativeDfhackLuaState *, const void *, int, bool) = nullptr;
+    const void *item_identity = nullptr;
 };
 static NativeDfhackSitemapLuaApi g_native_dfhack_sitemap_lua_api;
 static std::atomic_bool g_native_dfhack_sitemap_lua_bound{false};
 
 enum class NativeDfhackChoiceTextOwner : unsigned char {
     Sitemap, Notification, AnimalAssignment, OverlayLabel, TradeGoods, AutotrainingUnit,
-    AutotrainingSquad
+    AutotrainingSquad, DisplayItem
 };
 
 struct NativeDfhackSitemapText {
@@ -44,6 +46,7 @@ struct NativeDfhackSitemapText {
     std::string full, visible;
     NativeDfhackOverlayText overlay;
     std::optional<NativeDfhackAutotrainingSquadText> squad;
+    std::shared_ptr<const NativeDfhackDisplayItem> display_item;
 };
 static std::mutex g_native_dfhack_sitemap_text_mutex;
 static std::vector<NativeDfhackSitemapText> g_native_dfhack_sitemap_text;
@@ -185,6 +188,15 @@ static uint64_t native_dfhack_text_capture_key(const graphicst *gps) {
         scalar(capture.x); scalar(capture.y); scalar(capture.top_layer);
         scalar(static_cast<unsigned char>(capture.owner));
         string(capture.notification_name); string(capture.full); string(capture.visible);
+        if (capture.display_item) {
+            const auto &item = *capture.display_item;
+            scalar(item.id); scalar(item.type); scalar(item.subtype);
+            scalar(item.material); scalar(item.material_index); scalar(item.flags); scalar(item.flags2);
+            scalar(item.count); scalar(item.semantic_name); scalar(item.right); scalar(item.left);
+            scalar(item.book_title);
+            string(item.definition_id); string(item.raw_name); string(item.raw_adjective);
+            string(item.size_adjective); string(item.material_prefix); string(item.material_state);
+        }
         scalar(capture.squad.has_value());
         if (capture.squad) {
             const auto &squad = *capture.squad;
@@ -233,7 +245,8 @@ static uint64_t native_dfhack_text_capture_key(const graphicst *gps) {
 static std::optional<std::string> lookup_native_dfhack_choice_text(
         const graphicst *gps, int x, int y, std::string_view visible,
         NativeDfhackChoiceTextOwner owner,
-        NativeDfhackAutotrainingSquadText *squad_result = nullptr) {
+        NativeDfhackAutotrainingSquadText *squad_result = nullptr,
+        std::shared_ptr<const NativeDfhackDisplayItem> *display_item = nullptr) {
     if (!native_dfhack_logo_grid_valid(gps) || x < 0 || y < 0 ||
             y >= gps->dimy || visible.empty() ||
             visible.size() > static_cast<size_t>(gps->dimx) ||
@@ -248,6 +261,7 @@ static std::optional<std::string> lookup_native_dfhack_choice_text(
     const bool scrollbar_clipped = owner == NativeDfhackChoiceTextOwner::Notification ||
         owner == NativeDfhackChoiceTextOwner::AnimalAssignment ||
         owner == NativeDfhackChoiceTextOwner::TradeGoods ||
+        owner == NativeDfhackChoiceTextOwner::DisplayItem ||
         owner == NativeDfhackChoiceTextOwner::AutotrainingUnit ||
         owner == NativeDfhackChoiceTextOwner::AutotrainingSquad;
     for (auto it = access.sitemap().rbegin();
@@ -280,6 +294,7 @@ static std::optional<std::string> lookup_native_dfhack_choice_text(
             }
         }
         if (current) {
+            if (display_item) *display_item = text.display_item;
             if (squad_result) {
                 if (!text.squad) continue;
                 *squad_result = *text.squad;
@@ -495,6 +510,13 @@ static std::optional<std::string> lookup_native_dfhack_trade_goods_text(
         const graphicst *gps, int x, int y, std::string_view visible) {
     return lookup_native_dfhack_choice_text(gps, x, y, visible,
         NativeDfhackChoiceTextOwner::TradeGoods);
+}
+
+static std::optional<std::string> lookup_native_dfhack_display_item(
+        const graphicst *gps, int x, int y, std::string_view visible,
+        std::shared_ptr<const NativeDfhackDisplayItem> &item) {
+    return lookup_native_dfhack_choice_text(gps, x, y, visible,
+        NativeDfhackChoiceTextOwner::DisplayItem, nullptr, &item);
 }
 
 static std::optional<std::string> lookup_native_dfhack_autotraining_unit_text(
@@ -1278,6 +1300,34 @@ static std::optional<NativeDfhackOverlayText> native_dfhack_typed_list_text(
     return result;
 }
 
+// getBookTitle chooses an explicit book title, then the first nonempty
+// written_content title in the carrier's pages/writing improvements. Match
+// that field to the captured draw before treating a tool name as a title.
+static bool native_dfhack_display_book_title(uintptr_t object, int type, std::string_view painted) {
+    if (type != 89 && type != 86) return false;
+    std::string title;
+    if (type == 89 && native_history_copy_string(native_history_object_field(
+            object, "item_bookst", 0xe8, sizeof(NativeString)), title) && !title.empty())
+        return title == painted;
+    NativeBorrowedVector<uintptr_t> entries;
+    if (!native_history_read_vector(native_history_object_field(object, {}, 0xd0, 24), entries)) return false;
+    for (size_t i = 0; i < entries.size(); ++i) {
+        const auto entry = native_history_vector_at(entries, i);
+        int32_t kind = -1;
+        if (!entry || !native_history_item_scalar(entry, 0x28, kind) || (kind != 12 && kind != 9)) continue;
+        std::vector<int32_t> ids;
+        if (!native_history_written_values(native_history_object_field(entry, {}, kind == 12 ? 0x28 : 0x30), ids))
+            continue;
+        for (int32_t id : ids) {
+            uintptr_t work = 0;
+            if (native_history_material_find_id(native_history_global(0x24e7cb8), 0, id, work) && work &&
+                    native_history_copy_string(native_history_object_field(work, "written_content", 8,
+                        sizeof(NativeString)), title) && !title.empty()) return title == painted;
+        }
+    }
+    return false;
+}
+
 static std::optional<NativeDfhackChoiceTextOwner> native_dfhack_filtered_list_owner(NativeDfhackLuaState *state,
         const NativeDfhackLuaDebug &frame, std::string_view painted_full) {
     const auto &api = g_native_dfhack_sitemap_lua_api;
@@ -1354,6 +1404,10 @@ static std::optional<NativeDfhackChoiceTextOwner> native_dfhack_filtered_list_ow
             owner = NativeDfhackChoiceTextOwner::TradeGoods;
             window_title = "Move goods to/from depot";
             focus_path = "caravan/movegoods";
+        } else if (key == api.pedestal_source) {
+            owner = NativeDfhackChoiceTextOwner::DisplayItem;
+            window_title = "Assign items for display";
+            focus_path = "pedestal/assignitems";
         } else if (key == api.autotraining_source && producer.linedefined == 83 &&
                 producer.lastlinedefined == 87) {
             owner = NativeDfhackChoiceTextOwner::AutotrainingUnit;
@@ -1366,8 +1420,9 @@ static std::optional<NativeDfhackChoiceTextOwner> native_dfhack_filtered_list_ow
         bound_window = stack.gettop(state);
         if (api.getupvalue(state, curried, 4)) return std::nullopt;
     }
-    if (owner == NativeDfhackChoiceTextOwner::TradeGoods) {
-        // make_choice_text draws four independent tokens. Only the actual
+    if (owner == NativeDfhackChoiceTextOwner::TradeGoods ||
+            owner == NativeDfhackChoiceTextOwner::DisplayItem) {
+        // make_choice_text draws independent tokens. Only the actual
         // row's data.desc is an item name; distance, value and quantity never
         // acquire an item-caption source merely by sharing its List.
         if (!native_dfhack_overlay_local(state, frame, "obj") ||
@@ -1565,6 +1620,7 @@ static void capture_native_dfhack_sitemap_text(NativeDfhackLuaState *state) noex
         if (owned) owner = NativeDfhackChoiceTextOwner::OverlayLabel;
         std::string notification_name;
         std::optional<NativeDfhackAutotrainingSquadText> squad;
+        std::shared_ptr<const NativeDfhackDisplayItem> display_item;
         // List rows still require their original authored submit provenance.
         // Actual Labels use their own onRenderBody/render_text source above;
         // helper windows need no inferred caption or copied callback owner.
@@ -1580,6 +1636,21 @@ static void capture_native_dfhack_sitemap_text(NativeDfhackLuaState *state) noex
                     std::optional<NativeDfhackChoiceTextOwner>{}) {
                 owned = true;
                 owner = *filtered_owner;
+                if (owner == NativeDfhackChoiceTextOwner::DisplayItem &&
+                        api.get_df_object && api.item_identity &&
+                        native_dfhack_overlay_local(state, list, "obj") &&
+                        native_dfhack_sitemap_raw_field(state, -1, "data") &&
+                        native_dfhack_sitemap_raw_field(state, -1, "item") &&
+                        stack.type(state, -1) == 7) {
+                    const auto item = reinterpret_cast<uintptr_t>(
+                        api.get_df_object(state, api.item_identity, -1, false));
+                    auto caption = std::make_shared<NativeDfhackDisplayItem>();
+                    if (item && populate_native_trade_item_fields(item, *caption)) {
+                        caption->book_title = native_dfhack_display_book_title(item, caption->type,
+                            std::string_view(full, full_length));
+                        display_item = std::move(caption);
+                    }
+                }
             }
             stack.settop(state, top);
             if (!owned && profiled_list) {
@@ -1621,6 +1692,7 @@ static void capture_native_dfhack_sitemap_text(NativeDfhackLuaState *state) noex
         text.full.assign(full, full_length);
         text.visible.assign(visible, visible_length);
         text.squad = std::move(squad);
+        text.display_item = std::move(display_item);
         if (overlay) {
             overlay->x = text.x;
             overlay->y = text.y;
@@ -1773,6 +1845,11 @@ static bool bind_native_dfhack_sitemap_lua(HMODULE module) {
     api.notify_source = key(hack / L"scripts" / L"gui" / L"notify.lua");
     api.zone_source = key(hack / L"lua" / L"plugins" / L"zone.lua");
     api.movegoods_source = key(hack / L"scripts" / L"internal" / L"caravan" / L"movegoods.lua");
+    api.pedestal_source = key(hack / L"scripts" / L"internal" / L"caravan" / L"pedestal.lua");
+    api.get_df_object = reinterpret_cast<decltype(api.get_df_object)>(GetProcAddress(module,
+        "?GetDFObject@Lua@DFHack@@YAPEAXPEAUlua_State@@PEBVtype_identity@2@H_N@Z"));
+    api.item_identity = reinterpret_cast<const void *>(GetProcAddress(module,
+        "?_identity@item@df@@2V?$type_identity_for@Uitem@df@@@DFHack@@B"));
     api.label_source = key(hack / L"lua" / L"gui" / L"widgets" / L"labels" / L"label.lua");
     api.wrapped_source = key(hack / L"lua" / L"gui" / L"widgets" / L"labels" / L"wrapped_label.lua");
     api.control_panel_source = key(hack / L"scripts" / L"gui" / L"control-panel.lua");

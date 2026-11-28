@@ -4594,6 +4594,9 @@ private:
     TranslationResult translate_fortress_item_caption_display(
         std::string_view source, bool bounded_button = false,
         bool building_material = false) const;
+    std::optional<std::string> translate_dfhack_named_artifact(std::string_view item) const;
+    TranslationResult translate_dfhack_display_item(std::string_view source,
+        const NativeDfhackDisplayItem *item) const;
     bool is_adjectival_art_epithet(std::string_view source) const;
     std::optional<std::string> translate_named_art_item(
         std::string_view source) const;

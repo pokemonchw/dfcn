@@ -2219,6 +2219,44 @@ DFHack GUI Trade goods: Select all/none	全选／全不选	l
 DFHack GUI Trade goods: Group items:	合并同类物品：	l
 DFHack GUI Trade goods: Inside containers:	显示容器内物品：	l
 
+# internal/caravan/pedestal.lua (DFHack 53.17-r1)
+DFHack GUI Display items: Assign items for display	分配展品	l
+DFHack GUI Display items: DFHack assign	DFHack 分配展品	l
+DFHack GUI Display items: Sort by:	排序依据：	l
+DFHack GUI Display items: Search:	搜索：	l
+DFHack GUI Display items: status	分配状态	l
+DFHack GUI Display items: value	价值	l
+DFHack GUI Display items: name	名称	l
+DFHack GUI Display items: Unknown	未知	l
+DFHack GUI Display items: Assigned here	已分配至此处	l
+DFHack GUI Display items: Assigned elsewhere	已分配至别处	l
+DFHack GUI Display items: Min quality:	最低品质：	l
+DFHack GUI Display items: Max quality:	最高品质：	l
+DFHack GUI Display items: Ordinary	普通	l
+DFHack GUI Display items: Well Crafted	精工	l
+DFHack GUI Display items: Finely Crafted	精良	l
+DFHack GUI Display items: Superior	优质	l
+DFHack GUI Display items: Exceptional	杰出	l
+DFHack GUI Display items: Masterful	大师之作	l
+DFHack GUI Display items: Artifact	神器	l
+DFHack GUI Display items: Hide unreachable items:	隐藏无法到达的物品：	l
+DFHack GUI Display items: Hide forbidden items:	隐藏禁用物品：	l
+DFHack GUI Display items: Hide written items:	隐藏书籍和著作：	l
+DFHack GUI Display items: Yes	是	l
+DFHack GUI Display items: No	否	l
+DFHack GUI Display items: No matches	没有匹配的物品	l
+DFHack GUI Display items: Total value of assigned items:	已分配展品总价值：	l
+DFHack GUI Display items: Expected location tier:	预计场所等级：	l
+DFHack GUI Display items: Meeting Hall	集会厅	l
+DFHack GUI Display items: Guildhall	行会大厅	l
+DFHack GUI Display items: Grand Guildhall	大型行会大厅	l
+DFHack GUI Display items: Temple	神庙	l
+DFHack GUI Display items: Temple Complex	神庙建筑群	l
+DFHack GUI Display items: Select all/none	全选／全不选	l
+DFHack GUI Display items: See inside containers:	显示容器内物品：	l
+DFHack GUI Display items: Click to assign/unassign. Shift click to assign/unassign a range.	点击分配或取消分配。按住 Shift 点击可对一段连续物品执行相同操作。	l
+DFHack output: No display furniture selected	未选中展示家具。	l
+
 # internal/notify/notifications.lua labor_starvation: native ENUM_ATTR(job_type, caption)
 # and enum-key fallbacks from data/extracted/dfhack-notify/job-type-captions.tsv.
 # Keep the original produced text exact; repeated captions share one scoped entry.

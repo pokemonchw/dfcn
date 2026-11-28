@@ -231,24 +231,7 @@
                         item = item.substr(0, captive_at);
                     }
                 }
-                std::optional<std::string> target;
-                const auto type_at = item.rfind(" (");
-                if (type_at != std::string::npos && item.ends_with(')')) {
-                    const auto type = translate_fortress_item_caption(
-                        item.substr(type_at + 2, item.size() - type_at - 3));
-                    if (type) {
-                        const auto name_source = item.substr(0, type_at);
-                        const auto comma = name_source.rfind(", ");
-                        // DFHack omits the quotes present in the ordinary
-                        // native artifact identity. Restore only that wrapper
-                        // and let the shared name resolver own both fields.
-                        const auto identity = translate_legends_artifact_identity(
-                            comma == std::string_view::npos ? std::string(name_source) :
-                                std::string(name_source.substr(0, comma)) + ", \"" +
-                                std::string(name_source.substr(comma + 2)) + "\"");
-                        if (identity) target = *identity + "（" + *type + "）";
-                    }
-                }
+                auto target = translate_dfhack_named_artifact(item);
                 if (!target) target = translate_fortress_item_caption(item);
                 if (!target) target = translate_legends_book(item);
                 if (target && captive) *target += " [" + *captive + "]";

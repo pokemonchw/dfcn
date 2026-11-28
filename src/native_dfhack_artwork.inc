@@ -83,6 +83,12 @@ static std::optional<std::string> lookup_native_dfhack_animal_assignment_text(
     const graphicst *gps, int x, int y, std::string_view visible);
 static std::optional<std::string> lookup_native_dfhack_trade_goods_text(
     const graphicst *gps, int x, int y, std::string_view visible);
+struct NativeDfhackDisplayItem : NativeTradeItemCaption {
+    bool book_title = false;
+};
+static std::optional<std::string> lookup_native_dfhack_display_item(
+    const graphicst *gps, int x, int y, std::string_view visible,
+    std::shared_ptr<const NativeDfhackDisplayItem> &item);
 static std::optional<std::string> lookup_native_dfhack_autotraining_unit_text(
     const graphicst *gps, int x, int y, std::string_view visible);
 struct NativeDfhackAutotrainingSquadText {

@@ -44,6 +44,9 @@ static bool bind_native_dfhack_sitemap_lua(void *entry_pointer) {
     api.notify_source = key(hack / "scripts" / "gui" / "notify.lua");
     api.zone_source = key(hack / "lua" / "plugins" / "zone.lua");
     api.movegoods_source = key(hack / "scripts" / "internal" / "caravan" / "movegoods.lua");
+    api.pedestal_source = key(hack / "scripts" / "internal" / "caravan" / "pedestal.lua");
+    api.get_df_object = reinterpret_cast<decltype(api.get_df_object)>(symbol("_ZN6DFHack3Lua11GetDFObjectEP9lua_StatePKNS_13type_identityEib"));
+    api.item_identity = symbol("_ZN2df4item9_identityE");
     api.label_source = key(hack / "lua" / "gui" / "widgets" / "labels" / "label.lua");
     api.wrapped_source = key(hack / "lua" / "gui" / "widgets" / "labels" / "wrapped_label.lua");
     api.control_panel_source = key(hack / "scripts" / "gui" / "control-panel.lua");
