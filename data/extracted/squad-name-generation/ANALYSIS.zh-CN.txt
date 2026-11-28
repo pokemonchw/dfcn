@@ -1,0 +1,185 @@
+要塞小队名称的词表与生成逻辑
+Dwarf Fortress 53.17，Steam Windows x64，2026-11-28
+
+一、截图里的“牺牲绳”
+
+原版矮人要塞可以随机生成 The Sacrificial Ropes，现有汉化会把这个结构显示成“牺牲绳”。
+生成过程可以逐步还原。
+
+  1. 从矮人文明主池抽中心词 ROPE。可抽到 rope 或 ropes，两项最终都写成复数 ropes。
+  2. 走“一个形容词”分支，从副池抽到 SACRIFICE 的形容词 sacrificial。第二形容词和连字符位均未启用。
+  3. 游戏保存槽 2 的 SACRIFICE / ADJ 和槽 5 的 ROPE / NOUN_PLUR。英文格式化器输出 The Sacrificial Ropes。
+  4. 汉化按 WORD 和词性查到“牺牲”和“绳”，按形容词、中心词的顺序连接。英文冠词和复数词尾均没有对应的汉字。
+
+ROPE 属于 ARTIFICE，主副池都有。SACRIFICE 属于 GOOD，在矮人副池，未进入矮人主池。
+两者的矮人语词根分别为 goden 和 etom。截图能确定显示文字，不能确定这支队伍保存的英文、词槽或别名。
+例如玩家直接输入“牺牲绳”，也能得到相同画面。下方的“无特殊命令”和“日程：休息”是各自的界面字段。
+
+二、建队时由谁命名
+
+本次读取 D:/program/steam/steamapps/common/Dwarf Fortress/Dwarf Fortress.exe 及同一安装的 data/vanilla。
+映像 SHA-256 为 3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16。
+PE 标识为 PE:6aea05a1:02734000。文中地址均为该映像的 VA，基址为 0x140000000。
+
+要塞建队函数 0x140450d30 构造 squad 后，0x140451645 传名称类型 3（Squad），
+0x14045164b 传 squad + 0x08 作为输出，0x140451656 以文明实体为命名方调用 0x14094b310。
+队员位置数组在此调用后才初始化。职位 raw 的 [SQUAD:10:militia-dwarf:militia-dwarves]
+提供该职位所领人数和成员称谓。名称生成器接收的是语言、名称类型和选词器。
+
+普通语言路径在 0x14094b3ce 读取文明 raw 的翻译标记。类型 3 进入 0x14094b553，
+把文明 raw + 0x3d0 的 major_selector[MAIN] 和 + 0x1930 的 minor_selector[MAIN]
+传入通用生成器 0x140aac300。MAIN 在结构定义里也叫 OTHER。类型 3 的第二级跳表目标为 0x140aad3b6。
+游戏另有历史实体名称类型 17（MilitaryUnit），其文明分派去 0x14094b4f3，生成器也走另一分支。
+所以按 MILITARY_UNIT 主题导出词表，会错过截图所示要塞小队真正的候选。
+
+英文名和原语言名都可由保存的 language_name 还原。该结构保存七个 WORD 索引和七个词性，
+另有语言编号、名称类型、has_name、first_name 和 nickname。squad.alias 是小队上的独立字符串。
+原版四套语言各给同一批 2,196 个 WORD 提供一个词根；英文则按 WORD 和词性选择不同词形。
+普通生成路径若遇到缺省语言编号，会在至多 20 个未标 generated 的语言表里选一个，列表为空时使用索引 0。
+
+三、主副词池怎样建立
+
+language_words.txt 定义英文词形、各词形可用的位置及形容词排序值 ADJ_DIST。
+language_SYM.txt 将 WORD 列入主题。entity_default.txt 决定各文明对主题的取舍。
+language_DWARF.txt、language_ELF.txt、language_HUMAN.txt、language_GOBLIN.txt 只提供各语言的拼写。
+
+游戏分别合并 SELECT_SYMBOL 与 SUBSELECT_SYMBOL 对应的主题，得到主、副两个 WORD 集合。
+REMAINING 给尚未单独指定的类别分配主题。某池合并后的包含集合为空，就从全体 WORD 起步；
+随后从两池扣除适用的 CULL_SYMBOL 集合。0x14094d982 调用 0x140d4eb70 建池，
+0x140d4d220 按词形及位置标记展开，0x140d4dbd0 随机取一个下标，并取同一下标的 WORD 和词性。
+原版 MAIN 没有单独的 SUBSELECT 主题，故下列五组副池均从全体 WORD 起步。
+
+  原版文明                      MAIN 主池从何处取            主副池都排除的主题
+  MOUNTAIN 矮人                ARTIFICE、EARTH               DOMESTIC、SUBORDINATE、EVIL、FLOWERY、NEGATIVE、UGLY、NEGATOR
+  FOREST 精灵                  NATURE、FLOWERY               DOMESTIC、SUBORDINATE、EVIL、NEGATIVE、UGLY、NEGATOR
+  PLAINS 人类                  全部 WORD                     SUBORDINATE、EVIL、NEGATIVE、UGLY、NEGATOR
+  EVIL 地精                    EVIL                          DOMESTIC、FLOWERY、HOLY、PEACE、NEGATOR、GOOD
+  SUBTERRANEAN_ANIMAL_PEOPLES  全部 WORD                     无
+
+下表统计原版各文明进入类型 3 普通分支时的候选。A1、A2 共用形容词位置，单列一次。
+“可用根”按能进任一自动槽的 WORD 去重。N、A、H、Q 按初抽的 (WORD, 词性) 计；
+“最终中心”按复数转换后的 (WORD, 词性) 去重。主池和副池可重叠。
+
+  文明                           词池     筛后根   可用根    N中心   A形容词   H连字符   Q所属   最终中心
+  MOUNTAIN                       主          175      175      262        30       127     218        165
+                                 副        1,345    1,344    1,534       529       656   1,674      1,069
+  FOREST                         主          272      272      347        94       173     299        227
+                                 副        1,446    1,445    1,629       591       708   1,768      1,133
+  PLAINS                         主、副各  1,648    1,647    1,911       624       898   2,042      1,306
+  EVIL                           主           62       62       60        31        43      60         44
+                                 副        1,656    1,655    1,861       643       900   1,992      1,283
+  SUBTERRANEAN_ANIMAL_PEOPLES    主、副各  2,196    2,195    2,442       849     1,228   2,658      1,681
+
+例如 BACK 只许可前后复合槽。它在矮人副池扣除主题后仍然存在，却进不了小队自动命名的任何位置。
+矮人两池的自动可用词根合并去重是 1,344 个。175 个主池词根都包含在这 1,344 个之中。
+这些数值使用本机原版 raw；世界生成追加或模组更改的 WORD、SYMBOL、语言及文明配置会改变实际候选。
+
+四、普通自动小队名如何抽取
+
+英文结构是 The [A1] [A2] [H-]N [of Q]。方括号表示可省略，A1 与 Q 至少有一项。
+一个完整自动名使用 2 至 5 个 WORD。七个保存槽和六类选词位置是不同的编号。
+
+  保存槽    通用选词位置    在小队名中的作用
+  0         0              前半复合词，整名自动生成时留空；命名编辑器可选
+  1         1              后半复合词，整名自动生成时留空；命名编辑器可选
+  2、3      3              A1、A2。凡非空形容词均可入选
+  4         4              H。允许 THE_COMPOUND 的单数名词、复数名词、形容词或前缀
+  5         2              N。允许 THE_NOUN_SING 或 THE_NOUN_PLUR 的中心名词
+  6         5              Q。允许 OF_NOUN_SING、OF_NOUN_PLUR 或非空动名词，接在 of 后
+
+根据类型 3 的跳表、取词调用和共有收尾代码，单轮抽取过程为
+
+  ① 主、副池各约一半机会供应 N。记另一池为“对侧池”。
+  ② 先从“仅 Q、仅 A1、两者都有”三种模式中等概率选择。约 98% 的时候用
+     “仅 Q、仅 A1”二选一覆盖这个选择。因此初抽仅 Q 约 49.67%，仅 A1 约 49.67%，两者兼有约 0.67%。
+  ③ 仅 Q 或仅 A1 时，该修饰项从 N 的对侧池抽。两者兼有时，Q 从对侧池抽，A1 独立二选一。
+  ④ 已有 A1 时，约 1% 的机会再从副池抽 A2。三种模式都另有约 1% 的机会加 H，H 的来源再次二选一。
+  ⑤ 若 N 初抽为单数，并且其原始复数字段非空，保存的 N 词性改为复数。
+     转换只看复数拼写是否存在，即使没有 THE_NOUN_PLUR 标记也可转换。
+     因此 ROPE 的两个初抽项最终都是 Ropes；SACRIFICE 初抽作中心只有单数一项，最终也会成为 Sacrifices。
+     没有复数拼写就保留单数。矮人主池中两个这样的中心词是 COAL 和 GRAVEL。
+  ⑥ 两个形容词按 ADJ_DIST 从大到小排列；相等则保留抽取顺序。交换时词性一起移位。
+     因此“第二次抽的形容词来自副池”描述的是抽取顺序，排序后它也可能出现在第一个位置。
+  ⑦ 任意两槽 WORD 相同，或转换后的 N 与 Q 同为复数名词，就重抽整名。动名词的词性与复数名词不同。
+     最多尝试 100 轮，最后一轮即使冲突也会保留。以上百分比指重抽前的基础模式，最终分布还受词池内容影响。
+
+完整英文骨架共有十种。“仅 Q”有无 H 共两种；“仅 A1”有无 A2、H 共四种；
+“A1 和 Q”同理又有四种。例如 The Sacrificial Ropes 合法；若生成 The Ropes of Sacrifices，
+两个复数会触发重抽。The Ropes of Sacrifice 的补语为单数，可以通过这条限制；
+按现有中文结构它会带“之”。极端情况下，如果模组让某个位置的候选数组为空，
+0x140d4dbd0 会从整个已加载的 WORD 数组和九种词性中抽，进入游戏的 Impoverished Word Selector 分支。
+
+五、整名重抽、逐槽编辑和自定义别名
+
+小队侧栏 0x1404489e0 打开命名编辑器时传入编辑器上下文 4、名称类型 3、squad + 8 和命名实体。
+0x1401fef30 用世界的全部 WORD 编号构建编辑器自己的六类选词位置，0x1401ff110 再按选中位置和搜索文字产生候选。
+所以手选小队名时可以使用文明主、副池未收录的词，也可以填通常留空的槽 0、1。
+
+  • 整名随机。0x14020241a 用命名实体和名称类型调用与建队相同的分派。共用编辑器还有一个缺少命名实体时的分支，
+    0x140202435 将编辑器自己的选词器同时用作主、副池；要塞小队打开编辑器的这条路径已先确认实体存在。
+  • 单槽随机、点选与清空。0x1402025c7 从当前候选的数量取随机下标，0x140202635 / 0x140202649 同时写回该槽
+    的 WORD 和词性；0x140202761 / 0x140202779 写回手点的一行；0x14020267c 将该槽恢复为空。
+    这些写入直接修改结构化名称。手选单数 rope 可保留单数，单槽操作也没有整名生成时的重抽过程。
+  • 自定义别名。0x140447e15–0x140447e40 在文本编辑缓冲和 squad + 0x80 之间复制字符串。截图对应的卡片绘制函数
+    0x14044a790 在 0x14044eb68 判断 alias 是否为空：非空时 0x14044eb7b 直接复制，空时 0x14044eb93 才将
+    squad + 0x08 交给英文格式化器 0x140aae180。0x14044ed50 是同一张卡片引用 No special orders 的位置。
+
+项目汉化走 src/fortress_squads.inc 的来源分支。已识别的 squad.name 经 src/history_names.inc 的
+translate_history_name，按 data/runtime/procedural-word-senses.tsv 的 WORD 与词性取义。
+普通形容词直接修饰中心；两个名词形成连字符复合时，现有规则将其作“修饰名词之中心名词”处理。
+of 补语整体前置并加“之”。某槽缺少义项时，类型 3 会尝试该槽同一英文词形的命名译法或音译。
+data/runtime/name-editor.tsv 用于编辑器按钮和标签。玩家的 squad.alias 原样显示；
+只有显示文本、没有可识别的名称来源时，也保留原文。截图中的文字没有据此加入任何整名词条。
+
+六、狗头人文明的拟声分支
+
+命名函数先看实体种族是否带 HAS_ANY_UTTERANCES。原版 SKULKING 使用 KOBOLD，creature_standard.txt
+中有 [UTTERANCES]。走此分支时，0x14094b373 初始化名称，令 has_name 为真、语言索引为 -1，
+0x14094a690 把拟声串写入 first_name，随后首字母大写。该路径直接返回。
+
+拟声串由 1 至 4 个音节加尾部组成。首、末音节的起始辅音从 41 项选，中间音节从 6 项选。
+先抽一个元音供非末音节共用，到末音节时从另一组 6 项重抽。只有一个音节时直接用末音节元音。
+以下按映像跳表顺序列出全部片段。
+
+  非末音节共用元音    a i o u
+  末音节元音          a o u ay ee i
+  首、末辅音          b br bl d dr dl st str stl sh shr shl s sr sl t tr tl th thr thl
+                      ch chr chl l lr f fr fl g gr gl k kr kl p pr pl j jr jl
+  中间辅音            b d l f g k
+  末尾辅音片段        m r ng b rb mb g lg l lb lm k nk ld d rsn
+
+末尾辅音片段之后再抽四选一。前两项分别接 is、us。第三项在末音节元音为 o、ay、u、a 时接 er，否则接 is；
+第四项在同一条件下接 in，否则接 us。完整反编译见 pe-utterance.c。
+
+七、逐项词表和原生证据
+
+squad-words.tsv 是从本机原版 raw 展开的 UTF-8 明细，共 15,695 行数据。六种选词位置各列一遍，
+两个形容词槽共用 Adjective。只看自动槽的四组共 7,177 行；其余 8,518 行是编辑器可用的前后复合位置。
+每行是一个位置、一条 WORD、一个初抽词性；保留相同拼写的不同初抽项，以便解释抽取权重。
+
+  slot、WORD、pick_pos、pick_english        位置、词条、初抽或手选词性及对应英文
+  auto_pos、auto_english                  整名自动生成的词性和拼写，含中心词复数转换；仅编辑器位置留空
+  zh_gloss、adj_dist                      现有汉化的基础义项、该形容词的排序值
+  eligibility、word_line、eligibility_line 入池依据，以及 language_words.txt 的 WORD 定义和入池依据行号
+  symbols                                 language_SYM.txt 中该词所属的全部主题
+  DWARF、ELF、HUMAN、GOBLIN                四种语言的原版词根
+  最后五个文明列                           major、minor 或 major+minor 表示该初抽项属于哪些自动词池；
+                                          空白表示该文明整名随机不会从此位置抽它
+
+例如筛选 slot=Head 且 MOUNTAIN 包含 major 可看到 262 行，按 WORD、auto_pos 去重是 165 项。
+筛选 WORD=SACRIFICE 可看到它在各文明能够承担的不同位置。读英文多音节拼写无需反查中文。
+四套语言和 WORD 定义均取自 data/vanilla/vanilla_languages/objects，原生 raw 按 CP437 解码。
+
+本目录 pe-squad-create.c、pe-name-editor-init.c、pe-utterance.c 由 Ghidra 12.1.4 从上述映像反编译。
+pe-squad-name-paths.asm 保存本次的建队、文明分派、原生编辑和截图卡片指令。
+同一 SHA-256 的共享函数复用已有反编译，具体位置为
+
+  ../hospital-name-generation/pe-entity-name-dispatch.c      按命名实体、语言和名称类型选择词池
+  ../volcano-name-generation/pe-switches.tsv                名称类型到机器码分支的跳表
+  ../volcano-name-generation/pe-name-generate.c             小队分支 case 3，以及排序、重抽
+  ../volcano-name-generation/pe-build-selector.c            合并包含组、回退到全词表、扣除排除组
+  ../volcano-name-generation/pe-fill-word-slots.c           按位置与词性展开成平行数组
+  ../volcano-name-generation/pe-select-word.c               按同一下标取 WORD 和词性
+  ../volcano-name-generation/pe-english-format.c            生成 The、连字符及 of 等显示文字
+
+分析范围是本机原版和当前项目的静态资料，界面观察依据为用户提供的截图。
