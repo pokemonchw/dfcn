@@ -708,7 +708,7 @@ void Overlay::append_fortress_unit_chooser_rows(std::vector<std::string> &rows,
             // Only the captured squad object establishes alias versus name.
             if (native.squad_alias) squad_name = native_text_to_utf8(*native.squad_alias);
             if (!squad_name && native.generated_squad_name)
-                squad_name = translate_history_name(*native.generated_squad_name);
+                squad_name = translate_generated_squad_name(&*native.generated_squad_name, native.squad_name_source);
             if (!squad_name) squad_name = native_text_to_utf8(native.squad_name_source);
             auto slot = exact_literal_translation("Squad assignment: Member position");
             constexpr std::string_view placeholder = "{position}";

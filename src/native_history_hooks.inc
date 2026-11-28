@@ -107,6 +107,47 @@ static NativeMissionRosterOwner native_world_mission_roster_owner() {
     owner.screen = screen;
     return owner;
 }
+
+static NativeMissionAssignmentName capture_native_mission_assignment_name(
+        uintptr_t screen, int y, std::string_view ink) {
+    // The detail selector draws viewscreen_worldst.squad[first + row].
+    // It clamps the scroll offset to this list's page size and uses three
+    // rows per checkbox, with the first name at y=2 (PE 1cd378..1cde41).
+    const uintptr_t base = native_history_profile_base();
+    int32_t height = 0, scroll = 0;
+    NativeBorrowedVector<uintptr_t> squads;
+    if (y < 2 || (y - 2) % 3 || !native_history_copy(
+            native_reference_address(base, 0x23cd788), height) || height < 11 || height > 1000 ||
+            !native_history_copy(native_history_object_member(screen, "viewscreen_worldst",
+                "scroll_position_squad", sizeof(scroll)), scroll) ||
+            !native_history_read_vector(native_history_object_member(screen, "viewscreen_worldst",
+                "squad", sizeof(squads)), squads) || squads.size() > INT32_MAX) return {};
+    const int page = (std::min(height - 1, 42) - 7) / 3;
+    const int row = (y - 2) / 3;
+    if (row >= page) return {};
+    const int count = static_cast<int>(squads.size());
+    const int first = std::clamp(scroll, 0, std::max(0, count - page));
+    const uintptr_t squad = native_history_vector_at(squads, first + row);
+    NativeMissionAssignmentName result;
+    if (!squad || !native_history_copy_string(squad + native_history_layout::squad_alias_offset,
+            result.source)) return {};
+    if (result.source.empty()) {
+        NativeHistoryName name;
+        if (!capture_native_history_name(base, squad + 8, name)) return {};
+        const auto english = reconstruct_site_english_name(name);
+        if (!english) return {};
+        result.source = *english;
+        result.generated = std::make_shared<const NativeHistoryName>(std::move(name));
+    }
+    // The submitted string is already shortened in place, including aliases
+    // shortened inside a UTF-8 sequence. Compare the same bytes as the writer.
+    const std::string visible = result.source.size() > 17
+        ? result.source.substr(0, 14) + "..." : result.source;
+    if (ink != visible) return {};
+    // The checkbox starts 40 columns after the name, or 38 with a scrollbar.
+    result.columns = count > page ? 38 : 40;
+    return result;
+}
 #endif
 
 static std::pair<uintptr_t, uintptr_t> native_world_civilization_owner() {

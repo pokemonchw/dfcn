@@ -242,7 +242,7 @@ void Overlay::append_fortress_place_names(std::vector<std::string> &rows,
         case Kind::Squad: {
             std::optional<std::string> name;
             if (caption.squad_alias) name = native_text_to_utf8(*caption.squad_alias);
-            else if (caption.squad_name) name = translate_history_name(*caption.squad_name);
+            else if (caption.squad_name) name = translate_generated_squad_name(caption.squad_name.get());
             if (name) translated = format_owned_caption("{e} assigned", *name);
             break;
         }

@@ -429,9 +429,14 @@ bool Overlay::append_name_editor_matches(std::vector<std::string> &rows,
             } else {
                 target = transliterate_site_spelling(preview.source);
             }
-        } else if (quoted && squad_preview) {
-            if (squad_name) target = translate_history_name(*squad_name);
-            if (target) *target = "“" + *target + "”";
+        } else if (squad_preview) {
+            if (quoted) {
+                target = translate_generated_squad_name(
+                    squad_name ? &*squad_name : nullptr, preview.source);
+                if (target) *target = "“" + *target + "”";
+            } else {
+                target = transliterate_site_spelling(preview.source);
+            }
         } else if (quoted && item_name) {
             target = translate_english_site_name(preview.source, &*item_name);
             if (target) *target = "“" + *target + "”";
@@ -558,13 +563,10 @@ void Overlay::append_native_name_editor_previews(std::vector<std::string> &rows,
             if (english && (draw.source.size() < 2 ||
                     draw.source.front() != '"' || draw.source.back() != '"')) continue;
             std::optional<std::string> target;
-            if (squad) {
-                target = english ? translate_history_name(*editor_name)
-                    : translate_procedural_fragment(draw.source, true);
-            } else {
-                target = english ? translate_english_site_name(draw.source,
-                    editor_name ? &*editor_name : nullptr, suffix) : transliterate_site_spelling(draw.source);
-            }
+            if (!english) target = transliterate_site_spelling(draw.source);
+            else if (squad) target = translate_generated_squad_name(&*editor_name, draw.source);
+            else target = translate_english_site_name(draw.source,
+                editor_name ? &*editor_name : nullptr, suffix);
             if (!target || target->empty()) continue;
             if (english) *target = "“" + *target + "”";
             const int length = static_cast<int>(draw.source.size());

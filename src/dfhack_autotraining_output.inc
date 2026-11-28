@@ -88,7 +88,7 @@
             const auto squad = lookup_native_dfhack_autotraining_squad_text(
                 gps_, caption_left, y, visible);
             if (!squad || squad->generated_source.empty()) continue;
-            const auto target = translate_history_name(squad->generated_name);
+            const auto target = translate_generated_squad_name(&squad->generated_name, squad->generated_source);
             if (!target || !contains_cjk_utf8(*target)) continue;
             const size_t length = std::min(squad->generated_source.size(), visible.size());
             const auto source = visible.substr(0, length);

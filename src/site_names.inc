@@ -190,8 +190,7 @@ std::optional<std::string> Overlay::localize_name_slots(const NativeHistoryName 
     NativeHistoryName visible = name;
     if (name.words[2].id.empty() && name.words[3].id.empty() && name.words[5].id.empty())
         visible.words[4] = {};
-    // Sites, their governments and artifacts use the same WORD/POS grammar.
-    // The owner supplies any type suffix. Artifacts have no place suffix.
+    // The owner chooses any type suffix independently of the WORD/POS grammar.
     auto result = localize_river_name(visible, RiverNames::InputKind::SiteSlots).display(suffix);
     return result.empty() ? std::nullopt : std::optional<std::string>(std::move(result));
 }
@@ -507,6 +506,16 @@ std::optional<std::string> Overlay::translate_site_name(const NativeHistoryName 
     const auto english = reconstruct_site_english_name(name);
     return english ? translate_english_site_name(*english, &name, site_name_attribute_suffix(name))
         : std::nullopt;
+}
+
+std::optional<std::string> Overlay::translate_generated_squad_name(
+        const NativeHistoryName *name, std::string_view english) const {
+    // Callers own squad.name or a field produced exclusively from it. A saved
+    // report title can retain the English field after the slots are gone.
+    const auto reconstructed = name && english.empty()
+        ? reconstruct_site_english_name(*name) : std::nullopt;
+    return translate_english_site_name(
+        reconstructed ? std::string_view(*reconstructed) : english, name, "小队");
 }
 
 std::optional<std::string> Overlay::translate_site_display(

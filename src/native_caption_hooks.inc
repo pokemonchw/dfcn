@@ -4037,6 +4037,7 @@ static void capture_native_clipped_draw(graphicst *graphics, const NativeString 
     const auto caller = reinterpret_cast<uintptr_t>(__builtin_return_address(0));
 #ifdef _WIN32
     if (native_mission_roster_field(caller) != NativeMissionRosterField::None) {
+        discard_native_clipped_draw_source(source);
         try { capture_native_mission_roster(graphics, source, width, caller); } catch (...) {}
         if (const auto original = g_native_clipped_caption_hooks.draw)
             original(graphics, source, just, width);

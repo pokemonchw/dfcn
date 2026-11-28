@@ -354,6 +354,8 @@ std::optional<std::vector<LegendsTextPiece>> Overlay::translate_history_event(
             name.emplace();
         } else if (kind == NativeHistoryObjectKind::Entity) {
             name = translate_history_entity_name(found->name, id);
+        } else if (kind == NativeHistoryObjectKind::Squad) {
+            name = translate_generated_squad_name(&found->name);
         }
         else if (kind == NativeHistoryObjectKind::Site) {
             const auto sources = site_reference_sources.find(id);

@@ -1217,9 +1217,9 @@ void Overlay::append_world_mission_roster(std::vector<std::string> &rows,
     std::optional<NativeMissionRosterOwner> current_owner;
     const auto translate = [&](Field field, const NativeDrawnTextRow &draw) -> std::optional<std::string> {
         const auto &source = draw.complete_source;
-        if (field == Field::Squad) {
+        if (field == Field::Squad || field == Field::AssignmentSquad) {
             if (draw.squad_alias_target) return draw.squad_alias_target;
-            if (draw.squad_generated_name) return translate_history_name(*draw.squad_generated_name);
+            if (draw.squad_generated_name) return translate_generated_squad_name(draw.squad_generated_name.get());
             return std::nullopt;
         }
         if (field == Field::Messenger && source != "Messenger (unfilled)")
@@ -1254,8 +1254,9 @@ void Overlay::append_world_mission_roster(std::vector<std::string> &rows,
             const auto field = native_mission_roster_field(draw.native_caller);
             int right = gps_->dimx;
             if (draw.draw_clip) right = std::min(right, draw.draw_clip->x + draw.draw_clip->w);
-            const bool name = field == Field::Squad || field == Field::Messenger;
-            if (name) right = std::min(right, draw.x + 24);
+            const bool overview_name = field == Field::Squad || field == Field::Messenger;
+            if (overview_name) right = std::min(right, draw.x + 24);
+            const bool name = overview_name || field == Field::AssignmentSquad;
             const int length = std::min(right - draw.x, static_cast<int>(draw.source.size()));
             if (length <= 0) continue;
             const auto visible = std::string_view(draw.source).substr(0, length);
@@ -1280,11 +1281,13 @@ void Overlay::append_world_mission_roster(std::vector<std::string> &rows,
                         : native_ui_top_layer_at(*gps_, at);
                     const auto origin = native_text_grid_origin(*gps_, at, layer);
                     current = origin.grid == draw.draw_grid && origin.top_layer == top;
+                    if (current && field == Field::AssignmentSquad)
+                        current = origin.grid[at * 8] == static_cast<unsigned char>(visible[i]);
                 }
                 if (!current) continue;
                 if (!target) target = translate(field, draw).value_or(native_text_to_utf8(draw.complete_source));
                 Match match{draw.x, y, length, kWorldSiteRowRule, *target, std::string(visible)};
-                if (field == Field::Squad && draw.squad_alias_target) {
+                if ((field == Field::Squad || field == Field::AssignmentSquad) && draw.squad_alias_target) {
                     auto alias = TranslationResult::translated(draw.complete_source, *target, "squad.alias");
                     alias.status = TranslationStatus::PreservedAuthored;
                     alias.fragments.front().status = alias.status;
@@ -1826,7 +1829,8 @@ void Overlay::append_world_mission_reports(std::vector<std::string> &rows,
                 // the respective generated-name and organization contexts;
                 // an unresolved name retains its bytes without losing the UI.
                 const auto name = party.empty() ? std::optional<std::string>("")
-                    : translate_legends_name(party, false, prefix == prefixes[2]);
+                    : prefix == prefixes[1] ? translate_generated_squad_name(nullptr, party)
+                    : translate_legends_name(party, false, true);
                 if (date && suffix) target = *heading +
                     (name ? *name : native_text_to_utf8(party)) + *suffix + *date;
             }

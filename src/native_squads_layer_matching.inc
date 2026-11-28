@@ -334,7 +334,7 @@ std::vector<Match> Overlay::find_native_squads_matches() const {
                 // RAW sword/knife/color names must not inherit homonymous
                 // skill, creature or material meanings from UI literals.
                 if (draw.squad_generated_name) {
-                    target = translate_history_name(*draw.squad_generated_name);
+                    target = translate_generated_squad_name(draw.squad_generated_name.get());
                 } else if (field.equipment == NativeSquadsEquipmentField::Type ||
                          field.equipment == NativeSquadsEquipmentField::Item) {
                     const std::string_view source = field.complete;

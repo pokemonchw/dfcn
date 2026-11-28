@@ -189,7 +189,7 @@ std::optional<std::string> Overlay::translate_fortress_squad_name(
                     static_cast<unsigned char>(visible[offset]);
             }
             if (current) return draw.squad_alias_target ? draw.squad_alias_target
-                : translate_history_name(*draw.squad_generated_name);
+                : translate_generated_squad_name(draw.squad_generated_name.get());
         }
     return native_text_to_utf8(source);
 }
@@ -227,7 +227,7 @@ std::optional<std::string> Overlay::translate_fortress_squad_reference(
                 if (source.substr(offset).starts_with(draw.source) ||
                         draw.source.starts_with(source.substr(offset))) {
                     const auto name = draw.squad_alias_target ? draw.squad_alias_target
-                        : translate_history_name(*draw.squad_generated_name);
+                        : translate_generated_squad_name(draw.squad_generated_name.get());
                     if (name) return *label + "：" + *name;
                 }
             }
@@ -345,7 +345,7 @@ void Overlay::append_fortress_squad_alias_rows(std::vector<std::string> &rows,
             }
             if (first != draw.x || first >= end) continue;
             const auto translated = draw.squad_alias_target ? draw.squad_alias_target
-                : translate_history_name(*draw.squad_generated_name);
+                : translate_generated_squad_name(draw.squad_generated_name.get());
             // Even an unresolved generated name owns its field. Letting the
             // generic matcher translate a suffix would corrupt the name.
             const std::string target = translated ? *translated

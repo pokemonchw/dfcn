@@ -734,9 +734,7 @@ std::optional<std::string> Overlay::translate_announcement_combat(
             if (party->kind == NativeMissionReturnKind::Alias)
                 return finish(native_text_to_utf8(party->prefix));
             if (party->kind == NativeMissionReturnKind::Generated && party->generated_name) {
-                auto translated = translate_history_name(*party->generated_name);
-                if (!translated) translated = translate_legends_name(party->prefix, false);
-                return finish(std::move(translated));
+                return finish(translate_generated_squad_name(&*party->generated_name, party->prefix));
             }
             if (party->kind == NativeMissionReturnKind::Units) {
                 std::string target;

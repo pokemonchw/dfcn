@@ -2258,7 +2258,14 @@ struct NativeMissionRosterOwner {
     bool operator==(const NativeMissionRosterOwner &) const = default;
 };
 static NativeMissionRosterOwner native_world_mission_roster_owner();
-enum class NativeMissionRosterField { None, Empty, Count, DetailEmpty, DetailCount, Squad, Messenger, Hint };
+struct NativeMissionAssignmentName {
+    std::string source;
+    std::shared_ptr<const NativeHistoryName> generated;
+    int columns = 17;
+};
+static NativeMissionAssignmentName capture_native_mission_assignment_name(
+    uintptr_t screen, int y, std::string_view ink);
+enum class NativeMissionRosterField { None, Empty, Count, DetailEmpty, DetailCount, Squad, AssignmentSquad, Messenger, Hint };
 
 static NativeMissionRosterField native_mission_roster_field(uintptr_t caller) {
     // The four reviewed PE renderers have the same instruction offsets from
@@ -2266,13 +2273,14 @@ static NativeMissionRosterField native_mission_roster_field(uintptr_t caller) {
     using Field = NativeMissionRosterField;
     if (!caller) return Field::None;
     static const uintptr_t first = native_pe_address(native_history_profile_base(), 0x1c6d00);
-    if (!first || caller < first || caller - first > 0x1c951b - 0x1c6d00) return Field::None;
+    if (!first || caller < first || caller - first > 0x1cd6d7 - 0x1c6d00) return Field::None;
     switch (caller - first + 0x1c6d00) {
     case 0x1c6d00: case 0x1c716c: return Field::Empty;
     case 0x1c6e63: case 0x1c72c8: return Field::Count;
     case 0x1c90d4: case 0x1c93c2: return Field::DetailEmpty;
     case 0x1c922d: case 0x1c951b: return Field::DetailCount;
     case 0x1c6f56: return Field::Squad;
+    case 0x1cd6d7: return Field::AssignmentSquad;
     case 0x1c73fb: return Field::Messenger;
     case 0x1c6fcc: case 0x1c746d: // overflow in either list
     case 0x1c7507: case 0x1c756c: // locked / editable footer
@@ -3090,11 +3098,17 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
 #ifdef _WIN32
     const auto roster_field = native_mission_roster_field(native_caller);
     NativeMissionRosterOwner roster_owner;
+    NativeMissionAssignmentName assignment_name;
     if (roster_field != NativeMissionRosterField::None) {
         roster_owner = native_world_mission_roster_owner();
         const bool detail = roster_field == NativeMissionRosterField::DetailCount ||
-            roster_field == NativeMissionRosterField::DetailEmpty;
+            roster_field == NativeMissionRosterField::DetailEmpty ||
+            roster_field == NativeMissionRosterField::AssignmentSquad;
         if (!roster_owner.mission || roster_owner.mode != (detail ? 3 : 2)) return;
+        if (roster_field == NativeMissionRosterField::AssignmentSquad) {
+            assignment_name = capture_native_mission_assignment_name(roster_owner.screen, y, complete_source);
+            if (!assignment_name.source.empty()) complete_source = assignment_name.source;
+        }
     }
 #endif
     const auto civilization_owner = civilization_field != NativeCivilizationField::None &&
@@ -3292,11 +3306,25 @@ static void remember_native_drawn_text_row(int x, int y, std::string_view source
                 row.unit_identity_pending = std::make_shared<const NativeUnitIdentitySource>(*identity);
         }
         if (row.unit_identity_target) row.caption_source = true;
-        row.squad_alias_target = squad_alias_target ? std::move(squad_alias_target)
-            : native_squad_alias_source_target(
+#ifdef _WIN32
+        if (roster_field == NativeMissionRosterField::AssignmentSquad) {
+            row.squad_generated_name = std::move(assignment_name.generated);
+            if (!row.squad_generated_name && !assignment_name.source.empty())
+                row.squad_alias_target = native_text_to_utf8(assignment_name.source);
+            if (row.draw_clip) {
+                auto &clip = *row.draw_clip;
+                clip.w = std::max(0, std::min(clip.x + clip.w,
+                    static_cast<int>(graphics->screenx) + assignment_name.columns) - clip.x);
+            }
+        } else
+#endif
+        {
+            row.squad_alias_target = squad_alias_target ? std::move(squad_alias_target)
+                : native_squad_alias_source_target(
+                    complete_source.empty() ? source : complete_source, address);
+            row.squad_generated_name = native_squad_generated_source_name(
                 complete_source.empty() ? source : complete_source, address);
-        row.squad_generated_name = native_squad_generated_source_name(
-            complete_source.empty() ? source : complete_source, address);
+        }
         if (row.squad_alias_target || row.squad_generated_name) {
             row.caption_source = true;
 #ifdef _WIN32
@@ -4400,6 +4428,8 @@ private:
         bool polity_role = false, bool government_role = false,
         const NativeSiteGovernmentContext *government_context = nullptr) const;
     std::optional<std::string> translate_site_name(const NativeHistoryName &name) const;
+    std::optional<std::string> translate_generated_squad_name(
+        const NativeHistoryName *name, std::string_view english = {}) const;
     std::optional<std::string> translate_site_government_name(const NativeHistoryName &name,
         const NativeSiteGovernmentContext *government_context = nullptr) const;
     std::optional<std::string> translate_english_site_name(
