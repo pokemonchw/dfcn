@@ -1,0 +1,7 @@
+file=Dwarf Fortress.exe
+edition=Steam Windows x64
+version=53.17
+image_base=0x140000000
+decompiler=Ghidra 12.1.4
+sha256=3436f0553d6fa17b25716f8b1f034b52e3d9dc30be7f3ddac67cd0ff731d7b16
+language=x86:LE:64:default
